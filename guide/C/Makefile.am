@@ -20,7 +20,6 @@ entities = \
 	chapter13.xml \
 	appendixa.xml \
 	appendixb.xml \
-	appendixc.xml \
-	appendixd.xml
+	appendixc.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
