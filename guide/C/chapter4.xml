@@ -10,64 +10,113 @@
 -->
 
  <chapter id="chapter4">
-  <title>Entering Transactions</title>
+  <title>Transactions</title>
     <para>
-This chapter will give you the basic information you need to enter transactions in GnuCash.   The next chapters address more specific cases you may have.
+This chapter will give you the basic information you need to understand and use transactions in GnuCash.  Whereas accounts are the framework and structure of a chart of accounts, transactions are the data which fills each account.
     </para>
+  <sect1 id="concept_transactions1">
+   <title>Concepts of Transactions</title>
     <para>
-We mentioned before that transactions must consist of at least two parts, the part transferring money <emphasis>from</emphasis> an account and the part transferring money <emphasis>to</emphasis> an account.  Accountants call these parts of a transaction <emphasis>Ledger Entries</emphasis>.  In GnuCash, they are called <emphasis>Splits</emphasis>.
-    </para>
+A <emphasis>transaction</emphasis> in a double entry accounting system such as GnuCash is an exchange between at least 2 accounts.  Thus, a single transaction must always consist of at least two parts, a "from" and a "to" account.  The "from" account is passing value to the "to" account.  Accountants call these parts of a transaction <emphasis>Ledger Entries</emphasis>.  In GnuCash, they are called <emphasis>Splits</emphasis>.
+   </para>
+   <para>
+For example, you receive a paycheck and deposit it into your savings account at the bank.  The <emphasis>transaction</emphasis> that occurs is that your bank savings account (an asset) received money from your income account.  Two accounts are affected, and in this case there is a net increase in your equity.
+   </para>
+   <para>
+Working with transactions in GnuCash is performed using what is known as the <emphasis>account register</emphasis>.  Every account you create has an account register.  It will appear familiar to you as it looks very similar to the log used to track checkbooks.
+   </para>
+  </sect1>
+
   <sect1 id="registers1">
-   <title>Overview of Registers</title>
+   <title>The Account Register</title>
     <para>
-To view an account register, highlight the account name in the account tree window and double-click to open it.  You can also click the <guibutton>Open</guibutton> button in the tool bar or use the right mouse button menu to open the account.  GnuCash will display the account register window.
+The <emphasis>account register</emphasis> is the GnuCash window which allows you to view or edit preexisting transactions, or add new transactions for a particular account.  To enter the account register, simply highlight the account name in the account tree window and double-click to open it.  You can also click the <guibutton>Open</guibutton> button in the tool bar or use the right mouse button menu to open the account.  GnuCash will display the account register window.
     </para>
+    <sect2 id="registers_twoaccount2">
+      <title>Simple Two Account Transaction</title>
+
     <para>
-For example, here is a <guilabel>Checking Account - Register</guilabel>:
-<screenshot id="register">
+For example, starting with the chart of accounts we created in the previous chapter, double click on the <guilabel>checking</guilabel> asset account.  Let's add a simple transaction to the checking account.  When you first create your accounts in GnuCash, it is common to start them off with an initial balance.  
+   </para>
+   <para>
+In the first transaction row, enter a date (eg: June 1, 2003), a description (eg: "Initial"), click on the Transfer popup menu and select <guilabel>Equity:Starting Balances</guilabel>, add a deposit value of $1000, and press the Enter key.  The account register should now appear similar to this figure:
+   </para>
+     <screenshot id="register_2account">
   <mediaobject>
     <imageobject>
-      <imagedata fileref="figures/register.png"
+      <imagedata fileref="figures/register_2account.png"
       srccredit="Chris Lyttle" format="PNG"/>
             </imageobject>
 	    <textobject>
 	        <phrase>The Checking Account - Register</phrase>
 	    </textobject>
 	    <caption>
-	       <para>This image shows the <guilabel>Checking Account -
-	       Register</guilabel>.
+	       <para>This image shows <guilabel>Asset:Checking -
+	       Register</guilabel> after inserting a starting value transaction.
 	       </para>
 	    </caption>
           </mediaobject>
         </screenshot>
-    </para>
-    <para>
-The title bar of the account register displays the account name, which in this case is <guilabel>Checking Account</guilabel>.   Below the title bar, the menu bar displays the menu items available within the account register, and the tool bar contains handy buttons that help you work with the account register.
-    </para>
-    <para>
-Although each transaction has at least two splits, all you see in the basic register is a summary of the splits affecting the current account.  In the Transfer column, you can see the other account from which money is <emphasis>transferred</emphasis> into or out of this account.   If the transaction affects more than two accounts, GnuCash displays <guilabel>-- Split Transaction --</guilabel> to show it is a multiple-split transaction.  You can see the individual splits of each transaction by clicking the <guilabel>Split</guilabel> button in the tool bar.
-    </para>
-    <para>
-For example, if you highlight the <guilabel>Paycheck</guilabel> register line above and click the <guilabel>Split</guilabel> button, you get an expanded transaction that looks like this:
-<screenshot id="registersplit">
+   <para>
+Setting the starting balances of an account is an example of a simple two account transaction.  In this case, affecting the <guilabel>Asset:Checking</guilabel> and the <guilabel>Equity:Starting Balances</guilabel> accounts.
+   </para>
+   <para>
+As another example of a simple 2 account transaction, add another transaction to describe the purchase of $45.21 worth of groceries.  From within the Asset:Checking account, you would set <guilabel>Transfer</guilabel> to <guilabel>Expenses:Groceries</guilabel>.  The account register should now appear:
+   </para>
+     <screenshot id="register_2account2">
   <mediaobject>
     <imageobject>
-      <imagedata fileref="figures/registersplit.png"
+      <imagedata fileref="figures/register_2account2.png"
       srccredit="Chris Lyttle" format="PNG"/>
             </imageobject>
 	    <textobject>
-	        <phrase>A split transaction</phrase>
+	        <phrase>The Checking Account - Register</phrase>
 	    </textobject>
 	    <caption>
-	       <para>This image shows a split transaction.
+	       <para>This image shows <guilabel>Asset:Checking -
+	       Register</guilabel> after adding a transaction for groceries.
 	       </para>
 	    </caption>
           </mediaobject>
         </screenshot>
+  </sect2>
 
+    <sect2 id="registers_multiaccount2">
+      <title>Multi Account Transaction</title>
+  <para>
+The need for a multi account transaction occurs when you need to split either the "from" or the "to" account in a transaction into multiple accounts.  The classic example of this is when you receive a paycheck.  Your take home pay from a paycheck will typically be less than your net pay, with the difference being due to taxes, retirement account payments, and/or other items.  Thus, the single transaction of you receiving a paycheck involves other accounts besides simply  <guilabel>Assets:Checking</guilabel> and <guilabel>Income:Salary</guilabel>.
+  </para>
+  <para>
+To add a paycheck transaction from the <guilabel>Assets:Checking</guilabel> account register window, click on a new transaction line, and click on <guilabel>Split</guilabel>.  First enter the description of this transaction on the first line (eg: "Employers R Us").  In the "split" line below this, the the gross total of your paycheck (eg: $1000) as a withdrawal transfer from <guilabel>Income:Salary</guilabel>.  Now, individually insert deposits to <guilabel>Asset:Checking</guilabel> (eg: $670), <guilabel>Expenses:Taxes:Federal</guilabel> (eg: $180), <guilabel>Expenses:Taxes:Medicare</guilabel> (eg: $90), and <guilabel>Expenses:Taxes:Social Security</guilabel> (eg: $60).  The final split should look like this:
+  </para>
+     <screenshot id="register_multiaccount">
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="figures/register_multiaccount.png"
+      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Account Register - Multi</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows <guilabel>Asset:Checking -
+	       Register</guilabel> after adding a multiaccount transaction for salary.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+   </sect2>
+
+    <sect2 id="registers_features2">
+      <title>Features of the Account Register</title>
+    <para>
+The title bar of the account register displays the account name, which in this case is <guilabel>Asset:Checking</guilabel>.   Below the title bar, the menu bar displays the menu items available within the account register, and the tool bar contains handy buttons that help you work with the account register.
     </para>
     <para>
-The first line of the transaction is the <emphasis>transaction line</emphasis>.   It contains a <guilabel>Date</guilabel>, optional <guilabel>Num</guilabel> (such as a check number), transaction <guilabel>Description</guilabel>, total amount affecting the current account (<guilabel>Tot Deposit</guilabel> here), and updated account <guilabel>Balance</guilabel> after the current transaction.  Note that in the expanded view, the <guilabel>Transfer</guilabel> column heading disappears, and there is no account name listed in that field.  This line shows you only a summary of the transaction's effect on the current account.  For more detailed information, you need to look below at the individual splits that make up the transaction.
+Although each transaction has at least two splits, all you see in the basic register is a summary of the splits affecting the current account.  In the Transfer column, you can see the other account from which money is <emphasis>transferred</emphasis> into or out of this account.   If the transaction affects more than two accounts, GnuCash displays <guilabel>-- Split Transaction --</guilabel> to show it is a multiple-split transaction.  You can see the individual splits of each transaction by clicking the <guilabel>Split</guilabel> button in the tool bar while selecting the appropriate transaction.
+    </para>
+    <para>
+For split transactions, the first line of the transaction is the <emphasis>transaction line</emphasis>.   It contains a <guilabel>Date</guilabel>, optional <guilabel>Num</guilabel> (such as a check number), transaction <guilabel>Description</guilabel>, total amount affecting the current account (<guilabel>Tot Deposit</guilabel> here), and updated account <guilabel>Balance</guilabel> after the current transaction.  Note that in the expanded view, the <guilabel>Transfer</guilabel> column heading disappears, and there is no account name listed in that field.  This line shows you only a summary of the transaction's effect on the current account.  For more detailed information, you need to look at the individual splits that make up the transaction.
     </para>
     <para>
 The partial lines below the transaction line are the <emphasis>split lines</emphasis>, and they are separated by gray lines.   As you highlight one of the split lines, the column headings change to show the split-related  fields:
@@ -93,10 +142,10 @@ The partial lines below the transaction line are the <emphasis>split lines</emph
 Each split contains an optional <guilabel>Action</guilabel>, or type of split, which you can either type in or choose from a pull-down list. The split also contains an optional <guilabel>Memo</guilabel> which describes the split.  Each split affects an <guilabel>Account</guilabel>, which can be selected from a pull-down list of your accounts.  The <guilabel>R</guilabel> field indicates whether the split has been reconciled.  The last two columns show the amount of the split and whether money is coming into or going out of the account.
     </para>
     <para>
-As we discussed in section 2.1, total debits (left-column entries) must equal total credits (right-column entries) for each transaction.  In the example shown above, the total debits equal the total credits, so this transaction is balanced.   If you notice, the transaction line contains the same debit amount as the <guilabel>Checking Account</guilabel> split line.  Why is this shown twice?  Because the transaction line is merely a <emphasis>summary</emphasis> of the transaction's effect on the current account.   The same transaction in a different account will have a different transaction line, one that shows the effect on that particular account.  You can see this by highlighting another split line and clicking the <guilabel>Jump</guilabel> button on the tool bar.
+As we discussed in section 2.1, total debits (left-column entries) must equal total credits (right-column entries) for each transaction.  In the example shown above, the total debits equal the total credits, so this transaction is balanced.   If you notice, the transaction line contains the same debit amount as the <guilabel>Checking</guilabel> split line.  Why is this shown twice?  Because the transaction line is merely a <emphasis>summary</emphasis> of the transaction's effect on the current account.   The same transaction in a different account will have a different transaction line, one that shows the effect on that particular account.  You can see this by highlighting another split line and clicking the <guilabel>Jump</guilabel> button on the tool bar.
     </para>
     <para>
-In this example, if you jump to the <guilabel>Salary</guilabel> account, GnuCash brings up the same transaction in the <guilabel>Salary - Register</guilabel>:
+In this example, if you jump to the <guilabel>Income:Salary</guilabel> account, GnuCash brings up the same transaction in the <guilabel>Income:Salary - Register</guilabel>:
 
 <screenshot id="registersplit3">
   <mediaobject>
@@ -105,10 +154,10 @@ In this example, if you jump to the <guilabel>Salary</guilabel> account, GnuCash
       srccredit="Chris Lyttle" format="PNG"/>
             </imageobject>
 	    <textobject>
-	        <phrase>A jump to the Salary account</phrase>
+	        <phrase>A jump to the Income:Salary account</phrase>
 	    </textobject>
 	    <caption>
-	       <para>This image shows a jump to the <guilabel>Salary
+	       <para>This image shows a jump to the <guilabel>Income:Salary
 	       </guilabel> account.
 	       </para>
 	    </caption>
@@ -117,11 +166,12 @@ In this example, if you jump to the <guilabel>Salary</guilabel> account, GnuCash
 
     </para>
     <para>
-Note that the transaction line total now summarizes the effect on the <guilabel>Salary</guilabel> account instead of the <guilabel>Checking Account</guilabel>, because you are looking at the <guilabel>Salary</guilabel> account register.    The splits are exactly the same, but the transaction line now reflects the credit to the <guilabel>Salary</guilabel> account.
+Note that the transaction line total now summarizes the effect on the <guilabel>Income:Salary</guilabel> account instead of the <guilabel>Checking Account</guilabel>, because you are looking at the <guilabel>Income:Salary</guilabel> account register.    The splits are exactly the same, but the transaction line now reflects the credit to the <guilabel>Income:Salary</guilabel> account.
     </para>
     <para>
 At the bottom left of the register window, GnuCash displays helpful messages as you move about the register.   To the right, you can see the current account balance and the total of cleared splits.
     </para>
+   </sect2>
   </sect1>
   <sect1 id="regstyle1">
    <title>Choosing a Register Style</title>
@@ -240,194 +290,99 @@ Space bar toggles the status between reconciled and not reconciled
     </listitem>
    </itemizedlist>
   </sect1>
-  <sect1 id="puttoget1">
+
+  <sect1 id="trans_puttoget1">
   <title>Putting It All Together</title>
   <para>
-  Start by opening your <filename>gcashdata</filename> file that you last worked on in Chapter 3.  As a refresher, your main window should look something  like this:
-  FIXME:This section needs redoing
+In the previous sections of this chapter the concepts and mechanics of working with transactions in GnuCash has been discussed.  This section will expand upon the chart of accounts initially built in the previous chapter.
+  </para>
+  <para>
+Start by opening your chart of accounts file.  Assuming you have been following the progress of this example chart of accounts, you should have 3 transactions already saved within the checking account.  The main window should look something like this:
 <screenshot id="gcashdata2b">
   <mediaobject>
     <imageobject>
-      <imagedata fileref="figures/gcashdata2.png"
+      <imagedata fileref="figures/trans_puttoget1.png"
       srccredit="Chris Lyttle" format="PNG"/>
             </imageobject>
 	    <textobject>
-	        <phrase>The dialog for a New Account</phrase>
+	        <phrase>Starting point for Putting It All Together</phrase>
 	    </textobject>
 	    <caption>
-	       <para>This image shows the New Account Dialog.
+	       <para>This image shows the starting point for this section.
 	       </para>
 	    </caption>
           </mediaobject>
         </screenshot>
+  </para>
+  <sect2 id="trans_puttoget_open2">
+  <title>Opening Balances</title>
+
+  <para>
+As shown earlier with the <guilabel>Asset:Checking</guilabel> account, the starting balances in an account are typically assigned to a special account called <guilabel>Equity:Starting Balances</guilabel>.  To start filling in this chart of account, begin by setting the starting balances for the accounts.  Assume that there is $1000 in the savings account and $500 charged on the credit card.  
   </para>
   <orderedlist>
   <listitem>
   <para>
-  Open the <guilabel>Checking Account</guilabel> register.  Select <guimenu>View</guimenu> -&gt; <guisubmenu>Style</guisubmenu> from the menu and check to make sure you are in Basic Ledger style.  You will view your transactions in the other modes later, but for now let's enter a basic transaction using the basic default style.
+  Open the <guilabel>Assets:Savings</guilabel> account register.  Select <guimenu>View</guimenu> -&gt; <guisubmenu>Style</guisubmenu> from the menu and check to make sure you are in Basic Ledger style.  You will view your transactions in the other modes later, but for now let's enter a basic transaction using the basic default style.
   </para>
   </listitem>
   <listitem>
   <para>
-  From the <guilabel>Checking Account</guilabel> register window, enter a basic transaction to deposit your net pay of $800 into your checking account.  (Remember, basic transactions transfer money from a source account to a destination account.  Your source in this case is the <guilabel>Salary</guilabel> account, and your destination is the <guilabel>Checking Account</guilabel>.)   The transaction should look like this:
-<screenshot id="transactex">
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="figures/transactex.png"
-      srccredit="Chris Lyttle" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>Entering a Paycheck transaction</phrase>
-	    </textobject>
-	    <caption>
-	       <para>This image shows Entering a Paycheck transaction.
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
-Record the transaction.
+From the <guilabel>Asset:Savings</guilabel> account register window, enter a basic 2 account transaction to set your starting balance to $1000, transferred from <guilabel>Equity:Starting Balances</guilabel>.  Remember, basic transactions transfer money from a source account to a destination account.  Record the transaction (press the 'enter' key, or click on the 'enter' icon).
   </para>
   </listitem>
   <listitem>
   <para>
-  Now duplicate this transaction using the <guibutton>Duplicate</guibutton> button in the tool bar.    Enter the transaction date a week out in the future, and notice the blue line separator that GnuCash uses to separate future transactions from current ones:
-<screenshot id="transactex2">
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="figures/transactex2.png"
-      srccredit="Chris Lyttle" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>The duplicated transaction</phrase>
-	    </textobject>
-	    <caption>
-	       <para>This image shows the duplicated transaction.
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
+From the <guilabel>Asset:Checking</guilabel> account register window, confirm that you have already set the starting balance to $1000, transferred from <guilabel>Equity:Starting Balances</guilabel>.  This should already have been done previously from the example earlier in this chapter, but if not, do so now.
   </para>
   </listitem>
   <listitem>
   <para>
-  Edit the transaction you just created so that it now shows gross salary and paycheck deductions for federal tax and FICA.  Since this is now going to be a multi-split transaction, click the <guibutton>Split</guibutton> button to enter the remaining splits. (Remember, in a multi-split transaction, you can have several source accounts and several destination accounts, but total debits must equal total credits for the transaction to balance.  In this case, your source account is Salary, but you now have 3 destination accounts: <guilabel>Checking Account</guilabel>, <guilabel>FedTax</guilabel>, and <guilabel>FICA</guilabel>.  You <emphasis>debit</emphasis> destination accounts and <emphasis>credit</emphasis> source accounts.)   Edit the transaction so that it shows:
-  </para>
-  <para>
-  <table>
-  <title>Split Example</title>
-  <tgroup cols="4" align="left">
-  <colspec colname="c1" />
-  <colspec colname="c2" />
-  <colspec colname="c3" />
-  <colspec colname="c4" />
-  <tbody>
-  <row>
-  <entry>Debit</entry>
-  <entry>Checking</entry>
-  <entry>800</entry>
-  </row>
-  <row>
-  <entry>Debit</entry>
-  <entry>FedTax</entry>
-  <entry>200</entry>
-  </row>
-  <row>
-  <entry>Debit</entry>
-  <entry>FICA</entry>
-  <entry>50</entry>
-  </row>
-  <row>
-  <entry>Credit</entry>
-  <entry>Salary</entry>
-  <entry colname="c4">1050</entry>
-  </row>
-  </tbody>
-  </tgroup>
-  </table>
-  </para>
-  <note>
-  <para>
-  You will have to create expense type accounts for FedTax and FICA, since these accounts don't exist in your list, but you can easily do this by typing the account name in the split line Account field.  GnuCash will bring up the Account Information dialog and you can fill in the account details.
-  </para>
-  </note>
-  <para>
-  Here's what the transaction should look like:
-<screenshot id="transactex3">
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="figures/transactex3.png"
-      srccredit="Chris Lyttle" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>The split transaction</phrase>
-	    </textobject>
-	    <caption>
-	       <para>This image shows the split transaction.
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
-Press Enter to record the transaction.
-  </para>
-  </listitem>
-  <listitem>
-  <para>
-  Enter another paycheck with a date set two weeks in the future.  This time, use QuickFill to enter your transaction.  On a blank transaction line, select the date from the drop-down calendar.  In the Description field, type "P" and watch GnuCash fill in the rest of the description for you.  Tab to the next field, and note that GnuCash inserts "-- Split Transaction --" in the Transfer field.  Tab again and note that GnuCash inserts the same deposit amount as the last transaction.  Record the transaction.
-  </para>
-  </listitem>
-  <listitem>
-  <para>
-  Expand the transaction you just entered so that you can see the splits.  This time, instead of clicking the Split button in the tool bar, select the Auto-Split Ledger style from the Register|Style menu.  Move around the register and notice the difference between this style and the Basic Ledger style.  Now select the Transaction Journal style from the Register|Style menu, and notice the differences there.
-  </para>
-  </listitem>
-  <listitem>
-  <para>
-  Let's look at another account register to see how this last paycheck transaction affected it.  In the expanded transaction, select the Salary account split, and click the Jump button in the tool bar.  You should now see the same transaction in the Salary account register:
-<screenshot id="transactex4">
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="figures/transactex4.png"
-      srccredit="Chris Lyttle" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>The split transaction in the Salary Account</phrase>
-	    </textobject>
-	    <caption>
-	       <para>This image shows the split transaction in the Salary Account.
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
-  </para>
-  <para>
-  Notice the transaction line is different, but all of the split lines are exactly the same.  You are now looking at this transaction in the Salary account, so the transaction line shows a summary of the effect on this account.
-  </para>
-  </listitem>
-  <listitem>
-  <para>
-  You now know all you need to know to enter your transactions in GnuCash.  Return to the main window by closing the register windows, and note that some of your accounts now have balances.  Your chart of accounts should now look like this:
-FIXME:insert chartaccts2.png
-<screenshot id="gcashdata2c">
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="figures/gcashdata.png"
-      srccredit="Chris Lyttle" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>The dialog for a New Account</phrase>
-	    </textobject>
-	    <caption>
-	       <para>This image shows the New Account Dialog.
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
-
+From the <guilabel>Liabilities:Visa</guilabel> account register window, enter a basic 2 account transaction to set your starting balance to $1000, transferred from <guilabel>Equity:Starting Balances</guilabel>.  This is done by entering the $500 as a "decrease", since it is money you borrowed.  Record the transaction (press the 'enter' key, or click on the 'enter' icon).
   </para>
   </listitem>
   </orderedlist>
   <para>
-  Be sure to save your gcashdata file for future use.  The next five chapters address specific examples of transactions you may want to enter, and they continue with practice exercises at the end of each chapter.
+You should now have 3 accounts with opening balances set.  <guilabel>Assets:Checking</guilabel>, <guilabel>Assets:Savings</guilabel>, and <guilabel>Liabilities:Visa</guilabel>.
   </para>
+  </sect2>
+
+  <sect2 id="trans_puttoget_add2">
+  <title>Additional Transaction Examples</title>
+
+  <para>
+Now add some more transactions to simulate a month's expenses.  During the month, $78 is spent on electricity, $45 on phone, and $350 on rent.  All paid by check.  Finally, let's move $100 from the savings account to the checking account.
+  </para>
+
+  <orderedlist>
+  <listitem>
+  <para>
+Open the <guilabel>Expenses:Electricity</guilabel> account register and enter a simple 2 account transaction to pay the $78 electrical bill at the end of the current month (eg: June 30, 2003).  Enter a description (eg: Light Company) and the check number (eg: 101).  The <guilabel>Transfer</guilabel> account should be <guilabel>Assets:Checking</guilabel>.
+  </para>
+  </listitem>
+  <listitem>
+  <para>
+Open the <guilabel>Assets:Checking</guilabel> account register and enter a simple 2 account transaction to pay the $45 phone bill at the end of the current month (eg: June 30, 2003).  Enter a description (eg: Phone Company Name) and the check number (eg: 102).  The <guilabel>Transfer</guilabel> account should be <guilabel>Expenses:Phone</guilabel>.  Notice that you can enter expense transactions from either the credit side (the expense accounts) or the debit side (the asset account).
+  </para>
+  </listitem>
+  <listitem>
+  <para>
+Open the <guilabel>Expenses:Rent</guilabel> account register and enter a simple 2 account transaction to pay the $350 in rent at the end of the current month (eg: June 30, 2003).  Enter a description (eg: June Rent) and the check number (eg: 101).  The <guilabel>Transfer</guilabel> account should be <guilabel>Assets:Checking</guilabel>.
+  </para>
+  <para>
+Duplicate this transaction using the <guibutton>Duplicate</guibutton> button in the tool bar.  Start by clicking on the current rent transaction, and click on the <guilabel>Duplicate</guilabel> icon.  Enter the transaction date a month out in the future (eg: July 31, 2003) and set the check number (eg: 102), and notice the blue line separator that GnuCash uses to separate future transactions from current ones.  In this way, you can enter transactions before they occur.
+  </para>
+  <para>
+You could also set up a scheduled transaction to pay your rent, since the value of the rent is likely to be constant for the foreseeable future.  FIXME, add scheduled transaction stuff.
+  </para>
+  </listitem>
+  <listitem>
+  <para>
+To transfer money from you savings account to your checking account, open the <guilabel>Assets:Savings</guilabel> account register, add a new transaction setting the Transfer to <guilabel>Assets:Checking</guilabel> in the amount of $1000.
+  </para>
+  </listitem>
+  </orderedlist>
+
+  </sect2>
   </sect1>
  </chapter>
