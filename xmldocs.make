@@ -57,7 +57,7 @@ convert-html:
 	done
 
 EXTRA_DIST = $(xml_files) $(omffile)
-CLEANFILES = omf_timestamp
+CLEANFILES = omf_timestamp $(docname)/*.html
 
 # If the following file is in a subdir (like help/) you need to add that to the path
 include $(top_srcdir)/omf.make
@@ -108,6 +108,7 @@ install-data-hook: install-data-hook-omf
 uninstall-local: uninstall-local-doc uninstall-local-omf
 
 uninstall-local-doc:
+	-rm -f $(DESTDIR)$(docdir)/help-search-index.db
 	-if test "$(figdir)"; then \
 	  for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
@@ -121,14 +122,15 @@ uninstall-local-doc:
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
 	    rm -f $(docdir)/$(docname)/stylesheet/$$basefile; \
 	  done; \
-	  rmdir $(DESTDIR)$(docdir)/$(docname)/stylesheet; \
+	  rmdir $(DESTDIR)$(docdir)/$(docname)/stylesheet
 	-for file in $(srcdir)/$(docname)/*.html; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
 	    rm -f $(docdir)/$(docname)/$$basefile; \
 	  done; \
-	  rmdir $(DESTDIR)$(docdir)/$(docname); \
+	  rmdir $(DESTDIR)$(docdir)/$(docname)
 	-for file in $(xml_files); do \
 	  rm -f $(DESTDIR)$(docdir)/$$file; \
 	done
 	-rmdir $(DESTDIR)$(docdir)
+	-rmdir $(DESTDIR)$(datadir)/gnome/help/gnucash
 

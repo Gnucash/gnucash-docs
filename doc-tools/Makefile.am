@@ -16,7 +16,7 @@ noinst_DATA = build-help-index
 
 install-data-local: help-search-index-rm help-search-index.db
 	$(INSTALL_DATA) help-search-index.db \
-		$(DESTDIR)$(docdir)/help-search-index.db
+	$(DESTDIR)$(docdir)/help-search-index.db
 
 help-search-index-rm:
 	if test -e help-search-index.db; then \
