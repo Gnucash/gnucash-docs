@@ -1,0 +1,58 @@
+This directory contains the XSLT stylesheets for DocBook 4.1.2 XML
+->HTML transformation being considered for the GNOME Documentation
+Project. A version of these stylesheets will be used for on-the-fly
+DocBook->HTML conversion by GNOME Help Browser. These stylesheets are
+customization layers for Norman Walsh's XSL stylesheets at
+http://sourceforge.net/projects/docbook (you'll need version
+1.45). These stylesheets are intended for use with documents based on
+GNOME templates but  will work with any DocBook XML 4.1.2
+document. 
+
+The stylesheets are a work in progress.  Any suggestions and 
+comments should be directed at the GNOME Documentation 
+Mailing List <gnome-doc-list@gnome.org> or to Eric Baudais 
+<baudais@okstate.edu>.
+
+
+INSTALLATION: 
+ just copy all .xsl, *.xml files from this directory to your
+ machine
+
+USAGE: 
+
+run your favorite XSL Transformation engine with stylesheet
+general-customization.xsl, e.g. 
+
+xsltproc -o outputdir/ path/to/general-customization.xsl yourfile.xml
+  
+Now create a subdirectory "stylesheet" in the outputdir and  copy (or
+link) there all stylesheet images from Walsh's stylesheets (in
+path/to/xsl-stylesheets/images/)  and file gnome-logo-icon.png
+(usually in usr/share/pixmaps). 
+
+NOTE ABOUT PATHS AND CATALOGS
+
+general-customization.xsl refers to Norm's stylesheets using 
+href="http://docbook.sourceforge.net/release/xsl/1.45/html/chunk.xsl"
+
+xsltproc (and probably other tools, too) will automatically use XML
+catalog to see if you have a local copy installed; if not, it will go
+and a  copy from the net. If xsltproc takes long time, then
+your XML catalog is probably broken and it fetches stylesheets from
+the net. To check whether your XML catalog is OK, type
+ xmlcatalog /etc/xml/catalog  http://docbook.sourceforge.net/release/xsl/current/html/chunk.xsl
+(provided you have libxml2 installed)
+If you get a local path
+(e.g. file:///usr/share/sgml/docbook/xsl-stylesheets-1.45/html/chunk.xsl), 
+your catalog is OK. Otherwise, you need to fix it - see 
+http://xmlsoft.org/catalog.html for background info and 
+http://xmlsoft.org/XSLT/docbook.html for a script that will do it for
+you. 
+
+
+Of course, you can also just hard-code the path to your local copy of
+stylesheets in general-cutomization.xsl - making it non-portable. The
+choice is yours. 
+
+
+

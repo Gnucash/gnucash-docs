@@ -4,7 +4,8 @@ EXTRA_DIST = gnucash-docs.spec.in \
 	     COPYING-DOCS \
 	     xmldocs.make \
 	     omf.make \
-	     chunk.xsl \
+	     stylesheet \
+	     xsl \
 	     HACKING
 
 dist-hook: gnucash-docs.spec
