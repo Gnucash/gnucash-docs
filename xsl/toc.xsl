@@ -1,5 +1,6 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 version='1.0'
                 xmlns="http://www.w3.org/TR/xhtml1/transitional"
                 exclude-result-prefixes="#default">
@@ -31,7 +32,7 @@
 <!-- Should the first section have its own chunk? 0 or 1 -->
 <xsl:param name="chunk.first.sections" select ="1"/>
 
-<!-- This template is called from book/part toc. 
+<!-- This template is called from book/part toc.
      We commented out "subtoc" stuff. As a result, book/part tocs only
      contain chapters /appendices/prefaces, but not sect*. -->
 
@@ -73,7 +74,7 @@
 <!--    <xsl:if test="$toc.listitem.type = 'li'
                   and $toc.section.depth>0 and section|sect1">
       <xsl:copy-of select="$subtoc.list"/>
-    </xsl:if> --> 
+    </xsl:if> -->
   </xsl:element>
 <!--  <xsl:if test="$toc.listitem.type != 'li'
                 and $toc.section.depth>0 and section|sect1">

@@ -1,5 +1,6 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 version='1.0'
                 xmlns="http://www.w3.org/TR/xhtml1/transitional"
                 exclude-result-prefixes="#default">
@@ -17,7 +18,7 @@
 	    <xsl:with-param name="key" select="'Copyright'"/>
 	  </xsl:call-template>
 	</h2>
-	
+
     <p class="{name(.)}">
       <xsl:call-template name="gentext">
 	    <xsl:with-param name="key" select="'Copyright'"/>
