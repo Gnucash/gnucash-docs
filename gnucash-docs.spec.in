@@ -25,7 +25,7 @@ This is the documentation module for GnuCash.
 %setup -q
 
 %build
-%configure
+%configure --localstatedir=/var/lib
 
 make RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
 
@@ -34,18 +34,16 @@ make RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
 
 LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir}:$RPM_BUILD_ROOT%{_libdir}/gnucash make DESTDIR=$RPM_BUILD_ROOT install
 
-%find_lang %name
-
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
 %post
-if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update -o %{datadir}/omf/gnucash-docs; fi
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update -o %{_datadir}/omf/gnucash-docs; fi
 
 %postun
 if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
 
-%files -f %{name}.lang
+%files
 %defattr(444,root,root,755)
 %{_datadir}/gnome/help/gnucash
 %{_datadir}/omf/gnucash-docs
