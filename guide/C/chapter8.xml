@@ -557,13 +557,22 @@ If the value of the commodity (stock) changes, you can adjust the value by enter
 
  <sect2 id="invest_stockprice_auto2">
  <title>Setting Stock Price Automatically</title>
- <para>If you have many commodities, you will tire of having to update their prices constantly.  GnuCash has the ability to automatically determine the most recent price for your commodities using the Internet.  This is accomplished through the Perl module called Finance::Quote, which must be installed in order to activate this feature.  </para>
- <para>To determine if the Perl module Finance::Quote is already installed on your system, type <quote>perldoc Finance::Quote</quote> in a terminal window and look to see if there is any documentation available.  If you see the documentation, then the module is already installed, if you do not, then it has not been installed.</para>
- <para>To install this Perl module, open a root terminal and run the command <quote>update-finance-quote</quote> (without the quotation marks).  This will launch a Perl CPAN update session which goes out onto the Internet in order to install the above module onto your system. </para>
+ <para>If you have many commodities, you will tire of having to update their prices constantly.  GnuCash has the ability to automatically determine the most recent price for your commodities using the Internet.  This is accomplished through the Perl module Finance::Quote, which must be installed in order to activate this feature.  </para>
+ <para>To determine if the Perl module Finance::Quote is already installed on your system, type <quote>perldoc Finance::Quote</quote> in a terminal window and look to see if there is any documentation available.  If you see the documentation, then the module is installed, if you do not see the documentation, then it has not been installed.</para>
+  <sect3 id="invest_stockprice_auto_install3">
+  <title>Installing Finance::Quote</title>
+ <para>To install Finance::Quote begin by first closing any GnuCash applications you have running.  Second, open a root shell and run the command <quote>update-finance-quote</quote> (without the quotation marks).  This will launch a Perl CPAN update session that will go out onto the Internet and install the Finance::Quote module on your system.  The update-finance-quote program is interactive, however, with most systems you should be able to answer "no" to the first question: <quote>Are you ready for manual configuration? [yes]</quote> and the update will continue automatically from that point.</para>
  <para>After installation is complete, you should run the "dump-finance-quote" test program distributed with GnuCash to test if Finance::Quote is installed and working properly.</para>
   <note>
   <para>If you feel uncomfortable about performing any of these steps, please either email the GnuCash-user mailing list (gnucash-user@gnucash.org) for help or come to the GnuCash IRC channel on irc.gnome.org. You can also leave out this step and manually update your stock prices.</para>
  </note>
+  </sect3>
+  <sect3 id="invest_stockprice_auto_configure3">
+  <title>Configuring Finance::Quote</title>
+  <para>With Finance::Quote installed and functioning correctly, you must configure your GnuCash stock accounts to use this feature to obtain updated price information automatically.  For stock accounts that have already been setup, <guibutton>edit</guibutton> the account and select the <guilabel>Get Online Quotes</guilabel> box.  You should now be able to modify the popup menus <guilabel>The source for price quotes</guilabel> and <guilabel>The timezone for these quotes</guilabel>.  When finished editing the stock account, return to the price editor and click on the <guibutton>Get Quotes</guibutton> button to update your stock prices on the internet.</para>
+  <para>The command "gnucash --add-price-quotes $HOME/gnucash.xac" can be used to fetch the current prices of your stocks. This can be automated by creating a crontab entry. For example, to update your file every Friday evening after the Wall Street markets close (modify the time accordingly for your time zone), you could add the following to your personal crontab:</para>
+<para>0 16 * * 5      gnucash --add-price-quotes $HOME/gnucash.xac &gt; /dev/null 2&gt;&amp;1 </para>
+  </sect3>
   </sect2>
 
  <sect2 id="invest_stockprice_view2">
