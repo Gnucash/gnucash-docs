@@ -1,7 +1,7 @@
 <!--
       (Do not remove this comment block.)
-  Version: 1.6.5
-  Last modified: November 24, 2001
+  Version: 1.7.6
+  Last modified: January 1, 2003
   Maintainers: 
                Chris Lyttle <chris@wilddev.net>
   Written by Chris Lyttle
@@ -10,91 +10,93 @@
                (translators put your name and email here)
 -->
  <chapter id="chapter7">
- <title>Chapter 7 Investments</title>
+ <title>Investments</title>
  <para>
  This chapter explains how to manage your investments with GnuCash. Most
  people have a investment plan, whether its just putting money into a CD
  account, investing through a company sponsored plan at your workplace or
  buying and selling stocks and bonds through a brokerage. GnuCash gives you
- tools to help you manage these investments such as the <emphasis>Price Editor</emphasis> which allows you to record changes in the prices of stocks you own.
+ tools to help you manage these investments such as the <emphasis>Price Editor
+ </emphasis> which allows you to record changes in the prices of stocks you own.
   </para>
  <sect1 id="setupinvest1">
- <title>7.1 Setting Up Accounts (Discussion)</title>
+ <title>Setting Up Accounts</title>
  <para>
  To setup investment accounts in GnuCash you can either use any of the
- predefined categories or setup your own. Investment accounts in GnuCash fall
- into two asset sub-categories, Current Assets and Investments. The Current 
- Assets category is used for the types of accounts that are like savings 
- accounts at your bank such as CD's and Money Market accounts. The Investments
- category is used for the types of accounts where you have a more direct
- ownership stake in the company you are investing in.
+ predefined categories or setup your own. The minimum you need to do to track
+ investments in GnuCash is to setup an account for your brokerage firm or
+ trading account and to add shares to it with a price per share and the transfer
+ account that is paying for the investment listed in the transfer box. GnuCash
+ will automatically calculate the value of the shares and show at the top of the
+ register both the number of shares you own and their current value.
  </para>
  <para>
- We discussed previously how you could use a strategy of just setting up
- two accounts to track paying a credit card bill, this simple formula applies
- also here. The minimum you need to do to track investments in GnuCash is to
- setup an account for your brokerage firm or trading account and to add shares
- to it with a price per share and the transfer account that is paying for the
- investment listed in the transfer box. GnuCash will automatically calculate
- the value of the shares and show at the top of the register both the number
- of shares you own and their current value.
+ The following is a somewhat more complicated example of setting up
+ GnuCash to track your investments which has the advantage that it groups each
+ different investment under the brokerage that deals with the investments.
+ This way it is easier to compare the statements you get from your brokerage
+ with the accounts you have in GnuCash and spot where GnuCash differs from the
+ statement.
+ <literallayout>
+- Assets
+   - Investments
+      - Brokerage Accounts
+         - I*Trade
+            - Stocks
+               - ACME Corp
+            - Money Market Funds
+               - I*Trade Municipal Fund
+            - Cash
+         - My Stockbroker
+            - Money Market Funds
+               - Active Assets Fund
+            - Government Securities
+               - Treas Bond xxx
+               - Treas Note yyy
+            - Mutual Funds
+               - Fund A
+               - Fund B
+            - Cash
+- Income
+   - Investments
+      - Brokerage Accounts
+         - Capital Gains
+            - I*Trade
+            - My Stockbroker
+         - Dividends
+            - I*Trade
+               - Taxable
+               - Non-taxable
+            - My Stockbroker
+               - Taxable
+               - Non-taxable
+         - Interest Income
+            - I*Trade
+               - Taxable
+               - Non-taxable
+            - My Stockbroker
+               - Taxable
+               - Non-taxable
+- Expense
+   - Investment Expenses
+      - Commissions
+         - I*Trade
+         - My Stockbroker
+      - Management Fees
+         - I*Trade
+         - My Stockbroker
+ </literallayout>
  </para>
- <para>
- You can also track each different type of investment individually such as
-   <itemizedlist>
-    <listitem>
-     <para>
- 	Brokerage Accounts
-     </para>
-    </listitem>
-    <listitem>
-     <para>
-	CD's
-     </para>
-    </listitem>
-    <listitem>
-     <para>
-	Treasury Bills
-     </para>
-    </listitem>
-    <listitem>
-     <para>
-	Money Market
-     </para>
-    </listitem>
-    <listitem>
-     <para>
-	Mutual Funds
-     </para>
-    </listitem>
-    <listitem>
-     <para>
-	Stocks
-     </para>
-    </listitem>
-    <listitem>
-     <para>
-	Bonds
-     </para>
-    </listitem>
-    <listitem>
-     <para>
-	Retirements accounts
-    </para>
-    </listitem>
-   </itemizedlist>
-   </para>
  </sect1>
  <sect1 id="createport1">
- <title>7.2 Creating a Portfolio for Your Current Holdings (How-To)</title>
+ <title>Creating a Portfolio for Your Current Holdings</title>
  <para>
  If you used the template account setup back in Chapter's 2 &amp; 3, you will
  see the investment accounts in two places under the Assets category. You can
  use this as a portfolio for your investments or if you wish, create your own
  by creating a new sub-account under Assets.
  </para>
- <orderedlist>
- <listitem>
+ <sidebar>
  <para>
  In order to receive online price quotes for your stocks you will need to
  setup the Perl module Finance::Quote. This is done by opening a root terminal
@@ -106,88 +108,127 @@
  on irc.gnome.org. You can also leave out this step and manually update your
  stock prices.
  </para>
- </listitem>
- <listitem>
+ </sidebar>
  <para>
  You should now have at least one stock account under the Assets category.
- Select the Assets category:
+ Open the Assets category by clicking on the '+', then select the Investments
+ category:
  insert investaccts.png
  </para>
- </listitem>
- <listitem>
  <para>
  Go to the menu and select:
  <menuchoice>
  <guimenu>Account</guimenu>
  <guimenuitem>Open Subaccounts</guimenuitem>
  </menuchoice>
- . This will show you the <emphasis role="strong">Portfolio</emphasis> view.
+ Here you see the <emphasis role="strong">Portfolio</emphasis> view. This gives  you an overview of your stock portfolio including the number of shares
+ bought and sold.
  </para>
- </listitem>
- </orderedlist>
+ <para>
+ Go back to the Account list. If you open the <emphasis>Brokerage Account
+ </emphasis> and <emphasis>Retirement</emphasis> items you will see a list of
+ four template investment accounts. You can either use these to record your
+ investment transactions or create new ones.
+ </para>
+ <para>
+ To create new investment accounts, click on the <guibutton>New</guibutton>
+ button. You should now see the <emphasis>New Account</emphasis> dialog.
+ </para>
  </sect1>
  <sect1 id="buyinvest1">
- <title>7.3 Buying New Investments (How-To)</title>
+ <title>Buying New Investments</title>
  <para>
+ Now that you have setup accounts you can enter in your stocks. If you open
+ the account register you will see it looks similar to other account registers
+ but instead of deposit and withdrawal columns it has columns to enter share
+ amounts and their prices. 
  </para>
+    <orderedlist>
+    <listitem>
+     <para>
+ Start off by filling in the <emphasis>Date</emphasis> and <emphasis>Description</emphasis> fields.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+ Choose a transfer account to indicate which account was used to pay for buying the stock. 
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+ Fill in the number of shares purchased in the <emphasis>Shares</emphasis> column and the price paid for the shares in the <emphasis>Price</emphasis> column.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+ Enter the total cost of the transaction in the <emphasis>Buy</emphasis> column and then tab or click the <guibutton>Enter</guibutton> button to finish the transaction.
+  insert buytrans.png
+  </para>
+  </listitem>
+  </orderedlist>
  </sect1>
  <sect1 id="sellinvest1">
- <title>7.4 Selling Investments (How-To)</title>
+ <title>Selling Investments</title>
  <para>
+ Entering an investment you are selling is done in the same way as buying one
+ except the total cost of the transaction is entered in the
+ <emphasis>Sell</emphasis> column and the <emphasis>Shares</emphasis> column
+ is entered as a negative amount.
+ insert selltrans.png
  </para>
  </sect1>
  <sect1 id="divint1">
- <title>7.5 Recording Dividends and Interest (How-To)</title>
+ <title>Recording Dividends and Interest (How-To)</title>
  <para>
  </para>
  </sect1>
  <sect1 id="splitmerge1">
- <title>7.6 Recording Stock Splits and Mergers (How-To)</title>
+ <title>Recording Stock Splits and Mergers (How-To)</title>
  <para>
  </para>
  </sect1>
  <sect1 id="employeeplan1">
- <title>7.7 Recording Employee Stock Plans (Discussion)</title>
+ <title>Recording Employee Stock Plans (Discussion)</title>
  <para>
  </para>
   <sect2 id="purcstock2">
- <title>7.7.1 Stock Purchase Plans (How-To)</title>
+ <title>Stock Purchase Plans (How-To)</title>
  <para>
  </para>
   </sect2>
   <sect2 id="soptions2">
- <title>7.7.2 Stock Options (How-To)</title>
+ <title>Stock Options (How-To)</title>
  <para>
  </para>
   </sect2>
  </sect1>
  <sect1 id="manageport1">
- <title>7.8 Managing your Portfolio (Discussion)</title>
+ <title>Managing your Portfolio (Discussion)</title>
  <para>
  </para>
   <sect2 id="portview2">
- <title>7.8.1  Portfolio View</title>
+ <title>Portfolio View</title>
  <para>
  </para>
   </sect2>
   <sect2 id="updateprices2">
- <title>7.8.2 Updating Prices (How-To)</title>
+ <title>Updating Prices (How-To)</title>
  <para>
  </para>
   </sect2>
   <sect2 id="capitalgain2">
- <title>7.8.3 Measuring Capital Gains (Discussion)</title>
+ <title>Measuring Capital Gains (Discussion)</title>
  <para>
  </para>
   </sect2>
  </sect1>
  <sect1 id="reconcilebroker1">
- <title>7.9 Reconciling with the Brokerage Statement (How-To)</title>
+ <title>Reconciling with the Brokerage Statement (How-To)</title>
  <para>
  </para>
  </sect1>
  <sect1 id="stockegs1">
- <title>7.10 Putting It All Together (Examples)</title>
+ <title>Putting It All Together</title>
  <para>
  </para>
  </sect1>
