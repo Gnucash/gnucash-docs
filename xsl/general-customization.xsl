@@ -7,7 +7,7 @@
 <!--########################Files to Include######################-->
 
 <!-- Importing the Norman Walsh's stylesheet as the basis. -->
-<xsl:import href="http://docbook.sourceforge.net/release/xsl/1.45/html/chunk.xsl"/>
+<xsl:import href="1.45/html/chunk.xsl"/>
 <!-- see NOTE ABOUT PATHS in README file for details -->
 
 <!-- Including new title page stylesheets for customizing the placement 
