@@ -39,7 +39,7 @@ The <emphasis>account register</emphasis> is the GnuCash window which allows you
 For example, starting with the chart of accounts we created in the previous chapter, double click on the <guilabel>checking</guilabel> asset account.  Let's add a simple transaction to the checking account.  When you first create your accounts in GnuCash, it is common to start them off with an initial balance.  
    </para>
    <para>
-In the first transaction row, enter a date (eg: June 1, 2003), a description (eg: "Initial"), click on the Transfer popup menu and select <guilabel>Equity:Starting Balances</guilabel>, add a deposit value of $1000, and press the Enter key.  The account register should now appear similar to this figure:
+In the first transaction row, enter a date (eg: June 1, 2003), a description (eg: "Initial"), click on the Transfer pop-up menu and select <guilabel>Equity:Starting Balances</guilabel>, add a deposit value of $1000, and press the Enter key.  The account register should now appear similar to this figure:
    </para>
      <screenshot id="txns_register_2account">
   <mediaobject>
@@ -100,7 +100,7 @@ To add a paycheck transaction from the <guilabel>Assets:Checking</guilabel> acco
 	    </textobject>
 	    <caption>
 	       <para>This image shows <guilabel>Asset:Checking -
-	       Register</guilabel> after adding a multiaccount transaction for salary.
+	       Register</guilabel> after adding a multi-account transaction for salary.
 	       </para>
 	    </caption>
           </mediaobject>
@@ -172,6 +172,7 @@ Note that the transaction line total now summarizes the effect on the <guilabel>
 At the bottom left of the register window, GnuCash displays helpful messages as you move about the register.   To the right, you can see the current account balance and the total of cleared splits.
     </para>
    </sect2>
+
   </sect1>
 
   <sect1 id="txns_regstyle1">
@@ -190,7 +191,7 @@ All styles permit you to view your data in either single-line or double-line for
   <sect1 id="txns_shortcuts1">
    <title>Using Entry Shortcuts</title>
     <para>
-GnuCash provides several time-saving shortcuts for entering your data.  When you type the first few characters of a description that you have used before, the QuickFill feature automatically fills in the rest of the transaction as you last entered it.   When you type in the first characters of an account name in either the <guilabel>Transfer</guilabel> field of the transaction line or the <guilabel>Account</guilabel> field of the split line, QuickFill will automatically complete the name from your account list.  It also helps you with entering subaccounts in these fields: simply type the first characters of the parent account name followed by a colon and the first characters of the subaccount name.  For example, to enter <guilabel>Assets:Checking</guilabel>, you might type <userinput>A:C</userinput> and let GnuCash fill in the rest.
+GnuCash provides several time-saving shortcuts for entering your data.  When you type the first few characters of a description that you have used before, the QuickFill feature automatically fills in the rest of the transaction as you last entered it.   When you type in the first characters of an account name in either the <guilabel>Transfer</guilabel> field of the transaction line or the <guilabel>Account</guilabel> field of the split line, QuickFill will automatically complete the name from your account list.  It also helps you with entering sub-accounts in these fields: simply type the first characters of the parent account name followed by a colon and the first characters of the sub-account name.  For example, to enter <guilabel>Assets:Checking</guilabel>, you might type <userinput>A:C</userinput> and let GnuCash fill in the rest.
     </para>
     <para>
 Register keyboard shortcuts also save you time, and GnuCash provides several of them.  In the date field, you can type:
@@ -291,6 +292,80 @@ Space bar toggles the status between reconciled and not reconciled
     </para>
     </listitem>
    </itemizedlist>
+  </sect1>
+
+  <sect1 id="txns_reconcile">
+  <title>Reconciliation</title>
+  <para>Transactions are typically checked against bank statements - a process known as "reconciliation". GnuCash keeps track of the reconciliation status of each transaction.</para>
+  <para>The reconciliation status of a transaction is shown by the reconciliation (R) field. 'y' indicates that a transaction has been reconciled, 'n' indicates that it has not, and 'c' indicates that it has been cleared, but not reconciled. You can toggle the reconciliation status between 'n' and 'c' by clicking in the (R) field; you can set it to 'y' by using the Reconciliation Window.</para>
+  <para>At the bottom of the account window, there are two running totals: 'Balance', and 'Cleared'. 'Cleared' should correspond to how much money the bank thinks you have in your account, while 'Balance' includes outstanding transactions.</para>
+
+  <sect2 id="txns_reconcile_window">
+  <title>Reconcile Window</title>
+  <para>The Reconciliation Window is used to reconcile a GnuCash account with a statement that a bank or other institution has sent you. Reconciliation is useful not only to double-check your records against those of your bank, but also to get a better idea of outstanding transactions, e.g. uncashed checks.</para>
+  <para>At the bottom of the account window, there are two running balances: the "cleared and reconciled" balance, and the "total" balance. The "cleared and reconciled" balance should correspond to how much money the bank thinks you have in your account, and the "total" balance includes outstanding transactions.</para>
+  <para>For example, when you write a check for something, you should enter the transaction into GnuCash. The reconciliation (R) field of the transaction will initially contain n (new). Your new entry will contribute to the "total" balance, but not to the "cleared and reconciled" balance. Later, if you think that the check has been cashed, you might click on the transaction's R field to change it to c (cleared). When you do this, the "cleared and reconciled" balance will change to include this amount. When the bank statement arrives, you can then compare it to what you've recorded in GnuCash in the Reconciliation window. There, you will be able to change the R field to y (reconciled). You cannot reconcile in the register window, you must use the reconciliation window. Once a transaction has been marked "reconciled", it can no longer be easily changed.</para>
+  <para>To use the Reconciliation Windows, select an account from the account tree and click on <guimenu>Actions</guimenu> -> <guimenu>Reconcile</guimenu>.  A window will appear in which you can enter the reconcile information.</para>
+
+<screenshot id="txns_reconcile_window1">
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="figures/txns_reconcile_window1.png"
+      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Reconcile Window</phrase>
+	    </textobject>
+	    <caption>
+	       <para>The initial reconcile window.</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  <itemizedlist>
+  <listitem>
+  <para><emphasis>Reconcile Info: Statement Date</emphasis> - this is the date of the statement you will be reconciling against.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Reconcile Info: Starting Balance</emphasis> - this is a non-editable item which displays the balance from the previous reconciliation.  It should match the starting balance in your statement.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Reconcile Info: Ending Balance</emphasis> - this is the ending balance as it appears in the statement.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Reconcile Info: Include Sub-accounts</emphasis> - select this if you want to include the sub-accounts of the currently selected account in this reconciliation.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Enter Interest Payment</emphasis> - click here to enter an interest payment to XXX (??).</para>
+  </listitem>
+  </itemizedlist>
+  
+  <para>Click on the <guibutton>Ok</guibutton> button, and you will see the transactions listing reconcile window:</para>
+
+<screenshot id="txns_reconcile_window2">
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="figures/txns_reconcile_window2.png"
+      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Reconcile Window</phrase>
+	    </textobject>
+	    <caption>
+	       <para>The transactions listing in the reconcile window.</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  <para>The two lists called <guilabel>Funds In</guilabel> and <guilabel>Funds Out</guilabel> lists all the unreconciled transactions. The 'R' columns show whether the transactions have been cleared or reconciled.</para>
+  <para>Now, examine each item on the bank statement, and look for the matching item in the Reconcile window.</para>
+  <para>If you cannot find one, then perhaps you forgot to enter a transaction, or did not know that the transaction had happened. You can use the New button on the tool bar, or the New menu item in the Transaction menu, to open a register window and enter the missing transaction. The new item will appear in the Reconcile window when you press enter after entering the transaction.</para>
+  <para>When you find the item in the Reconcile window, compare the amount in the item to the amount on the statement. If they disagree, you may have made an error when you entered the transaction in GnuCash. You can use the <guibutton>Edit</guibutton> button on the tool bar, or the <guimenu>Edit</guimenu> menu item in the Transaction menu, to open a register window and correct the transaction.</para>
+  <para>If the amounts agree, click on the item in the Reconcile window. The 'R' column will change to 'y' (reconciled) from 'n' or 'c'.</para>
+  <para>You then repeat this for each item that appears on the bank statement, verifying that the amounts match with the amounts in GnuCash, and marking off transactions in GnuCash as they are reconciled.</para>
+  <para>At the bottom of the "Reconcile" window is a "Difference" field, which should show $0.00 when you are done reconciling. If it shows some other value, then either you have missed transactions, or some amounts may be incorrect in GnuCash. (Or, less likely, the bank may have made an error.)</para>
+  <para>When you have marked off all the items on the bank statement, and when the difference is $0.00, press the Finish button on the tool bar or select Finish from the Reconcile menu (the latter method will work even if your "Difference" isn't $0.00). The Reconcile window will close. In the Register window, the R field of the reconciled transactions will change to 'y'. </para>
+  </sect2>
   </sect1>
 
   <sect1 id="txns_puttoget1">
