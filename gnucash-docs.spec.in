@@ -39,7 +39,15 @@ LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir}:$RPM_BUILD_ROOT%{_libdir}/gnucash make DE
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
+%post
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update -q -o
+%{datadir}/omf/gnucash-docs; fi
+
+%postun
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update -q; fi
+
 %files -f %{name}.lang
 %defattr(444,root,root,755)
 %{_datadir}/gnome/help/gnucash
+%{_datadir}/omf/gnucash-docs
 %doc AUTHORS COPYING-DOCS ChangeLog NEWS README HACKING
