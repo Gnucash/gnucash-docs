@@ -666,6 +666,7 @@ The online manual also provides a search function. To search for a particular to
     </para>
   </sect2>
   </sect1>
+
   <sect1 id="basics_files1">
    <title>Creating and Saving Files</title>
     <para>
@@ -724,6 +725,7 @@ Follow the steps above for saving a file under a new name.
 Before ending each GnuCash session, be sure to save your data changes using <guimenu>File</guimenu> -&gt; <guimenuitem>Save</guimenuitem> or the <guibutton>Save</guibutton> toolbar button.   In fact, it is a good idea to save your data changes often, since GnuCash does not permanently record your changes until you save them.  To open an existing file, select <guimenu>File</guimenu> -&gt; <guimenuitem>Open</guimenuitem> and choose your file from the list.
     </para>
   </sect1>
+
   <sect1 id="basics_import1">
    <title>Importing QIF Files</title>
     <note>
@@ -792,20 +794,51 @@ The last step is the import.  Once you have verified your account names and inve
     </listitem>
    </orderedlist>
   </sect1>
+
   <sect1 id="basics_backup1">
-   <title>Backing Up and Protecting Data</title>
-    <para>
-GnuCash creates several types of files to help ensure that your data is not lost. You may see the following file extensions:  xac, log, LCK, LNK. Each time you save your data file, a backup copy will also be saved with the extension xac. This backup file is a complete copy of your previous data file, and the filename format refers to the data file, year, month, day and time of the backup.  For example, the filename <filename>gcashdata.20010404185747.xac</filename> indicates this is a backup copy of the file gcashdata saved in the year 2001, April 4, at 6:57:47 p.m.
-    </para>
-    <para>
-Each time you open a file in GnuCash, a .log is created and saved with the same name format as the .xac backup files.   As you make changes to the open data file, the log file saves only those changes.  Log files are not a full backup of your data file - they simply record changes you have made to the data file in the current GnuCash session.
-    </para>
+   <title>Backing Up and Recovering Data</title>
+    <para>GnuCash creates several types of files to help ensure that your data is not lost. You may see files with the following file extensions:  xac, log, LCK, LNK in the same directory as your principal data file.  What each of these files does is presented below.</para>
+
+  <sect2 id="basics_backupxac2">
+   <title>Backup file (.xac)</title>
+<para>Each time you save your data file, a backup copy will also be saved with the extension xac. This backup file is a complete copy of your previous data file, and the filename format refers to the data file, year, month, day and time of the backup.  For example, the filename <filename>gcashdata.20010404185747.xac</filename> indicates this is a backup copy of the file gcashdata saved in the year 2001, April 4, at 6:57:47 p.m.</para>
+  <para>To restore an old backup file, simply open the .xac file with the date to which you wish to return.  Be sure and save this file with a different file name, do not use a .xac extension for you regular file name.</para>
+  </sect2>
+
+  <sect2 id="basics_backuplog2">
+   <title>Log file (.log)</title>
+    <para>Each time you open a file in GnuCash, a .log is created and saved with the same name format as the .xac backup files.   As you make changes to the open data file, the log file saves only those changes.  Log files are not a full backup of your data file - they simply record changes you have made to the data file in the current GnuCash session.</para>
+	<para>In case you exit GnuCash inadvertently, possibly due to a power outage
+or a system wide crash, it is possible to recover most of your work since the last time you saved your GnuCash file using this log file.  This is the procedure:</para>
+  <itemizedlist>
+  <listitem>
+  <para>Open the last saved GnuCash file.</para>
+  </listitem>
+  <listitem>
+  <para>Go to "File" -> "Import" -> "Replay GnuCash .log file" and select the one .log file with the same date as the saved file you just opened.  Make sure 
+that you picked the right .log file, or you will possibly wreck havock in 
+your accounts.</para>
+  </listitem>
+  </itemizedlist>
+<para>Log replaying will recover any transaction affecting the balance entered since the last save, including those created from scheduled transactions and business features (invoices, bills, etc.). </para>
+  <note>
+<para>Warning:  Changes to the scheduled transactions, invoices of bills themselves are NOT recovered, and their transactions that were recovered may not be properly associated with them, and should thus be double-checked.  Especially
+for business transactions, you may have to delete and re-create some of them.  If you do not, altough the balance will be correct, some reports may not.</para>
+  </note>
+  </sect2>
+
+  <sect2 id="basics_backuplock2">
+   <title>Lock files (.LNK and .LCK)</title>
     <para>
 You may occasionally see .LNK and .LCK files appear.  These do not store any data, but they are created to prevent more than one user from opening the same file at the same time.  These files are automatically created when you open the file, to lock it so no one else can access it.  When you close your GnuCash session or open another file, GnuCash unlocks the first data file by deleting the LCK and LNK files.
     </para>
     <para>
 If GnuCash crashes while you have a data file open, the LCK and LNK files are not deleted.  The next time you try to open GnuCash, you will get a warning message that the file is locked.  The warning message appears because the LNK and LCK files are still in your directory.   It is safe to choose Yes to open the file, but you should delete the .LNK and .LCK files (using a terminal window or your file manager.)  Once those files are deleted, you will not get the warning message again unless GnuCash crashes.
     </para>
+  </sect2>
+
+  <sect2 id="basics_backupmanage2">
+   <title>File Management</title>
     <para>
 So which files should you keep around?  Keep your main data file, of course - data files do not have an automatic file extension.   It's a good idea to keep some of the more recent .xac files, but you can safely delete the .log files since they are not complete copies of your data.  You should also delete any .LCK and .LNK files that you see after closing GnuCash.   If you decide to manually back up your data file to another disk, you only need to back up the main data file - not the .xac files.
     </para>
@@ -814,6 +847,7 @@ So which files should you keep around?  Keep your main data file, of course - da
 GnuCash will automatically delete any .xac, .log files that are older than 30 days.  You can change this behavior in the GnuCash preferences.
     </para>
     </note>
+  </sect2>
   </sect1>
   <sect1 id="basics_together1">
    <title>Putting It All Together</title>
