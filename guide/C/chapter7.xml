@@ -12,7 +12,7 @@
  <chapter id="chapter7">
  <title>Investments</title>
  <para>
- This chapter explains how to manage your investments with GnuCash. Most people have a investment plan, whether its just putting money into a CD account, investing through a company sponsored plan at your workplace or buying and selling stocks and bonds through a brokerage. GnuCash gives you tools to help you manage these investments such as the <emphasis>Price Editor </emphasis> which allows you to record changes in the prices of stocks you own.
+ This chapter explains how to manage your investments with GnuCash. Most people have an investment plan, whether its just putting money into a CD account, investing through a company sponsored plan at your workplace or buying and selling stocks and bonds through a brokerage. GnuCash gives you tools to help you manage these investments such as the <emphasis>Price Editor </emphasis> which allows you to record changes in the prices of stocks you own.
   </para>
  <sect1 id="invest_concepts1">
  <title>Basic Concepts</title>
@@ -130,10 +130,10 @@ Below is presented some of the broad types of investments available, and example
   <itemizedlist>
   <listitem>
   <para>
-<emphasis>Interest-bearing ACCOUNT</emphasis>
+<emphasis>Interest-bearing bank account</emphasis>
   </para>
   <para>
-This type of investment allows you immediate access to your money, and will typically pay you interest every month based on the amount of money you have invested.  Examples are bank savings accounts (and some interest bearing checking accounts).  This is a very low risk investment, in the US these accounts are often insured by the FDIC.
+This type of investment allows you immediate access to your money, and will typically pay you interest every month based on the amount of money you have saved.  Examples are bank savings accounts (and some interest bearing checking accounts) and cash accounts at your brokerage.  This is a very low risk investment, in the US these accounts are often insured against loss.
   </para>
   <para>
 Sometimes an interest bearing investment is <emphasis>time-locked</emphasis>.  This type of investment requires you to commit your money to be invested for a given period of time for which you receive a set rate of return.  Usually, the longer you commit the higher the interest rates.  If you withdraw your money before the maturity date, you will usually have to pay an early withdrawal penalty.  This is a low risk investment.  Examples are certificates of deposit or some government bonds.
@@ -147,7 +147,7 @@ Sometimes an interest bearing investment is <emphasis>time-locked</emphasis>.  T
 This is an investment you make in a company, in which you effectively become a part owner.  There is usually no time lock on publically traded stock, however there may be changes in the tax rates you pay on capital gains depending on how long you hold the stock.  Thus, stocks are typically quite liquid, you can access your money relatively quickly.  This investment is high risk, as you have no guarantee what the future price of a stock could be.
   </para>
   <para>
-A mutual fund is a group investment mechanism in which you can buy into many stocks simultaneously.  For example, a "S&amp;P 500 index fund" is a fund which purchases all 500 stocks listed in the Standard and Poores index.  When you buy a share of this fund, you are really buying a small amount of each of the 500 stocks contained within the fund.  Mutual funds are treated exactly like a single stock, both for tax purposes and in accounting.
+A mutual fund is a group investment mechanism in which you can buy into many stocks simultaneously.  For example, a "S&amp;P 500 index fund" is a fund which purchases all 500 stocks listed in the Standard and Poor's index.  When you buy a share of this fund, you are really buying a small amount of each of the 500 stocks contained within the fund.  Mutual funds are treated exactly like a single stock, both for tax purposes and in accounting.
   </para>
   </listitem>
   <listitem>
@@ -157,6 +157,7 @@ A mutual fund is a group investment mechanism in which you can buy into many sto
   <para>
 An asset that increase in value over time are another form of investment.  Examples include a house, a plot of land, or a valuable painting.  This type of investment is very difficult to determine the value of until you sell it.  The tax implications of selling these items is varied, depending on the item.  For example, you may have tax relief from selling a house if it is your primary residence, but may would not receive this tax break on an expensive painting.
   </para>
+  <para>Fixed asset investments are discussed in the chapter on "Depreciation and Capital Gains".  Typically, there is not much to do in terms of accounting for fixed asset investments except record the buynig and selling transactions.</para>
   </listitem>
   </itemizedlist>
 
@@ -479,12 +480,6 @@ The only difference between setting up a new investment purchase versus the setu
  </para>
  </sect2>
 
- <sect2 id="invest_view_value2">
- <title>Display Stock Value</title>
- <para>
-The main account window will by show you the quantity of each commodity that you own, under the column heading <quote>total</quote>.  In the case of stocks, this commodity is the number of shares.  Often, however, you will want to see the monetary value of your stocks.  This is easily accomplished by entering the account options and select to display the <quote>Total in report currency</quote> column.
- </para>
- </sect2>
  </sect1>
 
  <sect1 id="invest_stockprice1">
@@ -560,9 +555,33 @@ If the value of the commodity (stock) changes, you can adjust the value by enter
  <para>To determine if the perl module Finance::Quote is already installed on your system, type <quote>perldoc Finance::Quote</quote> in a terminal window and look to see if there is any documentation available.  If you see the documentation, then the module is already installed, if you do not, then it has not been installed.</para>
  <para>To install this perl module, open a root terminal and run the command <quote>update-finance-quote</quote> (without the quotation marks).  This will launch a Perl CPAN update session which goes out onto the internet in order to install the above module onto your system. </para>
   <note>
-  <para>If you feel uncomfortable about performing any of these steps, please either email the gnucash-user mailing list (gnucash-user@gnucash.org) asking for help or come to the gnucash irc channel on irc.gnome.org. You can also leave out this step and manually update your stock prices.</para>
+  <para>If you feel uncomfortable about performing any of these steps, please either email the gnucash-user mailing list (gnucash-user@gnucash.org) for help or come to the gnucash irc channel on irc.gnome.org. You can also leave out this step and manually update your stock prices.</para>
  </note>
   </sect2>
+
+ <sect2 id="invest_stockprice_view2">
+ <title>Display Stock Value</title>
+ <para>
+The main account window will by default only shows the quantity of each commodity that you own, under the column heading <guilabel>Total</guilabel>.  In the case of stocks, this commodity is the number of shares.  Often, however, you will want to see the value of your stocks expressed in terms of some monetary unit.  This is easily accomplished by entering the main window account options, by clicking on the toolbar <guibutton>Options</guibutton> button, and select to display the account field <quote>Total in Report Currency</quote>.  You will see a new column in the main window entitled <guilabel>Total (Report)</guilabel> that will express the value of all commodities in the report currency.
+ </para>
+
+	<screenshot id="invest_stockvalue">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/invest_stockvalue.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Viewing Stock Value</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Viewing the value of a stock commodity in the main window using the Total in Report Currency option.</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+ </sect2>
+
   </sect1>
 
  <sect1 id="invest_dividends1">
@@ -657,7 +676,7 @@ If the value of the commodity (stock) changes, you can adjust the value by enter
  </sect1>
 
  <sect1 id="invest_todo1">
- <title>Todo Investment Docs</title>
+ <title>Todo</title>
  <para>
 These are the remaining documentation sections that originally appeared in the 1.8.4 documentation which require being written up.
  </para>
@@ -668,9 +687,6 @@ These are the remaining documentation sections that originally appeared in the 1
  </listitem>
  <listitem>
  <para>Recording Employee Stock Plans (Discussion)</para>
- </listitem>
- <listitem>
- <para>Stock Purchase Plans (How-To)</para>
  </listitem>
  <listitem>
  <para>Stock Options (How-To)</para>
