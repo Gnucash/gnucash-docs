@@ -19,7 +19,7 @@ install-data-local: help-search-index-rm help-search-index.db
 	$(DESTDIR)$(docdir)/help-search-index.db
 
 help-search-index-rm:
-	if test -e help-search-index.db; then \
+	if test -r help-search-index.db; then \
 	rm -f help-search-index.db; \
 	fi
 
