@@ -1,9 +1,11 @@
 <!--
       (Do not remove this comment block.)
-  Version: 1.7.6
-  Last modified: January 1, 2003
+  Version: 1.7.7
+  Last modified: January 30, 2004
   Maintainers: 
                Chris Lyttle <chris@wilddev.net>
+  Contributors: 
+               Tomas Pospisek <tpo_deb@sourcepole.ch>
   Written by Chris Lyttle
   Originally designed by Carol Champagne.
   Translators:
@@ -576,7 +578,7 @@ If the value of the commodity (stock) changes, you can adjust the value by enter
   </sect2>
 
  <sect2 id="invest_stockprice_view2">
- <title>Display Stock Value</title>
+ <title>Displaying Stock Value</title>
  <para>
 The main account window will by default only shows the quantity of each commodity that you own, under the column heading <guilabel>Total</guilabel>.  In the case of stocks, this commodity is the number of shares.  Often, however, you will want to see the value of your stocks expressed in terms of some monetary unit.  This is easily accomplished by entering the main window account options, by clicking on the tool bar <guibutton>Options</guibutton> button, and select to display the account field <quote>Total in Report Currency</quote>.  You will see a new column in the main window entitled <guilabel>Total (Report)</guilabel> that will express the value of all commodities in the report currency.
  </para>
@@ -595,6 +597,56 @@ The main account window will by default only shows the quantity of each commodit
 	    </caption>
           </mediaobject>
         </screenshot>
+
+ </sect2>
+
+ <sect2 id="invest_stockprice_report">
+ <title>Making Stock Value Reports</title>
+ <para>
+Gnucash offers three alternatives to determine stock prices in reports:
+ </para>
+
+	<screenshot id="invest_stockvalue_report_options">
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/invest_stockvalue_report_options.png" 
+                           srccredit="Tomas Pospisek" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase>Determining Stock Price Source in Reports</phrase>
+            </textobject>
+            <caption>
+                <para>Determining the value of a stock commodity in a report by setting the Price Source option.</para>
+            </caption>
+        </mediaobject>
+    </screenshot>
+
+ <itemizedlist>
+   <listitem>
+     <para><guilabel>Weighted Average</guilabel> - gives you a graph on the weighted price of all <emphasis>transactions</emphasis>. It will <emphasis>not</emphasis> take into account prices defined in the price editor.</para>
+   </listitem>
+   <listitem>
+     <para><guilabel>Most recent</guilabel> - displays the changing value of your stocks based solely on <emphasis>the most recent</emphasis> price available from the price editor.  The price figuring in your stock transactions is <emphasis>not</emphasis> considered.</para>
+   </listitem>
+   <listitem>
+     <para><guilabel>Nearest in time</guilabel> - the graph is exclusively based on the prices available from the price editor. The value of your stock at each step and point in time is calculated based on the nearest available price in the price editor.</para>
+   </listitem>
+ </itemizedlist>
+
+	<screenshot id="invest_stockvalue_report">
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/invest_stockvalue_report.png" 
+                           srccredit="Tomas Pospisek" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase>An Asset Barchart Report based on the <guilabel>Nearest in time</guilabel> Price Source.</phrase>
+            </textobject>
+            <caption>
+                <para>Tracking what value your stocks would've had on the stock exchanges.</para>
+            </caption>
+        </mediaobject>
+    </screenshot>
 
  </sect2>
 
