@@ -18,6 +18,7 @@ entities = \
 	chapter11.xml \
 	chapter12.xml \
 	chapter13.xml \
+	chapter14.xml \
 	appendixa.xml \
 	appendixb.xml \
 	appendixc.xml
