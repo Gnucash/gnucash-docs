@@ -51,10 +51,10 @@
 <para><emphasis>Assets - Liabilities = Equity + (Income - Expenses)</emphasis></para>
 <para>This equation must always be balanced, a condition that can only be satisfied if you enter values to multiple accounts.  For example: if you receive money in the form of income you must see an equal increase in your assets.  As another example, you could have an increase in assets if you have a parallel increase in liabilities.</para>
 
-	<screenshot id="accts_accounts">
+	<screenshot id="basics_accounts">
 	  <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="figures/accts_accounts.png" 
+	      <imagedata fileref="figures/basics_accounts.png" 
 	      srccredit="Jon Lapham" format="PNG"/>
             </imageobject>
 	    <textobject>
@@ -108,7 +108,7 @@ You've probably heard the saying, <quote>Money doesn't grow on trees</quote>. It
 In GnuCash, these transfers are known as transactions, and each transaction requires at least two accounts.   To enter the cash withdrawal, for example, you would enter a transfer of money from a bank account to a cash account.   You would record the grocery check as a transfer from a checking account to a groceries expense account.   And the paycheck deposit is recorded as a transfer from an income account to a bank account.
     </para>
     <para>
-Unlike traditional accounting packages, GnuCash makes it very easy to enter your double entry  transactions.   Chapter 4 gives more detail on entering transactions, but for now let's take a general look at how they work.  For a basic transaction like writing a check, you first create two accounts: a checking account and an account for the expense.   For example, if you write a check to pay for groceries, then you need both a checking account and a groceries account.  (See Chapter 3 for more detail on creating accounts.)  To record the check, you simply enter a transaction to transfer money from the checking account to the groceries account.  In this example, if you write a check for $50 to pay for groceries, the GnuCash transaction looks like this when viewed from the checking account:
+Unlike traditional accounting packages, GnuCash makes it very easy to enter your double entry  transactions.   Chapter 4 gives more detail on entering transactions, but for now let's take a general look at how they work.  For a basic transaction like writing a check, you first create two accounts: a checking account and an account for the expense.  For example, if you write a check to pay for groceries, then you need both a checking account and a groceries account.  (See Chapter 3 for more detail on creating accounts.)  To record the check, you simply enter a transaction to transfer money from the checking account to the groceries account.  In this example, the GnuCash transactions look like this when viewed from the register windows of the checking account:
 	<screenshot id="basics_txn">
 	  <mediaobject>
 	    <imageobject>
@@ -128,21 +128,26 @@ Unlike traditional accounting packages, GnuCash makes it very easy to enter your
         </screenshot>
     </para>
     <para>
-In this transaction, a check is written to <guilabel>Grocery Store</guilabel> for <guilabel>$50</guilabel>. Since this is a double entry transaction, at least two accounts are affected and must be part of the transaction.  GnuCash automatically enters the current account name (<guilabel>Checking Account</guilabel>) for you so you only enter the other account name affected (<guilabel>Groceries</guilabel>).
+In this transaction, a check is written to <guilabel>Grocery Store</guilabel> for <guilabel>$50</guilabel>. Since this is a double entry transaction, at least two accounts are affected and must be part of the transaction.  GnuCash automatically enters the current account name (<guilabel>Assets:Checking</guilabel>) for you so you only enter the other account name affected (<guilabel>Expenses:Groceries</guilabel>).
     </para>
+
+  <note>
+  <para>In this example for double entry accounting we used a checking account to pay for the groceries.  But, notice that concept is the same no matter what method you use to pay for the groceries.  If instead you used a credit card, the double entry accounting would simply involve your Credit Card account instead of the Checking account. </para>
+  </note>
+
     <para>
 What about your paycheck?  You can see that money goes into a bank account, but where does it come from?  In double-entry, the money has to come from somewhere. Technically, that money comes from your employer, but you don't care about tracking your employer's accounts.  So how do you account for money coming in?  In GnuCash, you create a special income type account to track your incoming paychecks.   (See Chapter 3 for more information on creating income accounts.)  To record the paychecks,  you simply enter a transaction to transfer money from the income account to a bank account. 
     </para>
     <para>
 Here's what a paycheck deposit looks like in GnuCash. 
-    <screenshot id="basics_txn2">
+    <screenshot id="basics_simple_paycheck">
 	  <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="figures/basics_txn2.png"
+	      <imagedata fileref="figures/basics_simple_paycheck.png"
 	      srccredit="Chris Lyttle" format="PNG"/>
             </imageobject>
 	    <textobject>
-	        <phrase>A Paycheck Transaction</phrase>
+	        <phrase>A simple paycheck transaction</phrase>
 	    </textobject>
 	    <caption>
 	       <para>This image shows entering the date, description and
@@ -157,6 +162,8 @@ Here's what a paycheck deposit looks like in GnuCash.
     <para>
 In this example, <guilabel>$600</guilabel> is transferred from a <guilabel>Salary</guilabel> income account to the <guilabel>Checking Account</guilabel>.  Because of the special nature of income accounts, discussed in Chapter 3, this transaction increases both the checking account balance and the income account balance by the amount transferred.
     </para>
+
+	<!--
     <para>
 So what if you want to record your gross pay and all the deductions that come out of your check as well?  You enter a transaction with <emphasis>multiple splits</emphasis>, which we will cover in section 4.3. In this type of transaction, you are transferring a sum of money from one location to several locations.  For any double entry transaction, the <emphasis>total</emphasis> amount of money transferred <emphasis>from</emphasis> accounts must equal the <emphasis>total</emphasis> amount transferred <emphasis>to</emphasis> other accounts. 
     </para>
@@ -185,6 +192,7 @@ For example, your gross pay might be $1000, but only $655 of that gets deposited
           </mediaobject>
         </screenshot>
     </para>
+	-->
     <para>
 The main principle to remember is that there are at least two parts to every transaction, and the total amount transferred from a set of accounts must equal the total amount transferred to another set of accounts.  When a transaction transfers an equal sum from accounts to other accounts, that transaction is said to be <emphasis>in balance</emphasis>.  In GnuCash, as in double-entry accounting, you want to have all of your transactions in balance.
     </para>
@@ -204,6 +212,7 @@ You don't have to use the terms debit and credit to use GnuCash, however.  GnuCa
     </sidebar>
    </sect2>
   </sect1>
+
   <sect1 id="basics_interface1">
    <title>The GnuCash Interface</title>
     <para>
