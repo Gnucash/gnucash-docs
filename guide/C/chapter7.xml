@@ -92,7 +92,7 @@ Basic Loan Account Structure
  <para>As an example, assume you have $60k in you bank account, and you buy a $150k house.  The mortgage is charging 6% APR, and has administrative fees (closing costs, etc) of 3%.  You decide to put $50k down, and thus will need to borrow $103k, which will give you $100 after the closing costs are paid (3% of $100k).</para>
   <para>You accounts before borrowing the money:</para>
 
-	<screenshot id="loans_mortgage1.png">
+	<screenshot id="loans_mortgage1">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/loans_mortgage1.png" 
@@ -151,7 +151,7 @@ Basic Loan Account Structure
         </screenshot>
 
  <para>Which will give account totals like this:</para>
- 	<screenshot id="loans_mortgage3.png">
+ 	<screenshot id="loans_mortgage3">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/loans_mortgage3.png" 
@@ -168,6 +168,64 @@ Basic Loan Account Structure
  
 
  </sect1>
+
+ <sect1 id="loans_calcs1">
+ <title>Calculations</title>
+ <para>The calculations for determining loan specific values, such as periodic payment amounts, total payment, or interest rates can be complex.  Some complicating factors are that there exist different compounding methods or that the interest rates may be variable or fixed.  To help facilitate these calculations, GnuCash has a built-in Financial Calculator.  To access this, go to <guimenu>Tools</guimenu> -> <guimenu>Financial Calculator</guimenu>.</para>
+ 
+ 	<screenshot id="loans_fcalc">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/loans_fcalc.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Financial Calculator</phrase>
+	    </textobject>
+	    <caption>
+	       <para>The Financial Calculator</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+<para>The Financial Calculator can be used to calculate any one of the 5 parameters listed, given the other 4 parameters have been defined.  These 5 parameters are as follows:</para>
+
+  <itemizedlist>
+  <listitem>
+  <para><emphasis>Payment Periods</emphasis> - the total number of payments.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Interest Rate</emphasis> - the yearly interest rate of the loan.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Present Value</emphasis> - the current amount owed on the loan</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Periodic Payment</emphasis> - the amount to pay per period</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Future Value</emphasis> - the amount owed on the loan when finished</para>
+  </listitem>
+  </itemizedlist>
+
+<para>Additionally, you must select the frequency of compounding and the frequency of payments.  Typically, both of these will be "Monthly", but check the specifics of your loan.  Next you must specify whether payments are made at the beginning or end of a payment period.  Finally, you can specify whether the compounding is Discrete (ie: uses the compounding frequency to calculate) or Continuous.  Continuous compounding is the limit as the compounding period becomes smaller and smaller until it approaches zero.</para>
+
+  <sect2 id="loans_calcsexample2">
+  <title>Example: Monthly Payments</title>
+  <para>What is your monthly payment on a $100000 30 year loan at a fixed rate of 4% compounded monthly?</para>
+  <para>This scenario is shown in the example image above.  To perform this calculation, set Payment Periods to 360 (12 months x 30 years), Interest Rate to 4, Present Value to 100000, leave Periodic Payment empty and set Future Value to 0 (you do not want to owe anything at the end of the loan).  Compounding is Monthly, Payments are Monthly, assume End of Period Payments, and Discrete Compounding.  Now, click on the <guibutton>Calculate</guibutton> button next to the Periodic Payment area.  You should see -473.30.</para>
+  <para>Answer: You must make monthly payments of 473.30.</para>
+ </sect2>
+
+  <sect2 id="loans_calcsexample2">
+  <title>Example: Length of Loan</title>
+<para>How long will you be paying back a $20000 loan at 10% fixed rate interest compounded monthly if you pay $500 per month?</para>
+  <para>To perform this calculation, leave Payment Periods empty, set Interest Rate to 10, Present Value to 20000, Periodic Payment is -500, and set Future Value is 0 (you do not want to owe anything at the end of the loan).  Compounding is Monthly, Payments are Monthly, assume End of Period Payments, and Discrete Compounding.  Now, click on the <guibutton>Calculate</guibutton> button next to the Payment Periods area, you should calculate 48.</para>
+   <para>Answer: You will pay off the loan in 4 years (48 months).</para>
+ </sect2>
+
+ </sect1>
+
 
  <sect1 id="loans_missing1">
  <title>Missing Loan Documentation</title>
