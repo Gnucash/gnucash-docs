@@ -1,2 +1,1 @@
-SUBDIRS = 						\
-	gnucash-docs
+SUBDIRS = C
