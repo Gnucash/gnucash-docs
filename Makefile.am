@@ -1,5 +1,6 @@
 SUBDIRS = help \
-	  guide
+	  guide \
+	  doc-tools
 
 EXTRA_DIST = gnucash-docs.spec.in \
 	     COPYING-DOCS \

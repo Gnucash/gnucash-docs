@@ -56,7 +56,6 @@ convert-html:
 	 $(top_srcdir)/xsl/general-customization.xsl $(srcdir)/$$file; \
 	done
 
-
 EXTRA_DIST = $(xml_files) $(omffile)
 CLEANFILES = omf_timestamp
 
