@@ -62,7 +62,7 @@ CLEANFILES = omf_timestamp $(docname)/*.html
 # If the following file is in a subdir (like help/) you need to add that to the path
 include $(top_srcdir)/omf.make
 
-all: omf
+all: omf convert-html
 
 #$(docname).xml: $(entities)
 #	-ourdir=`pwd`;  \
@@ -78,7 +78,7 @@ app-dist-hook:
 	  done \
 	fi
 
-install-data-local: omf convert-html
+install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(docdir)
 	for file in $(xml_files); do \
 	  cp $(srcdir)/$$file $(DESTDIR)$(docdir); \
