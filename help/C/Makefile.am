@@ -1,7 +1,12 @@
 figdir = figures
-docname = gnucash-docs
+docname = gnucash-help
 lang = C
-omffile = gnucash-docs-C.omf
-entities = fdl-appendix.xml legal.xml
+omffile = gnucash-help-C.omf
+entities = \
+	fdl-appendix.xml \
+	legal.xml \
+	chartofaccts.xml \
+	chtacctseg.xml \
+	txf-categories.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook

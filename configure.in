@@ -1,8 +1,7 @@
 # copyright (c) 2000-2002 Chris Lyttle
 
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(help/gnucash-docs/C/help.xml
-)
+AC_INIT(gnucash-docs.spec.in)
 
 dnl ==========================================================================
 dnl
@@ -61,11 +60,19 @@ dnl = End tests for scrollkeeper
 dnl ====================================
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnucash-docs,0.0.1)
+AM_INIT_AUTOMAKE(gnucash-docs,1.7.4)
 AM_PROG_LIBTOOL
 
+dnl
+dnl Check for xsltproc
+dnl
+AC_PATH_PROG(XSLTPROC, xsltproc)
+if test -z "$XSLTPROC"; then
+  AC_MSG_ERROR([xsltproc not found])
+fi
+
 AC_OUTPUT(
-gnucash-docs.spec.in
+gnucash-docs.spec
 help/Makefile
 help/gnucash-docs/Makefile
 help/gnucash-docs/C/Makefile

@@ -37,10 +37,21 @@
 # This variable (docdir) specifies where the documents should be installed.
 # This default value should work for most packages.
 # docdir = $(datadir)/@PACKAGE@/doc/$(docname)/$(lang)
-docdir = $(datadir)/gnome/help/$(docname)/$(lang)
+docdir = $(datadir)/gnome/help/gnucash/$(lang)
+
+# This file is changed from the original to generate html files for GnuCash
+# Dec 2002 Chris Lyttle
 
 # **************  You should not have to edit below this line  *******************
 xml_files = $(entities) $(docname).xml
+
+# Convert xml to html with xsltproc
+# xsltproc   -o outputdir/ /usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl filename.xml
+convert-html: 
+	for file in $(docname).xml; do \
+	 xsltproc -o $(srcdir) $(top_srcdir)/chunk.xsl $(srcdir)/$$file; \
+	done
+
 
 EXTRA_DIST = $(xml_files) $(omffile)
 CLEANFILES = omf_timestamp
@@ -55,7 +66,7 @@ $(docname).xml: $(entities)
 	cd $(srcdir);   \
 	cp $(entities) $$ourdir
 
-app-dist-hook:
+app-dist-hook: convert-html
 	if test "$(figdir)"; then \
 	  $(mkinstalldirs) $(distdir)/$(figdir); \
 	  for file in $(srcdir)/$(figdir)/*.png; do \
@@ -63,12 +74,20 @@ app-dist-hook:
 	    $(INSTALL_DATA) $$file $(distdir)/$(figdir)/$$basefile; \
 	  done \
 	fi
+	  for file in $(srcdir)/*.html; do \
+	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    $(INSTALL_DATA) $$file $(distdir)/$$basefile; \
+	  done 
 
-install-data-local: omf
+install-data-local: omf convert-html
 	$(mkinstalldirs) $(DESTDIR)$(docdir)
 	for file in $(xml_files); do \
 	  cp $(srcdir)/$$file $(DESTDIR)$(docdir); \
 	done
+	  for file in $(srcdir)/*.html; do \
+	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$$basefile; \
+	  done
 	if test "$(figdir)"; then \
 	  $(mkinstalldirs) $(DESTDIR)$(docdir)/$(figdir); \
 	  for file in $(srcdir)/$(figdir)/*.png; do \
@@ -89,6 +108,10 @@ uninstall-local-doc:
 	  done; \
 	  rmdir $(DESTDIR)$(docdir)/$(figdir); \
 	fi
+	-for file in $(srcdir)/*.html; do \
+	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    rm -f $(docdir)/$$basefile; \
+	  done 
 	-for file in $(xml_files); do \
 	  rm -f $(DESTDIR)$(docdir)/$$file; \
 	done
