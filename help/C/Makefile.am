@@ -7,6 +7,10 @@ entities = \
 	legal.xml \
 	chartofaccts.xml \
 	chtacctseg.xml \
-	txf-categories.xml
+	txf-categories.xml \
+	intro.xml \
+	gettingstarted.xml \
+	usage.xml \
+	custom.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook

@@ -53,8 +53,43 @@ You may also want to retail a local copy of the old documentation to
 refer to when writing. This still has a lot of useful information in it
 which hasn't been transferred to the new docs.
 
-NOTE: The id used in the <article> and <sect1> tag is important as it defines
+NOTE: The id used in the <chapter> and <sect1> tags are important as they define
 the name used when the html pages are generated. Please be careful with these.
+
+<chapter> and <sect1> tags are also used to create the sidebar index in yelp
+and are an important bonus to ease-of-use of the final documentation.
 
 Chris Lyttle
 6th Dec 2002
+
+--------------------
+
+SGML tweaks;
+
+There are a couple of common tweaks in the XML files to allow SGML tools to
+operate - for PDF generation. The tweaks are minor but common (and to those
+familiar with XML a touch bizarre / annoying). If necessary, I can add a
+Perl script to do the syntax changes automatically, but for now these are
+the changes:
+
+1. Avoid using the XML empty tag, specify the closing tag.
+	e.g. <para></para> instead of </para />
+2. Avoid a newline after <entry> tags.
+	e.g. <entry><para> instead of <entry>\n<para>
+3. Avoid underscores in id attribute values.
+	e.g. id="getting-started" instead of id="getting_started"
+5. Use <chapter> and <sect1>.
+
+These are minor and don't affect the normal XML content in any way.
+(OK, the loss of < /> adds some extra characters.) However, the problem
+with these is the sheer number of tags that use the pre-tweaked syntax.
+SGML tools can deal with small numbers of these errors (commonly <200),
+so this is an advisory. If you're editing the XML, please consider this
+advice and make my life a little easier when it comes to PDF's.
+
+Thanks.
+
+Neil Williams
+<linux@codehelp.co.uk>
+9th March 2005.
+
