@@ -10,276 +10,377 @@
                (translators put your name and email here)
 -->
  <chapter id="chapter13">
- <title>Business: Payroll</title>
- <para>Payroll is a financial record of wages, net pay, paid vacations, and deductions for an employee.  This chapter will demonstrate how to track payroll in GnuCash</para>
- <sect1 id="bus_pay_concepts1">
- <title>Basic Concepts</title>
-  <para>Payroll is a financial record of wages, net pay, paid vacations, and deductions for an employee.  Basically, anything that relates to giving money or benefits to an employee.  This is one of the more complex tasks in terms of accounting, simply because there are many different accounts, people, and agencies involved in the act of paying an employee's salary.</para>
-  <para>Payroll is typically accounted for as an expense.  Sometimes, accountants will "store" some payroll expenses in a short term liability account.  This is useful for things such as payroll taxes, which may be paid to the government at a different times from paying employee salaries.  This chapter will present a methodology which expenses payroll immediately for salaries, but store taxes in a liability account.</para>
-  <note>
-  <para>GnuCash does not (yet) have an integrated payroll system.  What this means is that while you can track payroll expenses in GnuCash, the actual calculation of taxes and deductions will have to be done outside of GnuCash.</para>
-  </note>
-  </sect1>
-  
- <sect1 id="bus_pay_acct1">
- <title>Account Setup</title>
-  <para>Some considerations that must be addressed when setting up your accounts is how your local tax laws work.  Because there are so many different ways payroll taxes can be handled throughout the world, this section will present a simple structure.  From this, you should be able to adapt your particular payroll deductions setup.</para>
-  <para>Let us assume that you must pay 2 taxes, Tax1 and Tax2 and that each has an employee contributed component and an employer contributed component.</para>
-  <para>The employee's salary and these two taxes will have to have expense accounts associated, and the taxes will have to have liability accounts.  The tax liability account is the place where you accumulate the withheld taxes for all of your employees, which is later paid to the appropriate government agency.</para>
-  <para>
+ <title>Accounts Payable</title>
+ <para>Accounts Payable (or A/P) refers to the accounting of products or services which a company has bought and needs to pay off.</para>
+
+  <sect1 id="bus_ap_concepts1">
+  <title>Basic Concepts</title>
+  <para>This chapter will focus on Accounts Payable (or A/P).  A/P refers to the accounting of products or services that your company has bought, for which payment needs to be scheduled.</para>
+   </sect1>
+
+  <sect1 id="bus_ap_setup1">
+  <title>Initial Setup</title>
+  <para>To setup GnuCash to work with handling accounts payable for a company, there are 2 preliminary things that must be done.  The first thing to do is to build an appropriate Account Hierarchy and the second is to register the company in GnuCash.</para>
+
+  <sect2 id="bus_ap_setupacct2">
+  <title>Account Setup</title>
+  <para>There are many different ways to setup a business account hierarchy.  You can start with the Business Accounts setup which is available from the New Account druid, or you could build one manually.  To access the prebuilt Business Accounts, start GnuCash and click on <guimenu>File</guimenu> -> <guimenu>New File</guimenu> and proceed until you see the list of available accounts, select Business Accounts.</para>
+  <para>Most likely, the prebuilt Business Account hierarchy will not be perfect for your needs, you will need to perform some amount of manual adjustments for the accounts to function well with your situation.  This chapter will present example account structures which you can add to your existing accounts.</para>
+
+  <para>Accounts Payable (or A/P) refers to products or services bought by the company for which payment has not yet been sent.  This is represented on the balance sheet as a liability, because the expectation is that you will have to pay for it.  To use GnuCash's integrated accounts payable system, you must first setup an account (usually a sub-account under Liabilities) defined with account type <emphasis>A/Payable</emphasis>.  It is within this account that the integrated A/P system will place transactions.</para>
   <literallayout>
-Simple Payroll Account Layout:
+Basic A/P Account Hierarchy:
 
 -Assets
-   -Checking
+   -Bank
 -Liabilities
-   -Tax1  (short term "storage" account)
-   -Tax2  (short term "storage" account)
+   -Accounts Payable
 -Expenses
-   -Salaries
-   -Taxes
+   -AP Expenses
   </literallayout>
 
-  <note>
-  <para>There is a temptation to create per-employee sub-accounts, to track each employee seperately.  However, this often leads to unmanageably large lists of accounts.  Imagine how your account structure would look after a few years of employees coming and going in your company.  It is much simpler to keep all of your employees payroll records within a single account (Expense:Salaries for example) and use reports to view per-employee information.</para>
-  </note>
-  </para>
+ <note>
+ <para>Note that you will need to add real asset accounts and real expense accounts to this hierarchy.  But, the most important aspects of this hierarchy are that you need an expense account and an Accounts Payable account, with account type set to <emphasis>A/Payable</emphasis>.</para>
+ </note>
+  </sect2>
 
+  <sect2 id="bus_ap_setupcname2">
+  <title>Register Your Company in GnuCash</title>
+  <para>After you have built your account structure, you will want to register the GnuCash file as belonging to your company.  To do so, add your Business Name, Address and GST number.  Click on <guimenu>File</guimenu> -> <guimenu>Properties</guimenu>.  Type the Business name and address, add an empty line and add the GST number: <quote>GST: 1234-5678RT</quote>.  Click <guilabel>OK</guilabel>.</para>
+  </sect2>
   </sect1>
 
- <sect1 id="bus_pay_protocol1">
- <title>Protocol</title>
-  <para>GnuCash does not (yet) have an integrated payroll system.  You can use GnuCash to track your payroll expenses, but you will need to develop a payroll protocol and perform the calculations outside of GnuCash, in a spreadsheet for example.  In this section, one such protocol is presented, which you can use as a model.</para>
+  <sect1 id="bus_ap_components1">
+  <title>System Components</title>
+  <para>GnuCash has an integrated accounts payable system.  The transactions generated by the A/P system will be placed within the Accounts Payable account, as a record of what occurs, but you do not directly work within this account.  Rather, you will principally be working with the 4 integrated GnuCash A/P application components, available from the sub-menu <guimenu>Business</guimenu> -> <guimenu>Vendors</guimenu>.  These 4 application components are:</para>
 
-  <sect2 id="bus_pay_protocolone2">
-  <title>Step 1: Deductions list</title>
-  <para>The first step to the payroll protocol is to create a list of all the possible taxes and deductions for each employee, which should include definitions and formulas for calculating each value.  This step of the protocol will only need to be done once, and again in the future when the payroll laws or tax rates change.  For our simple payroll situation with the two taxes, such a list would look like this:</para>
   <itemizedlist>
   <listitem>
-  <para><emphasis>E_GROSS_SALARY</emphasis> - Employee gross salary</para>
+  <para><guilabel>Vendors</guilabel> are people or companies from which you buy products or services on credit.</para>
   </listitem>
   <listitem>
-  <para><emphasis>E_TAX1</emphasis> - Employee contribution to tax1 (X% of E_GROSS_SALARY)</para>
+  <para><guilabel>Bills</guilabel> represent the physical bill you receive from a vendor, requesting payment.  A bill contains an itemized list of things you purchased.</para>
   </listitem>
   <listitem>
-  <para><emphasis>E_TAX2</emphasis> - Employee contribution to tax2 (X% of E_GROSS_SALARY)</para>
+  <para><guilabel>Jobs</guilabel> (optional) is where you register Vendor Jobs, a grouping mechanism by which you can group bills to a particular vendor.</para>
   </listitem>
   <listitem>
-  <para><emphasis>C_TAX1</emphasis> - Company contribution to tax1 (X% of E_GROSS_SALARY)</para>
-  </listitem>
-  <listitem>
-  <para><emphasis>C_TAX2</emphasis> - Company contribution to tax2 (X% of E_GROSS_SALARY)</para>
+  <para><guilabel>Process Payments</guilabel> is where you register money payments to a vendor to whom you owe money.</para>
   </listitem>
   </itemizedlist>
-  <note>
-  <para>The employee's net salary (E_NET_SALARY) is defined as E_GROSS_SALARY - E_TAX1 - E_TAX2 and need not be placed in this list since it is composed of items that already exist.</para>
-  </note>
-  <para>You will want to place the actual formulas for calculating each deduction in this list.  Sometimes, these formulas can be quite complex, and sometimes the formula may simply say "look this number up in table XYZ of the tax codes."</para>
-  <para>Notice that you can calculate some interesting values using the above definitions, such as the total cost to the company: E_GROSS_SALARY + C_TAX1 + C_TAX2.</para>
+
+  <para>In the next 4 sections of this chapter, the above 4 application components will be introduced.</para>
+ </sect1>
+
+  <sect1 id="bus_ap_vendors1">
+  <title>Vendors</title>
+ <para>A vendor is a company or person from whom you purchase goods or services.  The vendors must be register within the A/P system.</para>
+ 
+  <sect2 id="bus_ap_vendornew2">
+  <title>New</title>
+ <para>To register a new vendor, enter the menu <guimenu>Business</guimenu> -> <guimenu>Vendor</guimenu> -> <guimenu>New Vendor</guimenu>.  Fill in the appropriate general information about the vendor, such as Company Name, Address, Phone, Fax, etc.  Below is a list of the other options: </para>
+ <itemizedlist>
+ <listitem>
+ <para><guilabel>Identification - Vendor Number</guilabel> - can be any number you would like to refer to this vendor, or you may leave it blank and a number will be chosen automatically.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Identification - Active</guilabel> - this check box is used to differentiate active vendors from inactive ones.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Payment Address - Name</guilabel> - this is the contact name of the person to receive the payment.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Notes</guilabel> - you can enter any text you would like to in this area, additional commentaries about this vendor.  For example, the names of contact people from within the vendor's company.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Payment Information - Currency</guilabel> - here you can specify what the default payment currency will be.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Payment Information - Terms</guilabel> - here you can specify what the default payment terms will be.  These terms must be preregistered using <guimenu>Business</guimenu> -> <guimenu>Billing Terms</guimenu>.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Payment Information - Tax Included</guilabel> - this specifies whether tax has already been included in the bill.  You can choose <guilabel>Yes</guilabel>, <guilabel>No</guilabel>, or <guilabel>Use Global</guilabel>.  Yes means that the tax is already included in the bill, No means tax has not been included in the bill, and Use Global means to use the global tax table specified in the "Tax Table" option below.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Payment Information - Tax Table</guilabel> - this allows you to specify a specific preregistered tax table to apply to bills from this vendor.  Tax tables must be registered from the menu item <guimenu>Business</guimenu> -> <guimenu>Tax Table</guimenu>.</para>
+ </listitem>
+ </itemizedlist>
+
+  <para>This is what the New Vendor registration window looks like:</para>
+	<screenshot id="bus_ap_vendornew">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_vendornew.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>New Vendor Registration Window</phrase>
+	    </textobject>
+	    <caption>
+	       <para>New Vendor Registration Window
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
   </sect2>
+  <sect2 id="bus_ap_vendorfind2">
+  <title>Find and Edit</title>
 
-  <sect2 id="bus_pay_protocoltwo2">
-  <title>Step 2: Create the Transaction Map</title>
-  <para>When you record payroll in GnuCash, it is done with a single split transaction.  This split transaction will populate the appropriate expense and liability accounts.  If, in the future, you want to discover any of the payroll details for a particular employee, simply open the split transaction.</para>
-  <para>With the deductions list from above in hand, an employee split transaction map can be generated which maps each of the items in the list to a GnuCash account.</para>
+ <para>To search for a preexisting vendor, use the <guimenu>Business</guimenu> -> <guimenu>Vendors</guimenu> -> <guimenu>Find Vendors</guimenu> application.  From the results of the search, you can select a vendor to edit, or view.</para>
+	<screenshot id="bus_ar_vendorfind">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_vendorfind.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Find Vendor Window</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Find Vendor Window
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
 
-  <para>
-  <table>
-  <title>Transaction Map</title>
-  <tgroup cols="3">
-  <tbody>
-  <row>
-<entry>Account</entry><entry>Increase</entry><entry>Decrease</entry>
-  </row>
-  <row>
-<entry>Assets:Checking</entry><entry></entry><entry>E_NET_SALARY</entry>
-  </row>
-  <row>
-<entry>Expenses:Salaries</entry><entry>E_GROSS_SALARY</entry><entry></entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax1</entry><entry></entry><entry>E_TAX1</entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax2</entry><entry></entry><entry>E_TAX2</entry>
-  </row>
-  <row>
-<entry>Expenses:Tax1</entry><entry>C_TAX1</entry><entry></entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax1</entry><entry></entry><entry>C_TAX1</entry>
-  </row>
-  <row>
-<entry>Expenses:Tax2</entry><entry>C_TAX2</entry><entry></entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax2</entry><entry></entry><entry>C_TAX2</entry>
-  </row>
-  </tbody>
-  </tgroup>
-  </table>
-  </para>
+ <note>
+ <para>To return a list of all registered active vendors, set the search criterion to "matches regex", and place a single dot "." in the text field area.  Then, click <guibutton>Find</guibutton>.  The regular expression "." means to match anything.</para>
+ </note>
+
   </sect2>
-
-  <sect2 id="bus_pay_protocolthree2">
-  <title>Step 3: Pay the Employee</title>
-  <para>Go to the account from which the employee will be paid, for example your Asset:Checking account. Open a split transaction and enter the real values using the Transaction Map above as a guide.  Repeat this for all employees.</para>
-  <tip>
-  <para>This manual process is tedious, especially if you have a large number of employees.  One GnuCash tool you will certainly want to make use of when entering employee payroll is duplicate transaction (use the <guibutton>Duplicate</guibutton> toolbar button).  Using this will save you from having to enter all the transaction splits for each employee.  You will still need to change the amounts of money to match each employee's real payroll values, but at least you do not need to build the split each time.</para>
-  </tip>
-  </sect2>
-
-  <sect2 id="bus_pay_protocolfour2">
-  <title>Step 4: Pay the Government</title>
-  <para>The final thing to do is to pay the taxes to the government.  The liability accounts have been collecting the taxes for various government agencies, and periodically you will need to send a check to the government to pay this charge.  To do so, you simply enter a 2 account transaction in (for example) your checking account to pay off the tax liability.  The transaction will be between the checking account and the liability account, no expense account are involved.</para>
-  </sect2>
-
   </sect1>
-  
- <sect1 id="bus_pay_example1">
- <title>Example</title>
-  <para>Using the account setup seen previously, let's go through an example.  Assume that there are 2 employees (E1 and E2) which each earn $1000 per month gross salary. The employee contribution to Tax1 and Tax2 are 10% and 5% respectively.  The company contribution to Tax1 and Tax2 are 15% and 10% each on top of the employees gross salary.</para>
-  <para>Staring with $50k in the bank, and before doing any payroll, the account heirarchy looks like this:</para>
-	<screenshot id="bus_pay_ex1">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_pay_ex1.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>Payroll Example 1</phrase>
-	    </textobject>
-	    <caption>
-	       <para>Payroll Initial Setup
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
 
-  <sect2 id="bus_pay_exampleprotocol2">
-  <title>Build Protocol</title>
-  <para>The deductions list for employee 1:</para>
-   <itemizedlist>
+  <sect1 id="bus_ap_bills1">
+  <title>Bills</title>
+ <para>A bill is the paperwork you receive from a customer requesting payment for a product or services you purchased.  GnuCash can be used to generate and track bills.</para>
+  <sect2 id="bus_ap_billnew2">
+  <title>New</title>
+ <para>When you receive a bill from a vendor and want to enter it into GnuCash, you must create a new bill.  This is accomplished using the application available at <guimenu>Business</guimenu> -> <guimenu>Vendors</guimenu> -> <guimenu>New Bill</guimenu>.  The New Bill window should be filled in appropriately:</para>
+  <itemizedlist>
   <listitem>
-  <para><emphasis>E_GROSS_SALARY</emphasis> - Employee gross salary - <emphasis>$1000</emphasis></para>
+  <para><guilabel>Invoice Info - Invoice ID</guilabel> (optional) - the identification number of the invoice as emitted by the vendor (IE: the vendor's internal number for this invoice).</para>
   </listitem>
   <listitem>
-  <para><emphasis>E_TAX1</emphasis> - Employee contribution to tax1 - <emphasis>$100</emphasis> (10% of E_GROSS_SALARY)</para>
+  <para><guilabel>Invoice Info - Date Opened</guilabel> - the date the Invoice was emitted by the vendor.</para>
   </listitem>
   <listitem>
-  <para><emphasis>E_TAX2</emphasis> - Employee contribution to tax2 - <emphasis>$50</emphasis> (5% of E_GROSS_SALARY)</para>
+  <para><guilabel>Billing Info - Vendor</guilabel> - the issuing vendor.</para>
   </listitem>
   <listitem>
-  <para><emphasis>C_TAX1</emphasis> - Company contribution to tax1 - <emphasis>$150</emphasis> (15% of E_GROSS_SALARY)</para>
+  <para><guilabel>Billing Info - Job</guilabel> (optional) - the vendor job to associate with this bill.</para>
   </listitem>
   <listitem>
-  <para><emphasis>C_TAX2</emphasis> - Company contribution to tax2 - <emphasis>$100</emphasis> (10% of E_GROSS_SALARY)</para>
+  <para><guilabel>Billing Info - Billing ID</guilabel> (optional) - the vendor's ID for the bill (e.g.: their invoice #).  Can be left blank.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Billing Info - Terms</guilabel> - the payback terms agreement for this bill, a list of preregistered terms is available within the pop up menu.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Chargeback Project - Customer</guilabel> (optional) - the customer to associate with this bill, for purposes of charging the customer later.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Chargeback Project - Job</guilabel> (optional) - the customer job to associate with this bill.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Notes</guilabel> (optional) - any notes concerning the bill go here.</para>
   </listitem>
   </itemizedlist>
 
-  <para>
-  <table>
-  <title>Transaction Map for Employee 1</title>
-  <tgroup cols="3">
-  <tbody>
-  <row>
-<entry>Account</entry><entry>Increase</entry><entry>Decrease</entry>
-  </row>
-  <row>
-<entry>Assets:Checking</entry><entry></entry><entry>$850 (E_NET_SALARY)</entry>
-  </row>
-  <row>
-<entry>Expenses:Salaries</entry><entry>$1000 (E_GROSS_SALARY)</entry><entry></entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax1</entry><entry></entry><entry>$100 (E_TAX1)</entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax2</entry><entry></entry><entry>$50 (E_TAX2)</entry>
-  </row>
-  <row>
-<entry>Expenses:Tax1</entry><entry>$150 (C_TAX1)</entry><entry></entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax1</entry><entry></entry><entry>$150 (C_TAX1)</entry>
-  </row>
-  <row>
-<entry>Expenses:Tax2</entry><entry>$100 (C_TAX2)</entry><entry></entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax2</entry><entry></entry><entry>$100 (C_TAX2)</entry>
-  </row>
-  </tbody>
-  </tgroup>
-  </table>
-  </para>
+	<screenshot id="bus_ap_billnew">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_billnew.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>New Bill Registration Window</phrase>
+	    </textobject>
+	    <caption>
+	       <para>New Bill Registration Window
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
 
+  <para>Once you fill in all the information for the new bill, you will be presented with the <guilabel>Edit Bill</guilabel> window.</para>
+  </sect2>
+  <sect2 id="bus_ap_billedit2">
+  <title>Edit</title>    
+  <para>From the Edit Bill window you can enter an itemized list of things purchased on this bill, in a manner similar to how the account register works.</para>  
+  	<screenshot id="bus_ap_billedit">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_billedit.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Edit Bill Window</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Edit Bill Window</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  <para>There are 11 columns in the Invoice Entries area:</para>
+  <itemizedlist>
+  <listitem>
+  <para><guilabel>Date</guilabel> - The date this item was sold</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Invoiced?</guilabel> - <guilabel>X</guilabel>  means the item is attached to this invoice, an empty box means the item is not attached to this invoice.  If the box is empty you can attach the item to the invoice by first selecting the item row and then clicking in this box.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Description</guilabel> (optional) - what the item is called</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Action</guilabel> (optional) - user defined field.  Can place Cost Center info here, or use one of the 3 predefined actions, Hours, Material, or Project.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Expense Account</guilabel> - which expense account will be changed for this bill</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Quantity</guilabel> - how many of the items were sold to you</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Unit Price</guilabel> - the unit price of the item</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Taxable?</guilabel> - is this item taxable?  <guilabel>X</guilabel> means yes, a blank field means no.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Tax Included?</guilabel> - has the tax already been included in the unit price?  <guilabel>X</guilabel> means yes, a blank field means no.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Tax Table</guilabel> (optional) - this is a pop up menu of all the available tax tables.  If you set the item as taxable and set that the tax has not been included in the unit price, then this tax table is used to compute the amount of tax.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Subtotal</guilabel> (uneditable) - computed subtotal for this item (less tax)</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Billable</guilabel> - is this item billable to the chargeback customer/job?</para>
+  </listitem>
+  </itemizedlist>
+
+  <para>When you have finished entering all the items, <guilabel>Post</guilabel> the bill. </para>
   </sect2>
 
+  <sect2 id="bus_ap_billpost2">
+  <title>Post</title>
+  <para>When you have finished editing a bill, you should <guilabel>Post</guilabel> the bill.  You do not have to post the bill, you can simply close it and return to it later, however you need to eventually post it when you are finished editing.  Posting the bill will place the bill transactions into an accounts payable account.  The Post Bill window will appear asking you to enter the Post Date, the Due Date, a Description, and Post to Account (from which you can select from a list of A/Payable accounts).</para>
 
-  <sect2 id="bus_pay_examplepay2">
-  <title>Pay an Employee</title>
-
-  <para>Now, enter the first split transaction for employee 1 in the checking account.  The split transaction will look like this:</para>
-
-	<screenshot id="bus_pay_ex2">
+  	<screenshot id="bus_ap_billpost">
 	  <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="figures/bus_pay_ex2.png" 
+	      <imagedata fileref="figures/bus_ap_billpost.png" 
 	      srccredit="Jon Lapham" format="PNG"/>
             </imageobject>
 	    <textobject>
-	        <phrase>Payroll Example 2</phrase>
+	        <phrase>Post Bill Window</phrase>
 	    </textobject>
 	    <caption>
-	       <para>Employee 1 Split Transaction
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
-
-  <tip>
-  <para>When paying employees, enter only the employee name in the Description area.  If you decide to use GnuCash's check printing capabilities, the check will automatically be made out to the employee correctly.  If you want to record other information in the transaction besides the employee name, use the Notes area, available when viewing the Register in double-line mode.</para>
-  </tip>
-  <para>Repeat this for the second employee, which leaves the account heirarchy looking like this:</para>
-
-	<screenshot id="bus_pay_ex3">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_pay_ex3.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>Payroll Example 3</phrase>
-	    </textobject>
-	    <caption>
-	       <para>Account Tree After Salaries Paid
+	       <para>Post Bill Window
 	       </para>
 	    </caption>
           </mediaobject>
         </screenshot>
   </sect2>
-  <sect2 id="bus_pay_examplegovt2">
-  <title>Pay the Government</title>
-  <para>The Liability:Tax1 and Liability:Tax2 accounts will continue to track how much you must pay to the government agencies responsible for each.  When it is time to pay these agencies, make a transaction from the checking account to the liability accounts.  No expense accounts are involved.  The main account will then appear like this for this example:</para>
 
-	<screenshot id="bus_pay_ex4">
+  <sect2 id="bus_ap_billfind2">
+  <title>Find</title>
+  <para>To find a preexisting bill, use the <guimenu>Business</guimenu> -> <guimenu>Vendors</guimenu> -> <guimenu>Find Bill</guimenu> application.  From the results of the search, you can select a bill to edit, or view.</para>
+  <note>
+  <para>Note, before you can edit a preexisting posted bill, you will need to unpost it.</para>
+  </note>
+
+  </sect2>
+  </sect1>
+
+  <sect1 id="bus_ap_jobs1">
+  <title>Vendor Jobs</title>
+  <para>You can use the optional GnuCash feature called Vendor Jobs to associate bills which fall under a single vendor.  This is useful for when you have multiple "jobs" for the same vendor, and would like to view all the bills for one job.</para>
+  <para>To use vendor jobs, you must create them using the <guimenu>Business</guimenu> -> <guimenu>Vendors</guimenu> -> <guimenu>New Jobs</guimenu> application.  Once there, you will see the <guilabel>New Job</guilabel> window.  The editable fields are:</para>
+   <itemizedlist>
+   <listitem>
+   <para><guilabel>Job Info - Job Number</guilabel> (optional) - enter the number for this job.  If left blank, a reasonable number will be chosen for you.</para>
+   </listitem>
+   <listitem>
+   <para><guilabel>Job Info - Job Name</guilabel> - the name you want to call this job.</para>
+   </listitem>
+   <listitem>
+   <para><guilabel>Owner Info - Vendor</guilabel> - the vendor associated with this job.</para>
+   </listitem>
+   <listitem>
+   <para><guilabel>Owner Info - Billing ID</guilabel> - the vendor's reference to this job (e.g. their PO Number).  It's the "Billing Identification" that they require on your invoices to them.</para>
+   </listitem>
+   <listitem>
+   <para><guilabel>Job Active</guilabel> - toggles this job being active or not.  This is useful to use when you have lots of inactive jobs, it is easier to find all the active ones.</para>
+   </listitem>
+   </itemizedlist>
+
+  	<screenshot id="bus_ap_jobnew">
 	  <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="figures/bus_pay_ex4.png" 
+	      <imagedata fileref="figures/bus_ap_jobnew.png" 
 	      srccredit="Jon Lapham" format="PNG"/>
             </imageobject>
 	    <textobject>
-	        <phrase>Payroll Example 4</phrase>
+	        <phrase>New Vendor Job</phrase>
 	    </textobject>
 	    <caption>
-	       <para>Accounts After Paying Government
+	       <para>New Vendor Job</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  <para>To find a preexisting vendor job, use the <guimenu>Business</guimenu> -> <guimenu>Vendors</guimenu> -> <guimenu>Find Job</guimenu> application.  From the results of the search, you can select a job to edit, or view.</para>
+  </sect1>
+
+  <sect1 id="bus_ap_payment1">
+  <title>Process Payment</title>
+  <para>Eventually, you will need to pay your bills.  To do so, use the Process Payment application found in <guimenu>Business</guimenu> -> <guimenu>Vendors</guimenu> -> <guimenu>Process Payment</guimenu>.</para>
+  <para>The Process Payment application consists of:</para>
+  <itemizedlist>
+  <listitem>
+  <para><guilabel>Payment Info - Vendor</guilabel> - the vendor you wish to pay</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Payment Info - Date</guilabel> - the date you wish to make the payment, normally the current date.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Payment Info - Amount</guilabel> - the amount of money to transfer in this payment.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Payment Info - Num</guilabel> - the check number.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Payment Info - Memo</guilabel> - any comments about this payment.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Post To</guilabel> - the A/Payable account to post this transaction.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Transfer Account</guilabel> - the account where the money will come from (a checking account for example) to make this payment.</para>
+  </listitem>
+  </itemizedlist>
+    <para>Below is the GnuCash Accounts Receivable payment window.</para>
+  	<screenshot id="bus_ap_payment">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_payment.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Process Payment</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Process Payment Window
 	       </para>
 	    </caption>
           </mediaobject>
         </screenshot>
 
- </sect2>
  </sect1>
 
  </chapter>

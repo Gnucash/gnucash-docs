@@ -1,7 +1,7 @@
 <!--
       (Do not remove this comment block.)
-  Version: 1.6.5
-  Last modified: November 24, 2001
+  Version: 1.7.6
+  Last modified: January 1, 2003
   Maintainers: 
                Chris Lyttle <chris@wilddev.net>
   Written by Chris Lyttle
@@ -10,574 +10,699 @@
                (translators put your name and email here)
 -->
  <chapter id="chapter8">
- <title>Depreciation and Capital Gains</title>
+ <title>Investments</title>
  <para>
-This chapter will present some of the techniques used to keep track of the changing values of assets, ie: depreciation, unrealized gains, capital gains.   </para>
- <sect1 id="depcap_concepts1">
+ This chapter explains how to manage your investments with GnuCash. Most people have an investment plan, whether its just putting money into a CD account, investing through a company sponsored plan at your workplace or buying and selling stocks and bonds through a brokerage. GnuCash gives you tools to help you manage these investments such as the <emphasis>Price Editor </emphasis> which allows you to record changes in the prices of stocks you own.
+  </para>
+ <sect1 id="invest_concepts1">
  <title>Basic Concepts</title>
  <para>
-This chapter will present some of the techniques used to keep track of the changing values of assets, ie: depreciation, unrealized gains, capital gains.
-  </para>
- <para>
-Certain resellable assets can change value over time, such as stocks, bonds, houses, or cars.  Some assets (eg: a stock) could increase in value, some (eg: a car) could decrease in value.  It is important to be able to track some of these time-dependent asset valuations, this chapter will show you how.
-  </para>
- <sect2 id="depcap_concepts_what2">
- <title>Which Assets to Track</title>
+An investment is something that you purchase in the hopes of generating income, or that you hope to sell in the future for more than you paid.  Using this simple definition, many things could be considered investments: the house you live in, a valuable painting, stocks in publicly traded companies, your savings account at the bank, or a certificate of deposit.  These many types of investments will be discussed in this chapter in terms of how to track them using GnuCash.
+ </para>
+
+ <sect2 id="invest_terms2">
+ <title>Terminology</title>
   <para>
-Probably everything you own will increase or decrease in value over time. So, the question is for which of these assets should you track this changing value?  The simple answer is that you only need to track this for items which could be sold for cash in the future or which relate to taxation.  
+Before discussing investments specifically, it will be helpful to present a glossary of investment terminology.  The terms presented below represent some of the basic concepts of investing.  It is a good idea to become familiar with these terms, or at least, refer back to this list if you encounter an unfamiliar word in the later sections.
   </para>
+
+  <itemizedlist>
+
+  <listitem>
   <para>
-Consumable and disposable items (eg: food, gas for your car, or printer paper) are obviously not involved.  Thus, even though the new clothes you recently bought will certainly depreciate, you would not want to track this depreciation since you have no intention of reselling the clothes and there is no tax implications to the depreciation on clothing.  So, for this example, the purchase of new clothes should be recorded as a pure expense... you spent the money, and it is gone.
-  </para>
+<emphasis>Capital gains</emphasis> is the difference between the purchase and selling prices of an investment.  If the selling price is lower than the purchase price, this is called a <emphasis>capital loss</emphasis>.  Also known as <emphasis>realized gain/loss</emphasis>.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Commission</emphasis> is the fee you pay to a broker to buy or sell securities.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Common stock</emphasis> is a security that represents a certain fractional ownership of a company.  This is what you buy when you "buy stock" in a company on the open market.  This is also sometimes known as <emphasis>capital stock</emphasis>. 
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Compounding</emphasis> is the concept that the reinvested interest can later earn interest of its own (interest on interest).  This is often referred to as <emphasis>compound interest</emphasis>.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Dividends</emphasis> are cash payments a company makes to shareholders.  The amount of this payment is usually determined as some amount of the profits the company.  Note that not all common stocks give dividends.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Equities</emphasis> are investments in which the investor becomes part (or whole) owner in something.  This includes common stock in a company, or real estate.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Interest</emphasis> is what a borrower pays a lender for the use of their money.  Normally, this is expressed in terms of a percentage of the principal per year.  For example, a savings account with 1% interest (you are the lender, the bank is the borrower) will pay you $1 for every $100 you keep there per year. 
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Liquidity</emphasis> is a measure of how easily convertible an investment is to cash.  Money in a savings account is very liquid, while money invested in a house has low liquidity because it takes time to sell a house.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Principal</emphasis> is the original amount of money invested or borrowed.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Realized vs Unrealized Gain/Loss</emphasis>, unrealized gain or loss occurs when you've got a change in price of an asset.  You realize the gain/loss when you actually sell the asset.  See also <emphasis>capital gain/loss</emphasis>.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Return</emphasis> is the total income plus capital gains or losses of an investment.  See yield.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Risk</emphasis> is the probability that the return on investment is different from what was expected.  Investments are often grouped on a scale from low risk (savings account, government bonds) to high risk (common stock, junk bonds).  As a general rule of thumb, the higher the risk the higher the possible return.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Shareholder</emphasis> is a person who holds common stock in a company.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Stock split</emphasis> occurs when a company offers to issue some additional multiple of shares for each existing stock.  For example, a "2 for 1" stock split means that if you own 100 shares of a stock, you will receive an additional 100 at no cost to you.  The unit price of the share will be adjusted so there is no net change in the value, so in this example the price per share will be halved.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Valuation</emphasis> is the process of determining the sell value of an investment.
+ </para>
+ </listitem>
+
+  <listitem>
+  <para>
+<emphasis>Yield</emphasis> is a measure of the amount of money you earn from an investment (IE: how much income you receive from the investment).  Typically this is reported as a percentage of the principal amount.  Yield does not include capital gains or loses (see Return).  Eg: A stock sells for $100 and gives $2 in dividends per year has a yield of 2%.
+ </para>
+ </listitem>
+
+ </itemizedlist>
   </sect2>
- <sect2 id="depcap_concepts_dep2">
- <title>Introduction to Depreciation</title>
- <para>
-Depreciation is the effect in which the value of an asset decreases with time.  The often used example of an asset to which this is often applied is an automobile.  An automobile holds retained value after the purchase date, but this value decreases with time.  If you hold assets for business purposes, their depreciation can be treated as a deduction for tax purposes.
+
+
+ <sect2 id="invest_types2">
+ <title>Types of Investments</title>
+  <para>
+Below is presented some of the broad types of investments available, and examples of each type.  
  </para>
- </sect2>
- <sect2 id="depcap_concepts_app2">
- <title>Introduction to Capital Gains</title>
- <para>
-Asset appreciation occurs when something you own increases in value over time.  When you own as asset which has increased in value, the difference between the original purchase price and the new value is known as <emphasis>unrealized gains</emphasis>.  When you sell the asset, the profit you earn is known as <emphasis>realized gains</emphasis> or <emphasis>capital gains</emphasis>.  An example of an asset from which you could have unrealized gains, and eventually capital gains, is stock in a publically traded company.
- </para>
+  <itemizedlist>
+  <listitem>
+  <para>
+<emphasis>Interest-bearing account or instrument</emphasis>
+  </para>
+  <para>
+This type of investment usually allows you immediate access to your money, and will typically pay you interest every month based on the amount of money you have saved.  Examples are bank savings accounts (and some interest bearing checking accounts) and cash accounts at your brokerage.  This is a very low risk investment, in the US these accounts are often insured against loss.
+  </para>
+  <para>
+Sometimes an interest bearing investment is <emphasis>time-locked</emphasis>.  This type of investment requires you to commit your money to be invested for a given period of time for which you receive a set rate of return.  Usually, the longer you commit the higher the interest rates.  If you withdraw your money before the maturity date, you will usually have to pay an early withdrawal penalty.  This is a low risk investment.  Examples are certificates of deposit or some government bonds.
+  </para>
+  </listitem>
+  <listitem>
+  <para>
+<emphasis>Stocks and Mutual Funds</emphasis>
+  </para>
+  <para>
+This is an investment you make in a company, in which you effectively become a part owner.  There is usually no time lock on publicly traded stock, however there may be changes in the tax rates you pay on capital gains depending on how long you hold the stock.  Thus, stocks are typically quite liquid, you can access your money relatively quickly.  This investment is high risk, as you have no guarantee what the future price of a stock could be.
+  </para>
+  <para>
+A mutual fund is a group investment mechanism in which you can buy into many stocks simultaneously.  For example, a "S&amp;P 500 index fund" is a fund which purchases all 500 stocks listed in the Standard and Poor's index.  When you buy a share of this fund, you are really buying a small amount of each of the 500 stocks contained within the fund.  Mutual funds are treated exactly like a single stock, both for tax purposes and in accounting.
+  </para>
+  </listitem>
+  <listitem>
+  <para>
+<emphasis>Fixed Assets</emphasis>
+  </para>
+  <para>
+An asset that increase in value over time are another form of investment.  Examples include a house, a plot of land, or a valuable painting.  This type of investment is very difficult to determine the value of until you sell it.  The tax implications of selling these items is varied, depending on the item.  For example, you may have tax relief from selling a house if it is your primary residence, but may would not receive this tax break on an expensive painting.
+  </para>
+  <para>Fixed asset investments are discussed in the chapter on "Depreciation and Capital Gains".  Typically, there is not much to do in terms of accounting for fixed asset investments except record the buying and selling transactions.</para>
+  </listitem>
+  </itemizedlist>
+
  </sect2>
  </sect1>
 
- <sect1 id="depcap_dep1">
- <title>Depreciation</title>
+ <sect1 id="invest_accounts1">
+ <title>Setting Up Accounts</title>
  <para>
-Depreciation is usually recognized as an ongoing (accrued) expense, gradually reducing the value of an asset toward zero. 
+To setup investment accounts in GnuCash you can either use the predefined investment account hierarchy or create your own.  The minimum you need to do to track investments is to setup an asset account for each type of investment you own.  However, as we have seen in previous chapters, it is usually more logical to create a structured account hierarchy, grouping related investments together.  For example, you may want to group all your publicly traded stocks under a parent account named after the brokerage firm you used to buy the stocks.
  </para>
  <para>
-Normally, depreciation is only calculated on assets used for professional or business purposes, because governments don't generally allow you to claim depreciation deductions on personal assets, and it's usually pointless to bother with the procedure if it's not deductible.  The only case where you may want to track depreciation for personal assets would be if you will sell the asset in the future and you want to track your potential personal worth.
+Regardless of how you setup your account hierarchy, remember that you can always move accounts around later (without losing the work you've put into them), so your initial account hierarchy does not have to be perfect.
  </para>
- <note>
- <para>
-Warning: Be aware that different countries can have substantially different tax policies for depreciation; all that this document can really provide is some of the underlying ideas to help you apply your "favorite" tax/depreciation policies.  
- </para>
- </note>
 
-  <sect2 id="depcap_depvaluation2">
- <title>Estimating Valuation</title>
+ <sect2 id="invest_predefined2">
+ <title>Predefined Accounts</title>
+ <para>
+To use the predefined investment account hierarchy, you must create a new GnuCash file.   This will run the <guilabel>New Account Hierarchy Setup</guilabel> druid.  After choosing the default currency to use, you will be asked to <guilabel>Choose accounts to create</guilabel>.  At this point, choose the "Investment Accounts" option (along with any others you are interested in).  This will create an account hierarchy as shown below.
+ <literallayout>
+- Assets
+   - Investments
+      - Brokerage Accounts
+         - Mutual Funds
+         - Market Index
+         - Stock
+         - Bond
+- Income
+   - Interest Income
+      - Bond Interest
+   - Dividend Income
+- Expenses
+   - Commissions
+ </literallayout>
+ </para>
+ <para>
+You will probably at least want to add a <emphasis>Bank</emphasis> account to the Assets and probably an <emphasis>Equity:Starting Values</emphasis> account, as we have done in previous chapters.
+ </para>
+ </sect2>
+
+ <sect2 id="invest_custom2">
+ <title>Custom Accounts Example</title>
+ <para>
+You can also manually setup your own investment account hierarchy.  The following is a somewhat more complicated example of setting up GnuCash to track your investments, which has the advantage that it groups each different investment under the brokerage that deals with the investments.  This way it is easier to compare the statements you get from your brokerage with the accounts you have in GnuCash and spot where GnuCash differs from the statement.
+ <literallayout>
+- Assets
+   - Investments
+      - Brokerage Accounts
+         - I*Trade
+            - Stocks
+               - ACME Corp
+            - Money Market Funds
+               - I*Trade Municipal Fund
+            - Cash
+         - My Stockbroker
+            - Money Market Funds
+               - Active Assets Fund
+            - Government Securities
+               - Treas Bond xxx
+               - Treas Note yyy
+            - Mutual Funds
+               - Fund A
+               - Fund B
+            - Cash
+- Income
+   - Investments
+      - Brokerage Accounts
+         - Capital Gains
+            - I*Trade
+            - My Stockbroker
+         - Dividends
+            - I*Trade
+               - Taxable
+               - Non-taxable
+            - My Stockbroker
+               - Taxable
+               - Non-taxable
+         - Interest Income
+            - I*Trade
+               - Taxable
+               - Non-taxable
+            - My Stockbroker
+               - Taxable
+               - Non-taxable
+- Expenses
+   - Investment Expenses
+      - Commissions
+         - I*Trade
+         - My Stockbroker
+      - Management Fees
+         - I*Trade
+         - My Stockbroker
+ </literallayout>
+ </para>
+ <para>
+There really is no unique way to set up your investment account hierarchy.  Play around, try different layouts until you find something which divides your investment accounts into logical groups which make sense to you.
+ </para>
+
+ </sect2>
+ </sect1>
+
+
+ <sect1 id="invest_int1">
+ <title>Interest Bearing Accounts</title>
+ <para>
+Investments which have a fixed or variable rate of interest are one of the simplest and most common form of investments available.  Interest bearing investments include your bank account, a certificate of deposit, or any other kind of investment in which you receive interest from the principal.  This section will describe how to handle these kinds of investments in GnuCash.
+ </para>
+ <sect2 id="invest_intacct2">
+ <title>Account Setup</title>
+ <para>
+When you purchase the interest bearing investment, you must create an asset account to record the purchase of the investment, an income account to record earnings from interest, and an expense account to record bank charges.  Below is an account layout example, in which you have an interest bearing savings account and a certificate of deposit at your bank.
+ </para>
+  <literallayout>
+-Asset
+   -Bank
+      -CD
+      -Savings
+-Expenses
+   -Bank
+      -Charges
+-Income
+   -Bank
+      -Interest
+  </literallayout>
   <para>
-A central issue with depreciation is to determine how you will estimate the future value of the asset.  Compared to the often uncertain estimates one has to do where appreciation of assets is concerned, we are on somewhat firmer ground here.  Using sources listed below should make it fairly straight forward to estimate the future value of your depreciating assets.
+As usual, this account hierarchy is simply presented as an example, you should create your accounts in a form which best matches your actual situation.
   </para>
-  <itemizedlist>
-  <listitem>
-  <para>
-<emphasis>Tax Codes:</emphasis> For businesses that want to use depreciation for tax purposes, governments tend to set up precise rules as to how you are required to calculate depreciation.  Consult your local tax codes, which should explictly state how to estimate depreciation.
-  </para>
-  </listitem>
-  <listitem>
-  <para>
-<emphasis>Car Blue Book:</emphasis> For automobiles, it is easy to look up in references such as "Blue Books" estimates of what an automobile should be worth after some period of time in the future.  From this you will be able to develop a model of the depreciation.
-  </para>
-  </listitem>
-  </itemizedlist>
   </sect2>
-  <sect2 id="depcap_depschemes2">
- <title>Depreciation Schemes</title>
+ <sect2 id="invest_intex2">
+ <title>Example</title>
+ <para>
+Now let's populate these accounts with real numbers.  Let's assume that you start with $10000 in your bank account, which pays 1% interest and you buy a $5000 certificate of deposit with a 1 year maturity date and a 2% yield.  Clearly, it is much better to keep your money in the CD than in the savings account.  After the initial purchase, your accounts should look something like this:
+ </para>
+	<screenshot id="invest_setup_current">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/invest_int1.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Setup Interest Investment</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image the creation of the interest investment account
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
   <para>
-A <emphasis>depreciation scheme</emphasis> is a mathematical model of how an asset will lose value over time.  For every asset which undergoes depreciation, you will need to decide on a depreciation scheme.  Since depreciation of assets is very often driven by tax policies, the discussion of depreciation will focus in that direction, on some of the more common depreciation calculation schemes.    </para>
-  <para>
-Once you have an idea of the future value of your asset, you must decide on a depreciation scheme (remember, this may be dictated by your local tax codes).  This section will present 3 of the more popular depreciation schemes: <emphasis>linear</emphasis>, <emphasis>geometric</emphasis>, and <emphasis>sum of digits</emphasis>.
+Now, during the course of the next year, you receive monthly bank statements which describe the activity of your account.  In our fictional example, we do nothing with the money at this bank, so the only activity is income from interest and bank charges.  The monthly bank charges are $2.  After 12 months, the register window for the CD should look like this:
   </para>
+	<screenshot id="invest_int2">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/invest_int2.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Setup Interest Investment</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image the creation of the interest investment account
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+  <para>
+And this is the main GnuCash window:
+  </para> 
+	<screenshot id="invest_int3">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/invest_int3.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Setup Interest Investment</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image the creation of the interest investment account
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+  <para>
+From the above image of the main GnuCash account window you see a nice summary of what happened to these investments over the 6 months.  While the yield on the CD is double that of the savings account, the return on the CD was $50.21 versus $13.03 for the savings account, or almost 4 times more.  Why?  Because of the pesky $2 bank charges that hit the savings account (which counted for $12 over 6 months).
+  </para> 
+  <para>
+After this 6 month period, the CD has reached maturity which means you may sell it with no early withdrawal penalty.  To do so, simply transfer the $5050.21 from the CD account into the savings account.
+  </para>
+  </sect2>
+ </sect1>
+
+ <sect1 id="invest_setup1">
+ <title>Setup Stock Portfolio</title>
+ <para>
+Now that you have build an account hierarchy in the previous section, this section will show you how to populate the accounts with your stock portfolio.  During this initial setup of your portfolio, you may have stocks purchased from before you started using GnuCash.  For these stocks, follow the instructions in the <emphasis>Setup Your Pre-existing Stocks</emphasis> section below.  If your have just purchased your stocks, then use the <emphasis>Buying New Stocks</emphasis> section.
+ </para>
+
+ <sect2 id="invest_setup_preexisting2">
+ <title>Setup Preexisting Stocks</title>
+ <para>
+This section will show you how to add stocks to GnuCash assuming that you purchased these stocks from before you started using GnuCash.  In this section, we will assume you are using the basic predefined account setup introduced in the previous section, but the principles can be applied to any account hierarchy.
+ </para>
+ <para>
+You should have within the top level <guilabel>Asset</guilabel> account, a few levels down, an account entitled <guilabel>Stock</guilabel>.  Open the account tree to this level by clicking on the + (plus) signs next to the account names until the tree to fully opened.  You will need to create a sub-account (of type <emphasis>stock</emphasis>) under the Stock account for every stock you own.  Every stock is a separate account.  The naming of these stock accounts is usually done using the stock ticker abbreviation.  So, for example, you could name your accounts <emphasis>AMZN</emphasis> and <emphasis>IBM</emphasis> for your Amazon and IBM stocks respectively.  Below is a schematic model of the layout (only showing the Assets sub-accounts).
+ </para>
+ <literallayout>
+- Assets
+   - Investments
+      - Brokerage Accounts
+         - Mutual Funds
+         - Market Index
+         - Stock
+            - AMZN
+            - IBM
+         - Bond
+ </literallayout>
+ </sect2>
+
+ <sect2 id="invest_setup_example2">
+ <title>Example Stock Account</title>
+
+ <para>As an example, let's assume that you currently own 100 shares of Amazon stock.  First, create the stock account AMZN by selecting the <guilabel>Stock</guilabel> account and click on the menu <guimenu>File</guimenu> -> <guimenu>New Account</guimenu>.  The New Account dialog will appear, follow the step below to setup your new stock account.</para>
   <orderedlist>
   <listitem>
-  <para>
-<emphasis>Linear depreciation</emphasis> diminishes the value of an asset by a fixed amount each period until the net value is zero. This is the simplest calculation, as you estimate a useful lifetime, and simply divide the cost equally across that lifetime.  
-  </para>
-  <para>
-Example: You have bought a computer for $1500 and wish to depreciate it over a period of 5 years. Each year the amount of depreciation is $300, leading to the following calculations: 
-  </para>
- <para>
- <table>
- <title>Linear Depreciation Scheme Example</title>
- <tgroup cols="3">
- <tbody>
- <row>
- <entry><emphasis>Year</emphasis></entry>
- <entry><emphasis>Depreciation</emphasis></entry>
- <entry><emphasis>Remaining Value</emphasis></entry>
- </row>
- <row>
- <entry>0</entry>
- <entry>-</entry>
- <entry>1500</entry>
- </row>
- <row>
- <entry>1</entry>
- <entry>300</entry>
- <entry>1200</entry>
- </row>
- <row>
- <entry>2</entry>
- <entry>300</entry>
- <entry>900</entry>
- </row>
- <row>
- <entry>3</entry>
- <entry>300</entry>
- <entry>600</entry>
- </row>
- <row>
- <entry>4</entry>
- <entry>300</entry>
- <entry>300</entry>
- </row>
- <row>
- <entry>5</entry>
- <entry>300</entry>
- <entry>0</entry>
- </row>
- </tbody>
- </tgroup>
- </table>
- </para>
-  </listitem>
-  <listitem>
-  <para>
-<emphasis>Geometric depreciation</emphasis> is depreciated by a fixed percentage of the asset value in the previous period.  This is a front-weighted depreciation scheme, more depreciation being applied early in the period.  In this scheme the value of an asset decreases exponentially leaving a value at the end that is larger than zero (i.e.: a resale value).
-  </para>
-  <para>
-Example: We take the same example as above, with an annual depreciation of 30%. 
-  </para>
- <para>
- <table>
- <title>Geometric Depreciation Scheme Example</title>
- <tgroup cols="3">
- <tbody>
- <row>
- <entry><emphasis>Year</emphasis></entry>
- <entry><emphasis>Depreciation</emphasis></entry>
- <entry><emphasis>Remaining Value</emphasis></entry>
- </row>
- <row>
- <entry>0</entry>
- <entry>-</entry>
- <entry>1500</entry>
- </row>
- <row>
- <entry>1</entry>
- <entry>450</entry>
- <entry>1050</entry>
- </row>
- <row>
- <entry>2</entry>
- <entry>315</entry>
- <entry>735</entry>
- </row>
- <row>
- <entry>3</entry>
- <entry>220.50</entry>
- <entry>514.50</entry>
- </row>
- <row>
- <entry>4</entry>
- <entry>154.35</entry>
- <entry>360.15</entry>
- </row>
- <row>
- <entry>5</entry>
- <entry>108.05</entry>
- <entry>252.10</entry>
- </row>
- </tbody>
- </tgroup>
- </table>
- </para>
-  <note>
-  <para>
-Beware: Tax authorities may require (or allow) a larger percentage in the first period. On the other hand, in Canada, this is reversed, as they permit only a half share of "Capital Cost Allowance" in the first year. The result of this approach is that asset value decreases more rapidly at the beginning than at the end which is probably more realistic for most assets than a linear scheme. This is certainly true for automobiles.
-  </para>
-  </note>
+  <para><emphasis>Name the Account</emphasis> - Usually, use the stock ticker abbreviation, IE: <quote>AMZN</quote></para>
   </listitem>
 
   <listitem>
-  <para>
-<emphasis>Sum of digits</emphasis> is a front-weighted depreciation scheme similar to the geometric depreciation, except that the value of the asset reaches zero at the end of the period.  This is a front-weighted depreciation scheme, more depreciation being applied early in the period.  This method is most often employed in Anglo/Saxon countries.  Here is an illustration:
-  </para>
-  <para>
-Example: First you divide the asset value by the sum of the years of use, e.g. for our example from above with an asset worth $1500 that is used over a period of five years you get 1500/(1+2+3+4+5)=100. Depreciation and asset value are then calculated as follows: 
-  </para>
- <para>
- <table>
- <title>Sum of Digits Depreciation Scheme Example</title>
- <tgroup cols="3">
- <tbody>
- <row>
- <entry><emphasis>Year</emphasis></entry>
- <entry><emphasis>Depreciation</emphasis></entry>
- <entry><emphasis>Remaining Value</emphasis></entry>
- </row>
- <row>
- <entry>0</entry>
- <entry>-</entry>
- <entry>1500</entry>
- </row>
- <row>
- <entry>1</entry>
- <entry>100*5=500</entry>
- <entry>1000</entry>
- </row>
- <row>
- <entry>2</entry>
- <entry>100*4=400</entry>
- <entry>600</entry>
- </row>
- <row>
- <entry>3</entry>
- <entry>100*3=300</entry>
- <entry>300</entry>
- </row>
- <row>
- <entry>4</entry>
- <entry>100*2=200</entry>
- <entry>100</entry>
- </row>
- <row>
- <entry>5</entry>
- <entry>100*1=100</entry>
- <entry>0</entry>
- </row>
- </tbody>
- </tgroup>
- </table>
- </para>
+  <para><emphasis>Create the New Commodity</emphasis> - To use a new stock, you must create the stock as a new commodity</para>
+
+  <orderedlist>
+  <listitem>
+  <para><emphasis>Select Commodity</emphasis> - Click on the <quote>Select</quote> button next to the <guilabel>Commodity</guilabel> line.  We must change the commodity from the default (your default currency) to this specific stock.  This will bring up the <quote>Select currency/security</quote> dialog.</para>
   </listitem>
+  <listitem>
+  <para><emphasis>Commodity Type</emphasis> - Change the <guilabel>type</guilabel> from CURRENCY to (in this example) NASDAQ. </para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Create the Commodity</emphasis> - Click on the <guilabel>New...</guilabel> button and enter the appropriate information for this stock.  The <guilabel>Full name:</guilabel> is <quote>Amazon.com Inc</quote>, the <guilabel>Symbol/abbreviation:</guilabel> is <quote>AMZN</quote>, the <guilabel>Type:</guilabel> should already be <quote>NASDAQ</quote>, the <guilabel>CUSIP or other code</guilabel> is where you can enter some other coding number or text (leave it blank in this example), and finally the <guilabel>Fraction traded</guilabel> should be adjusted to the smallest fraction of this commodity which can be traded, usually 1/100 or 1/10000.  Below is what this window should look like when finished:
+  	<screenshot id="invest_newsecurity">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/invest_newsecurity.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>New Security Window</phrase>
+	    </textobject>
+	    <caption>
+	       <para>New Security Window
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+  </para>
+   </listitem>
+   <listitem>
+   <para><emphasis>Save Commodity</emphasis> - Click on the <guilabel>OK</guilabel> button to save this new commodity</para>
+   </listitem>
+   </orderedlist>
+   </listitem>
+
+  <listitem>
+  <para><emphasis>Select the Commodity</emphasis> - you should now see the newly create commodity available in the pull down menu for <guilabel>Currency/security</guilabel>.  Select it (it is probably already selected) and click on <guilabel>OK</guilabel>.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Finished</emphasis> - You should now have been automatically returned to the New Account dialog, with the <guilabel>Commodity:</guilabel> line set to <quote>AMZN (Amazon.com Inc)</quote>.  Click on <guilabel>OK</guilabel> to save this new stock account.</para>
+   </listitem>
+
   </orderedlist>
 
-  </sect2>
-
-  <sect2 id="depcap_depaccounts2">
- <title>Account Setup</title>
-  <para>
-As with most accounting practices, there are a number of different ways to setup depreciation accounts.  We will present here a general method which should be flexible enought to handle most situations.  The first account you will need is an <emphasis>Asset Cost</emphasis> account (GnuCash account type "asset"), which is simply a place where you record the original purchase of the asset.  Usually this purchase is accomplished by a transaction from your bank account.
-  </para>
-  <para>
-In order to keep track of the depreciation of the asset, you will need two depreciation accounts.  The first is an <emphasis>Accumulated Depreciation</emphasis> account in which to collect the sum of all of the depreciation amounts, and will contain negative values.  In GnuCash, this is an account type <emphasis>asset</emphasis>.  The Accumulated Depreciation account is balanced by a <emphasis>Depreciation Expense</emphasis> account, in which all periodic depreciation expenses are recorded. In GnuCash, this is an account type <emphasis>expense</emphasis>.
-  </para>
-  <para>
-Below is a generic account heirarchy for tracking the depreciation of 2 assets, ITEM1 and ITEM2.  The "Asset Cost" accounts are balanced by the "Bank" account, the Accumulated Depreciation account is balanced by the Depreciation Expense account.
-  </para>
-  <literallayout>
--Assets
-   -ITEM1 
-      -Cost                (Asset Cost account)
-      -Depreciation     (Accumulate Depreciation account)
-   -ITEM2
-      -Cost                (Asset Cost account)
-      -Depreciation     (Accumulate Depreciation account)
-   -Bank
--Expenses
-   -Depreciation        (Depreciation Expense account)
-  </literallayout>
-  <para>
-One of the features of the account heirarchy shown above is that you can readily see some important summary values about your depreciating asset.  The "Assets:ITEM1" account total shows you the current estimated value for item1, the "Assets:ITEM1:Cost" shows you what you originally paid for item1, "Assets:ITEM1:Depreciation" shows you your accrued depreciation for item1, and finally, "Expenses:Depreciation" demostrates the total accrued depreciation of all your assets.
-  </para>
-  <para>
-It is certainly possible to use a different account heirarchy.  One popular account setup is to combine the <emphasis>Asset Cost</emphasis> and <emphasis>Accrued Depreciation</emphasis> asset accounts.  This has the advantage of having fewer accounts cluttering your account heirarchy, but with the disadvantage that to determine some of the summary details mentioned in the paragraph above you will have to open the account register windows.  As with most things, there are many ways to do it, find a way that works best for you.
-  </para>
-  <para>
-The actual input of the depreciation amounts is done by hand every accounting period.  There is no way in GnuCash (as of yet) to perform the depreciation scheme calculations automatically, or to input the values automatically into the appropriate accounts.  However, since an accounting period is typically one year, this really is not much work to do by hand.
-  </para>
-  </sect2>
-
-  <sect2 id="depcap_depex2">
- <title>Example</title>
-  <para>
-Let's go ahead and step through an example.  Imagine you are a photographer and you use a car and an expensive camera for your personal business.  You will want to track the depreciation on these items, because you can probably deduct the depreciation from your business taxes.
-  </para>
-  <para>
-The first step is to build the account heirarchy (as shown in the previous section, replace ITEM1 and ITEM2 with "car" and "camera").  Now, record the purchase of your assets by transferring the money from your bank account to the appropriate <emphasis>Asset Cost</emphasis> accounts for each item (eg: the "Assets:Car:Cost" account for the car).  In this example, you start with $30k in the bank, the car cost $20k and the camera cost $10k and were both purchased on January 1, 2000.
-  </para>
-
-	<screenshot id="depcap_example">
+  <para>You have now create the Amazon stock account, your main account should look something like this (notice that there are a few extra account here, a bank account, and an equity account):</para>
+	<screenshot id="invest_setup_current">
 	  <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="figures/depcap_example.png" 
+	      <imagedata fileref="figures/invest_setup_current.png" 
 	      srccredit="Jon Lapham" format="PNG"/>
             </imageobject>
 	    <textobject>
-	        <phrase>Asset Depreciation Example1</phrase>
+	        <phrase>Setup Current Portfolio</phrase>
 	    </textobject>
 	    <caption>
-	       <para>The asset depreciation example main window, before depreciation
+	       <para>This image the creation of the first stock account
 	       </para>
 	    </caption>
           </mediaobject>
         </screenshot>
-
-  <para>
-Looking at the tax codes, we realize that we must report depreciation on these items using the "sum of digits" scheme, over a 5 year period.  So, the yearly depreciation amounts for the car come to $6667, $5333, $4000, $2667, $1333 for years 1 to 5 respectively, rounded to the nearest dollar.  The yearly depreciation amounts for the camera are $3333, $2667, $2000, $1333, $667.  Consult the previous section on Depreciation Schemes for the formula for calculating these values.
-  </para>
-  <para>
-For each accounting period (ie: fiscal year) you record the depreciation as an expense in the appropriate <emphasis>Accrued Depreciation</emphasis> account (eg: the "Asset:Car:Depreciation" account for the car). The two windows below show your car's accrued depreciation account and the main window after the third year (ie: three periods) of depreciation using this "sum of digits" scheme.
-  </para>
-
-	<screenshot id="depcap_dep">
+ <para>
+Open the account register window for this AMZN stock account (double click on it).  Here you see the <emphasis role="strong">Portfolio</emphasis> view. This gives  you an overview of your stock portfolio including the number of shares bought and sold.  Obviously, we have not bought or sold any stocks yet, so the Portfolio view should not contain any transactions.
+ </para>
+ <para>
+To register the initial 100 shares of this stock that you purchased previously, on the first transaction line, enter the date of the purchase (eg: Jan. 1 2001), a description (eg: Initial Purchase), transfer from <emphasis>Equity: Opening Balances</emphasis>, Shares (eg: 100), and Price (eg: $20).  You do not need to fill in the <guilabel>Buy</guilabel> column, as it will be calculated for you.  Your AMZN Portfolio view should now appear like this:
+ </para>
+	<screenshot id="invest_setup_portfolio1">
 	  <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="figures/depcap_dep.png" 
+	      <imagedata fileref="figures/invest_setup_portfolio1.png" 
 	      srccredit="Jon Lapham" format="PNG"/>
             </imageobject>
 	    <textobject>
-	        <phrase>Asset Depreciation Register Window</phrase>
+	        <phrase>Setup Current Portfolio</phrase>
 	    </textobject>
 	    <caption>
-	       <para>The asset depreciation register window
-	       </para>
+	       <para>This image the creation of the first stock account</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+  <para>
+Notice that the <guilabel>Balance</guilabel> is in the units of the commodity (AMZN shares) not in currency units.  Thus, the balance is 100 (AMZN units) rather than $2000.  This is how it should be.
+  </para>
+ </sect2>
+
+ <sect2 id="invest_setup_new2">
+ <title>Buying New Investments</title>
+ <para>
+The only difference between setting up a new investment purchase versus the setup for preexisting stocks as described in the previous section is that instead of transferring the money used to purchase the stock from the Equity:Starting Balances account, you use your Asset:Bank account.
+ </para>
+ </sect2>
+
+ </sect1>
+
+ <sect1 id="invest_stockprice1">
+ <title>Setting Stock Price</title>
+ <para>
+The value of a commodity, such as a stock, must be explicitly set.  The stock accounts track the quantity of stocks you own, but the value of the stock is stored in the <emphasis>Price Editor</emphasis>.  The values set in the Price Editor can be updated manually or automatically.
+ </para>
+
+ <sect2 id="invest_stockprice_initial2">
+ <title>Initial Price Editor Setup</title>
+ <para>To use the Price Editor to track a stock value, you must initially insert the stock.  To do so, open the Price Editor (<guimenu>Tools</guimenu> -> <guimenu>Price Editor</guimenu>) and click on <guibutton>Add</guibutton> button.  Select the appropriate Commodity you want to insert into the Price Editor.  At this point, you can input the price of the commodity manually.  There are 5 fields in the New Commodity window:</para>
+ <itemizedlist>
+ <listitem>
+ <para><guilabel>Commodity</guilabel> - the name of the commodity, must be chosen from the <guibutton>Select...</guibutton> list</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Currency</guilabel> - the currency the in which the Price is expressed.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Date</guilabel> - date that the price is valid</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Type</guilabel> - one of: <guilabel>Bid</guilabel> (the market buying price), <guilabel>Ask</guilabel> (the market selling price), <guilabel>Last</guilabel> (the last transaction price), <guilabel>Net Asset Value</guilabel> (mutual fund price per share), or <guilabel>Unknown</guilabel>.  Stocks and currencies will usually give their quotes as one of bid, ask or last.  Mutual funds are often given as net asset value.  For other commodities, simply choose "Unknown".  This option is for informational purposes only, it is not used by GnuCash.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Price</guilabel> - the price of one unit of this commodity.</para>
+ </listitem>
+ </itemizedlist>
+ 
+	<screenshot id="invest_peditor">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/invest_peditor.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Price Editor</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Adding the AMZN commodity to the price editor, with an initial value of $40.50 per share.</para>
 	    </caption>
           </mediaobject>
         </screenshot>
 
-	<screenshot id="depcap_depmain">
+ <para>Click <guibutton>OK</guibutton> when finished.  Once you have performed this initial placement of the commodity into the Price Editor, you will not have to do it again, even if you use the same commodity in another account.</para>
+
+	<screenshot id="invest_peditor2">
 	  <mediaobject>
 	    <imageobject>
-	      <imagedata fileref="figures/depcap_depmain.png" 
+	      <imagedata fileref="figures/invest_peditor2.png" 
 	      srccredit="Jon Lapham" format="PNG"/>
             </imageobject>
 	    <textobject>
-	        <phrase>Asset Depreciation Main Window</phrase>
+	        <phrase>Price Editor</phrase>
 	    </textobject>
 	    <caption>
-	       <para>The asset depreciation main window
-	       </para>
+	       <para>The main price editor window, showing the list of all known commodities.</para>
 	    </caption>
           </mediaobject>
         </screenshot>
+ </sect2>
 
+ <sect2 id="invest_stockprice_manual2">
+ <title>Setting Stock Price Manually</title>
+ <para>
+If the value of the commodity (stock) changes, you can adjust the value by entering the Price Editor, selecting the commodity, clicking on <guibutton>edit</guibutton> and entering the new price.
+ </para>
+ </sect2>
+
+ <sect2 id="invest_stockprice_auto2">
+ <title>Setting Stock Price Automatically</title>
+ <para>If you have many commodities, you will tire of having to update their prices constantly.  GnuCash has the ability to automatically determine the most recent price for your commodities using the Internet.  This is accomplished through the Perl module called Finance::Quote, which must be installed in order to activate this feature.  </para>
+ <para>To determine if the Perl module Finance::Quote is already installed on your system, type <quote>perldoc Finance::Quote</quote> in a terminal window and look to see if there is any documentation available.  If you see the documentation, then the module is already installed, if you do not, then it has not been installed.</para>
+ <para>To install this Perl module, open a root terminal and run the command <quote>update-finance-quote</quote> (without the quotation marks).  This will launch a Perl CPAN update session which goes out onto the Internet in order to install the above module onto your system. </para>
+ <para>After installation is complete, you should run the "dump-finance-quote" test program distributed with GnuCash to test if Finance::Quote is installed and working properly.</para>
   <note>
-  <para>
-A Word of Caution:  Since depreciation and tax issues are closely related, you may not always be free in choosing your preferred method. Fixing wrong calculations will cost a whole lot more time and trouble than getting the calculations right the first time, so if you plan to depreciate assets, it is wise to make sure of the schemes you will be permitted or required to use. 
-  </para>
-  </note>
-
+  <para>If you feel uncomfortable about performing any of these steps, please either email the GnuCash-user mailing list (gnucash-user@gnucash.org) for help or come to the GnuCash IRC channel on irc.gnome.org. You can also leave out this step and manually update your stock prices.</para>
+ </note>
   </sect2>
+
+ <sect2 id="invest_stockprice_view2">
+ <title>Display Stock Value</title>
+ <para>
+The main account window will by default only shows the quantity of each commodity that you own, under the column heading <guilabel>Total</guilabel>.  In the case of stocks, this commodity is the number of shares.  Often, however, you will want to see the value of your stocks expressed in terms of some monetary unit.  This is easily accomplished by entering the main window account options, by clicking on the tool bar <guibutton>Options</guibutton> button, and select to display the account field <quote>Total in Report Currency</quote>.  You will see a new column in the main window entitled <guilabel>Total (Report)</guilabel> that will express the value of all commodities in the report currency.
+ </para>
+
+	<screenshot id="invest_stockvalue">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/invest_stockvalue.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Viewing Stock Value</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Viewing the value of a stock commodity in the main window using the Total in Report Currency option.</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+ </sect2>
+
   </sect1>
 
- <sect1 id="depcap_cg1">
- <title>Capital Gains</title>
- <para>
-As mentioned in the introduction to this chapter, capital gains are the profits received from the same of an asset.  This section will describe how to record capital gains in GnuCash.
- </para>
- <para>
-The accounting methods for handling asset appreciation differs somewhat from depreciation because typically you are only concerned with the moment you sell the asset and realize the capital gains.  This is opposed to the continuous nature of tracking depreciation.  Capital gains are an important subject in the world of taxation, because governments tend to be quite interested in taxing capital gains in one manner or another. 
-  </para>
-  <note>
-  <para>
-As always, there are exceptions. If you hold a bond that pays all of its interest at maturity, tax authorities often require that you recognize interest each year, and refuse this to be treated as a capital gain.  Consult the appropriate tax codes to determine the preferred treatment for each type of asset you have which may be affected by capital gains taxes.
- </para>
-  </note>
-  <sect2 id="depcap_cgvaluation2">
- <title>Estimating Valuation</title>
-  <para>
-Estimating the increasing value of assets is generally not simple, because often it is difficult to know its exact value until the moment it is sold.  
-  </para>
-  <para>
-Securities traded daily on open markets such as stock exchanges are possibly the easiest type of asset to predict the value of, and selling the asset at market prices may be as simple as calling a broker and issuing a Market Order.  On the other hand, estimating the value of a house is more difficult.  Homes are sold less often than stocks, and the sales tend to involve expending considerable effort and negotiations, which means that estimates are likely to be less precise. Similarly, selling a used automobile involves a negotiation process that makes pricing a bit less predictable.
-  </para>
-  <para>
-Values of collectible objects such as jewelry, works of art, baseball cards, and "Beanie Babies" are even harder to estimate. The markets for such objects are much less open than the securities markets and less open than the housing market. Worse still are one-of-a-kind assets. Factories often contain presses and dies customized to build a very specific product that cost tens or hundreds of thousands of dollars; this equipment may be worthless outside of that very specific context. In such cases, several conflicting values might be attached to the asset, none of them unambiguously correct.
-  </para>
-  <para>
-The general rule of thumb in accounting for estimating unrealized gains (or loses) is that you should only revalue assets such as stocks which are readily sellable and for which there are very good estimates of the value.  For all other assets, it is better to simply wait until you sell them, at which time you can exactly determine the capital gains.  Of course, there is no hard rule on this, and in fact different accountants may prefer to do this differently.
-  </para>
-  </sect2>
+ <sect1 id="invest_dividends1">
+ <title>Dividends</title>
+ <para>Some companies or mutual funds pay periodic dividends to shareholders.  Dividends are typically given in one of two ways, either they are automatically reinvested into the commodity or they are given as cash.  Mutual funds are often setup to automatically reinvest the dividend, while common stock dividends usually pay cash.</para>
+ <para>If you receive the dividend in the form of an automatic reinvestment, the transaction to account for this should be handled within the stock or mutual fund account as income from "Income:Dividend" for the appropriate number of reinvested shares.</para>
+  <para>If the dividend is presented as cash, you should record the transaction directly in the bank account that received the money, as income from "Income::Dividends" with a note mentioning from which commodity it was derived.  There is no simple way to show this transaction from within the stock or mutual fund account itself.</para>
+ <note>
+ <para>If you want to track dividends on a per-stock basis, you would need to create an Income:Dividends:STOCKSYMBOL account for each stock you own that pays dividends.</para>
+ </note>
+ </sect1>
 
-  <sect2 id="depcap_cgaccounts2">
- <title>Account Setup</title>
-  <para>
-As with most accounting practices, there are a number of different ways to setup capital gains accounts.  We will present here a general method which should be flexible enought to handle most situations.  The first account you will need is an <emphasis>Asset Cost</emphasis> account (GnuCash account type "asset"), which is simply a place where you record the original purchase of the asset.  Usually this purchase is accomplished by a transaction from your bank account.
-  </para>
-  <para>
-In order to keep track of the appreciation of the asset, you will need three accounts.  The first is an <emphasis>Unrealized Gains</emphasis> asset account in which to collect the sum of all of the appreciation amounts.  The Unrealized Gains asset account is balanced by a <emphasis>Unrealized Gains</emphasis> income account, in which all periodic appreciation income is recorded.  Finally, another income account is necessary, called a <emphasis>Realized Gains</emphasis> in which you record the actual capital gains upon selling the asset.
-  </para>
-  <para>
-Below is a generic account heirarchy for tracking the appreciation of 2 assets, ITEM1 and ITEM2.  The "Assets:ITEM1:Cost" accounts are balanced by the "Assets:Bank" account, the "Assets:ITEM?:Unrealized Gains"  accounts are balanced by the "Income:Unrealized Gains" account.  
-  </para>
-  <literallayout>
--Assets
-    -ITEM1 
-        -Cost
-        -Unrealized Gain
-    -ITEM2
-        -Cost
-        -Unrealized Gain
-    -Bank
--Income
-    -Unrealized Gains
-    -Realized Gains
-  </literallayout>
-
-  </sect2>
-  <sect2 id="depcap_cgex2">
- <title>Example: Setup</title>
-
-  <para>
-Let's suppose you buy an asset expected to increase in value, say a Degas painting, and want to track this. (The insurance company will care about this, even if nobody else does.)  
-  </para>
-
-  <para>
-Start with an account heirarchy similar to than shown in the previous section, but replace "ITEM1" with "Degas" and you can remove the "ITEM2" accounts.  We will assume that the Degas painting had an initial value of one hundred thousand dollars.  Begin by giving your self $100000 in the bank and then transferring that from your bank account to your "Asset:Degas" account (the asset purchase transaction).  You should now have a main account window which appears like this:
-  </para>
-	<screenshot id="depcap_appmain">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/depcap_appmain.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>Asset Appreciation Main Window</phrase>
-	    </textobject>
-	    <caption>
-	       <para>The asset appreciation example main window
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
-  </sect2>
-  <sect2 id="depcap_cgex_unrealized2">
- <title>Example: Unrealized Gains</title>
-
-  <para>
-A month later, you have reason to suspect that the value of your painting has increased by $10000 (an unrealized gain). In order to record this you transfer $10000 from your Accrued Gains income account to your asset Unrealized Gains account. Your main window will resemble this:
-  </para>
-	<screenshot id="depcap_app2main">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/depcap_app2main.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>Asset Appreciation Main Window</phrase>
-	    </textobject>
-	    <caption>
-	       <para>This image shows the asset appreciation main window
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
-
-  </sect2>
-
-  <sect2 id="depcap_cgselling2">
- <title>Example: Selling</title>
-  <para>
-Let's suppose another month later prices for Degas paintings have gone up some more, in this case about $20000, you estimate. You duly record the $20000 as an unrealized income like above, then decide to sell the painting.
-  </para>
-  <para>
-Three possibilities arise.  You may have <emphasis>accurately estimated</emphasis> the unrealized gain, <emphasis>underestimated</emphasis> the unrealized gain, or <emphasis>overestimated</emphasis> the unrealized gain.    </para>
-  <orderedlist>
-  <listitem>
-  <para>
-<emphasis>Accurate estimation</emphasis> of unrealized gain.
-  </para>
-  <para>
-Your optimistic estimate of the painting's value was correct. First you must record that the profits made are now realized gains, not unrealized gains.  Do this by transferring the income from the "Income:Unrealized Gains" to the "Income:Realized Gains" account.  
-  </para>
-  <para>
-Secondly, you must credit your bank account with the selling price of the painting.  This money comes directly from your "Asset:Degas" subaccounts.  Transfer the full "Asset:Degas:Cost" value into "Asset:Bank", and the full "Asset:Degas:Unrealized Gain" into "Asset:Bank".
-  </para>
-  <para>
-These transactions should now appear as follows:
-  </para>
-  <para>
+ <sect1 id="invest_sell1">
+ <title>Selling Stocks</title>
+ <para>Entering an investment you are selling is done in the same way as buying one except the total cost of the transaction is entered in the <emphasis>Sell</emphasis> column and the <emphasis>Shares</emphasis> column is entered as a negative amount.  The proceeds from the sale should be transferred from the stock account to your bank account.</para>
+ <para>The proper recording of the stock sale *must* be done using a split transaction.  In the split transaction, you must account for the profit (or loss) as coming from an Income:Capital Gains account (or Expense:Capital Loss).  To balance this income, you will need to enter the stock asset twice in the split.  Once to record the actual sale (using the correct number of shares and correct price per share) and once to balance the income profit (setting the number of shares to 0 and price per share to 0).</para>
+ <para>In the split transaction scheme presented below, the symbol NUM_SHARES is the number of shares you are selling, SELL_PRICE is the price for which you sold the shares, GROSS_TOTAL is the total price for which you sold shares, equal to NUM_SHARES*SELL_PRICE.  PROFIT is the amount of money you made on the sale.  COMMISSIONS are the brokerage commissions.  NET_SALE is the net amount of money received from the sale, equal to GROSS_TOTAL - COMMISSIONS.</para>
  <table>
- <title>Turning an Accrued Gain into a Realized Gain</title>
- <tgroup cols="4">
+ <title>Selling Stock Split Transaction Scheme</title>
+ <tgroup cols="3">
  <tbody>
  <row>
  <entry><emphasis>Account</emphasis></entry>
- <entry><emphasis>Transfer to</emphasis></entry>
- <entry><emphasis>Transaction Amount</emphasis></entry>
- <entry><emphasis>Account Total</emphasis></entry>
+ <entry><emphasis>Number of Shares</emphasis></entry>
+ <entry><emphasis>Share Price</emphasis></entry>
+ <entry><emphasis>Total Buy</emphasis></entry>
+ <entry><emphasis>Total Sell</emphasis></entry>
  </row>
  <row>
- <entry>Income:Unrealized Gains</entry>
- <entry>Income:Realized Gains</entry>
- <entry>$30000</entry>
- <entry>$0</entry>
- </row>
- <row>
- <entry>Asset:Degas:Cost</entry>
  <entry>Asset:Bank</entry>
- <entry>$100000</entry>
- <entry>$0</entry>
+ <entry></entry>
+ <entry></entry>
+ <entry>NET_SALE</entry>
+ <entry></entry>
  </row>
  <row>
- <entry>Asset:Degas:Unrealized Gains</entry>
- <entry>Asset:Bank</entry>
- <entry>$30000</entry>
- <entry>$0</entry>
+ <entry>Asset:Stock:SYMBOL</entry>
+ <entry>-NUM_SHARES</entry>
+ <entry>SELL_PRICE</entry>
+ <entry></entry>
+ <entry>GROSS_SALE</entry>
  </row>
-  </tbody>
-  </tgroup>
-  </table>
-  </para>
-  <para>
-This leaves the "Asset:Bank" account with a total of $130000 and "Income:Realized Gains" with a total of $30000.
-  </para>
-  </listitem>
+ <row>
+ <entry>Asset:Stock:SYMBOL</entry>
+ <entry></entry>
+ <entry></entry>
+ <entry>PROFIT</entry>
+ <entry></entry>
+ </row>
+ <row>
+ <entry>Income:Capital Gains</entry>
+ <entry></entry>
+ <entry></entry>
+ <entry></entry>
+ <entry>PROFIT</entry>
+ </row>
+ <row>
+ <entry>Expenses:Commissions</entry>
+ <entry></entry>
+ <entry></entry>
+ <entry>COMMISSION</entry>
+ <entry></entry>
+ </row>
+ </tbody>
+ </tgroup>
+ </table>
 
-  <listitem>
-  <para>
-<emphasis>Under estimation</emphasis> of unrealized gain.
-  </para>
-  <para>
-You were over-optimistic about the value of the painting. Instead of the $130000 you thought the painting was worth are only offered $120000. But you still decide to sell, because you value $120000 more than you value the painting. The numbers change a little bit, but not too dramatically. 
-  </para>
-  <para>
-Under construction
-  </para>
-  </listitem>
+ <para>If you will be recording the sale of the stock as a capital gain (or loss), please see the chapter "Depreciation and Capital Gains" for more information on this topic.</para>
 
-  <listitem>
-  <para>
-<emphasis>Over estimation</emphasis> of unrealized gain.
-  </para>
-  <para>
-You manage to sell your painting for more than you thought in your wildest dreams. The extra value is, again, recorded as a gain, i.e. an income. 
-  </para>
-  <para>
-Under Construction
-  </para>
-  </listitem>
-  </orderedlist>
- 
-  </sect2>
-  <sect2 id="depcap_cgcaution2">
- <title>Caution about Valuation</title>
-  <para>
-As we see in this example, for non-financial assets, it may be difficult to correctly estimate the ``true'' value of an asset. It is quite easy to count yourself rich based on questionable estimates that do not reflect "money in the bank."
-  </para>
-  <para>
-When dealing with appreciation of assets,
-  </para>
-  <itemizedlist>
-  <listitem>
-  <para>
-Be careful with your estimation of values. Do not indulge in wishful thinking.
-  </para>
-  </listitem>
-  <listitem>
-  <para>
-Never, ever, count on money you do not have in your bank or as cash. Until you have actually sold your asset and got the money, any numbers on paper (or magnetic patterns on your hard disk) are merely that. If you could realistically convince a banker to lend you money, using the assets as collateral, that is a pretty reasonable evidence that the assets have value, as lenders are professionally suspicious of dubious overestimations of value. Be aware: all too many companies that appear "profitable" on paper go out of business as a result of running out of cash, precisely because "valuable assets" were not the same thing as cash. 
-  </para>
-  </listitem>
-  </itemizedlist>
+ <sect2 id="invest_sellexample2">
+ <title>Example</title>
 
-  </sect2>
-  <sect2 id="depcap_cgtaxation2">
- <title>Taxation of Capital Gains</title>
-  <para>
-Taxation policies vary considerably between countries, so it is virtually impossible to say anything that will be universally useful. However, it is common for income generated by capital gains to not be subject to taxation until the date that the asset is actually sold, and sometimes not even then. North American home owners usually find that when they sell personal residences, capital gains that occur are exempt from taxation. It appears that other countries treat sale of homes differently, taxing people on such gains. German authorities, for example, tax those gains only if you owned the property for less than ten years.
-  </para>
-  <para>
-Chris Browne has a story from his professional tax preparation days where a family sold a farm, and expected a considerable tax bill that turned out to be virtually nil due to having owned the property before 1971 (wherein lies a critical "Valuation Day" date in Canada) and due to it being a dairy farm, with some really peculiar resulting deductions. The point of this story is that while the presentation here is fairly simple, taxation often gets terribly complicated...
-  </para>
-  </sect2>
+ <para>As an example, assume you bought 100 shares of a stock for $20 per share, then later sell them all for $30 per share.  In the split transaction scheme above, PRICEBUY is $20 (the original buying price), NUMSHARES is 100, TOTALBUY is $2000 (the original buying price), TOTALPROFIT is $1000, and finally TOTALSALE is $3000.</para>
+
+ <screenshot id="invest_sellstock2">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/invest_sellstock.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Selling Stock Example</phrase>
+	    </textobject>
+	    <caption>
+	       <para>An example of selling stock.  You bought 100 shares of AMZN for $20 per share, and sold for $30.</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+
+ </sect2>
+ </sect1>
+
+ <sect1 id="invest_todo1">
+ <title>To-do</title>
+ <para>
+These are the remaining documentation sections that originally appeared in the 1.8.4 documentation which require being written up.
+ </para>
+
+ <itemizedlist>
+ <listitem>
+ <para>Recording Stock Splits and Mergers (How-To)</para>
+ </listitem>
+ <listitem>
+ <para>Recording Employee Stock Plans (Discussion)</para>
+ </listitem>
+ <listitem>
+ <para>Stock Options (How-To)</para>
+ </listitem>
+ <listitem>
+ <para>Reconciling with the Brokerage Statement (How-To)</para>
+ </listitem>
+ </itemizedlist>
+
  </sect1>
 
  </chapter>
