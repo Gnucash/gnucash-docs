@@ -16,76 +16,176 @@
   </para>
  <sect1 id="loans_concepts1">
  <title>Basic Concepts</title>
- <para>
-blah...
- </para>
+ <para>A loan is defined as a financial transaction in which someone pays for the use of someone else's money.  There are many familiar examples of loans: credits cards, auto loans, house mortgages, or a business loan.</para>
 
- <sect2 id="loans_terms2">
+ <sect2 id="loans_conceptsterms2">
  <title>Terminology</title>
   <para>
-Before discussing these loans specifically, it will be helpful to present a glossary of terminology.  The terms presented below represent some of the basic concepts found in the world of loans.  It is a good idea to become familiar with these terms, or at least, refer back to this list if you encounter an unfamiliar word in the later sections.
+Before discussing tracking loan in GnuCash specifically, it will be helpful to present a glossary of terminology.  The terms presented below represent some of the basic concepts found concerning loans.  It is a good idea to become familiar with these terms, or at least, refer back to this list if you encounter an unfamiliar word in the later sections.
   </para>
 
   <itemizedlist>
-
   <listitem>
-  <para>
-<emphasis>Amortization</emphasis> .
- </para>
- </listitem>
+  <para><emphasis>Amortization</emphasis> - the repayment plan which will insure that a loan is eventually paid off, typically utilizing equal valued monthly payments.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Borrower</emphasis> - the person or company that receives the money from a loan.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Default</emphasis> - when a borrower fails to repay a loan according to the terms agreed upon with the lender.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Deferment</emphasis> - a temporary delay in the repayment of a loan.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Delinquency</emphasis> - is the term that refers to late payments.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Disbursement</emphasis> - amount of the loan paid to the borrower.  Some loans have multiple disbursements, meaning the borrower does not receive the full amount of the loan at one time.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Interest</emphasis> - the expense charged by the lender to the borrower for the use of the money loaned.  This is typically expressed in terms of a yearly percentage charged on the principal borrowed, known as the <emphasis>Annual Percentage Rate</emphasis> or APR.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Lender</emphasis> - the company or person who lends money to a borrower.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Loan Fee</emphasis> - a processing fee removed from the principal at the time the borrower receives a loan.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Principal</emphasis> - the original amount of the loan, or the amount of the original loan that is still owed.  When you make a monthly payment on a loan, part of the money pays the interst, and part pays the principal.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Promissary Note</emphasis> - the legal agreement between the borrower and lender concerning the loan.</para>
+  </listitem>
+  </itemizedlist>
 
-
- </itemizedlist>
   </sect2>
  </sect1>
 
  <sect1 id="loans_accounts1">
  <title>Setting Up Accounts</title>
- <para>
-To setup loan accounts in GnuCash ...
- </para>
+ <para>When a borrower obtains a loan, it is usually with the intention to make a purchase of something of value.  In fact, most loans require the borrower to buy some predetermined asset, such as a house.  This asset is insurance against the borrower defauting on the loan.  There are, of course, examples of loans which do not necessarily have an associated high value asset, such as educational loans.</para>
+  <para>For the account structure presented here, we will assume the loan was used to purchase a compensating asset.</para>
+  <para>A loan is a liability, the interest you accrue on the loan is an on-going expense, and any administrative fees you may have to pay would be another expense.  The thing purchased with the money from a loan is an asset.  With these parameters, we can now present a basic loan account structure: </para>
+
+  <literallayout>
+Basic Loan Account Structure
+
+-Asset
+   -Bank Account
+   -Asset Purchased
+-Liability
+   -Loan
+-Expenses
+   -Loan Interest
+   -Loan Admin Fees
+  </literallayout>
+
+<para>GnuCash has a number of predefined loan account heirarchies available, including Car Loans and Home Mortgage Loans.  To access these predefined account structures, click on <guimenu>File</guimenu> -> <guimenu>New File</guimenu> and select the loan types in which you are interested.</para>
 
  </sect1>
 
  <sect1 id="loans_mortgage1">
  <title>House Mortgage (How-To)</title>
+ <para>A house mortgage can be setup using the account structure present in the previous section.</para>
+ <para>As an example, assume you have $60k in you bank account, and you buy a $150k house.  The mortgage is charging 6% APR, and has administrative fees (closing costs, etc) of 3%.  You decide to put $50k down, and thus will need to borrow $103k, which will give you $100 after the closing costs are paid (3% of $100k).</para>
+  <para>You accounts before borrowing the money:</para>
+
+	<screenshot id="loans_mortgage1.png">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/loans_mortgage1.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Accounts Before Receiving Loan</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Accounts Before Receiving Loan</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+ 
+   <para>The purchase of the house is recorded with a split transaction in the Asset:House account, with $50k coming from the bank (ie: your down payment), and $100k coming from the Mortgage.  You can place the $3k closing costes in the same split.</para>
+
  <para>
+  <table>
+  <title>Buying a House Split Transaction</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+<entry>Account</entry><entry>Increase</entry><entry>Decrease</entry>
+  </row>
+  <row>
+<entry>Assets:House</entry><entry>$150,000</entry><entry></entry>
+  </row>
+  <row>
+<entry>Assets:Bank</entry><entry></entry><entry>$50,000</entry>
+  </row>
+  <row>
+<entry>Liabilities:Mortgage</entry><entry></entry><entry>$103,000</entry>
+  </row>
+  <row>
+<entry>Expenses:Mortagage Adm Fees</entry><entry>$3000</entry><entry></entry>
+  </row>
+  </tbody>
+  </tgroup>
+  </table>
  </para>
+ <para>The split will look like this in the Assets:House Account:</para>
+
+	<screenshot id="loans_mortgage2.png">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/loans_mortgage2.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Mortgage Split Transaction</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Mortgage Split Transaction</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+ <para>Which will give account totals like this:</para>
+ 	<screenshot id="loans_mortgage3.png">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/loans_mortgage3.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Mortgage Accounts</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Mortgage Account</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+ 
+
  </sect1>
- <sect1 id="loans_autoloan1">
- <title>Automobile Loan (How-To)</title>
- <para>
- </para>
- </sect1>
- <sect1 id="loans_sched1">
- <title>Entering a Payment Schedule</title>
- <para>
- </para>
-  <sect2 id="loans_sched_monthly2">
- <title>Monthly Payments (How-To)</title>
- <para>
- </para>
-  </sect2>
-  <sect2 id="loans_sched_final2">
- <title>Final Payment (How-To)</title>
- <para>
- </para>
-  </sect2>
- </sect1>
- <sect1 id="loans_sellhouseauto1">
- <title>Selling a House or Automobile (How-To)</title>
- <para>
- </para>
- </sect1>
- <sect1 id="loans_reconcileloan1">
- <title>Reconciling with the Loan Statements (How-To)</title>
- <para>
- </para>
- </sect1>
- <sect1 id="loans_puttoget1">
- <title>Putting It All Together</title>
- <para>
- </para>
+
+ <sect1 id="loans_missing1">
+ <title>Missing Loan Documentation</title>
+
+ <literallayout>
+ -Automobile Loan (How-To)
+
+ -Entering a Payment Schedule
+     -Monthly Payments (How-To)
+     -Final Payment (How-To)
+
+ -Selling a House or Automobile (How-To)
+
+ -Reconciling with the Loan Statements (How-To)
+
+ -Putting It All Together
+ </literallayout>
+
  </sect1>
 
  </chapter>
