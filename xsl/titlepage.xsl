@@ -79,7 +79,7 @@
   
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="book.titlepage.before.verso">
-    <img align="left" src="stylesheet/gnome-money.png" alt="GnuCash Logo"/>
+    <img align="left" src="stylesheet/gnucash-icon.png" alt="GnuCash Logo"/>
   
 </xsl:template>
 
@@ -256,7 +256,7 @@
   
 
 <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="article.titlepage.before.verso">
-    <img align="left" src="stylesheet/gnome-money.png" alt="GnuCash Logo"/>
+    <img align="left" src="stylesheet/gnucash-icon.png" alt="GnuCash Logo"/>
   
 </xsl:template>
 
