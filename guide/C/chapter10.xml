@@ -11,38 +11,132 @@
 -->
  <chapter id="chapter10">
  <title>Multiple Currencies</title>
- <para>
-  </para>
+ <para>This chapter will show you how to setup your GnuCash accounts to use multiple currencies.</para>
 
  <sect1 id="currency_concepts1">
  <title>Basic Concepts</title>
- <para>
-  </para>
+ <para>GnuCash supports the use of multiple currencies in different accounts.  For example, you can have a bank account setup in Euros, and another using British Pounds.</para>
+ <para>Some of the issues which arise when using multiple currencies is how do you transfer funds between accounts with different currencies?  How do you calculate the overall value when you have mized currency accounts?  How do reports deal with mixed currencies?</para>
  </sect1>
 
  <sect1 id="currency_acct1">
  <title>Account Setup</title>
- <para>
-(Discussion of ISO codes, setup of currency accounts)
-  </para>
- </sect1>
+ <para>Your default account currency is set in <guimenu>Edit</guimenu> -> <guimenu>Preferences</guimenu> -> <guimenu>International</guimenu> -> <guilabel>New Account Default Currency</guilabel>.  You should set this parameter correctly, as it will save you much time when building your account structure.</para>
+ <para>When you create a new account, you have the option to define the commodity.  For currency accounts, you can specify any one of the hundreds of currencies supported by GnuCash by simply selecting it from the currency commodity list.  You will notice that the default currency is always whatever you have defined in the preferences.  So, if you mostly work with Euros, but have the occasional Ethiopian Birr account, be sure to set your preferences to Euro.</para>
+ <para>As an example, let's set up a typical bank account scenario where you mostly work in US Dollars, but do also have a European bank account using the Euro currency.  So, setup 2 bank accounts, one using the Euro currency, and another in dollars.  One possible account structure for this would be:</para>
+ <literallayout>
+-Assets                          (USD)
+   -Banks                        (USD)
+      -US Bank                 (USD)
+      -European Bank        (EUR)
+-Equity                          (USD)
+   -Starting Balances USD (USD)
+   -Starting Balances EUR (EUR)
+
+Note: the currency of each account is shown in parenthesis.
+ </literallayout>
+
+ <para>Since in this example you mostly work in USD, all of the parent accounts are set to USD.  Of course, if you mostly work in Euros, you could change the currency of these parent accounts to EUR.  To totals shown in the account tree window will always be converted to the currency of each particular account.  Notice, we also setup 2 Starting Balances equity accounts, used to initially populate the 2 banks.</para>
+ <note>
+ <para>You could also setup just a single Starting Balance account and use a currency transfer to populate the "different currency" accounts.  However, this is more advanced option, which is explain in a later section.</para>
+ </note>
+
+  <para>Below you see the result of this example, in which we start with USD 10000 and EUR 10000 in the two bank accounts.  Notice that the total of the parent accounts only show the value of the currency of subaccounts with matching currencies.  In the future you can setup the exchange rates between the currencies, and the parent accounts will calculate the converted value of all subaccounts.  See the later section on how to do this.</para>
+
+	<screenshot id="currency_main1">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/currency_main1.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Initial Account 2 Bank Setup</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Initial setup of 2 bank account with different currencies.  Notice that the "Total (Report)" column is being displayed.  This is configured in the <guibutton>Options</guibutton> -> <guilabel>Account Fields to Display</guilabel> area.</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+ 
+   </sect1>
 
  <sect1 id="currency_support1">
  <title>GnuCash Currency Support</title>
- <para>
-(Discussion of Euro support, exchange rates)
- </para>
+ <para>GnuCash supports over a hundred currencies, from the Andorran Franc to the Zimbabwe Dollar.  You will also find supports for some lesser popular currencies like the US Dollar, Canadian Dollar, European Euro, and British Pound.</para>
  </sect1>
 
  <sect1 id="currency_prefs1">
  <title>Setting International Preferences</title>
- <para>
- </para>
+ <para>For a full explanation of the International Preferences available, see the second chapter of this guide entitled "The Basics", specifically the Section "Setting Preferences".</para>
  </sect1>
- <sect1 id="currency_howto1">
+
+ <sect1 id="currency_howtot1">
  <title>Recording Currency Exchange (How-To)</title>
- <para>
- </para>
+ <para>In order to view your account values displayed in a currency other than their native currency, you will need to set up currency exchange rates.  This is accomplised using the Price Editor.</para>
+  <para>Open the Price Editor by going to <guimenu>Tools</guimenu> -> <guimenu>Price Editor</guimenu>.  Click on the <guibutton>Add</guibutton> button to add a new currency exchange.  A window will appear to allow you to select the commodity you wish to define the exchange rate for.  Click on <guibutton>Select</guibutton> and set the <guilabel>Type</guilabel> to ISO4217 and the <guilabel>Currency/security</guilabel> to EUR (Euro).  This window should appear like this:</para>
+
+	<screenshot id="currency_selectcurr">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/currency_selectcurr.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Select Euro Commodity</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Price Editor Select Commodity Window</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+  
+  <para>Click <guibutton>Ok</guibutton> and in the Select Commodity window, set the exchange rate between the selected commodity and the selected currency.  In this example, we will set the exchange rate to 1 EUR to 1 USD.</para>
+
+	<screenshot id="currency_selectcomm">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/currency_selectcomm.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Select Commodity</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Price Editor Select Commodity Window</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+	<screenshot id="currency_peditor">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/currency_peditor.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Price Editor Window</phrase>
+	    </textobject>
+	    <caption>
+	       <para>The Price Editor window after setting the exchange rate between Euros and US Dollars</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+	<screenshot id="currency_main2">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/currency_main2.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Account main window</phrase>
+	    </textobject>
+	    <caption>
+	       <para>The main account window after setting the exchange rate between Euros and US Dollars</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
  </sect1>
  <sect1 id="currency_purchase1">
  <title>Recording Purchases in a Foreign Currency (How-To)</title>
