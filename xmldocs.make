@@ -50,9 +50,9 @@ styledir = $(top_srcdir)/stylesheet
 # Convert xml to html with xsltproc
 # xsltproc   -o outputdir/ /usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl filename.xml
 convert-html: 
-	$(mkinstalldirs) $(srcdir)/$(docname); \
+	$(mkinstalldirs) $(docname); \
 	for file in $(docname).xml; do \
-	 xsltproc -o $(srcdir)/$(docname)/ --param use.id.as.filename 1 \
+	 xsltproc -o $(docname)/ --param use.id.as.filename 1 \
 	 $(top_srcdir)/xsl/general-customization.xsl $(srcdir)/$$file; \
 	done
 
@@ -84,7 +84,7 @@ install-data-local: omf convert-html
 	  cp $(srcdir)/$$file $(DESTDIR)$(docdir); \
 	done
 	  $(mkinstalldirs) $(DESTDIR)$(docdir)/$(docname); \
-	  for file in $(srcdir)/$(docname)/*.html; do \
+	  for file in $(docname)/*.html; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
 	    $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$(docname)/$$basefile; \
 	  done
@@ -125,7 +125,7 @@ uninstall-local-doc:
 	-for file in $(srcdir)/$(docname)/*.html; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
 	    rm -f $(docdir)/$(docname)/$$basefile; \
-	  done; \ 
+	  done; \
 	  rmdir $(DESTDIR)$(docdir)/$(docname); \
 	-for file in $(xml_files); do \
 	  rm -f $(DESTDIR)$(docdir)/$$file; \

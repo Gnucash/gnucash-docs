@@ -15,9 +15,9 @@ EXTRA_DIST = \
 noinst_DATA = build-help-index
 
 install-data-local: help-search-index-rm help-search-index.db
-	$(INSTALL_DATA) $(top_srcdir)/doc-tools/help-search-index.db \
+	$(INSTALL_DATA) help-search-index.db \
 		$(DESTDIR)$(docdir)/help-search-index.db
-	
+
 help-search-index-rm:
 	if test -e help-search-index.db; then \
 	rm -f help-search-index.db; \
@@ -25,11 +25,11 @@ help-search-index-rm:
 
 # Add html content to help-search-index.db
 help-search-index.db:
-	$(top_srcdir)/doc-tools/build-help-index \
-	$(top_srcdir)/doc-tools/dbadd \
-	$(top_srcdir)/doc-tools/help-search-index.db \
-	$(top_srcdir)/help/C/gnucash-help/*.html \
-	$(top_srcdir)/guide/C/gnucash-guide/*.html;
+	./build-help-index \
+	./dbadd \
+	./help-search-index.db \
+	$(top_builddir)/help/C/gnucash-help/*.html \
+	$(top_builddir)/guide/C/gnucash-guide/*.html;
 
 
 ## We borrow guile's convention and use @-...-@ as the substitution
