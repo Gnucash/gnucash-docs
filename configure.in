@@ -1,0 +1,72 @@
+# copyright (c) 2000-2002 Chris Lyttle
+
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(help/gnucash-docs/C/help.xml
+)
+
+dnl ==========================================================================
+dnl
+dnl If you add a version number here, you *must* add an AC_SUBST line for
+dnl it too, or it will never make it into the spec file!
+dnl
+dnl ==========================================================================
+
+SCROLLKEEPER_BUILD_REQUIRED=0.3.4
+AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
+
+dnl ==========================================================================
+
+dnl Checks for programs.
+AC_PROG_AWK
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+
+dnl Checks for libraries.
+
+dnl Checks for header files.
+AC_HEADER_STDC
+
+dnl ====================================
+dnl = Begin checks for typedefs, structures, and compiler characteristics.
+dnl ====================================
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_SIZE_T
+dnl ====================================
+dnl = End checks for typedefs, structures, and compiler characteristics.
+dnl ====================================
+
+dnl ====================================
+dnl = Begin checks for library functions.
+dnl ====================================
+AC_FUNC_ALLOCA
+AC_FUNC_MMAP
+AC_CHECK_FUNCS(getcwd getwd putenv strdup)
+dnl ====================================
+dnl = End checks for library functions.
+dnl ====================================
+
+dnl ====================================
+dnl = Begin tests for scrollkeeper
+dnl ====================================
+AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
+if test x$SCROLLKEEPER_CONFIG = xno; then
+  AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net)
+fi
+dnl ====================================
+dnl = End tests for scrollkeeper
+dnl ====================================
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(gnucash-docs,0.0.1)
+AM_PROG_LIBTOOL
+
+AC_OUTPUT(
+gnucash-docs.spec.in
+help/Makefile
+help/gnucash-docs/Makefile
+help/gnucash-docs/C/Makefile
+Makefile)
