@@ -9,25 +9,21 @@ Translators:
        (translators put your name and email here)
 -->
 <chapter id="chapter3">
-<title>Organizing Your Accounts</title>
+<title>Accounts</title>
 <para>
 This chapter will discuss some useful concepts for organizing your accounts.  Since GnuCash does not impose any specific account tree layout, you are free to design your account structure in any manner you wish.  However, there are a few basic accounting concepts which you will probably want to follow when designing your accounts to maximize their utility.
 </para>
 
   <sect1 id="accts_concepts1">
   <title>Basic Accounting Concepts</title>
-
-<para>
-In accounting, the basic types of accounts are <guilabel>Assets</guilabel>, <guilabel>Liabilities</guilabel>, <guilabel>Equity</guilabel>, <guilabel>Income</guilabel> and <guilabel>Expenses</guilabel>.  A basic understanding of each of these will facilitate your understanding of the organization of your accounts under GnuCash.  
-</para>
+<para>As we saw in the previous chapter, accounting is based on 5 basic account types: <guilabel>Assets</guilabel>, <guilabel>Liabilities</guilabel>, <guilabel>Equity</guilabel>, <guilabel>Income</guilabel> and <guilabel>Expenses</guilabel>.  We will now expand on our understanding of these account types, and show how they are represented in GnuCash.  But first, let's divide them into 2 groups, the balance sheet accounts and the income and expense accounts.</para>
 
   <sect2 id="accts_bsa2">
 <title>Balance Sheet Accounts</title>
-<para>
-The three so-called <emphasis>Balance Sheet Accounts</emphasis> are <guilabel>Assets</guilabel>, <guilabel>Liabilities</guilabel>, and <guilabel>Equity</guilabel>.  Balance Sheet Accounts are used to track the changes in value of things you own or owe.
+<para>The three so-called <emphasis>Balance Sheet Accounts</emphasis> are <guilabel>Assets</guilabel>, <guilabel>Liabilities</guilabel>, and <guilabel>Equity</guilabel>.  Balance Sheet Accounts are used to track the changes in value of things you own or owe.
 </para>
 <para>
-<guilabel>Assets</guilabel> is the group of things that you own.  Your assets could include a car, cash, a house, stocks, or anything else that has convertable value.  Convertable value means that theoretically you could sell the item for cash.
+<guilabel>Assets</guilabel> is the group of things that you own.  Your assets could include a car, cash, a house, stocks, or anything else that has convertible value.  Convertible value means that theoretically you could sell the item for cash.
 </para>
 <para>
 <guilabel>Liabilities</guilabel> is the group of things on which you owe money.  Your liabilities could include a car loan, a student loan, a mortgage, your investment margin account, or anything else which you must pay back at some time.
@@ -47,49 +43,15 @@ The two <guilabel>Income and Expense Accounts</guilabel> are used to increase or
 <para>
 <guilabel>Expenses</guilabel> refer to money you spend to purchase goods or services provided by someone else.  Examples of expenses are a meal at a restaurant, rent, groceries, gas for your car, or tickets to see a play.  Expenses will always decrease your Equity.  If you pay for the expense immediately, you will decrease your Assets, whereas if you pay for the expense on credit you increase your Liabilities.
 </para>
-
-	<screenshot id="accts_accounts">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/accts_accounts.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>The Basic Accounts</phrase>
-	    </textobject>
-	    <caption>
-	       <para>This image shows the relationship between the 5 basic accounting accounts.
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
-		
-  </sect2>
-  <sect2 id="accts_balance2">
-<title>Principle of Balance</title>
-<para>
-You may have notices that the basic rules of accounting have set up a system in which the relationship between the 5 basic types of accounts can be expressed in a simple mathematical formula.  This equation is:
-</para>
-<para>
-<emphasis>Assets - Liabilities = Equity + (Income - Expenses)</emphasis>
-</para>
-<para>
-This equation must always be balanced, a condition that can only be satisfied if you enter values on both sides of the equation.  For example: if you receive money in the form of income, you must see an equal increase in your assets.
-</para>
-<para>
-This is the very heart of the double entry accounting system.  For every increase on one side of the equation, there must be an equal and opposite change on the other side.  This concept is known as the <emphasis>Principle of Balance</emphasis>, and is of fundamental importance for understanding GnuCash and other double entry accounting systems.
-</para>
   </sect2>
   </sect1>
 
   <sect1 id="accts_types1">
   <title>GnuCash Accounts</title>
 
+<para>This section will show how the GnuCash definition of an account fits into the view of the 5 basic accounting types.</para>
 <para>
-In the previous section of this chapter the five account types found in basic accounting were introduced.  This section will show how the GnuCash definition of an account fits into this view of basic accounting. 
-</para>
-<para>
-But first, let's begin with a definition of an <guilabel>account</guilabel> in GnuCash.  A GnuCash <guilabel>account</guilabel> is an entity which contains other subaccounts, or that contains <guilabel>transactions</guilabel>.  Since an account can contain other accounts, you often see <guilabel>account trees</guilabel> in GnuCash, in which logically associated accounts reside within a common parent account.  
+But first, let's begin with a definition of an <guilabel>account</guilabel> in GnuCash.  A GnuCash <guilabel>account</guilabel> is an entity which contains other sub-accounts, or that contains <guilabel>transactions</guilabel>.  Since an account can contain other accounts, you often see <guilabel>account trees</guilabel> in GnuCash, in which logically associated accounts reside within a common parent account.  
 </para>
 <para>
 A GnuCash account must have a unique name (that you assign) and one of the predefined GnuCash "account types".  There are a total of 13 account types in GnuCash.  These 13 account types are based on the 5 basic accounting types, the reason there are more GnuCash account types than basic accounting types is that this allows GnuCash to perform specialized tracking and handling of certain accounts.  There are 7 asset accounts (<emphasis>Cash</emphasis>, <emphasis>Bank</emphasis>, <emphasis>Stock</emphasis>, <emphasis>Mutual Fund</emphasis>, <emphasis>Currency</emphasis>, <emphasis>Accounts Receivable</emphasis>, and <emphasis>Asset</emphasis> ), 3 liability accounts (<emphasis>Credit Card</emphasis>, <emphasis>Accounts Payable</emphasis>, and <emphasis>Liability</emphasis>, ), 1 equity account (<emphasis>Equity</emphasis>), 1 income account (<emphasis>Income</emphasis>), and 1 expense account (<emphasis>Expense</emphasis>).
@@ -110,7 +72,7 @@ To help you organize your asset accounts and to simplify transaction entry, GnuC
 <orderedlist>
 <listitem>
 <para>
-<guilabel>Cash</guilabel> Use this account to track the money you have on hand, in your wallet, in your piggybank, under your mattress, or wherever you choose to keep it handy.  This is the most <emphasis>liquid</emphasis>, or easily traded, type of asset.
+<guilabel>Cash</guilabel> Use this account to track the money you have on hand, in your wallet, in your piggy bank, under your mattress, or wherever you choose to keep it handy.  This is the most <emphasis>liquid</emphasis>, or easily traded, type of asset.
 </para>
 </listitem>
 <listitem>
@@ -251,7 +213,7 @@ Let us assume you have a checking and a savings account at a bank, and are emplo
     </para>
     <para>
 Your <guilabel>assets</guilabel> would be the bank savings and checking account.  Your 
-<guilabel>liabilities</guilabel> are the credit card.  Your <guilabel>Equity</guilabel> would be the starting values of your bank accounts and credit card (we do not have those amounts yet, but we kow they exist).  You have <guilabel>income</guilabel> in the form of a salary, and <guilabel>expenses</guilabel> in the form of groceries, rent, electricity, phone, and taxes (Federal, Social Security, Medicare) on your salary.  Simple, isn't it?
+<guilabel>liabilities</guilabel> are the credit card.  Your <guilabel>Equity</guilabel> would be the starting values of your bank accounts and credit card (we do not have those amounts yet, but we know they exist).  You have <guilabel>income</guilabel> in the form of a salary, and <guilabel>expenses</guilabel> in the form of groceries, rent, electricity, phone, and taxes (Federal, Social Security, Medicare) on your salary.  Simple, isn't it?
    </para>
   </sect2>
 
@@ -312,7 +274,7 @@ Account name <guilabel>Expenses</guilabel> (account type <guilabel>Expenses</gui
   <sect2 id="accts_examples_organization2">
    <title>Making Sub-Accounts</title>
   <para>
-We can now add to this basic top-level tree structure by inserting some real transaction-holding subaccounts.  Notice that the tax accounts are placed within a subaccount named "Taxes".  You can make subaccounts within subaccounts.  This is typically done with a group of related accounts (such as tax accounts in this example).
+We can now add to this basic top-level tree structure by inserting some real transaction-holding sub-accounts.  Notice that the tax accounts are placed within a sub-account named "Taxes".  You can make sub-accounts within sub-accounts.  This is typically done with a group of related accounts (such as tax accounts in this example).
    <orderedlist>
     <listitem>
      <para>
