@@ -10,37 +10,282 @@
                (translators put your name and email here)
 -->
  <chapter id="chapter13">
- <title>Chapter 13 Business Needs</title>
- <para>
+ <title>Business: Payroll</title>
+ <para>Payroll is a financial record of wages, net pay, paid vacations, and deductions for an employee.  This chapter will demonstrate how to track payroll in GnuCash</para>
+ <sect1 id="bus_pay_concepts1">
+ <title>Basic Concepts</title>
+  <para>Payroll is a financial record of wages, net pay, paid vacations, and deductions for an employee.  Basically, anything that relates to giving money or benefits to an employee.  This is one of the more complex tasks in terms of accounting, simply because there are many different accounts, people, and agencies involved in the act of paying an employee's salary.</para>
+  <para>Payroll is typically accounted for as an expense.  Sometimes, accountants will "store" some payroll expenses in a short term liability account.  This is useful for things such as payroll taxes, which may be paid to the government at a different times from paying employee salaries.  This chapter will present a methodology which expenses payroll immediately for salaries, but store taxes in a liability account.</para>
+  <note>
+  <para>GnuCash does not (yet) have an integrated payroll system.  What this means is that while you can track payroll expenses in GnuCash, the actual calculation of taxes and deductions will have to be done outside of GnuCash.</para>
+  </note>
+  </sect1>
+  
+ <sect1 id="bus_pay_acct1">
+ <title>Account Setup</title>
+  <para>Some considerations that must be addressed when setting up your accounts is how your local tax laws work.  Because there are so many different ways payroll taxes can be handled throughout the world, this section will present a simple structure.  From this, you should be able to adapt your particular payroll deductions setup.</para>
+  <para>Let us assume that you must pay 2 taxes, Tax1 and Tax2 and that each has an employee contributed component and an employer contributed component.</para>
+  <para>The employee's salary and these two taxes will have to have expense accounts associated, and the taxes will have to have liability accounts.  The tax liability account is the place where you accumulate the withheld taxes for all of your employees, which is later paid to the appropriate government agency.</para>
+  <para>
+  <literallayout>
+Simple Payroll Account Layout:
+
+-Assets
+   -Checking
+-Liabilities
+   -Tax1  (short term "storage" account)
+   -Tax2  (short term "storage" account)
+-Expenses
+   -Salaries
+   -Taxes
+  </literallayout>
+
+  <note>
+  <para>There is a temptation to create per-employee sub-accounts, to track each employee seperately.  However, this often leads to unmanageably large lists of accounts.  Imagine how your account structure would look after a few years of employees coming and going in your company.  It is much simpler to keep all of your employees payroll records within a single account (Expense:Salaries for example) and use reports to view per-employee information.</para>
+  </note>
   </para>
- <sect1 id="settingupacct1">
- <title>13.1 Overview of Business vs. Personal Needs</title>
- <para>
+
+  </sect1>
+
+ <sect1 id="bus_pay_protocol1">
+ <title>Protocol</title>
+  <para>GnuCash does not (yet) have an integrate payroll system.  You can use GnuCash to track your payroll expenses, but you will need to develop a payroll protocol and perform the calculations outside of GnuCash, in a spreadsheet for example.  In this section, one such protocol is presented, which you can use as a model.</para>
+
+  <sect2 id="bus_pay_protocolone2">
+  <title>Step 1: Deductions list</title>
+  <para>The first step to the payroll protocol is to create a list of all the possible taxes and deductions for each employee.  Include definitions and formulas for calculating each value.  This step of the protocol will only need to be done once, and again in the future when the payroll laws or tax rates change.  For our simple payroll situation with the two taxes, such a list would look like this:</para>
+  <itemizedlist>
+  <listitem>
+  <para><emphasis>E_NET_SALARY</emphasis> - Employee net salary (E_GROSS_SALARY - E_TAX1 - E_TAX2)</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>E_TAX1</emphasis> - Employee contribution to tax1 (X% of E_GROSS_SALARY)</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>E_TAX2</emphasis> - Employee contribution to tax2 (X% of E_GROSS_SALARY)</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>C_TAX1</emphasis> - Company contribution to tax1 (X% of E_GROSS_SALARY)</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>C_TAX2</emphasis> - Company contribution to tax2 (X% of E_GROSS_SALARY)</para>
+  </listitem>
+  </itemizedlist>
+  <note>
+  <para>The employee's gross salary (E_GROSS_SALARY) is defined as the sum of E_NET_SALARY + E_TAX1 + E_TAX2 and need not be placed in this list since it somposed of items that already exist.</para>
+  </note>
+  <para>You will want to place the actual formulas for calculating each deduction in this list.  Sometimes, these formulas can be quite complex, and sometimes the formula may simply say "look this number up in table XYZ of the tax codes."</para>
+  <para>Notice that you can calculate some interesting values using the above definitions, such as the total cost to the company: E_NET_SALARY + E_TAX1 + E_TAX2 + C_TAX1 + C_TAX2.</para>
+  </sect2>
+
+  <sect2 id="bus_pay_protocoltwo2">
+  <title>Step 2: Create the Transaction Map</title>
+  <para>When you record payroll in GnuCash, it is done with a single split transaction.  This split transaction will populate the appropriate expense and liability accounts.  If, in the future, you want to discover any of the payroll details for a particular employee, simply open the split transaction.</para>
+  <para>With the deductions list from above in hand, an employee split transaction map can be generated which maps each of the items in the list to a GnuCash account.</para>
+
+  <para>
+  <table>
+  <title>Transaction Map</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+<entry>Account</entry><entry>Increase</entry><entry>Decrease</entry>
+  </row>
+  <row>
+<entry>Assets:Checking</entry><entry></entry><entry>E_NET_SALARY</entry>
+  </row>
+  <row>
+<entry>Expenses:Salaries</entry><entry>E_NET_SALARY</entry><entry></entry>
+  </row>
+  <row>
+<entry>Liabilities:Tax1</entry><entry></entry><entry>E_TAX1</entry>
+  </row>
+  <row>
+<entry>Expenses:Tax1</entry><entry>E_TAX1</entry><entry></entry>
+  </row>
+  <row>
+<entry>Liabilities:Tax1</entry><entry></entry><entry>C_TAX1</entry>
+  </row>
+  <row>
+<entry>Expenses:Tax1</entry><entry>C_TAX1</entry><entry></entry>
+  </row>
+  <row>
+<entry>Liabilities:Tax2</entry><entry></entry><entry>E_TAX2</entry>
+  </row>
+  <row>
+<entry>Expenses:Tax2</entry><entry>E_TAX2</entry><entry></entry>
+  </row>
+  <row>
+<entry>Liabilities:Tax2</entry><entry></entry><entry>C_TAX2</entry>
+  </row>
+  <row>
+<entry>Expenses:Tax2</entry><entry>C_TAX2</entry><entry></entry>
+  </row>
+  </tbody>
+  </tgroup>
+  </table>
   </para>
+  </sect2>
+
+  <sect2 id="bus_pay_protocolthree2">
+  <title>Step 3: Pay the Employee</title>
+  <para>Go to the account where the employee is to be paid, possibly the Asset:Checking account. Open a split transaction and enter the real values using the Transaction Map above as a guide.  Repeat this for all employees.</para>
+  </sect2>
+
+  <sect2 id="bus_pay_protocolfour2">
+  <title>Step 4: Pay the Government</title>
+  <para>The final thing to do is to pay the taxes to the government.  The liability accounts have been collecting the taxes for various government agencies, and periodically you will need to send a check to the government to pay this charge.  To do so, you simply enter a 2 account transaction in (for example) your checking account to pay off the tax liability.  The transaction will be between the checking account and the liability account, no expense account are involved.</para>
+  </sect2>
+
+  </sect1>
+  
+ <sect1 id="bus_pay_example1">
+ <title>Example</title>
+  <para>Using the account setup seen previously, let's go through an example.  Assume that there are 2 employees (E1 and E2) which each earn $1000 per month gross salary. The employee contribution to Tax1 and Tax2 are 10% and 5% respectively.  The company contribution to Tax1 and Tax2 are 15% and 10% each on top of the employees gross salary.</para>
+  <para>Staring with $50k in the bank, and before doing any payroll, the account heirarchy looks like this:</para>
+	<screenshot id="bus_pay_ex1">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_pay_ex1.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Payroll Example 1</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Payroll Initial Setup
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  <sect2 id="bus_pay_exampleprotocol2">
+  <title>Build Protocol</title>
+  <para>The deductions list for employee 1, E_GROSS_SALARY = $1000:</para>
+   <itemizedlist>
+  <listitem>
+  <para><emphasis>E_NET_SALARY</emphasis> - Employee net salary - <emphasis>$850</emphasis> (E_GROSS_SALARY - E_TAX1 - E_TAX2)</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>E_TAX1</emphasis> - Employee contribution to tax1 - <emphasis>$100</emphasis> (10% of E_GROSS_SALARY)</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>E_TAX2</emphasis> - Employee contribution to tax2 - <emphasis>$50</emphasis> (5% of E_GROSS_SALARY)</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>C_TAX1</emphasis> - Company contribution to tax1 - <emphasis>$150</emphasis> (15% of E_GROSS_SALARY)</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>C_TAX2</emphasis> - Company contribution to tax2 - <emphasis>$100</emphasis> (10% of E_GROSS_SALARY)</para>
+  </listitem>
+  </itemizedlist>
+
+  <para>
+  <table>
+  <title>Transaction Map for Employee 1</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+<entry>Account</entry><entry>Increase</entry><entry>Decrease</entry>
+  </row>
+  <row>
+<entry>Assets:Checking</entry><entry></entry><entry>$850 (E_NET_SALARY)</entry>
+  </row>
+  <row>
+<entry>Expenses:Salaries</entry><entry>$850 (E_NET_SALARY)</entry><entry></entry>
+  </row>
+  <row>
+<entry>Liabilities:Tax1</entry><entry></entry><entry>$100 (E_TAX1)</entry>
+  </row>
+  <row>
+<entry>Expenses:Tax1</entry><entry>$100 (E_TAX1)</entry><entry></entry>
+  </row>
+  <row>
+<entry>Liabilities:Tax1</entry><entry></entry><entry>$150 (C_TAX1)</entry>
+  </row>
+  <row>
+<entry>Expenses:Tax1</entry><entry>$150 (C_TAX1)</entry><entry></entry>
+  </row>
+  <row>
+<entry>Liabilities:Tax2</entry><entry></entry><entry>$50 (E_TAX2)</entry>
+  </row>
+  <row>
+<entry>Expenses:Tax2</entry><entry>$50 (E_TAX2)</entry><entry></entry>
+  </row>
+  <row>
+<entry>Liabilities:Tax2</entry><entry></entry><entry>$100 (C_TAX2)</entry>
+  </row>
+  <row>
+<entry>Expenses:Tax2</entry><entry>$100 (C_TAX2)</entry><entry></entry>
+  </row>
+  </tbody>
+  </tgroup>
+  </table>
+  </para>
+
+  </sect2>
+
+
+  <sect2 id="bus_pay_examplepay2">
+  <title>Pay an Employee</title>
+
+  <para>Now, enter the first split transaction for employee 1 in the checking account.  The split transaction will look like this:</para>
+
+	<screenshot id="bus_pay_ex2">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_pay_ex2.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Payroll Example 2</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Employee 1 Split Transaction
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  <para>Repeat this for the second employee, which leaves the account heirarchy looking like this:</para>
+
+	<screenshot id="bus_pay_ex3">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_pay_ex3.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Payroll Example 3</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Account Tree After Salaries Paid
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+  </sect2>
+  <sect2 id="bus_pay_examplegovt2">
+  <title>Pay the Government</title>
+  <para>The Liability:Tax1 and Liability:Tax2 accounts will continue to track how much you must pay to the government agencies responsible for each.  When it is time to pay these agencies, make a transaction from the checking account to the liability accounts.  No expense accounts are involved.  The main account will then appear like this for this example:</para>
+
+	<screenshot id="bus_pay_ex4">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_pay_ex4.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Payroll Example 4</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Accounts After Paying Government
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+ </sect2>
  </sect1>
- <sect1 id="entercharge1">
- <title>13.2 More on Double-Entry Accounting</title>
- <para>
- </para>
- </sect1>
- <sect1 id="enterpay1">
- <title>13.3 General Ledger</title>
- <para>
- </para>
- </sect1>
- <sect1 id="statement1">
- <title>13.4 Payables and Receivables</title>
- <para>
- </para>
- </sect1>
- <sect1 id="adjustbal1">
- <title>13.5 Inventory</title>
- <para>
- </para>
- </sect1>
- <sect1 id="creditcard1">
- <title>13.6 Payroll</title>
- <para>
- </para>
- </sect1>
+
  </chapter>
