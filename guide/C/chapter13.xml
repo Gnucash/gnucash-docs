@@ -49,14 +49,14 @@ Simple Payroll Account Layout:
 
  <sect1 id="bus_pay_protocol1">
  <title>Protocol</title>
-  <para>GnuCash does not (yet) have an integrate payroll system.  You can use GnuCash to track your payroll expenses, but you will need to develop a payroll protocol and perform the calculations outside of GnuCash, in a spreadsheet for example.  In this section, one such protocol is presented, which you can use as a model.</para>
+  <para>GnuCash does not (yet) have an integrated payroll system.  You can use GnuCash to track your payroll expenses, but you will need to develop a payroll protocol and perform the calculations outside of GnuCash, in a spreadsheet for example.  In this section, one such protocol is presented, which you can use as a model.</para>
 
   <sect2 id="bus_pay_protocolone2">
   <title>Step 1: Deductions list</title>
-  <para>The first step to the payroll protocol is to create a list of all the possible taxes and deductions for each employee.  Include definitions and formulas for calculating each value.  This step of the protocol will only need to be done once, and again in the future when the payroll laws or tax rates change.  For our simple payroll situation with the two taxes, such a list would look like this:</para>
+  <para>The first step to the payroll protocol is to create a list of all the possible taxes and deductions for each employee, which should include definitions and formulas for calculating each value.  This step of the protocol will only need to be done once, and again in the future when the payroll laws or tax rates change.  For our simple payroll situation with the two taxes, such a list would look like this:</para>
   <itemizedlist>
   <listitem>
-  <para><emphasis>E_NET_SALARY</emphasis> - Employee net salary (E_GROSS_SALARY - E_TAX1 - E_TAX2)</para>
+  <para><emphasis>E_GROSS_SALARY</emphasis> - Employee gross salary</para>
   </listitem>
   <listitem>
   <para><emphasis>E_TAX1</emphasis> - Employee contribution to tax1 (X% of E_GROSS_SALARY)</para>
@@ -72,10 +72,10 @@ Simple Payroll Account Layout:
   </listitem>
   </itemizedlist>
   <note>
-  <para>The employee's gross salary (E_GROSS_SALARY) is defined as the sum of E_NET_SALARY + E_TAX1 + E_TAX2 and need not be placed in this list since it somposed of items that already exist.</para>
+  <para>The employee's net salary (E_NET_SALARY) is defined as E_GROSS_SALARY - E_TAX1 - E_TAX2 and need not be placed in this list since it is composed of items that already exist.</para>
   </note>
   <para>You will want to place the actual formulas for calculating each deduction in this list.  Sometimes, these formulas can be quite complex, and sometimes the formula may simply say "look this number up in table XYZ of the tax codes."</para>
-  <para>Notice that you can calculate some interesting values using the above definitions, such as the total cost to the company: E_NET_SALARY + E_TAX1 + E_TAX2 + C_TAX1 + C_TAX2.</para>
+  <para>Notice that you can calculate some interesting values using the above definitions, such as the total cost to the company: E_GROSS_SALARY + C_TAX1 + C_TAX2.</para>
   </sect2>
 
   <sect2 id="bus_pay_protocoltwo2">
@@ -95,31 +95,25 @@ Simple Payroll Account Layout:
 <entry>Assets:Checking</entry><entry></entry><entry>E_NET_SALARY</entry>
   </row>
   <row>
-<entry>Expenses:Salaries</entry><entry>E_NET_SALARY</entry><entry></entry>
+<entry>Expenses:Salaries</entry><entry>E_GROSS_SALARY</entry><entry></entry>
   </row>
   <row>
 <entry>Liabilities:Tax1</entry><entry></entry><entry>E_TAX1</entry>
   </row>
   <row>
-<entry>Expenses:Tax1</entry><entry>E_TAX1</entry><entry></entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax1</entry><entry></entry><entry>C_TAX1</entry>
+<entry>Liabilities:Tax2</entry><entry></entry><entry>E_TAX2</entry>
   </row>
   <row>
 <entry>Expenses:Tax1</entry><entry>C_TAX1</entry><entry></entry>
   </row>
   <row>
-<entry>Liabilities:Tax2</entry><entry></entry><entry>E_TAX2</entry>
-  </row>
-  <row>
-<entry>Expenses:Tax2</entry><entry>E_TAX2</entry><entry></entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax2</entry><entry></entry><entry>C_TAX2</entry>
+<entry>Liabilities:Tax1</entry><entry></entry><entry>C_TAX1</entry>
   </row>
   <row>
 <entry>Expenses:Tax2</entry><entry>C_TAX2</entry><entry></entry>
+  </row>
+  <row>
+<entry>Liabilities:Tax2</entry><entry></entry><entry>C_TAX2</entry>
   </row>
   </tbody>
   </tgroup>
@@ -129,7 +123,7 @@ Simple Payroll Account Layout:
 
   <sect2 id="bus_pay_protocolthree2">
   <title>Step 3: Pay the Employee</title>
-  <para>Go to the account where the employee is to be paid, possibly the Asset:Checking account. Open a split transaction and enter the real values using the Transaction Map above as a guide.  Repeat this for all employees.</para>
+  <para>Go to the account from which the employee will be paid, for example your Asset:Checking account. Open a split transaction and enter the real values using the Transaction Map above as a guide.  Repeat this for all employees.</para>
   </sect2>
 
   <sect2 id="bus_pay_protocolfour2">
@@ -161,10 +155,10 @@ Simple Payroll Account Layout:
 
   <sect2 id="bus_pay_exampleprotocol2">
   <title>Build Protocol</title>
-  <para>The deductions list for employee 1, E_GROSS_SALARY = $1000:</para>
+  <para>The deductions list for employee 1:</para>
    <itemizedlist>
   <listitem>
-  <para><emphasis>E_NET_SALARY</emphasis> - Employee net salary - <emphasis>$850</emphasis> (E_GROSS_SALARY - E_TAX1 - E_TAX2)</para>
+  <para><emphasis>E_GROSS_SALARY</emphasis> - Employee gross salary - <emphasis>$1000</emphasis></para>
   </listitem>
   <listitem>
   <para><emphasis>E_TAX1</emphasis> - Employee contribution to tax1 - <emphasis>$100</emphasis> (10% of E_GROSS_SALARY)</para>
@@ -192,31 +186,25 @@ Simple Payroll Account Layout:
 <entry>Assets:Checking</entry><entry></entry><entry>$850 (E_NET_SALARY)</entry>
   </row>
   <row>
-<entry>Expenses:Salaries</entry><entry>$850 (E_NET_SALARY)</entry><entry></entry>
+<entry>Expenses:Salaries</entry><entry>$1000 (E_GROSS_SALARY)</entry><entry></entry>
   </row>
   <row>
 <entry>Liabilities:Tax1</entry><entry></entry><entry>$100 (E_TAX1)</entry>
   </row>
   <row>
-<entry>Expenses:Tax1</entry><entry>$100 (E_TAX1)</entry><entry></entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax1</entry><entry></entry><entry>$150 (C_TAX1)</entry>
+<entry>Liabilities:Tax2</entry><entry></entry><entry>$50 (E_TAX2)</entry>
   </row>
   <row>
 <entry>Expenses:Tax1</entry><entry>$150 (C_TAX1)</entry><entry></entry>
   </row>
   <row>
-<entry>Liabilities:Tax2</entry><entry></entry><entry>$50 (E_TAX2)</entry>
-  </row>
-  <row>
-<entry>Expenses:Tax2</entry><entry>$50 (E_TAX2)</entry><entry></entry>
-  </row>
-  <row>
-<entry>Liabilities:Tax2</entry><entry></entry><entry>$100 (C_TAX2)</entry>
+<entry>Liabilities:Tax1</entry><entry></entry><entry>$150 (C_TAX1)</entry>
   </row>
   <row>
 <entry>Expenses:Tax2</entry><entry>$100 (C_TAX2)</entry><entry></entry>
+  </row>
+  <row>
+<entry>Liabilities:Tax2</entry><entry></entry><entry>$100 (C_TAX2)</entry>
   </row>
   </tbody>
   </tgroup>

@@ -15,7 +15,6 @@
 
   <sect1 id="bus_ap_concepts1">
   <title>Basic Concepts</title>
- <para>The accouting needs of a business can be quite different from that of a person.  Businesses have customers that owe money, vendors which are owed money, employee payroll, more complex tax laws, etc.  GnuCash offers some business oriented features to help facilitate these needs.</para>
   <para>This chapter will focus on Accounts Payable (or A/P).  A/P refers to the accounting of products or services that your company has bought, for which payment needs to be scheduled.</para>
    </sect1>
 
@@ -88,6 +87,9 @@ Basic A/P Account Heirarchy:
  <para><guilabel>Identification - Active</guilabel> - this checkbox is used to differentiate active vendors from inactive ones.</para>
  </listitem>
  <listitem>
+ <para><guilabel>Payment Address - Name</guilabel> - this is the contact name of the person to receive the payment.</para>
+ </listitem>
+ <listitem>
  <para><guilabel>Notes</guilabel> - you can enter any text you would like to in this area, additional commentaries about this vendor.  For example, the names of contact people from within the vendor's company.</para>
  </listitem>
  <listitem>
@@ -97,7 +99,7 @@ Basic A/P Account Heirarchy:
  <para><guilabel>Payment Information - Terms</guilabel> - here you can specify what the default payment terms will be.  These terms must be preregistered using <guimenu>Business</guimenu> -> <guimenu>Billing Terms</guimenu>.</para>
  </listitem>
  <listitem>
- <para><guilabel>Payment Information - Tax Included</guilabel> - this specifies whether tax has already been included in the bill.  You can choose <guilabel>Yes</guilabel>, <guilabel>No</guilabel>, or <guilabel>Use Global</guilabel>.  Yes means that the tax is already included in the bill, No means tax has not been included in the bill, and Use Global means to use the global tax (Derek?).</para>
+ <para><guilabel>Payment Information - Tax Included</guilabel> - this specifies whether tax has already been included in the bill.  You can choose <guilabel>Yes</guilabel>, <guilabel>No</guilabel>, or <guilabel>Use Global</guilabel>.  Yes means that the tax is already included in the bill, No means tax has not been included in the bill, and Use Global means to use the global tax table specified in the "Tax Table" option below.</para>
  </listitem>
  <listitem>
  <para><guilabel>Payment Information - Tax Table</guilabel> - this allows you to specify a specific preregistered tax table to apply to bills from this vendor.  Tax tables must be registered from the menu item <guimenu>Business</guimenu> -> <guimenu>Tax Table</guimenu>.</para>
@@ -143,7 +145,7 @@ Basic A/P Account Heirarchy:
         </screenshot>
 
  <note>
- <para>To return a list of all registered active vendors, set the search criterion to "Company Name", "matches regex", and place a single dot "." in the text field area.  Then, click <guibutton>Find</guibutton>.  The regular expression "." means to match anthing.</para>
+ <para>To return a list of all registered active vendors, set the search criterion to "matches regex", and place a single dot "." in the text field area.  Then, click <guibutton>Find</guibutton>.  The regular expression "." means to match anthing.</para>
  </note>
 
   </sect2>
@@ -154,13 +156,13 @@ Basic A/P Account Heirarchy:
  <para>A bill is the paperwork you receive from a customer requesting payment for a product or services you purchased.  GnuCash can be used to generate and track bills.</para>
   <sect2 id="bus_ap_billnew2">
   <title>New</title>
- <para>When you receive a bill from a vendor, you must register it.  This is accomplished using the application available at <guimenu>Business</guimenu> -> <guimenu>Vendors</guimenu> -> <guimenu>New Bill</guimenu>.  The New Bill window should be filled in appropriately:</para>
+ <para>When you receive a bill from a vendor and want to enter it into GnuCash, you must create a new bill.  This is accomplished using the application available at <guimenu>Business</guimenu> -> <guimenu>Vendors</guimenu> -> <guimenu>New Bill</guimenu>.  The New Bill window should be filled in appropriately:</para>
   <itemizedlist>
   <listitem>
   <para><guilabel>Invoice Info - Invoice ID</guilabel> (optional) - the identification number of the invoice as emitted by the vendor (ie: the vendor's internal number for this invoice).</para>
   </listitem>
   <listitem>
-  <para><guilabel>Invoice Info - Date Opened</guilabel> - the date the Invoice was emitted by the vendor (Derek - or is this the date the bill arrived?).</para>
+  <para><guilabel>Invoice Info - Date Opened</guilabel> - the date the Invoice was emitted by the vendor.</para>
   </listitem>
   <listitem>
   <para><guilabel>Billing Info - Vendor</guilabel> - the issuing vendor.</para>
@@ -169,7 +171,7 @@ Basic A/P Account Heirarchy:
   <para><guilabel>Billing Info - Job</guilabel> (optional) - the vendor job to associate with this bill.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Billing Info - Billing ID</guilabel> - Your interal ID for this bill.  Can be left blank and one will be assigned.</para>
+  <para><guilabel>Billing Info - Billing ID</guilabel> (optional) - the vendor's ID for the bill (e.g.: their invoice #).  Can be left blank.</para>
   </listitem>
   <listitem>
   <para><guilabel>Billing Info - Terms</guilabel> - the payback terms agreement for this bill, a list of preregistered terms is available within the popup menu.</para>
@@ -227,7 +229,7 @@ Basic A/P Account Heirarchy:
   <para><guilabel>Date</guilabel> - The date this item was sold</para>
   </listitem>
   <listitem>
-  <para><guilabel>Invoiced?</guilabel> (unedittable) - <guilabel>X</guilabel> means the item has been invoiced, <guilabel>???</guilabel> means the item has not been invoices (Derek?)</para>
+  <para><guilabel>Invoiced?</guilabel> - <guilabel>X</guilabel>  means the item is attached to this invoice, an empty box means the item is not attached to this invoice.  If the box is empty you can attach the item to the invoice by first selecting the item row and then clicking in this box.</para>
   </listitem>
   <listitem>
   <para><guilabel>Description</guilabel> (optional) - what the item is called</para>
@@ -257,7 +259,7 @@ Basic A/P Account Heirarchy:
   <para><guilabel>Subtotal</guilabel> (unedittable) - computed subtotal for this item (less tax)</para>
   </listitem>
   <listitem>
-  <para><guilabel>Billable</guilabel> - is this bill billable to a customer or a job?</para>
+  <para><guilabel>Billable</guilabel> - is this item billable to the chargeback customer/job?</para>
   </listitem>
   </itemizedlist>
 
@@ -266,7 +268,7 @@ Basic A/P Account Heirarchy:
 
   <sect2 id="bus_ap_billpost2">
   <title>Post</title>
-  <para>When you have finished editting a bill, you must <guilabel>Post</guilabel> the bill. Posting the bill will place the bill transactions into an accounts payable account.  The Post Bill window will appear asking you to enter the Post Date, the Due Date, a Description, and Post to Account (from which you can select from a list of A/Payable accounts).</para>
+  <para>When you have finished editting a bill, you should <guilabel>Post</guilabel> the bill.  You do not have to post the bill, you can simply close it and return to it later, however you need to eventually post it when you are finished editting.  Posting the bill will place the bill transactions into an accounts payable account.  The Post Bill window will appear asking you to enter the Post Date, the Due Date, a Description, and Post to Account (from which you can select from a list of A/Payable accounts).</para>
 
   	<screenshot id="bus_ap_billpost">
 	  <mediaobject>
@@ -289,7 +291,7 @@ Basic A/P Account Heirarchy:
   <title>Find</title>
   <para>To find a preexisting bill, use the <guimenu>Business</guimenu> -> <guimenu>Vendors</guimenu> -> <guimenu>Find Bill</guimenu> application.  From the results of the search, you can select a bill to edit, or view.</para>
   <note>
-  <para>Note, before you can edit a preexisting bill, you will need to unpost it.</para>
+  <para>Note, before you can edit a preexisting posted bill, you will need to unpost it.</para>
   </note>
 
   </sect2>
@@ -307,10 +309,10 @@ Basic A/P Account Heirarchy:
    <para><guilabel>Job Info - Job Name</guilabel> - the name you want to call this job.</para>
    </listitem>
    <listitem>
-   <para><guilabel>Owner Info - Vendor</guilabel> - the vendor associated with this  job.</para>
+   <para><guilabel>Owner Info - Vendor</guilabel> - the vendor associated with this job.</para>
    </listitem>
    <listitem>
-   <para><guilabel>Owner Info - Billing ID</guilabel> - ??? Derek?.</para>
+   <para><guilabel>Owner Info - Billing ID</guilabel> - the customer's reference to this job (e.g. their PO Number).  It's the "Billing Identification" that they require on your invoices to them.</para>
    </listitem>
    <listitem>
    <para><guilabel>Job Active</guilabel> - toggles this job being active or not.  This is useful to use when you have lots of inactive jobs, it is easier to find all the active ones.</para>

@@ -12,12 +12,17 @@
  <chapter id="chapter11">
  <title>Business: Accounts Receivable</title>
  <para>Accounts Receivable (or A/R) refers to products or services provided by the company on credit for which payment has not yet been received.</para>
+
+ <sect1 id="bus_ar_overview1">
+ <title>Overview of Business Features</title>
+ <para>The accouting needs of a business can be quite different from that of a person.  Businesses have customers that owe money, vendors which are owed money, employee payroll, more complex tax laws, etc.  GnuCash offers some business oriented features to help facilitate these needs.</para>
+ <para>Accounts Receivable (A/R) and Accounts Payable (A/P) are used by businesses to record sales for which they are not immediately paid, or to record bills that they have received, but might not pay until later. These types of accounts are used primarily when you've got a lot of bills and receipts flowing in and out, and don't want to lose track of them just because you don't pay/get paid right away. For most home users, A/R and A/P are too complicated and confusing to be worth the effort.</para>
+ </sect1>
+
  <sect1 id="bus_ar_concepts1">
  <title>Basic Concepts</title>
- <para>The accouting needs of a business can be quite different from that of a person.  Businesses have customers that own money, vendors which are owed money, employee payroll, more complex tax laws, etc.  GnuCash offers some business oriented features to help facilitate these needs.</para>
- <para>Accounts Receivable (A/R) and Accounts Payable (A/P) are used by businesses to record sales for which they are not immediately paid, or to record bills that they have received, but might not pay until later. These types of accounts are used primarily when you've got a lot of bills and receipts flowing in and out, and don't want to lose track of them just because you don't pay/get paid right away. For most home users, A/R and A/P are too complicated and confusing to be worth the effort.</para>
   <para>Accounts Receivable (or A/R) refers to products or services provided by the company on credit for which payment has not yet been received.  This is represented on the balance sheet as an asset, because the expectation is that you will receive payment soon.</para>
-   </sect1>
+  </sect1>
 
   <sect1 id="bus_ar_setup1">
   <title>Initial Setup</title>
@@ -25,7 +30,7 @@
   <sect2 id="bus_ar_setupacct2">
   <title>Account Setup</title>
   <para>There are many different ways to setup a business account heirarchy.  You can start with the Business Accounts setup which is available from the New Account druid, or you could build one manually.  To access the prebuilt Business Accounts, start GnuCash and click on <guimenu>File</guimenu> -> <guimenu>New File</guimenu> and proceed until you see the list of available accounts, select Business Accounts.</para>
-  <para>Most likely, the prebuilt Business Account heirarchy will not be perfect for your needs, you will need to do some amount of manual adjustments forit to function well with your situation.  This chapter will present example account structures which you can add to your existing accounts.</para>
+  <para>Most likely, the prebuilt Business Account heirarchy will exactly meet your needs, however it should be close enough that it is recommended yuo begin with it.  You may need adjust some accounts manually for it to function well with your particular situation, but the defaults should be adequate for many situations.</para>
   <para>Accounts Receivable (or A/R) refers to products or services provided by the company on credit for which payment has not yet been received.  This is represented on the balance sheet as an asset, because the expectation is that you will receive payment soon.  To use GnuCash's integrated accounts receivable system, you must first setup an account (usually a subaccount under Assets) defined with account type <emphasis>A/Receivable</emphasis>.  It is within this account that the integrated A/R system will place transactions.</para>
   <literallayout>
 Basic A/R Account Heirarchy:
@@ -37,9 +42,11 @@ Basic A/R Account Heirarchy:
    -Sales
   </literallayout>
 
- <note>
- <para>Note that you will need to add additional asset, expense, and income accounts to this heirarchy for it to be useful.  But, the most important aspects of this heirarchy are the use of an income account and the Accounts Receivable asset account, with account type set to <emphasis>A/Receivable</emphasis>.</para>
- </note>
+ <para>You will need to add additional asset, expense, and income accounts to this heirarchy for it to be useful.  But, the most important aspects of this heirarchy are the use of an income account and the Accounts Receivable asset account, with account type set to <emphasis>A/Receivable</emphasis>.</para>
+
+  <note>
+  <para>You do not need to create an individual A/R account for each customer.  GnuCash will keep track of customers internally and provides reports per-customer based on the internal tracking.</para>
+  </note>
   </sect2>
 
   <sect2 id="bus_ar_setupcname2">
@@ -86,7 +93,10 @@ Basic A/R Account Heirarchy:
  <para><guilabel>Identification - Active</guilabel> - this checkbox is used to differentiate active customers from inactive ones, useful for when you have many past customers, and you want to see only the active.</para>
  </listitem>
  <listitem>
- <para><guilabel>Notes</guilabel> - you can enter any text you would like to in this area, additional commentaries about this customer.  For example, the names of contact people from within the customer's company.</para>
+ <para><guilabel>Billing Address - Name</guilabel> - this is the contact name of the person to receive the bill.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Notes</guilabel> - you can enter any text you would like to in this area, additional commentaries about this customer.</para>
  </listitem>
  <listitem>
  <para><guilabel>Billing Information - Currency</guilabel> - here you can specify what the default billing currency will be.</para>
@@ -144,7 +154,7 @@ Basic A/R Account Heirarchy:
         </screenshot>
  
  <note>
- <para>To return a list of all registered active customers, set the search criterion to "Company Name", "matches regex", and place a single dot "." in the text field area.  Then, click <guibutton>Find</guibutton>.  The regular expression "." means to match anthing.</para>
+ <para>To return a list of all registered active customers, set the search criterion to "matches regex", and place a single dot "." in the text field area.  Then, click <guibutton>Find</guibutton>.  The regular expression "." means to match anthing.</para>
  </note>
  
  </sect2>
@@ -155,13 +165,13 @@ Basic A/R Account Heirarchy:
  <para>An invoice is the paperwork you send to a customer requesting payment for a product or services rendered.  GnuCash can be used to generate and track invoices.</para>
  <sect2 id="bus_ar_invoicenew2">
  <title>New</title>
- <para>To send an invoice to a customer, you must first register it.  This is accomplished using the application available at <guimenu>Business</guimenu> -> <guimenu>Customers</guimenu> -> <guimenu>New Invoice</guimenu>.  The New Invoice window should be filled in appropriately:</para>
+ <para>To send an invoice to a customer you must first create a new invoice.  This is accomplished using the application available at <guimenu>Business</guimenu> -> <guimenu>Customers</guimenu> -> <guimenu>New Invoice</guimenu>.  The New Invoice window should be filled in appropriately:</para>
   <itemizedlist>
   <listitem>
   <para><guilabel>Invoice Info - Invoice ID</guilabel> - the identification number of this invoice (ie: your internal number for this invoice).  If you leave it blank, a number will automatically be generated for it.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Invoice Info - Date Opened</guilabel> - the date this Invoice was emitted.</para>
+  <para><guilabel>Invoice Info - Date Opened</guilabel> - the date this Invoice was created.</para>
   </listitem>
   <listitem>
   <para><guilabel>Billing Info - Customer</guilabel> - the customer who is to receive this invoice.</para>
@@ -170,7 +180,7 @@ Basic A/R Account Heirarchy:
   <para><guilabel>Billing Info - Job</guilabel> (optional) - the customer job to associate with this invoice.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Billing Info - Billing ID</guilabel> - The Billing ID.   ???</para>
+  <para><guilabel>Billing Info - Billing ID</guilabel> - this is the customer's PO Number or other "customer reference number" that you should use to identify your invoices to this customer (and job, if you have one).</para>
   </listitem>
   <listitem>
   <para><guilabel>Billing Info - Terms</guilabel> - the payback terms agreement for this invoice, a list of preregistered terms is available within the popup menu.</para>
@@ -184,10 +194,10 @@ Basic A/R Account Heirarchy:
 	      srccredit="Jon Lapham" format="PNG"/>
             </imageobject>
 	    <textobject>
-	        <phrase>New Invoice Registration Window</phrase>
+	        <phrase>Creating a New Invoice</phrase>
 	    </textobject>
 	    <caption>
-	       <para>New Invoice Registration Window
+	       <para>Creating a New Invoice
 	       </para>
 	    </caption>
           </mediaobject>
@@ -221,7 +231,7 @@ Basic A/R Account Heirarchy:
   <para><guilabel>Date</guilabel> - The date this item was sold</para>
   </listitem>
   <listitem>
-  <para><guilabel>Invoiced?</guilabel> (unedittable) - <guilabel>X</guilabel> means the item has been invoiced, <guilabel>???</guilabel> means the item has not been invoices (Derek?)</para>
+  <para><guilabel>Invoiced?</guilabel> - <guilabel>X</guilabel> means the item is attached to this invoice, an empty box means the item is not attached to this invoice.  If the box is empty you can attach the item to the invoice by first selecting the item row and then clicking in this box.</para>
   </listitem>
   <listitem>
   <para><guilabel>Description</guilabel> (optional) - what the item is called</para>
@@ -251,16 +261,16 @@ Basic A/R Account Heirarchy:
   <para><guilabel>Taxable?</guilabel> - is this item taxable?  <guilabel>X</guilabel> means yes, a blank field means no.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Tax Included?</guilabel> - has the tax already been included in the unit price?  <guilabel>X</guilabel> means yes, a blank field means no.</para>
+  <para><guilabel>Tax Included?</guilabel> - has the tax already been included in the unit price?  <guilabel>X</guilabel> means yes, a blank field means no.  For example, if there is 1 item of $100 with a tax of 5%, if Tax Included is empty then subtotal = $100 and tax = $5, whereas if Tax Included is true, then subtotal = $95 and tax = $5</para>
   </listitem>
   <listitem>
-  <para><guilabel>Tax Table</guilabel> (optional) - this is a popup menu of all the available tax tables.  If you set the item as taxable and set that the tax has not been included in the unit price, then this tax table is used to compute the amount of tax.</para>
+  <para><guilabel>Tax Table</guilabel> (optional) - this is a popup menu of all the available tax tables.  If you set the item as taxable then this tax table is used to compute the amount of tax.</para>
   </listitem>
   <listitem>
   <para><guilabel>Subtotal</guilabel> (unedittable) - computed subtotal for this item (less tax)</para>
   </listitem>
   <listitem>
-  <para><guilabel>Tax</guilabel> (unedittable) - computer tax for this item</para>
+  <para><guilabel>Tax</guilabel> (unedittable) - computed tax for this item</para>
   </listitem>
   </itemizedlist>
 
@@ -270,7 +280,7 @@ Basic A/R Account Heirarchy:
  <sect2 id="bus_ar_invoicepost2">
   <title>Post</title>
 
-  <para>When you have finished editting an invoice, you must <guilabel>Post</guilabel> the invoice. Posting an invoice will place the invoice transactions into an accounts receivable account.  The Post Invoice window will appear asking you to enter the Post Date, the Due Date, a Description, and Post to Account (from which you can select from a list of A/Receivable accounts).</para>
+  <para>When you have finished editting an invoice, and are ready to print, you must <guilabel>Post</guilabel> the invoice.  You do not have to post the invoice immediately, and in fact you should only post the invoice when you are ready to print it.  Posting an invoice will place the invoice transactions into an accounts receivable account.  The Post Invoice window will appear asking you to enter the Post Date, the Due Date, a Description, and Post to Account (from which you can select from a list of A/Receivable accounts).</para>
   	<screenshot id="bus_ar_invoicepost">
 	  <mediaobject>
 	    <imageobject>
@@ -292,13 +302,13 @@ Basic A/R Account Heirarchy:
   <title>Find</title>
   <para>To find a preexisting invoice, use the <guimenu>Business</guimenu> -> <guimenu>Customers</guimenu> -> <guimenu>Find Invoices</guimenu> application.  From the results of the search, you can select an invoice to edit, or view. </para>
   <note>
-  <para>Before you can edit a preexisting invoice, you will need to unpost it.</para>
+  <para>Before you can edit a preexisting posted invoice, you will need to unpost it.</para>
   </note>
  </sect2>
 
  <sect2 id="bus_ar_invoiceprint2">
  <title>Print</title>
-  <para>After you have posted an invoice, you can print an invoice from 2 places; from the Edit Invoice window using the <guibutton>Print</guibutton> button, or from within the Process Payment dialogue.  See the later section in this chapter on the Process Payment dialog for instructions on printing.</para>
+  <para>After you have posted an invoice, you should print it to send to your customer.  This can be done from the Edit Invoice window using the <guibutton>Print</guibutton> button, or from within the Process Payment dialogue, or from the main window: <guimenu>Reports</guimenu> -> <guimenu>Business Reports</guimenu> -> <guimenu>Printable Invoice</guimenu>.  You can edit the invoice options to select the invoice you want to print.  See the later section in this chapter on the Process Payment dialog for instructions on printing.</para>
   <para>An example of the default Gnucash invoice print output is shown below.</para>
 
   	<screenshot id="bus_ar_invoiceprint">
@@ -343,7 +353,7 @@ Basic A/R Account Heirarchy:
    <para><guilabel>Owner Info - Customer</guilabel> - the customer associated with this  job.</para>
    </listitem>
    <listitem>
-   <para><guilabel>Owner Info - Billing ID</guilabel> - ??? Derek?.</para>
+   <para><guilabel>Owner Info - Billing ID</guilabel> - the customer's reference to this job (e.g. their PO Number).  It's the "Billing Identification" that they require on your invoices to them.</para>
    </listitem>
    <listitem>
    <para><guilabel>Job Active</guilabel> - toggles this job being active or not.  This is useful to use when you have lots of inactive jobs, it is easier to find all the active ones.</para>
