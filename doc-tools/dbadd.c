@@ -76,6 +76,16 @@ main (int argc, char *argv[])
   const char *db_name;
   int i;
 
+  HASHINFO info;
+
+  memset (&info, 0, sizeof (info));
+  info.bsize = 256;
+  info.ffactor = 8;
+  info.nelem = (argc-2)>>1>0 ? (argc-2)>>1 : 1;
+  info.cachesize = 0;
+  info.hash = 0;
+  info.lorder = 0;
+
   if (argc < 2)
     usage (argv[0]);
 
@@ -84,7 +94,7 @@ main (int argc, char *argv[])
 
   db_name = argv[1];
 
-  database = dbopen (db_name, O_CREAT | O_RDWR, 0644, DB_HASH, NULL);
+  database = dbopen (db_name, O_CREAT | O_RDWR, 0644, DB_HASH, &info);
   if (!database)
   {
     fprintf (stderr, "Error opening database %s: %s\n",
