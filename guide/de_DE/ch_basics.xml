@@ -1,0 +1,978 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 1.8.4
+  Last modified: April 10th 2004
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  Originally written by Carol Champagne.
+  Translators:
+               Gerold Strobel <gs@gerold-strobel.com>
+-->
+
+ <chapter id="chapter2">
+  <title>Grundlagen</title>
+  <para>This chapter will introduce some of the basics of using GnuCash.  It is recommended that you read through this chapter, before starting to do any real work with GnuCash.  The chapters which follow this will begin to show you hands on examples.</para>
+
+  <sect1 id="basics_accounting1">
+   <title>Grundlagen der Kontoführung</title>
+
+<para>GnuCash is easy enough to use that you do not have to have a complete understanding of accounting principals to find it useful.  However, you will find that some basic accounting knowledge will prove to be invaluable as GnuCash was designed using these principals as a template.  It is highly recommended that you understand this section of the guide before proceeding.</para>
+
+  <sect2 id="basics_accounting52">
+  <title>Die 5 grundlegenden Kontoarten</title>
+<para>Basic accounting rules group all finance related things into 5 fundamental types of  <quote>accounts</quote>.  That is, everything that accounting deals with can be placed into one of these 5 accounts:</para> 
+
+  <itemizedlist>
+  <listitem>
+  <para><emphasis>Assets</emphasis> - things you own.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Liabilities</emphasis> - things you owe.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Equity</emphasis> - overall net worth.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Income</emphasis> - increases the value of your accounts.</para>
+  </listitem>
+  <listitem>
+  <para><emphasis>Expenses</emphasis> - decreases the value of your accounts.</para>
+  </listitem>
+  </itemizedlist>
+
+<para>It is clear that it is possible to categorize your financial world into these 5 groups.  For example, the cash in your bank account is an asset, your mortgage is a liability, your paycheck is income, and the cost of dinner last night is an expense.</para>
+  </sect2>
+
+  <sect2 id="basics_accountingequation2">
+  <title>Kontogleichung</title>
+<para>With the 5 basic accounts defined, what is the relationship between them?  How does one type of account affect the others?  Firstly, equity is defined by assets and liability.  That is, your net worth is calculated by subtracting your liabilities from your assets:</para>
+<para><emphasis>Assets - Liabilities = Equity</emphasis></para>
+<para>Furthermore, you can increase your equity through income, and decrease equity through expenses.  This makes sense of course, when you receive a paycheck you become "richer" and when you pay for dinner you become "poorer".  This is expressed mathematically in what is known as the Accounting Equation:</para>
+<para><emphasis>Assets - Liabilities = Equity + (Income - Expenses)</emphasis></para>
+<para>This equation must always be balanced, a condition that can only be satisfied if you enter values to multiple accounts.  For example: if you receive money in the form of income you must see an equal increase in your assets.  As another example, you could have an increase in assets if you have a parallel increase in liabilities.</para>
+
+	<screenshot id="basics_accounts">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_accounts.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>The Basic Accounts</phrase>
+	    </textobject>
+	    <caption>
+	       <para>A graphical view of the relationship between the 5 basic accounts.  Net worth (equity) increases through income and decreases through expenses.  The arrows represent the movement of value.</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  </sect2>
+  <sect2 id="basics_accountingdouble2">
+  <title>Doppelte Buchführung</title>
+<para>The accounting equation is the very heart of a double entry accounting system.  For every change in value of one account in the Accounting Equation, there must be a balancing change in another.  This concept is known as the <emphasis>Principle of Balance</emphasis>, and is of fundamental importance for understanding GnuCash and other double entry accounting systems.  When you work with GnuCash, you will always be concerned with at least 2 accounts, to keep the Accounting Equation balanced.</para>
+  <para>Double entry accounting serves two purposes.  The first is to create an accounting trail, money always has to come from somewhere and go to somewhere.  Additionally, double entry accounting historically served to double check the math of an accountant.  Because the numbers are entered into multiple accounts simultaneously, there are multiple places to check to make sure the totals match.  Of course, with the advent of computers, the chances of a mathematical problem are low, but it is good to know that the concept still exists!</para>
+  <para>Double entry accounting has been around since the late 15th century, when it was described by an Italian friar, Luca Pacioli.  Traditional double entry accounting involves recording each transaction in a book called a ledger, then copying each part of the transaction to separate books called journals.  This method is still used in businesses today as a way to avoid entry errors and to track the source of those errors.  GnuCash simplifies this traditional accounting by copying part of each transaction for you, so it may not catch some of the entry errors that would show up in traditional accounting.   But it will flag transactions that are not balanced, and it will let you know when an account name is missing. </para>
+    <note>
+    <para>
+Calling this double-entry bookkeeping is a bit misleading; it would be somewhat more accurate to call it multiple- entry bookkeeping, since a transaction can affect more than two accounts. Unfortunately, there's 700 years of history of use of the term, which sufficiently discourages changing it.
+    </para>
+    </note>
+
+  </sect2>
+  </sect1>
+
+  <sect1 id="basics_entry1">
+  <title>Konzepte der Dateneingabe</title>
+
+  <para>When entering data in GnuCash, you should be aware of the 3 levels of organization in which GnuCash divides your data: files, accounts and transactions.  These levels are presented in their order of complexity, one file contains many accounts and one account contains many transactions.  This division is fundamental to understanding how to use GnuCash.</para>
+
+   <sect2 id="basics_accounts2">
+    <title>Dateien, Konten und Buchungen</title>
+    <para>GnuCash uses <emphasis>files</emphasis> for storing information.  GnuCash provides three types of files: data files, backup files, and log files.   The main file that you will use to store your data is a data file.  You will probably have only one data file that you use for your home data, but GnuCash will automatically save a backup copy for you each time you save that data file.  GnuCash also provides log files which can be used to help reconstruct data.  Backup and log files are described later in this chapter.</para>
+    <para>
+An <emphasis>account</emphasis> is a place for keeping track of what you own, owe, spend or receive.   Although you only have one main data file, that file will contain many accounts.   You probably already think of money you own or owe as being in an account.  For example, at some point you opened checking and savings accounts at a particular bank, and that bank sends you monthly statements showing how much money you <emphasis>own</emphasis> in these accounts.  Credit card accounts also send you statements showing what you <emphasis>owe</emphasis> to a credit card company, and the mortgage company may send you periodic statements showing how much you still <emphasis>owe</emphasis> on your loan. 
+    </para>
+    <para>
+In GnuCash, accounts are also used to categorize money you receive or spend, even though these are not physical accounts that receive statements.  As we will cover more in Chapter 3, income type accounts are used to categorize money received (like a paycheck), and expense type accounts are used to categorize money spent (for pizza, to pay a bill, etc.)    These accounts function much like categories in some other financial programs, with a few advantages discussed in Chapter 3.
+    </para>
+    <para>
+A <emphasis>transaction</emphasis>  represents the movement of money from one account to another account.  Whenever you spend or receive money, or transfer money between accounts, that is a transaction.  In GnuCash, as we will see in the next section, transactions always involve at least two accounts.   Examples of transactions are: paying a bill, transferring money from savings to checking, buying a pizza, withdrawing money, and depositing a paycheck. Chapter 4 goes more in depth on how to enter transactions in GnuCash.
+    </para>
+   </sect2>
+   <sect2 id="basics_dbentry2">
+    <title>Doppelte Buchführung</title>
+    <para>
+You've probably heard the saying, <quote>Money doesn't grow on trees</quote>. It means that money must come from somewhere - it doesn't just <quote>appear</quote>. <emphasis>Double entry accounting </emphasis>  is a method of record-keeping that lets you track just where your money comes from and where it goes.  Using double entry means that money is never gained nor lost - an equal amount is always transferred from one place to another.   When you withdraw cash, you are transferring money from your bank account to your wallet.  When you write a check to the grocery store, you are transferring money from your checking account to the grocery store.  And when you deposit a paycheck, you are transferring money from your source of income to your bank account. 
+    </para>
+    <para>
+In GnuCash, these transfers are known as transactions, and each transaction requires at least two accounts.   To enter the cash withdrawal, for example, you would enter a transfer of money from a bank account to a cash account.   You would record the grocery check as a transfer from a checking account to a groceries expense account.   And the paycheck deposit is recorded as a transfer from an income account to a bank account.
+    </para>
+    <para>
+Unlike traditional accounting packages, GnuCash makes it very easy to enter your double entry  transactions.   Chapter 4 gives more detail on entering transactions, but for now let's take a general look at how they work.  For a basic transaction like writing a check, you first create two accounts: a checking account and an account for the expense.  For example, if you write a check to pay for groceries, then you need both a checking account and a groceries account.  (See Chapter 3 for more detail on creating accounts.)  To record the check, you simply enter a transaction to transfer money from the checking account to the groceries account.  In this example, the GnuCash transactions look like this when viewed from the register windows of the checking account:
+	<screenshot id="basics_txn">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_txn.png" 
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>A Basic Transaction</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows entering the date, description and
+	       transfer account for a  payment of <guilabel>$50</guilabel>
+	       to the <guilabel>Grocery Store</guilabel>.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+    </para>
+    <para>
+In this transaction, a check is written to <guilabel>Grocery Store</guilabel> for <guilabel>$50</guilabel>. Since this is a double entry transaction, at least two accounts are affected and must be part of the transaction.  GnuCash automatically enters the current account name (<guilabel>Assets:Checking</guilabel>) for you so you only enter the other account name affected (<guilabel>Expenses:Groceries</guilabel>).
+    </para>
+
+  <note>
+  <para>In this example for double entry accounting we used a checking account to pay for the groceries.  But, notice that concept is the same no matter what method you use to pay for the groceries.  If instead you used a credit card, the double entry accounting would simply involve your Credit Card account instead of the Checking account. </para>
+  </note>
+
+    <para>
+What about your paycheck?  You can see that money goes into a bank account, but where does it come from?  In double-entry, the money has to come from somewhere. Technically, that money comes from your employer, but you don't care about tracking your employer's accounts.  So how do you account for money coming in?  In GnuCash, you create a special income type account to track your incoming paychecks.   (See Chapter 3 for more information on creating income accounts.)  To record the paychecks,  you simply enter a transaction to transfer money from the income account to a bank account. 
+    </para>
+    <para>
+Here's what a paycheck deposit looks like in GnuCash. 
+    <screenshot id="basics_simple_paycheck">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_simple_paycheck.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>A simple paycheck transaction</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows entering the date, description and
+	       transfer account for a <guilabel>$600</guilabel> <guilabel>
+	       Salary</guilabel> payment from <guilabel>Employers R
+	       Us</guilabel>.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+    </para>
+    <para>
+In this example, <guilabel>$600</guilabel> is transferred from a <guilabel>Salary</guilabel> income account to the <guilabel>Checking Account</guilabel>.  Because of the special nature of income accounts, discussed in Chapter 3, this transaction increases both the checking account balance and the income account balance by the amount transferred.
+    </para>
+
+	<!--
+    <para>
+So what if you want to record your gross pay and all the deductions that come out of your check as well?  You enter a transaction with <emphasis>multiple splits</emphasis>, which we will cover in section 4.3. In this type of transaction, you are transferring a sum of money from one location to several locations.  For any double entry transaction, the <emphasis>total</emphasis> amount of money transferred <emphasis>from</emphasis> accounts must equal the <emphasis>total</emphasis> amount transferred <emphasis>to</emphasis> other accounts. 
+    </para>
+    <para>
+For example, your gross pay might be $1000, but only $655 of that gets deposited in your checking account.  The remaining $345 is split between your deductions, such as federal taxes, FICA and state taxes.   How do you account for this in GnuCash?  First, you should have accounts set up for the gross income (salary), checking, and each of the deductions (See Chapter 3). Then you enter a transaction to transfer $1000 from the <guilabel>Salary</guilabel> account to the other accounts: <guilabel>Checking Account</guilabel>, <guilabel>Federal</guilabel>, <guilabel>Medicare</guilabel>, <guilabel>Social Security</guilabel> and <guilabel>State/Province</guilabel>.  Because this is a double entry transaction, the total amount transferred to these five accounts must equal the original $1000 total coming from the income account. We cover this type of transaction in more detail in Chapter 4, but for now here's a peek at what it looks like:
+
+    <screenshot id="basics_multitxn">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_multitxn.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>A Split Paycheck Transaction</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows entering the date, description and
+	       transfer account for a <guilabel>$1000</guilabel> <guilabel>
+	       Salary</guilabel> payment from <guilabel>Employers R Us
+	       </guilabel>. This is then made into a split transaction to 
+	       <guilabel>Checking Account</guilabel>, <guilabel>Federal
+	       </guilabel>, <guilabel>Medicare</guilabel>, <guilabel>Social
+	       Security</guilabel> and <guilabel>State/Province</guilabel>.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+    </para>
+	-->
+    <para>
+The main principle to remember is that there are at least two parts to every transaction, and the total amount transferred from a set of accounts must equal the total amount transferred to another set of accounts.  When a transaction transfers an equal sum from accounts to other accounts, that transaction is said to be <emphasis>in balance</emphasis>.  In GnuCash, as in double-entry accounting, you want to have all of your transactions in balance.
+    </para>
+    <para>
+Why is this important to you? If all of your transactions are in balance, then your money is all accounted for.  GnuCash has a record of where that money came from and where it was used.   By storing the names of all accounts involved in each transaction, you provide data that can be sorted and viewed in report form later.  Reports allow you to see things like how much money you made for the year and where it all went, what your net worth is, and what your taxes might be for the year.  The more information you provide when entering transactions, the more detailed your reports will be.
+    </para>
+    <sidebar><title>Accounting Terminology</title>
+    <para>
+Accountants use the terms <emphasis>debit</emphasis> and <emphasis> credit</emphasis> to describe whether money is being transferred <emphasis> to</emphasis> or <emphasis> from</emphasis> an account. Money is recorded in the debit column, which is always the left column, when it is being transferred <emphasis>to</emphasis> an account.  Money is recorded in the credit column, which is always the right column, when it is being transferred <emphasis>from</emphasis> an account.   Money always flows from the right column of one account to the left column of another account.
+    </para>
+    <para>
+The main rule of accounting is this:  <emphasis>For every transaction, total debits must equal total credits. </emphasis>  This is just another way of repeating the double entry rule, that for each transaction, the amount of money transferred <emphasis>from</emphasis> accounts must equal the amount transferred <emphasis>to</emphasis> other accounts
+    </para>
+    <para>
+You don't have to use the terms debit and credit to use GnuCash, however.  GnuCash account registers default to common column headings such as deposit and withdrawal - if you are more comfortable with those headings, use them.  If you prefer the credit and debit headings, you can change the column headings to use accounting labels from the menu item <guimenu>Edit</guimenu> -&gt; <guimenuitem>Preferences</guimenuitem> <guibutton>General</guibutton> (see section 2.5 for more detail on setting preferences).
+    </para>
+    </sidebar>
+   </sect2>
+  </sect1>
+
+  <sect1 id="basics_interface1">
+   <title>Die GnuCash Benutzeröberfläche</title>
+    <para>
+The very first time you open GnuCash, you will see the <guilabel>Welcome to GnuCash!</guilabel> dialog.  From there, GnuCash provides other tools to help you easily find what you are looking for.  Let's take a look at some of the common screens and dialog boxes you will see.
+    </para>
+   <sect2 id="basics_setup2">
+    <title>Neue Konten eröffnen</title>
+     <para>
+The <guilabel>New Account Hierarchy Setup</guilabel> druid allows you to create several accounts at once.  When you open GnuCash the first time, you will get this dialog:
+    <screenshot id="basics_newuser">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_newuser.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>The New Account Hierarchy Setup Druid</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows the first screen of the <guilabel>New 
+	       Account Hierarchy Setup</guilabel> Druid.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+     </para>
+     <para>
+Click <guibutton>Next</guibutton> and follow the instructions provided in the dialog. The dialog provides a default set of accounts with predefined account types, and you simply select the accounts you want. For more information on account types, see section 3.2.
+     </para>
+     <para>
+If you intend to import your data from another program and you want to keep the same account names you used in that program, you may want to delay setting up default accounts at this time. You can simply import the data and the account names into GnuCash from the other program (Section 2.7 explains how to do this).
+     </para>
+   </sect2>
+   <sect2 id="basics_tip2">
+    <title>Tipp des Tages</title>
+     <para>
+GnuCash provides a <guilabel>Tip of the Day</guilabel> dialog to give helpful hints for using the program:
+
+    <screenshot id="basics_tipofday">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_tipofday.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>The Tip of the Day</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows the <guilabel>Tip of the Day</guilabel>.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+     </para>
+     <para>
+These tips provide useful information for beginning users.  To view more of the tips, click <guibutton>Next</guibutton> to continue.  If you do not wish to see this dialog box on startup, deselect the box next to <guilabel>Display this dialog next time</guilabel>.   When you have finished viewing the helpful tips, click <guibutton>Close</guibutton> to close the Tip dialog. 
+     </para>
+   </sect2>
+   <sect2 id="basics_main2">
+    <title>Kontenhierarchie</title>
+     <para>
+You should now see the <guilabel>Accounts</guilabel> window, which appears as shown below.  The exact layout of the account tree will depend on which default accounts you selected during the New Account Hierarchy Setup.  In this example, the "Simple Checkbook" accounts are shown.
+    <screenshot id="basics_mainwin">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_mainwin.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>The Account Tree Window</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows the <guilabel>Accounts</guilabel> window.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+     </para>
+     <para>
+The Account Tree window provides an overview of the data contained in the current file.  It contains a list of account names and their current balances.  From this window, you can open any of the accounts. The individual account windows are called account registers.  GnuCash allows you to have as many account registers open as you wish.
+     </para>
+     <para>
+At the top of this window is the title bar, which displays the file name (once you have saved the file.) Below that is the menu bar. You can access the menu options by either clicking on these menu headings or by using shortcut key combinations, covered later in this chapter. Next is the tool bar, which contains buttons for the most common functions. Below that is the status bar, which tells you information about what you own (Net Assets) and how much money you have made (Profits).
+     </para>
+     <para>
+The account tree appears below the status bar.  Once you have started creating accounts, the account names will appear in the account tree.  You can customize which headings show up by using the <guiicon>Options</guiicon> button.
+     </para>
+   </sect2>
+   <sect2 id="basics_register2">
+    <title>Kontobuch-Fenster</title>
+     <para>
+The Account Register windows are used to enter and edit your account data.   As the name suggests, they look similar to a checkbook register.  When you double-click an account name in the <guilabel>Accounts</guilabel> window, the <guilabel>Register</guilabel> window for that account will open.  
+
+    <screenshot id="basics_registerwin">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_registerwin.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>The Checking Account Register</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows The <guilabel>Checking Account - Register
+	       </guilabel> with several transactions.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+     </para>
+     <para>
+ Chapter 4 explains more about account register windows and how to enter data into them.   For now, note that the parts of an account register window are similar to the parts of the account tree window described earlier.  The title bar at the top contains the account name.  Below that, the menu bar contains menu options related to the account register.  Tool bar buttons simplify common data entry functions.  The status bar appears below the tool bar, and it displays four types of account balances covered in Chapter 4.  At the bottom of the account register window, information appears about the current location of the cursor.
+     </para>
+   </sect2>
+   <sect2 id="basics_toolbar2">
+    <title>Werkzeugleisten-Knöpfe</title>
+     <para>
+Both the account tree window and the account register window contain tool bar buttons. These buttons provide quick access to common functions such as <guibutton>Save</guibutton> and <guibutton>Open</guibutton> in the account tree window and <guibutton>Record</guibutton> and <guibutton>Delete</guibutton> in the account register window. If you are not sure what a button does, move the mouse pointer over that button, and you should see a description of the function appear.
+     </para>
+     <para>
+Here is a summary of the account tree window buttons:
+     </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+<guibutton>Save</guibutton> - Use this function often to save the current file to disk.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guibutton>Close</guibutton> - Use this function to close the current notebook page.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guibutton>Open</guibutton>, <guibutton>Edit</guibutton>, <guibutton>New</guibutton> and <guibutton>Delete</guibutton> - These are functions related to accounts. They are discussed in Chapter 3. 
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guibutton>Options</guibutton> - This button edits the account view options.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guibutton>Exit</guibutton> - Closes your GnuCash session.
+     </para>
+    </listitem>
+   </itemizedlist>
+     <para>
+Register buttons are discussed in Chapter 4.
+     </para>
+   </sect2>
+   <sect2 id="basics_options2">
+    <title>Menüeinträge</title>
+     <para>
+The account tree window and the account register window both contain menu headings in a menu bar. Clicking on a menu heading brings up the menu items for that heading.
+     </para>
+     <para>
+You can click on the account tree menu headings and then move the mouse pointer over the menu items to see what they do.  As the pointer moves over a menu item, a description of the item appears in the lower left-hand corner of the window.  To select a menu item, click on it.
+     </para>
+     <para>
+You can also access the most common menu items in a window by right-clicking the mouse anywhere in that window.  In the account tree window, this will bring up a list of account items.  In the account register window, this will bring up a list of transaction items.
+     </para>
+     <para>
+Other ways of accessing menu items are through keyboard shortcuts, described next.
+     </para>
+   </sect2>
+   <sect2 id="basics_shortcut2">
+    <title>Tastenkürzel Menü</title>
+     <para>
+Most of the menu items have keyboard shortcuts, and these are marked by underlined characters in the menu names.  Pressing the <keycap>Alt</keycap> key with the underlined character in the menu heading will bring up the menu items for that heading.  Once the menu items are displayed, type the underlined character in the menu item to activate it.  For example, typing <keycombo><keycap>Alt</keycap><keycap>F</keycap></keycombo> in the main window brings up the <guimenu>File</guimenu> menu, then typing <keycap>S</keycap> will save the file.  A few of the menu items use <keycap>Ctrl</keycap> key and function (for example <keycap>F3</keycap> to open a new file) key shortcuts as well, and these are listed next to the items. 
+     </para>
+     <para>
+GnuCash, as a Gnome application, also allows you to define your own menu shortcuts. To define a shortcut, click on the menu header and move the mouse pointer over the menu item.  While the menu item is highlighted, press a key or key combination to set the shortcut.  You should now see your shortcut choice next to the item in the menu.  To delete a shortcut, press the <keycap>Delete</keycap> key while the menu item is highlighted.
+     </para>
+   </sect2>
+  </sect1>
+  <sect1 id="basics_prefs1">
+   <title>GnuCash Einstellungen anpassen</title>
+     <para>
+GnuCash allows you to customize your session by setting several preference options.  From the menu select <guimenu>Edit</guimenu> -&gt; <guimenuitem>Preferences</guimenuitem>, then make your desired changes using the list of items shown on the left.  Once you have finished making your preference changes,  select <guibutton>Apply</guibutton> or <guibutton>OK</guibutton> to apply the changes to your session.  (Selecting <guibutton>Apply</guibutton> applies the changes while leaving the Preferences window still open. Selecting <guibutton>OK</guibutton> applies the changes and closes the Preferences window.)  At any time, you can click on the <guibutton>Default</guibutton> button to return the options to the default preference setting.
+     </para>
+   <sect2 id="basics_acctprefs2">
+    <title>Konten</title>
+     <para>
+The <guilabel>Accounts</guilabel> item lets you set the following options:
+     </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+<guilabel>Account Separator</guilabel> - The account separator is the character that separates a parent account from its sub-account, for example Utilities:Electric.  The default is a <guibutton>:(Colon)</guibutton>, but you can also select <guibutton>/(Slash)</guibutton>, <guibutton>\(Backslash)</guibutton>, <guibutton>-(Dash)</guibutton> or <guibutton>.(Period)</guibutton>.  Parent accounts and sub-accounts are discussed in section 3.4
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Reversed-balance accounts types</guilabel> - This option lets you determine whether account balances will display as  positive or negative numbers:
+   <itemizedlist>
+    <listitem>
+     <para>
+<guilabel>None</guilabel> shows all credit balances as negative and all debit balances as positive.  (See Accounting Terminology note in this chapter for more information on debits and credits.)
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Credit Accounts</guilabel> (default) displays a positive  balance for account types that would normally carry a credit balance (income, credit, liability, equity).   See Chapter 3 for more information on these account types.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Income &amp; Expense</guilabel> assigns a positive credit balance to income account balances and a negative debit balance to expense account balances.  See Chapter 3 for more information on these account types.
+     </para>
+    </listitem>
+   </itemizedlist>
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Use accounting labels</guilabel> - Select this option if you want column headings to refer to debits and credits instead of the default informal headings. (See Accounting Terminology note in this chapter for more information on debits and credits.)
+     </para>
+    </listitem>
+   </itemizedlist>
+   </sect2>
+   <sect2 id="basics_business2">
+    <title>Geschäft</title>
+     <para>
+The <guilabel>Business</guilabel> item lets you set the following options:
+     </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+<guilabel>Number of Rows</guilabel> - Lets you select the default number of
+register rows to display in invoices, bills and expense vouchers.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Invoice (or Bill) Tax Included?</guilabel> - Determines whether taxes specified in the Tax Table are already included in the value of the item.  Set this if you're in a locale (like Australia) where the taxes (e.g. GST) is included in the price of your goods.  In the US, where the tax is added to the value, you do not want to set Tax Included.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Notify Bills Due?</guilabel> - Lets you set whether you want to be notified of when a bill is soon to be due.  If selected, you can specify the number of days in advance to notify with the <guilabel>Bills Due Days:</guilabel> option.
+     </para>
+    </listitem>
+   </itemizedlist>
+   </sect2>
+   <sect2 id="basics_general2">
+    <title>Allgemein</title>
+     <para>
+In <guilabel>General</guilabel>, you will see the default settings shown here:
+
+    <screenshot id="basics_preference">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_preference.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>The Preferences dialog</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows the <guilabel>GnuCash Preferences
+	       </guilabel> dialog where the options of how GnuCash looks 
+	       and acts are setup.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+     </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+<guilabel>Show Advanced Settings</guilabel> - When this is selected, GnuCash displays the <guilabel>Advanced</guilabel> item in the <guilabel>GnuCash Preferences</guilabel> dialog.  You must click on "Apply" before the advanced page will be displayed.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Tool Bar Buttons</guilabel> - Select whether to display icons, text, or both on the tool bar.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Display "Tip of the Day"</guilabel> - You can turn on or off the option to display the <quote>Tip of the Day</quote> dialog on startup.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Display negative amounts in red</guilabel> - If you turn off this option, GnuCash will display negative numbers in black.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Automatic Decimal Point</guilabel> - This option will automatically insert a decimal point into numbers you type in.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Auto Decimal Places</guilabel> - If you select the <guilabel>Automatic Decimal Point</guilabel> option, this option allows you to set the number of decimal places to be used.
+    </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>No account list setup on new file</guilabel> - This option turns off
+the display of the <guilabel>New Account Hierarchy Setup</guilabel> druid when <guimenu>File</guimenu> -&gt; <guimenuitem>New File</guimenuitem> is selected.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Days to retain log files</guilabel> - This option deletes log files (and backup files) after the number of days set here.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Use file compression</guilabel> - This option determines whether the GnuCash data file will be compressed or not.
+     </para>
+    </listitem>
+   </itemizedlist>
+   </sect2>
+
+   <sect2 id="basics_international2">
+    <title>International</title>
+    <para>
+The <guilabel>International</guilabel> preferences item allows you to control the country specific behavior of GnuCash.
+    </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+<guilabel>Date Format</guilabel> - This item controls the appearance of the date.  The available options are US, UK, Europe, ISO, and Locale.  Choosing "Locale" will automatically determine the date format based on your operating system settings.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>New Account Default Currency</guilabel> - This item determines which currency will be selected by default when creating new accounts.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Default Report Currency</guilabel> - This item determines which currency will be used by default when creating reports.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Use 24-hour time format</guilabel> - This item toggles the use of 24 hour time format.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Enable Euro support</guilabel> - If selected, enables support for the European Union EURO currency.
+     </para>
+    </listitem>
+   </itemizedlist>
+   </sect2>
+
+   <sect2 id="basics_onlinebank2">
+    <title>Online Banking</title>
+    <para>
+The <guilabel>On-line Banking &amp; Importing</guilabel> item contains only one option, <guilabel>QIF Verbose Documentation</guilabel>.  The first time you use the importer (discussed later in this chapter), you may notice that the importer has detailed instructions on how to import a file.  Once you have become familiar with using the importer, you might want to turn off this option.  Turning off the option gives you less detail in the importer dialogs.
+    </para>
+   </sect2>
+
+   <sect2 id="basics_reconcile2">
+    <title>Abgleichen</title>
+    <para>
+The <guilabel>Reconcile</guilabel> preferences item affects the behavior of GnuCash when reconciling accounts.  More information about reconciling accounts can be found in "Chapter 4: Entering Transactions" of this guide.
+    </para>
+    <itemizedlist>
+    <listitem>
+     <para>
+<guilabel>Automatic interest transfer</guilabel> - If selected, prior to reconciling an account which charges or pays interest, prompt the user to enter a transaction for the interest charge or payment.  Currently only enabled for Bank, Credit, Mutual, Asset, Receivable, Payable, and Liability accounts.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Automatic credit card payments</guilabel> - If selected, after reconciling a credit card statement, prompt the user to enter a credit card payment.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Check off cleared transactions</guilabel> - If selected, automatically check off cleared transactions when reconciling.
+     </para>
+    </listitem>
+    </itemizedlist>
+   </sect2>
+
+   <sect2 id="basics_regprefs2">
+    <title>Knotobuch</title>
+    <para>
+The <guilabel>Register</guilabel> preferences item affects the behavior of the transaction register windows.  More information about the transaction register can be found in "Chapter 4: Entering Transactions" of this guide.
+    </para>
+    <itemizedlist>
+    <listitem>
+     <para>
+<guilabel>Default Register Style</guilabel> - you can choose from 3 different styles for register windows, <guilabel>Basic Ledger</guilabel> (default), <guilabel>Auto-Split Ledger</guilabel>, and <guilabel>Transaction Journal</guilabel>.  The basic style is a standard one-line register where everything appears on a single line.  The auto-split style is similar to the basic style except that the current transaction is split-expanded.  The journal style has every transaction split-expanded.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Double Line Mode</guilabel> - If selected, show two lines of information for each transaction instead of one.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>'Enter' moves to blank transaction</guilabel> - If selected, move to the blank transaction after the user presses 'enter', otherwise move down on row.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Confirm before changing reconciled</guilabel> - If selected, use a dialog to confirm a change to a reconciled transaction.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Register font:</guilabel> - The font to use in the transaction register window.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Register hint font:</guilabel> - The font to use to show hints in the transaction register window.
+     </para>
+    </listitem>
+    </itemizedlist>
+   </sect2>
+
+   <sect2 id="basics_registercolors2">
+    <title>Kontobuch Farben</title>
+    <para>
+The <guilabel>Register Colors</guilabel> preferences item changes the appearance of the register window.  To change the color of one of the items listed, simply click on the color box and choose the new color.  More information about the transaction register can be found in "Chapter 4: Entering Transactions" of this guide.
+    </para>
+    <para>
+If selected, the item <guilabel>Double mode colors alternate with transactions</guilabel> configures the register window to alternate between the primary and secondary colors with each transaction, instead of each row.
+    </para>
+   </sect2>
+
+   <sect2 id="basics_schedtrans2">
+    <title>Terminierte Buchungen</title>
+    <para>
+The <guilabel>Scheduled Transactions</guilabel> preferences item affects the behavior of GnuCash for scheduling transactions.  More information about scheduled transactions can be found in "Chapter 4: Entering Transactions" of this guide.
+    </para>
+    <itemizedlist>
+    <listitem>
+     <para>
+<guilabel>Run on GnuCash start</guilabel> - If selected, the "Since-Last-Run" window will appear on GnuCash startup.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Auto-Create new Scheduled Transactions by default</guilabel> - If selected, new Scheduled Transactions will have the 'Auto Create' flag set by default.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Notify on new, auto-created Scheduled Transactions</guilabel> - If selected, new Scheduled Transactions will have the 'Auto Create' flag set to 'Notify' by default.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Default number of days in advance to create</guilabel> - The default number of days in advance to create new Scheduled Transactions.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Default number of days in advance to remind</guilabel> - The default number of days in advance to remind on new Scheduled Transactions.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+<guilabel>Template Register Lines:</guilabel> - Number of lines in the template register to display.
+     </para>
+    </listitem>
+    </itemizedlist>
+   </sect2>
+  </sect1>
+
+  <sect1 id="basics_help1">
+   <title>Hilfe aufrufen</title>
+    <para>
+GnuCash offers help in many ways. We have already covered the <guilabel>Tip of the Day</guilabel> dialog that gives you helpful hints upon startup of your GnuCash session.  GnuCash also offers an extensive help manual.
+    </para>
+  <sect2 id="basics_manual2">
+   <title>Help-Dokument</title>
+    <para>
+Once you have opened GnuCash, you will see the <guilabel>Account Tree</guilabel> window <guilabel>Help</guilabel> menu heading, which opens the on-line manual.   The on-line manual is organized by topic, and you can expand each topic into its subtopics.
+    </para>
+    <para>
+Topics are listed on the left side. To select a topic or subtopic, click on it, and you should see the text for that topic appear on the right. Use the <guibutton>Back</guibutton> and <guibutton>Forward</guibutton> buttons to navigate through your topic choices, and print any text using the <guibutton>Print</guibutton> button.
+    </para>
+  </sect2>
+  <sect2 id="basics_web2">
+   <title>Internetzugriff</title>
+    <para>
+The <guilabel>GnuCash Help</guilabel> window also acts as a simple web browser, so you can pull up a web site for additional information.  You can open any web site under this window by clicking the <guibutton>Open</guibutton> tool bar button and then typing in the URL. Use the <guibutton>Back</guibutton>, <guibutton>Forward</guibutton>, <guibutton>Reload</guibutton>, <guibutton>Stop</guibutton>, and <guibutton>Print</guibutton> buttons as you would in a standard browser.  
+    </para>
+    <para>
+The <ulink url="http://www.gnucash.org"><citetitle>GnuCash</citetitle></ulink> web site contains helpful information about the program and about any updates to it.  It also contains links to the GnuCash mailing lists for developers and users, and you can search the archives of these mailing lists for discussions on a particular topic.  If you don't find the answers you are looking for, you can post your question to the user list, and someone on the list will attempt to answer you. 
+    </para>
+  </sect2>
+  <sect2 id="basics_topic2">
+   <title>Themen suchen</title>
+    <para>
+The online manual also provides a search function. To search for a particular topic, click the <guibutton>Search</guibutton> tab at the bottom of the help window and type in your topic in the field provided. Click the <guibutton>Search</guibutton> button to complete your search. A list of choices should appear in the box below, clicking a choice will bring up its text on the right.
+    </para>
+  </sect2>
+  </sect1>
+
+  <sect1 id="basics_files1">
+   <title>Eine neue Datei anlegen und speichern</title>
+    <para>
+If you are using GnuCash for the first time, it will automatically open a new file when you begin.  Follow these steps to save the file under a new name:
+    </para>
+   <orderedlist>
+    <listitem>
+     <para>
+Choose <guimenu>File</guimenu> -&gt; <guimenuitem>Save As...</guimenuitem> from the menu bar or select the <guibutton>Save</guibutton> toolbar button.  GnuCash will bring up this window:
+
+    <screenshot id="basics_filesave">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_filesave.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>The Save dialog</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows the <guilabel>Save</guilabel> dialog.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+In the text box below <guilabel>Selection</guilabel> type your chosen file name (e.g. gcashdata).
+    </para>
+    </listitem>
+    <listitem>
+     <para>
+Click the <guibutton>OK</guibutton> button to save the file.
+   </para>
+    </listitem>
+   </orderedlist>
+    <para>
+If you are keeping track of finances for a single household, you need only one file.  But if you are also tracking business finances or want to keep data separate for some reason, then you will need more than one file.  To create a new file:
+    </para>
+   <orderedlist>
+    <listitem>
+     <para>
+From the main menu, choose <guimenu>File</guimenu> -&gt; <guimenuitem>New
+File</guimenuitem>.
+    </para>
+    </listitem>
+    <listitem>
+     <para>
+Follow the steps above for saving a file under a new name.
+   </para>
+    </listitem>
+   </orderedlist>
+    <para>
+Before ending each GnuCash session, be sure to save your data changes using <guimenu>File</guimenu> -&gt; <guimenuitem>Save</guimenuitem> or the <guibutton>Save</guibutton> toolbar button.   In fact, it is a good idea to save your data changes often, since GnuCash does not permanently record your changes until you save them.  To open an existing file, select <guimenu>File</guimenu> -&gt; <guimenuitem>Open</guimenuitem> and choose your file from the list.
+    </para>
+  </sect1>
+
+  <sect1 id="basics_import1">
+   <title>QIF-Dateien importieren</title>
+    <note>
+    <para>
+This  section tells you how to initially import data from other financial programs that use QIF (<trademark class="registered">Quicken</trademark> Interchange Format).   Section 11.5  addresses importing QIF data from online bank statements.
+    </para>
+    </note>
+    <para>
+To import data from <trademark class="registered">Quicken</trademark>, MS Money, or other programs that use QIF(<trademark class="registered">Quicken</trademark> Interchange Format),  you must first export your data to a QIF file.   One way to do this is to export each account as a separate QIF file.  An easier way, available in <trademark class="registered">Quicken</trademark> 98 and beyond, is to export all accounts at once into a single QIF file.  Check your program's manual to determine if this option is available.
+    </para>
+    <para>
+Once your data is in QIF form,  follow the easy 3-step import process described below.   Before you get started, though, please note that part of the import process involves checking for duplicate transactions, so it is very important that you load <emphasis>all</emphasis> of your QIF files before importing.   Duplicate transactions result when more than one account is involved.  For example, if one of your transactions transferred money from savings to checking, you would end up with this same transaction recorded twice - once in the savings account and once in the checking account.
+    </para>
+    <para>
+To import QIF files:
+    </para>
+   <orderedlist>
+    <listitem>
+     <para>
+Load all of the QIF files containing data you wish to import.
+     </para>
+     <para>
+To do this, select <guimenu>File</guimenu> -&gt; <guisubmenu>Import</guisubmenu> -&gt; <guimenuitem>Import QIF...</guimenuitem> from the menu.   When the <guilabel>QIF Import</guilabel> dialog box appears, click <guibutton>Next</guibutton> and follow the instructions to guide you through the process of loading your files.  
+
+    <screenshot id="basics_import">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_import.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>The QIF Import Druid</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows the start of the <guilabel>QIF Import</guilabel> Druid.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+You will be prompted for a filename to load.  Use the <guibutton>Select</guibutton> button to select your QIF file and click <guibutton>Next</guibutton> to load it.  Once the file is loaded, select <guibutton>Load another file</guibutton> if you have more files to load. When you have loaded all your QIF files, click <guibutton>Next</guibutton> to continue with the import process.
+   </para>
+    </listitem>
+    <listitem>
+     <para>
+Review the GnuCash accounts to be created.
+     </para>
+     <para>
+The importer then matches up your QIF accounts and categories with GnuCash accounts and gives you a brief description of the matching process.  Clicking <guibutton>Next</guibutton> will bring you to a view comparing your QIF accounts with the corresponding GnuCash accounts created.   To change an account name, select the row containing that account name and edit the name in the dialog box provided.  Click <guibutton>Next</guibutton> when you have finished making changes, and proceed through a similar category matching process.  QIF income and expense categories import as GnuCash income and expense accounts (see section 3.1 for more on this).  Make changes to these account names if necessary, and click <guibutton>Next</guibutton> to continue. 
+    </para>
+    <note>
+    <para> 
+ If you are not sure what changes are needed, it is safe to accept the GnuCash account names.  It is easy to edit the accounts later if you find you need to make a change.
+    </para>
+    </note>
+    <para>
+From the drop-down list,  select a standard currency to be used for imported accounts and click <guibutton>Next</guibutton> to continue.  If you have stocks, mutual funds, or other securities, you will be prompted for additional information.   The importer dialog will ask  for the exchange or listing (i.e. NASDAQ), the security's full name, and the ticker symbol.  If you do not have this information handy, you can edit the account information later, once the import is complete. Click <guibutton>Next</guibutton> to continue.
+   </para>
+    </listitem>
+    <listitem>
+     <para>
+Tell GnuCash to import the data.
+     </para>
+     <para>
+The last step is the import.  Once you have verified your account names and investment information, click <guibutton>Finish</guibutton> in the <guilabel>Update your GnuCash accounts</guilabel> page to complete the import process.   Depending upon the size of your file, the import might take a few minutes to complete,  so a progress bar displays the percentage finished.  When the import process is complete, GnuCash will return you to the main window, which should now display the names of the accounts you imported.
+   </para>
+    </listitem>
+   </orderedlist>
+  </sect1>
+
+  <sect1 id="basics_backup1">
+   <title>Sicherungskopien erstellen und zurückspielen</title>
+    <para>GnuCash creates several types of files to help ensure that your data is not lost. You may see files with the following file extensions:  xac, log, LCK, LNK in the same directory as your principal data file.  What each of these files does is presented below.</para>
+
+  <sect2 id="basics_backupxac2">
+   <title>Backup-Datei (.xac)</title>
+<para>Each time you save your data file, a backup copy will also be saved with the extension xac. This backup file is a complete copy of your previous data file, and the filename format refers to the data file, year, month, day and time of the backup.  For example, the filename <filename>gcashdata.20010404185747.xac</filename> indicates this is a backup copy of the file gcashdata saved in the year 2001, April 4, at 6:57:47 p.m.</para>
+  <para>To restore an old backup file, simply open the .xac file with the date to which you wish to return.  Be sure and save this file with a different file name, do not use a .xac extension for you regular file name.</para>
+  </sect2>
+
+  <sect2 id="basics_backuplog2">
+   <title>Log-Datei (.log)</title>
+    <para>Each time you open a file in GnuCash, a .log is created and saved with the same name format as the .xac backup files.   As you make changes to the open data file, the log file saves only those changes.  Log files are not a full backup of your data file - they simply record changes you have made to the data file in the current GnuCash session.</para>
+	<para>In case you exit GnuCash inadvertently, possibly due to a power outage
+or a system wide crash, it is possible to recover most of your work since the last time you saved your GnuCash file using this log file.  This is the procedure:</para>
+  <itemizedlist>
+  <listitem>
+  <para>Open the last saved GnuCash file.</para>
+  </listitem>
+  <listitem>
+  <para>Go to "File" -> "Import" -> "Replay GnuCash .log file" and select the one .log file with the same date as the saved file you just opened.  Make sure 
+that you picked the right .log file, or you will possibly wreck havoc in 
+your accounts.</para>
+  </listitem>
+  </itemizedlist>
+<para>Log replaying will recover any transaction affecting the balance entered since the last save, including those created from scheduled transactions and business features (invoices, bills, etc.). </para>
+  <note>
+<para>Warning:  Changes to the scheduled transactions, invoices of bills themselves are NOT recovered, and their transactions that were recovered may not be properly associated with them, and should thus be double-checked.  Especially
+for business transactions, you may have to delete and re-create some of them.  If you do not, although the balance will be correct, some reports may not.</para>
+  </note>
+  </sect2>
+
+  <sect2 id="basics_backuplock2">
+   <title>Schreibzugriffs-Datei (.LNK and .LCK)</title>
+    <para>
+You may occasionally see .LNK and .LCK files appear.  These do not store any data, but they are created to prevent more than one user from opening the same file at the same time.  These files are automatically created when you open the file, to lock it so no one else can access it.  When you close your GnuCash session or open another file, GnuCash unlocks the first data file by deleting the LCK and LNK files.
+    </para>
+    <para>
+If GnuCash crashes while you have a data file open, the LCK and LNK files are not deleted.  The next time you try to open GnuCash, you will get a warning message that the file is locked.  The warning message appears because the LNK and LCK files are still in your directory.   It is safe to choose Yes to open the file, but you should delete the .LNK and .LCK files (using a terminal window or your file manager.)  Once those files are deleted, you will not get the warning message again unless GnuCash crashes.
+    </para>
+  </sect2>
+
+  <sect2 id="basics_backupmanage2">
+   <title>Dateimanagement</title>
+    <para>
+So which files should you keep around?  Keep your main data file, of course - data files do not have an automatic file extension.   It's a good idea to keep some of the more recent .xac files, but you can safely delete the .log files since they are not complete copies of your data.  You should also delete any .LCK and .LNK files that you see after closing GnuCash.   If you decide to manually back up your data file to another disk, you only need to back up the main data file - not the .xac files.
+    </para>
+	<note>
+    <para>
+GnuCash will automatically delete any .xac, .log files that are older than 30 days.  You can change this behavior in the GnuCash preferences.
+    </para>
+    </note>
+  </sect2>
+  </sect1>
+  <sect1 id="basics_together1">
+   <title>Alles Zusammensetzen</title>
+    <note>
+    <para>
+This section begins a tutorial that will continue throughout this book. At the end of each chapter, you will see a <guilabel>Putting It All Together</guilabel> section that walks you through examples to illustrate concepts discussed in that section. Each <guilabel>Putting It All Together</guilabel> section builds on the previous one, so be sure to save your file for easy access.
+    </para>
+    </note>
+    <para>
+Let's get started! 
+    </para>
+   <orderedlist>
+    <listitem>
+     <para>
+First, let's create a file to store your real data.  Open GnuCash and go through the <guilabel>New Account Hierarchy Setup</guilabel> dialog. You will create a file and accounts to be used for your home finances, so choose the accounts that pertain to you. If you are not sure what accounts you will need, click the <guibutton>Select All</guibutton> option to create all of the accounts provided. When you have completed the setup, save this file with a filename you want to use for your home data.
+    </para>
+    </listitem>
+    <listitem>
+     <para>
+Next, create a file to store test data. This is the file that will be used in the tutorials throughout this manual. Click <guimenu>File</guimenu> -&gt; <guimenuitem>New</guimenuitem> to create a new file, and name it <filename>gcashdata</filename>. Your main window should now look something like this:
+    <screenshot id="basics_gcashdata">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_gcashdata.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>The Main windows showing the test file</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows the Account Tree window with a set of
+	       accounts loaded from the druid.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+Now, adjust some preferences in the account tree window.  Select <guimenu>Edit</guimenu> -&gt; <guimenuitem>Preferences</guimenuitem> -&gt; <guimenuitem>General</guimenuitem> and change the tool bar buttons so that they display only text, not icons.  Click <guibutton>Apply</guibutton> and look at the tool bar buttons in the main window. Return to the <guilabel>Preferences</guilabel> dialog and change the tool bar buttons back to the default setting by clicking <guibutton>Default</guibutton>.
+From the tool bar, select <guibutton>Options</guibutton> and select the <quote>Type</quote> item in the <guilabel>Account Fields to display</guilabel> option.  The main window should now look like this:
+    <screenshot id="basics_gcashdata2">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/basics_gcashdata2.png"
+	      srccredit="Chris Lyttle" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>The effect of changing the display options</phrase>
+	    </textobject>
+	    <caption>
+	       <para>This image shows the effect of changing the display options.
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+
+
+Save your file.
+    </para>
+    </listitem>
+    <listitem>
+     <para>
+If you plan to import QIF data from another program, let's try a practice file first.  (If not, skip to the next chapter on account setup.)  First, create a new file called <filename>gcashimport</filename>.  From the main menu, select <guimenu>File</guimenu> -&gt; <guisubmenu>Import</guisubmenu> -&gt; <guimenuitem>Import QIF...</guimenuitem> to start the import.   When you are prompted for a filename, select (???GnuCash should have a sample QIF file available for this tutorial - can that be done easily?)  Load the file and look at the results of the account match.  Complete the import and take a look at the results.  The main window should now look like this:
+
+(?Insert a screen shot here that corresponds to an imported test file)
+
+Save your file.
+   </para>
+    </listitem>
+   </orderedlist>
+  </sect1>
+ </chapter>
