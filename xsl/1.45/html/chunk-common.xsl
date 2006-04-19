@@ -4,7 +4,7 @@
                 exclude-result-prefixes="doc">
 
 <xsl:output method="html"
-            encoding="ISO-8859-1"
+            encoding="UTF-8"
             indent="no"/>
 
 <xsl:param name="html.ext" select="'.html'"/>

@@ -25,7 +25,7 @@
 <xsl:template name="write.chunk">
   <xsl:param name="filename" select="''"/>
   <xsl:param name="method" select="'html'"/>
-  <xsl:param name="encoding" select="'ISO-8859-1'"/>
+  <xsl:param name="encoding" select="'UTF-8'"/>
   <xsl:param name="indent" select="'no'"/>
   <xsl:param name="content" select="''"/>
 
@@ -44,7 +44,7 @@
       <xt:document href="{$filename}"
                    method="xml"
                    indent="{$indent}"
-                   encoding="ISO-8859-1">
+                   encoding="UTF-8">
         <xsl:copy-of select="$content"/>
       </xt:document>
     </xsl:when>
@@ -52,7 +52,7 @@
       <xt:document href="{$filename}"
                    method="text"
                    indent="{$indent}"
-                   encoding="ISO-8859-1">
+                   encoding="UTF-8">
         <xsl:copy-of select="$content"/>
       </xt:document>
     </xsl:when>
@@ -60,7 +60,7 @@
       <xt:document href="{$filename}"
                    method="html"
                    indent="{$indent}"
-                   encoding="ISO-8859-1">
+                   encoding="UTF-8">
         <xsl:copy-of select="$content"/>
       </xt:document>
     </xsl:otherwise>
