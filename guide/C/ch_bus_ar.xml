@@ -1,38 +1,39 @@
 <!--
       (Do not remove this comment block.)
-  Version: 1.8.4
-  Last modified: April 10th 2004
+  Version: 1.9.0
+  Last modified: April 24th 2006
   Maintainers: 
                Chris Lyttle <chris@wilddev.net>
   Author:
   		Jon Lapham <lapham@extracta.com.br>
+	updated Patrick Schweiger <pks@spiffykitty.com>
   Originally designed by Carol Champagne.
   Translators:
                (translators put your name and email here)
 -->
  <chapter id="chapter12">
  <title>Accounts Receivable</title>
- <para>Accounts Receivable (or A/R) refers to products or services provided by the company on credit for which payment has not yet been received.</para>
+ <para>Accounts Receivable (or A/R) refers to products or services provided by your company for which payment has not yet been received.</para>
 
- <sect1 id="bus_ar_overview1">
+ <sect1 id="bus-ar-overview1">
  <title>Overview of Business Features</title>
- <para>The accounting needs of a business can be quite different from that of a person.  Businesses have customers that owe money, vendors which are owed money, employee payroll, more complex tax laws, etc.  GnuCash offers some business oriented features to help facilitate these needs.</para>
- <para>Accounts Receivable (A/R) and Accounts Payable (A/P) are used by businesses to record sales for which they are not immediately paid, or to record bills that they have received, but might not pay until later. These types of accounts are used primarily when you've got a lot of bills and receipts flowing in and out, and don't want to lose track of them just because you don't pay/get paid right away. For most home users, A/R and A/P are too complicated and confusing to be worth the effort.</para>
+ <para>The accounting needs of a business are quite different from that of a person.  Businesses have customers that owe money, vendors which are owed money, employee payroll, more complex tax laws, etc.  GnuCash offers business oriented features to facilitate these needs.</para>
+ <para>Accounts Receivable (A/R) are used by businesses to record sales for which they are not immediately paid.  Accounts Payable (A/P) record bills that they have received, but might not pay until later. These types of accounts are used primarily when you have a lot of bills and receipts flowing in and out, and do not want to lose track of them just because you do not pay or get paid right away. For most home users, A/R and A/P are too complicated to be worth the effort.</para>
  </sect1>
 
- <sect1 id="bus_ar_concepts1">
+ <sect1 id="bus-ar-concepts1">
  <title>Basic Concepts</title>
-  <para>Accounts Receivable (or A/R) refers to products or services provided by the company on credit for which payment has not yet been received.  This is represented on the balance sheet as an asset, because the expectation is that you will receive payment soon.</para>
+  <para>Accounts Receivable (or A/R) refers to products or services provided by your company for which payment has not yet been received.  This is represented on the balance sheet as an asset, because the expectation is that you will receive payment soon.</para>
   </sect1>
 
-  <sect1 id="bus_ar_setup1">
+  <sect1 id="bus-ar-setup1">
   <title>Initial Setup</title>
-  <para>To setup GnuCash to work with handling accounts receivable for a company, there are 2 preliminary things that must be done.  The first thing to do is to build an appropriate Account Hierarchy and the second is to register the company in GnuCash.</para>
-  <sect2 id="bus_ar_setupacct2">
+  <para>To set up GnuCash to handle accounts receivable for a company two preliminary things must be done.  The first is to build an appropriate Account Hierarchy and the second is to register the company in GnuCash.</para>
+  <sect2 id="bus-ar-setupacct2">
   <title>Account Setup</title>
-  <para>There are many different ways to setup a business account hierarchy.  You can start with the Business Accounts setup which is available from the New Account druid, or you could build one manually.  To access the prebuilt Business Accounts, start GnuCash and click on <guimenu>File</guimenu> -> <guimenu>New File</guimenu> and proceed until you see the list of available accounts, select Business Accounts.</para>
-  <para>Most likely, the prebuilt Business Account hierarchy will exactly meet your needs, however it should be close enough that it is recommended you begin with it.  You may need adjust some accounts manually for it to function well with your particular situation, but the defaults should be adequate for many situations.</para>
-  <para>Accounts Receivable (or A/R) refers to products or services provided by the company on credit for which payment has not yet been received.  This is represented on the balance sheet as an asset, because the expectation is that you will receive payment soon.  To use GnuCash's integrated accounts receivable system, you must first setup an account (usually a sub-account under Assets) defined with account type <emphasis>A/Receivable</emphasis>.  It is within this account that the integrated A/R system will place transactions.</para>
+  <para>There are many different ways to set up a business account hierarchy.  You can start with the Business Accounts setup which is available from the New Account Hierarchy druid, or you could build one manually.  To access the prebuilt Business Accounts, start GnuCash and click on <guimenu>File</guimenu> -> <guimenu>New File</guimenu> and proceed until you see the list of available accounts, select Business Accounts.</para>
+  <para>The prebuilt Business Account hierarchy will not meet your needs exactly. You will need make adjustments for the hierarchy to function well with your particular situation. It should be close enough that it is recommended you begin with it.</para>
+  <para>Accounts Receivable (or A/R) refers to products or services provided by the company on credit for which payment has not yet been received.  This is represented on the balance sheet as an asset, because you expect to receive payment soon.  To use GnuCash's integrated accounts receivable system, you must first set up an account (usually a sub-account under Assets) defined with account type <emphasis>A/Receivable</emphasis>.  It is within this account that the integrated A/R system will place transactions.</para>
   <literallayout>
 Basic A/R Account Hierarchy:
 
@@ -43,85 +44,105 @@ Basic A/R Account Hierarchy:
    -Sales
   </literallayout>
 
- <para>You will need to add additional asset, expense, and income accounts to this hierarchy for it to be useful.  But, the most important aspects of this hierarchy are the use of an income account and the Accounts Receivable asset account, with account type set to <emphasis>A/Receivable</emphasis>.</para>
+ <para>You need to add additional asset, expense, and income accounts to this hierarchy for it to be useful.  The important aspects of this hierarchy are the use of an income account and the Accounts Receivable asset account, with account type set to <emphasis>A/Receivable</emphasis>.</para>
 
   <note>
-  <para>You do not need to create an individual A/R account for each customer.  GnuCash will keep track of customers internally and provides reports per-customer based on the internal tracking.</para>
+  <para>You do not need to create an individual A/R account for each customer.  GnuCash keeps track of customers internally and provides per-customer reports based on the internal tracking.</para>
   </note>
   </sect2>
 
-  <sect2 id="bus_ar_setupcname2">
-  <title>Register Your Company</title>
-  <para>After you have built your account structure, you will want to register the GnuCash file as belonging to your company.  To do so, add your Business Name, Address and GST number.  Click on <guimenu>File</guimenu> -> <guimenu>Properties</guimenu>.  Type the Business name and address, add an empty line and add the GST number: <quote>GST: 1234-5678RT</quote>.  Click <guilabel>OK</guilabel>.</para>
+  <sect2 id="bus-ar-setupcname2">
+  <title>Company Registration</title>
+  <para>After you have built the account structure, register the GnuCash file as belonging to your company.  To register your company, select <guimenu>File</guimenu> -> <guimenu>Properties</guimenu>:</para>
+
+  <itemizedlist>
+  <listitem><para>Enter the name of your company along with contact information such as your phone number, fax number, e-mail address and website URL.</para></listitem>
+  <listitem><para>Enter your company's tax payer id number in the <guilabel>Company ID</guilabel> field.</para></listitem>
+  <listitem><para>Select default tax tables applicable to your most common customers and vendors.</para></listitem>
+  </itemizedlist>
  </sect2>
  
  </sect1>
 
- <sect1 id="bus_ar_components1">
+ <sect1 id="bus-ar-components1">
  <title>System Components</title>
-  <para>GnuCash has an integrated accounts receivable system.  The transactions generated by the A/R system will be placed within the Accounts Receivable account, as a record of what occurs, but you do not directly work within this account.  Rather, you will principally be working with the 4 integrated GnuCash A/R application components, available from the sub-menu <guimenu>Business</guimenu> -> <guimenu>Customers</guimenu>.  These 4 application components are:</para>
+  <para>GnuCash has an integrated accounts receivable system.  The transactions generated by the A/R system are recorded within the Accounts Receivable account. You generally do not work directly with this account.  You generally work with the four integrated GnuCash A/R application components available through the <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> sub-menu.  These four components are:</para>
 
   <itemizedlist>
   <listitem>
   <para><guilabel>Customers</guilabel> are people or companies to whom you sell products or services on credit.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Invoices</guilabel> represent the physical invoice you send to a customer, requesting payment.  This invoice contains an itemized list of things you sold.</para>
+  <para><guilabel>Invoices</guilabel> represent the physical invoice you send to a customer to request payment.  This invoice contains an itemized list of things you sold.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Jobs</guilabel> (optional) is where you register Customer Jobs, a grouping mechanism by which you can group invoices to a particular customer.</para>
+  <para><guilabel>Jobs</guilabel> (optional) is where you register Customer Jobs. Jobs are a mechanism by which you can group multiple invoices to a particular customer.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Process Payments</guilabel> is where you register money payments from a customer to  your company.</para>
+  <para><guilabel>Process Payments</guilabel> is used to register payments you received from a customer.</para>
   </listitem>
   </itemizedlist>
 
-  <para>In the next 4 sections of this chapter, the above 4 application components will be introduced.</para>
+  <para>The following sections introduce the individual components in more detail.</para>
  </sect1>
 
- <sect1 id="bus_ar_customers1">
+ <sect1 id="bus-ar-customers1">
  <title>Customers</title>
-  <para>Customers are people of companies to whom you sell goods or services.  They must be registered within the A/R system.</para>
+  <para>Customers are people or companies to whom you sell goods or services.  They must be registered within the A/R system.</para>
 
-  <sect2 id="bus_ar_custnew2">
+  <sect2 id="bus-ar-custnew2">
  <title>New</title>
- <para>To register a new customer, enter the menu <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> -> <guimenu>New Customer</guimenu>.  Fill in the appropriate billing address for the customer, such as Company Name, Address, Phone, Fax, etc.  Below is a list of the other options: </para>
+ <para>To register a new customer, enter the menu <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> -> <guimenu>New Customer</guimenu>.  Fill in customer information, such as Company Name, Address, Phone, Fax, etc.  Below is a list of the other options: </para>
  <itemizedlist>
  <listitem>
- <para><guilabel>Identification - Customer Number</guilabel> - can be any number you would like to use to refer to this customer, or you may leave it blank and a number will be chosen automatically.</para>
+ <para><guilabel>Identification - Customer Number</guilabel> - can be any number by which you would like to refer to this customer. You may leave it blank and a number will be chosen automatically.</para>
  </listitem>
  <listitem>
- <para><guilabel>Identification - Active</guilabel> - this check box is used to differentiate active customers from inactive ones, useful for when you have many past customers, and you want to see only the active.</para>
+ <para><guilabel>Identification - Active</guilabel> - differentiates active customers from inactive ones.  This is useful when you have many past customers, and you want to see only those marked active.</para>
  </listitem>
  <listitem>
- <para><guilabel>Billing Address - Name</guilabel> - this is the contact name of the person to receive the bill.</para>
+ <para><guilabel>Billing Address - Name</guilabel> - is the contact name of the person to receive the invoices.</para>
  </listitem>
  <listitem>
- <para><guilabel>Notes</guilabel> - you can enter any text you would like to in this area, additional commentaries about this customer.</para>
+ <para><guilabel>Notes</guilabel> - records any additional comments about the customer.</para>
  </listitem>
  <listitem>
- <para><guilabel>Billing Information - Currency</guilabel> - here you can specify what the default billing currency will be.</para>
+
+ <para><guilabel>Billing Information - Currency</guilabel> - specifies the default billing currency.</para>
  </listitem>
  <listitem>
- <para><guilabel>Billing Information - Terms</guilabel> - here you can specify what the default billing terms will be for this customer.  These terms must be preregistered using <guimenu>Business</guimenu> -> <guimenu>Billing Terms</guimenu>.</para>
+ <para><guilabel>Billing Information - Terms</guilabel> - specifies the default billing terms for this customer.  Billing terms must be preregistered using <guimenu>Business</guimenu> -> <guimenu>Billing Terms Editor</guimenu>.</para>
  </listitem>
  <listitem>
- <para><guilabel>Billing Information - Tax Included</guilabel> - this specifies whether tax has already been included in the invoice.  You can choose <guilabel>Yes</guilabel>, <guilabel>No</guilabel>, or <guilabel>Use Global</guilabel>.  Yes means that the tax is already included in the invoice, No means tax has not been included in the invoice, and Use Global means to use the global tax (Derek?).</para>
+ <para><guilabel>Billing Information - Discount</guilabel> - gives the customer a default percentage based discount at the time of invoice creation.  Enter a value from 0 to 100.  You can override the default discount when you create an invoice.</para>
  </listitem>
  <listitem>
- <para><guilabel>Billing Information - Tax Table</guilabel> - this allows you to specify a specific preregistered tax table to apply to invoices to this customer.  Tax tables must be registered from the menu item <guimenu>Business</guimenu> -> <guimenu>Tax Table</guimenu>.</para>
+ <para><guilabel>Billing Information - Credit Limit</guilabel> - stores the maximum credit you are willing to extend to the customer.  This field is for your reference purposes only.  GnuCash does not use the value.</para>
+ </listitem>
+
+ <listitem>
+ <para><guilabel>Billing Information - Tax Included</guilabel> - this specifies whether nor not tax is included in invoice amounts by default.  You can choose <guilabel>Yes</guilabel>, <guilabel>No</guilabel>, or <guilabel>Use Global</guilabel>.
+     <itemizedlist>
+     <listitem><para><guilabel>Yes</guilabel> means that the tax is already included in amounts on invoices.</para></listitem>
+     <listitem><para><guilabel>No</guilabel> means tax is not included.</para></listitem>
+     <listitem><para><guilabel>Use Global</guilabel> means to use the setting made in the global preferences accessible through <guimenu>Edit</guimenu> -> <guimenu>Preferences</guimenu>.</para></listitem>
+      </itemizedlist>
+ </para>
  </listitem>
  <listitem>
- <para><guilabel>Shipping Address</guilabel> - if the customers shipping address is different from the billing address, you can enter this information in the third and final windows tab entitled <guilabel>Shipping Address</guilabel>.</para>
+ <para><guilabel>Billing Information - Tax Table</guilabel> - specifies a default tax table to apply to invoice line items.  Tax tables must be registered from the <guimenu>Business</guimenu> -> <guimenu>Tax Table Editor</guimenu> menu item.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Shipping Address</guilabel> - records the customer's shipping address if it is different from the billing address.  The shipping address is for your reference.  GnuCash does not use the value.</para>
  </listitem>
  </itemizedlist>
  
  <para>This is what the New Customer registration window looks like:</para>
-	<screenshot id="bus_ar_custnew">
+	<screenshot id="bus-ar-custnew">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_custnew.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>New Customer Registration Window</phrase>
@@ -133,16 +154,16 @@ Basic A/R Account Hierarchy:
         </screenshot>
  
  </sect2>
- <sect2 id="bus_ar_custfind2">
+ <sect2 id="bus-ar-custfind2">
  <title>Find and Edit</title>
 
- <para>To search for a preexisting customer, use the <guimenu>Business</guimenu> -> <guimenu>Customers</guimenu> -> <guimenu>Find Customers</guimenu> application.  From the results of the search, you can select a customer to edit, or view.</para>
+ <para>To search for an existing customer, use the <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> -> <guimenu>Find Customer</guimenu> window.  You select a customer to <guilabel>View/Edit</guilabel> from the results of the search.  This window is also used to look up customers when creating invoices and processing payments.</para>
 
-	<screenshot id="bus_ar_custfind">
+	<screenshot id="bus-ar-custfind">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_custfind.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>Find Customer Window</phrase>
@@ -154,45 +175,49 @@ Basic A/R Account Hierarchy:
           </mediaobject>
         </screenshot>
  
+ <para>If many customers match the search criteria you provide, the search can be refined by running an additional search within the current results.  The current result set is searched when the <guilabel>Refine Current Search</guilabel> radio button is selected.  In fact, GnuCash selects this option for you after you run the initial search.</para>
+
+ <para>If the customer you are searching for does not match the supplied search criteria, change the search criteria, click the <guilabel>New Search</guilabel> radio button and then the <guilabel>Find</guilabel> button.  The relevant step is the <guilabel>New Search</guilabel> selection.  If the customer is not in the result of the original search, and you only search within this set, the customer cannot be found, regardless of new search criteria.</para>
+
  <note>
- <para>To return a list of all registered active customers, set the search criterion to "matches regex", and place a single dot "." in the text field area.  Then, click <guibutton>Find</guibutton>.  The regular expression "." means to match anything.</para>
+ <para>To return a list of all registered active customers, set the search criterion to <guilabel>matches regex</guilabel>, and place a single dot "." in the text field area.  Make sure <guilabel>Search only active data</guilabel> is checked, then click <guibutton>Find</guibutton>.  The regular expression "." means to match anything.</para>
  </note>
- 
+
  </sect2>
  </sect1>
 
- <sect1 id="bus_ar_invoices1">
+ <sect1 id="bus-ar-invoices1">
  <title>Invoices</title>
- <para>An invoice is the paperwork you send to a customer requesting payment for a product or services rendered.  GnuCash can be used to generate and track invoices.</para>
- <sect2 id="bus_ar_invoicenew2">
+ <para>An invoice is the paperwork you send to a customer to request payment for products or services rendered.  GnuCash can generate and track invoices.</para>
+ <sect2 id="bus-ar-invoicenew2">
  <title>New</title>
- <para>To send an invoice to a customer you must first create a new invoice.  This is accomplished using the application available at <guimenu>Business</guimenu> -> <guimenu>Customers</guimenu> -> <guimenu>New Invoice</guimenu>.  The New Invoice window should be filled in appropriately:</para>
+ <para>To send an invoice to a customer you must first create a new invoice.  To create an invoice use <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> -> <guimenu>New Invoice</guimenu>.  The New Invoice window must be filled in appropriately:</para>
   <itemizedlist>
   <listitem>
-  <para><guilabel>Invoice Info - Invoice ID</guilabel> - the identification number of this invoice (IE: your internal number for this invoice).  If you leave it blank, a number will automatically be generated for it.</para>
+  <para><guilabel>Invoice Information - Invoice ID</guilabel> - the identification number of this invoice.  This is your internal number for this invoice.  If you leave it blank, an invoice number will be generated automically.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Invoice Info - Date Opened</guilabel> - the date this Invoice was created.</para>
+  <para><guilabel>Invoice Information - Date Opened</guilabel> - the date this invoice was created.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Billing Info - Customer</guilabel> - the customer who is to receive this invoice.</para>
+  <para><guilabel>Billing Information - Customer</guilabel> - the customer who is to receive this invoice.  Use the <guilabel>Select</guilabel> button to access the <guilabel>Find Customer</guilabel> window described in the previous section.  When you have looked up the customer to be invoiced, click the <guilabel>Select</guilabel> in the search window to select the customer.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Billing Info - Job</guilabel> (optional) - the customer job to associate with this invoice.</para>
+  <para><guilabel>Billing Information - Job</guilabel> (optional) - associates the new invoice with a customer job.  Customer jobs are described in the following section.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Billing Info - Billing ID</guilabel> - this is the customer's PO Number or other "customer reference number" that you should use to identify your invoices to this customer (and job, if you have one).</para>
+  <para><guilabel>Billing Information - Billing ID</guilabel> - this is the customer's PO Number or other "customer reference number".  You should use it to identify your invoices to this customer (and job, if you have one).</para>
   </listitem>
   <listitem>
-  <para><guilabel>Billing Info - Terms</guilabel> - the payback terms agreement for this invoice, a list of preregistered terms is available within the pop up menu.</para>
+  <para><guilabel>Billing Information - Terms</guilabel> - the payback terms agreement for this invoice. A list of registered terms is available within the pop up menu.  If you specified a default value for the selected customer, this field is initialized with the default.</para>
   </listitem>
   </itemizedlist>
 
-	<screenshot id="bus_ar_invoicenew">
+	<screenshot id="bus-ar-invoicenew">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_invoicenew.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>Creating a New Invoice</phrase>
@@ -204,17 +229,17 @@ Basic A/R Account Hierarchy:
           </mediaobject>
         </screenshot>
  
- <para>Once you fill in all the information for the new invoice, you will be presented with the <guilabel>Edit Invoice</guilabel> window.</para>
+ <para>When you click the <guilabel>OK</guilabel> button, the <guilabel>Edit Invoice</guilabel> window opens.</para>
   </sect2>
 
- <sect2 id="bus_ar_invoiceedit2">
+ <sect2 id="bus-ar-invoiceedit2">
   <title>Edit</title>
-  <para>From the Edit Invoice window you can enter an itemized list of things you sold on this invoice in a manner similar to how the account register works.</para>
-  	<screenshot id="bus_ar_invoiceedit">
+  <para>From the Edit Invoice window you can enter an itemized list of things you sold on this invoice, in a manner similar to how the account register works.</para>
+  	<screenshot id="bus-ar-invoiceedit">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_invoiceedit.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>Edit Invoice Window</phrase>
@@ -226,67 +251,83 @@ Basic A/R Account Hierarchy:
           </mediaobject>
         </screenshot>
 
-  <para>There are 15 columns in the Invoice Entries area:</para>
+  <para>There are 15 columns in the <guilabel>Invoice Entries</guilabel> area:</para>
   <itemizedlist>
   <listitem>
-  <para><guilabel>Date</guilabel> - The date this item was sold</para>
+  <para><guilabel>Date</guilabel> - The date this item was sold.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Invoiced?</guilabel> - <guilabel>X</guilabel> means the item is attached to this invoice, an empty box means the item is not attached to this invoice.  If the box is empty you can attach the item to the invoice by first selecting the item row and then clicking in this box.</para>
+  <para><guilabel>Invoiced?</guilabel> - <guilabel>X</guilabel> means the item is attached to this invoice, an empty box means the item is not attached to this invoice.  The item is attached for you when you proceed to the next line item.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Description</guilabel> (optional) - what the item is called</para>
+  <para><guilabel>Description</guilabel> (optional) - is what the item or service is called.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Action</guilabel> (optional) - user defined field.  Can place Cost Center info here, or use one of the 3 predefined actions, Hours, Material, or Project.</para>
+  <para><guilabel>Action</guilabel> (optional) - is a user defined field.  You can place Cost Center information here, or use one of the 3 predefined actions, Hours, Material, or Project.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Income Account</guilabel> - which income account is credited with this income</para>
+  <para><guilabel>Income Account</guilabel> - selects which income account is credited with this income.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Quantity</guilabel> - how many of the items you sold</para>
+  <para><guilabel>Quantity</guilabel> - tracks how many of the items you sold.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Unit Price</guilabel> - the unit price of the item</para>
+  <para><guilabel>Unit Price</guilabel> - is the unit price of the item.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Discount Type</guilabel> - type of discount, monetary value ($) or percentage (%)</para>
+  <para><guilabel>Discount Type</guilabel> - is the type of discount:</para>
+     <itemizedlist>
+     <listitem><para><guilabel>$</guilabel> means <guilabel>Discount</guilabel> is a montary value</para></listitem>
+     <listitem><para><guilabel>%</guilabel> means <guilabel>Discount</guilabel> is a percentage.</para></listitem>
+     </itemizedlist>
+  <para>You can click the field to toggle between the discount types.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Discount How</guilabel> - the discount can be computed after the tax is applied (<guilabel>&gt;</guilabel>), before the tax is applied(<guilabel>&lt;</guilabel>), or the discount and tax can be applied to the pretax value (<guilabel>=</guilabel>)</para>
+  <para><guilabel>Discount How</guilabel> - the discount can be computed as follows:</para>
+     <itemizedlist>
+     <listitem><para><guilabel>&gt;</guilabel> means the discount applies after tax.</para></listitem>
+     <listitem><para><guilabel>&lt;</guilabel> means the discount applies before tax.</para></listitem>
+     <listitem><para><guilabel>=</guilabel> means both discount and tax are applied to the pretax value.</para></listitem>
+     </itemizedlist>
+  <para>You can click the field to change the setting.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Discount</guilabel> (optional) - total discount (in monetary units or percentage, depending on <guilabel>Discount Type</guilabel>.  You can leave blank for no discount.</para>
+  <para><guilabel>Discount</guilabel> (optional) - is the total discount, in monetary units or percentage, depending on <guilabel>Discount Type</guilabel>.  You can leave it blank for no discount.  Any default discount you specified for the customer will be automatically entered for each new item.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Taxable?</guilabel> - is this item taxable?  <guilabel>X</guilabel> means yes, a blank field means no.</para>
+  <para><guilabel>Taxable?</guilabel> - is this item taxable?  <guilabel>X</guilabel> means yes, a blank field means no.  You can click the field to toggle the setting.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Tax Included?</guilabel> - has the tax already been included in the unit price?  <guilabel>X</guilabel> means yes, a blank field means no.  For example, if there is 1 item of $100 with a tax of 5%, if Tax Included is empty then subtotal = $100 and tax = $5, whereas if Tax Included is true, then subtotal = $95 and tax = $5</para>
+  <para><guilabel>Tax Included?</guilabel> - has the tax already been included in the unit price?  <guilabel>X</guilabel> means yes, a blank field means no.  For example, if there is 1 item of $100 with a tax of 5% then:</para>
+      <itemizedlist>
+      <listitem><para>If Tax Included is empty, then subtotal = $100 and tax = $5.</para></listitem>
+      <listitem><para>If Tax included is set (<guilabel>X</guilabel>), then subtotal = $95 and tax = $5.</para></listitem>
+  </itemizedlist>
   </listitem>
   <listitem>
-  <para><guilabel>Tax Table</guilabel> (optional) - this is a pop up menu of all the available tax tables.  If you set the item as taxable then this tax table is used to compute the amount of tax.</para>
+  <para><guilabel>Tax Table</guilabel> (optional) - this is a pop up menu of all the available tax tables.  If you make the item taxable, then this table is used to compute the amount of tax.  The tax table determines tax percentages and the accounts to which tax is charged.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Subtotal</guilabel> (uneditable) - computed subtotal for this item (less tax)</para>
+  <para><guilabel>Subtotal</guilabel> (uneditable) - is the computed subtotal for this item (less tax).</para>
   </listitem>
   <listitem>
-  <para><guilabel>Tax</guilabel> (uneditable) - computed tax for this item</para>
+  <para><guilabel>Tax</guilabel> (uneditable) - is the computed tax for this item.</para>
   </listitem>
   </itemizedlist>
 
-  <para>When you have finished entering all the items, <guilabel>Post</guilabel> the invoice.</para>
+  <para>When you have finished entering all the items, you can <guilabel>Post</guilabel> and print the invoice.</para>
   </sect2>
 
- <sect2 id="bus_ar_invoicepost2">
+ <sect2 id="bus-ar-invoicepost2">
   <title>Post</title>
 
-  <para>When you have finished editing an invoice and are ready to print you must <guilabel>Post</guilabel> the invoice.  You do not have to post the invoice immediately, and in fact you should only post the invoice when you are ready to print it.  Posting an invoice will place the invoice transactions into an accounts receivable account.  The Post Invoice window will appear asking you to enter the Post Date, the Due Date, a Description, and Post to Account (from which you can select from a list of A/Receivable accounts).</para>
-  	<screenshot id="bus_ar_invoicepost">
+  <para>When you finish editing an invoice and are ready to print, you must <guilabel>Post</guilabel> the invoice.  The invoice does not have to be posted immediately. In fact, you should only post an invoice when you are ready to print it.  Posting an invoice places the transactions in an accounts receivable account.</para>
+  <para>The Post Invoice window appears and asks you to enter information:</para>
+  	<screenshot id="bus-ar-invoicepost">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_invoicepost.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>Post Invoice Window</phrase>
@@ -297,26 +338,50 @@ Basic A/R Account Hierarchy:
 	    </caption>
           </mediaobject>
         </screenshot>
+
+<itemizedlist>
+<listitem><para><guilabel>Post Date</guilabel> - specifies the date for the transactions entered into the accounts receivable account.</para></listitem>
+<listitem><para><guilabel>Due Date</guilabel> - is the date on which payment for the invoice is expected.</para>
+   <itemizedlist>
+   <listitem><para>If you specified payment terms when you created the invoice, the date is calculated according to selected terms, and the entry field is insensitive.</para></listitem>
+   <listitem><para>If you did no specify payment terms, enter the expected payment due date here.</para></listitem>
+   </itemizedlist>
+</listitem>
+<listitem><para><guilabel>Description</guilabel> - is an arbitrary description.  When invoice transactions are placed the accounts receivable account, this description is entered in the memo field of those transactions.</para></listitem>
+<listitem><para><guilabel>Post To Account</guilabel> - selects the accounts receivable account in which invoice transcations are posted.  You can select the account from a list existing A/Receivable accounts.</para></listitem>
+<listitem><para><guilabel>Accumulate Splits</guilabel> - determines if invoice items which transfer to the same account are combined into a single split for that account or entered individually.  For the sample invoice which sold Nails and a Hammer, the setting affects post results as follows:</para>
+  <itemizedlist>
+  <listitem><para>Checked (splits are accumulated) - a single transfer of $575.00 from the Income:Sales account is recorded.</para></listitem>
+  <listitem><para>Not checked - the transaction created A/Receivable account, shows two transfers from Income:Sales account $100.00 and $475.00.  The memo field in the splits indicate the sale of Nails and the Hammer (the item descriptions entered on the invoice) respectively.</para></listitem>
+  </itemizedlist>
+</listitem>
+</itemizedlist>
   </sect2>
 
- <sect2 id="bus_ar_invoicefind2">
+ <sect2 id="bus-ar-invoicefind2">
   <title>Find</title>
-  <para>To find a preexisting invoice, use the <guimenu>Business</guimenu> -> <guimenu>Customers</guimenu> -> <guimenu>Find Invoices</guimenu> application.  From the results of the search, you can select an invoice to edit, or view. </para>
+  <para>To find an existing invoice, use the <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> -> <guimenu>Find Invoice</guimenu> application.  From the results of the search, you can select an invoice to edit or view. </para>
   <note>
-  <para>Before you can edit a preexisting posted invoice, you will need to unpost it.</para>
+  <para>Before you can edit a posted invoice, you will need to <guilabel>Unpost</guilabel> it.</para>
   </note>
+  <para>One of the design goals in GnuCash's Account Receivable system was to allow different processes to get to the same state, so you can reach an invoice from different directions based on the way you think about the problem:</para>
+  <itemizedlist>
+    <listitem><para>You can search for the customer first, then list their invoices.</para></listitem>
+    <listitem><para>You can search for invoices by number or by company name.</para></listitem>
+    <listitem><para>You can list invoices associated with a customer job.</para></listitem>
+  </itemizedlist>
  </sect2>
 
- <sect2 id="bus_ar_invoiceprint2">
+ <sect2 id="bus-ar-invoiceprint2">
  <title>Print</title>
-  <para>After you have posted an invoice, you should print it to send to your customer.  This can be done from the Edit Invoice window using the <guibutton>Print</guibutton> button, or from within the Process Payment dialog, or from the main window: <guimenu>Reports</guimenu> -> <guimenu>Business Reports</guimenu> -> <guimenu>Printable Invoice</guimenu>.  You can edit the invoice options to select the invoice you want to print.  See the later section in this chapter on the Process Payment dialog for instructions on printing.</para>
+  <para>After you post an invoice, you should print it and send it to your customer.  To print an invoice use <guimenu>File</guimenu> -> <guimenu>Print Invoice</guimenu> menu item.</para>
   <para>An example of the default GnuCash invoice print output is shown below.</para>
 
-  	<screenshot id="bus_ar_invoiceprint">
+  	<screenshot id="bus-ar-invoiceprint">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_invoiceprint.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>Invoice Print Output</phrase>
@@ -330,42 +395,56 @@ Basic A/R Account Hierarchy:
   <note>
   <para>You can modify the appearance of the invoice, IE: add a company logo, etc.  To do so, see the section in this chapter entitled "Changing the Invoice Appearance".</para>
   </note>
+
+<para>Invoices can also be printed from the main window by selecting <guimenu>Reports</guimenu> -> <guimenu>Business Reports</guimenu> -> <guimenu>Printable Invoice</guimenu> from the main menu.  The resulting report window states that no valid invoice is selected.  To select the invoice to print:</para>
+<orderedlist>
+  <listitem><para>Use the <guilabel>Options</guilabel> tool bar button or select <guimenu>Edit</guimenu> -> <guimenu>Report Options</guimenu> from the main menu.</para></listitem>
+  <listitem><para>Select the <guilabel>General</guilabel> tab of the report options dialog.</para></listitem>
+  <listitem><para>Click the <guilabel>Select</guilabel> button next to the <guilabel>Invoice Number</guilabel> field.</para></listitem>
+  <listitem><para>Search for the invoice as usual.</para></listitem>
+</orderedlist>
+
+<para>You can also print invoices from within the Process Payment dialog.  See the section titled Process Payment for instructions on how to do so.</para>
  </sect2>
 
- <sect2 id="bus_ar_invoicestarting2">
+ <sect2 id="bus-ar-invoicestarting2">
  <title>Assign Starting Invoice Number</title>
-  <para>There is no easy way to assign an automatic starting invoice number.  GnuCash will start with number 1 and increment from there.  You can override the invoice number by typing an invoice number into the text box each time you create an invoice, but this is bound to get tiring and will sooner or later lead to duplicate numbers.</para>
-  <para>If, however, it is important that you be able to change the invoice starting number, there is a way, but unfortunately there is no UI interface to do it.  You have to hand edit your XML data file (it should be right at the beginning of the file in the "counters" section). </para>
+  <para>There is no easy way to assign an automatic starting invoice number.  GnuCash starts with number 1 and increments from there.  You can manually type an invoice number into the text box each time you create an invoice, but this gets tiring and sooner or later leads to duplicate numbers.</para>
+  <para>You can change the starting invoice number if it is important you.  There is no user interface to change the number at this time.  You have to hand edit your XML data file.  The relevant entry is in the "counters" section near the beginning of the file.  The file must be re-opened after editing.</para>
+ <note>
+ <para>GnuCash optionally compresses files.  Disable compression and save before editing the file.  To enable or disable compression use <guimenu>Edit</guimenu> -> <guimenu>Preferenecs</guimenu>, access the <guilabel>General</guilabel> tab, and select or deselect the <guilabel>Compress Files</guilabel> check box.</para>
+ </note>
  </sect2>
   </sect1>
 
- <sect1 id="bus_ar_jobs1">
+ <sect1 id="bus-ar-jobs1">
  <title>Customer Jobs</title>
-  <para>You can use the optional GnuCash feature called Customer Jobs to associate invoices which fall under a single customer.  This is useful for when you have multiple "jobs" for the same customer, and would like to view all the invoices for one job.</para>
-  <para>To use customer jobs, you must create them using the <guimenu>Business</guimenu> -> <guimenu>Customers</guimenu> -> <guimenu>New Jobs</guimenu> application.  Once there, you will see the <guilabel>New Job</guilabel> window.  The editable fields are:</para>
+
+  <para>Customer Jobs are used to group multiple invoices to the same customer.  Use of the Customer Jobs feature is optional.  The feature is useful when you have multiple "jobs" for the same customer, and would like to view all the invoices related to a single job.</para>
+  <para>To use customer jobs, you must create them using the <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> -> <guimenu>New Job</guimenu> application.  You will see the <guilabel>New Job</guilabel> window.  The editable fields are:</para>
    <itemizedlist>
    <listitem>
-   <para><guilabel>Job Info - Job Number</guilabel> (optional) - enter the number for this job.  If left blank, a reasonable number will be chosen for you.</para>
+   <para><guilabel>Job Info - Job Number</guilabel> (optional) - enter the number for this job.  If left blank, a  number will be chosen for you.</para>
    </listitem>
    <listitem>
-   <para><guilabel>Job Info - Job Name</guilabel> - the name you want to call this job.</para>
+   <para><guilabel>Job Info - Job Name</guilabel> - the name you want to assign to the new job.</para>
    </listitem>
    <listitem>
-   <para><guilabel>Owner Info - Customer</guilabel> - the customer associated with this  job.</para>
+   <para><guilabel>Owner Info - Customer</guilabel> - the customer for whom the job is created.</para>
    </listitem>
    <listitem>
-   <para><guilabel>Owner Info - Billing ID</guilabel> - the customer's reference to this job (e.g. their PO Number).  It's the "Billing Identification" that they require on your invoices to them.</para>
+   <para><guilabel>Owner Info - Billing ID</guilabel> - the customer's reference to this job (e.g. their PO Number).  This is the "Billing Identification" that they require to correlated your invoices with their order.  The Billing ID you enter is used to set the billing id for new invoices associated with this job.</para>
    </listitem>
    <listitem>
-   <para><guilabel>Job Active</guilabel> - toggles this job being active or not.  This is useful to use when you have lots of inactive jobs, it is easier to find all the active ones.</para>
+   <para><guilabel>Job Active</guilabel> - toggles this job being active or not.  This is useful when you have many inactive jobs, since it is easier to search only among jobs that are marked active.</para>
    </listitem>
    </itemizedlist>
 
-  	<screenshot id="bus_ar_jobnew">
+  	<screenshot id="bus-ar-jobnew">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_jobnew.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>New Customer Job</phrase>
@@ -377,43 +456,47 @@ Basic A/R Account Hierarchy:
           </mediaobject>
         </screenshot>
 
-  <para>To find a preexisting customer job, use the <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> -> <guimenu>Find Job</guimenu> application.  From the results of the search, you can select a job to edit, or view.</para>
+  <para>To edit an existing existing customer job, use the <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> -> <guimenu>Find Job</guimenu> application.  Select the desired job in the search results, and click the <guilabel>View/Edit Job</guilabel> button.</para>
+  <para>To select from the invoices associated with a given job, use <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> -> <guimenu>Find Job</guimenu> application.  Select the desired job in the search results and click the <guilabel>View Invoices</guilabel> button.  A window listing invoices associated with this job appears.  Select an invoice and click the <guilabel>View Invoice</guilabel> button to open an invoice editor in the main application window.</para>
   </sect1>
 
- <sect1 id="bus_ar_payment1">
+ <sect1 id="bus-ar-payment1">
  <title>Process Payment</title>
-  <para>Eventually, you will receive payment from your customers for outstanding invoices.  To register these payments, use the Process Payment application found in <guimenu>Business</guimenu> -> <guimenu>Customers</guimenu> -> <guimenu>Process Payment</guimenu>.</para>
+  <para>Eventually, you will receive payment from your customers for outstanding invoices.  To register these payments, use the Process Payment application found in <guimenu>Business</guimenu> -> <guimenu>Customer</guimenu> -> <guimenu>Process Payment</guimenu>.</para>
   <para>The Process Payment application consists of:</para>
   <itemizedlist>
   <listitem>
-  <para><guilabel>Payment Info - Customer</guilabel> - the customer who paid you.</para>
+  <para><guilabel>Payment Information - Customer</guilabel> - the customer who paid you.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Payment Info - Date</guilabel> - the date you you received payment, normally the current date.</para>
+  <para><guilabel>Payment Information - Invoice</guilabel> - the invoice for which payment was received.  When you select an invoice, the <guilabel>Amount</guilabel> field is set to total due for the selected invoice.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Payment Info - Amount</guilabel> - the amount of money received.</para>
+  <para><guilabel>Payment Information - Date</guilabel> - the date you you received payment.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Payment Info - Num</guilabel> - the check number.</para>
+  <para><guilabel>Payment Information - Amount</guilabel> - the amount of money received.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Payment Info - Memo</guilabel> - any comments about this payment.</para>
+  <para><guilabel>Payment Information - Num</guilabel> - the check number.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Post To</guilabel> - the A/Receivable account to post this transaction.</para>
+  <para><guilabel>Payment Information - Memo</guilabel> - any comments about this payment.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Transfer Account</guilabel> - the account where the money will be deposited to (a checking account for example) from this payment.</para>
+  <para><guilabel>Post To</guilabel> - the A/Receivable account to which to post this transaction.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Transfer Account</guilabel> - the account where the money will be deposited (a checking account for example).</para>
   </listitem>
   </itemizedlist>
   
   <para>Below is the GnuCash Accounts Receivable payment window.</para>
-  	<screenshot id="bus_ar_payment">
+  	<screenshot id="bus-ar-payment">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_payment.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>Process Payment</phrase>
@@ -424,54 +507,40 @@ Basic A/R Account Hierarchy:
 	    </caption>
           </mediaobject>
         </screenshot>
-
-  <note>
-  <para>One of the design goals in GnuCash's Account Receivable system was to allow different processes to get to the same state, so you can reach an invoice from different directions based on the way you think about the problem:</para>
-  <literallayout>
-  * you can search for the customer first, then list their invoices
-  * you can search for invoices by number
-  * you can search for invoices by company name
-
-  Or, if you prefer, you could
-
-  * you can create a new invoice and then select the customer
-  * you can search for a customer, view their invoices, then click "new invoice"
-  </literallayout>
-  </note>
-
  </sect1>
 
- <sect1 id="bus_ar_invoicechange1">
+ <sect1 id="bus-ar-invoicechange">
  <title>Changing the Invoice Appearance</title>
- <para>The default Invoice style is fairly barren, as you can see in the example given in the "Invoices" section of this chapter.  The default invoice style leaves the top part of the form blank, so that you print on company letterhead paper.  However, there are some things you can do to change this default appearance.</para>
-  <para>If you go to File, Properties, then you can enter your company name and address, which will then be printed on the right hand side of the invoices.</para>
-  <para>To add a customized background, heading banner or logo to the invoices,  modify the invoice style sheets.  To do this, go to <guimenu>Edit</guimenu> -> <guimenu>Style Sheets</guimenu> and make a <guilabel>New...</guilabel> style sheet.  You will see a window like this:</para>
+ <para>The default Invoice style, as shown in the "Invoices" section in this chapter, is fairly barren.  The default invoice style leaves the top part of the form blank, so you can print on company letterhead paper.  There are some things you can do to change invoice appearance.</para>
+  <para>Use <guimenu>File</guimenu> -> <guimenu>Properties</guimenu> to enter your company name and address, which is printed on the right side of invoices.</para>
 
-  	<screenshot id="bus_ar_invoicechange">
+  <para>To add a customized background, heading banner or logo to invoices, modify the invoice style sheets.  To do this, go to <guimenu>Edit</guimenu> -> <guimenu>Style Sheets</guimenu> and make a <guilabel>New</guilabel> style sheet.  You will see a window like this:</para>
+
+  	<screenshot id="bus-ar-invoicechange1">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_invoicechange1.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>New Style Sheet Window</phrase>
 	    </textobject>
 	    <caption>
-	       <para>The New Style Sheet initial window.</para>
+	       <para>The New Style Sheet window.</para>
 	    </caption>
           </mediaobject>
         </screenshot>
 
-  <para>You must select the <guilabel>Fancy</guilabel> style sheet template, and choose a name for your new style sheet.  The new style sheet will appear in the list to the left.  Select it, and now use the tabbed window to the right to make modifications.  There are 4 tabs available, Colors, General, Images, and Tables.  The Colors tab allows you to change the colors of the various sections of the invoice.  The General tab allows you to set the Preparer and Prepared for information, and to enable links.  The Images tab allows you to import graphics into the style sheet, such as your company logo.  Finally, the Tables tab allows you to adjust the spacing around the tables which make up the invoice.</para>
-  <para>To create the graphical images, use your favorite graphics application such as The Gimp or OpenOffice Draw, and save the image in either GIF or PNG format.  Then import them into the style sheet.</para>
+  <para>You must select the <guilabel>Fancy</guilabel> style sheet template, and choose a name for your new style sheet.  When you click the <guilabel>OK</guilabel> button, the HTML Style Sheet editor window is displayed.  This window contains four tabs, Colors, General, Images, and Tables.  The Colors tab allows you to change the colors of various sections of the invoice.  The General tab allows you to set the Preparer and Prepared for information, and to enable links.  The Images tab allows you to import graphics into the style sheet.  The Tables tab allows you to adjust the spacing around the tables which make up the invoice.</para>
+  <para>To include a company logo, banner heading and background image, use your favorite graphics application such as The Gimp or OpenOffice Draw to save the images in either GIF or PNG format.  Then import them into the style sheet using the Images tab.</para>
 
-  <para>Below is presented a (hideous) example.</para>
+  <para>Below is an example that imports all three types of images.</para>
 
-  	<screenshot id="bus_ar_invoicechange2">
+  	<screenshot id="bus-ar-invoicechange2">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_invoicechange2.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>HTML Style Sheets example</phrase>
@@ -482,15 +551,15 @@ Basic A/R Account Hierarchy:
           </mediaobject>
         </screenshot>
 
-  <para>The placement of the images in the invoice is as follows. The <guilabel>Background Tile</guilabel> is tiled to become the background image, the <guilabel>Heading Banner</guilabel> goes to above the invoice text, and the <guilabel>Logo</guilabel> is placed in the upper left corner of the invoice to the left of the Heading Banner.  You will probably have to try a few different sized images until you get the invoices to print nicely.  Some sizing suggestions are that the Logo should be 1 square cm (~0.5 inch), and the Heading Banner should be 15 cm (~6 inches) wide and 1 cm (~0.5 inch) tall.</para>
+  <para>The images are placed in the invoice as follows. The <guilabel>Background Tile</guilabel> is tiled to become the background image, the <guilabel>Heading Banner</guilabel> goes to above the invoice text, and the <guilabel>Logo</guilabel> is placed in the upper left corner of the invoice to the left of the Heading Banner.  You will probably have to try a few different sized images until you get the invoices to print nicely.  Some sizing suggestions are that the Logo should be 1 square cm (~0.5 inch), and the Heading Banner should be 15 cm (~6 inches) wide and 1 cm (~0.5 inch) tall.</para>
 
  <para>With the style sheet configured, when you print the invoice, you select the style sheet to use from the <guimenu>Options</guimenu> menu.  Below is the resultant invoice after applying the style sheet demonstrated above.</para>
 
-  	<screenshot id="bus_ar_invoicechange3">
+  	<screenshot id="bus-ar-invoicechange3">
 	  <mediaobject>
 	    <imageobject>
 	      <imagedata fileref="figures/bus_ar_invoicechange3.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
+	      srccredit="Jon Lapham" format="PNG"></imagedata>
             </imageobject>
 	    <textobject>
 	        <phrase>HTML Style Sheets example</phrase>
