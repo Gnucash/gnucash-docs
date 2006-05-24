@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
       (Do not remove this comment block.)
   Version: 1.9.0
@@ -312,7 +311,7 @@ Note: the currency of each account is shown in parenthesis.
          If the <guibutton>Get Quotes</guibutton> button is disabled, 
          that means that the perl module Finance::Quote is not installed. 
          For information on how to install it, please see 
-         <xref linkend="invest_stockprice_auto2" ></xref>
+         <xref linkend="invest-stockprice-auto2" ></xref>
       </para></note>
 
       <para><screenshot id="currency_AfterGetOnlineQuotes">
@@ -335,7 +334,7 @@ Note: the currency of each account is shown in parenthesis.
       currencies you are using in your various accounts. This will happend
       everytime you click on <guibutton>Get Quotes</guibutton> or have GnuCash
       downloading quotes/exchange rates automatically as per <xref
-      linkend="invest_stockprice_auto2" /></para>
+      linkend="invest-stockprice-auto2" /></para>
 
       <para>And if you check the main Chart of Accounts you now see that
       GnuCash has automatically converted the HKD amount to USD amount on the
@@ -421,13 +420,12 @@ Note: the currency of each account is shown in parenthesis.
 -Assets                          (USD)
    -Current Assets           (USD)
       -US Bank                 (USD)
-      -Jamaican Bank       (EUR)
-   -Fixed Assets
-      -Boat
+      -Jamaican Bank       (JMD)
+   -Fixed Assets           (USD)
+      -Boat                (JMD)
 -Equity                          (USD)
    -Opening Balances
       -USD            (USD)
-      -EUR            (HKD)
 
 Note: the currency of each account is shown in parenthesis.
  </literallayout>
@@ -513,6 +511,13 @@ Note: the currency of each account is shown in parenthesis.
           boat</para></caption>
         </mediaobject>
       </screenshot>
+      <para>The Chart of Accounts now reflects that your bank account has been 
+      reduced with the value of the boat (JMD 509,000), and that your Fixed Assets
+      boat account has been increased with the same amount. If you also have turned
+      on the CoA (Column Choice) "Total (USD)" you will see the corresponding
+      value in USD. The USD value will always reflect the latest currency exchange
+      rate you have either automatically or manually updated GnuCash with.
+      </para>
     </sect2>
 
     <sect2 id="currency_purchase3">
@@ -629,8 +634,8 @@ Buy Stocks
       <para>If the "Exchange Data" dialog popup do not appear, open it
       manually by right click on the last row, and select <guilabel>Edit
       Exchange Rate</guilabel> In the following pop up window, enter the
-      actual number of stocks (16,500) in the last entry box (not the 
-      default entry box)</para>
+      actual number of stocks (16,500) as the <guilabel>To Amount:</guilabel> 
+      </para>
       
       <screenshot id="currency_purchase_ToAmount.png">
         <mediaobject>
@@ -772,7 +777,7 @@ Buy Stocks
       <para>Entering an currency you are selling is done in the same way as
       buying one except the you are now transfering money from the Currency
       account to your Savings account (very much similar to (<xref
-      linkend="invest_sell1" />).</para>
+      linkend="invest-sell1" />).</para>
 
       <para>The proper recording of the currency sale *must* be done using a
       split transaction. In the split transaction, you must account for the
@@ -1206,9 +1211,10 @@ Expenses:Investments:Currency Transfer                    (AUD)
       Remember to execute the transaction from the stocks associated bank
       account, and if the Exchange Rate window do not pop up, right click the
       row and manually start it. Enter the number of stocks you purchase in
-      the last entry.</para>
+      the last entry (To Amount:).</para>
 
-      <para><table>
+      <para>
+        <table>
           <title>Purchasing oversea stocks</title>
 
           <tgroup cols="4">
@@ -1254,14 +1260,37 @@ Expenses:Investments:Currency Transfer                    (AUD)
               </row>
             </tbody>
           </tgroup>
-        </table></para>
+        </table>
+      </para>
+        
+      <para>As you can see in the Chart of Accounts, you have now purchased stocks in three
+      different currencise (HK, USD, as well as in SEK), but the Chart of Account (as seen below)
+      do not indicate how much it is valued in your home currency, AUD.</para>
+      <screenshot id="currency_PutTogether_AfterStocks.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_PutTogether_AfterStocks.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Chart of Account after Stocks</phrase>
+          </textobject>
+          <caption><para>
+            Some of the accounts in Chart of Accounts after the stock purchase
+          </para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Next section will ensure you get the various exchange rates so GnuCash can show your
+      total worth in the local currency (AUD in this case)</para>
     </sect2>
 
     <sect2>
       <title>Get the online quotes</title>
 
       <para>To get the current exchange rates and stock quotes, go to
-      <guimenu>Tools</guimenu> -&gt; <guimenu>Price Editor</guimenu> and the
+      <guimenu>Tools</guimenu> -&gt; <guimenu>Price Editor</guimenu> and then
       click on <guibutton>Get Quotes</guibutton>. </para>
 
       <para></para>
@@ -1273,12 +1302,20 @@ Expenses:Investments:Currency Transfer                    (AUD)
 
       <para>Peter has run into some difficulties all the way over in Europe
       Land. Since he is a very dear pal of yours, you decide to help him out
-      with a personal loan of 80,000 Euro. </para>
+      with a personal loan of 40,000 Euro.</para>
 
-      <para><literallayout>Assets:Money owed to me:Euro:Peter            (Euro)
-Income:Interest Income:Peter                  (Euro)</literallayout>This is a
-      simpe currency transaction from your Savings Account (AUD), to your
-      Assets:Money owed to me:Peter (EURO) account. </para>
+      <para>
+        <literallayout>
+Assets:Money owed to me:Euro:Peter            (Euro)
+Income:Interest Income:Peter                  (Euro)
+Expenses:Bank Charge                          (AUD)
+        </literallayout>
+      </para>
+      <para>This is a
+        simpe currency transaction from your Savings Account (AUD), to your
+        Assets:Money owed to me:Peter (EURO) account. You got the exchange rate
+        of 0.606161, which means you need to withdraw AUD 65,989.10, as well as
+        pay the service fee of 35 AUD.</para>
     </sect2>
 
     <sect2>
