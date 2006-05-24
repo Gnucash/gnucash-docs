@@ -56,13 +56,28 @@ convert-html:
 	 $(top_srcdir)/xsl/general-customization.xsl $(srcdir)/$$file; \
 	done
 
+copy-pics:
+	  $(mkinstalldirs) $(docname)/$(figdir); \
+	  for file in $(srcdir)/$(figdir)/*.png; do \
+	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    $(INSTALL_DATA) $$file $(srcdir)/$(docname)/$(figdir)/$$basefile; \
+	  done
+
+copy-style:
+	  $(mkinstalldirs) $(docname)/stylesheet; \
+	  for file in $(styledir)/*.png; do \
+	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    $(INSTALL_DATA) $$file $(srcdir)/$(docname)/stylesheet/$$basefile; \
+	  done
+
 EXTRA_DIST = $(xml_files) $(omffile)
 CLEANFILES = omf_timestamp $(docname)/*.html
 
 # If the following file is in a subdir (like help/) you need to add that to the path
 include $(top_srcdir)/omf.make
 
-all: omf convert-html
+html: all convert-html copy-pics copy-style
+all: omf
 
 #$(docname).xml: $(entities)
 #	-ourdir=`pwd`;  \
@@ -83,32 +98,20 @@ install-data-local:
 	for file in $(xml_files); do \
 	  cp $(srcdir)/$$file $(DESTDIR)$(docdir); \
 	done
-	  $(mkinstalldirs) $(DESTDIR)$(docdir)/$(docname); \
-	  for file in $(docname)/*.html; do \
-	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$(docname)/$$basefile; \
-	  done
 	if test "$(figdir)"; then \
 	  $(mkinstalldirs) $(DESTDIR)$(docdir)/$(figdir); \
-	  $(mkinstalldirs) $(DESTDIR)$(docdir)/$(docname)/$(figdir); \
 	  for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
 	    $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$(figdir)/$$basefile; \
-	    $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$(docname)/$(figdir)/$$basefile; \
 	  done \
 	fi
-	  $(mkinstalldirs) $(DESTDIR)$(docdir)/$(docname)/stylesheet; \
-	  for file in $(styledir)/*.png; do \
-	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$(docname)/stylesheet/$$basefile; \
-	  done
+
 
 install-data-hook: install-data-hook-omf
 
 uninstall-local: uninstall-local-doc uninstall-local-omf
 
 uninstall-local-doc:
-	-rm -f $(DESTDIR)$(docdir)/help-search-index.db
 	-if test "$(figdir)"; then \
 	  for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
