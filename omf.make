@@ -50,4 +50,4 @@ uninstall-local-omf:
 		rm -f $(omf_dest_dir)/$$basefile; \
 	done
 	-rmdir $(omf_dest_dir)
-	-scrollkeeper-update -p $(scrollkeeper_localstate_dir)
+	-scrollkeeper-update -p $(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir)

@@ -121,16 +121,18 @@ uninstall-local-doc:
 	  rmdir $(DESTDIR)$(docdir)/$(figdir); \
 	  rmdir $(DESTDIR)$(docdir)/$(docname)/$(figdir); \
 	fi
-	-for file in $(styledir)/*.png; do \
+	-if test "$(docname)"; then \
+	  for file in $(styledir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
 	    rm -f $(docdir)/$(docname)/stylesheet/$$basefile; \
 	  done; \
-	  rmdir $(DESTDIR)$(docdir)/$(docname)/stylesheet
-	-for file in $(srcdir)/$(docname)/*.html; do \
+	  rmdir $(DESTDIR)$(docdir)/$(docname)/stylesheet; \
+	  for file in $(srcdir)/$(docname)/*.html; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
 	    rm -f $(docdir)/$(docname)/$$basefile; \
 	  done; \
-	  rmdir $(DESTDIR)$(docdir)/$(docname)
+	  rmdir $(DESTDIR)$(docdir)/$(docname); \
+	fi
 	-for file in $(xml_files); do \
 	  rm -f $(DESTDIR)$(docdir)/$$file; \
 	done
