@@ -25,3 +25,4 @@ entities = \
 	appendixc.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
+DISTCLEANFILES =  gnucash-guide-C.omf.out

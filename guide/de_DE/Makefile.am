@@ -7,3 +7,4 @@ entities = \
  ch_oview.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
+DISTCLEANFILES =  gnucash-guide-de_DE.omf.out

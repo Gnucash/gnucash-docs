@@ -50,24 +50,24 @@ styledir = $(top_srcdir)/stylesheet
 # Convert xml to html with xsltproc
 # xsltproc   -o outputdir/ /usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl filename.xml
 convert-html: 
-	$(mkinstalldirs) $(docname); \
+	$(mkinstalldirs) "$(docname)"; \
 	for file in $(docname).xml; do \
-	 xsltproc -o $(docname)/ --param use.id.as.filename 1 \
-	 $(top_srcdir)/xsl/general-customization.xsl $(srcdir)/$$file; \
+	 xsltproc -o "$(docname)/" --param use.id.as.filename "1" \
+	 "$(top_srcdir)/xsl/general-customization.xsl" "$(srcdir)/$$file"; \
 	done
 
 copy-pics:
-	  $(mkinstalldirs) $(docname)/$(figdir); \
+	  $(mkinstalldirs) "$(docname)/$(figdir)"; \
 	  for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    $(INSTALL_DATA) $$file $(srcdir)/$(docname)/$(figdir)/$$basefile; \
+	 $(INSTALL_DATA) "$$file" "$(srcdir)/$(docname)/$(figdir)/$$basefile"; \
 	  done
 
 copy-style:
-	  $(mkinstalldirs) $(docname)/stylesheet; \
+	  $(mkinstalldirs) "$(docname)/stylesheet"; \
 	  for file in $(styledir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    $(INSTALL_DATA) $$file $(srcdir)/$(docname)/stylesheet/$$basefile; \
+	 $(INSTALL_DATA) "$$file" "$(srcdir)/$(docname)/stylesheet/$$basefile"; \
 	  done
 
 EXTRA_DIST = $(xml_files) $(omffile)
@@ -86,25 +86,25 @@ all: omf
 
 app-dist-hook:
 	if test "$(figdir)"; then \
-	  $(mkinstalldirs) $(distdir)/$(figdir); \
+	  $(mkinstalldirs) "$(distdir)/$(figdir)"; \
+	fi;
 	  for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    $(INSTALL_DATA) $$file $(distdir)/$(figdir)/$$basefile; \
-	  done \
-	fi
+	    $(INSTALL_DATA) "$$file" "$(distdir)/$(figdir)/$$basefile"; \
+	  done
 
 install-data-local:
-	$(mkinstalldirs) $(DESTDIR)$(docdir)
+	$(mkinstalldirs) "$(DESTDIR)$(docdir)";
 	for file in $(xml_files); do \
-	  cp $(srcdir)/$$file $(DESTDIR)$(docdir); \
+	  cp "$(srcdir)/$$file" "$(DESTDIR)$(docdir)"; \
 	done
 	if test "$(figdir)"; then \
-	  $(mkinstalldirs) $(DESTDIR)$(docdir)/$(figdir); \
+	  $(mkinstalldirs) "$(DESTDIR)$(docdir)/$(figdir)"; \
+	fi;
 	  for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$(figdir)/$$basefile; \
-	  done \
-	fi
+	  $(INSTALL_DATA) "$$file" "$(DESTDIR)$(docdir)/$(figdir)/$$basefile"; \
+	  done
 
 
 install-data-hook: install-data-hook-omf
@@ -115,27 +115,25 @@ uninstall-local-doc:
 	-if test "$(figdir)"; then \
 	  for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    rm -f $(docdir)/$(figdir)/$$basefile; \
-	    rm -f $(docdir)/$(docname)/$(figdir)/$$basefile; \
-	  done; \
-	  rmdir $(DESTDIR)$(docdir)/$(figdir); \
-	  rmdir $(DESTDIR)$(docdir)/$(docname)/$(figdir); \
-	fi
+	    rm -f "$(DESTDIR)$(docdir)/$(figdir)/$$basefile"; \
+	  done \
+	fi;
+	-if test "$(figdir)"; then \
+	  for file in $(srcdir)/$(figdir)/*.png; do \
+	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    rm -f "$(DESTDIR)$(docdir)/$(docname)/$(figdir)/$$basefile"; \
+	  done \
+	fi;
 	-if test "$(docname)"; then \
 	  for file in $(styledir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    rm -f $(docdir)/$(docname)/stylesheet/$$basefile; \
-	  done; \
-	  rmdir $(DESTDIR)$(docdir)/$(docname)/stylesheet; \
+	    rm -f "$(DESTDIR)$(docdir)/$(docname)/stylesheet/$$basefile"; \
+	  done \
 	  for file in $(srcdir)/$(docname)/*.html; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    rm -f $(docdir)/$(docname)/$$basefile; \
-	  done; \
-	  rmdir $(DESTDIR)$(docdir)/$(docname); \
-	fi
+	    rm -f "$(DESTDIR)$(docdir)/$(docname)/$$basefile"; \
+	  done \
+	fi;
 	-for file in $(xml_files); do \
-	  rm -f $(DESTDIR)$(docdir)/$$file; \
+	  rm -f "$(DESTDIR)$(docdir)/$$file"; \
 	done
-	-rmdir $(DESTDIR)$(docdir)
-	-rmdir $(DESTDIR)$(datadir)/gnome/help/gnucash
-

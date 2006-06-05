@@ -10,3 +10,4 @@ entities = \
 	txf-categories.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
+DISTCLEANFILES =  gnucash-help-de_DE.omf.out

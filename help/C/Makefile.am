@@ -14,3 +14,4 @@ entities = \
 	custom.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
+DISTCLEANFILES =  gnucash-help-C.omf.out
