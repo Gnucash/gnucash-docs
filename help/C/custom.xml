@@ -1,7 +1,9 @@
 <!--
       (Do not remove this comment block.)
-  Version: 2.0.0
-  Last modified: July 9th 2006
+  Version: 2.0.1
+  Last modified: August 2nd 2006
+       modified: July 9th 2006
+       modified: February 28th 2005
   Maintainers:
                Chris Lyttle <chris@wilddev.net>
                Neil Williams <linux@codehelp.co.uk>
@@ -10,275 +12,825 @@
   Translators:
                (translators put your name and email here)
 -->
+
   <chapter id="custom-gnucash">
     <title>Customizing GnuCash</title>
+
     <sect1 id="account-options">
-      <title>Account Options</title>
-      <para></para>
-      <para>The Account Options is used to set the view of the Account Tree Window. This dialog sets the view on each open window of the account tree. This means that when the New Account Tree is used several different views of the account tree can be created.</para>
-      <para></para>
-      <itemizedlist>
-        <listitem>
-          <para>Name of the account view: Used to name the account in the Windows menu and the note tabs.</para>
-        </listitem>
-        <listitem>
-          <para>Double click expands parent accounts: Use double click instead of single click to expand accounts</para>
-        </listitem>
-        <listitem>
-          <para>Account types to display: Select which types of accounts to display in the account tree.</para>
-        </listitem>
-        <listitem>
-          <para>Account fields to display: Select what fields to display in the account tree.</para>
-        </listitem>
-      </itemizedlist>
-      <para></para>
+      <title>Account Display Options</title>
+
+      <para>The View -&gt; Filter By ... is used to set/modify the view of the Account Tree
+       Window. The "Accounts" tab of this form allows the selection of the types of accounts
+       to display. These selections effect the view on each specific open window of the account
+       tree.
+      </para>
+
+      <para>The "Other" Tab allows enabling/disabling of the options; Show Hidden accounts,
+       Show zero total accounts.</para>
+
+      <para>The Account Tree window, by default, only shows the quantity of each commodity
+       that you own, under the column heading <guilabel>Total</guilabel>. Often, however,
+       you may want to display other values. This is easily accomplished by clicking on the
+       title bar <guibutton>Options</guibutton> button (the small down pointing arrow on the
+       right side of the main account window title bar), and selecting the option(s) to
+       display.  These selections set the view on all open windows of the account tree.
+      </para>
+
     </sect1>
+
     <sect1 id="set-prefs">
       <title>Setting Your Preferences</title>
-      <para></para>
-      <para>The GnuCash Preferences dialog contains the following sections.</para>
+
+      <para>Pausing the cursor for a couple of seconds, over options in these windows
+       will display in-depth information on the choice.</para>
+      <para>The GnuCash Preferences window contains the following
+      options;</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Accounting Period</guilabel> - <xref
+          linkend="prefs-accounting-period"></xref></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Account</guilabel> - <xref
+          linkend="prefs-accounts"></xref></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Business</guilabel> - <xref
+          linkend="prefs-biz"></xref></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Date/Time</guilabel> - <xref
+          linkend="prefs-date-time"></xref></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>General</guilabel> - <xref
+          linkend="prefs-general"></xref></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>On-line Banking</guilabel> - <xref linkend="prefs-online"></xref>
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Register</guilabel> - <xref
+          linkend="prefs-reg"></xref></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Register Default</guilabel> - <xref
+          linkend="prefs-reg-def"></xref></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Reports</guilabel> - <xref
+          linkend="prefs-reports"></xref></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Scheduled Transactions</guilabel> - <xref
+          linkend="prefs-sched"></xref></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Windows</guilabel> - <xref
+          linkend="prefs-window"></xref></para>
+        </listitem>
+
+      </itemizedlist>
+
+      <sect2 id="prefs-accounting-period">
+        <title>Accounting Period</title>
+
+     <figure>
+      <title>The "Accounting Period Preferences" Window.</title>
+      <screenshot id="Prefer_Accounting-Period">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/Pref_AccntPeriod.png" format="PNG"
+                       srccredit="Dave Herman" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Accounting Period Preferences screen</phrase>
+          </textobject>
+          <caption><para>This is an screen image of the "Accounting Period Preferences"
+           windows.</para>
+          </caption>
+        </mediaobject>
+       </screenshot>
+      </figure>
+
+        <para>This section defines the following preferences;</para>
+
+        <itemizedlist mark="space">
+          <listitem>
+            <para><guilabel>Summary Bar Content</guilabel> - check-boxes to
+             include/exclude; Grand Totals, and Non-Currency totals.</para>
+
+             <itemizedlist>
+              <listitem>
+               <para>Grand Totals: If checked, show a grand total of all accounts converted to
+                the default report currency.</para>
+              </listitem>
+
+              <listitem>
+               <para>Non-Currency: If checked, non-currency commodities will be shown in the
+                summary bar.  If clear, only currencies will be shown.</para>
+              </listitem>
+             </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para><guilabel>Start Date</guilabel> - specify the beginning of the
+             accounting period.</para>
+             <itemizedlist>
+              <listitem>
+               <para>Relative: Use the specified relative starting date for profit/loss
+                calculations.  Also use this date for net assets calculations.  Relative defines
+                start by; today or start of current/previous year, quarter, month.</para>
+              </listitem>
+
+              <listitem>
+               <para>Absolute - Use the specified absolute starting date for profit/loss
+                calculations.  Also use this date for net assets calculations.</para>
+              </listitem>
+             </itemizedlist>
+
+          </listitem>
+
+          <listitem>
+            <para><guilabel>End Date</guilabel> - specify the ending of the
+             accounting period.</para>
+             <itemizedlist>
+              <listitem>
+               <para>Relative: Use the specified relative ending date for profit/loss
+                calculations.  Also use this date for net assets calculations.</para>
+              </listitem>
+
+              <listitem>
+               <para>Absolute - Use the specified absolute ending date for profit/loss
+                calculations.  Also use this date for net assets calculations.</para>
+              </listitem>
+             </itemizedlist>
+
+          </listitem>
+        </itemizedlist>
+
+      </sect2>
+
       <sect2 id="prefs-accounts">
-        <title>Accounts: </title>
-        <para></para>
+        <title>Accounts</title>
+
+     <figure>
+      <title>The "Account Preferences" Window.</title>
+      <screenshot id="Prefer_Accounts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/Pref_Accnts.png" format="PNG"
+                       srccredit="Dave Herman" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Account Preferences screen</phrase>
+          </textobject>
+          <caption><para>This is an screen image of the "Account Preferences" windows.</para>
+          </caption>
+        </mediaobject>
+       </screenshot>
+      </figure>
+
         <para>This section contains the following preferences;</para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
-            <para>Account : This option is used to pick a different separator in the register for parent and child accounts.</para>
+            <para><guilabel>Separator Character:</guilabel> This option is used to
+             pick a different separator in the register between parent and child accounts.
+             IE. The character that will be used between components of an account name.</para>
+            <para>A legal value is any single character except letters and numbers, or any of
+             the following strings: "colon", "slash", "backslash", "dash" and "period".</para>
           </listitem>
+
           <listitem>
-            <para>Reversed-balance account types: This option is used to choose what type of account have their balances reversed. If the balance is normally negative, as in a loan or a credit card then this will make the balance positive.</para>
+            <para><guilabel>Reversed Balanced Accounts:</guilabel> This option is
+             used to choose what type of account have their balances reversed. If the balance
+             is normally negative, as in a loan or a credit card then this will make the
+             balance positive.</para>
+
+             <itemizedlist>
+              <listitem>
+               <para>Income &amp; Expense - Sign reverse balances on income and expense
+                accounts.</para>
+              </listitem>
+
+              <listitem>
+               <para>Credit - Sign reverse balances on the following: Credit Card, Payable,
+                Liability, Equity, and Income.</para>
+              </listitem>
+
+              <listitem>
+               <para>None - Don't sign reverse any accounts.</para>
+              </listitem>
+             </itemizedlist>
           </listitem>
+
           <listitem>
-            <para>Use accounting labels: This option is used to turn on accounting labels (debit and credit) instead of using terms such as withdrawal and deposit.</para>
+            <para><guilabel>Labels:</guilabel> This option is used to turn on
+             accounting labels (debit and credit) instead of using terms such as withdrawal
+             and deposit.  Use only 'debit' and 'credit' instead of informal synonyms.</para>
+          </listitem>
+
+          <listitem>
+           <para><guilabel>Default Currency:</guilabel> This option is used select
+            either the locale currency as the default or to select the default from the
+            pull-down list.</para>
+
+             <itemizedlist>
+              <listitem>
+               <para>Locale - Use the system locale currency for all newly created accounts.
+               </para>
+              </listitem>
+
+              <listitem>
+               <para>Choose - Use the specified currency for all newly created accounts.</para>
+              </listitem>
+             </itemizedlist>
+
           </listitem>
         </itemizedlist>
-        <para></para>
+
       </sect2>
+
       <sect2 id="prefs-biz">
-        <title>Business: </title>
-        <para></para>
+        <title>Business</title>
+
+         <figure>
+          <title>The "Business Preferences" Window.</title>
+          <screenshot id="Prefer_Business">
+           <mediaobject>
+           <imageobject>
+            <imagedata fileref="figures/Pref_Business.png" format="PNG"
+                       srccredit="Dave Herman" ></imagedata>
+           </imageobject>
+
+           <textobject>
+            <phrase>Business Preferences screen</phrase>
+           </textobject>
+            <caption><para>This is an screen image of the "Business  Preferences"
+             windows.</para>
+            </caption>
+           </mediaobject>
+          </screenshot>
+         </figure>
+
         <para>This section contains the following preferences;</para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
-            <para>Number of Rows: This option is used to set the default number of register rows to display in invoices.</para>
+           <para><guilabel>Invoices</guilabel></para>
+
+           <itemizedlist>
+            <listitem>
+             <para>Open in new window: Check-box to open
+              Invoice in a new window.  If checked, each invoice will be opened in its own top
+              level window.  If clear, the invoice will be opened in the current window.</para>
+            </listitem>
+
+            <listitem>
+             <para>Accumulate splits on post: Whether multiple entries in an invoice which
+              transfer to the same account should be accumulated into a single split by
+              default. This setting can be changed in the Post dialog.</para>
+            </listitem>
+
+            <listitem>
+             <para>Number of Rows: This option is used to set the default number of register
+              rows to display in invoices.</para>
+            </listitem>
+
+            <listitem>
+             <para>Tax Included?: Whether tax is included by default in entries on Invoices.
+              This setting is inherited by new customers and vendors.</para>
+            </listitem>
+
+           </itemizedlist>
           </listitem>
+
           <listitem>
-            <para>Invoice Tax Included?: This option is used to set if tax is included by default in entries on invoices. </para>
-          </listitem>
-          <listitem>
-            <para>Bill Tax Included?: This option is used to set if tax is included by default in entries on bills.</para>
+           <para><guilabel>Bills</guilabel></para>
+
+            <itemizedlist>
+             <listitem>
+              <para>Notify when due?:  Whether to display the list of Bills Due at start-up.
+              </para>
+             </listitem>
+            </itemizedlist>
+
+            <itemizedlist>
+             <listitem>
+              <para>Days in advance: How many days in the future to warn about Bills coming
+               due.</para>
+             </listitem>
+            </itemizedlist>
+
+            <itemizedlist>
+             <listitem>
+              <para>Tax Included?:  Whether tax is included by default in entries on
+               Bills. This setting is inherited by new customers and vendors.</para>
+             </listitem>
+            </itemizedlist>
+
           </listitem>
         </itemizedlist>
-        <para></para>
+
       </sect2>
-      <sect2 id="prefs-general">
-        <title>General: </title>
-        <para></para>
+
+      <sect2 id="prefs-date-time">
+        <title>Date/Time</title>
+
+<!--
+
+     <figure>
+      <title>The "Date/Time Preferences" Window.</title>
+      <screenshot id="Prefer_date-time">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/Pref_date-time.png" format="PNG"
+                       srccredit="Dave Herman" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Date/Time Preferences screen</phrase>
+          </textobject>
+          <caption><para>This is an screen image of the "Date/Time Preferences"
+           windows.</para>
+          </caption>
+        </mediaobject>
+       </screenshot>
+      </figure>
+-->
+
         <para>This section contains the following preferences;</para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
-            <para>Show Advanced Settings: </para>
+           <para><guilabel>Time Format:</guilabel> Check-box to use a 24 hour
+            (instead of a 12 hour) time format.</para>
           </listitem>
+
           <listitem>
-            <para>Toolbar Buttons: </para>
+           <para><guilabel>Date</guilabel> - Radio Button list to select one of the
+            following;</para>
+
+            <itemizedlist>
+             <listitem>
+              <para>Locale: Use the date format specified by the system locale.</para>
+             </listitem>
+
+             <listitem>
+              <para>US: Use the date format common in the United States.</para>
+             </listitem>
+
+             <listitem>
+              <para>UK: Use the date format common in the United Kingdom.</para>
+             </listitem>
+
+             <listitem>
+              <para>Europe: Use the date format common in continental Europe.</para>
+             </listitem>
+
+             <listitem>
+              <para>ISO: Use the date format specified by the ISO-8601 standard.</para>
+             </listitem>
+            </itemizedlist>
+
           </listitem>
+         </itemizedlist>
+
+      </sect2>
+
+      <sect2 id="prefs-general">
+        <title>General</title>
+
+        <para>This section contains the following preferences;</para>
+
+        <itemizedlist>
           <listitem>
-            <para>Display "Tip of the Day": </para>
-          </listitem>
+           <para><guilabel>General</guilabel></para>
+
+          <itemizedlist>
+           <listitem>
+            <para>Display "Tip of the Day" dialog: Display hints for using GnuCash at start-up.
+            </para>
+           </listitem>
+
+           <listitem>
+            <para>Preform Account list setup on new file: Present the new account list dialog
+             when you choose &quot;New File&quot; from the &quot;File&quot; menu</para>
+           </listitem>
+
+           <listitem>
+            <para>Show close button on Notebook tab: Show a close button on each notebook tab.
+             These function identically to the 'Close' menu item.</para>
+           </listitem>
+
+           <listitem>
+            <para>Enable euro support: Enables support for the European Union EURO currency.
+            </para>
+           </listitem>
+           </itemizedlist>
+         </listitem>
+
+         <listitem>
+          <para><guilabel>Numbers:</guilabel> </para>
+
+          <itemizedlist>
           <listitem>
             <para>Display negative amounts in red: </para>
           </listitem>
+
           <listitem>
-            <para>Automatic Decimal Point: </para>
+            <para>Automatic Decimal Point: Automatically insert a decimal point into values
+             that are entered without one.</para>
           </listitem>
+
           <listitem>
-            <para>Auto Decimal Places: </para>
+            <para>Auto Decimal Places: Select the number of decimal places that will be
+             inserted automatically.</para>
           </listitem>
+          </itemizedlist>
+         </listitem>
+
+         <listitem>
+          <para><guilabel>Files:</guilabel> </para>
+
+           <itemizedlist>
+            <listitem>
+             <para>Compress files: Checkbox to compress the data file with gzip when saving it
+              to disk.</para>
+            </listitem>
+
+            <listitem>
+             <para>Retain log files: Select the number of days to save log/backup files.
+              Delete old log/backup files after this many days (0 = never).</para>
+            </listitem>
+           </itemizedlist>
+          </listitem>
+
           <listitem>
-            <para>No account list setup on new file: </para>
-          </listitem>
-          <listitem>
-            <para>Days to retain log files: </para>
-          </listitem>
+            <para><guilabel>Search Dialog:</guilabel> </para>
+
+           <itemizedlist>
+            <listitem>
+             <para>New search limit: Default to 'new search' if fewer than this number of
+              items is returned.</para>
+            </listitem>
+           </itemizedlist>
+         </listitem>
+
         </itemizedlist>
-        <para></para>
       </sect2>
-      <sect2 id="prefs-inter">
-        <title>International: </title>
-        <para></para>
-        <para>This section contains the following preferences;</para>
-        <para></para>
-        <itemizedlist>
-          <listitem>
-            <para>Date Format: </para>
-          </listitem>
-          <listitem>
-            <para>Default Currency: </para>
-          </listitem>
-          <listitem>
-            <para>Use 24-hour time format: </para>
-          </listitem>
-          <listitem>
-            <para>Enable EURO support: </para>
-          </listitem>
-        </itemizedlist>
-        <para></para>
-      </sect2>
+ 
       <sect2 id="prefs-online">
-        <title>Online Banking &amp; Importing: </title>
-        <para></para>
+        <title>On-line Banking</title>
+
         <para>This section contains the following preferences;</para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
-            <para>QIF Verbose documentation: </para>
+            <para><guilabel>QIF Import:</guilabel> </para>
+
+           <itemizedlist>
+            <listitem>
+             <para>Show documentation:  Show some documentation-only pages in QIF Import
+              druid.</para>
+            </listitem>
+           </itemizedlist>
           </listitem>
+
           <listitem>
-            <para>Enable REPLACE match action: </para>
+           <para><guilabel>Generic Importer</guilabel></para>
+
+           <itemizedlist>
+            <listitem>
+             <para>Checkbox to enable/disable the use Bayesian algorithms to match new
+              transactions with existing accounts.</para>
+            </listitem>
+
+            <listitem>
+             <para>Match display threshold:  The minimum score a potential match must have
+              to be displayed in the match list.</para>
+            </listitem>
+
+            <listitem>
+             <para>Auto-add threshold:   A transaction whose best match's score is in the red
+              zone (above the display threshold but below or equal to the Auto-ADD threshold)
+              will be ADDed by default.</para>
+            </listitem>
+
+            <listitem>
+             <para>Auto-clear threshold:  A transaction whose best match's score is in the
+              green zone (above or equal to the Auto-CLEAR threshold) will be CLEARed by
+              default.</para>
+            </listitem>
+
+            <listitem>
+             <para>Commercial ATM fees threshold:  In some places commercial ATMs (not
+              belonging to a financial institution) are installed in places like convenience
+              store.  These ATM add its fee directly to the amount instead of showing up as a
+              separate transaction or in your monthly banking fees.  For example, you withdraw
+              $100, and you are charged $101.50 plus Interac fees.  If you manually entered
+              that $100, the amounts won't match.  You should set this to whatever is the
+              maximum such fee in your area (in units of your local currency), so the
+              transaction will be recognized as a match.</para>
+            </listitem>
+           </itemizedlist>
           </listitem>
-          <listitem>
-            <para>Enable SKIP transaction action: </para>
-          </listitem>
-          <listitem>
-            <para>Auto-CLEAR threshold: </para>
-          </listitem>
-          <listitem>
-            <para>Match display threshold: </para>
-          </listitem>
-          <listitem>
-            <para>Auto-ADD threshold: </para>
-          </listitem>
-        </itemizedlist>
-        <para></para>
+         </itemizedlist>
+
       </sect2>
-      <sect2 id="prefs-rec">
-        <title>Reconcile: </title>
-        <para></para>
-        <para>This section contains the following preferences;</para>
-        <para></para>
-        <itemizedlist>
-          <listitem>
-            <para>Automatic interest transfer: </para>
-          </listitem>
-          <listitem>
-            <para>Automatic credit card payments: </para>
-          </listitem>
-          <listitem>
-            <para>Check off cleared transactions: </para>
-          </listitem>
-        </itemizedlist>
-        <para></para>
-      </sect2>
+
       <sect2 id="prefs-reg">
-        <title>Register: </title>
-        <para></para>
+        <title>Register</title>
+
         <para>This section contains the following preferences;</para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
-            <para>Default Register Style: </para>
+           <para><guilabel>Actions:</guilabel></para>
+
+            <itemizedlist>
+             <listitem>
+              <para>'Enter' moves to blank transaction: If checked, pressing the 'Enter' key
+               will move to the blank transaction at the bottom of the register.  If clear,
+               pressing the 'Enter' key will move down one row.</para>
+             </listitem>
+
+             <listitem>
+              <para>Auto-raise lists: Automatically raise the list of accounts or actions
+               during input.</para>
+             </listitem>
+            </itemizedlist>
+
           </listitem>
+
           <listitem>
-            <para>Double Line Mode: </para>
+           <para><guilabel>Reconciling:</guilabel> </para>
+
+            <itemizedlist>
+             <listitem>
+              <para>Check cleared transactions: Pre-check cleared transactions when creating
+               a reconcile dialog.</para>
+             </listitem>
+
+             <listitem>
+              <para>Automatic interest transfer: Prior to reconciling an account which charges
+               or pays interest, prompt the user to enter a transaction for the interest
+               charge or payment. Currently only enabled for Bank, Credit, Mutual, Asset,
+               Receivable, Payable, and Liability accounts.</para>
+             </listitem>
+
+             <listitem>
+              <para>Automatic credit card payment: After reconciling a credit card statement,
+               prompt the user to enter a credit card payment.</para>
+             </listitem>
+           </itemizedlist>
           </listitem>
+
           <listitem>
-            <para>'Enter' moves to blank transaction: </para>
+              <para><guilabel>Graphics:</guilabel> </para>
+
+           <itemizedlist>
+            <listitem>
+             <para>Use system theme colors: If checked, the system color theme will be
+              applied to register windows.  If clear, the original GnuCash register colors
+              will be used.</para>
+            </listitem>
+
+            <listitem>
+             <para>Double mode colors alternate with transactions: Alternate the primary and
+              secondary colors by transaction instead of by alternating by row.</para>
+            </listitem>
+
+            <listitem>
+             <para>Draw horizontal lines between rows: Show horizontal borders on the cells.
+             </para>
+            </listitem>
+
+            <listitem>
+             <para>Draw vertical lines between columns: Show vertical borders on the cells.
+             </para>
+            </listitem>
+           </itemizedlist>
+
           </listitem>
-          <listitem>
-            <para>Confirm before changing reconciled: </para>
-          </listitem>
-          <listitem>
-            <para>Register font: </para>
-          </listitem>
-          <listitem>
-            <para>Register hint font: </para>
-          </listitem>
-        </itemizedlist>
-        <para></para>
+
+       </itemizedlist>
+
       </sect2>
-      <sect2 id="prefs-reg-color">
-        <title>Register Colors: </title>
-        <para></para>
+
+      <sect2 id="prefs-reg-def">
+        <title>Register Defaults</title>
+
         <para>This section contains the following preferences;</para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
-            <para>Header color: </para>
+           <para><guilabel>Default Style:</guilabel></para>
+
+            <itemizedlist>
+             <listitem>
+              <para>Basic ledger:  Show all transactions on one line. (Two in double line
+               mode.)</para>
+             </listitem>
+
+             <listitem>
+              <para>Auto-split ledger:  Automatically expand the current transaction to show
+               all splits.  All other transactions are shown on one line. (Two in double line
+               mode.)</para>
+             </listitem>
+
+             <listitem>
+              <para>Transaction journal:  All transactions are expanded to show all splits.
+              </para>
+             </listitem>
+            </itemizedlist>
           </listitem>
+
           <listitem>
-            <para>Primary color: </para>
+           <para><guilabel>Other Defaults</guilabel></para>
+
+            <itemizedlist>
+             <listitem>
+              <para>Register opens in a new window: If checked, each register will be opened
+               in its own top level window.  If clear, the register will be opened in the
+               current window.</para>
+             </listitem>
+
+             <listitem>
+              <para>Double line mode: Show two lines of information for each transaction
+               instead of one.  Does not affect expanded transactions</para>
+             </listitem>
+
+             <listitem>
+              <para>Number of transactions: Show this many transactions in a register. A
+               value of zero means show all transactions.</para>
+             </listitem>
+
+             <listitem>
+              <para>Number of Rows: Display this many rows when a register is created.</para>
+             </listitem>
+
+            </itemizedlist>
+
           </listitem>
+         </itemizedlist>
+
+      </sect2>
+
+      <sect2 id="prefs-reports">
+        <title>Reports </title>
+
+        <para>This section contains the following preferences;</para>
+
+        <itemizedlist>
           <listitem>
-            <para>Secondary color: </para>
+            <para><guilabel>Default Report Currency</guilabel> </para>
+
+           <itemizedlist>
+            <listitem>
+             <para>Locale: Use the system locale currency for all newly created reports.
+             </para>
+            </listitem>
+
+            <listitem>
+             <para>Choose: Use the specified currency for all newly created reports.</para>
+            </listitem>
+           </itemizedlist>
           </listitem>
+
           <listitem>
-            <para>Primary active color: </para>
-          </listitem>
-          <listitem>
-            <para>Secondary active color: </para>
-          </listitem>
-          <listitem>
-            <para>Split color: </para>
-          </listitem>
-          <listitem>
-            <para>Split active color: </para>
-          </listitem>
-          <listitem>
-            <para>Double mode colors alternate with transactions: </para>
+           <para><guilabel>Location</guilabel> </para>
+           <itemizedlist>
+            <listitem>
+            <para>Report opens in a new window: If checked, each report will be opened in
+             its own top level window.  If clear, the report will be opened in the current
+             window.</para>
+            </listitem>
+           </itemizedlist>
           </listitem>
         </itemizedlist>
-        <para></para>
+
       </sect2>
+
       <sect2 id="prefs-sched">
-        <title>Scheduled Transactions: </title>
-        <para></para>
+        <title>Scheduled Transactions </title>
+
         <para>This section contains the following preferences;</para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
-            <para>Run on GnuCash start: </para>
+            <para><guilabel>Since Last Run Run on GnuCash start</guilabel> </para>
+
+           <itemizedlist>
+            <listitem>
+             <para>Run when data file opened: Show the "since last run" window when a file is
+              opened.</para>
+            </listitem>
+           </itemizedlist>
+
           </listitem>
+
           <listitem>
-            <para>Auto-Create new Scheduled Transactions by default: </para>
+           <para><guilabel>Transaction Editor Defaults</guilabel> </para>
+
+           <itemizedlist>
+            <listitem>
+             <para>Auto-create new transactions: Set the 'auto-create' flag on newly created
+              scheduled transactions.</para>
+            </listitem>
+
+            <listitem>
+             <para>Notify before transactions are created: Set the 'notify' flag on newly
+              created scheduled transactions.</para>
+            </listitem>
+
+            <listitem>
+             <para>Create in advance, days:  Create the transaction this many days before its
+              effective date.</para>
+            </listitem>
+
+            <listitem>
+             <para>Remind in advance, days:  Begin notifications this many days before the
+              transaction is created.</para>
+            </listitem>
+           </itemizedlist>
+
           </listitem>
-          <listitem>
-            <para>Notify on new, auto-created Scheduled Transactions: </para>
-          </listitem>
-          <listitem>
-            <para>Default number of days in advance to create: </para>
-          </listitem>
-          <listitem>
-            <para>Default number of days in advance to remind: </para>
-          </listitem>
-          <listitem>
-            <para>Template Register Lines: </para>
-          </listitem>
-        </itemizedlist>
-        <para></para>
+         </itemizedlist>
+
       </sect2>
-      <sect2 id="prefs-user">
-        <title>User Info: </title>
-        <para></para>
+
+      <sect2 id="prefs-window">
+        <title>Windows</title>
+
         <para>This section contains the following preferences;</para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
-            <para>User Name: </para>
+            <para>Window Geometry </para>
+
+           <itemizedlist>
+            <listitem>
+             <para>Save window size and position.</para>
+            </listitem>
+           </itemizedlist>
+
           </listitem>
           <listitem>
-            <para>User Address: </para>
+            <para>Toolbar Style</para>
+
+           <itemizedlist>
+            <listitem>
+             <para>Use system default: Use the system setting for displaying toolbar items.
+             </para>
+            </listitem>
+
+            <listitem>
+             <para>Text below icons: Display toolbar items with the text label below the icon.
+              Labels are show for all items.</para>
+            </listitem>
+
+            <listitem>
+             <para>Priority text beside icons:  Display toolbar items with the text label
+              beside the icon.  Labels are only shown for the most important items.</para>
+            </listitem>
+
+            <listitem>
+             <para>Icons only:  Display toolbar items as icons only.</para>
+            </listitem>
+
+            <listitem>
+             <para>Text only:  Display toolbar items as text only.</para>
+            </listitem>
+           </itemizedlist>
+
           </listitem>
         </itemizedlist>
-        <para></para>
       </sect2>
+
+<!--
+
       <sect2 id="prefs-advanced">
         <title>Advanced: </title>
-        <para></para>
-        <para>This section contains the following preferences (this screen is hidden by default);</para>
-        <para></para>
+
+        <para>This section contains the following preferences (this screen is hidden by
+         default);</para>
+
         <itemizedlist>
           <listitem>
             <para>Save Window Geometry: </para>
@@ -302,246 +854,475 @@
             <para>Number of Rows: </para>
           </listitem>
         </itemizedlist>
-        <para></para>
+
       </sect2>
+-->
+
     </sect1>
+
     <sect1 id="change-style">
       <title>Changing Style Sheets</title>
-      <para></para>
-      <para>GnuCash has two default stylesheets for webpage reports. These stylesheets can be altered by using the HTML Style Sheets editor. To access the editor go to Edit -&gt; Style Sheets...</para>
-      <para></para>
-      <para>To add a new Style Sheet select the New... button in the Style Sheet pane. The New Style Sheet dialog will appear. Fill in the Name: of the new Style Sheet and choose a template. To remove a Style Sheet select the Style Sheet from the list and click Delete.</para>
-      <para></para>
+
+      <para>GnuCash has three default style sheets for web-page reports. These style sheets can
+       be altered by using the HTML Style Sheets editor. To access the editor go to Edit -&gt;
+       Style Sheets...</para>
+
+      <para>Using the Style Sheet Editor you may display/modify the setting of a Style
+       Sheet.</para>
+
+      <note><para>Changing the Style Sheet will change the appearance of all reports
+       that have selected that Style Sheet. A "Reload" is required to view the changes, if
+       the report(s) are currently displayed.</para></note>
+
+      <para>To add a new Style Sheet select the New... button in the Style Sheet pane.
+       The New Style Sheet dialog will appear. Fill in the Name: with the name of the new
+       Style Sheet and choose a template. To remove a Style Sheet select the Style Sheet from
+       the list and click Delete.</para>
+
       <sect2 id="style-default">
-        <title>Default</title>
-        <para></para>
-        <para>The Default Style Sheet has two tabs to alter the appearance of reports, General and Tables. </para>
+        <title>Default Style Sheet</title>
+
+        <para>The Default Style Sheet has two tabs to alter the appearance of reports utilizing
+         it, General and Tables. </para>
+
         <sect3 id="style-def-general">
-          <title>General</title>
-          <para></para>
+          <title>General Tab</title>
+
           <itemizedlist>
             <listitem>
-              <para>Background Color: Opens the color picker to choose a new color.</para>
+              <para><guilabel>Background Color:</guilabel> Opens the color picker to choose
+               a new color.</para>
             </listitem>
+
             <listitem>
-              <para>Background Pixmap: Use the Browse button to select a picture to use as the background in reports.</para>
+              <para><guilabel>Background Pixmap:</guilabel> Use the Browse button to select a
+               picture to use as the background in reports.</para>
             </listitem>
+
             <listitem>
-              <para>Enable Links: Select this to enable blue hyperlinks in reports.</para>
+              <para><guilabel>Enable Links:</guilabel> Select this to enable blue hyperlinks
+               in reports.</para>
             </listitem>
           </itemizedlist>
-          <para></para>
         </sect3>
+
         <sect3 id="style-def-tables">
-          <title>Tables</title>
-          <para></para>
+          <title>Tables Tab</title>
+
           <itemizedlist>
             <listitem>
-              <para>Table cell spacing: Sets the space between table cells</para>
+              <para><guilabel>Table cell spacing:</guilabel> Sets the space between table
+               cells</para>
             </listitem>
+
             <listitem>
-              <para>Table cell padding: Sets the padding between table cells</para>
+              <para><guilabel>Table cell padding:</guilabel> Sets the padding between table
+               cells</para>
             </listitem>
+
             <listitem>
-              <para>Table border width: Sets the width of the borders on tables.</para>
+              <para><guilabel>Table border width:</guilabel> Sets the width of the borders on
+               tables.</para>
             </listitem>
           </itemizedlist>
-          <para></para>
+
         </sect3>
       </sect2>
+
+      <sect2 id="style-easy">
+        <title>Easy Style Sheet</title>
+
+        <para>The Easy Style Sheet has four tabs to alter the appearance of reports, Colors,
+         General, Images and Tables.</para>
+
+        <sect3 id="style-easy-colors">
+          <title>Colors</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Background Color:</guilabel> Opens the color picker to choose a
+               new color.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Text Color:</guilabel> Opens the color picker to choose a new
+               color.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Link Color:</guilabel> Opens the color picker to choose a new
+               color.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Table Cell Color:</guilabel> Opens the color picker to choose a
+               new color.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Alternate Table Cell Color:</guilabel> Opens the color picker to
+               choose a new color.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Subheading/Subtotal Cell Color:</guilabel> Opens the color picker
+               to choose a new color.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Sub-subheading/total Cell Color:</guilabel> Opens the color
+               picker to choose a new color.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Grand Total Cell Color:</guilabel> Opens the color picker to
+               choose a new color.</para>
+            </listitem>
+          </itemizedlist>
+        </sect3>
+
+        <sect3 id="style-easy-general">
+          <title>General</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Preparer:</guilabel> Name of the person preparing the report.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Prepared for:</guilabel> Name of Organization or Company the
+               report is prepared for.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Show preparer info:</guilabel> Show the Preparer information in
+               the report.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Enable Links:</guilabel> Select this to enable blue hyperlinks
+               in reports.</para>
+            </listitem>
+          </itemizedlist>
+        </sect3>
+
+        <sect3 id="style-easy-images">
+          <title>Images</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Background Tile:</guilabel> Use the Browse button to select a
+               picture to use as the background in reports. The "Clear" button will clear the
+               selection.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Heading Banner:</guilabel> Use the Browse button to select a
+               picture to use as the heading in reports.  The "Clear" button will clear the
+               selection.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Heading Alignment:</guilabel> Select from pull-down list; Left,
+               Right, Center, to specify the alignment of the banner at top of report(s).</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Logo:</guilabel> Use the Browse button to select a picture to
+               use as the logo in reports.  The "Clear" button will clear the selection.</para>
+            </listitem>
+          </itemizedlist>
+        </sect3>
+
+        <sect3 id="style-easy-tables">
+          <title>Tables</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Table cell spacing:</guilabel> Sets the space between table
+               cells</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Table cell padding:</guilabel> Sets the padding between table
+               cells</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Table border width:</guilabel> Sets the width of the borders on
+               tables.</para>
+            </listitem>
+          </itemizedlist>
+        </sect3>
+      </sect2>
+
       <sect2 id="style-technicolor">
-        <title>Technicolor</title>
-        <para></para>
-        <para>The Technicolor Style Sheet has four tabs to alter the appearance of reports, Colors, General, Images and Tables.</para>
-        <para></para>
+        <title>Technicolor Style Sheet</title>
+
+        <para>The Technicolor Style Sheet has four tabs to alter the appearance of reports,
+         Colors, General, Images and Tables.</para>
+
         <sect3 id="style-tech-colors">
           <title>Colors</title>
-          <para></para>
+
           <itemizedlist>
             <listitem>
-              <para>Background Color: Opens the color picker to choose a new color.</para>
+              <para><guilabel>Background Color:</guilabel> Opens the color picker to choose a
+               new color.</para>
             </listitem>
+
             <listitem>
-              <para>Text Color: Opens the color picker to choose a new color.</para>
+              <para><guilabel>Text Color:</guilabel> Opens the color picker to choose a new
+               color.</para>
             </listitem>
+
             <listitem>
-              <para>Table Cell Color: Opens the color picker to choose a new color.</para>
+              <para><guilabel>Link Color:</guilabel> Opens the color picker to choose a new
+               color.</para>
             </listitem>
+
             <listitem>
-              <para>Link Color: Opens the color picker to choose a new color.</para>
+              <para><guilabel>Table Cell Color:</guilabel> Opens the color picker to choose a
+               new color.</para>
             </listitem>
+
             <listitem>
-              <para>Alternate Table Cell Color: Opens the color picker to choose a new color.</para>
+              <para><guilabel>Alternate Table Cell Color:</guilabel> Opens the color picker to
+               choose a new color.
+              </para>
             </listitem>
+
             <listitem>
-              <para>Subheading/Subtotal Cell Color: Opens the color picker to choose a new color.</para>
+              <para><guilabel>Subheading/Subtotal Cell Color:</guilabel> Opens the color picker
+               to choose a new color.</para>
             </listitem>
+
             <listitem>
-              <para>Sub-subheading/total Cell Color:Opens the color picker to choose a new color.</para>
+              <para><guilabel>Sub-subheading/total Cell Color:</guilabel> Opens the color
+               picker to choose a new color.</para>
             </listitem>
+
             <listitem>
-              <para>Grand Total Cell Color:Opens the color picker to choose a new color.</para>
+              <para><guilabel>Grand Total Cell Color:</guilabel> Opens the color picker to
+               choose a new color for the grand total cell.</para>
             </listitem>
           </itemizedlist>
-          <para></para>
         </sect3>
+
         <sect3 id="style-tech-general">
           <title>General</title>
-          <para></para>
+
           <itemizedlist>
             <listitem>
-              <para>Preparer: Name of the person preparing the report.</para>
+              <para><guilabel>Preparer:</guilabel> Name of the person preparing the report.
+              </para>
             </listitem>
+
             <listitem>
-              <para>Prepared for: Name of Organization or Company the report is prepared for.</para>
+              <para><guilabel>Prepared for:</guilabel> Name of Organization or Company the
+               report is prepared for.
+              </para>
             </listitem>
+
             <listitem>
-              <para>Show preparer info: Show the Preparer information in the report.</para>
+              <para><guilabel>Show preparer info:</guilabel> Show the Preparer information in
+               the report.</para>
             </listitem>
+
             <listitem>
-              <para>Enable Links: Select this to enable blue hyperlinks in reports.</para>
+              <para><guilabel>Enable Links:</guilabel> Select this to enable blue hyperlinks in
+               reports.</para>
             </listitem>
           </itemizedlist>
-          <para></para>
         </sect3>
+
         <sect3 id="style-tech-images">
           <title>Images</title>
-          <para></para>
+  
           <itemizedlist>
             <listitem>
-              <para>Background Tile: Use the Browse button to select a picture to use as the background in reports.</para>
+              <para><guilabel>Background Tile:</guilabel> Use the Browse button to select a
+               picture to use as the background in reports.  The "Clear" button will clear the
+               selection.</para>
             </listitem>
+
             <listitem>
-              <para>Heading Banner: Use the Browse button to select a picture to use as the heading in reports.</para>
+              <para><guilabel>Heading Banner:</guilabel> Use the Browse button to select a
+               picture to use as the heading in reports.  The "Clear" button will clear the
+               selection.</para>
             </listitem>
+
             <listitem>
-              <para>Logo: Use the Browse button to select a picture to use as the logo in reports.</para>
+              <para><guilabel>Heading Alignment:</guilabel> Select from pull-down list; Left,
+               Right, Center, to specify the alignment of the banner at top of report(s).</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Logo:</guilabel> Use the Browse button to select a picture to use
+               as the logo in reports.  The "Clear" button will clear the selection.</para>
             </listitem>
           </itemizedlist>
-          <para></para>
         </sect3>
+
         <sect3 id="style-tech-tables">
           <title>Tables</title>
-          <para></para>
+
           <itemizedlist>
             <listitem>
-              <para>Table cell spacing: Sets the space between table cells</para>
+              <para><guilabel>Table cell spacing:</guilabel> Sets the space between table
+               cells</para>
             </listitem>
+
             <listitem>
-              <para>Table cell padding: Sets the padding between table cells</para>
+              <para><guilabel>Table cell padding:</guilabel> Sets the padding between table
+               cells</para>
             </listitem>
+
             <listitem>
-              <para>Table border width: Sets the width of the borders on tables.</para>
+              <para><guilabel>Table border width:</guilabel> Sets the width of the borders on
+               tables.</para>
             </listitem>
           </itemizedlist>
-          <para></para>
         </sect3>
       </sect2>
+
     </sect1>
+
     <sect1 id="set-tax-options">
       <title>Setting Tax Options</title>
-      <para></para>
-      <para>The Tax Information dialog is used to set Tax Options. The settings on accounts in this dialog are used by the TXF Export function in reports to select the accounts for export. To access this dialog go to Edit -&gt; Tax Options.</para>
-      <para></para>
-      <para>IMPORTANT: Most TXF codes should only appear on a single account! The exceptions are codes for which the "Payer Name Source" is not grayed, each of which can appear many times. Of course, each duplicate should have a unique payer name. These are typically interest accounts or stocks or mutual funds that pay dividends.</para>
-      <para></para>
+
+<note><para>This material has NOT been reviewed for V2.0.  That does not mean that it is not valid, just that it has not been reviewed.</para></note>
+
+      <para>The Tax Information dialog is used to set Tax Options. The settings on accounts
+       in this dialog are used by the TXF Export function in reports to select the accounts
+       for export. To access this dialog go to Edit -&gt; Tax Options.</para>
+
+      <para>IMPORTANT: Most TXF codes should only appear on a single account! The exceptions
+       are codes for which the "Payer Name Source" is not grayed, each of which can appear
+       many times. Of course, each duplicate should have a unique payer name. These are
+       typically interest accounts or stocks or mutual funds that pay dividends.</para>
+
       <itemizedlist>
         <listitem>
-          <para>Accounts: This pane contains the list of accounts. Select an account to set a TXF category. If no account is selected nothing is changed. If multiple accounts are selected, all of the accounts will be set to the selected item. </para>
+          <para>Accounts: This pane contains the list of accounts. Select an account to set a
+           TXF category. If no account is selected nothing is changed. If multiple accounts
+           are selected, all of the accounts will be set to the selected item. </para>
         </listitem>
+
         <listitem>
-          <para>Tax Related: Select this checkbox to add tax information to an account then select the TXF Category below.</para>
+          <para>Tax Related: Select this check-box to add tax information to an account then
+           select the TXF Category below.</para>
         </listitem>
+
         <listitem>
-          <para>TXF Categories: Select the desired one. A detailed description appears just below.</para>
+          <para>TXF Categories: Select the desired one. A detailed description appears just
+           below.</para>
         </listitem>
+
         <listitem>
-          <para>Payer Name Source: A text description that is exported along with the value of the account. This is usually the name of a bank, stock, or mutual fund that pays dividends or interest. Occasionally, it is a description of a deduction.</para>
+          <para>Payer Name Source: A text description that is exported along with the value
+           of the account. This is usually the name of a bank, stock, or mutual fund that pays
+           dividends or interest. Occasionally, it is a description of a deduction.</para>
         </listitem>
       </itemizedlist>
-      <para></para>
+
       <sect2 id="txf-probs">
         <title>TXF Export - Known Anomalies and Limitations</title>
-        <para></para>
+
         <para>TaxCut 1999 </para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
             <para>Code: N488 "^ Sched B \ Div. income, cap gain distrib."</para>
           </listitem>
+
           <listitem>
             <para>Code: N286 "^ Sched B \ Dividend income"</para>
           </listitem>
         </itemizedlist>
-        <para></para>
-        <para>These two codes, from the same payer, are not correlated. The user will have to adjust for this after import. </para>
-        <para></para>
+
+        <para>These two codes, from the same payer, are not correlated. The user will have to
+         adjust for this after import. </para>
+
         <para>TaxCut 1999, 2000 </para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
             <para>Code: N521 " F1040 \ Federal estimated tax, quarterly"</para>
           </listitem>
         </itemizedlist>
-        <para></para>
-        <para>Does not accept the date field and does not import the individual payment amounts, only the total. The date and individual payment amounts, only matter if you have to compute the penalty. (this may be a TurboTax enhancement) </para>
-        <para></para>
+
+        <para>Does not accept the date field and does not import the individual payment
+         amounts, only the total. The date and individual payment amounts, only matter if you
+         have to compute the penalty. (this may be a TurboTax enhancement) </para>
+
         <itemizedlist>
           <listitem>
             <para>Code: N460 " W-2 \ Salary or wages, self"</para>
           </listitem>
+
           <listitem>
             <para>Code: N506 " W-2 \ Salary or wages, spouse" </para>
           </listitem>
+
           <listitem>
             <para>and other related codes.</para>
           </listitem>
         </itemizedlist>
-        <para></para>
+
         <para>Information from only one job may be imported. </para>
-        <para></para>
+
         <para>TurboTax 1999, 2000 </para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
             <para>Code: N521 " F1040 \ Federal estimated tax, quarterly"</para>
           </listitem>
         </itemizedlist>
-        <para></para>
-        <para>Does not accept the dates outside of the tax year. This is a problem for the last payment that is due Jan 15. GnuCash changes the the date of the last payment to Dec 31. The user will have to adjust for this after import. The date only matters if you have to compute the penalty. </para>
-        <para></para>
+
+        <para>Does not accept the dates outside of the tax year. This is a problem for the
+         last payment that is due Jan 15. GnuCash changes the the date of the last payment to
+         Dec 31. The user will have to adjust for this after import. The date only matters if
+         you have to compute the penalty. </para>
+
         <para>TXF Tax eXport Format </para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
             <para>Duplicate Codes</para>
           </listitem>
         </itemizedlist>
-        <para></para>
-        <para>Most codes are not supposed to appear more than once. GnuCash issues an error message if it detects this, but will still export the data. These are not handled the same by TaxCut and TurboTax.</para>
-        <para></para>
+
+        <para>Most codes are not supposed to appear more than once. GnuCash issues an error
+         message if it detects this, but will still export the data. These are not handled the
+         same by TaxCut and TurboTax.</para>
+
         <itemizedlist>
           <listitem>
             <para>TurboTax</para>
           </listitem>
         </itemizedlist>
-        <para></para>
+
         <para>Sums the duplicate codes. i.e., job one and job two are added together.</para>
-        <para></para>
+
         <itemizedlist>
           <listitem>
             <para>TaxCut</para>
           </listitem>
         </itemizedlist>
-        <para></para>
-        <para>Keeps only the LAST of the duplicate codes. i.e., job one is ignored and job two is kept. </para>
-        <para></para>
+
+        <para>Keeps only the LAST of the duplicate codes. i.e., job one is ignored and job
+         two is kept. </para>
+
       </sect2>
+
       <sect2 id="txf-defs">
         <title>Detailed TXF Category Descriptions</title>
-        <para></para>
+
         <para>Table 32. Detailed TXF Category Descriptions</para>
-        <para></para>
+
 	&txf-categories;
       </sect2>
     </sect1>
