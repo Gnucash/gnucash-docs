@@ -51,7 +51,7 @@ fi
 #${GETTEXTIZE}
 ${LIBTOOLIZE} -f --automake
 ${ACLOCAL} ${ACLOCAL_FLAGS}
-${AUTOHEADER}
+#${AUTOHEADER}
 ${AUTOMAKE} --add-missing
 ${AUTOCONF}
 
