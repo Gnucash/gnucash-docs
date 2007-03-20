@@ -22,7 +22,8 @@ entities = \
 	ch_budgets.xml \
 	appendixa.xml \
 	appendixb.xml \
-	appendixc.xml
+	appendixc.xml \
+	appendixd.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
 DISTCLEANFILES =  gnucash-guide-C.omf.out
