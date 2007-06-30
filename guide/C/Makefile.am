@@ -27,3 +27,18 @@ entities = \
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
 DISTCLEANFILES =  gnucash-guide-C.omf.out
+
+# 2007-06-30, jsled: PDF creation "support".  This sucks.
+#
+# http://www.linuxfocus.org/English/May2000/article152.shtml
+# http://www.ecos.sourceware.org/ml/docbook-apps/2001-q4/msg00168.html
+#
+# "|| true" because both commands "fail" for me. :p
+#
+# Note the stderr and stdout redirections. :/
+#
+# It seems it might be wiser to use XSL-FO instead, c.f.
+# <http://sagehill.net/docbookxsl/PrintOutput.html>
+pdf:
+	docbook2tex -d /usr/share/sgml/docbook/dsssl-stylesheets-1.79/print/docbook.dsl gnucash-guide.xml 2> /dev/null || true 
+	pdfjadetex gnucash-guide.tex > /dev/null || true
