@@ -521,26 +521,21 @@ Note: the currency of each account is shown in parenthesis.
     <sect2 id="currency_purchase3">
       <title>Purchasing foreign stocks</title>
 
-      <para>A more complicated example</para>
-
-      <para>This example will show how to deal with having stocks in a
+      <para>This example will show how to purchase stocks that are priced in a
       different currency than your normal currency.</para>
 
-      <para>In this example you live in America and therefore you have set the
-      default Currency to USD. You decide to purchase some stocks in Hong Kong.
-      </para>
+      <para>Assume that you live in New York and therefore you have set the
+      default currency to USD. You decide to purchase a stock traded in Hong
+      Kong that is priced in HKD. You would also like to be able to track the
+      various income and expenses per stock and broker.</para>
 
-      <para>You would also like to be able to track the various income and
-      expenses per stock and broker.</para>
-
-      <para>The stock you want to purchase are Beijing Airport (Hong Kong)
-      (Afterall the 2008 Olympics in Beijing should bring in a lot of business
-      to the airport)</para>
+      <para>You decide to purchase stock in the Beijing Airport (Hong Kong).
+      (After all, the 2008 Olympics in Beijing have finished and the price has
+      returned to Earth.)</para>
 
       <note><para>
-         The above stock (Beijing Airport) are just choosen
-         for this particular example, and should not be taken as any kind of 
-         stock purchase advice 
+         The above stock (Beijing Airport) has been chosen only as an example,
+         and should not be taken as any kind of stock purchase advice.
       </para></note>
 
       <para>You need to find out what the stock ticker is for this 
@@ -558,7 +553,7 @@ Note: the currency of each account is shown in parenthesis.
       </itemizedlist>
       
       <para>Since we wanted to be able to track all various incomes and expenses,
-      we come up with the following Account structure</para>
+      we come up with the following Account structure:</para>
 
       <literallayout>
 Assets:Investments:Brokerage Accounts:Boom:0694.HK     (Beijing Airport)
@@ -569,7 +564,7 @@ Income:Investments:Dividend:Boom:0694.HK               (HKD)
       </literallayout>
       
       <para>The Chart of Accounts looks like this after creating all the
-      needed accounts</para>
+      needed accounts:</para>
 
       <screenshot id="currency_purchase_BeforeStocks.png">
         <mediaobject>
@@ -587,8 +582,9 @@ Income:Investments:Dividend:Boom:0694.HK               (HKD)
         </mediaobject>
       </screenshot>
 
-      <para>The various commodities (<guimenu>Tools</guimenu> -&gt; 
-      <guimenu>Security Editor</guimenu>) looks like this</para>
+      <para>The stock definition can be seen in the Security Editor.
+      (<guimenu>Tools</guimenu> -&gt; <guimenu>Security Editor</guimenu>)
+      </para>
 
       <screenshot id="currency_purchase_Commodities.png">
         <mediaobject>
@@ -598,41 +594,33 @@ Income:Investments:Dividend:Boom:0694.HK               (HKD)
           </imageobject>
 
           <textobject>
-            <phrase>International commodities</phrase>
+            <phrase>International securities</phrase>
           </textobject>
 
-          <caption><para>International commodities</para></caption>
+          <caption><para>International securities</para></caption>
         </mediaobject>
       </screenshot>
 
-      <note><para>
-         There is currently a small bug ( 
+      <para>If you have not moved some money (HKD 50,000) into the brokerage's
+      cash account (Assets:Investments:Brokerage Account:Boom:Bank), do so
+      now, either using the Equity (HKD) account, or an existing bank account
+      (Currency Transfer).</para>
 
-        <ulink 
-          url="http://bugzilla.gnome.org/show_bug.cgi?id=335101"><citetitle>335101</citetitle>
-        </ulink>
-
-         ) in GnuCash, that makes it impossible to buy a stock in a different currency than the default directly from the commodity account. The simple workaround is to open the associated bank account and enter the transaction from here. 
-      </para></note>
-
-      <para>If you have not moved some cash (HKD50,000) to the corresponding stocks bank
-      account, do so now. Either using the Equity (HKD) account, or by transfering
-      money from an existing bank account (Currency Transfer).</para>
-
-      <para>To record this stock purchase, you have to open the stocks associated
-      bank account (Assets:Investments:Brokerage Account:Boom:Bank), and there enter
-      the following information</para>
+      <para>Let's assume that stock price is HKD 3 per share. To record the
+      purchase, open the brokerage's HKD cash account
+      (Assets:Investments:Brokerage Account:Boom:Bank), and enter
+      the following:</para>
 <literallayout>
-Buy Stocks 
+Buy Stocks
 	Assets:Investments:Brokerage Account:Boom:Bank  Withdrawal 50,000
 	Expenses:Investments:Commission:Boom_HKD	Deposit 500
 	Assets:Investments:Brokerage Account:Boom:0694  Deposit 49,500 (16,500 shares)
-    </literallayout>
+</literallayout>
 
-      <para>If the "Exchange Data" dialog popup do not appear, open it
-      manually by right click on the last row, and select <guilabel>Edit
-      Exchange Rate</guilabel> In the following pop up window, enter the
-      actual number of stocks (16,500) as the <guilabel>To Amount:</guilabel> 
+      <para>If the exchange rate dialog box does not appear automatically,
+      right-click on the stock row, and select <guilabel>Edit
+      Exchange Rate</guilabel>. Enter the number of shares (16,500) as the
+      <guilabel>To Amount</guilabel>.
       </para>
       
       <screenshot id="currency_purchase_ToAmount.png">
@@ -646,15 +634,12 @@ Buy Stocks
             <phrase>Transfer Funds</phrase>
           </textobject>
 
-          <caption><para>Setting To Amount in the Transfer Funds dialog</para></caption>
+          <caption><para>Setting the number of shares in the Transfer Funds dialog</para></caption>
         </mediaobject>
       </screenshot>
 
-      <para>When you exit the exchange dialog, and Enter this transaction GnuCash will 
-      update the stock purchase transaction with all relevant data.</para>
-    
-      <para>If you now go back to the main Chart of Accounts, you will see something like
-      this</para>
+      <para>If you return to the Chart of Accounts, you will see the
+      purchased shares reflected in the stock account's total.</para>
       
       <screenshot id="currency_purchase_AfterStocks.png">
         <mediaobject>
@@ -672,11 +657,25 @@ Buy Stocks
         </mediaobject>
       </screenshot>
 
-      <para>As you can see, everything is in its own Currency, and this is because GnuCash
-      do not have any exchange rates between USD and HKD. To remedy this go to
+      <para>However, as you can see, the USD totals may be zero if
+      GnuCash doesn't have an exchange rate between USD and HKD.
+      To fix this, go to
       <guimenu>Tools</guimenu> -&gt; <guimenu>Price Editor</guimenu>
-      and click on the <guibutton>Get Quotes</guibutton> button to
-      automatically load the various exchange rates you need.</para>
+      and click the <guibutton>Get Quotes</guibutton> button to
+      automatically retrieve the exchange rates you need.</para>
+
+      <note>
+        <para>This example shows how stock can be purchased in any currency
+         by entering the transaction in the register of the cash account used
+         to make payment. It is also possible to enter the purchase
+         in the stock account's register, but proceed with caution!
+         When doing it that way, the stock is assumed to be priced
+         in the currency of the stock account's parent.</para>
+        <para>In this example, the stock account's parent
+         (Assets:Investments:Brokerage Account:Boom) is denominated in HKD.
+         Since this is same currency as the stock price, the purchase
+         can be safely entered in the stock account's register.</para>
+      </note>
 
     </sect2>
     
