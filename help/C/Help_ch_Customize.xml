@@ -1,7 +1,8 @@
 <!--
       (Do not remove this comment block.)
   Version: 2.0.1
-  Last modified: March 21th 2007
+  Last modified: August 2nd 2008
+       modified: March 21th 2007
        modified: August 2nd 2006
        modified: July 9th 2006
        modified: February 28th 2005
@@ -1191,18 +1192,18 @@
     <sect1 id="set-tax-options">
       <title>Setting Tax Options</title>
 
-<note>
-<para>This material has NOT been reviewed for V2.0.  That does not mean that it is not valid, just that it has
-not been reviewed.</para></note>
-
       <para>The Tax Information dialog is used to set Tax Options. The settings on accounts
        in this dialog are used by the TXF Export function in reports to select the accounts
        for export. To access this dialog go to Edit -&gt; Tax Options.</para>
 
-      <para>IMPORTANT: Most TXF codes should only appear on a single account! The exceptions
-       are codes for which the "Payer Name Source" is not grayed, each of which can appear
-       many times. Of course, each duplicate should have a unique payer name. These are
-       typically interest accounts or stocks or mutual funds that pay dividends.</para>
+      <para>A given TXF code can be assigned to multiple accounts. The Tax report will 
+       combine accounts by code and generate a detailed TXF record for each account and a
+       summary TXF record for the total as calculated by the report. For codes for which
+       the "Payer Name Source" is not grayed, the payer on the TXF record will be based on
+       what is specified here, either the account name of the account or the account name
+       of the account's parent account. This feature is typically used for interest accounts
+       or stocks or mutual funds that pay dividends where the individual payees are shown on
+       the tax schedule.</para>
 
       <itemizedlist>
         <listitem>
@@ -1284,8 +1285,9 @@ not been reviewed.</para></note>
 
         <para>Does not accept the dates outside of the tax year. This is a problem for the
          last payment that is due Jan 15. GnuCash changes the the date of the last payment to
-         Dec 31. The user will have to adjust for this after import. The date only matters if
-         you have to compute the penalty. </para>
+         Dec 31 for the export unless the "Do not use special date processing" option is
+         selected in the report display tab. The user will have to adjust for this after import.
+         The date only matters if you have to compute the penalty. </para>
 
         <para>TXF Tax eXport Format </para>
 
@@ -1295,26 +1297,15 @@ not been reviewed.</para></note>
           </listitem>
         </itemizedlist>
 
-        <para>Most codes are not supposed to appear more than once. GnuCash issues an error
-         message if it detects this, but will still export the data. These are not handled the
-         same by TaxCut and TurboTax.</para>
-
-        <itemizedlist>
-          <listitem>
-            <para>TurboTax</para>
-          </listitem>
-        </itemizedlist>
-
-        <para>Sums the duplicate codes. i.e., job one and job two are added together.</para>
-
-        <itemizedlist>
-          <listitem>
-            <para>TaxCut</para>
-          </listitem>
-        </itemizedlist>
-
-        <para>Keeps only the LAST of the duplicate codes. i.e., job one is ignored and job
-         two is kept. </para>
+        <para>Codes can be assigned to multiple accounts and the amounts will be summed
+         for all the accounts generating one detail TXF record per account and one summary TXF
+         record for the sum. Codes that let you select "Payer Name Source" will generate a
+         separate summary TXF account with each change in payer. Selecting the "Print TXF
+         export parameters" option will cause the report to show to which codes this applies
+         (Multiple Copies Y) and, for the accounts assigned to those codes, the Name Source
+         each account is set to and the TXF Line that will be assigned to each. A summary TXF
+         record will be generated for each change in assigned line number. These may not be 
+         handled the same by TaxCut and TurboTax.</para>
 
       </sect2>
 
