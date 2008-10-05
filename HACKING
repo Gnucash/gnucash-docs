@@ -92,3 +92,55 @@ Neil Williams
 <linux@codehelp.co.uk>
 9th March 2005.
 
+--------------------
+
+Generating PDF
+
+Currently the Guide docbook source is capable of supporting the generation of
+pdf output, but it may take a little work to assemble the tools if you don't
+have them.  The following is based on a Linux Fedora Core 7 installation.
+
+Required:
+
+  1. docbook-xsl >= 1.74.0
+
+     available at: http://docbook.sourceforge.net
+
+     Follow the first link to the download site, then choose the "docbook-xsl"
+     package.  I can find nothing specific about installation, but I think the
+     preferred place to unpack the package is in /usr/local/share.
+
+     Note the location of the file 'docbook.xsl'.  Point to it by assigning it
+     to an environment variable DOCBOOK_XSL.  In this case, for csh or tcsh users:
+
+        setenv DOCBOOK_XSL /usr/local/share/docbook-xsl-1.74.0/fo/docbook.xsl
+
+     or for sh or bash users:
+
+        export DOCBOOK_XSL=/usr/local/share/docbook-xsl-1.74.0/fo/docbook.xsl
+
+     (Note: I find the www.docbook.org site very confusing--full of circular
+     references to the source of the docbook xml style sheets, but no specific
+     link that is easily found.)
+
+  2. Apache Fop >= 0.95
+
+     available at: http://xmlgraphics.apache.org/fop
+
+     requires:
+
+     a.  Sun Java JDK >= 1.4
+         available at: http://java.sun.com/javase/downloads/index.jsp
+
+         (I chose the "JDK 6 Update 7" download.)
+
+     b.  ant >= 1.7
+         available at: http://ant.apache.org
+
+You may need additional xml tools, but they should be available through the yum
+update if they are not already installed.
+
+Tom Browder
+<tom.browder@gmail.com>
+Niceville, Florida
+2008-10-02

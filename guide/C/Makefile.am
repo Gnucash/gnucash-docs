@@ -28,17 +28,19 @@ include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
 DISTCLEANFILES =  gnucash-guide-C.omf.out
 
-# 2007-06-30, jsled: PDF creation "support".  This sucks.
+# 2008-10-02, Tom Browder: PDF creation.
 #
-# http://www.linuxfocus.org/English/May2000/article152.shtml
-# http://www.ecos.sourceware.org/ml/docbook-apps/2001-q4/msg00168.html
+# See README and HACKING.
 #
-# "|| true" because both commands "fail" for me. :p
+# For now, the environment variable, 'DOCBOOK_XSL', must be set manually.
 #
-# Note the stderr and stdout redirections. :/
-#
-# It seems it might be wiser to use XSL-FO instead, c.f.
-# <http://sagehill.net/docbookxsl/PrintOutput.html>
+# To do: Fix configure to find the right tools and pieces and make the target
+# if all parts are found.
+
+CLEANFILES = gnucash-guide.pdf gnucash-guide.fo
 pdf:
-	docbook2tex -d /usr/share/sgml/docbook/dsssl-stylesheets-1.79/print/docbook.dsl gnucash-guide.xml 2> /dev/null || true 
-	pdfjadetex gnucash-guide.tex > /dev/null || true
+	fop -xml gnucash-guide.xml -xsl $(DOCBOOK_XSL) -pdf gnucash-guide.pdf
+
+# for debugging intermediate output
+pdf-debug:
+	fop -d -xml gnucash-guide.xml -xsl $(DOCBOOK_XSL) -foout gnucash-guide.fo
