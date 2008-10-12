@@ -1,0 +1,1417 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally designed by Carol Champagne.
+  Translators:
+               Cristian Marchi <cri79@libero.it> 2008
+-->
+<chapter id="chapter_currency">
+  <title>Valute multiple</title>
+
+  <para>Questo capitolo mostra come configurare i conti in GnuCash per l'utilizzo di valute multiple.</para>
+
+  <sect1 id="currency_concepts1">
+    <title>Concetti di base</title>
+
+    <para>GnuCash è in grado di utilizzare valute multiple in conti differenti. Per esempio, si può avere un conto in Euro e un altro
+    in dollari di Hong Kong.</para>
+
+    <para>Alcuni dei problemi che sorgono quando si utilizzano più valute, si 
+    riferiscono a come trasferire fondi tra conti con diversa valuta, come 
+    calcolare il valore totale di conti che hanno valute diverse e come trattare
+    i resoconti di affari con valute miste.</para>
+  </sect1>
+
+  <sect1 id="currency_acct1">
+    <title>Configurare i conti</title>
+
+    <para>La valuta predefinita per un conto è impostata in <guimenu>Modifica</guimenu>
+    -&gt; <guimenu>Preferenze</guimenu> -&gt; <guimenu>Conti</guimenu>
+    -&gt; <guilabel>Valuta predefinita</guilabel>. Questo parametro dovrebbe
+    essere settato correttamente da subito al fine di rendere più veloce il 
+    processo di creazione di una struttura dei conti.</para>
+
+    <para>Quando si crea un nuovo conto, è possibile definire la commodity.
+    Per i conti in valuta, si può scegliere fra una delle centinaia di valute
+    supportate da GnuCash selezionandola semplicemente dalla lista delle commodity
+    in valuta. Si noterà come la valuta predefinita sia sempre quella impostata 
+    nelle preferenze; così, se si lavora prevalentemente con l'Euro, ma si
+    ha anche saltuariamente a che fare con il Birr Etiope, conviene impostare 
+    la valuta predefinita in Euro.</para>
+
+    <para>Per esempio, si imposti un tipico scenario di conto bancario in cui
+    venga utilizzato prevalentemente l'Euro (EUR), ma si possegga anche un conto
+    in una banca degli Stati Uniti che lavori prevalentemente in dollari Americani 
+    (USD) e infine un altro conto ad Hong Kong che utilizzi il dollaro di Hong Kong
+    (HKD). Si devono quindi impostare 3 conti, uno con l'Euro, uno con i dollari 
+    Americani e uno con i dollari di Hong Kong; una possibile struttura per questa
+    situazione potrebbe essere:</para>
+
+    <literallayout>
+-Attività                          (EUR)
+   -Attività correnti              (EUR)
+      -Banca Europea    (EUR)
+      -Banca USA        (USD)
+      -Banca di HK      (HKD)
+-Capitale                          (EUR)
+   -Bilanci di apertura
+      -EUR              (EUR)
+      -USD              (USD)   
+      -HKD              (HKD)
+
+Nota: la valuta associata ad ogni conto è mostrata tra parentesi.
+ </literallayout>
+
+    <para>Dato che in questo esempio si è lavorato prevalentemente in Euro, tutti i
+    conti padre sono impostati in Euro. Naturalmente, se si lavora in USD, è possibile
+    cambiare la valuta dei conti padre in USD. Il totale mostrato nella finestra
+    della struttura ad albero dei conti, verrà sempre convertito nella valuta 
+    di ogni particolare conto. Si noti che sono stati anche impostati 3 bilanci
+    di apertura, utilizzati per popolare i 3 conti bancari.</para>
+
+    <note>
+      <para>E' anche possibile impostare solo un singolo conto per il bilancio 
+      d'apertura e utilizzare un trasferimento di valuta per popolare i
+      conti con valuta differente. Comunque questa è un'opzione più avanzata
+      che verrà descritta in una sezione successiva (<xref linkend="currency_purchase2" />.</para>
+    </note>
+
+    <para>Più sotto è visibile il risultato di questo esempio in cui si parte
+    con 10.000 EUR, 10.000 USD e 10.000 HKD nei tre conti bancari.
+    Si noti che il totale dei conti padre mostra solo il saldo
+    dei sottoconti con valute corrispondenti. In futuro si potranno stabilire
+    i tassi di cambio tra le valute e i conti padre calcoleranno il valore 
+    convertito di tutti i sottoconti. Consultare la sezione 
+    (<xref linkend="currency_howto1" />) per le istruzioni su come fare.</para>
+    
+    <screenshot id="currency_main1">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/currency_main1.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Impostazione iniziale di un conto bancario con valute multiple</phrase>
+        </textobject>
+
+        <caption><para>Impostazione iniziale di 3 conti bancari con valute multiple.</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>Si noti che la colonna "Totale (Resoconto)" è visualizzata. Questa opzione è configurabile
+    cliccando sulla <guibutton>freccia giù</guibutton> nella riga di intestazione delle colonne 
+    e selezionando <quote>Totale(EUR)</quote>.</para>
+  </sect1>
+
+  <sect1 id="currency_support1">
+    <title>Supporto di GnuCash alle valute</title>
+
+    <para>GnuCash supporta oltre un centinaio di valute, dal franco di Andorra
+    al dollaro dello Zimbabwe. E' inoltre disponibile il supporto a valute meno
+    utilizzate (!) quali il dollaro Americano, il dollaro Canadese, l'Euro Europeo e
+    la sterlina Inglese.</para>
+  </sect1>
+
+  <sect1 id="currency_prefs1">
+    <title>Impostare le preferenze internazionali</title>
+
+    <para>GnuCash permette di impostare le seguenti preferenze internazionali</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Valuta predefinita con cui si desidera visualizzare i
+        nuovi registri
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>Valuta predefinita con cui si desidera visualizzare i
+        resoconti</para>
+      </listitem>
+
+      <listitem>
+        <para>Formato di Data e Ora</para>
+      </listitem>
+
+    </itemizedlist>
+
+    <para>Per maggiori dettagli sulle preferenze di internazionalizzazione
+    disponibili, consultare <xref linkend="basics-prefs1" /></para>
+  </sect1>
+
+  <sect1 id="currency_howto1">
+    <title>Registrare e aggiornare i tassi di cambio per le valute (come fare)</title>
+
+    <para>GnuCash è in grado di aggiornare i tassi di cambio delle valute in 
+    due modi, uno manuale e uno automatico. Nelle due sezioni seguenti
+    verranno illustrate entrambe le procedure.</para>
+
+    <para>Prima di iniziare, è bene dare uno sguardo alla struttura dei conti</para>
+
+    <screenshot id="currency_main1a">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/currency_main1.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Impostazione iniziale multi-valuta dei conti bancari</phrase>
+        </textobject>
+
+        <caption><para>Impostazione iniziale di 3 conti bancari con valute 
+        differenti.</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <sect2 id="currency_howto_Manual">
+      <title>Aggiornare manualmente i tassi di cambio</title>
+
+      <para>Si apra l'editor dei prezzi andando in <guimenu>Strumenti</guimenu> -&gt;
+      <guimenu>Editor prezzi</guimenu>.</para>
+
+      <screenshot id="currency_BeforeGetOnlineQuotes">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_BeforeGetOnlineQuotes.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra dell'editor prezzi</phrase>
+          </textobject>
+
+          <caption><para>Finestra dell'editor prezzi. </para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Scegliere il pulsante <guibutton>Aggiungi</guibutton> per aggiungere un
+      nuovo tasso di cambio per la valuta. Verrà aperta una finestra che permette di scegliere
+      la commodity per cui si vuole definire il tasso di cambio. Premere
+      <guibutton>Seleziona</guibutton>, impostare il <guilabel>Tipo</guilabel> a
+      valuta e il campo <guilabel>Titolo/valuta</guilabel> a EUR (Euro).
+      La finestra dovrebbe apparire simile a questa:</para>
+
+      <screenshot id="currency_selectcurr">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_selectcurr.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Selezionare come commodity l'Euro</phrase>
+          </textobject>
+
+          <caption><para>Finestra della scelta della commodity nell'editor dei prezzi</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Premere <guibutton>Ok</guibutton> e nella finestra di scelta della 
+      commodity, impostare il tasso di cambio tra la commodity selezionata e
+      la valuta corrente. In questo esempio, si imposterà il tasso di cambio
+      a 1EUR uguale a 1USD.</para>
+
+      <screenshot id="currency_selectcomm">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_selectcomm.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Scelta della commodity</phrase>
+          </textobject>
+
+          <caption><para>Finestra dell'editor prezzi per la scelta della commodity</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <screenshot id="currency_peditor">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_peditor.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra dell'editor prezzi</phrase>
+          </textobject>
+
+          <caption><para>La Finestra dell'editor prezzi dopo aver impostato
+          il tasso di cambio tra Euro e dollaro USA</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <screenshot id="currency_main2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_main2.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Struttura dei conti</phrase>
+          </textobject>
+
+          <caption><para>Struttura dei conti dopo aver impostato il
+          tasso di cambio tra Euro e dollaro USA.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Si osservi che poiché non è stato impostato il tasso di cambio
+        per HKD, GnuCash non converte l'HKD in EUR. Questo verrà aggiunto nella sezione 
+        successiva.</para>
+    </sect2>
+
+    <sect2 id="currency_howto_Auto">
+      <title>Aggiornare automaticamente i tassi di cambio</title>
+
+      <para>Nella sezione precedente è stato mostrato come sia possibile
+      definire manualmente un nuovo tasso di cambio per una valuta. Esiste 
+      però un metodo più semplice per ottenere lo stesso risultato.</para>
+
+      <para>Si apra la finestra dell'editor dei prezzi dal menu <guimenu>Strumenti</guimenu> -&gt;
+      <guimenu>Editor prezzi</guimenu>.</para>
+
+      <screenshot id="currency_BeforeGetOnline">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_peditor.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra dell'editor prezzi</phrase>
+          </textobject>
+
+          <caption><para>Finestra dell'editor prezzi prima di ottenere le
+          quotazioni online.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Premere il pulsante <guibutton>Ricevi quotazioni</guibutton> per caricare
+      automaticamente i vari tassi di cambio di cui si ha bisogno.</para>
+
+      <note><para>
+         Se il pulsante <guibutton>Ricevi quotazioni</guibutton> è disabilitato, 
+         significa che il modulo di PerlFinance::Quote non è installato. 
+         Per informazioni su come installarlo, consultare
+         <xref linkend="invest-stockprice-auto2" ></xref>
+      </para></note>
+
+      <para><screenshot id="currency_AfterGetOnlineQuotes">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/currency_AfterGetOnlineQuotes.png"
+                         format="PNG" srccredit="Bengt Thuree" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Finestra dell'editor prezzi</phrase>
+            </textobject>
+
+            <caption><para>Finestra dell'editor prezzi dopo aver ottenuto le 
+            quotazioni online. </para></caption>
+          </mediaobject>
+        </screenshot></para>
+
+      <para>GnuCash scaricherà autonomamente i tassi di cambio per
+      tutte le valute utilizzate nei vari conti. Questo accadrà ogni
+      qualvolta verrà premuto il pulsante <guibutton>Ricevi quotazioni</guibutton>
+      o se si è impostato GnuCash per scaricare automaticamente le quotazioni
+      o i tassi di cambio come descritto in <xref
+      linkend="invest-stockprice-auto2" /></para>
+
+      <para>Tornando ora alla struttura principale dei conti, si noterà che
+      GnuCash ha automaticamente convertito l'importo in HKD in EUR nei conti
+      padre che sono in Euro come anche nella colonna del Totale (EUR).
+      Inoltre i conti in dollari USA sono stati aggiornati con gli ultimi
+      tassi di cambio.</para>
+
+      <screenshot id="currency_main3.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_main3.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra dell'editor prezzi</phrase>
+          </textobject>
+
+          <caption><para> Struttura dei conti dopo aver ottenuto le quotazioni
+          online.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+    <sect2 id="currency_howto_disable">
+      <title>Come disabilitare il recupero della valuta</title>
+      <para>Il recupero delle quotazioni della valuta, inizierà nel momento in cui verranno creati 
+      dei conti con una valuta diversa da quella predefinita e non si arresterà fino a quando
+      non verranno cancellati questi conti da GnuCash.</para>
+      <para>
+        Quando sarà stato cancellato anche l'ultimo conto con una particolare valuta e non si vorrà 
+        ricevere più gli aggiornamenti sulla valuta, procedere nel seguente modo:
+      </para>
+      <itemizedlist>
+        <listitem>
+          <para><guimenu>Strumenti</guimenu> -&gt; <guimenu>Editor prezzi</guimenu></para>
+        </listitem>
+        <listitem>
+          <para>espandere la riga denominata CURRENCY (valuta)</para>
+        </listitem>
+        <listitem>
+          <para>Fare un doppio clic sulla valuta per cui si desidera disabilitare l'aggiornamento 
+          delle quotazioni.</para>
+        </listitem>
+        <listitem>
+          <para>Deselezionare l'opzione <guilabel>Ricevi quotazioni online</guilabel></para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="currency_purchase1">
+    <title>Registrare gli acquisti in valuta estera (come fare)</title>
+
+    <para>E' possibile operare in due modi differenti.</para>
+
+    <para>1) utilizzando la funzione fornita da GnuCash per il cambio della valuta
+    tra i conti quando si effettuano delle transazioni. Questo è utile principalmente
+    per le transazioni che avvengono in una volta sola e non per quelle che
+    avvengono ripetutamente.</para>
+
+    <para>2) Utilizzando conti separati per questi acquisti, dove tutti i conti
+    interessati utilizzano la stessa valuta. Questo è il metodo raccomandato, dato che
+    permette di seguire e tracciare meglio le operazioni. In questo modo, si
+    esegue una sola transazione per il cambio di valuta e dopo di questa si
+    operano delle normali transazioni.</para>
+
+    <para>Nel prosieguo di questa sezione, ci si baserà su una impostazione del tipo
+    2)</para>
+
+    <sect2 id="currency_purchase2">
+      <title>Acquistare un bene in valuta estera</title>
+
+      <para>Si ipotizzi che la propria residenza abituale sia in Emilia-Romagna, quindi si utilizzi
+      l'EURO come valuta predefinita; ma, amando i viaggi alle Bahamas per la pesca,
+      si decida di acquistare una barca. Per farlo, si apra un conto bancario in Jamaica,
+      si trasferisca del denaro dall'Italia e poi si effettui l'acquisto della barca
+      dei propri sogni (in versione ridotta (!)).</para>
+
+      <para>Per registrare tutto questo in GnuCash si utilizzerà la seguente struttura 
+      dei conti</para>
+
+      <literallayout>
+-Attività                        (EUR)
+   -Attività correnti              (EUR)
+      -Banca italiana       (EUR)
+      -Banca Jamaicana      (JMD)
+   -Beni immobili                  (EUR)
+      -Barca                (JMD)
+-Capitale                        (EUR)
+   -Bilanci di apertura
+      -EUR                  (EUR)
+
+Nota: la valuta di ogni conto è riportata fra parentesi.
+ </literallayout>
+
+      <para>Dapprima occorre trasferire del denaro (€10.000) in Jamaica utilizzando
+      il conto bancario abituale in Italia (con un saldo di €100.000). La banca
+      fissa un tasso di cambio di 1 EUR = 64 JMD e addebita €150 per il
+      trasferimento del denaro.</para>
+
+      <screenshot id="currency_purchase_MoveMoney.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_purchase_MoveMoney.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Trasferimento di valuta</phrase>
+          </textobject>
+
+          <caption><para>Trasferimento di denaro in Jamaica</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Selezionare la riga della transazione in Jamaica (€9.850,00), premere il tasto 
+      destro del mouse e selezionare <guilabel>Modifica tasso di cambio</guilabel></para>
+
+      <screenshot id="currency_purchase_SetExchangeRate.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_purchase_SetExchangeRate.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Modifica tasso di cambio</phrase>
+          </textobject>
+
+          <caption><para>La finestra in cui viene specificato il tasso di cambio per una
+          transazione in valuta</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Come tasso di cambio si immetta 1 EUR = 64 JMD, dato che questo è il valore
+      fornito dalla propria banca. Premere «Ok» nella finestra di trasferimento del fondo 
+      (modifica del tasso di cambio) e salvare la transazione suddivisa. Sotto è riportata
+      un'immagine di come dovrebbe presentarsi la struttura dei conti principale.</para>
+
+      <screenshot id="currency_purchase_BeforeBoat.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_purchase_BeforeBoat.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Struttura dei conti prima dell'acquisto della barca</phrase>
+          </textobject>
+
+          <caption><para>Struttura dei conti prima dell'acquisto della 
+          barca</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Si supponga di aver trovato la barca e, poiché si tratta di un affare a soli JMD 509.000, si 
+      decide di acquistarla. Per registrare questa transazione in GnuCash, basta
+      inserire una semplice transazione nel conto Attività:Attività correnti:Banca Jamaicana
+      prelevando 509.000 JMD e trasferendoli in Attività:Beni immobili:Barca</para>
+
+      <screenshot id="currency_purchase_AfterBoat.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_purchase_AfterBoat.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Struttura dei conti dopo l'acquisto della barca</phrase>
+          </textobject>
+
+          <caption><para>Struttura dei conti dopo l'acquisto della 
+          barca</para></caption>
+        </mediaobject>
+      </screenshot>
+      <para>La struttura dei conti mostra ora che il conto in banca è stato ridotto
+      del valore della barca (JMD 509.000), e che il conto della barca nei beni immobili
+      è aumentato dello stesso importo. Se è anche stato attivato nel CoA (scelta
+      delle colonne) la voce "Totale (EUR)", verrà mostrato il valore corrispondente
+      in EURO. Il valore in EURO rispecchierà sempre l'ultimo tasso di cambio che è
+      stato automaticamente o manualmente aggiornato con GnuCash.
+      </para>
+    </sect2>
+
+    <sect2 id="currency_purchase3">
+      <title>Acquistare azioni estere</title>
+
+      <para>Un esempio più complicato</para>
+
+      <para>Questo esempio mostra come trattare le azioni che si posseggono in una valuta
+      differente da quella normale.</para>
+
+      <para>In questo esempio si ipotizza di essere in Italia e di aver quindi impostato
+      la valuta predefinita a EUR. Si decide di acquistare alcune azioni a Hong Kong.
+      </para>
+
+      <para>Si desidera anche essere in grado di registrare le varie entrate e uscite
+      per ogni azione e per mediatore.</para>
+
+      <para>Le azioni che si desidera acquistare sono le Beijing Airport (Hong Kong)
+      (Dopotutto le Olimpiadi del 2008 a Beijing dovrebbero portare molti affari 
+      all'aeroporto).</para>
+
+      <note><para>
+         Le azioni di cui sopra (Beijing Airport) sono state scelte solo per
+         le finalità di questo esempio, e non dovrebbero essere prese come una pubblicità
+         per l'acquisto delle azioni.
+      </para></note>
+
+      <para>E' necessario trovare quale sia il simbolo ticker dell'azione.
+      Per farlo, è utile un pò di ricerca su internet e, in particolare,
+      su <ulink
+      url="http://finance.yahoo.com/lookup"><citetitle>Yahoo! Finance - Ticker
+      Symbol Lookup</citetitle></ulink> (http://finance.yahoo.com/lookup).
+      Questo porta a:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><emphasis>Beijing Airport</emphasis> ha il simbolo
+          0694.HK su Yahoo</para>
+        </listitem>
+      </itemizedlist>
+      
+      <para>Dato che si desidera registrare tutte le varie entrate e uscite, si perviene alla 
+      seguente struttura dei conti</para>
+
+      <literallayout>
+Attività:Investimenti:Conto di mediazione:Boom:0694.HK     (Beijing Airport)
+Attività:Investimenti:Conto di mediazione:Boom:Banca        (HKD)
+Capitale:bilanci di apertura:HKD                            (HKD)
+Uscite:Commissioni:Boom.0694.HK                      (HKD)
+Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
+      </literallayout>
+      
+      <para>La struttura dei conti assomiglia a questa dopo la creazione di tutti i conti 
+      necessari</para>
+
+      <screenshot id="currency_purchase_BeforeStocks.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_purchase_BeforeStocks.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Struttura dei conti per azioni internazionali</phrase>
+          </textobject>
+
+          <caption><para>Struttura dei conti per azioni 
+          internazionali</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Le varie commodity (<guimenu>Strumenti</guimenu> -&gt; 
+      <guimenu>Editor titoli</guimenu>) si presentano così:</para>
+
+      <screenshot id="currency_purchase_Commodities.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_purchase_Commodities.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Commodity Internazionali</phrase>
+          </textobject>
+
+          <caption><para>Commodity Internazionali</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <note><para>
+         Attualmente c'è un piccolo bug ( 
+
+        <ulink 
+          url="http://bugzilla.gnome.org/show_bug.cgi?id=335101"><citetitle>335101</citetitle>
+        </ulink>
+
+         ) in GnuCash, che rende impossibile l'acquisto di una azione in valuta differente
+         da quella predefinita direttamente dal conto della commodity. Questo problema può 
+         essere aggirato aprendo il conto bancario associato e inserendo la transazione da lì. 
+      </para></note>
+
+      <para>Se non si è ancora trasferito del denaro (HKD 50.000) al corrispondente conto bancario
+      per le azioni, lo si faccia ora o utilizzando il conto del capitale (HKD), o trasferendo
+      denaro da un conto bancario esistente (trasferimento di valuta).</para>
+
+      <para>Per registrare l'acquisto delle azioni, si deve aprire il conto bancario
+      associato alle azioni (Attività:Investimenti:Conto di mediazione:Boom:Banca) e inserire le seguenti
+      informazioni</para>
+    <literallayout>
+    Acquisto delle azioni 
+	Attività:Investimenti:Conto di mediazione:Boom:Banca  Prelievo 50.000
+	Uscite:Investimenti:Commissioni:Boom_HKD	Deposito 500
+	Attività:Investimenti:Conto di mediazione:Boom:0694  Deposito 49.500 (16.500 quote)
+    </literallayout>
+
+      <para>Nel caso non venisse visualizzata la finestra del "Tasso di cambio", aprirla
+      manualmente cliccando con il tasto destro nell'ultima riga e selezionando 
+      <guilabel>Modifica tasso di cambio</guilabel>. Nella finestra che verrà aperta, inserire
+      il numero di azioni (16.500) nel campo <guilabel>Trasferisci a:</guilabel> 
+      </para>
+      
+      <screenshot id="currency_purchase_ToAmount.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_purchase_ToAmount.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Trasferimento di fondi</phrase>
+          </textobject>
+
+          <caption><para>Impostazione del "trasferimento a" nella finestra del trasferimento fondi</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>All'uscita dalla finestra del tasso di cambio e aggiunta la transazione, GnuCash aggiornerà
+      la transazione di acquisto delle azioni con tutti i dati necessari.</para>
+    
+      <para>Tornando ora alla finestra principale della struttura dei conti, si vedrà qualcosa
+      di simile a questo:
+      </para>
+      
+      <screenshot id="currency_purchase_AfterStocks.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_purchase_AfterStocks.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Azioni Internazionali acquistate</phrase>
+          </textobject>
+          <caption><para>
+            Struttura dei conti con alcune azioni Internazionali
+          </para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Come si noterà, i valori non sono ancora tutti nella propria valuta; questo è dovuto al fatto
+      che GnuCash non conosce nessun tasso di cambio tra EUR e HKD. Per porvi rimedio,
+      andare in <guimenu>Strumenti</guimenu> -&gt; <guimenu>Editor prezzi</guimenu>
+      e premere il pulsante <guibutton>Ricevi quotazioni</guibutton> per caricare
+      automaticamente i vari tassi di cambio di cui si ha bisogno.</para>
+
+    </sect2>
+    
+  </sect1>
+
+  <sect1 id="currency_invest1">
+    <title>Tracciare gli investimenti in valuta (come fare)</title>
+
+    <para>Si ha un investimento in valuta quando si decide di investire su una valuta di un
+    paese diverso dal proprio, nella speranza che quella valuta aumenti il proprio
+    valore rispetto alla valuta originale.</para>
+
+    <para>Quando si inseriscono delle transazioni di questo tipo in GnuCash, occorre prima decidere
+    il dettaglio di livello che si vuole utilizzare.</para>
+
+    <para>Se non si è interessati ai dettagli, una struttura dei conti molto semplice, come quella 
+    riportata di seguito, risulterà più che sufficiente.</para>
+
+    <literallayout>
+    Attività:Investimenti:Valuta:Banca (EUR)
+    Attività:Investimenti:Valuta:XXX (XXX)</literallayout>
+
+    <para>Ma, se si vuole essere in grado di tracciare gli aumenti del capitale o le perdite,
+    come anche le varie spese, occorrerà uno schema più complesso; tipo questo:</para>
+
+    <literallayout>
+    Attività:Investimenti:Valuta:Banca                    (EUR)
+    Attività:Investimenti:Valuta:Valuta Banca:XXX       (XXX)
+    Uscite:Investimenti:Valuta:Valuta Banca:XXX     (XXX)
+    Entrate:Investimenti:Valuta Banca:Guadagni in capitale:XXX  (XXX)</literallayout>
+
+    <para>Dove XXX rappresenta la valuta su cui si sta investendo.</para>
+
+    <note><para>
+       Attualmente (30 Aprile 2006) c'è un piccolo bug ( 
+       <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=340041"><citetitle>340041</citetitle>
+       </ulink>) in GnuCash, che rende impossibile registrare i guadagni in capitale degli investimenti
+	in valuta. 
+    </para></note>
+
+    <sect2 id="currency_invest12">
+      <title>Acquistare un investimento in valuta</title>
+
+      <para>Un tipico ordine di acquisto potrebbe essere il seguente, visto dal conto
+      Attività:Investimenti:Valuta:Banca.</para>
+
+      <para><table>
+          <title>Schema per acquistare una valuta con una transazione suddivisa</title>
+
+          <tgroup cols="3">
+            <tbody>
+              <row>
+                <entry><emphasis>Conto</emphasis></entry>
+
+                <entry><emphasis>Deposito</emphasis></entry>
+
+                <entry><emphasis>Prelievo</emphasis></entry>
+              </row>
+
+              <row>
+                <entry>Attività:Investimenti:Valuta:Banca</entry>
+
+                <entry></entry>
+
+                <entry>Importo investito</entry>
+              </row>
+
+              <row>
+                <entry>Uscite:Investimenti:Valuta:Valuta Banca:XXX</entry>
+
+                <entry>Imposta di cambio</entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Attività:Investimenti:Valuta:XXX</entry>
+
+                <entry>Importo investito - Imposta di cambio</entry>
+
+                <entry></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>Lasciando l'ultima riga della suddivisione della transazione di 
+        valuta, dovrebbe comparire la finestra del tasso di cambio. Se questo
+        non dovesse avvenire, cliccare con il tasto destro sulla riga e selezionare
+        <guilabel>Modifica tasso di cambio</guilabel>. nella finestra del tasso di
+        cambio specificarne il valore fornito dalla banca.</para>
+    </sect2>
+
+    <sect2 id="currency_invest13">
+      <title>Vendere un investimento in valuta</title>
+
+      <para>L'inserimento della valuta che si sta vendendo, si effettua allo stesso 
+      modo dell'acquisto con la differenza che ora si sta trasferendo denaro dal
+      conto della valuta al conto risparmi (molto simile a (<xref
+      linkend="invest-sell1" />).</para>
+
+      <para>La registrazione corretta della vendita di valuta DEVE essere
+      effettuata utilizzando una transazione suddivisa. In questa, si deve
+      contabilizzare il profitto (o la perdita) come proveniente da un conto
+      Entrate:Guadagni in capitale (o da Uscite:Perdite in capitale). Per bilanciare questa 
+      entrata, sarà necessario inserire la valuta due volte nella suddivisione.
+      Una volta per registrare la vendita (utilizzando il saldo corretto e il tasso
+      di cambio corretto) e un'altra volta per bilanciare il profitto in entrata
+      (impostando l'importo a 0).</para>
+
+      <para>In breve, una transazione di vendita per la valuta, dovrebbe assomigliare
+      a quella riportata più sotto, vista di nuovo dal conto Attività:Investimenti:Valuta:Banca.</para>
+
+      <table>
+        <title>Schema per la vendita di valuta con una transazione suddivisa</title>
+
+        <tgroup cols="3">
+          <tbody>
+            <row>
+              <entry><emphasis>Conto</emphasis></entry>
+
+              <entry><emphasis>Deposito</emphasis></entry>
+
+              <entry><emphasis>Prelievo</emphasis></entry>
+            </row>
+
+            <row>
+              <entry>Attività:Investimenti:Valuta:Banca</entry>
+
+              <entry>Importo venduto - Imposta di cambio</entry>
+
+              <entry></entry>
+            </row>
+
+            <row>
+              <entry>Uscite:Investimenti:Valuta:Valuta Banca:XXX</entry>
+
+              <entry>Imposta di cambio</entry>
+
+              <entry></entry>
+            </row>
+
+            <row>
+              <entry>Attività:Investimenti:Valuta:XXX</entry>
+
+              <entry></entry>
+
+              <entry>Importo venduto</entry>
+            </row>
+
+            <row>
+              <entry>Entrate:Investimenti:Valuta Banca:Guadagni in
+              capitale:XXX</entry>
+
+              <entry>[PERDITA]</entry>
+
+              <entry>PROFITTO</entry>
+            </row>
+
+            <row>
+              <entry>Attività:Investimenti:Valuta:XXX</entry>
+
+              <entry>PROFITTO (con "trasferisci a" = 0)</entry>
+
+              <entry>[PERDITA (con "trasferisci a" = 0) ]</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <note><para>
+           Attualmente (30 Aprile 2006) c'è un piccolo bug ( 
+
+          <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=340041"><citetitle>340041</citetitle>
+          </ulink>
+
+           ) in GnuCash, che rende impossibile registrare i guadagni in conto capitale derivanti
+	   dagli investimenti in valuta. 
+      </para></note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="currency_reconcile1">
+    <title>Riconciliare gli estratti conto in valuta estera (come fare)</title>
+
+    <para>La riconciliazione degli estratti conto in valuta estera, avviene con le stesse
+    modalità attraverso le quali si opera la riconciliazione del proprio conto bancario 
+    in valuta locale. Se è stata creata una struttura dei conti che permette di 
+    avere la stessa valuta dell'estratto conto anche per il conto, allora il 
+    procedimento è esattamente lo stesso della riconciliazione del proprio conto 
+    bancario in valuta locale a parte il fatto che potrebbe essere utile un 
+    dizionario (!).</para>
+
+    <para>Se si hanno diverse valute, si dovranno convertire manualmente gli importi
+    tra una valuta e l'altra, mentre si riconciliano i conti.</para>
+  </sect1>
+
+  <sect1 id="currency_examples1">
+    <title>In pratica</title>
+
+    <para>In questa sezione verrà mostrato un esempio in cui si utilizzeranno le nozioni
+    descritte fino a questo punto nella guida con un po' di complessità aggiunta dovuta 
+    all'utilizzo di diverse valute.</para>
+
+    <sect2>
+      <title>Scenario di base</title>
+
+      <para>Di seguito sono riportate le ipotesi assunte per l'esempio. Si supponga quindi di:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>vivere in Australia e di utilizzare il dollaro Australiano (AUD)
+          come valuta predefinita;</para>
+        </listitem>
+
+        <listitem>
+          <para>aver vinto la lotteria e di aver ereditato del denaro;</para>
+        </listitem>
+
+        <listitem>
+          <para>dover pagare il mutuo per la propria casa;</para>
+        </listitem>
+
+        <listitem>
+          <para>Acquistare alcune azioni in Svezia utilizzando il SEK (Ericsson
+          B-Fria);</para>
+        </listitem>
+
+        <listitem>
+          <para>acquistare alcune azioni ad Hong Kong utilizzando l'HKD (Beijing
+          Airport);</para>
+        </listitem>
+
+        <listitem>
+          <para>acquistare altre azioni negli Stati Uniti utilizzando l'USD (Amazon);</para>
+        </listitem>
+
+        <!--
+      <listitem>
+        <para>You invest in Chinese Reminbi</para>
+      </listitem>
+-->
+
+        <listitem>
+          <para>prestare una certa somma in Euro a un amico (Mario);</para>
+        </listitem>
+
+        <listitem>
+          <para>chiedere del denaro in prestito ad una banca Giapponese;</para>
+        </listitem>
+
+        <listitem>
+          <para>acquistare una casa in Nuova Zelanda;</para>
+        </listitem>
+
+        <listitem>
+          <para>utilizzare una carta di credito in Australia;</para>
+        </listitem>
+
+        <listitem>
+          <para>voler raggiungere il massimo controllo possibile delle uscite.</para>
+        </listitem>
+
+      </itemizedlist>
+      <note>
+        <para>Questi esempi non sono da prendere come dei consigli validi.
+        Sono solamente da considerare come esercizi per apprendere la tecnica
+        da utilizzare in GnuCash e quindi non dei consigli finanziari.
+        Si consiglia di consultare il proprio consulente finanziario per 
+        ricevere maggiori informazioni sugli investimenti e sui prestiti
+        internazionali.</para>
+        </note>
+
+
+    </sect2>
+
+    <sect2>
+      <title>Configurare i conti</title>
+
+      <para>Questa volta si utilizzerà un nuovo file dei dati di GnuCash; scegliere quindi
+      <guimenu>File</guimenu> -&gt; <guimenuitem>Nuovo</guimenuitem> e modificare le preferenze
+      (<guimenu>Modifica</guimenu> -&gt; <guimenuitem>Preferenze</guimenuitem>) 
+      impostando l'AUD come valuta predefinita. Avendo deciso di registrare in dettaglio entrate
+      e uscite, si consiglia di utilizzare la struttura dei conti seguente:</para>
+
+      <literallayout>
+Attività:Attività correnti:Risparmi         (AUD)
+      </literallayout>
+
+      <para></para>
+    </sect2>
+
+
+    <sect2>
+      <title>Bilancio di apertura</title>
+
+      <para>Un bel giorno, aprendo la posta, si scopre con grande sorpresa di essere
+      l'ultimo parente ancora in vita di un parente lontano che era molto ricco; per la
+      precisione ricco di $500.000 AUD (!). Un'altra lettera dichiara anche che
+      si è i vincitori della lotteria per una somma di $250.000 AUD. </para>
+      
+      <para>Per registrare queste transazioni, sono necessari i seguenti conti:</para>
+      <literallayout>
+Capitale:Lotteria         (AUD)
+Capitale:Eredità          (AUD)      
+      </literallayout>
+
+
+      <para>Le transazioni da inserire nel proprio conto <guilabel>Attività:Attività correnti
+      Risparmi</guilabel> dovrebbero essere come queste:</para>
+
+      <table>
+          <title>Ricevere del denaro extra</title>
+
+          <tgroup cols="3">
+            <tbody>
+              <row>
+                <entry>Conto</entry>
+
+                <entry>Aumento</entry>
+
+                <entry>Diminuzione</entry>
+              </row>
+
+              <row>
+                <entry>Entrate:Lotteria</entry>
+
+                <entry>$250,000</entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Entrate:Eredità</entry>
+
+                <entry>$500,000</entry>
+
+                <entry></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+      <para>E la struttura dei conti dovrebbe assomigliare a questa dopo l'inserimento delle transazioni descritte più sopra.</para>
+      <screenshot id="currency_PutTogether_AfterMoney.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_PutTogether_AfterMoney.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Struttura dei conti</phrase>
+          </textobject>
+          <caption><para>
+            Struttura dei conti dopo aver ricevuto alcuni soldi
+          </para></caption>
+        </mediaobject>
+      </screenshot>
+
+
+    </sect2>
+    
+    <sect2>
+      <title>Acquistare una casa</title>
+
+      <para>Alla fine ci si può permettere di rimborsare il mutuo per la casa acceso qualche anno fa 
+      (con un deposito di $50.000).</para>
+
+      <literallayout>
+Attività:Beni immobili:Casa                  (AUD) $300.000
+Passività:Prestiti:Mutuo                 (AUD) $250.000
+Uscite:Interessi:Interessi mutuo        (AUD)
+Capitale:bilanci di apertura                     (AUD) $50.000
+      </literallayout>
+
+      <para>Dopo un incontro con la banca presso cui è stato acceso il mutuo, questa
+      ne autorizza l'estinzione in un'unica soluzione previo il pagamento
+      di alcuni interessi (AUD 30.000). Inserire quindi le seguenti transazioni nel conto
+      <guilabel>Attività:Beni immobili:Casa</guilabel>.</para>
+
+      <table>
+          <title>Pagare il mutuo sulla casa</title>
+
+          <tgroup cols="3">
+            <tbody>
+              <row>
+                <entry>Conto</entry>
+
+                <entry>Aumento</entry>
+
+                <entry>Diminuzione</entry>
+              </row>
+
+              <row>
+                <entry>Attività:Attività correnti:Risparmi</entry>
+
+                <entry></entry>
+
+                <entry>280000</entry>
+              </row>
+
+              <row>
+                <entry>Uscite:Interessi:Interessi mutuo</entry>
+
+                <entry>30000</entry>
+
+                <entry></entry>
+              </row>
+              <row>
+                <entry>Passività:Prestiti:Mutuo</entry>
+
+                <entry>250000</entry>
+
+                <entry></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+        
+      <para>Il libro mastro della transazione per il conto 
+      <guilabel>Passività:Prestiti:Mutuo</guilabel> si presenta così
+      dopo l'inserimento delle transazioni:</para>
+      
+      <screenshot id="currency_PutTogether_AussieHouse.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_PutTogether_AussieHouse.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Mutuo per la casa</phrase>
+          </textobject>
+          <caption><para>
+            Libro mastro della transazione per il mutuo sulla casa
+          </para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2>
+      <title>Acquistare le azioni</title>
+
+      <para>Avendo ricevuto improvvisamente una bella somma di denaro sul proprio conto
+      bancariio, si decide di interpellare un consulente finanziario e, dopo alcune 
+      raccomandazioni (si ricorda che l'esempio è immaginario; non si tratta di consigli
+      finanziari reali), si decide di acquistare le azioni di Telecomunicazioni (Ericsson 
+      in Sweden), Beijing Airport (Hong Kong) e Amazon (USA).</para>
+
+      <para>I conti necessari per seguire questi investimenti sono:</para>
+
+      <literallayout>
+Attività:Investimenti:Mediatore Svedese:ERIC.ST                 (STOCK ERIC.ST Yahoo)
+Attività:Investimenti:Mediatore Svedese:Banca                    (SEK)
+Attività:Investimenti:Mediatore HK:0694.HK                      (STOCK 0694.HK Yahoo)
+Attività:Investimenti:Mediatore HK:Banca                         (HKD)
+Attività:Investimenti:Mediatore US:AMZN                         (STOCK AMZN Nasdaq)
+Attività:Investimenti:Mediatore US:Banca                         (USD)
+Uscite:Investimenti:Commissioni:Mediatore Svedese:ERIC.ST   (SEK)
+Uscite:Investimenti:Commissioni:Mediatore HK:0694.HK        (HKD)
+Uscite:Investimenti:Commissioni:Mediatore US:AMZN           (USD)
+Uscite:Investimenti:Trasferimento di valuta                 (AUD)
+</literallayout>
+
+      <para>Si decide di investire $100.000 in ogni azioni e per farlo è necessario
+      eseguire prima una transazione di valuta ai vari conti bancari associati alle
+      azioni. </para>
+
+      <para>La transazione da inserire nel conto 
+      <guilabel>Attività:Attività correnti:Risparmi</guilabel> è la seguente:</para>
+
+      <table>
+        <title>Trasferire del denaro oltreoceano con una suddivisione in valuta
+        multipla.</title>
+
+        <tgroup cols="5">
+          <tbody>
+            <row>
+              <entry>Conto</entry>
+
+              <entry>Deposito</entry>
+
+              <entry>Prelievo</entry>
+
+              <entry>Tasso di cambio</entry>
+
+              <entry>Costo della transazione</entry>
+            </row>
+
+            <row>
+              <entry>Attività:Investimenti:Mediatore Svedese:Banca</entry>
+
+              <entry>100000</entry>
+
+              <entry></entry>
+
+              <entry>5,5869</entry>
+
+              <entry>35</entry>
+            </row>
+
+            <row>
+              <entry>Attività:Investimenti:Mediatore HK:Banca</entry>
+
+              <entry>100000</entry>
+
+              <entry></entry>
+
+              <entry>5,8869</entry>
+
+              <entry>30</entry>
+            </row>
+
+            <row>
+              <entry>Attività:Investimenti:Mediatore USD:Banca</entry>
+
+              <entry>100000</entry>
+
+              <entry></entry>
+
+              <entry>0,7593</entry>    
+
+              <entry>25</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <para>Non appena è disponibile il denaro sui conti di intermediazione,
+      si richiede al proprio mediatore di acquistare le azioni per un certo importo.
+      Si ricordi di eseguire la transazione dal conto della banca associata ad una
+      determinata azione e, se la finestra del tasso di cambio, non dovesse essere
+      visualizzata, cliccare con il tasto destro nella riga per aprirla manualmente. 
+      Inserire quindi il numero di azioni acquistate nell'ultima voce (Trasferisci a).</para>
+
+      <para>
+        <table>
+          <title>Acquistare azioni oltreoceano</title>
+
+          <tgroup cols="4">
+            <tbody>
+              <row>
+                <entry>Simbolo azione</entry>
+
+                <entry>Numero di quote</entry>
+
+                <entry>Importo</entry>
+
+                <entry>Commissionie</entry>
+              </row>
+
+              <row>
+                <entry>ERIC.ST</entry>
+
+                <entry>15000</entry>
+
+                <entry>270000</entry>
+
+                <entry>400</entry>
+              </row>
+
+              <row>
+                <entry>0694.HK</entry>
+
+                <entry>70000</entry>
+
+                <entry>280000</entry>
+
+                <entry>300</entry>
+              </row>
+
+              <row>
+                <entry>AMZN</entry>
+
+                <entry>1000</entry>
+
+                <entry>32000</entry>
+
+                <entry>25</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </para>
+        
+      <para>Come è possibile vedere dalla struttura dei conti, sono state acquistate delle azioni
+      in tre differenti valute (HK, EUR e SEK), ma la struttura dei conti (come visto più sotto)
+      non ne indica il valore nella propria valuta, l'AUD.</para>
+      <screenshot id="currency_PutTogether_AfterStocks.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_PutTogether_AfterStocks.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Struttura dei conti dopo l'acquisto delle azioni</phrase>
+          </textobject>
+          <caption><para>
+            Alcuni dei conti nella struttura dei conti dopo l'acquisto delle azioni
+          </para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>La prossima sezione  si occuperà dell'impostazione dei vari tassi di cambio necessari
+        per permettere a GnuCash di visualizzare il valore totale nella valuta locale (AUD in 
+        questo caso)</para>
+    </sect2>
+
+    <sect2>
+      <title>Ricevere le quotazioni online</title>
+
+      <para>Per ricevere i tassi di cambio e le quotazioni azionarie attuali, andare in
+      <guimenu>Strumenti</guimenu> -&gt; <guimenu>Editor prezzi</guimenu> e premere poi
+      il pulsante <guibutton>Ricevi quotazioni</guibutton>. </para>
+
+      <para></para>
+    </sect2>
+
+
+    <sect2>
+      <title>Prestare denaro a un amico</title>
+
+      <para>Mario sta attraversando un periodo difficile oltreoceano. Dato che è un caro amico,
+      si decide di aiutarlo con un prestito personale di 40.000 Euro.</para>
+
+      <para>
+        <literallayout>
+Attività:Denaro prestato:Mario                 (EUR)
+Entrate:Interessi in entrata:Mario              (EUR)
+Uscite:Spese bancarie                          (AUD)
+        </literallayout>
+      </para>
+      <para>Si tratta di una semplice transazione dal proprio conto dei risparmi
+      (AUD), al conto Attività:Denaro prestato:Euro:Mario (EUR). Sia il tasso di
+      cambio pari a 0,606161 a cui corrisponde un prelievo di AUD 65.989,10ed una
+      spesa per il servizio di 35 AUD.</para>
+    </sect2>
+
+    <sect2>
+      <title>Comprare una proprietà in Nuova Zelanda con un prestito in Giappone</title>
+
+      <para>Un amico Giapponese di vecchia data, offre il prestito di una casa
+      Giapponese se si acquista una proprietà all'estero, con soli AUD 50.000 
+      come deposito. Dopo averne discusso con il consulente finanziario in Australia
+      e aver valutato i vari rischi e benefici derivanti dall'offerta, si decide di
+      accettare la proposta.</para>
+
+      <note>
+        <para>E' bene ricordare ancora che questo non è un consiglio finanziario. 
+        Interpellare un consulente finanziario prima di intraprendere degli
+        investimenti (o speculazioni) sui mercati esteri, o anche quelli locali.</para>
+
+        <para>Può essere utile spendere una parola di avviso su questo argomento:
+        stipulare un prestito all'estero con un tasso di interesse molto basso
+        può sembrare un investimento vantaggioso. Si tenga presente però che il tasso di cambio 
+        può variare e lo può fare drasticamente. Se si accende un prestito nella
+        propria valuta locale, ci si deve preoccupare solamente della variabilità del
+        tasso di interesse; accendendo invece un mutuo all'estero, ci si deve preoccupare
+        non solo della variazione del tasso di interesse ma anche della
+        variazione del tasso di cambio.
+        </para>
+      </note>
+
+      <para>Si immagini di aver trovato una piccola e confortevole villetta in una
+      piccola cittadina costiera vicino ad Auckland che potrebbe essere una casa estiva 
+      perfetta, e si decida di utilizzare il denaro in Giappone per l'acquisto.</para>
+
+      <para>Per questo esempio occorrono i seguenti conti:</para>
+
+      <literallayout>
+Passività:Prestiti:Prestito Giapponese          (JPY)
+Uscite:Interessi:Prestito Giapponese            (JPY)
+Uscite:Costi mutuo:Prestito Giapponese          (JPY)
+Attività:Attività correnti:Banca Giapponese     (JPY)
+Attività:Beni immobili:Casa NZ                   (NZ)
+</literallayout>
+
+      <table>
+          <title>Transazione suddivisa per l'acquisto di una casa in NZ</title>
+
+          <tgroup cols="3">
+            <tbody>
+              <row>
+                <entry>Conto</entry>
+
+                <entry>Aumento</entry>
+
+                <entry>Diminuzione</entry>
+              </row>
+
+              <row>
+                <entry>Attività:Beni immobili:Casa in NZ</entry>
+
+                <entry>300000 (NZD)</entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Attività:Attività correnti:Risparmi</entry>
+
+                <entry></entry>
+
+                <entry>50000 (AUD) (1,18926)</entry>
+              </row>
+
+              <row>
+                <entry>Passività:Prestiti:Prestito Giapponese</entry>
+
+                <entry></entry>
+
+                <entry>28000000 (JPY) (0,0137609)</entry>
+              </row>
+
+              <row>
+                <entry>Uscite:Costi mutuo:Prestito Giapponese</entry>
+
+                <entry>300000 (JPY) (0,0137609)</entry>
+
+                <entry></entry>
+              </row>
+            </tbody>
+          </tgroup>
+      </table>
+      
+      
+    </sect2>
+ 
+    <sect2>
+      <title>Come procedere?</title>
+      <para>Come è stato mostrato nell'esempio precedente, sono stati completati esclusivamente
+      gli acquisti iniziali. Il resto, che comprende le vendite e la registrazione dei vari guadagni
+      non realizzati, è lasciato alla considerazione dell'utente.</para>
+    </sect2>
+   
+    
+  </sect1>
+  
+</chapter>

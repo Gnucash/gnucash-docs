@@ -1,0 +1,1058 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+	updated Patrick Schweiger <pks@spiffykitty.com>
+  Originally designed by Carol Champagne.
+  Translators:
+               Cristian Marchi <cri79@libero.it> 2008
+-->
+<chapter id="chapter_bus_ar">
+  <title>Crediti correnti</title>
+
+  <para>Per crediti correnti si intendono quei prodotti o servizi forniti
+  dalla propria società e per i quali non è ancora stato ricevuto il 
+  pagamento.</para>
+
+  <sect1 id="bus-ar-overview1">
+    <title>Panoramica delle funzioni dedicate all'impresa</title>
+
+    <para>Le necessità contabili di un'impresa sono evidentemente differenti da
+    quelle di un singolo. Le imprese devono gestire i clienti (che sono debitori 
+    di denaro), i fornitori o venditori (che sono creditori), i libri paga dei 
+    dipendenti, una legislazione delle imposte più complessa, ecc... GnuCash offre delle
+    funzioni dedicate all'impresa per venire incontro a queste necessità.</para>
+
+    <para>I crediti correnti sono utilizzati dalle imprese per registrare le vendite
+    che non vengono immediatamente pagate. I debiti correnti, invece, registrano le
+    ricevute che verranno pagate o saldate in seguito. Queste tipologie di conti vengono
+    utilizzate principalmente quando si ha che fare con molte fatture e ricevute in
+    entrata e in uscita e non si vuole perdere traccia di esse solo perché non si sono
+    pagate o non sono state pagate. Per la maggior parte degli utenti privati
+    i debiti e i crediti correnti risultano eccessivamente complicati da utilizzare
+    per giustificarne l'apprendimento.</para>
+  </sect1>
+
+  <sect1 id="bus-ar-concepts1">
+    <title>Concetti di base</title>
+
+    <para>Per crediti correnti si intendono quei prodotti o servizi forniti
+  dalla propria società e per i quali non è ancora stato ricevuto il 
+  pagamento. Questi sono rappresentati come come una attività, dato che il
+  denaro dovrebbe essere ricevuto entro poco tempo.</para>
+  </sect1>
+
+  <sect1 id="bus-ar-setup1">
+    <title>Configurazione iniziale</title>
+
+    <para>Per impostare GnuCash alla gestione dei crediti correnti per una 
+    società, devono prima essere realizzati due passi: il primo consiste nella
+    realizzazione di una adatta struttura dei conti e il secondo prevede la 
+    registrazione della propria impresa in GnuCash.</para>
+
+    <sect2 id="bus-ar-setupacct2">
+      <title>Impostare i conti</title>
+
+      <para>Esistono diversi modi per configurare una struttura dei conti per
+      un'impresa; si può iniziare con quella fornita dal druido per le
+      strutture dei conti oppure crearne manualmente una nuova. Per accedere
+      alle strutture già pronte fornite con il programma, si avvii GnuCash e
+      si selezioni <guimenu>File</guimenu> -&gt; <guimenu>Nuovo file</guimenu> e
+      si proceda fino a quando viene visualizzata la lista delle strutture disponibili,
+      da cui si potrà selezionare quella relativa all'impresa.</para>
+
+      <para>La struttura preimpostata non coinciderà esattamente con le proprie 
+      necessità; sarà necessario apportare delle modifiche per renderla
+      utilizzabile al meglio per la situazione particolare. Questa struttura
+      rimane comunque un ottimo punto di partenza per la gestione di un'impresa.</para>
+
+      <para>Con il termine crediti correnti ci si riferisce ai prodotti o servizi
+      forniti dalla società in credito e per quali il pagamento non è stato ancora
+      ricevuto. I saldi di questi conti vengono considerati come attività, dato che
+      ci si aspetta di ricevere il denaro al più presto. Per usufruire del sistema
+      integrato di GnuCash per la gestione dei crediti correnti, occorre creare
+      un conto (generalmente appartenente alla categoria delle attività) impostando come
+      tipologia quella dei <emphasis>Crediti correnti</emphasis>. è in questo conto 
+      che il sistema di gestione dei crediti correnti inserisce le transazioni.</para>
+
+      <literallayout>
+Semplice struttura dei conti per i crediti correnti:
+
+-Attività
+   -Conto corrente
+   -Crediti correnti
+-Entrate
+   -Vendite
+  </literallayout>
+
+      <para>Saranno necessari altri conti di attività, entrate e uscite per rendere
+      la struttura più fruibile. L'aspetto essenziale della struttura proposta, risiede 
+      nell'utilizzo di un conto delle entrate e di uno per i crediti correnti con il tipo di conto
+      impostato a <emphasis>Crediti correnti</emphasis>.</para>
+
+      <note>
+        <para>Non è necessario creare un conto dei crediti correnti per ogni cliente.
+        GnuCash tiene traccia dei clienti internamente allo stesso conto e fornisce la 
+        possibilità di creare dei resoconti per ogni specifico cliente.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="bus-ar-setupcname2">
+      <title>Registrare la propria impresa</title>
+
+      <para>Dopo aver impostato la struttura dei conti, si deve registrare il file
+      di GnuCash come appartenente alla propria Impresa; si selezioni quindi
+      <guimenu>File</guimenu> -&gt; <guimenu>Proprietà</guimenu>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Inserire il nome della società e le informazioni di contatto quali
+          il numero di telefono, di fax, l'indirizzo e-mail e l'indirizzo 
+          internet.</para>
+        </listitem>
+
+        <listitem>
+          <para>Inserire l'identificativo della propria impresa per il pagamento 
+          delle tasse nel campo <guilabel>ID impresa</guilabel>.</para>
+        </listitem>
+
+       </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="bus-ar-components1">
+    <title>Componenti del sistema</title>
+
+    <para>GnuCash fornisce un sistema integrato di gestione dei crediti correnti.
+    Le transazioni generate dal sistema dei crediti correnti vengono inserite
+    nel conto dei crediti correnti. Generalmente non si lavora direttamente con
+    questa tipologia di conti ma si utilizzano le quattro applicazioni disponibili
+    dal menu secondario in <guimenu>Impresa</guimenu> -&gt;
+    <guimenu>Cliente</guimenu>. Questi quattro componenti sono:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Cliente</guilabel> è un singolo o una società a cui sono stati
+        venduti prodotti o servizi in credito.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Fattura</guilabel> rappresenta il documento cartaceo inviato al
+        cliente per richiedere il pagamento. Essa contiene una lista dettagliata degli
+        oggetti venduti.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Lavoro</guilabel> (opzionale) qui vengono registrati i lavori
+        relativi al cliente. Il "lavoro" in GnuCash è un meccanismo attraverso il quale è 
+        possibile raggruppare diverse fatture relative a un particolare cliente.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Procedura di pagamento</guilabel> permette di registrare i
+        pagamenti ricevuti da un cliente.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Le sezioni seguenti trattano individualmente i componenti dell'applicazione 
+    per i crediti correnti.</para>
+  </sect1>
+
+  <sect1 id="bus-ar-customers1">
+    <title>Cliente</title>
+
+    <para>Per cliente si intende un singolo o una società alla quale vengono venduti
+    beni o servizi. Il cliente deve essere registrato nel sistema dei crediti 
+    correnti.</para>
+
+    <sect2 id="bus-ar-custnew2">
+      <title>Registrare un nuovo cliente</title>
+
+      <para>Per inserire un nuovo cliente, selezionare la voce
+      <guimenu>Impresa</guimenu> -&gt; <guimenu>Cliente</guimenu> -&gt;
+      <guimenu>Nuovo cliente</guimenu>. Compilare le informazioni richieste
+      quali il nome della società, l'indirizzo, il numero di telefono e di fax, 
+      ecc... Qui sotto è riportata una lista di altre opzioni:</para>
+
+      <itemizedlist>
+        <listitem>
+            <para><guilabel>Identificazione - Numero cliente</guilabel> - può essere un numero qualsiasi utile 
+            per riferirsi a questo preciso cliente. Il campo può essere lasciato vuoto, nel qual caso un 
+            numero verrà assegnato automaticamente.</para>
+        </listitem>
+ 
+        <listitem>
+            <para><guilabel>Identificazione - Attivo</guilabel> - differenzia i clienti attivi da quelli inattivi. 
+            E' utile quando si hanno molti clienti e si desidera visualizzare
+            solamente quelli attivi.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Indirizzo di pagamento - Nome</guilabel> - è il nome della persona che deve
+            ricevere la fattura.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Note</guilabel> - permette di inserire qualsiasi nota aggiuntiva relativa al
+            cliente.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Informazioni di pagamento - valuta</guilabel> -
+          determina la valuta predefinita di pagamento.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Informazioni di pagamento - Termini</guilabel> - permette di specificare
+          i termini di pagamento predefiniti per questo cliente. I termini di pagamento devono essere impostati 
+          preventivamente utilizzando la funzione
+          disponibile in <guimenu>Impresa</guimenu> -&gt; <guimenu>Termini di pagamento</guimenu>.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Informazioni di pagamento - Sconto</guilabel> - applica
+          al cliente una percentuale di sconto predefinita al momento della creazione
+          della fattura. Inserire un valore compreso tra 0 e 100. E' possibile ignorare
+          lo sconto predefinito alla creazione della fattura.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Informazioni di pagamento - Limite di credito</guilabel> -
+          registra il massimo credito che si desidera fare al cliente.
+          Questo campo è per propria conoscenza; GnuCash non utilizza questo
+          valore.</para>
+        </listitem>
+
+        <listitem>
+        <para><guilabel>Informazioni sul pagamento - Tasse incluse</guilabel> - permette 
+            di definire se le tasse sono incluse nelle voci della fattura. E' possibile 
+            scegliere fra: 
+          <itemizedlist>
+              <listitem>
+                <para><guilabel>sì</guilabel> significa che le tasse sono già
+                incluse negli importi della fattura.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>no</guilabel> significa che le tasse non sono incluse.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>usa globale</guilabel> utilizza le impostazioni globali
+                configurate nelle preferenze globali accessibili dal menu
+                <guimenu>Modifica</guimenu> -&gt;
+                <guimenu>Preferenze</guimenu>.</para>
+              </listitem>
+            </itemizedlist></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Informazioni di pagamento - Tabella delle imposte</guilabel> -
+          specifica una tabella delle imposte predefinita da applicare alle voci che compongono
+          la fattura. La tabella delle imposte
+          deve prima essere creata utilizzando la voce del menu <guimenu>Impresa</guimenu> -&gt; 
+          <guimenu>Tabella imposte</guimenu>.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Indirizzo di spedizione</guilabel> - permette di inserire un 
+          indirizzo di spedizione per il cliente se è diverso dall'indirizzo di pagamento.
+          L'indirizzo di spedizione è per propria conoscenza; GnuCash non utilizza questo
+          valore.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>La finestra di registrazione di un nuovo cliente assomiglia a
+      questa:</para>
+
+      <screenshot id="bus-ar-custnew">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ar_custnew.png" format="PNG"
+                       srccredit="Patrick Schweiger" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra di registrazione di un nuovo cliente</phrase>
+          </textobject>
+
+          <caption><para>Finestra di registrazione di un nuovo cliente</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="bus-ar-custfind2">
+      <title>Trovare e modificare un cliente</title>
+
+      <para>Per trovare un cliente, utilizzare la funzione
+      <guimenu>Impresa</guimenu> -&gt; <guimenu>Cliente</guimenu> -&gt;
+      <guimenu>Trova cliente</guimenu>. E' poi possibile selezionare, dalla
+      finestra dei risultati, un cliente da <guilabel>Visualizzare o 
+      modificare</guilabel>. Questa finestra è anche utilizzata per
+      selezionare un cliente quando si crea una nuova fattura e quando
+      si procede a un pagamento.</para>
+
+      <screenshot id="bus-ar-custfind">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ar_custfind.png" format="PNG"
+                       srccredit="Patrick Schweiger" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra di ricerca del cliente</phrase>
+          </textobject>
+
+          <caption><para>Finestra di ricerca del cliente </para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Se dalla ricerca vengono restituiti molti elementi corrispondenti,
+      è possibile filtrare i risultati eseguendo una ulteriore ricerca tra questi
+      ultimi. Il gruppo dei risultati attuali viene analizzato quando è selezionata
+      l'opzione <guilabel>Perfeziona la ricerca attiva</guilabel>. GnuCash rende
+      disponibile questa opzione solamente dopo che è stata eseguita con successo la
+      ricerca iniziale.</para>
+
+      <para>Se il cliente che si sta cercando non è stato trovato con il criterio di
+      ricerca inserito, è possibile cambiare il criterio di ricerca  e selezionando l'opzione
+      <guilabel>Nuova ricerca</guilabel> seguita dal pulsante <guibutton>Trova</guibutton>.
+      Il passo più importante è la selezione dell'opzione <guilabel>Nuova ricerca</guilabel>.
+      Se il venditore non è tra i risultati della ricerca originale e si effettua una ricerca 
+      tra i risultati ottenuti, il venditore non verrà trovato anche se il criterio di 
+      ricerca è stato cambiato.</para>
+
+      <note>
+        <para>Per visualizzare una lista dei clienti attivi, si imposti il criterio di ricerca
+        a "corrisponde all'espressione regolare" e si inserisca un singolo punto "." nel 
+        campo del testo da ricercare. Assicurarsi che non sia selezionata l'opzione 
+        <guilabel>Cerca solo tra i dati selezionati</guilabel>, poi premere 
+        <guibutton>Trova</guibutton>. L'espressione regolare "." significa trovare tutto.</para>
+      </note>
+
+    </sect2>
+  </sect1>
+
+  <sect1 id="bus-ar-invoices1">
+    <title>Fattura</title>
+
+    <para>Una fattura è il documento cartaceo che si invia a un cliente per
+    richiedere il pagamento di prodotti o servizi prestati. GnuCash è in grado di
+    creare e di registrare le fatture.</para>
+
+    <sect2 id="bus-ar-invoicenew2">
+      <title>Creare una nuova fattura</title>
+
+      <para>Per inviare una fattura a un cliente occorre prima crearla. Per
+      farlo, utilizzare la voce del menu <guimenu>Impresa</guimenu> -&gt;
+      <guimenu>Cliente</guimenu> -&gt; <guimenu>Nuova fattura</guimenu>. La
+      finestra per la nuova fattura deve essere debitamente compilata:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Informazioni fattura - ID fattura</guilabel> - il
+          numero identificativo di questa fattura. Rappresenta il numero
+          interno della fattura. Il campo può essere lasciato vuoto, 
+          nel qual caso un numero verrà assegnato 
+          automaticamente.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Informazioni fattura - Data di emissione</guilabel> - la
+          data in cui la fattura è stata creata.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Informazioni di pagamento - Cliente</guilabel> - il
+          cliente destinato a ricevere la fattura. Utilizzare il pulsante
+          <guilabel>Seleziona</guilabel> per accedere alla finestra di <guilabel>Trova
+          cliente</guilabel> descritta nelle sezioni precedenti. When
+          you have looked up the customer to be invoiced, click the
+          <guilabel>Select</guilabel> in the search window to select the
+          customer.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Informazioni di pagamento - Lavoro</guilabel> (opzionale) -
+          associa la fattura al lavoro relativo a un cliente. I lavori relativi ai clienti
+          sono descritti nella sezione successiva.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Informazioni di pagamento - ID pagamento</guilabel> - questo è
+          il codice d'ordine d'acquisto del cliente o qualsiasi altro "numero di riferimento
+          del cliente". Questo numero dovrebbe essere utilizzato per identificare le
+          fatture emesse per questo cliente (e lavoro, se ne è stato impostato uno).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Informazioni di pagamento - Termini</guilabel> - l'accordo
+          sul pagamento di questa fattura. Viene visualizzato un elenco di elementi
+          registrati nella lista a comparsa. Se è stato specificato un valore 
+          predefinito per il cliente selezionato, il campo sarà impostato
+          automaticamente con questo.</para>
+        </listitem>
+      </itemizedlist>
+
+      <screenshot id="bus-ar-invoicenew">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ar_invoicenew.png" format="PNG"
+                       srccredit="Patrick Schweiger" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Creazione di una nuova fattura</phrase>
+          </textobject>
+
+          <caption><para>Creazione di una nuova fattura </para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Quando si preme il pulsante <guilabel>OK</guilabel>, verrà aperta
+       la finestra di <guilabel>Modifica fattura</guilabel>.</para>
+    </sect2>
+
+    <sect2 id="bus-ar-invoiceedit2">
+      <title>Modificare una fattura</title>
+
+      <para>Dalla finestra di modifica della fattura è possibile inserire un elenco
+      dettagliato di oggetti venduti con questa fattura, in maniera simile a come
+      vengono inserite le informazioni di una transazione nel registro del conto.</para>
+
+      <screenshot id="bus-ar-invoiceedit">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ar_invoiceedit.png" format="PNG"
+                       srccredit="Patrick Schweiger" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra di modifica della fattura</phrase>
+          </textobject>
+
+          <caption><para>Finestra di modifica della fattura </para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Sono presenti 15 colonne nell'area delle <guilabel>Voci della 
+      fattura</guilabel>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Data</guilabel> - La data in cui l'oggetto è stato
+          venduto.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Fatturato?</guilabel> - <guilabel>X</guilabel> significa
+            che l'oggetto è riportato in questo fattura, mentre un riquadro vuoto indica che l'oggetto
+            non è riportato nella fattura. Procedendo alla riga successiva l'opzione verrà abilitata 
+            automaticamente.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Descrizione</guilabel> (opzionale) - il nome dell'oggetto
+          o servizio.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Operazione</guilabel> (opzionale) - è un campo definibile 
+          dall'utente. Si possono inserire qui le informazioni sul centro di costo o 
+          utilizzare una delle tre operazioni predefinite: "Ore", "Materiale" o 
+          "Progetto".</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Conto delle entrate</guilabel> - selezionare il conto
+          delle entrate che verrà accreditato.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Quantità</guilabel> - il numero di oggetti identici 
+          venduti.</para>
+        </listitem>
+        <listitem>
+          <para><guilabel>Prezzo unitario</guilabel> - è il prezzo per unità del 
+          singolo oggetto.</para>
+        </listitem>
+       
+        <listitem>
+          <para><guilabel>Tipo di sconto</guilabel> - permette di impostare la tipologia
+          di sconto:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>€</guilabel> significa <guilabel>Sconto</guilabel>
+              in valore monetario</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>%</guilabel> significa <guilabel>Sconto</guilabel>
+              in percentuale.</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>Premendo sul campo è possibile cambiare l'impostazione tra i tipi
+          disponibili.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Come scontare</guilabel> - lo sconto può essere calcolato come
+          segue::</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>&gt;</guilabel> significa che lo sconto verrà applicato
+              dopo le imposte.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>&lt;</guilabel> significa che lo sconto verrà applicato
+              prima delle tasse.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>=</guilabel> significa che sia lo sconto che le tasse
+              saranno applicate al valore precedente alla tassazione.</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>Cliccando sul campo è possibile cambiare l'impostazione.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Sconto</guilabel> (opzionale) - è lo sconto totale,
+          in unità monetarie o in percentuale in funzione del <guilabel>Tipo 
+          di sconto</guilabel>. Se lasciato vuoto non verrà applicato alcun
+          tipo di sconto. Se è stato specificato un tipo di sconto predefinito
+          per il cliente, questo campo verrà completato automaticamente per ogni
+          nuovo oggetto.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Tassabile?</guilabel> - l'oggetto è tassabile?
+          <guilabel>X</guilabel> significa sì, mentre il campo vuoto significa no.
+          Cliccando nel campo, è possibile cambiare l'impostazione del valore tra
+          quelle disponibili.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Tasse Incluse?</guilabel> - le tasse sono già state incluse
+           nel prezzo unitario? <guilabel>X</guilabel> significa sì, mentre un campo vuoto
+           significa no. Per esempio, se c'è 1 oggetto del valore di €100 con un imposta del
+           5%, allora:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Se il campo è vuoto, allora il subtotale = €100 e le imposte =
+              €5.</para>
+            </listitem>
+
+            <listitem>
+              <para>Se il campo contiene la <guilabel>X</guilabel>, allora
+              subtotale = €95,23 e tasse = €4,77.  La formula è: 
+              Subtotale = Totale / (1+aliquota) e Tasse = Totale - Subtotale
+              = Totale - (Totale / (1+aliquota)).
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Tabella imposte</guilabel> (opzionale) - permette di selezionare 
+          una tabella delle imposte fra quelle disponibili. Se l'oggetto è indicato come
+          tassabile, allora questa tabella è utilizzata per calcolare l'importo della tassa.
+          La tabella imposte specifica la percentuale applicata e i conti addebitati per
+          il pagamento delle tasse.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Subtotale</guilabel> (non modificabile) - subtotale 
+          calcolato per questo oggetto (meno le tasse).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Imposte</guilabel> (non modificabile) - è l'importo
+          delle imposte calcolate sull'oggetto.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Quando sono state inserite tutte le voci, si può
+      <guilabel>Emettere</guilabel> e stampare la fattura.</para>
+    </sect2>
+
+    <sect2 id="bus-ar-invoicepost2">
+      <title>Emettere una fattura</title>
+
+      <para>Quando è terminata la fase di modifica di una fattura e si è pronti a stamparla, 
+      è necessario <guilabel>Emettere</guilabel> la fattura. Non è necessario emettere la fattura 
+      immediatamente; in fatti, la fattura deve essere emessa solamente quando si è pronti a 
+      stamparla. L'emissione di una fattura prevede l'inserimento automatico delle transazioni
+      necessarie nel conto dei crediti correnti.</para>
+
+      <para>Viene visualizzata la finestra di emissione della fattura e viene
+      richiesto di inserire le seguenti informazioni:</para>
+
+      <screenshot id="bus-ar-invoicepost">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ar_invoicepost.png" format="PNG"
+                       srccredit="Patrick Schweiger" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra di emissione della fattura</phrase>
+          </textobject>
+
+          <caption><para>Finestra di emissione della fattura </para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Data di emissione</guilabel> - specifica la data con cui
+          verranno inserite le transazioni nel conto per i crediti correnti.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Data di scadenza</guilabel> - è la data in cui si è convenuto
+          di ricevere il pagamento.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Se sono stati specificati dei termini di pagamento alla creazione della
+              fattura, la data è calcolata in accordo ai termini selezionati e il campo
+              non è modificabile.</para>
+            </listitem>
+
+            <listitem>
+              <para>Se non è stata impostata alcuna data di scadenza, si inserisca
+              ora in questo campo.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Descrizione</guilabel> - è un campo opzionale.
+            Quando le transazioni relative alle fatture verranno inserite nel 
+            registro del conto per i crediti correnti, il testo scritto in questa
+            casella verrà visualizzato nel campo del promemoria delle
+            transazioni.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Conto di emissione</guilabel> - selezionare il conto
+        dei crediti correnti in cui verranno inserite le transazioni. Il conto
+        può essere selezionata da un elenco dei conti esistenti per i crediti 
+        correnti.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Accumulare le suddivisioni</guilabel> - determina se gli 
+          elementi di una fattura che trasferiscono verso lo stesso conto devono essere
+          combinati in una singola suddivisione per quel conto o inseriti individualmente.
+          Per una semplice fattura relativa alla vendita di chiodi e martello, l'impostazione
+          opera nel seguente modo:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Attivata (le suddivisioni verranno accumulate) - verrà registrato un
+              singolo movimento di €575,00 dal conto Entrate:Vendite.</para>
+            </listitem>
+
+            <listitem>
+              <para>Non attivata - la transazione creata nel conto dei crediti correnti,
+              mostre due distinti trasferimenti dal conto Entrate:Vendite di €100,00 e
+              €475,00. I campi del promemoria nelle suddivisioni indicheranno rispettivamente
+              chiodi e martello (cioè la descrizione dell'oggetto inserita nella 
+              fattura).</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="bus-ar-invoicefind2">
+      <title>Trovare una fattura</title>
+
+      <para>Per trovare una fattura esistente, utilizzare l'applicazione raggiungibile in
+      <guimenu>Impresa</guimenu> -&gt; <guimenu>Cliente</guimenu> -&gt; 
+      <guimenu>Trova fattura</guimenu>. Dai risultati della ricerca è possibile
+      selezionare un fattura da modificare o da visualizzare.</para>
+
+      <note>
+        <para>Prima di poter modificare una fattura emessa, sarà necessario
+        <guilabel>Annullarla</guilabel>.</para>
+      </note>
+
+      <para>Uno degli obiettivi di progetto del sistema di gestione dei crediti correnti
+      presente in GnuCash, era quello di fornire diverse strade per raggiungere una stessa 
+      posizione a seconda del metodo con cui si idealizza il problema :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>si può cercare prima il cliente, e poi visualizzare le fatture
+          a esso associate;</para>
+        </listitem>
+
+        <listitem>
+          <para>si può cercare una fattura per numero o per nome della società;</para>
+        </listitem>
+
+        <listitem>
+          <para>si possono visualizzare le fatture associate con un "lavoro cliente".</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="bus-ar-invoiceprint2">
+      <title>Stampare una fattura</title>
+
+      <para>Dopo aver emesso una fattura, può essere utile stamparla e
+      inviarla al cliente. Per stampare una fattura, utilizzare la voce
+      del menu principale <guimenu>File</guimenu> -&gt;
+      <guimenu>Stampa fattura</guimenu>.</para>
+
+      <para>Un esempio del risultato di stampa della fattura predefinita
+      in GnuCash è mostrato di seguito.</para>
+
+      <screenshot id="bus-ar-invoiceprint">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ar_invoiceprint.png" format="PNG"
+                       srccredit="Patrick Schweiger" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Risultato di stampa della fattura</phrase>
+          </textobject>
+
+          <caption><para>Risultato di stampa della fattura </para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <note>
+        <para>E' possibile modificare l'aspetto della fattura inserendo,
+        per esempio, il logo della società ecc... Per le istruzioni
+        su come farlo, vedere la <xref
+        linkend="bus-ar-invoicechange" />.</para>
+      </note>
+
+      <para>Le fatture possono essere anche stampate dalla finestra principale 
+      selezionando la voce del menu <guimenu>Resoconti</guimenu> -&gt; 
+      <guimenu>Resoconto impresa</guimenu> -&gt; <guimenu>Fattura stampabile</guimenu>. 
+      La finestra del resoconto avviserà che non è stata selezionata una
+      fattura valida per la stampa. Per selezionarla procedere come segue:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Utilizzare il pulsante <guilabel>Opzioni</guilabel> della barra 
+          degli strumenti o selezionare <guimenu>Modifica</guimenu> -&gt; 
+          <guimenu>Opzioni resoconto</guimenu> dal menu principale.</para>
+        </listitem>
+
+        <listitem>
+          <para>Selezionare la linguetta <guilabel>Generale</guilabel> della
+          finestra delle opzioni del resoconto.</para>
+        </listitem>
+
+        <listitem>
+          <para>Premere il pulsante <guilabel>Seleziona</guilabel> a fianco del
+          campo del <guilabel>Numero fattura</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Cercare la fattura come al solito.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>E' inoltre possibile stampare le fatture direttamente dalla finestra
+      della procedura di pagamento. Consultare la <xref linkend="bus-ar-payment1" /> 
+      per le istruzioni su come procedere.</para>
+    </sect2>
+
+    <sect2 id="bus-ar-invoicestarting2">
+      <title>Assegnare un numero iniziale alla fattura</title>
+
+      <para>Non c'è un modo semplice per assegnare automaticamente un numero
+      iniziale a una fattura. GnuCash parte con il numero 1 e ne incrementa poi 
+      il valore. E' possibile inserire manualmente un numero di fattura nella
+      casella di testo ogni volta che viene creata un nuova fattura, ma questa
+      operazione può essere ripetitiva e prima o poi si arriverà a inserire dei 
+      numeri duplicati.</para>
+
+      <para>Se si ritiene necessario, è possibile cambiare il numero iniziale 
+      della fattura; non è attualmente fornita un'interfaccia grafica per 
+      questa operazione, si deve infatti modificare il file dei dati XML. 
+      La relativa voce si trova nella sezione "counters" nella parte iniziale
+      del file. Il file modificato deve poi essere riaperto in GnuCash.</para>
+
+      <note>
+        <para>GnuCash permette di abilitare la compressione dei file. Disabilitare
+        questa opzione e salvare il file prima di modificarlo. Per abilitare o
+        disabilitare la compressione andare in <guimenu>Modifica</guimenu> 
+        -&gt; <guimenu>Preferenze</guimenu>, aprire la linguetta
+        <guilabel>Generali</guilabel> e selezionare o deselezionare l'opzione
+        <guilabel>Comprimi file</guilabel>.</para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="bus-ar-jobs1">
+    <title>Lavori per un cliente</title>
+
+    <para>I lavori per un cliente sono utili per raggruppare più fatture emesse
+    verso lo stesso cliente. L'utilizzo della funzione per i lavori di un cliente è
+    opzionale. Questa funzione è utile quando si hanno più "lavori" associati
+    allo stesso cliente e si desidera visualizzare tutte le fatture relative
+    al singolo lavoro.</para>
+
+    <para>Per creare i lavori per un cliente recarsi in
+    <guimenu>Impresa</guimenu> -&gt; <guimenu>Cliente</guimenu> -&gt;
+    <guimenu>Nuovo lavoro</guimenu>. Verrà visualizzata la finestra per un
+    <guilabel>Nuovo lavoro</guilabel>. I campi modificabili sono:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Informazioni lavoro - Numero lavoro</guilabel> (opzionale) - inserire
+        un numero con cui identificare il lavoro. Se lasciato vuoto, verrà scelto automaticamente
+        un numero dal programma.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni lavoro - Nome lavoro</guilabel> - il nome che
+        si desidera assegnare al nuovo lavoro.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni sull'intestatario - Cliente</guilabel> - il cliente per cui
+        il lavoro viene creato.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni sull'intestatario - ID pagamento</guilabel> - il numero
+        di riferimento a questo lavoro per il cliente (es: il numero d'ordine d'acquisto).
+        Questo rappresenta l'"identificativo del pagamento" per relazionare la fattura al loro
+        ordine. Il valore inserito è utilizzato per impostare l'ID di pagamento per le nuove fatture
+        associate a questo lavoro.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Lavoro attivo</guilabel> - permette di impostare il lavoro 
+        come attivo o non attivo. Questa opzione è utile quando si hanno diversi lavori
+        inattivi, dato che risulta più semplice cercare solamente tra i lavori
+        che sono marcati come attivi.</para>
+      </listitem>
+    </itemizedlist>
+
+    <screenshot id="bus-ar-jobnew">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ar_jobnew.png" format="PNG"
+                     srccredit="Patrick Schweiger" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Nuovo lavoro per un cliente</phrase>
+        </textobject>
+
+        <caption><para>Nuovo lavoro per un cliente</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>Per modificare un lavoro per un cliente, si utilizzi l'applicazione
+    <guimenu>Impresa</guimenu> -&gt; <guimenu>Cliente</guimenu> -&gt;
+    <guimenu>Trova lavoro</guimenu>. Selezionare il lavoro desiderato fra i
+    risultati della ricerca e premere il pulsante 
+    <guilabel>Visualizza/modifica lavoro</guilabel>.</para>
+
+    <para>Per trovare le fatture associate a un determinato lavoro, utilizzare
+    l'applicazione <guimenu>Impresa</guimenu> -&gt; <guimenu>Cliente</guimenu> -&gt;
+    <guimenu>Trova lavoro</guimenu>. Selezionare il lavoro desiderato fra i risultati
+    della ricerca e premere il pulsante <guilabel>Visualizza fatture</guilabel>. Verrà
+    visualizzata una finestra con un elenco delle fatture associate al lavoro 
+    selezionato. Selezionare quindi una fattura e premere il pulsante <guilabel>Visualizza
+    fattura</guilabel> per aprire l'editor della fattura nella finestra principale del 
+    programma</para>
+  </sect1>
+
+  <sect1 id="bus-ar-payment1">
+    <title>Procedere al pagamento</title>
+
+    <para>Verosimilmente, si riceverà il pagamento dai clienti per i quali
+    è stata emessa una fattura. Per registrarlo, si utilizza la procedura di 
+    pagamento raggiungibile dal menu <guimenu>Impresa</guimenu> -&gt;
+    <guimenu>Cliente</guimenu> -&gt; <guimenu>Procedura di
+    Pagamento</guimenu>.</para>
+
+    <para>L'applicazione per la procedura di pagamento consiste di:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Informazioni sul pagamento - Cliente</guilabel> - il
+        cliente che ha pagato.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni sul pagamento - Fattura</guilabel> - la fattura
+        per la quale è stato ricevuto il pagamento. Quando si seleziona una fattura,
+        il campo dell'<guilabel>Importo</guilabel> è automaticamente impostato al valore
+        associato alla fattura.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni sul pagamento - Data</guilabel> - la data in cui
+        è stato ricevuto il pagamento.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni sul pagamento - Importo</guilabel> - l'importo di
+        denaro ricevuto.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni sul pagamento - Nr.</guilabel> - il numero 
+        dell'assegno.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni sul pagamento - Promemoria</guilabel> - qualsiasi
+        commento relativo al pagamento.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Conto di emissione</guilabel> - il conto dei crediti correnti nel quale verrà
+        inserita la transazione di emissione della fattura.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Conto di trasferimento</guilabel> - il conto in cui verrà
+        depositato il denaro (per esempio un conto corrente).</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Più sotto è riportata la finestra di pagamento dei crediti correnti in GnuCash.</para>
+
+    <screenshot id="bus-ar-payment">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ar_payment.png" format="PNG"
+                     srccredit="Patrick Schweiger" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Procedura di pagamento</phrase>
+        </textobject>
+
+        <caption><para>Finestra della procedura di pagamento</para></caption>
+      </mediaobject>
+    </screenshot>
+  </sect1>
+
+  <sect1 id="bus-ar-invoicechange">
+    <title>Cambiare l'aspetto della fattura</title>
+
+    <para>Lo stile predefinito per le fatture, come mostrato nella <xref
+    linkend="bus-ar-invoiceprint2" />, à piuttosto spoglio. Esso prevede che
+    la parte superiore del documento sia vuota, in modo che la fattura possa 
+    essere stampata su carta intestata. E' però possibile modificare l'aspetto
+    delle fatture.</para>
+
+    <para>Utilizzare la voce <guimenu>File</guimenu> -&gt; <guimenu>Proprietà</guimenu> 
+    per inserire il nome e l'indirizzo della propria impresa, che verranno stampati sul lato
+    destro delle fatture.</para>
+
+    <para>Per aggiungere uno sfondo, uno striscione di intestazione e un logo personalizzati
+    alle fatture, occorre modificare il foglio di stile. Per farlo, andare in <guimenu>Modifica</guimenu>
+    -&gt; <guimenu>Fogli di stile</guimenu> e crearne uno <guilabel>Nuovo</guilabel>. Verrà presentata
+    una finestra come questa:</para>
+
+    <screenshot id="bus-ar-invoicechange1">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ar_invoicechange1.png" format="PNG"
+                     srccredit="Patrick Schweiger" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Finestra del nuovo foglio di stile</phrase>
+        </textobject>
+
+        <caption><para>La finestra del nuovo foglio di stile.</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>Si deve selezionare il foglio di stile <guilabel>Fancy</guilabel> e
+    e assegnare un nome al proprio nuovo foglio di stile. Alla pressione del
+    pulsante <guilabel>OK</guilabel> verrà aperta la finestra dell'editor HTML 
+    dei fogli di stile. Questa contiene quattro linguette: "Colori", "Generali", 
+    "Immagini" e "Tabelle". La prima linguetta relativa ai colori permette di
+    variare la colorazione delle varie sezioni che compongono la fattura.
+    La linguetta delle impostazioni generali è dedicata alle informazioni del 
+    redattore e del destinatario e permette di abilitare i collegamenti. La 
+    linguetta delle immagini permette di importare delle immagini nel foglio
+    di stile. Infine, la linguette delle tabelle, permette di configurare la
+    spaziatura tra le tabelle che formano la fattura.</para>
+
+    <para>Per inserire un logo della società, uno striscione di intestazione e una
+    immagine di sfondo, è possibile utilizzare un'applicazione di grafica come
+    GIMP o OpenOffice Draw per creare l'immagine e salvarla in formato GIF o PNG. 
+    A questo punto è possibile importarle nel foglio di stile utilizzando la
+    linguetta delle immagini.</para>
+
+    <para>Qui sotto è visualizzato un esempio in cui sono state importate tutte
+    e tre le immagini.</para>
+
+    <screenshot id="bus-ar-invoicechange2">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ar_invoicechange2.png" format="PNG"
+                     srccredit="Patrick Schweiger" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Esempio di fogli di stile HTML</phrase>
+        </textobject>
+
+        <caption><para>La finestra del foglio di stile HTML con un esempio di
+        immagine di sfondo, striscione di intestazione e logo.</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>Le immagini sono inserite nella fattura con i criteri seguenti: 
+    l'<guilabel>Immagine di sfondo</guilabel> è adattata per essere inserita come
+    sfondo, lo <guilabel>Striscione di intestazione</guilabel> viene inserito al di 
+    sopra del testo della fattura e il <guilabel>Logo</guilabel> è posizionato
+    nell'angolo in alto a sinistra della fattura a fianco dello striscione di 
+    intestazione. Sarà probabilmente necessario provare immagini di dimensioni
+    diverse prima di ottenere una bella fattura. Vengono forniti alcuni suggerimenti 
+    su questo argomento: il logo dovrebbe essere di circa 1 cm quadrato mentre
+    lo striscione di intestazione dovrebbe essere largo 15 cm e alto 1cm.</para>
+
+    <para>Avendo configurato il foglio di stile, al momento della stampa della fattura
+    sarà possibile selezionarlo dal menu <guimenu>Opzioni</guimenu>. Più sotto è riportata
+    la fattura ottenuta dopo aver utilizzato il foglio di stile descritto 
+    precedentemente.</para>
+
+    <screenshot id="bus-ar-invoicechange3">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ar_invoicechange3.png" format="PNG"
+                     srccredit="Patrick Schweiger" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Esempio di fogli di stile HTML</phrase>
+        </textobject>
+
+        <caption><para>La fattura che si ottiene con le immagini 
+        selezionate nel foglio di stile.</para></caption>
+      </mediaobject>
+    </screenshot>
+  </sect1>
+</chapter>

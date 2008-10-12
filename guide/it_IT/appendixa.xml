@@ -1,0 +1,143 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  Originally designed by Carol Champagne.
+  Translators:
+               Cristian Marchi <cri79@libero.it> 2008
+-->
+ <appendix id="appendixa">
+ <title>Guida alla migrazione</title>
+ <para>
+	Questa appendice è di supporto agli utenti di altri software finanziari nella migrazione
+	a GnuCash. Saranno descritte  le differenze di impostazioni di Gnucash confrontandole con
+	quelle di altri programmi.
+  </para>
+
+<sect1 id="appendixa_accts_vs_cats1">
+<title>Usare i conti in luogo delle categorie</title>
+<para>
+	Se si ha familiarità con altri programmi per la gestione delle finanze personali, si 
+	sarà già abituati a tenere traccia delle proprie entrate e uscite come categorie. Dato che
+	Gnucash utilizza un sistema a partita doppia (consultare la sezione 2.1), entrate e uscite 
+	sono trattate come conti. Il concetto di base è lo stesso, ma lo struttura a conti presenta
+	una maggiore coerenza con l'uso commerciale comune. Così, sia che si utilizzi per gestire 
+	la propria attività o per le proprie finanze personali, Gnucash permette di tenere facilmente 
+	traccia di ogni operazione.</para>
+<para>
+	I conti per le entrate e per le uscite forniscono le stesse informazioni contenute 
+	nelle categorie ma in più forniscono maggiore flessibilità nell'immissione delle
+	transazioni. In Gnucash si ha infatti la possibilità di inserire direttamente le transazioni
+	attraverso il relativo registro contabile; i programmi che utilizzano le categorie
+	non offrono questa possibilità perchè, per le categorie, non esiste un <quote>registro 
+	contabile</quote>.</para>
+<para>
+	In Gnucash si ha anche la possibilità di trattare i conti di entrate e uscite esattamente 
+	come si tratterebbero le categorie, se ci si sente più a proprio agio con quest'ultimo metodo.
+	In <trademark class="registered">Quicken</trademark> e altri programmi simili, le transazioni
+	hanno bisogno di un conto e di una categoria. Sostituendo un nome di conto entrate o uscite in 
+	Gnucash con il nome della categoria uitlizzata nell'altro programmo, il risultato dovrebbe
+	essere identico. L'immissione delle transazioni è discusso in dettaglio al capitolo 4.</para>
+</sect1>
+
+ <sect1 id="appendixa_qif1">
+ <title>Organizazzione dei file QIF (Discussione)</title>
+ <para>
+  </para>
+ </sect1>
+ <sect1 id="appendixa_entercharge1">
+ <title>Problemi comuni di duplicazione (Discussione)</title>
+ <para>
+ </para>
+ </sect1>
+ <sect1 id="appendixa_enterpay1">
+ <title>Controllo dei dati QIF (Discussione)</title>
+ <para>
+ </para>
+ </sect1>
+
+<sect1 id="appendixa_xmlconvert1">
+<title>Convertire i file XML di Gnucash</title>
+ <para>I file dei dati XML creati da Gnucash possono essere trasformati facilmente in quasi tutti
+ 	gli altri formati di file di dati (es. QIF, CSV...), se si ha familiarità con XSLT.
+ 	
+ The Gnucash XML data file can be tranformed to almost any other data
+format (e.g., QIF, CSV...) quite easily if one is familiar with XSLT. 
+The Gnucash data file is well-formed XML, and it can therefore be run
+through an XSLT parser with an associated stylesheet.  This allows one
+to transform the file to just about any format that can be designed,
+given a properly written stylesheet.</para>
+
+  <para>A few steps need to be followed.  The writing of a stylesheet is a task
+for a different time, but if you can get one written, here's what you
+need to do:</para>
+  <orderedlist>
+  <listitem>
+  <para>Copy the Gnucash to a working file.  Modify the working file's
+&lt;gnc-v2&gt; tag to read something like what's below.  Note that you can
+pretty much put anything you want in the '="..."' part; I used the URL
+because it's traditional (if such can be said about such a young
+technology!).</para>
+  <literallayout>
+&lt;gnc-v2 xmlns:cd="http://www.gnucash.org/XML/cd"
+        xmlns:book="http://www.gnucash.org/XML/book"
+        xmlns:gnc="http://www.gnucash.org/XML/gnc"
+        xmlns:cmdty="http://www.gnucash.org/XML/cmdty"
+        xmlns:trn="http://www.gnucash.org/XML/trn"
+        xmlns:split="http://www.gnucash.org/XML/split"
+        xmlns:act="http://www.gnucash.org/XML/act"
+        xmlns:price="http://www.gnucash.org/XML/price"
+        xmlns:ts="http://www.gnucash.org/XML/ts"
+        xmlns:slot="http://www.gnucash.org/XML/kvpslot"
+        xmlns:cust="http://www.gnucash.org/XML/cust"
+        xmlns:entry="http://www.gnucash.org/XML/entry"
+        xmlns:lot="http://www.gnucash.org/XML/lot"
+        xmlns:invoice="http://www.gnucash.org/XML/invoice"
+        xmlns:owner="http://www.gnucash.org/XML/owner"
+        xmlns:job="http://www.gnucash.org/XML/job"
+        xmlns:billterm="http://www.gnucash.org/XML/billterm"
+        xmlns:bt-days="http://www.gnucash.org/XML/bt-days"
+        xmlns:sx="http://www.gnucash.org/XML/sx"
+        xmlns:fs="http://www.gnucash.org/XML/fs"
+        xmlns:addr="http://www.gnucash.org/XML/custaddr"&gt;
+ </literallayout>
+  </listitem>
+  <listitem>
+  <para>Creare un foglio di stile XSLT contenente la trasformazione che si desidera effettuare
+  	oppure se ne ottenga una già preparata (AFAIK, non ce ne sono molte, ma sto lavorando ad una CSV).</para>
+  </listitem>
+  <listitem>
+<para>Installare un processore XSLT come Saxon
+(http://saxon.sourceforge.net/) o Xalan-J  (http://xml.apache.org/). 
+Any conforming processor will do, really...</para>
+  </listitem>
+  <listitem>
+<para>Elaborare il file di lavoro e il foglio di stile attraverso il processore
+seguendo le istruzioni fornite.</para>
+  </listitem>
+  <listitem>
+<para>You will now have a file in the desired output format.  An
+enterprising individual could go so far as to write a stylesheet to
+transform the Gnucash data file to an OpenOffice spreadsheet (or
+vice-versa, for that matter).  Such things as QIF ought to be a little
+less work.</para>
+  </listitem>
+  </orderedlist>
+
+<para>Benefits are that you don't need to write a Scheme module or a new C
+routine to do this transformation.  Anyone who knows or can learn XML
+and XSLT can perform this task.  Not much harder, really, than writing a
+Web page....</para>
+
+<para>Anyhow, I just wanted this tidbit to be captured somewhere permanently. 
+I know the process works on 2.0.0 and CVS HEAD datafiles, and ought to
+work on earlier 1.8.x versions, too.  Haven't mucked with 1.6.x in a
+while, but it *should* work there, too...</para>
+
+ </sect1>
+
+ </appendix>

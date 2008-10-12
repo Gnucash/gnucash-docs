@@ -1,0 +1,640 @@
+<!--
+      (Do not remove this comment block.)
+  Originally designed by Carol Champagne.
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+        updated Patrick Schweiger <pks@spiffykitty.com>
+  Translators:
+               Cristian Marchi <cri79@libero.it>
+-->
+ <chapter id="chapter_bus_ap">
+ <title>Debiti correnti</title>
+ <para>Vengono denominati debiti correnti quei prodotti o servizi che una società ha 
+    acquistato ma che deve ancora pagare.</para>
+
+  <sect1 id="bus-ap-concepts1">
+  <title>Concetti di base</title>
+  <para>Questo capitolo è incentrato sui debiti correnti. Vengono denominati debiti correnti 
+    quei prodotti o servizi che una società ha acquistato e per i quali deve essere 
+    pianificato il pagamento.</para>
+   </sect1>
+
+  <sect1 id="bus-ap-setup1">
+  <title>Configurazione iniziale</title>
+  <para>Per permettere a GnuCash di gestire i debiti correnti per una società, 
+     è necessario eseguire prima due operazioni: la prima consiste nel realizzare
+     un'appropriata struttura dei conti e la seconda prevede di registrare in
+     GnuCash l'impresa (o società).</para>
+
+  <sect2 id="bus-ap-setupacct2">
+  <title>Impostare i conti</title>
+
+      <para>Esistono diversi modi per configurare una struttura dei conti per
+      un'impresa; si può iniziare con quella fornita dal druido per le
+      strutture dei conti oppure crearne manualmente una nuova. Per accedere
+      alle strutture già pronte fornite con il programma, si avvii GnuCash e
+      si selezioni <guimenu>File</guimenu> -&gt; <guimenu>Nuovo file</guimenu> e
+      si proceda fino a quando viene visualizzata la lista delle strutture disponibili,
+      da cui si potrà selezionare quella relativa all'impresa.</para>
+
+      <para>La struttura preimpostata non coinciderà esattamente con le proprie 
+      necessità; sarà necessario apportare delle modifiche per renderla
+      utilizzabile al meglio per la situazione particolare. Questa struttura
+      rimane comunque un ottimo punto di partenza per la gestione di un'impresa.</para>
+
+      <para>Vengono denominati debiti correnti quei prodotti o servizi che una società ha 
+      acquistato ma per i quali non è ancora stato inviato il pagamento. Per utilizzare il
+      sistema integrato in GnuCash per la gestione dei debiti correnti, è necessario impostare
+      un conto del tipo <emphasis>Debiti correnti</emphasis>; generalmente si tratta di un 
+      sottoconto delle passività; è in questo conto che il sistema di gestione dei
+      debiti correnti inserisce le transazioni.</para>
+  <literallayout>
+Semplice struttura dei conti per i debiti correnti:
+
+-Attività
+   -Banca
+-Passività
+   -Debiti correnti
+-Uscite
+   -Uscite debiti correnti
+  </literallayout>
+
+ 
+ <para>Saranno necessari altri conti di attività, entrate e uscite per rendere
+      la struttura più fruibile. L'aspetto essenziale della struttura proposta, risiede 
+      nell'utilizzo di un conto delle uscite e di uno per i debiti correnti con il tipo di conto
+      impostato a <emphasis>Debiti correnti</emphasis>.</para>
+  </sect2>
+
+  <sect2 id="bus-ap-setupcname2">
+  <title>Registrare la propria impresa</title>
+
+      <para>Dopo aver impostato la struttura dei conti, si deve registrare il file
+      di GnuCash come appartenente alla propria Impresa; si selezioni quindi
+      <guimenu>File</guimenu> -&gt; <guimenu>Proprietà</guimenu>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Inserire il nome della società e le informazioni di contatto quali
+          il numero di telefono, di fax, l'indirizzo e-mail e l'indirizzo 
+          internet.</para>
+        </listitem>
+
+        <listitem>
+          <para>Inserire l'identificativo della propria impresa per il pagamento 
+          delle tasse nel campo <guilabel>ID impresa</guilabel>.</para>
+        </listitem>
+
+       </itemizedlist>
+  </sect2>
+  </sect1>
+
+  <sect1 id="bus-ap-components1">
+  <title>Componenti del sistema</title>
+  <para>GnuCash ha un sistema integrato di gestione dei debiti correnti. Le
+  transazioni generate da esso vengono inserite nel conto dei debiti correnti, come
+  registrazione di ciò che avviene. Generalmente non si lavora con questo conto ma
+  si utilizzano i quattro componenti dell'applicazione integrata in GnuCash per 
+  i debiti correnti. Questi componenti sono disponibili nel menu secondario 
+  <guimenu>Impresa</guimenu> -&gt; <guimenu>Venditore</guimenu>.  
+  Essi sono:</para>
+
+  <itemizedlist>
+  <listitem>
+  <para><guilabel>Venditore</guilabel> è un singolo o società dal quale si acquistano 
+  prodotti o servizi in credito.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Ricevuta</guilabel> è il documento che il venditore invia per richiedere 
+  il pagamento. La ricevuta contiene un elenco di ciò che è stato acquistato.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Lavoro</guilabel> (opzionale) è dove vengono registrati i "lavori venditore".  
+  I lavori sono degli strumenti con i quali è possibile raggruppare le ricevute di un singolo
+  venditore.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Procedura di pagamento</guilabel> permette di registrare i pagamenti in 
+  favore di un venditore verso cui si è debitori.</para>
+  </listitem>
+  </itemizedlist>
+
+  <para>La sezione seguente tratta individualmente i componenti dell'applicazione per i debiti correnti.</para>
+ </sect1>
+
+  <sect1 id="bus-ap-vendors1">
+  <title>Venditore</title>
+ <para>Un venditore è un singolo o una società dalla quale si acquista uno o più beni o servizi.
+ I venditori devono essere inseriti nel sistema dei debiti correnti.</para>
+ 
+  <sect2 id="bus-ap-vendornew2">
+  <title>Creare un nuovo venditore</title>
+ <para>Per registrare un nuovo venditore, selezionare la voce di menu <guimenu>Impresa</guimenu> -&gt; 
+ <guimenu>Venditore</guimenu> -&gt; <guimenu>Nuovo venditore</guimenu>.  Si completino
+ le informazioni generali relative al venditore quali il nome della società l'indirizzo, il numero di 
+ telefono e di fax ecc... Di seguito è riportata una lista delle altre voci disponibili: </para>
+
+ <itemizedlist>
+ <listitem>
+ <para><guilabel>Identificazione - Numero venditore</guilabel> - può essere un numero qualsiasi utile 
+ per riferirsi a questo preciso venditore. Il campo può essere lasciato vuoto, nel qual caso un numero verrà assegnato
+ automaticamente.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Identificazione - Attivo</guilabel> - differenzia i venditori attivi da quelli inattivi. 
+ E' utile quando si hanno molti venditori da cui non ci si rifornisce più e si desidera visualizzare
+ solamente quelli attivi.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Indirizzo di pagamento - Nome</guilabel> - è il nome della persona che deve
+ ricevere il pagamento.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Note</guilabel> - permette di inserire qualsiasi nota aggiuntiva relativa al
+ venditore. Utile per per registrare, per esempio, i nomi dei contatti all'interno della società
+ di fornitura.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Informazioni sul pagamento - Valuta</guilabel> - specifica la valuta predefinita
+ per il pagamento.</para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Informazioni sul pagamento - Termini</guilabel> - specifica i termini di pagamento predefiniti
+ per questo venditore. I termini di pagamento devono essere impostati preventivamente utilizzando la funzione
+disponibile in <guimenu>Impresa</guimenu> -&gt; <guimenu>Termini di pagamento</guimenu>.</para>
+ </listitem>
+
+ <listitem>
+ <para><guilabel>Informazioni sul pagamento - Imposte incluse</guilabel> - permette di definire se le
+ tasse sono incluse nelle ricevute che si ricevono dal venditore. E' possibile scegliere fra: 
+          <itemizedlist>
+              <listitem>
+                <para><guilabel>sì</guilabel> significa che le tasse sono già
+                incluse negli importi della ricevuta.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>no</guilabel> significa che le tasse non sono incluse.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>usa globale</guilabel> utilizza le impostazioni globali
+                configurate nelle preferenze globali accessibili dal menu
+                <guimenu>Modifica</guimenu> -&gt;
+                <guimenu>Preferenze</guimenu>.</para>
+              </listitem>
+            </itemizedlist></para>
+ </listitem>
+ <listitem>
+ <para><guilabel>Informazioni sul pagamento - Tabella imposte</guilabel> - permette di scegliere una 
+ tabella delle imposte predefinita da applicare alle ricevute di questo venditore. La tabella delle imposte
+ deve prima essere creata utilizzando la voce del menu <guimenu>Impresa</guimenu> -&gt; 
+ <guimenu>Tabella imposte</guimenu>.</para>
+ </listitem>
+ </itemizedlist>
+
+  <para>La finestra di registrazione di un nuovo venditore assomiglia a questa:</para>
+	<screenshot id="bus-ap-vendornew">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_vendornew.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Finestra di registrazione di un nuovo venditore</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Finestra di registrazione di un nuovo venditore
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  </sect2>
+  <sect2 id="bus-ap-vendorfind2">
+  <title>Cercare e modificare un venditore</title>
+
+ <para>Per cercare un venditore esistente utilizzare la finestra <guimenu>Impresa</guimenu> 
+ -&gt; <guimenu>Venditore</guimenu> -&gt; <guimenu>Trova venditore</guimenu>. E' poi sufficiente 
+ selezionare un venditore dalla lista delle voci trovate per <guibutton>Visualizzarlo 
+ o Modificarlo</guibutton>. Questa finestra viene anche visualizzata per selezionare un venditore
+ quando si crea una ricevuta e si procede al pagamento.</para>
+	<screenshot id="bus-ar-vendorfind">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_vendorfind.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Finestra di ricerca del venditore</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Finestra di ricerca del venditore
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+      <para>Se dalla ricerca vengono restituiti molti elementi corrispondenti,
+      è possibile filtrare i risultati eseguendo una ulteriore ricerca tra questi
+      ultimi. Il gruppo dei risultati attuali viene analizzato quando è selezionata
+      l'opzione <guilabel>Perfeziona la ricerca attiva</guilabel>. GnuCash rende
+      disponibile questa opzione solamente dopo che è stata eseguita con successo la
+      ricerca iniziale.</para>
+
+      <para>Se il venditore che si sta cercando non è stato trovato con il criterio di
+      ricerca inserito, è possibile cambiare il criterio di ricerca  e selezionando l'opzione
+      <guilabel>Nuova ricerca</guilabel> seguita dal pulsante <guibutton>Trova</guibutton>.
+      Il passo più importante è la selezione dell'opzione <guilabel>Nuova ricerca</guilabel>.
+      Se il venditore non è tra i risultati della ricerca originale e si effettua una ricerca 
+      tra i risultati ottenuti, il venditore non verrà trovato anche se il criterio di 
+      ricerca è stato cambiato.</para>
+
+ <note>
+ <para>Per visualizzare una lista dei venditori attivi, si imposti il criterio di ricerca
+ a "corrisponde all'espressione regolare" e si inserisca un singolo punto "." nel campo del testo
+ da ricercare. Assicurarsi che non sia selezionata l'opzione <guilabel>Cerca solo tra i dati selezionati</guilabel>,
+ poi premere <guibutton>Trova</guibutton>. L'espressione regolare "." significa trovare tutto.</para>
+ </note>
+
+  </sect2>
+  </sect1>
+
+  <sect1 id="bus-ap-bills1">
+  <title>Ricevuta</title>
+ <para>Una ricevuta è la richiesta di pagamento che si riceve da un venditore. GnuCash può
+ gestire le ricevute.</para>
+  <sect2 id="bus-ap-billnew2">
+  <title>Creare una nuova ricevuta</title>
+ <para>Quando si riceve una ricevuta da un venditore e la si vuole immettere in GnuCash, è
+ necessario creare una nuova ricevuta. Per fare questo è disponibile la voce <guimenu>Impresa</guimenu> -&gt; 
+ <guimenu>Venditore</guimenu> -&gt; <guimenu>Nuova ricevuta</guimenu>. Apparirà una finestra 
+  in cui sono presenti diversi campi da completare.</para>
+  <itemizedlist>
+  <listitem>
+  <para><guilabel>Informazioni fattura - ID fattura</guilabel> (opzionale) - il numero di Identificazione 
+  della fattura emessa dal venditore (es: il numero interno che il fornitore ha assegnato alla fattura).</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Informazioni fattura - Date di apertura</guilabel> - la data in cui la fattura è stata emessa 
+  dal venditore.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Informazioni ricevuta - Venditore</guilabel> - il fornitore che ha emesso la fattura.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Informazioni ricevuta - Lavoro</guilabel> (opzionale) - permette di associare un "lavoro venditore" 
+   con questa ricevuta. I "lavori venditore" sono descritti nella sezione successiva.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Informazioni ricevuta - ID ricevuta</guilabel> (opzionale) - l'ID applicato alla fattura dal venditore (es: il numero
+   della fattura assegnato dal venditore).</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Informazioni ricevuta - Termini</guilabel> - l'accordo sui termini di pagamento per questa ricevuta.
+   E' possibile selezionare una voce registrata in precedenza dalla lista a comparsa. Se è stato impostato un valore predefinito per il
+   venditore selezionato, il campo sarà inizializzato con questo.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Addebitamento predefinito- Cliente</guilabel> (opzionale) - il cliente a cui associare questa 
+  ricevuta. E' utilizzato per addebitare il cliente in seguito.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Addebitamento predefinito- Lavoro</guilabel> (opzionale) - il lavoro cliente da associare a questa
+   ricevuta.</para>
+  </listitem>
+  </itemizedlist>
+
+	<screenshot id="bus-ap-billnew">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_billnew.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Finestra per la creazione di una nuova ricevuta</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Finestra per la creazione di una nuova ricevuta
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+
+  <para>Alla pressione del pulsante <guibutton>OK</guibutton> verrà aperta la finestra di
+  <guilabel>Modifica ricevuta</guilabel>.</para>
+  </sect2>
+  <sect2 id="bus-ap-billedit2">
+  <title>Modificare una ricevuta</title>    
+  <para>Dalla finestra di modifica della ricevuta si può inserire una lista 
+  dettagliata di ciò che si è acquistato, lavorando in modo simile a come viene 
+  utilizzato il registro di un conto.</para>  
+  	<screenshot id="bus-ap-billedit">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_billedit.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Finestra di modifica della ricevuta</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Finestra di modifica della ricevuta</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  <para>Sono presenti 12 colonne nel riquadro delle "Voci della fattura":</para>
+  <itemizedlist>
+  <listitem>
+  <para><guilabel>Data</guilabel> - la data in cui l'oggetto è stato venduto.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Fatturato?</guilabel> - <guilabel>X</guilabel> significa
+  che l'oggetto è riportato in questo fattura, mentre un riquadro vuoto indica che l'oggetto
+  non è riportato nella fattura. Se il campo è vuoto si può inserire l'oggetto in fattura selezionandone
+  la riga e premendo con il mouse nel campo relativo.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Descrizione</guilabel> (opzionale) - è il nome che identifica l'oggetto o il servizio.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Operazione</guilabel> (opzionale) - è un campo definibile dall'utente. Si possono inserire qui 
+  le informazioni sul centro di costo o utilizzare una delle tre operazioni predefinite: "Ore", "Materiale" o 
+  "Progetto".</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Conto uscite</guilabel> - selezionare il conto delle uscite da addebitare per questo oggetto.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Quantità</guilabel> - il numero di oggetti identici acquistati.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Prezzo unitario</guilabel> - è il prezzo per unità del singolo oggetto.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Tassabile?</guilabel> - l'oggetto è tassabile?  <guilabel>X</guilabel> significa sì, 
+  mentre un riquadro vuoto significa no. E' possibile cliccare nel campo per cambiare l'impostazione.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Imposte incluse?</guilabel> - le tasse sono già comprese nel prezzo unitario?
+  <guilabel>X</guilabel> significa sì, mentre un campo vuoto significa no.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Tabella imposte</guilabel> (opzionale) - apre una finestra contenente l'elenco di 
+  tutte le tabella imposte disponibili. Se l'oggetto è tassabile e le tasse non sono incluse nel 
+  prezzo unitario, allora sarà utilizzata questa tabella delle imposte per calcolare l'importo delle 
+  tasse.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Subtotale</guilabel> (non modificabile) - subtotale calcolato per questo oggetto 
+  (meno le tasse)</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Addebitabile?</guilabel> - questo oggetto è addebitabile a un cliente o lavoro?</para>
+  </listitem>
+  </itemizedlist>
+
+  <para>Quando si è terminata l'immissione di tutte le voci, si può <guilabel>Emettere</guilabel> la ricevuta. </para>
+  </sect2>
+
+  <sect2 id="bus-ap-billpost2">
+  <title>Emettere una ricevuta</title>
+  <para>Quando si è terminata la fase di modifica di una ricevuta, la si deve <guilabel>Emettere</guilabel>. Non è
+  necessario emetterla subito, è possibile infatti chiudere la finestra di modifica e ritornarvi in seguito.
+  Prima o poi però la ricevuta dovrà essere emessa. L'emissione di una ricevuta comporta l'inserimento delle
+  necessarie transazioni nel conto per i debiti correnti. La finestra di emissione della ricevuta 
+  richiede l'inserimento di alcune informazioni:</para>
+
+  	<screenshot id="bus-ap-billpost">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_billpost.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Finestra di emissione della ricevuta</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Finestra di emissione della ricevuta
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  <itemizedlist>
+    <listitem>
+      <para><guilabel>Data di emissione</guilabel> - indica la data in cui la transazione verrà 
+      inserita nel conto per i debiti correnti.</para>
+    </listitem>
+    <listitem>
+      <para><guilabel>Data di scadenza</guilabel> - è la data in cui è previsto il pagamento 
+      della ricevuta.</para>
+          
+          <itemizedlist>
+            <listitem>
+              <para>Se sono stati specificati dei termini di pagamento alla creazione della
+              ricevuta, la data è calcolata in accordo ai termini selezionati e il campo
+              non è modificabile.</para>
+            </listitem>
+
+            <listitem>
+              <para>Se non è stata impostata alcuna data di scadenza, si inserisca
+              ora in questo campo.</para>
+            </listitem>
+          </itemizedlist>
+    </listitem>
+
+    <listitem>
+       <para><guilabel>Descrizione</guilabel> - è un campo opzionale.
+       Quando le transazioni relative alle ricevute verranno inserite nel 
+       registro del conto per i debiti correnti, il testo scritto in questa
+       casella verrà visualizzato nel campo del promemoria delle
+       transazioni.</para>
+    </listitem>
+
+    <listitem>
+       <para><guilabel>Conto di emissione</guilabel> - selezionare il conto
+        dei debiti correnti in cui verranno inserite le transazioni. Il conto
+        può essere selezionata da un elenco dei conti esistenti per i debiti 
+        correnti.</para>
+     </listitem>
+
+
+        <listitem>
+          <para><guilabel>Accumulare le suddivisioni</guilabel> - determina se gli 
+          elementi di una ricevuta che trasferiscono verso lo stesso conto devono essere
+          combinati in una singola suddivisione per quel conto o inseriti individualmente.
+          Per la fattura relativa alla carta intestata e alle buste, l'opzione agisce
+          sui risultati di emissione nel modo seguente:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Attivata (le suddivisioni verranno accumulate) - verrà registrato un
+              singolo trasferimento di €100,00 dal conto "Uscite:Forniture ufficio".</para>
+            </listitem>
+
+            <listitem>
+              <para>Non attivata - la transazione creata nel conto per i debiti correnti,
+              mostra due movimenti verso il conto "Uscite:Forniture ufficio" dell'importo di
+              €75,00 e €25,00. Ii campi del promemoria nelle suddivisioni riportano
+              rispettivamente l'acquisto della carta intestata e delle buste (cioè la descrizione
+              inserita nella ricevuta.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+  </itemizedlist>
+  </sect2>
+
+  <sect2 id="bus-ap-billfind2">
+  <title>Trovare una ricevuta</title>
+  <para>Per trovare una ricevuta esistente, è possibile utilizzare la voce del menu <guimenu>Impresa</guimenu> 
+  -&gt; <guimenu>Venditore</guimenu> -&gt; <guimenu>Trova ricevuta</guimenu>. Dall'elenco dei risultati della
+  ricerca è possibile selezionare una ricevuta da visualizzare o da modificare.</para>
+  <note>
+  <para>Prima di poter modificare una ricevuta emessa, è necessario <guilabel>Ritirarla</guilabel>.</para>
+  </note>
+
+  <note>
+  <para>Esistono altri modi per accedere a una ricevuta esistente simili a quelli utili per accedere alle fatture 
+  per i clienti. Consultare la sezione sulla ricerca delle fatture nel capitolo relativo ai crediti correnti per 
+  avere maggiori informazioni.</para>
+  </note>
+
+  </sect2>
+  </sect1>
+
+  <sect1 id="bus-ap-jobs1">
+  <title>Lavori per un venditore</title>
+  <para>I lavori per un venditore sono utilizzati per raggruppare diverse ricevute provenienti da un singolo venditore.
+  L'utilizzo di questa funzione è opzionale ma risulta utile quando si devono gestire più "lavori" dello stesso venditore
+  e si desidera visualizzare tutte le ricevute raggruppate per singolo lavoro.</para>
+  <para>Per utilizzare i "lavori venditore", occorre prima di tutto crearli utilizzando l'applicazione 
+  <guimenu>Impresa</guimenu> -&gt; <guimenu>Venditore</guimenu> -&gt; <guimenu>Nuovo lavoro</guimenu>; verrà visualizzata 
+  la finestra del <guilabel>Nuovo lavoro</guilabel>. I campi configurabili sono:</para>
+
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Informazioni sul lavoro - Numero del lavoro</guilabel> (opzionale) - inserire il
+        numero per questo lavoro. Se lasciato vuoto, un numero verrà assegnato automaticamente.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni sul lavoro - Nome del lavoro</guilabel> - il nome che si desidera
+        assegnare al nuovo lavoro.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni sull'intestatario - Venditore</guilabel> - il venditore
+        per cui viene creato il lavoro.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Informazioni sull'intestatario - ID pagamento</guilabel> - il riferimento del
+        venditore per questo lavoro (es: il suo numero d'ordine d'acquisto).</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Lavoro attivo</guilabel> - permette di rendere attivo o inattivo 
+        il lavoro. Utile quando si hanno diversi lavori inattivi, dato che viene resa più
+        semplice la ricerca selezionando solo i lavori indicati come attivi.</para>
+      </listitem>
+    </itemizedlist>
+
+  	<screenshot id="bus-ap-jobnew">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_jobnew.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Nuovo lavoro venditore</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Nuovo lavoro venditore</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+
+    <para>Per modificare un "lavoro venditore" esistente, andare in
+    <guimenu>Impresa</guimenu> -&gt; <guimenu>Venditore</guimenu> -&gt;
+    <guimenu>Trova lavoro...</guimenu>. Selezionare poi il lavoro 
+    desiderato dalla lista dei risultati della ricerca e premere il 
+    pulsante <guilabel>Visualizza/modifica lavoro</guilabel>.</para>
+
+    <para>Per selezionare le ricevute associate a un determinato lavoro, utilizzare
+    l'applicazione <guimenu>Impresa</guimenu> -&gt; <guimenu>Venditore</guimenu> -&gt;
+    <guimenu>Trova lavoro...</guimenu>. Selezionare il lavoro desiderato 
+    dall'elenco dei risultati di ricerca e premere il pulsante 
+    <guilabel>Visualizza fatture</guilabel>; verrà mostrata una finestra con 
+    l'elenco delle ricevute associate al lavoro. Selezionare una ricevuta e
+    cliccare sul pulsante <guilabel>Visualizza fattura</guilabel> per aprire 
+    la schermata di modifica della ricevuta nella finestra principale del 
+    programma.</para>
+  </sect1>
+
+  <sect1 id="bus-ap-payment1">
+  <title>Procedere al pagamento</title>
+  <para>Prima o poi sarà necessario pagare le ricevute. Per farlo, si utilizza l'applicazione per 
+  il pagamento raggiungibile nel menu <guimenu>Impresa</guimenu> -&gt; <guimenu>Venditore</guimenu> 
+  -&gt; <guimenu>Procedura di pagamento</guimenu>.</para>
+  <para>La procedura di pagamento consiste di:</para>
+  <itemizedlist>
+  <listitem>
+  <para><guilabel>Informazioni sul pagamento - Venditore</guilabel> - il venditore che si
+  desidera pagare.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Informazioni sul pagamento - Ricevuta</guilabel> - la ricevuta che si desidera
+  pagare.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Informazioni sul pagamento - Data</guilabel> - la data in cui si desidera
+  effettuare il pagamento: di solito la data attuale.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Informazioni sul pagamento - Importo</guilabel> - L'importo da trasferire
+  per questo pagamento.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Informazioni sul pagamento - Nr.</guilabel> - il numero dell'assegno.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Informazioni sul pagamento - Promemoria</guilabel> - qualsiasi commento aggiuntivo
+  relativo a questo pagamento.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Emetti a</guilabel> - il conto dei debiti correnti in cui inserire la transazione.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Conto di trasferimento</guilabel> - il conto da cui viene prelevato il 
+  denaro per il pagamento (es: il conto corrente).</para>
+  </listitem>
+  </itemizedlist>
+    <para>Qui sotto è riportata la finestra di GnuCash per il pagamento.</para>
+  	<screenshot id="bus-ap-payment">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_payment.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Procedura di pagamento</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Finestra della procedura di pagamento
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+ </sect1>
+
+ </chapter>
