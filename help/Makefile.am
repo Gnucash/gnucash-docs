@@ -1,1 +1,1 @@
-SUBDIRS = C de_DE
+SUBDIRS = C de_DE it_IT
