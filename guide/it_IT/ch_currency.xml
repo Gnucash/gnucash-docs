@@ -37,7 +37,7 @@
     essere settato correttamente da subito al fine di rendere più veloce il 
     processo di creazione di una struttura dei conti.</para>
 
-    <para>Quando si crea un nuovo conto, è possibile definire la commodity.
+    <para>Quando si crea un nuovo conto, è possibile definire la commodity a esso associata.
     Per i conti in valuta, si può scegliere fra una delle centinaia di valute
     supportate da GnuCash selezionandola semplicemente dalla lista delle commodity
     in valuta. Si noterà come la valuta predefinita sia sempre quella impostata 
@@ -47,7 +47,7 @@
 
     <para>Per esempio, si imposti un tipico scenario di conto bancario in cui
     venga utilizzato prevalentemente l'Euro (EUR), ma si possegga anche un conto
-    in una banca degli Stati Uniti che lavori prevalentemente in dollari Americani 
+    in una banca negli Stati Uniti che lavori prevalentemente in dollari Americani 
     (USD) e infine un altro conto ad Hong Kong che utilizzi il dollaro di Hong Kong
     (HKD). Si devono quindi impostare 3 conti, uno con l'Euro, uno con i dollari 
     Americani e uno con i dollari di Hong Kong; una possibile struttura per questa
@@ -59,7 +59,7 @@
       -Banca Europea    (EUR)
       -Banca USA        (USD)
       -Banca di HK      (HKD)
--Capitale                          (EUR)
+-Capitali                          (EUR)
    -Bilanci di apertura
       -EUR              (EUR)
       -USD              (USD)   
@@ -418,7 +418,7 @@ Nota: la valuta associata ad ogni conto è mostrata tra parentesi.
       -Banca Jamaicana      (JMD)
    -Beni immobili                  (EUR)
       -Barca                (JMD)
--Capitale                        (EUR)
+-Capitali                        (EUR)
    -Bilanci di apertura
       -EUR                  (EUR)
 
@@ -527,7 +527,7 @@ Nota: la valuta di ogni conto è riportata fra parentesi.
       </para>
 
       <para>Si desidera anche essere in grado di registrare le varie entrate e uscite
-      per ogni azione e per mediatore.</para>
+      per ogni azione e per mediatore (brocker).</para>
 
       <para>Le azioni che si desidera acquistare sono le Beijing Airport (Hong Kong)
       (Dopotutto le Olimpiadi del 2008 a Beijing dovrebbero portare molti affari 
@@ -557,9 +557,9 @@ Nota: la valuta di ogni conto è riportata fra parentesi.
       seguente struttura dei conti</para>
 
       <literallayout>
-Attività:Investimenti:Conto di mediazione:Boom:0694.HK     (Beijing Airport)
-Attività:Investimenti:Conto di mediazione:Boom:Banca        (HKD)
-Capitale:bilanci di apertura:HKD                            (HKD)
+Attività:Investimenti:Conto di brockeraggio:Boom:0694.HK     (Beijing Airport)
+Attività:Investimenti:Conto di brockeraggio:Boom:Banca        (HKD)
+Capitali:Bilanci di apertura:HKD                            (HKD)
 Uscite:Commissioni:Boom.0694.HK                      (HKD)
 Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
       </literallayout>
@@ -618,13 +618,13 @@ Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
       denaro da un conto bancario esistente (trasferimento di valuta).</para>
 
       <para>Per registrare l'acquisto delle azioni, si deve aprire il conto bancario
-      associato alle azioni (Attività:Investimenti:Conto di mediazione:Boom:Banca) e inserire le seguenti
+      associato alle azioni (Attività:Investimenti:Conto di brockeraggio:Boom:Banca) e inserire le seguenti
       informazioni</para>
     <literallayout>
     Acquisto delle azioni 
-	Attività:Investimenti:Conto di mediazione:Boom:Banca  Prelievo 50.000
+	Attività:Investimenti:Conto di brockeraggio:Boom:Banca  Prelievo 50.000
 	Uscite:Investimenti:Commissioni:Boom_HKD	Deposito 500
-	Attività:Investimenti:Conto di mediazione:Boom:0694  Deposito 49.500 (16.500 quote)
+	Attività:Investimenti:Conto di brockeraggio:Boom:0694  Deposito 49.500 (16.500 quote)
     </literallayout>
 
       <para>Nel caso non venisse visualizzata la finestra del "Tasso di cambio", aprirla
@@ -698,7 +698,7 @@ Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
     Attività:Investimenti:Valuta:Banca (EUR)
     Attività:Investimenti:Valuta:XXX (XXX)</literallayout>
 
-    <para>Ma, se si vuole essere in grado di tracciare gli aumenti del capitale o le perdite,
+    <para>Se si vuole essere in grado di tracciare gli aumenti del capitale o le perdite,
     come anche le varie spese, occorrerà uno schema più complesso; tipo questo:</para>
 
     <literallayout>
@@ -874,9 +874,9 @@ Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
   <sect1 id="currency_examples1">
     <title>In pratica</title>
 
-    <para>In questa sezione verrà mostrato un esempio in cui si utilizzeranno le nozioni
-    descritte fino a questo punto nella guida con un po' di complessità aggiunta dovuta 
-    all'utilizzo di diverse valute.</para>
+    <para>In questa sezione verrà mostrato un esempio in cui saranno utilizzate le nozioni
+    descritte fino a questo punto, con un livello di complessità maggiore dovuto 
+    all'utilizzo di valute multiple.</para>
 
     <sect2>
       <title>Scenario di base</title>
@@ -885,7 +885,7 @@ Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
 
       <itemizedlist>
         <listitem>
-          <para>vivere in Australia e di utilizzare il dollaro Australiano (AUD)
+          <para>vivere in Italia e di utilizzare l'Euro (EUR)
           come valuta predefinita;</para>
         </listitem>
 
@@ -898,17 +898,17 @@ Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
         </listitem>
 
         <listitem>
-          <para>Acquistare alcune azioni in Svezia utilizzando il SEK (Ericsson
-          B-Fria);</para>
+          <para>acquistare alcune azioni in Svezia (Ericsson
+          B-Fria) utilizzando il SEK;</para>
         </listitem>
 
         <listitem>
-          <para>acquistare alcune azioni ad Hong Kong utilizzando l'HKD (Beijing
-          Airport);</para>
+          <para>acquistare alcune azioni ad Hong Kong (Beijing
+          Airport) utilizzando l'HKD;</para>
         </listitem>
 
         <listitem>
-          <para>acquistare altre azioni negli Stati Uniti utilizzando l'USD (Amazon);</para>
+          <para>acquistare altre azioni negli Stati Uniti (Amazon) utilizzando l'USD;</para>
         </listitem>
 
         <!--
@@ -918,11 +918,11 @@ Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
 -->
 
         <listitem>
-          <para>prestare una certa somma in Euro a un amico (Mario);</para>
+          <para>prestare una certa somma in Dollari Australiani (AUD) a un amico (Jack);</para>
         </listitem>
 
         <listitem>
-          <para>chiedere del denaro in prestito ad una banca Giapponese;</para>
+          <para>chiedere del denaro in prestito da una banca Giapponese;</para>
         </listitem>
 
         <listitem>
@@ -930,7 +930,7 @@ Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
         </listitem>
 
         <listitem>
-          <para>utilizzare una carta di credito in Australia;</para>
+          <para>utilizzare una carta di credito in Italia;</para>
         </listitem>
 
         <listitem>
@@ -939,10 +939,10 @@ Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
 
       </itemizedlist>
       <note>
-        <para>Questi esempi non sono da prendere come dei consigli validi.
+        <para>Questi esempi non sono da prendere come dei consigli per degli investimenti vantaggiosi.
         Sono solamente da considerare come esercizi per apprendere la tecnica
-        da utilizzare in GnuCash e quindi non dei consigli finanziari.
-        Si consiglia di consultare il proprio consulente finanziario per 
+        da utilizzare in GnuCash e quindi non sono dei consigli finanziari.
+        Si consiglia di rivolgersi al proprio consulente finanziario per 
         ricevere maggiori informazioni sugli investimenti e sui prestiti
         internazionali.</para>
         </note>
@@ -956,11 +956,11 @@ Entrate:Investimenti:Dividendi:Boom:0694.HK               (HKD)
       <para>Questa volta si utilizzerà un nuovo file dei dati di GnuCash; scegliere quindi
       <guimenu>File</guimenu> -&gt; <guimenuitem>Nuovo</guimenuitem> e modificare le preferenze
       (<guimenu>Modifica</guimenu> -&gt; <guimenuitem>Preferenze</guimenuitem>) 
-      impostando l'AUD come valuta predefinita. Avendo deciso di registrare in dettaglio entrate
+      impostando l'EUR come valuta predefinita. Avendo deciso di registrare in dettaglio entrate
       e uscite, si consiglia di utilizzare la struttura dei conti seguente:</para>
 
       <literallayout>
-Attività:Attività correnti:Risparmi         (AUD)
+Attività:Attività correnti:Conto risparmio         (EUR)
       </literallayout>
 
       <para></para>
@@ -972,18 +972,18 @@ Attività:Attività correnti:Risparmi         (AUD)
 
       <para>Un bel giorno, aprendo la posta, si scopre con grande sorpresa di essere
       l'ultimo parente ancora in vita di un parente lontano che era molto ricco; per la
-      precisione ricco di $500.000 AUD (!). Un'altra lettera dichiara anche che
-      si è i vincitori della lotteria per una somma di $250.000 AUD. </para>
+      precisione ricco di 500.000 EUR (!). Un'altra lettera dichiara anche che
+      si è i fortunati vincitori della lotteria per una somma di 250.000 EUR. </para>
       
       <para>Per registrare queste transazioni, sono necessari i seguenti conti:</para>
       <literallayout>
-Capitale:Lotteria         (AUD)
-Capitale:Eredità          (AUD)      
+Capitali:Lotteria         (EUR)
+Capitali:Eredità          (EUR)      
       </literallayout>
 
 
-      <para>Le transazioni da inserire nel proprio conto <guilabel>Attività:Attività correnti
-      Risparmi</guilabel> dovrebbero essere come queste:</para>
+      <para>Le transazioni da inserire nel proprio conto <guilabel>Attività:Attività correnti:Conto
+      risparmio</guilabel> dovrebbero essere come queste:</para>
 
       <table>
           <title>Ricevere del denaro extra</title>
@@ -999,17 +999,17 @@ Capitale:Eredità          (AUD)
               </row>
 
               <row>
-                <entry>Entrate:Lotteria</entry>
+                <entry>Capitalie:Lotteria</entry>
 
-                <entry>$250,000</entry>
+                <entry>€250,000</entry>
 
                 <entry></entry>
               </row>
 
               <row>
-                <entry>Entrate:Eredità</entry>
+                <entry>Capitali:Eredità</entry>
 
-                <entry>$500,000</entry>
+                <entry>€500,000</entry>
 
                 <entry></entry>
               </row>
@@ -1040,19 +1040,19 @@ Capitale:Eredità          (AUD)
     <sect2>
       <title>Acquistare una casa</title>
 
-      <para>Alla fine ci si può permettere di rimborsare il mutuo per la casa acceso qualche anno fa 
-      (con un deposito di $50.000).</para>
+      <para>Finalmente ci si può permettere di rimborsare il mutuo per la casa acceso qualche anno fa 
+      (con un deposito di €50.000).</para>
 
       <literallayout>
-Attività:Beni immobili:Casa                  (AUD) $300.000
-Passività:Prestiti:Mutuo                 (AUD) $250.000
-Uscite:Interessi:Interessi mutuo        (AUD)
-Capitale:bilanci di apertura                     (AUD) $50.000
+Attività:Beni immobili:Casa                  (EUR) €300.000
+Passività:Prestiti:Mutuo                     (EUR) €250.000
+Uscite:Interessi:Interessi mutuo             (EUR)
+Capitali:Bilanci d'apertura                  (EUR) €50.000
       </literallayout>
 
       <para>Dopo un incontro con la banca presso cui è stato acceso il mutuo, questa
       ne autorizza l'estinzione in un'unica soluzione previo il pagamento
-      di alcuni interessi (AUD 30.000). Inserire quindi le seguenti transazioni nel conto
+      di alcuni interessi (EUR 30.000). Inserire quindi le seguenti transazioni nel conto
       <guilabel>Attività:Beni immobili:Casa</guilabel>.</para>
 
       <table>
@@ -1069,24 +1069,24 @@ Capitale:bilanci di apertura                     (AUD) $50.000
               </row>
 
               <row>
-                <entry>Attività:Attività correnti:Risparmi</entry>
+                <entry>Attività:Attività correnti:Conto risparmio</entry>
 
                 <entry></entry>
 
-                <entry>280000</entry>
+                <entry>280.000</entry>
               </row>
 
               <row>
                 <entry>Uscite:Interessi:Interessi mutuo</entry>
 
-                <entry>30000</entry>
+                <entry>30.000</entry>
 
                 <entry></entry>
               </row>
               <row>
                 <entry>Passività:Prestiti:Mutuo</entry>
 
-                <entry>250000</entry>
+                <entry>250.000</entry>
 
                 <entry></entry>
               </row>
@@ -1119,32 +1119,32 @@ Capitale:bilanci di apertura                     (AUD) $50.000
       <title>Acquistare le azioni</title>
 
       <para>Avendo ricevuto improvvisamente una bella somma di denaro sul proprio conto
-      bancariio, si decide di interpellare un consulente finanziario e, dopo alcune 
+      bancario, si decide di interpellare un consulente finanziario e, dopo alcune 
       raccomandazioni (si ricorda che l'esempio è immaginario; non si tratta di consigli
-      finanziari reali), si decide di acquistare le azioni di Telecomunicazioni (Ericsson 
-      in Sweden), Beijing Airport (Hong Kong) e Amazon (USA).</para>
+      finanziari reali!), si decide di acquistare le azioni della compagnia di telecomunicazioni Ericsson 
+      (in Svezia), Beijing Airport (Hong Kong) e Amazon (USA).</para>
 
       <para>I conti necessari per seguire questi investimenti sono:</para>
 
       <literallayout>
-Attività:Investimenti:Mediatore Svedese:ERIC.ST                 (STOCK ERIC.ST Yahoo)
-Attività:Investimenti:Mediatore Svedese:Banca                    (SEK)
-Attività:Investimenti:Mediatore HK:0694.HK                      (STOCK 0694.HK Yahoo)
-Attività:Investimenti:Mediatore HK:Banca                         (HKD)
-Attività:Investimenti:Mediatore US:AMZN                         (STOCK AMZN Nasdaq)
-Attività:Investimenti:Mediatore US:Banca                         (USD)
-Uscite:Investimenti:Commissioni:Mediatore Svedese:ERIC.ST   (SEK)
-Uscite:Investimenti:Commissioni:Mediatore HK:0694.HK        (HKD)
-Uscite:Investimenti:Commissioni:Mediatore US:AMZN           (USD)
-Uscite:Investimenti:Trasferimento di valuta                 (AUD)
+Attività:Investimenti:Brocker Svedese:ERIC.ST                 (STOCK ERIC.ST Yahoo)
+Attività:Investimenti:Brocker Svedese:Banca                    (SEK)
+Attività:Investimenti:Brocker HK:0694.HK                      (STOCK 0694.HK Yahoo)
+Attività:Investimenti:Brocker HK:Banca                         (HKD)
+Attività:Investimenti:Brocker US:AMZN                         (STOCK AMZN Nasdaq)
+Attività:Investimenti:Brocker US:Banca                         (USD)
+Uscite:Investimenti:Commissioni:Brocker Svedese:ERIC.ST   (SEK)
+Uscite:Investimenti:Commissioni:Brocker HK:0694.HK        (HKD)
+Uscite:Investimenti:Commissioni:Brocker US:AMZN           (USD)
+Uscite:Investimenti:Trasferimento di valuta               (EUR)
 </literallayout>
 
-      <para>Si decide di investire $100.000 in ogni azioni e per farlo è necessario
-      eseguire prima una transazione di valuta ai vari conti bancari associati alle
-      azioni. </para>
+      <para>Si decide di investire €100.000 in ogni titolo; per farlo è prima necessario
+      eseguire una transazione di valuta ai vari conti bancari associati alle
+      azioni.</para>
 
       <para>La transazione da inserire nel conto 
-      <guilabel>Attività:Attività correnti:Risparmi</guilabel> è la seguente:</para>
+      <guilabel>Attività:Attività correnti:Conto risparmio</guilabel> è la seguente:</para>
 
       <table>
         <title>Trasferire del denaro oltreoceano con una suddivisione in valuta
@@ -1165,9 +1165,9 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
             </row>
 
             <row>
-              <entry>Attività:Investimenti:Mediatore Svedese:Banca</entry>
+              <entry>Attività:Investimenti:Brocker Svedese:Banca</entry>
 
-              <entry>100000</entry>
+              <entry>100.000</entry>
 
               <entry></entry>
 
@@ -1177,9 +1177,9 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
             </row>
 
             <row>
-              <entry>Attività:Investimenti:Mediatore HK:Banca</entry>
+              <entry>Attività:Investimenti:Brocker HK:Banca</entry>
 
-              <entry>100000</entry>
+              <entry>100.000</entry>
 
               <entry></entry>
 
@@ -1189,9 +1189,9 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
             </row>
 
             <row>
-              <entry>Attività:Investimenti:Mediatore USD:Banca</entry>
+              <entry>Attività:Investimenti:Brocker USD:Banca</entry>
 
-              <entry>100000</entry>
+              <entry>100.000</entry>
 
               <entry></entry>
 
@@ -1204,10 +1204,11 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
       </table>
 
       <para>Non appena è disponibile il denaro sui conti di intermediazione,
-      si richiede al proprio mediatore di acquistare le azioni per un certo importo.
-      Si ricordi di eseguire la transazione dal conto della banca associata ad una
-      determinata azione e, se la finestra del tasso di cambio, non dovesse essere
-      visualizzata, cliccare con il tasto destro nella riga per aprirla manualmente. 
+      si richiede al proprio brocker di acquistare le azioni per un certo importo.
+      Si ricordi di eseguire la transazione dal conto della banca associata a una
+      determinata azione e, se la finestra del tasso di cambio non dovesse essere
+      visualizzata, cliccare con il tasto destro nella riga e selezionare la relative voce
+      per aprirla manualmente. 
       Inserire quindi il numero di azioni acquistate nell'ultima voce (Trasferisci a).</para>
 
       <para>
@@ -1229,9 +1230,9 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
               <row>
                 <entry>ERIC.ST</entry>
 
-                <entry>15000</entry>
+                <entry>15.000</entry>
 
-                <entry>270000</entry>
+                <entry>270.000</entry>
 
                 <entry>400</entry>
               </row>
@@ -1239,9 +1240,9 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
               <row>
                 <entry>0694.HK</entry>
 
-                <entry>70000</entry>
+                <entry>70.000</entry>
 
-                <entry>280000</entry>
+                <entry>280.000</entry>
 
                 <entry>300</entry>
               </row>
@@ -1249,9 +1250,9 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
               <row>
                 <entry>AMZN</entry>
 
-                <entry>1000</entry>
+                <entry>1.000</entry>
 
-                <entry>32000</entry>
+                <entry>32.000</entry>
 
                 <entry>25</entry>
               </row>
@@ -1262,7 +1263,7 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
         
       <para>Come è possibile vedere dalla struttura dei conti, sono state acquistate delle azioni
       in tre differenti valute (HK, EUR e SEK), ma la struttura dei conti (come visto più sotto)
-      non ne indica il valore nella propria valuta, l'AUD.</para>
+      non ne indica il valore nella propria valuta, l'EUR.</para>
       <screenshot id="currency_PutTogether_AfterStocks.png">
         <mediaobject>
           <imageobject>
@@ -1279,8 +1280,8 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
         </mediaobject>
       </screenshot>
 
-      <para>La prossima sezione  si occuperà dell'impostazione dei vari tassi di cambio necessari
-        per permettere a GnuCash di visualizzare il valore totale nella valuta locale (AUD in 
+      <para>La prossima sezione si occuperà dell'impostazione dei vari tassi di cambio necessari
+        per permettere a GnuCash di visualizzare il valore totale nella valuta locale (EUR in 
         questo caso)</para>
     </sect2>
 
@@ -1289,7 +1290,7 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
 
       <para>Per ricevere i tassi di cambio e le quotazioni azionarie attuali, andare in
       <guimenu>Strumenti</guimenu> -&gt; <guimenu>Editor prezzi</guimenu> e premere poi
-      il pulsante <guibutton>Ricevi quotazioni</guibutton>. </para>
+      il pulsante <guibutton>Ricevi quotazioni</guibutton>.</para>
 
       <para></para>
     </sect2>
@@ -1298,35 +1299,34 @@ Uscite:Investimenti:Trasferimento di valuta                 (AUD)
     <sect2>
       <title>Prestare denaro a un amico</title>
 
-      <para>Mario sta attraversando un periodo difficile oltreoceano. Dato che è un caro amico,
-      si decide di aiutarlo con un prestito personale di 40.000 Euro.</para>
+      <para>Jack sta attraversando un periodo difficile oltreoceano. Dato che è un caro amico,
+      si decide di aiutarlo con un prestito personale di 40.000 AUD.</para>
 
       <para>
         <literallayout>
-Attività:Denaro prestato:Mario                 (EUR)
-Entrate:Interessi in entrata:Mario              (EUR)
-Uscite:Spese bancarie                          (AUD)
+Attività:Denaro prestato:Mario                 (AUD)
+Entrate:Interessi in entrata:Mario              (AUD)
+Uscite:Spese bancarie                          (EUR)
         </literallayout>
       </para>
       <para>Si tratta di una semplice transazione dal proprio conto dei risparmi
-      (AUD), al conto Attività:Denaro prestato:Euro:Mario (EUR). Sia il tasso di
-      cambio pari a 0,606161 a cui corrisponde un prelievo di AUD 65.989,10ed una
-      spesa per il servizio di 35 AUD.</para>
+      (EUR), al conto Attività:Denaro prestato:AUD:Mario (AUD). Sia il tasso di
+      cambio pari a 0,606161 e la spesa per il servizio di 35 EUR.</para>
     </sect2>
 
     <sect2>
       <title>Comprare una proprietà in Nuova Zelanda con un prestito in Giappone</title>
 
       <para>Un amico Giapponese di vecchia data, offre il prestito di una casa
-      Giapponese se si acquista una proprietà all'estero, con soli AUD 50.000 
-      come deposito. Dopo averne discusso con il consulente finanziario in Australia
+      Giapponese se si acquista una proprietà all'estero, con soli EUR 50.000 
+      di deposito. Dopo averne discusso con il proprio consulente finanziario in Italia
       e aver valutato i vari rischi e benefici derivanti dall'offerta, si decide di
       accettare la proposta.</para>
 
       <note>
         <para>E' bene ricordare ancora che questo non è un consiglio finanziario. 
         Interpellare un consulente finanziario prima di intraprendere degli
-        investimenti (o speculazioni) sui mercati esteri, o anche quelli locali.</para>
+        investimenti (o speculazioni) sui mercati esteri, o anche in quelli locali.</para>
 
         <para>Può essere utile spendere una parola di avviso su questo argomento:
         stipulare un prestito all'estero con un tasso di interesse molto basso
@@ -1340,8 +1340,8 @@ Uscite:Spese bancarie                          (AUD)
       </note>
 
       <para>Si immagini di aver trovato una piccola e confortevole villetta in una
-      piccola cittadina costiera vicino ad Auckland che potrebbe essere una casa estiva 
-      perfetta, e si decida di utilizzare il denaro in Giappone per l'acquisto.</para>
+      cittadina costiera vicino ad Auckland che potrebbe essere una casa estiva 
+      perfetta, e si decida di utilizzare il denaro in Giappone per acquistarla.</para>
 
       <para>Per questo esempio occorrono i seguenti conti:</para>
 
@@ -1369,17 +1369,17 @@ Attività:Beni immobili:Casa NZ                   (NZ)
               <row>
                 <entry>Attività:Beni immobili:Casa in NZ</entry>
 
-                <entry>300000 (NZD)</entry>
+                <entry>300.000 (NZD)</entry>
 
                 <entry></entry>
               </row>
 
               <row>
-                <entry>Attività:Attività correnti:Risparmi</entry>
+                <entry>Attività:Attività correnti:Conto risparmio</entry>
 
                 <entry></entry>
 
-                <entry>50000 (AUD) (1,18926)</entry>
+                <entry>50.000 (EUR) (1,18926)</entry>
               </row>
 
               <row>
@@ -1387,13 +1387,13 @@ Attività:Beni immobili:Casa NZ                   (NZ)
 
                 <entry></entry>
 
-                <entry>28000000 (JPY) (0,0137609)</entry>
+                <entry>28.000.000 (JPY) (0,0137609)</entry>
               </row>
 
               <row>
                 <entry>Uscite:Costi mutuo:Prestito Giapponese</entry>
 
-                <entry>300000 (JPY) (0,0137609)</entry>
+                <entry>300.000 (JPY) (0,0137609)</entry>
 
                 <entry></entry>
               </row>
