@@ -1,7 +1,7 @@
 figdir = figures
 docname = gnucash-help
 lang = it_IT
-omffile = gnucash-help-C.omf
+omffile = gnucash-help-it_IT.omf
 entities = \
 	Help_ch_Intro.xml \
 	Help_ch_GettingStarted.xml \
@@ -19,4 +19,4 @@ entities = \
         Help_tips-appendix.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
-DISTCLEANFILES =  gnucash-help-C.omf.out
+DISTCLEANFILES =  gnucash-help-it_IT.omf.out
