@@ -74,11 +74,15 @@ EXTRA_DIST = $(xml_files) $(omffile)
 CLEANFILES = omf_timestamp $(docname)/*.html
 
 # If the following file is in a subdir (like help/) you need to add that to the path
-if ENABLE_SK
 include $(top_srcdir)/omf.make
-OMF="omf"
-OMF_DATA_HOOK=install-data-hook-omf
-UNINSTALL_OMF=uninstall-local-omf
+if ENABLE_SK
+OMF = omf
+OMF_DATA_HOOK = install-data-hook-omf
+UNINSTALL_OMF = uninstall-local-omf
+else
+OMF=
+OMF_DATA_HOOK=
+UNINSTALL_OMF=
 endif
 
 html: all convert-html copy-pics copy-style
