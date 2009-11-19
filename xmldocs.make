@@ -118,6 +118,23 @@ install-data-local:
 
 install-data-hook: ${OMF_DATA_HOOK}
 
+install-html: html
+	$(mkinstalldirs) $(DESTDIR)$(docdir)/$(docname);\
+	for file in $(docname)/*.html; do\
+	    basefile=`echo $$file | sed -e 's,^.*/,,'`;\
+	    $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$(docname)/$$basefile;\
+	done
+	  $(mkinstalldirs) "$(DESTDIR)$(docdir)/$(docname)/$(figdir)"; \
+	  for file in $(docname)/$(figdir)/*.png; do \
+	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	 $(INSTALL_DATA) "$$file" "$(DESTDIR)$(docdir)/$(docname)/$(figdir)/$$basefile"; \
+	  done
+	  $(mkinstalldirs) "$(DESTDIR)$(docdir)/$(docname)/stylesheet"; \
+	  for file in $(styledir)/*.png; do \
+	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	 $(INSTALL_DATA) "$$file" "$(DESTDIR)$(docdir)/$(docname)/stylesheet/$$basefile"; \
+	  done
+
 uninstall-local: uninstall-local-doc ${UNINSTALL_OMF}
 
 uninstall-local-doc:
@@ -137,7 +154,7 @@ uninstall-local-doc:
 	  for file in $(styledir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
 	    rm -f "$(DESTDIR)$(docdir)/$(docname)/stylesheet/$$basefile"; \
-	  done \
+	  done; \
 	  for file in $(srcdir)/$(docname)/*.html; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
 	    rm -f "$(DESTDIR)$(docdir)/$(docname)/$$basefile"; \
