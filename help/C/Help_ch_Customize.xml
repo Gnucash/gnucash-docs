@@ -1,12 +1,14 @@
 <!--
       (Do not remove this comment block.)
   Version: 2.0.1
-  Last modified: August 2nd 2008
+  Last modified: December 7th 2009
+       modified: August 2nd 2008
        modified: March 21th 2007
        modified: August 2nd 2006
        modified: July 9th 2006
        modified: February 28th 2005
   Maintainers:
+               Alex Aycinena <alex.aycinena@gmail.com>
                Chris Lyttle <chris@wilddev.net>
                Neil Williams <linux@codehelp.co.uk>
   Author:
@@ -1190,20 +1192,110 @@
     </sect1>
 
     <sect1 id="set-tax-options">
-      <title>Setting Tax Options</title>
+      <title>Setting Income Tax Options</title>
 
-      <para>The Tax Information dialog is used to set Tax Options. The settings on accounts
-       in this dialog are used by the TXF Export function in reports to select the accounts
-       for export. To access this dialog go to Edit -&gt; Tax Options.</para>
+      <para>The Income Tax Information dialog is used to set Income Tax Options. The settings
+       on accounts in this dialog are used by the TXF Export function in reports to select the
+       accounts for export. To access this dialog go to Edit -&gt; Income Tax Options.</para>
 
-      <para>A given TXF code can be assigned to multiple accounts. The Tax report will 
+      <para>If the Income Tax features are used, it is strongly recommended that the 'Tax Info'
+       column be made visible on the accounts tab (click large downward-pointing arrow and
+       select 'Tax Info' checkbox). The 'Tax Info' column will display the Form/Schedule and
+       tax category assigned to an account, if any. Alternatively, it will display the following
+       error messages which can be corrected through  Edit -&gt; Income Tax Options:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Tax-related but has no tax code</para>
+        </listitem>
+
+        <listitem>
+          <para>Tax entity type not specified</para>
+        </listitem>
+
+        <listitem>
+          <para>Tax type "tax_type": invalid code "code" for account type"</para>
+        </listitem>
+
+        <listitem>
+          <para>Not tax-related; tax type "tax_type": invalid code "code" for account type</para>
+        </listitem>
+
+        <listitem>
+          <para>Invalid code "code" for tax type "tax_type"</para>
+        </listitem>
+
+        <listitem>
+          <para>Not tax-related; invalid code "code" for tax type "tax_type"</para>
+        </listitem>
+
+        <listitem>
+          <para>No form: code "code", tax type "tax_type"</para>
+        </listitem>
+
+        <listitem>
+          <para>Not tax-related; no form: code "code", tax type "tax_type"</para>
+        </listitem>
+
+        <listitem>
+          <para>No description: form "form", code "code", tax type "tax_type"</para>
+        </listitem>
+
+        <listitem>
+          <para>Not tax-related; no description: form "form", code "code", tax type "tax_type"</para>
+        </listitem>
+
+        <listitem>
+          <para>Not tax-related; "form"("copy") "desc" (code "code", tax type "tax_type")</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>The Income Tax Identity must be set in order to assign codes to individual accounts.
+       Click 'Edit' to set the identity. The Tax Name is optional. If entered, it will be printed
+       at the top of the report. A 'type' must be selected in order to activate the tax category
+       selections. The choices are:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Individual, Joint, etc. - Files US Form 1040 Tax Return </para>
+        </listitem>
+
+        <listitem>
+          <para>Partnership - Files US Form 1065 Tax Return</para>
+        </listitem>
+
+        <listitem>
+          <para>Corporation - Files US Form 1120 Tax Return</para>
+        </listitem>
+
+        <listitem>
+          <para>S Corporation - Files US Form 1120S Tax Return</para>
+        </listitem>
+
+        <listitem>
+          <para>None - No Income Tax Options Provided</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>While the Income Tax Entity Type can be changed after tax categories have been
+       assigned to accounts, you should be cautioned that you will need to manually change
+       each one if you do so, which could be quite tedious. The tax categories are unique for
+       each Income Tax Entity Type, so changing the type will make all previously assigned
+       categories invalid. It is assumed that each gnucash file is for only one type of tax
+       entity. You should not keep, for example, personal and partnership accounts mixed in
+       one gnucash file if you plan to use the Income Tax Reporting features.</para>
+
+      <para>A given TXF code can be assigned to multiple accounts. The Tax Schedule Report will 
        combine accounts by code and generate a detailed TXF record for each account and a
        summary TXF record for the total as calculated by the report. For codes for which
        the "Payer Name Source" is not grayed, the payer on the TXF record will be based on
        what is specified here, either the account name of the account or the account name
        of the account's parent account. This feature is typically used for interest accounts
        or stocks or mutual funds that pay dividends where the individual payees are shown on
-       the tax schedule.</para>
+       the tax schedule. Some tax Forms/Schedules need to have multiple copies filed under
+       some circumstances (for example, Schedule C if a taxpayer and spouse have seperate
+       businesses). For tax categories on these Forms/Schedules, the 'Copy Number' is not
+       greyed out and can be used to segregate accounts by  copy number.</para>
 
       <itemizedlist>
         <listitem>
@@ -1226,6 +1318,13 @@
           <para>Payer Name Source: A text description that is exported along with the value
            of the account. This is usually the name of a bank, stock, or mutual fund that pays
            dividends or interest. Occasionally, it is a description of a deduction.</para>
+        </listitem>
+
+        <listitem>
+          <para>Copy Number: A copy number that is exported along with the value
+           of the account. This is used to segregate amounts between different copies of the
+           same Form/Schedule that may need to be filed (e.g., Schedule C(1), Schedule C(2),
+           etc.).</para>
         </listitem>
       </itemizedlist>
 
@@ -1273,7 +1372,7 @@
           </listitem>
         </itemizedlist>
 
-        <para>Information from only one job may be imported. </para>
+        <para>Use Copy Number to seperate information from more than one job. </para>
 
         <para>TurboTax 1999, 2000 </para>
 
@@ -1302,9 +1401,9 @@
          record for the sum. Codes that let you select "Payer Name Source" will generate a
          separate summary TXF account with each change in payer. Selecting the "Print TXF
          export parameters" option will cause the report to show to which codes this applies
-         (Multiple Copies Y) and, for the accounts assigned to those codes, the Name Source
-         each account is set to and the TXF Line that will be assigned to each. A summary TXF
-         record will be generated for each change in assigned line number. These may not be 
+         (Payer Name Source option Y) and, for the accounts assigned to those codes, the Name Source
+         each account is set to and the TXF item number that will be assigned to each. A summary TXF
+         record will be generated for each change in assigned item line number. These may not be 
          handled the same by TaxCut and TurboTax.</para>
 
       </sect2>
