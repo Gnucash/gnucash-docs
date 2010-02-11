@@ -1,0 +1,445 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally written by Carol Champagne.
+  Translators: Yasuaki Taniguchi <yasuakit@gmail.com>
+               (translators put your name and email here)
+-->
+<chapter id="chapter_cc">
+  <title>クレジットカード</title>
+
+  <para>本章ではGnuCashを使用して、クレジットカードを管理する方法を説明します。</para>
+
+  <sect1 id="cc-concepts1">
+    <title>概念</title>
+
+    <para>あなたは多分、毎月小切手を切るか、またはクレジットカード会社に電子決済を行うので、費用としてクレジットカードの請求書を考えるかもしれません。それは本当は費用ではありません。なぜでしょう? クレジットカード勘定科目は短期貸付です。あなたはその短期貸付勘定でものを買います。最終的にお金を返済しなければならない時、しばしば (金融手数料として) 利息が発生します。クレジットカードで行った買い物は費用です。</para>
+
+    <para>クレジットカードでの取引を入力するときには、2種類のオプションが存在します。希望する詳細レベルに合うものを選択してください。最も単純な手法は、クレジットカード会社への毎月の支払いを単に追跡することです。普通預金勘定科目から、クレジットカード費用勘定科目に1カ月あたり1回の資金移動を入力します。これにより毎月クレジットカード会社に支払う金額は分かります。しかし、クレジットカード未払残高またはクレジットカードでの買い物に関する情報は少しも分かりません。</para>
+
+    <para>GnuCashでクレジットカードを追跡するより完全な方法は、各買い物と支払いを別の取引で入力することです。クレジットカード勘定科目記録簿を使用して、その月の間ずっとレシートを入力します。クレジットカード明細書が到着したら、明細書とクレジットカード勘定科目を照合します。そして支払いとして当座預金勘定科目からクレジットカード勘定科目までの資金移動を入力します。この方法を使うと、月の間、残高に関する詳細情報を知ることができます。そして、照合の際にどんな差分も分かります。しかし、より多くのデータを入力をしなければなりません。</para>
+  </sect1>
+
+  <sect1 id="cc-accounts1">
+    <title>勘定科目のセットアップ</title>
+
+    <para>GnuCashでクレジットカードを管理し始めるためには、<quote>負債</quote>最上位勘定科目をセットアップして、この親勘定科目の下に使用するクレジットカードごとにクレジットカードタイプ勘定科目を作成します。クレジットカード会社行う支払いだけを追跡するなら、必要なのは取引を入力する普通預金勘定科目とクレジットカード勘定科目だけです。</para>
+
+    <para>クレジットカード上で行う支払いは費用です。よって<quote>費用</quote>最上位勘定科目の下にクレジットカード勘定科目が存在するようにセットアップしなければいけません。買い物のより詳細な記録を行うと決めたなら、買い物の種類に応じた費用勘定科目を作成する必要があります。また、クレジットカードの明細書と未払残高を照合するために、各クレジットカード勘定科目に開始残高の入力もしなければなりません。これを行う最も簡単な方法は、開始残高として前回の明細書にある未払残高を使用することです。</para>
+
+    <sect2 id="cc-accounts-simple2">
+      <title>単純セットアップ</title>
+
+      <para>クレジットカードの上にで行った各費用を追跡したくないなら、以下のような単純な勘定科目階層をセットアップします。</para>
+
+      <literallayout>
+-資産
+   -銀行
+-負債
+   -クレジットカード
+-費用
+   -クレジットカード
+   </literallayout>
+
+      <para>この例では、1月単位の請求総額を<guilabel>負債:クレジットカード</guilabel>と<guilabel>費用:クレジットカード</guilabel>間の取引として入力します。支払いを済ませるとき、<guilabel>資産:銀行</guilabel>と<guilabel>負債:クレジットカード</guilabel>間で取引を入力します。</para>
+
+      <para>この単純なクレジットカードセットアップの明白な限界は、お金がどこに支出されているか分からないということです。すべてのクレジットカード費用がクレジットカード費用勘定科目に入力されます。しかしながら、セットアップと維持は非常に単純です。</para>
+    </sect2>
+
+    <sect2 id="cc-accounts-complete2">
+      <title>完全セットアップ</title>
+
+      <para>費用をより完全に追跡したいなら、使用する様々な費用の種類に基づいて命名された複数の費用勘定科目をセットアップしなければなりません。そしてクレジットカードの各費用は、クレジットカード負債勘定科目と特定の費用勘定科目の間で別々の取引として入力されます。以下は、このための勘定科目階層の例です。</para>
+
+      <literallayout>
+-資産
+    -銀行
+-負債
+    -クレジットカード
+-費用
+    -食費
+    -自動車
+    -衣料品
+    -娯楽
+    -利子
+    -サービス
+   </literallayout>
+
+      <para>明らかに、消費動向に合う特定の費用勘定科目を入力しなければなりません。単純セットアップと完全セットアップを比較すると、唯一の差異は費用がグループによって細分化されているということです。また、<quote>利子</quote>費用があるのも分かります。これはクレジットカード会社が毎月の未払残高に対して利子を請求する時に使用されます。<quote>サービス</quote>費用勘定科目は、年一度の使用料などのクレジットカードに関連しているサービス費用 (もし存在しているなら) を追跡するために使われます。セットアップを行うと、お金が費用勘定科目の分類に従って毎月どこに支出されるか分かります。</para>
+
+      <para>本章の残りの部分では、完全セットアップを使用していると仮定します。</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="cc-entercharge1">
+    <title>手数料の入力</title>
+
+    <para>手数料を入力すると、消費動向がより完全に分かります。クレジットカードの上の課金はクレジットカード負債勘定科目と適切な費用勘定科目間の取引として追跡されます。</para>
+
+    <para>店の機械を通してクレジットカードを利用する事は、クレジットカード会社からその店までの資金移動です。この取引はクレジットカード会社から借りている金額を増加させます。これらのタイプの取引の追跡を行うならば、クレジットカード勘定科目と毎月の明細書を照合することができます。そして、疑わしく見えるどんな取引も素早く見つけられるでしょう。それでは、どのように請求金額をクレジットカードに記録するのでしょうか?</para>
+
+    <para>その月の間ずっと、または一気に、すべてのレシートを入力することが、一つの方法です。これは時間がかかりますが、たぶん請求金額のすべてを確実に確認する最も良い方法です。一貫してすべてのレシートを入力すれば、毎月の照合時にどんな間違いまたは不正取引も素早く捕捉します。</para>
+
+    <para>別の方法は、クレジットカード明細書の直接勘定科目にインポートですることです。クレジットカード会社がQIFファイル形式の明細書をサポートするなら、直接明細書をインポートするというオプションがあります。この種類のインポートは<xref linkend="basics-import1"></xref>で説明します。これは手動ですべてのレシートを入力する必要なく買い物を追跡することができる便利な方法です。</para>
+  </sect1>
+
+  <sect1 id="cc-enterpay1">
+    <title>支払いの入力</title>
+
+    <para>クレジットカード請求書に対する支払いのほとんどが普通預金勘定科目 (資産) からクレジットカード勘定科目 (負債) までの資金移動として入力されます。月々の請求書を支払うとき、普通預金勘定科目から出金し、クレジットカードの残高に対してお金を支払っています。この取引は普通預金勘定科目の貸借残高とクレジットカードによる借金総額の両方を減少させます。</para>
+
+    <para>買ったものを返品する時、クレジットカード上に払戻しを受けます。クレジットカードで借りている負債の総額を減少させるので、これは別の種類の支払いです。クレジットカード勘定科目から費用勘定科目までまでの資金移動として最初の購入取引を記録した場合、今度は、単純にその取引を逆にします。費用勘定科目からクレジットカード勘定科目まで戻す資金移動です。この取引は費用勘定科目の貸借残高とクレジットカード勘定科目の貸借残高の両方を減少させます。例えば、もともとは、衣服をクレジットカードで購入し、記録したとします。取引はクレジットカード勘定科目から衣料品費用勘定科目までの資金移動です。衣服を返品して返金を受けたら、衣料品費用勘定科目からクレジットカード勘定科目までお金を戻す資金移動をするだけです。</para>
+
+    <note>
+      <para>よくある誤りは、収益として返金を入力することです。これは収益ではなく、むしろ<quote>負の費用</quote>です。これが、返金を受取るときに、費用勘定科目からあなたのクレジットカード勘定科目までの資金移動でなければならない理由です。</para>
+    </note>
+
+    <para>これをはっきりさせるために、例を通して見てみましょう。74.99ドルのジーンズをビザカードで買いましたが、1日後にそれが大き過ぎると実感して、返品しようとします。店は丁寧に応じて、クレジットカードへ返金します。</para>
+
+    <orderedlist>
+      <listitem>
+        <para>最初に、前に保存したデータファイル(<filename>gcashdata_5</filename>)を開き、<filename>gcashdata_6</filename>として保存します。</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>負債:ビザ</guilabel>勘定科目記録簿を開き74.99ドルのジーンズを購入する単純な2勘定科目取引を入力します。<guilabel>資金移動</guilabel>勘定科目は<guilabel>費用:衣料品</guilabel>になり、74.99ドルの<emphasis>課金</emphasis>をビザ勘定科目に行います。</para>
+
+        <note>
+          <para>費用:衣料品勘定科目を以前に作成していなかったので、GnuCashによって勘定科目を作成するように入力を促されます。費用勘定科目として作成するのを忘れないでください。</para>
+        </note>
+      </listitem>
+
+      <listitem>
+        <para>以下の方法のうち1つで払戻金を入力します。</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>購入取引と同じ取引を入力します。ただし、クレジットカード勘定科目記録簿に対して<quote>入金</quote>」の代わりに、<quote>出金</quote>を使用します。</para>
+          </listitem>
+
+          <listitem>
+            <para>返金したい購入取引 (今回の場合でジーンズ取引) を選択し、<guimenu>取引</guimenu>-&gt;<guimenuitem>逆方向の取引を加える</guimenuitem> を選択します。必要に応じて日付を変更します。</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>取引を逆にした後、クレジットカード勘定科目は以下のようになります。</para>
+        <screenshot id="cc-Reversing-Transaction-1">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_Reversing_Transaction_1.png"
+                           format="PNG" srccredit="Bengt  Thuree" ></imagedata>
+              </imageobject>
+
+              <textobject>
+                <phrase>クレジットカードでの買い物の返金</phrase>
+              </textobject>
+
+              <caption>
+                <para>この画像は、<guilabel>負債:クレジットカード勘定科目記録簿</guilabel>を示します - 逆方向の購入取引</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+
+        <para><guilabel>費用:衣料品</guilabel>記録簿はこのようになります。</para>
+        <screenshot id="cc-Reversing-Transaction-2">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_Reversing_Transaction_2.png"
+                           format="PNG" srccredit="Bengt  Thuree" ></imagedata>
+              </imageobject>
+
+              <textobject>
+                <phrase>クレジットカードでの買い物の返金</phrase>
+              </textobject>
+
+              <caption>
+                <para>この画像は購入取引を逆にした後の<guilabel>費用:衣料品記録簿</guilabel>を示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+      </listitem>
+
+      <listitem>
+        <para>GnuCashデータファイルを保存します。</para>
+      </listitem>
+    </orderedlist>
+  </sect1>
+
+  <sect1 id="cc-together1">
+    <title>まとめ</title>
+
+    <para>様々な取引の背景にある基本的な考え方を説明したので無事にGnuCashでクレジットカードを追跡することができるようになりました。では例を通してみてみましょう。この例では、クレジットカードで買い物をし、そのうち2つの買い物を返金します。未払残高に対する利子の請求を受けます。クレジットカード勘定科目を照合します。最後に、クレジットカードの部分的な支払を行います。</para>
+
+    <sect2 id="cc-puttoget-openfile">
+      <title>GnuCashファイルを開く</title>
+
+      <para>最初に、前に保存したデータファイル<filename>gcashdata_5</filename>を開き、<filename>gcashdata_6</filename>として直接保存します。画面は以下のようになります。</para>
+
+    <screenshot id="cc-accounts">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/cc_accounts.png" format="PNG"
+                     srccredit="Bengt Thuree" ></imagedata>
+        </imageobject>
+
+        <textobject>
+          <phrase>開始時の勘定科目の構造</phrase>
+        </textobject>
+
+        <caption>
+          <para>クレジットカードを追跡するための開始時の勘定科目にはの例に必要な全てが含まれています。</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-purchases2">
+      <title>買い物</title>
+
+      <para>私たちのビザカードを使っていくつかの買い物をしましょう。最初にGreasy Spoon Cafeから25ドル分の食品を購入します。Faux Pas Fashionsから100ドル分の衣料品を購入します。Premium Gasolineから25ドル分のガソリンを購入します。Groceries R Usから125ドル分の食品と雑貨を購入します (85ドルの食品と40ドルの雑貨でスプリットします)。そして最後に、CheapMartから60ドル分の雑貨を購入します。</para>
+
+      <para>また、私たちは前の章での練習を繰り返します。4月3日に1着のジーンズを74.99ドルで購入して、それらをその2日後に返金します。</para>
+
+      <para>クレジットカード負債のための記録簿ウインドウはこのようになります。</para>
+
+      <screenshot id="cc-purchases">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_purchases.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>最初のクレジットカードでの買い物</phrase>
+          </textobject>
+
+          <caption>
+            <para>最初のクレジットカードでの買い物。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-refund2">
+      <title>返金</title>
+
+      <para>ここで、4月11日にFaux Pas Fashionsから買った衣服を4月15日に返品すると仮定します。彼らはクレジットカード上に返金を行います。100ドルの金額でクレジットカード返金取引を入力します。最初の購入で使用した勘定科目と同じ資金移動勘定科目を使用するのを忘れないでください。そして、出金欄に金額を入力します。GnuCashは自動的に名前と資金移動勘定科目を補完します。また、自動的に入金欄に100ドルが入力されます。あなたは出金欄に金額を再入力する必要があります。取引は次のようになります。</para>
+
+      <screenshot id="cc-refund">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_refund.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>商品返品取引</phrase>
+          </textobject>
+
+          <caption>
+            <para>Faux Pas Fashionsへの衣服の返品と、クレジットカードへの返金。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-interest2">
+      <title>利子</title>
+
+      <para>残念なことに、クレジットカードを使用した月の後に、クレジットカードの明細書が郵便で届きます。さもなければ、あなたがインターネットを通してオンラインで明細書にアクセスします。前月から繰り越した未払残高のため、4月の最終日に利子として20ドル請求されます。これは費用としてクレジットカード勘定科目に入力します。</para>
+
+      <screenshot id="cc-interest">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_interest.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>利子</phrase>
+          </textobject>
+
+          <caption>
+            <para>利子。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-reconcile2">
+      <title>照合</title>
+
+      <para>クレジットカード明細書が到着したら、明細書とクレジットカード勘定科目を照合しなければなりません。これはGnuCashに内蔵されている照合アプリケーションを使用して行います。クレジットカード勘定科目を選択し、<guimenu>アクション</guimenu>-&gt;<guimenuitem>照合</guimenuitem>をクリックします。照合作業は<xref linkend="txns-reconcile1"></xref>で詳細に記載されていますが、ここでも作業を実行します。この例では、クレジットカード明細書が5月1日に締め日となり、455ドルの期末残高があると仮定しましょう。ここで表示されるように、これらの値を初期の照合ウインドウに入力します。</para>
+
+      <screenshot id="cc-reconcile-init">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_reconcile_init.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>初期の照合ウインドウ</phrase>
+          </textobject>
+
+          <caption>
+            <para>初期の勘定科目照合ウインドウ。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>照合作業においては、勘定科目の各取引を点検して、取引がGnuCash勘定科目とクレジットカード明細書の両方に存在するかどうか確認します。例えば以下で表示されている画像にはGnuCash勘定科目とクレジットカード明細書の間には、300ドルの差分があります。</para>
+
+      <screenshot id="cc-reconcile">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_reconcile.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>メイン照合ウインドウ</phrase>
+          </textobject>
+
+          <caption>
+            <para>300ドルの差分を表示しているメイン勘定科目照合ウインドウ</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>何らかの調査を行って、3月5日にクレジットカード会社済ませた300ドルの支払いを入力し忘れていたことが分かりました。この普通預金勘定科目からクレジットカードまでの支払取引を入力しなければなりません。これで、クレジットカード明細書とGnuCash勘定科目は$455の未払残高で照合されます。</para>
+    </sect2>
+
+    <sect2 id="cc-together-payment2">
+      <title>支払い</title>
+
+      <para>クレジットカード勘定科目の照合を完了したら、クレジットカード会社に支払いを済ませる必要があります。この例では、455ドルを借りていますが、今月、再び300ドルの部分支払いを行います。そのためには、普通預金勘定科目からクレジットカード勘定科目まで300ドルの取引を入力します。クレジットカード貸借残高は$155まで減少します。クレジットカード勘定科目記録簿は今、このように表示されます。</para>
+
+      <screenshot id="cc-payment">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_payment.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>照合と支払い</phrase>
+          </textobject>
+
+          <caption>
+            <para>勘定科目照合と支払いの後の勘定科目記録簿。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>メインウィンドウに戻ってファイルを保存します(<filename>gcashdata_6</filename>)。勘定科目表は着実に発展しています。そして、今、このようになっています。</para>
+
+      <screenshot id="cc-final">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_final.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCashメインウィンドウ</phrase>
+          </textobject>
+
+          <caption>
+            <para>勘定科目照合と支払い後のGnuCash勘定科目表。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+    
+    <sect2 id="cc-puttoget-save">
+      <title>ファイルの保存</title>
+      <para>最後に、GnuCashデータファイルを保存します(<filename>gcashdata_6</filename>)。</para>
+    </sect2>
+ 
+    <sect2 id="cc-puttoget-reports">
+      <title>帳票</title>
+            
+      <para>私たちが前の章で行ったように、<guilabel>キャッシュフロー帳票</guilabel>、および<guilabel>取引帳票</guilabel>を見ましょう。</para>   
+
+      <orderedlist>
+        <listitem>
+          <para>最初に、3月分の<guilabel>負債:ビザ</guilabel>勘定科目に関する<guilabel>キャッシュフロー帳票</guilabel>を見ましょう。</para>
+          <para>キャッシュフロー帳票を見るためには、<guimenu>帳票</guimenu>-&gt; <guisubmenu>収益・費用</guisubmenu>-&gt;<guimenuitem>キャッシュフロー帳票</guimenuitem>を選択します。</para>
+      
+      	  <screenshot id="cc-puttoget2-Cash">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_CashFlow.png" format="PNG"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>3月のキャッシュフロー帳票</phrase>
+              </textobject>
+
+              <caption>
+                <para>この画像は、<xref linkend="chapter_cc"></xref>の後のキャッシュフロー帳票を示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>今、ビザ勘定科目に関して対応する取引帳票を見ましょう。</para>
+          <para>取引帳票をを見るためには、<guimenu>帳票</guimenu>-&gt;<guimenuitem>取引帳票</guimenuitem>を選択し表示します。</para>
+          
+      	  <screenshot id="cc-puttoget2-TransactionRptVisa">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_TransactionRptVisa.png" 
+                           format="PNG" srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>3月/4月のビザ勘定科目に関する取引帳票</phrase>
+              </textobject>
+
+              <caption>
+                <para>この画像は、3月/4月のビザ勘定科目に関する取引帳票を示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+          
+        </listitem>
+ 
+          
+        <listitem>
+          <para>今、いろいろな出費勘定科目を表示するために、取引帳票を変更しましょう。</para>
+          
+      	  <screenshot id="cc-puttoget2-TransactionRptExpenses">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_TransactionRptExpenses.png" 
+                           format="PNG" srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>4月の費用勘定科目に関する取引帳票</phrase>
+              </textobject>
+
+              <caption>
+                <para>この画像は、4月分の様々な費用勘定科目に関する取引帳票を示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+          
+        </listitem>
+        
+      </orderedlist>
+    </sect2> 
+ 
+    
+  </sect1>
+</chapter>

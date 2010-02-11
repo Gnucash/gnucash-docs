@@ -1,0 +1,1358 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: January 12th 2007
+       modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally written by Carol Champagne.
+  Translators: Yasuaki Taniguchi <yasuakit@gmail.com>
+               (translators put your name and email here)
+-->
+<chapter id="chapter_basics">
+  <title>基礎</title>
+
+  <para>本章ではGnuCashを使用する際の基礎をいくつかを紹介します。GnuCashで実際に作業を始める前に、本章を読み通すことをお勧めします。本章以降では、例を通した実習形式で始めることができます。</para>
+
+  <sect1 id="basics-accounting1">
+    <title>会計の概念</title>
+
+    <para>GnuCashを使用するは、役に立つ会計原理を完全に理解していなくても良いほど簡単です。しかしながら、GnuCashのテンプレートはいくつかの基礎会計知識の原理を使用して設計されているので、非常に貴重であると分かるでしょう。次に進む前に、本項を理解することを強く推奨します。</para>
+
+    <sect2 id="basics-accounting52">
+      <title>5つの基本的な勘定科目</title>
+
+      <para>会計上の基礎的なルールでは会計に関係する項目のすべてをの5つの基本的な<quote>勘定科目</quote>に分類します。すなわち、会計が関連する全ての項目がこれらの5つの勘定科目のうちの1つに分類されます。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><emphasis>資産</emphasis> - 所有しているもの。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>負債</emphasis> - 借りているもの。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>純資産</emphasis> - 総合的な自己資本。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>収益</emphasis> - 勘定科目の価値を増加させるもの。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>費用</emphasis> - 勘定科目の価値を減少させるもの。</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>財務的な世界をこれら5つのグループに分類することが可能なのは明らかです。例えば、銀行預金口座のお金は資産です。住宅ローンは負債です。給与は収益です。昨夜の夕食の代金は費用です。</para>
+    </sect2>
+
+    <sect2 id="basics-accountingequation2">
+      <title>会計等式</title>
+
+      <para>定義された5つの基本的な勘定科目に関して、それぞれの関係はどのようになっているのでしょうか? ある勘定科目の他の勘定科目にどのように影響を及ぼすのでしょうか? 第一に、純資産は資産と負債によって定義されます。純資産は、資産から負債の引き算で計算されます。</para>
+
+      <para><emphasis>資産 - 負債 = 純資産</emphasis></para>
+
+      <para>これにより、収益によって純資産が増加し、費用によって純資産が減少します。これはもちろん当たり前のことです。給与を受け取ると、「より豊か」になります。そして、夕食の代金を支払うと「より貧しく」なります。これは会計等式として知られている数式で表現されます。</para>
+
+      <para><emphasis>資産 - 負債 = 純資産 + ( 収益 - 費用 )</emphasis></para>
+
+      <para>この等式は常に釣り合わなければなりません。複数の勘定科目に価格を入力する際に満たさなければならないただ一つの条件です。例えば、収益の形式でお金を受け取った場合に資産は同じ金額増加します。別の例では、負債が増加した場合、それに合わせて資産が増加します。</para>
+
+      <screenshot id="basics-AccountRelationships">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_AccountRelationships.png"
+                       format="PNG" srccredit="Jon Lapham" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>基本的な勘定科目の関係</phrase>
+          </textobject>
+
+          <caption>
+            <para>5つの基本的な勘定科目の関係のグラフィカルなビュー。純資産 (自己資本) は、収益を通して増加し、費用を通して減少します。矢印は金銭的な価値の動きを表します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="basics-accountingdouble2">
+      <title>複式記帳法</title>
+
+      <para>会計等式は複式記帳法勘定体系のまさにその中心です。会計等式において、ある勘定科目の金銭的な価値の変更が発生すれば、必ず別の勘定科目で釣り合いのとれた変更が発生します。この概念は<emphasis>平衡の原理</emphasis>として知られています。GnuCashおよび他の複式記帳法会計システムを理解するために必要な基本的で重要な事項です。GnuCashを利用して作業するときはいつも、会計等式の釣り合いをとり続けるために2つ以上の勘定科目が関係します。</para>
+
+      <para>複式記帳法会計は2つの役割があります。1番目が会計処理の追跡を行うことです。お金はいつも、どこかから来て、どこかに行かなければなりません。あわせて、複式記帳法会計処理は会計士が数学的に再確認するのに歴史的に役立ちました。数値が同時に複数の勘定科目に入力されるため、複数の箇所で、総額が確実に一致することを確認できます。もちろん、コンピュータの到来で、数学の問題の機会は低いのですが、概念がまだ存在しているのを知るのは、良いことです!</para>
+
+      <para>15世紀後半以降、イタリア人の修道士Luca Pacioliにより記述された複式記帳法会計処理が周囲広がりました。伝統的な複式記帳法会計処理は、元帳と呼ばれる帳簿に各取引を記録します。そして、分離された帳簿に取引の各部分を複写します。この手法は、入力エラーを避けながら、それらのエラーの出所を追跡する方法として今日のビジネスでまだ利用されています。GnuCashでは、それぞれの取引の複写部分に応じてこの伝統的な会計処理を簡素化されます。このため、伝統的な会計処理で現れる入力エラーのいくつかを捕捉することができません。しかし、釣り合っていない取引があればフラグを立てます。勘定科目名が欠けている場合は通知を行います。</para>
+
+      <note>
+        <para>この方法を dobule entry (複式記帳法) と呼ぶのは少し紛らわしいです。取引が2つ以上の勘定科目に影響するため、 multiple entry と呼ぶ方がある程度正確でしょう。残念ながら、この用語は700年の歴史があり、変えるのは困難です。</para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-entry1">
+    <title>データ入力の概念</title>
+
+    <para>GnuCashにデータを入力するときは、GnuCashがデータを分割する3種類の階層構成を意識しているべきです。それは、ファイル、勘定科目、および取引です。階層は複雑さの順番に表示されています。1個のファイルが多くの勘定科目を含んでいます。そして、1個の勘定科目が多くの取引を含んでいます。この分割はGnuCashを使用する方法を理解するのに基本的なことです。</para>
+
+    <sect2 id="basics-accounts2">
+      <title>ファイル、勘定科目、および取引</title>
+
+      <para>GnuCashは情報を保存するのにファイルを使用します。GnuCashは3種類の<emphasis>ファイル</emphasis>を利用します。データファイル、バックアップファイル、およびログファイルです。データを保存するのに使用する主なファイルは、データファイルです。主データとして使用するのはたぶん1つのデータファイルだけです。しかし、そのデータファイルを保存するたびにGnuCashは自動的にバックアップコピーを保存します。また、GnuCashはデータを再構成する際に役に立つログファイルを提供します。バックアップファイル、およびログファイルについては本章の後半で説明します。</para>
+
+      <para><emphasis>勘定科目</emphasis>は、所有しているか、借りているか、費やすか、または受け取る金額の動向をおさえるための場所です。主なデータファイル1個のみ持っているでしょうが、そのファイルには多くの勘定科目が入っています。既に所有しているか借りているお金を勘定科目に入れようと考えているでしょう。例えば、ある時、ある銀行に当座預金口座と普通預金口座を開設しました。銀行はこれらの口座にどれくらいのお金を<emphasis>所有している</emphasis>かを示す月次明細書を送ります。 クレジットカード会社も<emphasis>借りている</emphasis>残高について明細書を送ります。住宅ローン会社もローンとして<emphasis>借りている</emphasis>残高について定期的にに明細書を送ります。</para>
+
+      <para>GnuCashでは、勘定科目は、明細書を受ける物理的な勘定科目ではありませんが、受け取るか費やすお金を分類するのに使用されます。<xref linkend="chapter_accts"></xref>で詳しく説明するように、収益タイプ勘定科目は受け取ったお金 (給料など) を分類するために使用します。そして、費用タイプ勘定科目は使用したお金 (ピザの購入や請求書への支払いなど) を分類するために使用します。これらの勘定科目は他の財務アプリケーションにおけるカテゴリのように機能します。<xref linkend="chapter_accts"></xref>でいくつかの利点について説明します。</para>
+
+      <para><emphasis>取引</emphasis>はある勘定科目から別の勘定科目までの資金移動を表します。お金を使う、受け取る、またはお金を口座間で移動するという行為はすべて取引です。次の項で説明するように、GnuCashでは、取引はいつも2つ以上の勘定科目に関係します。取引の例は次の通りです。請求書を支払う、普通預金から当座預金へ資金移動する、ピザを買う、小切手を使う、お金を引き出す、給与を預ける。<xref linkend="chapter_txns"></xref>ではGnuCashで取引をどのように入力するかを更に深く説明します。</para>
+    </sect2>
+
+    <sect2 id="basics-dbentry2">
+      <title>複式記帳法</title>
+
+      <para><quote>金のなる木は無い</quote>という諺をたぶん聞いたことがあるでしょう。それは、お金がどこかから来なければならないことを意味します。お金は単に<quote>出現</quote>しません。<emphasis>複式記帳法は</emphasis>、お金がどこから来てどこに行くかを追跡することができるように記録を続ける方法です。 複式記帳法を使用するのは、お金は得るものでも失うものでも決して無いということを意味します。常にある場所から別の場所まで同じ金額が移動します。現金を引き出すとき、銀行口座から財布までお金を移動しています。食料品店に小切手を書くとき、当座預金から食料品店までお金を移動しています。給与を貯金するとき、所得源泉から銀行口座までお金を移動しています。</para>
+
+      <para>GnuCashでは、これらの資金移動は取引として扱われ、各取引は2つ以上の勘定科目を必要とします。例えば、現金の引き出しを入力する時は、普通預金勘定科目から現金勘定科目までの資金移動を記録します。食料品店で小切手を使う時は、当座預金勘定科目から食費勘定科目までの資金移動を記録します。また、給与を預金する時は、収益勘定科目から普通預金勘定科目までの資金移動を記録します。</para>
+
+      <para>伝統的な財務パッケージと異なり、GnuCashでは複式記帳法の取引を入力するのが非常に簡単です。<xref linkend="chapter_txns"></xref>ででは取引を入力することに関してさらに詳細を説明します。よって今はどのように作業するかについて簡単に説明します。小切手を書くような基本的な取引のためには、最初に2つの勘定科目を作成します。当座預金勘定科目と費用のための勘定科目です。例えば、食料品の代金を支払うために小切手を切る場合、当座預金勘定科目と食費勘定科目の両方が必要です。(勘定科目の作り方については<xref linkend="chapter_accts"></xref>をを参照してください。)小切手の利用を記録するためには、単純に当座預金勘定科目から食費勘定科目まで資金移動を行う取引を入力します。例として、当座預金勘定科目の記録簿ウィンドウを見ると、GnuCash取引は次のようになります。</para>
+
+      <screenshot id="basics-DoubleEntryIntro-compact">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_DoubleEntryIntro_compact.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>基本的な取引</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は、<guilabel>50ドル</guilabel>の<guilabel>食料品店</guilabel>への支払い決済に、日付、説明文、および資金移動を行う勘定科目を入力するところを表しています。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>この取引では、小切手は<guilabel>食料品店</guilabel>に<guilabel>50ドル</guilabel>で切られています。複式記帳法を使って取引を記録するので、2つ以上の勘定科目が、取引の影響の一部を受けます。片方の勘定科目名 (<guilabel>費用:食費</guilabel>) を入力するだけで、GnuCashが影響を受ける、当座預金の勘定科目名 (<guilabel>資産:当座預金</guilabel>) を自動的に入力します。</para>
+
+      <para>GnuCashが複式記帳法ですべての取引を保存することを強調するために、画面を<guilabel>取引仕訳帳</guilabel>に変更します。すると次のようになります。</para>
+
+      <screenshot id="basics-DoubleEntryIntro-expanded">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_DoubleEntryIntro_expanded.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>基本的な取引の取引仕訳帳での見え方</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>当座預金</guilabel>勘定科目の<guilabel>取引仕訳帳</guilabel>を示しています。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para><guilabel>費用:食費</guilabel>勘定科目への入金 (貸方) という入力と、<guilabel>資産:当座預金</guilabel>勘定科目からの出金 (貸方) という入力があるのを見てください。</para>
+
+      <para>この同じ取引が<guilabel>費用:食費</guilabel>勘定科目でどのように表示されるか簡単に見てみましょう。</para>
+
+      <screenshot id="basics-DoubleEntryIntro-Groceries">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_DoubleEntryIntro_groceries.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>費用:食費での基本的な取引の見え方</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>食費</guilabel>勘定科目の<guilabel>取引仕訳帳</guilabel>を示しています。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+
+      <note>
+        <para>この複式記帳法の例では、食品の代金を支払うのに当座預金を使用しました。食品雑貨類の代価を払うのにどんな手法を使用しても概念が同じであるのに注意してください。クレジットカードを使用する場合、複式記帳法では単に当座預金勘定科目の代わりにクレジットカード勘定科目を利用します。</para>
+      </note>
+
+      <para>給与はどうでしょう? お金が銀行口座を振り込まれるのを見ることができますが、それはどこから来ますか? 複式記帳法ではお金はどこかから来なければなりません。技術的に、そのお金は雇用主から来ます。しかし、雇用主は勘定科目を追跡することを気にかけません。それでは、どこからお金が来ると説明しますか? GnuCashでは、入金される給与を追跡するために、特別な収益タイプの勘定科目を作成します。(収益勘定科目の作り方についての詳しい情報は<xref linkend="chapter_accts"></xref>を参照してください。) 給与を記録するためには、収益勘定科目から銀行口座勘定科目まで単に資金移動を行う取引を入力します。</para>
+
+      <para>ここでは、GnuCashで給与の入金がどのようになるかを示します。</para>
+
+      <screenshot id="basics-DoubleEntryIntro-salary">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_DoubleEntryIntro_salary.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>単純な給与取引</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は、<guilabel>Employers R Us</guilabel> からの<guilabel>600ドル</guilabel>の<guilabel>給与</guilabel>に対して、日付、説明、および資金移動を行う勘定科目を入力したところを示しています。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>この例では、<guilabel>給与</guilabel>収益勘定科目から<guilabel>当座預金</guilabel>勘定科目まで<guilabel>600ドル</guilabel>の資金移動をしています。<xref linkend="chapter_accts"></xref>で説明する収益勘定科目の特別な性質のため、この取引は資金移動金額に従って当座預金勘定科目の貸借残高と収益勘定科目の貸借残高の両方を増加させます。</para>
+
+      <para>では、給与総額と小切手から差し引かれるすべての控除額を記録したい場合はどうすればよいでしょうか? <xref linkend="txns-registers-multiaccount2"></xref>で説明されている、<emphasis>複数のスプリット</emphasis>による取引を入力してください。この種類の取引では、ある勘定科目から複数の勘定科目まで<emphasis>合計額</emphasis>を資金移動します。複式記帳法取引では、ある勘定科目から移された資金総額は、他の勘定科目へ移された資金総額と等しくなければなりません。</para>
+
+      <para>例えば、給与総額が1000ドルであるとします。そのうち655ドルだけが当座預金に入金されます。残りの345ドルは国税、社会保障費および地方税などとして控除額の間でスプリットされます。GnuCashにおいてこれをどのように勘定しますか? まず最初に、収益総額 (給与)、小切手、およびそれぞれの控除額を表す勘定科目を持つべきです(<xref linkend="chapter_accts"></xref>を参照してください)。次に、<guilabel>給与</guilabel>勘定科目から他の勘定科目まで1000ドルの資金移動をする取引を入力します。<guilabel>当座預金</guilabel>勘定科目、<guilabel>国税</guilabel>勘定科目、<guilabel>医療保険</guilabel>勘定科目、<guilabel>社会保障費</guilabel>勘定科目、および<guilabel>地方税</guilabel>勘定科目に対してです。複式記帳法を利用しているので、これらの5つの勘定科目に移動された資金総額は、収益勘定科目から来る大元の1000ドルと等しくなければなりません。このタイプの取引については<xref linkend="chapter_txns"></xref>でより詳細に説明します。今のところは以下を見てください。</para>
+
+      <screenshot id="basics-DoubleEntryIntro-SalarySplit">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_DoubleEntryIntro_SalarySplit.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>スプリット給与取引</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は、<guilabel>Employers R Us</guilabel>からの<guilabel>1000ドル</guilabel>の<guilabel>給与</guilabel>支払いに対する、日付、説明、および資金移動を行う勘定科目の入力を示します。そして<guilabel>当座預金</guilabel>勘定科目、<guilabel>国税</guilabel>勘定科目、<guilabel>医療保険</guilabel>勘定科目、<guilabel>社会保障</guilabel>勘定科目および<guilabel>地方税</guilabel>勘定科目へのスプリット取引を作成しています。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>各取引あたり少なくとも2つの要素があり、ある勘定科目からの資金移動総額は、他の勘定科目の資金移動総額と等しくなければならないという基本原理を覚えてくおいてください。ある勘定科目から他の勘定科目への資金移動取引で、その総額が等しい場合、その取引は<emphasis>釣り合いが取れている</emphasis>と言います。GnuCashでは、複式記帳法を利用して全ての取引の釣り合いが取れている状態にします。</para>
+
+      <para>これはなぜ重要でなのでしょうか? 取引のすべてが釣り合っているなら、すべてのお金が勘定されます。GnuCashには、お金がどこから来て、どこで使用されたかが記録されます。各取引にかかわるすべての勘定科目の名前を保存することによって、後でソートしたり帳票でデータを参照することができます。帳票により、1年にどのくらいのお金を稼いだか、すべてがどこに費やされたか、純資産がどれくらいか、そして1年間の税金がどれくらいかを確認することができます。取引を入力するとき、入力する情報が多ければ多いほど、帳票がより詳細になります。</para>
+
+      <note> <!-- <sidebar> -->
+        <title>会計用語</title>
+
+        <para>会計士は、<emphasis>資金移動元</emphasis>・<emphasis>資金異動先</emphasis>の勘定科目を説明するのに<emphasis>借方</emphasis>と<emphasis>貸方</emphasis>という用語を使用します。資金が勘定科目に<emphasis>入金</emphasis>されている時は借方欄に記録されます。借方は常に左側に列があります。資金が勘定科目から<emphasis>出金</emphasis>される時は貸方欄に記録されます。貸方は常に右側に列があります。資金は常に1つの勘定科目の右欄から別の勘定科目の左欄まで流れます。</para>
+
+        <para>会計の基本規則は次の通りです。<emphasis>あらゆる取引において、総借方は総貸方と等しくなければなりません。</emphasis>これは各取引に対して、ある勘定科目からの資金移動総額が、別の勘定科目への資金移動総額と等しくなければならないという複式記帳法を繰り返す単なる別の方法です。</para>
+
+        <para>しかしながら、GnuCashを使用するのに借方と貸方という用語を使用する必要はありません。GnuCashでは勘定科目の見出しに入金と出金という言葉をデフォルトで利用します。それらの見出しにより満足であるなら、それらを使用てください。借方と貸方という見出しを好むなら、メニューの<guimenu>編集</guimenu>-&gt;<guimenuitem>設定</guimenuitem> <guibutton>全般</guibutton>の勘定科目の正式な勘定科目ラベルを使う項目で設定できます。(詳細は<xref linkend="basics-prefs1"></xref>を参照してください)</para>
+      </note> <!-- </sidebar> -->
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-interface1">
+    <title>GnuCashインタフェース</title>
+
+    <para>初めてGnuCashを利用する場合、<guilabel>GnuCashにようこそ!</guilabel>画面が表示されます。そこから、GnuCashは、探しているものを容易に見つけるのを補助する他のツールを提供します。一般的なスクリーンとダイアログボックスのいくつかを見ましょう。</para>
+
+    <sect2 id="basics-setup2">
+      <title>新規勘定科目の作成</title>
+
+      <para><guilabel>新規勘定科目階層の設定</guilabel>ウイザードで、一回でいくつかの勘定科目を作成できます。初めてGnuCashを開くとこのダイアログが表示されます。</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>新規勘定科目階層の設定ウイザード</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>新規勘定科目階層の設定</guilabel>ウイザードの最初の画面を示しています。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para><guibutton>進む</guibutton>をクリックして、ダイアログに表示された指示に従います。ダイアログで勘定科目のテンプレートをデフォルトの勘定科目として提供します。そして、単純に使いたい勘定科目テンプレートを選択します。勘定科目タイプの詳しい情報に関しては、<xref linkend="accts-types1"></xref>を参照してください。</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup-currency">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_currency.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>新規勘定科目階層の設定ウイザード - 通貨</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は、<guilabel>新規勘定科目階層の設定</guilabel>ウイザードの2番目の画面である通貨の選択を表しています。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>ここで選択した通貨が、このウイザードで作成するすべての<guilabel>勘定科目</guilabel>に割り当てられます。</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup-Accounts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Accounts.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>新規勘定科目階層の設定ウイザード - 勘定科目の選択</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は、<guilabel>新規勘定科目階層の設定</guilabel>ウイザードの3番目の画面である勘定科目の選択を表しています。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>1つ以上の勘定科目グループのテンプレートを選択してください。勘定科目タイプの詳しい情報に関しては、<xref linkend="accts-types1"></xref>を参照してください。</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup-Setup.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Setup.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>新規勘定科目階層の設定ウイザード - 設定</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は、<guilabel>新規勘定科目階層の設定</guilabel>ウイザードの4番目の画面である<guilabel>開始残高</guilabel>の設定を表しています。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>このダイアログでは、それぞれの勘定科目の<guilabel>開始残高</guilabel>を設定することができます。勘定科目を<guilabel>プレースホルダ</guilabel> (子勘定科目の作成だけができます。どんな取引できません。上記の画像の流動資産のようになります) に設定することもできます。</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup-Finish">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Finish.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>新規勘定科目階層の設定ウイザード - 完了</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>新規勘定科目階層の設定</guilabel>ウイザードの最後の画面を示します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para><guibutton>適用</guibutton>をクリックすると、すべての勘定科目を作成して、ウイザードが終了します。</para>
+
+      <para>別のプログラムからデータをインポートするつもりであり、そのプログラムで使用した勘定科目名と同じにしたいなら、この時点デフォルト勘定科目を設定しないかもしれません。別のプログラムからGnuCashにデータと勘定科目名を簡単にインポートすることができます(<xref linkend="basics-import1"></xref>でこれらの方法が説明されています)。</para>
+    </sect2>
+
+    <sect2 id="basics-tip2">
+      <title>今日のヒント</title>
+
+      <para>GnuCashには、プログラムを使用するための有用なヒントを提供するために<guilabel>今日のヒント</guilabel>ダイアログがあります。</para>
+
+      <screenshot id="basics-TipOfDay">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_TipOfDay.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>今日のヒント</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>今日のヒント</guilabel>を示しています。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>これらのヒントは初心者ユーザーに有用な情報が書かれています。ヒントをもっと見るためには、<guibutton>次へ</guibutton>をクリックしてください。開始時にこのダイアログボックスを見たくないなら、<guilabel>スタート時にヒントを表示</guilabel>チェックボックスのチェックを外してください。役に立つヒントを見終えたときには<guibutton>閉じる</guibutton>をクリックして、今日のヒントダイアログを閉じてください。</para>
+    </sect2>
+
+    <sect2 id="basics-main2">
+      <title>勘定科目ツリーウィンドウ</title>
+
+      <para><guilabel>勘定科目</guilabel>ウィンドウは今、以下のようになります。勘定科目ツリーの正確な配置は新規勘定科目階層の設定の間にどのデフォルト勘定科目を選択したかによります。この例では、「共通勘定科目集」を使用しています。</para>
+
+      <screenshot id="basics-Accounts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Accounts.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>勘定科目ツリーウィンドウ</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>勘定科目</guilabel>ウィンドウを示します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>勘定科目ツリーウィンドウは現行ファイルに含まれたデータに関する概要を表示します。それには勘定科目名の一覧とそれらの現在の貸借残高が含まれます。このウィンドウから、どの勘定科目も開くことができます。個別の勘定科目ウィンドウは勘定科目記録簿と呼ばれます。</para>
+
+      <para>このウィンドウの最上部に、ファイル名を表示する (一度、ファイルを保存したことがある場合) タイトルバーがあります。その下がメニューバーです。メニューの見出しをクリックするか、またはこの章の後で説明するショートカットとアクセスキーの組み合わせのどちらかを使用することによって、メニューの項目にアクセスすることができます。次はツールバーです。ツールバーには最も一般的な機能のためのボタンが含まれています。</para>
+      
+      <para>ツールバーの下に勘定科目ツリーがあります。いったん勘定科目を作成し始めたら、勘定科目名は勘定科目ツリーで表現されます。勘定科目ツリーの右上にある小さい下向きの<guiicon>矢印</guiicon>を使用することで、どの見出しを表示するかカスタマイズできます。</para>
+
+      <para>下端にあるステータスバーには、所有しているもの(純資産)に関する情報と、どのくらいのお金を稼いだかが(利益)表示されます。</para>
+
+
+    </sect2>
+
+    <sect2 id="basics-register2">
+      <title>勘定科目記録簿ウィンドウ</title>
+
+      <para>勘定科目記録簿ウィンドウは、勘定科目のデータ入力と編集に使用されます。名前が示すように、小切手帳記録簿と同様に見えます。勘定科目ウィンドウで勘定科目名をダブルクリックすると、その<guilabel>勘定科目</guilabel>に関する<guilabel>記録簿</guilabel>ウィンドウが開きます。</para>
+
+      <screenshot id="basics-CheckAccount">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_CheckAccount.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>当座預金勘定科目記録簿</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>当座預金</guilabel>勘定科目を示します - いくつかの取引がある<guilabel>記録簿</guilabel>。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para><xref linkend="chapter_txns"></xref> は勘定科目登録ウィンドウとそれらにどのようにデータを入力するかに関してもう少し説明します。ここからは、勘定科目記録簿ウィンドウの一部が前に説明した勘定科目ツリーウィンドウの一部と同様であることに注意してください。最上部のタイトルバーには勘定科目名が含まれます。その下にある、メニューバーには勘定科目記録簿に関連するメニュー項目が含まれます。ツールバーボタンは一般的なデータ入力機能を簡素化します。ウィンドウの下端にあるステータスバーには<xref linkend="chapter_txns"></xref>で説明するいくつかの勘定科目の貸借残高が表示されます。勘定科目記録簿ウィンドウの下端には、カーソルの現在位置周辺に関する情報が表示されます。</para>
+      
+      <para>GnuCashに表示される様々な列の幅を変更することができます。しかし、説明列がすべての未使用スペースにいっぱいになるように自動的に広がることを覚えておいてください。したがって、最初に説明列以外の列の幅を増加させてから、説明列の幅を減少させるべきです。</para>
+      
+    </sect2>
+
+    <sect2 id="basics-toolbar2">
+      <title>ツールバーボタン</title>
+
+      <para>勘定科目ツリーウィンドウと勘定科目記録簿ウィンドウの両方にツールバーボタンが含まれています。これらのボタンにより、勘定科目ツリーウィンドウでは<guibutton>開く</guibutton>、<guibutton>保存</guibutton>などの一般的な機能へ素早くアクセスすることができます。勘定科目記録簿ウィンドウでは<guibutton>入力</guibutton>、<guibutton>削除</guibutton>などの一般的な機能へ素早くアクセスすることができます。ボタンが何をするかがよくわからないなら、ボタンの上にマウスポインタを移動させてください。機能の説明文が表示されます。</para>
+
+      <para>勘定科目ツリーウィンドウボタンは次の通りです。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guibutton>保存</guibutton> - ディスクに現在のファイルを保存するために本機能を使用します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guibutton>閉じる</guibutton> - 現在のタブを閉じるために本機能を使用します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guibutton>開く</guibutton>、<guibutton>編集</guibutton>、<guibutton>新規作成</guibutton>および<guibutton>削除</guibutton> - これらは勘定科目に関連する機能です。これらは<xref linkend="chapter_accts"></xref>で説明します。</para>
+        </listitem>
+      </itemizedlist>
+      
+      <para>記録簿のボタンは<xref linkend="chapter_txns">で説明します。</xref>.
+      </para>
+    </sect2>
+
+    <sect2 id="basics-options2">
+      <title>メニュー項目</title>
+
+      <para>勘定科目ツリーウィンドウと勘定科目記録簿ウィンドウのメニューバーにメニュー見出しが存在します。メニュー見出しをクリックすると、メニュー項目はその見出しに現れます。</para>
+
+      <para>勘定科目ツリーのメニュー見出しをクリックして、次に、それらが何をするかを見るためにメニュー項目の上へマウスポインタを移動します。ポインタをメニュー項目に移動すると、項目の説明文がウィンドウの左下に表示されます。メニュー項目を選択するためには、クリックしてください。</para>
+
+      <para>また、ウィンドウのどこでもマウスを右クリックすることによって、ウィンドウで最も一般的なメニューにアクセスできます。勘定科目ツリーウィンドウでは、勘定科目項目のメニューが表示されます。勘定科目記録簿ウィンドウでは、取引項目のメニューが表示されます。</para>
+
+      <para>キーボードショートカットとアクセスキーを使ってメニュー項目にアクセスする方法もあります。それは次に説明します。</para> </sect2>
+
+    <sect2 id="basics-shortcut2">
+      <title>メニューショートカット</title>
+
+      <para>メニュー項目のすべてにメニュー名のアンダーラインを引かれた文字によってマークされているアクセスキーを持っています。メニュー見出しのアンダーラインを引かれた文字を<keycap>Alt</keycap>キーと共にを押すと、その見出しのメニュー項目が表示されます。いったんメニュー項目を表示してから、メニュー項目でアンダーラインを引かれた文字を入力することで、その項目の使用を開始します。例えば、メインウィンドウで<keycombo><keycap>Alt</keycap><keycap>F</keycap></keycombo>を入力すると<guimenu>ファイル</guimenu>メニューが表示され、次に<keycap>S</keycap>を入力するとファイルを保存します。アクセスキーは固定されていて、ユーザは変えることができません。</para>
+
+      <para>また、一般的によく使用されるメニュー項目のいくつかはメニュー構造を通る必要はなく、直接コマンドを起動するショートカットキーを持っています。どんなキーの組み合わせも使用できますが、これらのショートカットは<keycap>Ctrl</keycap>キーを通常使用します。各メニュー項目の横にメニューショートカットが表示されます。ユーザは、「メニューとツールバー」設定パネルで設定を行うことによって、これらのショートカットを編集できます。</para>
+
+      <para>また、GnuCashはGnomeアプリケーションなので、あなた自身のメニューショートカットを定義することもできます。ショートカットを定義するには、最初に「メニューとツールバー」設定パネルに行って、「編集可能なメニューアクセラレータ」チェックボックスを選択してください。後は、GnuCashに戻ります。次にメニューヘッダーをクリックします。そして、メニュー項目の上へマウスポインタを移動します。メニュー項目が強調表示されるので、キー、または、キーの組み合わせを押して、ショートカットを設定します。これでメニューの項目の横に選択したショートカットが表示されます。ショートカットを削除する場合は、メニュー項目が強調表示されている時に<keycap>Delete</keycap>キーを押します。Gnomeは押されたキーを調査しません。ショートカットとして容易にアルファベット1文字を設定できますので気を付けてください。</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-prefs1">
+    <title>設定の変更</title>
+
+    <para>GnuCashでは、いくつかの設定オプションを設定することによって、セッションをカスタマイズできます。メニューから<guimenu>編集</guimenu>-&gt;<guimenuitem>設定</guimenuitem>を選択し、そして左に表示されている項目リストを使用することで希望の変更を行います。行った変更はすぐに適用されます。設定ウィンドウを閉じるためには、<guibutton>閉じる</guibutton>ボタンを押します。</para>
+
+    <sect2 id="basics-acctprefs2">
+      <title>勘定科目</title>
+
+      <para><guilabel>勘定科目</guilabel>では既定の設定は次のようになります。</para>
+
+      <screenshot id="basics-Preferences-Accounts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Accounts.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - 勘定科目</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像はGnuCash<guilabel>設定 - 勘定科目</guilabel>です。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>セパレータ文字</guilabel> - 勘定科目のセパレータ文字は子勘定科目と親勘定科目を分離するための文字です。例えば費用:電気料金のようになります。デフォルトは <guibutton>: (コロン)</guibutton>です。しかし、<guibutton>/ (スラッシュ)</guibutton>、<guibutton>\ (バックスラッシュ・円記号)</guibutton>、 <guibutton>- (ダッシュ)</guibutton>、<guibutton>. (ピリオド)</guibutton>、またはどんな非英数字ユニコード1文字も区切り文字として利用することができます。親勘定科目と子勘定科目については<xref linkend="accts-types1"></xref>で説明します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>残高を符号反転する勘定科目</guilabel> - このオプションで、勘定科目の貸借残高を正の数として表示するか負の数として表示するかを決定します。<itemizedlist>
+              <listitem>
+                <para><guilabel>なし</guilabel>は全ての貸方残高を負で、すべての借方残高を正で表します。(貸方と借方の詳しい情報に関しては本章の会計用語を参照してください。)</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>貸方勘定科目</guilabel>(デフォルト)は貸方勘定科目の貸借残高 (収益、クレジットカード、負債、純資産)を正の貸借残高として表示します。これらの勘定科目タイプの詳しい情報に関して<xref linkend="chapter_accts"></xref>を参照してください。</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>収益・費用</guilabel>は、正の貸方残高を収益勘定科目の貸借残高へ、負の借方残高を費用勘定科目の貸借残高へ割り当てます。これらの勘定科目タイプの詳しい情報に関して<xref linkend="chapter_accts"></xref>を参照してください。</para>
+              </listitem>
+            </itemizedlist></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>ラベル</guilabel> - 列見出しにデフォルトの非公式の見出しの代わりに貸方・借方と表示したい場合に設定します。(貸方と借方の詳しい情報に関しては本章の会計用語を参照してください。)</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>デフォルトの通貨</guilabel> - この項目は、新規勘定科目を作成するとき、どの通貨をデフォルトで選択するかを決定します。</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>ロケール</guilabel>はシステムで指定される通貨を使用します。</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>選択</guilabel>は、システム設定のがどのようになっているかにかかわらず、使用する特定通貨を指定します。</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-business2">
+      <title>ビジネス</title>
+
+      <para><guilabel>ビジネス</guilabel>の既定の設定は以下のようになります。</para>
+
+      <screenshot id="basics-Preferences-Business">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Business.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - ビジネス</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>設定 - ビジネス</guilabel>を示します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>新しいウィンドウで開く</guilabel> - 選択した場合、各請求書を新しいウィンドウの最上位に開きます。選択しない場合、請求書を現在のウィンドウに開きます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>記帳時にスプリット取引を累積する</guilabel> - 請求書に複数の項目があり同じ勘定科目に資金移動を行う場合に、デフォルトで一つのスプリットに累積します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>行数</guilabel> - 請求書に表示する記録簿行のデフォルトの数。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>税込 (得意先請求書)</guilabel> - 税金がデフォルトで請求書の入力に含まれているかいないかを表します。この設定は新規得意先と仕入先にも引き継がれます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>期日に通知</guilabel> - もうすぐ期限がくる請求書がある時に通知するかどうかを設定します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>前もって通知する日数</guilabel> - 請求書の期限の何日前に通知するかを設定します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>税込 (仕入先請求書)</guilabel> - 税金がデフォルトで請求書の入力に含まれているかいないかを表します。この設定は新規得意先と仕入先にも引き継がれます。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-datetime2">
+      <title>日付/時刻</title>
+
+      <para><guilabel>日付/時刻</guilabel>の既定の設定は以下のようになります。</para>
+
+      <screenshot id="basics-Preferences-DateTime">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_DateTime.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - 日付/時刻</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>設定 - 日付/時刻</guilabel>を示します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>時刻の書式</guilabel> - 時刻の書式として24時間または12時間のどちらを使用するか設定します。23:00を午後11時または23時として表示するかどうかです。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>日付の書式</guilabel> - 利用可能なオプションは、米国、英国、ヨーロッパ、ISO、およびロケールです。「ロケール」を選択すると、オペレーティングシステム設定に基づいて自動的に日付の書式を決定します。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-general2">
+      <title>全般</title>
+
+      <para><guilabel>全般</guilabel>の既定の設定は以下のようになります。</para>
+
+      <screenshot id="basics-Preferences-General">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_General.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - 全般</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>設定 - 全般</guilabel>を示します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>「今日のヒント」ダイアログを表示する</guilabel> - 開始時に<quote>今日のヒント</quote>ダイアログを表示するかどうかを設定します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>ファイルの新規作成時に勘定科目リスト設定を実行する</guilabel> - このオプションは、<guimenu>ファイル</guimenu>-&gt;<guimenuitem>新規</guimenuitem>-&gt;<guimenuitem>ファイルを新規作成</guimenuitem>が選択されたとき、新規勘定科目階層セットアップウイザードを実行するかどうかを設定します。
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>各タブに「閉じる」ボタンを表示する</guilabel> - 様々なタブを閉じるのをより簡単にするために各タブに小さい閉じるアイコンを加えます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>ユーロサポートを有効にする</guilabel> - 選択した場合、欧州連合ユーロ通貨のためにサポートが有効になります。何かユーロ通貨を有する勘定科目がありましたら、必要です。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>負の金額を赤色で表示する</guilabel> - 選択しない場合、GnuCashは負の数を黒で表示します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>自動小数点</guilabel> - このオプションは自動的に入力した数に小数点を挿入します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>小数点以下の桁数</guilabel> - このオプションで、使用される小数点以下の桁数が設定できます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>ファイルを圧縮する</guilabel> - このオプションは、GnuCashデータファイルを圧縮するかどうか決定します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>ログファイル保持期間</guilabel> - ここに設定した日数以上前のログファイル(そして、バックアップファイル)が削除されます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>新規検索の最大限度</guilabel> - 戻り値がこの件数より少ないなら、「新規検索」をデフォルトとします。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-onlinebank2">
+      <title>インターネットバンキング</title>
+
+      <para><guilabel>インターネットバンキング</guilabel>インターネットバンキングの既定の設定は以下のようになります。</para>
+
+      <screenshot id="basics-Preferences-OnlineBanking">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_OnlineBanking.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - インターネットバンキング</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>設定 - インターネットバンキング</guilabel>を示します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>ドキュメントを表示する</guilabel> - 初めてQIFインポート(後で本章で説明されます)を使用する時、どのようにファイルをインポートするかに関する細かい指示があるのに気付くと思います。いったんインポートを使用するのことに慣れると、このオプションの設定を切りたくなるかもしれません。オプションの設定を切ると、インポートダイアログの、詳細表示がより少なくなります。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>ベイジアンマッチングを用いる</guilabel> - 既存の勘定科目で新規取引を一致させるのにベイズのアルゴリズムを使用します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>マッチ表示の閾値</guilabel> - 照合リストに一致している可能性がある取引として表示するために持たなければならない最小量の閾値です。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>自動追加の閾値</guilabel> - レッドゾーンにある(表示の閾値より上であるが、自動追加の閾値より下である場合)照合のスコアで最も良い取引が デフォルトで追加されます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>自動清算の閾値</guilabel> - グリーンゾーンにある(自動清算の閾値より大きいか等しい)照合のスコアで最も良い取引はデフォルトで清算されます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>提携ATM利用料金の閾値</guilabel> - ATMが自動的にわずかな取引手数料を取るならば、この閾値の以下の差異ならば、GnuCashは取引を一致させます。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-regprefs2">
+      <title>記録簿</title>
+
+      <para><guilabel>記録簿</guilabel>の既定の設定は以下のようになります。</para>
+
+      <screenshot id="basics-Preferences-Register">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Register.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - 記録簿</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>設定 - 記録簿</guilabel>を示します</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>`Enter'で空白の取引に移動する</guilabel> - この項目を選択した場合、`Enter'をユーザーが入力するしたら、次の空白の取引に移動します。そうでない場合、一行下に移動します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>リストを自動的に前面に出す</guilabel> - 選択した場合、入力フォーカスがリストフィールドにあるとき、すべてのリストが自動的に展開されます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>清算済み取引を確認する</guilabel> - 選択した場合、照合するときに清算済み取引が除外されます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>自動利子移動</guilabel> - 選択した場合、利子が入金または出金される勘定科目を照合する前に利子費用決済のための取引を入力するようにユーザに入力をうながします。現在のところ、銀行、クレジットカード、投資信託、資産、債権、支払、および負債勘定科目でのみ有効になります。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>自動クレジットカード支払</guilabel> - 選択した場合、クレジットカード明細書を照合した後に、ユーザがクレジットカードによる支払を入力するように入力をうながします。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>システムテーマカラーを使用</guilabel> - 選択した場合、GnuCashはデフォルトカラーの代わりにシステムテーマカラーを使用します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>2行モードの時取引ごとに色を交換する</guilabel> - 選択した場合、各行の代わりに各取引で、プライマリとセカンダリのカラーが変わるように記録簿ウィンドウが構成されます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>行間に罫線を引く</guilabel> - この項目が選択されていると、GnuCashは各行の間に罫線を引きます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>列間に罫線を引く</guilabel> - この項目が選択されていると、GnuCashは列間に罫線を引きます。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-regdefaults2">
+      <title>記録簿デフォルト</title>
+
+      <para><guilabel>記録簿</guilabel>デフォルト設定項目は取引記録簿ウィンドウの動作に影響します。このガイドの<xref linkend="txns-registers1"></xref>で取引記録簿に関する詳しい情報を見ることができます。</para>
+
+      <para><guilabel>記録簿デフォルト</guilabel>の既定の設定は以下のようになります。</para>
+
+      <screenshot id="basics-Preferences-RegisterDefaults">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_RegisterDefaults.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - 記録簿デフォルト</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>設定 - 記録簿デフォルト</guilabel>を示します</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>デフォルトのスタイル</guilabel> - 記録簿ウィンドウを3つの異なったスタイルから選ぶことができます。<guilabel>基本元帳</guilabel>(デフォルト)、<guilabel>自動スプリット元帳</guilabel>、および<guilabel>取引仕訳帳</guilabel>です。基本的なスタイルである基本元帳はすべてが単一行の上に表れる、標準の1行書式記録簿です。自動スプリット元帳は現在の取引がスプリットによって拡張されるのを除いて、基本元帳と同様なスタイルです。取引仕訳帳スタイルでは、あらゆる取引がスプリットで展開されます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>記録簿を新しいウィンドウに開く</guilabel> - この項目が選択されていると、タブの代わりに個別のウィンドウに記録簿を開きます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>2行モード</guilabel> - 選択した場合、各取引に関する情報を1行ではなく2行で表示します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>取引数</guilabel> - 記録簿でいくつの取引を表示するかを設定します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>行数</guilabel> - 記録簿を開いた時に表示する行数を設定します。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-reports2">
+      <title>帳票</title>
+
+      <para><guilabel>帳票</guilabel>設定項目は取引記録簿ウィンドウの動作に影響します。このガイドの<xref linkend="txns-registers1"></xref>で取引記録簿に関する詳しい情報を見ることができます。</para>
+
+      <para><guilabel>帳票</guilabel>の既定の設定は以下のようになります。</para>
+
+      <screenshot id="basics-Preferences-Reports">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Reports.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - 帳票</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>設定 - 帳票</guilabel>を示します</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>デフォルトの帳票通貨</guilabel> - この項目は、帳票を作成するときにどの通貨をデフォルトで使用するかを決定します。システム設定の<guilabel>ロケール</guilabel>を使用することを選択するか、または、自身のデフォルト帳票通貨を指定するかを選択できます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>場所</guilabel> - 選択した場合、タブの代わりに新しいウィンドウで帳票を開きます。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-accountingPeriod2">
+      <title>会計期間</title>
+
+      <para><guilabel>会計期間</guilabel>の既定の設定は以下のようになります。</para>
+
+      <screenshot id="basics-Preferences-AccountingPeriod">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_AccountingPeriod.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - 会計期間</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>設定 - 会計期間</guilabel>を示します</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>総合計を含む</guilabel> - 選択した場合、GnuCashの帳票に総合計を含みます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>非通貨合計を含む</guilabel> - 選択した場合、GnuCashの帳票に非通貨の品目(例えば、株式数)の総額を含めます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>開始日</guilabel> - この項目は、帳票の開始日を決定します。<guilabel>相対</guilabel>を選択した場合、動的な開始日(「今月の開始日」「今年の開始日」など)を使用します。<guilabel>絶対</guilabel>を選択した場合、特定の開始日(時間が過ぎるのに応じて変化しない)を使用します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>終了日</guilabel> - <guilabel>相対</guilabel>を選択した場合、動的な終了日(「今月の終了日」「今年の終了日」など)を使用します。<guilabel>絶対</guilabel>を選択した場合終了日(時間が過ぎるのに応じて変化しない)を使用します。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-schedtrans2">
+      <title>予定取引</title>
+
+      <para><guilabel>予定取引</guilabel>設定項目はGnuCashの予定取引に影響します。このガイドの<xref linkend="txns-registers1"></xref>で予定された取引に関する詳しい情報を見ることができます。 </para>
+
+      <para><guilabel>予定取引</guilabel>の既定の設定は以下のようになります。</para>
+
+      <screenshot id="basics-Preferences-ScheduledTransactions">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_ScheduledTransactions.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - 予定取引</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>設定 - 予定取引</guilabel>を示します</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>データファイルが開くときに実行</guilabel> - 選択した場合、「前回起動時以降」ウィンドウがGnuCash開始時(または、GnuCashでファイルを開いた時)に表示されます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>取引を自動で新規作成</guilabel> - 選択した場合、新しい予定取引が自動的に記録簿に入力されます。また、<guilabel>取引が作成される前に通知</guilabel>を選択すると、取引が作成される前にユーザーが確認することができるように設定できます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>前もって作成する日数</guilabel> - 何日前に新しい予定取引を作成するかのデフォルトの日数。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>前もって通知する日数</guilabel> - 何日前に新しい予定取引を通知するかのデフォルトの日数。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-windows2">
+      <title>ウィンドウ</title>
+
+      <para><guilabel>ウィンドウ</guilabel>の既定の設定は以下のようになります。</para>
+
+      <screenshot id="basics-Preferences-Windows">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Windows.png"
+                       format="PNG" srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>GnuCash設定 - ウィンドウ</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は<guilabel>設定 - ウィンドウ</guilabel>を示します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>ウィンドウのサイズと位置を保存</guilabel> - 選択した場合、GnuCashを次回実行した時に最終のウィンドウサイズと位置を再使用します。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>ツールバースタイル</guilabel> - ツールバーは5つの異なったスタイルから選ぶことができます。<guilabel>システムのデフォルトを使用</guilabel>(デフォルト)、<guilabel>アイコンの下にテキスト</guilabel>、<guilabel>主なアイコンの横にテキスト</guilabel>、<guilabel>アイコンのみ</guilabel>、および<guilabel>テキストのみ</guilabel>です。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-help1">
+    <title>ヘルプ</title>
+
+    <para>GnuCashは様々なヘルプを提供します。既にGnuCashセッションの開始時に有用なヒントを与える<guilabel>今日のヒント</guilabel>ダイアログを説明しました。また、GnuCashは大量のヘルプマニュアルを提供します。</para>
+
+    <sect2 id="basics-manual2">
+      <title>ヘルプマニュアル</title>
+
+      <para>いったんGnuCashを開くと、<guilabel>勘定科目ツリー</guilabel>ウィンドウにオンラインマニュアルを開く<guilabel>ヘルプ</guilabel>メニューの見出しがあります。オンラインマニュアルはトピックによって構成されています、そして、各トピックを子トピックに展開できます。</para>
+
+      <para>トピックは左側にリストアップされています。トピックまたは子トピックを選択するためには、それをクリックします。すると、そのトピックに関するテキストが右側に表れます。選択したトピック間で移動する場合、<guibutton>戻る</guibutton>、<guibutton>進む</guibutton>ボタンを使用します。そして、<guibutton>印刷</guibutton>ボタンを使用して全てのテキストを印刷します。</para>
+    </sect2>
+
+    <sect2 id="basics-web2">
+      <title>ウェブアクセス</title>
+
+      <para>また、<guilabel>GnuCashヘルプ</guilabel>ウィンドウは、補助情報をウェブサイトから取ってくることができる単純なウェブブラウザとして機能します。ウィンドウの下にある<guibutton>開く</guibutton>ツールバーボタンをクリックして、後はURLをタイプすることによってどんなウェブサイトも開くことができます。そして、標準のブラウザのように、<guibutton>戻る</guibutton>、<guibutton>進む</guibutton>、<guibutton>再読込</guibutton>、<guibutton>停止</guibutton>、<guibutton>印刷</guibutton>ボタンを使えます。</para>
+
+      <para><ulink
+      url="http://www.gnucash.org"><citetitle>GnuCash</citetitle></ulink>ウェブサイトにはプログラムとすべてのアップデートに関する役立つ情報があります。また、それは開発者向けとユーザ向けGnuCashメーリングリストのリンクをがあります。そして、特定のトピックに関して議論した<ulink
+      url="https://lists.gnucash.org/cgi-bin/namazu.cgi"><citetitle>GnuCashメーリングリストのアーカイブ</citetitle></ulink>を検索できます。探している答が見つからないなら、<ulink
+      url="https://lists.gnucash.org/mailman/listinfo/gnucash-user"><citetitle>GnuCashユーザリスト</citetitle></ulink>に質問を投稿することができます。そして、リストの上の誰かが回答を試みます。 </para>
+
+      <para>最新のの<guilabel>GnuCash FAQ</guilabel>は、<ulink url="http://wiki.gnucash.org/wiki/FAQ"><citetitle>GnuCash FAQウェブサイト</citetitle></ulink>に置いてあり、よくある質問と回答が含まれています。</para>
+    </sect2>
+
+    <sect2 id="basics-topic2">
+      <title>トピックの検索</title>
+
+      <para>オンラインマニュアルには検索機能もあります。特定のトピックを検索するためにはヘルプウィンドウの下端にある<guibutton>検索</guibutton>タブをクリックして、表示されたフィールドでトピックを入力します。検索を実行するために<guibutton>検索</guibutton>ボタンをクリックします。検索結果の一覧が下の領域に表示されます。結果をクリックすると右側に関連するテキストが表示されます。</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-files1">
+    <title>ファイルの作成と保存</title>
+
+    <para>初めてGnuCashを使用する場合、始めに自動的に新しいファイルを開きます。新しい名前でファイルを保存するために以下の手順に従います。</para>
+
+    <orderedlist>
+      <listitem>
+        <para>メニューバーから<guimenu>ファイル</guimenu>-&gt;<guimenuitem>名前を付けて保存…</guimenuitem>を選択するか、<guibutton>保存</guibutton>ツールバーボタンをクリックします。以下のGnuCashウィンドウが表示されます。</para>
+
+        <screenshot id="basics-SaveAs">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/basics_SaveAs.png" format="PNG"
+                         srccredit="Bengt Thuree" ></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>保存ダイアログ</phrase>
+            </textobject>
+
+            <caption>
+              <para>この画像は<guilabel>保存</guilabel>ダイアログを示します。</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </listitem>
+
+      <listitem>
+        <para>下のテキストボックスで、ファイル名を入力してください(例えば、gcashdata)。</para>
+      </listitem>
+
+      <listitem>
+        <para>ファイルを保存するために<guibutton>OK</guibutton>ボタンをクリックします。</para>
+      </listitem>
+    </orderedlist>
+
+    <para>ただ一つの世帯の財務動向をおさえる場合、1個のファイルだけが必要でしょう。また、企業財務を追跡していたり、またはある理由でデータを別々に保ちたい場合、1個以上のファイルが必要になります。新規ファイルを作成する場合は以下の手順に従ってください。</para>
+
+    <orderedlist>
+      <listitem>
+        <para>メインメニューから、<guimenu>ファイル</guimenu>-&gt;<guimenuitem>新規作成</guimenuitem>を選択します。</para>
+      </listitem>
+
+      <listitem>
+        <para>名前を付けて保存を選択し上記の手順に従います。</para>
+      </listitem>
+    </orderedlist>
+
+    <para>GnuCashセッションを終了させる前に、<guimenu>ファイル</guimenu>-&gt;<guimenuitem>保存</guimenuitem>または<guibutton>保存</guibutton>ツールバーボタンを使用して変更したデータを必ず保存してください。実際のところ、データを変更した時に頻繁に保存することは名案です。保存するまでGnuCashは永久に変更を記録しません。既存ファイルを開くためには、<guimenu>ファイル</guimenu>-&gt;<guimenuitem>開く</guimenuitem> を選択し、一覧からファイルを選択します。</para>
+
+    <para>GnuCashはデータファイルを保存する時には拡張子をつけません。GnuCashファイルを<filename>MyBudget</filename>と命名すると、現実のファイル名は<filename>MyBudget</filename>になります。
+        <note>
+        <para>ファイル名を指定するとき、拡張子を指定しないでください。上記の例の場合ファイル名として単に<filename>MyBudget</filename>を指定します。</para>
+      </note>
+    </para>
+  </sect1>
+
+  <sect1 id="basics-import1">
+    <title>QIFファイルのインポート</title>
+
+    <note>
+      <para>この項では最初にQIF(<trademark class="registered">Quicken</trademark> Interchange Format)を使用して他の財務アプリケーションからデータをインポートする方法を説明します。
+<!--
+      Section 11.5
+      addresses importing QIF data from online bank statements.
+-->
+      </para>
+    </note>
+
+    <para>QIF(<trademark class="registered">Quicken</trademark> Interchange Format)を使用する<trademark class="registered">Quicken</trademark>、MS Money、または他のプログラムからデータをインポートするためには、まずはQIFファイルにデータをエクスポートしなければなりません。これをする一つの方法は、別々のQIFファイルとして各勘定科目をエクスポートすることです。<trademark class="registered">Quicken</trademark> 98とそれ以降では、一つのQIFファイルの中にすべての勘定科目をエクスポートする簡単な方法を利用できます。この方法が利用可能であるかどうか決定するためには、プログラムのマニュアルを確認してください。</para>
+
+    <para>QIF形式にデータがいったんなると、以下で説明する簡単な3ステップのインポート手順に従ってください。開始する前に、インポートプロセスの一部で重複した取引の確認を行うことに注意してください。インポートの際に<emphasis>すべて</emphasis>のQIFファイルをロードするのが、非常に重要です。2つ以上の勘定科目が関係する時、重複取引が発生します。例えばある取引が普通預金から当座預金までの資金移動であった場合、同じ取引が2つに分かれて記録されているでしょう。普通預金口座で1つと当座預金で1つです。</para>
+
+    <para>QIFファイルのインポートは次のようになります。</para>
+
+    <orderedlist>
+      <listitem>
+        <para>インポートしたいデータを含むQIFファイルのすべてをロード</para>
+
+        <para>これを行うためには、メニューから<guimenu>ファイル</guimenu>-&gt;<guisubmenu>インポート</guisubmenu>-&gt;<guimenuitem>QIFをインポート…</guimenuitem>を選択します。QIFインポートダイアログボックスが現れたら、進むをクリックします。そして、指示に従って、ファイルをロードする手順に従ってください。</para>
+
+        <screenshot id="basics-QIF-Import-welcome">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/basics_QIF_Import_welcome.png"
+                         format="PNG" srccredit="Bengt Thuree" ></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>QIFインポートウイザード</phrase>
+            </textobject>
+
+            <caption>
+              <para>この画像は<guilabel>QIFインポート</guilabel>ウイザードの開始画面を示します。</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>ロードするファイル名を入力するようにうながされます。QIFファイルを選択するために<guibutton>選択</guibutton>ボタンを使用してください。そしてロードするために<guibutton>進む</guibutton>をクリックします。より多くのファイルをロードする場合は、いったんファイルをロードしてから、<guibutton>別のファイルをロード</guibutton>を選択します。すべてのQIFファイルをロードしたら<guibutton>進む</guibutton>をクリックして、インポート手順を続行します。</para>
+      </listitem>
+
+      <listitem>
+        <para>作成されるGnuCash勘定科目の確認</para>
+
+        <para>インポート手順では次に、GnuCash勘定科目とQIF勘定科目のカテゴリを照合し、照合過程の簡単な説明を表示します。<guibutton>進む</guibutton>をクリックすると、作成されたGnuCash勘定科目と対応するQIF勘定科目を比べる画面が表示されます。勘定科目名を変更するには、その勘定科目名を含む行を選択して、表示されたダイアログの中にある名前を編集します。変更が終了したら、<guibutton>進む</guibutton>をクリックします。すると、同様のカテゴリ照合過程が続きます。QIFの収益と費用カテゴリはGnuCashの収益と費用勘定科目としてインポートされます(詳細は<xref linkend="accts-concepts1"></xref>を参照してください)。必要なら勘定科目名を変更し、<guibutton>進む</guibutton>をクリックして継続します。</para>
+
+        <note>
+          <para>どんな変更を行う必要があるかよくわからないなら、GnuCash勘定科目名を受け入れするのが安全です。変更を加えるのが必要であることがわった場合、後で勘定科目を編集するのは簡単です。</para>
+        </note>
+
+        <para>ドロップダウンリストから、インポートする勘定科目で使用する標準の通貨を選択し、続けるために<guibutton>進む</guibutton>をクリックします。株式、投資信託、またはその他の証券がある場合、補助情報の入力をうながされます。インポート手順ダイアログは為替、市場 (NASDAQなど)、証券のフルネーム、および銘柄記号を尋ねます。この情報が手近に無いなら、後で勘定科目情報を編集できます。これでインポートがいったん完了します。続けるために<guibutton>進む</guibutton>をクリックします。</para>
+      </listitem>
+
+      <listitem>
+        <para>GnuCashにデータをインポート</para>
+
+        <para>インポートの最終段階です。いったん、勘定科目名と投資情報について確認します。そしてインポートの手順を完了しGnuCash勘定科目ページをアップデートするために<guibutton>完了</guibutton>をクリックします。ファイルのサイズによって、インポートが完了するまで数分かかるかもしれません。プログレスバーには完了した割合が表示されます。インポート手順が完了たら、GnuCashのメインウィンドウに戻ります。この時点でインポートした勘定科目の名前が表示されます。</para>
+      </listitem>
+    </orderedlist>
+  </sect1>
+
+  <sect1 id="basics-backup1">
+    <title>データのバックアップとリカバリ</title>
+
+    <para>GnuCashは、データが無くならないのを確実にするためにいくつかの種類のファイルを作成します。次の拡張子があるファイルが存在します。一次データファイルと同じディレクトリにあるxac、log、LCK、およびLNKです。それぞれのファイル状態は次のように表示されます。</para>
+    
+    <programlisting>
+      $ ls 
+      gcashdata
+      gcashdata.20060414185747.xac
+      gcashdata.20060414223248.log
+      gcashdata.20060415114340.xac
+      gcashdata.20060415154508.log
+      gcashdata.20060415173322.xac
+      gcashdata.20060415194251.log
+      gcashdata.7f0982.12093.LNK
+      gcashdata.LCK
+    </programlisting>
+
+    <sect2 id="basics-backupxac2">
+      <title>バックアップファイル(.xac)</title>
+
+      <para>データファイルを保存したときは毎回、バックアップコピーが拡張子xacで保存されます。このバックアップファイル前のデータファイルの完全な複製です。そして、ファイル名の形式はバックアップのデータファイル、年、月、日、および時間を表します。例えば、ファイル名<filename>gcashdata.20060414185747.xac</filename>は、2006年4月14日午後6時57分47秒にgcashdataとして保存したファイルのバックアップであることを示します。</para>
+
+      <para>古いバックアップファイルを復元するためには、単に戻りたい日時の.xacファイルを開いてください。必ず異なった名前でこのファイルを保存してください。通常のデータファイル名に.xac拡張子を使用してはいけません。</para>
+    </sect2>
+
+    <sect2 id="basics-backuplog2">
+      <title>ログファイル(.log)</title>
+
+      <para>GnuCashのファイルを開くと毎回、.logファイルが.xacバックアップファイルと同じ名前の形式で作成・保存されます。開いているデータファイルへの変更を行うとき、ログファイルはそれらの変更だけを保存します。ログファイルはデータファイルのフルバックアップではありません。単に現在のGnuCashセッション中にデータファイルに行った変更を記録します。</para>
+
+      <para>停電またはシステムの広いクラッシュのためうっかりGnuCashを終了したとしても、このログファイルを使用することでGnuCashファイルを保存した最後の時以降の作業の大部分を回復することが可能です。方法は次のようになります。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>最後に保存しているGnuCashファイルを開きます。</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenu>ファイル</guimenu>-&gt;<guimenuitem>インポート</guimenuitem>-&gt;<guimenuitem>GnuCashの.log fileをリプレイ</guimenuitem>を選択し、単に開いた保存ファイルと同じ日時を有するログファイルを選択します。確実に正しい.logファイルを選んでください。さもなければ、勘定科目が大きく破壊されるかもしれません。</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>ログリプレイは最後の保存以降入力された釣合いに影響するどんな取引も回復します。予定取引とビジネス機能(得意先請求書、仕入先請求書など)から作成されたものを含んでいます。</para>
+
+      <note>
+        <para>警告 : 予定取引、得意先請求書または仕入先請求書自体への変更は回復されません。回復された取引は、適切に関連付けられないかもしれません。したがって、再確認するべきです。特にビジネス取引ではいくつかを削除して作り直さなければならないかもしれません。そうしないと、貸借残高が正しくなったにもかかわらず帳票は正しくないかもしれません。</para>
+      </note>
+    </sect2>
+
+    <sect2 id="basics-backuplock2">
+      <title>ロックファイル(.LNKと.LCK)</title>
+
+      <para>時折.LNKと.LCKファイルが現れるるのを見ることができます。これらはデータを全く保存しません。2人以上のユーザが同時に同じファイルを開くのを防ぐために作成されます。ファイルを開くと、他の誰もアクセスできないようロックするために、これらのファイルが自動的に作成されます。GnuCashセッションを閉じるか、または別のファイルを開くと、GnuCashは、LCKとLNKファイルを削除し、最初のデータファイルをアンロックします。</para>
+
+      <para>データファイルを開いている際にGnuCashがクラッシュすると、LCK、およびLNKファイルが削除されません。GnuCashで次に開こうとすると、ファイルがロックされているという警告メッセージが表示されます。ファイルを開くためにはいを選ぶのが安全です。しかし.LNKと.LCKファイルを削除するべきです。(端末ウィンドウまたはファイルマネージャを使用してください。)ファイルがいったん削除されると、GnuCashがクラッシュしない限り、再び警告メッセージは表示されません。</para>
+    </sect2>
+
+    <sect2 id="basics-backupmanage2">
+      <title>ファイル管理</title>
+
+      <para>どのファイルを取っておくべきでしょうか? もちろん主データファイルを取っておいてください。自動的に付けられた拡張子を持っていないデータファイルです。最近の.xacファイルをいくつか取っておくのは名案です。.logファイルはデータの完本でないので安全に削除することができます。また、GnuCashを閉じた後に見つけた.LCKと.LNKファイルも削除するべきです。手動で別のディスクにデータファイルをバックアップすると決めるなら主データファイルだけををバックアップする必要があります。.xacファイルは必要ありません。</para>
+
+      <note>
+        <para>GnuCashは自動的に30日間より古い全ての.xac、.log ファイルを削除します。GnuCash設定においてこの動作を変えることができます。</para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-together1">
+    <title>まとめ</title>
+
+    <note>
+      <para>この項では本書の中で継続したチュートリアルを開始します。各章の最後に、その章で説明した概念を、一連の例を通して指導する<guilabel>まとめ</guilabel>があります。各<guilabel>まとめ</guilabel>項は前章で説明されているものから構築されます。簡単にアクセスするためにファイルを必ず保存してください。</para>
+    </note>
+
+    <para>では開始しましょう!</para>
+
+    <orderedlist>
+      <listitem>
+        <para>まず最初に、実データを保存するためのファイルを作成しましょう。GnuCashを開いて、<guilabel>新規勘定科目階層の設定</guilabel>ダイアログに移動します。家庭用財務に使用するファイルと勘定科目を作成します。したがって、関係した勘定科目を選んでください。どんな勘定科目を必要とするかよく分からなければ、<guibutton>全てを選択</guibutton>オプションをクリックして、表示された勘定科目のすべてを作成してください。設定が完了したら、家庭用データに使用したいファイル名でこのファイルを保存します。</para>
+      </listitem>
+
+      <listitem>
+        <para>次に、テストデータを保存するためにファイルを作成します。これは本書のチュートリアルで使用されるファイルです。新規ファイルを作成するために<guimenu>ファイル</guimenu>-&gt;<guimenuitem>新規作成</guimenuitem>をクリックします。そして<filename>gcashdata_1</filename>という名前をつけます。メインウィンドウは今このようになります。</para>
+
+        <screenshot id="basics-EmptyAccounts">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/basics_EmptyAccounts.png"
+                         format="PNG" srccredit="Bengt Thuree" ></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>テストファイルを示すメインウィンドウ</phrase>
+            </textobject>
+
+            <caption>
+              <para>この画像は、勘定科目集がウイザードによって作成された状態の、勘定科目ツリーウィンドウを示します。</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </listitem>
+
+      <listitem>
+        <para>今度は、勘定科目ツリーウィンドウでいくつかの設定を調整します。<guimenu>編集</guimenu>-&gt;<guimenuitem>設定</guimenuitem>-&gt;<guimenuitem>ウィンドウ</guimenuitem>を選択して、アイコンではなく、テキストだけを表示するようにツールバーのスタイルを変更します。変更はすぐに行われるので、メインウィンドウのツーバーボタンを見てください。<guilabel>設定</guilabel>ダイアログに戻って、<guibutton>デフォルトの使用</guibutton>をクリックすることによってシステムデフォルトを設定するようにツールバーボタンを変えます。列見出し行から<guibutton>下向き矢印</guibutton>を選択し、<quote>タイプ</quote>を選択します(列「タイプ」を見ることを意味します)。メインウィンドウは今、このようになります。</para>
+
+        <screenshot id="basics-EmptyAccounts2">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/basics_EmptyAccounts2.png"
+                         format="PNG" srccredit="Bengt Thuree" ></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>表示オプションを変えた効果</phrase>
+            </textobject>
+
+            <caption>
+              <para>この画像は表示オプションを変えた効果を示します。</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>ファイルを保存します。</para>
+      </listitem>
+
+      <listitem>
+        <para>別のプログラムからQIFデータをインポートする計画がある場合、最初に実習ファイルを試しましょう。(そうでなければ、次章の勘定科目の設定(<xref linkend="chapter_accts"></xref>)までスキップしてください。)</para>
+
+        <orderedlist>
+          <listitem>
+            <para>最初に、<filename>gcashimport</filename>という名前で新しいファイルを作成します。勘定科目(共通勘定科目など)を直接指定するかどうかは自由です。QIFインポート手順で勘定科目が見つからないと、自動的に作成されます(または勘定科目を手動で作成します)。</para>
+          </listitem>
+
+          <listitem>
+            <para>メインメニューから、<guimenu>ファイル</guimenu>-&gt;<guisubmenu>インポート</guisubmenu>-&gt;<guimenuitem>QIFをインポート…</guimenuitem>を選択しインポートを開始します。</para>
+          </listitem>
+
+          <listitem>
+            <para>適切な通貨を選択してください。</para>
+          </listitem>
+
+          <listitem>
+            <para>ロードするQIFファイルとして<filename>gnc_Sample_QIF.qif</filename>を選択してください。</para>
+          </listitem>
+
+          <listitem>
+            <para>次のダイアログで各取引には有効な勘定科目があることを確認してください。間違いがなければ単にデフォルトのものを使用します。</para>
+          </listitem>
+
+          <listitem>
+            <para>インポートを完了します。</para>
+          </listitem>
+        </orderedlist>
+
+        <para>メインウィンドウは今、このようになります。</para>
+
+        <screenshot id="basics-AccountsSampleQIF">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/basics_AccountsSampleQIF.png"
+                         format="PNG" srccredit="Bengt Thuree" ></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>サンプルQIFファイルをインポートした後</phrase>
+            </textobject>
+
+            <caption>
+              <para>この画像は提供されたサンプルQIFファイルをインポートした後のメインウィンドウを示します。</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>画面がインポートの後に空白であるなら、新規勘定科目タブを表示するために<guimenu>ファイル</guimenu>-&gt;<guisubmenu>新規</guisubmenu>-&gt;<guimenuitem>新規勘定科目ページ</guimenuitem>を選択します。</para>
+
+        <para>ファイルを保存してください。</para>
+
+      </listitem>
+    </orderedlist>
+  </sect1>
+</chapter>

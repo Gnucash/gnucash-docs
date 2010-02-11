@@ -1,0 +1,138 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  Originally designed by Carol Champagne.
+  Translators: Yasuaki Taniguchi <yasuakit@gmail.com>
+               (translators put your name and email here)
+-->
+  <appendix id="appendixb">
+    <title>よくある質問 (FAQ)</title>
+    <para>これは本文書では話題を扱っている項目が存在しない、メーリングリストで尋ねられる質問のリストです。</para>
+    <sect1 id='appendixb_info'>
+      <title>Sources of Information</title>
+
+      <sect2 id="appendixb_info_where">
+        <title>Q: FAQはどこにありますか?</title>
+        <para>A: あなたが調べている本文書です。<ulink url="http://wiki.gnucash.org/wiki/FAQ">GnuCash Wiki</ulink>の中で最新版を見ることができます。</para>
+      </sect2>
+
+      <sect2 id="appendixb_info_mail">
+        <title>Q: GnuCashのためのメーリングリストがありますか?</title>
+        <para>A: はい。<ulink url="http://lists.gnucash.org/mailman/listinfo/gnucash-user">http://lists.gnucash.org/mailman/listinfo/gnucash-user</ulink> および <ulink url="http://lists.gnucash.org/mailman/listinfo/gnucash-devel">http://lists.gnucash.org/mailman/listinfo/gnucash-devel</ulink> に移動して参加してください。</para>
+      </sect2>
+
+      <sect2 id="appendixb_info_mailarchive">
+        <title>Q: メーリングリストの検索可能なアーカイブがありますか?</title>
+        <para>A: はい。はメーリングリストのアーカイブは <ulink url="http://news.gmane.org/gmane.comp.gnome.apps.gnucash.devel"></ulink> および <ulink url="http://news.gmane.org/gmane.comp.gnome.apps.gnucash.user"></ulink> で検索することが出来ます。 (ドイツ語を話せるなら <ulink url="http://news.gmane.org/gmane.comp.gnome.apps.gnucash.german"></ulink>  もあります。</para>
+      </sect2>
+
+      <sect2 id="appendixb_info_other">
+        <title>Q: GnuCashのサポートを得る他の手段がありますか?</title>
+        <para>A: 開発者の多くがirc.gnome.orgの#gnucashチャンネルにいます。また、<ulink url="http://wiki.gnucash.org/wiki/GnuCash">http://wiki.gnucash.org/wiki/GnuCash</ulink> のオンラインwikiがあります。</para>
+      </sect2>
+    </sect1>
+
+    <sect1 id="appendixb_general">
+      <title>一般情報</title>
+
+      <sect2 id="appendixb_software_windows">
+        <title>Q: GnuCashはWindowsで動作しますか?</title>
+        <para>A: リリース2.2.0からGnuCashをWindowsで利用可能です。</para>
+        <para>他の関連するオプションとしてcolinux、VMWare、およびWindowsベースのXサーバーでリモートサーバーで提供されているGnuCashセッションを利用できます。</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_hard2compile">
+        <title>Q: GnuCashをコンパイルするのは難しすぎます!</title>
+        <para>A: 1.6.0がリリースされたとき、これはたぶん真実でした。それは今日、もう真実ではありません。ほとんど全てのディストリビューションが全ての必要なライブラリを提供するからです。(g-wrapを除きます。GnuCashをコンパイルする前にインストールする必要がある「1つの」追加ライブラリが実際には存在します。)しかしながら、デフォルトではディストリビューションは必要なライブラリの開発パッケージをインストールしません。あなたのディストリビューションのインストーラプログラムを開始させて、ライブラリパッケージだけではなく、開発パッケージもインストールするように設定する必要があります。一般にこの問題はGnome領域の多くのアプリケーションに関係する問題です。また、これは「1個の一体構造のGnomeパッケージ」になっていないという事実まで波及します。</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_batchmode">
+        <title>Q: GnuCashには帳票作成に利用可能なバッチモード (非対話型) などがありますか?</title>
+        <para>A: いいえ、現在のところGnuCashは対話的に実行しなければなりません。</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_multuser">
+        <title>Q: 複数人がGnuCashの同じデータファイルにアクセスできますか?</title>
+        <para>A: 同じデータファイルへのアクセスを複数人で行うことが出来ます。しかし、同時にデータファイルを使用できません。</para>
+        <para>複数人でアクセスできるように設定するためにはすべての人々がファイルを含むディレクトリへの読書きアクセス権を持たなければなりません。(他の人が作ったファイルを読み込むためと、新規のファイルを作成するためです。) これを行う一つの方法は、ユーザグループを作成しデータディレクトリをグループで共有利用可能なようにモードを2775に設定します。「2」はディレクトリのすべてのファイルのパーミッションをコピーするsetgidです。</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_WhyC">
+        <title>Q: GnuCashはなぜCで書かれていますか?</title>
+        <para>A: GnuCashに関する中心となる機能は、Cで書かれていますが、Guile (scheme) を通してこれらの多くにアクセスできたのを忘れないでください。GnuCashがCで書かれているのは多くの理由があります。第一の理由はは歴史的なものです。Gnucashは1996年(たぶんさらに早くから!)に開始しています。OOP (C++、 Java、 Python) コンパイラの多くが、その時考えられていた多種のプラットフォームで十分に成熟・標準化されていませんでした。よって、その時はCが唯一の選択肢でした。第二の理由はGnuCashが使用する標準のグラフィカルユーザーインターフェースがGTKであるからです。GTKはCで書かれています。</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_rewrite">
+        <title>Q: 容易に貢献できるようにプログラミング言語xyzでGnuCashを書き直して頂けますか?</title>
+        <para>A: 「私たちはそうしません」と即答します。より長く答えるのはは難しいです。でもやはり「私たちはそうしません」に達します。GnuCashは、CとScheme (Guile)で満足な開発者の小集団によって維持された大規模なコードの集合体です。実際のところ、およそ80%がCで書かれています。およそ13%がScheme/Lispで書かれています。新規の言語でこの分量の既存のコードを書き直すのを正当化する理由が全くありません。また、Python、Rubyまたは(あなたのお気に入りの言語)などの最近の言語に言語バインディングを作成する方が労働集約的です。私たちは、既存のコードを維持・開発しながら、少しずつ広がっていっています。</para>
+        <para>このようにも言うことが出来ます。これはオープン・ソースプロジェクトです。あなたがそれを行うことも好きな貢献することも自由です。あなたの変更の理由があなたがCまたはSchemeを学ぶことを望んでいないということであれば、単に多くのサポートを期待しません。また、GnuCashはSWIGバインディング( <ulink url="http://www.swig.org"></ulink> )を持っており、何らかのPerlプログラミングコードのために使用されていました。メーリングリストの議論によると、これらのSWIGバインディングはまだ他の言語をGnuCashに含める方法であるかもしれません。しかし、現在それらは使用・維持されていません。</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_newFeatures">
+        <title>Q: XYZ機能が本当に欲しいです。しかしGnuCashは持っていません。</title>
+        <para>A: うまくお願いしてください :-) エンハンス要望書を <ulink url="http://bugzilla.gnome.org/enter_bug.cgi?product=GnuCash"></ulink>に発行できます。エンハンス要望を可能な限り冗長に記述することを念頭においてください。ここの手段は、あなたが提案した新機能が行わなければならないことに関して最良情報をプログラマに提供する方法を学ぶことです。開発がかなり加速するように望んでいるなら、GnuCashDevelopmentで説明してあるようにいくらかの金銭の寄付を行うことを考えてください。</para>
+      </sect2>
+
+      <sect2 id="appendixb_software_web">
+        <title>Q: GnuCashで利用可能なウェブインタフェースがありますか?</title>
+        <para>A: いいえ</para>
+      </sect2>
+
+      <sect2 id="appendixb_software_security">
+        <title>Q: どうしたらGnuCashデータをCFSなどを利用して安全に提供できますか?</title>
+        <para>A: 答えはありません。</para>
+      </sect2>
+
+      <sect2 id="appendixb_software_contribute">
+        <title>Q: どうしたらGnuCashプロジェクトに貢献できますか?</title>
+        <para>A: 私たちは、より正式な手続で活動していますが、当分は <ulink url="http://lists.gnucash.org/mailman/listinfo/gnucash-user">http://lists.gnucash.org/mailman/listinfo/gnucash-user</ulink> および <ulink url="http://lists.gnucash.org/mailman/listinfo/gnucash-devel">http://lists.gnucash.org/mailman/listinfo/gnucash-devel</ulink> でメーリングリストに加入して、リストで自分が参加者と共に貢献できることについて検討しなければなりません。GnuCashがCとSchemeで書かれたコードの大規模な集合体であることを意識してください。(理由を知りたいならFAQの上部、「GnuCashはなぜCで書かれていますか?」を参照してください。) これらがあなたが扱うことを望んでいない言語であれば、他の方法で貢献することを考えてください。</para>
+      </sect2>
+
+      <sect2 id="appendixb_software_bugs">
+        <title>Q: バグを見つけたようです。どうやってバグを報告しますか?</title>
+        <para>A: まず、本当に、それがバグであり、以前報告されたことがないことを確かめるようにします。メーリングリストアーカイブを検索してください (FAQの上部を参照)。後は、<ulink url="http://bugzilla.gnome.org">Gnome Bugzilla</ulink>データベースを検索します。</para>
+        <para>あなたが本当にバグを発見したと感じたら、後は  <ulink url="http://bugzilla.gnome.org/enter_bug.cgi?product=GnuCash"></ulink> でそれを報告できます。可能な限り冗長に報告することを念頭においてください。ここの手段は、バグをどう再生させるかに関して最良情報をプログラマに提供する方法を学ぶことです。通常、プログラマは彼らが理解できるバグを修正できるだけです。あなたがプログラマにバグを理解させることができないなら、それは修正されません!</para>
+      </sect2>
+
+    </sect1>
+    <sect1 id="appendixb_using">
+      <title>GnuCashの使用</title>
+
+      <sect2 id="appendixb_using_moveAtoB">
+        <title>Q: 取引を勘定科目Aから勘定科目Bに移動するにはどうすれば良いですか。それらを結合できますか?</title>
+        <para>A: 現在のところ、Gnucashは1つの勘定科目から別の勘定科目までスプリットのグループを移動する方法を提供しません。あなたは、一度に一つそれらを移動させる必要があります。勘定科目Aのために記録簿を開きます。すべてのスプリット取引を展開するためにプルダウンメニューから<guimenu>表示</guimenu>-&gt;<guisubmenu>スタイル</guisubmenu>-&gt;<guimenuitem>取引仕訳帳</guimenuitem>を選択します。全てのスプリット対して、<guilabel>勘定科目</guilabel>欄に勘定科目Aとなっているのを勘定科目Bに再設定します。これを素早く安全に行うために、最初に変更先勘定科目名(<guilabel>勘定科目B</guilabel>)を<emphasis>CTRL-C</emphasis>でクリップボードにコピーします。後は、勘定科目Aとなっている各項目をダブルクリックして強調表示します。異動先勘定科目名を<emphasis>CTRL-V</emphasis>を使用して貼り付けます。各ペーストの後に<emphasis>Enter</emphasis>を押下すると記録簿からの取引は警告なしで移動されます。</para>
+
+        <para>注意! もしうっかり<quote>勘定科目</quote>欄を意図しない場所に設定したなら、あなたは誤りを修正する必要がある行方不明の取引を見つけるためにすべての勘定科目を検索する必要があります。</para>
+      </sect2>
+
+      <sect2 id="appendixb_using_merge2files">
+        <title>Q: 2個のgnucashファイルを統合することは可能ですか?</title>
+        <para>A: 現在のところ不可能です。</para>
+      </sect2>
+
+      <sect2 id="appendixb_using_SaveAcctTemplate">
+        <title>Q: どうしたら私の勘定科目構造のテンプレートを保存することができますか?</title>
+        <para>A: これは<guimenu>ファイル</guimenu>-&gt;<guisubmenu>エクスポート</guisubmenu>-&gt;<guimenuitem>勘定科目</guimenuitem>メニューから利用可能です。</para>
+      </sect2>
+      <sect2 id="appendixb_using_ListAll">
+        <title>Q: 得意先 (またはその他の何か) を検 索するとき、すべてを表示するリストにどうやったら戻せますか?</title>
+        <para>A: 検索条件を<guilabel>正規表現に一致</guilabel>にして、単一のドット"."をテキストフィールド領域に入力します。そして<guibutton>検索</guibutton>をクリックします。正規表現"."は全てに一致します。</para>
+      </sect2>
+      <sect2 id="appendixb_using_Dates">
+        <title>Q: 異なった日付の取引 (実際の日付と銀行日付) をどうしたらを記録できますか?</title>
+        <para>A: あなたが、小切手を書くか、または取引を開始した日に取引の日付を記録します。銀行で「清算」されたら取引の「照合」フィールドをクリックして「清算」に設定します。(「n: 未照合」から「c:清算」に変更されます。)</para>
+      </sect2>
+    </sect1>
+    <sect1 id="appendixb_accounting">
+      <title>会計処理</title>
+      <sect2 id="appendixb_accounting_Taxes">
+        <title>Q: どのように税金を処理しますか? 買掛債務としてですか? または、費用としてですか?</title>
+        <para>A: これは誘導尋問です。あなたは本当に会計士と話さなければなりません。あなたがどう税金を処理するかは、それらがどういう種類の税金でどのようにそれらを処理したいかに本当に依存します。ある場合は費用です。ある場合は負債です。</para>
+      </sect2>
+    </sect1>
+  </appendix>

@@ -1,0 +1,95 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  Originally designed by Carol Champagne.
+  Translators: Yasuaki Taniguchi <yasuakit@gmail.com>
+               (translators put your name and email here)
+-->
+ <appendix id="appendixa">
+ <title>移行ガイド</title>
+ <para>本付録は、現在他の財務ソフトウェアパッケージを利用しているユーザがGnuCashへ移行することを助けるためのものです。他のソフトウェアパッケージに対するGnuCash勘定科目の割付けの概念的な差異を扱います。</para>
+
+<sect1 id="appendixa_accts_vs_cats1">
+<title>カテゴリに対する勘定科目の使用</title>
+<para>
+他の個人財務プログラムに詳しいなら、既にカテゴリとして収益と費用を追跡するのに慣れているでしょう。GnuCashが複式記帳法 (<xref linkend="basics_accountingdouble2"></xref>を参照) を利用するので、収益、費用は勘定科目で追跡します。基本概念は同じですが、勘定科目構造は一般的な商慣行に従うように、より一貫しています。よって、家庭でのユーザでありビジネスユーザであれば、GnuCashによって個人の勘定科目と同様にビジネス勘定科目の動向をおさえることが簡単にできます。</para>
+<para>
+収益と費用勘定科目はカテゴリで得られるのと同じ情報を提供します。また、それらは取引を入力する際に融通性がより高くなります。GnuCashにおいては、それらの勘定科目記録簿を通して直接収益と費用勘定科目に取引を入力する方法があります。他のプログラムでは、カテゴリのための<quote>勘定科目記録簿</quote>が全くないので、この方法を使用することが出来ません。</para>
+<para>
+また、カテゴリを処理する手法により満足しているのなら、GnuCashにはカテゴリを処理するのと全く同様に収益と費用勘定科目を処理するための方法があります。<trademark class="registered">Quicken</trademark>や同様のプログラムでは、取引には勘定科目とカテゴリを必要とします。GnuCashで収益または費用勘定科目名を他のプログラムで通常入力しているカテゴリ名に置き換えれば、結果は同じになります。取引の入力については<xref linkend="chapter_txns"></xref>でさらに詳細に説明しています。</para>
+</sect1>
+
+ <sect1 id="appendixa_qif1">
+ <title>QIFファイルの構成 (議論)</title>
+ <para>
+  </para>
+ </sect1>
+ <sect1 id="appendixa_entercharge1">
+ <title>一般的な重複の問題 (議論)</title>
+ <para>
+ </para>
+ </sect1>
+ <sect1 id="appendixa_enterpay1">
+ <title>QIFデータの確認 (議論)</title>
+ <para>
+ </para>
+ </sect1>
+
+<sect1 id="appendixa_xmlconvert1">
+<title>XML形式のGnuCashファイルの変換</title>
+ <para>XSLTになじみ深いなら、かなり容易にGnucash XMLデータファイルを他のほとんどいかなるデータフォーマット (例えばQIF、CSV…) に変換することが出来ます。Gnucashデータファイルは整形式のXMLです。したがって、変換を関連スタイルシートを有するXSLTパーサを通して実行できます。これはによって、適切に書かれたスタイルシートが与えられれば、ファイルを設計されたほとんどどんなフォーマットにも変換することが出来ます。</para>
+
+  <para>いくつかの手順を以下に示します。スタイルシートを書くことは異なる時間がかかる仕事です。1つを書く場合に必要な作業は以下のようになります。</para>
+  <orderedlist>
+  <listitem>
+  <para>GnuCashファイルを作業ファイルとしてコピーします。作業ファイルの&lt;gnc-v2&gt;タグを変更します。以下にあるような部分です。'="..."'部分に何でも非常に多くの項目を置くことが出来ることに注意してください。伝統的なのでURLを利用しました。(そのような若い技術と言われるかもしれないですが!)</para>
+  <literallayout>
+&lt;gnc-v2 xmlns:cd="http://www.gnucash.org/XML/cd"
+        xmlns:book="http://www.gnucash.org/XML/book"
+        xmlns:gnc="http://www.gnucash.org/XML/gnc"
+        xmlns:cmdty="http://www.gnucash.org/XML/cmdty"
+        xmlns:trn="http://www.gnucash.org/XML/trn"
+        xmlns:split="http://www.gnucash.org/XML/split"
+        xmlns:act="http://www.gnucash.org/XML/act"
+        xmlns:price="http://www.gnucash.org/XML/price"
+        xmlns:ts="http://www.gnucash.org/XML/ts"
+        xmlns:slot="http://www.gnucash.org/XML/kvpslot"
+        xmlns:cust="http://www.gnucash.org/XML/cust"
+        xmlns:entry="http://www.gnucash.org/XML/entry"
+        xmlns:lot="http://www.gnucash.org/XML/lot"
+        xmlns:invoice="http://www.gnucash.org/XML/invoice"
+        xmlns:owner="http://www.gnucash.org/XML/owner"
+        xmlns:job="http://www.gnucash.org/XML/job"
+        xmlns:billterm="http://www.gnucash.org/XML/billterm"
+        xmlns:bt-days="http://www.gnucash.org/XML/bt-days"
+        xmlns:sx="http://www.gnucash.org/XML/sx"
+        xmlns:fs="http://www.gnucash.org/XML/fs"
+        xmlns:addr="http://www.gnucash.org/XML/custaddr"&gt;
+ </literallayout>
+  </listitem>
+  <listitem>
+  <para>望ましい変換を含むXSLTスタイルシートを作成、または既に書かれたものを取得します。(知っている限り一つもありませんが、CSVへの変換は作成中です。)</para>
+  </listitem>
+  <listitem>
+<para>Saxon (http://saxon.sourceforge.net/) またはXalan-J (http://xml.apache.org/) などのXSLT処理系をインストールします。実際には規格に適合していればどんな処理系でも行うことができます。</para>
+  </listitem>
+  <listitem>
+<para>処理系の手順に従って作業ファイルとスタイルシートを実行します。</para>
+  </listitem>
+  <listitem>
+<para>今、希望の出力仕様のファイルを得られます。または、積極的な個人がいたとしたらGnucashデータファイルをOpenOffice.orgスプレッドシートに変えるスタイルシートを書くかもしれません。(さらに言えば逆もまた同様です。) QIFではそのようなことはもっと少ない作業で行うことができます。</para>
+  </listitem>
+  </orderedlist>
+
+<para>利点は、あなたがこの変換を行うSchemeモジュールまたは新規のCルーチンを書く必要はないということです。XMLとXSLTを知っているか学習すればだれでもこの作業を行うことが出来ます。ウェブページを書くことに比べてそんなに大変ではありません…</para>
+
+<para>とにかく、この豆記事を 永久にどこからか得られるものとして単に残したかったのです。2.0.0とCVS HEADデータファイルの上この作業は実行できますし、以前の1.8.xバージョンでも行えます。1.6.xではよく分からないですが、そこでも動作するでしょう。</para>
+
+ </sect1>
+
+ </appendix>

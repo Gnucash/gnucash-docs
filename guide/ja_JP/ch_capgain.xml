@@ -1,0 +1,369 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally designed by Carol Champagne.
+  Translators: Yasuaki Taniguchi <yasuakit@gmail.com
+               (translators put your name and email here)
+-->
+<chapter id="chapter_capgain">
+  <title>資本利得</title>
+
+  <para>本章では未実現/実現の利益/損失の動向をおさえるのに使用されるテクニックのいくつかを示します。それらは資本利得/損失としてよく知られています。</para>
+
+  <sect1 id="capgain_concepts1">
+    <title>基本概念</title>
+
+    <para>本章では未実現/実現の利益/損失の動向をおさえるのに使用されるテクニックのいくつかを示します。それらは資本利得/損失としてよく知られています。</para>
+
+    <para>ある一定の転売可能資産は、時間がたつにつれて、株式、債券、住宅、または車などのように評価額を変化します。時間に依存した資産価値を追跡することは重要です。本章はその方法を説明します。</para>
+
+    <para>たぶん、所有しているすべてのものは時間がたつにつれての評価額が増減します。よって、どの資産の評価額の変化を追跡しなければならないかが問題です。簡単な答は、将来お金で売却することができるか、または課税に関連する商品だけ追跡をする必要があるということです。</para>
+
+    <para>消耗品、使い捨て商品 (例: 食物、車のガソリン、またはプリンタ用紙) は明らかに関係ありません。最近買った新しい服は確かに価値が下がります。しかし、衣服を転売するという意思が全くなければこの減価償却を追跡したいと思わないでしょう。衣服の減価償却は税金への影響が全くありません。この例のように新しい服の購入は純粋な費用 (使ったお金は無くなります) として記録しなければなりません。</para>
+
+    <para>所有している何の評価額が時間がたつにつれて増加するとき、資産増価が発生します。評価額が増加した資産を所有しているとき、取得時の購入価格と新規の評価額の差異のことを<emphasis>未実現利益</emphasis>と言います。資産を売却した時に得た利益を<emphasis>実現利益</emphasis>または<emphasis>資本利得</emphasis>と言います。未実現利益、および最終的に資本利得となる資産の例は公開企業の株式です。</para>
+  </sect1>
+
+  <sect1 id="capgain_value1">
+    <title>評価の推定</title>
+
+    <para>本章の導入で説明したように、資本利得は、資産の売却により得られた利益です。本項ではGnuCashで資本利得を記録する方法を説明します。</para>
+
+    <para>資産増価を扱う場合は減価償却と会計方法がいくらか異なります。なぜなら、通常は資産を売却して資本利得を実現する瞬間に関係があるだけだからです。これは減価償却の追跡が連続しているということと本質的に反対です。政府は、何らかの方法で資本利得に課税することにかなり関心がある傾向があるので、資本利得は課税の世界の重大なトピックです。</para>
+
+    <note>
+      <para>いつものように、例外があります。満期にすべての利子が支払われる債券を保持している場合、税務当局は、しばしば毎年の利子計上を必要とし、資本利得として扱うことを拒否します。持っている資産の種類に応じた資本利得の課税に関係する適切な扱いを決定するために、適切な税法を参照してください。</para>
+    </note>
+
+    <para>資産の評価額増加を推測することは、売却するその瞬間まで厳密な値を知るのが難しいのため一般には簡単ではありません。</para>
+
+    <para>証券取引所などの公開市場で毎日取り引きされる証券は、ことによると評価額を予測可能な最も簡単な種類の資産です。市場価格で資産を売却するのは証券会社を呼んで、成行注文を発行するのと同じくらい簡単です。一方、住宅について評価するのはより難しいです。住宅は株式に比べあまり売却されません。また、売却ではかなりの努力と交渉を費やす傾向があります。それは、見積りがそれほど正確でない傾向があることを意味します。同様に、中古車を売却時の交渉過程も価格決定が少し予測できないものになります。</para>
+
+    <para>宝石や、美術品や、ベースボールカードや、「ビーニー・ベビー」などの収集品の価値はさらに見積もりにくいです。そのような物の市場は証券市場よりあまり開いていません。住宅市場よりもあまり開いていません。更にひどいのは唯一無二は資産です。工場に非常に特定の製品を製造するためににカスタマイズされたプレス機と金型があります。その価格は何万ドルも何十万ドルもします。この設備はまさしくその特定の状況外で価値がないかもしれません。そのような場合、いくつかの相反した評価額が資産に付けられるかもしれません。それらのいずれも明白に正しくはありません。</para>
+
+    <para>会計処理で一般的に行われる未実現利得 (または損失) の見積方法は、非常に良く評価額が推定でき、容易に売却可能な株式などの資産だけを再評価することです。その他すべての諸資産については、それらを売却し、正確に資本利得を決定できる時点まで単純に待つほうがよいです。もちろん、これは厳密な規則ではありません。実際、異なる方式をとることを好む会計士もいます。</para>
+  </sect1>
+
+  <sect1 id="capgain_accounts1">
+    <title>勘定科目のセットアップ</title>
+
+    <para>ほとんどの会計処理の実務では資本利得勘定科目をセットアップするための多くの異なる方法があります。ここでは、ほとんどの状況を扱える柔軟な一般的な手法説明します。必要とする最初の勘定科目は<emphasis>資産価格</emphasis>の勘定科目です (GnuCash勘定科目タイプ<quote>資産</quote>)。単純に最初に購入した資産を記録する場所です。通常、この購入は普通預金勘定科目からの取引で行われます。</para>
+
+    <para>資産の評価の動向をおさえるためには3つの勘定科目を必要とします。1番目は評価額すべての合計を集める<emphasis>未実現利益</emphasis>資産勘定科目です。2番目は<emphasis>未実現利益</emphasis>収益勘定科目です。これは未実現利益資産勘定科目と釣り合い、定期的な評価収益がすべて記録されます。最後に、<emphasis>実現利益</emphasis>と呼ばれる、別の収益勘定科目が必要です。これには資産を売却する時に現実の資本利得を記録します。</para>
+
+    <para>以下に、2つの資産、ITEM1、およびITEM2の評価を追跡するための一般的な勘定科目階層があります。「資産:固定資産:ITEM1:コスト」勘定科目は「資産:流動資産:普通預金」勘定科目と釣り合います。「資産:固定資産:ITEM1:未実現利益」という勘定科目は「収益:未実現利益」という勘定科目と釣り合います。ITEM2でも同様です。</para>
+
+    <literallayout>
+-資産
+    -流動資産
+        -固定資産
+    -Fixed Assets
+        -ITEM1 
+            -コスト
+            -未実現利益
+        -ITEM2
+            -コスト
+            -未実現利益
+-収益
+    -実現利益
+    -未実現利益
+  </literallayout>
+  </sect1>
+
+  <sect1 id="capgain_example1">
+    <title>例</title>
+
+    <para>評価額が増加すると予想した資産を購入すると仮定しましょう。デガの絵画に関して追跡したいと思います。(他の誰も気にかけなくても、保険会社はこれについて気にかけます。)</para>
+
+    <para>勘定科目階層が<xref linkend="capgain_accounts1" />と同様の状態にあるとして始めます。ただし、<quote>ITEM1</quote>を<quote>ドガ</quote>に変更し、<quote>ITEM2</quote>勘定科目を削除します。ドガの絵画の初期評価額が10万ドルであると仮定します。最初に銀行で自身の10万ドルを引き出します。そして普通預金勘定科目から<guilabel>資産:固定資産:ドガ:費用</guilabel>勘定科目まで資金移動します (資産購入取引)。勘定科目メインウィンドウはこのようになります。</para>
+
+    <screenshot id="capgain_appmain">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/capgain_appmain.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>資産評価メインウィンドウ</phrase>
+        </textobject>
+
+        <caption><para>資産評価のメインウィンドウの例</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <sect2 id="capgain_exampleunrealized2">
+      <title>未実現利益</title>
+
+      <para>1カ月ほど後に、ある理由で絵画の評価額が1万ドル増加したと思いました (未実現利益)。これを記録するために、1万ドルが発生した未実現利益収益勘定科目 (<guilabel>収益:未実現利益</guilabel>) から未実現利益資産勘定科目 (<guilabel>資産:固定資産:ドガ:未実現利益</guilabel>)まで資金移動します。メインウィンドウはこのようになります。</para>
+
+      <screenshot id="capgain_app2main">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/capgain_app2main.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>資産評価メインウィンドウ</phrase>
+          </textobject>
+
+          <caption><para>未実現利益後の勘定科目表</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="capgain_examplesell2">
+      <title>売却</title>
+
+      <para>もう1カ月後に、ドガの絵画の価格がそれ以上を上がったと仮定しましょう。この場合約2万ドルと見積もりました。上記のように未実現利益として正確に2万ドル記録します。そして、絵画を売却すると決めます。</para>
+
+      <para>3つの可能性があります。未実現利益を<emphasis>正確に評価</emphasis>したかもしれません。未実現利益に関する見積を<emphasis>下回る</emphasis>かもしれません。未実現利益に関する見積を<emphasis>上回る</emphasis>かもしれません。</para>
+
+      <orderedlist>
+        <listitem>
+          <para>未実現利益を<emphasis>正確に評価</emphasis>した場合</para>
+
+          <para>絵画の評価額に関する楽観的な予想は正しかったです。最初に、得られた利益を、未実現利益ではなく、実現利益として記録しなければなりません。<guilabel>収益:未実現利益</guilabel>勘定科目から<guilabel>収益:実現利益</guilabel>勘定科目まで収益を資金移動することでこれを行います。</para>
+
+          <para>第二に、絵画の売却価格に関して普通預金勘定科目へ入金しなければなりません。このお金は<guilabel>資産:固定資産:ドガ</guilabel>子勘定科目から直接来ます。<guilabel>資産:固定資産:ドガ:費用</guilabel>の金額全てを<guilabel>資産:流動資産:普通預金</guilabel>に資金移動します。そして<guilabel>資産:固定資産:ドガ:未実現利益</guilabel>の金額全てを<guilabel>資産:流動資産:普通預金</guilabel>へ資金移動します。</para>
+
+          <para>これらの取引は今、以下のようになります。</para>
+
+          <para><table>
+              <title>発生した利益を実現利益へ変更</title>
+
+              <tgroup cols="4">
+                <tbody>
+                  <row>
+                    <entry><emphasis>勘定科目</emphasis></entry>
+
+                    <entry><emphasis>資金移動先</emphasis></entry>
+
+                    <entry><emphasis>資金移動額</emphasis></entry>
+
+                    <entry><emphasis>勘定科目合計</emphasis></entry>
+                  </row>
+
+                  <row>
+                    <entry>収益:未実現利益</entry>
+
+                    <entry>収益:実現利益</entry>
+
+                    <entry>$30,000</entry>
+
+                    <entry>$0</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:固定資産:ドガ:費用</entry>
+
+                    <entry>資産:流動資産:普通預金</entry>
+
+                    <entry>$100,000</entry>
+
+                    <entry>$0</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:固定資産:ドガ:未実現利益</entry>
+
+                    <entry>資産:流動資産:普通預金</entry>
+
+                    <entry>$30,000</entry>
+
+                    <entry>$0</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table></para>
+
+          <para>これにより<guilabel>資産:流動資産:普通預金</guilabel>勘定科目は合計13万ドルになります。<guilabel>収益:実現利益</guilabel>勘定科目の合計は3万ドルになります。</para>
+
+          <screenshot id="capgain_app3main">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/capgain_app3main.png" format="PNG"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>資産評価メインウィンドウ</phrase>
+              </textobject>
+
+              <caption><para>実現利益の後の勘定科目表</para></caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>未実現利益に関する見積を<emphasis>下回った</emphasis>場合</para>
+
+          <para>絵画の評価額に関して過剰に楽観的でした。絵画の価額は13万ドルではなく、12万ドルしかありませんでした。しかし、12万ドルという金額が絵画の価値より高いと評価し、売却すると決めました。金額をあまり劇的ではないですが、ほんの少し変化させます。</para>
+
+          <para>取引は今、以下のようになります (未実現利益勘定科目の釣り合いをとる最後の取引をよく見てください)。</para>
+
+          <para><table>
+              <title>発生した利益を実現利益へ変更</title>
+
+              <tgroup cols="4">
+                <tbody>
+                  <row>
+                    <entry><emphasis>勘定科目</emphasis></entry>
+
+                    <entry><emphasis>資金移動先</emphasis></entry>
+
+                    <entry><emphasis>資金移動額</emphasis></entry>
+
+                    <entry><emphasis>勘定科目合計</emphasis></entry>
+                  </row>
+
+                  <row>
+                    <entry>収益:未実現利益</entry>
+
+                    <entry>収益:実現利益</entry>
+
+                    <entry>$20,000</entry>
+
+                    <entry>$10,000</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:固定資産:ドガ:費用</entry>
+
+                    <entry>資産:流動資産:普通預金</entry>
+
+                    <entry>$100,000</entry>
+
+                    <entry>$0</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:固定資産:ドガ:未実現利益</entry>
+
+                    <entry>資産:流動資産:普通預金</entry>
+
+                    <entry>$20,000</entry>
+
+                    <entry>$10,000</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:固定資産:ドガ:未実現利益</entry>
+
+                    <entry>収益:未実現利益</entry>
+
+                    <entry>$10,000</entry>
+
+                    <entry>$0</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table></para>
+
+          <para>これにより<guilabel>資産:流動資産:普通預金</guilabel>勘定科目は合計12万ドルになります。<guilabel>収益:実現利益</guilabel>勘定科目の合計は2万ドルになります。</para>
+        </listitem>
+
+        <listitem>
+          <para>未実現利益に関する見積を<emphasis>上回った</emphasis>場合</para>
+
+          <para>考えた以上の最も突拍子もない夢のような価格で (15万ドル) で何とか絵画を売却します。超過価格も利益、すなわち収益として記録されます。</para>
+
+          <para>取引は今、以下のようになります (未実現利益勘定科目の釣り合いをとる最後の取引をよく見てください)。</para>
+
+          <para><table>
+              <title>発生した利益を実現利益へ変更</title>
+
+              <tgroup cols="4">
+                <tbody>
+                  <row>
+                    <entry><emphasis>勘定科目</emphasis></entry>
+
+                    <entry><emphasis>資金移動先</emphasis></entry>
+
+                    <entry><emphasis>資金移動額</emphasis></entry>
+
+                    <entry><emphasis>勘定科目合計</emphasis></entry>
+                  </row>
+
+                  <row>
+                    <entry>収益:未実現利益</entry>
+
+                    <entry>収益:実現利益</entry>
+
+                    <entry>$50,000</entry>
+
+                    <entry>$-20,000</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:固定資産:ドガ:費用</entry>
+
+                    <entry>資産:流動資産:普通預金</entry>
+
+                    <entry>$100,000</entry>
+
+                    <entry>$0</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:固定資産:ドガ:未実現利益</entry>
+
+                    <entry>資産:流動資産:普通預金</entry>
+
+                    <entry>$50,000</entry>
+
+                    <entry>$-20,000</entry>
+                  </row>
+
+                  <row>
+                    <entry>収益:未実現利益</entry>
+
+                    <entry>資産:固定資産:ドガ:未実現利益</entry>
+
+                    <entry>$20,000</entry>
+
+                    <entry>$0</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table></para>
+
+          <para>これにより<guilabel>資産:流動資産:普通預金</guilabel>勘定科目は合計15万ドルになります。<guilabel>収益:実現利益</guilabel>勘定科目の合計は5万ドルになります。</para>
+        </listitem>
+      </orderedlist>
+    </sect2>
+
+    <sect2 id="capgain_examplecaution2">
+      <title>評価に関する警告</title>
+
+      <para>この例でわかるように、非金融資産でその資産の<quote><emphasis>本当</emphasis></quote>の評価額でを正しく見積もるのは難しいかもしれません。<quote>銀行におけるお金</quote>を反映しない疑わしい推測に基づいて自分の豊かさを計算するのはかなり簡単です。</para>
+
+      <para>資産の評価を行う時は、以下を守ってください。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>評価額を見積もりに気をつけてください。希望的観測には耽らないでください。</para>
+        </listitem>
+
+        <listitem>
+          <para>取引銀行の預金または現金として持っていないお金について決して計算してはいけません。実際に資産を売却して、お金を持つまで紙上のどんな数値 (またはハードディスクの上の磁気パターン) は単なる数値でしかありません。資産を担保として使用して、お金を貸し出すように現実的に銀行員を説得できるなら、資産が適切な評価額を持っているというかなり合理的な証拠です。貸手は専門家として評価額が過大評価でないか疑っているからです。気をつけてください。紙上で<quote>収益率の高く</quote>表されていた非常に多くの会社が、すべて現金枯渇の結果倒産しました。まさに<emphasis>価値ある資産</emphasis>がお金と同じものでなかったためです。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="capgain_tax1">
+    <title>課税</title>
+
+    <para>課税政策は国の間でかなり異なります。一般に役に立つことを言うのは事実上不可能です。しかしながら、資本利得から得られる収益については、資産が実際に売却される日付まで課税されないのが一般的です。場合によってはそのときにも課税されません。通常、北米の住宅所有者は、個人宅を売却するときに発生する資本利得に対する課税が免除されています。他国では、住宅の売却に関して異なる処理をします。そのような利益を得た人に対して課税します。例えば、ドイツ税務当局は10年間未満土地を所有していた場合にだけ課税します。</para>
+
+    <para>クリス・ブラウン氏には、家族が農場を売った時の法人税に関する確定申告書類を作成した日に関する話があります。1971年前に土地を所有していたので、酪農場にあるべき支払いに関する課税通知書が事実上無いと判明しました (そこに書かれているのはカナダで重要となる<quote>評価日</quote>の日付です)。結果として税金が天引きされました。ここでの説明は結構簡単ですが、この話のポイントは次の通りです。課税はすごくこじれます…。</para>
+  </sect1>
+</chapter>

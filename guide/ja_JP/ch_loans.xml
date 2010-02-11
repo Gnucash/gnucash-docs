@@ -1,0 +1,931 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally designed by Carol Champagne.
+  Translators: Yasuaki Taniguchi <yasuakit@gmail.com>
+               (translators put your name and email here)
+-->
+<chapter id="chapter_loans">
+  <title>ローン</title>
+
+  <para>本章では、GnuCashを使ってローンを管理する方法を説明します。</para>
+
+  <sect1 id="loans_concepts1">
+    <title>基本概念</title>
+
+    <para>ローンは誰かが、他の誰かのお金を使用して支払いを行う金融的取引として定義されます。ローンの身近な実例はたくさんあります。ローンの身近な実例はたくさんあります。クレジットカード、自動車ローン、住宅ローン、または商工ローンなどです。</para>
+
+    <sect2 id="loans_conceptsterms2">
+      <title>専門用語集</title>
+
+      <para>GnuCashで特にローンの追跡を説明する前に、専門用語集を読むと役立ちます。以下に示された用語は、ローンに関係がある基本概念のいくつかを表します。これらの用語になじみ深くなるのは、名案です。少なくとも、あなたが後の項でなじみのない単語に遭遇したら、このリストに戻って参照してください。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><emphasis>割賦</emphasis> - 等しい金額の毎月払いを通常利用して、ローンが最終的に完済されるのを保障する返済プラン。通常、これらの支払いは元本と利子に分割されますです。元本償還期間が経過するにつれ、元本支払額が増加(利子支払い額が減少)します。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>借手</emphasis> - ローンからお金を受取る人または会社。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>債務不履行</emphasis> - 借手が貸手と共に同意された条件通りにローンを返さないとき。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>繰延べ</emphasis> - ローンの返済の一時的な遅延。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>不履行</emphasis> - 遅れた支払について言及する時に使われる言葉。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>支払い</emphasis> - 借手に支払われたローンの総額。いくつかのローンは複数回払いをすることができます。これは、借手が一度にローンの全額を支払わないことを意味します。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>利子</emphasis> - ローンでお金を利用するために貸手によって借手に請求される費用。これは借りられた元本に対して課せられる年率で通常表現され、<emphasis>実質年率</emphasis>(APR)として知られています。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>貸手</emphasis> - お金を借手に与える会社または人。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>ローン手数料</emphasis> - 借手がローンを受取るとき、元本から取り除かれた手数料。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>元本</emphasis> - ローンの元の総額、またはまだ借りられている元のローンの総額。ローンの毎月払いを行う時、お金の一部は利息に割り当てられ、一部は元本に割り当てられます。</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>約束手形</emphasis> - ローンに関する借手と貸手との合法的協定。</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="loans_accounts1">
+    <title>勘定科目のセットアップ</title>
+
+    <para>借手がローンで借りる時、通常は何か価値のある買い物を行うという意思を持っています。事実上、ほとんどのローンは、借手が家などの何らかの前もって決められている資産を買うことを必要とします。この資産はローンの債務を履行しない借手に対する保険です。必ずしも高価な資産に関連していないローンの例はもちろんあります。教育ローンなどです。</para>
+
+    <para>ここで勘定科目の構造を示して、ローンが埋め合わせの資産を購入するのに使用されたと見なします。</para>
+
+    <para>ローンは負債です。ローンのときに発生する利子は継続した費用です。あなたが支払わなければならないどんな事務手数料も別の費用です。ローンからのお金で購入されたものは、資産です。これらのパラメータで、今、基本的なローン勘定科目の構造を提示します。</para>
+
+    <literallayout>
+基本的なローン勘定科目構造
+
+-資産
+    -流動資産
+        -普通預金
+    -固定資産
+        -購入した資産
+-負債
+   -ローン
+       -担保付きローン
+-費用
+   -利子
+       -担保付きローン利子
+   -担保付きローン管理手数料
+  </literallayout>
+
+    <para>GnuCashには、利用可能な多くの既定義ローン勘定科目階層があります。それには車のローンと住宅ローンを含みますこれらの既定義勘定科目構造にアクセスするために、<menuchoice><guimenu>ファイル</guimenu><guimenuitem>新規の勘定科目階層</guimenuitem></menuchoice>をクリックします。そして、関心があるローンタイプを選びます。</para>
+  </sect1>
+
+  <sect1 id="loans_calcs1">
+    <title>計算</title>
+
+    <para>ローン債務償還計画、定期返済額の総額、総支払い額、または利子に関して決定することは幾分複雑である場合があります。これらの種類の計算を容易にするために、GnuCashには内蔵の財務計算機があります。計算機にアクセスするためには、<menuchoice><guimenu>ツール</guimenu><guimenuitem>財務計算機</guimenuitem></menuchoice>を選択します。</para>
+
+    <screenshot id="loans_fcalc">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/loans_fcalc.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>財務計算機</phrase>
+        </textobject>
+
+        <caption><para>GnuCash財務計算機。</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>財務計算機は、次のパラメータのどれかを計算するのに使用されます。<guilabel>返済期間</guilabel>、<guilabel>利率</guilabel>、<guilabel>現在価値</guilabel>、<guilabel>定期返済額</guilabel>、または他の4つが決定された時に計算される<guilabel>将来価値</guilabel>。また、複利計算方法と支払い方法を指定する必要があります。</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis>返済期間</emphasis> - 返済期間の回数。</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>利率</emphasis> - ローンの表面利率、すなわち実質年率</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>現在価値</emphasis> - ローンの現在の価格、すなわち借りているローンの現在額。</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>定期支払額</emphasis> - 単位期間で支払う金額。</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>将来価値</emphasis> - ローンの将来価値、すなわちすべての返済期間が終わった後に、借りられていた総額。</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>複利</emphasis> - 離散と連続の2つの複利計算方法が存在しています。離散複利計算の場合はポップアップメニューで離散的な複利計算の頻度を選択してください。毎年から毎日までの変動幅があります。</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>支払</emphasis> - ポップアップメニューで、毎年から毎日までの変動幅の支払い頻度を選択できます。また、支払いが初日に発生するか、または末日に発生するかの選択してください。支払期間の初日に行われた支払いは、以前に支払われた金額またはまだ借りられてる金額と同様の利子が適用されるようになっています。</para>
+      </listitem>
+    </itemizedlist>
+
+    <sect2 id="loans_calcsexample1_2">
+      <title>例: 毎月払い</title>
+
+      <para>100000ドルを30年間、4%の固定金利、毎月の複利計算で毎月払いにした時、毎月の支払額はいくらでしょうか?</para>
+
+      <para>このシナリオは上記の例の画像で表示されます。この計算を実行するために、支払い期間に360 (12カ月x30年間)を入力、利率に4を入力、現在価値に100000を入力、定期的支払い額に何も入力しない、将来価値に0を入力します (ローンの終了のときに何も借りていません)。複利の設定は離散、毎月にします。期間の設定は末日、毎月にします。では、下部にある<guibutton>計算</guibutton>ボタンを押してください。定期的支払額に-477.42が表示されます。</para>
+
+      <para>答: 毎月払い金額は477.42ドルになります。</para>
+    </sect2>
+
+    <sect2 id="loans_calcsexample2_2">
+      <title>例: ローンの期間</title>
+
+      <para>20000ドルのローンを返済するのに、10%の固定金利、毎月の複利計算、1カ月あたり500ドル支払うなら、どれくらいの期間がかかるでしょうか?</para>
+
+      <para>この計算を実行するためには、支払期間を空白にします。利率に10を入力します。現在価値に20000を入力します。定期支払額に-500を入力します。そして将来価値に0を入力します (ローンの終了のときに何も借りていません)。複利の設定は離散、毎月にします。期間の設定は末日、毎月にします。では、下部にある<guibutton>計算</guibutton>ボタンを押してください。支払期間に48が表示されます。</para>
+
+      <para>答: 4年(48カ月)後にローンを完済します。</para>
+    </sect2>
+
+    <sect2 id="loans_calcsdetails2">
+      <title>発展: 計算の詳細</title>
+
+      <para>財務計算機によって使用される数式を説明するためには、最初に、いくつかの変数を定義しなければなりません。
+<literallayout>
+ n  == 支払期間の数値
+ %i  == 表面利率、NAR
+ PV  == 現在価値
+ PMT == 定期支払額
+ FV  == 将来価値
+ CF == 1年あたりの複利計算の頻度
+ PF == 1年あたりの支払い頻度
+
+CFとPFの標準の値はそれぞれ以下の通りです。
+   1   == 毎年
+   2   == 年2回
+   3   == 年三回
+   4   == 四半期ごと
+   6   == 2ヶ月ごと
+   12  == 毎月
+   24  == 月2回
+   26  == 2週間ごと
+   52  == 毎週
+   360 == 毎日(360)
+   365 == 毎日(365)
+</literallayout>
+      </para>
+
+      <sect3 id="loans_calcsdetails_i2">
+        <title>表面利率と実効利率の間の変換</title>
+
+        <para>n、 PV、 PMTまたはFVをを求める時には、最初に表面利率 (i)を、支払いの期間あたりの実効利率 (ieff) に変換しなければなりません。このレート (ieff) は、後に選択された変数を計算するのに使用されます。i を求める時には、計算によって実効利率 (ieff) を求めます。したがって、i から ieff まで変換する機能と ieff から i まで計算する機能が必要です。</para>
+
+        <literallayout>
+i から ieff まで変換するためには以下の式を使用しています。
+離散的な利率:     <emphasis>ieff = (1 + i/CF)^(CF/PF) - 1</emphasis>
+連続した利率: <emphasis>ieff = e^(i/PF) - 1 = exp(i/PF) - 1</emphasis>
+
+ieff から i まで変換するためには以下の式を使用しています。
+離散的な利率:      <emphasis>i = CF*[(1+ieff)^(PF/CF) - 1]</emphasis>
+連続した利率: <emphasis>i = ln[(1+ieff)^PF]</emphasis>
+</literallayout>
+
+        <note>
+          <para>金融的取引のための以下の方程式では、すべての利率が実効利率、ieffです。簡潔にするために、文字では単に<quote>i</quote>と表記します。</para>
+        </note>
+      </sect3>
+
+      <sect3 id="loans_calcsdetails_basic2">
+        <title>基本的な財務方程式</title>
+
+        <para>1つの方程式が基本的に5個すべてのの変数を関連づけます。これは基本的な財務方程式として知られています。</para>
+
+        <literallayout>
+<emphasis>PV*(1 + i)^n + PMT*(1 + iX)*[(1+i)^n - 1]/i + FV = 0</emphasis>
+
+ここでXは次を表します。
+   X = 0 : 支払い期間の終了時
+   X = 1 : 支払い期間の開始時
+</literallayout>
+
+        <para>この方程式から個々の変数を解決する関数が、導き出されます。この方程式の派生の詳説のためにGnuCashソースコードのファイル<filename>src/calculation/fin.c</filename>にあるコメントを参照してください。後の方程式を読むのをより簡単にするために、変数A、B、およびCを最初に定義します。</para>
+
+        <literallayout>
+<emphasis>A = (1 + i)^n - 1</emphasis>
+<emphasis>B = (1 + iX)/i</emphasis>
+<emphasis>C = PMT*B</emphasis>
+
+<emphasis>n = ln[(C - FV)/(C + PV)]/ln((1 + i)</emphasis>
+<emphasis>PV = -[FV + A*C]/(A + 1)</emphasis>
+<emphasis>PMT = -[FV + PV*(A + 1)]/[A*B]</emphasis>
+<emphasis>FV = -[PV + A*(PV + C)] </emphasis>
+
+利率のための解は2つの場合に分かれます。
+PMT = 0が与えられる、解を求めるのが簡単な場合:
+<emphasis>i = [FV/PV]^(1/n) - 1</emphasis>
+
+</literallayout>
+
+        <para>PMT != 0 の場合は非常に複雑であり、ここで記述することはできません。PMT != 0 の場合、正確に解決できる関数があるというよりは、利率を決定するに反復の演算が必要となります。詳細な説明は<filename>src/calculation/fin.c</filename>ソースファイルを参照してください。</para>
+      </sect3>
+
+      <sect3 id="loans_calcsdetails_ex2">
+        <title>例: 毎月払い</title>
+
+        <para><xref linkend="loans_calcsexample1_2"/>を再検討しましょう。今回は財務計算機ではなく数式を使用します。100000ドルを30年間、4%の固定金利、毎月の複利計算で毎月払いにした時、毎月の支払額はいくらでしょうか?</para>
+
+        <para>まず最初に、変数を定義しましょう: n = (30*12) = 360 、 PV =
+        100000、 PMT = 未知、 FV = 0、 i = 4%=4/100=0.04, CF = PF = 12、 X = 0
+        (支払期間の終了時).</para>
+
+        <para>第2ステップは、実効利率 (ieff) に表面利率 (i) を変換することです。利率は離散的な毎月の複利計算にします。よって次を使用します。ieff = (1 +
+        i/CF)^(CF/PF) - 1。これにより、 ieff = (1 + 0.04/12)^(12/12) - 1、したがって、ieff = 1/300 = 0.0033333。</para>
+
+        <para>次は、AとBを計算します。 A = (1 + i)^n - 1 = (1 +
+        1/300)^360 - 1 = 2.313498。 B = (1 + iX)/i = (1 + (1/300)*0)/(1/300) =
+        300。</para>
+
+        <para>AとBを使って、PMTを計算します。PMT = -[FV + PV*(A +
+        1)]/[A*B] = -[0 + 100000*(2.313498 + 1)] / [2.313498 * 300] =
+        -331349.8 / 694.0494 = -477.415296 = -477.42。</para>
+
+        <para>答: 毎月払い金額は477.42ドルになります。</para>
+
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="loans_mortgage1">
+    <title>住宅ローン (How-To)</title>
+
+    <para>住宅ローンは、<xref linkend="loans_accounts1" />の勘定科目構造を使用してセットアップできます。</para>
+
+    <para>例として、銀行預金口座に6万ドルを持っていると仮定し、15万ドルの家を買います。住宅ローンは6%の表面利率で、3%の管理手数料 (権原移転費用など) がかかります。5万ドルを頭金として当てることに決めます。そのため10万3000ドルを借りる必要があります。これは、10万ドルに権原移転費用 (10万ドルの3% )の支払いを加えた後の価格です。</para>
+
+    <para>お金を借りる前の勘定科目は次のようになります。</para>
+
+    <screenshot id="loans_mortgage">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/loans_mortgage1.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>ローンを受取る前の勘定科目</phrase>
+        </textobject>
+
+        <caption><para>ローンを受取る前の勘定科目</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>住宅の購入は資産:住宅勘定科目の中で、銀行から5万ドル (頭金として)、住宅ローンから10万ドルが来るスプリット取引として記録されます。3,000ドルの権原移転費用を同じスプリット入れます。そして住宅ローンに権原移転費用を含め、10万3000ドルまで増加させます。</para>
+
+    <para><table>
+        <title>住宅を購入するスプリット取引</title>
+
+	
+        <tgroup cols="3">
+          <tbody>
+            <row>
+              <entry>勘定科目</entry>
+
+              <entry>増加</entry>
+
+              <entry>減少</entry>
+            </row>
+
+            <row>
+              <entry>資産:固定資産:住宅</entry>
+
+              <entry>$150,000</entry>
+
+              <entry></entry>
+            </row>
+
+            <row>
+              <entry>資産:流動資産:銀行</entry>
+
+              <entry></entry>
+
+              <entry>$50,000</entry>
+            </row>
+
+            <row>
+              <entry>負債:ローン:住宅ローン</entry>
+
+              <entry></entry>
+
+              <entry>$103,000</entry>
+            </row>
+
+            <row>
+              <entry>費用:住宅ローン管理手数料</entry>
+
+              <entry>$3000</entry>
+
+              <entry></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table></para>
+
+    <para>スプリットは資産:固定資産:住宅勘定科目でこのようになります。</para>
+
+    <screenshot id="loans_mortgage2.png">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/loans_mortgage2.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>住宅ローンのスプリット取引</phrase>
+        </textobject>
+
+        <caption><para>住宅ローンのスプリット取引</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>勘定科目表はこのようになります。</para>
+
+    <screenshot id="loans_mortgage3">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/loans_mortgage3.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>住宅ローン勘定科目</phrase>
+        </textobject>
+
+        <caption><para>住宅ローン勘定科目</para></caption>
+      </mediaobject>
+    </screenshot>
+  </sect1>
+
+  <sect1 id="loans_personalLoanToSomeOne">
+    <title>友人への個人貸付 (How-To)</title>
+
+    <para>いつも銀行から金を借りるとは限りません。時々、家族から金を借りることがあるでしょう。またはおそらくお金を友人に貸し出すことさえあるでしょう。本How-To章では、友人へのお金の貸し出しを扱う一つの方法について説明します。</para>
+
+    <para>このHow-Toのは以下の一般的な勘定科目構造に基づいています。</para>
+
+    <literallayout>
+-資産
+   -銀行
+        -普通預金
+   -貸し出し
+        -人
+-収益
+   -利子収益
+        -人
+  </literallayout>
+
+    <para>この例では、あなたの友人ピーターへの2,000ドル(デフォルト通貨)の個人貸付を、どのように追跡するかを示します。</para>
+
+    <sect2 id="loans_personalLoanToSomeOne_loan">
+      <title>ローン仕様書</title>
+
+      <para>ピーターはあなたから2,000ドルを借りたいと思っています。そして、次の18カ月間、毎月返済をする計画にしています。彼は (そんなに親しくない) 友人であるので、二人は年利5%で合意します。</para>
+
+      <para>まとめると、ピーターのローンの詳細は以下のようになります。
+      <itemizedlist>
+          <listitem>
+            <para>元本 - $2,000</para>
+          </listitem>
+
+          <listitem>
+            <para>期間 - 18ヶ月で毎年12回支払い</para>
+          </listitem>
+
+          <listitem>
+            <para>実質年率: 5%</para>
+          </listitem>
+
+          <listitem>
+            <para>毎月支払額 : ??</para>
+          </listitem>
+        </itemizedlist></para>
+
+      <para>それで、どのように毎月支払額を計算しますか?</para>
+
+      <para>多くの異なった方法があります。紙とペン、Linux計算機、OpenOffice.org Calcのモジュール。しかし、最も簡単であるのは、GnuCash財務計算機を使用することです。これにより、毎月支払額は115.56ドルであることが分かります。</para>
+
+      <para>適切な簿記をするためには、このうち利子がいくらであり、元本がいくらあるかを知る必要があります。このためには、OpenOffice.org Calcモジュールや特別なPMT機能のようなより強力なツールを必要とします。</para>
+
+      <screenshot id="loans_OpenOfficePrivateLoanDetails">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/loans_PrivateLoanCalculation.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>個人ローンの詳細計算</phrase>
+          </textobject>
+
+          <caption><para>ピーターへの個人ローンの詳細表示</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="loans_personalLoanToSomeOne_accounts">
+      <title>ローンのための勘定科目</title>
+
+      <para>以下の勘定科目で開始しましょう (すべての勘定科目が同じ通貨、この場合U.S.ドルとします)。</para>
+
+      <literallayout>
+資産:銀行:USD
+資産:貸し出し:ピーター
+収益:利子収益:ピーター
+資産:開始残高:USD
+  </literallayout>
+    </sect2>
+
+    <sect2 id="loans_personalLoanToSomeOne_InitialSetup">
+      <title>お金の貸し出し</title>
+
+      <para>お金を友人に貸し出した時は事実上、資産勘定科目 (銀行、小切手、または同様のもの) から、資産勘定科目<quote>貸し出し</quote>への資金移動です。これを記録するために、<guilabel>資産:貸し出し:友人</guilabel>勘定科目へ以下の取引を入力します</para>
+
+      <para><table>
+          <title>友人への個人貸し出し</title>
+
+          <tgroup cols="3">
+            <tbody>
+              <row>
+                <entry>勘定科目</entry>
+
+                <entry>増加</entry>
+
+                <entry>減少</entry>
+              </row>
+
+              <row>
+                <entry>資産:貸し出し:友人</entry>
+
+                <entry>$2,000</entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>資産:銀行:USD</entry>
+
+                <entry></entry>
+
+                <entry>$2,000</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table></para>
+
+      <screenshot id="loans_PrivateLoanInitial">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/loans_PrivateLoanInitial.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>お金の貸し出し</phrase>
+          </textobject>
+
+          <caption><para>お金を貸し出した後の勘定科目表</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="loans_personalLoanToSomeOne_FirstPayment">
+      <title>最初の返済の受け取り</title>
+
+      <para>最初の返済(115.56ドル) を受け取る時、ローンの元本がいくらで、ローンの利子がいくらかを決定する必要があります。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>この期間の融資残高総額 = $2,000</para>
+        </listitem>
+
+        <listitem>
+          <para>1カ月あたりの返済額 = $115.56</para>
+        </listitem>
+
+        <listitem>
+          <para>支払い明細</para>
+        </listitem>
+
+        <listitem>
+          <para>5%/12 * $2,000 = $8.33 利子</para>
+        </listitem>
+
+        <listitem>
+          <para>$115.56 - $8.33 = $107.23 元本</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>これは以下のようにGnuCashに入力します。</para>
+
+      <screenshot id="loans_PrivateLoanFirstPayment">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/loans_PrivateLoanFirstPayment.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>最初の返済</phrase>
+          </textobject>
+
+          <caption><para>最初の返済に関する詳細表示</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>ピーターのローン未払残高は今、$2,000 - $107.23 = $1,892.77となります。</para>
+    </sect2>
+
+    <sect2 id="loans_personalLoanToSomeOne_SecondPayment">
+      <title>2回目の返済の受け取り</title>
+
+      <para>2回目の返済 (115.56ドル) を受け取る時、ローンの元本がいくらで、ローンの利子がいくらかを決定する必要があります。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>この期間の融資残高総額 = $1,892.77</para>
+        </listitem>
+
+        <listitem>
+          <para>1カ月あたりの返済額 = $115.56</para>
+        </listitem>
+
+        <listitem>
+          <para>支払い明細</para>
+        </listitem>
+
+        <listitem>
+          <para>5%/12 * $1,892.77 = $7.89 利子</para>
+        </listitem>
+
+        <listitem>
+          <para>$115.56 - $7.89 = $107.67 元本</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>これは以下のようにGnuCashに入力します。</para>
+
+      <screenshot id="loans_PrivateLoanSecondPayment">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/loans_PrivateLoanSecondPayment.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>2回目の返済</phrase>
+          </textobject>
+
+          <caption><para>2回目の返済に関する詳細表示</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>ピーターのローンの未払残高は今、$1,892.77 - $107.67 = $1,785.10となります。</para>
+
+      <para>2回目の返済後の勘定科目表は次の勘定科目表のようになります。</para>
+
+      <screenshot id="loans_PrivateLoanSecondPaymentAccounts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/loans_PrivateLoanSecondPaymentAccounts.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>2回目の返済の後の勘定科目表</phrase>
+          </textobject>
+
+          <caption><para>2回目の返済の後の勘定科目表</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>お分かりのように、元本だけでなく利子も、毎月異なります。毎回返済を受け取る度に、異なったスプリットに適切な金額を入力するための計算を行う必要性があります。</para>
+
+      <para>利子の金額は、(ローン総額が少なくなっていくと計算されるので) 元本が0となる最終支払まで、だんだん少なくなっていきます。その他の詳細のために個人ローンに関する詳細な計画の図をピーターに確認してください。</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="loans_CarLoan">
+    <title>自動車ローン(How-To)</title>
+
+    <para>自動車ローン (またはカーローンとも呼ばれます) は全くと言っていいほど住宅ローンと同様に処理されます。唯一の差異は、勘定科目の違いと、利子の違いです。</para>
+
+    <para><literallayout>基本的な車のローン会計構造
+
+-資産
+    -流動資産
+        -普通預金
+    -固定資産
+        -自動車
+-負債
+   -ローン
+       -自動車ローン
+-費用
+   -利子
+       -自動車ローンの利子
+   -自動車ローンの管理手数料</literallayout></para>
+
+    <para>詳しくは、<xref linkend="loans_mortgage1" />を参照してください。</para>
+  </sect1>
+
+  <sect1 id="loans_Reconciling">
+    <title>ローン明細書の照合(How-To)</title>
+
+    <para>ローン明細書の照合は、銀行またはクレジットカード明細書の照合と全く同じです。</para>
+
+    <para>この期間、すべての様々なローン関連する取引を記録しなければなりません。<guilabel>負債:ローン:&lt;ローン&lt;</guilabel>に関連した勘定科目全てについてです。例えば、少しのローンを支払い、<guilabel>普通預金</guilabel>勘定科目を減少させます。また、おそらく<guilabel>ローン管理手数料</guilabel>に加えて<guilabel>ローン</guilabel>勘定科目、<guilabel>ローン利子</guilabel>を増加させます。</para>
+
+    <para>ローン明細書を手元に置き、ローン勘定科目を開いて、照合ウイザードを開始します。そして記録したすべての様々な取引に照合印を付けます。照合を完了した時、差分が0でなければなりません。もしそうでなければ、後は、差分を見つけるために勘定科目を一通り見て、ローン明細書と比べなければなりません。差分が0と確認した時、ローン勘定科目は照合済となり、照合ウイザードを完了します。</para>
+
+    <para>照合に関する詳細情報は、<xref linkend="txns-reconcile1" />を参照してください。</para>
+  </sect1>
+
+  <sect1>
+    <title>家または車の売却(How-To)</title>
+
+    <para>GnuCashで家の売却を記録する場合、いくつかの異なった方法があります。ここでそれらのうち2つを示します。一つは購入金額と現在の売却金額だけを入力する方法です。もう一つは、不動産市場の上下に追従してその間の様々な未実現利得を記録する方法です。</para>
+
+    <para></para>
+
+    <sect2>
+      <title>単純取引</title>
+
+      <para>この方法的では、適切な売却金額を記録するだけです。</para>
+
+      <para>住宅を売却する2個の例をみながら作業しましょう。一つは利益を得ます。一つは損失を伴います。自動車を代わりに売却したい場合、単に住宅勘定科目が自動車勘定科目に変わるだけです。</para>
+
+      <para><literallayout>
+-資産
+  -固定資産
+    -住宅
+  -流動資産
+    -普通預金
+-収益
+  -長期資本利得
+    -住宅
+    </literallayout></para>
+
+      <itemizedlist>
+        <listitem>
+          <para>昔々30万ドルで家を買いました。今それを、60万ドルで売却する方法を管理します。これをどのように記録しますか?</para>
+
+          <para>これを記録するためには、60万ドル銀行預金勘定科目を増加させる必要があります。そして、60万ドル他の勘定科目を減少させる必要があります。住宅勘定科目には30万ドルしか入れてあません。住宅を購入した金額です。よってこの金額を銀行預金口座に移します。それでは30万ドル足りません。この金額を<guilabel>収益:長期資本利得:住宅</guilabel>勘定科目から取り出します。<emphasis>普通預金勘定科目</emphasis> (<guilabel>資産:流動資産:普通預金</guilabel>) に入力するスプリット取引はこのようになります。</para>
+
+          <para><table>
+              <title>利益を得る資産 (住宅) の売却</title>
+
+              <tgroup cols="3">
+                <tbody>
+                  <row>
+                    <entry>勘定科目</entry>
+
+                    <entry>増加</entry>
+
+                    <entry>減少</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:流動資産:普通預金</entry>
+
+                    <entry>$600,000</entry>
+
+                    <entry></entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:固定資産:住宅</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+
+                  <row>
+                    <entry>収益:長期資本利得:住宅</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table></para>
+        </listitem>
+
+        <listitem>
+          <para>昔々30万ドルで住宅を買いました。新しい空港が出来たのため、23万ドルでしかそれを売却することができませんでした。これをどのように記録しますか?</para>
+
+          <para>これを記録するために、23万ドル銀行預金勘定科目を増加させる必要があります。そして、23万ドル他の勘定科目を減少させる必要があります。住宅勘定科目には住宅を売却した金額以上である30万ドルが入っています。したがって、普通預金勘定科目に23万ドルを移しましょう。この後にも住宅勘定科目には7万ドル残っており、それを取り除く必要があります。そのために<guilabel>収益:長期資本利得:住宅</guilabel>勘定科目にそれを移します。これは損失を示します。<emphasis>住宅勘定科目</emphasis> (<guilabel>資産:固定資産:住宅</guilabel>) に入力するスプリット取引はこのようになります。</para>
+
+          <para><table>
+              <title>損失を伴う資産 (住宅) の売却</title>
+
+              <tgroup cols="3">
+                <tbody>
+                  <row>
+                    <entry>勘定科目</entry>
+
+                    <entry>増加</entry>
+
+                    <entry>減少</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:固定資産:住宅</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:流動資産:普通預金</entry>
+
+                    <entry>$230,000</entry>
+
+                    <entry></entry>
+                  </row>
+
+                  <row>
+                    <entry>収益:長期資本利得:住宅</entry>
+
+                    <entry>$70,000</entry>
+
+                    <entry></entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table></para>
+        </listitem>
+      </itemizedlist>
+
+    </sect2>
+    
+    <sect2>
+      <title>より複雑な取引</title>
+
+      <para>この例では、より複雑な会計原則に少し触れます。この項目に関する詳細については、<xref linkend="chapter_capgain"></xref>を参照してください。</para>
+
+      <para>ここに触れるのは必要があるのは、正確に住宅の現在価値を見積もっていた場合だけです。他の場合 (過剰評価、過少評価) は、<xref linkend="chapter_capgain"></xref>を参照してください。</para>
+
+      <para><literallayout>
+-資産
+    -固定資産
+        -住宅
+            -購入価格
+            -未実現利益
+    -流動資産
+        -普通預金
+-収益
+    -実現利益
+        -住宅
+    -未実現利益
+        -住宅
+    </literallayout></para>
+
+          <para>昔々30万ドルで住宅を買いました。そして、長い間、市場をよく見続けており、住宅の推定現在価値に関する記録を更新していました。それを売却する時、現在の時価総額が60万ドルであることを決定しました。</para>
+          
+          <para>60万ドル (見積市場価値) と30万ドル (購入価格) の差異が現在の未実現利益です。したがって、<guilabel>資産:固定資産:住宅:未実現利益</guilabel>勘定科目に総額30万ドルあります。</para>
+          
+          <para>これをどのように記録しますか?</para>
+
+          <para>これを記録するために、60万ドル普通預金勘定科目を増加させる必要があります。そして、60万ドル他の勘定科目を減少させる必要があります。最初に、未実現利益から実現利益に収益勘定科目を変更しなければなりません。そして全額を<guilabel>資産:固定資産:住宅</guilabel>子勘定科目から資金移動する必要があります。</para>
+          
+          <para><guilabel>収益:実現利益:住宅</guilabel>勘定科目に入力する取引はこのようになります。</para>
+
+          <para><table>
+              <title>利益を得る資産 (住宅) の売却</title>
+
+              <tgroup cols="3">
+                <tbody>
+                  <row>
+                    <entry>勘定科目</entry>
+
+                    <entry>増加</entry>
+
+                    <entry>減少</entry>
+                  </row>
+
+                  <row>
+                    <entry>収益:実現利益:住宅</entry>
+
+                    <entry>$300,000</entry>
+
+                    <entry></entry>
+                  </row>
+
+                  <row>
+                    <entry>収益:未実現利益:住宅</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+
+                </tbody>
+              </tgroup>
+            </table></para>
+            
+          <para><guilabel>資産:流動資産:普通預金</guilabel>勘定科目に入力する取引はこのようになります。</para>
+
+          <para><table>
+              <title>利益を得る資産 (住宅) の売却 その2</title>
+
+              <tgroup cols="3">
+                <tbody>
+                  <row>
+                    <entry>勘定科目</entry>
+
+                    <entry>増加</entry>
+
+                    <entry>減少</entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:流動資産:普通預金</entry>
+
+                    <entry>$600,000</entry>
+
+                    <entry></entry>
+                  </row>
+
+                  <row>
+                    <entry>資産:固定資産:住宅:購入価格</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+                  
+                  <row>
+                    <entry>資産:固定資産:住宅:未実現利益</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+
+                </tbody>
+              </tgroup>
+            </table></para>
+            <para>これらの取引を記録した後、住宅資産勘定科目が0になります。普通預金勘定科目は60万ドル増加します。そして、収益:実現利益が30万ドルまで増加します。</para>
+
+    </sect2>
+
+    
+    
+  </sect1>
+
+  <sect1 id="loans_missing1">
+    <title>未作成のローン文書</title>
+
+    <literallayout>
+ -Entering a Payment Schedule
+     -Monthly Payments (How-To)
+     ---See the Mortgage druid
+     ----ARM 10/1 means 10 year fixed interest rate, then changes every year
+     ----ARM 10/3 means 10 year fixed interest rate, then changes every third year
+     -Final Payment (How-To)
+     ---Same as a normal payment, but you get the figures from the bank
+     ---How to fix 10 amortization and then a final bulk payment setup?
+
+ -Putting It All Together
+ </literallayout>
+  </sect1>
+</chapter>

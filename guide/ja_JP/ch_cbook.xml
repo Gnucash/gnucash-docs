@@ -1,0 +1,381 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: December 7th 2009
+       modified: July 9th 2006
+  Maintainers: 
+               Alex Aycinena <alex.aycinena@gmail.com>
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+   	Updated	Bengt Thuree <bengt@thuree.com>
+ Originally written by Carol Champagne.
+  Translators: Yasuaki Taniguchi <yasuakit@gmail.com>
+               (translators put your name and email here)
+-->
+<chapter id="chapter_cbook">
+  <title>小切手帳</title>
+
+  <para>本章ではGnuCashを利用して小切手帳を管理するために必要な、すべての情報を説明します。小切手帳記録簿を管理することが財務を追跡する第1ステップです。GnuCashでの小切手記録簿の管理は、伝統的な紙の記録簿での管理よりはるかに簡単です。</para>
+
+  <para>一つには<xref linkend="chapter_txns"></xref>で説明されるように、GnuCashにでは自動補完機能があるため、一般的な取引のデータ入力を実用的に行うことができます。GnuCashは各勘定科目の現行の貸借残高を保持します。それにより、勘定科目を照合することが簡単になります。複式記帳法を使うと出金に資金移動のための勘定科目が必要なため、どれだけの費用を使用したかを説明することができます。そして、異なった分野にどのくらいの費用を使うかを容易に見つけることができるます。</para>
+
+  <para>一度、当座預金口座や他の銀行預金口座にGnuCashを使用ことに満足すると、他の金融勘定を追跡するしたくなるでしょう。<xref linkend="chapter_cc"></xref>から<xref linkend="chapter_capgain"></xref>では他の勘定科目を管理する手法を説明します。</para>
+
+  <sect1 id="cbook-accounts1">
+    <title>勘定科目の設定</title>
+
+    <para>小切手帳を管理するための第1ステップは、必要な勘定科目を設定することです。デフォルトのGnuCash勘定科目を使用するか自分自身で設定することができます。どのように新規勘定科目を設定するかについての詳細は<xref linkend="accts-examples-toplevel2"></xref>を参照してください。別のプログラムから勘定科目をインポートする手順については<xref linkend="basics-import1"></xref>を参照してください。</para>
+
+    <para>必要になると思われる普通預金勘定科目から始めましょう。追跡したいと考える物理的な銀行預金口座あたり1つのGnuCash銀行タイプ勘定科目が必要となります。自身で勘定科目を設定するか、またはデフォルトGnuCash勘定科目を使用しているなら、各普通預金勘定科目に対して開始残高取引を必ず行ってください。この金額を得る最も簡単な方法は、最後の銀行取引明細書の残高を開始残高として使用することです。<guilabel>新規勘定科目階層の設定</guilabel>ウイザードの一部で自動的に勘定科目情報ウィンドウに入力するか、または、手動で取引を直接勘定科目に入力することができます。手動で取引を入力するためには、<guilabel>開始残高</guilabel>勘定科目 (純資産タイプ) から普通預金勘定科目までの資金移動を入力してください。</para>
+
+    <para>追跡を行う典型的な銀行の勘定科目は以下のものです。</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>当座預金 - 小切手を書く権利を提供するための制度化された口座です。</para>
+      </listitem>
+
+      <listitem>
+        <para>普通預金 - 利付きの制度化された口座です。通常は当座預金より長い期間お金を貯蓄します。</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>銀行の勘定科目に影響する一般的な取引は、出金と入金です。<emphasis>出金</emphasis>では銀行の勘定科目からお金が出て行き、通常は費用勘定科目に資金移動されます。<emphasis>入金</emphasis>では銀行の勘定科目へお金が入って来て、通常は収益勘定科目から資金移動されます。お金がどこから来てどこへ行くのかを追跡するために、収益と費用勘定科目を設定する必要があります。取引の釣り合いを保つためには、合計金額が同じになるように少なくとも1つのある勘定科目から少なくとも1つの他の勘定科目まで資金移動する必要があることを忘れないでください。よって、当座預金勘定科目に入金するなら、資金が来る勘定科目を入力しなければなりません。また、当座預金勘定科目から支払を行うなら、その資金が移動する勘定科目を入力しなければなりません。</para>
+  </sect1>
+
+  <sect1 id="cbook-deposits1">
+    <title>入金の入力</title>
+
+    <para>ほとんどの入金取引は収益勘定科目から普通預金勘定科目までの資金移動として入力されます。収益には多くの出所があります。よって、異なる出所のためにそれぞれ別々の収益タイプ勘定科目に設定するのは名案です。例えば、収益は主に給与から来ます。しかし、預金から利子を受け取ることもあります。この場合、給与のための1つの収益勘定科目と利子所得のための別の収益勘定科目を持つといいでしょう。</para>
+
+    <tip>
+      <para>課税対象の収益勘定科目を設定したときは、勘定科目情報ダイアログで税金関連を必ず選択してください。贈り物の収益のように、いくつかの種類の収益は課税対象外です。よって何が課税対象となるるかを決めるためには適切な税法を確認してください。資本利得収益を追跡する方法については、<xref linkend="chapter_capgain"></xref>を参照してください。</para>
+    </tip>
+
+    <para>給与の入金を入力し始める前に、どのくらい詳細に追跡したいか決めてください。詳細の基本レベルは、紙に単に登録するように給与を入力することです。これが一番簡単です。しかし給与総額と控除額を入力すれば、GnuCashからもっと詳しい情報を引き出すことができるようになります。控除額を入力することはわずかながら手間が増えます。しかし、年間の源泉徴収情報を入力する時に、役に立つ税金現況帳票をGnuCashでいつでも作成できます。これらの帳票で源泉徴収額が十分であるかをどうかを決定することができます。そして、これより先の税金支払額を見積もることができます。詳細のレベルに関してはっきり決めていないなら、給与手取額を入力することから始めましょう。その他の詳細が欲しいと決めたら、後でいつでも戻って取引を編集することができます。</para>
+  </sect1>
+
+  <sect1 id="cbook-withdrawals1">
+    <title>出金の入力</title>
+
+    <para>銀行預金口座からお金を支払うとき、いかなる場合も銀行預金口座からある他の場所まで資金を移動しています。GnuCashでは、この他の場所も勘定科目として追跡します。あなたの支出に関するより詳細な勘定科目を作成して使用すればするほど、あなたのお金が何処に行くかに関して詳しい情報を得ることができます。</para>
+
+    <para>出金は多くの形態を取ります。ATM (現金自動預け払い機) での出金は最も一般的な取引の1つです。請求書の支払、商品の購入または慈善の寄付金のために小切手を書くことは、出金の一つの方法です。取引銀行によっては、口座から預金を下ろすのに、銀行がサービス手数料を取っているかもしれません。他の勘定科目への資金移動も出金です。GnuCashで各種類の出金をどのように記録するか少し見てみましょう。</para>
+
+    <sect2 id="cbook-atm2">
+      <title>ATMでの出金</title>
+
+      <para>現金の出金は普通預金勘定科目から現金勘定科目までの資金移動として扱われます。GnuCashには現金での購入を追跡する専用の<emphasis>現金</emphasis>タイプ勘定科目があります。よって、ATMや他の現金の出金を記録するための現金勘定科目を設定してください。</para>
+
+      <para>現金勘定科目を使用して、異なるレベルで詳細を追跡することができます。基本レベルでは、当座預金勘定科目から現金勘定科目に単純に資金移動します。これにより、ある日にいくらの出金があったかが分かります。しかし、何にお金を費やしたかは分かりません。もう少し手間をかけて、何にお金を費やしたかを知るために、現金勘定科目に現金で行った買い物を記録することもできます。現金勘定科目から経費勘定科目までの資金移動としてこれらの買い物を記録します。</para>
+
+      <para>あらゆる現金での買い物を記録しようとすると多くの手間がかかります。より簡単な方法は、レシートを持っている買い物を記録し、次に財布にある金額と合うように勘定科目の貸借残高を調整することです。</para>
+
+      <para>出金のために少なくとも一つの現金勘定科目を設定するのは名案です。後は、お金の使用先まで追跡すると決めたら、お金を使うの取引の入力について決めます。そしてどんなレベルの詳細を使用したいかを決定します。</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="cbook-reconacct1">
+    <title>勘定科目の照合</title>
+
+    <para>GnuCashによって毎月の銀行取引明細書と銀行預金口座の照合がより簡単になります。毎月の銀行取引明細書と自分の取引をどのように照合するかについては<xref linkend="txns-reconcile1"></xref>で説明します。照合作業は毎月実施しなければならない主な作業です。</para>
+
+    <para>作成した他のすべての勘定科目を照合するのでしょうか? これらの勘定科目も照合するべきでしょうか? もし勘定科目に関する明細書を受け取るなら、勘定科目を照合すると考えなければなりません。例えば、当座預金明細書、普通預金明細書、およびクレジットカード明細書などが含まれます。クレジットカード明細書およびクレジットカードでの取引は<xref linkend="chapter_cc"></xref>で説明されています。GnuCashでクレジットカードを追跡するのに関心があるなら、そこで説明されている手順を参照してください。</para>
+
+    <para>通常、収益と費用勘定科目は照合されません。参照する明細書が全く無いからです。同じ理由で現金勘定科目も照合する必要はありません。もっとも、現金勘定科目に関しては、実際の手持ち現金と現金勘定科目の貸借残高が一致するように、時々貸借残高を調整したいと考えるでしょう。貸借残高を調整する方法は次の項で説明します。</para>
+  </sect1>
+
+  <sect1 id="cbook-together1">
+    <title>まとめ</title>
+
+    <para><xref linkend="chapter_txns"></xref>では当座預金勘定科目にいくつかの取引を入力しました。本章では、より多くの取引を追加した後、それらを照合します。</para>
+
+    <sect2 id="cbook-puttoget-open2">
+      <title>開始残高</title>
+    
+      <para>では、前の章で保存したgcashdataファイル (<filename>gcashdata_4</filename>) を開くことから始めましょう。勘定科目表はこのようになります。</para>
+
+      <screenshot id="cbook-gcashdata4">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cbook_gcashdata4.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+  
+          <textobject>
+            <phrase>勘定科目表</phrase>
+          </textobject>
+
+          <caption>
+            <para>この画像は、勘定科目表を示します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cbook-puttoget-transactions">
+      <title>取引の追加</title>
+
+      <orderedlist>
+        <listitem>
+          <para>では、メインウィンドウから当座預金勘定科目を開きます。前の章では当座預金勘定科目に給与を入金するためのいくつかの取引を入力しました。今度はもう1種類入金の取引を入力します。普通預金勘定科目から当座預金勘定科目への資金移動です。空白行で普通預金勘定科目から当座預金勘定科目まで500ドル分の資金を移動する取引を入力します。(この場合、最終取引日は3月28日でしたが、この資金移動取引は3月24日に行われたとします。) 当座預金勘定科目を開いているので、資金移動の勘定科目は普通預金勘定科目です。当座預金勘定科目は今、このようになります。</para>
+
+          <screenshot id="cbook-transferin">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cbook_transferin.png" format="PNG"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+  
+              <textobject>
+                <phrase>当座預金勘定科目記録簿</phrase>
+              </textobject>
+  
+              <caption>
+                <para>この画像は、当座預金勘定科目記録簿を示します。</para>
+              </caption>  
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>今、この勘定科目に関するいくつかの小切手を書きましょう。まず最初に地元の食料品店宛に75ドルの小切手を切ります (3月5日)。このお金のすべてを、食品を買ために使用しているので、資金移動先の勘定科目は食費です。次にABCハードウェア宛に100ドルの小切手を切ります (3月6日)。それを日用品50ドルと工具50ドルの2種類の費用にスプリットします。これを行うためにはそれぞれの費用タイプ勘定科目を作成する必要があります。そしてスプリットを入力します。当座預金勘定科目は今、このようになります。</para>
+
+          <screenshot id="cbook-checkexamp">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cbook_checkexamp.png" format="PNG"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+  
+              <textobject>
+                <phrase>当座預金勘定科目記録簿</phrase>
+              </textobject>
+  
+              <caption>
+                <para>この画像は、上記の小切手を登録した後の当座預金勘定科目記録簿です。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+  
+        <listitem>
+          <para>今、いくらか現金で支払う必要があると仮定します。勘定科目表には現金勘定科目をセットアップしていないので、1つ作成する必要があります。<guilabel>資産</guilabel>タイプの最上位勘定科目内に<guilabel>現金</guilabel>勘定科目を作成します。当座預勘金勘定科目記録簿で、3月25日に<guilabel>当座預金</guilabel>勘定科目から<guilabel>現金</guilabel>勘定科目まで100ドルの資金移動するATM引き出し取引を入力します。</para>
+  
+          <screenshot id="cbook-atm">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cbook_atm.png" format="PNG"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+  
+              <textobject>
+                <phrase>当座預金勘定科目記録簿</phrase>
+              </textobject>
+  
+              <caption>
+                <para>この画像は、ATM引き出しを行った後の当座預金勘定科目記録簿を示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+      </orderedlist>
+    </sect2>
+  
+    <sect2 id="cbook-puttoget-reconcile">
+      <title>開始残高</title>
+
+  
+      <para>現在、この銀行取引明細書例を使用して、当座預金勘定科目を照合する準備ができています。</para>
+
+      <screenshot id="cbook-bankstmt">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cbook_bankstmt.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+  
+          <textobject>
+            <phrase>銀行取引明細書例</phrase>
+          </textobject>
+  
+          <caption>
+            <para>この画像は、銀行取引明細書例を示します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+  
+      <orderedlist>
+        <listitem>
+          <para>メニューから<guimenu>アクション</guimenu>-&gt;<guimenuitem>照合</guimenuitem>を選択し、 期末残高として1451.79ドルを入力します。勘定科目の照合を開始するためにOKをクリックします。明細書例に書かれているとおり項目に照合の印をつけてください。すべての項目に照合の印をつけたとき、照合ウインドウはこのようになります。</para>
+  
+          <screenshot id="cbook-reconexamp">  
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cbook_reconexamp.png" format="PNG"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+  
+              <textobject>
+                <phrase>照合ウィンドウ</phrase>
+              </textobject>  
+  
+              <caption>
+                <para>この画像は、5ドルの差分がある照合ウィンドウを示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+  
+          <para>照合済みの貸借残高が期末残高と5.00ドル異なるのに注意してください。銀行取引明細書例を調べると、当座預金勘定科目に追加されていない5.00ドルの手数料があるのがわかります。</para>
+        </listitem>
+  
+        <listitem>
+          <para>当座預金勘定科目記録簿をクリックして、5.00ドルの手数料を当座預金勘定科目に追加します。当座預金勘定科目記録簿の空白行で、当座預金勘定科目から手数料勘定科目まで5.00ドルの資金移動する取引を入力します。(費用タイプの手数料勘定科目を作成する必要があります。) この取引のために入力する日付は明細書例に印刷された取引日付を使用します。当座預金勘定科目は、今、このようになります。</para>
+  
+          <screenshot id="cbook-servch">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cbook_servch.png" format="PNG"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+  
+              <textobject>
+                <phrase>当座預金勘定科目記録簿</phrase>
+              </textobject>
+  
+              <caption>
+                <para>この画像は、手数料が追加された状態の当座預金勘定科目記録簿を示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>照合ウィンドウをクリックして戻ると、出金欄に手数料があるはずです。照合の印をつけるためにクリックします。すると下の差分が0.00になります。照合を完了するためにツールバーの終了ボタンをクリックします。たった今照合した各取引に対する当座預金勘定科目記録簿の照合列が<guilabel>照</guilabel>になります。下部のステータスバーに<quote>照合済: USD1451.79</quote>と表示されることも確認できます。</para>
+  
+          <screenshot id="cbook-reconciledCheckAct">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cbook_reconciledCheckAct.png"  
+                           format="PNG" srccredit="Bengt Thuree" />
+              </imageobject>
+  
+              <textobject>
+                <phrase>当座預金勘定科目記録簿</phrase>
+              </textobject>
+
+              <caption>
+                <para>この画像は照合済みの当座預金勘定科目記録簿を示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+  
+      </orderedlist>
+    </sect2>
+
+    <sect2 id="cbook-puttoget-save">
+      <title>ファイルの保存</title>
+
+      <para>メインウィンドウに戻り、<filename>gcashdata_5</filename>という名前でファイルを保存してください。勘定科目表は着実に成長しています。そして今、このようになります。</para>
+
+      <screenshot id="cbook-chartaccts5">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cbook_chartaccts5.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+             <phrase>勘定科目表</phrase>
+          </textobject>  
+  
+          <caption>
+            <para>この画像は勘定科目表を示します。</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cbook-puttoget-reports">
+      <title>帳票</title>
+            
+      <para>前の章で見たように、<guilabel>キャッシュフロー</guilabel>帳票、および<guilabel>取引</guilabel>帳票を見ましょう。</para>   
+
+      <orderedlist>
+        <listitem>
+          <para>最初に、3月の<guilabel>キャッシュフロー</guilabel>帳票を見ましょう。<guimenu>帳票</guimenu>-&gt;<guisubmenu>収益と費用</guisubmenu>-&gt;<guimenuitem>キャッシュフロー帳票</guimenuitem>を選択します。</para>
+      
+      	  <screenshot id="cbook-puttoget2-Cash">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cbook_CashFlow.png" format="PNG"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>3月のキャッシュフロー帳票</phrase>
+              </textobject>
+
+              <caption>
+                <para>この画像は<xref linkend="chapter_cbook"></xref>の後のキャッシュフロー帳票を示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>では、様々な資産勘定科目に関して対応する取引帳票を見ましょう。</para>
+          <para><guimenu>帳票</guimenu>-&gt;<guimenuitem>取引帳票</guimenuitem>を選択します。</para>
+          
+      	  <screenshot id="cbook-puttoget2-TransactionRptChecking">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cbook_TransactionRptAssets.png" 
+                           format="PNG" srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>3月の資産勘定科目取引帳票</phrase>
+              </textobject>
+
+              <caption>
+                <para>この画像は3月の資産勘定科目の取引帳票を示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+          
+        </listitem>
+ 
+          
+        <listitem>
+          <para>今、様々な費用勘定科目だけを表示するように取引帳票を変更しましょう。</para>
+          
+      	  <screenshot id="cbook-puttoget2-TransactionRptExpenses">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cbook_TransactionRptExpenses.png" 
+                           format="PNG" srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>3月の費用勘定科目取引帳票</phrase>
+              </textobject>
+
+              <caption>
+                <para>この画像は、3月の様々な費用勘定科目取引帳票を示します。</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+          
+        </listitem>
+        
+      </orderedlist>
+ 
+
+      <para>帳票に一覧表示される勘定科目のうち、<guilabel>クレジットカード</guilabel>勘定科目をまだ使用していないことに注意してください。GnuCashで銀行口座の勘定科目と現金勘定科目の動向をおさえる方法を知りました。加えてクレジットカードを追跡し始めたいと思います。GnuCashにはクレジットカードに対する特別なタイプの勘定科目があります。これは次の章で説明します。</para>
+    </sect2>
+
+  </sect1>
+</chapter>
