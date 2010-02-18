@@ -48,6 +48,7 @@ Type_2 = AMOUNT_WORDS
 Coords_2 = 90.0;132.0
 
 Type_3 = AMOUNT_NUMBER
+Blocking_Chars_3 = true
 Coords_3 = 500.0;102.0
 
 Type_4 = DATE
@@ -93,6 +94,18 @@ Coords_5 = 50.0;212.0
                   <entry>If supplied, this is the default font used to print all text items on this check.  This field can contain any string that is acceptable by gtk as a font specifier.  If this field is omitted, the default font is the font specified in the GnuCash preferences dialog.  A typical string would be "sans 12".</entry>
                 </row>
                 <row>
+                  <entry>Blocking_Chars</entry>
+                  <entry>boolean</entry>
+                  <entry>optional</entry>
+                  <entry>If supplied, this is the default used when printing all <emphasis>TEXT</emphasis> items on this check.  When set to true, will print '***' before and after each text field on the check.  Blocking characters are printed to protect check fields from alteration.  For example, the amount field may be printed as ***100.00***</entry>
+                </row>
+                <row>
+                  <entry>DateFormat</entry>
+                  <entry>boolean</entry>
+                  <entry>optional</entry>
+                  <entry>If supplied, this is the default used when printing all <emphasis>DATE</emphasis> items on this check.  When set to true, will print the format of the DATE in 8 point type, centered and below the actual DATE.  For example DDMMYYYY.</entry>
+                </row>
+                <row>
                   <entry>Rotation</entry>
                   <entry>double</entry>
                   <entry>optional</entry>
@@ -119,6 +132,7 @@ Coords_5 = 50.0;212.0
               </tbody>
             </tgroup>
           </table>
+          <note>The Blocking_Chars and DateFormat options are defined for all check formats in Edit->Preferences->Printing.  It is recommened that these global options be set to false (the default), and that the options be set for individual Check Items as described below.</note>
         </sect3>
         <sect3>
           <title>Check Positions Group</title>
@@ -204,6 +218,18 @@ Coords_5 = 50.0;212.0
                   <entry>optional</entry>
                   <entry>This field is only used when the item type is <emphasis>PICTURE</emphasis>. It specifies the filename of the image that should be printed on the check.  The string may specify either an absolute path name or as a relative path name.  If a relative path name is specified, GnuCash first looks in in the application check format folder (typically /usr/share/gnucash/checks) for the image file, and if it isn't found there then it looks in the user private ~/.gnucash/checks directory for the image.  This field is only recognized when using gtk version 2.10 or later.</entry>
                 </row>
+                <row>
+                  <entry>Blocking_Chars_<emphasis>n</emphasis></entry>
+                  <entry>boolean</entry>
+                  <entry>optional</entry>
+                  <entry>If supplied, this will set the print <emphasis>Blocking_Chars</emphasis> option for this item.</entry>
+                </row>
+                <row>
+                  <entry>DateFormat_<emphasis>n</emphasis></entry>
+                  <entry>boolean</entry>
+                  <entry>optional</entry>
+                  <entry>If supplied, this will set the print <emphasis>DateFormat</emphasis> option for this item.</entry>
+                </row>
               </tbody>
             </tgroup>
           </table>
@@ -214,8 +240,8 @@ Coords_5 = 50.0;212.0
               <thead>
                 <row>
                   <entry>Name</entry>
-                  <entry>Required Values</entry>
-                  <entry>Optional Values</entry>
+                  <entry>Required Fields</entry>
+                  <entry>Optional Fields</entry>
                   <entry>Description</entry>
                 </row>
               </thead>
@@ -223,55 +249,145 @@ Coords_5 = 50.0;212.0
                 <row>
                   <entry>PAYEE</entry>
                   <entry>Coords</entry>
-                  <entry>Font, Align</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
                   <entry>This type value tells gnucash to print the check payee name at the specified coordinates.</entry>
                 </row>
                 <row>
                   <entry>DATE</entry>
                   <entry>Coords</entry>
-                  <entry>Font, Align</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+DateFormat
+                    </literallayout>
+                  </entry>
                   <entry>This type value tells gnucash to print the check date at the specified coordinates.</entry>
                 </row>
                 <row>
-                  <entry>NOTES.</entry>
+                  <entry>NOTES</entry>
                   <entry>Coords</entry>
-                  <entry>Font, Align</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
                   <entry>This type value tells gnucash to print the transaction notes field at the specified coordinates.</entry>
                 </row>
                 <row>
                   <entry>CHECK_NUMBER</entry>
                   <entry>Coords</entry>
-                  <entry>Font, Align</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
                   <entry>This type value tells gnucash to print the check number at the specified coordinates.</entry>
                 </row>
                 <row>
                   <entry>MEMO</entry>
                   <entry>Coords</entry>
-                  <entry>Font, Align</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
                   <entry>This type value tells gnucash to print the split memo field at the specified coordinates.</entry>
                 </row>
                 <row>
                   <entry>ACTION</entry>
                   <entry>Coords</entry>
-                  <entry>Font, Align</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
                   <entry>This type value tells gnucash to print the split action field at the specified coordinates.</entry>
                 </row>
                 <row>
                   <entry>AMOUNT_WORDS</entry>
                   <entry>Coords</entry>
-                  <entry>Font, Align</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
                   <entry>This type value tells gnucash to print the check amount in words at the specified coordinates.  The amount will appear similar to the string "One thousand, two hundred thirty four and 56/100".</entry>
                 </row>
                 <row>
                   <entry>AMOUNT_NUMBER</entry>
                   <entry>Coords</entry>
-                  <entry>Font, Align</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
                   <entry>This type value tells gnucash to print the check amount in numbers at the specified coordinates.  The amount will appear similar to the number "$1,234.56".</entry>
+                </row>
+                <row>
+                  <entry>ADDRESS</entry>
+                  <entry>Coords</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
+                  <entry>This type value tells gnucash to print the address at the specified coordinates.</entry>
+                </row>
+                <row>
+                  <entry>SPLITS_ACCOUNT</entry>
+                  <entry>Coords</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
+                  <entry>This type value tells gnucash to print the account names for each split entry stating at the specified coordinates. See the note on splits printing.</entry>
+                </row>
+                <row>
+                  <entry>SPLITS_AMOUNT</entry>
+                  <entry>Coords</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
+                  <entry>This type value tells gnucash to print the amount for each split entry stating at the specified coordinates.  Amounts are printed with currency symbols. See the note on splits printing.</entry>
+                </row>
+                <row>
+                  <entry>SPLITS_MEMO</entry>
+                  <entry>Coords</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
+                  <entry>This type value tells gnucash to print the memo text for each split entry stating at the specified coordinates. See the note on splits printing.</entry>
                 </row>
                 <row>
                   <entry>TEXT</entry>
                   <entry>Coords, Text</entry>
-                  <entry>Font, Align</entry>
+                  <entry>
+                    <literallayout>Font
+Align
+Blocking_Chars
+                    </literallayout>
+                  </entry>
                   <entry>This type value tells gnucash to print an arbitrary string at the specified coordinates. The string to be printed is specified with the <emphasis>Text_n</emphasis> key.</entry>
                 </row>
                 <row>
@@ -283,13 +399,14 @@ Coords_5 = 50.0;212.0
               </tbody>
             </tgroup>
           </table>
+          <note>SPLIT items include all split entries for the transaction except for the split that applies to the current account register.  This is usually the last split listed when splits are displayed in the register.  The coordinate location defines the lower left location for the split information.</note>
         </sect3>
       </sect2>
       <sect2 id='check_format_notes'>
         <title>Creating Check Format Files</title>
         <para>Creating your own check format file is a fairly simple task.  The easiest way to start is to copy an existing check format file from the application directory (typically /usr/share/gnucash/checks) to the directory ~/.gnucash/checks.  Make sure to change the guid so the new file will be accepted by gnucash, and change the title to something descriptive.  Then change or add individual item fields as necessary.  You can also create a new check file by clicking the <guilabel>Save Format</guilabel> button on the "Custom format" page of the check printing dialog.</para>
         <note>
-          <para>Key names are case sensitive.  If you're having problems with a check format file, ensure that all key names start with a capital letter and the rest of the name is in lower case.</para>
+          <para>Key names are case sensitive.  If you're having problems with a check format file, ensure that all key names have capital letters as documented above.</para>
         </note>
       </sect2>
     </sect1>
