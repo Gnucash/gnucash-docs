@@ -11,30 +11,30 @@
 -->
   <appendix id="appendixd">
     <title>Formati di file ausiliari</title>
-    <para>Questi sono i formati di alcuni file ausiliari utilizzati da GnuCash.</para>
+    <para>Questi sono i formati di alcuni file ausiliari utilizzati da &app;.</para>
     <sect1 id='check_format_info'>
       <title>File di formato per gli assegni (Check Format File *.chk)</title>
 
       <sect2 id='check_format_overview'>
         <title>Introduzione</title>
-        <para>Il file di formato per gli assegni è utilizzato per indicare a GnuCash come stampare uno o più assegni in un foglio di carta. Questo file
+        <para>Il file di formato per gli assegni è utilizzato per indicare a &app; come stampare uno o più assegni in un foglio di carta. Questo file
 	 descrive dapprima la disposizione generale della pagina (numero di assegni, orientazione, ecc...) e poi descrive l'impaginazione delle singole voci
 	 per ogni assegno. Il file è organizzato nel tipico formato a chiave e valore utilizzato dalla maggior parte delle applicazioni Linux. Le coppie
 	 di chiavi e valori sono raggruppate in sezioni che iniziano con il nome del gruppo racchiuso tra parentesi quadre.</para>
-        <para>GnuCash cerca i file di formato per gli assegni in due differenti posizioni nel momento in cui viene aperta la finestra di stampa degli assegni:
-	 la prima posizione è generalmente /usr/share/GnuCash/checks, dove possono essere trovati i file di formato distribuiti con il programma; 
-	 la seconda posizione è la directory personale ~/.GnuCash/checks. L'utente può aggiungere dei file di formato in ogni momento (anche mentre è in
-	 esecuzione GnuCash) copiando semplicemente un nuovo file *.chk in questa directory. Aprendo nuovamente la finestra di stampa degli assegni,
+        <para>&app; cerca i file di formato per gli assegni in due differenti posizioni nel momento in cui viene aperta la finestra di stampa degli assegni:
+	 la prima posizione è generalmente /usr/share/&app;/checks, dove possono essere trovati i file di formato distribuiti con il programma; 
+	 la seconda posizione è la directory personale ~/.&app;/checks. L'utente può aggiungere dei file di formato in ogni momento (anche mentre è in
+	 esecuzione &app;) copiando semplicemente un nuovo file *.chk in questa directory. Aprendo nuovamente la finestra di stampa degli assegni,
 	 il nuovo formato apparirà nella lista di quelli disponibili.</para>
         <note>
-          <para>La stampa funziona in modo differente in funzione della versione di GTK installata nel sistema. Quando GnuCash utilizza una versione
+          <para>La stampa funziona in modo differente in funzione della versione di GTK installata nel sistema. Quando &app; utilizza una versione
 	  precedente alla 2.10, tutti gli spostamenti sono misurati a partire dall'angolo in basso a sinistra del foglio o dell'assegno singolo; quando invece
 	  utilizzat la versione 2.10 o successive, tutti gli spostamenti sono relativi all'angolo in alto a sinistra del foglio o del singolo assegno.</para>
         </note>
       </sect2>
       <sect2>
         <title>Esempio di contenuto del file</title>
-        <para>Un tipico file di GnuCash per gli assegni, è mostrato di seguito. Il contenuto di questo file verrà descritto nella sezione successiva.</para>
+        <para>Un tipico file di &app; per gli assegni, è mostrato di seguito. Il contenuto di questo file verrà descritto nella sezione successiva.</para>
 
         <programlisting>
 [Top]
@@ -88,7 +88,7 @@ Coords_5 = 50.0;212.0
                   <entry>Guid</entry>
                   <entry>stringa</entry>
                   <entry>obbligatorio</entry>
-                  <entry>Il codice "guid" permette di identificare univocamente un formato di assegni utilizzato da GnuCash. 
+                  <entry>Il codice "guid" permette di identificare univocamente un formato di assegni utilizzato da &app;. 
 		  Deve essere unico tra tutti quelli delle applicazioni fornite e quelli forniti dall'utente.
 		  Se si copia un file di formato esistente da utilizzare come base per le proprie modifiche, questo
 		  valore deve essere cambiato. Il programma <emphasis>uuidgen</emphasis> può essere usato per generare questo
@@ -109,7 +109,7 @@ Coords_5 = 50.0;212.0
                   <entry>opzionale</entry>
                   <entry>Se fornita, rappresenta il carattere predefinito utilizzato per stampare tutti campi di testo nell'assegno.
 		  Questo campo può contenere qualsiasi stringa accettata dal GTK come carattere. Se questo campo è lasciato vuoto, 
-		  verrà utilizzato il carattere predefinito indicato nelle preferenze di GnuCash. Un valore tipico può essere "sans 12".</entry>
+		  verrà utilizzato il carattere predefinito indicato nelle preferenze di &app;. Un valore tipico può essere "sans 12".</entry>
                 </row>
                 <row>
                   <entry>Rotation</entry>
@@ -133,7 +133,7 @@ Coords_5 = 50.0;212.0
                   <entry>Show_Grid</entry>
                   <entry>boolean</entry>
                   <entry>opzionale</entry>
-                  <entry>Se questo valore è impostato a <emphasis>true</emphasis> alora GnuCash disegnerà una griglia nella pagina, partendo dal 
+                  <entry>Se questo valore è impostato a <emphasis>true</emphasis> alora &app; disegnerà una griglia nella pagina, partendo dal 
 		  punto di origine con delle linee intervallate di 50 punti. Questa opzione è utile quando si desidera creare un nuovo file di formato per la 
 		  stampa degli assegni.</entry>
                 </row>
@@ -142,7 +142,7 @@ Coords_5 = 50.0;212.0
                   <entry>boolean</entry>
                   <entry>opzionale</entry>
                   <entry>Se questo valore è impostato a <emphasis>true</emphasis> allora per ogni elemento di cui sono state specificate larghezza e 
-		  altezza, GnuCash disegnerà un riquadro che mostra la posizione e l'ingombro massimo dell'elemento stesso. Questa opzione è utile 
+		  altezza, &app; disegnerà un riquadro che mostra la posizione e l'ingombro massimo dell'elemento stesso. Questa opzione è utile 
 		  quando si desidera creare un nuovo file di formato per la stampa degli assegni.</entry>
                 </row>
               </tbody>
@@ -152,7 +152,7 @@ Coords_5 = 50.0;212.0
         <sect3>
           <title>Gruppo di impostazione delle posizioni degli assegni</title>
           <para>Questo gruppo di elementi specifica come sono distribuiti gli assegni nel foglio di carta e fornisce dei nomi a ogni posizione di un assegno in 
-	  modo che l'utente possa indicare a GnuCash quale di queste posizioni debba essere stampata. Questo gruppo di valori e chiavi è opzionale e deve
+	  modo che l'utente possa indicare a &app; quale di queste posizioni debba essere stampata. Questo gruppo di valori e chiavi è opzionale e deve
 	  essere tralasciato se si desidera che venga stampato un solo assegno per foglio.</para>
           <table id='check_table_positions'>
             <title>Campi per la stampa di più assegni per foglio</title>
@@ -197,7 +197,7 @@ Coords_5 = 50.0;212.0
           <para>Ogni nome di chiave contenuta in questa sezione include esplicitamente il numero dell'elemento a cui viene applicata:  es. la chiave denominata 
 	  <guilabel>Type_1</guilabel> si applica al primo elemento stampato e la chiave <guilabel>Coords_3</guilabel> viene applicata al terzo elemento 
 	  che deve essere stampato. I numeri delle voci cominciano da uno e crescono in modo sequenziale. Ogni salto nella numerazione viene interpretato 
-	  da GnuCash come la fine della lista della voce. Gli elementi sono stampati secondo l'ordine numerico, non nell'ordine con cui appaiono nel file.</para>
+	  da &app; come la fine della lista della voce. Gli elementi sono stampati secondo l'ordine numerico, non nell'ordine con cui appaiono nel file.</para>
           <para>Ogni elemento specificato deve includere un tipo di dichiarazione. I restanti parametri per l'elemento dipendo dal suo particolare tipo. 
 	  Consultare la <xref linkend="check_table_types"></xref> per recuperare una lista di tipi di elementi validi e i rispettivi parametri richiesti.</para>
           <table id='check_table_items'>
@@ -245,7 +245,7 @@ Coords_5 = 50.0;212.0
                   <entry>Se fornita, rappresenta il carattere utilizzato per stampare la specifica voce di testo. 
 		  Questo campo può contenere una stringa qualsiasi purché sia accettata da GTK. Se questo campo è lasciato
 		  vuoto, verrà utilizzato il carattere predefinito specificato nella sezione <emphasis>Iniziale</emphasis> del file di 
-		  descrizione degli assegni o, se anche questo è stato tralasciato, il carattere specificato nelle preferenze di GnuCash.
+		  descrizione degli assegni o, se anche questo è stato tralasciato, il carattere specificato nelle preferenze di &app;.
 		  Questo campo viene riconosciuto solamente se si utilizzano le GTK 2.10 o successive.</entry>
                 </row>
                 <row>
@@ -269,8 +269,8 @@ Coords_5 = 50.0;212.0
                   <entry>opzionale</entry>
                   <entry>Questo campo è utilizzato solamente quando il tipo di voce è impostato a <emphasis>PICTURE</emphasis>. 
 		  Specifica il nome del file dell'immagine da stampare sull'assegno. La stringa può specificare un percorso assoluto o relativo. 
-		  In quest'ultimo caso, GnuCash controlla prima nella cartella dei formati di assegno forniti dal programma (generalmente 
-		  /usr/share/GnuCash/checks) e, se non lo dovesse trovare, cercherà nella cartella personale ~/.GnuCash/checks.  
+		  In quest'ultimo caso, &app; controlla prima nella cartella dei formati di assegno forniti dal programma (generalmente 
+		  /usr/share/&app;/checks) e, se non lo dovesse trovare, cercherà nella cartella personale ~/.&app;/checks.  
 		  Questo campo viene riconosciuto solamente se si utilizzano le GTK 2.10 o successive.</entry>
                 </row>
               </tbody>
@@ -296,64 +296,64 @@ Coords_5 = 50.0;212.0
                   <entry>PAYEE</entry>
                   <entry>Coords</entry>
                   <entry>Font, Align</entry>
-                  <entry>Questo valore del tipo indica a GnuCash di stampare il nome del beneficiario sulle coordinate specificate.</entry>
+                  <entry>Questo valore del tipo indica a &app; di stampare il nome del beneficiario sulle coordinate specificate.</entry>
                 </row>
                 <row>
                   <entry>DATE</entry>
                   <entry>Coords</entry>
                   <entry>Font, Align</entry>
-                  <entry>Questo valore del tipo indica a GnuCash di stampare la data sulle coordinate specificate.</entry>
+                  <entry>Questo valore del tipo indica a &app; di stampare la data sulle coordinate specificate.</entry>
                 </row>
                 <row>
                   <entry>NOTES.</entry>
                   <entry>Coords</entry>
                   <entry>Font, Align</entry>
-                  <entry>Questo valore del tipo indica a GnuCash di stampare il campo delle note della transazione sulle coordinate specificate.</entry>
+                  <entry>Questo valore del tipo indica a &app; di stampare il campo delle note della transazione sulle coordinate specificate.</entry>
                 </row>
                 <row>
                   <entry>CHECK_NUMBER</entry>
                   <entry>Coords</entry>
                   <entry>Font, Align</entry>
-                  <entry>Questo valore del tipo indica a GnuCash di stampare il numero dell'assegno sulle coordinate specificate.</entry>
+                  <entry>Questo valore del tipo indica a &app; di stampare il numero dell'assegno sulle coordinate specificate.</entry>
                 </row>
                 <row>
                   <entry>MEMO</entry>
                   <entry>Coords</entry>
                   <entry>Font, Align</entry>
-                  <entry>Questo valore del tipo indica a GnuCash di stampare il il campo promemoria della suddivisione sulle coordinate specificate.</entry>
+                  <entry>Questo valore del tipo indica a &app; di stampare il il campo promemoria della suddivisione sulle coordinate specificate.</entry>
                 </row>
                 <row>
                   <entry>ACTION</entry>
                   <entry>Coords</entry>
                   <entry>Font, Align</entry>
-                  <entry>Questo valore del tipo indica a GnuCash di stampare il campo dell'operazione di suddivisione sulle coordinate specificate.</entry>
+                  <entry>Questo valore del tipo indica a &app; di stampare il campo dell'operazione di suddivisione sulle coordinate specificate.</entry>
                 </row>
                 <row>
                   <entry>AMOUNT_WORDS</entry>
                   <entry>Coords</entry>
                   <entry>Font, Align</entry>
-                  <entry>Questo valore del tipo indica a GnuCash di stampare l'importo in lettere dell'assegno sulle coordinate specificate. 
+                  <entry>Questo valore del tipo indica a &app; di stampare l'importo in lettere dell'assegno sulle coordinate specificate. 
 		  L'importo apparirà nella forma "Un milione, due cento trenta quattro e 56/100".</entry>
                 </row>
                 <row>
                   <entry>AMOUNT_NUMBER</entry>
                   <entry>Coords</entry>
                   <entry>Font, Align</entry>
-                  <entry>Questo valore del tipo indica a GnuCash di stampare l'importo in cifre dell'assegno sulle coordinate specificate.  
+                  <entry>Questo valore del tipo indica a &app; di stampare l'importo in cifre dell'assegno sulle coordinate specificate.  
 		  L'importo apparirà nella forma "€1.234,56".</entry>
                 </row>
                 <row>
                   <entry>TEXT</entry>
                   <entry>Coords, Text</entry>
                   <entry>Font, Align</entry>
-                  <entry>Questo valore del tipo indica a GnuCash di stampare una stringa arbitraria sulle coordinate specificate. 
+                  <entry>Questo valore del tipo indica a &app; di stampare una stringa arbitraria sulle coordinate specificate. 
 		  La stringa da stampare è specificata dalla chiave <emphasis>Text_n</emphasis>.</entry>
                 </row>
                 <row>
                   <entry>PICTURE</entry>
                   <entry>Coords, Filename</entry>
                   <entry>(none)</entry>
-                  <entry>Questo valore del tipo indica a GnuCash di stampare un'immagine sulle coordinate specificate. 
+                  <entry>Questo valore del tipo indica a &app; di stampare un'immagine sulle coordinate specificate. 
                   L'immagine da stampare è specificata attraverso la chiave <emphasis>Filename_n</emphasis>.  
                   Questo tipo è riconosciuto solamente quando si utilizzano le GTK 2.10 o successive.</entry>
                 </row>
@@ -365,8 +365,8 @@ Coords_5 = 50.0;212.0
       <sect2 id='check_format_notes'>
         <title>Creare dei file di formato per gli assegni</title>
         <para>Creare un proprio file di formato per gli assegni è un'operazione piuttosto semplice. Il metodo più semplice consiste nel copiare un file di formato esistente
-	dalla directory del programma (generalmente /usr/share/GnuCash/checks) alla directory ~/.GnuCash/checks. E' importante ricordarsi di cambiare il valore "guid"
-	per fare in modo che il nuovo file venga accettato da GnuCash e di cambiare il titolo in qualcosa di descrittivo. A questo punto è possibile cambiare e aggiungere
+	dalla directory del programma (generalmente /usr/share/&app;/checks) alla directory ~/.&app;/checks. E' importante ricordarsi di cambiare il valore "guid"
+	per fare in modo che il nuovo file venga accettato da &app; e di cambiare il titolo in qualcosa di descrittivo. A questo punto è possibile cambiare e aggiungere
 	i campi come si desidera. E' possibile anche creare un nuovo file di formato premendo il pulsante <guilabel>Salva formato</guilabel> nella pagina "Formato 
 	personalizzato" della finestra di stampa degli assegni.</para>
         <note>
