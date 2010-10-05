@@ -394,7 +394,70 @@
 
        <sect2 id="Online-price-setup"><title>Steps to enable On-line price updating</title>
 
-          <itemizedlist>
+           <itemizedlist>
+            <listitem><para>GnuCash relies on an external tool to retrieve online quotes. This
+              tool is a Perl module named <quote>Finance::Quote</quote> and has to be installed
+              on your computer independently from GnuCash. The first step in enabling online price
+              updating should thus be to ensure Finance::Quote is properly installed.</para>
+
+             <para>To determine if the Perl module Finance::Quote is already installed on
+              your system, type <quote>perldoc Finance::Quote</quote> in a terminal window
+              and check to see if there is any documentation available. If you see the
+              documentation, then the module is installed, if you do not see the
+              documentation, then it has not been installed.</para>
+              
+            <para>Installing Finance::Quote differs from one operating system to another. For
+            the various supported systems, you can follow these guidelines:</para>
+            
+            <itemizedlist>
+             <listitem><para><guilabel>Linux:</guilabel> Most linux distributions (like
+              Fedora, openSuse, Mandriva, Ubuntu, and so on) have a package in their software
+              repositories for the Finance::Quote perl module. So in most cases, you can
+              simply use your preferred package manager (yum, apt, rpm, synaptics, yast,...)
+              to install the module. The name of the package may vary from one distribution to
+              another. It's called often something like <quote>perl-Finance-Quote</quote>.</para></listitem>
+
+             <listitem><para><guilabel>Windows:</guilabel>Finance::Quote on Windows requires perl
+              to be installed already. If you haven't done so, you should first install ActivePerl.</para>
+
+              <para>The Windows installer from the GnuCash home page comes with a small helper program to
+              install Finance::Quote for you. You can find it in the Start Menu under de GnuCash
+              group and is called <quote>Install Online Price Retrieval</quote>.</para></listitem>
+
+             <listitem><para><guilabel>Mac OS X:</guilabel> If you have installed GnuCash
+              from the installer found on the GnuCash home page, Finance::Quote is already
+              installed for you.</para></listitem>
+
+             <listitem><para>If none of the above applies to your setup, you can try these
+              alternative, more generic instructions:</para>
+              <orderedlist>
+               <listitem><para>Close any GnuCash applications you have running.</para></listitem>
+
+               <listitem><para>Locate the folder where GnuCash is installed by searching for <quote>gnc-fq-update</quote>
+                (without the quotes).</para></listitem>
+
+               <listitem><para>Change to that directory, open a root shell and run the command <quote>gnc-fq-update</quote>
+                (without the quotation marks). This will launch a Perl CPAN update session that will go out onto the
+                Internet and install the Finance::Quote module on your system. The gnc-fq-update program is interactive,
+                however, with most systems you should be able to answer <quote>no</quote> to the first question:
+                <quote>Are you ready for manual configuration? [yes]</quote> and the update will continue automatically
+                from that point.</para>
+               </listitem>
+              </orderedlist>
+
+             </listitem>
+            </itemizedlist>
+
+             <para>After installation is complete, you should run the <quote>gnc-fq-dump</quote> test program, in the
+              same directory, distributed with GnuCash to test if Finance::Quote is installed and working properly.</para>
+
+             <note>
+              <para>If you feel uncomfortable about performing any of these steps, please either email the GnuCash-user
+               mailing list (<email>gnucash-user@gnucash.org</email>) for help or come to the GnuCash IRC channel on
+               irc.gnome.org. You can also leave out this step and manually update your stock prices.</para>
+             </note>
+            </listitem>
+
             <listitem>
               <para>Create the Account for the mutual fund or stock with it listed in the
                Security/Currency field, as described above.</para>
@@ -452,38 +515,6 @@
           </itemizedlist>
           </listitem>
 
-            <listitem>
-             <para>To determine if the Perl module Finance::Quote is already installed on
-              your system, type <quote>perldoc Finance::Quote</quote> in a terminal window
-              and check to see if there is any documentation available. If you see the
-              documentation, then the module is installed, if you do not see the
-              documentation, then it has not been installed.</para>
-
-             <para>To install Finance::Quote;</para>
-              <orderedlist>
-               <listitem><para>Close any GnuCash applications you have running.</para></listitem>
-
-               <listitem><para>Locate the folder where GnuCash is installed by searching for <quote>gnc-fq-update</quote>
-                (without the quotes).</para></listitem>
-
-               <listitem><para>Change to that directory, open a root shell and run the command <quote>gnc-fq-update</quote>
-                (without the quotation marks). This will launch a Perl CPAN update session that will go out onto the
-                Internet and install the Finance::Quote module on your system. The gnc-fq-update program is interactive,
-                however, with most systems you should be able to answer <quote>no</quote> to the first question:
-                <quote>Are you ready for manual configuration? [yes]</quote> and the update will continue automatically
-                from that point.</para>
-               </listitem>
-
-             </orderedlist>
-             <para>After installation is complete, you should run the <quote>gnc-fq-dump</quote> test program, in the
-              same directory, distributed with GnuCash to test if Finance::Quote is installed and working properly.</para>
-
-             <note>
-              <para>If you feel uncomfortable about performing any of these steps, please either email the GnuCash-user
-               mailing list (<email>gnucash-user@gnucash.org</email>) for help or come to the GnuCash IRC channel on
-               irc.gnome.org. You can also leave out this step and manually update your stock prices.</para>
-             </note>
-            </listitem>
 
             <listitem>
               <para>Select a commodity to the Price Editor.</para>
