@@ -20,7 +20,7 @@ entities = \
 	ch_bus_ap.xml \
 	ch_bus_pay.xml \
 	ch_budgets.xml \
-	ch_oth_assets.xml\
+	ch_oth_assets.xml \
 	appendixa.xml \
 	appendixb.xml \
 	appendixc.xml \
