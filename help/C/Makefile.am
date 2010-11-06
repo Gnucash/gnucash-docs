@@ -9,7 +9,7 @@ entities = \
 	Help_ch_GUIMenus.xml \
 	Help_ch_Account-Actions.xml \
 	Help_ch_Transactions.xml \
-	Help_ch_Tools_Druids.xml \
+	Help_ch_Tools_Assistants.xml \
 	Help_ch_Reports.xml \
 	Help_ch_Customize.xml \
 	Help_chtacctseg.xml \
