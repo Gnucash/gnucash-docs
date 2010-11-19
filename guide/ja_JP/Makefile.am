@@ -24,7 +24,8 @@ entities = \
 	appendixb.xml \
 	appendixc.xml \
 	appendixd.xml
+DISTCLEANFILES =  $(docname)-ja_JP.omf.out
+CLEANFILES =  $(DISTCLEANFILES)
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
 dist-hook: app-dist-hook
-DISTCLEANFILES =  $(docname)-ja_JP.omf.out

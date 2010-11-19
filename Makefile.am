@@ -5,6 +5,7 @@ EXTRA_DIST = gnucash-docs.spec \
 	     COPYING-DOCS \
 	     xmldocs.make \
 	     omf.make \
+	     pdf.make \
 	     stylesheet \
 	     xsl \
 	     HACKING

@@ -71,7 +71,7 @@ copy-style:
 	  done
 
 EXTRA_DIST = $(xml_files) $(omffile)
-CLEANFILES = omf_timestamp $(docname)/*.html
+CLEANFILES += omf_timestamp $(docname)/*.html
 
 # If the following file is in a subdir (like help/) you need to add that to the path
 include $(top_srcdir)/omf.make

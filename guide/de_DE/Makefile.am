@@ -10,7 +10,8 @@ entities = \
  appendixe.xml \
  glossary.xml \
  index.xml
+DISTCLEANFILES =  $(docname)-de_DE.omf.out
+CLEANFILES =  $(DISTCLEANFILES)
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
 dist-hook: app-dist-hook
-DISTCLEANFILES =  $(docname)-de_DE.omf.out

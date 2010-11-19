@@ -17,7 +17,8 @@ entities = \
 	Help_txf-categories.xml \
 	Help_fdl-appendix.xml \
         Help_tips-appendix.xml
+DISTCLEANFILES =  $(docname)-it_IT.omf.out
+CLEANFILES =  $(DISTCLEANFILES)
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
 dist-hook: app-dist-hook
-DISTCLEANFILES =  $(docname)-it_IT.omf.out

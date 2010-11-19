@@ -36,7 +36,15 @@ dnl Check for xsltproc
 dnl
 AC_PATH_PROG(XSLTPROC, xsltproc)
 if test -z "$XSLTPROC"; then
-  AC_MSG_ERROR([xsltproc not found])
+  AC_MSG_ERROR([xsltproc not found, perhaps you should install the libxslt package ?])
+fi
+
+dnl
+dnl Check for optional fop
+dnl
+AC_PATH_PROG(FOP, fop)
+if test -z "$FOP"; then
+  AC_MSG_WARN([fop not found. You will not be able to generate pdf files.])
 fi
 
 AC_OUTPUT(

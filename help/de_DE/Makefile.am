@@ -8,7 +8,8 @@ entities = \
 	chartofaccts.xml \
 	chtacctseg.xml \
 	txf-categories.xml
+DISTCLEANFILES =  $(docname)-de_DE.omf.out
+CLEANFILES =  $(DISTCLEANFILES)
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
 dist-hook: app-dist-hook
-DISTCLEANFILES =  $(docname)-de_DE.omf.out

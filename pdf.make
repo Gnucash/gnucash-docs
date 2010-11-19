@@ -2,9 +2,6 @@
 # 2010-11-19, Geert Janssens: Make the pdf create more universally usable.
 #
 # See README and HACKING.
-#
-# To do: Fix configure to find the right tools and pieces and make the target
-# if all parts are found.
 
 fofile  = $(docname).fo
 pdffile = $(docname).pdf
@@ -17,4 +14,4 @@ pdf: $(pdffile)
 .fo.pdf:
 	fop '$<' '$@'
 
-CLEANFILES = $(pdffile) $(fofile)
+CLEANFILES += $(pdffile) $(fofile)
