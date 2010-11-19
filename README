@@ -3,24 +3,21 @@
 ------------------------------------------------------------
 
 This is the docs module for GnuCash. The docs can be accessed
-from Yelp (the GNOME2 help browser). If you wish an html version
-'make html' will convert them for you and leave the html files in
-a subdirectory of the doc called <docname> (eg the html for help 
-would be in help/C/gnucash-help).
+from Yelp (the GNOME2 help browser) directly without any conversion.
+If you wish to obtain a copy of the documentation in another format,
+like html, pdf or others, see below under Other Formats.
 
 Requirements
 ############
 
-libxml2/libxslt
-docbook-xsl
-scrollkeeper >=0.3.4
-yelp (for viewing)
+* libxml2/libxslt
+* docbook-xsl
+* scrollkeeper >=0.3.4
+* yelp (for viewing)
 
-Additonal Requirements for Generating PDF
-=========================================
+Additonal Requirements for Generating PDF:
 
-docbook-xsl >= 1.74.0
-Apache fop  >= 0.95
+* Apache fop  >= 0.95
 
 Notes
 #####
@@ -41,18 +38,54 @@ Other Formats
 GnuCash-docs is written using docbook-xml. This allows it to be
 outputted to alternative formats using external tools.
 
-DocBook comes in two flavours - xml and sgml. GnuCash uses the xml.
+DocBook comes in two flavours - xml and sgml. GnuCash uses the xml flavour.
 
-If you use external tools to render HTML, remember to bring the images
+The documentation source comes with built-in commands to generate html or
+pdf output. For other formats, you will need to use external tools.
+
+Note: if you use external tools to render HTML, remember to bring the images
 from figures/ along with the final HTML. The browser will expect to find
 the figures/ directory directly beneath the HTML directory:
 ~/gnucash-docs/html/
 ~/gnucash-docs/html/figures/
 
-		================================
+* html and pdf
+--------------
 
-XML/XSL-based tools:
---------------------
+You can generate the documentation in html or pdf using the autotools
+based build system that comes with the sources.
+
+  cd gnucash-docs
+  ./autogen.sh
+  ./configure
+
+=> This will tell you if you are missing some required tools.
+
+To generate the documentation in html format, run
+
+  make html
+
+To generate the documentation in pdf format, instead run
+
+  make pdf
+
+If you only wish to generate a subset of the documentation, you can
+go into the directory for that subset and run the above make commands
+from there. For example to only generate the English concepts guide,
+
+  cd guide/C
+  make html
+
+or
+
+  cd guide/C
+  make pdf
+
+depending on the output format you require.
+
+
+* XML/XSL-based tools:
+----------------------
 
 If you have xmlto installed, this can be used to convert to other formats
 but problems have been experienced with PDF generation. If you output
@@ -73,7 +106,7 @@ xmlto uses xsltproc - the same tool and the same stylesheets as the main
 make and install.
 
 Examples:
---------
+
 To convert the GnuCash Tutorial and Concepts Guide DocBook XML document 
 to HTML and store the resulting HTML files in a separate directory use:
 
@@ -87,50 +120,6 @@ HTML file in the current directory use:
 cd help/C/
 xmlto html-nochunks gnucash-help.xml
 
-		==============================
-
-SGML-based tools:
-----------------
-
-(Note these tools and the sgml docs are no longer being updated)
-If you have docbook-utils installed, you can convert this documentation
-into other formats like PDF, DVI, TXT, texi, RTF. docbook-utils is SGML
-based and so a SGML header file is provided. The content files are still
-XML based - this doesn't cause problems for conversion to HTML but to
-generate PDF's validity errors need to be suppressed. 
-
-Use -e no-valid to suppress SGML validity errors.
-
-Currently, there are also problems incorporating the images into the 
-PDF versions. However, unlike the XML/XSL tools, docbook-utils will 
-generate a valid PDF, albeit without images.
-
-Note that the docs are designed for XML/XSL. Allowing them to function
-with SGML tools requires a few syntax tweaks. You may get errors reported
-but as long as the majority of the tweaks are in place, the conversion
-will succeed. Syntax errors are not suppressed with '-e -no-valid',
-only validity errors (like _ instead of - in id attributes).
-
-Examples:
----------
-Convert the GnuCash guide to a single HTML file:
-cd guide/C/
-docbook2html -e no-valid -u gnucash-guide.sgml
-cd help/C/
-docbook2html -u gnucash-help.sgml
-
-Convert the GnuCash guide into a PDF:
-cd guide/C/
-docbook2pdf -e no-valid gnucash-guide.sgml
-
-Convert the GnuCash Help Manual into DVI:
-cd help/C/
-docbook2dvi -e no-valid gnucash-help.sgml
-
-One workaround for the images is to convert to a single HTML file and
-use Print to PDF File from your web browser. Bear in mind that the single
-HTML file is v.large and each PDF, without images, goes to over 100 pages.
-
 
 Known Problems
 ##############
@@ -142,8 +131,6 @@ hints or suggestions with the docs. There are a few known problems.
   Business module and OFX import. Menu description incomplete.
 
 - Guide needs some updates still.
-
-- Most of the information (although still relevant) refers to the 1.8 version.
 
 That's it for now! Please report any problems to the GNOME bugzilla at 
 http://bugzilla.gnome.org. Or alternately email me or preferably the 

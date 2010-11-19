@@ -92,38 +92,28 @@ Neil Williams
 
 Generating PDF
 
-Currently the Guide docbook source is capable of supporting the generation of
-pdf output, but it may take a little work to assemble the tools if you don't
-have them.  The following is based on a Linux Fedora Core 7 installation.
+The GnuCash documentation build system can generate pdfs from the
+guide's and help manual's xml source files, provided you have the proper
+tools available on your system. This functionality was introduced by
+Tom Browder (<tom.browder@gmail.com>) and improved by
+Geert Janssens (<janssens-geert@telenet.be>).
 
-Required:
+Other than xsltproc (which is already required to build html documentation)
+you also need Apache fop 0.95 or more recent. 
 
-  1. docbook-xsl >= 1.74.0
+At the time of this writing, you can install fop straight from any of the
+current distros' package repositories, or at least fop is available in one
+of the addon repositories.
 
-     available at: http://docbook.sourceforge.net
+* Fedora 12 and up: fop is in the main repository
+* Debian Lenny: fop 0.95 has been backported
+* Debian Squeeze and up: fop is in the main repository
+* CentOS 5: fop can be installed via EPEL testing
+* Ubuntu 9.10 and up: fop is in the universe repository
 
-     Follow the first link to the download site, then choose the "docbook-xsl"
-     package.  I can find nothing specific about installation, but I think the
-     preferred place to unpack the package is in /usr/local/share.
-
-     Note the location of the file 'docbook.xsl'.  Point to it by assigning it
-     to an environment variable DOCBOOK_XSL.  In this case, for csh or tcsh users:
-
-        setenv DOCBOOK_XSL /usr/local/share/docbook-xsl-1.74.0/fo/docbook.xsl
-
-     or for sh or bash users:
-
-        export DOCBOOK_XSL=/usr/local/share/docbook-xsl-1.74.0/fo/docbook.xsl
-
-     (Note: I find the www.docbook.org site very confusing--full of circular
-     references to the source of the docbook xml style sheets, but no specific
-     link that is easily found.)
-
-  2. Apache Fop >= 0.95
-
-     available at: http://xmlgraphics.apache.org/fop
-
-     requires:
+If your distro doesn't ship fop you can still install it manually. It
+is available at http://xmlgraphics.apache.org/fop
+and it requires:
 
      a.  Sun Java JDK >= 1.4
          available at: http://java.sun.com/javase/downloads/index.jsp
@@ -132,11 +122,3 @@ Required:
 
      b.  ant >= 1.7
          available at: http://ant.apache.org
-
-You may need additional xml tools, but they should be available through the yum
-update if they are not already installed.
-
-Tom Browder
-<tom.browder@gmail.com>
-Niceville, Florida
-2008-10-02
