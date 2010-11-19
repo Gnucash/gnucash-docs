@@ -1,7 +1,7 @@
 figdir = figures
 docname = gnucash-help
 lang = de_DE
-omffile = gnucash-help-de_DE.omf
+omffile = $(docname)-de_DE.omf
 entities = \
 	fdl-appendix.xml \
 	legal.xml \
@@ -9,5 +9,6 @@ entities = \
 	chtacctseg.xml \
 	txf-categories.xml
 include $(top_srcdir)/xmldocs.make
+include $(top_srcdir)/pdf.make
 dist-hook: app-dist-hook
-DISTCLEANFILES =  gnucash-help-de_DE.omf.out
+DISTCLEANFILES =  $(docname)-de_DE.omf.out

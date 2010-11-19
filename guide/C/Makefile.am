@@ -28,4 +28,4 @@ entities = \
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
 dist-hook: app-dist-hook
-DISTCLEANFILES =  gnucash-guide-C.omf.out
+DISTCLEANFILES =  $(docname)-C.omf.out

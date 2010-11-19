@@ -1,7 +1,7 @@
 figdir = figures
 docname = gnucash-guide
 lang = ja_JP
-omffile = gnucash-guide-ja_JP.omf
+omffile = $(docname)-ja_JP.omf
 entities = \
 	fdl-appendix.xml \
 	legal.xml \
@@ -25,22 +25,6 @@ entities = \
 	appendixc.xml \
 	appendixd.xml
 include $(top_srcdir)/xmldocs.make
+include $(top_srcdir)/pdf.make
 dist-hook: app-dist-hook
-DISTCLEANFILES =  gnucash-guide-ja_JP.omf.out
-
-# 2008-10-02, Tom Browder: PDF creation.
-#
-# See README and HACKING.
-#
-# For now, the environment variable, 'DOCBOOK_XSL', must be set manually.
-#
-# To do: Fix configure to find the right tools and pieces and make the target
-# if all parts are found.
-
-CLEANFILES = gnucash-guide.pdf gnucash-guide.fo
-pdf:
-	fop -xml gnucash-guide.xml -xsl $(DOCBOOK_XSL) -pdf gnucash-guide.pdf
-
-# for debugging intermediate output
-pdf-debug:
-	fop -d -xml gnucash-guide.xml -xsl $(DOCBOOK_XSL) -foout gnucash-guide.fo
+DISTCLEANFILES =  $(docname)-ja_JP.omf.out

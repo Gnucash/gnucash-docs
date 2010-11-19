@@ -1,7 +1,7 @@
 figdir = figures
 docname = gnucash-guide
 lang = de_DE
-omffile = gnucash-guide-de_DE.omf
+omffile = $(docname)-de_DE.omf
 entities = \
  ch_basics.xml \
  ch_oview.xml \
@@ -11,5 +11,6 @@ entities = \
  glossary.xml \
  index.xml
 include $(top_srcdir)/xmldocs.make
+include $(top_srcdir)/pdf.make
 dist-hook: app-dist-hook
-DISTCLEANFILES =  gnucash-guide-de_DE.omf.out
+DISTCLEANFILES =  $(docname)-de_DE.omf.out

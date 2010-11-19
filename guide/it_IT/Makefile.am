@@ -1,7 +1,7 @@
 figdir = figures
 docname = gnucash-guide
 lang = it_IT
-omffile = gnucash-guide-it_IT.omf
+omffile = $(docname)-it_IT.omf
 entities = \
 	fdl-appendix.xml \
 	legal.xml \
@@ -25,5 +25,6 @@ entities = \
 	appendixc.xml \
 	appendixd.xml
 include $(top_srcdir)/xmldocs.make
+include $(top_srcdir)/pdf.make
 dist-hook: app-dist-hook
-DISTCLEANFILES =  gnucash-guide-it_IT.omf.out
+DISTCLEANFILES =  $(docname)-it_IT.omf.out
