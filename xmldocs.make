@@ -53,6 +53,7 @@ convert-html:
 	$(mkinstalldirs) "$(docname)"; \
 	for file in $(docname).xml; do \
 	 xsltproc -o "$(docname)/" --param use.id.as.filename "1" \
+	                           --stringparam chunker.output.encoding UTF-8  \
 	 "$(top_srcdir)/xsl/general-customization.xsl" "$(srcdir)/$$file"; \
 	done
 
