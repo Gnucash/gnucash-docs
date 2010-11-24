@@ -8,6 +8,8 @@ pdffile = $(docname).pdf
 
 pdf: $(pdffile)
 
+$(fofile): $(entities)
+
 .xml.fo:
 	xsltproc -o '$@' --stringparam fop1.extensions 1 $(top_srcdir)/xsl/1.75.2/fo/docbook.xsl '$<'
 
