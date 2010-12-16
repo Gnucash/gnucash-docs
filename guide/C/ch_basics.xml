@@ -182,7 +182,7 @@
       highest level in files. A file can be stored on your computer either
       as a single <acronym>XML</acronym> file (in all versions of
       <application>&app;</application>), or in a <acronym>SQL</acronym>
-      database (in version 2.4 and higher).</para>
+      database (in <application>&app;</application> version 2.4 and higher).</para>
 
       <note>
         <para><acronym>SQL</acronym> is pronounced <quote>sequel</quote>,
@@ -193,12 +193,13 @@
       <para>With the <acronym>XML</acronym> file format,
       <application>&app;</application> stores your data in an
       <acronym>XML</acronym> data file, usually in compressed format
-      (although this can be changed in preferences).</para>
+      (although this can be changed in the <guilabel>General</guilabel>
+      tab of the <application>&app;</application> <guilabel>Preferences</guilabel>).</para>
 
       <para>With <acronym>SQL</acronym> storage,
       <application>&app;</application> stores your data in a
       <acronym>SQL</acronym> database under the database application you
-      select.</para>
+      select (SQLite3, MySQL or PostgreSQL).</para>
 
       <para>You will need one main file or database for each set of
       accounts you are maintaining. To learn how to create and manage
@@ -554,24 +555,77 @@
   </sect1>
 
   <sect1 id="basics-files1">
-    <title>Creating and Saving Files</title>
+    <title>Storing your financial data</title>
 
-    <para>If you are using <application>&app;</application> for the first time, it will automatically
-    open a new file when you begin. Follow these steps to save the file under
-    a new name:</para>
+    <para><application>&app;</application> is able to <link linkend="basics-store-data">store</link>
+    your financial data in files or <acronym>SQL</acronym> databases so that they can be 
+    <link linkend="basics-open-data">opened</link> and modified at a later time. 
+    But first you need to <link linkend="basics-create-data">create</link> a container for your data.</para>
+    
+    <sect2 id="basics-create-data">
+    <title>Creating a file</title>
+    <para>To create a new <application>&app;</application> file do the following:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>From the <application>&app;</application> menubar, choose <menuchoice><guimenu>File</guimenu>
+        <guimenuitem>New File</guimenuitem></menuchoice>. The <guilabel>New Account Hierarchy setup</guilabel>
+        assistant will start.</para>
+        <note>
+          <para>If you are running <application>&app;</application> for the first time, you will be presented 
+          with the <guilabel>Cannot find default values</guilabel> screen or with the 
+          <guilabel>Welcome to &app;!</guilabel> screen. Both are described in detail in the 
+          <application>&app;</application> manual.</para>
+        </note>
+      </listitem>
+
+      <listitem>
+        <para>Set your preferences in the assistant and move through the screens with the 
+        <guibutton>Forward</guibutton>, <guibutton>Cancel</guibutton> and <guibutton>Previous</guibutton>
+        buttons.</para>
+      </listitem>
+    </orderedlist>
+
+    </sect2>
+    
+    <sect2 id="basics-store-data">
+    <title>Saving data</title>
+    <para>Follow these steps to save the file under your preferred name:</para>
 
     <orderedlist>
       <listitem>
         <para>Choose <menuchoice><guimenu>File</guimenu> <guimenuitem>Save
-        As...</guimenuitem></menuchoice> from the menu bar or select the
-        <guibutton>Save</guibutton> toolbar button. <application>&app;</application> will bring up this
-        window:</para>
+        As...</guimenuitem></menuchoice> from the menubar or select the
+        <guibutton>Save</guibutton> toolbar button. <application>&app;</application> will bring
+        up the save window.</para>
+      </listitem>
 
-        <screenshot id="basics-SaveAs">
+      <listitem>
+        <para>Select the <guilabel>Data Format</guilabel> of the file you are saving from the 
+        drop down list. The default selection is <acronym>XML</acronym> but if you have set up a 
+        database back end you can change to that format.</para>
+        <para>Depending on the selected <guilabel>Data Format</guilabel> the window can change as 
+        described in the following.</para>  
+      </listitem>
+
+      <listitem>
+      <para></para>
+        <itemizedlist>
+          <listitem>
+            <para>If you selected <acronym>XML</acronym> or <acronym>sqlite3</acronym> you will see a screen like this:</para>
+
+        <figure>
+        <title>Save screen when <acronym>XML</acronym> or <acronym>sqlite3</acronym> is selected.</title>
+        <screenshot id="basics-SaveXML">
           <mediaobject>
-            <imageobject>
-              <imagedata fileref="figures/basics_SaveAs.png" format="PNG"
-                         srccredit="Bengt Thuree" ></imagedata>
+            <imageobject role="html">
+              <imagedata fileref="figures/basics_SaveXML.png" format="PNG"
+                         srccredit="Cristian Marchi" width="510px"></imagedata>
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="figures/basics_SaveXML.png" format="PNG"
+                         srccredit="Cristian Marchi"></imagedata>
             </imageobject>
 
             <textobject>
@@ -579,20 +633,74 @@
             </textobject>
 
             <caption>
-              <para>This image shows the <interface>Save</interface>
-              screen.</para>
+              <para>This image shows the <interface>Save</interface> screen when the selected 
+              <guilabel>Data Format</guilabel> is <acronym>XML</acronym> or <acronym>sqlite3</acronym>.</para>
             </caption>
           </mediaobject>
         </screenshot>
+        </figure>
+
+            <para>Type your chosen filename in the <guilabel>Name</guilabel> field. It is not necessary to specify an 
+            extension when you write the file name. <application>&app;</application> will automatically add the extension 
+            <filename>.gnucash</filename> to the file.</para>
+            <note>
+              <para>The <filename>.gnucash</filename> extension was introduced in the 2.3 series of <application>&app;</application>.
+              For already existing files, the extension will never be changed. So if you open an existing file named 
+              <filename>Myoldfile</filename>, that name won&rsquo;t be changed if the file is saved. You might use the 
+              <guimenuitem>Save As...</guimenuitem> command and give the file a new name in order to have it saved with the 
+              extension <filename>.gnucash</filename>.</para>
+            </note>
+            <para>Select the path where the file will be saved by browsing the tree in the lower panes.</para>
+            <tip>
+              <para>Click on the <guibutton>Create Folder</guibutton> button to create a new folder with a
+              custom name in the selected path.</para>
+            </tip>
+          </listitem>
+        
+          <listitem>
+            <para>If you selected <acronym>mysql</acronym> or <acronym>postgres</acronym>
+            <guilabel>Data Format</guilabel> you will see a screen like this:</para>
+
+            <figure>
+            <title>Save screen when <acronym>mysql</acronym> or <acronym>postgres</acronym> is selected.</title>        
+            <screenshot id="basics-SaveSQL">
+              <mediaobject>
+                <imageobject role="html">
+                  <imagedata fileref="figures/basics_SaveSQL.png" format="PNG"
+                             srccredit="Marchi Cristian" width="510px"></imagedata>
+                </imageobject>
+
+                <imageobject role="fo">
+                  <imagedata fileref="figures/basics_SaveSQL.png" format="PNG"
+                             srccredit="Cristian Marchi"></imagedata>
+                </imageobject>
+
+                <textobject>
+                  <phrase>The Save screen</phrase>
+                </textobject>
+
+                <caption>
+                  <para>This image shows the <interface>Save</interface> screen when the selected 
+                  <guilabel>Data Format</guilabel> is <acronym>mysql</acronym> or <acronym>postgres</acronym>.</para>
+                </caption>
+              </mediaobject>
+            </screenshot>
+            </figure>
+
+            <para>Enter in this window the <guilabel>Database Connection</guilabel> information:
+            <guilabel>Host</guilabel>, <guilabel>Database</guilabel>, <guilabel>Username</guilabel> 
+            and <guilabel>Password</guilabel>.</para>
+            <warning>
+              <para>Saving to <acronym>mysql</acronym> or <acronym>postgres</acronym> requires the proper permissions in that 
+              database, that is you need to have the permissions to create a new database with the given database name, or 
+              you need to have write access to an existing database with the given database name.</para>
+            </warning>
+          </listitem>
+        </itemizedlist>
       </listitem>
 
       <listitem>
-        <para>In the text box below <guilabel>Selection</guilabel> type your
-        chosen file name (e.g. gcashdata).</para>
-      </listitem>
-
-      <listitem>
-        <para>Click the <guibutton>OK</guibutton> button to save the
+        <para>Click the <guibutton>Save As</guibutton> button to save the
         file.</para>
       </listitem>
     </orderedlist>
@@ -600,19 +708,7 @@
     <para>If you are keeping track of finances for a single household, you
     need only one file. But if you are also tracking business finances or want
     to keep data separate for some reason, then you will need more than one
-    file. To create a new file:</para>
-
-    <orderedlist>
-      <listitem>
-        <para>From the main menu, choose <menuchoice><guimenu>File</guimenu>
-        <guimenuitem>New File</guimenuitem></menuchoice>.</para>
-      </listitem>
-
-      <listitem>
-        <para>Follow the steps above for saving a file under a new
-        name.</para>
-      </listitem>
-    </orderedlist>
+    file.</para>
 
     <para>Before ending each <application>&app;</application> session, be sure to save your data
     changes using <menuchoice><guimenu>File</guimenu>
@@ -628,25 +724,21 @@
         menu entry will be grayed out because changes are stored right away.</para>
     </note>
     </para>
-    <para>To open an existing file, select <menuchoice><guimenu>File</guimenu>
-    <guimenuitem>Open</guimenuitem></menuchoice> from the menu and choose your file from the list.</para>
-
-    <para><application>&app;</application> stores its data with the extension <filename>.gnucash</filename>.</para>
-      <note>
-        <para>The <filename>.gnucash</filename> extension was introduced in the 2.3 series of <application>&app;</application>.
-        For already existing files, the extension will never be changed. So if you open an existing file named 
-        <filename>Myoldfile</filename>, that name won&rsquo;t be changed if the file is saved. You might use the 
-        <guimenuitem>Save As...</guimenuitem> command and give the file a new name in order to have it saved with the 
-        extension <filename>.gnucash</filename>.</para>
-      </note>
+    </sect2>
     
-    <para>If you name your <application>&app;</application> file to <filename>MyBudget</filename>, the actual file name
-    will be <filename>MyBudget.gnucash</filename></para>
-      <note>
-        <para>It is not necessary to specify an extension when you write
-        the file name. Per the above example, it is enough to only specify
-        <filename>MyBudget</filename> as the filename.</para>
-      </note>
+    <sect2 id="basics-open-data">
+    <title>Opening data</title>
+    <para>To open an existing file or database, select <menuchoice><guimenu>File</guimenu>
+    <guimenuitem>Open</guimenuitem></menuchoice> from the menu. In the window that will open,
+    select the <guilabel>Data Format</guilabel>. If you selected <guilabel>File</guilabel> choose the file you want to open
+    by browsing the folders in the lower panes. Else, enter the required <guilabel>Database Connection</guilabel> 
+    information.</para>
+    <tip>
+      <para><application>&app;</application> keeps a list of the recently opened files. Open the <guilabel>File</guilabel>
+      menu and you will see listed the names of recently opened files. Click on the one you want to load to open it.</para>
+    </tip>
+    </sect2>
+
   </sect1>
 
   <sect1 id="basics-backup1">
