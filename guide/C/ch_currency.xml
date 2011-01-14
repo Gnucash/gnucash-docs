@@ -135,6 +135,60 @@ Note: the currency of each account is shown in parenthesis.
     <para>Notice that the "Total (Report)" column is being displayed. This is
     configured in the column header row, select <guibutton>Arrow
     down</guibutton> and select <quote>Total(USD)</quote>.</para>
+
+    <sect2 id="currency_acct_user2">
+      <title>User-Defined Currencies</title>
+
+      <para>Usually when we talk about currencies, we mean
+      government-backed currencies (or more precisely, currencies defined
+      in the international standard called <ulink
+      url="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</ulink>).
+      <application>&app;</application> does not allow you to create your
+      own currencies. If you want to track non-<acronym>ISO</acronym>
+      currencies, you can use either of two workarounds, depending on which
+      fits your needs better.</para>
+
+      <para>Let&rsquo;s say for example that you want to track RewardMiles,
+      which count how many loyalty points you&rsquo;ve earned by buying
+      from a certain group of businesses. The account which tracks your
+      RewardMiles will be Assets:Other:LoyaltyGroupRewardMiles.</para>
+
+      <para>The first method is to define a new security, of type FUND,
+      called RewardMiles. This is pretty straightforward&ndash;when you
+      create the new LoyaltyGroupRewardMiles account, just set the account
+      type to <guilabel>Stock</guilabel> or <guilabel>Mutual
+      Fund</guilabel>, click the <guibutton>Select...</guibutton> button
+      next to the <guilabel>Security/currency:</guilabel> box, and click
+      <guibutton>New</guibutton> to define a new security of type
+      FUND.</para>
+
+      <para>This is not really what the stock and mutual fund account types
+      are meant for, but <application>&app;</application> usually lets you
+      decide how you want to use it, instead of dictating. The downside is
+      that you&rsquo;ll have to enter a <quote>price</quote> for every
+      transaction involving RewardMiles, because
+      <application>&app;</application> needs the prices to figure out the
+      monetary value of RewardMiles and treat them as one of your
+      assets.</para>
+
+      <para>The second method is to use one of the <quote>dummy</quote>
+      currencies to track the RewardMiles. The dummy currencies are
+      <quote>XTS (Code for testing purposes)</quote> and <quote>XXX (No
+      currency)</quote>. If you use one of these for your
+      LoyaltyGroupRewardMiles account, you can enter transactions into the
+      account without having to enter share prices for every transaction.
+      And, you can keep using the same two dummy currencies to track all
+      sorts of amounts&ndash;vacation dollars earned and used so far this
+      year, vacation hours earned and used, health insurance benefits
+      allowance used and remaining, and so on. You can well imagine that
+      <application>&app;</application> can be used as a hub for all sorts
+      of personal metrics, in addition to finances.</para>
+
+      <para>The drawback here is that you cannot define exchange rates for
+      the dummy currencies to convert them to <acronym>ISO</acronym>
+      currencies. If you want to do that, you really should use the first
+      method.</para>
+    </sect2>
   </sect1>
 
   <sect1 id="currency_howto1">
