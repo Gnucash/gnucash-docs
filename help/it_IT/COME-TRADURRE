@@ -22,3 +22,19 @@ NB in caso di errori correggerli nel file GnuCash-help-it.po e ripetere il proce
 
 Alla fine della traduzione scrivere nel file GnuCash-help-it.po nella riga:
 "Project-Id-Version:" il numero della revisione che è stata tradotta
+
+
+Per creare i file pdf possono essere utili i seguenti comandi che localizzano il template fo.
+Dopo aver eseguito ./autogen, ./configure e make pdf
+tradurre il template gnucash-help.fo usando i seguenti comandi:
+
+sed -i "s:Chapter:Capitolo:g" gnucash-help.fo
+sed -i "s:Table of Contents:Indice:g" gnucash-help.fo
+sed -i "s:List of Tables:Indice delle tabelle:g" gnucash-help.fo
+sed -i "s:List of Figures:Indice delle figure:g" gnucash-help.fo
+sed -i "s:Warning:Attenzione:g" gnucash-help.fo
+sed -i "s:>Tip<:>Suggerimento<:g" gnucash-help.fo
+sed -i "s:>Note<:>Nota<:g" gnucash-help.fo
+sed -i "s:>Appendix:>Appendice:g" gnucash-help.fo
+
+Eseguire infine make pdf un'altra volta
