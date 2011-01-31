@@ -1260,90 +1260,113 @@
         </itemizedlist>
 
   </sect1>
-
-
-  <sect1 id="trans-sched-slr">
+   
+   <sect1 id="trans-sched-slr">
     <title>Since Last Run Assistant</title>
 
-     <para>The Since Last Run assistant is run automatically when <application>&app;</application> is started. It is
+      <para>The <guilabel>Since Last Run</guilabel> assistant is run automatically when 
+      <application>&app;</application> is started. It is
       used to enter into the register any transactions that are due to be automatically
-      entered. The run on <application>&app;</application> start can be altered in the preferences. To run the
-      Since Last Run assistant manually go to <menuchoice><guilabel>Actions</guilabel><guisubmenu>Scheduled Transactions</guisubmenu>
+      entered (see <xref linkend="trans-sched"></xref>). The run on <application>&app;</application> start can be 
+      altered in the <link linkend="prefs-sched">Scheduled Transactions</link> tab of the <guilabel>&app; Preferences</guilabel>.
+      To run the <guilabel>Since Last Run</guilabel> assistant manually, go to 
+      <menuchoice><guilabel>Actions</guilabel><guisubmenu>Scheduled Transactions</guisubmenu>
       <guimenuitem>Since Last Run...</guimenuitem></menuchoice></para>
 
-          <para>The Since Last Run assistant will automatically skip any screens that have no
-           transactions. The following describes every possible screen the assistant will show.
-           The three buttons at the very bottom of the screen will not change while using
-           the assistant.</para>
-
-          <itemizedlist>
+        <para>In the <guilabel>Since Last Run</guilabel> assistant window you can see three columns:</para>
+        <variablelist termlength="8">
+          <varlistentry>
+          <term><guilabel>Transaction</guilabel></term>
             <listitem>
-              <para>The <guibutton>Cancel</guibutton> button is used to exit the assistant and cancel entering the
-               transactions. Any selections you have made in this assistant up to this point will
-               be lost.</para>
+              <para>The name assigned in the <guilabel>Scheduled Transaction Editor</guilabel> that identifies 
+              the scheduled transaction.</para>
             </listitem>
-
+          </varlistentry>
+          
+          <varlistentry>
+          <term><guilabel>State</guilabel></term>
             <listitem>
-              <para>The <guibutton>Back</guibutton> button will bring up the previous screen so you can change a
-               selection made on that screen.</para>
+              <para>The <guilabel>state</guilabel> column of the scheduled transaction can be one of the
+              following:</para>
+              <tip>
+                <para>Click on the <guilabel>state</guilabel> field in the row of a transaction to 
+                change its state (this option is available only if the <guilabel>state</guilabel> field is not 
+                <emphasis>empty</emphasis>)</para>
+              </tip>
+                <variablelist termlength="8">
+                  <varlistentry>
+                  <term><guilabel>Ignored</guilabel></term>
+                    <listitem>
+                      <para>If a scheduled transaction is being displayed, either to be created or as a reminder, the user can
+                      set the status to <guilabel>Ignored</guilabel> to skip this event. The scheduled transaction will not be entered in
+                      the register and the next reminder for this scheduled transaction will be the next occurrence. 
+                      For instance, if you have a scheduled transaction set up with a reminder to transfer $500 at the
+                      end of the month to your <emphasis>savings</emphasis> account but you bought yourself a computer
+                      this month and don&rsquo;t have the money for this month&rsquo;s transfer then you would
+                      set the status to <guilabel>Ignored</guilabel>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                  <term><guilabel>Postponed</guilabel></term>
+                    <listitem>
+                      <para>If a scheduled transaction has been listed with a status <guilabel>To-create</guilabel> but you
+                      want to hold it and not have it entered to your register yet, then you can set it 
+                      to <guilabel>Postponed</guilabel>.</para>
+                    </listitem>
+                  </varlistentry>
+                  
+
+                  <varlistentry>
+                  <term><guilabel>Reminder</guilabel></term>
+                    <listitem>
+                      <para>You are <emphasis>n</emphasis> days from the scheduled transaction due date. 
+                      The number of days <emphasis>n</emphasis> to remind in advance, is set either in 
+                      the <guilabel>&app; Preferences</guilabel> <link linkend="prefs-sched">Scheduled Transactions</link> 
+                      tab or in the <guilabel>General</guilabel> tab of the 
+                      <link linkend="sched-editor">Scheduled Transaction Editor</link>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                  <term><guilabel>To-create</guilabel></term>
+                    <listitem>
+                      <para>This scheduled transaction will be automatically created when 
+                      you press <guibutton>OK</guibutton>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                  <term><emphasis>Empty</emphasis></term>
+                    <listitem>
+                      <para>An empty field means that no operations are pending for the 
+                      scheduled transaction.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>  
             </listitem>
+          </varlistentry>
+        </variablelist>
+        
+        <para>At the bottom of the window there are two buttons:</para>
+        <itemizedlist>
+          <listitem>
+            <para>The <guibutton>Cancel</guibutton> button is used to exit the <guilabel>Since Last Run</guilabel>
+            window without creating the transactions scheduled to be entered.</para>
+          </listitem>
 
-            <listitem>
-              <para>The <guibutton>Forward</guibutton> button will bring up the next screen so you can continue though
-               the assistant.</para>
-            </listitem>
-          </itemizedlist>
+          <listitem>
+            <para>The <guibutton>Ok</guibutton> button closes the <guilabel>Since Last Run</guilabel> window and applies 
+            the pending operations.</para>
+          </listitem>
+        </itemizedlist>
+            
+        <para>At the bottom right of the <guilabel>Since Last Run</guilabel> window there is also an 
+        option that allows to <guilabel>Review created transactions</guilabel>. If this option 
+        is enabled when there are one or more transactions <guilabel>To-create</guilabel>, 
+        pressing <guibutton>OK</guibutton> will open a register window in which are shown the 
+        details of the scheduled transactions splits entered automatically by <application>&app;</application>.</para>
 
-          <para>The first screen shows <guilabel>Transaction Reminders</guilabel> page. This lists scheduled
-           transactions that have been set to give a reminder a number of days in advance. The
-           screen contains three columns. The first column contains the name of the scheduled
-           transaction and the date it is due. The second column contains the Frequency of the
-           scheduled transaction. The third column has the number of Days Away the transaction
-           is due to be entered. To create any transactions in the list instead of just being
-           reminded, select the date line. This will add it to the list of transactions on the
-           To-Create Transaction Preparation page.</para>
-
-          <para>The next screen shows the <guilabel>Auto-Created Transactions Notification</guilabel> page. This
-           lists scheduled transactions that have been set to be automatically created and
-           notify when they are created. Each transaction is presented in a register view that
-           shows the details of the splits in the transaction.</para>
-
-          <para>The next screen shows the <guilabel>To-Create Transaction Preparation</guilabel> page. This lists
-           scheduled transactions that are due to be entered in the register. This screen is
-           divided into three panes. The top left pane contains the list of transactions due to
-           be automatically entered. The top right pane allows you to change the Disposition
-           and has a read only view of the Variables used to create the transaction. The bottom
-           pane contains a read only view of the transactions due to be entered.</para>
-
-          <para>The next screen shows the <guilabel>Created Transaction Review</guilabel> page. This screen displays
-           the list of transactions about to be created and allows for final changes to be
-           made. The list is presented in a register view that shows the details of the splits
-           in the transaction. This is editable in the same way transactions are able to be
-           edited in the register.</para>
-
-          <para>The last screen shows the <guilabel>Obsolete Scheduled Transactions</guilabel> page. This screen
-           displays a list of scheduled transactions that are able to be deleted as the
-           schedule is completed. Select the ones to be removed.</para>
-
-          <itemizedlist>
-            <listitem>
-              <para>The <guibutton>Cancel</guibutton> button is used to exit the assistant and cancel creating the
-               scheduled transactions. Any selections you have made in this assistant up to this
-               point will be lost.</para>
-            </listitem>
-
-            <listitem>
-              <para>The <guibutton>Back</guibutton> button will bring up the previous screen so you can change a
-               selection made on that screen.</para>
-            </listitem>
-
-            <listitem>
-              <para>The <guibutton>Finish</guibutton> button creates the accounts you have selected.</para>
-            </listitem>
-          </itemizedlist>
-
-          <para>The Since Last Run assistant has now added the scheduled transactions to the
-           register.</para>
    </sect1>
 
    <sect1 id="trans-sched-loans">
