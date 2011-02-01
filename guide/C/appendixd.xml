@@ -18,7 +18,7 @@
       <sect2 id="check_format_overview">
         <title>Overview</title>
         <para>The check format file is used to tell <application>&app;</application> how to print a check or checks onto a page of paper.  This file first describes the overall layout of a page (number of checks, orientation, etc) and then describes the layout of the specific items on a single check.  The file is organized as a typical Key/Value file used by many Linux applications.  Keys/values pairs are grouped into sections that begin with the group name enclosed in square brackets.</para>
-        <para><application>&app;</application> looks for check format files in two different locations when you bring up the check printing dialog.  The first location is typically /usr/share/gnucash/checks, where check files distributed with the application can be found.  The second location is the user private ~/.gnucash/checks directory.  Users may add check formats at any time (even while <application>&app;</application> is running) simply by dropping a new *.chk file in this directory.  The next time the check printing dialog is opened the new check format will appear in the list of available check formats.</para>
+        <para><application>&app;</application> looks for check format files in two different locations when you bring up the check printing dialog.  The first location is typically <filename class="directory">/usr/share/gnucash/checks</filename>, where check files distributed with the application can be found.  The second location is the user private <filename class="directory">~/.gnucash/checks</filename> directory.  Users may add check formats at any time (even while <application>&app;</application> is running) simply by dropping a new *.chk file in this directory.  The next time the check printing dialog is opened the new check format will appear in the list of available check formats.</para>
         <note>
           <para>Printing functions differently depending on the version of GTK that is installed on your system.  When <application>&app;</application> is using a version of GTK prior to 2.10 all offsets are measured from the lower left corner of the page or check.  When using GTK 2.10 or later, all offsets are measured from the upper left corner of the page or check.</para>
         </note>
@@ -97,7 +97,7 @@ Coords_5 = 50.0;212.0
                   <entry>Blocking_Chars</entry>
                   <entry>boolean</entry>
                   <entry>optional</entry>
-                  <entry>If supplied, this is the default used when printing all <emphasis>TEXT</emphasis> items on this check.  When set to true, will print '***' before and after each text field on the check.  Blocking characters are printed to protect check fields from alteration.  For example, the amount field may be printed as ***100.00***</entry>
+                  <entry>If supplied, this is the default used when printing all <emphasis>TEXT</emphasis> items on this check.  When set to true, will print <emphasis>***</emphasis> before and after each text field on the check.  Blocking characters are printed to protect check fields from alteration.  For example, the amount field may be printed as <emphasis>***100.00***</emphasis></entry>
                 </row>
                 <row>
                   <entry>DateFormat</entry>
@@ -216,7 +216,7 @@ Coords_5 = 50.0;212.0
                   <entry>Filename_<emphasis>n</emphasis></entry>
                   <entry>string</entry>
                   <entry>optional</entry>
-                  <entry>This field is only used when the item type is <emphasis>PICTURE</emphasis>. It specifies the filename of the image that should be printed on the check.  The string may specify either an absolute path name or as a relative path name.  If a relative path name is specified, <application>&app;</application> first looks in in the application check format folder (typically /usr/share/gnucash/checks) for the image file, and if it isn&rsquo;t found there then it looks in the user private ~/.gnucash/checks directory for the image.  This field is only recognized when using gtk version 2.10 or later.</entry>
+                  <entry>This field is only used when the item type is <emphasis>PICTURE</emphasis>. It specifies the filename of the image that should be printed on the check.  The string may specify either an absolute path name or as a relative path name.  If a relative path name is specified, <application>&app;</application> first looks in in the application check format folder (typically <filename class="directory">/usr/share/gnucash/checks</filename>) for the image file, and if it isn&rsquo;t found there then it looks in the user private <filename class="directory">~/.gnucash/checks</filename> directory for the image.  This field is only recognized when using gtk version 2.10 or later.</entry>
                 </row>
                 <row>
                   <entry>Blocking_Chars_<emphasis>n</emphasis></entry>
@@ -404,7 +404,7 @@ Blocking_Chars
       </sect2>
       <sect2 id="check_format_notes">
         <title>Creating Check Format Files</title>
-        <para>Creating your own check format file is a fairly simple task.  The easiest way to start is to copy an existing check format file from the application directory (typically /usr/share/gnucash/checks) to the directory ~/.gnucash/checks.  Make sure to change the guid so the new file will be accepted by gnucash, and change the title to something descriptive.  Then change or add individual item fields as necessary.  You can also create a new check file by clicking the <guibutton>Save Format</guibutton> button on the <guilabel>Custom format</guilabel> page of the check printing dialog.</para>
+        <para>Creating your own check format file is a fairly simple task.  The easiest way to start is to copy an existing check format file from the application directory (typically <filename class="directory">/usr/share/gnucash/checks</filename>) to the directory <filename class="directory">~/.gnucash/checks</filename>.  Make sure to change the guid so the new file will be accepted by gnucash, and change the title to something descriptive.  Then change or add individual item fields as necessary.  You can also create a new check file by clicking the <guibutton>Save Format</guibutton> button on the <guilabel>Custom format</guilabel> page of the check printing dialog.</para>
         <note>
           <para>Key names are case sensitive.  If you&rsquo;re having problems with a check format file, ensure that all key names have capital letters as documented above.</para>
         </note>
