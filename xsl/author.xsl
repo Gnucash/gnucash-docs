@@ -13,7 +13,7 @@
 <xsl:variable name="author.org" select=".//orgname"/>
 <xsl:variable name="author.email" select=".//email"/>
 <dl>
- <dt><xsl:call-template name="person.name"/></dt>
+ <dt><xsl:call-template name="person.name.last-first"/></dt>
  <xsl:if test="$author.org">
     <dd><strong>
         <xsl:call-template name="gentext">
