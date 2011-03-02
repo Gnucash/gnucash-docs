@@ -30,22 +30,22 @@ Author:
   </para>
   <para>
     Starting with <application>&app;</application> version 2.4 you can
-    write Python scripts to manipulate your financial data.
+    write <application>Python</application> scripts to manipulate your financial data.
   </para>
   <note>
-    <para>The Python extensions are an optional feature in the source code.
-      To be able to use Python scripts, <application>&app;</application> must
+    <para>The <application>Python</application> extensions are an optional feature in the source code.
+      To be able to use <application>Python</application> scripts, <application>&app;</application> must
       have been compiled with this option enabled, otherwise all what follows
-      won't work. At present this option is not enabled by default, so if you
+      won&rsquo;t work. At present this option is not enabled by default, so if you
       need this, you may have to compile <application>&app;</application> from
       source yourself.
     </para>
   </note>
-  <para>The Python extensions come with a couple of ready to use scripts. This
+  <para>The <application>Python</application> extensions come with a couple of ready to use scripts. This
     chapter will show you how to use some of these.
   </para>
   <note>
-    <para>This chapter is not about how to write your own Python scripts.
+    <para>This chapter is not about how to write your own <application>Python</application> scripts.
       Refer to the developer documentation for that instead.
     </para>
   </note>
@@ -54,7 +54,7 @@ Author:
     <title>Import Bills or Invoices</title>
 
     <para>In order for the importer to work the data must be in a fixed field
-      length, comma separated line format. A example Python script to convert
+      length, comma separated line format. A example <application>Python</application> script to convert
       a downloaded order is shown below.
     </para>
 
@@ -83,7 +83,7 @@ for row in Reader:
       </programlisting>
     </para>
 
-    <para>Example of a downloaded vendor order from Rapid Electronics (UK).
+    <para>Example of a downloaded vendor order from <emphasis>Rapid Electronics</emphasis> (UK).
       <programlisting language="python" linenumbering="unnumbered">
 line number,product code,quantity,availability,product description,unit price,discounts,line total,delivery,sub total,vat,grand total
 1,47-3524,100,100 Available,BC848C SOT-23 NPN TRANSISTOR (INF) (RC),GBP0.03,GBP0.00,GBP0.03
@@ -100,7 +100,7 @@ line number,product code,quantity,availability,product description,unit price,di
       </programlisting>
     </para>
 
-    <para>A similar file after processing with the python script.</para>
+    <para>A similar file after processing with the <application>Python</application> script.</para>
 
     <para>
       <programlistingco language="python">
@@ -124,26 +124,29 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
     <para>
       As can be seen there are some fields that are absent and some that
       are not required for import. The first line is not required and the last
-      line is superfluous as GnuCash will total the order for us. All that is
+      line is superfluous as <application>&app;</application> will total the order for us. All that is
       required is to take what we want and produce an output file with the
-      correct format to import into GnuCash. In this case we join the part
-      number and description fields and these become description in GnuCash
+      correct format to import into <application>&app;</application>. In this case we join the part
+      number and description fields and these become description in <application>&app;</application>
       invoice/bill. We need the qty and part price fields. Contrary to the
-      header line VAT is not included by line and is always zero, the VAT is
-      calculated on the last line as vat on the order total.
+      header line <acronym>VAT</acronym> is not included by line and is always zero, the <acronym>VAT</acronym> is
+      calculated on the last line as <acronym>VAT</acronym> on the order total.
       <note>
         <para>This will cause problems later.</para>
       </note>
       In this example I have assigned the
-      "Expenses:Materials General" account to be the target account. This can be
+      <emphasis>Expenses:Materials General</emphasis> account to be the target account. This can be
       changed after import in the usual way, along with any other data. If there
-      is no such account as "Expenses:Materials General" then that field will be
+      is no such account as <emphasis>Expenses:Materials General</emphasis> then that field will be
       left blank on import and will have to be set manually. Lines beginning
-      with a # are regarded as comment lines and ignored.
+      with a <quote>#</quote> are regarded as comment lines and ignored.
     </para>
 
-    <para>The script is called by: "python importer.py file_to_import,
-      invoice_id &gt; file_to_save_as.csv". This short script can easily be
+    <para>The script is called with the following command:</para>
+      <para> <command>python importer.py <replaceable>file_to_import</replaceable>,
+      <replaceable>invoice_id</replaceable> &gt; <replaceable>file_to_save_as.csv</replaceable></command>
+      </para>
+    <para>This short script can easily be
       changed to suit any downloaded format. The only restriction is that the
       final number of field is fixed, at least at the moment. The importer will
       ignore lines with the wrong number of fields. (This may be fixed in future
@@ -152,46 +155,47 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
       correct data lies. Note that the first field is row[0] NOT row[1].
     </para>
 
-    <para>Once you have converted the file navigate to Business -&gt; Invoice
-      &amp; Bill Import to open a new import window. Select the file you have
-      just created, select Bill or Invoice and Comma separated format. At this
+    <para>Once you have converted the file navigate to <menuchoice><guimenu>Business</guimenu>
+      <guimenuitem>Invoice &amp; Bill Import</guimenuitem></menuchoice> to open a new import window. 
+      Select the file you have just created, select <guilabel>Bill</guilabel> 
+      or <guilabel>Invoice</guilabel> and <guilabel>Comma separated</guilabel> format. At this
       point the data should show up in the preview window. Check that the field
-      data are in the correct columns before selecting OK. Once imported the
-      invoice can be opened of editing and posting in the usual way.
+      data are in the correct columns before selecting <guibutton>OK</guibutton>. Once imported the
+      invoice can be opened for editing and posting in the usual way.
     </para>
 
-    <para>A note on VAT, or any purchase tax. As previously mentioned Rapid
-      Electronics calculate the VAT on the bill total not line by line. GnuCash
-      calculated the VAT per line then totals the VAT. This can lead to
-      inaccuracies in the VAT of the region of a few pennies and is enough to
+    <para>A note on <acronym>VAT</acronym>, or any purchase tax. As previously mentioned <emphasis>Rapid
+      Electronics</emphasis> calculate the <acronym>VAT</acronym> on the bill total not line by line. <application>&app;</application>
+      calculated the <acronym>VAT</acronym> per line then totals the <acronym>VAT</acronym>. This can lead to
+      inaccuracies in the <acronym>VAT</acronym> of the region of a few pennies and is enough to
       cause problems when reconciling the purchase with your bank or credit card
       account used to make the purchase. As to how you overcome that, for the
       moment, is a problem for you to use whatever method suits your conscience
-      or accountant best. Personally I add the VAT as a separate line along with
+      or accountant best. Personally I add the <acronym>VAT</acronym> as a separate line along with
       delivery charges manually. So some work is left to the user but the tedium
       of entering each item eliminated.
     </para>
 
     <para>Future: Currently the import format is quire strict and many users
       may have problems with the conversion process. Adding a template for every
-      possible vendor CSV format would be mammoth and likely impossible task
+      possible vendor <acronym>CSV</acronym> format would be mammoth and likely impossible task
       notwithstanding the fact the vendors are likely to change the format
-      without informing the GnuCash team. Future import enhancements will be
+      without informing the <application>&app;</application> team. Future import enhancements will be
       based on user feedback and hopefully the process can be made simpler or
-      more flexible. Note that often "simple" is incompatible with
-      "flexible".
+      more flexible. Note that often <quote>simple</quote> is incompatible with
+      <quote>flexible</quote>.
     </para>
 
     <note>
-    <para>If Python (other languages are avaialble) is not your thing then
+    <para>If <application>Python</application> (other languages are avaialble) is not your thing then
       post a request to gnucash-users list, with an example of your downloaded
-      CSV, and someone may write you a python script to do the
+      <acronym>CSV</acronym>, and someone may write you a <application>Python</application> script to do the
       translation.
     </para>
     </note>
 
     <sect2 id="python-author-notes">
-      <title>Notes for Python authors</title>
+      <title>Notes for <application>Python</application> authors</title>
 
       <para>In order for the import to succeed the number of fields must be
         adhered to, so the trailing commas are important.
@@ -253,7 +257,7 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
         </listitem>
         <listitem>
           <para><emphasis>action</emphasis> -
-            For bills usually "ea".
+            For bills usually <quote>ea</quote>.
           </para>
         </listitem>
         <listitem>
@@ -275,7 +279,7 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
         </listitem>
         <listitem>
           <para><emphasis>disc_type</emphasis> -
-            Type of discount, either "%" or "TODO", only applies to
+            Type of discount, either <quote>%</quote> or <quote>TODO</quote>, only applies to
             invoices. Some experimentation may be required here as may be currency
             dependent.
           </para>
@@ -293,12 +297,12 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
         </listitem>
         <listitem>
           <para><emphasis>taxable</emphasis> -
-            Will tax be applied to the item? "y" or blank.
+            Will tax be applied to the item? <quote>y</quote> or blank.
           </para>
         </listitem>
         <listitem>
           <para><emphasis>taxincluded</emphasis> -
-            Is tax included in the item price? "y" or blank.
+            Is tax included in the item price? <quote>y</quote> or blank.
           </para>
         </listitem>
         <listitem>
@@ -329,7 +333,7 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
         </listitem>
         <listitem>
           <para><emphasis>accu_splits</emphasis> -
-            Accumulate splits? "y" or blank.
+            Accumulate splits? <quote>y</quote> or blank.
           </para>
         </listitem>
       </itemizedlist>
