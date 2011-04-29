@@ -550,52 +550,54 @@
     been cleared, but not reconciled. You can toggle the reconciliation status
     between <emphasis>n</emphasis> and <emphasis>c</emphasis> by clicking in the <guilabel>R</guilabel> field; you can set 
     it to <emphasis>y</emphasis> by using the <guilabel>Reconciliation Window</guilabel>.</para>
+    
+      <para>At the bottom of the account window, there are (among others) two running
+      balances (the <guilabel>cleared</guilabel> and <guilabel>reconciled</guilabel> balance), and the 
+      <guilabel>total</guilabel> balance. The formers balances should correspond to how much money
+      the bank thinks you have in your account, while the latter includes outstanding transactions.</para>
 
-    <para>At the bottom of the account window, there are two running totals:
-    <guilabel>Balance</guilabel> and <guilabel>Cleared</guilabel>. The former includes
-    outstanding transactions while the latter should correspond to how much money
-    the bank thinks you have in your account.</para>
+      <para>For example, when you write a check for something, you should
+      enter the transaction into <application>&app;</application>. The reconciliation <guilabel>R</guilabel> field of the
+      transaction will initially contain <guilabel>n</guilabel> (new). Your new entry will
+      contribute to the <guilabel>total</guilabel> balance, but not to the <guilabel>cleared</guilabel> and
+      <guilabel>reconciled</guilabel> balance. Later, if you think that the check has been cashed,
+      you might click on the transaction&rsquo;s <guilabel>R</guilabel> field to change it to <emphasis>c</emphasis>
+      (cleared). When you do this, the <guilabel>cleared</guilabel> balance will
+      change to include this amount. When the bank statement arrives, you can
+      then compare it to what you&rsquo;ve recorded in <application>&app;</application> by opening the reconciliation
+      window. There, you will be able to change the <guilabel>R</guilabel> field to <emphasis>y</emphasis> (reconciled).</para>
+      
+      <note>
+        <para>You cannot reconcile in the register window, you must use the
+        reconciliation window. Once a transaction has been marked <emphasis>reconciled</emphasis>,
+        it can no longer be easily changed without breaking the 
+        <link linkend="rec-start-blnc"><guilabel>Starting Balance</guilabel></link> of the next reconciliation.</para>
+      </note>
 
     <sect2 id="txns-reconcile-window2">
-      <title>Reconcile Window</title>
+      <title>Reconcile windows</title>
 
-      <para>The Reconciliation Window is used to reconcile a <application>&app;</application> account
+      <para>The reconciliation windows are used to reconcile a <application>&app;</application> account
       with a statement that a bank or other institution has sent you.
       Reconciliation is useful not only to double-check your records against
       those of your bank, but also to get a better idea of outstanding
       transactions, e.g. uncashed checks.</para>
 
-      <para>At the bottom of the account window, there are two running
-      balances: the <guilabel>cleared and reconciled</guilabel> balance, and the <guilabel>total</guilabel> balance.
-      The <guilabel>cleared and reconciled</guilabel> balance should correspond to how much money
-      the bank thinks you have in your account, and the <guilabel>total</guilabel> balance
-      includes outstanding transactions.</para>
-
-      <para>For example, when you write a check for something, you should
-      enter the transaction into <application>&app;</application>. The reconciliation <guilabel>R</guilabel> field of the
-      transaction will initially contain <guilabel>n</guilabel> (new). Your new entry will
-      contribute to the <guilabel>total</guilabel> balance, but not to the <guilabel>cleared and
-      reconciled</guilabel> balance. Later, if you think that the check has been cashed,
-      you might click on the transaction&rsquo;s <guilabel>R</guilabel> field to change it to <emphasis>c</emphasis>
-      (cleared). When you do this, the <guilabel>cleared and reconciled</guilabel> balance will
-      change to include this amount. When the bank statement arrives, you can
-      then compare it to what you&rsquo;ve recorded in <application>&app;</application> in the reconciliation
-      window. There, you will be able to change the <guilabel>R</guilabel> field to <emphasis>y</emphasis> (reconciled).
-      You cannot reconcile in the register window, you must use the
-      reconciliation window. Once a transaction has been marked <emphasis>reconciled</emphasis>,
-      it can no longer be easily changed.</para>
-
-      <para>To use the Reconciliation Windows, select an account from the
+      <para>To use the reconciliation windows, select an account from the
       account tree and click on <menuchoice><guimenu>Actions</guimenu>
-      <guimenuitem>Reconcile</guimenuitem></menuchoice>. A window will appear in which you can
+      <guimenuitem>Reconcile</guimenuitem></menuchoice>. A window like the one below will appear in which you can
       enter the reconcile information.</para>
 
       <screenshot id="txns-reconcile-window-1">
         <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_reconcile_window1.png"
-                       format="PNG" srccredit="Bengt Thuree" />
-          </imageobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/txns_reconcile_window1.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/txns_reconcile_window1.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
 
           <textobject>
             <phrase>Reconcile Window</phrase>
@@ -605,46 +607,94 @@
         </mediaobject>
       </screenshot>
 
-      <itemizedlist>
-        <listitem>
-          <para><emphasis>Reconcile Info: Statement Date</emphasis> - this is
-          the date of the statement you will be reconciling against.</para>
-        </listitem>
+      <para>In the initial reconcile window, some <guilabel>Reconcile Information</guilabel> need to be entered.</para>
+      <variablelist>
+        <varlistentry><term><guilabel>Statement Date</guilabel></term>
+          <listitem>
+            <para>The date of the statement you will be reconciling against.</para>
+	  <tip>
+	    <para>Click on the down arrow in the right of this field to open a calendar</para>
+	  </tip>
+          </listitem>
+        </varlistentry>
 
-        <listitem>
-          <para><emphasis>Reconcile Info: Starting Balance</emphasis> - this
-          is a non-editable item which displays the balance from the previous
-          reconciliation. It should match the starting balance in your
-          statement.</para>
-        </listitem>
+        <varlistentry id="rec-start-blnc"><term><guilabel>Starting Balance</guilabel></term>
+          <listitem>
+            <para>This is a non-editable item which displays the balance from the previous
+            reconciliation. It should match the starting balance in your statement.</para>
 
-        <listitem>
-          <para><emphasis>Reconcile Info: Ending Balance</emphasis> - this is
-          the ending balance as it appears in the statement.</para>
-        </listitem>
+	  <note>
+	    <para>Sometimes, the opening balance in <application>&app;</application> does not match that 
+	    found on your statement. This can happen the first time you reconcile your account or 
+	    when a previously-reconciled transaction is de-reconciled or deleted.</para>
+	  </note>
+	  
+	  <para>The first time you reconcile your account, the <guilabel>starting balance</guilabel> will 
+	  be <guilabel>0.00</guilabel>, thus probably not the  <emphasis>opening balance</emphasis> of your account. 
+	  When you reconcile the account, the <emphasis>opening balance</emphasis> for the account 
+	  will be included in the reconciliation, and the result should balance.</para>
+            
+	  <para>In the case when a previously-reconciled transaction is accidentally de-reconciled, you can simply 
+	  re-reconcile the transaction along with the transactions on the current statement, and the
+            result should balance.</para>
 
-        <listitem>
-          <para><emphasis>Reconcile Info: Include Sub-accounts</emphasis> -
-          select this if you want to include the sub-accounts of the currently
-          selected account in this reconciliation.</para>
-        </listitem>
+            <para>The case of accidentally deleting a previously-reconciled transaction presents
+            more of a challenge; if you cannot determine what was
+            deleted and restore it to the register, you will have to create a dummy
+            transaction to get the reconciliation to finish.</para>
+          </listitem>
+        </varlistentry>
 
-        <listitem>
-          <para><emphasis>Enter Interest Payment</emphasis> - click here to
-          enter an interest transaction to the account to be
-          reconciled.</para>
-        </listitem>
-      </itemizedlist>
+        <varlistentry><term><guilabel>Ending Balance</guilabel></term>
+          <listitem>
+            <para>This field should be filled with the ending balance as it appears in the statement.</para>
+	  <note>
+	    <para><application>&app;</application> automatically fills this field with the 
+	    <guilabel>Present</guilabel> balance as shown in the lower part of the 
+	    account&rsquo;s register.</para>
+	  </note>
+          </listitem>
+        </varlistentry>
 
-      <para>Click on the <guibutton>Ok</guibutton> button, and you will see
+        <varlistentry><term><guilabel>Include Sub-accounts</guilabel></term>
+          <listitem>
+            <para>Check this option if you want to include in the reconciliation the transactions
+            that belongs to the sub-accounts of the currently selected account.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guibutton>Enter Interest Payment</guibutton></term>
+          <listitem>
+            <para>Clicking this button opens a new window that allow you to enter an interest transaction to the account to be
+            reconciled.</para>
+	    <tip>
+	      <para>The <guilabel>Interest Payment</guilabel> window might be opened automatically when you start a reconciliation 
+	      for an account of the type <emphasis>Bank</emphasis>, <emphasis>Credit</emphasis>, 
+	      <emphasis>Mutual</emphasis>, <emphasis>Asset</emphasis>, <emphasis>Receivable</emphasis>,
+	      <emphasis>Payable</emphasis>, and <emphasis>Liability</emphasis>. If you want to disable
+	      this behavior for any of the previous accounts, go to the <guilabel>Register</guilabel> tab of the 
+	      <guilabel>&app; Preferences</guilabel> and uncheck the <guilabel>Automatic interest transfer</guilabel>
+	      option. Alternatively, to disable this behavior only for the selcted account, press the 
+	      <guibutton>No Auto Interest Payments for this Account</guibutton> button in the 
+	      <guilabel>Interest Payment</guilabel> window.</para>
+	    </tip>  
+          </listitem>
+        </varlistentry>
+       </variablelist>
+
+      <para>Then, click on the <guibutton>Ok</guibutton> button, and you will see
       the transactions listing reconcile window:</para>
 
       <screenshot id="txns-reconcile-window-2">
         <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_reconcile_window2.png"
-                       format="PNG" srccredit="Bengt Thuree" />
-          </imageobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/txns_reconcile_window2.png"
+                         format="PNG" srccredit="Cristian Marchi" width="510"></imagedata>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/txns_reconcile_window2.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
 
           <textobject>
             <phrase>Reconcile Window</phrase>
@@ -655,54 +705,57 @@
         </mediaobject>
       </screenshot>
 
-      <para>The two lists called <guilabel>Funds In</guilabel> and
-      <guilabel>Funds Out</guilabel> lists all the unreconciled transactions.
-      The <guilabel>R</guilabel> columns show whether the transactions have been cleared or
-      reconciled.</para>
-
+      <para>The two panes called <guilabel>Funds In</guilabel> and
+      <guilabel>Funds Out</guilabel>, lists all the unreconciled transactions that belongs to the account 
+      that is going to be reconciled.
+      The <guilabel>R</guilabel> columns show whether the transactions have been reconciled.</para>
+      
       <para>Now, examine each item on the bank statement, and look for the
-      matching item in the Reconcile window.</para>
+      matching item in the <guilabel>Reconcile</guilabel> window.</para>
 
-      <para>If you cannot find one, then perhaps you forgot to enter a
-      transaction, or did not know that the transaction had happened. You can
-      use the <guibutton>New</guibutton> button on the <emphasis>Toolbar</emphasis>, or the New menu item in the
-      Transaction menu, to open a register window and enter the missing
-      transaction. The new item will appear in the Reconcile window when you
-      press <keycap function="enter">enter</keycap> after entering the transaction.</para>
+      <para>If you cannot find a transaction, then perhaps you forgot to enter it, or did not know that the transaction 
+      had happened. You can use the <guibutton>New</guibutton> button on the <emphasis>Toolbar</emphasis>, or the 
+      <menuchoice><guimenu>Transaction</guimenu><guimenuitem>New</guimenuitem></menuchoice>
+      menu item in the  menu, to open a register window and enter the missing
+      transaction. The new item will appear in the <guilabel>Reconcile</guilabel> window when you
+      press the <guibutton>Enter</guibutton> button in the register after entering the transaction.</para>
 
-      <para>When you find the item in the Reconcile window, compare the amount
+      <para>When you find the item in the <guilabel>Reconcile</guilabel> window, compare the amount
       in the item to the amount on the statement. If they disagree, you may
       have made an error when you entered the transaction in <application>&app;</application>. You can
       use the <guibutton>Edit</guibutton> button on the <emphasis>Toolbar</emphasis>, or the
-      <guimenu>Edit</guimenu> menu item in the Transaction menu, to open a
-      register window and correct the transaction.</para>
+      <menuchoice><guimenu>Transaction</guimenu><guimenuitem>Edit</guimenuitem></menuchoice>
+      item, to open a register window and correct the transaction.</para>
 
-      <para>If the amounts agree, click on the item in the Reconcile window.
-      The <emphasis>R</emphasis> column will change to <emphasis>y</emphasis> (reconciled)
-      from <emphasis>n</emphasis> or <emphasis>c</emphasis>.  You
-      may also use the up/down arrow keys to scroll to the item and then
-      press the space key.  This will also change the <guilabel>R</guilabel> column to show the
-      item as reconciled.</para>
+      <para>If the amounts agree, click on the item in the <guilabel>Reconcile</guilabel> window.
+      A check mark wil appear in the <guilabel>R</guilabel> column aside the selected transaction. 
+      <application>&app;</application> will automatically update the amounts in the lower right summary pane.</para>
+      
+      <tip>
+        <para>You can use the <keycap>up</keycap>/<keycap>down</keycap> arrow keys to scroll to the item, the
+        <keycap>space</keycap> key to mark the item as reconciled and the <keycap>Tab</keycap> 
+        key to switch panes.</para>
+      </tip>
 
       <para>You then repeat this for each item that appears on the bank
       statement, verifying that the amounts match with the amounts in <application>&app;</application>,
       and marking off transactions in <application>&app;</application> as they are reconciled.</para>
 
-      <para>At the bottom of the <guilabel>Reconcile</guilabel> window is a <guilabel>Difference</guilabel> field,
-      which should show $0.00 when you are done reconciling. If it shows some
+      <para>At the bottom of the <guilabel>Reconcile</guilabel> window there is a <guilabel>Difference</guilabel> field,
+      which should show <guilabel>0.00</guilabel> when you are done reconciling. If it shows some
       other value, then either you have missed transactions, or some amounts
       may be incorrect in <application>&app;</application>. (Or, less likely, the bank may have made an
       error.)</para>
 
       <para>When you have marked off all the items on the bank statement, and
-      when the difference is $0.00, press the <guibutton>Finish</guibutton> button on the <emphasis>Toolbar</emphasis> or
+      when the difference is 0.00, press the <guibutton>Finish</guibutton> button on the <emphasis>Toolbar</emphasis> or
       select <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Finish</guimenuitem></menuchoice> from the menu. 
       The <guilabel>Reconcile</guilabel> window will close.
       In the register window, the <guilabel>R</guilabel> field of the reconciled transactions will
       change to <emphasis>y</emphasis>.</para>
 
       <para>In this case, we have not received all the information yet, so we
-      simply press the <guibutton>Postpone</guibutton>, so we can continue at
+      simply press the <guibutton>Postpone</guibutton> button, so we can continue at
       a later stage. Observe that the <guilabel>R</guilabel> column indicates we cleared (<emphasis>c</emphasis>)
       two transactions. They have not been reconciled yet, but we have
       verified these two transactions so they have been marked as cleared. If
@@ -721,7 +774,7 @@
             <phrase>Checking account</phrase>
           </textobject>
 
-          <caption><para>The Checking account after postponed the
+          <caption><para>The Checking account after postponing the
           reconciliation.</para></caption>
         </mediaobject>
       </screenshot>
