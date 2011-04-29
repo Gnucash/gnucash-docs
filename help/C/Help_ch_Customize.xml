@@ -2068,7 +2068,64 @@
        reseting the warnings to the default, IE make the warning happen. Warnings may be selectivly enabled.
      </para>
 
+    </sect1>
+    
+    <sect1  id="chang-lang">
+      <title>Changing the language</title>
+      
+      <para>The language of the <application>&app;</application> user interface is not modifiable
+      directly from the program&rsquo;s preferences.</para>
+      
+      <para>The way you can change the language depends on the operating system you are running 
+      <application>&app;</application> on.</para>
 
+      <variablelist>
+      <varlistentry><term>Linux</term>
+          <listitem>
+            <para>In general you should set the <envar>LANGUAGE</envar> and <envar>LANG</envar> environment variables before starting <application>&app;</application>.
+	  To do this you need to open a terminal and run the following command:</para>
+	  <para><command>LANGUAGE=<replaceable>ll_LL</replaceable> LANG=<replaceable>ll_LL</replaceable> gnucash</command></para>
+	  <para><replaceable>ll_LL</replaceable> is the locale you want to run <application>&app;</application> with (<emphasis>de_DE</emphasis> 
+	  for Deutsch, <emphasis>it_IT</emphasis> for Italian etc.)</para>
+	  <note>
+	    <para>On some systems (e.g. Ubuntu) the encoding could be part of the locales name, like <replaceable>ll_LL.UTF-8</replaceable>. 
+	    You can use these names as well.</para>
+	  </note>
+          </listitem>
+        </varlistentry>
+
+      <varlistentry><term>MacOSX</term>
+          <listitem>
+            <para>If you want to use a different translation from the one that is automatically selected, you can run the following in <application>Terminal.app</application>:</para>
+            <para><command>defaults write $(mdls -name kMDItemCFBundleIdentifier -raw /Applications/Gnucash.app) AppleLanguages "(<replaceable>de</replaceable>, <replaceable>en</replaceable>)"</command></para>
+            <para>Use whatever language codes you want, replacing Deutsch and English. It won&rsquo;t work if there isn&rsquo;t a translation file for the language you want.</para>
+            <para>If you want to unset it (that is, return to using the system settings), run this:</para>
+            <para><command>defaults delete $(mdls -name kMDItemCFBundleIdentifier -raw /Applications/Gnucash.app)</command></para>
+          </listitem>
+        </varlistentry>
+	
+      <varlistentry><term><trademark>Windows</trademark></term>
+          <listitem>
+            <para>If you are running <application>&app;</application> 2.4.0 (or newer) on Windows, you can set the interface language 
+	  by editing the file <filename>environment</filename> with a text editor (e.g. <application>Notepad</application>). By default this file is installed in 
+	  <filename role="directory">c:\Program Files\gnucash\etc\gnucash</filename>. Change this file such that the last few lines are:</para>
+	  <para>
+	  <programlisting linenumbering="unnumbered"># If you wish GnuCash to use a different language, uncomment the two parameters
+# below and set LANG to your preferred locale
+LANG=ll_LL
+LANGUAGE={LANG}</programlisting>
+	  </para>
+	  <para><replaceable>ll_LL</replaceable> is the locale you want to run <application>&app;</application> with (<emphasis>de_DE</emphasis> 
+	  for Deutsch, <emphasis>it_IT</emphasis> for Italian etc.)</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      
+      <tip>
+        <para>More and updated information about this topic can be found on the
+        <ulink type="http" url="http://wiki.gnucash.org/wiki/Locale_Settings">Locale Settings page</ulink> of the <application>&app;</application> wiki.</para>
+      </tip>
+      
     </sect1>
 
   </chapter>
