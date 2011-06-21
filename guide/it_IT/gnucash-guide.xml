@@ -1083,7 +1083,7 @@
   <sect1 id="basics-help1">
     <title>Ricevere aiuto</title>
 
-    <para><application>&app;</application> offre aiuto in diversi modi. È già stato trattato il <link linkend="basics-TipOfDay"><guilabel>Suggerimento del giorno</guilabel></link> che fornisce informazioni utili all&rsquo;avvio della sessione di <application>&app;</application>. <application>&app;</application> offre però anche un esteso manuale di aiuto.</para>
+    <para><application>&app;</application> offre aiuto in diversi modi. È già stato trattato il <link linkend="basics-tip2"><guilabel>Suggerimento del giorno</guilabel></link> che fornisce informazioni utili all&rsquo;avvio della sessione di <application>&app;</application>. <application>&app;</application> offre però anche un esteso manuale di aiuto.</para>
 
     <sect2 id="basics-manual2">
       <title>Manuale di aiuto</title>
@@ -1787,7 +1787,7 @@ Translators:
 
       <para>A questo punto si può creare la struttura ad albero dei conti partendo dai conti di livello principale e aggiungendo dei sottoconti in grado di contenere delle transazioni. Si noti come i conti per le tasse siano tutti inseriti in un sottoconto denominato <emphasis>Tasse</emphasis>. I conti e i sottoconti possono infatti a loro volta contenere altri sottoconti: questo è utile quando si considera un gruppo di conti appartenenti a una stessa categoria (come i conti per le tasse in questo esempio).</para>
       <tip>
-        <para>In vece di selezionare <menuchoice><guimenu>Operazioni</guimenu><guimenuitem>Nuovo conto...</guimenuitem></menuchoice> dal menu, è anche possibile creare un nuovo sottoconto di un conto facendo un clic con il tasto destro del mouse sul nome del conto principale e selezionando la voce <guilabel>Nuovo conto...</guilabel> nel menu che comparirà. Verraà così aperta una finestra simile a quella rappresentata in <xref linkend="accts-CreateAssetsAccounts"/> e in cui il nuovo conto sarà già impostato come sottoconto del conto principale.</para>
+        <para>In vece di selezionare <menuchoice><guimenu>Operazioni</guimenu><guimenuitem>Nuovo conto...</guimenuitem></menuchoice> dal menu, è anche possibile creare un nuovo sottoconto di un conto facendo un clic con il tasto destro del mouse sul nome del conto principale e selezionando la voce <guilabel>Nuovo conto...</guilabel> nel menu che comparirà. Verrà così aperta una finestra simile a quella rappresentata in <xref linkend="accts-examples-toplevel2"/> e in cui il nuovo conto sarà già impostato come sottoconto del conto principale.</para>
       </tip>
         <orderedlist>
           <listitem>
@@ -2173,25 +2173,30 @@ Translators:
     <para>Le transazioni sono tipicamente confrontate con gli estratti conto forniti dalla banca; il processo è noto con il nome di <emphasis>riconciliazione</emphasis>. <application>&app;</application> tiene traccia dello stato di riconciliazione di ogni transazione.</para>
 
     <para>Lo stato di riconciliazione di una transazione è mostrato nel campo di riconciliazione <guilabel>R</guilabel>: <emphasis>s</emphasis> indica che la transazione è stata riconciliata, <emphasis>n</emphasis> indica che non la è stata e <emphasis>l</emphasis> indica che è stata liquidata ma non riconciliata. È possibile cambiare lo stato di riconciliazione tra <emphasis>n</emphasis> e <emphasis>l</emphasis> facendo clic sul campo <guilabel>R</guilabel>; per impostarla invece al valore <emphasis>s</emphasis>, utilizzare la finestra di <guilabel>riconciliazione</guilabel>.</para>
+    
+      <para>Nella parte inferiore della finestra dei conti, sono visualizzati dei saldi provvisori (il saldo <guilabel>liquidato</guilabel> e il saldo <guilabel>riconciliato</guilabel>) e il saldo <guilabel>totale</guilabel>. Il primi due dovrebbero corrispondere a quanto denaro la banca crede che si abbia sul proprio conto, mentre il saldo <guilabel>totale</guilabel> comprende le transazioni non ancora finalizzate.</para>
 
-    <para>In basso, nella finestra del conto, ci sono due totali correnti: <guilabel>Saldo</guilabel> e <guilabel>liquidato</guilabel>. Il primo include le transazioni non ancora riscosse mentre il secondo corrisponde all&rsquo;importo di denaro che la banca pensa si possegga nel proprio conto.</para>
+      <para>Per esempio, quando si emette un assegno per qualsiasi motivo, si dovrebbe inserire la transazione in <application>&app;</application>. Il campo per la riconciliazione <guilabel>R</guilabel> della transazione conterrà inizialmente <guilabel>n</guilabel> (non riconciliata). La nuova immissione contribuirà alla variazione del saldo <guilabel>totale</guilabel> ma non a quella del saldo <guilabel>liquidato e riconciliato</guilabel> . In seguito, se l&rsquo;assegno viene incassato, è possibile fare clic nel campo <guilabel>R</guilabel> della transazione per cambiare <guilabel>n</guilabel> in <guilabel>l</guilabel> (liquidata). Così facendo, il saldo <guilabel>liquidato e riconciliato</guilabel> varierà per considerare questo importo. Quando arriverà l&rsquo;estratto conto dalla banca, sarà possibile confrontarlo con ciò che è stato registrato in <application>&app;</application>, dalla finestra di riconciliazione. Da qui sarà possibile cambiare il valore del campo <guilabel>R</guilabel> in <guilabel>s</guilabel> (sì, riconciliata).</para>
+      
+      <note>
+        <para>Non è possibile riconciliare dalla finestra del registro; si deve usare la finestra di riconciliazione. Una volta che una transazione è stata marcata come <emphasis>riconciliata</emphasis>, non potrà più essere facilmente modificata senza compromettere il <link linkend="rec-start-blnc"><guilabel>saldo iniziale</guilabel></link> della prossima riconciliazione.</para>
+      </note>
 
     <sect2 id="txns-reconcile-window2">
-      <title>Finestra di riconciliazione</title>
+      <title>Finestre di riconciliazione</title>
 
-      <para>La finestra di riconciliazione è utilizzata per riconciliare un conto di <application>&app;</application> con l&rsquo;estratto conto che la banca o un&rsquo;altra istituzione ha inviato. La riconciliazione è utile non solo per controllare le proprie registrazioni nei confronti di quelle della banca, ma anche per avere un controllo sulle transazioni in sospeso come, per esempio, gli assegni non incassati.</para>
+      <para>Le finestre di riconciliazione sono utilizzate per riconciliare un conto di <application>&app;</application> con l&rsquo;estratto conto che la banca o un&rsquo;altra istituzione ha inviato. La riconciliazione è utile non solo per controllare le proprie registrazioni nei confronti di quelle della banca, ma anche per avere un controllo sulle transazioni in sospeso come, per esempio, gli assegni non incassati.</para>
 
-      <para>Nella parte inferiore della finestra dei conti, sono visualizzati dei saldi provvisori: <guilabel>liquidato e riconciliato</guilabel> e il saldo <guilabel>totale</guilabel>. Il saldo <guilabel>liquidato e riconciliato</guilabel> dovrebbe corrispondere a quanto denaro la banca crede che si abbia sul proprio conto, mentre il saldo <guilabel>totale</guilabel> comprende le transazioni non ancora finalizzate.</para>
-
-      <para>Per esempio, quando si emette un assegno per qualsiasi motivo, si dovrebbe inserire la transazione in <application>&app;</application>. Il campo per la riconciliazione <guilabel>R</guilabel> della transazione conterrà inizialmente <guilabel>n</guilabel> (non riconciliata). La nuova immissione contribuirà alla variazione del saldo <guilabel>totale</guilabel> ma non a quella del saldo <guilabel>liquidato e riconciliato</guilabel> . In seguito, se l&rsquo;assegno viene incassato, è possibile fare clic nel campo <guilabel>R</guilabel> della transazione per cambiare <guilabel>n</guilabel> in <guilabel>l</guilabel> (liquidata). Così facendo, il saldo <guilabel>liquidato e riconciliato</guilabel> varierà per considerare questo importo. Quando arriverà l&rsquo;estratto conto dalla banca, sarà possibile confrontarlo con ciò che è stato registrato in <application>&app;</application>, dalla finestra di riconciliazione. Da qui sarà possibile cambiare il valore del campo <guilabel>R</guilabel> in <guilabel>s</guilabel> (sì, riconciliata). Non è possibile riconciliare dalla finestra del registro ma solamente da quella di riconciliazione. Una volta che una transazione è stata riconciliata, non può più essere facilmente cambiata.</para>
-
-      <para>Per aprire la finestra di riconciliazione, selezionare un conto dalla struttura dei conti e dirigersi in <menuchoice><guimenu>Operazioni</guimenu><guimenuitem>Riconcilia</guimenuitem></menuchoice>. Apparirà una finestra in cui sarà possibile immettere le informazioni di riconciliazione.</para>
+      <para>Per aprire le finestre di riconciliazione, selezionare un conto dalla struttura dei conti e dirigersi in <menuchoice><guimenu>Operazioni</guimenu><guimenuitem>Riconcilia</guimenuitem></menuchoice>. Apparirà una finestra in cui sarà possibile immettere le informazioni di riconciliazione.</para>
 
       <screenshot id="txns-reconcile-window-1">
         <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_reconcile_window1.png" format="PNG" srccredit="Bengt Thuree"/>
-          </imageobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/txns_reconcile_window1.png" format="PNG" srccredit="Cristian Marchi"/>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/txns_reconcile_window1.png" format="PNG" srccredit="Cristian Marchi"/>
+            </imageobject>
 
           <textobject>
             <phrase>Finestra di riconciliazione</phrase>
@@ -2201,35 +2206,76 @@ Translators:
         </mediaobject>
       </screenshot>
 
-      <itemizedlist>
-        <listitem>
-          <para><emphasis>Informazioni di riconciliazione: data dell&rsquo;estratto conto</emphasis> - rappresenta la data di emissione dell&rsquo;estratto conto con cui verrà riconciliato il conto.</para>
-        </listitem>
+      <para>Nella finestra iniziale di riconciliazione, devono essere inserite alcune <guilabel>informazioni di riconciliazione</guilabel></para>
+      <variablelist>
+        <varlistentry><term><guilabel>Data dell&rsquo;estratto conto</guilabel></term>
+          <listitem>
+            <para>La la data di emissione dell&rsquo;estratto conto con cui verrà riconciliato il conto.</para>
+	  <tip>
+	    <para>Fare clic sulla freccia alla destra di questo campo per aprire un calendario</para>
+	  </tip>
+          </listitem>
+        </varlistentry>
 
-        <listitem>
-          <para><emphasis>Informazioni di riconciliazione: saldo iniziale</emphasis> - questa voce non è modificabile e visualizza il saldo della precedente riconciliazione. Dovrebbe corrispondere al saldo iniziale presente sull&rsquo;estratto conto.</para>
-        </listitem>
+        <varlistentry id="rec-start-blnc"><term><guilabel>Saldo iniziale</guilabel></term>
+          <listitem>
+            <para>Questa voce non è modificabile e visualizza il saldo della precedente riconciliazione. Dovrebbe corrispondere al saldo iniziale presente sull&rsquo;estratto conto.</para>
 
-        <listitem>
-          <para><emphasis>Informazioni di riconciliazione: saldo finale</emphasis> - è il saldo di chiusura così come appare nell&rsquo;estratto conto.</para>
-        </listitem>
+	  <note>
+	    <para>Potrebbe capitare che il saldo iniziale in <application>&app;</application> non equivalga a quello presente sull&rsquo;estratto conto. Ciò può accadere quando si riconcilia un conto per la prima volta o quando una transazione riconciliata in precedenza sia eliminata o la sua riconciliazione venga annullata.</para>
+	  </note>
+	  
+	  <para>Quando si riconcilia un conto per la prima volta, il <guilabel>saldo iniziale</guilabel> sarò pari a <guilabel>0.00</guilabel>, e quindi probabilmente diverso dal <emphasis>bilancio di apertura</emphasis> del proprio conto. Quando il conto verrà riconciliato, il <emphasis>bilancio di apertura</emphasis> del conto verrà incluso nella riconciliazione, e il risultato finale dovrebbe essere in bilancio.</para>
+            
+	  <para>Nel caso in cui venga de-reconciliata una transazione riconciliata in precedenza, è possibile riconciliarla con le transazioni presenti nell&rsquo;ultimo estratto conto. Il risultato dovrebbe essere in bilancio.</para>
 
-        <listitem>
-          <para><emphasis>Informazioni di riconciliazione: includi sottoconti</emphasis> - selezionare questa opzione se si desidera includere i sottoconti del conto selezionato nella riconciliazione.</para>
-        </listitem>
+            <para>Nel caso in cui una transazione già riconciliata venga eliminata, è più complesso; se non è possibile risalire alla transazione eliminata e ripristinarla nel registro, sarà necessario creare una transazione fittizia di pari importo per completare la riconciliazione.</para>
+          </listitem>
+        </varlistentry>
 
-        <listitem>
-          <para><emphasis>Immissione pagamento interessi</emphasis> - premere qui per inserire una transazione per gli interessi nel conto che sta per essere riconciliato.</para>
-        </listitem>
-      </itemizedlist>
+        <varlistentry><term><guilabel>Saldo finale</guilabel></term>
+          <listitem>
+            <para>In questo campo dovrebbe essere inserito il saldo di chiusura così come appare nell&rsquo;estratto conto.</para>
+	  <note>
+	    <para><application>&app;</application> completa automaticamente questo campo con il saldo <guilabel>Attuale</guilabel> così come mostrato nella parte inferiore del registro del conto.</para>
+	  </note>
+          </listitem>
+        </varlistentry>
 
-      <para>Premere il pulsante <guibutton>Ok</guibutton> e verrà visualizzata la lista delle transazioni nella finestra di riconciliazione:</para>
+        <varlistentry><term><guilabel>Includi i sottoconti</guilabel></term>
+          <listitem>
+            <para>Selezionare questa opzione per includere nella riconciliazione le transazioni relative ai sottoconti del conto attualmente selezionato.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guibutton>Immissione pagamento interessi</guibutton></term>
+          <listitem>
+            <para>Premendo questo pulsante verrà aperta una finestra che permette di inserire una transazione per gli interessi nel conto che sta per essere riconciliato.</para>
+	    <tip>
+	      <para>The <guilabel>Interest Payment</guilabel> window might be opened automatically when you start a reconciliation 
+	      for an account of the type <emphasis>Bank</emphasis>, <emphasis>Credit</emphasis>, 
+	      <emphasis>Mutual</emphasis>, <emphasis>Asset</emphasis>, <emphasis>Receivable</emphasis>,
+	      <emphasis>Payable</emphasis>, and <emphasis>Liability</emphasis>. If you want to disable
+	      this behavior for any of the previous accounts, go to the <guilabel>Register</guilabel> tab of the 
+	      <guilabel>GnuCash Preferences</guilabel> and uncheck the <guilabel>Automatic interest transfer</guilabel>
+	      option. Alternatively, to disable this behavior only for the selcted account, press the 
+	      <guibutton>No Auto Interest Payments for this Account</guibutton> button in the 
+	      <guilabel>Interest Payment</guilabel> window.</para>
+	    </tip>  
+          </listitem>
+        </varlistentry>
+       </variablelist>
+
+      <para>Premere poi il pulsante <guibutton>Ok</guibutton> e verrà visualizzata la lista delle transazioni nella finestra di riconciliazione:</para>
 
       <screenshot id="txns-reconcile-window-2">
         <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_reconcile_window2.png" format="PNG" srccredit="Bengt Thuree"/>
-          </imageobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/txns_reconcile_window2.png" format="PNG" srccredit="Cristian Marchi" width="510"/>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/txns_reconcile_window2.png" format="PNG" srccredit="Cristian Marchi"/>
+            </imageobject>
 
           <textobject>
             <phrase>Finestra di riconciliazione</phrase>
@@ -2239,15 +2285,19 @@ Translators:
         </mediaobject>
       </screenshot>
 
-      <para>Le due liste chiamate <guilabel>Fondi in ingresso</guilabel> e <guilabel>Fondi in uscita</guilabel> elencano tutte le transazioni non riconciliate. La colonna <guilabel>R</guilabel> mostra se le transazioni sono state liquidate o riconciliate.</para>
-
+      <para>I due riquadri chiamati <guilabel>Fondi in ingresso</guilabel> e <guilabel>Fondi in uscita</guilabel> elencano tutte le transazioni non riconciliate. La colonna <guilabel>R</guilabel> mostra se le transazioni sono state riconciliate.</para>
+      
       <para>Si esamini ora ogni voce dell&rsquo;estratto conto e si ricerchi l&rsquo;elemento corrispondente nella finestra di riconciliazione.</para>
 
-      <para>Se non si è in grado di trovarne una, è probabile che ci si sia dimenticati di immetterla oppure non si era al corrente della transazione. È possibile utilizzare il pulsante <guibutton>Nuovo</guibutton> sulla <emphasis>barra degli strumenti</emphasis>, o la voce <guimenuitem>Nuovo</guimenuitem> nel menu <guimenu>Transazione</guimenu>, per aprire la finestra del registro e inserire la transazione mancante. La nuova transazione apparirà nella finestra di riconciliazione alla pressione del tasto <keycap function="enter">Invio</keycap> dopo aver immesso la transazione.</para>
+      <para>Se non si è in grado di trovarne una, è probabile che ci si sia dimenticati di immetterla oppure non si era al corrente della transazione. È possibile utilizzare il pulsante <guibutton>Nuovo</guibutton> sulla <emphasis>barra degli strumenti</emphasis>, o la voce di menu <menuchoice><guimenu>Transazione</guimenu><guimenuitem>Nuovo</guimenuitem></menuchoice>, per aprire la finestra del registro e inserire la transazione mancante. La nuova transazione apparirà nella finestra di riconciliazione alla pressione del pulsante <guibutton>Inserisci</guibutton> dopo aver immesso la transazione.</para>
 
-      <para>Quando si trova la voce corrispondente nella finestra di riconciliazione, confrontarne l&rsquo;importo con quello che compare sull&rsquo;estratto conto. Nel caso fossero diversi, potrebbe essere stato commesso un errore nell&rsquo;immissione della transazione in <application>&app;</application>. È possibile utilizzare il pulsante <guibutton>Modifica</guibutton> nella barra degli strumenti o la voce <guimenuitem>Modifica</guimenuitem> nel menu <guimenu>Transazione</guimenu>, per aprire la finestra del registro e correggere la transazione.</para>
+      <para>Quando si trova la voce corrispondente nella finestra di riconciliazione, confrontarne l&rsquo;importo con quello che compare sull&rsquo;estratto conto. Nel caso fossero diversi, potrebbe essere stato commesso un errore nell&rsquo;immissione della transazione in <application>&app;</application>. È possibile utilizzare il pulsante <guibutton>Modifica</guibutton> nella barra degli strumenti o la voce del menu <menuchoice><guimenu>Transazione</guimenu><guimenuitem>Modifica</guimenuitem></menuchoice>, per aprire la finestra del registro e correggere la transazione.</para>
 
-      <para>Se gli importi corrispondono, selezionare l&rsquo;elemento nella finestra di riconciliazione. La colonna <emphasis>R</emphasis> cambierà in <emphasis>s</emphasis> (riconciliata) da <emphasis>n</emphasis> o <emphasis>c</emphasis>. È anche possibile usare i tasti delle frecce su/giù per selezionare l&rsquo;elemento e premere la barra spaziatrice. In questo modo verrà modificata anche la colonna <guilabel>R</guilabel> che mostrerà la transazione come riconciliata.</para>
+      <para>Se gli importi corrispondono, fare clic sull&rsquo;elemento nella finestra di <guilabel>Riconciliazione</guilabel>. Apparirà un segno di spunta nella colonna <guilabel>R</guilabel> a fianco della transazione selezionata. <application>&app;</application> aggiornerà automaticamente gli importi nel riquadro di ripilogo in basso a destra.</para>
+      
+      <tip>
+        <para>È possibile utilizzare i tasti delle freccie <keycap>su</keycap>/<keycap>giù</keycap> per scorrere gli elementi, la <keycap>barra spaziatrice</keycap> per marcare l'elemento come riconciliato e il tasto <keycap>Tab</keycap> per cambiare riquadro.</para>
+      </tip>
 
       <para>Ripetere quindi queste operazioni per ogni voce presente nell&rsquo;estratto conto della banca, verificando che l&rsquo;importo corrisponda con quello in <application>&app;</application> e marcando le transazioni in <application>&app;</application> quando sono riconciliate.</para>
 
@@ -2255,7 +2305,7 @@ Translators:
 
       <para>Quando sono stati esaminati tutti gli elementi nell&rsquo;estratto conto, e quando la differenza è pari a €0,00, premere il pulsante <guibutton>Termina</guibutton> sulla <emphasis>barra degli strumenti</emphasis> o selezionare <menuchoice><guimenu>Riconcilia</guimenu><guimenuitem>Termina</guimenuitem></menuchoice> dal menu; la finestra di riconciliazione verrà chiusa. Nella finestra del registro il campo <guilabel>R</guilabel> delle transazioni riconciliate visualizzerà una <emphasis>s</emphasis>.</para>
 
-      <para>In questo caso, non sono state ancora ricevute tutte le informazioni, così è stato premuto il pulsante <guibutton>Posticipa</guibutton>, in modo da poter proseguire in un secondo momento. Si osservi che la colonna <guilabel>R</guilabel> indica che sono state liquidate (<emphasis>l</emphasis>) due transazioni. Non sono state ancora riconciliate, ma si è verificata la loro presenza sull&rsquo;estratto conto e quindi sono state marcate come liquidate. Osservando la <emphasis>barra di stato</emphasis> in fondo al registro del conto, si noterà un sommario di ciò che è stato riconciliato e di ciò che è stato liquidato (<guilabel>Liquidato:€ 954.79; Riconciliato:€ 0.00</guilabel>)</para>
+      <para>In questo caso, non sono state ancora ricevute tutte le informazioni, così è stato premuto il pulsante <guibutton>Posticipa</guibutton>, in modo da poter proseguire in un secondo momento. Si osservi che la colonna <guilabel>R</guilabel> indica che sono state liquidate (<emphasis>l</emphasis>) due transazioni. Non sono state ancora riconciliate, ma si è verificata la loro riscossione e quindi sono state marcate come liquidate. Osservando la <emphasis>barra di stato</emphasis> in fondo al registro del conto, si noterà un sommario di ciò che è stato riconciliato e di ciò che è stato liquidato (<guilabel>Liquidato:€ 954.79; Riconciliato:€ 0.00</guilabel>)</para>
 
       <screenshot id="txns-reconcile-window-3">
         <mediaobject>
@@ -2267,7 +2317,7 @@ Translators:
             <phrase>Conto corrente</phrase>
           </textobject>
 
-          <caption><para>Il Conto corrente dopo aver posticipato la riconciliazione.</para></caption>
+          <caption><para>Il conto corrente dopo aver posticipato la riconciliazione.</para></caption>
         </mediaobject>
       </screenshot>
     </sect2>
@@ -2280,7 +2330,7 @@ Translators:
 
     <para>In questa guida pratica, si considererà una sottoscrizione mensile al servizio internet di 20 Euro che viene pagata il 28 di ogni mese.</para>
 
-    <para>In <application>&app;</application>, si possono creare delle transazioni pianificate in due modi: <link linkend="txns-sxn-ledger-1">dal libro mastro</link> o <link linkend="txns-sxn-editor2">dall&rsquo;Editor transazioni pianificate</link>.</para>
+    <para>In <application>&app;</application>, si possono creare delle transazioni pianificate in due modi: <link linkend="txns-sxn-ledger2">dal libro mastro</link> o <link linkend="txns-sxn-editor2">dall&rsquo;Editor transazioni pianificate</link>.</para>
 
     <sect2 id="txns-sxn-ledger2">
       <title>Creazione dal libro mastro</title>
@@ -6095,7 +6145,7 @@ Entrate
                   <row>
                     <entry>Attività:Beni immobili:Degas:Costo</entry>
 
-                    <entry><emphasis>Attività:Attività correnti:Conto risparmio</emphasis></entry>
+                    <entry>Attività:Attività correnti:Conto risparmio</entry>
 
                     <entry>€100.000</entry>
 
@@ -6105,7 +6155,7 @@ Entrate
                   <row>
                     <entry>Attività:Beni immobili:Degas:Guadagni non realizzati</entry>
 
-                    <entry><emphasis>Attività:Attività correnti:Conto risparmio</emphasis></entry>
+                    <entry>Attività:Attività correnti:Conto risparmio</entry>
 
                     <entry>€30.000</entry>
 
@@ -6167,7 +6217,7 @@ Entrate
                   <row>
                     <entry>Attività:Beni immobili:Degas:Costo</entry>
 
-                    <entry><emphasis>Attività:Attività correnti:Conto risparmio</emphasis></entry>
+                    <entry>Attività:Attività correnti:Conto risparmio</entry>
 
                     <entry>€100.000</entry>
 
@@ -6177,7 +6227,7 @@ Entrate
                   <row>
                     <entry>Attività:Beni immobili:Degas:Guadagni non realizzati</entry>
 
-                    <entry><emphasis>Attività:Attività correnti:Conto risparmio</emphasis></entry>
+                    <entry>Attività:Attività correnti:Conto risparmio</entry>
 
                     <entry>€20.000</entry>
 
@@ -6235,7 +6285,7 @@ Entrate
                   <row>
                     <entry>Attività:Beni immobili:Degas:Costo</entry>
 
-                    <entry><emphasis>Attività:Attività correnti:Conto risparmio</emphasis></entry>
+                    <entry>Attività:Attività correnti:Conto risparmio</entry>
 
                     <entry>€100.000</entry>
 
@@ -6245,7 +6295,7 @@ Entrate
                   <row>
                     <entry>Attività:Beni immobili:Degas:Guadagni non realizzati</entry>
 
-                    <entry><emphasis>Attività:Attività correnti:Conto risparmio</emphasis></entry>
+                    <entry>Attività:Attività correnti:Conto risparmio</entry>
 
                     <entry>€50.000</entry>
 
@@ -8434,14 +8484,14 @@ Semplice struttura dei conti per i crediti correnti:
 
     <para>Lo stile predefinito per le fatture, come mostrato nella <xref linkend="bus-ar-invoiceprint2"/>, à piuttosto spoglio. Esso prevede che la parte superiore del documento sia vuota, in modo che la fattura possa essere stampata su carta intestata. È però possibile modificare l&rsquo;aspetto delle fatture.</para>
 
-    <para>Utilizzare la voce <menuchoice><guimenu>File</guimenu><guimenuitem>Proprietà</guimenuitem></menuchoice> per inserire il nome e l&rsquo;indirizzo della propria impresa, che verranno stampati sul lato destro delle fatture.</para>
+    <para>Utilizzare la voce <menuchoice><guimenu>File</guimenu><guimenuitem>Proprietà</guimenuitem></menuchoice> per inserire le informazioni relative alla propria società nella scheda <guilabel>Impresa</guilabel> della finestra <guilabel>Opzioni libro</guilabel>. Alcune delle informazioni inserite verranno stampate sul lato destro delle fatture.</para>
 
-    <para>Per aggiungere uno sfondo, uno striscione di intestazione e un logo personalizzati alle fatture, occorre modificare il foglio di stile. Per farlo, andare in <menuchoice><guimenu>Modifica</guimenu><guimenuitem>Fogli di stile</guimenuitem></menuchoice> e crearne uno <guilabel>Nuovo</guilabel>. Verrà presentata una finestra come questa:</para>
+    <para>Per aggiungere uno sfondo, uno striscione di intestazione e un logo personalizzati alle fatture, occorre modificare il foglio di stile. Per farlo, andare in <menuchoice><guimenu>Modifica</guimenu><guimenuitem>Fogli di stile</guimenuitem></menuchoice> e selezionare il pulsante <guibutton>Nuovo</guibutton> nella finestra di <guilabel>Selezione del foglio di stile HTML</guilabel> che si aprirà. Verrà poi presentata una finestra come questa:</para>
 
     <screenshot id="bus-ar-invoicechange1">
       <mediaobject>
         <imageobject>
-          <imagedata fileref="figures/bus_ar_invoicechange1.png" format="PNG" srccredit="Patrick Schweiger"/>
+          <imagedata fileref="figures/bus_ar_invoicechange1.png" format="PNG" srccredit="Cristian Marchi"/>
         </imageobject>
 
         <textobject>
@@ -8452,16 +8502,20 @@ Semplice struttura dei conti per i crediti correnti:
       </mediaobject>
     </screenshot>
 
-    <para>Si deve selezionare il foglio di stile <guilabel>Fancy</guilabel> e assegnare un nome al proprio nuovo foglio di stile. Alla pressione del pulsante <guibutton>OK</guibutton> verrà aperta la finestra dell&rsquo;editor <acronym>HTML</acronym> dei fogli di stile. Questa contiene quattro schede: <guilabel>Colori</guilabel>, <guilabel>Generali</guilabel>, <guilabel>Immagini</guilabel> e <guilabel>Tabelle</guilabel>. La prima scheda relativa ai colori permette di variare la colorazione delle varie sezioni che compongono la fattura. La scheda delle impostazioni generali è dedicata alle informazioni del redattore e del destinatario e permette di abilitare i collegamenti. La scheda delle immagini permette di importare delle immagini nel foglio di stile. Infine, la schede delle tabelle, permette di configurare la spaziatura tra le tabelle che formano la fattura.</para>
+    <para>Dare un <guilabel>Nome</guilabel> al nuovo foglio di stile (ad esempio <guilabel>Fattura personalizzata</guilabel>) e selezionare il <guilabel>Modello</guilabel> denominato <guilabel>Elaborato</guilabel>. Alla pressione del pulsante <guibutton>OK</guibutton> verrà aperta la finestra delle <guilabel>Proprietà dei fogli stile HTML</guilabel>. Questa contiene cinque schede: <guilabel>Colori</guilabel>, <guilabel>Stili</guilabel>, <guilabel>Generali</guilabel>, <guilabel>Immagini</guilabel> e <guilabel>Tabelle</guilabel>. La prima scheda relativa ai colori permette di variare la colorazione delle varie sezioni che compongono la fattura. La sezione deegli stili permette di impostare gli stili e le dimensioni dei caratteri. La scheda delle impostazioni generali è dedicata alle informazioni del redattore e del destinatario e permette di abilitare i collegamenti. La scheda delle immagini permette di importare delle immagini nel foglio di stile. Infine, la schede delle tabelle, permette di configurare la spaziatura tra le tabelle che formano la fattura.</para>
 
-    <para>Per inserire un logo della società, uno striscione di intestazione e una immagine di sfondo, è possibile utilizzare un&rsquo;applicazione di grafica come <application>GIMP</application> o <application>OpenOffice Draw</application> per creare l&rsquo;immagine e salvarla in formato <acronym>GIF</acronym> o <acronym>PNG</acronym>. A questo punto è possibile importarle nel foglio di stile utilizzando la scheda delle <guilabel>immagini</guilabel>.</para>
+    <para>Per inserire un logo della società, uno striscione di intestazione e una immagine di sfondo, è possibile utilizzare un&rsquo;applicazione di grafica come <application>GIMP</application> o <application>OpenOffice Draw</application> per creare l&rsquo;immagine e salvarla in formato <acronym>GIF</acronym> o <acronym>PNG</acronym>. A questo punto è possibile importarle nel foglio di stile utilizzando la sezione <guilabel>Immagini</guilabel> descritta in precedenza.</para>
 
     <para>Qui sotto è visualizzato un esempio in cui sono state importate tutte e tre le immagini.</para>
 
     <screenshot id="bus-ar-invoicechange2">
       <mediaobject>
-        <imageobject>
-          <imagedata fileref="figures/bus_ar_invoicechange2.png" format="PNG" srccredit="Patrick Schweiger"/>
+        <imageobject role="html">
+          <imagedata fileref="figures/bus_ar_invoicechange2.png" format="PNG" srccredit="Cristian Marchi" width="510"/>
+        </imageobject>
+
+        <imageobject role="fo">
+          <imagedata fileref="figures/bus_ar_invoicechange2.png" format="PNG" srccredit="Cristian Marchi"/>
         </imageobject>
 
         <textobject>
@@ -8471,8 +8525,10 @@ Semplice struttura dei conti per i crediti correnti:
         <caption><para>La finestra del foglio di stile <acronym>HTML</acronym> con un esempio di immagine di sfondo, striscione di intestazione e logo.</para></caption>
       </mediaobject>
     </screenshot>
-
-    <para>Le immagini sono inserite nella fattura con i criteri seguenti: l&rsquo;<guilabel>Immagine di sfondo</guilabel> è adattata per essere inserita come sfondo, lo <guilabel>Striscione di intestazione</guilabel> viene inserito al di sopra del testo della fattura e il <guilabel>Logo</guilabel> è posizionato nell&rsquo;angolo in alto a sinistra della fattura a fianco dello striscione di intestazione. Sarà probabilmente necessario provare immagini di dimensioni diverse prima di ottenere una bella fattura. Vengono forniti alcuni suggerimenti su questo argomento: il logo dovrebbe essere di circa 1 cm quadrato mentre lo striscione di intestazione dovrebbe essere largo 15 cm e alto 1cm.</para>
+    
+    <note>
+      <para>Le immagini sono inserite nella fattura con i criteri seguenti: l&rsquo;<guilabel>Immagine di sfondo</guilabel> è adattata per essere inserita come sfondo, lo <guilabel>Striscione di intestazione</guilabel> viene inserito al di sopra del testo della fattura e il <guilabel>Logo</guilabel> è posizionato nell&rsquo;angolo in alto a sinistra della fattura a fianco dello striscione di intestazione. Sarà probabilmente necessario provare immagini di dimensioni diverse prima di ottenere una bella fattura. Vengono forniti alcuni suggerimenti su questo argomento: il logo dovrebbe essere di circa 1 cm quadrato mentre lo striscione di intestazione dovrebbe essere largo 15 cm e alto 1cm.</para>
+    </note>
 
     <para>Avendo configurato il foglio di stile, al momento della stampa della fattura sarà possibile selezionarlo dal menu <guimenu>Opzioni</guimenu>. Più sotto è riportata la fattura ottenuta dopo aver utilizzato il foglio di stile descritto precedentemente.</para>
 
