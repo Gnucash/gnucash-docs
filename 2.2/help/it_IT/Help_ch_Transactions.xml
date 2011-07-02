@@ -1,0 +1,716 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.x
+   Last modified: April 15th 2007
+        modified: August 12th 2006
+	modified: February 28th 2005
+
+  Maintainers:
+               Chris Lyttle <chris@wilddev.net>
+               Neil Williams <linux@codehelp.co.uk>
+
+  Author:
+               Chris Lyttle <chris@wilddev.net>
+  Translators:
+               Cristian Marchi <cri79@libero.it> 2008
+-->
+
+<!--
+  Common Transaction Operations Items Here !!!
+-->
+
+<chapter id="ch_Common_Trans_Ops">
+  <title>Operazioni comuni per le transazioni</title>
+
+      <para>Una transazione rappresenta un movimento di denaro da un conto ad un altro. 
+      Ogni volta che si spende o riceve denaro, o si trasferisce denaro da un conto ad un altro
+      si parla di transazione. In GnuCash queste operazioni coinvolgono sempre almeno due conti.
+       </para>
+
+      <para>GnuCash utilizza i conti come metodo per raggruppare ed organizzare la registrazione
+      delle transazioni. Questa sezione descrive i metodi che GnuCash fornisce per aiutare ad
+      inserire velocemente nel registro le transazioni. </para>
+      <para></para>
+
+        <para>GnuCash permette di inserire le transazioni in diversi modi.</para>
+
+          <itemizedlist>
+           <listitem>
+            <para>Immettere le transazioni direttamente dalla finestra del registro rappresenta il 
+            metodo più immediato.</para>
+           </listitem>
+
+           <listitem>
+            <para>Utilizzando la finestra del trasferimento fondi.</para>
+           </listitem>
+
+           <listitem>
+            <para>Importando le transazioni o da un file QIF/OFX o attraverso "OFX online banking".</para>
+           </listitem>
+
+          </itemizedlist>
+
+<note>
+<para>Dove dovrebbero essere affrontati gli argomenti "Importare i dati dai file scaricati" e "Online banking"?.
+</para></note>
+
+    <sect1 id="reg-views">
+        <title>Cambiare la visualizzazione del registro</title>
+
+        <para>GnuCash fornisce diverse opzioni per cambiare il modo in cui viene visualizzato il registro permettendo di
+         mostrare con più chiarezza le transazioni. Lo stile predefinito è quello a "libro mastro basilare": con questa modalità
+         viene mostrata una singola linea per ogni transazione e si tratta del metodo più sintetico per la visualizzazione
+         dei dettagli più rilevanti.</para>
+
+        <para>Lo stile di visualizzazione predefinito può essere cambiato dal menu <guimenu>Visualizza</guimenu>: qui sono 
+         possibili tre scelte. Quando al finestra del registro viene chiusa, lo stile tornerà a essere quello del libro mastro
+         basilare. Per rendere il cambiamento permanente occorre cambiare lo stile dal menu <guilabel>Modifica &gt; Preferenze
+         &gt; Predefinite del registro</guilabel>.</para>
+
+        <itemizedlist>
+          <listitem>
+            <para><guimenu>Libro mastro basilare:</guimenu> lo stile predefinito costituito da una riga per transazione.
+             Le suddivisioni sono mostrate come sommario. L'icona <guimenu>Suddivisione</guimenu> e il comando <guimenu>Operazioni &gt; 
+             suddividi transazione</guimenu> sono abilitate.</para>
+          </listitem>
+
+          <listitem>
+            <para><guimenu>Mastro ad espansione automatica:</guimenu> questo stile espande automaticamente 
+            la transazione selezionata se contiene delle suddivisioni.</para>
+          </listitem>
+
+          <listitem>
+            <para><guimenu>Giornale della transazione:</guimenu> questo stile espande tutte le transazioni in modo
+            da poterle visualizzare completamente.</para>
+          </listitem>
+
+          <listitem>
+            <para><guimenu>Doppia linea:</guimenu> questa opzione agisce sugli stili appena descritta visualizzando una 
+	    riga aggiuntiva per le note della transazione.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>Le altre due opzioni per cambiare la visualizzazione del registro sono: <guimenu>Visualizza &gt; Filtra per...</guimenu> 
+	per restringere il numero di elementi visualizzati, e <guimenu>Visualizza &gt; Ordina per...</guimenu>.   <xref linkend="Trans-view-menu"></xref>.
+        </para>
+
+    </sect1>
+
+  <sect1 id="trans-win-enter">
+    <title>Finestra di trasferimento fondi</title>
+
+          <para>Il metodo descritto di seguito utilizza la finestra del trasferimento fondi per inserire una singola transazione. 
+	  Questo procedimento permette di inserire con rapidità una singola transazione senza bisogno di aprire la finestra del registro. 
+	  Quando si desidera inserire delle transazioni multiple, si consiglia di utilizzare direttamente il registro. La finestra del trasferimento fondi
+	  è accessibile da <guimenu>Operazioni &gt; trasferimenti</guimenu>, o premendo l'icona <guibutton>Trasferimento</guibutton>
+            presente nella linguetta del registro del conto.</para>
+
+          <orderedlist>
+            <listitem>
+              <para>Si inseriscano nel riquadro delle "informazioni di base" l'importo, la data e una descrizione. Il numero e il promemoria
+	      sono opzionali.</para>
+            </listitem>
+
+            <listitem>
+              <para>Si selezioni il conto "Trasferisci da". Se questo conto appartiene alle entrate o alle uscite si abiliti l'opzione apposita
+	      al di sotto del riquadro "Trasferisci da".</para>
+            </listitem>
+
+            <listitem>
+              <para>Si selezioni il conto "Trasferisci a". Se questo conto appartiene alle entrate o alle uscite si abiliti l'opzione apposita
+	      al di sotto del riquadro "Trasferisci a".</para>
+            </listitem>
+
+            <listitem>
+              <para>Se i due conti hanno una valuta differente, verrà abilitata la sezione per il trasferimento in valuta dove
+	      sarà possibile inserire il "tasso di cambio" o un "importo a".</para>
+            </listitem>
+
+            <listitem>
+              <para>Selezionare <guibutton>OK</guibutton> per inserire la transazione o <guibutton>Annulla</guibutton>
+               per chiudere la finestra senza inserire la transazione.</para>
+            </listitem>
+          </orderedlist>
+
+  </sect1>
+
+  <sect1 id="trans-enter">
+    <title>Inserire una transazione dal registro</title>
+
+     <para>All'apertura della finestra del registro per un conto, viene visualizzata la lista delle transazioni
+     per quel conto. Questa finestra presenta lo stesso nome del conto sulla linguetta. I menu contengono
+     varie funzioni che permettono di modificare la visualizzazione delle transazioni. Anche la barra degli
+     strumenti contiene delle funzioni comunemente utilizzate per manipolare le transazioni; esse sono 
+     descritte nella sezione <xref linkend="account-register"></xref> di questo documento.</para>
+
+    <sect2 id="trans-reg-enter">
+     <title>Inserimento diretto dalla finestra del registro</title>
+
+      <para>La finestra del registro può apparire lievemente differente in funzione delle opzioni di visualizzazione 
+      selezionate. Nel seguito verrà descritto il processo di inserimento di una singola transazione quando lo stile del 
+      registro è impostato a quello di "libro mastro basilare". Il cursore viene automaticamente posizionato nel campo 
+      della data all'apertura della finestra del registro.</para>
+
+        <orderedlist>
+          <listitem>
+           <para>Selezionando la piccola icona a destra del campo della data, verrà visualizzato un calendario da 
+	   cui è possibile selezionare la data. SI utilizzino le frecce per selezionare il mese e l'anno corretto e infine 
+	   si selezioni il giorno. Premendo nuovamente la piccola icona verrà chiuso il calendario. E' anche possibile
+	   digitare dalla tastiera la data e GnuCash cercherà di completarla mentre si sta scrivendo.</para>
+          </listitem>
+
+          <listitem>
+           <para>Si prema <keycap>Tab</keycap> per selezionare o spostarsi nel campo del "Nr.". Qui è possibile assegnare un 
+	   numero alla transazione quale, per esempio, il numero dell'assegno. Premendo <keycap>+</keycap> (più) verrà
+	   automaticamente un numero aumentato di una unità rispetto a quello dell'ultima transazione dotata di numero.</para>
+          </listitem>
+
+          <listitem>
+           <para>Premere di nuovo <keycap>Tab</keycap> per selezionare o spostarsi nel campo della  "Descrizione". Qui è possibile inserire
+	   il nome del beneficiario o qualsiasi altra descrizione relativa alla transazione. GnuCash tenterà di completare automaticamente
+	   il nome del beneficiario mentre si starà scrivendo.</para>
+          </listitem>
+
+          <listitem>
+           <para>A questo punto possono accadere due fatti alla pressione del tasto <keycap>Tab</keycap>: se GnuCash individua
+	   una transazione esistente corrispondente, il cursore salterà in uno dei campi per l'importo, compilando
+	   automaticamente il campo del conto di trasferimento; selezionando un campo qualsiasi con il mouse invece di utilizzare il tasto di
+             tabulazione non verrà compilato automaticamente il campo del conto di trasferimento. Se non ci sono transazioni esistenti corrispondenti,
+	   GnuCash sposterà il cursore nel campo del "Trasferimento" quando è visualizzata una sola riga per la transazione.</para>
+          </listitem>
+
+          <listitem>
+           <para>Quando si digita all'interno del campo del conto, GnuCash tenterà di completare automaticamente il nome del conto
+	   con quello di uno esistente. La ricerca avviene alfabeticamente, quindi digitando "Us" verrà individuato la sezione Uscite della
+             lista dei conti. Quando è stata isolata la sezione, è possibile muoversi tra i conti figli premendo i <keycap>:</keycap> (due punti).
+	  Se, dopo aver digitato "Ex", si preme <keycap>:</keycap>, allora il cursore si sposterà nel primo conto figlio nella lista dei conti. 
+	  La pressione di una combinazione di tasti e dei <keycap>:</keycap> permette di muoversi rapidamente attraverso la struttura ad 
+	  albero dei conti. L'icona triangolare a destra del riquadro del "Trasferimento" rappresenta un metodo alternativo per selezionare 
+	  un conto; i tasti <keycap>freccia sù</keycap> e <keycap>freccia giù</keycap>  permettono di muoversi nella lista dei
+	  conti visualizzata.
+           </para>
+          </listitem>
+
+          <listitem>
+           <para>Il campo seguente (R) è relativo allo stato di riconciliazione della transazione ed è descritto nella sezione <guimenu>Riconciliazione
+	   di un conto con un estratto conto</guimenu>.  <xref linkend="acct-reconcile"></xref></para>
+          </listitem>
+
+          <listitem>
+           <para>Premere ancora <keycap>Tab</keycap> per spostarsi nel primo campo dell'importo. I nomi delle due colonne successive
+	   sono diversi in funzione del tipo di conto aperto. Per esempio, i conti bancari visualizzano i nomi "Deposito" e "Prelievo", i conti per le
+	   carte di credito mostrano "Pagamento" e "Addebito" mentre i conti per le azioni visualizzano "Quote", "Prezzo", "Compra" e "Vendi".</para>
+          </listitem>
+
+          <listitem>
+           <para>Inserire un importo per la transazione nel campo corretto. Quando la transazione è "bilanciata"
+            premendo il tasto <keycap>Invio</keycap>, selezionando l'icona <guibutton>Inserisci</guibutton> o andando in
+            <guimenu>Transazione -&gt; Inserisci transazione</guimenu> verrà aggiunta al registro la transazione. Selezionando l'icona
+            <guibutton>Elimina </guibutton> o andando in <guimenu>Transazione -&gt; Elimina transazione</guimenu>
+            verrà cancellata la transazione.</para>
+          </listitem>
+
+          <listitem>
+           <para>Le transazioni con un unico conto di trasferimento mostreranno il nome di questo conto nel campo 
+	   "Trasferimento" nelle transazioni completate (il campo "Trasferimento" è il quarto (4) da sinistra nella finestra
+	   del registro).</para>
+          </listitem>
+
+          <listitem>
+           <para>Per spostarsi alla transazione vuota alla fine del registro, premere l'icona <guibutton>Vuota</guibutton> sulla barra 
+	   degli strumenti o andare in <guimenu>Operazioni -&gt; Transazione vuota</guimenu>.
+           </para>
+          </listitem>
+         </orderedlist>
+        </sect2>
+  </sect1>
+
+
+  <sect1 id="trans-multi-enter">
+   <title>Transazioni con suddivisioni multiple</title>
+
+    <para>La finestra del registro può apparire lievemente differente in funzione delle opzioni di visualizzazione 
+      selezionate. Nel seguito verrà descritto il processo di inserimento di una transazione con suddivisioni multiple
+      quando lo stile del registro è impostato a quello di "libro mastro basilare". In GnuCash una "suddivisione" si ha quando
+      il denaro è trasferito da o verso due o più conti per una stessa transazione. Il cursore viene automaticamente posizionato nel campo 
+      della data all'apertura della finestra del registro.</para>
+
+    <para>Le righe per i conti multipli non saranno visualizzate nella modalità a "libro mastro basilare" a meno che
+    non vengano selezionate o l'icona <guimenu>Suddivisione</guimenu> o l'opzione <guimenu>Operazioni &gt; Suddividi 
+    transazione</guimenu>.
+    </para>
+
+      <orderedlist>
+          <listitem>
+           <para>Selezionando la piccola icona a destra del campo della data, verrà visualizzato un calendario da 
+	   cui è possibile selezionare la data. SI utilizzino le frecce per selezionare il mese e l'anno corretto e infine 
+	   si selezioni il giorno. Premendo nuovamente la piccola icona verrà chiuso il calendario. E' anche possibile
+	   digitare dalla tastiera la data e GnuCash cercherà di completarla mentre si sta scrivendo.</para>
+          </listitem>
+
+          <listitem>
+           <para>Si prema <keycap>Tab</keycap> per selezionare o spostarsi nel campo del "Nr.". Qui è possibile assegnare un 
+	   numero alla transazione quale, per esempio, il numero dell'assegno. Premendo <keycap>+</keycap> (più) verrà
+	   automaticamente un numero aumentato di una unità rispetto a quello dell'ultima transazione dotata di numero.</para>
+          </listitem>
+
+          <listitem>
+           <para>Premere di nuovo <keycap>Tab</keycap> per selezionare o spostarsi nel campo della  "Descrizione". Qui è possibile inserire
+	   il nome del beneficiario o qualsiasi altra descrizione relativa alla transazione. GnuCash tenterà di completare automaticamente
+	   il nome del beneficiario mentre si starà scrivendo.</para>
+          </listitem>
+
+          <listitem>
+           <para>A questo punto possono accadere due fatti alla pressione del tasto <keycap>Tab</keycap>: se GnuCash individua
+	   una transazione esistente corrispondente, il cursore salterà in uno dei campi per l'importo, compilando
+	   automaticamente il campo del conto di trasferimento; selezionando un campo qualsiasi con il mouse invece di utilizzare il tasto di
+             tabulazione non verrà compilato automaticamente il campo del conto di trasferimento. Se non ci sono transazioni esistenti corrispondenti,
+	   GnuCash sposterà il cursore nel campo del "Trasferimento" quando è visualizzata una sola riga per la transazione.</para>
+          </listitem>
+
+          <listitem>
+           <para>Quando si digita all'interno del campo del conto, GnuCash tenterà di completare automaticamente il nome del conto
+	   con quello di uno esistente. La ricerca avviene alfabeticamente, quindi digitando "Us" verrà individuato la sezione Uscite della
+             lista dei conti. Quando è stata isolata la sezione, è possibile muoversi tra i conti figli premendo i <keycap>:</keycap> (due punti).
+	  Se, dopo aver digitato "Ex", si preme <keycap>:</keycap>, allora il cursore si sposterà nel primo conto figlio nella lista dei conti. 
+	  La pressione di una combinazione di tasti e dei <keycap>:</keycap> permette di muoversi rapidamente attraverso la struttura ad 
+	  albero dei conti. L'icona triangolare a destra del riquadro del "Trasferimento" rappresenta un metodo alternativo per selezionare 
+	  un conto; i tasti <keycap>freccia sù</keycap> e <keycap>freccia giù</keycap>  permettono di muoversi nella lista dei
+	  conti visualizzata.
+           </para>
+          </listitem>
+
+          <listitem>
+           <para>Il campo seguente (R) è relativo allo stato di riconciliazione della transazione ed è descritto nella sezione <guimenu>Riconciliazione
+	   di un conto con un estratto conto</guimenu>.  <xref linkend="acct-reconcile"></xref></para>
+          </listitem>
+
+          <listitem>
+           <para>Premere ancora <keycap>Tab</keycap> per spostarsi nel primo campo dell'importo. I nomi delle due colonne successive
+	   sono diversi in funzione del tipo di conto aperto. Per esempio, i conti bancari visualizzano i nomi "Deposito" e "Prelievo", i conti per le
+	   carte di credito mostrano "Pagamento" e "Addebito" mentre i conti per le azioni visualizzano "Quote", "Prezzo", "Compra" e "Vendi".</para>
+          </listitem>
+
+          <listitem>
+         <para>Inserire l'importo della transazione nel campo corretto. Prima di premere <keycap>Tab</keycap>
+          o <keycap>Invio</keycap> si legga il passo successivo.</para>
+        </listitem>
+
+          <listitem>
+         <para>Per inserire delle ulteriori suddivisioni, si prema l'icona <guibutton>Suddivisione</guibutton> sulla
+	 barra degli strumenti o si selezioni la voce <guimenu>Operazioni -&gt; Suddividi transazione</guimenu>. 
+	 Per le transazioni che contengono più di una suddivisione, viene visualizzata la scritta "--Transazione suddivisa--" e sarà
+	 necessario utilizzare il pulsante <guibutton>Suddivisione</guibutton> per mostrarne i dettagli.</para>
+        </listitem>
+
+          <listitem>
+         <para>La transazione verrà espansa, i titoli delle colonne dell'importo cambieranno e l'intestazione della colonna "Trasferimento"
+	 sarà vuota. La prima riga contiene la descrizione e l'importo della transazione. La seconda riga contiene
+	 il nome del conto attualmente aperto nel campo del "Conto" e l'importo della transazione. La terza riga
+	 contiene il nome del conto di trasferimento nel campo del "Conto". Se l'importo non risulterà bilanciato, GnuCash lo indicherà 
+	 inserendo delle celle grigie nelle colonne dell'importo e riportando l'ammontare non bilanciato nell'ultima riga vuota 
+	 del registro.</para>
+        </listitem>
+
+          <listitem>
+         <para>Quando viene selezionata una delle righe più corte, le intestazioni delle colonne cambiano. La prima e l'ultima 
+	 ("Data" e "Saldo") non avranno un titolo; "Nr." cambierà in "Operazione", "Descrizione" in "Promemoria" e
+	 la colonna vuota del "Trasferimento" cambierà il titolo in "Conto". Le ultime due colonne dell'importo visualizzeranno i titoli
+	 descritti al passo sette.</para>
+        </listitem>
+
+          <listitem>
+         <para>I campi "Operazione" e "Promemoria" sono opzionali in questa fase; il primo può contenere una descrizione
+	 del tipo di conto di trasferimento coinvolto mentre il secondo è destinato a una descrizione aggiuntiva della
+	 transazione.</para>
+        </listitem>
+
+          <listitem>
+         <para>Move to the missing amount field on the third line and fill in the amount. Premendo il tasto 
+	 <keycap>Invio</keycap>, selezionando l'icona <guibutton>Inserisci</guibutton> o andando in
+            <guimenu>Transazione -&gt; Inserisci transazione</guimenu> si sposterà il cursore nella
+	    riga successiva</para>
+        </listitem>
+
+          <listitem>
+         <para>La colonna del conto contiene una lista dei conti di trasferimento. Questa colonna è utilizzata per aggiungere
+	 delle suddivisioni. Il metodo descritto al passo cinque, può essere utilizzato per selezionare un ulteriore conto su una riga vuota
+	 Si possono aggiungere quante suddivisioni si desiderano.</para>
+        </listitem>
+
+          <listitem>
+         <para>Quando la transazione è bilanciata, le celle grigie spariranno come anche l'importo visualizzato
+	 nell'ultima riga vuota.</para>
+        </listitem>
+
+          <listitem>
+         <para>Premendo <keycap>Invio</keycap>, come descritto più sopra, si salterà alla transazione
+	 successiva. Selezionando la transazione successiva verrà chiusa automaticamente la suddivisione oppure si potrà chiuderla
+	manualmente premendo l'icona <guibutton>Suddivisione</guibutton> oppure selezionando la voce del menu
+	<guimenu>Operazioni -&gt; Suddividi transazione</guimenu>.</para>
+        </listitem>
+       </orderedlist>
+
+   </sect1>
+
+   <sect1 id="trans-currency-enter">
+        <title>Transazioni in valuta multipla</title>
+
+        <para>Attualmente i trasferimenti fra conti aventi valuta diversa sono possibili solamente attraverso la finestra del
+	trasferimento fondi descritta più sopra (<xref linkend="trans-win-enter"></xref>). Questa finestra è necessaria
+	per inserire il tasso di cambio. </para>
+
+        <para>Per assegnare a un conto una valuta diversa, se ne modifichino le proprietà cambiando il campo della commodity
+	nella valuta desiderata. Selezionando ora questo conto nella finestra del trasferimento fondi, verrà abilitata la sezione del
+	 trasferimento in valuta.</para>
+   </sect1>
+
+   <sect1 id="trans-edit">
+        <title>Modificare una transazione</title>
+
+        <para>Per modificare una transazione è sufficiente selezionare la parte della transazione stessa che si desidera
+	modificare. Una volta effettuati i cambiamenti, si prema il tasto <keycap>Invio</keycap>, oppure si selezioni l'icona
+         <guibutton>Inserisci</guibutton> o si vada in <guimenu>Transazione -&gt; Inserisci Transazione</guimenu> per spostare
+	 il cursore nella riga successiva della transazione.
+        </para>
+
+        <para>Per visualizzare maggiori dettagli relativi a una transazione nella modalità a libro mastro basilare, premere l'icona
+         <guibutton>Suddivisione</guibutton> nella barra degli strumenti o selezionare <guimenu>Operazioni -&gt; 
+	 Suddividi transazione</guimenu>.</para>
+    </sect1>
+
+    <sect1 id="trans-delete">
+        <title>Cancellare una transazione</title>
+
+        <para>Se è necessario rimuovere una transazione dal registro, selezionarla e premere l'icona 
+        <guibutton>Elimina</guibutton> nella barra degli strumenti oppure andare in <guimenu>Transazioni -&gt; 
+         Elimina transazione</guimenu>.
+
+         Verrà visualizzata una finestra di conferma dell'eliminazione, a meno che non siano state cambiate le preferenze.
+         La finestra propone due opzioni "Ricordalo e non chiedermelo ancora" e "Ricordalo e non chiedermelo ancora in questa sessione".
+         La risposta verrà impostata in base all'opzione selezionata. La scelta può essere annullata attraverso il comando 
+         <guimenu>Operazioni -&gt; Ripristina avvisi</guimenu>.  <xref linkend="reset-warning"></xref>.</para>
+
+         <para>E' possibile rimuovere anche solo alcune parti della transazione premendo il pulsante <guibutton>Suddivisione</guibutton>
+         sulla barra degli strumenti o selezionando <guimenu>Operazioni -&gt; Suddividi transazione</guimenu>. La parte della transazione
+         da cancellare può essere selezionata per l'eliminazione.</para>
+    </sect1>
+
+    <sect1 id="trans-split-remove">
+        <title>Rimuovere le suddivisioni da una transazione</title>
+
+        <para>La rimozione delle suddivisioni da una transazione prevede che vengano eliminate tutte le suddivisioni a esclusione
+	di quella relativa al conto aperto. Questa operazione rappresenta un metodo efficace per riutilizzare una transazione
+	con suddivisioni multiple modificandola a piacimento (si noti che questo può essere fatto senza espandere la transazione, ma
+          così facendo si rendono più visibili gli effetti dell'operazione).</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Se lo stile del registro è impostato a libro mastro basilare, si prema l'icona <guibutton>Suddivisione</guibutton> sulla barra degli 
+	    strumenti o si selezioni <guimenu>Operazioni -&gt; Suddividi transazione</guimenu> per espandere la transazione selezionata. Se la modalità
+	    di visualizzazione del registro è un'altra, è sufficiente selezionare la transazione.</para>
+          </listitem>
+
+          <listitem>
+            <para>Si selezioni <guimenu>Transazione -&gt; Rimuovi suddivisioni transazione</guimenu>.</para>
+            <para>Verrà aperta una finestra per confermare la cancellazione, a meno che non siano state cambiate le preferenze.
+	   Questa finestra presenta due opzioni: "Ricordalo e non chiedermelo ancora" e "Ricordalo e non chiedermelo ancora in questa
+	   sessione". La risposta verrà impostata in base all'opzione attivata. La scelta effettuata può essere annullata andando in
+             <guimenu>Operazioni -&gt; Ripristina avvisi</guimenu>.  <xref linkend="reset-warning"></xref>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Tutti i conti e i relativi dettagli verranno rimossi a eccezione del conto attualmente aperto.</para>
+          </listitem>
+
+          <listitem>
+            <para>L'importo non risulterà bilanciato e GnuCash lo indicherà inserendo delle celle grigie nelle
+	    colonne dell'importo e riportando l'ammontare non bilanciato nell'ultima riga vuota del registro.</para>
+          </listitem>
+
+          <listitem>
+            <para>Modificare la transazione inserendo le nuove informazioni.</para>
+          </listitem>
+        </orderedlist>
+  </sect1>
+
+ <sect1 id="trans-copy">
+        <title>Copiare una transazione</title>
+
+        <para>La copia delle transazioni è disponile dal menu <guimenu>Transazione</guimenu>. Il menu 
+         <guimenu>Transazione</guimenu> presenta i comandi <guimenu>Taglia transazione</guimenu>, <guimenu>Copia
+         transazione</guimenu> e <guimenu>Incolla transazione</guimenu> che pemettono di copiare, tagliare 
+         e incollare l'intera transazione in una nuova riga. Con questa procedura di copia verrà utilizzata
+         la data mostrata nella nuova linea vuota.</para>
+
+        <para>La voce <guimenu>Transazione -&gt; Duplica transazione...</guimenu> o il pulsante della barra degli 
+        strumenti <guimenu>Duplica</guimenu>, a differenza del comando Copia, permettono di scegliere una nuova data.</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Selezionare la transazione da duplicare.</para>
+          </listitem>
+
+          <listitem>
+            <para>Andare in <guilabel>Transazione -&gt; Duplica transazione...</guilabel></para>
+          </listitem>
+
+          <listitem>
+            <para>Una finestra dal nome <emphasis role="bold">Duplica la transazione</emphasis> richiederà la 
+             data e il numero della transazione stessa.</para>
+          </listitem>
+
+          <listitem>
+            <para>Premere <guibutton>OK</guibutton> per aggiungere la transazione al registro.</para>
+          </listitem>
+        </itemizedlist>
+   </sect1>
+
+   <sect1 id="acct-jump">
+    <title>Saltare al registro di un altro conto</title>
+
+     <para>Quando si utilizza la finestra del registro del conto, può rivelarsi utile essere in grado di
+      vedere un altro conto e il conto di trasferimento allo stesso tempo. GnuCash permette di eseguire 
+      velocemente questa operazione utilizzando il taso «Salta»; è infatti disponibile, nella barra degli 
+      strumenti, l'icona <guimenu>Salta</guimenu> raggiungibile anche tramite il menu
+      <guimenu>Operazioni &gt; Salta</guimenu> nella finestra del registro del conto. </para>
+
+     <para>Si selezioni la transazione nella finestra del registro del conto e si prema l'icona «Salta» oppure si
+      selezioni <guimenu>Operazioni &gt; Salta</guimenu> per aprire la finestra del registro del conto di destinazione.
+      Se la transazione è suddivisa in più di un conto allora sarà necessario visualizzare tutti i conti di suddivisione 
+      e selezionare quello in cui si desidera "saltare".</para>
+   </sect1>
+
+   <sect1 id="trans-sched">
+    <title>Pianificare le transazioni</title>
+
+     <para>Le transazioni pianificate permetto di essere avvisati o di inserire automaticamente le transazioni
+     in una data specificata. Questa proprietà combinata con il druido <emphasis role="bold">Dall'ultimo avvio...
+      </emphasis> (<xref linkend="trans-sched-slr"></xref>) permette di rivedere e inserire le transazioni. Il druido per il
+      <guilabel>Rimborso di mutui e ipoteche</guilabel> (<xref linkend="trans-sched-loans"></xref>) permette di
+      configurare una transazione pianificata per ripagare un prestito con un tasso di interesse composto. L'"editor transazioni 
+      pianificate" (<xref linkend="sched-editor"></xref>) permette di creare e modificare le transazioni che stanno per essere
+      inserite automaticamente nel registro.</para>
+
+     <para>Il metodo più semplice per  configurare una transazione pianificata consiste nell'utilizzare come modello una 
+     transazione esistente nella finestra del registro di un conto. Selezionare la transazione che si desidera utilizzare
+     come modello e poi selezionare o l'icona <guilabel>Pianifica</guilabel> sulla barra degli strumenti o andare in 
+     <guilabel>Operazioni -&gt; Pianifica...</guilabel>. Verrà aperta la finestra dal titolo <emphasis role="bold">Crea 
+     Transazione pianificata</emphasis>.</para>
+
+      <itemizedlist>
+       <listitem>
+        <para><guilabel>Nome:</guilabel> inserire un nome per la transazione pianificata. Questo verrà utilizzato
+         nel campo della descrizione per la transazione.</para>
+       </listitem>
+
+       <listitem>
+        <para><guilabel>Frequenza:</guilabel> selezionare l'intervallo di tempo intercorrente tra due pianificazioni. Le 
+	date in cui la transazione verrà inserita saranno visualizzate nel mini calendario in basso.</para>
+       </listitem>
+
+       <listitem>
+        <para><guilabel>Data d'inizio:</guilabel>selezionare una data iniziale per la transazione pianificata.</para>
+       </listitem>
+
+       <listitem>
+        <para><guilabel>Senza fine:</guilabel> se la transazione non ha un termine.</para>
+       </listitem>
+
+       <listitem>
+        <para><guilabel>Data di termine:</guilabel> selezionare una data finale per la transazione pianificata.</para>
+       </listitem>
+
+       <listitem>
+        <para><guilabel>Numero di occorrenze:</guilabel> inserire il numero di volte con cui si desidera che la 
+	transazione venga inserita nel registro.</para>
+       </listitem>
+      </itemizedlist>
+
+       <para>Il pulsante <guilabel>Avanzate...</guilabel> apre la finestra dell'"Editor transazioni pianificate
+        per modificare la transazione. Questa è descritta nell'apposita sezione:
+        <xref linkend="sched-editor"></xref>.</para>
+
+       <sect2 id="sched-trans-win">
+        <title>Finestra della transazione pianificata</title>
+
+         <para>La finestra per le transazioni pianificate permette di accedere alla lista delle transazioni 
+	 pianificate e di crearle, modificarle o eliminarle; fornisce anche un calendario. Fermando il cursore per 
+	 qualche secondo su una data visualizzata dal calendario, verrà mostrata una piccola finestra contenente 
+	 l'elenco delle transazioni pianificate per quella stessa data; per chiudere la piccola finestra è sufficiente
+	 premere su di essa un'altra volta. Le date evidenziate in giallo sul calendario
+	 rappresentano i giorni in cui sono pianificate delle transazioni.</para>
+
+         <para>Il riquadro superiore della finestra delle transazioni pianificate contiene una lista
+	 delle transazioni pianificate attualmente impostate. Questa lista elenca il nome della transazione, se questa è attiva
+	 ai fini della pianificazione, la frequenza (mese o giorno) con cui la transazione deve essere inserita, l'ultima data 
+	 in cui è stata inserita e la prossima data in cui verrà inserita.</para>
+
+         <para>Sul lato destro del riquadro è presenta una freccia rivolta verso il basso che, quando premuta, visualizza
+	 una lista delle voci visualizzate nell'elenco delle transazioni. Togliendo la spunta a una voce, questa verrà rimossa 
+	 dal riquadro.</para>
+
+         <para>La barra degli strumenti di questa finestra contiene tre pulsanti per creare, cancellare o modificare una transazione
+	 pianificata. Premendo le icone «Nuovo» o «Modifica» verrà aperto l'"Editor transazioni pianificate". Premendo invece 
+	 «Elimina» verrà cancellata la transazione pianificata selezionata. Le stesse opzioni sono raggiungibili anche attraverso
+	 
+          Le stesse opzioni sono anche raggiungibile attraverso il menu <guimenu>Pianifica -&gt; Nuovo/Modifica/Cancella</guimenu>,
+         nella linguetta della transazione pianificata.</para>
+
+         <para>Al di sotto della lista delle transazioni pianificate, è posizionato il calendario delle "prossime scadenze"; qui
+           è visualizzato il calendario fino all'anno seguente e sono evidenziate le date in cui sono previste delle transazioni 
+	   pianificate.  Cliccando su di una data nel calendario, verrà aperta una finestra con la lista delle transazioni pianificate 
+	   per quella stessa data. Spostando il puntatore al di sopra di un'altra data, cambierà di conseguenza anche la lista 
+	   delle transazioni. Cliccando di nuovo sul calendario verrà chiusa la finestra contenente la lista delle transazioni.</para>
+
+         <para>La finestra per le transazioni pianificate è accessibile sia dalla linguetta dei conti che da quella del registro
+	 attraverso la voce del menu <guimenu>Operazioni -&gt; Transazioni pianificate -&gt; Editor transazioni 
+	 pianificate</guimenu>,</para>
+
+        </sect2>
+</sect1>
+<sect1 id="sched-editor">
+     <title>Finestra di modifica della transazione pianificata</title>
+
+       <para>The Edit Scheduled Transaction Window is divided into a Name area, Options area, Occurrences area,
+        Recurrence Frequency area, mini calendar and Template Transaction pane.</para>
+
+       <para>The <emphasis role="bold">Name</emphasis> a name to use for the scheduled transaction. This will be
+        used in the Description of the transaction.</para>
+
+       <para>The <emphasis role="bold">Options</emphasis> area contains check-boxes to set if the transaction is
+        automatically created and how many days in advance the transaction is created and/or a reminder posted.
+       </para>
+
+       <para>The <emphasis role="bold">Occurrences</emphasis> area contains selections to set for dates limits on
+        transactions to be entered or the number of transactions to be entered.</para>
+
+       <para>The <emphasis role="bold">Recurrence Frequency</emphasis> area contains selections to set how
+        often the transaction is scheduled to be added and on what dates this occurs.</para>
+
+       <para>The mini calendar provides a visual indication of what transactions are already scheduled.</para>
+
+       <para>The <emphasis role="bold">Template Transaction</emphasis> pane allows you to setup the transaction
+        as you would like it to be entered into the register.</para>
+
+       <para>Queste opzioni sono descritte con maggior dettaglio in <xref linkend="trans-sched"></xref></para>
+
+        <itemizedlist>
+         <listitem><para>From the Scheduled Transaction tab selecting a transaction from the list and pressing
+          the Edit or pressing New icons will bring up the Edit Scheduled Transaction Editor.</para>
+         </listitem>
+        </itemizedlist>
+
+   </sect1>
+
+   <sect1 id="print-check">
+    <title>Stampare gli assegni</title>
+
+     <para>In GnuCash gli assegni sono stampati dal registro del conto. GnuCash fornisce la possibilità
+      di stampare assegni con lo standard Quicken (US Letter) o di creare un formato personalizzato. Anche
+      la posizione dell'assegno e il formato della data sono personalizzabili.</para>
+
+     <para>Per accedere alla funzione di stampa degli assegni in GnuCash, selezionare la transazione di cui si
+      desidera stampare l'assegno e andare in «File -&gt; Stampa assegno». Verrà aperta la finestra delle
+      proprietà per la stampa dell'assegno.</para>
+
+     <para>La finestra per la stampa dell'assegno presenta due linguette. La prima è denominata "Opzioni" e permette
+      di impostare le opzioni più comuni per la stampa dell'assegno; la seconda, denominata "Formato personalizzato"
+      permette di configurare la posizione dei vari campi sull'assegno. E' utile a questo scopo stampare un assegno 
+      di prova su un foglio di carta e utilizzarlo per effettuare le correzioni necessarie.</para>
+
+     <para>La selezione preimpostata nella finestra delle "Opzioni" è l'assegno Quicken/Quickbooks (tm) US-Letter.</para>
+
+      <itemizedlist>
+       <listitem>
+        <para>Formato dell'assegno: provare prima con il formato Quicken e utilizzare il formato personalizzato 
+	se la posizione non è corretta.</para>
+       </listitem>
+
+       <listitem>
+        <para>Posizione dell'assegno: permette di selezionare l'assegno da stampare: "Top" (in alto), "Middle" (in mezzo) 
+         o "Bottom" (in basso). L'opzione "personalizzato" è da selezionare se la posizione degli assegni nella pagina
+         non è corretta.</para>
+       </listitem>
+
+       <listitem>
+        <para>Formato data: il valore predefinito visualizzato in questo campo è impostato nelle preferenze di GnuCash. 
+         Dalla lista a comparsa è possibile selezionare il formato della data desiderato.
+         Il formato può essere cambiato utilizzando le righe denominate "Mesi:" e "Anni:". Scegliendo "personalizzato"
+         sarà possibile impostare il formato della data nel campo "Formato:" (%m significa mese, %d significa giorno, %Y 
+         significa anno). Un esempio del formato selezionato è mostrato appena più sotto nella finestra.</para>
+       </listitem>
+      </itemizedlist>
+
+      <para>La linguetta del "formato personalizzato" contiene due colonne per l'inserimento delle coordinate x e y
+       della posizione del campo sull'assegno. Le posizioni nel formato di assegno personalizzato sono a partire
+       da x = 0 sul lato sinistro dell'assegno crescenti verso destra, e y = 0 dal lato superiore dell'assegno 
+       crescenti verso il basso. (Se si utilizza una versione di GTK precedente alla 2.10, allora y = 0 è al bordo 
+       inferiore e positiva verso l'alto).</para>
+
+       <itemizedlist>
+        <listitem>
+         <para>Beneficiario: </para>
+        </listitem>
+
+        <listitem>
+         <para>Data: </para>
+        </listitem>
+
+        <listitem>
+         <para>Importo (in parole): </para>
+        </listitem>
+
+        <listitem>
+         <para>Importo (in numeri): </para>
+        </listitem>
+
+        <listitem>
+         <para>Promemoria: </para>
+        </listitem>
+
+        <listitem>
+         <para>Posizione dell'assegno: </para>
+        </listitem>
+
+        <listitem>
+         <para>Formato della data: </para>
+        </listitem>
+
+        <listitem>
+         <para>Units: Set the unit to use for the above positions.</para>
+        </listitem>
+       </itemizedlist>
+
+       <para>Una volta che è stato premuto il tasto «OK» nella finestra di stampa dell'assegno, verrà visualizzata la finestra per la stampa
+        di un documento di GnuCash. Premere di nuovo «OK» per stampare l'assegno.</para>
+
+    </sect1>
+
+    <sect1 id="trans-online">
+     <title>Operazioni online...</title>
+
+<note><para>Questa sezione è "in costruzione - ogni contributo è benvenuto!!".</para></note>
+
+      <sect2> <title>Ricevi saldo</title><para></para></sect2>
+      <sect2> <title>Ricevi transazioni ...</title><para></para></sect2>
+      <sect2> <title>Inoltra transazione</title><para></para></sect2>
+      <sect2> <title>Addebito diretto</title><para></para></sect2>
+
+    </sect1>
+
+    <sect1  id="general-ledger">
+     <title>Libro mastro generale</title>
+      <para>Il libro mastro generale è un registro avanzato che permette di inserire le transazioni senza il bisogno
+      di aprire i singoli conti; permette anche di visualizzare tutte le transazioni per tutti i conti in un unico registro.</para>
+
+      <para>L'inserimento di una transazione nel libro mastro generale è più complicato rispetto alla stessa operazione
+       compiuta dal registro del conto. Il vantaggio del libro mastro generale risiede nella visualizzazione più esaustiva
+       delle transazioni inserite in tutti i propri conti.</para>
+
+      <para>Il libro mastro generale è impostato di default per visualizzare solamente le transazioni dell'ultimo mese.
+       Questa impostazione può essere cambiata utilizzando la voce «Intervallo temporale» nel menu «Visualizza».</para>
+    </sect1>
+
+</chapter>
+

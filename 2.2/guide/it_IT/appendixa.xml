@@ -1,0 +1,138 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  Originally designed by Carol Champagne.
+  Translators:
+               Cristian Marchi <cri79@libero.it> 2008
+-->
+ <appendix id="appendixa">
+ <title>Guida alla migrazione</title>
+ <para>
+	Questa appendice è di supporto agli utenti di altri software finanziari nella migrazione
+	a &app;. Saranno descritte  le differenze di impostazioni di &app; confrontandole con
+	quelle di altri programmi.
+  </para>
+
+<sect1 id="appendixa_accts_vs_cats1">
+<title>Usare i conti in luogo delle categorie</title>
+<para>
+	Se si ha familiarità con altri programmi per la gestione delle finanze personali, si 
+	sarà già abituati a tenere traccia delle proprie entrate e uscite come categorie. Dato che
+	&app; utilizza un sistema a partita doppia (consultare la sezione 2.1), entrate e uscite 
+	sono trattate come conti. Il concetto di base è lo stesso, ma lo struttura a conti presenta
+	una maggiore coerenza con l'uso commerciale comune. Così, sia che si utilizzi per gestire 
+	la propria attività o per le proprie finanze personali, &app; permette di tenere facilmente 
+	traccia di ogni operazione.</para>
+<para>
+	I conti per le entrate e per le uscite forniscono le stesse informazioni contenute 
+	nelle categorie ma in più forniscono maggiore flessibilità nell'immissione delle
+	transazioni. In &app; si ha infatti la possibilità di inserire direttamente le transazioni
+	attraverso il relativo registro contabile; i programmi che utilizzano le categorie
+	non offrono questa possibilità perchè, per le categorie, non esiste un <quote>registro 
+	contabile</quote>.</para>
+<para>
+	In &app; si ha anche la possibilità di trattare i conti di entrate e uscite esattamente 
+	come si tratterebbero le categorie, se ci si sente più a proprio agio con quest'ultimo metodo.
+	In <trademark class="registered">Quicken</trademark> e altri programmi simili, le transazioni
+	hanno bisogno di un conto e di una categoria. Sostituendo un nome di conto entrate o uscite in 
+	&app; con il nome della categoria uitlizzata nell'altro programmo, il risultato dovrebbe
+	essere identico. L'immissione delle transazioni è discusso in dettaglio al capitolo 4.</para>
+</sect1>
+
+ <sect1 id="appendixa_qif1">
+ <title>Organizazzione dei file QIF (Discussione)</title>
+ <para>
+  </para>
+ </sect1>
+ <sect1 id="appendixa_entercharge1">
+ <title>Problemi comuni di duplicazione (Discussione)</title>
+ <para>
+ </para>
+ </sect1>
+ <sect1 id="appendixa_enterpay1">
+ <title>Controllo dei dati QIF (Discussione)</title>
+ <para>
+ </para>
+ </sect1>
+
+<sect1 id="appendixa_xmlconvert1">
+<title>Convertire i file XML di &app;</title>
+ <para>I file dei dati XML creati da &app; possono essere trasformati facilmente in quasi tutti
+ 	gli altri formati di file di dati (es. QIF, CSV...), se si ha familiarità con XSLT.
+ 	
+ I file dei dati di &app; sono di tipo XML e possono essere trasformati abbastanza facilmente in quasi tutti gli
+ altri formati (es: QIF, CSV...) se si ha confidenza con l'XSLT. 
+ I file dei dati creati da &app; sono XML "well-formed" e possono essere quindi dati "in pasto"
+a un parser XSLT con un foglio di stile associato. Questo permette di trasformare il file
+in qualsiasi formato che può essere progettato, dato un adeguato foglio di stile.</para>
+
+  <para>Per portare a termine la procedura con successo, è necessario seguire alcuni 
+  passi; la scrittura di un foglio di stile non è argomento da affrontare 
+  in questa sede ma, se si dispone di uno di questi, ecco come procedere:</para>
+  <orderedlist>
+  <listitem>
+  <para>creare una copia di lavoro del file di &app; per evitare la perdita del file originale. Modificare il tag
+&lt;gnc-v2&gt; del file di lavoro in un valore simile a quelli riportati di seguito. Si noti che è possibile inserire più o meno
+qualsiasi stringa nel campo  «="..."»; è stato utilizzato l'URL perchè è tradizione usarlo (se così si può dire per una tecnologia
+così giovane!);</para>
+  <literallayout>
+&lt;gnc-v2 xmlns:cd="http://www.gnucash.org/XML/cd"
+        xmlns:book="http://www.gnucash.org/XML/book"
+        xmlns:gnc="http://www.gnucash.org/XML/gnc"
+        xmlns:cmdty="http://www.gnucash.org/XML/cmdty"
+        xmlns:trn="http://www.gnucash.org/XML/trn"
+        xmlns:split="http://www.gnucash.org/XML/split"
+        xmlns:act="http://www.gnucash.org/XML/act"
+        xmlns:price="http://www.gnucash.org/XML/price"
+        xmlns:ts="http://www.gnucash.org/XML/ts"
+        xmlns:slot="http://www.gnucash.org/XML/kvpslot"
+        xmlns:cust="http://www.gnucash.org/XML/cust"
+        xmlns:entry="http://www.gnucash.org/XML/entry"
+        xmlns:lot="http://www.gnucash.org/XML/lot"
+        xmlns:invoice="http://www.gnucash.org/XML/invoice"
+        xmlns:owner="http://www.gnucash.org/XML/owner"
+        xmlns:job="http://www.gnucash.org/XML/job"
+        xmlns:billterm="http://www.gnucash.org/XML/billterm"
+        xmlns:bt-days="http://www.gnucash.org/XML/bt-days"
+        xmlns:sx="http://www.gnucash.org/XML/sx"
+        xmlns:fs="http://www.gnucash.org/XML/fs"
+        xmlns:addr="http://www.gnucash.org/XML/custaddr"&gt;
+ </literallayout>
+  </listitem>
+  <listitem>
+  <para>creare un foglio di stile XSLT contenente la trasformazione che si desidera effettuare
+  	oppure se ne recuperi uno già preparato (AFAIK, non ce ne sono molti, ma ce n'è uno per il formato CSV in lavorazione);</para>
+  </listitem>
+  <listitem>
+<para>installare un processore XSLT come Saxon
+(http://saxon.sourceforge.net/) o Xalan-J  (http://xml.apache.org/). 
+Comunque qualsiasi processore simile funzionerà...;</para>
+  </listitem>
+  <listitem>
+<para>elaborare il file di lavoro e il foglio di stile attraverso il processore
+seguendo le istruzioni fornite;</para>
+  </listitem>
+  <listitem>
+<para>si disporrà infine di un file nel formato desiderato. Un utente intraprendente
+può addirittura arrivare a scrivere un foglio di stile per trasformare un file dei dati di &app;
+in un foglio di "Calc" per OpenOffice (o vice-versa). Alcuni formati, come il QIF, richiedono un po' meno
+lavoro.</para>
+  </listitem>
+  </orderedlist>
+
+<para>Il beneficio risiede nel fatto che non è necessario scrivere un modulo in Scheme o una nuova
+routine in C per eseguire la trasformazione. Chiunque conosca o abbia voglia di imparare il linguaggio
+XML può cimentarsi in questa operazione: sinceramente, niente di più difficile che scrivere una pagina Web....</para>
+
+<para>Il processo funziona per la versione 2.0.0 e i file dei dati CVS HEAD; dovrebbe anche funzionare
+nelle versioni 1.8.x. Il processo non è stato testato recentemente per le versioni 1.6.x, ma dovrebbe funzionare
+anche in quel caso...</para>
+
+ </sect1>
+
+ </appendix>

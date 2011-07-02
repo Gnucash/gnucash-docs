@@ -1,0 +1,704 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+Originally written by Carol Champagne.
+Translators:
+
+       Cristian Marchi <cri79@libero.it> 2008
+-->
+<chapter id="chapter_accts">
+  <title>Conti</title>
+
+  <para>Questo capitolo analizza alcuni concetti fondamentali
+  riguardanti l'organizzazione dei conti; dato che &app; non ne
+  impone alcun tipo, si è liberi di creare la struttura che si desidera. 
+  Esistono comunque dei concetti fondamentali che sarebbe bene seguire per 
+  ottimizzarne la fruibilità.</para>
+
+  <sect1 id="accts-concepts1">
+    <title>Concetti basilari di contabilità</title>
+
+    <para>Come è già stato descritto nel precedente capitolo, la contabilità si basa su 5
+    tipologie fondamentali di conti: <guilabel>attività</guilabel>,
+    <guilabel>passività</guilabel>, <guilabel>capitale netto</guilabel>,
+    <guilabel>entrate</guilabel> e <guilabel>uscite</guilabel>. 
+    Verranno ora studiati in dettaglio tutti questi tipi di conti, e si mostrerà
+    come essi vengono rappresentati in &app;. Ma prima verranno divisi in due gruppi,
+    i conti di bilancio e i conti delle entrate e uscite.</para>
+
+    <para>prima di procedere con l'approfondimento, si ricorda l'equazione della 
+    contabilità introdotta al capitolo precedente (<emphasis>attività
+    - passività = capitale + (entrate - uscite)</emphasis>):</para>
+
+    <screenshot id="accts-AccountRelationships">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/basics_AccountRelationships.png"
+                     format="PNG" srccredit="Jon Lapham" ></imagedata>
+        </imageobject>
+
+        <textobject>
+          <phrase>La relazione fondamentale della contabilità</phrase>
+        </textobject>
+
+        <caption>
+          <para>Visualizzazione grafica della relazione che intercorre
+            tra i 5 tipi fondamentali di conti. Il capitale netto
+            si accresce grazie alle entrate e diminuisce a causa delle uscite;
+            le frecce rappresentano la direzione del valore.</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+
+    <sect2 id="accts-bsa2">
+      <title>Conti di bilancio</title>
+
+      <para>I tre conti denominati <emphasis>conti di bilancio</emphasis>
+      sono <guilabel>attività</guilabel>, <guilabel>passività</guilabel> e 
+      <guilabel>capitale netto</guilabel>. Questi conti sono utilizzati
+      per registrare le variazioni di valore di ciò che si possiede (attività) o di ciò
+      che si deve (passività).</para>
+
+      <para><guilabel>Attività</guilabel> è l'insieme dei beni che si posseggono.
+      Le attività possono includere l'auto, i contanti, la casa,
+      le azioni o qualsiasi altro bene che ha un valore commerciale.</para>
+
+      <para><guilabel>Passività</guilabel> è l'insieme dei debiti.
+      Questo conto può comprendere le rate dell'auto o della scuola,
+      un mutuo, il margine di investimento e comunque qualsiasi altro bene o servizio
+      che prima o poi si deve ripagare.</para>
+
+      <para><guilabel>Capitale</guilabel> ha lo stesso significato del valore netto.
+      Rappresenta ciò che rimane sottraendo al valore delle attività
+      l'ammontare delle passività. Si può anche pensare come la porzione
+      del patrimonio sul quale non grava alcun debito e che quindi realmente
+      si possiede.</para>
+    </sect2>
+    <sect2 id="accts-ie2">
+      <title>Conti per entrate e uscite</title>
+
+      <para>I conti <guilabel>entrate e uscite</guilabel> 
+		vengono utilizzati per aumentare o diminuire il valore
+		del capitale. Mentre i conti di bilancio rappresentano
+		semplicemente il valore di ciò che si possiede e dei propri debiti,
+		entrate e uscite permettono di <emphasis>variare</emphasis>
+		il valore di quei conti.</para>
+
+      <para><guilabel>Entrate</guilabel> rappresentano il compenso che si riceve per il proprio
+      tempo, per i servizi che si forniscono, o per l'utilizzo del proprio denaro.
+      Quando si riceve lo stipendio, per esempio, viene pagato il lavoro fornito al proprio
+      datore di lavoro. Altri esempi di entrate possono essere le mance, i dividendi
+      provenienti da azioni e gli interessi sul denaro depositato in banca.
+      Le entrate contribuiscono sempre ad aumentare il valore delle attività
+      e di conseguenza quello del capitale.</para>
+
+      <para><guilabel>Uscite</guilabel> si riferiscono al denaro che viene speso per
+      acquistare beni o servizi offerti da terzi. Esempi di uscite sono la cena
+      al ristorante, l'affitto, gli acquisti nei negozi, la benzina per l'auto
+		e i biglietti per assistere a uno spettacolo. Le spese contribuiscono
+		sempre a diminuire il capitale. Se si paga immediatamente un'uscita, 
+		diminuiscono le proprie attività, mentre, se si chiede credito, aumenta la passività.
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="accts-types1">
+    <title>Conti in &app;</title>
+
+    <para>Questa sezione ha l'intento di mostrare come le definizioni di conti
+    che &app; propone, rientrino nei 5 tipi fondamentali.</para>
+
+    <para>Prima di tutto, occorre definire cosa si intende per <guilabel>conto</guilabel>
+    in &app;. Un <guilabel>conto</guilabel> in &app; è un'entità che 
+    contiene altri suttoconti o delle <guilabel>transazioni</guilabel>.
+    Dato che un conto può contenerne altri, è facile in &app; ritrovarsi 
+    con conti aventi strutture ad <guilabel>albero</guilabel>.</para>
+
+    <para>Un conto in &app; deve avere un nome unico (che è possibile assegnare)
+    e una tipologie a scelta fra quelle che il programma prevede. Sono presenti, in totale,
+    12 tipi di conti in &app; basati sui 5 tipi fondamentali descritti in precedenza.
+    La ragione per cui esistono in &app; più conti dei 5 di base, è da ricercare
+    nel fatto che &app; è in grado di gestire operazioni speciali su certi conti.
+    Sei conti sono per i patrimoni (<emphasis>liquidi</emphasis>, <emphasis>banca</emphasis>,
+    <emphasis>azioni</emphasis>, <emphasis>fondi comuni</emphasis>,
+    <emphasis>crediti correnti</emphasis> e <emphasis>beni</emphasis>),
+    tre conti sono per le passività (<emphasis>carta di credito</emphasis>,
+    <emphasis>debiti correnti</emphasis> e <emphasis>passività</emphasis>),
+    un solo conto è per il capitale (<emphasis>capitali</emphasis>), un unico conto per le entrate
+    (<emphasis>entrata</emphasis>) e un altro conto per le uscite
+    (<emphasis>uscita</emphasis>).</para>
+    
+        <para>Questi conti sono descritti in dettaglio nel seguito.</para>
+
+    <sect2 id="accts-gc-bsa2">
+      <title>Conti di bilancio</title>
+
+      <para>Il primo conto a essere esaminato è quello dello
+      <emphasis>attività</emphasis> che, come ricordato nelle sezioni
+      precedenti si riferisce a ciò che si possiede.</para>
+
+      <para>Per aiutare l'utente a organizzare il proprio patrimonio
+      e per semplificare l'inserimento delle transazioni, &app; supporta
+      diversi tipi di conti per le attività:</para>
+
+      <orderedlist>
+        <listitem>
+          <para><guilabel>liquidi</guilabel>: usare questo conto per registrare
+          il denaro contante che si ha, per esempio, nel portafoglio, nel
+          salvadanaio, sotto al materasso o dovunque si decida di tenerlo.
+          Questo denaro è quello che viene utilizzato più facilmente;</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>banca</guilabel>: questo conto serve a tenere traccia
+          del denaro depositato presso delle istituzioni quali
+          le banche, le unioni di credito, le società di risparmio o di mediazione:  
+          dovunque qualcun altro si occupa del denaro. Questo conto è secondo
+          solamente ai liquidi come facilità di utilizzo del denaro perché può essere
+          facilmente convertito in contanti;</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>azioni</guilabel>: registrare le azioni e le 
+          obbligazioni utilizzando questo tipo di conto. Il registro per le azioni
+          fornisce delle colonne aggiuntive per immettere le quote e il prezzo degli
+          investimenti. Questo tipo di beni non si presta a essere facilmente convertito 
+          in liquidi dato che prima è necessario trovare un acquirente e inoltre non 
+          viene garantito il riottenimento per intero del capitale
+          investito;</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>fondi comuni</guilabel>: questo tipo di conto è simile
+          al precedente, tranne per il fatto che deve essere utilizzato per
+          registrare i fondi. Il registro di immissione dati prevede due colonne
+          per l'inserimento delle quote e dei prezzi. I fondi rappresentano
+          delle proprietà comuni di investimenti e, come le azioni, non garantiscono
+          un valore minimo del capitale;</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>crediti correnti</guilabel>: questo conto è dedicato tipicamente
+          alla gestione dell'impresa e in esso vengono registrati i crediti. E' considerato come
+          un capitale dato che si dovrebbe poter contare sull'arrivo di questo denaro;</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>beni</guilabel>: nella gestione delle finanze personali,
+          si utilizza questo conto per registrare gli acquisti caratterizzati
+          da un valore elevato. Generalmente possono appartenere a questa
+          categoria i beni assicurati quali la casa, i veicoli, i gioielli
+          e altri costosi effetti personali.</para>
+        </listitem>
+      </orderedlist>
+
+      <tip>
+        <para>Per tutti i conti appartenenti alla categoria delle attività
+        in &app;, un <emphasis>addebito (=dare)</emphasis> (valore inserito nella colonna
+        di sinistra) aumenta il saldo del conto mentre un <emphasis>accredito (avere)</emphasis>
+        diminuisce il saldo (consultare la nota più avanti in questo capitolo).</para>
+      </tip>
+
+      <para>Il secondo tipo di conto di bilancio è quello delle
+      <emphasis>passività</emphasis> che, come si ricorderà, si riferisce a ciò
+      che si deve, al denaro che si è preso in prestito e si è obbligati a restituire
+      prima o poi dato che colui che ha prestato il denaro ha il diritto di essere
+      ripagato. Tenere traccia del bilancio delle passività permette di conoscere
+      in qualsiasi momento quale sia l'ammontare del proprio debito.</para>
+
+      <para>&app; permette di scegliere fra tre conti per le passività:</para>
+
+      <orderedlist>
+        <listitem>
+          <para><guilabel>carta di credito</guilabel>: utilizzare questo conto
+          per registrare le ricevute e per riconciliare l'estratto conto della 
+          carta di credito. Le carte di credito rappresentano un prestito di
+          breve durata che si è obbligati a pagare alla compagnia a cui appartiene
+          la carta di credito. Questo conto può anche essere utilizzato per
+          altri prestiti a breve durata;</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>debiti correnti</guilabel>: questo è un conto utilizzato
+          tipicamente per la gestione dell'impresa dove vengono registrati i debiti
+          che devono ancora esser saldati;</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>passività</guilabel>: utilizzare questo conto per tutti
+          gli altri prestiti, generalmente di entità maggiore e di durata superiore
+          come un mutuo o le rate dell'auto. Questo conto aiuta anche a conoscere
+          quanto denaro si deve ancora e quanto è stato già restituito.</para>
+        </listitem>
+      </orderedlist>
+
+      <tip>
+        <para>Le passività in contabilità agiscono in modo opposto alle attività (o patrimonio netto):
+        gli <emphasis>accrediti (avere)</emphasis> (valori immessi nella colonna di destra)
+        aumentano il saldo del conto mentre gli <emphasis>addebiti (dare)</emphasis> (valori
+        immessi nella colonna di sinistra) lo diminuiscono (consultare la nota più avanti
+        in questo capitolo).</para>
+      </tip>
+
+      <para>Il conto finale del bilancio patrimoniale è quello del
+      <emphasis>capitale</emphasis>, che è sinonimo di valore netto o capitale netto.
+      Rappresenta ciò che rimane dopo aver sottratto le passività dalle attività,
+      ed è quindi la porzione di patrimonio che si possiede e sulla quale non grava alcun debito.
+      In &app; si consiglia di utilizzare questa tipologia di conto come
+      fonte per i bilanci di apertura dei conti bancari, dato che questo
+      saldo rappresenta il valore netto iniziale.</para>
+
+      <para>In &app; è presente un solo conto per il capitale chiamato, 
+      naturalmente, <guilabel>capitale</guilabel>.</para>
+
+      <tip>
+        <para>Nel capitale netto, gli accrediti aumentano il saldo del conto e i debiti
+        lo diminuiscono (consultare la nota più avanti in questo capitolo).</para>
+      </tip>
+
+      <note>
+        <para>L'equazione della contabilità che lega i conti di bilancio è
+        attività = passività + capitale o anche attività - passività = capitale.
+        Di conseguenza, semplicemente parlando, <emphasis>ciò che si possiede</emphasis> 
+        meno <emphasis>ciò che si deve</emphasis> è uguale al <emphasis>valore netto</emphasis>.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="accts-gc-ie2">
+      <title>Conti per entrate e uscite</title>
+
+      <para><emphasis>Entrate</emphasis>: è il denaro che si riceve per l'impiego del
+      proprio tempo, per i servizi che si forniscono o per l'uso del proprio denaro. In &app;
+      un conto di tipo <guilabel>entrate</guilabel> è utilizzato per registrare questi guadagni.</para>
+
+      <tip>
+        <para>Gli accrediti aumentano il saldo del conto entrate mentre
+        i debiti lo diminuiscono. Come descritto nella <xref linkend="basics-accounting1"></xref>,
+        gli accrediti rappresentano un trasferimento di denaro
+        <emphasis>da</emphasis> un conto; così in questi conti speciali per le entrate,
+        quando si trasferisce denaro <emphasis>dal</emphasis> conto entrate a un altro conto
+        (accredito o avere), il saldo del conto entrate <emphasis>aumenta</emphasis>.
+        Per esempio, quando si deposita un assegno e si registra la transazione 
+        come un trasferimento di denaro dal conto entrate al conto bancario, il saldo
+        di entrambi aumenta.</para>
+      </tip>
+
+      <para><emphasis>Uscite</emphasis>: si riferisce al denaro che viene utilizzato
+      per acquistare beni o servizi forniti da terzi. In &app; si utilizza un
+      conto <guilabel>uscite</guilabel> per registrare le proprie uscite.
+      </para>
+
+      <tip>
+        <para>Gli addebiti aumentano il valore delle passività mentre
+        gli accrediti lo diminuiscono. (consulta la nota più avanti
+        in questo capitolo).</para>
+      </tip>
+
+      <note>
+        <para>Quando si sottraggono alle entrate totali le uscite totali
+        in un certo periodo di tempo, si ottengono le entrate nette.
+        Questa grandezza viene indicata nello stato patrimoniale con la
+        dicitura "utili non distribuiti", che è un tipo di conto del
+        <guilabel>capitale</guilabel>.</para>
+      </note>
+
+      <para>Qui sotto vengono mostrati i conti standard per le <guilabel>entrate</guilabel>
+      e per le <guilabel>uscite</guilabel> così come vengono creati scegliendo l'opzione <guilabel>
+      conti comuni</guilabel> nel druido per la creazione di una nuova struttura dei conti
+      (<guimenu>File -&gt; Nuovo -&gt; Nuova struttura conti</guimenu>).</para>
+      
+      <screenshot id="accts-DefaultIncomeAccounts">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/accts_DefaultIncomeAccounts.png"
+                         format="PNG" srccredit="Bengt Thuree" ></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>Conti standard per le entrate</phrase>
+            </textobject>
+
+            <caption>
+              <para>Questa immagine mostra i conti standard per le 
+              <guilabel>entrate</guilabel></para>
+            </caption>
+          </mediaobject>
+        </screenshot> 
+        <screenshot id="accts-DefaultExpenseAccounts">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/accts_DefaultExpenseAccounts.png"
+                         format="PNG" srccredit="Bengt Thuree" ></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>Alcuni conti standard per le uscite</phrase>
+            </textobject>
+
+            <caption>
+              <para>Questa immagine mostra alcuni conti standard per le 
+              <guilabel>uscite</guilabel></para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+      <note> <!-- <sidebar> -->
+        <title>Approfondimento di addebiti e accrediti</title>
+
+        <para>Si ricordano ancora i termini debito e credito discussi nella 
+        <xref linkend="basics-accounting1"></xref>?
+        Contrariamente a quanto si possa credere e alle definizioni sui
+        dizionari, debiti e crediti non significano aumento o riduzione.
+        L'unica definizione costante di debiti e crediti è che i debiti
+        sono inseriti nella colonna di sinistra (chiamata anche dare) mentre 
+        i crediti in quella di destra (chiamata anche avere). Infatti entrambi
+        possono far aumentare certi tipi di conti e farne diminuire altri. Nei 
+        conti delle attività e delle uscite, i debiti ne aumentano il saldo 
+        mentre i crediti lo diminuiscono. Nei conti delle passività, del 
+        capitale e delle entrate, i crediti ne aumentano il saldo
+        mentre i debiti lo diminuiscono.</para>
+
+        <para>Per esempio, i debiti <emphasis>aumentano</emphasis> il saldo
+        del conto bancario e i crediti lo <emphasis>diminuiscono</emphasis>.
+        Fermi un attimo, si potrebbe pensare, un <emphasis>debito</emphasis>
+        fa <emphasis>diminuire</emphasis> il saldo sul conto corrente perché 
+        si preleva denaro. E quando la banca restituisce del denaro, viene 
+        <emphasis>accreditato</emphasis> sul conto. Sorge quindi spontaneo chiedersi
+        per quale motivo i termini hanno un significato inverso in contabilità.</para>
+
+        <para>E' presto detto: le banche riportano le transazioni dal <emphasis>loro</emphasis> 
+        punto di vista che è esattamente il contrario di quella 
+        del cliente. Per il cliente la banca rappresenta una attività, qualcosa 
+        che si possiede; per la banca invece, il conto rappresenta un prestito, o 
+        una passività dato che essa deve del denaro al cliente.
+        Come illustrato in questo capitolo, i conti delle attività e quelli delle
+        passività, si comportano in modo opposto. In un conto delle passività,
+        i debiti fanno <emphasis>diminuire</emphasis> il saldo e i crediti lo
+        fanno <emphasis>aumentare</emphasis>.</para>
+
+        <para>Quando si preleva denaro dal proprio conto bancario, il saldo del
+        proprio conto diminuisce. Questo rappresenta una diminuzione del proprio
+        capitale, dato che si <emphasis>accredita</emphasis> il proprio conto.
+        Per la banca, questa operazione rappresenta una diminuzione delle passività,
+        dato che <emphasis>addebita</emphasis> il conto bancario del cliente</para>
+	
+	<para>La seguente tabella riassume le convenzioni utilizzate nella contabilità 
+        per quanto concerne l'effetto sul saldo di una determinata tipologia di conto, 
+        in funzione dell'immissione di un valore in una specifica colonna del registro 
+        di quel conto. Il segno <emphasis>+</emphasis> in una casella significa che inserendo 
+        un valore in quella colonna nel registro del conto associato, si produrrà un
+        aumento del saldo del conto stesso. Il segno <emphasis>-</emphasis> indica invece
+        un valore che produrrà una diminuzione del saldo del conto.</para>
+                        
+        <para><table>
+              <title>Tabella riassuntiva delle convenzioni utilizzate nel registro.</title>
+
+              <tgroup cols="3">
+                <tbody>
+                  <row>
+                    <entry><emphasis>Tipologia del conto</emphasis></entry>
+
+                    <entry><emphasis>DARE</emphasis></entry>
+
+                    <entry><emphasis>AVERE</emphasis></entry>
+                  </row>
+
+                  <row>
+                    <entry>Attività</entry>
+
+                    <entry><emphasis>+</emphasis></entry>
+
+                    <entry><emphasis>-</emphasis></entry>
+                  </row>
+                  
+                  <row>
+                    <entry>Passività</entry>
+
+                    <entry><emphasis>-</emphasis></entry>
+
+                    <entry><emphasis>+</emphasis></entry>
+                  </row>
+                  
+                  <row>
+                    <entry>Capitali</entry>
+
+                    <entry><emphasis>-</emphasis></entry>
+
+                    <entry><emphasis>+</emphasis></entry>
+                  </row>
+                  
+                  <row>
+                    <entry>Entrate</entry>
+
+                    <entry><emphasis>-</emphasis></entry>
+
+                    <entry><emphasis>+</emphasis></entry>
+                  </row>
+                  
+                  <row>
+                    <entry>Uscite</entry>
+
+                    <entry><emphasis>+</emphasis></entry>
+
+                    <entry><emphasis>-</emphasis></entry>
+                  </row>                  
+                </tbody>
+              </tgroup>
+            </table>
+        </para>
+            
+        <para>L'effetto descritto nella tabella è visualizzabile direttamente in &app;
+        selezionando, nella finestra delle preferenze dei conti alla voce <emphasis>conti
+        con saldo invertito</emphasis>, l'opzione <emphasis>Nessuno</emphasis>. In questo modo
+        verrà visualizzato l'effettivo segno del saldo per ogni tipologia di conto.</para>	
+      </note> <!-- </sidebar> -->
+      
+    </sect2>
+  </sect1>
+
+  <sect1 id="accts-examples1">
+    <title>In pratica</title>
+
+    <para>Si procederà ora a descrivere il processo di creazione di una
+    <emphasis>struttura dei conti</emphasis> per la gestione delle finanze personali
+    utilizzando le informazioni apprese in questo capitolo.
+    Una <emphasis>struttura dei conti</emphasis> è semplicemente un
+    nuovo file di &app; in cui i propri conti vengono raggruppati
+    per tenere traccia delle proprie finanze. Per realizzare la struttura,
+    il primo passo consiste nel dividere le voci che si vogliono controllare
+    nei 5 conti base della contabilità. Questa procedura è semplice;
+    si proceda attraverso un esempio.</para>
+
+    <sect2 id="accts-examples-situation2">
+      <title>Esempio semplice</title>
+
+      <para>Si assuma di avere acceso presso la banca un conto corrente e un conto 
+      di risparmio, e di essere assunti in un'azienda ricevendo quindi uno stipendio.
+      Si ipotizzi inoltre di possedere una carta di credito (Visa) e di pagare,
+      con cadenza mensile, dei servizi quali affitto, telefono ed elettricità.
+      E' inoltre indispensabile fare acquisti almeno di alimentari. Per ora non
+      è necessario sapere quanto denaro si ha in banca, quanto si deve
+      pagare per la carta di credito ecc... Si vuole, per ora, solo realizzare la struttura
+      che contiene tutti questi conti.</para>
+
+      <para>Le <guilabel>attività</guilabel> saranno costituite dal conto corrente
+      e dai risparmi in banca. Le <guilabel>passività</guilabel> saranno invece imputabili
+      alla carta di credito. Il <guilabel>capitale</guilabel> sarà invece la somma
+      tra i conti bancari e la carta di credito (non si hanno ancora a disposizione
+      gli importi per essi, ma si sa che esistono). Si ha anche una <guilabel>entrata</guilabel>
+      sotto forma di stipendio, e delle <guilabel>uscite</guilabel> identificabili come
+      spese varie in negozi, affitto, elettricità, telefono e tasse (statali, assistenza
+      sanitaria ecc...) che gravano sullo stipendio. Semplice vero?</para>
+    </sect2>
+
+    <sect2 id="accts-examples-toplevel2">
+      <title>I conti base di livello principale</title>
+
+      <para>Occorre ora decidere come raggruppare i conti. Probabilmente,
+      si vorranno raggruppare i conti delle attività in uno unico così come anche
+      quelli delle passività, del capitale, delle entrate e delle uscite. Questo
+      rappresenta il metodo più ovvio per creare una struttura dei conti in &app;
+      e si raccomanda di ragionare comunque sempre in questi termini.</para>
+
+      <para>Conviene iniziare con un file di &app; vuoto (non si selezioni
+      alcun conto predefinito) nel quale realizzare la struttura
+      (<guilabel>File</guilabel> -&gt; <guilabel>Nuovo
+      conto...</guilabel>).</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Nome conto <guilabel>Attività</guilabel> (tipo di conto
+          <guilabel>Attività</guilabel>, conto padre <guilabel>nuovo conto di
+          livello principale</guilabel>)</para>
+
+          <screenshot id="accts-CreateAssetsAccount">
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="figures/accts_CreateAssetsAccount.png"
+                             format="PNG" srccredit="Bengt Thuree" ></imagedata>
+                </imageobject>
+
+                <textobject>
+                  <phrase>Creazione di un conto delle attività</phrase>
+                </textobject>
+
+                <caption>
+                  <para>Questa immagine mostra la finestra di creazione di un
+                  <guilabel>conto</guilabel> delle attività</para>
+                </caption>
+              </mediaobject>
+            </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Nome conto <guilabel>Passività</guilabel> (tipo di conto
+          <guilabel>Passività</guilabel>, conto padre <guilabel>nuovo conto di
+          livello principale</guilabel>)</para>
+        </listitem>
+
+        <listitem>
+          <para>Nome conto <guilabel>Capitali</guilabel> (tipo di conto
+          <guilabel>Capitali</guilabel>, conto padre <guilabel>nuovo conto di
+          livello principale</guilabel>)</para>
+        </listitem>
+
+        <listitem>
+          <para>Nome conto <guilabel>Entrate</guilabel> (tipo di conto
+          <guilabel>Entrata</guilabel>, conto padre <guilabel>nuovo conto di
+          livello principale</guilabel>)</para>
+        </listitem>
+
+        <listitem>
+          <para>Nome conto <guilabel>Uscite</guilabel> (tipo di conto
+          <guilabel>Uscita</guilabel>, conto padre <guilabel>nuovo conto di
+          livello principale</guilabel>)</para>
+        </listitem>
+      </orderedlist>
+
+      <para>Quando tutti i conti di livello principale sono stati creati, la pagina principale
+      dei conti in &app; dovrebbe essere simile a questa:</para>
+
+      <screenshot id="accts-toplevel">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/accts_toplevel.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>I conti base di livello principale</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra i conti base di livello principale.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="accts-examples-organization2">
+      <title>Creare i sottoconti</title>
+
+      <para>A questo punto si può creare la struttura ad albero dei conti partendo
+      dai conti a livello principale e aggiungendo dei sottoconti in grado di
+      contenere delle transazioni. Si noti come i conti per le tasse siano tutti
+      inseriti in un sottoconto denominato tasse. I conti e i sottoconti possono infatti a loro
+      volta contenere altri sottoconti: questo è utile quando si considera un 
+      gruppo di conti appartenenti a una stessa categoria (come i conti per le tasse in
+      questo esempio). <orderedlist>
+          <listitem>
+            <para>Nome conto <guilabel>Conto corrente</guilabel> (tipo di conto
+            <guilabel>Banca</guilabel>, conto padre
+            <guilabel>Attività</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Conto risparmio</guilabel> (tipo di conto
+            <guilabel>Banca</guilabel>, conto padre
+            <guilabel>Attività</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Visa</guilabel> (tipo di conto
+            <guilabel>Carta di credito</guilabel>, conto padre
+            <guilabel>Passività</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Stipendio</guilabel> (tipo di conto
+            <guilabel>Entrata</guilabel>, conto padre
+            <guilabel>Entrate</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Telefono</guilabel> (tipo di conto
+            <guilabel>Uscita</guilabel>, conto padre
+            <guilabel>Uscite</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Elettricità</guilabel> (tipo di conto
+            <guilabel>Uscita</guilabel>, conto padre
+            <guilabel>Uscite</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Affitto</guilabel> (tipo di conto
+            <guilabel>Uscita</guilabel>, conto padre
+            <guilabel>Uscite</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Alimentari</guilabel> (tipo di conto
+            <guilabel>Uscita</guilabel>, conto padre
+            <guilabel>Uscite</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Imposte</guilabel> (tipo di conto
+            <guilabel>Uscita</guilabel>, conto padre
+            <guilabel>Uscite</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Statali</guilabel> (tipo di conto
+            <guilabel>Uscita</guilabel>, conto padre
+            <guilabel>Uscite:Imposte</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Previdenza sociale</guilabel> (tipo di
+            conto <guilabel>Uscite</guilabel>, conto padre
+            <guilabel>Uscite:Imposte</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Assistenza sanitaria</guilabel> (tipo di conto
+            <guilabel>Uscita</guilabel>, conto padre
+            <guilabel>Uscite:Imposte</guilabel>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Nome conto <guilabel>Bilancio di apertura</guilabel> (tipo di
+            conto <guilabel>Capitali</guilabel>, conto padre
+            <guilabel>Capitali</guilabel>)</para>
+          </listitem>
+        </orderedlist></para>
+
+      <para>Dopo la creazione dei sottoconti aggiuntivi, il risultato finale
+      dovrebbe assomigliare a quello riportato di seguito:</para>
+
+      <screenshot id="accts-tree">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/accts_tree.png" format="PNG"
+                       srccredit="Bengt Thuree" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>La semplice struttura dei conti</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra una semplice struttura dei conti.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Salvare ora la struttura dei conti creata con il nome
+      <filename>gcashdata_3</filename>, e anche come <filename>gcashdata_3emptyAccts</filename>,
+      dato che si continuerà a utilizzare questi file nei capitoli successivi.</para>
+
+      <para>E' stata appena creata una struttura di conti per tenere
+      traccia delle spese familiari. Con questa ossatura in posizione,
+      si può procedere a popolare i conti con delle transazioni; il prossimo capitolo si occuperà
+      approfonditamente di questo argomento.</para>
+    </sect2>
+  </sect1>
+</chapter>

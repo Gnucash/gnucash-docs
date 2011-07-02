@@ -1,0 +1,2177 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: January 12th 2007
+       modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally written by Carol Champagne.
+  Translators:
+               Cristian Marchi <cri79@libero.it> 2008
+-->
+<chapter id="chapter_basics">
+  <title>Le basi</title>
+
+  <para>Questo capitolo introduce all'utilizzo di base di &app; e se ne consiglia la lettura
+  per intero prima di iniziare qualsiasi progetto reale con &app;.
+  Il capitolo successivo a questo mostrerà degli esempi pratici di utilizzo.</para>
+
+  <sect1 id="basics-accounting1">
+    <title>Concetti di contabilità</title>
+
+    <para>&app; è abbastanza semplice da utilizzare e comprendere
+    anche in assenza di una approfondita conoscenza dei principi della contabilità.
+    Comunque, nulla toglie che la conoscenza di alcuni concetti base
+    risulta indispensabile dato che &app; è stato creato sulla base di questi
+    principi. Si consiglia caldamente di comprendere a fondo questa sezione
+    prima di procedere nella lettura dei capitoli successivi.</para>
+
+    <sect2 id="basics-accounting52">
+      <title>I 5 conti di base</title>
+
+      <para>Le leggi della contabilità raggruppano tutti gli strumenti
+      finanziari in 5 tipi fondamentali di <quote>conti</quote>. In pratica
+      tutto quello con cui i contabili hanno a che fare può essere
+      inserito in uno dei seguenti 5 gruppi:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><emphasis>Attività/Patrimonio netto</emphasis> - tutto ciò che si possiede.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Passività/Debiti</emphasis> - i debiti.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Capitale Netto</emphasis> - valore totale netto.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Entrate</emphasis> - aumentano il valore del conto.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Uscite</emphasis> - diminuiscono il valore del conto.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>E' ora più chiaro come sia possibile catalogare il mondo finanziario 
+      in questi 5 gruppi. Per esempio il denaro sul proprio conto bancario fa parte dei beni,
+      il mutuo è un debito, il salario/stipendio è un'entrata mentre il costo
+      della cena di ieri sera è un'uscita.</para>
+    </sect2>
+
+    <sect2 id="basics-accountingequation2">
+      <title>L'Equazione fondamentale della contabilità</title>
+
+      <para>Definiti i 5 conti fondamentali, resta da spiegare come siano
+      in relazione tra loro. In che modo un tipo di conto ne influenza un altro?
+      Prima di tutto il capitale netto è definito a partire dalle attività e dalle passività.
+      Matematicamente parlando, il capitale netto è la differenza tra
+      il valore delle proprie attività e quello delle proprie passività:</para>
+
+      <para><emphasis>attività - passività = capitale netto</emphasis></para>
+
+      <para>In aggiunta, è possibile aumentare il capitale attraverso le entrate
+      e diminuirlo con le uscite. Questo è intuitivo dato che quando si riceve
+      un assegno si diventa più ricchi e quando si offre una cena si diventa più poveri.
+      Matematicamente questo concetto è espresso dall'EQUAZIONE DELLA CONTABILITÀ</para>
+
+      <para><emphasis>attività - passività = capitale + (entrate -
+      uscite)</emphasis></para>
+
+      <para>L'equazione deve sempre essere rispettata; questo è vero se
+      i movimenti di denaro avvengono sempre da un conto verso un altro.
+      Per esempio, se si riceve del denaro come entrata, deve esserci un
+      corrispondente aumento del capitale. Come altro esempio si può avere un aumento
+      del proprio patrimonio se a esso corrisponde un aumento delle passività.</para>
+
+      <screenshot id="basics-AccountRelationships">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_AccountRelationships.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>La relazione fondamentale della contabilità</phrase>
+          </textobject>
+
+          <caption>
+            <para>Visualizzazione grafica della relazione che intercorre
+            tra i 5 tipi fondamentali di conti. Il capitale netto
+            si accresce grazie alle entrate e diminuisce a causa delle uscite.
+            Le freccie rappresentano la direzione del valore.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="basics-accountingdouble2">
+      <title>Partita doppia</title>
+
+      <para>L'equazione di bilancio appena descritta costituisce il cuore
+      di un sistema di registrazione a partita doppia. A ogni cambio di valore
+      di un termine dell'equazione deve corrispondere la variazione di un altro termine per rispettare 
+      l'uguaglianza. Questo concetto è noto con il nome di <emphasis>principio del bilancio</emphasis>
+      ed è di fondamentale importanza per capire come funziona &app; ma anche gli altri
+      programmi che usano uno schema a partita doppia. Quando si lavora con &app;, si dovranno
+      sempre considerare almeno due conti al fine di mantenere equilibrata l'equazione 
+      fondamentale della contabilità</para>
+
+      <para>La contabilità a partita doppia ha due scopi; il primo è di creare 
+      una traccia di tutti i conti: il denaro infatti deve provenire da qualche parte
+      e andare da qualche altra parte. Inoltre, la contabilità a partita doppia
+      è storicamente stata utilizzata per controllare i calcoli di un contabile.
+      Dato che i numeri vengono inseriti simultaneamente in più conti, è possibile
+      controllare in più posti che i totali corrispondano. naturalmente, con l'avvento
+      dei computer, le probabilità che si verifichi un errore di calcolo sono basse,
+      ma è bene sapere che il concetto continua a essere applicato!</para>
+
+      <para>Il metodo a partita doppia esiste sin dal 15° secolo, allorché
+      fu descritto da un frate Italiano, Luca Pacioli.
+      Il metodo originale consiste nel registrare ogni transazione in un quaderno,
+      detto libro mastro, e poi ricopiare ogni parte della transazione in altri
+      quaderni detti giornali. Questo metodo è a tutt'oggi usato perché aiuta ad
+      evitare gli errori e, nel caso ce ne fossero, a trovarne la fonte.
+      &app; semplifica questo metodo copiando ogni transazione automaticamente e potrebbero
+      quindi non essere visibili eventuali errori che si scorgerebbero subito con il metodo cartaceo.
+      &app; però avvertirà segnalando le transazioni che non sono
+      bilanciate e indicherà quando un conto non è ancora stato nominato.</para>
+
+      <note>
+        <para>Chiamare questo metodo di tenuta dei conti con il nome partita-doppia
+        può essere equivoco; sarebbe più corretto chiamarlo a partita-multipla,
+        dato che una transazione può coinvolgere più conti. Sfortunatamente
+        ci sono più di 700 anni di storia di utilizzo del termine che sono
+        sufficienti a scoraggiarne la modifica.</para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-entry1">
+    <title>Concetti sull'immissione dei dati</title>
+
+    <para>Quando si inseriscono dei dati in &app;, occorre avere ben presente
+    i 3 livelli in cui &app; li organizza: file, conti e transazioni.
+    Questi livelli sono in ordine di complessità; un file contiene diversi conti
+    e un conto contiene più transazioni. Questa suddivisione è di fondamentale
+    importanza per capire come utilizzare &app;.</para>
+
+    <sect2 id="basics-accounts2">
+      <title>File, conti e transazioni</title>
+
+      <para>&app; utilizza i <emphasis>file</emphasis> per immagazzinare le informazioni.
+      &app; fornisce tre tipi di file: file dei dati, file di backup e file di log.
+      Il file più utilizzato per salvare le informazioni è il file dei dati.
+      Probabilmente si avrà un file che verrà utilizzato per i dati del o dei propri conti,
+      &app; ne farà automaticamente una copia di sicurezza (file di backup) ogni
+      volta che verrà salvato di nuovo. &app; crea inoltre dei file di log 
+      che possono essere usati per recuperare i dati. I file di backup e di log 
+      sono descritti più avanti in questo capitolo</para>
+
+      <para>Un <emphasis>conto</emphasis> permette di raccogliere informazioni
+      sui propri beni, sui propri debiti, su ciò che si spende o si guadagna.
+      Anche se si avrà un unico file dei dati, questo potrà contenere diversi conti. 
+      Probabilmente si ha già presente che il denaro che si riceve e quello che si usa per
+      pagare i debiti sono su un conto. Per esempio, un giorno si sarà aperto un conto
+      corrente in banca e questa invierà un resoconto per mostrare
+      quanto denaro si ha a disposizione conto. La compagnia della carta di credito
+      invia anch'essa un resoconto che riporta il debito verso di loro e 
+      la banca presso cui si ha un mutuo invia periodicamente una lettera
+      che riporta il debito rimanente da estinguere.</para>
+
+      <para>In &app;, i conti sono anche utilizzati per catalogare
+      il denaro contante che si guadagna o spende, anche se non sono conti come quelli
+      precedenti dotati di un resoconto. Come sarà descritto meglio nel
+      <xref linkend="chapter_accts"></xref>, i conti per le entrate sono
+      utilizzati per catalogare il denaro ricevuto (come, per esempio, lo stipendio od un assegno)
+      mentre i conti per le uscite registrano il denaro speso (per la pizza, per pagare una fattura, ecc...).
+      Questi conti funzionano come le categorie presenti in altri programmi finanziari
+      con in più alcuni vantaggi descritti nel <xref linkend="chapter_accts"></xref>.</para>  
+      
+      <para>Una <emphasis>transazione</emphasis> rappresenta il movimento
+      di denaro che avviene da un conto verso un altro. Quando si spende o
+      riceve denaro, o si trasferiscono fondi da un conto all'altro, si parla di transazione.
+      In &app;, come verrà spiegato nella sezione successiva, le transazioni
+      coinvolgono sempre almeno due conti: pagare una fattura, trasferire denaro dai
+      propri risparmi con un assegno, comprare una pizza, fare un prelievo in banca
+      e depositare il proprio stipendio. Il <xref linkend="chapter_txns"></xref>
+      approfondisce le modalità di inserimento delle transazioni in &app;.</para>
+    </sect2>
+
+    <sect2 id="basics-dbentry2">
+      <title>Partita doppia</title>
+
+      <para>Il famoso detto <quote>i soldi non crescono
+      sugli alberi</quote> vuole significare che il denaro deve
+      provenire da qualche parte; purtroppo non <quote>appare dal nulla</quote>.
+      La <emphasis>contabilità a partita doppia</emphasis> è un metodo di registrazione
+      che permette di tenere traccia sia della provenienza che della destinazione
+      del denaro. Usare la partita doppia significa che il denaro non è mai
+      guadagnato o perso - una uguale quantità è trasferita da un conto a un
+      altro. Quando si fa un prelievo in banca, si sta trasferendo denaro dal conto bancario al
+      proprio portafogli. Quando si emette un assegno, si sta trasferendo denaro dal proprio conto al
+      beneficiario. Infine, quando si riceve lo stipendio, si sta trasferendo denaro dalla
+      fonte di guadagno al propria conto in banca.</para>
+
+      <para>In &app; queste operazioni sono denominate transazioni, ed
+      ogni transazioni richiede almeno due conti. Per immettere i dati di
+      un prelievo, per esempio, si dovrà registrare un trasferimento dal proprio conto
+      bancario al proprio portafogli. Si registrerà invece l'assegno emesso come
+      un trasferimento dal conto corrente al conto del beneficiario. Infine, si potrà
+      registrare lo stipendio come un trasferimento dal conto del proprio datore di lavoro
+      al conto bancario.</para>
+
+      <para>A differenza di altri programmi, &app; rende molto semplice
+      l'immissione delle transazioni a partita doppia. Il <xref linkend="chapter_txns"></xref>
+      fornisce ulteriori dettagli su come immettere le transazioni in &app;, ma 
+      per ora si preferisce dare solo un'occhiata a come funzionano. Per una semplice transazione
+      quale può essere l'emissione di un assegno, si devono prima creare due conti:
+      un conto corrente e un conto spese. Per esempio, se si emette un assegno al fine di pagare
+      un acquisto al negozio, allora si ha bisogno di un conto corrente e di un conto
+      del negoziante (consultare il <xref linkend="chapter_accts"></xref> per maggiori dettagli
+      su come creare dei conti). Per registrare l'assegno è sufficiente immettere una transazione
+      dal conto corrente al conto del negoziante. La transazione in &app; descritta 
+      in questo esempio è riportata nella figura seguente nella finestra di registro 
+      del conto corrente:</para>
+
+      <screenshot id="basics-DoubleEntryIntro-compact">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_DoubleEntryIntro_compact.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Una semplice transazione</phrase>
+          </textobject>
+
+          <caption>
+            <para>L'immagine mostra l'immissione della data, della descrizione
+            e dell'ammontare del trasferimento per un pagamento di <guilabel>€50</guilabel>
+            in favore del <guilabel>Negozio</guilabel>.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>In questa transazione, un assegno è registrato a favore
+      del <guilabel>negozio</guilabel> per un ammontare di <guilabel>€50</guilabel>.
+      Dato che questa è una operazione a partita doppia, almeno due conti sono
+      coinvolti e devono far parte della transazione. &app; automaticamente
+      seleziona il nome del conto (<guilabel>Attività:Conto corrente</guilabel>)
+      così si deve solamente immettere il nome dell'altro conto coinvolto
+      (<guilabel>Uscite:Negozio</guilabel>).</para>
+      
+      <para>Per mostrare che &app; registra ogni transazione con il
+      metodo della partita doppia, è possibile cambiare la vista in
+      <guilabel>giornale delle transazioni</guilabel> e vedere come si presenta.</para>
+
+      <screenshot id="basics-DoubleEntryIntro-expanded">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_DoubleEntryIntro_expanded.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Vista del giornale delle transazioni per una semplice operazione</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra il <guilabel>giornale delle
+            transazioni</guilabel> per il <guilabel>conto corrente</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Si osservi come è presente una voce per il deposito (debito)
+      riguardante il conto <guilabel>Uscite:Negozio</guilabel>
+      e un'altra per il prelievo (credito) da <guilabel>Attività:Conto corrente</guilabel>.</para>
+
+      <para>E' possibile controllare come si presenta la stessa transazione dal
+      punto di vista del conto <guilabel>Uscite:Negozio</guilabel></para>
+
+      <screenshot id="basics-DoubleEntryIntro-Groceries">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_DoubleEntryIntro_groceries.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Immagine di una semplice transazione nel conto Uscite:Negozio</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra il <guilabel>giornale delle
+            transazioni</guilabel> per il <guilabel>conto negozio</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+
+      <note>
+        <para>In questo esempio è stato utilizzato un assegno per pagare il negozio.
+        Il concetto rimane però invariato qualunque metodo sia usato per il pagamento.
+        Se invece si fosse usata una carta di credito, la contabilità a partita doppia
+        avrebbe dovuto coinvolgere il conto della propria carta di credito in luogo 
+        di quello degli assegni.</para>
+      </note>
+
+      <para>Cosa dire a proposito dello stipendio? il denaro
+      viene addebitato in un conto bancario, ma da dove proviene?
+      Nel metodo a partita doppia, il denaro deve provenire da qualche fonte.
+      Tecnicamente, il denaro proviene dal datore di lavoro, ma non interessa
+      tenere traccia del suo conto. Allora come è possibile registrare le proprie entrate?
+      In &app; si può creare un conto speciale con questo compito
+      (consultare il <xref linkend="chapter_accts"></xref> per maggiori
+      dettagli su come creare un conto per le entrate).
+      Per registrare lo stipendio è sufficiente creare una transazione dal conto
+      delle entrate al proprio conto bancario.</para>
+
+      <para>Ecco come si presenta uno stipendio in &app;</para>
+
+      <screenshot id="basics-DoubleEntryIntro-salary">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_DoubleEntryIntro_salary.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Una semplice transazione per lo stipendio</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra l'immissione della data, della
+            descrizione e del conto di trasferimento per uno <guilabel>stipendio di
+            €600</guilabel> pagato da <guilabel>Employers R Us</guilabel>.</para>
+           </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>In questo esempio, <guilabel>600€</guilabel> sono trasferiti dal 
+      conto delle entrate <guilabel>stipendio</guilabel> al <guilabel>conto
+      corrente</guilabel>. A causa della speciale natura dei conti per le entrate
+      discussa nel <xref linkend="chapter_accts"></xref>, questa transazione
+      incrementa entrambi i saldi del conto corrente e del conto entrate
+      dell'importo trasferito.</para>
+
+      <para>Com'è però possibile registrare lo stipendio lordo e tutte le
+      deduzioni che vengono effettuate? si può utilizzare una transazione 
+      con <emphasis>suddivisioni multiple</emphasis>, che verrà analizzata
+      nella <xref linkend="txns-registers-multiaccount2"></xref>.
+      In questo tipo di transazioni, una somma di denaro viene trasferita
+      da un conto verso più conti. Per ogni transazione a partita doppia,
+      l'importo <emphasis>totale</emphasis> di denaro trasferito <emphasis>da</emphasis>
+      dei conti deve eguagliare l'importo <emphasis>totale</emphasis>
+      trasferito <emphasis>agli</emphasis> altri conti.</para>
+
+      <para>Per esempio, lo stipendio lordo sia di €1.000, ma solo €655 di questi
+      siano depositati sul conto corrente. I rimanenti €345 siano suddivisi tra
+      deduzioni, tasse statali, previdenza sociale ecc...
+      Come è possibile tenere conto di questo in &app;?
+      Prima di tutto occorre aver impostato dei conti per lo stipendio lordo,
+      il conto corrente e per ognuna delle deduzioni (consultare il <xref linkend="chapter_accts"></xref>).
+      In seguito è necessario inserire una transazione che trasferisce
+      €1.000 dal conto <guilabel>Stipendio</guilabel> agli altri conti:
+      <guilabel>Conto corrente</guilabel>,
+      <guilabel>Imposte:Statali</guilabel>, <guilabel>Assistenza sanitaria</guilabel>,
+      <guilabel>Previdenza sociale</guilabel> e
+      <guilabel>Imposte:Regionali/provinciali</guilabel>. Poiché questa è una transazione a partita doppia,
+      l'importo totale trasferito a questi cinque conti deve eguagliare gli originari
+      €1.000 provenienti dal conto delle entrate. Questo tipo di transazione è descritta
+      in dettaglio nel <xref linkend="chapter_txns"></xref>, ma per ora si può vedere una
+      anteprima di come si presenta:</para>
+
+      <screenshot id="basics-DoubleEntryIntro-SalarySplit">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_DoubleEntryIntro_SalarySplit.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Una suddivisione di transazione per lo stipendio</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra l'immissione della data, della descrizione e del
+            conto di trasferimento per il pagamento di uno <guilabel>Stipendio</guilabel> 
+            di <guilabel>€1000</guilabel>. La transazione è poi suddivisa a favore del
+            <guilabel>Conto corrente</guilabel>, delle <guilabel>Tasse statali
+            </guilabel>, dell'<guilabel>Assistenza sanitaria</guilabel>, della<guilabel>Previdenza
+            sociale</guilabel> e delle tasse di carattere
+            <guilabel>Regionali/provinciali</guilabel>.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Il principio più importante da ricordare è che ogni transazione
+      coinvolge almeno due parti e che l'importo totale, trasferito da un gruppo
+      di conti, deve essere uguale all'importo totale trasferito a un altro 
+      gruppo di conti. Quando una transazione trasferisce una somma uguale
+      da dei conti verso altri conti, viene denominata <emphasis>in
+      bilancio</emphasis>. In &app;, come nella contabilità in partita doppia,
+      tutte le transazioni devono essere in bilancio.</para>
+
+      <para>Perché questo è così importante? Se tutte le transazioni sono
+      in bilancio, allora tutto il denaro è contabilizzato. &app; registra
+      sempre la provenienza e la destinazione del denaro. Salvando i nomi
+      di tutti i conti coinvolti in una transazione, vengono forniti i dati
+      necessari per poter, in un secondo momento, essere visualizzati e ordinati
+      in resoconti. Questi permettono di conoscere, per esempio, quanto denaro
+      è stato guadagnato durante l'anno e dove è stato speso, qual'è il 
+      valore netto e come potrebbero essere le tasse per l'anno corrente. Più informazioni
+      vengono fornite al momento dell'inserimento delle transazioni, più
+      dettagliati saranno i resoconti forniti.
+      </para>
+
+      <note> <!-- <sidebar> -->
+        <title>Terminologia contabile</title>
+
+        <para>I contabili utilizzano i termini <emphasis>dare</emphasis> (addebito)
+        e <emphasis>avere</emphasis> (accredito) per indicare se il denaro è trasferito
+        <emphasis>a</emphasis> o <emphasis>da</emphasis> un conto. Il denaro
+        è registrato nella colonna del dare, che è sempre quella di sinistra,
+        quando sta per essere trasferito <emphasis>a</emphasis> un conto.
+        Il denaro è invece registrato nella colonna dell'avere, che è sempre
+        la colonna di destra, quando sta per essere trasferito <emphasis>da</emphasis>
+        un conto. Il denaro fluisce sempre dalla colonna di destra di un conto
+        alla colonna di sinistra di un altro conto.</para>
+
+        <para>La regola principale della contabilità è la seguente: <emphasis>per ogni
+        transazione, il debito totale deve eguagliare il credito totale.</emphasis>
+        Si tratta in effetti di un altro modo per descrivere il metodo della partita
+        doppia secondo il quale, per ogni transazione, l'importo di denaro
+        trasferito <emphasis>da</emphasis> un conto deve essere uguale all'importo
+        trasferito <emphasis>a</emphasis> un altro conto.</para>
+
+        <para>Non è comunque necessario impiegare i termini debito e credito
+        per usare &app;. Le impostazioni predefinite dei registri di &app; utilizzano 
+        intestazioni dalle diciture più familiari quali deposito e prelievo;
+        se si è a proprio agio con questi termini, conviene utilizzarli.
+        Se lo si preferisce, è comunque possibile cambiare le intestazioni
+        in credito e debito dalla voce di menu <guimenu>Modifica</guimenu> -&gt;
+        <guimenuitem>Preferenze</guimenuitem> <guibutton>Generali</guibutton>
+        (consultare il<xref linkend="basics-prefs1"></xref> per maggiori dettagli 
+        sull'impostazione delle preferenze).</para>
+      </note> <!-- </sidebar> -->
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-interface1">
+    <title>L'interfaccia di &app;</title>
+
+    <para>All'apertura di &app; per la prima volta, verrà mostrata 
+    la finestra di <guilabel>benvenuto in &app;!</guilabel>.
+    Da qui, &app; propone altri strumenti di aiuto per trovare
+    facilmente ciò che si sta cercando.
+    Di seguito sono riportate le schermate e le finestre che si
+    possono incontrare più frequentemente in &app;.</para>
+
+    <sect2 id="basics-setup2">
+      <title>Creare una nuova struttura di conti</title>
+
+      <para>Il druido <guilabel>creazione di una nuova struttura conti</guilabel> 
+		permette di creare più conti contemporaneamente. All'apertura di &app; per
+		la prima volta, verrà presentata questa finestra:</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Il druido per la nuova struttura conti</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la prima schermata della <guilabel>Creazione 
+            guidata di una nuova struttura conti</guilabel>.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Premere <guibutton>Avanti</guibutton> e seguire le istruzioni che verranno
+      visualizzate nella finestra. Saranno poi presentate una serie di strutture predefinite
+      contenenti diverse combinazioni di conti; è possibile scegliere quella che si preferisce.
+      Per maggiori informazioni sui tipi di conti si veda la <xref linkend="accts-types1"></xref>.</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup-currency">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_currency.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Il druido per la nuova struttura conti - Valuta</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la seconda schermata della <guilabel>Creazione 
+            guidata di una nuova struttura conti</guilabel> dove è possibile selezionare la valuta.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>La valuta selezionata in questa fase, verrà assegnata a tutti i
+      <guilabel>conti</guilabel> creati con questo druido.</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup-Accounts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Accounts.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Il druido per la nuova struttura conti - Scelta dei conti</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la terza schermata della <guilabel>Creazione 
+            guidata di una nuova struttura conti</guilabel> dove è possibile selezionare 
+            i vari conti.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Selezionare uno o più gruppi predefiniti di conti. Per avere maggiori
+      informazioni sui tipi di conto vedere la <xref linkend="accts-types1"></xref>.</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup-Setup.png">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Setup.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Il druido per la nuova struttura conti - Configurazione</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la quarta schermata della <guilabel>Creazione 
+            guidata di una nuova struttura conti</guilabel> dove è possibile impostare i
+            <guilabel>bilanci di apertura</guilabel> per i conti.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>In questa schermata è possibile impostare un <guilabel>bilancio di apertura</guilabel>
+      per ognuno dei conti, oltre a poter indicare se il conto è un <guilabel>segnalibro</guilabel> 
+      (può comprendere solo sotto-conti e non transazioni. Come il conto 'Attività correnti' nell'immagine
+      sopra)</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup-Finish">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Finish.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Il druido per la nuova struttura conti - Fine</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra l'ultima schermata della <guilabel>Creazione 
+            guidata di una nuova struttura conti</guilabel>.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Premendo <guibutton>Applica</guibutton> tutti i conti verranno creati e si uscirà
+      dal druido.</para>
+
+      <para>Se si ha l'intenzione di importare i dati in &app; da un altro
+      programma e si desidera mantenere gli stessi nomi per i conti utilizzati
+      nell'altro programma, si consiglia di saltare questa fase di impostazione
+      dei conti. E' possibile infatti importare i dati e i nomi dei conti
+      in &app; a partire da file creati con altri programmi (la <xref linkend="basics-import1"></xref>
+      mostra come procedere).</para>
+    </sect2>
+
+    <sect2 id="basics-tip2">
+      <title>Suggerimento del giorno</title>
+
+      <para>&app; offre la finestra del <guilabel>Suggerimento del giorno</guilabel>
+      che fornisce consigli utili per l'utilizzo del programma:</para>
+
+      <screenshot id="basics-TipOfDay">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_TipOfDay.png" format="PNG"
+                       srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Il suggerimento del giorno</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra il <guilabel>suggerimento
+            del giorno</guilabel>.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Questi suggerimenti forniscono utili informazioni in particolar
+      modo agli utenti inesperti. Per vedere altri consigli premere il tasto
+      <guibutton>Avanti</guibutton> per avanzare. Se si desidera che questa finestra
+      non venga mostrata all'avvio del programma, togliere la spunta all'opzione
+      <guilabel>Mostra i suggerimenti all'avvio</guilabel>.
+      Terminata la lettura dei suggerimenti, premere il tasto
+      <guibutton>Chiudi</guibutton> per chiudere la finestra dei suggerimenti.</para>
+    </sect2>
+
+    <sect2 id="basics-main2">
+      <title>Finestra della struttura ad albero del conto</title>
+
+      <para>Ora dovrebbe essere visibile la finestra dei <guilabel>conti</guilabel>
+      che si presenta come mostrato sotto. La conformazione dell'albero dei conti
+      dipende dalla scelta effettuata nella terza finestra del druido per la creazione 
+      della struttura dei conti. In questo esempio è mostrata la struttura associata
+      alla scelta "Conti comuni"</para>
+
+      <screenshot id="basics-Accounts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Accounts.png" format="PNG"
+                       srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>La finestra della struttura ad albero del conto</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la finestra dei <guilabel>conti</guilabel>.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>La finestra della struttura ad albero del conto, fornisce una vista
+      d'insieme del contenuto del file su cui si sta lavorando. Contiene una lista
+      di nomi dei conti e dei rispettivi bilanci. Da questa finestra è possibile 
+      aprire ogni conto. Le finestre associate invece a ogni conto vengono chiamate 
+      registri. &app; permette di aprire contemporaneamente tutti i registri che 
+      si desidera.</para>
+
+      <para>Sul bordo superiore di questa finestra è situata la barra del titolo che mostra 
+      il nome del file (una volta che il file è stato salvato con un nome). 
+      Immediatamente sotto è situata la barra dei menu. E' possibile accedere
+      alle opzioni del menu sia cliccando sulle voci presenti, sia utilizzando
+      le scorciatoie e le combinazioni di chiavi di accesso, che saranno discusse
+      più avanti in questo capitolo. Sotto alla barra dei menu è situata la barra
+      degli strumenti, che contiene i pulsanti per utilizzare le funzioni più
+      comuni.</para>
+      
+      <para>L'albero dei conti è posto al si sotto della barra strumenti.
+      Una volta creati dei conti, i nomi a essi assegnati verranno inseriti
+      in questa finestra. E' possibile scegliere quali intestazioni delle colonne
+      visualizzare utilizzando la <guiicon>freccia-giù</guiicon> all'estrema
+      destra posizionata immediatamente sopra alla struttura ad albero.</para>
+
+      <para>Nella parte inferiore si trova la barra di stato che fornisce informazioni
+      su cosa si possiede (attività nette) e quanto denaro è stato guadagnato (profitto).</para>
+
+
+    </sect2>
+
+    <sect2 id="basics-register2">
+      <title>Finestra del registro contabile</title>
+
+      <para>Le finestre del registro del conto sono utilizzate per immettere e modificare
+      i propri dati sui conti. Come suggerisce il nome, assomigliano al registro del libretto
+      degli assegni. Quando si clicca due volte sul nome di un conto nella finestra dei
+      <guilabel>Conti</guilabel>, si aprirà la finestra del <guilabel>Registro</guilabel>
+      per quel conto.</para>
+
+      <screenshot id="basics-CheckAccount">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_CheckAccount.png" format="PNG"
+                       srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Il registro del conto corrente</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra il <guilabel>registro del
+            conto corrente</guilabel> in cui sono presenti alcune transazioni.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Il <xref linkend="chapter_txns"></xref> fornisce più informazioni sulle finestre
+      del registro e su come immettere i dati in esse. Per ora, si noti che le parti che
+      compongono una finestra di registro di un conto sono simili a quelle di cui consta la 
+      finestra della struttura dei conti descritte precedentemente. La barra del titolo in alto
+      contiene il nome del conto; sotto di questa, la barra dei menu contiene delle opzioni
+      relative al registro del conto. La barra degli strumenti semplifica l'esecuzione delle 
+      operazioni più comuni. La barra di stato in fondo alla finestra, mostra alcuni saldi del
+      conto descritti nel <xref linkend="chapter_txns"></xref>. In basso nella finestra del 
+      registro del conto, vengono visualizzate delle informazioni sulla posizione occupata 
+      in quel momento dal cursore.</para>
+      
+      <para>Le varie colonne che &app; visualizza possono essere ridimensionate, ma si tenga
+      presente che la colonna della descrizione si espande automaticamente per riempire tutto
+      lo spazio inutilizzato. Si dovrebbe perciò dapprima aumentare la dimensione di tutte le 
+      altre colonne e poi diminuire la larghezza della colonna della descrizione.
+      </para>
+      
+    </sect2>
+
+    <sect2 id="basics-toolbar2">
+      <title>Pulsanti della barra strumenti</title>
+
+      <para>Sia la finestra con la struttura dei conti che quella del registro,
+      contengono dei pulsanti sulla barra strumenti. Questi pulsanti forniscono
+      un rapido accesso alle funzioni più comunemente usate quali <guibutton>Salva</guibutton>
+      e <guibutton>Apri</guibutton>, nella finestra della struttura ad albero dei conti, e
+      <guibutton>Registra</guibutton> e <guibutton>Cancella</guibutton> nella finestra del
+      registro. Se non si è sicuri sulla funzione di un pulsante, è sufficiente spostare il 
+      puntatore del mouse su di esso per far apparire la descrizione della funzione.</para>
+
+      <para>Di seguito si riporta una lista dei pulsanti presenti nella 
+      finestra della struttura ad albero dei conti.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guibutton>Salva</guibutton> - Utilizzare spesso questa
+          funzione per salvare il proprio lavoro sul disco.</para>
+        </listitem>
+
+        <listitem>
+          <para><guibutton>Chiudi</guibutton> - Usare questa funzione per chiudere la linguetta
+          attiva.</para>
+        </listitem>
+
+        <listitem>
+          <para><guibutton>Apri</guibutton>, <guibutton>Modifica</guibutton>,
+          <guibutton>Nuovo</guibutton> e <guibutton>Cancella</guibutton> - Queste sono
+          funzioni relative ai conti. Sono discusse in dettaglio al
+          <xref linkend="chapter_accts"></xref>.</para>
+        </listitem>
+      </itemizedlist>
+      
+      <para>I pulsanti della finestra del registro sono discussi nel
+      <xref linkend="chapter_txns"></xref>.
+      </para>
+    </sect2>
+
+    <sect2 id="basics-options2">
+      <title>Voci del menu</title>
+
+      <para>La finestra della struttura ad albero dei conti e la finestra del
+      registro contengono entrambe le intestazioni dei menu in una barra del
+      menu. Cliccando su una intestazione si aprirà una tendina che mostra
+      le voci associate a quella del menu aperto.</para>
+
+      <para>E' possibile cliccare sulle intestazioni della barra dei menu 
+      nella finestra della struttura conti e poi spostare il puntatore
+      del mouse su ogni voce per vedere cosa fa. Al muoversi del puntatore
+      su di una voce del menu, viene fornita una descrizione della funzione
+      nell'angolo in basso a sinistra della finestra. Per selezionare una 
+      voce di menu, cliccare semplicemente su di essa.</para>
+
+      <para>E' anche possibile accedere alle voci di menu più comunemente utilizzate 
+      premendo il tasto destro del mouse in un punto qualsiasi della finestra.
+      Nella finestra della struttura conti, si aprirà una tendina contenente
+      funzioni relative ai conti mentre, nella finestra del registro, appariranno 
+      funzioni per la gestione delle transazioni.</para>
+
+      <para>Altri modi per accedere alle voci del menu consistono nell'utilizzo
+      delle scorciatoie da tastiera e nelle chiavi di accesso, descritte di seguito.</para> </sect2>
+
+    <sect2 id="basics-shortcut2">
+      <title>Scorciatoie per i Menu</title>
+
+      <para>Tutte le voci del menu hanno associata una lettera per l'accesso veloce
+      identificata da una sottolineatura. Premendo simultaneamente <keycap>Alt</keycap>
+      e la lettera sottolineata associata alla voce desiderata del menu
+      principale, comparirà un sotto-menu con altre voci che hanno un carattere
+      sottolineato. Ora è sufficiente premere la lettera sottolineata associata
+      al comando che si vuole eseguire per completare l'operazione.
+      Per esempio premendo <keycombo>
+          <keycap>Alt</keycap>
+
+          <keycap>F</keycap>
+        </keycombo> nella finestra principale, si apre il menu <guimenu>File</guimenu>,
+       e poi premendo <keycap>S</keycap> è possibile salvare il file. Queste lettere,
+       che fungono da scorciatoia, sono fisse nel senso che l'utente non può 
+       modificarle a proprio piacimento.</para>
+
+      <para>Alcune delle funzioni più comunemente usate hanno anche delle
+      chiavi di scorciatoia che eseguono direttamente il comando desiderato
+      senza dover attraversare la struttura del menu. Queste scorciatoie
+      utilizzano tipicamente il tasto <keycap>Ctrl</keycap>, sebbene sia 
+      possibile utilizzare qualsiasi combinazione. Le scorciatoie per i 
+      comandi del menu sono indicate alla fine del nome del comando stesso
+      nel menu. Esse possono essere cambiate dall'utente 
+      nel pannello delle preferenze alla voce "Scorciatoie da tastiera".</para>
+
+      <para>Essendo &app; un'applicazione di Gnome, è possibile definire
+      le proprie scorciatoie personalizzate. Per definire una scorciatoia,
+      accedere al pannello delle preferenze «menu e barra strumenti» e selezionare
+      «acceleratori del menu modificabili». Ritornare poi a &app;, cliccare
+      sull'intestazione del menu e posizionare il puntatore su una voce; mentre
+      questa è evidenziata, premere un tasto od una combinazione di tasti che 
+      rappresenta la scorciatoia. A questo punto dovrebbe essere visibile
+      la scorciatoia selezionata a fianco della voce di menu. Per cancellare
+      una scorciatoia, è sufficiente premere il tasto <keycap>cancella</keycap>
+      mentre la voce è evidenziata. Si ponga particolare attenzione nell'impostazione
+      di una scorciatoia dato che Gnome non controlla i tasti premuti e quindi
+      si potrebbe facilmente impostare una lettera dell'alfabeto come scorciatoia.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-prefs1">
+    <title>Impostare le preferenze</title>
+
+    <para>&app; permette di personalizzare la sessione impostando un certo numero
+    di opzioni delle preferenze. Dal menu, selezionare <guimenu>Modifica</guimenu> -&gt;
+    <guimenuitem>Preferenze</guimenuitem>; effettuare poi le modifiche desiderate utilizzando
+    la lista di elementi mostrata sulla sinistra. Le modifiche effettuate verranno applicate 
+    immediatamente. Per chiudere la finestra delle preferenze, premere il pulsante
+    <guibutton>Chiudi</guibutton>.</para>
+
+    <sect2 id="basics-acctprefs2">
+      <title>Conti</title>
+
+      <para>In <guilabel>Conti</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate di seguito:</para>
+
+      <screenshot id="basics-Preferences-Accounts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Accounts.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Conti</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata delle <guilabel>Preferenze -
+            Conti</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Carattere separatore</guilabel> - il separatore di conti
+          è il carattere che separa il nome di un conto padre dal nome di un suo sottoconto, per esempio
+          Servizi:Elettricità. Il carattere predefinito è <guibutton>:(due punti)</guibutton>
+          ma possono essere anche usati <guibutton>/(slash)</guibutton>,
+          <guibutton>\(backslash)</guibutton>, <guibutton>-(dash)</guibutton>,
+          <guibutton>.(punto)</guibutton>, od ogni singolo unicode non alfanumerico.
+          I conti padre e i sottoconti sono discussi nella <xref linkend="accts-types1"></xref></para> 
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Conti con saldo invertito</guilabel> - questa opzione permette
+          di determinare quali saldi devono essere visualizzati con segno positivo o 
+          negativo: <itemizedlist>
+          
+               <listitem>
+                <para><guilabel>Entrate e uscite</guilabel> assegna un
+		bilancio di credito positivo ai saldi dei conti delle entrate
+		e un bilancio di debito negativo ai saldi dei conti delle 
+		uscite. Consultare il <xref linkend="chapter_accts"></xref> per reperire
+		maggiori informazioni su questo tipo di conti.</para>
+              </listitem>
+              
+              <listitem>
+                <para><guilabel>Conti crediti</guilabel>: (predefinito) visualizza il saldo
+                con segno positivo per i conti che normalmente dovrebbero avere un saldo
+                in credito (entrate, crediti, passività, capitale). Consultare il
+                <xref linkend="chapter_accts"></xref> per ulteriori informazioni su
+                questi tipi di conti.</para>
+              </listitem>
+              
+              <listitem>
+                <para><guilabel>Nessuno</guilabel>: mostra tutti i saldi dei conti per i
+                crediti come negativi e tutti i saldi dei conti per i debiti come positivi. 
+                (consultare la nota sulla terminologia contabile in questo capitolo per maggiori
+                informazioni su debiti e crediti).</para>
+              </listitem>
+                            
+            </itemizedlist></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Etichette</guilabel> - selezionare questa opzione se si desidera
+          avere le intestazioni delle colonne indicate come debito (dare) e credito (avere)
+          in luogo delle notazioni informali predefinite (consultare le note sulla terminologia contabile
+          in questo capitolo per avere maggiori informazioni su debito e credito).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Valuta predefinita</guilabel> - questa voce determina 
+          quale valuta verrà assegnata come predefinita ai nuovi conti creati.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Locale</guilabel> - verrà utilizzata la valuta predefinita
+              del sistema.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Scelta</guilabel> - permette di specificare una valuta
+              da utilizzare indipendentemente dalle impostazioni di sistema.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-datetime2">
+      <title>Data e ora</title>
+
+      <para>In <guilabel>Data e ora</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate di seguito:</para>
+
+      <screenshot id="basics-Preferences-DateTime">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_DateTime.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Data e ora</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra le <guilabel>Preferenze -
+            Data e ora</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Formato dell'ora</guilabel> - permette di specificare se
+          si desidera utilizzare il formato a 12 o 24 ore; cioè se le 23:00 devono
+          essere rappresentate come le 11PM o le 23.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Formato della data</guilabel> - questa voce controlla 
+          il formato della data. Le opzioni disponibili sono Locale, US, UK, Europa e 
+          ISO. Settando il valore su «Locale» verrà utilizzato il formato
+          di data scelto nelle preferenze del sistema operativo.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    
+    <sect2 id="basics-windows2">
+      <title>Finestre</title>
+
+      <para>In <guilabel>Finestre</guilabel>, verranno presentate le impostazioni
+      predefinite visibili qui sotto:</para>
+
+      <screenshot id="basics-Preferences-Windows">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Windows.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Finestre</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata delle <guilabel>Preferenze -
+            Finestre</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Salva la posizione e la dimensione della finestra</guilabel> - se
+          selezionata, al prossimo avvio di &app;, verrà riutilizzata la posizione e la 
+          dimensione della finestra impostata nell'ultima sessione del programma.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Stile della barra strumenti</guilabel> - è possibile scegliere fra 5 stili 
+          della barra degli strumenti, <guilabel>Utilizza predefinito di sistema
+          </guilabel> (predefinito), <guilabel>, Testo sotto alle icone</guilabel>,
+          <guilabel>Testo accanto alle icone principali</guilabel>, <guilabel>Solo
+          icone</guilabel> e <guilabel>Solo testo</guilabel>.</para>
+        </listitem>
+        
+        <listitem>
+          <para><guilabel>Linguette</guilabel> - qui è possibile scegliere se mostrare un tasto 
+          per la chiusura delle linguette a fianco del nome (<guilabel>Visualizza il tasto di
+          chiusura sulle linguette</guilabel>), se la linguette aperta più di recente deve essere 
+          portata in primo piano (<guilabel>porta la linguetta più recente in primo piano</guilabel>)
+          e il numero massimo di caratteri da visualizzare nella linguetta per il nome.</para>
+        </listitem>
+        
+        <listitem>
+          <para><guilabel>Posizione delle linguette</guilabel> - indica la posizione nella finestra
+          principale di &app;, in cui visualizzare le linguette. Le scelte possibili sono:
+          <guilabel>Alto</guilabel>, <guilabel>Basso</guilabel>, <guilabel>Sinistra</guilabel> e
+          <guilabel>Destra</guilabel>.</para>
+        </listitem>
+        
+		  <listitem>
+          <para><guilabel>Posizione della barra di riepilogo</guilabel> - la barra di riepilogo
+          riporta il sommario delle grandezze principali del progetto aperto. Tale barra può essere
+          visualizzata <guilabel>In alto</guilabel> oppure <guilabel>In basso</guilabel> rispetto alla finestra
+          della struttura ad albero del conto o della finestra del registro.</para>
+        </listitem>
+                
+      </itemizedlist>
+    </sect2>
+    
+    <sect2 id="basics-general2">
+      <title>Generali</title>
+
+      <para>Nella sezione <guilabel>Generali</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate di seguito:</para>
+
+      <screenshot id="basics-Preferences-General">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_General.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Generali</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata <guilabel>Preferenze -
+            Generali</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Visualizza la finestra del «suggerimento del giorno»</guilabel> - è possibile
+          attivare o disattivare l'opzione che permette di mostrare la finestra
+          del <quote>suggerimento del giorno</quote> all'avvio di &app;.</para>
+        </listitem>
+        
+        <listitem>
+          <para><guilabel>Visualizza la schermata di avvio</guilabel> - .</para>
+        </listitem>
+        
+        <listitem>
+          <para><guilabel>Esegui la procedura guidata per la struttura dei conti</guilabel> - questa 
+          opzione abilita e disabilita l'apertura del druido per la <guilabel>Creazione di una nuova struttura 
+          dei conti</guilabel> quando viene selezionata la voce <guimenu>File</guimenu> -&gt;
+          <guimenuitem>Nuovo file</guimenuitem>.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Visualizza importi negativi in rosso</guilabel> - se si
+          deseleziona questa opzione, &app; visualizzerà gli importi negativi
+          come gli altri: in nero.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Posizioni decimali automatiche</guilabel> - abilitando
+          questa opzione verrà automaticamente inserito un punto decimale quando
+          verrà digitato un numero.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Posizioni decimali</guilabel> - questa opzione
+          permette di impostare quante cifre decimali utilizzare.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Comprimi i file</guilabel> - questa opzione
+          determina se i file creati da &app; devono essere compressi o no.</para>
+        </listitem>
+        
+        <listitem>
+          <para><guilabel>Visualizza la richiesta di conferma per il salvataggio automatico</guilabel> - 
+          si spiega da sola.</para>
+        </listitem>
+        
+        <listitem>
+          <para><guilabel>Intervallo di salvataggio automatico</guilabel> - impostare il
+          valore in minuti che identifica ogni quanto tempo effettuare il salvataggio automatico.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Conserva i file di log per</guilabel> - con questa opzione è
+          possibile impostare dopo quanti giorni verranno eliminati automaticamente i file
+          di log (e di backup). Inserendo il valore 0 (zero) i file non verranno
+          mai cancellati</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Soglia per una nuova ricerca</guilabel> - automaticamente apre
+          una nuova ricerca se sono stati trovati meno risultati del valore impostato.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    
+    <sect2 id="basics-business2">
+      <title>Impresa</title>
+
+      <para>In <guilabel>Impresa</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate di seguito:</para>
+
+      <screenshot id="basics-Preferences-Business">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Business.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Impresa</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata delle <guilabel>Preferenze -
+            Impresa</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+      
+        <listitem>
+          <para><guilabel>Apri in una nuova finestra</guilabel> - se attivata, ogni fattura
+          verrà aperta in una nuova finestra in primo piano. Diversamente, la fattura
+          sarà aperta nella finestra corrente.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Accumula suddivisioni all'emissione</guilabel> - permette di accumulare automaticamente tutte 
+           le voci di una fattura che trasferiscono verso lo stesso conto, in un'unica suddivisione.
+           Questa impostazione può anche essere cambiata nella finestra di emissione.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Numero di righe</guilabel> - numero predefinito di righe
+          da visualizzare nelle fatture.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Imposte incluse (fatture)</guilabel> - indicare se le tasse 
+          sono già incluse nelle voci delle fatture. Questa impostazione sarà applicata
+          ai nuovi clienti e venditori.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Notifica scadenze</guilabel> - permette di impostare se si
+          desidera essere avvisati della scadenza imminente di ricevute.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Giorni in anticipo</guilabel> - quanti giorni in anticipo
+          avvisare delle ricevute in scadenza.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Imposte incluse (ricevute)</guilabel> - indicare se le tasse 
+          sono già incluse nelle voci delle ricevute. Questa impostazione sarà applicata
+          ai nuovi clienti e venditori.</para>
+        </listitem>
+        
+      </itemizedlist>
+      
+    </sect2>
+
+    <sect2 id="basics-onlinebank2">
+      <title>Online Banking</title>
+
+      <para>In <guilabel>Online Banking</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate di seguito:</para>
+
+      <screenshot id="basics-Preferences-OnlineBanking">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_OnlineBanking.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Online Banking</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata delle <guilabel>Preferenze - Online
+            Banking</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Visualizza la documentazione</guilabel> - la prima volta che si
+          importa un file QIF (discusso più avanti in questo capitolo), si noterà
+          che il processo di importazione fornisce dettagliate istruzioni su come
+          importare un file. Una volta che si è presa familiarità con il processo
+          di importazione, si potrebbe voler deselezionare questa opzione. Infatti, 
+          disattivandola, verranno mostrati meno dettagli nelle finestre relative 
+          all'importazione.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Utilizza la corrispondenza Bayesiana</guilabel> - se utilizzare
+	  l'algoritmo Bayesiano per associare le nuove transazioni ai conti esistenti.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Soglia di visualizzazione</guilabel> - il punteggio minimo
+	  che una possibile corrispondenza deve avere per essere visualizzata nella
+	  lista delle corrispondenze.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Soglia di auto-inserimento</guilabel> - una transazione il
+	  cui punteggio migliore ricade nella zona rossa (al di sopra della soglia di
+	  visualizzazione, ma inferiore o uguale alla soglia di auto-inserimento), verrà
+	  inserita automaticamente.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Soglia di auto-liquidazione</guilabel> - una transazione il
+	  cui punteggio migliore ricade nella zona verde (superiore o al limite uguale
+	  al valore della soglia di auto-inserimento) verrà liquidata automaticamente.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Soglia per i costi degli ATM commerciali</guilabel> -
+          Se lo sportello ATM addebita automaticamente un costo per la transazione, &app;
+	  sarà in grado di associarlo alla transazione se la differenza è inferiore al
+	  valore di questa soglia.</para>
+        </listitem>
+
+	<listitem>
+          <para><guilabel>Ricorda PIN</guilabel> -
+          Se attivata, &app; ricorderà il PIN utilizzato per la connessione all'Online Banking.</para>
+        </listitem>
+
+	<listitem>
+          <para><guilabel>Messaggi di debug prolissi</guilabel> -
+          attivata la modalità di debug in cui vengono visualizzati messaggi dettagliati sulle operazioni
+	  che vengono compiute.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-accountingPeriod2">
+      <title>Periodo contabile</title>
+
+      <para>In <guilabel>Periodo contabile</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate nel seguito</para>
+
+      <screenshot id="basics-Preferences-AccountingPeriod">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_AccountingPeriod.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Periodo contabile</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata delle <guilabel>Preferenze - Periodo
+            contabile</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Includi somma complessiva</guilabel> - se questa opzione
+          è abilitata, &app; includerà una somma complessiva nel resoconto.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Includi i totali diversi dalle valute</guilabel> - se questa
+          opzione è selezionata, &app; includerà un totale per gli elementi diversi dalle
+          valute (ad esempio il numero di quote) nel resoconto.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Data d'inizio</guilabel> - questa impostazione determina
+          da quale data avrà inizio il resoconto. E' possibile scegliere tra 
+          <guilabel>Relativa</guilabel> che utilizza una data di partenza dinamica
+          (come "inizio di quest'anno", "inizio di questo mese", ecc...) o
+          <guilabel>Assoluta</guilabel> che permette di assegnare una specifica data
+          di inizio (che non cambierà con il passare del tempo).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Data di termine</guilabel> - questa impostazione determina
+          in quale data il resoconto verrà concluso. Si può scegliere tra 
+          <guilabel>Relativa</guilabel> che utilizza una data di fine dinamica
+          (come "inizio di quest'anno", "inizio di questo mese", ecc...) o
+          <guilabel>Assoluta</guilabel> che permette di assegnare una specifica data
+          di fine (che non cambierà con il passare del tempo).</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    
+    <sect2 id="basics-regdefaults2">
+      <title>Predefinite del registro</title>
+
+      <para>La voce delle preferenze <guilabel>Predefinite del registro</guilabel> 
+      influisce sul comportamento delle finestre di registro delle transazioni. Ulteriori
+      informazioni sul registro delle transazioni possono essere recuperate nella
+      <xref linkend="txns-registers1"></xref> di questa guida.</para>
+
+      <para>In <guilabel>Registro</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate di seguito:</para>
+
+      <screenshot id="basics-Preferences-RegisterDefaults">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_RegisterDefaults.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Predefinite del registro</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata delle <guilabel>Preferenze - Predefinite del
+            registro</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Stile predefinito</guilabel> - è possibile scegliere fra
+          3 stili differenti per le finestre del registro, <guilabel>Libro
+          mastro basilare</guilabel> (predefinito), <guilabel>Mastro a espansione
+          automatica</guilabel> e <guilabel>Giornale della transazione</guilabel>. Lo stile di base 
+          consta di una sola riga per transazione in cui viene visualizzato un riepilogo delle informazioni.
+          Lo stile a espansione automatica, è simile al precedente tranne per il fatto che la transazione 
+          corrente viene espansa se ha delle suddivisioni. L'ultimo stile a giornale presenta
+          invece tutte le transazioni con suddivisioni, espanse.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Il registro verrà aperto in una nuova finestra</guilabel> - se 
+          selezionata, il registro verrà aperto in una nuova finestra separata invece che in 
+          una linguetta nella finestra aperta.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Modalità a doppia linea</guilabel> - se selezionata, verranno
+          visualizzate due righe di informazioni per ogni transazione in luogo di una sola.</para>
+        </listitem>
+        
+        <listitem>
+          <para><guilabel>Visualizza solamente i nomi dei sottoconti</guilabel> - .</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Numero di transazioni</guilabel> - quante transazioni mostrare
+          in un registro</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Numero di righe</guilabel> - quante righe visualizzare quando
+          viene aperto il registro.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    
+    <sect2 id="basics-regprefs2">
+      <title>Registro</title>
+
+      <para>In <guilabel>Registro</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate di seguito:</para>
+
+      <screenshot id="basics-Preferences-Register">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Register.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Registro</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata delle <guilabel>Preferenze -
+            Registro</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>«Invio» inserisce una riga con una transazione vuota</guilabel> - se 
+          attivata, sposta il cursore nella transazione vuota dopo che l'utente ha premuto
+          «invio», altrimenti sposta il cursore di una riga.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Espandi liste automaticamente</guilabel> - se attivata, tutte le liste
+	  verranno espanse automaticamente quando il cursore sarà posizionato nel campo della lista.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Spunta le transazioni liquidate</guilabel> - se selezionata, verranno
+	  spuntate automaticamente le transazioni liquidate al momento della riconciliazione.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Trasferimento automatico degli interessi</guilabel> - se attivata,
+          prima della riconciliazione di un conto che matura o addebita interessi, verrà richiesto
+          se inserire una transazione per gli interessi. Attualmente questa impostazione ha effetto 
+	  solamente sui seguenti tipi di conti: banca, credito, fondo comune, attività, debiti e crediti
+          correnti e passività.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Pagamento carta di credito automatico</guilabel> - se selezionata,
+          dopo la riconciliazione del conto della carta di credito, verrà richiesto un pagamento con
+          la carta di credito.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Usa i colori del tema di sistema</guilabel> - se attivata,
+          &app; utilizzerà i colori del tema di sistema anziché i colori
+          di default.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>I colori della modalità a doppia linea si alternano tra le transazioni
+          </guilabel> - se attivata, configura la finestra del registro in modo da alternare
+          i colori primario e secondario per ogni transazione, invece che per ogni riga.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Disegna delle linee orizzontali fra le righe</guilabel> - se
+          attivata, &app; disegnerà una linea orizzontale tra le celle di ogni 
+          riga.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Disegna delle linee verticali fra le colonne</guilabel> - se
+          selezionata, &app; disegnerà una linea verticale tra le celle di ogni 
+          colonna.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-reports2">
+      <title>Resoconti</title>
+
+      <para>La voce <guilabel>Resoconti</guilabel> del menu preferenze influenza
+      il comportamento della finestra dei resoconti.</para>
+
+      <para>In <guilabel>Resoconti</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate nel seguito:</para>
+
+      <screenshot id="basics-Preferences-Reports">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Reports.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Resoconti</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata delle <guilabel>Preferenze -
+            Resoconti</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Valuta predefinita per i resoconti</guilabel> - questa voce
+          determina quale valuta predefinita verrà utilizzata quando verrà
+          creato un resoconto. Si può scegliere tra <guilabel>Locale</guilabel> che
+          utilizza le impostazioni di sistema, o <guilabel>Altra:</guilabel> che permette di
+          specificare una propria valuta predefinita per i resoconti.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Il resoconto viene aperto in una nuova finestra</guilabel> - se si 
+          seleziona questa opzione, il resoconto verrà aperto in una nuova finestra invece che in una
+          linguetta nella finestra corrente.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="basics-Printing2">
+      <title>Stampa</title>
+
+      <para>Le voci delle preferenze per la <guilabel>Stampa</guilabel> influenzano
+	il formato di stampa degli assegni.
+      Ulteriori informazioni sulla stampa degli assegni con &app; sono reperibili nell'
+      <xref linkend="appendixd"></xref> di questa guida.</para>
+
+      <para>In <guilabel>Stampa</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate nel seguito</para>
+
+      <screenshot id="basics-Preferences-Printing">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_Printing.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Stampa</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata delle <guilabel>Preferenze - 
+            Stampa</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+         <listitem>
+          <para><guilabel>Stampa il formato della data</guilabel> - se questa voce è 
+	  selezionata, &app; stamperà, sotto alla data attuale negli assegni, il
+ 	  formato della data nel tipo a 8 punti.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Stampa i caratteri di blocco</guilabel> - se questa opzione
+	  è selezionata, &app; stamperà i caratteri "***" prima e dopo ogni campo di
+	  testo nell'assegno.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Carattere predefinito</guilabel> - il carattere predefinito che
+	  verrà utilizzato per la stampa degli assegni.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    
+    <sect2 id="basics-schedtrans2">
+      <title>Transazioni pianificate</title>
+
+      <para>Le voci delle preferenze per le <guilabel>Transazioni pianificate</guilabel>
+      influenzano il comportamento di &app; nella pianificazione delle transazioni.
+      Ulteriori informazioni sulle transazioni pianificate sono reperibili nella
+      <xref linkend="txns-registers1"></xref> di questa guida.</para>
+
+      <para>In <guilabel>Transazioni pianificate</guilabel>, verranno presentate le opzioni
+      predefinite visualizzate nel seguito</para>
+
+      <screenshot id="basics-Preferences-ScheduledTransactions">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Preferences_ScheduledTransactions.png"
+                       format="PNG" srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Preferenze di &app; - Transazioni pianificate</phrase>
+          </textobject>
+
+          <caption>
+            <para>Questa immagine mostra la schermata delle <guilabel>Preferenze - Transazioni
+            pianificate</guilabel></para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Avvia all'apertura del file</guilabel> - se selezionata,
+          la finestra "dall'ultimo avvio" apparirà all'avvio di &app; (o
+          meglio quando &app; aprirà il file).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Crea automaticamente le nuove transazioni</guilabel> - se 
+          selezionata, le nuove transazioni pianificate verranno automaticamente
+          immesse nel registro. Inoltre, se si seleziona <guilabel>notifica prima
+          che la transazione venga creata</guilabel> verrà mostrata una finestra di 
+          conferma per la creazione della transazione.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Crea in anticipo di</guilabel> - il numero predefinito
+          di giorni in anticipo con cui creare la nuova transazione
+          pianificata.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Ricorda in anticipo di</guilabel> - il numero di giorni
+          predefinito in anticipo in cui ricordare una transazione pianificata.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+            
+  </sect1>
+    
+  <sect1 id="basics-help1">
+    <title>Ricevere aiuto</title>
+
+    <para>&app; offre aiuto in diversi modi. E' già stato trattato il
+    <guilabel>Suggerimento del giorno</guilabel> che fornisce informazioni 
+    utili all'avvio della sessione di &app;. &app; offre però anche
+    un esteso manuale di aiuto.</para>
+
+    <sect2 id="basics-manual2">
+      <title>Manuale di aiuto</title>
+
+      <para>Appena aperto &app;, sarà visibile sulla barra dei menu la voce
+      <guilabel>Aiuto</guilabel> che permette di accedere al manuale.
+      Il manuale è organizzato per argomenti e ognuno di essi può essere
+      costituito da altri argomenti di approfondimento.</para>
+
+      <para>Gli argomenti sono visualizzati nel lato destro. Selezionando un 
+      argomento od un sotto argomento, si aprirà sul lato sinistro il testo
+      descrittivo. Utilizzare i pulsanti <guilabel>Indietro</guilabel> ed
+      <guilabel>Avanti</guilabel> per navigare fra gli argomenti.</para>
+    </sect2>
+
+    <sect2 id="basics-web2">
+      <title>Accesso Web</title>
+
+      <para>La finestra dell'<guilabel>Aiuto di &app;</guilabel> può funzionare 
+      anche come un semplice browser web in modo da permettere l'apertura
+      di un sito internet per ottenere ulteriori informazioni. E' possibile aprire 
+      un sito internet in questa finestra selezionando il pulsante 
+      <guibutton>Apri</guibutton> dalla barra strumenti e inserendo l'indirizzo.
+      Utilizzare i pulsanti <guibutton>Indietro</guibutton>, <guibutton>Avanti</guibutton>,
+      <guibutton>Aggiorna</guibutton>, <guibutton>Stop</guibutton> e 
+      <guibutton>Stampa</guibutton> come se si stesse utilizzando
+      un normalissimo web browser.</para>
+
+      <para>Il sito internet di <ulink
+      url="http://www.&app;.org"><citetitle>&app;</citetitle></ulink> 
+      contiene informazioni utili sul programma e su ogni suo aggiornamento.
+      Fornisce anche i link alle mailing list di &app; per sviluppatori 
+      e utenti dove è possibile effettuare ricerche negli <ulink
+      url="https://lists.&app;.org/cgi-bin/namazu.cgi"><citetitle>archivi
+      delle mailing list di &app;</citetitle></ulink> per discutere di
+      un particolare argomento. Se non si ottiene la risposta che si sta cercando,
+      è comunque possibile spedire la domanda alla <ulink
+      url="https://lists.&app;.org/mailman/listinfo/&app;-user"><citetitle>lista 
+      dell'utente di &app;</citetitle></ulink>, e sicuramente qualcuno della lista 
+      cercherà di rispondere.</para>
+
+      <para>L'ultima versione della <guilabel>FAQ di &app;</guilabel> è anche
+      reperibile qui: <ulink url="http://wiki.&app;.org/wiki/FAQ"><citetitle>&app;
+      FAQ website</citetitle></ulink>; questa pagina fornisce le risposte alle 
+      domande più frequenti su &app;.</para>
+    </sect2>
+
+    <sect2 id="basics-topic2">
+      <title>Ricercare un argomento</title>
+
+      <para>Il manuale online fornisce anche una funzione di ricerca. Per
+      cercare un argomento particolare, cliccare il bottone <guilabel>Cerca</guilabel>
+      in basso nella finestra di aiuto e inserire l'argomento da ricercare.
+      Cliccare il pulsante <guilabel>Cerca</guilabel> per completare la ricerca.
+      Una lista di scelta apparirà al di sotto. Cliccando su di una scelta
+      verrà aperto il testo relativo nella finestra di destra.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-files1">
+    <title>Creare e salvare file</title>
+
+    <para>Se si utilizza &app; per la prima volta, automaticamente verrà aperto
+    un nuovo file all'avvio. Occorre seguire questi passi per salvare il file con
+    un nuovo nome:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Scegliere <guimenu>File</guimenu> -&gt; <guimenuitem>Salva
+        come...</guimenuitem> dalla barra dei menu oppure premere il pulsante 
+        <guibutton>Salva</guibutton> sulla barra strumenti. &app; presenterà la
+        finestra di salvataggio.</para>
+      </listitem>
+
+      <listitem>
+        <para>Inserire il nome del file (ad esempio gcashdata).</para>
+      </listitem>
+
+      <listitem>
+        <para>Cliccare il tasto <guibutton>Salva</guibutton> per salvare il file.</para>
+      </listitem>
+    </orderedlist>
+
+    <para>Se si sta tenendo traccia delle finanze di una singola famiglia, sarà
+    sufficiente un unico file. Se, invece, si sta tenendo traccia anche
+    della propria attività o se si desidera tenere dei dati separati per qualsiasi ragione,
+    allora saà necessario creare più file. Per creare un file nuovo:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Dal menu principale scegliere <guimenu>File</guimenu> -&gt;
+        <guimenuitem>Nuovo File</guimenuitem>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Seguire i passi più in alto per salvare un file con un nuovo
+        nome.</para>
+      </listitem>
+    </orderedlist>
+
+   <para>Prima di terminare la sessione di &app;, assicurarsi di aver salvato
+    il lavoro utilizzando il menu <guimenu>File</guimenu> -&gt;
+    <guimenuitem>Salva</guimenuitem> o il tasto <guibutton>Salva</guibutton>
+    sulla barra strumenti. E' infatti buona abitudine salvare frequentemente
+    il lavoro per evitare che le modifiche possano essere perse. &app;
+    comunque implementa una funzione di salvataggio automatico che può essere
+    abilitata e impostata tramite il menu <guimenu>Modifica</guimenu> -&gt; 
+    <guimenu>Preferenze</guimenu> -&gt; <guimenu>Generali</guimenu>.
+    Per aprire un file esistente, selezionare il menu <guimenu>File</guimenu> -&gt;
+    <guimenuitem>Apri</guimenuitem> e scegliere il file dalla lista.</para>
+
+    <para>&app; salva i propri file di dati senza alcuna estensione. Se si chiama
+    il file come <filename>MyBudget</filename>, il nome del file reale sarà
+    <filename>MyBudget.</filename><note>
+        <para>Assicurarsi di non specificare alcuna estensione quando si inserisce il
+        nome del file. Nell'esempio precedente, specificare solo <filename>MyBudget</filename>
+        nella casella del nome da assegnare al file.</para>
+      </note></para>
+  </sect1>
+
+  <sect1 id="basics-import1">
+    <title>Importare file QIF</title>
+
+    <note>
+      <para>Questa sezione spiega come importare in &app; i dati
+      provenienti da altri programmi finanziari che utilizzano il
+      formato QIF (<trademark class="registered">Quicken</trademark>
+      Interchange Format). 
+<!--
+      Section 11.5
+      addresses importing QIF data from online bank statements.
+-->
+      </para>
+    </note>
+
+    <para>Per importare i dati da <trademark class="registered">Quicken</trademark>,
+    MS Money, o altri programmi che utilizzano il formato QIF (<trademark class="registered">Quicken</trademark> Interchange
+    Format), si devono prima esportare i propri dati in un file QIF; un primo modo per farlo consiste
+    nell'esportare ogni conto come un singolo file QIF. Un secondo metodo, più facile e disponibile
+    a partire da <trademark class="registered">Quicken</trademark> 98, consiste
+    nell'esportare tutti i conti contemporaneamente in un singolo file QIF; controllare
+    il manuale del programma per verificare se questa opzione è disponibile.</para>
+
+    <para>Una volta che i propri dati sono nella forma di file QIF, seguire i 3 
+    semplici passi del processo di importazione descritti nel seguito.
+    Prima di partire, però, si noti che parte del processo di importazione
+    prevede che vengano controllate le eventuali copie delle transazioni ed è quindi
+    molto importante caricare <emphasis>tutti</emphasis> i file QIF prima dell'importazione.
+    Le transazioni duplicate possono essere presenti quando si carica più di un conto; per esempio,
+    se una delle transazioni ha trasferito denaro dai risparmi al conto corrente,
+    si avrà la stessa transazione registrata due volte: una volta nel conto dei
+    risparmi e una volta nel conto corrente.</para>
+
+    <para>Per importare i file QIF:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Caricare tutti i file QIF contenenti i dati che 
+        si desidera importare.</para>
+
+        <para>Per farlo, selezionare <guimenu>File</guimenu> -&gt;
+        <guisubmenu>Importa</guisubmenu> -&gt; <guimenuitem>Importa
+        QIF...</guimenuitem> dal menu. Quando appare la finestra di <guilabel>
+        importazione file QIF</guilabel>, premere <guibutton>Avanti</guibutton> 
+        e seguire le istruzioni che accompagnano nel processo
+        di caricamento dei file.</para>
+
+        <screenshot id="basics-QIF-Import-welcome">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/basics_QIF_Import_welcome.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>Il druido di importazione dei file QIF</phrase>
+            </textobject>
+
+            <caption>
+              <para>Questa immagine mostra la schermata del druido di <guilabel>importazione
+              di file QIF</guilabel>.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>Verrà richiesto il nome del file da caricare; utilizzare il
+        pulsante <guibutton>Seleziona...</guibutton> per scegliere il file QIF e premere
+        <guibutton>Avanti</guibutton> per caricarlo. Una volta che il file è stato caricato,
+        è possibile premere <guibutton>Carica un altro file</guibutton> se si ha la
+        necessità di caricare altri file. Quando tutti i file QIF sono stati caricati,
+        premere <guibutton>Avanti</guibutton> per proseguire il processo di
+        importazione.</para>
+      </listitem>
+
+      <listitem>
+        <para>Controllo dei conti di &app; che verranno creati.</para>
+
+        <para>Il programma di importazione si occupa di unire e di trovare le 
+        corrispondenze tra i conti e le categorie del file QIF e i conti di &app;
+        fornendo poi una breve descrizione del processo di unione.
+        Premendo <guibutton>Avanti</guibutton> verrà presentata una vista
+        in cui sono confrontati i conti QIF e i corrispondenti conti di
+        &app; che verranno creati. Per cambiare il nome di un conto, selezionare
+        la riga contenente il conto e modificarne il nome nel campo visualizzato. 
+        Premere <guibutton>Avanti</guibutton> quando le modifiche sono state concluse, e
+        procedere attraverso una procedura, simile alla precedente, per le categorie. 
+        Le categorie delle entrate e delle uscite proprie del file QIF, vengono importate
+        in &app; come conti di entrate e uscite (consultare la
+        <xref linkend="accts-concepts1"></xref> per maggiori dettagli). 
+        Effettuare i cambiamenti ai nomi di questi conti, se necessario, e premere
+        <guibutton>Avanti</guibutton> per continuare.</para>
+
+        <note>
+          <para>Se non si è sicuri sui cambiamenti da effettuare, si consiglia di
+          accettare i nomi dei conti forniti da &app;. E' comunque molto semplice
+          modificare i conti successivamente se ce ne fosse bisogno.</para>
+        </note>
+
+        <para>Dalla lista a comparsa, selezionare una valuta che verrà utilizzata
+        per tutti i conti importati e premere <guibutton>Avanti</guibutton> per
+        continuare. Se si hanno delle azioni, fondi comuni o altri titoli,
+        verranno richieste delle ulteriori informazioni. La finestra di importazione
+        richiederà il mercato o la lista (ad esempio NASDAQ), il nome completo del
+        titolo e il simbolo ticker. Se non si hanno a portata di mano queste 
+        informazioni, è comunque possibile inserirle in seguito nelle informazioni del
+        conto, allorchè il processo di importazione è stato completato. Premere
+        <guibutton>Avanti</guibutton> per continuare</para>
+      </listitem>
+
+      <listitem>
+        <para>Ordinare a &app; di importare i dati.</para>
+
+        <para>L'ultimo passo è l'importazione vera e propria. Quando sono stati
+        verificati i nomi dei conti e le informazioni sugli investimenti, premere 
+        <guibutton>Applica</guibutton> nella pagina <guilabel>Aggiorna i conti di &app;</guilabel>
+        per completare il processo di importazione. In funzione della dimensione del file,
+        l'importazione può impiegare diversi minuti per il completamento; una barra
+        di progresso mostra la percentuale completata. Quando il processo di importazione
+        è terminato, &app; tornerà alla finestra principale, che ora dovrebbe mostrare
+        i nomi dei conti che sono stati appena importati.</para>
+      </listitem>
+    </orderedlist>
+  </sect1>
+
+  <sect1 id="basics-backup1">
+    <title>Creare copie di sicurezza e recuperare i dati</title>
+
+    <para>&app; crea diversi tipi di file per assicurarsi che i
+    dati non vadano persi. Si possono trovare file con le seguenti estensioni:
+    xac,log, LCK, LNK tutti nella stessa cartella del file dei dati. 
+    La descrizione delle caratteristiche fornite da ogni formato è riportata
+    di seguito.</para>
+    
+    <programlisting>
+      $ ls 
+      gcashdata
+      gcashdata.20060414185747.xac
+      gcashdata.20060414223248.log
+      gcashdata.20060415114340.xac
+      gcashdata.20060415154508.log
+      gcashdata.20060415173322.xac
+      gcashdata.20060415194251.log
+      gcashdata.7f0982.12093.LNK
+      gcashdata.LCK
+    </programlisting>
+
+    <sect2 id="basics-backupxac2">
+      <title>File di backup (.xac)</title>
+
+      <para>Ogni volta che si salva un file dei dati, viene creata anche una copia
+      di sicurezza di formato xac. Questo file è una copia completa del file dei
+      dati precedente e il suo nome fa riferimento al nome del file dei 
+      dati, all'anno, al mese, al giorno e all'ora del backup. Per esempio,
+      il file di nome <filename>gcashdata.20060414185747.xac</filename> indica
+      che si tratta di una copia di sicurezza del file gcashdata salvata nell'anno
+      2006, il 14 Aprile alle 18:57:47.</para>
+
+      <para>Per recuperare un vecchio file di backup, basta aprire il file .xac
+      con la data che si desidera ripristinare. Assicurarsi di salvare il
+      file con un nome differente senza utilizzare l'estensione xac.</para>
+    </sect2>
+
+    <sect2 id="basics-backuplog2">
+      <title>Log file (.log)</title>
+
+      <para>Ogni volta che viene aperto un file in &app;, viene creato un
+      file .log con lo stesso nome del file di backup di estensione .xac.
+      Nel momento in cui si effettuano delle modifiche al file dati aperto, il file
+      di log registra solamente queste modifiche. I file di log non sono dei file
+      di backup completi - registrano semplicemente i cambiamenti fatti al file
+      dei dati nella sessione corrente di &app;.</para>
+
+      <para>Nel caso &app; terminasse inaspettatamente, per esempio esempio a causa
+      di un blackout elettrico o di un blocco del sistema, sarà possibile
+      recuperare la maggior parte del lavoro effettuato dall'ultima volta 
+      che il file di &app; è stato salvato, utilizzando il file di log.
+      Questa è la procedura da seguire:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Aprire l'ultimo salvataggio del file &app;.</para>
+        </listitem>
+
+        <listitem>
+          <para>Andare in "File" -&gt; "Importa" -&gt; "Ripeti file .log di &app;"
+          e selezionare un file di estensione .log con la stessa data del file
+          salvato aperto precedentemente. Assicurarsi di aver selezionato il file 
+          di log esatto per scongiurare il verificarsi di gravi problemi nella 
+          struttura e nei valori dei conti.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>La ripetizione del file di log permette di recuperare ogni 
+      transazione che ha variato il saldo immesso dall'ultimo salvataggio,
+      incluse quelle create dalle transazioni pianificate e dalle funzioni
+      per l'impresa (fatture, ricevute, ecc...).</para>
+
+      <note>
+        <para>Attenzione: le modifiche alle transazioni pianificate, alle fatture
+        per le ricevute NON verranno recuperate, e le loro transazioni che sono state 
+        recuperate potrebbero non essere correttamente associate con esse; andrebbero 
+        quindi ricontrollate. In particolar modo per le transazioni di impresa, potrebbe
+        essere necessario cancellarne alcune e ricrearne di altre. Senza questa operazione,
+        anche se il saldo potrebbe sembrare corretto, alcuni resoconti potrebbero 
+        non esserlo.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="basics-backuplock2">
+      <title>File di blocco (.LNK e .LCK)</title>
+
+      <para>Occasionalmente possono comparire dei file .LNK e .LCK. Questi 
+      non contengono alcun dato, ma sono creati solamente per impedire
+      che due o più utenti possano aprire lo stesso file contemporaneamente.
+      Questi file sono creati automaticamente all'apertura di un file per 
+      bloccarlo in modo che nessun altro possa accedervi. Quando si chiude
+      &app; o si apre un altro file, &app; sblocca il primo file dei dati cancellando
+      i file LNK e LCK.</para>
+
+      <para>Se &app; si arresta improvvisamente quando è aperto
+      un file di dati, i file LCK e LNK non vengono cancellati.
+      La prossima volta che che &app; verrà aperto, sarà presentato
+      un avviso in cui si dice che il file è bloccato. Questo messaggio
+      appare poiché i file LNK e LCK sono ancora nella directory.
+      Si può premere tranquillamente sì per aprire il file, ma si dovrebbero 
+      cancellare i file .LNK e .LCK (usando il terminale o il file manager).
+      Una volta cancellati questi file, non verrà più presentato alcun avviso
+      a meno che &app; non venga interrotto di nuovo in modo improvviso.</para>
+    </sect2>
+
+    <sect2 id="basics-backupmanage2">
+      <title>Gestire i file</title>
+
+      <para>Allora quali file si dovrebbero mantenere sul disco? i file
+      dei dati: questi non hanno una estensione di file automatica.
+      E' consigliato anche mantenere alcuni dei file di estensione .xac più 
+      recenti, mentre è possibile cancellare tranquillamente i file di log dato che 
+      non costituiscono una copia completa del file dei dati. Si dovrebbero anche 
+      cancellare tutti i file di estensione .LCK e .LNK che sono ancora
+      presenti dopo la chiusura di &app;. Se si decide di fare una copia di 
+      sicurezza dei file su un altro disco, è sufficiente copiare i file dei
+      dati; non i file di estensione .xac.</para>
+
+      <note>
+        <para>&app; cancellerà automaticamente tutti i file .xac, .log
+        che sono più vecchi di 30 giorni. Questa impostazione può essere cambiata
+        dalle preferenze di &app;.</para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-together1">
+    <title>In pratica</title>
+
+    <note>
+      <para>In questa sezione si inizia un esempio che procederà attraverso
+      tutto questo documento. Alla fine di ogni capitolo, è presente una
+      sezione denominata <guilabel>in pratica</guilabel> che riporta degli 
+      esempi che illustrano i concetti discussi in questa sezione.
+      Ogni sezione <guilabel>in pratica</guilabel> è basata sulla precedente,
+      per questo è importante assicurarsi di aver salvato il file per
+      potervi accedere facilmente e continuare il lavoro.</para>
+    </note>
+
+    <para>Si parte!</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Dapprima, si crei un file per immagazzinare i dati reali.
+        Aprire &app; e selezionare <guilabel>Nuova struttura conti</guilabel>.
+        Si creerà un file e dei conti che saranno utilizzati per le finanze
+        di casa, si consiglia per cui di selezionare i conti che meglio si adattano
+        alla propria situazione. Se non si è sicuri sulla scelta, premere
+        <guibutton>Seleziona tutto</guibutton> per creare tutti i conti forniti 
+        dal programma. Al completamento della configurazione, salvare il file
+        con il nome che si preferisce per utilizzarlo con i propri dati.</para>
+      </listitem>
+
+      <listitem>
+        <para>In seguito, si crei un file di prova. Questo è il file che 
+        sarà utilizzato nella guida di questo manuale. Selezionare
+        <guimenu>File</guimenu> -&gt; <guimenuitem>Nuovo</guimenuitem> per
+        creare un nuovo file, e lo si chiami <filename>gcashdata_1</filename>. 
+        La finestra principale dovrebbe ora assomigliare a questa:</para>
+
+        <screenshot id="basics-EmptyAccounts">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/basics_EmptyAccounts.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>La finestra principale che mostra il file di prova</phrase>
+            </textobject>
+
+            <caption>
+              <para>Questa immagine mostra la schermata della finestra delle struttura dei 
+	      conti con un gruppo di conti caricati dal druido.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </listitem>
+
+      <listitem>
+        <para>Si può procedere ora a impostare alcune preferenze della finestra
+        di visualizzazione della struttura ad albero dei conti. Selezionare
+        <guimenu>Modifica</guimenu> -&gt; <guimenuitem>Preferenze</guimenuitem>
+        -&gt; <guimenuitem>Finestre</guimenuitem> e cambiare lo stile della barra
+        degli strumenti di modo che venga visualizzato solo il testo e non le icone.
+        La modifica verrà applicata istantaneamente; si osservi quindi la barra degli 
+        strumenti nella finestra principale. Si ritorni ora alla finestra delle
+        <guilabel>Preferenze</guilabel>  e si reimposti lo stile della barra strumenti
+        a quello predefinito selezionando <guibutton>Utilizza predefinito di sistema
+        </guibutton>. Dalla riga di intestazione delle colonne, selezionare la
+        <guibutton>Freccia giù</guibutton> e scegliere <quote>Tipo</quote>
+        (che significa mostra la colonna del "tipo"). La finestra principale dovrebbe
+        ora assomigliare a questa</para>
+
+        <screenshot id="basics-EmptyAccounts2">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/basics_EmptyAccounts2.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>L'effetto della modifica delle opzioni di visualizzazione</phrase>
+            </textobject>
+
+            <caption>
+              <para>Questa immagine mostra gli effetti del cambiamento delle opzioni
+              di visualizzazione.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>Salvare il file.</para>
+      </listitem>
+
+      <listitem>
+        <para>Se si ha l'intenzione di importare dei file in formato QIF
+        creati con un altro programma, conviene prima fare pratica con un file
+        di prova. Se l'esempio non interessasse, è possibile saltare questa
+        parte e procedere al capitolo sull'impostazione dei conti 
+        (<xref linkend="chapter_accts"></xref>).</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Creare dapprima un file e chiamarlo
+            <filename>gcashimport</filename>. Si è liberi di decidere se impostare
+            una struttura dei conti (quali i conti comuni) direttamente o no.
+            Se la procedura di importazione di file QIF non dovesse trovare dei conti,
+            provvederà a crearli automaticamente (o permetterà di crearli manualmente).</para>
+          </listitem>
+
+          <listitem>
+            <para>Dal menu principale, selezionare <guimenu>File</guimenu> -&gt;
+            <guisubmenu>Importa</guisubmenu> -&gt; <guimenuitem>Importa 
+            QIF...</guimenuitem> per avviare l'importazione.</para>
+          </listitem>
+
+          <listitem>
+            <para>Scegliere la valuta appropriata</para>
+          </listitem>
+
+          <listitem>
+            <para>Selezionare <filename>gnc_Sample_QIF.qif</filename> come file QIF 
+            da caricare.</para>
+          </listitem>
+
+          <listitem>
+            <para>Nelle finestre seguenti, assicurarsi che ogni transazione
+            abbia un conto valido; se si è in dubbio, utilizzare quelli
+            predefiniti.</para>
+          </listitem>
+
+          <listitem>
+            <para>Completare l'importazione.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>La finestra principale dovrebbe ora assomigliare a questa:</para>
+
+        <screenshot id="basics-AccountsSampleQIF">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/basics_AccountsSampleQIF.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>Dopo l'importazione del file di esempio QIF fornito</phrase>
+            </textobject>
+
+            <caption>
+              <para>Questa immagine mostra la finestra principale
+              dopo l'importazione del file QIF di esempio fornito.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>Se, prima dell'importazione, la finestra di &app; è vuota, andare in <guimenu>File -&gt; Nuovo -&gt; 
+         Nuova pagina dei conti</guimenu> per inserire una nuova linguetta.</para>
+
+        <para>Salvare il lavoro.</para>
+
+      </listitem>
+    </orderedlist>
+  </sect1>
+</chapter>

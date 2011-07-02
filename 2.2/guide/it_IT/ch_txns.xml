@@ -1,0 +1,1399 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally written by Carol Champagne.
+  Translators:
+               Cristian Marchi <cri79@libero.it> 2008
+-->
+<chapter id="chapter_txns">
+  <title>Transazioni</title>
+
+  <para>Questo capitolo fornisce le conoscenze necessarie per poter
+  utilizzare le transazioni in &app;. Mentre i conti rappresentano
+  l'ossatura e la struttura di un diagramma dei conti, le transazioni
+  costituiscono i dati che completano ogni conto.</para>
+
+  <sect1 id="txns-concepts1">
+    <title>Concetti base</title>
+
+    <para>Una <emphasis>transazione</emphasis> in un sistema contabile
+    a partita doppia come &app;, rappresenta uno scambio tra almeno 
+    due conti. Quindi una transazione deve coinvolgere almeno due 
+    parti, un conto di origine "da" e un conto di destinazione "a".
+    Il conto "da" trasferisce valore al conto "a".
+    I contabili individuano queste parti di una transazione come <emphasis>voci 
+    del libro mastro</emphasis>. In &app; prendono invece il nome di 
+    <emphasis>suddivisioni</emphasis>.</para>
+    
+
+    <para>Per esempio, si consideri lo stipendio che si riceve e che viene 
+    depositato nel proprio conto di risparmio in banca. La <emphasis>transazione</emphasis>
+    avviene poiché il conto di risparmio (appartenete alle attività) riceve il
+    denaro dal conto delle entrate. Due conti sono interessati dall'operazione e,
+    in questo caso, si verifica anche un aumento del capitale.</para>
+
+    <para>Le operazioni con le transazioni in &app; avvengono in quello che
+    viene denominato <emphasis>registro contabile</emphasis>; a ogni nuovo conto
+    che viene creato è automaticamente associato un registro contabile.
+    Il registro apparirà familiare dato che somiglia molto al registro
+    per tenere traccia degli assegni.</para>
+  </sect1>
+
+  <sect1 id="txns-registers1">
+    <title>Il registro contabile</title>
+
+    <para>Il <emphasis>registro contabile</emphasis> è la finestra di
+    &app; che permette di visualizzare e modificare le transazioni
+    preesistenti o di aggiungerne di nuove per un particolare conto.
+    Per entrare nel registro contabile, è sufficiente selezionare
+    il nome del conto nella finestra di visualizzazione ad albero dei
+    conti, ed eseguire un doppio click per aprirlo. In alternativa, è
+    possibile premere il pulsante <guibutton>Apri</guibutton> nella barra
+    strumenti o utilizzare il menu che compare premedno il tasto destro del mouse. &app; 
+    visualizzerà così la finestra del registro contabile.</para>
+
+    <sect2 id="txns-registers-twoaccount2">
+      <title>Transazione semplice</title>
+
+      <para>Per esempio, partendo con la struttura dei conti creata nel 
+      capitolo precedente e salvata nel file di nome <filename>gcashdata_3</filename>, si clicchi due
+      volte sul sottoconto <guilabel>Conto corrente</guilabel> del conto attività.
+      Si aggiunga ora una semplice transazione al conto corrente. Quando si creano
+      per la prima volta dei conti in &app;, è generalmente necessario
+      impostare, per alcuni di essi, un bilancio di apertura.</para>
+
+      <para>Nella prima riga delle transazioni, inserire una data (es:
+      1 Marzo 2006), una descrizione (es: Bilancio di apertura), selezionare
+      il menu a tendina del trasferimento e selezionare <guilabel>Capitali:Bilanci 
+      d'apertura</guilabel>, aggiungere un deposito del valore di €1.000, e premere
+      «invio». Il registro contabile dovrebbe apparire simile a quello in figura:</para>
+
+      <screenshot id="txns-register-2account">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_2account.png"
+                       format="PNG" srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Conto corrente - Registro</phrase>
+          </textobject>
+
+          <caption><para>Questa immagine mostra il <guilabel>registro di Attività:Conto corrente
+          </guilabel> dopo aver inserito una transazione per il valore
+          iniziale.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Impostare il bilancio di apertura di un conto è un esempio
+      di una semplice transazione che coinvolge due conti: in questo caso
+      i conti <guilabel>Attività:Conto corrente</guilabel> e <guilabel>Capitali:Bilanci
+      d'apertura</guilabel>.</para>
+
+      <para>Per fare un altro esempio di semplice transazione a due, se ne aggiunga 
+      un'altra per descrivere un acquisto di 45.21€ di alimentari. Dalla posizione
+      attività:conto corrente, devono essere <guilabel>trasferiti</guilabel>
+      a <guilabel>Uscite:Alimentari</guilabel>. Ora il registro contabile dovrebbe
+      apparire così:</para>
+
+      <screenshot id="txns-register-2account2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_2account2.png"
+                       format="PNG" srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Conto corrente - Registro</phrase>
+          </textobject>
+
+          <caption><para>Questa immagine mostra il <guilabel>registro di Attività:Conto corrente
+          </guilabel> dopo aver inserito una transazione per l'acquisto di
+          alimentari.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-registers-multiaccount2">
+      <title>Transazione suddivisa</title>
+
+      <para>Il bisogno di una transazione che coinvolge 3 o più conti sorge quando
+      è necessario suddividere o il conto "da" o il conto "a" in una transazione
+      in più conti. L'esempio classico di questa situazione si verifica quando
+      si riceve lo stipendio. Il compenso che si riceve è sicuramente meno
+      dello stipendio lordo a causa delle tasse, del fondo pensione e altre voci.
+      Perciò la singola transazione relativa alla ricezione dello stipendio coinvolge
+      altri conti oltre a quelli di <guilabel>Attività:Conto corrente</guilabel> e
+      <guilabel>Entrate:Stipendio</guilabel>.</para>
+
+      <para>Per aggiungere una transazione per lo stipendio dalla finestra di registro 
+      del conto <guilabel>Attività:Conto corrente</guilabel>, fare clic in una nuova 
+      riga della transazione e premere <guilabel>Suddivisione</guilabel>.
+      Immettere dapprima la descrizione della transazione nella prima linea (per esempio: 
+      "Employers R Us"). Nella linea "di suddivisione" sotto a questa, immettere
+      il deposito nel conto <guilabel>Attività:Conto corrente</guilabel> (es: €670) 
+      (questo è a causa di un bug, che richiede che la prima linea di una suddivisione 
+      sia relativa ql conto attuale). In seguito inserire i vari depositi per le tasse
+      (<guilabel>Attività:Conto corrente</guilabel> (es: €670),
+      <guilabel>Uscite:Tasse:Statali</guilabel> (es: €180),
+      <guilabel>Uscite:Tasse:Assistenza sanitaria</guilabel> (es: €90) e
+      <guilabel>Uscite:Tasse:Previdenza sociale</guilabel> (es: €60)) e
+      per ultimo il totale lordo dello stipendio (es: €1000) come prelievo da <guilabel>
+      Entrate:Stipendio</guilabel>. Alla fine la suddivisione dovrebbe assomigliare
+      a questa:</para>
+
+      <screenshot id="txns-register-multiaccount">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_multiaccount.png"
+                       format="PNG" srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Registro del conto - suddivisione di una transazione</phrase>
+          </textobject>
+
+          <caption><para>Questa immagine mostra il <guilabel>registro di Attività:Conto corrente
+          </guilabel> dopo aver aggiunto una transazione suddivisa per lo
+          stipendio.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-registers-features2">
+      <title>Caratteristiche del registro del conto</title>
+
+      <para>La barra del titolo nel registro del conto, mostra il nome del conto
+      che, in questo caso è <guilabel>Attività:Conto corrente</guilabel>. Sotto
+      alla barra del titolo, la barra del menu mostra le voci disponibili per il
+      registro del conto e la barra degli strumenti contiene degli utili pulsanti
+      che assistono nelle operazioni con il registro del conto.</para>
+
+      <para>Sebbene ogni transazione ha almeno due suddivisioni, tutto ciò che 
+      si vede nel registro di base è un sommario delle suddivisioni che interessano
+      il conto selezionato. Nella colonna del trasferimento, sono elencati gli altri 
+      conti da cui il denaro è <emphasis>trasferito</emphasis> verso o da questo conto.
+      Se la transazione coinvolge più di due conti, &app; visualizza la scritta
+      <guilabel>-- Transazione suddivisa --</guilabel> a indicare che si tratta di
+      una transazione con più suddivisioni. E' possibile visualizzare individualmente
+      le suddivisioni di ogni transazione premendo il pulsante <guilabel>Suddivisione</guilabel> 
+      nella barra strumenti mentre è selezionata la transazione.</para>
+
+      <para>Per le transazioni suddivise, la prima linea rappresenta la
+      <emphasis>linea della transazione</emphasis>. Contiene una
+      <guilabel>Data</guilabel>, un <guilabel>Nr.</guilabel> opzionale (quale
+      il numero dell'assegno), la <guilabel>Descrizione</guilabel> della transazione, 
+      l'importo totale che interessa il conto selezionato (<guilabel>Deposito Tot</guilabel>
+      qui) e il <guilabel>Saldo</guilabel> aggiornato dopo la transazione corrente.
+      Si noti che nella vista espansa, l'intestazione della colonna <guilabel>Trasferimento</guilabel>
+      scompare, e non viene visualizzato nessun nome di conto in questo campo.
+      Questa riga mostra solamente un sommario degli effetti della transazione sul conto selezionato.
+      Per avere informazioni più dettagliate, occorre visualizzare le suddivisioni
+      che compongono la transazione.</para>
+
+      <para>Le righe parziali sotto a quella della transazione, sono le
+      <emphasis>righe delle suddivisioni</emphasis> e sono separate da linee grigie.
+      Quando si seleziona una delle linee di suddivisione, l'intestazione della 
+      colonna cambia, visualizzando le voci relative ai campi della suddivisione:</para>
+
+      <screenshot id="txns-registersplit2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit2.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Come cambiano le intestazioni per una suddivisione</phrase>
+          </textobject>
+
+          <caption><para>Questa immagine mostra come le intestazioni cambino per una
+          suddivisione.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Ogni suddivisione contiene un campo <guilabel>Operazione</guilabel>
+	opzionale o del tipo di suddivisione, che può essere immesso digitandolo oppure 
+	scegliendolo da	una lista a comparsa. La suddivisione presenta anche un campo 
+	per il <guilabel>Promemoria</guilabel>	per descrivere la suddivisione stessa. 
+	Ogni suddivisione coinvolge un <guilabel>Conto</guilabel>, che può essere selezionato 
+	da una lista a comparsa che comprende tutti i propri conti. Il campo 
+	<guilabel>R</guilabel> indica se la suddivisione è stata riconciliata. Le ultime 
+	due colonne riportano l'importo della suddivisione e se il denaro è in entrata o 
+	in uscita dal conto.</para>
+
+      <para>Come discusso nella <xref linkend="basics-accounting1" />, gli addebiti
+	totali (o dare, inseriti nella colonna di sinistra) devono eguagliare gli accrediti
+	totali (o avere, inseriti nella colonna di destra) per ogni transazione. Nell'esempio
+	mostrato sopra, gli addebiti totali sono pari agli accrediti totali e la 
+	transazione è quindi bilanciata. Si nota che la riga della transazione contiene
+	lo stesso importo in addebito presente nella riga della suddivisione 
+	<guilabel>Conto corrente</guilabel>. Perché viene mostrata due volte?
+	perché la riga della transazione è semplicemente un <emphasis>sommario</emphasis> 
+	degli effetti della transazione sul conto a cui appartiene. La stessa transazione
+	in un conto diverso, avrebbe una linea della transazione differente che mostra
+	gli effetti su quel particolare conto. Questo si può vedere selezionando un'altra riga
+	di suddivisione e premendo il pulsante <guilabel>Salta</guilabel> sulla barra
+	degli strumenti.</para>
+
+
+    <para>In questo esempio, se si salta al conto
+      <guilabel>Entrate:Stipendio</guilabel>, &app; mostra la stessa
+      transazione nel registro del conto <guilabel>Entrate:Stipendio</guilabel>:</para>
+
+      <screenshot id="txns-registersplit3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit3.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Uno sguardo al conto Entrate:Stipendio</phrase>
+          </textobject>
+
+          <caption><para>Questa immagine mostra un salto al conto
+          <guilabel>Entrate:Stipendio</guilabel>.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Si noti che il totale nella riga della transazione, somma gli
+	effetti sul conto <guilabel>Entrate:Stipendio</guilabel> invece che sul
+	<guilabel>Conto corrente</guilabel>, perché si sta guardando il registro del conto
+	<guilabel>Entrate:Stipendio</guilabel>. Le suddivisioni sono esattamente le stesse,
+	ma la riga della transazione rispecchia ora l'accredito al conto 
+	<guilabel>Entrate:Stipendio</guilabel>.</para>
+
+      <para>In basso a sinistra nella finestra del registro, &app; visualizza
+	degli utili messaggi mentre ci si muove nel registro. A destra, invece,
+	è possibile leggere il saldo attuale del conto e il totale delle
+	suddivisioni liquidate.</para>
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="txns-regstyle1">
+    <title>Scegliere uno stile per il registro</title>
+
+    <para>&app; offre diverse opzioni per visualizzare il registro. Lo 
+    stile predefinito è <guilabel>Libro mastro basilare</guilabel>, che 
+    visualizza solo il sommario delle suddivisioni che interessano il conto 
+    selezionato. Questo è lo stile che rassomiglia maggiormente a quello
+    di altri programmi finanziari.</para>
+
+    <para>E' possibile scegliere uno stile differente per il registro selezionando
+    <guimenu>Visualizza</guimenu> -&gt; <guisubmenu>Mastro a espansione automatica</guisubmenu>
+    in modo che la transazione selezionata venga espansa automaticamente. Nel momento in
+    cui viene selezionata una nuova transazione nel registro, questa viene
+    automaticamente espansa per mostrare tutte le suddivisioni. Scegliendo invece 
+    <guimenu>Visualizza</guimenu> -&gt; <guisubmenu>Giornale della transazione
+    </guisubmenu> si attiva uno stile simile al giornale di contabilità in cui
+    tutte le suddivisioni sono mostrate per ogni transazione.</para>
+
+    <para>Tutti gli stili consentono di visualizzare i dati sia su una singola riga che in modalità a 
+    doppia linea. Selezionare <guimenu>Visualizza</guimenu> -&gt;
+    <guimenuitem>Doppia linea</guimenuitem> e la linea di ogni transazione verrà
+    ampliata a due linee di registro.</para>
+    
+    <para>Si descriveranno ora in dettaglio le differenze tra la visualizzazione a "Libro mastro basilare"
+	e quella a "Giornale della transazione".
+    </para>
+    <para>Per questo esempio, si assuma di avere un conto corrente con €10.000,
+    e che si sia deciso di acquistare 3 paia di Jeans per €1.000. La transazione corrispondente
+    può essere registrata come una singola, trasferendo €1.000 al conto Uscite:Abbigliamento.
+    In alternativa si può creare una transazione suddivisa, e registrare individualmente
+    l'acquisto di un paio di Jeans.</para>
+    <para>Tecnicamente il risultato è identico, ma da un punto di vista contabile, quando viene registrato 
+    singolarmente ogni acquisto di un Jeans, nel conto Uscite:Abbigliamento verranno registrate tre
+    diverse transazioni.</para>
+    <para>L'immagine seguente illustrerà il concetto in modo più chiaro.</para>
+    
+    <para>Si inizi dall'acquisto di 3 paia di Jeans dal conto corrente</para>
+    
+          <screenshot id="txns-registersplit4">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit4.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Acquisto di 3 Jeans</phrase>
+          </textobject>
+
+          <caption><para>
+            Questa immagine mostra la transazione suddivisa per l'acquisto di 3 Jeans
+          </para></caption>
+        </mediaobject>
+      </screenshot>
+      
+     <para>Si apra poi il conto Uscite:Abbigliamento e lo si visualizzi nello stile a "Libro mastro basilare".
+     Come si può vedere, sono presenti tre voci, mentre nel conto corrente ne era presente solamente una.
+     Guardando attentamente, si noterà che ogni riga presenta un importo differente di €200, €300 e €500.
+     Ogni transazione rispecchia una suddivisione.</para> 
+      <screenshot id="txns-registersplit5">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit5.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Un salto al conto Uscite:Abbigliamento</phrase>
+          </textobject>
+
+          <caption><para>Questa immagine mostra il conto <guilabel>Uscite:Abbigliamento</guilabel>
+          nella modalità a "libro mastro basilare".</para></caption>
+        </mediaobject>
+      </screenshot>
+      
+      <para>Se si visualizza il conto Uscite:Abbigliamento nella modalità "giornale della transazione", verrà di nuovo
+	visualizzata solamente la transazione suddivisa originale.</para>
+      
+      <screenshot id="txns-registersplit6">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit6.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Un salto al conto Uscite:Abbigliamento</phrase>
+          </textobject>
+
+          <caption><para>Questa immagine mostra il conto <guilabel>Uscite:Abbigliamento</guilabel> nella
+	  modalità "giornale della transazione".</para></caption>
+        </mediaobject>
+      </screenshot>
+
+    
+  </sect1>
+
+  <sect1 id="txns-shortcuts1">
+    <title>Utilizzare le scorciatoie per l'immissione dei dati</title>
+
+    <para>&app; fornisce diverse scorciatoie che permettono di risparmiare
+    tempo nella fase di immissione dei dati. Quando si digitano pochi caratteri 
+    iniziali di una descrizione che è stata usata in precedenza, la funzione di
+    Quickfill completa automaticamente il resto della transazione così come è 
+    stata immessa l'ultima volta. Quando si digitano i primi caratteri del
+    nome di un conto nel campo <guilabel>Trasferimento</guilabel> sulla linea
+    della transazione o nel campo <guilabel>Conto</guilabel> sulla linea della
+    suddivisione, Quickfill completerà automaticamente il nome dalla lista
+    dei conti. Assiste anche nella scelta dei sottoconti in questi campi:
+    basta digitare il primo carattere del conto padre seguito dai due punti
+    e dal primo carattere del nome del sottoconto. Per esempio, per selezionare
+    <guilabel>Attività:Conto corrente</guilabel>,  è sufficiente digitare
+    <userinput>A:C</userinput> e lasciare a &app; il compito di completare
+    il resto.</para>
+
+    <para>Anche le scorciatoie da tastiera per il registro permettono di risparmiare 
+    tempo e &app; ne fornisce diverse. Nel campo della data si può premere:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><keycap>+</keycap> o <keycap>=</keycap> per aumentare la data
+        e <keycap>-</keycap> o <keycap>_</keycap> per diminuire la data</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>]</keycap> o <keycap>}</keycap> per aumentare il mese
+        e <keycap>[</keycap> o <keycap>{</keycap> per diminuire il mese</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>M</keycap> o <keycap>m</keycap> per inserire la prima 
+        data del mese</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>H</keycap> o <keycap>h</keycap> per inserire l'ultima 
+        data del mese</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>Y</keycap> o <keycap>y</keycap> per inserire la prima 
+        data dell'anno</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>R</keycap> o <keycap>r</keycap> per inserire l'ultima 
+        data dell'anno</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>T</keycap> o <keycap>t</keycap> per inserire la data 
+        odierna</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Nel campo <guilabel>Nr.</guilabel> nella linea di una transazione, 
+    è possibile premere <keycap>+</keycap> per incrementare il numero della transazione
+    mentre premendo <keycap>-</keycap> verrà diminuito il numero.
+    Questo funzionerà anche nel campo <guilabel>Operazione</guilabel> nella linea
+    della suddivisione, se si sceglie di immettere i numeri della suddivisione qui.
+    Il campo <guilabel>Operazione</guilabel> supporta anche Quickfill: se si digitano
+    i primi caratteri di una operazione ordinaria (come <guilabel>Deposito</guilabel>),
+    &app; completerà il resto.</para>
+
+    <para>Il campo <guilabel>Trasferimento</guilabel> supporta il Quickfill
+    dei nomi dei conti. Si può iniziare a digitare il nome di un conto e
+    &app; completerà la parte restante del nome. Digitando il carattere separatore
+    in qualsiasi momento completerà il livello corrente del nome del conto, lasciando
+    il cursore posizionato all'inizio del livello successivo di nomi di conti. 
+	 Digitando, per esempio, "A:C" con il gruppo standard di conti verrà selezionato
+	 il conto "Attività:Conto corrente". Si possono anche digitare le chiavi
+    <keycap>Menu</keycap> o <keycap>Ctrl-Giù</keycap> in questo campo per visualizzare
+    la lista a comparsa dei nomi dei conti.</para>
+
+    <para>In ognuno dei campi per l'importo, si può usare una calcolatrice incorporata.
+    Digitare semplicemente il primo valore, seguito da un <keycap>+</keycap>,
+    <keycap>-</keycap>, <keycap>*</keycap> o <keycap>/</keycap>, poi inserire il
+    secondo valore. &app; eseguirà i calcoli e restituirà il valore risultante
+    nel campo dell'importo alla pressione del tasto <keycap>Tab</keycap>.</para>
+
+    <para>Per tutte le voci del menu sono definite delle chiavi di accesso che sono
+    indicate da caratteri sottolineati nei nome del menu. Premere <keycap>Alt</keycap> +
+    [carattere sottolineato] per aprire il menu desiderato e selezionare poi una voce digitando
+    il carattere sottolineato corrispondente. Per esempio, premere <keycombo>
+        <keycap>Alt</keycap>
+
+        <keycap>T</keycap>
+      </keycombo> fa comparire il menu per le transazioni, poi premendo
+    <keycap>S</keycap> si potrà suddividere la transazione. Alcune delle voci
+    del menu hanno anch'esse delle scorciatoie che immediatamente invocano 
+    il comando (normalmente utilizzando il tasto <keycap>Ctrl</keycap>). Queste 
+    scorciatoie sono riportate a fianco della voce.</para>
+
+    <para>Per muoversi nel registro, utilizzare questi tasti per risparmiare 
+    tempo:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><keycap>Tab</keycap> per spostarsi al prossimo campo, <keycombo>
+            <keycap>Shift</keycap>
+
+            <keycap>Tab</keycap>
+          </keycombo> per spostarsi nel campo precedente</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>Home</keycap> per spostarsi all'inizio del campo,
+        <keycap>Fine</keycap> per spostarsi alla fine del campo</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>Invio</keycap> o <keycap>↓</keycap> per spostarsi alla 
+        transazione successiva, <keycap>↑</keycap> per spostarsi alla transazione
+        precedente</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>Pag Sù</keycap> per muoversi verso l'alto di una schermata,
+        <keycap>Pg giù</keycap> per muoversi verso il basso di una schermata</para>
+      </listitem>
+
+      <listitem>
+        <para><keycombo>
+            <keycap>Shift</keycap>
+
+            <keycap>Pag Sù</keycap>
+          </keycombo> per raggiungere la prima transazione, <keycombo>
+            <keycap>Shift</keycap>
+
+            <keycap>Pag Giù</keycap>
+          </keycombo> per raggiungere l'ultima transazione</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Nella finestra <guilabel>Riconcilia</guilabel> possono essere usate le
+    seguenti scorciatoie da tastiera:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><keycap>Tab</keycap> sposta al riquadro successivo
+        <keycap>Shift</keycap>-<keycap>Tab</keycap> sposta al riquadro precedente
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>La barra spaziatrice alterna lo stato tra riconciliata e non
+        riconciliata</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>↑</keycap> e <keycap>↓</keycap> permettono di spostarsi tra
+	gli elementi nel riquadro selezionato</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="txns-reconcile1">
+    <title>Riconciliazione</title>
+
+    <para>Le transazioni sono tipicamente confrontate con gli estratti
+    conto forniti dalla banca; il processo è noto con il nome di 
+    "riconciliazione". &app; tiene traccia dello stato di riconciliazione
+    di ogni transazione.</para>
+
+    <para>Lo stato di riconciliazione di una transazione è mostrato nel campo di
+    riconciliazione (R): «s» indica che la transazione è stata riconciliata, «n»
+    indica che non la è stata e «l» indica che è stata liquidata ma non riconciliata.
+    E' possibile cambiare lo stato di riconciliazione tra «n» e «l» cliccando sul 
+    campo «R»; si può invece impostare al valore «s» utilizzando la finestra di
+    riconciliazione.</para>
+
+    <para>In basso, nella finestra del conto, ci sono due totali correnti:
+    "Saldo" e "liquidato". "Liquidato" corrisponde all'importo di denaro che
+    la banca pensa si possegga nel proprio conto, mentre "Saldo" include le
+    transazioni non ancora riscosse.</para>
+
+    <sect2 id="txns-reconcile-window2">
+      <title>Finestra di riconciliazione</title>
+
+      <para>La finestra di riconciliazione è utilizzata per riconciliare un conto
+      di &app; con l'estratto conto che la banca o un'altra istituzione ha inviato.
+      La riconciliazione è utile non solo per controllare le proprie registrazioni
+      nei confronti di quelle della banca, ma anche per avere un controllo sulle
+      transazioni in sospeso come, per esempio, gli assegni non incassati.</para>
+
+      <para>Nella parte inferiore della finestra dei conti, sono visualizzati 
+      saldi provvisori: "liquidato e riconciliato" e il saldo "totale".
+      Il saldo "liquidato e riconciliato"  dovrebbe corrispondere a quanto denaro 
+      la banca crede che si abbia sul proprio conto, mentre il saldo "totale"
+      comprende le transazioni non ancora finalizzate.</para>
+
+      <para>Per esempio, quando si emette un assegno per qualsiasi motivo, si dovrebbe
+	inserire la transazione in &app;. Il campo per la riconciliazione "R" della
+	transazione conterrà inizialmente "n" (non riconciliata). La nuova immissione
+	contribuirà alla variazione del saldo "totale" ma non a quella del saldo "
+	liquidato e riconciliato". In seguito, se l'assegno viene incassato, è possibile
+	cliccare nel campo "R" della transazione per cambiare la "n" in "l" (liquidata).
+	Facendo questo, il saldo "liquidato e riconciliato" varierà per considerare questo
+	importo. Quando arriverà l'estratto conto dalla banca, sarà possibile confrontarlo
+	con ciò che è stato registrato in &app;, dalla finestra di riconciliazione.
+	Da qui sarà possibile cambiare il valore del campo "R" in "s" (sì, riconciliata).
+	Non è possibile riconciliare dalla finestra del registro ma solamente da quella di 
+	riconciliazione. Una volta che una transazione è stata riconciliata, non può più
+	essere facilmente cambiata.</para>
+
+      <para>Per aprire la finestra di riconciliazione, selezionare un conto dalla struttura 
+	dei conti e dirigersi in <guimenu>Operazioni</guimenu> -&gt;
+      <guimenu>Riconcilia</guimenu>. Apparirà una finestra in cui sarà possibile immettere 
+	le informazioni di riconciliazione.</para>
+
+      <screenshot id="txns-reconcile-window-1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_reconcile_window1.png"
+                       format="PNG" srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra di riconciliazione</phrase>
+          </textobject>
+
+          <caption><para>La finestra iniziale di riconciliazione.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <itemizedlist>
+        <listitem>
+          <para><emphasis>Informazioni di riconciliazione: data dell'estratto conto</emphasis> - rappresenta
+	la data di emissione dell'estratto conto con cui verrà riconciliato il conto.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Informazioni di riconciliazione: saldo iniziale</emphasis> - questa voce non
+	  è modificabile e visualizza il saldo della precedente riconciliazione. Dovrebbe corrispondere
+	  al saldo iniziale presente sull'estratto conto.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Informazioni di riconciliazione: saldo finale</emphasis> - è il saldo
+	  di chiusura così come appare nell'estratto conto.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Informazioni di riconciliazione: includi sottoconti</emphasis> -
+          selezionare questa opzione se si desidera includere i sottoconti del conto selezionato
+	  nella riconciliazione.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Immissione pagamento interessi</emphasis> - premere qui per inserire
+	  una transazione per gli interessi nel conto che sta per essere riconciliato.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Premere il pulsante <guibutton>Ok</guibutton> e verrà visualizzata la lista
+	delle transazioni nella finestra di riconciliazione:</para>
+
+      <screenshot id="txns-reconcile-window-2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_reconcile_window2.png"
+                       format="PNG" srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra di riconciliazione</phrase>
+          </textobject>
+
+          <caption><para>La lista delle transazioni nella finestra di
+	  riconciliazione.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Le due liste chiamate <guilabel>Fondi in ingresso</guilabel> e
+      <guilabel>Fondi in uscita</guilabel> elencano tutte le transazioni non riconciliate.
+      La colonna "R" mostra se le transazioni sono state liquidate o riconciliate.</para>
+
+      <para>Si esamini ora ogni voce dell'estratto conto e si ricerchi l'elemento
+	corrispondente nella finestra di riconciliazione.</para>
+
+      <para>Se non si è in grado di trovarne una, o ci si è dimenticati di immettere
+	una transazione oppure non si era al corrente della transazione. E' possibile
+	utilizzare il pulsante «Nuovo» sulla barra degli strumenti, o la voce «Nuovo»
+	nel menu «Transazione», per aprire la finestra del registro e inserire la
+	transazione mancante. La nuova transazione apparirà nella finestra di 
+	riconciliazione alla pressione del tasto «Invio» dopo aver immesso la transazione.</para>
+
+      <para>Quando si trova la voce corrispondente nella finestra di riconciliazione,
+	se ne confronti l'importo con quello che compare sull'estratto conto.
+	Nel caso fossero diversi, potrebbe essere stato commesso un errore
+	nell'immissione della transazione in &app;. E' possibile utilizzare
+	il pulsante <guibutton>Modifica</guibutton> nella barra degli strumenti o la
+	voce <guimenu>Modifica</guimenu> nel menu «transazione», per aprire la
+	finestra del registro e correggere la transazione.</para>
+
+      <para>Se gli importi corrispondono, selezionare l'elemento nella finestra di riconciliazione.
+      La colonna "R" cambierà in "s" (riconciliata) da "n" o "c". E' anche 
+      possibile usare i tasti delle frecce su/giù per selezionare l'elemento
+      e premere la barra spaziatrice. Questo cambierà anche la colonna "R" mostrando
+      la transazione come riconciliata.</para>
+
+      <para>Ripetere quindi queste operazioni per ogni voce presente nell'estratto
+	conto della banca, verificando che l'importo corrisponda con quello in &app;
+	e marcando le transazioni in &app; quando sono riconciliate.</para>
+
+      <para>In basso nella finestra di riconciliazione viene riportata la "Differenza",
+	che dovrebbe visualizzare €0,00 quando la riconciliazione è terminata.
+	Se riporta qualche altro valore, o si è dimenticata una o più transazioni
+	oppure alcuni importi potrebbero essere errati in &app; (o, più
+	difficilmente, la banca ha fatto un errore).</para>
+
+      <para>Quando sono stati esaminati tutti gli elementi nell'estratto conto, e quando
+	la differenza è pari a €0,00, premere il pulsante «Termina» sulla barra degli
+	strumenti o selezionare «Termina» dal menu «Riconcilia»; la finestra di riconciliazione
+	verrà chiusa. Nella finestra del registro il campo "R" delle transazioni riconciliate
+	visualizzerà una "s".</para>
+
+      <para>In questo caso, non sono state ancora ricevute tutte le informazioni, così
+	è stato premuto il pulsante <guibutton>Posticipa</guibutton>, in modo da poter
+	proseguire in un secondo momento. Si osservi che la colonna "R" indica che sono state 
+	liquidate ("l") due transazioni. Non sono state ancora riconciliate, ma si è verificata
+	la loro presenza sull'estratto conto e quindi sono state marcate come liquidate. Osservando
+	la barra di stato in fondo al registro del conto, si noterà un sommario di ciò che è stato
+	riconciliato e di ciò che è stato liquidato
+      (<guilabel>Liquidato:€ 954.79 Riconciliato:€ 0.00</guilabel>)</para>
+
+      <screenshot id="txns-reconcile-window-3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_reconcile_window3.png"
+                       format="PNG" srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Conto corrente</phrase>
+          </textobject>
+
+          <caption><para>Il Conto corrente dopo aver posticipato la 
+	  riconciliazione.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+  </sect1>
+
+  <sect1 id="txns-sxn1">
+    <title>Transazioni pianificate</title>
+
+    <para>Le transazioni pianificate sono create per assistere nell'immissione
+    di operazioni ripetitive con il denaro quali sottoscrizioni, assicurazioni
+    e tasse. Utilizzando le transazioni pianificate, si deve inserire la transazione
+    in oggetto una sola volta, impostare alcuni parametri come la data di inizio,
+    la frequenza e una breve descrizione, e poi &app; avvertirà ogniqualvolta
+    sarà pronto a creare una nuova transazione e la creerà.</para>
+
+    <para>In questa guida pratica, si considererà una sottoscrizione mensile al servizio
+    internet di 20 Euro che viene pagata il 28 di ogni mese.</para>
+
+    <para>In &app;, si possono creare delle transazioni pianificate in due modi:
+    dal libro mastro o dalla voce del menu <guibutton>Editor transazioni
+    pianificate</guibutton>.</para>
+
+    <sect2 id="txns-sxn-ledger2">
+      <title>Creazione dal libro mastro</title>
+
+      <para>Inserire la prima scadenza della transazione da pianificare nel libro
+	mastro.</para>
+
+      <screenshot id="txns-sxn-ledger-1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger1.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Passo 1: creazione della transazione pianificata dal libro
+		mastro</phrase>
+          </textobject>
+
+          <caption><para>Passo 1: creazione della transazione pianificata dal libro
+		mastro</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <note>
+        <para>Dato che non è ancora stato creato il conto Uscite:Internet, &app;
+        ne richiederà la creazione.</para>
+      </note>
+
+      <para>Cliccare poi con il tasto destro sulla transazione e selezionare
+      "Pianifica..."</para>
+
+      <screenshot id="txns-sxn-ledger-2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger2.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Passo 2: creazione della transazione pianificata dal libro
+		mastro</phrase>
+          </textobject>
+
+          <caption><para>Passo 2: creazione della transazione pianificata dal libro
+		mastro</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Verrà visualizzata una finestra come questa:</para>
+
+      <screenshot id="txns-sxn-ledger-3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger3.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Passo 3: creazione della transazione pianificata dal libro
+		mastro</phrase>
+          </textobject>
+
+          <caption><para>Passo 3: creazione della transazione pianificata dal libro
+		mastro</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Si compilino i valori richiesti; la sottoscrizione è prelevata il 28 di 
+	ogni mese e la successiva sarà per il mese prossimo (dato che quella per questo 
+	mese è stata inserita manualmente):</para>
+
+      <screenshot id="txns-sxn-ledger-4">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger4.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Inserimento dei dati nella transazione pianificata</phrase>
+          </textobject>
+
+          <caption><para>inserimento dei dati nella transazione pianificata</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Premere il pulsante «OK» e la transazione verrà pianificata.
+        &app; ha ora memorizzato la transazione pianificata e, il 28 del mese
+	prossimo, presenterà una finestra in cui verrà richiesto se la transazione deve 
+	essere creata (vedere più in basso per un'immagine di questa finestra).</para>
+    </sect2>
+
+    <sect2 id="txns-sxn-editor2">
+      <title>Creazione dalla finestra dell' "Editor transazioni pianificate"</title>
+
+      <para>Un altro modo per inserire una transazione pianificata è dalla finestra
+      dell'"Editor transazioni pianificate"; questo metodo può essere più veloce
+      se si devono creare più transazioni in una sola volta.</para>
+
+      <para>Dalla finestra principale dei conti, selezionare il menu Operazioni
+      e scegliere transazioni pianificate; dovrebbe aprirsi un sotto menu dove
+      si dovrà selezionare la voce "Editor transazioni pianificate".</para>
+
+      <screenshot id="txns-sxn-editor-1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_editor1.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Passo 1: creazione della transazione pianificata dalla
+            finestra di modifica</phrase>
+          </textobject>
+
+          <caption><para>Passo 1: creazione della transazione pianificata dalla
+            finestra di modifica</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Verrà aperta una finestra come questa:</para>
+
+      <screenshot id="txns-sxn-editor-2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_editor2.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Passo 2: creazione della transazione pianificata dalla
+            finestra di modifica</phrase>
+          </textobject>
+
+          <caption><para>Passo 2: creazione della transazione pianificata dalla
+            finestra di modifica</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Questa finestra contiene una lista, per ora vuota, di tutte le
+      transazioni pianificate. Se ne crei una nuova premendo il pulsante «Nuovo»;
+      si aprirà una nuova finestra:</para>
+
+      <screenshot id="txns-sxn-editor-3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_editor3.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Passo 3: creazione della transazione pianificata dalla
+            finestra di modifica</phrase>
+          </textobject>
+
+          <caption><para>Passo 3: creazione della transazione pianificata dalla
+            finestra di modifica</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Questa finestra può apparire complicata ma in realtà
+	è semplice da capire. Per prima cosa, si inserisca il nome
+	da assegnare alla nuova transazione pianificata; questo nome
+	identificherà univocamente la transazione nella finestra di
+	modifica della transazione pianificata e non apparirà mai
+	nel libro mastro.</para>
+
+      <para>In seguito si inseriranno i vari parametri della transazione. La 
+	sottoscrizione è prelevata il 28 di ogni mese, quindi la data di partenza
+	sarà il 1° Novembre 2003 (assumendo che Novembre sia il mese prossimo), la
+	frequenza sarà "Mensile"; verrà quindi prelevata il 28 di ogni mese.</para>
+
+      <para>Nella linguetta "Opzioni" sono presenti tre opzioni:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>"Crea automaticamente" questa transazione verrà inserita automaticamente nel
+	  libro mastro senza che prima venga richiesta nessuna conferma (vedere più sotto)</para>
+        </listitem>
+
+        <listitem>
+          <para>"Crea in anticipo di:" è esplicito</para>
+        </listitem>
+
+        <listitem>
+          <para>"Ricorda in anticipo di:" è esplicito ed è utilizzato, per esempio,
+	   quando si deve pagare con un assegno; &app; può ricordare l'incombenza
+	   una settimana prima così da poter inviare l'assegno prima della scadenza.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>La voce fine permette di dire a &app; che questa transazione non durerà per 
+	sempre, per esempio se si sta ripagando un prestito, si può selezionare la data di
+	termine del prestito.</para>
+
+      <para>Dato che nell'esempio la sottoscrizione internet è prelevata
+	automaticamente dal conto, non c'è bisogno di crearla in anticipo
+	o di fornire una data di termine.</para>
+
+      <para>Infine, inserire la transazione nella parte bassa come si farebbe nel libro mastro,
+	 con la sola differenza che non ha una data.</para>
+
+      <note>
+        <para>ATTENZIONE: non utilizzare il tasto «Invio» come nel libro mastro, dato che attiverà il
+	pulsante predefinito per la finestra che è «Annulla». Invece, si utilizzi il tasto «Tab» per spostarsi
+	nel campo successivo e, quando è terminata l'immissione della transazione, premere il 
+	pulsante «Inserisci» per confermarla.</para>
+      </note>
+
+      <para>Ora, si dovrebbe avere una finestra come questa:</para>
+
+      <screenshot id="txns-sxn-editor-4">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_editor4.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Validazione di una transazione pianificata nella finestra di modifica</phrase>
+          </textobject>
+
+          <caption><para>Validazione di una transazione pianificata nella finestra di modifica</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Si ricordi di premere l'icona «Inserisci», per convalidare e immettere la transazione.</para>
+
+      <para>Premendo «Ok», si tornerà alla finestra precedente, ora con un elemento
+	nella lista:</para>
+
+      <screenshot id="txns-sxn-editor-5">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_editor5.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Validazione di una transazione pianificata nella finestra di modifica</phrase>
+          </textobject>
+
+          <caption><para>Validazione di una transazione pianificata nella finestra di modifica</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Se si clicca nel calendario in corrispondenza del primo giorno del mese,
+	una piccola finestra, che seguirà il mouse, mostrerà ciò che è pianificato
+	in quel giorno. Per far scomparire la finestra è sufficiente cliccare su di essa
+	una volta.</para>
+
+      <para>Ora è possibile chiudere la finestra di modifica della transazione pianificata e
+      <guilabel>salvare</guilabel> il proprio lavoro.</para>
+
+      <note>
+        <para>Quello mostrato di seguito è solo a titolo esemplificativo e non deve
+	essere immesso nel file di &app; in questa fase. Avendo questo esempio come base,	
+	la finestra più sotto apparirà quando la transazione pianificata è impostata per
+	essere inserita.</para>
+      </note>
+
+      <para>D'ora in poi, ogni primo giorno del mese (o la prima volta che si avvia
+	&app; dopo questo giorno) una finestra apparirà per ricordare la creazione
+	di questa transazione.:</para>
+
+      <screenshot id="txns-sxn-editor-6">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_editor6.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Finestra di promemoria per la transazione pianificata</phrase>
+          </textobject>
+
+          <caption><para>Finestra di promemoria per la transazione pianificata</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>E' possibile selezionare un elemento dalla lista per visualizzare i dettagli della transazione
+	nella parte inferiore e poi premere <guibutton>Avanti</guibutton> per
+      proseguire.</para>
+
+      <para>Premendo «Avanti», apparirà una finestra che riassume tutte le transazioni
+	che verranno create:</para>
+
+      <screenshot id="txns-sxn-editor-7">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_editor7.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Sommario della transazione pianificata</phrase>
+          </textobject>
+
+          <caption><para>Sommario della transazione pianificata</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>In questa finestra è possibile modificare la transazione che verrà creata.
+	Per esempio, questo mese l'ISP offre una promozione particolare con la quale 
+	l'abbonamento costa solamente €10, così si può modificare l'importo portandolo da 
+	20 a 10.</para>
+
+      <para>Quando si è terminato con questa finestra, premere
+      <guibutton>Avanti</guibutton> e nella finestra successiva premere
+      <guibutton>Applica</guibutton>. La finestra scomparirà e la transazione
+	verrà creata.</para>
+
+      <para>Controllando poi il conto bancario, si noterà che la transazione è
+	stata creata:</para>
+
+      <screenshot id="txns-sxn-editor-8">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_editor8.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Transazione pianificata creata</phrase>
+          </textobject>
+
+          <caption><para>Transazione pianificata creata</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <note>
+        <para>Se si è immessa la transazione per il 28 Aprile in questa fase,       
+	si ritorni all'ultimo file di &app;. Selezionare
+        <guimenu>File</guimenu> -&gt;<guimenuitem>Apri</guimenuitem> e si
+        scelga <filename>gcashdata_3</filename></para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="txns-puttoget1">
+    <title>In pratica</title>
+
+    <para>Nelle sezioni precedenti di questo capitolo sono stati discussi i
+    concetti e la meccanica di lavoro con le transazioni di &app;. Questa 
+    sezione si svilupperà a partire dalla struttura dei conti creata nel 
+    precedente capitolo aggiungendo dei bilanci di apertura, delle transazioni
+    e delle transazioni pianificate..</para>
+
+    <sect2 id="txns-puttoget-openfile">
+      <title>Aprire il file di &app;</title>
+
+      <para>Si inizi aprendo il file dei dati salvato in precedenza,
+      <filename>gcashdata_3emptyAccts</filename>, e lo si salvi come
+      <filename>gcashdata_4</filename> da subito. La finestra principale
+      dovrebbe assomigliare a questa:</para>
+
+      <screenshot id="txns-puttoget1-Charts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Punto di partenza per la pratica</phrase>
+          </textobject>
+
+          <caption><para>Questa immagine mostra il punto di partenza per questa 
+          sezione.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-puttoget-open2">
+      <title>Bilanci d'apertura</title>
+
+      <para>Come mostrato per il conto <guilabel>Attività:Conto corrente</guilabel>,
+      i bilanci di apertura di un conto sono tipicamente assegnati a un conto
+      speciale denominato <guilabel>Capitali:Bilanci d'apertura</guilabel>. Per
+      cominciare a popolare la struttura dei conti, si impostino i bilanci di apertura
+      dei conti. Sia assuma anche che ci siano €1.000 nei risparmi e €500 di addebito per
+      la carta di credito.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Aprire il registro del conto <guilabel>Attività:Conto risparmio</guilabel>.
+          Selezionare <guimenu>Visualizza</guimenu> dal menu e controllare di aver impostato
+          lo stile del registro a libro mastro basilare. Si vedranno le transazioni nelle
+          altre due modalità in seguito; per ora è sufficiente creare una semplice transazione
+          utilizzando lo stile predefinito di base.</para>
+        </listitem>
+
+        <listitem>
+          <para>Dalla finestra del registro del conto <guilabel>Attività:Conto risparmio</guilabel>,
+          inserire una semplice transazione tra 2 conti per impostare il bilancio di
+          apertura a €1.000, trasferito da <guilabel>Capitali:Bilanci d'apertura</guilabel>. 
+          Si ricorda che una transazione semplice trasferisce denaro da un conto sorgente ad
+          un conto di destinazione. Registrare la transazione (premere «invio» o premere
+          l'icona «Inserisci»).</para>
+        </listitem>
+
+        <listitem>
+          <para>Dalla finestra del registro del conto <guilabel>Attività:Conto corrente</guilabel>,
+          inserire una transazione tra 2 conti al fine di impostare il bilancio di apertura a
+          €1.000, trasferiti da <guilabel>Capitali:Bilanci d'apertura</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Dalla finestra del registro del conto <guilabel>Passività:Visa</guilabel>,
+          inserire una transazione tra due conti per impostare il bilancio di apertura a
+          €500, trasferiti da <guilabel>Capitali:Bilanci d'apertura</guilabel>. 
+          Questo si ottiene inserendo €500 come "addebito" nel conto Visa (o "diminuzione"
+          nel conto dei bilanci di apertura), dato che si tratta di denaro chiesto in prestito.
+          Registrare infine la transazione (premendo «invio» o premendo l'icona «Inserisci»).</para>
+        </listitem>
+      </orderedlist>
+
+      <para>Si dovrebbero ora avere 3 conti con i relativi bilanci di apertura impostati.
+      <guilabel>Attività:Conto corrente</guilabel>,
+      <guilabel>Attività:Conto risparmio</guilabel> e
+      <guilabel>Passività:Visa</guilabel>.</para>
+
+      <screenshot id="txns-puttoget1-Charts1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts1.png"
+                       format="PNG" srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Diagramma dei conti dopo aver impostato i bilanci
+            d'apertura</phrase>
+          </textobject>
+
+          <caption><para>Questa immagine mostra i bilanci di apertura
+          .</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-puttoget-add2">
+      <title>Esempi di altre transazioni</title>
+
+      <para>Si aggiungano ora altre transazioni per simulare delle spese mensili.
+      Durante il mese, €78 sono spesi per l'elettricità, €45 per il telefono ed
+      €350 per l'affitto; si supponga chevanga tutto pagato con il conto corrente. Si spendano inoltre €45,21
+      in generi alimentari, si riceva uno stipendio di €670 e si paghi una tariffa
+      per internet. Si spostino poi €100 dal conto dei risparmi al conto 
+      corrente.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Aprire il registro del conto <guilabel>Uscite:Elettricità</guilabel> 
+          e inserire una transazione per pagare €78 per la bolletta elettrica alla
+          fine del mese corrente (esempio: 28 Marzo 2006). Inserire una descrizione
+          (esempio: Società elettrica) e il numero dell'assegno
+          (esempio: 102). Il conto di <guilabel>trasferimento</guilabel> dovrebbe essere
+          <guilabel>Attività:Conto corrente</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Aprire il registro del conto <guilabel>Attività:Conto corrente</guilabel>
+          e inserire una transazione per pagare €45 di bolletta telefonica
+          alla fine del mese corrente (esempio: 28 Marzo 2006). Inserire una 
+          descrizione (esempio: il nome della compagnia telefonica) e il numero dell'assegno
+          (esempio: 103). Il conto di <guilabel>Trasferimento</guilabel> dovrebbe essere
+          <guilabel>Uscite:Telefono</guilabel>. Si noti che è possibile inserire le transazioni
+          sia dal lato dell'accredito (conto delle uscite) che dal lato dell'addebito
+          (il conto delle attività).</para>
+        </listitem>
+
+        <listitem>
+          <para>Aprire il registro del conto <guilabel>Uscite:Affitto</guilabel>
+          e inserire una transazione per pagare €350 di affitto alla
+          fine del mese corrente (esempio: 28 Marzo 2006). Inserire una descrizione
+          (esempio: affitto Aprile) e il numero dell'assegno (esempio: 104). Il
+          conto di <guilabel>Trasferimento</guilabel> dovrebbe essere
+          <guilabel>Attività:Conto corrente</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Si duplichi ora questa transazione utilizzando il pulsante
+          <guibutton>Duplica</guibutton> sulla barra degli strumenti. Si inizi 
+          cliccando nella transazione selezionata per l'affitto e premere poi
+          l'icona <guilabel>Duplica</guilabel>. Inserire la data della transazione
+          un mese più avanti (esempio: 28 Aprile 2006).</para>
+
+          <para>E' anche possibile impostare una transazione pianificata per pagare 
+          l'affitto dato che l'importo della rata è probabilmente costante nel futuro
+          prossimo. <itemizedlist>
+              <listitem>
+                <para>Si inizi selezionando la transazione per l'affitto (28 Aprile) e 
+                si prema l'icona <guilabel>Pianifica</guilabel>.</para>
+              </listitem>
+
+              <listitem>
+                <para>Modificare in <guilabel>Mensile</guilabel>, cambiare la
+                descrizione se necessario e premere OK</para>
+              </listitem>
+            </itemizedlist></para>
+        </listitem>
+
+        <listitem>
+          <para>Per trasferire denaro dal conto dei risparmi al conto corrente, aprire
+          il conto <guilabel>Attività:Conto risparmio</guilabel> e
+          aggiungere una nuova transazione impostando
+          il trasferimento a <guilabel>Attività:Conto corrente</guilabel> dell'importo pari a
+          €100 (datato 6 Marzo 2006).</para>
+        </listitem>
+
+        <listitem>
+          <para>Come ulteriore esempio, di semplice transazione a due conti, si aggiunga una
+	  nuova transazione per registrare un acquisto di generi alimentari per €45,21 effettuato
+	  il 5 Marzo. Dal conto Attività:Conto corrente si imposti un <guilabel>Trasferimento</guilabel> a
+          <guilabel>Uscite:Alimentari</guilabel>. Il registro del conto dovrebbe apparire così:</para>
+        </listitem>
+
+        <listitem>
+          <para>Per aggiungere una transazione per la busta paga dalla finestra del registro del conto
+          <guilabel>Attività:Conto corrente</guilabel>, selezionare una nuova riga per la transazione
+          e cliccare su <guilabel>Suddivisione</guilabel>. Nella prima riga inserire la descrizione
+	  della transazione (per esempio: "Employers R Us") e la data (14 Marzo). Nella linea della
+	  "suddivisione" al di sotto di questa, inserire l'importo del deposito nel conto
+	  <guilabel>Attività:Conto corrente</guilabel> (per esempio: €670) (questo è a causa di un bug
+	  che vuole che la prima riga in una suddivisione sia il conto attuale). In seguito inserire i depositi
+	  per le imposte
+          (<guilabel>Attività:Conto corrente</guilabel> (per esempio: €670),
+          <guilabel>Uscite:Imposte:Statali</guilabel> (per esempio: €180),
+          <guilabel>Uscite:Imposte:Assistenza sanitaria</guilabel> (per esempio: €90),
+          <guilabel>Uscite:Imposte:Previdenza sociale</guilabel> (per esempio: €60) e,
+          in ultimo, il totale lordo dello stipendio (per esempio: €1000) come prelievo
+          dal conto <guilabel>Entrate:Stipendio</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Si deve anche pagare la sottoscrizione internet di 20 Euro
+          il giorno 28.</para>
+        </listitem>
+      </orderedlist>
+
+      <screenshot id="txns-puttoget2-Charts1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts2.png"
+                       format="PNG" srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Struttura dei conti dopo aver impostato tutte le varie
+            transazioni</phrase>
+          </textobject>
+
+          <caption><para>Questa immagine mostra il saldo finale dopo il <xref
+          linkend="chapter_txns" />.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-puttoget-save">
+      <title>Salvare il file</title>
+
+      <para>Prima di procedere alla sezione sui resoconti, si salvi il file di 
+      &app; con il nome (<filename>gcashdata_4</filename>).</para>
+    </sect2>
+
+    <sect2 id="txns-puttoget-reports">
+      <title>Resoconti</title>
+
+      <para>Avere a disposizione i dati solo tramite lo schermo del computer non
+      è sempre sufficiente. Per questo &app; include un grande numero di resoconti
+      ampiamente personalizzabili.</para>
+
+      <note>
+        <para>Maggiori dettagli sui resoconti saranno forniti nel capitolo dedicato</para>
+      </note>
+
+      <para>Si analizzeranno ora i resoconti per il <guilabel>Flusso di liquidi</guilabel> e il
+      <guilabel>Resoconto delle transazioni</guilabel>.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Per primo verrà analizzato il resoconto del <guilabel>Flusso di liquidi</guilabel>
+          per il mese di Marzo.</para>
+
+          <para>Selezionare il resoconto sui flussi di liquidi da <guimenu>Resoconti</guimenu>
+          -&gt; <guisubmenu>Entrate e uscite</guisubmenu> -&gt;
+          <guimenuitem>Flusso di liquidi</guimenuitem></para>
+
+          <screenshot id="txns-puttoget2-Cash">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_CashFlow.png" format="PNG"
+                           srccredit="Cristian Marchi" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Resoconto dei flussi di liquidi per il mese di Marzo</phrase>
+              </textobject>
+
+              <caption><para>Questa immagine mostra il resoconto dei flussi di liquidi dopo il <xref
+              linkend="chapter_txns" />.</para></caption>
+            </mediaobject>
+          </screenshot>
+
+          <para>Per ottenere questo resoconto personalizzato, cliccare con il tasto destro nel
+          resoconto e scegliere <guilabel>Opzioni resoconto</guilabel>. Impostare poi il periodo
+          e specificare quali conti si vogliono includere nel resoconto.</para>
+        </listitem>
+
+        <listitem>
+          <para>Si controlli ora il resoconto delle transazioni per il Conto corrente.</para>
+
+          <para>Selezionare il resoconto delle transazioni dal menu <guimenu>Resoconti</guimenu>
+          -&gt; <guimenuitem>Resoconto delle transazioni</guimenuitem></para>
+
+          <screenshot id="txns-puttoget2-TransactionRptChecking">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_TransactionRptChecking.png"
+                           format="PNG" srccredit="Cristian Marchi" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Resoconto delle transazioni per il conto corrente nel mese
+                di Marzo</phrase>
+              </textobject>
+
+              <caption><para>Questa immagine mostra il resoconto delle transazioni 
+              per il conto corrente nel mese di Marzo. </para></caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Si cambi ora il resoconto delle transazioni in modo da mostrare 
+          solamente i vari conti delle uscite.</para>
+
+          <screenshot id="txns-puttoget2-TransactionRptExpenses">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_TransactionRptExpenses.png"
+                           format="PNG" srccredit="Cristian Marchi" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Resoconto delle transazioni per il conto uscite nel mese 
+                di Marzo</phrase>
+              </textobject>
+
+              <caption><para>Questa immagine mostra il resoconto delle transazioni 
+              per i vari conti delle uscite nel mese di Marzo. </para></caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+      </orderedlist>
+    </sect2>
+  </sect1>
+</chapter>
