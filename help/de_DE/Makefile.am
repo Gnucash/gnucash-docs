@@ -12,4 +12,5 @@ DISTCLEANFILES =  $(docname)-de_DE.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
+include $(top_srcdir)/epub.make
 dist-hook: app-dist-hook
