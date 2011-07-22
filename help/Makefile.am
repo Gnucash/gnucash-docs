@@ -1,6 +1,10 @@
 SUBDIRS = C de_DE it_IT
 
-epub:
+if WITH_MOBI
+  MOBI = mobi
+endif
+
+epub $(MOBI):
 	@fail= failcom='exit 1'; \
 	for f in x $$MAKEFLAGS; do \
 	  case $$f in \

@@ -47,6 +47,23 @@ if test -z "$FOP"; then
   AC_MSG_WARN([fop not found. You will not be able to generate pdf files.])
 fi
 
+dnl
+dnl Check for mobi target and optional ebook-convert
+dnl
+AC_ARG_WITH([mobi],
+	[AC_HELP_STRING([--with-mobi],
+			[do make Mobipocket target])],,
+	with_mobi=no)
+AM_CONDITIONAL([WITH_MOBI], [test "x$with_mobi" = "xyes"])
+if test "x$with_mobi" = "xyes"; then
+  AC_PATH_PROG(EBOOK_CONVERT, ebook-convert, no)
+  if test "x$EBOOK_CONVERT" = "xno"; then
+    AC_MSG_ERROR([Couldn't find ebook-convert. Please install the Calibre package: http://www.calibre-ebook.com/])
+  fi
+else
+  AC_MSG_NOTICE([Didn't make mobi target.  If you need, specify --with-mobi])
+fi
+
 AC_OUTPUT(
 gnucash-docs.spec
 help/Makefile

@@ -19,9 +19,14 @@ dist-hook:
 distuninstallcheck_listfiles =  \
 find -regex '.*/var/scrollkeeper/.*' -prune -or -type f -print
 
+if WITH_MOBI
+  MOBI_RECURSIVE = mobi-recursive
+mobi: mobi-recursive
+endif
+
 epub: epub-recursive
 
-epub-recursive:
+epub-recursive $(MOBI_RECURSIVE):
 	@fail= failcom='exit 1'; \
 	for f in x $$MAKEFLAGS; do \
 	  case $$f in \
@@ -31,7 +36,7 @@ epub-recursive:
 	done; \
 	dot_seen=no; \
 	target=`echo $@ | sed s/-recursive//`; \
-	list='$(SUBDIRS)'; for subdir in $$list; do \
+	list="$(SUBDIRS)"; for subdir in $$list; do \
 	  echo "Making $$target in $$subdir"; \
 	  if test "$$subdir" = "."; then \
 	    dot_seen=yes; \

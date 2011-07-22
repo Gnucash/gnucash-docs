@@ -19,6 +19,10 @@ Additonal Requirements for Generating PDF:
 
 * Apache fop  >= 0.95
 
+Additional Requirements for Generating Mobipocket:
+
+* Calibre (http://www.calibre-ebook.com/)
+
 Notes
 #####
 
@@ -49,15 +53,18 @@ the figures/ directory directly beneath the HTML directory:
 ~/gnucash-docs/html/
 ~/gnucash-docs/html/figures/
 
-* html, pdf and epub
---------------------
+* html, pdf, epub and mobi
+--------------------------
 
-You can generate the documentation in html, pdf or epub using the autotools
-based build system that comes with the sources.
+You can generate the documentation in html, pdf, epub and mobi
+using the autotools based build system that comes with the sources.
 
   cd gnucash-docs
   ./autogen.sh
+  # If you don't need mobi
   ./configure
+  # or, if you need mobi
+  ./configure --with-mobi
 
 => This will tell you if you are missing some required tools.
 
@@ -72,6 +79,11 @@ To generate the documentation in pdf format, instead run
 To generate the documentation in epub format, instead run
 
   make epub
+
+To generate the documentation in mobi format, instead run
+
+  make mobi
+  (Note: mobi is generated from epub, so this generates epub files as well.)
 
 If you only wish to generate a subset of the documentation, you can
 go into the directory for that subset and run the above make commands
@@ -90,8 +102,12 @@ or
   cd guide/C
   make epub
 
-depending on the output format you require.
+or
 
+  cd guide/C
+  make mobi
+
+depending on the output format you require.
 
 * XML/XSL-based tools:
 ----------------------
