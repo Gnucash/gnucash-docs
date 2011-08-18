@@ -1,151 +1,200 @@
+
 <!--
       (Do not remove this comment block.)
   Version: 2.0.0
   Last modified: July 9th 2006
   Maintainers: 
                Chris Lyttle <chris@wilddev.net>
+
   Author:
   		Jon Lapham <lapham@extracta.com.br>
   	Updated	Bengt Thuree <bengt@thuree.com>
   Originally written by Carol Champagne.
-  Translators: Yasuaki Taniguchi <yasuakit@gmail.com>
+  Translators:
                (translators put your name and email here)
 -->
 <chapter id="chapter_txns">
   <title>取引</title>
 
-  <para>本章では&app;における取引の理解と使用に必要な基礎情報を説明します。勘定科目は、勘定科目表のフレームワークと構造物です。取引は各勘定科目に入力されるデータです。</para>
+  <para>本章では<application>&app;</application>での取引を理解し使用するために必要な基本的な情報を説明します。
+勘定科目とは勘定科目表のフレームワークと構造であり、取引とは各勘定科目に入力されるデータです。</para>
 
   <sect1 id="txns-concepts1">
-    <title>基本概念</title>
+    <title>基本的な概念</title>
 
-    <para>&app;などの複式記帳法勘定体系における<emphasis>取引</emphasis>は最低2つの勘定科目間の交換です。したがって、ひとつの取引は少なくとも2つの部分、「資金移動元」および「資金異動先」勘定科目で常に成り立たなければなりません。「資金移動元」勘定科目は「資金異動先」勘定科目に金銭的な価値を渡しています。会計士は、これらの取引の要素を<emphasis>帳簿記入</emphasis>と呼びます。&app;では、それらは<emphasis>スプリット</emphasis>と呼ばれます。</para>
+    <para><application>&app;</application>などの複式記帳法会計システムにおける<emphasis>取引</emphasis>は2つ以上の勘定科目間の資金交換です。
+したがって、ひとつの取引は常に少なくとも2つの部分、<emphasis>資金移動元</emphasis>および<emphasis>資金異動先</emphasis>勘定科目で構成されなければなりません。
 
-    <para>例えば、給与を受け取って、銀行の普通預金口座にそれを貯金するとします。銀行の普通預金勘定科目 (資産) が収益勘定科目からお金を受け取る<emphasis>取引</emphasis>が発生します。2つの勘定科目が影響を受けます。そしてこの場合、純資産が純増します。</para>
+<emphasis>資金移動元</emphasis>勘定科目は<emphasis>資金異動先</emphasis>勘定科目に金銭的な価値を渡しています。
+会計士は、これらの取引の要素を<emphasis>帳簿記入</emphasis>と呼びます。
+<application>&app;</application>では<emphasis>スプリット</emphasis>と呼ばれます。</para>
 
-    <para>&app;で取引を処理する際は、<emphasis>勘定科目記録簿</emphasis>を使用して行います。作成する全ての勘定科目は勘定科目記録簿を保持しています。小切手帳を追跡する際に使用するログと非常に似ているので、それはあなたにとってなじみ深く見えるでしょう。</para>
+    <para>例えば、給与を受け取り銀行の普通預金口座に貯金するとします。
+発生する<emphasis>取引</emphasis>は、銀行の普通預金勘定科目(資産)による収益勘定科目からのお金の受け取りです。
+2つの勘定科目が影響を受け、この場合は純資産が純増します。</para>
+
+    <para><application>&app;</application>で取引を処理する際は、<emphasis>勘定科目記録簿</emphasis>を使用して行います。
+作成する全ての勘定科目は勘定科目記録簿を保持しています。
+小切手帳を追跡する際に使用するログと非常に似ているので、それはなじみ深く見えるでしょう。</para>
   </sect1>
 
   <sect1 id="txns-registers1">
     <title>勘定科目記録簿</title>
 
-    <para><emphasis>勘定科目記録簿</emphasis>とは、既に存在する取引を参照・編集する、またはある特定の勘定科目に新規の取引を加えるための&app;ウィンドウです。勘定科目記録簿を開くためには、単に勘定科目ツリーウィンドウでに勘定科目名について強調表示して、ダブルクリックしてください。ツールバーで<guibutton>開く</guibutton>ボタンをクリックするか、マウスの右クリックメニューを使用しても勘定科目開くことができます。&app;は勘定科目記録簿ウィンドウを表示します。</para>
+    <para><emphasis>勘定科目記録簿</emphasis>とは、ある特定の勘定科目に既に存在する取引を参照または編集したり、新規取引を加えたりすることができる<application>&app;</application>ウィンドウです。
+勘定科目記録簿に入るためには、単に勘定科目ツリーウィンドウでに勘定科目名をハイライト表示状態にして、開くためにダブルクリックしてください。
+<emphasis>ツールバー</emphasis>にある<guibutton>開く</guibutton>ボタンをクリックするか、マウスの右クリックメニューを使用しても勘定科目開くことができます。
+<application>&app;</application>に勘定科目記録簿ウィンドウが表示されます。</para>
 
     <sect2 id="txns-registers-twoaccount2">
-      <title>単純な取引</title>
+      <title>単純取引</title>
 
-      <para>例えば、前の章で<filename>gcashdata_3</filename>ファイルに作成した勘定科目表から始め、<guilabel>当座預金</guilabel>勘定科目をダブルクリックします。当座預金勘定科目に単純取引を加えましょう。&app;で最初に勘定科目を作成したら、開始残高で始めるのが一般的です。</para>
+      <para>例えば、前の章で作成した<filename>gcashdata_3</filename>勘定科目表から開始し、<guilabel>当座預金勘定科目</guilabel>をダブルクリックします。
+当座預金勘定科目に単純取引を加えましょう。
+<application>&app;</application>で最初に勘定科目を作成したら、開始残高で始めるのが一般的です。</para>
 
-      <para>最初の取引行に、日付(例: 2006年3月1日)、説明(例: 開始残高)を入力します。資金移動欄のポップアップメニューをクリックして、<guilabel>純資産:開始残高</guilabel>を選択します。入金欄に1000ドルを入力します。そして、Enterキーを押します。勘定科目記録簿は今、この画像と同じようになります。</para>
+      <para>最初の取引行に、日付(例:2006年3月1日)、説明(例:<quote>開始残高</quote>)を入力します。<guilabel>資金移動</guilabel>欄のポップアップメニューをクリックして、<emphasis>純資産:開始残高</emphasis>を選択します。入金欄に1000ドルを入力します。そして、<keycap
+function="enter">Enter</keycap>キーを押します。
+勘定科目記録簿はこの画像のようになります。</para>
 
       <screenshot id="txns-register-2account">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_register_2account.png"
-                       format="PNG" srccredit="Bengt  Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_register_2account.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>当座預金勘定科目 - 記録簿</phrase>
+            <phrase>当座預金勘定科目-記録簿</phrase>
           </textobject>
 
-          <caption><para>この画像は<guilabel>資産:当座預金</guilabel>勘定科目を示します - 取引の初期値を書き加えるた後の記録簿</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>この画像が取引の初期値を加えた後の<emphasis>資産:当座預金</emphasis>-記録簿です。</para></caption>
+        </mediaobject></screenshot>
 
-      <para>勘定科目の開始残高を設定することは、単純な2勘定科目間取引の例です。この場合、<guilabel>資産:当座預金</guilabel>勘定科目と<guilabel>純資産:開始残高</guilabel>勘定科目が影響を受けています。</para>
+      <para>勘定科目の開始残高を設定することは、単純な2勘定科目間取引の例です。
+この場合、<emphasis>資産:当座</emphasis>預金勘定科目と<emphasis>純資産:開始残高</emphasis>勘定科目が影響を受けています。</para>
 
-      <para>単純な2勘定科目取引の別の例として、45.21ドル分の食品を購入する別の取引を加える方法について説明します。<guilabel>資産:当座預金</guilabel>から、<guilabel>費用:食費</guilabel>に<guilabel>資金移動</guilabel>を行います。勘定科目記録簿は今、このようになります。</para>
+      <para>単純な2勘定科目取引の別の例として、45.21ドル分の食料品を購入することを記述する別の取引を加えます。
+<emphasis>資産:当座預金</emphasis>勘定科目で、<guilabel>資金移動</guilabel>に<emphasis>費用:食費</emphasis>を設定します。
+勘定科目記録簿は今、このようになります:</para>
 
       <screenshot id="txns-register-2account2">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_register_2account2.png"
-                       format="PNG" srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_register_2account2.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>当座預金勘定科目 - 記録簿</phrase>
+            <phrase>当座預金勘定科目-記録簿</phrase>
           </textobject>
 
-          <caption><para>この画像は<guilabel>資産:当座預金</guilabel>勘定科目を示します - 食品に関する取引を加えた後の記録簿</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>この画像は食料品に関する取引を加えた後の<emphasis>資産:当座預金</emphasis>勘定科目-記録簿です。</para></caption>
+        </mediaobject></screenshot>
     </sect2>
 
     <sect2 id="txns-registers-multiaccount2">
       <title>スプリット取引</title>
 
-      <para>「資金移動元」または「資金異動先」勘定科目のいずれかを複数の勘定科目に分割(スプリット)する取引が必要な場合、3つ以上の勘定科目が関わる取引が必要となります。この典型例は、給与を受取る時です。手取りの給与は、税金、年金積み立て、および/または、他の要素で差異が発生するため、給与総額より通常少なくなります。したがって、給与を受け取る一回の取引は、単に<guilabel>資産:当座預金</guilabel>および<guilabel>収益:給与</guilabel>だけでなく他の勘定科目が関係します。</para>
+      <para>取引内の<quote>資金移動元</quote>または<quote>資金異動先</quote>勘定科目のどちらかを複数の勘定科目に分割する必要があるとき、取引に3個以上のスプリットを含める必要性があります。
+この典型例は、給与を受け取る時です。
+手取りの給与は、税金、退職金の積み立て、その他の要素によって差異が発生するため、給与総額より通常少なくなります。
+したがって、給与を受け取る一回の取引は、単に<emphasis>資産:当座預金</emphasis>および<emphasis>収益:給与</emphasis>だけでなく他の勘定科目も関係します。</para>
 
-      <para><guilabel>資産:当座預金</guilabel>記録簿ウィンドウに給与取引を加えるためには、新規取引行をクリックし、次に、<guilabel>スプリット</guilabel>をクリックします。まずは最初の行に取引の説明文を入力します(例: 「Employer R Us」)。その下の「スプリット」行で、<guilabel>資産:当座預金</guilabel>への入金を入力します(例: 670ドル)。(これは現在のバグのためであり、スプリットにおける最初の行が実際の勘定科目であることを要求します。)様々な税金の支払をこれに続けます。<guilabel>資産:当座預金口座</guilabel> (例: 670ドル)、<guilabel>費用:税金:国税</guilabel>(例: 180ドル)、<guilabel>費用:税金:医療保険</guilabel>(例: 90ドル)、<guilabel>費用:税金:社会保障</guilabel>(例: 60ドル)。最後に、給与総額(例: 1000ドル)を<guilabel>収益:給与</guilabel>から出金する資金移動を行います。最終的なスプリットはこのようになります。</para>
+      <para><emphasis>資産:当座預金</emphasis>勘定科目記録簿ウィンドウで給与のスプリット取引を加えるためには、新規取引行をクリックしてから<guibutton>スプリット</guibutton>ボタンを押します。
+最初の行にこの取引の説明文を入れます(例えば、<quote>Employers R Us</quote>)。
+この下のスプリット行に、この取引を形成する各種のスプリットをひとつずつ入力します。
+スプリットを入力するためには、最初に勘定科目を選択し、次に、勘定科目を変更するための金額を入力します。
+そして、次のスプリット行をクリックして、処理を繰り返します。</para>
 
-      <screenshot id="txns-register-multiaccount">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_register_multiaccount.png"
-                       format="PNG" srccredit="Bengt Thuree" />
-          </imageobject>
+      <para>この例では、入金する勘定科目(<emphasis>資産:当座預金</emphasis>)を選択し、そして、入金される金額(例えば、670ドル)を入力します。
+各種の税金の金額をこれに続けて入力します。
+<emphasis>費用:税金:国税</emphasis>勘定科目、180ドル。
+<emphasis>費用:税金:医療保険</emphasis>勘定科目、90ドル。
+<emphasis>費用:税金:社会保障</emphasis>勘定科目、60ドル。
+最後に、<emphasis>収益:給与</emphasis>から出金する資金移動として給与支給総額(この例では1,000ドル)を入力します。</para>
 
+      <para>最終的なスプリットは<xref linkend="txns-register-multiaccount"/>のようになります。
+入力が終わったら<keycap function="enter">Enter</keycap>を押すのを忘れないでください。
+また、<keycap
+function="enter">Enter</keycap>を押すと、スプリット画面が<quote>折りたたまれ</quote>、簡易型の取引画面に戻ることも覚えておいてください。
+スプリットはまだそこに存在します。
+<guilabel>スプリット</guilabel>をクリックするだけそれらを見ることができます。
+詳細に関しては<xref linkend="txns-registers-features2"/>を参照してください。</para>
+
+      <figure id="txns-register-multiaccount">
+        <title>スプリット取引の入力</title>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_register_multiaccount.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
           <textobject>
             <phrase>勘定科目記録簿 - スプリット取引</phrase>
           </textobject>
-
-          <caption><para>この画像は<guilabel>資産:当座預金</guilabel>勘定科目を示します - 給料のためのスプリット取引を加えた後の記録簿。</para></caption>
-        </mediaobject>
-      </screenshot>
+        </mediaobject></figure>
     </sect2>
 
     <sect2 id="txns-registers-features2">
       <title>勘定科目記録簿の機能</title>
 
-      <para>勘定科目記録簿のタイトルバーは、この場合の<guilabel>資産:当座預金口座</guilabel>のように、勘定科目名を表示します。タイトルバーの下にはメニューバーがあり、勘定科目記録簿の中で利用可能なメニュー項目が表示されます。その下のツールバーには勘定科目記録簿で作業するのを助ける手頃なボタンが表示されます。</para>
+      <para>勘定科目記録簿の<emphasis>タイトルバー</emphasis>には勘定科目名(この場合は<emphasis>資産:当座預金</emphasis>)が表示されます。
+<emphasis>タイトルバー</emphasis>の下に、勘定科目記録簿の中で利用可能なメニュー項目が表示される<emphasis>メニューバー</emphasis>があります。そして、勘定科目記録簿の中で作業するのに手頃なボタンを含む<emphasis>ツールバー</emphasis>があります。</para>
 
-      <para>各取引には、少なくとも2個のスプリットがあります。基本的な記録簿で表示されるのはすべて、現在の勘定科目に影響するスプリットに関する要約です。資金移動列には、この勘定科目への<emphasis>資金移動元</emphasis>、またはこの勘定科目からの<emphasis>資金移動先</emphasis>である、他の勘定科目が表示されます。取引が3つ以上の勘定科目に影響する場合、多重にスプリットされた取引であることを示すため、&app;には「<guilabel>-- スプリット取引 --</guilabel>」と表示されます。適切な取引を選択し、ツールバーで<guilabel>スプリット</guilabel>ボタンをクリックすると、その取引の個々のスプリットを見ることができます。</para>
+      <para>各取引には、少なくとも2個のスプリットがありますが、基本的な記録簿で表示されるのは現在の勘定科目に影響するスプリットの要約だけです。
+<guilabel>資金移動</guilabel>列には、この勘定科目への<emphasis>資金移動元</emphasis>、またはこの勘定科目からの<emphasis>資金移動先</emphasis>である、他の勘定科目が表示されます。
+取引が3つ以上の勘定科目に影響する場合、<application>&app;</application>では複数のスプリットがある取引であることを示すために<guilabel>--スプリット取引--</guilabel>と表示されます。
+各取引の個々のスプリットを見るためには、適切な取引を選択して<emphasis>ツールバー</emphasis>の<guibutton>スプリット</guibutton>ボタンをクリックしてください。</para>
 
-      <para>スプリット取引に関しては、取引の最初の行は<emphasis>取引行</emphasis>です。そこには<guilabel>日付</guilabel>、オプションの<guilabel>番号</guilabel> (小切手番号など)、取引の<guilabel>説明</guilabel>、現在の勘定科目に影響する合計(ここでは<guilabel>合計 入金</guilabel>)、および現在の取引によって更新された後の<guilabel>貸借残高</guilabel>が表示されます。スプリットを展開した表示では、<guilabel>資金移動</guilabel>の列見出しが消え、その欄に勘定科目名が全く表示されないことに注意してください。この行には現在の勘定科目に影響する取引の要約だけが表示されます。より詳細な情報を得るためには、取引を構成する個々のスプリットを見る必要があります。</para>
+      <para>スプリット取引では、取引の最初の行は<emphasis>取引行</emphasis>です。
+そこには<guilabel>日付</guilabel>、オプションの<guilabel>番号</guilabel>(小切手番号など)、取引の<guilabel>説明</guilabel>、現在の勘定科目に影響する合計(ここでは<guilabel>合計入金</guilabel>)、および現在の取引によって更新された後の勘定科目の<guilabel>貸借残高</guilabel>が表示されます。
+スプリットを展開した表示では、<guilabel>資金移動</guilabel>の列見出しが消え、その欄に勘定科目名が全く表示されないことに注意してください。
+この行には現在の勘定科目に影響する取引の要約だけが表示されます。
+より詳細な情報を得るためには、取引を構成する個々のスプリットを見る必要があります。</para>
 
-      <para>取引行の下にある部分的な行が<emphasis>スプリット行</emphasis>です。そして、それらは灰色の罫線によって分離されています。スプリット行の1つについて強調表示すると、列見出しはスプリット関連の欄を示すために変化します。</para>
+      <para>取引行の下にある部分的な行が<emphasis>スプリット行</emphasis>です。それらは灰色の罫線によって分離されています。
+スプリット行のひとつをを選択してハイライトした時に、スプリット関連の欄が表示されるように列見出しが変わります。</para>
 
       <screenshot id="txns-registersplit2">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit2.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_registersplit2.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>スプリットの見出しがどのように変化するか</phrase>
+            <phrase>スプリットによる見出しの変化</phrase>
           </textobject>
 
-          <caption><para>この画像はスプリットの見出しがどのように変化するかを示します。</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>この画像がスプリットによる見出しの変化です。</para></caption>
+        </mediaobject></screenshot>
 
-      <para>各スプリットには、オプションである<guilabel>アクション列</guilabel>があります。スプリットのタイプ入力するか、プルダウンリストから選択することができます。スプリット行には、オプションとして、スプリットについて記述するの<guilabel>摘要</guilabel>欄もあります。各スプリットは<guilabel>勘定科目</guilabel>に影響します。勘定科目のプルダウンリストから選択することができます。<guilabel>照合</guilabel>欄は、スプリットが照合されたかどうかを示します。最後の2つの列は、スプリットの金額を示します。勘定科目の金額が増加するか減少するかのどちらかです。</para>
+      <para>各スプリットにはオプションの<guilabel>アクション</guilabel>(言い換えるとスプリットのタイプ)が含まれ、直接入力するか、プルダウンリストから選択できます。
+スプリットには、スプリットに関して記述するオプションの<guilabel>摘要</guilabel>欄もあります。
+各スプリットが影響を与える勘定科目は、<guilabel>勘定科目</guilabel>のプルダウンリストから選択することができます。
+<guilabel>照合</guilabel>欄は、スプリットが照合されたかどうかを示します。 74%】
+最後の2列は、スプリットの金額と、勘定科目にお金が入ってくるか出ていくかを示します。</para>
 
-      <para><xref linkend="basics-accounting1" />で説明したように、各取引の総借方(左欄入力)は総貸方(右欄入力)と等しくなければなりません。上で表示された例では、総借方が総貸方と等しいので、この取引は釣り合いがとれています。取引行には<guilabel>当座預金</guilabel>勘定科目のスプリットと同じ借方金額が含まれていることに気付くでしょう。これはなぜ二度表示されるのでしょう? 取引行が単に現在の勘定科目に対する取引の効果の<emphasis>要約</emphasis>であるからです。同じ取引でも、異なった勘定科目においては異なった取引行が表示されます。その特定の勘定科目への効果を示すものになります。これを見るためには、別のスプリット行を強調表示して、ツールバーの<guilabel>ジャンプ</guilabel>ボタンをクリックしてください。</para>
+      <para><xref linkend="basics-accounting1"
+/>で説明したように、各取引の総借方(左欄入力)は総貸方(右欄入力)と等しくなければなりません。
+上で表示された例では、総借方が総貸方と等しいので、この取引は釣り合いがとれています。
+取引行には<guilabel>当座預金</guilabel>勘定科目のスプリットと同じ借方金額が含まれていることに気付くでしょう。
+これはなぜ二度表示されるのでしょう?
+取引行が単に現在の勘定科目に対する取引の効果の<emphasis>要約</emphasis>であるからです。
+同じ取引でも、異なる勘定科目ではその特定の勘定科目への効果を示す異なる取引行が表示されます。
+これを見るためには、別のスプリット行を選択して、<emphasis>ツールバー</emphasis>の<guibutton>ジャンプ</guibutton>ボタンをクリックしてください。</para>
 
-      <para>この例で、<guilabel>収益:給与</guilabel>勘定科目へジャンプすると、&app;には<guilabel>収益:給与勘定科目記録簿</guilabel>における同じ取引が表示されます。</para>
+      <para>この例として、<emphasis>収益:給与</emphasis>勘定科目へジャンプした場合、<emphasis>収益:給与</emphasis>勘定科目-記録簿内の同じ取引が<application>&app;</application>によって表示されます。</para>
 
       <screenshot id="txns-registersplit3">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit3.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_registersplit3.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>収益:給与勘定科目へのジャンプ</phrase>
+            <phrase><emphasis>収益:給与</emphasis>勘定科目へのジャンプ</phrase>
           </textobject>
 
-          <caption><para>この画像は<guilabel>収益:給与</guilabel>勘定科目へのジャンプしたところを示します。</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>この画像が<emphasis>収益:給与</emphasis>勘定科目へのジャンプです。</para></caption>
+        </mediaobject></screenshot>
 
-      <para>取引行の合計欄には現在、<guilabel>当座預金</guilabel>勘定科目の代わりに<guilabel>収益:給与</guilabel>勘定科目に効果をおよぼしている要約が表示されていることに注意してください。なぜなら<guilabel>収益:給与</guilabel>勘定科目記録簿を見ているからです。スプリットは厳密には同じですが、取引行は今<guilabel>収益:給与</guilabel>勘定科目の貸方に反映されています。</para>
+      <para><emphasis>収益:給与</emphasis>勘定科目記録簿を見ているので、現在の取引行の総額は<emphasis>当座預金勘定科目</emphasis>の代わりに<emphasis>収益:給与</emphasis>勘定科目への効果を要約していることに注意してください。
+スプリットは厳密に同一ですが、現在の取引行は<emphasis>収益:給与</emphasis>勘定科目の貸方を反映しています。</para>
 
-      <para>記録簿ウィンドウの左下には、記録簿に関する有用なメッセージが表示されます。右側には、現在の勘定科目の貸借残高と明らかになったスプリットの合計が表示されます。</para>
+      <para>記録簿ウィンドウの左下には、記録簿に関する有用なメッセージが表示されます。
+右側には、現在の勘定科目の貸借残高および清算されたスプリットの合計が表示されます。</para>
     </sect2>
 
   </sect1>
@@ -153,66 +202,71 @@
   <sect1 id="txns-regstyle1">
     <title>記録簿スタイルの選択</title>
 
-    <para>&app;には、記録簿を見るためのいくつかのオプションがあります。デフォルトスタイルは<guilabel>基本元帳</guilabel>モードです。このモードでは現在の勘定科目に影響するスプリットの要約だけを表示します。これは、他の有名な個人向け財務アプリケーションにもっとも類似しているスタイルです。</para>
+    <para><application>&app;</application>には、記録簿を見るためのいくつかのオプションがあります。
+デフォルトスタイルは<guilabel>基本元帳</guilabel>モードです。このモードでは現在の勘定科目に影響するスプリットの要約だけを表示します。
+これは、他の有名な個人向け財務アプリケーションにもっとも類似しているスタイルです。</para>
 
-    <para>異なった記録簿スタイルを選択できます。<guimenu>表示</guimenu>-&gt;<guisubmenu>自動スプリット元帳</guisubmenu>スタイルでは自動的に現在の取引のスプリットが展開されます。記録簿で新規取引を強調表示したときは、取引はすべてのスプリットを表示するために自動的に展開されます。<guimenu>表示</guimenu>-&gt;<guisubmenu>取引仕訳帳</guisubmenu>スタイルではさらに会計処理の仕訳帳のようになります。そこでは、すべての取引のすべてのスプリットが表示されます。</para>
+    <para>異なった記録簿スタイルを選択できます。<menuchoice><guimenu>表示</guimenu><guimenuitem>自動スプリット元帳</guimenuitem></menuchoice>スタイルでは自動的に現在の取引のスプリットが展開されます。
+記録簿で新規取引を選択してハイライト表示したときは、取引はすべてのスプリットを表示するために自動的に展開されます。
+<menuchoice><guimenu>表示</guimenu><guimenuitem>取引仕訳帳</guimenuitem></menuchoice>スタイルではさらに会計処理の仕訳帳のようになります。そこでは、すべての取引のすべてのスプリットが表示されます。</para>
 
-    <para>すべてのスタイルにおいて、1行フォーマットまたは2行フォーマットのどちらかでデータを見ることができます。<guimenu>表示</guimenu>-&gt;<guimenuitem>2行</guimenuitem>を選択すると、取引行が2つの記録簿行に展開されます。</para>
+    <para>すべてのスタイルにおいて、1行フォーマットまたは2行フォーマットのどちらかでデータを参照できます。
+<menuchoice><guimenu>表示</guimenu>
+<guimenuitem>2行</guimenuitem></menuchoice>を選択すると、取引行が2つの記録簿行に展開されます。</para>
     
-    <para>基本元帳と取引仕訳帳画面がどう異なるかについて、もっと詳細に見てみましょう。</para>
-    <para>この例では、1万ドルを当座預金を持って、3着のジーンズを1,000ドルで購入することによって本当に贅沢にふけることにしたと仮定しましょう。今、1つの単純取引としてこれを記録して、<guilabel>費用:衣料品</guilabel>に1,000ドル資金移動することができます。または、スプリット取引として記録して、それぞれ個別にジーンズを記録することができます。</para>
-    <para>それらは技術的に同じですが、勘定処理の観点からはジーンズの購入はそれぞれ個別に記録され、<guilabel>費用:衣料品</guilabel>勘定科目には3つの異なった取引が記録されます。</para>
-    <para>以下の画像はこれを少しよく表しています。</para>
+    <para>基本元帳と取引仕訳帳画面がどう異なるかについて、もっと詳細に見てみましょう。
+    </para>
+    <para>この例では、1万ドルの当座預金があり、3着のジーンズを1,000ドルで購入することによって本当に贅沢にふけることにしたと仮定しましょう。
+今、1つの単純取引としてこれを記録して、<emphasis>費用:衣料品</emphasis>に1,000ドル資金移動することができます。
+または、スプリット取引として記録して、それぞれ個別にジーンズを記録することができます。</para>
+    <para>それらは技術的に同じですが、会計処理の観点では、ジーンズの購入をそれぞれ個別に記録した時は、<emphasis>費用:衣料品</emphasis>勘定科目には3つの異なった取引が記録されます。</para>
+    <para>次の画像はこれをよく表しています</para>
     
-    <para>最初に、当座預金勘定科目からジーンズを購入しましょう。</para>
+    <para>最初に、当座預金勘定科目を使用してジーンズを購入しましょう。</para>
     
           <screenshot id="txns-registersplit4">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit4.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_registersplit4.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
             <phrase>3着のジーンズ購入</phrase>
           </textobject>
 
-          <caption><para>この画像は3着のジーンズを購入する1個のスプリット取引を示します。</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>
+            この画像は3着のジーンズを購入する1個のスプリット取引です
+          </para></caption>
+        </mediaobject></screenshot>
       
-     <para>費用:衣料品勘定科目を開いて、デフォルトの基本元帳モードでそれを表示します。お分かりのように、ここに3行の入力がありますが、当座預金には1行の入力しかありません。注意深く見ると、各行が異なった金額、200ドル、300ドル、および500ドルになっているのがわかります。各行の取引行は1つのスプリット行を反映します。</para> 
+     <para><emphasis>費用:衣料品</emphasis>勘定科目を開いて、デフォルトの基本元帳スタイルで表示します。
+お分かりのように、ここには3行の入力がありますが、当座預金勘定科目には1行しか入力がありません。
+注意深く見ると、各行が異なった金額、200ドル、300ドル、および500ドルになっているのが分かります。
+取引行の各行は1つのスプリット行を反映しています。</para> 
       <screenshot id="txns-registersplit5">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit5.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_registersplit5.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>費用:衣料品勘定科目までジャンプ</phrase>
+            <phrase><emphasis>費用:衣料品</emphasis>勘定科目へのジャンプ</phrase>
           </textobject>
 
-          <caption><para>この画像は基本元帳モード表示による<guilabel>費用:衣料品</guilabel>勘定科目を示します。</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>この画像が取引仕訳帳モードでの<emphasis>費用:衣料品</emphasis>勘定科目です。</para></caption>
+        </mediaobject></screenshot>
       
-      <para>私たちが取引仕訳帳モードで費用:衣料品勘定科目を見ると、オリジナルのスプリット取引を再度見ることができます。</para>
+      <para>取引仕訳帳モードで<emphasis>費用:衣料品</emphasis>勘定科目を見ると、オリジナルのスプリット取引を再度見ることができます。</para>
       
       <screenshot id="txns-registersplit6">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit6.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_registersplit6.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>費用:衣料品勘定科目までジャンプ</phrase>
+            <phrase><emphasis>費用:衣料品</emphasis>勘定科目へのジャンプ</phrase>
           </textobject>
 
-          <caption><para>この画像は取引仕訳帳モードによる<guilabel>費用:衣料品</guilabel>勘定科目を表します。</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>この画像が取引仕訳帳モードでの<emphasis>費用:衣料品</emphasis>勘定科目です。</para></caption>
+        </mediaobject></screenshot>
 
     
   </sect1>
@@ -220,86 +274,93 @@
   <sect1 id="txns-shortcuts1">
     <title>入力ショートカットの使用</title>
 
-    <para>&app;にはデータを入力する際に時間を節約するためのショートカットがいくつかあります。以前使用したことがある説明文の最初の数文字を入力すると、クイック入力機能により自動的に最後に入力した取引の残りが入力されます。取引行の<guilabel>資金移動</guilabel>欄またはスプリット行の<guilabel>勘定科目</guilabel>欄のどちらかで勘定科目名の先頭文字を入力すると、クイック入力機能により勘定科目リストから名前が自動的に補完されます。また、それは子勘定科目をこれらの欄に入力する際にも助けになります。親勘定科目名の最初の文字に続いてコロンと子勘定科目名の先頭文字で単純に入力します。例えば、&app;で<guilabel>Asset:Checking</guilabel>を入力するために、<userinput>A:C</userinput>と入力して、残りを補完させてもいいでしょう。</para>
+    <para><application>&app;</application>にはデータを入力する際に時間を節約するためのショートカットがいくつかあります。
+以前に使用したことがある説明の最初の数文字を入力すると、クイック入力機能により自動的に最後に入力した取引の説明の残りの部分が入力されます。
+取引行の<guilabel>資金移動</guilabel>欄またはスプリット行の<guilabel>勘定科目</guilabel>欄のどちらかで勘定科目名の先頭文字を入力すると、クイック入力機能により勘定科目リストから名前が自動的に補完されます。
+また、それは子勘定科目をこれらの欄に入力する際にも助けになります。
+親勘定科目名の最初の文字に続けてコロンと子勘定科目名の最初の文字を単に入力します。
+例えば、<emphasis>Assets:Checking</emphasis>を入力する場合、<userinput>A:C</userinput>と入力すれば、残りを<application>&app;</application>に補完させることができます。</para>
 
-    <para>また、キーボードショートカットを登録すると時間が節約できます。そして、&app;はそれらの数個を提供しています。</para>
+    <para>キーボードショートカットを登録しても時間が節約できます。<application>&app;</application>はそれらの数個を提供しています。
+日付欄では次の入力ができます。</para>
 
     <itemizedlist>
       <listitem>
-        <para><keycap>+</keycap> または <keycap>=</keycap> は日付を増加させ、
-	      <keycap>-</keycap> または <keycap>_</keycap> は日付を減少させます。</para>
+        <para><keycap>+</keycap>または<keycap>=</keycap>は日付を増加させ、<keycap>-</keycap>または<keycap>_</keycap>は日付を減少させます。</para>
       </listitem>
 
       <listitem>
-        <para><keycap>]</keycap> または <keycap>}</keycap> は月を増加させ、
-              <keycap>[</keycap> または <keycap>{</keycap> は月を減少させます。</para>
+        <para><keycap>]</keycap>または<keycap>}</keycap>は月を増加させ、<keycap>[</keycap>または<keycap>{</keycap>は月を減少させます。</para>
       </listitem>
 
       <listitem>
-        <para><keycap>M</keycap> または <keycap>m</keycap> は月の初日を入力します。</para>
+        <para><keycap>M</keycap>または<keycap>m</keycap>は月の初日を入力します。</para>
       </listitem>
 
       <listitem>
-        <para><keycap>H</keycap> または <keycap>h</keycap> は月末の日付を入力します。</para>
+        <para><keycap>H</keycap>または<keycap>h</keycap>は月の末日を入力します。</para>
       </listitem>
 
       <listitem>
-        <para><keycap>Y</keycap> または <keycap>y</keycap> は1年の初日を入力します。</para>
+        <para><keycap>Y</keycap>または<keycap>y</keycap>は1年の初日を入力します。</para>
       </listitem>
 
       <listitem>
-        <para><keycap>R</keycap> または <keycap>r</keycap> は1年の末日を入力します。</para>
+        <para><keycap>R</keycap>または<keycap>r</keycap>は1年の末日を入力します。</para>
       </listitem>
 
       <listitem>
-        <para><keycap>T</keycap> または <keycap>t</keycap> は本日の日付を入力します。</para>
+        <para><keycap>T</keycap>または<keycap>t</keycap>は今日の日付を入力します。</para>
       </listitem>
     </itemizedlist>
 
-    <para>取引行の<guilabel>番号</guilabel>欄では、<keycap>+</keycap>を入力すると、入力した最後の取引番号から増加します。<keycap>-</keycap>を入力すると番号が減少します。また、スプリット行の<guilabel>アクション</guilabel>欄でも、スプリット番号を入力することを選択していれば正常に動作します。また、<guilabel>アクション</guilabel>欄ではクイック入力をサポートします。一般的なアクション (<guilabel>入金</guilabel>など) の先頭文字を入力すると、&app;によって残りが補完されます。</para>
+    <para>取引行の<guilabel>番号</guilabel>欄では、<keycap>+</keycap>を入力すると、取引番号が入力した最後の値から増加します。
+<keycap>-</keycap>を入力すると番号が減少します。
+スプリット行の<guilabel>アクション</guilabel>欄でも、スプリット番号を入力することを選択していれば動作します。
+<guilabel>アクション</guilabel>欄ではクイック入力もサポートされます。一般的なアクション(<guilabel>入金</guilabel>など)の先頭文字を入力すると、<application>&app;</application>によって残りが補完されます。</para>
 
-    <para><guilabel>資金移動</guilabel>欄では勘定科目名のクイック入力をサポートします。勘定科目名を入力し始めると、&app;によって名前の残りの部分が補完されます。セパレータ文字を入力するといつでも、現在の階層の勘定科目名が補完され、次の階層の勘定科目名を入力し始められるようにカーソルが位置調整されます。例えば、標準の勘定科目集を使用している時、勘定科目欄で「A:C」を入力すると補完され「Asset:Checking」勘定科目名となります。また、この欄で<keycap>メニュー</keycap>を選択するかまたは<keycap>Ctrl+↓</keycap>キーを入力するとすべての勘定科目名一覧がポップアップされます。</para>
+    <para><guilabel>資金移動</guilabel>欄では勘定科目名のクイック入力がサポートされます。
+勘定科目名を入力し始めると、<application>&app;</application>によって名前の残りの部分が補完されます。
+セパレータ文字を入力するといつでも、現在の階層の勘定科目名が補完され、次の階層の勘定科目名を入力し始められるようにカーソルが位置調整されます。
+例えば、標準の勘定科目集を使用している時、<keycap>A:C</keycap>を入力すると<emphasis>Assets:Checking</emphasis>勘定科目に補完されます。
 
-    <para>金額欄の全てで、内蔵の計算機を使用できます。単に、最初の値を入力し、あとに続いていて<keycap>+</keycap>、<keycap>-</keycap>、<keycap>*</keycap>、または<keycap>/</keycap>を入力し、2番目の値を入力します。<keycap>Tab</keycap>キーを押すと、&app;は金額欄の計算を実行して、結果の値を返します。</para>
+また、この欄で<keycap>メニュー</keycap>を選択するかまたは<keycombo><keycap>Ctrl</keycap><keycap>Down</keycap></keycombo>キーを入力するとすべての勘定科目名一覧がポップアップされます。</para>
 
-    <para>メニュー項目の全てでアクセスキーが定義されています。これらはメニュー名のアンダーラインを引かれた文字によって示されています。<keycap>Alt</keycap>+「アンダーラインを引かれた文字」を入力すると、メニューが表示されます。後は、その中のアンダーラインを引かれた文字を入力することによって、項目を選択します。例えば、<keycombo><keycap>Alt</keycap><keycap>T</keycap></keycombo>を入力すると取引メニューが表示され、次に<keycap>S</keycap>を入力すると、スプリット取引となります。また、メニュー項目のいくつかはすぐにコマンドを呼び出すショートカットキーを持っています(<keycap>Ctrl</keycap>キーを通常使用します)。これらのショートカットは項目の横に表示されます。</para>
+    <para>金額欄の全てで、内蔵の計算機を使用できます。
+最初の値を入力し、続けて<keycap>+</keycap>、<keycap>-</keycap>、<keycap>*</keycap>、または<keycap>/</keycap>を入力し、そして2番目の値を入力するだけです。
+<keycap>Tab</keycap>キーを押すと、<application>&app;</application>は計算を実行して、結果の値を金額欄に返します。</para>
 
-    <para>記録簿の中で移動する時は、時間を節約するこれらのキーを使用します。</para>
+    <para>すべてのメニュー項目にはメニュー名の中でアンダーラインを引かれた文字によってマークされているアクセスキーが定義されています。
+<keycap>Alt</keycap>+<quote>アンダーラインを引かれた文字</quote>を入力すると、メニューが表示され、次にその中のアンダーラインを引かれた文字を入力することによって、項目を選択します。
+例えば、<keycombo> <keycap>Alt</keycap> <keycap>A</keycap>
+</keycombo>を入力するとアクションメニューが表示され、次に<keycap>P</keycap>を入力すると、スプリット取引となります。
+また、メニュー項目のいくつかにはすぐにコマンドを呼び出すショートカットキーがあります(<keycap>Ctrl</keycap>キーを通常使用します)。
+これらのショートカットは項目の横に表示されます。</para>
+
+    <para>記録簿の中で移動する時は、時間を節約するために次のキーを使用できます。</para>
 
     <itemizedlist>
       <listitem>
-        <para><keycap>Tab</keycap>で次の欄に移動します。<keycombo>
-            <keycap>Shift</keycap>
-
-            <keycap>Tab</keycap>
-          </keycombo>で前の欄に移動します。</para>
+        <para><keycap>Tab</keycap>で次の欄に移動します。<keycombo> <keycap>Shift</keycap>
+<keycap>Tab</keycap> </keycombo>で前の欄に移動します。</para>
       </listitem>
 
       <listitem>
-        <para><keycap>Home</keycap> で欄の始まりまで移動します。
-              <keycap>End</keycap> で欄の終わりまで移動します。</para>
+        <para><keycap>Home</keycap>で欄の始まりまで移動します。 <keycap>End</keycap>で欄の終わりまで移動します。</para>
       </listitem>
 
       <listitem>
-        <para><keycap>Enter</keycap> または <keycap>↓</keycap> で次の取引に移動します。
-              <keycap>↑</keycap> で前の取引に移動します。</para>
+        <para><keycap function="enter">Enter</keycap>または<keycap>↓</keycap>で次の取引に移動します。<keycap>↑</keycap>で前の取引に移動します。</para>
       </listitem>
 
       <listitem>
-        <para><keycap>Page Up</keycap> では一画面分上昇します。
-              <keycap>Page Down</keycap> で一画面分下降します。</para>
+        <para><keycap>Page Up</keycap>では一画面分上昇します。 <keycap>Page Down</keycap>で一画面分下降します。</para>
       </listitem>
 
       <listitem>
-        <para><keycombo>
-            <keycap>Shift</keycap>
-
-            <keycap>Page Up</keycap>
-          </keycombo> で最初の取引に移動します。 <keycombo>
-            <keycap>Shift</keycap>
-
-            <keycap>Page Down</keycap>
-          </keycombo> で最終取引に移動します。</para>
+        <para><keycombo> <keycap>Shift</keycap> <keycap>Page Up</keycap>
+</keycombo>で最初の取引に移動します。<keycombo><keycap>Shift</keycap> <keycap>Page
+Down</keycap> </keycombo>で最後の取引に移動します。</para>
       </listitem>
     </itemizedlist>
 
@@ -307,16 +368,15 @@
 
     <itemizedlist>
       <listitem>
-        <para><keycap>Tab</keycap> で次のボックスに移動します。
-        <keycap>Shift</keycap>-<keycap>Tab</keycap> は前のボックスに移動します。</para>
+        <para><keycap>Tab</keycap>で次のボックスに移動します。<keycombo><keycap>Shift</keycap><keycap>Tab</keycap></keycombo>で前のボックスに移動します。</para>
       </listitem>
 
       <listitem>
-        <para>Spaceキーで照合済と未照合の状態を切り替えます。</para>
+        <para>Spaceキーで照合済と未照合の状態を切り替えます</para>
       </listitem>
 
       <listitem>
-        <para><keycap>↑</keycap> と <keycap>↓</keycap> を入力すると現在のボックスの中で項目を切り替えます。</para>
+        <para><keycap>↑</keycap> と <keycap>↓</keycap> で現在のボックス内で項目移動します。</para>
       </listitem>
     </itemizedlist>
   </sect1>
@@ -324,389 +384,481 @@
   <sect1 id="txns-reconcile1">
     <title>照合</title>
 
-    <para>取引は通常、銀行取引明細書に対して確認されます。「照合」として知られている手順です。&app;では各取引の照合状況を追跡できます。</para>
+    <para>通常は取引と銀行取引計算書を確認します。<emphasis>照合</emphasis>として知られている手順です。
+<application>&app;</application>では各取引の照合状況を追跡できます。</para>
 
-    <para>取引の照合状況は照合(R)欄に表示されます。「照」は、取引が照合されたことを示します。「未」は照合されていないことを示します。「清」は清算されたが、照合されていないことを示します。「照合」欄でクリックすることで、「未」と「清」の間で照合状況を順番に切り替えることができます。照合ウィンドウを使用して、それを「照」に設定することができます。</para>
+    <para>取引の照合状況は<guilabel>照合(R)</guilabel>欄に表示されます。
+<emphasis>照</emphasis>は取引が照合されたことを示します。<emphasis>未</emphasis>は照合されていないことを示します。<emphasis>清</emphasis>は清算されたが、照合されていないことを示します。
+<guilabel>照合</guilabel>欄をクリックすることで、<emphasis>未</emphasis>と<emphasis>清</emphasis>の間で照合状況を順番に切り替えることができます。
+<guilabel>照合ウィンドウ</guilabel>を使用して、それを<emphasis>照</emphasis>に設定することができます。</para>
+    
+      <para>勘定科目ウィンドウの下端に、2つ(他にもあるかもしれませんが)の現状を表す貸借残高(<guilabel>清算済</guilabel>と<guilabel>照合済</guilabel>貸借残高)、および<guilabel>合計</guilabel>貸借残高があります。
+前者は銀行口座にどのくらいのお金が存在しているかを表します。一方、後者には未決済の残存取引が含まれます。</para>
 
-    <para>勘定科目ウィンドウの下端には、2つの現在高が表示されます。「貸借残高」および「清算済」。「清算済」はあなたの銀行口座にどのくらいのお金が存在しているかを表します。「貸借残高」は未決済の残存取引を含んでいます。</para>
+      <para>例えば、何かに対して小切手を書くとき、取引を<application>&app;</application>に入力するべきです。
+取引の<guilabel>照合</guilabel>欄には、初期値として<guilabel>未</guilabel>(未照合)が入力されます。
+新規入力は<guilabel>合計</guilabel>貸借残高に影響を及ぼしますが、<guilabel>清算済</guilabel>、<guilabel>照合済</guilabel>貸借残高には影響を及ぼしません。
+その後、小切手が換金されたと分かったら、<emphasis>清</emphasis>(清算済)に変更するために取引の<guilabel>照合</guilabel>欄をクリックします。
+これを行うと、<guilabel>清算済</guilabel>貸借残高にこの金額が含まれるようになります。
+銀行取引計算書が到着したら、後は<application>&app;</application>の照合ウィンドウで記録と計算書を比較します。
+そこで、<guilabel>照合</guilabel>欄を<emphasis>照</emphasis>(照合済)に変えることができます。</para>
+      
+      <note>
+        <para>記録簿ウィンドウで照合を行うことはできません。照合ウィンドウを使用しなければなりません。
+取引が<emphasis>照合済</emphasis>であるといったんマークされると、次回の照合の<link
+linkend="rec-start-blnc"><guilabel>期首残高</guilabel></link>を壊さず変更することは容易ではありません。</para>
+      </note>
 
     <sect2 id="txns-reconcile-window2">
       <title>照合ウィンドウ</title>
 
-      <para>照合ウィンドウは、銀行または他の機関から送られた明細書と&app;の勘定科目を照合するために使用します。照合は、銀行での記録を再確認するだけではなく、残存取引 (例えば、現金化されていない小切手) をより良く認識するために役に立ちます。</para>
+      <para>照合ウィンドウは、銀行または他の機関から送られた計算書と<application>&app;</application>の勘定科目を照合するために使用します。
+照合は、銀行での記録を再確認するだけではなく、残存取引(例えば、現金化されていない小切手)をより良く認識するために役に立ちます。</para>
 
-      <para>勘定科目ウィンドウの下端には、2つの現在高が表示されます。「貸借残高」および「清算済」。「清算済」はあなたの銀行口座にどのくらいのお金が存在しているかを表します。「貸借残高」は未決済の残存取引を含んでいます。</para>
-
-      <para>例えば、何かに対して小切手を書くとき、取引を&app;に入力するべきです。取引の照合欄は、初めは「未(未照合)」が入力されています。あなたの新規入力は「貸借残高」に貢献しますが、「清算済」残高に貢献しません。その後、小切手が現金にされたと思うなら、それを「清(清算済)」に変更するために取引の照合欄をクリックします。これを行うと、、「清算済」残高にこの金額が含まれるようになります。銀行取引明細書が到着したら、後は&app;の照合ウィンドウで記録と明細書を比較します。そこで、照合欄を「照(照合済)」に変えることができます。記録簿ウィンドウで照合を行うことはできません。照合ウィンドウを使用しなければなりません。取引が一旦「照合」とマークされると、もう容易に変えることができません。</para>
-
-      <para>照合ウィンドウを使用するためには、勘定科目ツリーから勘定科目を選択して、<guimenu>アクション</guimenu>-&gt;<guimenu>照合</guimenu>を選択します。照合情報の入力ウィンドウが表示されます。</para>
+      <para>照合ウィンドウを使用するためには、勘定科目ツリーから勘定科目を選択して、<menuchoice><guimenu>アクション</guimenu>
+<guimenuitem>照合</guimenuitem></menuchoice>を選択します。
+次のような照合情報の入力ウィンドウが表示されます。</para>
 
       <screenshot id="txns-reconcile-window-1">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_reconcile_window1.png"
-                       format="PNG" srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+            <imageobject role="html"> <imagedata
+fileref="figures/txns_reconcile_window1.png" format="PNG"
+srccredit="Cristian Marchi"></imagedata> </imageobject> <imageobject
+role="fo"> <imagedata fileref="figures/txns_reconcile_window1.png"
+format="PNG" srccredit="Cristian Marchi"></imagedata> </imageobject>
 
           <textobject>
             <phrase>照合ウィンドウ</phrase>
           </textobject>
 
-          <caption><para>初期の照合ウィンドウ。</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>初期照合ウィンドウ。</para></caption>
+        </mediaobject></screenshot>
 
-      <itemizedlist>
-        <listitem>
-          <para><emphasis>照合情報:計算書発行日</emphasis> - これは照合する計算書の日付です。</para>
-        </listitem>
+      <para>初期照合ウィンドウでは、いくつかのの<guilabel>照合情報</guilabel>を入力する必要があります。</para>
+      <variablelist>
+        <varlistentry><term><guilabel>計算書発行日</guilabel></term>
+          <listitem>
+            <para>照合する計算書の日付です。</para>
+	  <tip>
+	    <para>この欄の右側にある下向き矢印をクリックするとカレンダーが開きます。</para>
+	  </tip>
+          </listitem>
+        </varlistentry>
 
-        <listitem>
-          <para><emphasis>照合情報:期首残高</emphasis> - ここには前回の照合以降の残高が表示されます。編集不可能な項目です。</para>
-        </listitem>
+        <varlistentry id="rec-start-blnc"><term><guilabel>期首残高</guilabel></term>
+          <listitem>
+            <para>ここには前回の照合以降の残高が編集不可能な項目として表示されます。
+これは計算書の期首残高と一致しているはずです。</para>
 
-        <listitem>
-          <para><emphasis>照合情報:期末残高</emphasis> - これは計算書に表示される期末残高です。</para>
-        </listitem>
+	  <note>
+	    <para>時々、<application>&app;</application>の期首残高が計算書と一致しないことがあります。
+これは、ある勘定科目の初回の照合時、または以前に照合した取引の照合を解除したか削除した時に発生します。</para>
+	  </note>
+	  
+	  <para>勘定科目の初回照合時は、<guilabel>期首残高</guilabel>は<guilabel>0.00</guilabel>となります。それはおそらく勘定科目の<emphasis>開始残高</emphasis>ではないでしょう。
+勘定科目を照合するとき、勘定科目の<emphasis>開始残高</emphasis>が照合に含まれるようにしてください。その結果として貸借残高が一致するでしょう。</para>
+            
+	  <para>以前に照合済とした取引を間違って照合解除してしまった場合は、現在の計算書の取引と併せてに、単に再照合してください。その結果として貸借残高が一致するでしょう。</para>
 
-        <listitem>
-          <para><emphasis>照合情報:子勘定科目を含める</emphasis> -
-          この照合に現在選択された勘定科目の子勘定科目を含めるなら、これを選択します。</para>
-        </listitem>
+            <para>以前に照合済とした取引を誤って削除した場合は一層の挑戦が必要です。
+何が削除されたかを決定して、それを記録簿に復元できない限り、照合を終えるための擬似的な取引を作成しなければなりません。</para>
+          </listitem>
+        </varlistentry>
 
-        <listitem>
-          <para><emphasis>利子の入力</emphasis> - ここをクリックすると、照合するために利子の取引を勘定科目に入力することができます。</para>
-        </listitem>
-      </itemizedlist>
+        <varlistentry><term><guilabel>期末残高</guilabel></term>
+          <listitem>
+            <para>この欄には、計算書に載っている期末残高を入力します。</para>
+	  <note>
+	    <para>勘定科目記録簿の下部に表示されている<guilabel>現在</guilabel>の貸借残高が、<application>&app;</application>によってこの欄に自動的に入力されます。</para>
+	  </note>
+          </listitem>
+        </varlistentry>
 
-      <para><guibutton>OK</guibutton>ボタンをクリックします。すると、取引が照合ウィンドウをに表示されます。</para>
+        <varlistentry><term><guilabel>子勘定科目を含める</guilabel></term>
+          <listitem>
+            <para>照合対象に、現在選択されている勘定科目の子勘定科目に属する取引をを含める場合にこのオプションを選択してください。</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guibutton>利払いの入力</guibutton></term>
+          <listitem>
+            <para>このボタンをクリックすると、照合する勘定科目に利子の取引を入力するための新しいウィンドウが開きます。</para>
+	    <tip>
+	      <para><emphasis>銀行</emphasis>、<emphasis>クレジットカード</emphasis>、<emphasis>投資信託</emphasis>、<emphasis>資産</emphasis>、<emphasis>売掛</emphasis>、<emphasis>買掛</emphasis>、および<emphasis>負債</emphasis>タイプ勘定科目の場合、照合開始時に、<guilabel>利払い</guilabel>ウィンドウが自動的開くかもしれません。
+前に列挙した勘定科目の全てでこの動作を無効にする場合は、<guilabel>&app;
+設定</guilabel>の<guilabel>記録簿</guilabel>タブで<guilabel>自動利子入力</guilabel>オプションのチェックを外してください。
+選択した勘定科目のみでこの動作を無効にする場合は、<guilabel>利払い</guilabel>ウィンドウで<guibutton>この勘定科目では自動利払い入力を行わない</guibutton>がボタンを押してください。</para>
+	    </tip>  
+          </listitem>
+        </varlistentry>
+       </variablelist>
+
+      <para>そして、<guibutton>OK</guibutton>ボタンをクリックすると、照合ウィンドウに取引一覧が表示されます。</para>
 
       <screenshot id="txns-reconcile-window-2">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_reconcile_window2.png"
-                       format="PNG" srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+            <imageobject role="html"> <imagedata
+fileref="figures/txns_reconcile_window2.png" format="PNG"
+srccredit="Cristian Marchi" width="510"></imagedata> </imageobject>
+<imageobject role="fo"> <imagedata
+fileref="figures/txns_reconcile_window2.png" format="PNG"
+srccredit="Cristian Marchi"></imagedata> </imageobject>
 
           <textobject>
             <phrase>照合ウィンドウ</phrase>
           </textobject>
 
-          <caption><para>照合ウィンドウに一覧表示される取引</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>照合ウィンドウの取引一覧。</para></caption>
+        </mediaobject></screenshot>
 
-      <para><guilabel>入金</guilabel>と<guilabel>出金</guilabel>という2種類の一覧に未照合取引の全てが表示されます。照合列は、取引が清算されたか、または照合されたかを示します。</para>
+      <para><guilabel>入金</guilabel>と<guilabel>出金</guilabel>と呼ばれる2つの欄に、照合を行う勘定科目に属する未照合の取引が一覧表示されます。
+<guilabel>照合</guilabel>列には、取引が清算されたか、または照合されたかについて表示されます。</para>
+      
+      <para>今度は、銀行取引計算書の各項目を検査し、<guilabel>照合</guilabel>ウィンドウで一致している項目を探します。</para>
 
-      <para>今度は、銀行報告書に書かれている各項目を調べます。そして、照合ウィンドウで一致している項目を探します。</para>
+      <para>見つけることができない取引が一つでもあるなら、取引を入力するのを忘れたか、または知らない取引が発生したのでしょう。
+欠けている取引を入力するために、記録簿ウィンドウを開いて<emphasis>ツールバー</emphasis>の<guibutton>新規</guibutton>ボタンか、メニュー項目の<menuchoice><guimenu>取引</guimenu><guimenuitem>新規</guimenuitem></menuchoice>を使用してください。
+取引を入力した後に<guibutton>Enter</guibutton>ボタンを押下すると、<guilabel>照合</guilabel>ウィンドウに新しい項目が表示されます。</para>
 
-      <para>見つけることができない項目が一つでもあるなら、取引を入力するのを忘れたか、または知らない取引が発生したのでしょう。記録簿ウィンドウを開いて、欠けている取引を入力してください。ツールバーの新規ボタンをクリックするか、メニューの<guimenu>取引</guimenu>-&gt;<guimenu>新規</guimenu>を使用してください。取引を入力した後にEnterを押下すると、新項目が照合ウィンドウに表示されます。</para>
+      <para><guilabel>照合</guilabel>ウィンドウで項目を見つけたら、項目の金額と計算書の金額を比較します。
+それらが一致しない場合、<application>&app;</application>へ取引を入力したときに、間違えたのかもしれません。
+取引を訂正するするために、記録簿ウィンドウを開いて<emphasis>ツールバー</emphasis>の<guibutton>編集</guibutton>ボタンか、メニュー項目の<menuchoice><guimenu>取引</guimenu><guimenuitem>編集</guimenuitem></menuchoice>を使用してください。</para>
 
-      <para>照合ウィンドウで項目を見つけたら、項目の総額と明細書の総額を比較します。それらが一致しない場合、&app;へ取引を入力したときに、間違えたのかもしれません。取引を修正するために、記録簿ウィンドウを開いて、ツールバーの<guibutton>編集</guibutton>ボタン、またはメニューの<guimenu>取引</guimenu>-&gt;<guimenu>編集</guimenu>を使用してください。</para>
+      <para>金額が一致していたら、<guilabel>照合</guilabel>ウィンドウで項目をクリックしてください。
+選択した取引の横にある<guilabel>照合</guilabel>列にチェックマークが表示されます。
+<application>&app;</application>によって自動的に右下の要約部分の金額が更新されます。</para>
+      
+      <tip>
+        <para>項目をスクロールするためには<keycap>上</keycap><keycap>下</keycap>矢印キー、照合とマークするために<keycap>space</keycap>キー、入金と出金欄を移動するために<keycap>Tab</keycap>キーを使用出来ます。</para>
+      </tip>
 
-      <para>総額が一致しているなら、照合ウィンドウで項目をクリックします。照合列が「未」または「清」から「照(照合)」に変化します。または、項目をスクロールするために上下の矢印キーを使用して、後は、スペースキーを押下してください。これはにより、項目の照合列が「照」に変化します。</para>
+      <para>後は銀行取引計算書にある各項目に対してこれを繰り返します。銀行取引計算書の金額が<application>&app;</application>の金額と一致していることを確かめて、<application>&app;</application>で取引を照合済とマークします。</para>
 
-      <para>後は銀行報告書上に表れる各項目に対してこれを繰り返します。銀行報告書の総額が&app;の総額と一致していることを確かめて、&app;で取引を照合とマークします。</para>
+      <para>照合が終わった時には、<guilabel>照合</guilabel>ウィンドウの下部にある<guilabel>差分</guilabel>欄には0.00ドルと表示されているはずです。
+他の金額が表示されているなら、取引が抜けているか、またはいくつかの金額が<application>&app;</application>上で不正確なのかもしれません。
+(まず無いでしょうが、銀行が間違えたかもしれません。)</para>
 
-      <para>「照合」というウィンドウの下端に、「差分」欄があります。照合し終わった際は0.00ドルが表示されているはずです。他の金額が表示されているなら、取引が抜けているか、またはいくつかの金額が&app;で不正確なのかもしれません。(まず無いでしょうが、銀行が間違えたかもしれません。)</para>
+      <para>銀行取引計算書のすべての項目をマークして、差分が0.00ドルであることを確認したら、<emphasis>ツールバー</emphasis>の<guibutton>完了</guibutton>ボタンをクリックするかメニューの<menuchoice><guimenu>照合</guimenu><guimenuitem>完了</guimenuitem></menuchoice>を選択します。
+<guilabel>照合</guilabel>ウィンドウが閉じます。
+記録簿ウィンドウでは、照合済取引の<guilabel>照合</guilabel>欄が<emphasis>照</emphasis>に変化します。</para>
 
-      <para>銀行報告書のすべての項目をマークして、差分が0.00ドルであることを確認したら、ツールバーの完了ボタンをクリックするかメニューの<guimenu>照合</guimenu>-&gt;<guimenu>完了</guimenu>を選択します。照合ウィンドウを閉じます。記録簿ウィンドウでは、照合済みの取引の照合欄が「照」に変化します。</para>
-
-      <para>まだすべての情報を受取っていない場合、単に<guibutton>延期</guibutton>を押下して、次の段階に進んでください。照合列が、清算(「清」)と表示されているかどうか2つの取引をよく確認してください。それらはまだ照合されていません。しかし、それらを清算済とマークしたことでのこれらの2つの取引について確かめました。勘定科目記録簿の下端にあるステータスバーを見ると、何を照合して、何を清算したかに関する要約がわかります。(<guilabel>清算: USD 954.79、照合: USD 0.00</guilabel>)</para>
+      <para>まだすべての情報を受取っていない場合は、単にに<guibutton>延期</guibutton>を押して、次の作業を続けてください。
+<guilabel>照合</guilabel>列が、清算済(<emphasis>清</emphasis>)と表示されているか2つの取引をよく見てください。
+これらはまだ照合されていませんが清算済とマークしたことでのこれらの2つの取引について確認しました。
+勘定科目記録簿の下端にある<emphasis>ステータスバー</emphasis>を見ると、何が照合済で、何が清算済かの要約があります(<guilabel>清算済:USD
+954.79,照合済:USD 0.00</guilabel>) 。</para>
 
       <screenshot id="txns-reconcile-window-3">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_reconcile_window3.png"
-                       format="PNG" srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_reconcile_window3.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
             <phrase>当座預金勘定科目</phrase>
           </textobject>
 
-          <caption><para>照合延期後の当座預金勘定科目</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>照合延期後の当座預金勘定科目。</para></caption>
+        </mediaobject></screenshot>
     </sect2>
   </sect1>
 
   <sect1 id="txns-sxn1">
     <title>予定取引</title>
 
-    <para>予定取引は、定期購読、保険または税金のように反復性があるお金の操作を入力するのを助けます。予定取引を使用することによって、関係がある取引を一度入力するだけでよくなります。開始日、頻度、および少しの説明文のようないくつかのパラメータを設定します。予定取引の作成準備ができた時、および作成した時に、&app;によって通知されます。</para>
+    <para>予定取引は、定期購読、保険または税金のように反復性があるお金の操作の入力を補助します。
+予定取引を使用することによって、関係がある取引を一度入力するだけでよくなります。開始日、頻度、および少しの説明文のようないくつかのパラメータを設定すると、予定した取引の作成準備ができた時および作成した時に<application>&app;</application>によって通知されます。</para>
 
     <para>このHow-Toでは、例として毎月20ドルのインターネット利用料を28日に支払うことを想定します。</para>
 
-    <para>&app;で予定取引を作成するには2つの方法があります。元帳から予定作成する方法または予定取引エディタから予定取引を作成する方法です。</para>
+    <para><application>&app;</application>で予定取引を作成するには、<link
+linkend="txns-sxn-ledger2">元帳から作成</link>または<link
+linkend="txns-sxn-editor2">予定取引エディタ</link>の2つの方法があります。</para>
 
     <sect2 id="txns-sxn-ledger2">
       <title>元帳から作成</title>
 
-      <para>元帳で予定取引の初日を入力します。</para>
+      <para>元帳で予定取引の初日を入力します。
+この取引の<guilabel>資金移動</guilabel>欄では、次の画面のように<emphasis>費用:インターネット</emphasis>を入力します。</para>
 
       <screenshot id="txns-sxn-ledger-1">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_ledger1.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_sxn_ledger1.png" format="PNG"
+srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>元帳から予定取引を作成 : ステップ1</phrase>
+            <phrase>元帳から予定取引を作成:ステップ1</phrase>
           </textobject>
 
-          <caption><para>元帳から予定取引を作成 : ステップ1</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>元帳から予定取引を作成:ステップ1</para></caption>
+        </mediaobject></screenshot>
 
       <note>
-        <para>費用:インターネット勘定科目を作成していなかったので、&app;は作成するための入力をうながします。</para>
+        <para><emphasis>費用:インターネット</emphasis>勘定科目を作成していなかったので、作成するために<application>&app;</application>は入力を要求します。</para>
       </note>
 
-      <para>次に、取引を右クリックします。そして「予定取引を作成」を選択します</para>
+      <para>次に、取引を右クリックし、<guilabel>予定取引を作成</guilabel>を選択します。</para>
 
       <screenshot id="txns-sxn-ledger-2">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_ledger2.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_sxn_ledger2.png" format="PNG"
+srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>元帳から予定取引を作成 : ステップ2</phrase>
+            <phrase>元帳から予定取引を作成:ステップ2</phrase>
           </textobject>
 
-          <caption><para>元帳から予定取引を作成 : ステップ2</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>元帳から予定取引を作成:ステップ2</para></caption>
+        </mediaobject></screenshot>
 
-      <para>以下のようなウィンドウが現れます。</para>
+      <para>次のようなウィンドウが現れます:</para>
 
       <screenshot id="txns-sxn-ledger-3">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_ledger3.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_sxn_ledger3.png" format="PNG"
+srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>元帳から予定取引を作成 : ステップ3</phrase>
+            <phrase>元帳から予定取引を作成:ステップ3</phrase>
           </textobject>
 
-          <caption><para>元帳から予定取引を作成 : ステップ3</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>元帳から予定取引を作成:ステップ3</para></caption>
+        </mediaobject></screenshot>
 
-      <para>値を入力しましょう。毎月28日に定期支払が行われることが分かっています。次回は来月に発生します(私たちは手動で今月の入力をしたので)。</para>
+      <para>値を入力しましょう。毎月28日に定期支払が行われることが分かっています。手動で今月の入力を行ったため次回は来月に発生します :</para>
 
       <screenshot id="txns-sxn-ledger-4">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_ledger4.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_sxn_ledger4.png" format="PNG"
+srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>予定取引にデータに記入</phrase>
+            <phrase>予定取引へデータを入力</phrase>
           </textobject>
 
-          <caption><para>予定取引にデータに記入</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>予定取引へデータを入力</para></caption>
+        </mediaobject></screenshot>
 
-      <para>OKボタンをクリックします。すると、取引は予定されます。&app;は今この予定取引を記憶しました。そして、来月28日に、予定取引を実際に作成するかどうか尋ねるウィンドウがポップアップされます(このウィンドウの一番下のスクリーンショットを見てください)。</para>
+      <para><guibutton>OK</guibutton>ボタンをクリックすると、取引が予定されます。
+<application>&app;</application>は今この予定取引を記憶しました。そして、来月28日に、予定取引を実際に作成するかどうか尋ねるウィンドウがポップアップされます(このウィンドウのずっと下のスクリーンショットを見てください)。</para>
     </sect2>
 
     <sect2 id="txns-sxn-editor2">
-      <title>エディタから作成</title>
+      <title>エディタから予定取引を作成</title>
 
-      <para>予定取引を作成する別の方法は、予定取引エディタを使うことです。一度にいくつかの予定取引作成する場合、より素早く行うことができます。</para>
+      <para>予定取引を入力する別の方法は、<guilabel>予定取引エディタ</guilabel>を使うことです。一度にいくつかの予定取引作成する場合、より素早く行うことができます。</para>
 
-      <para>主勘定科目ウィンドウで、<guimenu>アクション</guimenu>-&gt;<guimenu>予定取引</guimenu>-&gt;<guimenu>予定取引エディタ</guimenu>をクリックします。</para>
-
-      <screenshot id="txns-sxn-editor-1">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_editor1.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
-
-          <textobject>
-            <phrase>エディタから予定取引を作成 : ステップ1</phrase>
-          </textobject>
-
-          <caption><para>エディタから予定取引を作成 : ステップ1</para></caption>
-        </mediaobject>
-      </screenshot>
-
-      <para>以下ようなウィンドウが表示されます。</para>
+      <para>メイン勘定科目ウィンドウの<emphasis>メニューバー</emphasis>から、<menuchoice><guimenu>アクション</guimenu><guisubmenu>予定取引</guisubmenu><guimenuitem>予定取引エディタ</guimenuitem></menuchoice>を選択してください。
+次のような新しい<guilabel>予定取引</guilabel>タブが現在の<application>&app;</application>ウィンドウに開きます。</para>
 
       <screenshot id="txns-sxn-editor-2">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_editor2.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject role="html"> <imagedata fileref="figures/txns_sxn_editor-2.png"
+format="PNG" srccredit="Cristian Marchi" width="510"/> </imageobject>
+<imageobject role="fo"> <imagedata fileref="figures/txns_sxn_editor-2.png"
+format="PNG" srccredit="Cristian Marchi"/> </imageobject>
 
           <textobject>
-            <phrase>エディタから予定取引を作成 : ステップ2</phrase>
+            <phrase>空の<guilabel>予定取引</guilabel>タブ</phrase>
           </textobject>
 
-          <caption><para>エディタから予定取引を作成 : ステップ2</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>空の<guilabel>予定取引</guilabel>タブ</para></caption>
+        </mediaobject></screenshot>
 
-      <para>このウィンドウは今、全く予定取引がない状態の一覧です。「新規」のボタンをクリックして、新規の予定取引を作成しましょう。別のウィンドウが表示されます。</para>
+      <para>このタブには (今は空ですが) 全ての予定取引が一覧表示されます。
+<emphasis>ツールバー</emphasis>にある<guibutton>新規</guibutton>ボタンをクリックして新しい予定取引を作成しましょう。
+次のようなウィンドウが表示されます。</para>
 
-      <screenshot id="txns-sxn-editor-3">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_editor3.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+      <screenshot id="txns-sxn-editor-3-overview">
+<mediaobject>
+          <imageobject role="html"> <imagedata
+fileref="figures/txns_sxn_editor-3-overview.png" format="PNG"
+srccredit="Cristian Marchi" width="510"/> </imageobject> <imageobject
+role="fo"> <imagedata fileref="figures/txns_sxn_editor-3-overview.png"
+format="PNG" srccredit="Cristian Marchi" /> </imageobject>
 
           <textobject>
-            <phrase>エディタから予定取引を作成 : ステップ3</phrase>
+            <phrase><guilabel>予定取引の編集</guilabel> &mdash; <guilabel>概要</guilabel>タブ</phrase>
           </textobject>
 
-          <caption><para>エディタから予定取引を作成 : ステップ3</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para><guilabel>予定取引の編集</guilabel> &mdash; <guilabel>概要</guilabel>タブ</para></caption>
+        </mediaobject></screenshot>
 
-      <para>このウィンドウは複雑に見えるかもしれませんが、実際はかなり分かりやすいです。まず最初に、この新規の予定取引のために名前を入力しましょう。この名前は予定取引エディタで予定取引を識別するためだけであり、元帳に決して現れません。</para>
-
-      <para>後は、取引のパラメータを入力します。毎月28日に定期支払が行われることが分かっています。よって、開始日付は2003年11月1日 (11月が来月であると仮定します) です。頻度は「毎月」です。これで取引は毎月28日に行われます。</para>
-
-      <para>「オプション」欄には3つのオプションがあります。</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>「自動的に作成する」を選択すると、あなたに確認をすることなく取引を元帳に書き加えます。(以下を参照してください)</para>
-        </listitem>
-
-        <listitem>
-          <para>「前もって作成する: n日」は明白です。</para>
-        </listitem>
-
-        <listitem>
-          <para>「前もって通知する: n日」も明白です。例えば、小切手で何かを支払わなければならないとき使用します。&app;は支払期限の1週間前に小切手を送るように通知します。</para>
-        </listitem>
-      </itemizedlist>
-
-      <para>繰り返し欄で、この予定取引がいつまでも継続される訳ではないと&app;に伝えることができます。例えば、ローンを返済しているなら、ローンの終了日を入力することができます。</para>
-
-      <para>この例では勘定科目からインターネット料金の定期支払を自動的に行います。前もって取引を作成する必要も、終了日を指定する必要も全くありません。</para>
-
-      <para>最後に、取引を下部に入力します。元帳との唯一の差異は日付を全く入力しないことです。</para>
-
+      <para>最初に、ウィンドウの一番上で、この新規の予定取引のための名前を入力しましょう。</para>
       <note>
-        <para>警告:元帳などのようにENTERキーを使用しないでください。全体のウィンドウのデフォルトボタンが動作します。それはキャンセルです。代わりに、次の欄に進むためにタブを使用してください。そして、取引の入力が完成したときに「OK」ボタンをクリックして、予定取引を有効にします。</para>
+        <para>この名前は<guilabel>予定取引の編集</guilabel>ウィンドウで予定取引を識別するためだけのものであり、元帳には決して現れません。</para>
       </note>
 
-      <para>今、ウィンドウは以下のようになります。</para>
+      <para><guilabel>概要</guilabel>タブの<guilabel>オプション</guilabel>部分には、4つのオプションがあります。</para>
+      
+      <variablelist>
+        <varlistentry><term><guilabel>有効</guilabel></term>
+          <listitem>
+            <para>予定取引の状態を設定します。</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>自動的に作成する</guilabel></term>
+          <listitem>
+            <para>有効にすると、確認をすることなく取引を元帳に書き加えます(以下を参照してください)。
+必要なら<guilabel>作成されたら通知する</guilabel>オプションにチェックを入れることで、取引が作成された通知を受けることができます。</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>前もって作成する</guilabel></term>
+          <listitem>
+            <para>取引があらかじめ何日前に作成されるかを設定します。</para>
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry><term><guilabel>前もって通知する</guilabel></term>
+          <listitem>
+            <para>通知があらかじめ何日前に行われるかを設定します。
+これは、例えば、小切手で何かを支払わなければならないときに、期限の1週間前に小切手を送付できるように通知を行うために使用出来ます。</para>
+          </listitem>
+        </varlistentry>  
+      </variablelist>
+
+      <para><guilabel>繰り返し</guilabel>部分ではこの予定取引がいつまで継続するかに関して<application>&app;</application>に設定できます。
+例えば、ローンを返済しているなら、ローンの終了日または残りの返済回数を入力することができます。</para>
+      
+      <para>今度は、<guilabel>予定取引の編集</guilabel>ウィンドウの<guilabel>頻度</guilabel>タブを選択します。
+ここでは取引の時間に関するオプションを設定できます。</para>
+      
+      <screenshot id="txns-sxn-editor-3-frequency">
+<mediaobject>
+          <imageobject role="html"> <imagedata
+fileref="figures/txns_sxn_editor-3-frequency.png" format="PNG"
+srccredit="Cristian Marchi" width="510"/> </imageobject> <imageobject
+role="fo"> <imagedata fileref="figures/txns_sxn_editor-3-frequency.png"
+format="PNG" srccredit="Cristian Marchi" /> </imageobject>
+
+          <textobject>
+            <phrase><guilabel>予定取引の編集</guilabel>&mdash;<guilabel>頻度</guilabel>タブ</phrase>
+          </textobject>
+
+          <caption><para><guilabel>予定取引の編集</guilabel>&mdash;<guilabel>頻度</guilabel>タブ</para></caption>
+        </mediaobject></screenshot>      
+      
+      <variablelist>
+        <varlistentry><term><guilabel>頻度</guilabel></term>
+          <listitem>
+            <para>取引の基本的な頻度を<guilabel>1回</guilabel>、<guilabel>日</guilabel>、<guilabel>週</guilabel>、<guilabel>月2回</guilabel>、および<guilabel>月</guilabel>のオプションから設定します。
+この例では、<guilabel>月</guilabel>に設定します。</para>
+            <note>
+              <para>取引が発生する間隔を<guilabel>頻度のパターン</guilabel>に一覧表示されている<emphasis>以外</emphasis>に設定するためには、<guilabel>・・・ごと</guilabel>の設定を変更することで可能となります(以下を参照してください)。</para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>開始日</guilabel></term>
+          <listitem>
+            <para>取引が始まる時を設定します。
+この例では、来月の開始日に設定します。</para>
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry><term><guilabel>・・・ごと</guilabel></term>
+          <listitem>
+            <para>このオプションで、<guilabel>頻度のパターン</guilabel>の値の倍数の間隔で取引の予定を作成できます。
+例えば、3週間ごとに実行される取引を作成するためには、<guilabel>頻度</guilabel>を<guilabel>週</guilabel>に設定し、<guilabel>週ごと</guilabel>に<guilabel>3</guilabel>を設定します。</para>
+          </listitem>
+        </varlistentry>
+         
+        <varlistentry><term>日付と<guilabel>週末に重なったときは</guilabel></term>
+          <listitem>
+            <para>取引が予定されるのが月の何日であるか、および、それが週末に重なった場合に<application>&app;</application>がどのようにするかを設定します。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+        
+      <note>
+        <para>毎月28日に定期支払が行われることが分かっています。よって、<guilabel>開始日</guilabel>は2003年11月1日(11月が来月であると仮定します)です。<guilabel>頻度のパターン</guilabel>は<guilabel>月</guilabel>です。これで取引は毎月28日に行われます。
+この例では勘定科目からインターネット料金の定期支払を自動的に行います。前もって取引を作成する必要も、終了日を指定する必要も全くありません。</para>
+      </note>
+     
+      <para>このタブの項目に入力すると、<application>&app;</application>によって、下部にあるカレンダーに将来の取引が行われる日がハイライト表示されます。</para>
+
+      <para>最後に、<guilabel>テンプレート取引</guilabel>タブを選択し、下部に取引を入力します。元帳への入力との唯一の差異は日付を全く入力しないことです。 </para>
+
+      <para>今、ウィンドウは以下のようになります:</para>
+
+      <screenshot id="txns-sxn-editor-3-template">
+<mediaobject>
+          <imageobject role="html"> <imagedata
+fileref="figures/txns_sxn_editor-3-template.png" format="PNG"
+srccredit="Cristian Marchi" width="510"/> </imageobject> <imageobject
+role="fo"> <imagedata fileref="figures/txns_sxn_editor-3-template.png"
+format="PNG" srccredit="Cristian Marchi" /> </imageobject>
+
+          <textobject>
+            <phrase><guilabel>予定取引の編集</guilabel>&mdash;<guilabel>テンプレート取引</guilabel>タブ</phrase>
+          </textobject>
+
+          <caption><para><guilabel>予定取引の編集</guilabel>&mdash;<guilabel>テンプレート取引</guilabel>タブ</para></caption>
+        </mediaobject></screenshot>
+
+      <para>取引を有効化・記帳するために、<guibutton>記帳</guibutton>ボタンをクリックするのを忘れないでください。</para>
+
+      <para>次に
+<guibutton>OK</guibutton>をクリックします。これで<guilabel>予定取引</guilabel>タブに戻ります。今は<guilabel>取引</guilabel>一覧に1個の項目が表示されているはずです。</para>
 
       <screenshot id="txns-sxn-editor-4">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_editor4.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject role="html"> <imagedata fileref="figures/txns_sxn_editor-4.png"
+format="PNG" srccredit="Cristian Marchi" width="510"/> </imageobject>
+<imageobject role="fo"> <imagedata fileref="figures/txns_sxn_editor-4.png"
+format="PNG" srccredit="Cristian Marchi" /> </imageobject>
 
           <textobject>
-            <phrase>エディタから予定取引を有効にする</phrase>
+            <phrase>入力された予定取引</phrase>
           </textobject>
 
-          <caption><para>エディタから予定取引を有効にする</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>入力された予定取引</para></caption>
+        </mediaobject></screenshot>
 
-      <para>取引を有効にして、入力するために、入力ボタンをクリックするのを忘れないでください。</para>
-
-      <para>次にOKをクリックします。これで1個の項目が一覧にある状態の前のウィンドウに戻ります。</para>
-
-      <screenshot id="txns-sxn-editor-5">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_editor5.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
-
-          <textobject>
-            <phrase>エディタから予定取引を有効にする</phrase>
-          </textobject>
-
-          <caption><para>エディタから予定取引を有効にする</para></caption>
-        </mediaobject>
-      </screenshot>
-
-      <para>カレンダ部分のある月日をクリックすると、マウスにの側に、小さいウィンドウが表示され、何がこの日に予定されているか分かります。小さいウィンドウを消去するためには、単にそこでも一回クリックしてください。</para>
-
-      <para>後は予定取引エディタウィンドウを閉じます。そして作業を<guilabel>保存</guilabel>します。</para>
+      <tip>
+        <para>カレンダー部分をクリックすると小さなウィンドウがマウスの位置に表示され、その日に予定されている取引が表示されます。
+小さなウィンドウを閉じるためには、再度クリックするだけです。</para>
+      </tip>
+      
+      <para>これで<guilabel>予定取引</guilabel>タブを閉じることができます。作業を<guilabel>保存</guilabel>してください。</para>
 
       <note>
-        <para>以下で説明していることは、単なる図解です。この段階では、&app;データベースには入力されません。予定取引が実行されるとき、この例に従って、以下のダイアログが表示されます。</para>
+        <para>次の画像は単なる例であり、この段階で実際に<application>&app;</application>データベースに入力されるわけではありません
+この例では、予定取引が実行されるべき時に、次のようなダイアログが表示されます。</para>
       </note>
 
-      <para>これから先ある月日(またはこの日以降に&app;を実行する最初の時)に、この取引を作成するように通知するウィンドウが表示されます。</para>
+      <para>これから先、<application>&app;</application>を起動時、予定取引が実行されるときまたは入力が必要なときに、予定取引の操作が要約された<guilabel>前回起動時以降...</guilabel>ウィンドウが開きます。(<guilabel>リマインダ</guilabel>、
+<guilabel>作成予定</guilabel>などのオプションに関する詳しい説明は<application>&app;</application>マニュアルを参照してください。)</para>
 
-      <screenshot id="txns-sxn-editor-6">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_editor6.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
-
-          <textobject>
-            <phrase>予定取引の通知ウィンドウ</phrase>
-          </textobject>
-
-          <caption><para>予定取引の通知ウィンドウ</para></caption>
-        </mediaobject>
-      </screenshot>
-
-      <para>詳細な取引を確認するためには下部に入力されたリストをクリックします。そして、次に進むためには単に<guibutton>進む</guibutton>をクリックします。</para>
-
-      <para>進むをクリックすると、作成されるすべての取引を要約したウィンドウが表示されます。</para>
-
-      <screenshot id="txns-sxn-editor-7">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_editor7.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+      <screenshot id="txns-sxn-editor-slr">
+<mediaobject>
+          <imageobject role="html"> <imagedata
+fileref="figures/txns_sxn_editor_slr.png" format="PNG" srccredit="Cristian
+Marchi" width="510"/> </imageobject> <imageobject role="fo"> <imagedata
+fileref="figures/txns_sxn_editor_slr.png" format="PNG" srccredit="Cristian
+Marchi" /> </imageobject>
 
           <textobject>
-            <phrase>予定取引の要約</phrase>
+            <phrase>予定取引リマインダポップアップ</phrase>
           </textobject>
 
-          <caption><para>予定取引の要約</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>予定取引リマインダポップアップ</para></caption>
+        </mediaobject></screenshot>
 
-      <para>このウィンドウで作成する取引を調整することができます。例えば、今月、ISPが特別価格を提供をしたため、利用料金が10ユーロになったとします。そうしたら、単に20から10へ金額を変更します。</para>
+      <para>必要なら予定取引の状態を変更するために<guilabel>状態</guilabel>列をクリックしてください。
+次に、<guilabel>前回起動時以降...</guilabel>ウィンドウを閉じるために<guibutton>OK</guibutton>ボタンを押すだけで、保留していた操作が適用されます。
+保留していた操作を元帳に入力しないなら、<guibutton>キャンセル</guibutton>を選択してください。</para>
 
-      <para>このウィンドウでの作業が終わったら、<guibutton>進む</guibutton>をクリックしてください。そして、次のウィンドウで<guibutton>適用</guibutton>をクリックします。ウィンドウが閉じて、取引が作成されます。</para>
-
-      <para>後は、普通預金勘定科目で確認すると、取引が作成されているのが確認できます。</para>
-
-      <screenshot id="txns-sxn-editor-8">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_sxn_editor8.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
-
-          <textobject>
-            <phrase>予定取引によって作成された取引</phrase>
-          </textobject>
-
-          <caption><para>予定取引によって作成された取引</para></caption>
-        </mediaobject>
-      </screenshot>
+      <para><guilabel>状態</guilabel>欄が<guilabel>作成予定</guilabel>に設定されていれば、普通預金勘定科目記録簿を参照したときに、取引が作成されたのが見つかるでしょう。</para>
+     
+      <tip>
+        <para><guilabel>前回起動時以降...</guilabel>ウィンドウの右下にある<guilabel>作成された取引を確認</guilabel>オプションを有効にすると、<guibutton>OK</guibutton>を押した後に、<application>&app;</application>は、予定取引が自動的に入力されたそれぞれの勘定科目記録簿のタブを開きます。</para>
+      </tip>
 
       <note>
-        <para>この段階で4月28日の取引を入力したら、次に、最後に保存した&app;ファイルに戻ってください。<guimenu>ファイル</guimenu>-&gt;<guimenu>開く</guimenu>で <filename>gcashdata_3</filename>を選択します。</para>
+        <para>この段階で4月28日の取引を入力したら、<menuchoice><guimenu>ファイル</guimenu><guimenuitem>開く</guimenuitem></menuchoice>を選択して、以前に保存した<filename>gcashdata_3</filename>
+<application>&app;</application>ファイルを選択することによって、最後に保存した<application>&app;</application>ファイルに<emphasis>戻し</emphasis>てください。</para>
       </note>
     </sect2>
   </sect1>
@@ -714,112 +866,138 @@
   <sect1 id="txns-puttoget1">
     <title>まとめ</title>
 
-    <para>本章の前項では、&app;での取引に関する作業の概念と機構を説明しました。この項では、始めにいくつかの開始残高を設定し、取引と予定取引を加えることで、前の章で作成した勘定科目表を拡張します。</para>
+    <para>本章の前節で、<application>&app;</application>での取引の動作に関する概念と仕組みを説明しました。
+本節では、前章で作成した初期状態の勘定課目表にいくつかの開始残高を設定し、取引と予定取引を追加することによって、勘定科目表を拡張します。</para>
 
     <sect2 id="txns-puttoget-openfile">
-      <title>&app;ファイルを開く</title>
+      <title><application>&app;</application>ファイルを開く</title>
 
-      <para>最初に、前に保存したデータファイル<filename>gcashdata_3emptyAccts</filename>を開いて、直接<filename>gcashdata_4</filename>として保存します。メインウィンドウはこのようになります。</para>
+      <para>最初に、保存した前のデータファイル<filename>gcashdata_3emptyAccts</filename>を開き、直接<filename>gcashdata_4</filename>として保存します。
+メインウィンドウは今このようになります。</para>
 
       <screenshot id="txns-puttoget1-Charts">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_puttoget_Charts.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_puttoget_Charts.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>まとめの出発点</phrase>
+            <phrase>まとめにおける開始点</phrase>
           </textobject>
 
-          <caption><para>この画像は本項の出発点です。</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>この画像が本節の開始点です。</para></caption>
+        </mediaobject></screenshot>
     </sect2>
 
     <sect2 id="txns-puttoget-open2">
       <title>開始残高</title>
 
-      <para>前に<guilabel>資産:当座預金</guilabel>勘定科目で説明したように、勘定科目の開始残高は、<guilabel>資産:開始残高</guilabel>と呼ばれる特別な勘定科目に通常は割り当てます。この勘定科目表で入力を開始するために、勘定科目に対して開始残高を設定することから始めます。普通預金口座には1000ドルあり、クレジットカードに500ドルの未決済残高があると仮定します。</para>
+      <para>前に<emphasis>資産:当座預金</emphasis>勘定科目で説明したように、勘定科目の開始残高は、<emphasis>純資産:開始残高</emphasis>と呼ばれる特別な勘定科目に通常は割り当てます。
+この勘定科目表で入力を開始するために、勘定科目に対して開始残高を設定することから始めます。
+普通預金口座には1000ドルあり、クレジットカードに500ドルの未決済残高があると仮定します。</para>
 
       <orderedlist>
         <listitem>
-          <para><guilabel>資産:普通預金</guilabel>勘定科目記録簿を開きます。メニューの<guimenu>表示</guimenu>を選択して、基本元帳スタイルであることを確認してください。後で他のモードでの取引を見ます。しかし当分はデフォルトである基本元帳スタイルを使用して基本的な取引を入力しましょう。</para>
+          <para><emphasis>資産:普通預金</emphasis>勘定科目記録簿を開きます。
+メニューから<guimenu>表示</guimenu>を選択して、基本元帳スタイルであることを確認してください。
+後で他のモードでの取引を見ますが、しかし当分はデフォルトである基本元帳スタイルを使用して基本的な取引を入力しましょう。</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>資産:普通預金</guilabel>勘定科目記録簿ウィンドウから基本的な2勘定科目取引を入力し、<guilabel>純資産:開始残高</guilabel>から資金移動をして開始残高を1000ドルに設定します。基本的な取引は、元の勘定科目から先の勘定科目までへの資金移動であることを忘れないでください。取引を記録します(<keycap>Enter</keycap>キーを押下するか、または<guibutton>入力</guibutton>ボタンをクリックします。)</para>
+          <para><emphasis>資産:普通預金</emphasis>勘定科目記録簿ウィンドウから基本的な2勘定科目取引を入力し、<emphasis>純資産:開始残高</emphasis>から資金移動をして、開始残高を1000ドルに設定します。
+基本的な取引は、元の勘定科目から先の勘定科目までへの資金移動であることを忘れないでください。
+取引を記録します(<keycap
+function="enter">Enter</keycap>キーを押すか、または<guibutton>入力</guibutton>ボタンをクリックします)。</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>資産:当座預金</guilabel>勘定科目記録簿ウィンドウから基本的な2勘定科目取引を入力し、<guilabel>純資産:開始残高</guilabel>から資金移動をして開始残高を1000ドルに設定します。</para>
+          <para><emphasis>資産:当座預金</emphasis>勘定科目記録簿ウィンドウから基本的な2勘定科目取引を入力し、<emphasis>純資産:開始残高</emphasis>から資金移動をして、開始残高を1000ドルに設定します。</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>負債:ビザ</guilabel>勘定科目記録簿ウィンドウから基本的な2勘定科目取引を入力し、<guilabel>純資産:開始残高</guilabel>から資金移動をして開始残高を500ドルに設定します。「費用」としてビザ勘定科目に500ドル入力することによってこれを行います(言い換えると開始残高勘定科目が「減少」します)。なぜならそれは借りているお金だからです。取引を記録します(<keycap>Enter</keycap>キーを押下するか、または<guibutton>入力</guibutton>ボタンをクリックします)。</para>
+          <para><emphasis>負債:Visa</emphasis>勘定科目記録簿ウィンドウから基本的な2勘定科目取引を入力し、<emphasis>純資産:開始残高</emphasis>から資金移動をして、開始残高を500ドルに設定します。
+<guilabel>請求</guilabel>として<emphasis>Visa</emphasis>勘定科目に500ドル入力することによってこれを行います(または<emphasis>開始残高</emphasis>勘定科目を<guilabel>減少</guilabel>させます)。なぜならそれは借りているお金だからです。
+取引を記録します(<keycap
+function="enter">Enter</keycap>キーを押すか、または<guibutton>入力</guibutton>ボタンをクリックします)。</para>
         </listitem>
       </orderedlist>
 
-      <para>今、設定された開始残高を有する次の3つの勘定科目を持っています。<guilabel>資産:当座預金</guilabel>、<guilabel>資産:普通預金</guilabel>、<guilabel>負債:ビザ</guilabel>です。</para>
+      <para>今、開始残高が設定された3つの勘定科目ができました。
+<emphasis>資産:当座預金</emphasis>、<emphasis>資産:普通預金</emphasis>、<emphasis>負債:Visa</emphasis>です。</para>
 
       <screenshot id="txns-puttoget1-Charts1">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_puttoget_Charts1.png"
-                       format="PNG" srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_puttoget_Charts1.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>開始残高を設定した後の勘定科目表</phrase>
+            <phrase>開始残高設定後の勘定科目記録簿</phrase>
           </textobject>
 
-          <caption><para>この画像は開始残高を表します。</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>この画像が開始残高です。</para></caption>
+        </mediaobject></screenshot>
     </sect2>
 
     <sect2 id="txns-puttoget-add2">
       <title>取引を追加する例</title>
 
-      <para>現在、1カ月の費用をシミュレートするために更に取引を追加します。1か月間で、電気料金に78ドル、電話料金に45ドルおよび家賃に350ドル費やすとします。すべて小切手で支払います。食費にも45.21ドル費やします。給料を670ドル受け取ります。また、今月のインターネット費用を支払います。最後に、100ドル普通預金口座から当座預金口座まで移動します。</para>
+      <para>これから、1カ月の費用をシミュレートするために更に取引を追加します。
+1か月間で、電気料金に78ドル、電話料金に45ドルおよび家賃に350ドル費やすとします。
+すべて小切手で支払います。
+食費にも45.21ドル費やします。給料を670ドル受け取ります。また、今月のインターネット費用を支払います。
+最後に、普通預金口座から当座預金口座まで100ドル振り替えます。</para>
 
       <orderedlist>
         <listitem>
-          <para><guilabel>費用:電気料金</guilabel>勘定科目記録簿を開きます。そして、今月の終わり (例: 2006年3月28日) に78ドルの電気料金請求書を支払う単純な2勘定科目取引を入力します。説明 (例: 電気料金) と小切手番号(例: 102)を入力します。<guilabel>資金移動</guilabel>勘定科目は<guilabel>資産:当座預金</guilabel>にします。</para>
+          <para><emphasis>費用:電気料金</emphasis>勘定科目記録簿を開き、今月の終わり(例:2006年3月28日)に、78ドルの電気料金の請求に対して支払いを行う単純な2勘定科目取引を入力します。
+説明(例:電気料金)と小切手番号(例:102)を入力します。
+<guilabel>資金移動</guilabel>勘定科目は<emphasis>資産:当座預金</emphasis>にします。</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>資産:当座預金</guilabel>勘定科目記録簿を開きます。そして、今月の終わり (例:2006年3月28日) に45ドルの電話料金請求書を支払う単純な2勘定科目取引を入力します。説明 (例: 電話料金) と小切手番号(例:103)を入力します。<guilabel>資金移動</guilabel>勘定科目は<guilabel>費用:電話料金</guilabel>にします。貸方 (経費勘定科目) または借方 (資産勘定科目) のどちらからでも費用取引を入力できることを覚えてください。</para>
+          <para><emphasis>資産:当座預金</emphasis>勘定科目記録簿を開き、今月の終わり(例:2006年3月28日)に45ドルの電話料金の請求に対して支払いを行う単純な2勘定科目取引を入力します。
+説明(例:電話料金)と小切手番号(例:103)を入力します。
+<guilabel>資金移動</guilabel>勘定科目は<emphasis>費用:電話料金</emphasis>にします。
+貸方(費用勘定科目)または借方(資産勘定科目)のどちらからでも費用取引を入力できることを覚えてください。</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>費用:家賃</guilabel>勘定科目記録簿を開きます。そして、今月の終わり (例: 2006年3月28日) に350ドルの家賃を支払う単純な2勘定科目取引を入力します。説明 (例: 4月分の家賃) と小切手番号(例: 104)を入力します。<guilabel>資金移動</guilabel>勘定科目は<guilabel>資産:当座預金</guilabel>にします。</para>
+          <para><emphasis>費用:家賃</emphasis>勘定科目記録簿を開き、今月の終わり(例:2006年3月28日)に350ドルの家賃を支払う単純な2勘定科目取引を入力します。
+説明(例:4月分の家賃)と小切手番号(例:104)を入力します。
+<guilabel>資金移動</guilabel>勘定科目は<emphasis>資産:当座預金</emphasis>にします。</para>
         </listitem>
 
         <listitem>
-          <para>ツールバーの<guibutton>複製</guibutton>のボタンを使用してこの取引を複製します。はじめに、現在の家賃取引をクリックしします。そして<guibutton>複製</guibutton>ボタンをクリックします。1カ月以上先の取引日付 (例: 2006年4月28日) を入力します。&app;では現在の取引と将来の取引を分離するために青い罫線が使用されることを覚えてください。このように、発生する前に取引を入力することができます。</para>
+          <para><emphasis>ツールバー</emphasis>の<guibutton>複製</guibutton>ボタンを使用してこの取引を複製します。
+はじめに、現在の家賃取引をクリックしします。そして<guilabel>複製</guilabel>アイコンをクリックします。
+1カ月以上先の取引日付(例:2006年4月28日)を入力します。<application>&app;</application>では現在の取引と将来の取引を分離するために青い罫線が使用されることを覚えてください。
+このように、発生する前に取引を入力することができます。</para>
 
-          <para>家賃は予測できる将来にわたって一定であるので、家賃を支払うために予定取引をセットアップすることもできます。<itemizedlist>
+          <para>家賃は予測できる将来にわたって一定であるので、家賃を支払うために予定取引をセットアップすることもできます。 <itemizedlist>
               <listitem>
-                <para>最初に現在の家賃取引 (4月28日) をクリックしてください、次に、<guilabel>予定取引</guilabel>ボタンをクリックしてください。</para>
+                <para>まず、現在の家賃取引(4月28日)をクリックし、次に<guilabel>予定取引</guilabel>アイコンをクリックます。</para>
               </listitem>
 
               <listitem>
-                <para>頻度のパターンを<guilabel>月</guilabel>に変更します。必要な場合は説明を変更します。そして、<guibutton>OK</guibutton>をクリックします。</para>
+                <para>頻度のパターンを<guilabel>月</guilabel>に変更し、必要に応じて説明を変更し、<guibutton>OK</guibutton>を押します。</para>
               </listitem>
             </itemizedlist></para>
         </listitem>
 
         <listitem>
-          <para>普通預金勘定科目から当座預金勘定科目までの資金移動を行うために<guilabel>資産:普通預金</guilabel>勘定科目記録簿を開きます。<guilabel>資産:当座預金</guilabel>へ2006年3月6日に100ドル分の資金移動を行う新規取引を追加します。</para>
+          <para>普通預金口座から当座預金口座へ振り替えるためには、<emphasis>資産:普通預金</emphasis>勘定科目記録簿を開き、<guilabel>資金移動</guilabel>が<emphasis>資産:当座預金</emphasis>、金額が100ドルの新しい取引を追加します。日付は2006年3月6日にします。</para>
         </listitem>
 
         <listitem>
-          <para>簡単な2勘定科目取引の別の例として、食料品を3月5日に45.21ドル分購入した取引を追加します。<guilabel>資産:当座預金</guilabel>勘定科目から、<guilabel>費用:食費</guilabel>に資金移動を行います。勘定科目記録簿は以下のようになります。</para>
+          <para>簡単な2勘定科目取引の別の例として、食料品を3月5日に45.21ドル分購入した取引を追加します。
+<emphasis>資産:当座預金</emphasis>勘定科目で、<guilabel>資金移動</guilabel>に<emphasis>費用:食費</emphasis>を設定します。
+勘定科目記録簿は以下のようになります:</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>資産:当座預金</guilabel>勘定科目記録簿ウィンドウから給与取引を追加するために、新規取引の行をクリックして、<guibutton>スプリット</guibutton>ボタンをクリックします。最初に、一行目にこの取引の日付 (3月14日) と説明 (例: <quote>Employers R Us</quote>) を入力します。下の<quote>スプリット</quote>行では、<guilabel>資産:当座預金</guilabel>への入金(例: 670ドル)を入力してください。(これは現在のバグのためで、スプリットにおける最初の行が実際の勘定科目であるという必要があります。) 様々な税金前払いを続けます(<guilabel>資産:当座預金</guilabel>(例: 670ドル)、<guilabel>費用:税金:国税</guilabel>(例: 180ドル)、<guilabel>費用:税金:医療保険</guilabel>(例: 90ドル)および<guilabel>費用:税金:社会保障</guilabel>(例: 60ドル))。そして最後に、給与総額(例: 1000ドル)を<guilabel>収益:給与</guilabel>から資金移動を行います。</para>
+          <para><emphasis>資産:当座預金</emphasis>勘定科目記録簿ウィンドウから給与取引を追加するために、新規取引の行をクリックして、<guilabel>スプリット</guilabel>をクリックします。
+まず、一行目に日付(3月14日)とこの取引の説明(例:<quote>Employers R Us</quote>)を入力します。
+下の<quote>スプリット</quote>行で、<emphasis>資産:当座預金</emphasis>への入金(例:670ドル)を入力します。
+さまざまなな税金の支払いを続けます(<emphasis>資産:当座預金</emphasis>(例:670ドル)、<emphasis>費用:税金:国税l</emphasis>(例:180ドル)、<emphasis>費用:税金:医療保険</emphasis>(例:90ドル)および<emphasis>費用:税金:社会保障</emphasis>(例:60ドル))。そして最後に、給与総額(例:1000ドル)を<emphasis>収益:給与</emphasis>から引き出す資金移動を行います。</para>
         </listitem>
 
         <listitem>
@@ -828,100 +1006,93 @@
       </orderedlist>
 
       <screenshot id="txns-puttoget2-Charts1">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_puttoget_Charts2.png"
-                       format="PNG" srccredit="Bengt Thuree" />
-          </imageobject>
+<mediaobject>
+          <imageobject> <imagedata fileref="figures/txns_puttoget_Charts2.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
           <textobject>
-            <phrase>すべての様々な取引を設定した後の勘定科目表</phrase>
+            <phrase>すべての各種取引を入力した後の勘定科目記録簿</phrase>
           </textobject>
 
-          <caption><para>この画像は<xref linkend="chapter_txns" />後の貸借残高を表しています。</para></caption>
-        </mediaobject>
-      </screenshot>
+          <caption><para>この画像が<xref linkend="chapter_txns" />後の貸借残高です。</para></caption>
+        </mediaobject></screenshot>
     </sect2>
 
     <sect2 id="txns-puttoget-save">
       <title>ファイルの保存</title>
 
-      <para>帳票の項に進む前に&app;データファイル(<filename>gcashdata_4</filename>)を保存しましょう。</para>
+      <para>帳票の節に進む前に<application>&app;</application>データファイル(<filename>gcashdata_4</filename>)を保存しましょう。</para>
     </sect2>
 
     <sect2 id="txns-puttoget-reports">
       <title>帳票</title>
 
-      <para>コンピュータ画面で利用可能なデータを持っているだけは、あなたの会計士は幸福になりません。そのため、&app;には多くの高度にカスタマイズ可能な帳票があります。</para>
+      <para>コンピュータ画面で利用可能なデータを持っているだけは、あなたの会計士は幸福になりません。そのため、<application>&app;</application>には多くの高度にカスタマイズ可能な帳票があります。</para>
 
+
+
+      <!-- Add this note when the reports chapter is ready
       <note>
-        <para>帳票に関するその他詳細が帳票の章にあります。</para>
-      </note>
 
-      <para><guilabel>キャッシュフロー</guilabel>帳票および<guilabel>取引</guilabel>帳票を見てみましょう。</para>
+        <para>More details on the reports can be found in <xref linkend="chapter_reports" /></para>
+      </note>
+-->
+<para><guilabel>キャッシュフロー帳票</guilabel>および<guilabel>取引出納帳</guilabel>を見てみましょう。</para>
 
       <orderedlist>
         <listitem>
           <para>最初に、3月分の<guilabel>キャッシュフロー</guilabel>帳票を見ましょう。</para>
 
-          <para>キャッシュフロー帳票を表示するために<guimenu>帳票</guimenu>-&gt;<guisubmenu>収益・費用</guisubmenu>-&gt;<guimenuitem>キャッシュフロー</guimenuitem>を選択します。</para>
+          <para><menuchoice><guimenu>帳票</guimenu><guisubmenu>収益・費用</guisubmenu><guimenuitem>キャッシュフロー</guimenuitem></menuchoice>でキャッシュフロー帳票を選択します。</para>
 
           <screenshot id="txns-puttoget2-Cash">
-            <mediaobject>
-              <imageobject>
-                <imagedata fileref="figures/txns_CashFlow.png" format="PNG"
-                           srccredit="Bengt Thuree" />
-              </imageobject>
+<mediaobject>
+              <imageobject> <imagedata fileref="figures/txns_CashFlow.png" format="PNG"
+srccredit="Bengt Thuree" /> </imageobject>
 
               <textobject>
                 <phrase>3月のキャッシュフロー帳票</phrase>
               </textobject>
 
-              <caption><para>この画像は<xref linkend="chapter_txns" />後のキャッシュフロー帳票を示します。</para></caption>
-            </mediaobject>
-          </screenshot>
+              <caption><para>この画像が<xref linkend="chapter_txns" />の後のキャッシュフロー帳票です。</para></caption>
+            </mediaobject></screenshot>
 
-          <para>カスタマイズした帳票を得るためには、帳票を右クリックして、<guilabel>帳票オプション</guilabel>を選択します。後は、期間を設定します。そして、帳票でどの勘定科目が欲しいのかを指定します。</para>
+          <para>カスタマイズした帳票を得るためには、帳票を右クリックして、<guilabel>帳票オプション</guilabel>を選択します。
+次に期間を設定し、帳票に出力したい勘定科目を指定します。</para>
         </listitem>
 
         <listitem>
-          <para>今度は、当座預金に関して対応する取引帳票を見ましょう。</para>
+          <para>今度は、当座預金勘定科目に関連する取引帳票を見ましょう。</para>
 
-          <para>取引帳票を表示するために<guimenu>帳票</guimenu>-><guimenuitem>取引帳票</guimenuitem>を選択します。</para>
+          <para><menuchoice><guimenu>帳票</guimenu><guimenuitem>取引出納帳</guimenuitem></menuchoice>で取引出納帳を選択します。</para>
 
           <screenshot id="txns-puttoget2-TransactionRptChecking">
-            <mediaobject>
-              <imageobject>
-                <imagedata fileref="figures/txns_TransactionRptChecking.png"
-                           format="PNG" srccredit="Bengt Thuree" />
-              </imageobject>
+<mediaobject>
+              <imageobject> <imagedata fileref="figures/txns_TransactionRptChecking.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
               <textobject>
-                <phrase>3月分の当座預金勘定項目に関する取引帳票</phrase>
+                <phrase>3月の当座預金勘定科目の取引出納帳</phrase>
               </textobject>
 
-              <caption><para>この画像は3月分の当座預金勘定科目の取引帳票を示します。</para></caption>
-            </mediaobject>
-          </screenshot>
+              <caption><para>この画像は3月の当座預金勘定科目の取引出納帳です。 </para></caption>
+            </mediaobject></screenshot>
         </listitem>
 
         <listitem>
-          <para>今度は、いろいろな費用の勘定科目だけを表すの取引帳票に変更しましょう。</para>
+          <para>今度は、いろいろな費用勘定科目のみを表示する取引出納帳に変更しましょう。</para>
 
           <screenshot id="txns-puttoget2-TransactionRptExpenses">
-            <mediaobject>
-              <imageobject>
-                <imagedata fileref="figures/txns_TransactionRptExpenses.png"
-                           format="PNG" srccredit="Bengt Thuree" />
-              </imageobject>
+<mediaobject>
+              <imageobject> <imagedata fileref="figures/txns_TransactionRptExpenses.png"
+format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
               <textobject>
-                <phrase>3月分の費用勘定科目のための取引帳票</phrase>
+                <phrase>3月の費用勘定科目の取引出納帳</phrase>
               </textobject>
 
-              <caption><para>この画像は3月分のいろいろな費用勘定科目に関する取引帳票を示します。</para></caption>
-            </mediaobject>
-          </screenshot>
+              <caption><para>この画像は3月のいろいろな費用勘定科目の取引出納帳です。 </para></caption>
+            </mediaobject></screenshot>
         </listitem>
       </orderedlist>
     </sect2>
