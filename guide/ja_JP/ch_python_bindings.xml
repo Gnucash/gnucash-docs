@@ -1,0 +1,341 @@
+<!-- (Do not remove this comment block.)
+
+Version: 2.4.0
+Last modified: 2011-01-01
+
+Maintainers:
+
+Author:
+  Mike Evans <mikee@saxicola.co.uk>
+
+    Translators:
+    (translators put your name and email here)
+-->
+
+<chapter id="ch_python_bindigs">
+  <title>Python Extensions</title>
+  <para>
+    <application>&app;</application> historically has always been a
+    traditional application in the sense that you open it, use it to
+    manipulate your financial data via the windows it presents, save your
+    data and close the windows again. This has the inherent limitation that
+    you can only do whatever the windows, menus and toolbars allow you to do.
+  </para>
+  <para>
+    Sometimes you might need a little more flexibility. For example, you
+    need a report with just a little different information than what the
+    built-in reports provide, or you want to automate a frequently recurring
+    action. Such custom manipulations are ideal candidates to write in one
+    or the other scripting language.
+  </para>
+  <para>
+    Starting with <application>&app;</application> version 2.4 you can
+    write <application>Python</application> scripts to manipulate your financial data.
+  </para>
+  <note>
+    <para>The <application>Python</application> extensions are an optional feature in the source code.
+      To be able to use <application>Python</application> scripts, <application>&app;</application> must
+      have been compiled with this option enabled, otherwise all what follows
+      won&rsquo;t work. At present this option is not enabled by default, so if you
+      need this, you may have to compile <application>&app;</application> from
+      source yourself.
+    </para>
+  </note>
+  <para>The <application>Python</application> extensions come with a couple of ready to use scripts. This
+    chapter will show you how to use some of these.
+  </para>
+  <note>
+    <para>This chapter is not about how to write your own <application>Python</application> scripts.
+      Refer to the developer documentation for that instead.
+    </para>
+  </note>
+
+  <sect1 id="python-import-invoices">
+    <title>Import Bills or Invoices</title>
+
+    <para>In order for the importer to work the data must be in a fixed field
+      length, comma separated line format. A example <application>Python</application> script to convert
+      a downloaded order is shown below.
+    </para>
+
+    <para>
+      <programlisting language="python" linenumbering="unnumbered">
+import sys
+import csv
+
+VENDOR_ID="000013"
+INFILE=sys.argv[1]
+INV_ID=sys.argv[2]
+try:
+  ACCOUNT=sys.argv[3]
+except:
+  ACCOUNT="Expenses:Materials General"
+
+Reader = csv.reader(open(INFILE), delimiter=',')
+
+# Need to ignore 1st and last rows
+
+for row in Reader:
+  if row[0].isdigit(): # We only use numbered lines
+    outline=(INV_ID + ",," + VENDOR_ID + ",,,," + row[1] + " &gt; " + row[4] + ",ea," +
+      ACCOUNT + "," + row[2] + "," + row[5].replace("GBP", "") + ",,,,no,,,,,,,,")
+  print outline
+      </programlisting>
+    </para>
+
+    <para>Example of a downloaded vendor order from <emphasis>Rapid Electronics</emphasis> (UK).
+      <programlisting language="python" linenumbering="unnumbered">
+line number,product code,quantity,availability,product description,unit price,discounts,line total,delivery,sub total,vat,grand total
+1,47-3524,100,100 Available,BC848C SOT-23 NPN TRANSISTOR (INF) (RC),GBP0.03,GBP0.00,GBP0.03
+2,47-3278,30,30 Available,L78L05ACZ 0.1A +5V VOLTAGE REG (ST) (RC),GBP0.18,GBP0.00,GBP0.18
+3,22-0120,1,1 Available,Tube 34 14pin DIL socket, narrow7.62mm, without central support,GBP1.05,GBP0.00,GBP1.05
+4,22-0127,1,0 Available&lt;br /&gt;1 on Back Order,Tube 17 28pin DIL socket, wide15.24mm, without central support,GBP1.22,GBP0.00,GBP1.22
+5,62-0368,1,1 Available,820R CR25 0.25W CF Resistor Pk 100,GBP0.50,GBP0.00,GBP0.50
+6,47-3130,100,100 Available,1N4001 1A 50V SILICON RECTIFIER DIODE RC,GBP0.01,GBP0.00,GBP0.01
+7,17-0310,1,1 Available,PROFESSIONAL MINATURE PROBE HOOK RED RC,GBP0.90,GBP0.00,GBP0.90
+8,17-0312,1,1 Available,PROFESSIONAL MINATURE PROBE HOOK BLACKRC,GBP0.90,GBP0.00,GBP0.90
+9,34-0655,1,1 Available,PROTOBLOC 2 BREADBOARD,GBP4.39,GBP0.00,GBP4.39
+10,18-0200,1,1 Available,PP3 9V ALKALINE BATTERY "Not For Retail Sale",GBP1.37,GBP0.00,GBP1.37
+,,,,,,,,GBP4.95,GBP24.93,GBP4.35,GBP29.28
+      </programlisting>
+    </para>
+
+    <para>A similar file after processing with the <application>Python</application> script.</para>
+
+    <para>
+        <programlisting language="python">
+MEC-0071,,000013,,,,34-0655 &gt; PROTOBLOC 2 BREADBOARD,ea,Expenses:Materials General,1,4.39,,,,no,,,,,,,,
+MEC-0071,,000013,,,,18-0105 &gt; PP3 / PP6 BATTERY CLIP 150MM (RC),ea,Expenses:Materials General,10,0.06,,,,no,,,,,,,,
+MEC-0071,,000013,,,,62-0370 &gt; 1k CR25 0.25W CF Resistor Pk 100,ea,Expenses:Materials General,1,0.50,,,,no,,,,,,,,
+MEC-0071,,000013,,,,62-0354 &gt; 220R CR25 0.25W CF Resistor Pk 100,ea,Expenses:Materials General,1,0.50,,,,no,,,,,,,,
+MEC-0071,,000013,,,,34-5548 &gt; PLAIN DOCUMENT WALLET ASSORTED PK 50 RE,ea,Expenses:Materials General,1,6.95,,,,no,,,,,,,,
+MEC-0071,,000013,,,,62-0386 &gt; 4k7 CR25 0.25W CF Resistor Pk 100,ea,Expenses:Materials General,1,0.50,,,,no,,,,,,,,
+MEC-0071,,000013,,,,34-0860 &gt; COPPER CLAD SRBP SS 100 X 160 (RC),ea,Expenses:Materials General,5,0.50,,,,no,,,,,,,,
+MEC-0071,,000013,,,,18-0163 &gt; PP3 BATTERY HOLDER WITH FLYING LEADS RC,ea,Expenses:Materials General,5,0.23,,,,no,,,,,,,,
+MEC-0071,,000013,,,,73-4290 &gt; ATMEGA8-16PU 8-BIT MICRO 8K DIL-28 (RC),ea,Expenses:Materials General,3,1.99,,,,no,,,,,,,,
+MEC-0071,,000013,,,,81-0014 &gt; BC108 NPN GP TRANSISTOR RC,ea,Expenses:Materials General,20,0.16,,,,no,,,,,,,,
+MEC-0071,,000013,,,,DELIVERY,ea,Expenses:Postage,1,4.95,,,,no,,,,,,,,
+MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
+        </programlisting>
+    </para>
+
+    <para>
+      As can be seen there are some fields that are absent and some that
+      are not required for import. The first line is not required and the last
+      line is superfluous as <application>&app;</application> will total the order for us. All that is
+      required is to take what we want and produce an output file with the
+      correct format to import into <application>&app;</application>. In this case we join the part
+      number and description fields and these become description in <application>&app;</application>
+      invoice/bill. We need the qty and part price fields. Contrary to the
+      header line <acronym>VAT</acronym> is not included by line and is always zero, the <acronym>VAT</acronym> is
+      calculated on the last line as <acronym>VAT</acronym> on the order total.
+      <note>
+        <para>This will cause problems later.</para>
+      </note>
+      In this example I have assigned the
+      <emphasis>Expenses:Materials General</emphasis> account to be the target account. This can be
+      changed after import in the usual way, along with any other data. If there
+      is no such account as <emphasis>Expenses:Materials General</emphasis> then that field will be
+      left blank on import and will have to be set manually. Lines beginning
+      with a <quote>#</quote> are regarded as comment lines and ignored.
+    </para>
+
+    <para>The script is called with the following command:</para>
+      <para> <command>python importer.py <replaceable>file_to_import</replaceable>,
+      <replaceable>invoice_id</replaceable> &gt; <replaceable>file_to_save_as.csv</replaceable></command>
+      </para>
+    <para>This short script can easily be
+      changed to suit any downloaded format. The only restriction is that the
+      final number of field is fixed, at least at the moment. The importer will
+      ignore lines with the wrong number of fields. (This may be fixed in future
+      version). Vendor ID is simply the ID assigned to the specific vendor, or
+      client. The row[N] items refer to the position in the line where the
+      correct data lies. Note that the first field is row[0] NOT row[1].
+    </para>
+
+    <para>Once you have converted the file navigate to <menuchoice><guimenu>Business</guimenu>
+      <guimenuitem>Invoice &amp; Bill Import</guimenuitem></menuchoice> to open a new import window. 
+      Select the file you have just created, select <guilabel>Bill</guilabel> 
+      or <guilabel>Invoice</guilabel> and <guilabel>Comma separated</guilabel> format. At this
+      point the data should show up in the preview window. Check that the field
+      data are in the correct columns before selecting <guibutton>OK</guibutton>. Once imported the
+      invoice can be opened for editing and posting in the usual way.
+    </para>
+
+    <para>A note on <acronym>VAT</acronym>, or any purchase tax. As previously mentioned <emphasis>Rapid
+      Electronics</emphasis> calculate the <acronym>VAT</acronym> on the bill total not line by line. <application>&app;</application>
+      calculated the <acronym>VAT</acronym> per line then totals the <acronym>VAT</acronym>. This can lead to
+      inaccuracies in the <acronym>VAT</acronym> of the region of a few pennies and is enough to
+      cause problems when reconciling the purchase with your bank or credit card
+      account used to make the purchase. As to how you overcome that, for the
+      moment, is a problem for you to use whatever method suits your conscience
+      or accountant best. Personally I add the <acronym>VAT</acronym> as a separate line along with
+      delivery charges manually. So some work is left to the user but the tedium
+      of entering each item eliminated.
+    </para>
+
+    <para>Future: Currently the import format is quite strict and many users
+      may have problems with the conversion process. Adding a template for every
+      possible vendor <acronym>CSV</acronym> format would be mammoth and likely impossible task
+      notwithstanding the fact the vendors are likely to change the format
+      without informing the <application>&app;</application> team. Future import enhancements will be
+      based on user feedback and hopefully the process can be made simpler or
+      more flexible. Note that often <quote>simple</quote> is incompatible with
+      <quote>flexible</quote>.
+    </para>
+
+    <note>
+    <para>If <application>Python</application> (other languages are avaialble) is not your thing then
+      post a request to <ulink url="https://lists.gnucash.org/mailman/listinfo/gnucash-user"><citetitle>&app; user list</citetitle></ulink>, 
+      with an example of your downloaded <acronym>CSV</acronym>, and someone may write you a <application>Python</application> script to do the
+      translation.
+    </para>
+    </note>
+
+    <sect2 id="python-author-notes">
+      <title>Notes for <application>Python</application> authors</title>
+
+      <para>In order for the import to succeed the number of fields must be
+        adhered to, so the trailing commas are important.
+      </para>
+
+      <para>A complete list of the required fields is:</para>
+
+      <para>id, date_opened, owner_id, billingid, notes, date, desc, action,
+        account, quantity, price, disc_type, disc_how, discount, taxable,
+        taxincluded, tax_table, date_posted, due_date, account_posted,
+        memo_posted, accu_splits,
+      </para>
+      <note>
+        <para>Mind the trailing comma.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="python-import-fields">
+      <title>A brief description of each field</title>
+
+      <itemizedlist>
+        <listitem>
+          <para><emphasis>id</emphasis> -
+            The invoice number. All lines must
+            contain this or the line will be rejected.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>date_opened</emphasis> -
+            Todays date is inserted if this is blank.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>owner_id</emphasis> -
+            ID number of the vendor or customer. All lines must
+            contain this or the line will be rejected.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>billingid</emphasis> -
+            Billing ID.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>notes</emphasis> -
+            Invoice notes.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>date</emphasis> -
+            The date of the item line. Can be left blank for todays
+            date.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>desc</emphasis> -
+            Description as per normal invoice or bill.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>action</emphasis> -
+            For bills usually <quote>ea</quote>.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>account</emphasis> -
+            Account to which the item is attributed.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>quantity</emphasis> -
+            Quantity of each item. Must contain a value or the line
+            will be rejected.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>price</emphasis> -
+            Price of each item. Must contain a value or the line will be
+            rejected.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>disc_type</emphasis> -
+            Type of discount, either <quote>%</quote> or <quote>TODO</quote>, only applies to
+            invoices. Some experimentation may be required here as may be currency
+            dependent.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>disc_how</emphasis> -
+            Only applies to invoices.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>discount</emphasis> -
+            Amount of discount to be applied. only applies to
+            invoices.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>taxable</emphasis> -
+            Will tax be applied to the item? <quote>y</quote> or blank.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>taxincluded</emphasis> -
+            Is tax included in the item price? <quote>y</quote> or blank.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>tax_table</emphasis> -
+            Tax table to apply to item.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>date_posted</emphasis> -
+            If posted, what date. Normally left blank for manual
+            posting after editing the invoice.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>due_date</emphasis> -
+            Date payment is due.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>account_posted</emphasis> -
+            Posted to what account.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>memo_posted </emphasis>-
+            If posted insert memo here.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis>accu_splits</emphasis> -
+            Accumulate splits? <quote>y</quote> or blank.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+  </sect1>
+</chapter>
