@@ -1,3 +1,5 @@
+
+
 <!-- (Do not remove this comment block.)
 
 Version: 2.4.0
@@ -8,54 +10,45 @@ Maintainers:
 Author:
   Mike Evans <mikee@saxicola.co.uk>
 
+
     Translators:
     (translators put your name and email here)
 -->
-
 <chapter id="ch_python_bindigs">
-  <title>Python Extensions</title>
+  <title>Python拡張</title>
   <para>
-    <application>&app;</application> historically has always been a
-    traditional application in the sense that you open it, use it to
-    manipulate your financial data via the windows it presents, save your
-    data and close the windows again. This has the inherent limitation that
-    you can only do whatever the windows, menus and toolbars allow you to do.
+    <application>&app;</application>には歴史があり、財務データを扱うためにはウィンドウを開いて、操作し、保存し、閉じる必要があるという意味では伝統的なアプリケーションです。
+ウィンドウ、メニュー、およびツールバーで行えることには本質的に限界があります。
   </para>
   <para>
-    Sometimes you might need a little more flexibility. For example, you
-    need a report with just a little different information than what the
-    built-in reports provide, or you want to automate a frequently recurring
-    action. Such custom manipulations are ideal candidates to write in one
-    or the other scripting language.
+    もう少し柔軟性が必要な場合があるかもしれません。
+例えば、組み込み帳票が提供する情報と少し異なっているだけの帳票が必要な場合、または頻繁に行う作業を自動化したい場合などです。
+そのようなカスタム操作は、スクリプト言語を書く理想的な候補です。
   </para>
   <para>
-    Starting with <application>&app;</application> version 2.4 you can
-    write <application>Python</application> scripts to manipulate your financial data.
+    <application>&app;</application>バージョン2.4
+からは財務データを操作するために<application>Python</application>スクリプトを書くことが出来るようになりました。
   </para>
   <note>
-    <para>The <application>Python</application> extensions are an optional feature in the source code.
-      To be able to use <application>Python</application> scripts, <application>&app;</application> must
-      have been compiled with this option enabled, otherwise all what follows
-      won&rsquo;t work. At present this option is not enabled by default, so if you
-      need this, you may have to compile <application>&app;</application> from
-      source yourself.
+    <para><application>Python</application>拡張はソースコードでのオプション機能です。
+<application>Python</application>スクリプトを有効にするためには、<application>Python</application>拡張を有効にして<application>&app;</application>をコンパイルしなければいけません。そうでない場合は動作しません。
+現在のところこのオプションはデフォルトで無効です。必要な場合は<application>&app;</application>を自力でコンパイルしなければいけないかもしれません。
     </para>
   </note>
-  <para>The <application>Python</application> extensions come with a couple of ready to use scripts. This
-    chapter will show you how to use some of these.
+  <para><application>Python</application>拡張を使用するためには二つの準備ができていなければいけません。
+本章ではどのように使用するかについて説明します。
   </para>
   <note>
-    <para>This chapter is not about how to write your own <application>Python</application> scripts.
-      Refer to the developer documentation for that instead.
+    <para>本章ではどのように<application>Python</application>スクリプトを書くかに関しては説明しません。
+代わりに開発者向け文書を参照してください。
     </para>
   </note>
 
   <sect1 id="python-import-invoices">
-    <title>Import Bills or Invoices</title>
+    <title>得意先請求書または仕入先請求書のインポート</title>
 
-    <para>In order for the importer to work the data must be in a fixed field
-      length, comma separated line format. A example <application>Python</application> script to convert
-      a downloaded order is shown below.
+    <para>インポートを動作させるには、データが固定フィールド、コンマ区切りのデータでなければいけません。
+ダウンロードした注文を変換する<application>Python</application>スクリプト例を次に示します。
     </para>
 
     <para>
@@ -83,8 +76,8 @@ for row in Reader:
       </programlisting>
     </para>
 
-    <para>Example of a downloaded vendor order from <emphasis>Rapid Electronics</emphasis> (UK).
-      <programlisting language="python" linenumbering="unnumbered">
+    <para><emphasis>Rapid Electronics</emphasis> (UK)
+からダウンロードした仕入先注文の例は次のようになります。<programlisting language="python" linenumbering="unnumbered">
 line number,product code,quantity,availability,product description,unit price,discounts,line total,delivery,sub total,vat,grand total
 1,47-3524,100,100 Available,BC848C SOT-23 NPN TRANSISTOR (INF) (RC),GBP0.03,GBP0.00,GBP0.03
 2,47-3278,30,30 Available,L78L05ACZ 0.1A +5V VOLTAGE REG (ST) (RC),GBP0.18,GBP0.00,GBP0.18
@@ -100,7 +93,7 @@ line number,product code,quantity,availability,product description,unit price,di
       </programlisting>
     </para>
 
-    <para>A similar file after processing with the <application>Python</application> script.</para>
+    <para><application>Python</application>スクリプトで処理した後の同じファイルは次のようになります。</para>
 
     <para>
         <programlisting language="python">
@@ -120,218 +113,197 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
     </para>
 
     <para>
-      As can be seen there are some fields that are absent and some that
-      are not required for import. The first line is not required and the last
-      line is superfluous as <application>&app;</application> will total the order for us. All that is
-      required is to take what we want and produce an output file with the
-      correct format to import into <application>&app;</application>. In this case we join the part
-      number and description fields and these become description in <application>&app;</application>
-      invoice/bill. We need the qty and part price fields. Contrary to the
-      header line <acronym>VAT</acronym> is not included by line and is always zero, the <acronym>VAT</acronym> is
-      calculated on the last line as <acronym>VAT</acronym> on the order total.
-      <note>
-        <para>This will cause problems later.</para>
+      見て分かる通りいくつかのフィールドは空白で、いくつかのフィールドはインポートには必要ありません。
+最初の行は不要です。また、<application>&app;</application>が注文金額を合計するので最後の行も余計です。
+必要なのは、欲しい項目を選択して<application>&app;</application>にインポートできる正しい形式で出力ファイルを生成することです。
+この場合、パーツ番号と説明文列を連結して<application>&app;</application>得意先請求書/仕入先請求書の説明欄に入力します。
+また、数量と単価の列も必要です。
+反対に<acronym>VAT</acronym>(付加価値税)列は含まれず、常に0になっています。<acronym>VAT</acronym>は最後の行で注文の合計金額に対して計算しています。
+<note>
+        <para>これは後々問題の原因となります。</para>
       </note>
-      In this example I have assigned the
-      <emphasis>Expenses:Materials General</emphasis> account to be the target account. This can be
-      changed after import in the usual way, along with any other data. If there
-      is no such account as <emphasis>Expenses:Materials General</emphasis> then that field will be
-      left blank on import and will have to be set manually. Lines beginning
-      with a <quote>#</quote> are regarded as comment lines and ignored.
+この例では、資金移動勘定科目として<emphasis>費用:一般部材</emphasis>勘定科目を割り当てています。
+勘定科目や他のデータはインポート後に通常の方法で変更することができます。
+<emphasis>費用:一般部材</emphasis>勘定科目が無い場合は、フィールドを空にしておき、インポート時に手動で設定します。
+<quote>#</quote>で始まる行はコメントとして無視されます。
     </para>
 
-    <para>The script is called with the following command:</para>
+    <para>スクリプトは次のコマンドで呼び出します。</para>
       <para> <command>python importer.py <replaceable>file_to_import</replaceable>,
-      <replaceable>invoice_id</replaceable> &gt; <replaceable>file_to_save_as.csv</replaceable></command>
+<replaceable>invoice_id</replaceable> &gt;
+<replaceable>file_to_save_as.csv</replaceable></command>
       </para>
-    <para>This short script can easily be
-      changed to suit any downloaded format. The only restriction is that the
-      final number of field is fixed, at least at the moment. The importer will
-      ignore lines with the wrong number of fields. (This may be fixed in future
-      version). Vendor ID is simply the ID assigned to the specific vendor, or
-      client. The row[N] items refer to the position in the line where the
-      correct data lies. Note that the first field is row[0] NOT row[1].
+    <para>この短いスクリプトはダウンロード形式に合わせて容易に変更できます。
+今のところ残っている唯一の制限はフィールド数が固定ということです。
+インポートツールはフィールド数に誤りがある行を無視します。
+(将来のバージョンでは修正されます)
+VENDOR_IDは仕入先を特定するために割り当てるIDです。
+raw[N]
+項は行内のデータがあるフィールド位置を表します。
+最初のフィールドがraw[1]ではなくraw[0]であることに注意が必要です。
     </para>
 
-    <para>Once you have converted the file navigate to <menuchoice><guimenu>Business</guimenu>
-      <guimenuitem>Invoice &amp; Bill Import</guimenuitem></menuchoice> to open a new import window. 
-      Select the file you have just created, select <guilabel>Bill</guilabel> 
-      or <guilabel>Invoice</guilabel> and <guilabel>Comma separated</guilabel> format. At this
-      point the data should show up in the preview window. Check that the field
-      data are in the correct columns before selecting <guibutton>OK</guibutton>. Once imported the
-      invoice can be opened for editing and posting in the usual way.
+    <para>ファイルの変換が完了したら、<menuchoice><guimenu>ビジネス</guimenu>
+<guimenuitem>得意先請求書&amp;仕入先請求書のインポート</guimenuitem></menuchoice>を選択し、新規インポートウィンドウを開きます。
+作成したファイルを選択し、<guilabel>仕入先請求書</guilabel>または<guilabel>得意先請求書</guilabel>を選択します。そして<guilabel>コンマ(,)区切り</guilabel>形式を選択します。
+この時点でデータを確認するウィンドウが表示されます。
+<guibutton>OK</guibutton>を選択する前に、正しい列にフィールドデータがあることを確認します。
+一回インポートしたら、請求書は通常通編集し、記帳することができます。
     </para>
 
-    <para>A note on <acronym>VAT</acronym>, or any purchase tax. As previously mentioned <emphasis>Rapid
-      Electronics</emphasis> calculate the <acronym>VAT</acronym> on the bill total not line by line. <application>&app;</application>
-      calculated the <acronym>VAT</acronym> per line then totals the <acronym>VAT</acronym>. This can lead to
-      inaccuracies in the <acronym>VAT</acronym> of the region of a few pennies and is enough to
-      cause problems when reconciling the purchase with your bank or credit card
-      account used to make the purchase. As to how you overcome that, for the
-      moment, is a problem for you to use whatever method suits your conscience
-      or accountant best. Personally I add the <acronym>VAT</acronym> as a separate line along with
-      delivery charges manually. So some work is left to the user but the tedium
-      of entering each item eliminated.
+    <para><acronym>VAT</acronym>(付加価値税)、その他の購入時にかかる税金
+(日本の場合は消費税) に関して注意が必要です。
+前に説明した<emphasis>Rapid
+Electronics</emphasis>は仕入先請求書総額に対して<acronym>VAT</acronym>を計算しています。
+一方、<application>&app;</application>では、行の合計ごとに<acronym>VAT</acronym>を計算し、<acronym>VAT</acronym>の金額を合計しています。
+これにより、<acronym>VAT</acronym>の金額に数セントの不整合が生じ、購入に使用した銀行またはクレジットカード勘定科目を照合する時に問題が発生する場合があります。
+さしあたり、それをどう克服するかについては、個人の良心と会計方法に依存します。
+<acronym>VAT</acronym>を別の行に、配送料と併せて手動で入力する人もいます。
+利用者にとっていくつかの作業が残りますが、すべての行を入力するつまらない作業は省くことができます。
     </para>
 
-    <para>Future: Currently the import format is quite strict and many users
-      may have problems with the conversion process. Adding a template for every
-      possible vendor <acronym>CSV</acronym> format would be mammoth and likely impossible task
-      notwithstanding the fact the vendors are likely to change the format
-      without informing the <application>&app;</application> team. Future import enhancements will be
-      based on user feedback and hopefully the process can be made simpler or
-      more flexible. Note that often <quote>simple</quote> is incompatible with
-      <quote>flexible</quote>.
+    <para>今後の課題:
+現在、インポート形式は非常に制限されており、多くの利用者にとって変換方法に課題があります。
+すべての業者の<acronym>CSV</acronym>形式に関するテンプレートを加えることは大きすぎて不可能な作業です。また、業者は<application>&app;</application>チームに連絡しないで形式を変更します。
+今後のインポート機能拡張は利用者からのフィードバックに基づきます。うまくいけば、処理をより簡単であるか、または、より柔軟にすることができます。
+しばしば、<quote>簡単</quote>と<quote>柔軟</quote>は両立しないことに注意します。
     </para>
 
     <note>
-    <para>If <application>Python</application> (other languages are avaialble) is not your thing then
-      post a request to <ulink url="https://lists.gnucash.org/mailman/listinfo/gnucash-user"><citetitle>&app; user list</citetitle></ulink>, 
-      with an example of your downloaded <acronym>CSV</acronym>, and someone may write you a <application>Python</application> script to do the
-      translation.
+    <para><application>Python</application> (または他の利用可能な言語)
+が分からない場合、<ulink
+url="https://lists.gnucash.org/mailman/listinfo/gnucash-user"><citetitle>&app;利用者メーリングリスト</citetitle></ulink>にダウンロードした<acronym>CSV</acronym>の例と併せて要望を投稿してください。誰かが変換用の<application>Python</application>スクリプトを書いてくれるかもしれません。
     </para>
     </note>
 
     <sect2 id="python-author-notes">
-      <title>Notes for <application>Python</application> authors</title>
+      <title><application>Python</application>作者への備考</title>
 
-      <para>In order for the import to succeed the number of fields must be
-        adhered to, so the trailing commas are important.
+      <para>インポートを成功させるには、フィールド数を守らなければいけません。よって行末にあるコンマの数も重要です。
       </para>
 
-      <para>A complete list of the required fields is:</para>
+      <para>必須フィールドの全リストは次の通りです。</para>
 
-      <para>id, date_opened, owner_id, billingid, notes, date, desc, action,
-        account, quantity, price, disc_type, disc_how, discount, taxable,
-        taxincluded, tax_table, date_posted, due_date, account_posted,
-        memo_posted, accu_splits,
+      <para>id, date_opened, owner_id, billingid, notes, date, desc, action, account,
+quantity, price, disc_type, disc_how, discount, taxable, taxincluded,
+tax_table, date_posted, due_date, account_posted, memo_posted, accu_splits,
       </para>
       <note>
-        <para>Mind the trailing comma.</para>
+        <para>行末のコンマに注意してください。</para>
       </note>
     </sect2>
 
     <sect2 id="python-import-fields">
-      <title>A brief description of each field</title>
+      <title>それぞれのフィールドの簡単な説明</title>
 
       <itemizedlist>
         <listitem>
-          <para><emphasis>id</emphasis> -
-            The invoice number. All lines must
-            contain this or the line will be rejected.
+          <para><emphasis>id</emphasis> - 得意先/仕入先請求書番号です。
+すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>date_opened</emphasis> -
-            Todays date is inserted if this is blank.
+空欄の場合、今日の日付が使用されます。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>owner_id</emphasis> -
-            ID number of the vendor or customer. All lines must
-            contain this or the line will be rejected.
+得意先または仕入先のID番号です。
+すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>billingid</emphasis> -
-            Billing ID.
+          <para><emphasis>billingid</emphasis> - 請求IDです。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>notes</emphasis> -
-            Invoice notes.
+          <para><emphasis>notes</emphasis> - 請求書の備考です。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>date</emphasis> -
-            The date of the item line. Can be left blank for todays
-            date.
+          <para><emphasis>date</emphasis> - 項目行の日付です。
+空欄の場合、今日の日付が使用されます。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>desc</emphasis> -
-            Description as per normal invoice or bill.
+通常の得意先/仕入先請求書の説明です。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>action</emphasis> -
-            For bills usually <quote>ea</quote>.
+仕入先請求書では、通常<quote>ea</quote>にします。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>account</emphasis> -
-            Account to which the item is attributed.
+          <para><emphasis>account</emphasis> - 商品の資金移動勘定科目です。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>quantity</emphasis> -
-            Quantity of each item. Must contain a value or the line
-            will be rejected.
+          <para><emphasis>quantity</emphasis> - 商品の数量です。
+すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>price</emphasis> -
-            Price of each item. Must contain a value or the line will be
-            rejected.
+          <para><emphasis>price</emphasis> - 商品の単価です。
+すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>disc_type</emphasis> -
-            Type of discount, either <quote>%</quote> or <quote>TODO</quote>, only applies to
-            invoices. Some experimentation may be required here as may be currency
-            dependent.
+割り引きのタイプです。<quote>%</quote>または<quote>TODO</quote>で指定します。得意先請求書にのみ当てはまります。
+実験では、通貨によってはこのフィールドが必要になります。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>disc_how</emphasis> -
-            Only applies to invoices.
+得意先請求書にのみ適用されます。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>discount</emphasis> -
-            Amount of discount to be applied. only applies to
-            invoices.
+適用する割引の量です。得意先請求書にのみ適用されます。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>taxable</emphasis> -
-            Will tax be applied to the item? <quote>y</quote> or blank.
+商品に税金を適用するかどうかを指定します。<quote>y</quote>または空欄にします。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>taxincluded</emphasis> -
-            Is tax included in the item price? <quote>y</quote> or blank.
+商品価格に税金が含まれているかどうかを指定します。<quote>y</quote>または空欄にします。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>tax_table</emphasis> -
-            Tax table to apply to item.
+商品に適用する税額表を指定します。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>date_posted</emphasis> -
-            If posted, what date. Normally left blank for manual
-            posting after editing the invoice.
+記帳する場合、記帳日を指定します。
+通常は空欄のままにし、請求書を編集した後に手動で記帳します。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>due_date</emphasis> -
-            Date payment is due.
+          <para><emphasis>due_date</emphasis> - 支払期日を指定します。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>account_posted</emphasis> -
-            Posted to what account.
+記帳先勘定科目を指定します。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>memo_posted </emphasis>-
-            If posted insert memo here.
+          <para><emphasis>memo_posted</emphasis> -
+記帳する場合には、説明を指定します。
           </para>
         </listitem>
         <listitem>
           <para><emphasis>accu_splits</emphasis> -
-            Accumulate splits? <quote>y</quote> or blank.
+スプリットを累計するかどうかを指定します。<quote>y</quote>または空欄にします。
           </para>
         </listitem>
       </itemizedlist>

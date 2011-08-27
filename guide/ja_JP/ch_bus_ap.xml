@@ -1,37 +1,51 @@
-<!--
+
+ <!--
       (Do not remove this comment block.)
   Originally designed by Carol Champagne.
   Version: 2.0.0
   Last modified: July 9th 2006
   Maintainers: 
                Chris Lyttle <chris@wilddev.net>
+
   Author:
   		Jon Lapham <lapham@extracta.com.br>
         updated Patrick Schweiger <pks@spiffykitty.com>
-  Translators: Yasuaki Taniguchi <yasuakit@gnail.com>
+  Translators:
                (translators put your name and email here)
 -->
- <chapter id="chapter_bus_ap">
+<chapter id="chapter_bus_ap">
  <title>買掛金</title>
- <para>買掛金 (Accounts Payable, A/P) は、あなたの会社が購入した製品またのサービスで支払が必要な金額を意味します。</para>
+ <para>買掛金 (Accounts Payable, A/P)
+は、あなたの会社が購入した製品またのサービスで支払が必要な金額を意味します。</para>
 
   <sect1 id="bus-ap-concepts1">
   <title>基本概念</title>
-  <para>本章は買掛金に焦点を合わせます。買掛金とはあなたの会社が購入した製品またはサービスで今後支払いの予定がある金額を意味します。</para>
+  <para>本章では買掛金 (Accounts Payable, A/P) に焦点を合わせます。
+買掛金とはあなたの会社が購入した製品またはサービスで今後支払いの予定がある金額を意味します。</para>
    </sect1>
 
   <sect1 id="bus-ap-setup1">
   <title>初期セットアップ</title>
-  <para>&app;でに会社対する買掛金を扱うように設定するためには、準備しなければならない2つの手順があります。1番目の手順は、適切な勘定科目階層を作ることです。2番目の手順は会社を登録することです。</para>
+  <para><application>&app;</application>で会社の買掛金を扱うように設定するには、2つの準備が完了していなければいけません。
+一つ目は適切な勘定科目階層を作ることです。そして二つ目は<application>&app;</application>に会社を登録することです。</para>
 
   <sect2 id="bus-ap-setupacct2">
   <title>勘定科目のセットアップ</title>
 
-      <para>ビジネス勘定科目階層を設定するには多くの異なった方法があります。ビジネス勘定科目をセットアップするには、新規勘定科目階層ウイザードを開始するか、手動で作成します。事前定義されたビジネス勘定科目にアクセスするためには、&app;を開始し、<guimenu>ファイル</guimenu>-&gt;<guimenuitem>新規ファイル</guimenuitem>をクリックします。そして利用可能な勘定科目のリストが表れるまで進み、ビジネス勘定科目を選択します。</para>
+      <para>ビジネス勘定科目階層をセットアップするには多くの異なる方法があります。
+ビジネス勘定科目をセットアップするには、新規勘定科目階層アシスタントを開始するか、手動で作成します。
+事前定義されたビジネス勘定科目にアクセスするためには、<application>&app;</application>を開始し、<menuchoice><guimenu>ファイル</guimenu><guimenuitem>ファイルを新規作成</guimenuitem></menuchoice>をクリックします。そして利用可能な勘定科目のリストが表れるまで進み、ビジネス勘定科目を選択します。</para>
 
-      <para>事前定義されたビジネス勘定科目階層は、完全には要求を満たしません。勘定科目階層があなた特有の状況でうまく機能するように調整を行う必要があります。使用開始する場合には十分綿密に行うことをお勧めします。</para>
+      <para>事前定義されたビジネス勘定科目階層は、完全にはニーズを満たしません。
+勘定科目階層があなた特有の状況でうまく機能するように調整を行う必要があります。
+十分綿密に調整してから使用開始することを推奨します。</para>
 
-      <para>買掛金 (Accounts Payable, A/P) とは、あなたの会社が購入した製品またのサービスで支払をまだ行っていない金額を意味します。これは、それらの支払いを予定しているので負債として貸借対照表に表されます。&app;の統合買掛金システムを使用するためには、最初に<emphasis>買掛金</emphasis>タイプの勘定科目をセットアップしなければなりません。通常、<emphasis>買掛金</emphasis>勘定科目は負債の下の子勘定科目です。統合買掛金システムでは、この勘定科目の中に取引を配置します。</para>
+      <para>買掛金 (Accounts Payable, A/P)
+は、あなたの会社が購入した製品またのサービスで支払をまだ行っていない金額を意味します。
+これはそのうち支払いを予定しているので、貸借対照表には負債として計上します。
+<application>&app;</application>の統合買掛金システムを使用するためには、最初に<emphasis>買掛金</emphasis>タイプの勘定科目をセットアップしなければいけません。
+通常、<emphasis>買掛金</emphasis>勘定科目は負債の子勘定科目にします。
+統合買掛金システムでは、この勘定科目の中に取引を配置します。</para>
   <literallayout>
 基本的な買掛金勘定科目階層 :
 
@@ -41,16 +55,19 @@
    -買掛金
 -費用
    -買掛金費用
-  </literallayout>
+</literallayout>
 
  
- <para>この階層を実用的にするためには、追加の資産勘定科目と本当の費用勘定科目を加える必要があります。この階層の重要な一面は、費用勘定科目と<emphasis>買掛金</emphasis>勘定科目タイプに設定された買掛金勘定科目が必要ということです。</para>
+ <para>
+有効に利用するためには、この階層に追加の資産および実際の費用勘定科目を加える必要があります
+この階層の重要な側面は、費用勘定科目および<emphasis>買掛金</emphasis>タイプに設定されている買掛金負債勘定科目を使用することです。</para>
   </sect2>
 
   <sect2 id="bus-ap-setupcname2">
-  <title>会社登録</title>
+  <title>会社の登録</title>
 
-      <para>勘定科目構造を作成した後、&app;ファイルに自身の会社情報を登録します。会社情報を登録するためには、<guimenu>ファイル</guimenu>-&gt;<guimenuitem>プロパティ</guimenuitem>を選択します。</para>
+      <para>勘定科目構造を作成した後、<application>&app;</application>ファイルに自身の会社情報を登録します。
+会社情報を登録するためには、<menuchoice><guimenu>ファイル</guimenu><guimenuitem>プロパティ</guimenuitem></menuchoice>を選択します。</para>
 
       <itemizedlist>
         <listitem>
@@ -67,117 +84,146 @@
 
   <sect1 id="bus-ap-components1">
   <title>システムコンポーネント</title>
-  <para>&app;には、統合された買掛金システムがあります。 買掛金システムによって作り出される取引は発生したことの記録として買掛金勘定科目の中に記録されます。一般的には直接この勘定科目では運用しません。その代わり4個の統合&app;買掛金アプリケーションコンポーネント使用します。買掛金コンポーネントは<guimenu>ビジネス</guimenu>-&gt;<guisubmenu>仕入先</guisubmenu>サブメニューから利用可能です。これらの買掛金コンポーネントは以下の通りです。</para>
+  <para><application>&app;</application>には、統合された買掛金システムがあります。
+買掛金システムによって作成される取引は買掛金勘定科目の中に記録されます。
+一般的にこの勘定科目内で直接作業をせず、4種類の統合<application>&app;</application>買掛金アプリケーションコンポーネントを通じて使用します。
+買掛金コンポーネントは<menuchoice><guimenu>ビジネス</guimenu><guisubmenu>仕入先</guisubmenu></menuchoice>サブメニューから使用可能です。
+これらの買掛金コンポーネントは次の通りです。</para>
 
   <itemizedlist>
   <listitem>
-  <para><guilabel>仕入先</guilabel>は、あなたが信用で製品またはサービスを購入する人々または会社です。</para>
+  <para><guilabel>仕入先</guilabel>は信用取引で製品またはサービスを購入する人々または会社です。</para>
   </listitem>
   <listitem>
-  <para><guilabel>仕入先請求書</guilabel>は仕入先が支払いを請求するために発信する物理的な請求書を表します。請求書は購入したものに関する商品一覧を含んでいます。</para>
+  <para><guilabel>仕入先請求書</guilabel>は仕入先が支払いを請求するために送る物理的な請求書を表します。
+この仕入先請求書には購入した商品一覧が含まれます。</para>
   </listitem>
   <listitem>
-  <para><guilabel>仕入先請求のまとめ</guilabel> (オプション) は仕入先請求書をまとめる方法を登録するところです。仕入先請求書のまとめ作業は特定の仕入先からの複数の請求書をひとまとまりにすることができる仕組みです。</para>
+  <para><guilabel>請求のまとめ</guilabel>(オプション)では仕入先からの請求をまとめたものを登録します。
+請求のまとめは特定の仕入先からの複数の請求を一まとまりにすることができる仕組みです。</para>
   </listitem>
   <listitem>
-  <para><guilabel>支払処理</guilabel>は、仕入先に行った支払いを登録するのに使用します。</para>
+  <para><guilabel>支払処理</guilabel>は仕入先からの買掛となっている支払いを登録するために使用します。</para>
   </listitem>
   </itemizedlist>
 
-  <para>以下の項は個々の買掛金アプリケーションコンポーネントを紹介します。</para>
+  <para>次の節ではそれぞれの買掛金アプリケーションコンポーネントを紹介します。</para>
  </sect1>
 
   <sect1 id="bus-ap-vendors1">
   <title>仕入先</title>
- <para>仕入先は、あなたが商品またはサービスを購入する会社または個人です。買掛金システムの中に仕入先を登録しなければなりません。</para>
+ <para>仕入先は、あなたが商品またはサービスを購入する会社または個人です。
+買掛金システムの中に仕入先を登録しなければいけません。</para>
  
   <sect2 id="bus-ap-vendornew2">
   <title>新規作成</title>
- <para>新規の仕入先を登録するためには、<guimenu>ビジネス</guimenu>-&gt;<guisubmenu>仕入先</guisubmenu>-&gt;<guimenuitem>仕入先を新規作成</guimenuitem>メニュー項目を選択します。会社名称、住所、電話、ファックスなどの一般的な仕入先情報を入力します。 以下に、別の項目一覧があります。</para>
+ <para>新規の仕入先を登録するためには<guilabel>メニューバー</guilabel>から<menuchoice><guimenu>ビジネス</guimenu><guisubmenu>仕入先</guisubmenu><guimenuitem>仕入先を新規作成</guimenuitem></menuchoice>を選択します。
+会社名、住所、電話、ファックスなどの仕入先情報を入力します。
+それ以外の項目一覧を次に示します。 </para>
 
  <itemizedlist>
  <listitem>
- <para><guilabel>識別情報 - 仕入先番号</guilabel> - この仕入先について照会する時の番号です。空白の状態にしておくと、数が自動的に選ばれます。</para>
+ <para><guilabel>識別情報 - 仕入先番号</guilabel> -
+この仕入先について照会する時の番号です。
+空白の状態にしておくと、数が自動的に選ばれます。</para>
  </listitem>
  <listitem>
- <para><guilabel>識別情報 - アクティブ</guilabel> - アクティブな仕入先とアクティブでない仕入先を区別します。昔のアクティブでない仕入先が多くあり、アクティブであるとマークされたものだけを知りたい時に有効です。</para>
+ <para><guilabel>識別情報-アクティブ</guilabel>-アクティブな仕入先とアクティブでない仕入先を区別します。
+昔のアクティブでない仕入先が多くあり、アクティブであるとマークされたものだけを知りたい時に有効です。</para>
  </listitem>
  <listitem>
- <para><guilabel>支払先 - 名前</guilabel> - 支払を行うことになっている個人の連絡名です。</para>
+ <para><guilabel>支払先住所 - 名前</guilabel> -
+支払を行うことになっている個人の連絡名です。</para>
  </listitem>
  <listitem>
- <para><guilabel>備考</guilabel> - 仕入先に関する追加コメントを記録します。例えば、仕入先の会社の中で連絡先となっている人々の名前を追跡するために使用します。</para>
+ <para><guilabel>備考</guilabel> -
+仕入先に関する追加コメントを記録します。
+例えば、仕入先の会社の中で連絡先となっている人々の名前を追跡するために使用します。</para>
  </listitem>
  <listitem>
- <para><guilabel>支払情報 - 通貨</guilabel> - 支払いのデフォルト通貨を指定します。</para>
+ <para><guilabel>支払情報 - 通貨</guilabel> -
+支払いのデフォルト通貨を指定します。</para>
  </listitem>
  <listitem>
- <para><guilabel>支払情報 - 条件</guilabel> - 仕入先のデフォルト支払条件を指定します。<guimenu>ビジネス</guimenu>-><guimenuitem>支払条件エディタ</guimenuitem>を使用して支払条件を前もって登録しなければなりません。</para>
+ <para><guilabel>支払情報 - 支払条件</guilabel> -
+この仕入先のデフォルト支払条件を指定します。
+<menuchoice><guimenu>ビジネス</guimenu><guimenuitem>支払条件エディタ</guimenuitem></menuchoice>を使用して、支払条件を前もって登録しなければいけません。</para>
  </listitem>
 
  <listitem>
- <para><guilabel>支払情報 - 税込</guilabel> - 税金が仕入先からの請求に含まれているかどうか指定します。<guilabel>はい</guilabel>、<guilabel>いいえ</guilabel>、<guilabel>グローバル設定を使用</guilabel>のいずれかを選択できます。
+ <para><guilabel>支払情報 - 税込</guilabel> -
+税金が仕入先からの請求に含まれているかどうかを指定します。
+<guilabel>はい</guilabel>、<guilabel>いいえ</guilabel>、<guilabel>全体の設定を使用</guilabel>のいずれかを選択できます。
           <itemizedlist>
               <listitem>
-                <para><guilabel>はい</guilabel>は税金が請求の合計に既に含まれていることを意味します。 </para>
+                <para><guilabel>はい</guilabel>は税金が仕入先請求書の金額に既に含まれていることを意味します。</para>
               </listitem>
 
               <listitem>
-                <para><guilabel>いいえ</guilabel>は税金が含まれていないことを意味します。</para>
+                <para><guilabel>いいえ</guilabel>は、税金が含まれていないことを意味します。</para>
               </listitem>
 
               <listitem>
-                <para><guilabel>グローバル設定を使用</guilabel>は<guimenu>編集</guimenu>-&gt;<guimenuitem>設定</guimenuitem>を通じてアクセス可能なグローバル設定を使用します。</para>
+                <para><guilabel>全体の設定を使用</guilabel>は<menuchoice><guimenu>編集</guimenu>
+<guimenuitem>設定</guimenuitem></menuchoice>(Mac OS
+Xの場合は<menuchoice><guimenu>&app;</guimenu><guimenuitem>設定</guimenuitem></menuchoice>)
+を通じてアクセス可能な全体の設定を使用します。</para>
               </listitem>
             </itemizedlist></para>
  </listitem>
  <listitem>
- <para><guilabel>支払情報 - 税率表</guilabel> - 仕入先から請求に適用するためのデフォルト税率表を指定します。<guimenu>ビジネス</guimenu>-&gt;<guimenuitem>税率表エディタ</guimenuitem>メニュー項目から税率表を登録しなければなりません。</para>
+ <para><guilabel>支払情報-税額表</guilabel> -
+仕入先請求書の商品に適用するデフォルト税額表を指定します。
+<menuchoice><guimenu>ビジネス</guimenu><guimenuitem>税額表エディタ</guimenuitem></menuchoice>メニュー項目から税額表を登録しなければいけません。</para>
  </listitem>
  </itemizedlist>
 
-  <para>仕入先を新規作成ウィンドウはこのようになります。</para>
+  <para><guilabel>仕入先を新規作成</guilabel>ウィンドウは次のようになります。</para>
 	<screenshot id="bus-ap-vendornew">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_vendornew.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
+  <mediaobject>
+	    <imageobject> <imagedata fileref="figures/bus_ap_vendornew.png"
+srccredit="Patrick Schweiger" format="PNG"/> </imageobject>
 	    <textobject>
 	        <phrase>仕入先を新規作成ウィンドウ</phrase>
 	    </textobject>
 	    <caption>
-	       <para>仕入先を新規作成ウィンドウ</para>
+	       <para>仕入先を新規作成ウィンドウ
+	       </para>
 	    </caption>
-          </mediaobject>
-        </screenshot>
+          </mediaobject></screenshot>
 
   </sect2>
   <sect2 id="bus-ap-vendorfind2">
   <title>検索と編集</title>
 
- <para>既存の仕入先検索するためには、<guimenu>ビジネス</guimenu>-&gt;<guisubmenu>仕入先</guisubmenu>-><guimenuitem>仕入先を検索</guimenuitem>で表示されるウィンドウを利用します。検索結果から参照または編集する仕入先を選択します。このウィンドウは、仕入先請求書を入力して支払を処理するときに、仕入先を探すのにも使用されます。</para>
+ <para>既存の仕入先を検索するためには、<menuchoice><guimenu>ビジネス</guimenu><guisubmenu>仕入先</guisubmenu><guimenuitem>仕入先を検索</guimenuitem></menuchoice>ウィンドウを使用します。
+検索結果から仕入先を選択し、<guibutton>仕入先を表示/編集する</guibutton>を選択します。
+このウィンドウは、仕入先請求書を入力して支払処理をする時に、仕入先を探すためにも使用します。</para>
 	<screenshot id="bus-ar-vendorfind">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_vendorfind.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
+  <mediaobject>
+	    <imageobject> <imagedata fileref="figures/bus_ap_vendorfind.png"
+srccredit="Patrick Schweiger" format="PNG"/> </imageobject>
 	    <textobject>
-	        <phrase>仕入先検索ウインドウ</phrase>
+	        <phrase>仕入先を検索ウインドウ</phrase>
 	    </textobject>
 	    <caption>
-	       <para>仕入先検索ウインドウ</para>
+	       <para>仕入先を検索ウインドウ
+	       </para>
 	    </caption>
-          </mediaobject>
-        </screenshot>
+          </mediaobject></screenshot>
 
-      <para>多くの仕入先が入力した検索条件に一致した場合、現在の結果の中で追加検索を実行することによって検索結果を絞り込むことが出来ます。<guilabel>現在の検索結果を絞り込む</guilabel>ラジオボタンが選択されていると現在の検索結果の中で検索されます。&app;では実際には最初の検索を実行した後にこのオプションを選択できるようになります。</para>
+      <para>多くの仕入先が入力した検索条件に一致した場合、現在の結果の中で絞り込み検索を実行することによって検索結果を絞り込むことが出来ます。
+<guilabel>現在の検索結果を絞り込む</guilabel>ラジオボタンが選択されている場合、現在の検索結果の中で検索されます。
+<application>&app;</application>では実際には最初の検索を実行した後にこのオプションを選択できるようになります。</para>
 
-      <para>探している仕入先が指定した検索条件に一致しなかったら、検索条件を変更し、<guilabel>新規検索</guilabel>ラジオボタンをクリックしてから、<guibutton>検索</guibutton>ボタンをクリックします。適切な手順は<guilabel>新規検索</guilabel>を選択することです。仕入先が元の検索の結果に無く、この検索結果を絞り込むだけであったら、新しい検索条件にかかわらず仕入先を見つけることができません。</para>
+      <para>探している仕入先が指定した検索条件に一致しない場合、検索条件を変更し、<guilabel>新規検索</guilabel>ラジオボタンをクリックしてから、<guilabel>検索</guilabel>ボタンをクリックします。
+適切な手順は<guilabel>新規検索</guilabel>を選択することです。
+仕入先が元の検索の結果に無く、この検索結果を絞り込むだけであった場合、新しい検索条件にかかわらず仕入先を見つけることができません。</para>
 
  <note>
- <para>すべての登録しているアクティブな仕入先のリストに戻ってくるには、検索条件に<guilabel>正規表現に一致する</guilabel>を設定し、単一のドット<quote>.</quote>をテキストフィールドに入力します。 <guilabel>アクティブなデータのみを検索</guilabel>がチェックされていることを確認してから、<guibutton>検索</guibutton>をクリックしてください。正規表現<quote>.</quote>は、何にでも一致することを意味します。</para>
+ <para>すべての登録しているアクティブな仕入先のリストに戻ってくるには、検索条件に<guilabel>正規表現に一致する</guilabel>を選択し、単一のドット<quote>.</quote>をテキスト欄に入力します。
+<guilabel>アクティブなデータのみを検索</guilabel>がチェックされていることを確認してから、<guibutton>検索</guibutton>をクリックしてください。
+正規表現<quote>.</quote>は、何にでも一致することを意味します。</para>
  </note>
 
   </sect2>
@@ -185,172 +231,225 @@
 
   <sect1 id="bus-ap-bills1">
   <title>仕入先請求書</title>
- <para>仕入先請求書は仕入先から受け取る支払請求書です。&app;で仕入先請求書を追跡することができます。</para>
+ <para>仕入先請求書は仕入先から受け取る支払請求書です。
+<application>&app;</application>で仕入先請求書の追跡をすることができます。</para>
   <sect2 id="bus-ap-billnew2">
   <title>新規作成</title>
- <para>仕入先から請求書を受け取って、それを&app;に入力したい場合は、新規の請求書を作成しなければなりません。新規の請求書を作成するには、<guimenu>ビジネス</guimenu>-&gt;<guisubmenu>仕入先</guisubmenu>-&gt;<guimenuitem>仕入先請求書の新規作成</guimenuitem>メニュー項目を使用して、表示されたウインドウは適切に入力します。</para>
+ <para>仕入先から仕入先請求書を受け取り、それを<application>&app;</application>に入力する場合は、仕入先請求書を新規作成しなければいけません。
+仕入先請求書を新規作成するには、<guilabel>メニューバー</guilabel>から<menuchoice><guimenu>ビジネス</guimenu><guisubmenu>仕入先</guisubmenu><guimenuitem>仕入先請求書の新規作成</guimenuitem></menuchoice>を選択し、表示されるウインドウに適切に入力します。</para>
   <itemizedlist>
   <listitem>
-  <para><guilabel>得意先請求書情報 - 得意先請求書ID</guilabel> (オプション) - 仕入先にって発行された請求書に関する識別番号です。(すなわち、仕入先がこの請求書のために利用する内部番号。)</para>
+  <para><guilabel>得意先請求書情報 - 得意先請求書ID</guilabel>
+(オプション) - 仕入先が発行した請求書の識別番号
+(すなわち仕入先がこの請求書のために使用する内部番号)
+です。</para>
   </listitem>
   <listitem>
-  <para><guilabel>得意先請求書情報 - 作成日</guilabel> - 得意先請求書が仕入先によって発行された日付です。</para>
+  <para><guilabel>得意先請求書情報 - 作成日</guilabel> -
+得意先請求書が仕入先によって発行された日付です。</para>
   </listitem>
   <listitem>
-  <para><guilabel>請求情報 - 仕入先</guilabel> - 請求書を発行した仕入先です。</para>
+  <para><guilabel>請求情報 - 仕入先</guilabel> -
+仕入先請求書を発行した仕入先です。
+<guilabel>仕入先を新規作成</guilabel>ウィンドウで入力した仕入先の<emphasis>会社名</emphasis>を覚えている場合、この欄に入力を始めると<application>&app;</application>は自動的に残りを補完します。
+覚えていない場合は、<guibutton>選択...</guibutton>ボタンをクリックし、<xref
+linkend="bus-ap-vendorfind2"
+/>で説明した<guilabel>仕入先を検索</guilabel>ウィンドウにアクセスします。
+検索結果で探している仕入先をクリックしてハイライト表示し、次に<guibutton>選択</guibutton>ボタンを押します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>請求情報 - 請求のまとめ</guilabel> (オプション) - 仕入先請求書を請求のまとめに関連させます。後の項で仕入先請求のまとめについて説明します。</para>
+  <para><guilabel>請求情報 - 請求のまとめ</guilabel> (オプション) -
+この仕入先請求書を請求のまとめ (<xref linkend="bus-ap-jobs1"
+/>を参照) に関連づけます。
+<guilabel>請求のまとめを新規作成</guilabel>ウィンドウで入力した<emphasis>請求のまとめの名前</emphasis>を覚えている場合、この欄に入力を始めると<application>&app;</application>は自動的に残りを補完します。
+覚えていない場合は、<guibutton>選択...</guibutton>ボタンをクリックし、<guilabel>請求のまとめを検索</guilabel>ウィンドウにアクセスします。
+このウィンドウは<xref linkend="bus-ap-vendorfind2"
+/>で説明したものとほぼ同じです。
+検索結果で探している請求のまとめをクリックしてハイライト表示し、次に<guibutton>選択</guibutton>ボタンを押します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>請求情報 - 請求ID</guilabel> (オプション) - 仕入先によって請求書につけられたIDです (例えば請求書番号)。</para>
+  <para><guilabel>請求情報 - 請求ID</guilabel> (オプション) -
+仕入先によって仕入先請求書につけられたID
+(例えば得意先請求書番号) です。</para>
   </listitem>
   <listitem>
-  <para><guilabel>請求情報 - 支払条件</guilabel> - この請求書の支払条件です。登録されている支払い条件のリストをポップアップから選択することが可能です。選択した仕入先にデフォルト値を指定していた場合、この欄はデフォルトで初期化されます。</para>
+  <para><guilabel>請求情報 - 支払条件</guilabel> -
+この仕入先請求書の支払条件契約です。
+登録されている支払条件のリストをポップアップメニューの中から利用可能です。
+選択した仕入先にデフォルト値を指定していた場合、この欄はデフォルトで初期化されます。</para>
   </listitem>
   <listitem>
-  <para><guilabel>入金相殺を行うデフォルトのプロジェクト - 得意先</guilabel> (オプション) - この請求書に関連させる得意先です。これは、後で得意先に請求するために使用されます。</para>
+  <para><guilabel>入金相殺を行うデフォルトのプロジェクト -
+得意先</guilabel> (オプション) -
+この仕入先請求書に関連づける得意先です。
+後で得意先に請求するためにこれを使用します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>入金相殺を行うデフォルトのプロジェクト - 請求のまとめ</guilabel> (オプション) - この請求書に関連させる請求のまとめです。</para>
+  <para><guilabel>入金相殺を行うデフォルトのプロジェクト -
+請求のまとめ</guilabel> (オプション) -
+この仕入先請求書に関連させる請求のまとめです。</para>
   </listitem>
   </itemizedlist>
 
 	<screenshot id="bus-ap-billnew">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_billnew.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
+  <mediaobject>
+	    <imageobject> <imagedata fileref="figures/bus_ap_billnew.png"
+srccredit="Patrick Schweiger" format="PNG"/> </imageobject>
 	    <textobject>
-	        <phrase>仕入先請求書の新規作成ウインドウ</phrase>
+	        <phrase>仕入先請求書を新規作成ウインドウ</phrase>
 	    </textobject>
 	    <caption>
-	       <para>仕入先請求書の新規作成ウインドウ</para>
+	       <para>仕入先請求書を新規作成ウインドウ
+	       </para>
 	    </caption>
-          </mediaobject>
-        </screenshot>
+          </mediaobject></screenshot>
 
 
   <para><guibutton>OK</guibutton>ボタンをクリックして、<guilabel>仕入先請求書を編集</guilabel>ウィンドウを開きます。</para>
   </sect2>
   <sect2 id="bus-ap-billedit2">
   <title>編集</title>    
-  <para>仕入先請求書を編集ウィンドウにおいて、勘定科目登録作業と同様の方法であなたが購入したものに関する項目別表をこの請求書に入力できます。</para>  
+  <para><guilabel>仕入先請求書を編集</guilabel>ウィンドウでは、勘定科目記録簿での作業と同じ方法で購入した商品一覧を入力できます。</para>  
   	<screenshot id="bus-ap-billedit">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_billedit.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
+  <mediaobject>
+	    <imageobject> <imagedata fileref="figures/bus_ap_billedit.png"
+srccredit="Patrick Schweiger" format="PNG"/> </imageobject>
 	    <textobject>
 	        <phrase>仕入先請求書を編集ウィンドウ</phrase>
 	    </textobject>
 	    <caption>
 	       <para>仕入先請求書を編集ウィンドウ</para>
 	    </caption>
-          </mediaobject>
-        </screenshot>
+          </mediaobject></screenshot>
 
-  <para>請求書入力欄は12列あります。</para>
+  <para><guilabel>得意先請求書項目</guilabel>欄は12列あります。</para>
   <itemizedlist>
   <listitem>
-  <para><guilabel>日付</guilabel> - この商品を販売した日付。</para>
+  <para><guilabel>日付</guilabel> - この商品を販売した日付です。</para>
   </listitem>
   <listitem>
-  <para><guilabel>請求対象?</guilabel> - <guilabel>X</guilabel>は商品がこの請求書に加えられていることを意味します。空欄の場合は商品がこの請求書に加えられていないことを意味します。空欄の場合、商品行を選択してこの欄をクリックすることにより、商品を請求書に加えることができます。</para>
+  <para><guilabel>請求対象?</guilabel> -
+<guilabel>X</guilabel>は商品がこの請求書に加えられていることを意味します。空欄の場合は商品がこの請求書に加えられていないことを意味します。
+空欄の場合、商品行を選択してこの欄をクリックすることにより、商品を請求書に加えることができます。</para>
   </listitem>
   <listitem>
-  <para><guilabel>説明</guilabel> (オプション) - 商品またはサービスに関する説明です。</para>
+  <para><guilabel>説明</guilabel> (オプション) -
+商品またはサービスに関する説明です。</para>
   </listitem>
   <listitem>
-  <para><guilabel>アクション</guilabel> (オプション) - 利用者定義欄です。ここには原価部門情報を配置します。または、時間、材料、プロジェクトの3つの既定義アクションのいずれかに使用します。</para>
+  <para><guilabel>アクション</guilabel> (オプション) -
+利用者定義欄です。
+ここには原価部門情報や、3つの既定義アクションである時間、材料、プロジェクトなどで使用します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>費用勘定科目</guilabel> - この欄の費用勘定科目を変更する場合に選択します。</para>
+  <para><guilabel>費用勘定科目</guilabel> -
+この商品の費用勘定科目を変更する場合に選択します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>数量</guilabel> - 購入した商品の数量を追跡します。</para>
+  <para><guilabel>数量</guilabel> -
+購入した商品の数量を追跡します。</para>
   </listitem>
   <listitem>
   <para><guilabel>単価</guilabel> - 商品単価を入力します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>課税?</guilabel> - この商品が課税対象になるかどうかを入力します。<guilabel>X</guilabel>は課税対象になることを意味します。空欄の場合は課税対象外であることを意味します。欄をクリックすることによって、<guilabel>課税?</guilabel> が順番に切り変わります。</para>
+  <para><guilabel>課税?</guilabel> -
+この商品が課税対象になるかどうかを入力します。
+<guilabel>X</guilabel>
+は課税対象になることを意味します。空欄の場合は課税対象外であることを意味します。
+欄をクリックすることによって、<guilabel>課税?</guilabel>が順番に切り変わります。</para>
   </listitem>
   <listitem>
-  <para><guilabel>税込?</guilabel> - 税金が単価に含まれているかどうかを入力します。<guilabel>X</guilabel>Xは税込であることを意味します。空欄の場合は税抜であることを意味します。</para>
+  <para><guilabel>税込?</guilabel>-税金が単価に含まれているかどうかを入力します
+<guilabel>X</guilabel>は税込であることを意味します。空欄の場合は税抜であることを意味します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>税率表</guilabel> (オプション) - この欄はすべての利用可能な税率表のポップアップメニューです。商品が課税対象となって、税金が単価に含まれていないなら、この税率表は、税額を計算するのに使用されます。</para>
+  <para><guilabel>税額表</guilabel> (オプション) -
+この欄はすべての利用可能な税額表のポップアップメニューです。
+商品が課税対象で税金が単価に含まれていない場合、この税額表が税額を計算するために使用されます。</para>
   </listitem>
   <listitem>
-  <para><guilabel>小計</guilabel> (編集不可) - この商品 (税抜) の計算された小計です。</para>
+  <para><guilabel>小計</guilabel>(編集不可) -
+この商品(税抜)の小計が計算・表示されます。</para>
   </listitem>
   <listitem>
-  <para><guilabel>請求可能?</guilabel> - この欄は入金相殺/請求のまとめを等に実際に請求を行うことができるかどうかを示します。</para>
+  <para>請求可能? -
+この欄は入金相殺/請求のまとめを等で実際に請求を行うことができるかどうかを示します。</para>
   </listitem>
   </itemizedlist>
 
-  <para>すべての欄に入力が完成したら仕入先請求書を<guilabel>記帳</guilabel>できます。</para>
+  <para>すべての欄の入力が終わったら、仕入先請求書を<guilabel>記帳</guilabel>します。 </para>
   </sect2>
 
   <sect2 id="bus-ap-billpost2">
   <title>記帳</title>
-  <para>仕入先請求書の編集を終了したら、仕入先請求書を<guilabel>記帳</guilabel>しなければなりません。仕入先請求書を記帳をする必要がなければ、仕入先請求書を閉じて後で再開することができます。最終的には仕入先請求書を記帳しなければなりません。仕入先請求書を記帳すると、取引は買掛金勘定科目に記録されます。仕入先請求書記帳ウィンドウが開かれ、以下の情報を入力するように求められます。</para>
+  <para>仕入先請求書を記帳をする必要がなければ、仕入先請求書を閉じて後で再開することができます。
+最終的には仕入先請求書を記帳しなければいけません。
+仕入先請求書を記帳すると、取引は買掛金勘定科目に記録されます。
+仕入先請求書記帳ウィンドウが開かれ、次の情報を入力するように求められます。</para>
 
   	<screenshot id="bus-ap-billpost">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_billpost.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
+  <mediaobject>
+	    <imageobject> <imagedata fileref="figures/bus_ap_billpost.png"
+srccredit="Patrick Schweiger" format="PNG"/> </imageobject>
 	    <textobject>
 	        <phrase>仕入先請求書記帳ウィンドウ</phrase>
 	    </textobject>
 	    <caption>
-	       <para>仕入先請求書記帳ウィンドウ</para>
+	       <para>仕入先請求書記帳ウィンドウ
+	       </para>
 	    </caption>
-          </mediaobject>
-        </screenshot>
+          </mediaobject></screenshot>
 
   <itemizedlist>
     <listitem>
-      <para><guilabel>記帳日</guilabel> - 買掛金勘定科目に入力された取引の日付を指定します。</para>
+      <para><guilabel>記帳日</guilabel> -
+買掛金勘定科目に入力される取引の日付を指定します。
+95%】</para>
     </listitem>
     <listitem>
-      <para><guilabel>期日</guilabel> - 請求書のための支払いが予期される日付です。</para>
+      <para><guilabel>期日</guilabel> - 仕入先請求書の支払い期日です。</para>
           
           <itemizedlist>
             <listitem>
-              <para>請求書を作成した時に支払条件を指定した場合、指定した条件に従って日付が計算されます。入力欄は気にしなくても構いません。</para>
+              <para>仕入先請求書を作成した時に支払条件を指定した場合、指定した条件に従って日付が計算されます。入力欄は気にしなくても構いません。</para>
             </listitem>
 
             <listitem>
-              <para>支払条件を指定しなかったなら、予期された支払い期日をここに入力します。</para>
+              <para>支払条件を指定しなかったなら、予期される支払い期日をここに入力します。</para>
             </listitem>
           </itemizedlist>
     </listitem>
 
     <listitem>
-       <para><guilabel>説明</guilabel> - 任意の説明を入力します。請求書取引が買掛金勘定科目に記録される時、この説明は取引の説明欄に入力されます。</para>
+       <para><guilabel>説明</guilabel> - 任意の説明を入力します。
+仕入先請求書の取引が買掛金勘定科目に記録される時、この説明は取引の説明欄に入力されます。</para>
     </listitem>
 
     <listitem>
-       <para><guilabel>記帳先勘定科目</guilabel> - 請求書取引が記帳される買掛金勘定科目を選択します。存在する買掛金勘定科目のリストから勘定科目を選択できます。</para>
+       <para><guilabel>記帳先勘定科目</guilabel> -
+仕入先請求書の取引が記帳される買掛金勘定科目を選択します。
+存在する買掛金勘定科目の一覧から勘定科目を選択できます。</para>
      </listitem>
 
 
         <listitem>
-          <para><guilabel>スプリットを累積しますか?</guilabel> - 複数の請求が同じ勘定科目への資金移動であった場合に、その資金移動を一つのスプリットに結合するか、個別に入力するかを決定します。便箋と封筒を購入したサンプル請求書の例では、以下のような記帳結果になります。</para>
+          <para><guilabel>スプリットを累計する</guilabel> -
+仕入先請求書の複数の商品が同じ勘定科目への資金移動であった場合に、その資金移動を一つのスプリットに結合するか、個別に入力するかを決定します。
+便箋と封筒を購入したサンプル請求書の例では、次のような記帳結果になります。</para>
 
           <itemizedlist>
             <listitem>
-              <para>選択した場合 (スプリットは累積されます) - 費用:オフィス用品勘定科目からの100.00ドル分の一つの資金移動として記録されます。</para>
+              <para>選択した場合(スプリットは累計されます) -
+<emphasis>費用:事務用具</emphasis>勘定科目から100.00ドルの一回の資金移動として記録されます。</para>
             </listitem>
 
             <listitem>
-              <para>選択しない場合 - 費用:オフィス用品勘定科目から、75.00ドルと25.00ドルの2つの資金移動が存在する取引が買掛金勘定科目に生成されます。スプリットの摘要欄はそれぞれ、便箋と封筒の購入 (請求書に入力された商品の説明) が表示されます。</para>
+              <para>選択しない場合 -
+<emphasis>費用:事務用具</emphasis>勘定科目から75.00ドルと25.00ドルの2回の資金移動を行うスプリット取引が買掛金勘定科目に作成されます。
+スプリットの摘要欄にはそれぞれ、便箋と封筒の購入
+(仕入先請求書に入力された商品の説明)
+が表示されます。</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -359,13 +458,17 @@
 
   <sect2 id="bus-ap-billfind2">
   <title>検索</title>
-  <para>既存の仕入先請求書を検索するためには、<guimenu>ビジネス</guimenu>-&gt;<guisubmenu>仕入先</guisubmenu>-&gt;<guimenuitem>仕入先請求書を検索</guimenuitem>を利用します。検索結果から、請求書の編集または参照を選択できます。</para>
+  <para>既存の仕入先請求書を検索するためには、<menuchoice><guimenu>ビジネス</guimenu><guisubmenu>仕入先</guisubmenu><guimenuitem>仕入先請求書を検索</guimenuitem></menuchoice>を使用します。
+検索結果から編集または参照する仕入先請求書を選択します。</para>
   <note>
-  <para>記帳済み請求書を編集する前に、請求書の<guibutton>記帳を取り消す</guibutton>必要があります。</para>
+  <para>記帳済み仕入先請求書を編集する前に、仕入先請求書の<guilabel>記帳を取り消す</guilabel>必要があります。</para>
   </note>
 
   <note>
-  <para>既存の仕入先請求書にアクセスする他の方法があります。これらはあなたの得意先請求書にアクセスする方法と同様です。請求書検索の詳細情報に関しては<xref linkend="chapter_bus_ar" />を参照してください。</para>
+  <para>既存の仕入先請求書にアクセスする他の方法もあります。
+これらは得意先請求書にアクセスする方法と同様です。
+詳細に関しては<xref linkend="bus-ar-invoicefind2"
+/>を参照してください。</para>
   </note>
 
   </sect2>
@@ -373,98 +476,130 @@
 
   <sect1 id="bus-ap-jobs1">
   <title>仕入先請求のまとめ</title>
-  <para>仕入先請求のまとめは、同じ仕入先にからの複数の請求を一まとまりにするのに使用されます。仕入先請求のまとめ機能の使用はオプションです。同じ仕入先からの複数の<quote>請求</quote>があり、まとめた請求書に関連するすべての請求を見たい時、この機能は役に立ちます。</para>
-  <para>仕入先請求のまとめ機能を使用するためには、<guimenu>ビジネス</guimenu>-&gt;<guisubmenu>仕入先</guisubmenu>-&gt;<guimenuitem>請求のまとめを新規作成</guimenuitem>を選択します。<guilabel>請求のまとめを新規作成</guilabel>ウィンドウが表示されます。編集可能な欄は以下の通りです。</para>
+  <para>仕入先請求のまとめは、同じ仕入先からの複数の請求を一まとまりにするのに使用します。
+仕入先請求のまとめ機能の使用はオプションです。
+同じ仕入先からの複数の<guilabel>請求</guilabel>があり、まとめた請求に関連するすべての仕入先請求書を見たい時、この機能は役に立ちます。</para>
+  <para>仕入先請求のまとめ機能を使用するためには、<menuchoice><guimenu>ビジネス</guimenu><guisubmenu>仕入先</guisubmenu><guimenuitem>請求のまとめを新規作成</guimenuitem></menuchoice>を選択します。
+<guilabel>請求のまとめを新規作成</guilabel>ウィンドウが表示されます。
+編集可能な欄は次の通りです。</para>
 
 
     <itemizedlist>
       <listitem>
-        <para><guilabel>請求のまとめ情報 - 請求のまとめ番号</guilabel> (オプション) - この請求のまとめのために番号を入力します。空欄にした場合、自動的に番号が選択されます。</para>
+        <para><guilabel>請求のまとめ情報 - 請求のまとめ番号</guilabel>
+(オプション) -
+この請求のまとめのために番号を入力します。
+空欄にした場合、自動的に番号が選択されます。</para>
       </listitem>
 
       <listitem>
-        <para><guilabel>請求のまとめ情報 - 請求のまとめの名前</guilabel> - 新規の請求のまとめに割り当てる名前を入力します。</para>
+        <para><guilabel>請求のまとめ情報 - 請求のまとめの名前</guilabel>
+- 新規請求のまとめに割り当てる名前を入力します。</para>
       </listitem>
 
       <listitem>
-        <para><guilabel>所有者情報 - 仕入先</guilabel> - 請求のまとめの作成対象となる仕入先を入力します。</para>
+        <para><guilabel>所有者情報 - 仕入先</guilabel> -
+請求のまとめの作成対象となる仕入先を入力します。</para>
       </listitem>
 
       <listitem>
-        <para><guilabel>所有者情報 - 請求ID</guilabel> - この請求のまとめを識別する番号です (例えば、発送伝票番号)。</para>
+        <para><guilabel>所有者情報 - 請求ID</guilabel> -
+この仕入先請求のまとめを参照するための番号です
+(例えば、注文番号)。</para>
       </listitem>
 
       <listitem>
-        <para><guilabel>アクティブな請求のまとめ</guilabel> - 請求のまとめをアクティブにするか非アクティブにするかを切り替えます。多くの非アクティブな請求のまとめを持っている場合に役に立ちます。アクティブと設定されている請求のまとめだけを検索するのが簡単になります。</para>
+        <para><guilabel>アクティブな請求のまとめ</guilabel> -
+請求のまとめをアクティブにするか非アクティブにするかを切り替えます。
+多くの非アクティブな請求のまとめを持っている場合に役に立ちます。アクティブと設定されている請求のまとめだけを検索するのが簡単になります。</para>
       </listitem>
     </itemizedlist>
 
   	<screenshot id="bus-ap-jobnew">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_jobnew.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
-            </imageobject>
+  <mediaobject>
+	    <imageobject> <imagedata fileref="figures/bus_ap_jobnew.png" srccredit="Jon
+Lapham" format="PNG"/> </imageobject>
 	    <textobject>
 	        <phrase>仕入先請求のまとめを新規作成</phrase>
 	    </textobject>
 	    <caption>
 	       <para>仕入先請求のまとめを新規作成</para>
 	    </caption>
-          </mediaobject>
-        </screenshot>
+          </mediaobject></screenshot>
 
 
-    <para>既存の仕入先請求のまとめを編集するためには、<guimenu>ビジネス</guimenu>-&gt;<guisubmenu>仕入先</guisubmenu>-&gt;<guimenuitem>請求のまとめを検索</guimenuitem>を使用します。 検索結果で編集する請求のまとめを選択して、<guibutton>請求のまとめの参照/編集</guibutton>ボタンをクリックします。</para>
+    <para>既存の仕入先請求のまとめを編集するためには、<menuchoice><guimenu>ビジネス</guimenu><guisubmenu>仕入先</guisubmenu><guimenuitem>請求のまとめを検索</guimenuitem></menuchoice>を使用します。
+検索結果で編集する請求のまとめを選択して、<guibutton>請求のまとめの参照/編集</guibutton>ボタンをクリックします。</para>
 
-    <para>請求のまとめに関連している請求書を選択するためには、<guimenu>ビジネス</guimenu>-&gt;<guisubmenu>仕入先</guisubmenu>-&gt;<guimenuitem>請求のまとめを検索</guimenuitem>を使用します。検索結果における望みの請求のまとめを選択して、まとめた<guibutton>請求の参照</guibutton>ボタンをクリックします。本請求書に関連している請求一覧を表示するウィンドウが表示されます。メインウィンドウで請求書エディタを開くためには、請求書を選択して、<guibutton>請求書を参照</guibutton>ボタンをクリックします。</para>
+    <para>請求のまとめに関連している仕入先請求書を選択するためには、<menuchoice><guimenu>ビジネス</guimenu><guisubmenu>仕入先</guisubmenu><guimenuitem>請求のまとめを検索</guimenuitem></menuchoice>を使用します。
+検索結果で目的の請求のまとめを選択して、<guibutton>得先請求書を表示</guibutton>ボタンをクリックします。
+この請求書のまとめに関連している仕入先請求書一覧を表示するウィンドウが表示されます。
+メインウィンドウで仕入先請求書エディタを開くためには、仕入先請求書を選択して、<guibutton>得先請求書を表示</guibutton>ボタンをクリックします。</para>
   </sect1>
 
   <sect1 id="bus-ap-payment1">
   <title>支払処理</title>
-  <para>最終的に、仕入先請求書に対して支払いを行う必要があります。支払を行うために、<guimenu>ビジネス</guimenu>-&gt;<guisubmenu>仕入先</guisubmenu>-&gt;<guimenuitem>支払処理</guimenuitem>メニューを選択し、支払手続を行います。</para>
-  <para>支払処理は以下のように構成されています。</para>
+  <para>最終的に、仕入先請求書に対して支払いを行う必要があります。
+支払いを行うためには、<menuchoice><guimenu>ビジネス</guimenu><guisubmenu>仕入先</guisubmenu><guimenuitem>支払処理</guimenuitem></menuchoice>メニューを選択し、支払処理を行います。</para>
+  <para>支払処理の構成は次のようになります。</para>
   <itemizedlist>
   <listitem>
-  <para><guilabel>支払情報 - 仕入先</guilabel> - 支払を行おうとしている仕入先を入力します。</para>
+  <para><guilabel>支払情報 -仕入先</guilabel> -
+支払を行う仕入先を入力します。
+<guilabel>仕入先を新規作成</guilabel>ウィンドウで入力した仕入先の<emphasis>会社名</emphasis>を覚えている場合、この欄に入力を始めると<application>&app;</application>は自動的に残りを補完します。
+覚えていない場合は、<guibutton>選択...</guibutton>ボタンをクリックし、<xref
+linkend="bus-ap-vendorfind2"
+/>で説明した<guilabel>仕入先を検索</guilabel>ウィンドウにアクセスします。
+検索結果で探している仕入先をクリックしてハイライト表示し、次に<guibutton>選択</guibutton>ボタンを押します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>支払情報 - 仕入先請求書</guilabel> - 支払を行う請求書を入力します。</para>
+  <para><guilabel>支払情報 - 仕入先</guilabel> -
+支払いを行う仕入先を入力します。
+<emphasis>仕入先請求書ID</emphasis>を覚えている場合、この欄に入力を始めると<application>&app;</application>は自動的に残りを補完します。
+覚えていない場合は、<guibutton>選択...</guibutton>ボタンをクリックし、<xref
+linkend="bus-ap-billfind2"
+/>で説明した<guilabel>仕入先を検索</guilabel>ウィンドウにアクセスします。
+検索ウィンドウの検索結果で探している仕入先をクリックしてハイライト表示し、次に<guibutton>選択</guibutton>ボタンを押します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>支払情報 - 日付</guilabel> - 支払いを行おうとしている日付を入力します。通常は今日の日付です。</para>
+  <para><guilabel>支払情報 - 日付</guilabel> -
+支払いを行う日付を入力します。通常は今日の日付です。</para>
   </listitem>
   <listitem>
-  <para><guilabel>支払情報 - 金額</guilabel> - この支払いで資金移動を行う金額を入力します。 </para>
+  <para><guilabel>支払情報 - 金額</guilabel> -
+この支払いで資金移動を行う金額を入力します。 </para>
   </listitem>
   <listitem>
-  <para><guilabel>支払情報 - 番号</guilabel> - 小切手番号を入力します。</para>
+  <para><guilabel>支払情報 - 番号</guilabel> -
+小切手番号を入力します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>支払情報 - 摘要</guilabel> - この支払いに関する摘要を入力します。</para>
+  <para><guilabel>支払情報 - 摘要</guilabel> -
+この支払いに関する摘要を入力します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>記帳先</guilabel> - この取引を記帳する買掛金勘定科目を入力します。 </para>
+  <para><guilabel>記帳先</guilabel> -
+この取引を記帳する買掛金勘定科目を入力します。</para>
   </listitem>
   <listitem>
-  <para><guilabel>資金移動元勘定科目</guilabel> - 資金移動元勘定科目 - 支払いを行う元となる勘定科目 (例えば当座預金勘定科目) を入力します。</para>
+  <para><guilabel>資金移動勘定科目</guilabel> -
+支払いを行う元となる勘定科目
+(例えば当座預金勘定科目) を入力します。</para>
   </listitem>
   </itemizedlist>
-    <para>&app;買掛金支払ウィンドウは以下のようになります。</para>
+    <para><application>&app;</application>の売掛金支払ウィンドウは次のようになります。</para>
   	<screenshot id="bus-ap-payment">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_payment.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
+  <mediaobject>
+	    <imageobject> <imagedata fileref="figures/bus_ap_payment.png"
+srccredit="Patrick Schweiger" format="PNG"/> </imageobject>
 	    <textobject>
 	        <phrase>支払処理</phrase>
 	    </textobject>
 	    <caption>
-	       <para>支払処理ウィンドウ</para>
+	       <para>支払処理ウィンドウ
+	       </para>
 	    </caption>
-          </mediaobject>
-        </screenshot>
+          </mediaobject></screenshot>
 
  </sect1>
 
