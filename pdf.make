@@ -11,9 +11,9 @@ pdf: $(pdffile)
 $(fofile): $(entities)
 
 .xml.fo:
-	xsltproc -o '$@' --stringparam fop1.extensions 1 $(top_srcdir)/xsl/1.75.2/fo/docbook.xsl '$<'
+	$(XSLTPROC) $(XSLTPROCFLAGS) $(XSLTFLAGS_FO) -o '$@' --stringparam fop1.extensions 1 $(top_srcdir)/xsl/1.75.2/fo/docbook.xsl '$<'
 
 .fo.pdf:
-	fop '$<' '$@'
+	$(FOP) $(FOPFLAGS) -fo '$<' -pdf '$@'
 
 CLEANFILES += $(pdffile) $(fofile)
