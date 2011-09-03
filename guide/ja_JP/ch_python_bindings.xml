@@ -27,7 +27,7 @@ Author:
   </para>
   <para>
     <application>&app;</application>バージョン2.4
-からは財務データを操作するために<application>Python</application>スクリプトを書くことが出来るようになりました。
+からは財務データを操作するために<application>Python</application>スクリプトを書くことができるようになりました。
   </para>
   <note>
     <para><application>Python</application>拡張はソースコードでのオプション機能です。
@@ -138,8 +138,7 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
 インポートツールはフィールド数に誤りがある行を無視します。
 (将来のバージョンでは修正されます)
 VENDOR_IDは仕入先を特定するために割り当てるIDです。
-raw[N]
-項は行内のデータがあるフィールド位置を表します。
+raw[N] 項は行内のデータがあるフィールド位置を表します。
 最初のフィールドがraw[1]ではなくraw[0]であることに注意が必要です。
     </para>
 
@@ -148,16 +147,15 @@ raw[N]
 作成したファイルを選択し、<guilabel>仕入先請求書</guilabel>または<guilabel>得意先請求書</guilabel>を選択します。そして<guilabel>コンマ(,)区切り</guilabel>形式を選択します。
 この時点でデータを確認するウィンドウが表示されます。
 <guibutton>OK</guibutton>を選択する前に、正しい列にフィールドデータがあることを確認します。
-一回インポートしたら、請求書は通常通編集し、記帳することができます。
+いったんインポートしたら、請求書は通常通編集し、記帳することができます。
     </para>
 
-    <para><acronym>VAT</acronym>(付加価値税)、その他の購入時にかかる税金
-(日本の場合は消費税) に関して注意が必要です。
+    <para><acronym>VAT</acronym>(付加価値税)、その他の購入時にかかる税金 (日本の場合は消費税) に関して注意が必要です。
 前に説明した<emphasis>Rapid
 Electronics</emphasis>は仕入先請求書総額に対して<acronym>VAT</acronym>を計算しています。
 一方、<application>&app;</application>では、行の合計ごとに<acronym>VAT</acronym>を計算し、<acronym>VAT</acronym>の金額を合計しています。
 これにより、<acronym>VAT</acronym>の金額に数セントの不整合が生じ、購入に使用した銀行またはクレジットカード勘定科目を照合する時に問題が発生する場合があります。
-さしあたり、それをどう克服するかについては、個人の良心と会計方法に依存します。
+差し当たり、それをどう克服するかについては、個人の良心と会計方法に依存します。
 <acronym>VAT</acronym>を別の行に、配送料と併せて手動で入力する人もいます。
 利用者にとっていくつかの作業が残りますが、すべての行を入力するつまらない作業は省くことができます。
     </para>
@@ -170,8 +168,7 @@ Electronics</emphasis>は仕入先請求書総額に対して<acronym>VAT</acron
     </para>
 
     <note>
-    <para><application>Python</application> (または他の利用可能な言語)
-が分からない場合、<ulink
+    <para><application>Python</application> (または他の利用可能な言語) が分からない場合、<ulink
 url="https://lists.gnucash.org/mailman/listinfo/gnucash-user"><citetitle>&app;利用者メーリングリスト</citetitle></ulink>にダウンロードした<acronym>CSV</acronym>の例と併せて要望を投稿してください。誰かが変換用の<application>Python</application>スクリプトを書いてくれるかもしれません。
     </para>
     </note>
@@ -203,13 +200,11 @@ tax_table, date_posted, due_date, account_posted, memo_posted, accu_splits,
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>date_opened</emphasis> -
-空欄の場合、今日の日付が使用されます。
+          <para><emphasis>date_opened</emphasis> - 空欄の場合、今日の日付が使用されます。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>owner_id</emphasis> -
-得意先または仕入先のID番号です。
+          <para><emphasis>owner_id</emphasis> - 得意先または仕入先のID番号です。
 すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
           </para>
         </listitem>
@@ -227,13 +222,11 @@ tax_table, date_posted, due_date, account_posted, memo_posted, accu_splits,
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>desc</emphasis> -
-通常の得意先/仕入先請求書の説明です。
+          <para><emphasis>desc</emphasis> - 通常の得意先/仕入先請求書の説明です。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>action</emphasis> -
-仕入先請求書では、通常<quote>ea</quote>にします。
+          <para><emphasis>action</emphasis> - 仕入先請求書では、通常<quote>ea</quote>にします。
           </para>
         </listitem>
         <listitem>
@@ -252,18 +245,16 @@ tax_table, date_posted, due_date, account_posted, memo_posted, accu_splits,
         </listitem>
         <listitem>
           <para><emphasis>disc_type</emphasis> -
-割り引きのタイプです。<quote>%</quote>または<quote>TODO</quote>で指定します。得意先請求書にのみ当てはまります。
+値引のタイプです。<quote>%</quote>または<quote>TODO</quote>で指定します。得意先請求書にのみ当てはまります。
 実験では、通貨によってはこのフィールドが必要になります。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>disc_how</emphasis> -
-得意先請求書にのみ適用されます。
+          <para><emphasis>disc_how</emphasis> - 得意先請求書にのみ適用されます。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>discount</emphasis> -
-適用する割引の量です。得意先請求書にのみ適用されます。
+          <para><emphasis>discount</emphasis> - 適用する割引の量です。得意先請求書にのみ適用されます。
           </para>
         </listitem>
         <listitem>
@@ -277,13 +268,11 @@ tax_table, date_posted, due_date, account_posted, memo_posted, accu_splits,
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>tax_table</emphasis> -
-商品に適用する税額表を指定します。
+          <para><emphasis>tax_table</emphasis> - 商品に適用する税額表を指定します。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>date_posted</emphasis> -
-記帳する場合、記帳日を指定します。
+          <para><emphasis>date_posted</emphasis> - 記帳する場合、記帳日を指定します。
 通常は空欄のままにし、請求書を編集した後に手動で記帳します。
           </para>
         </listitem>
@@ -292,13 +281,11 @@ tax_table, date_posted, due_date, account_posted, memo_posted, accu_splits,
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>account_posted</emphasis> -
-記帳先勘定科目を指定します。
+          <para><emphasis>account_posted</emphasis> - 記帳先勘定科目を指定します。
           </para>
         </listitem>
         <listitem>
-          <para><emphasis>memo_posted</emphasis> -
-記帳する場合には、説明を指定します。
+          <para><emphasis>memo_posted</emphasis> - 記帳する場合には、説明を指定します。
           </para>
         </listitem>
         <listitem>

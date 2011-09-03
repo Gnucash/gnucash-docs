@@ -15,16 +15,15 @@
 <appendix id="appendixa">
  <title>移行ガイド</title>
  <para>
-本付録は、現在、他の財務ソフトウェアパッケージを利用しているユーザが<application>&app;</application>へ移行することを助けるためのものです。
-他のソフトウェアパッケージに対する<application>&app;</application>勘定科目の割り当ての概念的な差異を扱います。
+本付録は、現在、他の財務ソフトウエアパッケージを使用しているユーザーが<application>&app;</application>へ移行することを助けるためのものです。
+他のソフトウエアパッケージに対する<application>&app;</application>勘定科目の割り当ての概念的な差異を扱います。
   </para>
 
 <sect1 id="appendixa_accts_vs_cats1">
 <title>カテゴリに対する勘定科目の使用</title>
 <para>
-他の個人向け財務プログラムに詳しい場合、すでにカテゴリとして収益と費用を追跡するのに慣れているでしょう。
-<application>&app;</application>は複式記帳法 (2.1節を参照)
-を利用するので、収益、費用は勘定科目で追跡します。
+他の個人向け財務プログラムに詳しい場合、既にカテゴリとして収益と費用を追跡するのに慣れているでしょう。
+<application>&app;</application>は複式記帳法 (2.1節を参照) を使用するので、収益、費用は勘定科目で追跡します。
 基本概念は同じですが、勘定科目構造は一般的な商慣行に従うように、より一貫しています。
 よって、個人利用者だけでなくビジネス利用者も、<application>&app;</application>によって、個人の勘定科目と同様にビジネス勘定科目の動向を追跡することが簡単にできます。
 </para>
@@ -61,21 +60,19 @@ class="registered">Quicken</trademark>および類似のプログラムでは、
 <sect1 id="appendixa_xmlconvert1">
 <title><acronym>XML</acronym> <application>&app;</application>ファイルの変換</title>
  <para><acronym>XSLT</acronym>になじみ深いなら、<application>&app;</application>
-<acronym>XML</acronym>データファイルを他のほとんどいかなるデータフォーマット
-(例: <acronym>QIF</acronym>、<acronym>CSV</acronym>等)
-にかなり容易に変換することができます。
-<application>&app;</application>データファイルは整形式の<acronym>XML</acronym>です。したがって、<acronym>XSLT</acronym>パーサを関連スタイルシートと併せて使用することで変換きます。
+<acronym>XML</acronym>データファイルを他のほとんどいかなるデータフォーマット (例:
+<acronym>QIF</acronym>、<acronym>CSV</acronym>等) にでも、かなり容易に変換することができます。
+<application>&app;</application>データファイルは整形式の<acronym>XML</acronym>です。したがって、<acronym>XSLT</acronym>パーサを関連スタイルシートと併せて使用することで変換できます。
 よって、適切に書かれたスタイルシートがあれば、設計されたほとんどどんな形式にもファイルを変換することができます。</para>
 
   <para>いくつかの手順を次に示します。
-スタイルシートを書くことは異なる時間がかかる仕事です。1つを書くとしたら、必要な作業は次のようになります。</para>
+スタイルシートを書くことは異なる時間がかかる仕事です。一つを書くとしたら、必要な作業は次のようになります。</para>
   <orderedlist>
   <listitem>
   <para><application>&app;</application>ファイルを作業ファイルとしてコピーします。
 作業ファイルの&lt;gnc-v2&gt;タグ部分を次のように変更します。
-<quote>="..."</quote>部分に何でも非常に多くの項目を置くことが出来ることに注意してください。
-伝統的なので<acronym>URL</acronym>を使用しています
-(そのような若い技術と言われるかもしれないですが!)。</para>
+<quote>="..."</quote>部分に何でも非常に多くの項目を置くことができることに注意してください。
+伝統的なので<acronym>URL</acronym>を使用しています (そのような若い技術と言われるかもしれないですが!)。</para>
   <literallayout>
 &lt;gnc-v2 xmlns:cd="http://www.gnucash.org/XML/cd"
         xmlns:book="http://www.gnucash.org/XML/book"
@@ -104,8 +101,7 @@ class="registered">Quicken</trademark>および類似のプログラムでは、
   <para>希望する変換を行う<acronym>XSLT</acronym>スタイルシートを作成するか、または既に書かれたものを取得します(知っている限り一つもありませんが、CSVへの変換は作成中です)。</para>
   </listitem>
   <listitem>
-<para>Saxon (http://saxon.sourceforge.net/) またはXalan-J
-(http://xml.apache.org/)
+<para>Saxon (http://saxon.sourceforge.net/) またはXalan-J (http://xml.apache.org/)
 などのXSLT処理系をインストールします。
 実際には規格に適合していればどんな処理系でも行うことができます。</para>
   </listitem>
@@ -120,13 +116,13 @@ class="registered">Quicken</trademark>および類似のプログラムでは、
   </listitem>
   </orderedlist>
 
-<para>利点は、この変換を行うSchemeモジュールまたは新規Cルーチンを書く必要はないということです。
+<para>利点は、この変換を行うSchemeモジュールまたは新規Cルーティンを書く必要はないということです。
 <acronym>XML</acronym>および<acronym>XSLT</acronym>を知っているか学習すれば誰でもこの作業を行うことができます。
 ウェブページを書くことに比べたらそんなに大変ではありません。</para>
 
-<para>とにかく、この豆記事を
-永久にどこからか得られるものとして単に残したかったのです。
-この処理はバージョン&vers-stable;データファイルで実行できます。それよりも前のバージョンでもできると思います。</para>
+<para>Anyhow, I just wanted this tidbit to be captured somewhere permanently.  The
+process works on &vers-stable; datafiles, and ought to work on earlier
+versions, too.</para>
 
  </sect1>
 

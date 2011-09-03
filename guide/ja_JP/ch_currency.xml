@@ -20,24 +20,22 @@
   <para>本章では、<application>&app;</application>勘定科目で複数の通貨を使用するためのセットアップ方法を説明します。</para>
 
   <sect1 id="currency_concepts1">
-    <title>基本的な概念</title>
+    <title>基本概念</title>
 
-    <para><application>&app;</application>は異なる勘定科目で、アンドラ・フランからジンバブエ・ドルまで、百を超える通貨を使用することをサポートします。
+    <para><application>&app;</application>は異なる勘定科目で、アンドラ・フランからジンバブエ・ドルまで、100を超える通貨を使用することをサポートします。
 例えば、ある銀行の勘定科目をユーロでセットアップし、別の銀行の勘定科目で香港ドルを使用することができます。</para>
 
     <para>複数の通貨を使用する時にいくつか問題が生じます。異なる通貨の勘定科目間で資金移動する時にどうしますか?
-異なる通貨の勘定科目がある時に、どのように総評価額を計算をしますか?
+異なる通貨の勘定科目がある時に、どのように総評価額を計算しますか?
 帳票でどのように異なった通貨を取り扱いますか?</para>
     
     <note>
       <para>通貨の勘定科目を管理する一つの方法については次の節で説明しますが、<application>&app;</application>の機能にある<guilabel>投機</guilabel>勘定科目を使用することもできます。
 <guilabel>投機</guilabel>機能は<application>&app;</application>バージョン2.3.14で導入されました。<menuchoice><guimenu>ファイル</guimenu><guimenuitem>
 プロパティ</guimenuitem></menuchoice>にある<guilabel>勘定科目</guilabel>タブで有効にすることができます。</para>
-      <para><guilabel>投機</guilabel>勘定科目の完全なガイドについては<ulink
-type="http"
+      <para><guilabel>投機</guilabel>勘定科目の完全なガイドについては<ulink type="http"
 url="http://www.mathstat.dal.ca/~selinger/accounting/tutorial.html">Tutorial
-on multiple currency accounting by Peter
-Selinger</ulink>を参照してください。</para>
+on multiple currency accounting by Peter Selinger</ulink>を参照してください。</para>
     </note>
   </sect1>
 
@@ -49,18 +47,17 @@ OS
 Xの場合は<menuchoice><guimenu>&app;</guimenu><guimenuitem>設定</guimenuitem></menuchoice>です)。
 勘定科目構造を構築する時に多くの時間を節約するため、正しくこのパラメータを設定してください。</para>
 
-    <para>帳票
-(貸借対照表や損益計算書など)を表示するためデフォルト通貨も同様に設定できます。
+    <para>帳票 (貸借対照表や損益計算書など)を表示するためデフォルト通貨も同様に設定できます。
 このオプションは<guilabel>&app;設定</guilabel>の<guilabel>帳票</guilabel>タブにある<guilabel>デフォルトの帳票通貨</guilabel>です。
-<application>&app;</application>を開始する時に両方のオプションを設定する必要があるかもしれません。例えば、全ての勘定科目はカナダ・ドルを使用する一方、生成する帳票は全て米ドルを使用する場合です。この場合には、帳票に<quote>選択された勘定科目には選択された期間のデータ/取引が含まれていないかすべて0です。</quote>と表示されるかもしれません。</para>
+<application>&app;</application>を開始する時に両方のオプションを設定する必要があるかもしれません。例えば、すべての勘定科目はカナダ・ドルを使用する一方、生成する帳票はすべて米ドルを使用する場合です。この場合には、帳票に<quote>選択された勘定科目には選択された期間のデータ/取引が含まれていないかすべて0です。</quote>と表示されるかもしれません。</para>
 
     <para>新規勘定科目を作成する時、商品を定義するオプションがあります。
-通貨の勘定科目に関しては、通貨商品リストから単純に選択することで<application>&app;</application>によってサポートされる百以上の通貨のどれでもも指定できます。
+通貨の勘定科目に関しては、通貨商品リストから単純に選択することで<application>&app;</application>によってサポートされる100以上の通貨のどれでも指定できます。
 デフォルト通貨は常に設定で定義した通貨となることに注意してください。
 よって、ほとんどの場合はユーロを使用し、臨時用にエチオピア・ブル勘定科目を持っているなら、設定をユーロにしてください。</para>
 
     <para>例として、典型的な銀行預金口座をセットアップするシナリオを考えます。ほとんどは米ドルで運用しますが、ユーロ通貨を使用するヨーロッパの銀行預金口座を持っていて、加えて香港ドルを使用する香港の銀行預金口座も持っているとします。
-それでは、3つの銀行勘定科目をセットアップします。米ドルを使用する1つ、ユーロ通貨を使用する1つ、および香港ドルを使用する1つです。
+それでは、3つの銀行勘定科目をセットアップします。米ドルを使用する一つ、ユーロ通貨を使用する一つ、および香港ドルを使用する一つです。
 勘定科目構造はおそらく次のようになります。</para>
 
     <literallayout>
@@ -73,7 +70,7 @@ Xの場合は<menuchoice><guimenu>&app;</guimenu><guimenuitem>設定</guimenuite
    -開始残高
       -USD                    (USD)
       -EUR                    (EUR)   
-      -EUR                    (HKD)
+      -HKD                    (HKD)
 
 注: それぞれの勘定科目の通貨は小括弧で表示しています。
 </literallayout>
@@ -85,15 +82,13 @@ Xの場合は<menuchoice><guimenu>&app;</guimenu><guimenuitem>設定</guimenuite
 
     <note>
       <para>単に一つの開始残高勘定科目をセットアップし、<quote>異なる通貨</quote>の勘定科目に対する両替として資金移動することもできます。
-しかしながら、これはより高度なオプションのため、後の節
-(<xref linkend="currency_purchase2" />) で説明します。</para>
+しかしながら、これはより高度なオプションのため、後の節 (<xref linkend="currency_purchase2" />) で説明します。</para>
     </note>
 
     <para>3つの銀行勘定科目にそれぞれ10,000米ドル、10,000ユーロ、および10,000香港ドルある状態で開始した例を次に示します。
 親勘定科目の合計は、同じ通貨を利用する子勘定科目の合計額を示すだけであるのに注意してください。
 後で、通貨間の為替レートを設定し、親勘定科目がすべての子勘定科目の換算値を計算するようにします。
-この方法については後の節<xref linkend="currency_howto1"
-/>を参照してください。</para>
+この方法については後の節<xref linkend="currency_howto1" />を参照してください。</para>
 
     <screenshot id="currency_main1">
 <mediaobject>
@@ -113,9 +108,8 @@ srccredit="Geert Janssens" /> </imageobject>
     <sect2 id="currency_acct_user2">
       <title>利用者定義通貨</title>
 
-      <para>通常、通貨というと政府が発行した通貨のことを意味します(より厳密に言うと<ulink
-url="http://en.wikipedia.org/wiki/ISO_4217">ISO
-4217</ulink>国際標準で定義された通貨です)。
+      <para>通常、通貨と言うと政府が発行した通貨のことを意味します(より厳密に言うと<ulink
+url="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</ulink>国際標準で定義された通貨です)。
 <application>&app;</application>では通貨を利用者が作成することはできません。
 非<acronym>ISO</acronym>通貨を追跡したい場合、2つの回避方法のうちニーズに合う方を使用してください。</para>
 
@@ -130,10 +124,9 @@ url="http://en.wikipedia.org/wiki/ISO_4217">ISO
 欠点はリワードマイルが関係するあらゆる取引のために<quote>価格</quote>を入力しなければいけないということです。なぜなら<application>&app;</application>がリワードマイルの貨幣価値を数値として表し、資産として扱う必要があるからです。</para>
 
       <para>二つ目は<quote>ダミー</quote>通貨の一つとしてリワードマイルを追跡する方法です。
-ダミー通貨には<quote>XTS (検査用符号)</quote>および<quote>XXX
-(通貨無し)</quote>があります。
-これらの1つをリワードマイル勘定科目のために使用する場合、毎回の取引で価格を入力する必要がなく、勘定科目に取引を入力することができます。
-全ての種類の量を追跡するためにこの2個のダミー通貨を使用することができます。&ndash;今年取得および使用したVacation
+ダミー通貨には<quote>XTS (検査用符号)</quote>および<quote>XXX (通貨無し)</quote>があります。
+これらの一つをリワードマイル勘定科目のために使用する場合、毎回の取引で価格を入力する必要がなく、勘定科目に取引を入力することができます。
+すべての種類の量を追跡するためにこの2個のダミー通貨を使用することができます。&ndash;今年取得および使用したVacation
 Dollars、取得および使用した休暇時間、健康保険福利の使用量と残存量などです。
 想像力を十分働かせることにより<application>&app;</application>を財務だけでなく、あらゆる個人の数値を計るハブとして使用することができます。</para>
 
@@ -166,7 +159,7 @@ srccredit="Geert Janssens" /> </imageobject>
       <title>為替レートの手動更新</title>
 
       <para><menuchoice><guimenu>ツール</guimenu>
-<guimenuitem>価格エディタ</guimenuitem></menuchoice>を選択して<guilabel>価格エディタ</guilabel>を開きます。</para>
+<guimenuitem>価格エディター</guimenuitem></menuchoice>を選択して<guilabel>価格エディター</guilabel>を開きます。</para>
 
       <screenshot id="currency_peditor">
 <mediaobject>
@@ -174,10 +167,10 @@ srccredit="Geert Janssens" /> </imageobject>
 srccredit="Geert Janssens" /> </imageobject>
 
           <textobject>
-            <phrase>価格エディタウィンドウ</phrase>
+            <phrase>価格エディターウィンドウ</phrase>
           </textobject>
 
-          <caption><para>価格エディタウィンドウ。 </para></caption>
+          <caption><para>価格エディターウィンドウ。 </para></caption>
         </mediaobject></screenshot>
 
       <para>新規の通貨為替レートを加えるために<guibutton>追加</guibutton>ボタンをクリックします。
@@ -193,7 +186,7 @@ srccredit="Geert Janssens" /> </imageobject>
             <phrase>ユーロ為替レートのセットアップ</phrase>
           </textobject>
 
-          <caption><para>価格エディタの追加ウィンドウ</para></caption>
+          <caption><para>価格エディターの追加ウィンドウ</para></caption>
         </mediaobject></screenshot>
 
       <para> <guilabel>名前空間</guilabel>を<guilabel>CURRENCY</guilabel>にし、<guilabel>証券</guilabel>に<guilabel>EUR(ユーロ)</guilabel>と設定します。
@@ -207,10 +200,10 @@ fileref="figures/currency_BeforeGetOnlineQuotes.png" format="PNG"
 srccredit="Geert Janssens" /> </imageobject>
 
           <textobject>
-            <phrase>価格エディタウィンドウ</phrase>
+            <phrase>価格エディターウィンドウ</phrase>
           </textobject>
 
-          <caption><para>ユーロとU.S.ドルの間の為替レートを設定した後の価格エディタウィンドウ</para></caption>
+          <caption><para>ユーロとU.S.ドルの間の為替レートを設定した後の価格エディターウィンドウ</para></caption>
         </mediaobject></screenshot>
 
       <screenshot id="currency_main2">
@@ -236,7 +229,7 @@ srccredit="Geert Janssens" /> </imageobject>
 それがこの方法です。</para>
 
       <para><menuchoice><guimenu>ツール</guimenu>
-<guimenuitem>価格エディタ</guimenuitem></menuchoice>を選択して<guilabel>価格エディタ</guilabel>を開きます。</para>
+<guimenuitem>価格エディター</guimenuitem></menuchoice>を選択して<guilabel>価格エディター</guilabel>を開きます。</para>
 
       <screenshot id="currency_BeforeGetOnline">
 <mediaobject>
@@ -245,10 +238,10 @@ fileref="figures/currency_BeforeGetOnlineQuotes.png" format="PNG"
 srccredit="Geert Janssens" /> </imageobject>
 
           <textobject>
-            <phrase>価格エディタウィンドウ</phrase>
+            <phrase>価格エディターウィンドウ</phrase>
           </textobject>
 
-          <caption><para>オンライン相場表を取得する前の価格エディタウィンドウ。
+          <caption><para>オンライン相場表を取得する前の価格エディターウィンドウ。
           </para></caption>
         </mediaobject></screenshot>
 
@@ -256,8 +249,7 @@ srccredit="Geert Janssens" /> </imageobject>
 
       <note><para>
          <guibutton>相場表を取得</guibutton>ボタンが無効な場合、<application>Perl</application>モジュール<application>Finance::Quote</application>がインストールされていないことを意味します。
-それをインストールする方法については<xref
-linkend="invest-stockprice-auto2" ></xref>を参照してください。
+それをインストールする方法については<xref linkend="invest-stockprice-auto2" ></xref>を参照してください。
       </para></note>
 
       <para><screenshot id="currency_AfterGetOnlineQuotes">
@@ -266,10 +258,10 @@ linkend="invest-stockprice-auto2" ></xref>を参照してください。
 format="PNG" srccredit="Geert Janssens" /> </imageobject>
 
             <textobject>
-              <phrase>価格エディタウィンドウ</phrase>
+              <phrase>価格エディターウィンドウ</phrase>
             </textobject>
 
-            <caption><para>オンライン相場表を取得した後の価格エディタウィンドウ。 </para></caption>
+            <caption><para>オンライン相場表を取得した後の価格エディターウィンドウ。 </para></caption>
           </mediaobject></screenshot></para>
 
       <para><application>&app;</application>がさまざまな勘定科目に使用しているすべての通貨の為替レートをダウンロードすることを確認できます。
@@ -277,7 +269,7 @@ format="PNG" srccredit="Geert Janssens" /> </imageobject>
 linkend="invest-stockprice-auto2"
 />に従って自動的に相場/為替レートをダウンロードするように設定しておくと、これは毎回行われます。</para>
 
-      <para>メイン勘定科目表を参照すると、<application>&app;</application>が、合計(USD)欄に関してだけでなく、米ドルに設定されている親勘定科目も、自動的に香港ドルの合計額を米ドルの合計額に変換したのがわかります。
+      <para>メイン勘定科目表を参照すると、<application>&app;</application>が、合計(USD)欄に関してだけでなく、米ドルに設定されている親勘定科目も、自動的に香港ドルの合計額を米ドルの合計額に変換したのが分かります。
 ユーロ勘定科目も最新の為替レートによって更新されます。</para>
 
       <screenshot id="currency_main3.png">
@@ -286,7 +278,7 @@ linkend="invest-stockprice-auto2"
 srccredit="Geert Janssens" /> </imageobject>
 
           <textobject>
-            <phrase>価格エディタウィンドウ</phrase>
+            <phrase>価格エディターウィンドウ</phrase>
           </textobject>
 
           <caption><para> オンライン相場を取得した後の勘定科目表。
@@ -300,7 +292,7 @@ srccredit="Geert Janssens" /> </imageobject>
       <para>ある通貨のための最後の勘定科目を削除し、今後その通貨の為替レート取得をしない場合は、次のようにしてください。</para>
       <itemizedlist>
         <listitem>
-          <para><menuchoice><guimenu>ツール</guimenu><guimenuitem>証券エディタ</guimenuitem></menuchoice>を選択し、<guilabel>証券</guilabel>ウィンドウを開きます。</para>
+          <para><menuchoice><guimenu>ツール</guimenu><guimenuitem>証券エディター</guimenuitem></menuchoice>を選択し、<guilabel>証券</guilabel>ウィンドウを開きます。</para>
         </listitem>
         <listitem>
           <para><guilabel>国際通貨を表示</guilabel>チェックボックスを選択します。</para>
@@ -330,7 +322,7 @@ srccredit="Geert Janssens" /> </imageobject>
 
     <para>2)
 同じ通貨を使用する勘定科目すべてが関与する、購入のための個別の勘定科目を使用します。
-追跡と捕捉をはるかに良く行うことが出来るので、これは推奨される方法です。
+追跡と捕捉をはるかに良く行うことができるので、これは推奨される方法です。
 この方法では、一度通貨為替取引を行い、その後に通常の取引を行います。</para>
 
     <para>本節以降では、オプション2)に基づいてより詳しく説明します。</para>
@@ -344,7 +336,7 @@ srccredit="Geert Janssens" /> </imageobject>
 これを行うために、ジャマイカで銀行預金口座を開きました。そしてアメリカからいくらかのお金を移しました。そして、夢であったボートを購入しました
 (最小構成)。</para>
 
-      <para>これを記録するために、<application>&app;</application>では次の基本的な勘定科目構造を使用します。</para>
+      <para>これを記録するために、<application>&app;</application>では次の基本勘定科目構造を使用します。</para>
 
       <literallayout>
 -資産                          (USD)
@@ -360,11 +352,9 @@ srccredit="Geert Janssens" /> </imageobject>
 注: それぞれの勘定科目の通貨は小括弧で表示しています。
 </literallayout>
 
-      <para>最初に、いくらかのお金 (10,000ドル)
-をジャマイカ銀行勘定科目に資金移動する必要があります。このためにいつもの米国銀行勘定科目
+      <para>最初に、いくらかのお金 (10,000ドル) をジャマイカ銀行勘定科目に資金移動する必要があります。このためにいつもの米国銀行勘定科目
 (貸借残高100,000ドル) を使用します。
-銀行は、USD 1 = JMD
-64の為替レートを提示します。また、両替手数料として150米ドルを請求します。</para>
+銀行は、USD 1 = JMD 64の為替レートを提示します。また、両替手数料として150米ドルを請求します。</para>
 
       <screenshot id="currency_purchase_MoveMoney.png">
 <mediaobject>
@@ -394,8 +384,7 @@ srccredit="Bengt Thuree" /> </imageobject>
           <caption><para>通貨取引で為替レートを指定するダイアログウィンドウ</para></caption>
         </mediaobject></screenshot>
 
-      <para><guilabel>為替レート</guilabel>欄に銀行が提示した為替レートである64
-(1 USD = 64 JMD)を入力します。
+      <para><guilabel>為替レート</guilabel>欄に銀行が提示した為替レートである64 (1 USD = 64 JMD)を入力します。
 <guilabel>資金移動</guilabel> (為替レート編集)
 ウィンドウで<guibutton>OK</guibutton>をクリックし、このスプリット取引を保存します。
 メイン勘定科目表は次のようになります。</para>
@@ -428,7 +417,7 @@ format="PNG" srccredit="Bengt Thuree" /> </imageobject>
         </mediaobject></screenshot>
       <para>勘定科目表は、ボートの価格 (509,000ジャマイカ・ドル)
 分銀行勘定科目が減少し、同じ金額分ボート固定資産勘定科目が増加しているのを反映しています。
-また、<guilabel>合計(USD)</guilabel>を表示させると、米ドルでの評価額がわかります。
+また、<guilabel>合計(USD)</guilabel>を表示させると、米ドルでの評価額が分かります。
 米ドルでの評価額は、自動または手動で更新された<application>&app;</application>の最新の為替レートを常に反映します。
       </para>
     </sect2>
@@ -439,15 +428,14 @@ format="PNG" srccredit="Bengt Thuree" /> </imageobject>
       <para>この例では、デフォルトの通貨と異なる通貨で価格を付けられる株式を購入する方法を説明します。</para>
 
       <para>あなたはニューヨークに住んでいて、デフォルトの通貨として米ドルを設定していると仮定します。
-香港ドル建ての香港で取り引きされる株式を購入すると決めます。
+香港ドル建ての香港で取引される株式を購入すると決めます。
 株式と証券会社あたりのさまざまな損益も追跡します。</para>
 
       <para>北京空港 (香港) の株式を購入すると決めます。
 (結局、2008年の北京オリンピックが終了して、価格は現実の世界に戻りました。)</para>
 
       <note><para>
-         この株式 (北京空港)
-は単に例として選んだだけであり、どんな種類の株式購入アドバイスとしてもみなしてはいけません。
+         この株式 (北京空港) は単に例として選んだだけであり、どんな種類の株式購入アドバイスとしても見なしてはいけません。
       </para></note>
 
       <para>銘柄記号が何であるかを調べる必要があります。
@@ -459,8 +447,7 @@ Symbol Lookup (http://finance.yahoo.com/lookup)</citetitle></ulink>
 
       <itemizedlist>
         <listitem>
-          <para><emphasis>北京空港</emphasis>の Yahoo! での銘柄記号は
-0694.HKです。</para>
+          <para><emphasis>北京空港</emphasis>の Yahoo! での銘柄記号は 0694.HKです。</para>
         </listitem>
       </itemizedlist>
       
@@ -489,8 +476,8 @@ srccredit="Bengt Thuree" /> </imageobject>
           <caption><para>国際株式勘定科目表</para></caption>
         </mediaobject></screenshot>
 
-      <para>株式の定義は証券エディタで見ることができます
-(<menuchoice><guimenu>ツール</guimenu><guimenu>証券エディタ</guimenu></menuchoice>)。
+      <para>株式の定義は証券エディターで見ることができます
+(<menuchoice><guimenu>ツール</guimenu><guimenu>証券エディター</guimenu></menuchoice>)。
       </para>
 
       <screenshot id="currency_purchase_Commodities.png">
@@ -506,13 +493,11 @@ format="PNG" srccredit="Bengt Thuree" /> </imageobject>
         </mediaobject></screenshot>
 
       <para>いくらかのお金 (50,000香港ドル)
-を証券会社の現金勘定科目(<emphasis>資産:投資:証券会社:好況:現金</emphasis>)に移していないなら
-、純資産 (香港ドル) 勘定科目または既存の銀行勘定科目
-(通貨両替) を使用して、ここで行います。</para>
+を証券会社の現金勘定科目(<emphasis>資産:投資:証券会社:好況:現金</emphasis>)に移していないなら 、純資産 (香港ドル)
+勘定科目または既存の銀行勘定科目 (通貨両替) を使用して、ここで行います。</para>
 
-      <para>株価が一株当たり3香港ドルであると仮定します。
-この購入を記録するために証券会社の香港ドル現金勘定科目
-(<emphasis>資産:投資:証券会社:好況:現金</emphasis>)
+      <para>株価が1株あたり3香港ドルであると仮定します。
+この購入を記録するために証券会社の香港ドル現金勘定科目 (<emphasis>資産:投資:証券会社:好況:現金</emphasis>)
 を開き、次のように入力します。</para>
 <literallayout>
 株式購入
@@ -521,8 +506,7 @@ format="PNG" srccredit="Bengt Thuree" /> </imageobject>
         資産:投資:証券会社:好況:0694                  入金 49,500 (16,500株)</literallayout>
 
       <para><guilabel>資金移動</guilabel>ダイアログボックスが自動的に現れない場合、株式行を右クリックし、<guilabel>為替・交換レートを編集</guilabel>を選択します。
-<guilabel>資金移動先金額</guilabel>に株式数 (16,500)
-を入力します。
+<guilabel>資金移動先金額</guilabel>に株式数 (16,500) を入力します。
       </para>
       
       <screenshot id="currency_purchase_ToAmount.png">
@@ -553,16 +537,14 @@ format="PNG" srccredit="Bengt Thuree" /> </imageobject>
         </mediaobject></screenshot>
 
       <para>しかしながら、表示されているように、<application>&app;</application>に米ドルと香港ドル間の為替レートを設定していないなら、米ドルの合計は0になります。
-これを修正するためには、<menuchoice><guimenu>ツール</guimenu><guimenuitem>価格エディタ</guimenuitem></menuchoice>を選択し、<guibutton>相場表を取得s</guibutton>ボタンをクリックして、必要な為替レートを自動的に取得するようにします。</para>
+これを修正するためには、<menuchoice><guimenu>ツール</guimenu><guimenuitem>価格エディター</guimenuitem></menuchoice>を選択し、<guibutton>相場表を取得</guibutton>ボタンをクリックして、必要な為替レートを自動的に取得するようにします。</para>
 
       <note>
         <para>この例は、支払いを行う現金勘定科目の記録簿で取引を入力することによって、どんな通貨でも株式を購入することができることを表します。
-株式勘定科目の記録簿でも購入取引を入力することが出来ますが、実際に行う際は気をつけてください。
-そのようにすると、株式勘定科目の親勘定科目の通貨で株式が価格をつけられると仮定されます。</para>
-        <para>この例では、株式勘定科目の親勘定科目
-(資産:投資:証券会社:好況)
-である香港ドルに決定されます。
-これは株式の価格と同じ通貨であるので、この場合は購入を株式勘定科目の記録簿で入力したとしても安全です。</para>
+株式勘定科目の記録簿でも購入取引を入力することができますが、実際に行う際は気を付けてください。
+そのようにすると、株式勘定科目の親勘定科目の通貨で株式が価格を付けられると仮定されます。</para>
+        <para>この例では、株式勘定科目の親勘定科目 (資産:投資:証券会社:好況) である香港ドルに決定されます。
+これは株式の価格と同じ通貨なので、この場合は購入を株式勘定科目の記録簿で入力したとしても安全です。</para>
       </note>
 
     </sect2>
@@ -638,8 +620,7 @@ format="PNG" srccredit="Bengt Thuree" /> </imageobject>
             </tbody>
           </tgroup>
         </table>
-このスプリット(通貨取引)の最後の行を入力し終えた時
-、<guilabel>資金移動</guilabel>ウィンドウが表示されます。
+このスプリット(通貨取引)の最後の行を入力し終えた時 、<guilabel>資金移動</guilabel>ウィンドウが表示されます。
 このウィンドウが表示されない場合、行を右クリックして<guilabel>為替・交換レートを編集</guilabel>を選択します。
 <guilabel>資金移動</guilabel>ウィンドウでは、銀行が提示した為替レートを指定します。</para>
     </sect2>
@@ -647,18 +628,14 @@ format="PNG" srccredit="Bengt Thuree" /> </imageobject>
     <sect2 id="currency_invest13">
       <title>通貨投資の売却</title>
 
-      <para>通貨売却取引を入力するのは、通貨勘定科目から銀行勘定科目までの資金移動であることを除き、購入取引と同様に行うことが出来ます
-(<xref linkend="invest-sell1" />と同様です)。</para>
+      <para>通貨売却取引を入力するのは、通貨勘定科目から銀行勘定科目までの資金移動であることを除き、購入取引と同様に行うことができます (<xref
+linkend="invest-sell1" />と同様です)。</para>
 
       <para>通貨売却を適切に記録するためにはスプリット取引を使用しなければいけません。
-スプリット取引では、利益 (または損失)
-は<emphasis>収益:資本利得</emphasis>勘定科目
-(または<emphasis>費用:資本損失</emphasis>勘定科目)
-からの来るものとして会計処理を行わなければいけません。
-収益と釣り合いを取るために、スプリット取引内に通貨勘定科目を二回入力する必要があります。
-一回は現実の売却を記録するためです
-(正しい金額と正しい為替レートを使用します)。もう一回は収益の釣り合いをとるためです
-(合計を0にします)。</para>
+スプリット取引では、利益 (または損失) は<emphasis>収益:資本利得</emphasis>勘定科目
+(または<emphasis>費用:資本損失</emphasis>勘定科目) からの来るものとして会計処理を行わなければいけません。
+収益と釣り合いを取るために、スプリット取引内に通貨勘定科目を2回入力する必要があります。
+1回は現実の売却を記録するためです (正しい金額と正しい為替レートを使用します)。もう1回は収益の釣り合いをとるためです (合計を0にします)。</para>
 
       <para>要するに、売却の通貨取引は次のようになります。<emphasis>資産:投資:通貨:XXX</emphasis>が2回現れます。</para>
 
@@ -743,8 +720,7 @@ format="PNG" srccredit="Bengt Thuree" /> </imageobject>
 
       <itemizedlist>
         <listitem>
-          <para>オーストラリアに住んでいて、デフォルト通貨としてオーストラリア・ドル
-(AUD) を使用します。</para>
+          <para>オーストラリアに住んでいて、デフォルト通貨としてオーストラリア・ドル (AUD) を使用します。</para>
         </listitem>
 
         <listitem>
@@ -756,13 +732,11 @@ format="PNG" srccredit="Bengt Thuree" /> </imageobject>
         </listitem>
 
         <listitem>
-          <para>株式 (Ericsson B-Fria) をスウェーデン・クローナ (SEK)
-を使用して購入します。</para>
+          <para>株式 (Ericsson B-Fria) をスウェーデン・クローナ (SEK) を使用して購入します。</para>
         </listitem>
 
         <listitem>
-          <para>株式 (北京空港) を香港ドル (HKD)
-を使用して購入します。</para>
+          <para>株式 (北京空港) を香港ドル (HKD) を使用して購入します。</para>
         </listitem>
 
         <listitem>
@@ -800,7 +774,7 @@ format="PNG" srccredit="Bengt Thuree" /> </imageobject>
       </itemizedlist>
       <note>
         <para>繰り返しますが、これらの例は有効で正確なアドバイスと考えてはいけません。
-これらは<application>&app;</application>を使用するテクニックのための単なる例と考えてください。どんな投資アドバイスとみなしてはいけません。
+これらは<application>&app;</application>を使用するテクニックのための単なる例と考えてください。どんな投資アドバイスと見なしてはいけません。
 国際投資/ローンに関する詳細については適切な財務顧問に相談してください。</para>
         </note>
 
@@ -828,8 +802,8 @@ Xの場合<menuchoice><guimenu>&app;</guimenu><guimenuitem>設定</guimenuitem><
       <title>開始残高</title>
 
       <para>ある朝に郵便物を開封し、たまたま大金持ちになった非常に遠い親類の最後の生存している親類であることを知り、非常に驚きました。
-そして50万オーストラリア・ドル、よりお金持ちになりました。
-もっとも、それが最後ではありませんでした。別の郵便で宝くじに当選したと知り、25万オーストラリア・ドルを手に入れました。 </para>
+そして500,000オーストラリア・ドル、よりお金持ちになりました。
+もっとも、それが最後ではありませんでした。別の郵便で宝くじに当選したと知り、250,000オーストラリア・ドルを手に入れました。 </para>
       
       <para>これらの取引を記録するためには、次の勘定科目が必要です。</para>
       <literallayout>
@@ -893,8 +867,7 @@ srccredit="Bengt Thuree" /> </imageobject>
     <sect2>
       <title>住宅の購入</title>
 
-      <para>ついに、数年前に (5万ドルの頭金で)
-借りた住宅ローンを支払う余裕が出来ました。</para>
+      <para>ついに、数年前に (50,000ドルの頭金で) 借りた住宅ローンを支払う余裕ができました。</para>
 
       <literallayout>
 資産:固定資産:住宅                     (AUD) 300,000オーストラリア・ドル
@@ -903,8 +876,7 @@ srccredit="Bengt Thuree" /> </imageobject>
 純資産:開始残高                        (AUD) 50,000オーストラリア・ドル
 </literallayout>
 
-      <para>住宅ローンを借りている銀行と少し相談した後に、いくらかの利子(30,000オーストラリア・ドル)を加えて
-、一括繰り上げ返済を行うことに合意しました。
+      <para>住宅ローンを借りている銀行と少し相談した後に、いくらかの利子(30,000オーストラリア・ドル)を加えて 、一括繰り上げ返済を行うことに合意しました。
 <emphasis>資産:固定資産:住宅</emphasis>勘定科目に次のスプリット取引を入力します。</para>
 
       <table>
@@ -967,8 +939,7 @@ srccredit="Bengt Thuree" /> </imageobject>
       <title>株式購入</title>
 
       <para>本当に突然、多くのお金を銀行預金口座に持つことになったので、財務顧問を訪問すると決めます。そして、彼の勧告の後
-(これは作り事であることを忘れないでください。本当の株式購入アドバイスではありません)、電気通信
-(スウェーデンのエリクソン)、北京空港
+(これは作り事であることを忘れないでください。本当の株式購入アドバイスではありません)、電気通信 (スウェーデンのエリクソン)、北京空港
 (香港)、およびAmazon (米国)を購入すると決めます。</para>
 
       <para>これらの投資を追跡する必要な勘定科目は次のようになります。</para>
@@ -978,7 +949,7 @@ srccredit="Bengt Thuree" /> </imageobject>
 資産:投資:スウェーデン証券会社:現金                    (SEK)
 資産:投資:香港証券会社:0694.HK                         (STOCK 0694.HK Yahoo!)
 資産:投資:香港証券会社:現金                            (HKD)
-資産:投資:米国証券会社:AMZN                            (STOCK AMZN Nasdaq)
+資産:投資:米国証券会社:AMZN                            (STOCK AMZN NASDAQ)
 資産:投資:米国証券会社:現金                            (USD)
 費用:投資:手数料:スウェーデン証券会社:ERIC.ST          (SEK)
 費用:投資:手数料:香港証券会社:0694.HK                  (HKD)
@@ -1047,8 +1018,7 @@ srccredit="Bengt Thuree" /> </imageobject>
 
       <para>これで、各証券会社にはいくらかの現金がある状態になります。ある一定の金額の株式を購入するように各証券会社に頼みます。
 株式に関連する現金勘定科目から取引を実行するのを忘れないでください。為替・交換レートウィンドウが表示されない場合は行を右クリックして手動で開始します。
-最後の入力欄 (<guilabel>資金移動先合計</guilabel>)
-に購入する株式数を入力します。</para>
+最後の入力欄 (<guilabel>資金移動先合計</guilabel>) に購入する株式数を入力します。</para>
 
       <para>
         <table>
@@ -1100,11 +1070,8 @@ srccredit="Bengt Thuree" /> </imageobject>
         </table>
       </para>
         
-      <para>勘定科目表で分かるように、3種類の異なる通貨
-(香港ドル、米ドル、およびスウェーデン・クローナ)
-で株式を購入しました。しかし、勘定科目表では、次のように、自通貨
-(オーストラリア・ドル)
-での評価額がいくらなのかを表示されません。</para>
+      <para>勘定科目表で分かるように、3種類の異なる通貨 (香港ドル、米ドル、およびスウェーデン・クローナ)
+で株式を購入しました。しかし、勘定科目表では、次のように、自通貨 (オーストラリア・ドル) での評価額がいくらなのかを表示されません。</para>
       <screenshot id="currency_PutTogether_AfterStocks.png">
 <mediaobject>
           <imageobject> <imagedata
@@ -1119,15 +1086,14 @@ srccredit="Bengt Thuree" /> </imageobject>
           </para></caption>
         </mediaobject></screenshot>
 
-      <para>次節では、<application>&app;</application>が自通貨
-(この場合はオーストラリア・ドル)
+      <para>次節では、<application>&app;</application>が自通貨 (この場合はオーストラリア・ドル)
 で合計評価額を表示できるように、各為替レートを取得できるようにします。</para>
     </sect2>
 
     <sect2>
       <title>オンライン相場表の取得</title>
 
-      <para>現在の為替レートと株価の相場を得るために、<menuchoice><guimenu>ツール</guimenu><guimenuitem>価格エディタ</guimenuitem></menuchoice>を選択し、<guibutton>相場表を取得</guibutton>をクリックします。 </para>
+      <para>現在の為替レートと株価の相場を得るために、<menuchoice><guimenu>ツール</guimenu><guimenuitem>価格エディター</guimenuitem></menuchoice>を選択し、<guibutton>相場表を取得</guibutton>をクリックします。 </para>
 
       <para></para>
     </sect2>
@@ -1137,7 +1103,7 @@ srccredit="Bengt Thuree" /> </imageobject>
       <title>友人へのお金の貸付</title>
 
       <para>ピーターは、ヨーロッパで今までにない困難に陥りました。
-彼は非常に親愛なる友人であるので、40,000ユーロの個人貸付をして彼を助けることに決めます。</para>
+彼は非常に親愛なる友人なので、40,000ユーロの個人貸付をして彼を助けることに決めます。</para>
 
       <para>
         <literallayout>
@@ -1146,27 +1112,23 @@ srccredit="Bengt Thuree" /> </imageobject>
 費用:銀行手数料                         (AUD)
 </literallayout>
       </para>
-      <para>これは普通預金勘定科目 (オーストラリア・ドル)
-から資産:貸付:ピーター (ユーロ)
-勘定科目への単なる通貨取引です。
+      <para>これは普通預金勘定科目 (オーストラリア・ドル) から資産:貸付:ピーター (ユーロ) 勘定科目への単なる通貨取引です。
 為替レートは1ユーロ0.606161オーストラリアドルです。よって65,989.10オーストラリア・ドルを引き出す必要があります。加えて35オーストラリア・ドルの手数料もかかります。</para>
     </sect2>
 
     <sect2>
-      <title>日本からのローンによるニュージーランドにおける土地の購入</title>
+      <title>日本からのローンでニュージーランドの土地の購入</title>
 
       <para>長いつきあいのがある日本人の友人が、50,000オーストラリア・ドルの頭金だけで海外資産を購入できる日本の住宅ローンを提供します。
 オーストラリアの財務顧問と、発生する可能性があるさまざまな危険性と恩恵に関して検討した後に、彼の提供を受け入れると決めます。 </para>
 
       <note>
-        <para>繰り返しますが、金融面でのアドバイスとしてこれをみなしてはいけません。
-さらに言えば、海外市場または自国市場への投資
-(または推測)
-に取りかかる前に登録された財務顧問と詳細について相談してください。</para>
+        <para>繰り返しますが、金融面でのアドバイスとしてこれを見なしてはいけません。
+さらに言えば、海外市場または自国市場への投資 (または推測) に取りかかる前に登録された財務顧問と詳細について相談してください。</para>
 
         <para>戒めの言葉は次の通りです。非常に低い利率の海外ローンが非常に良い取引に見えるかもしれません。
 しかし、為替レートが変化すること、しかも急激に変化することがあることを深く心に刻んでください。
-自国の通貨でローンを受けるなら、利率に関してのみ注意すればよいです。
+自国の通貨でローンを受けるなら、利率に関してのみ注意すれば良いです。
 海外のローンを受けるなら、利率と為替レートの両方について注意しなければなりません。
         </para>
       </note>
