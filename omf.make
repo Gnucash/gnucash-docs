@@ -54,7 +54,7 @@ uninstall-local-omf:
 	if test "x$(_ENABLE_SK)" == "xtrue"; then \
 	scrollkeeper-uninstall -p "$(scrollkeeper_localstate_dir)" "$$omfdir/$$file"; \
 	fi; \
-	rm -f "$$omfdir/$$file; \
+	rm -f "$$omfdir/$$file"; \
   rmdir "$$omfdir"; \
   done;
 
