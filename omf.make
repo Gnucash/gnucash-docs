@@ -26,7 +26,7 @@
 # 	Version: 0.1.2 (last updated: March 20, 2002)
 #
 
-omf_dest_dir=$(datadir)/omf/gnucash-docs
+omf_dest_dir=$(datadir)/omf
 scrollkeeper_localstate_dir = $(localstatedir)/scrollkeeper
 
 omf: omf_timestamp
@@ -40,17 +40,21 @@ omf_timestamp: $(omffile)
 install-data-hook-omf:
 	$(mkinstalldirs) "$(DESTDIR)$(omf_dest_dir)"
 	for file in $(omffile); do \
-	$(INSTALL_DATA) "$$file.out" "$(DESTDIR)$(omf_dest_dir)/$$file"; \
-	done
-	@if test "x$(_ENABLE_SK)" = "xtrue"; then \
-	scrollkeeper-update -p "$(scrollkeeper_localstate_dir)" -o "$(DESTDIR)$(omf_dest_dir)"; \
-	fi;
+  omfdir="$(DESTDIR)$(omf_dest_dir)/`echo $$file | sed 's/-[^-]*\.omf$$//'`"; \
+	$(mkinstalldirs) "$$omfdir"; \
+	$(INSTALL_DATA) "$$file.out" "$$omfdir/$$file"; \
+	if test "x$(_ENABLE_SK)" = "xtrue"; then \
+	scrollkeeper-update -p "$(scrollkeeper_localstate_dir)" -o "$$omfdir"; \
+	fi; \
+  done;
 
 uninstall-local-omf:
-	@if test "x$(_ENABLE_SK)" == "xtrue"; then \
-	scrollkeeper-uninstall -p "$(scrollkeeper_localstate_dir)" "$(DESTDIR)$(omf_dest_dir)/$$file"; \
+	for file in $(omffile); do \
+  omfdir="$(DESTDIR)$(omf_dest_dir)/`echo $$file | sed 's/-[^-]*\.omf$$//'`"; \
+	if test "x$(_ENABLE_SK)" == "xtrue"; then \
+	scrollkeeper-uninstall -p "$(scrollkeeper_localstate_dir)" "$$omfdir/$$file"; \
 	fi; \
-	for file in $(srcdir)/*.omf; do \
-	  basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	  rm -f "$(DESTDIR)$(omf_dest_dir)/$$basefile"; \
-	done
+	rm -f "$$omfdir/$$file; \
+  rmdir "$$omfdir"; \
+  done;
+
