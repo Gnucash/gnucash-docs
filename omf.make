@@ -40,7 +40,7 @@ omf_timestamp: $(omffile)
 install-data-hook-omf:
 	$(mkinstalldirs) "$(DESTDIR)$(omf_dest_dir)"
 	for file in $(omffile); do \
-  omfdir="$(DESTDIR)$(omf_dest_dir)/`echo $$file | sed 's/-[^-]*\.omf$$//'`"; \
+	omfdir="$(DESTDIR)$(omf_dest_dir)/`echo $$file | sed 's/-[^-]*\.omf$$//'`"; \
 	$(mkinstalldirs) "$$omfdir"; \
 	$(INSTALL_DATA) "$$file.out" "$$omfdir/$$file"; \
 	if test "x$(_ENABLE_SK)" = "xtrue"; then \
@@ -50,11 +50,11 @@ install-data-hook-omf:
 
 uninstall-local-omf:
 	for file in $(omffile); do \
-  omfdir="$(DESTDIR)$(omf_dest_dir)/`echo $$file | sed 's/-[^-]*\.omf$$//'`"; \
+	omfdir="$(DESTDIR)$(omf_dest_dir)/`echo $$file | sed 's/-[^-]*\.omf$$//'`"; \
 	if test "x$(_ENABLE_SK)" == "xtrue"; then \
 	scrollkeeper-uninstall -p "$(scrollkeeper_localstate_dir)" "$$omfdir/$$file"; \
 	fi; \
 	rm -f "$$omfdir/$$file"; \
-  rmdir "$$omfdir"; \
+	rmdir --ignore-fail-on-non-empty "$$omfdir"; \
   done;
 
