@@ -22,7 +22,7 @@ entities = \
 	ch_budgets.xml \
 	ch_oth_assets.xml \
 	ch_python_bindings.xml \
-	ch_import_busisness_data.xml
+	ch_import_business_data.xml \
 	appendixa.xml \
 	appendixb.xml \
 	appendixc.xml \
