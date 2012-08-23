@@ -1,7 +1,7 @@
 <!-- (Do not remove this comment block.)
 
 Version: 2.4.0
-Last modified: 2011-01-01
+Last modified: 2012-08-22
 
 Maintainers:
 
@@ -315,4 +315,32 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
     </sect2>
 
   </sect1>
+  
+  <sect2 id="import-customers-vendors">
+  <title>Importing Customers and Vendors</title>
+   <para>The Customers and Vendors importer is an optional module and needs to 
+    enabled by editing the file $HOME/.gnucash/config.user,
+    adding the line:</para>
+    <para><code>(gnc:module-load "gnucash/plugins/customer_import" 0)
+    </code></para>
+    <para>On Linux systems this file is found at $HOME/.gnucash/config.user
+      and on Mac OSX it is ~/Library/Application Support/Gnucash/config.user.
+      If the file doesn't already exist you will have to create it.
+      After restarting GnuCash the item will appear at the bottom 
+    of the business menu.</para>
+    <para>In order for the importer to work the data must be in a fixed field
+      length, comma separated line format.  An example of a suitably formatted
+      line is shown below.
+    </para>
+    <para><code>
+    Field list:
+    id,  company,  name,  addr1,  addr2,  addr3,  addr4,  phone,  fax,  email,  notes,  shipname,  shipaddr1,  shipaddr2,  shipaddr3, shipaddr4, shiphone, shipfax, shipmail
+    </code> </para>
+    <para>
+    Vendors don't have shipping information so even though the fields have to exist, leave them empty.
+    The id field is optional, if empty a new id will be chosen. If an id is used this will UPDATE
+    a vendor/customer with the same id.  This may not be what you want.  
+    Note that all vendor/customer data are on a single line
+  </para>
+  </sect2>
 </chapter>
