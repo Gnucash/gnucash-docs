@@ -13,11 +13,11 @@ epub-am:
 	posthook='exit 1'; \
 	(cd "$$EPUB_TMPDIR" && \
 	echo "application/epub+zip" > mimetype && \
-	xsltproc --stringparam base.dir OEBPS/ \
-	         --stringparam epub.metainf.dir META-INF/ \
-	         --stringparam epub.oebps.dir OEBPS/ \
-	         ../../../xsl/1.75.2/epub/docbook.xsl \
-	         ../$(docname).xml && \
+	$(XSLTPROC) --stringparam base.dir OEBPS/ \
+	            --stringparam epub.metainf.dir META-INF/ \
+	            --stringparam epub.oebps.dir OEBPS/ \
+	            ../../../xsl/1.75.2/epub/docbook.xsl \
+	            ../$(docname).xml && \
 	cp -L -R ../figures OEBPS/ && \
 	zip -X -r ../$(epubfile) mimetype META-INF OEBPS && \
 	cd ..) && posthook=''; \
