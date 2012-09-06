@@ -37,7 +37,7 @@
 # This variable (docdir) specifies where the documents should be installed.
 # This default value should work for most packages.
 # docdir = $(datadir)/@PACKAGE@/doc/$(docname)/$(lang)
-docdir = $(datadir)/gnome/help/gnucash/$(lang)
+docdir = $(datadir)/gnome/help/$(docname)/$(lang)
 
 # This file is changed from the original to generate html files for GnuCash,
 # install them in a subdir with the docname and copy the stylesheet png's in.
