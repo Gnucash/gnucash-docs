@@ -63,14 +63,14 @@ copy-pics:
 	$(mkinstalldirs) "$(docname)/$(figdir)"; \
 	for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    $(INSTALL_DATA) "$$file" "$(srcdir)/$(docname)/$(figdir)/$$basefile"; \
+	    $(INSTALL_DATA) "$$file" "$(docname)/$(figdir)/$$basefile"; \
 	done
 
 copy-style:
 	$(mkinstalldirs) "$(docname)/stylesheet"; \
 	for file in $(styledir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    $(INSTALL_DATA) "$$file" "$(srcdir)/$(docname)/stylesheet/$$basefile"; \
+	    $(INSTALL_DATA) "$$file" "$(docname)/stylesheet/$$basefile"; \
 	done
 
 EXTRA_DIST = $(xml_files) $(omffile)
