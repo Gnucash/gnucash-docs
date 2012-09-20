@@ -22,7 +22,7 @@
   Some global declarations which are used in the files. For easier
   maintainance they should be collected here.
 --><!ENTITY manrevision "2.4.1">
-<!ENTITY date "February 19, 2011">
+<!ENTITY date "1 July 2011">
 <!ENTITY app "GnuCash">
 ]>
 <!--
@@ -49,8 +49,8 @@
    <title>Manuale di aiuto di <application>&app;</application></title>
 
    <copyright>
-     <year>2002-2007</year>
-     <holder>Chris Lyttle</holder>
+     <year>2002-2011</year>
+     <holder>Gruppo della documentazione di &app;</holder>
    </copyright><copyright><year>2011</year><holder>Cristian Marchi</holder></copyright>
 
    <!-- translators: uncomment this:
@@ -103,6 +103,30 @@
         </affiliation>
         <email>dvherman@bigfoot.com</email>
       </author>
+      <author>
+        <firstname>Cristian</firstname>
+        <surname>Marchi</surname>
+        <affiliation>
+          <orgname>Gruppo della documentazione di &app;</orgname>
+          <address> <email>cri79@libero.it</email> </address>
+        </affiliation>
+      </author>
+      <author>
+        <firstname>Yawar</firstname>
+        <surname>Amin</surname>
+        <affiliation>
+          <orgname>Gruppo della documentazione di &app;</orgname>
+          <address> <email>yawar.amin@gmail.com</email> </address>
+        </affiliation>
+      </author>
+      <author>
+	<firstname>Geert</firstname>
+	<surname>Janssens</surname>
+	<affiliation>
+	  <orgname>Gruppo di sviluppo di &app;</orgname>
+	</affiliation>
+	<email>geert@kobaltwit.be</email>
+      </author>
 
 <!-- This is appropriate place for other contributors: translators,
       maintainers,  etc. Commented out by default.
@@ -121,7 +145,7 @@
     <revhistory>
       <revision>
         <revnumber>Manuale di aiuto di &app; V2.4.1</revnumber>
-        <date>19 Febbraio 2011</date>
+        <date>1 luglio 2011</date>
         <revdescription>
           <para role="author">Vari autori</para>
           <para role="publisher">Gruppo della documentazione di &app;</para>
@@ -2315,7 +2339,7 @@
               </row>
 
               <row>
-                <entry><para><guimenuitem>Calcolatrice finanziaria</guimenuitem></para></entry>
+                <entry><para><guimenuitem>Calcolatore di prestiti</guimenuitem></para></entry>
 
                 <entry><para>Ulteriori dettagli nella <xref linkend="tool-calc"/></para></entry>
               </row>
@@ -2567,6 +2591,14 @@
        </screenshot>
       </figure>
 
+      <tip>
+        <para>L&rsquo;aspetto del registro del conto è personalizzabile (vedere <xref linkend="reg-views"/>).</para>
+      </tip>
+
+      <note>
+         <para>I metodi di inserimento delle transazioni sono descritti in maggior dettaglio in <xref linkend="trans-sched"/></para>
+      </note>
+ 
       </sect2>
 
       <sect2 id="Trans-menus">
@@ -4852,6 +4884,13 @@
         <title>Tipi di conti in <application>&app;</application></title>
 
         <para><application>&app;</application> supporta un certo numero di tipi di conti differenti. Si raccomanda di scegliere un tipo di conto appropriato basandosi sull&rsquo;elenco riportato di seguito.</para>
+
+         <warning>
+           <para>The Accounts Payable and Accounts Receivable types are
+           used internally by GnuCash’s business features. Users should
+           not manually modify or enter transactions in these account
+           types.</para>
+         </warning>
 
         <table frame="topbot" id="TypeAccounts">
          <title>Tipi di conti in <application>&app;</application>.</title>
@@ -7870,9 +7909,9 @@
    </sect1>
 
    <sect1 id="tool-calc">
-    <title>Calcolatrice finanziaria</title>
+    <title>Calcolatore di prestiti</title>
 
-     <para>La calcolatrice finanziaria è utile per calcolare gli interessi composti Fornisce infatti la possibilità di inserire quattro parametri dei cinque necessari per calcolare l&rsquo;interesse composto e di calcolare il parametro incognito.</para>
+     <para>Il <guilabel>Calcolatore di prestiti</guilabel> è utile per calcolare gli interessi composti. Fornisce la possibilità di inserire quattro parametri dei cinque necessari per calcolare l&rsquo;interesse composto e di calcolare il parametro incognito.</para>
 
      <para>La calcolatrice è suddivisa in due riquadri: quello di sinistra presenta cinque campi con un pulsante <guilabel>Calcola</guilabel> e un pulsante <guilabel>Pulisci</guilabel>. Il tasto <guilabel>Calcola</guilabel> permette di ottenere il risultato dell&rsquo;incognita mentre il pulsante <guilabel>Pulisci</guilabel> cancella qualsiasi valore inserito nel campo corrispondente.</para>
 
@@ -7930,7 +7969,7 @@
          </listitem>
         </itemizedlist>
 
-        <para>Esempi di utilizzo della calcolatrice finanziaria di <application>&app;</application> sono forniti nella «guida ai concetti e manuale». <ulink url="http://svn.gnucash.org/docs/guide/loans_calcs1.html">Capitolo sui prestiti nella «guida ai concetti e manuale»</ulink></para>
+        <para>Esempi di utilizzo del <guilabel>Calcolatore di prestiti</guilabel> di <application>&app;</application> sono forniti nella «guida ai concetti e manuale». <ulink url="http://svn.gnucash.org/docs/guide/loans_calcs1.html">Capitolo sui prestiti nella «guida ai concetti e manuale»</ulink></para>
 
    </sect1>
 
@@ -8065,6 +8104,10 @@
        </listitem>
 
        <listitem>
+        <para>Grafico del patrimonio netto: andamento nel tempo del  patrimonio netto (differenza tra il valore delle attività e quello delle passività).</para>
+       </listitem>
+
+       <listitem>
         <para>Grafico a dispersione del prezzo:</para>
        </listitem>
       </itemizedlist>
@@ -8172,10 +8215,10 @@
      <sect1 id="report-custom">
       <title>Personalizzare resoconti e grafici</title>
 
-        <para>I resoconti di <application>&app;</application> possono essere personalizzati tramite varie opzioni. Per accedere a queste è sufficiente selezionare il pulsante <guibutton>Opzioni</guibutton> nella <emphasis>barra degli strumenti</emphasis>.</para>
+        <para>I resoconti di <application>&app;</application> possono essere personalizzati tramite varie opzioni. Prima di tutto selezionare ed avviare un resoconto dal menu. Accedere poi alle opzioni del resoconto selezionando il pulsante <guibutton>Opzioni</guibutton> nella <emphasis>barra degli strumenti</emphasis>.</para>
 
            <note> <para>Controllare le opzioni del nuovo motore grafico e descrivere la procedura per salvare le opzioni dei resoconti personalizzati</para></note>
-<!--          
+<!--
               suggest how to save report options E.g. Choose definite options when you
               want to see an Income Statement, so you want to save them for future and
               not to choose all the time.
@@ -11039,10 +11082,10 @@ The fair market value of donated property, such as used clothing or furniture.</
       <varlistentry><term>MacOSX</term>
           <listitem>
             <para>Per utilizzare una traduzione diversa da quella selezionata automaticamente, è possibile eseguire il seguente comando in <application>Terminal.app</application>:</para>
-            <para><command>defaults write $(mdls -name kMDItemCFBundleIdentifier -raw /Applications/Gnucash.app) AppleLanguages "(<replaceable>de</replaceable>, <replaceable>en</replaceable>)"</command></para>
+            <para><command>defaults write $(mdls -name kMDItemCFBundleIdentifier -raw /Applications/GnuCash.app) AppleLanguages "(<replaceable>de</replaceable>, <replaceable>en</replaceable>)"</command></para>
             <para>È possibile usare qualsiasi codice di lingua si desideri, in luogo di Tedesco (de) e Inglese (en). Comunque, se il file per la traduzione non è presente, il comando non funzionerà.</para>
             <para>Per reimpostare i valori originali, eseguire:</para>
-            <para><command>defaults delete $(mdls -name kMDItemCFBundleIdentifier -raw /Applications/Gnucash.app)</command></para>
+            <para><command>defaults delete $(mdls -name kMDItemCFBundleIdentifier -raw /Applications/GnuCash.app)</command></para>
           </listitem>
         </varlistentry>
 	
