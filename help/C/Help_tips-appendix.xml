@@ -1,12 +1,14 @@
 <!--
       (Do not remove this comment block.)
-  Version: 2.0.x
-   Last modified: March 15th 2007
+  Version: 2.4.11
+   Last modified: Septemper 21th 2012
+        modified: March 15th 2007
         modified: August 12th 2006
-	modified: February 28th 2005
+	    modified: February 28th 2005
 
   Maintainers:
-               Chris Lyttle <chris@wilddev.net>
+               Frank H. Ellenberger <frankh.ellenberger@gmail.com>
+    Previous:  Chris Lyttle <chris@wilddev.net>
                Neil Williams <linux@codehelp.co.uk>
 
   Author:
@@ -18,19 +20,354 @@
 <appendix id="tips">
   <appendixinfo>
     <releaseinfo>
-      Version 1.0, December 2006
+      Version 2.4.11, September 2012
+<!--       Version 1.0, December 2006 -->
     </releaseinfo>
   </appendixinfo>
   <title><application>&app;</application> Tips and tidbits</title>
 
 
+  <abstract><para>This chapter gives you some background informations about Finance::Quote.</para></abstract>
 
-<sect1><title>Exchange Codes for European Markets</title>
+  <sect1><title>Finance::Quote Sources</title>
+    <para>There are 3 types of sources of which the first, currency is hardcoded and resposible to fetch ISO currencies.
+       The other two can be selected in the security editor.
+    </para>
 
-          <para>Exchange Code List for European Markets</para>
+    <sect2><title>Finance::Quote Sources - Currency source</title>
+
+          <table frame="topbot" id="CurrencySource">
+           <title>Currency source for Finance::Quote</title>
+<!-- 
+	Source: src/engine/gnc-commodity.c:gnc_quote_source 
+	Last Update: r22290
+	Based on FQ-version 1.17
+-->
+            <tgroup cols="3">
+              <thead>
+                <row>
+                  <entry><para>&app; Name</para></entry>
+                  <entry><para>Finance::Quote Name</para></entry>
+                  <entry><para>Notes</para></entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry><para>Currency</para></entry>
+                  <entry><para>currency</para></entry>
+                  <entry><para>Outdated, update: https://bugzilla.gnome.org/attachment.cgi?id=207969</para></entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+  </sect2>
+
+  <sect2><title>Quote Sources - Individual sources</title>
+
+          <table frame="topbot" id="IndividualSource">
+           <title>Individual sources for quotes</title>
+<!-- 
+	Source: src/engine/gnc-commodity.c:gnc_quote_source 
+	Last Update: r22290
+	Based on FQ-version 1.17
+-->
+            <tgroup cols="3">
+              <thead>
+                <row>
+                  <entry><para>&app; Name</para></entry>
+                  <entry><para>Finance::Quote Name</para></entry>
+                  <entry><para>Notes</para></entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry><para>Amsterdam Euronext eXchange, NL</para></entry>
+                  <entry><para>aex</para></entry>
+                  <entry><para>includes Futures and Options</para></entry>
+                </row>
+                <row>
+                  <entry><para>American International Assurance, HK</para></entry>
+                  <entry><para>aiahk</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Association  of  Mutual  Funds  in  India</para></entry>
+                  <entry><para>amfiindia</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Athens Stock Exchange, GR</para></entry>
+                  <entry><para>asegr</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Australian Stock Exchange, AU</para></entry>
+                  <entry><para>asx</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>BMO NesbittBurns, CA</para></entry>
+                  <entry><para>bmonesbittburns</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>BUX/Magyar Tökepiac, HU</para></entry>
+                  <entry><para>bux</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Cominvest, ex-Adig, DE</para></entry>
+                  <entry><para>cominvest</para></entry>
+                  <entry><para>Obsolet, update: http://eggert.org/software/Comdirect.pm</para></entry>
+                </row>
+                <row>
+                  <entry><para>Deka Investments, DE</para></entry>
+                  <entry><para>deka</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>DWS, DE</para></entry>
+                  <entry><para>dwsfunds</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Fidelity Direct</para></entry>
+                  <entry><para>fidelity_direct</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Finance Canada</para></entry>
+                  <entry><para>financecanada</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Finanzpartner, DE</para></entry>
+                  <entry><para>finanzpartner</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>First Trust Portfolios, US</para></entry>
+                  <entry><para>ftportfolios_direct</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Fund Library, CA</para></entry>
+                  <entry><para>fundlibrary</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>GoldMoney spot rates, JE</para></entry>
+                  <entry><para>goldmoney</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>HElsinki stock eXchange, FI</para></entry>
+                  <entry><para>hex</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Man Investments, AU</para></entry>
+                  <entry><para>maninv</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Morningstar, SE</para></entry>
+                  <entry><para>morningstar</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Motley Fool, US</para></entry>
+                  <entry><para>fool</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>New Zealand stock eXchange, NZ</para></entry>
+                  <entry><para>nzx</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Paris Stock Exchange/Boursorama, FR</para></entry>
+                  <entry><para>bourso</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Paris Stock Exchange/LeRevenu, FR</para></entry>
+                  <entry><para>lerevenu</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Platinum Asset Management, AU</para></entry>
+                  <entry><para>platinum</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Skandinaviska Enskilda Banken, SE</para></entry>
+                  <entry><para>seb_funds</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Sharenet, ZA</para></entry>
+                  <entry><para>za</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>StockHouse Canada</para></entry>
+                  <entry><para>stockhousecanada_fund</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>TD Waterhouse Canada</para></entry>
+                  <entry><para>tdwaterhouse</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>TD Efunds, CA</para></entry>
+                  <entry><para>tdefunds</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>TIAA-CREF, US</para></entry>
+                  <entry><para>tiaacref</para></entry>
+                  <entry><para>Outdated, get the latest pm from https://rt.cpan.org/Public/Bug/Display.html?id=62104#txn-1121440</para></entry>
+                </row>
+                <row>
+                  <entry><para>Toronto Stock eXchange, CA</para></entry>
+                  <entry><para>tsx</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>T. Rowe Price, US</para></entry>
+                  <entry><para>troweprice_direct</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Trustnet, GB</para></entry>
+                  <entry><para>trustnet</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Union Investment, DE</para></entry>
+                  <entry><para>unionfunds</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>US Treasury Bonds</para></entry>
+                  <entry><para>usfedbonds</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>US Govt. Thrift Savings Plan</para></entry>
+                  <entry><para>tsp</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Vanguard</para></entry>
+                  <entry><para>vanguard</para></entry>
+                  <entry><para>part of yahoo_us module</para></entry>
+                </row>
+                <row>
+                  <entry><para>VWD, DE (unmaintained)</para></entry>
+                  <entry><para>vwd</para></entry>
+                  <entry><para><uri>https://lists.gnucash.org/pipermail/gnucash-user/2008-February/023686.html</uri></para></entry>
+                </row>
+                <row>
+                  <entry><para>Yahoo USA</para></entry>
+                  <entry><para>yahoo</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Yahoo Asia</para></entry>
+                  <entry><para>yahoo_asia</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Yahoo Australia</para></entry>
+                  <entry><para>yahoo_australia</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Yahoo Brasil</para></entry>
+                  <entry><para>yahoo_brasil</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Yahoo Europe</para></entry>
+                  <entry><para>yahoo_europe</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Yahoo New Zealand</para></entry>
+                  <entry><para>yahoo_nz</para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para></para></entry>
+                  <entry><para></para></entry>
+                  <entry><para></para></entry>
+                </row>
+                <row>
+                  <entry><para>Zuerich Investments (outdated)</para></entry>
+                  <entry><para>zifunds</para></entry>
+                  <entry><para></para></entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+
+  </sect2>
+
+  <sect2><title>Finance::Quote Sources - Multiple sources</title>
+
+          <table frame="topbot" id="MultipleSource">
+           <title>Multiple sources for quotes</title>
+
+            <tgroup cols="1">
+              <thead>
+                <row>
+                  <entry><para>Name</para></entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row><entry>Asia (Yahoo, ...)</entry></row>
+                <row><entry>Australia (ASX, Yahoo, ...)</entry></row>
+                <row><entry>Brasil (Yahoo, ...)</entry></row>
+                <row><entry>Canada (Yahoo, ...)</entry></row>
+                <row><entry>Canada Mutual (Fund Library, ...)</entry></row>
+                <row><entry>Dutch (AEX, ...)</entry></row>
+                <row><entry>Europe (Yahoo, ...)</entry></row>
+                <row><entry>Greece (ASE, ...)</entry></row>
+                <row><entry>India Mutual (AMFI, ...)</entry></row>
+                <row><entry>Fidelity (Fidelity, ...)</entry></row>
+                <row><entry>Finland (HEX, ...)</entry></row>
+                <row><entry>First Trust (First Trust, ...)</entry></row>
+                <row><entry>France (Boursorama, ...)</entry></row>
+                <row><entry>Nasdaq (Yahoo, ...)</entry></row>
+                <row><entry>New Zealand (Yahoo, ...)</entry></row>
+                <row><entry>NYSE (Yahoo, ...)</entry></row>
+<!--                 <row><entry>South Africa (Sharenet, ...)</entry></row> -->
+                <row><entry>T. Rowe Price</entry></row>
+                <row><entry>U.K. Unit Trusts</entry></row>
+                <row><entry>USA (Yahoo, Fool ...)</entry></row>
+              </tbody>
+            </tgroup>
+          </table>
+
+    <para>Sources: 
+      src/engine/gnc-commodity.c:gnc_quote_source r22290 which was adjusted for 1.17.
+      &app;-Wiki, bugzilla, mailing list archive.
+    </para>
+  </sect2>
+</sect1>
+
+<sect1><title>Yahoo Exchange Codes for European Markets</title>
+
+          <para>Yahoo Exchange Code List for European Markets</para>
 
           <table frame="topbot" id="Code4EurMrks">
-           <title>Exchange Codes List for European Markets</title>
+           <title>Yahoo Exchange Codes List for European Markets</title>
             <tgroup cols="2">
               <thead>
                 <row>
@@ -189,101 +526,6 @@
               </tbody>
             </tgroup>
           </table>
-</sect1>
-
-<sect1><title>Quote Sources - Individual sources</title>
-
-          <table frame="topbot" id="F">
-           <title>Individual sources for quotes</title>
-
-            <tgroup cols="1">
-              <thead>
-                <row>
-                  <entry><para>Name</para></entry>
-                </row>
-              </thead>
-
-              <tbody>
-
-<row><entry>AEX</entry></row>
-<row><entry>AEX Futures</entry></row>
-<row><entry>AEX Options</entry></row>
-<row><entry>AMFI India</entry></row>
-<row><entry>ASE</entry></row>
-<row><entry>ASX</entry></row>
-<row><entry>BMO NesbittBurns</entry></row>
-<row><entry>Deka Investments</entry></row>
-<row><entry>DWS</entry></row>
-<row><entry>Fidelity Direct</entry></row>
-<row><entry>Finance Canada</entry></row>
-<row><entry>First Trust Portfolios</entry></row>
-<row><entry>Fund Library</entry></row>
-<row><entry>Man Investments</entry></row>
-<row><entry>Motley Fool</entry></row>
-<row><entry>NZX</entry></row>
-<row><entry>Platinum Asset Management</entry></row>
-<row><entry>SEB</entry></row>
-<row><entry>Sharenet</entry></row>
-<row><entry>TD Waterhouse Canada</entry></row>
-<row><entry>TD Efunds</entry></row>
-<row><entry>TIAA-CREF</entry></row>
-<row><entry>T. Rowe Price</entry></row>
-<row><entry>Trustnet</entry></row>
-<row><entry>Union Investments</entry></row>
-<row><entry>US Treasury Bonds</entry></row>
-<row><entry>US Govt. Thrift Savings Plan</entry></row>
-<row><entry>Vanguard</entry></row>
-<row><entry>VWD</entry></row>
-<row><entry>Yahoo</entry></row>
-<row><entry>Yahoo Asia</entry></row>
-<row><entry>Yahoo Australia</entry></row>
-<row><entry>Yahoo Brasil</entry></row>
-<row><entry>Yahoo Europe</entry></row>
-<row><entry>Yahoo New Zealand</entry></row>
-<row><entry>(Zuerich Investments. ??)</entry></row>
-
-              </tbody>
-            </tgroup>
-          </table>
-
-</sect1>
-
-<sect1><title>Quote Sources - Multiple sources</title>
-
-          <table frame="topbot" id="Quote-Sources">
-           <title>Multiple sources for quotes</title>
-
-            <tgroup cols="1">
-              <thead>
-                <row>
-                  <entry><para>Name</para></entry>
-                </row>
-              </thead>
-
-              <tbody>
-          <row><entry>Asia (Yahoo, ...)</entry></row>
-<row><entry>Australia (ASX, Yahoo, ...)</entry></row>
-<row><entry>Brasil (Yahoo, ...)</entry></row>
-<row><entry>Canada (Yahoo, ...)</entry></row>
-<row><entry>Canada Mutual (Fund Library, ...)</entry></row>
-<row><entry>Dutch (AEX, ...)</entry></row>
-<row><entry>Europe (Yahoo, ...)</entry></row>
-<row><entry>Greece (ASE, ...)</entry></row>
-<row><entry>India Mutual (AMFI, ...)</entry></row>
-<row><entry>Fidelity (Fidelity, ...)</entry></row>
-<row><entry>First Trust (First Trust, ...)</entry></row>
-<row><entry>Nasdaq (Yahoo, ...)</entry></row>
-<row><entry>New Zealand (Yahoo, ...)</entry></row>
-<row><entry>NYSE (Yahoo, ...)</entry></row>
-<row><entry>South Africa (Sharenet, ...)</entry></row>
-<row><entry>T. Rowe Price</entry></row>
-<row><entry>U.K. Unit Trusts</entry></row>
-<row><entry>USA (Yahoo, Fool ...)</entry></row>
-
-              </tbody>
-            </tgroup>
-          </table>
-
 </sect1>
 
 </appendix>
