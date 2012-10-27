@@ -62,14 +62,14 @@ convert-html:
 copy-pics:
 	$(mkinstalldirs) "$(docname)/$(figdir)"; \
 	for file in $(srcdir)/$(figdir)/*.png; do \
-	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    basefile=`basename $$file`; \
 	    $(INSTALL_DATA) "$$file" "$(docname)/$(figdir)/$$basefile"; \
 	done
 
 copy-style:
 	$(mkinstalldirs) "$(docname)/stylesheet"; \
 	for file in $(styledir)/*.png; do \
-	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    basefile=`basename $$file`; \
 	    $(INSTALL_DATA) "$$file" "$(docname)/stylesheet/$$basefile"; \
 	done
 
@@ -101,20 +101,20 @@ app-dist-hook:
 	    $(mkinstalldirs) "$(distdir)/$(figdir)"; \
 	fi;
 	for file in $(srcdir)/$(figdir)/*.png; do \
-	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    basefile=`basename $$file`; \
 	    $(INSTALL_DATA) "$$file" "$(distdir)/$(figdir)/$$basefile"; \
 	done
 
 install-data-local:
 	$(mkinstalldirs) "$(DESTDIR)$(docdir)";
 	for file in $(xml_files); do \
-	    cp "$(srcdir)/$$file" "$(DESTDIR)$(docdir)"; \
+	    $(INSTALL_DATA) "$(srcdir)/$$file" "$(DESTDIR)$(docdir)/$$file"; \
 	done
 	if test "$(figdir)"; then \
 	    $(mkinstalldirs) "$(DESTDIR)$(docdir)/$(figdir)"; \
 	fi;
 	for file in $(srcdir)/$(figdir)/*.png; do \
-	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    basefile=`basename $$file`; \
 	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(docdir)/$(figdir)/$$basefile"; \
 	done
 
@@ -124,17 +124,17 @@ install-data-hook: ${OMF_DATA_HOOK}
 install-html: html
 	$(mkinstalldirs) $(DESTDIR)$(docdir)/$(docname);\
 	for file in $(docname)/*.html; do\
-	    basefile=`echo $$file | sed -e 's,^.*/,,'`;\
+	    basefile=`basename $$file`; \
 	    $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$(docname)/$$basefile;\
 	done
 	$(mkinstalldirs) "$(DESTDIR)$(docdir)/$(docname)/$(figdir)"; \
 	for file in $(docname)/$(figdir)/*.png; do \
-	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    basefile=`basename $$file`; \
 	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(docdir)/$(docname)/$(figdir)/$$basefile"; \
 	done
 	$(mkinstalldirs) "$(DESTDIR)$(docdir)/$(docname)/stylesheet"; \
 	for file in $(styledir)/*.png; do \
-	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	    basefile=`basename $$file`; \
 	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(docdir)/$(docname)/stylesheet/$$basefile"; \
 	done
 
@@ -143,23 +143,23 @@ uninstall-local: uninstall-local-doc ${UNINSTALL_OMF}
 uninstall-local-doc:
 	-if test "$(figdir)"; then \
 	    for file in $(srcdir)/$(figdir)/*.png; do \
-	        basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	        basefile=`basename $$file`; \
 	        rm -f "$(DESTDIR)$(docdir)/$(figdir)/$$basefile"; \
 	    done \
 	fi;
 	-if test "$(figdir)"; then \
 	    for file in $(srcdir)/$(figdir)/*.png; do \
-	        basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	        basefile=`basename $$file`; \
 	        rm -f "$(DESTDIR)$(docdir)/$(docname)/$(figdir)/$$basefile"; \
 	    done \
 	fi;
 	-if test "$(docname)"; then \
 	    for file in $(styledir)/*.png; do \
-	        basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	        basefile=`basename $$file`; \
 	        rm -f "$(DESTDIR)$(docdir)/$(docname)/stylesheet/$$basefile"; \
 	    done; \
 	    for file in $(srcdir)/$(docname)/*.html; do \
-	        basefile=`echo $$file | sed -e  's,^.*/,,'`; \
+	        basefile=`basename $$file`; \
 	        rm -f "$(DESTDIR)$(docdir)/$(docname)/$$basefile"; \
 	    done \
 	fi;
