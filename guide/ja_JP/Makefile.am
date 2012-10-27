@@ -39,7 +39,6 @@ include $(top_srcdir)/epub.make
 if WITH_MOBI
 include $(top_srcdir)/mobi.make
 endif
-dist-hook: app-dist-hook
 
 if WITH_JAPANESE_PDF
 mincho.xml: @JAPANESE_MINCHO_TTF@

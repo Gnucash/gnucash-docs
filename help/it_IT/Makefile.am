@@ -10,4 +10,3 @@ include $(top_srcdir)/epub.make
 if WITH_MOBI
 include $(top_srcdir)/mobi.make
 endif
-dist-hook: app-dist-hook

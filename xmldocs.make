@@ -6,8 +6,7 @@
 #        your Makefile.am file for each document directory,
 #        although figdir, omffile, and entities may be empty
 #     2) Make sure the Makefile in (1) also includes 
-#	 "include $(top_srcdir)/xmldocs.make" and
-#	 "dist-hook: app-dist-hook".
+#	 "include $(top_srcdir)/xmldocs.make"
 #     3) Optionally define 'entities' to hold xml entities which
 #        you would also like installed
 #     4) Figures must go under $(figdir)/ and be in PNG format
@@ -22,7 +21,6 @@
 #   omffile=scrollkeeper-manual-C.omf
 #   entities = fdl.xml
 #   include $(top_srcdir)/xmldocs.make
-#   dist-hook: app-dist-hook
 #
 # About this file:
 #	This file was taken from scrollkeeper_example2, a package illustrating
@@ -46,8 +44,45 @@ otherdocdir = $(docdir)/$(lang)
 # Dec 2002 Chris Lyttle
 
 # **************  You should not have to edit below this line  *******************
+
+# ************** Rules to install xml files for gnome-help ***********************
+
 xml_files = $(entities) $(docname).xml
+gnomehelp_DATA =  $(xml_files)
+gnomehelpfiguresdir = $(gnomehelpdir)/$(figdir)
+gnomehelpfigures_DATA = $(shell ls ${srcdir}/${figdir}/*.png)
+
+uninstall-hook:
+	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpfiguresdir)"
+	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)"
+
+EXTRA_DIST = $(xml_files) $(omffile) $(gnomehelpfigures_DATA)
+
+# ************** Rules to make and install omf file ******************************
+# If the following file is in a subdir (like help/) you need to add that to the path
+include $(top_srcdir)/omf.make
+if ENABLE_SK
+OMF = omf
+OMF_DATA_HOOK = install-data-hook-omf
+UNINSTALL_OMF = uninstall-local-omf
+else
+OMF=
+OMF_DATA_HOOK=
+UNINSTALL_OMF=
+endif
+
+CLEANFILES += omf_timestamp
+
+install-data-hook: ${OMF_DATA_HOOK}
+uninstall-local: ${UNINSTALL_OMF}
+
+all: ${OMF}
+
+# ************** Rules to make and install html documentation ********************
 styledir = $(top_srcdir)/stylesheet
+CLEANFILES += $(docname)/*.html
+
+html: all convert-html copy-pics copy-style
 
 # Convert xml to html with xsltproc
 # xsltproc   -o outputdir/ /usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl filename.xml
@@ -75,54 +110,6 @@ copy-style:
 	    $(INSTALL_DATA) "$$file" "$(docname)/stylesheet/$$basefile"; \
 	done
 
-EXTRA_DIST = $(xml_files) $(omffile)
-CLEANFILES += omf_timestamp $(docname)/*.html
-
-# If the following file is in a subdir (like help/) you need to add that to the path
-include $(top_srcdir)/omf.make
-if ENABLE_SK
-OMF = omf
-OMF_DATA_HOOK = install-data-hook-omf
-UNINSTALL_OMF = uninstall-local-omf
-else
-OMF=
-OMF_DATA_HOOK=
-UNINSTALL_OMF=
-endif
-
-html: all convert-html copy-pics copy-style
-all: ${OMF}
-
-#$(docname).xml: $(entities)
-#	-ourdir=`pwd`;  \
-#	cd $(srcdir);   \
-#	cp $(entities) $$ourdir
-
-app-dist-hook:
-	if test "$(figdir)"; then \
-	    $(mkinstalldirs) "$(distdir)/$(figdir)"; \
-	fi;
-	for file in $(srcdir)/$(figdir)/*.png; do \
-	    basefile=`basename $$file`; \
-	    $(INSTALL_DATA) "$$file" "$(distdir)/$(figdir)/$$basefile"; \
-	done
-
-install-data-local:
-	$(mkinstalldirs) "$(DESTDIR)$(gnomehelpdir)";
-	for file in $(xml_files); do \
-	    $(INSTALL_DATA) "$(srcdir)/$$file" "$(DESTDIR)$(gnomehelpdir)/$$file"; \
-	done
-	if test "$(figdir)"; then \
-	    $(mkinstalldirs) "$(DESTDIR)$(gnomehelpdir)/$(figdir)"; \
-	fi;
-	for file in $(srcdir)/$(figdir)/*.png; do \
-	    basefile=`basename $$file`; \
-	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(gnomehelpdir)/$(figdir)/$$basefile"; \
-	done
-
-
-install-data-hook: ${OMF_DATA_HOOK}
-
 install-html: html
 	$(mkinstalldirs) $(DESTDIR)$(otherdocdir)/$(docname);\
 	for file in $(docname)/*.html; do\
@@ -139,23 +126,6 @@ install-html: html
 	    basefile=`basename $$file`; \
 	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(otherdocdir)/$(docname)/stylesheet/$$basefile"; \
 	done
-
-uninstall-local: uninstall-local-doc ${UNINSTALL_OMF}
-
-
-uninstall-local-doc:
-	-if test "$(figdir)"; then \
-	    for file in $(srcdir)/$(figdir)/*.png; do \
-	        basefile=`basename $$file`; \
-	        rm -f "$(DESTDIR)$(gnomehelpdir)/$(figdir)/$$basefile"; \
-	    done; \
-	    rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)/$(figdir)"; \
-	fi
-	-for file in $(xml_files); do \
-	    rm -f "$(DESTDIR)$(gnomehelpdir)/$$file"; \
-	done
-	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)"
-
 
 uninstall-html:
 	-if test "$(docname)"; then \
@@ -178,3 +148,4 @@ uninstall-html:
 	    rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(otherdocdir)/$(docname)"; \
 	    rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(otherdocdir)"; \
 	fi
+
