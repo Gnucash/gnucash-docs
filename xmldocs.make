@@ -145,14 +145,14 @@ uninstall-local-doc:
 	    for file in $(srcdir)/$(figdir)/*.png; do \
 	        basefile=`basename $$file`; \
 	        rm -f "$(DESTDIR)$(docdir)/$(figdir)/$$basefile"; \
-	    done \
-	fi;
+	    done; \
+	fi
 	-if test "$(figdir)"; then \
 	    for file in $(srcdir)/$(figdir)/*.png; do \
 	        basefile=`basename $$file`; \
 	        rm -f "$(DESTDIR)$(docdir)/$(docname)/$(figdir)/$$basefile"; \
-	    done \
-	fi;
+	    done; \
+	fi
 	-if test "$(docname)"; then \
 	    for file in $(styledir)/*.png; do \
 	        basefile=`basename $$file`; \
@@ -161,8 +161,8 @@ uninstall-local-doc:
 	    for file in $(srcdir)/$(docname)/*.html; do \
 	        basefile=`basename $$file`; \
 	        rm -f "$(DESTDIR)$(docdir)/$(docname)/$$basefile"; \
-	    done \
-	fi;
+	    done; \
+	fi
 	-for file in $(xml_files); do \
 	    rm -f "$(DESTDIR)$(docdir)/$$file"; \
 	done
