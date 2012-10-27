@@ -56,5 +56,6 @@ uninstall-local-omf:
 	    fi; \
 	    rm -f "$$omfdir/$$file"; \
 	    rmdir --ignore-fail-on-non-empty "$$omfdir"; \
-	done;
+	done
+	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(omf_dest_dir)"
 
