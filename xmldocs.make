@@ -34,10 +34,12 @@
 
 
 # ************* Begin of section some packagers may need to modify  **************
-# This variable (docdir) specifies where the documents should be installed.
-# This default value should work for most packages.
-# docdir = $(datadir)/@PACKAGE@/doc/$(docname)/$(lang)
-docdir = $(datadir)/gnome/help/$(docname)/$(lang)
+# These variables (gnomehelpdir and otherdocdir) specify where the documents
+# should be installed. The default values should work for most packages.
+# Gnome Help expects all documents here (this is where the xml files should go):
+gnomehelpdir = $(datadir)/gnome/help/$(docname)/$(lang)
+# Our other document versions go here:
+otherdocdir = $(docdir)/$(lang)
 
 # This file is changed from the original to generate html files for GnuCash,
 # install them in a subdir with the docname and copy the stylesheet png's in.
@@ -106,63 +108,73 @@ app-dist-hook:
 	done
 
 install-data-local:
-	$(mkinstalldirs) "$(DESTDIR)$(docdir)";
+	$(mkinstalldirs) "$(DESTDIR)$(gnomehelpdir)";
 	for file in $(xml_files); do \
-	    $(INSTALL_DATA) "$(srcdir)/$$file" "$(DESTDIR)$(docdir)/$$file"; \
+	    $(INSTALL_DATA) "$(srcdir)/$$file" "$(DESTDIR)$(gnomehelpdir)/$$file"; \
 	done
 	if test "$(figdir)"; then \
-	    $(mkinstalldirs) "$(DESTDIR)$(docdir)/$(figdir)"; \
+	    $(mkinstalldirs) "$(DESTDIR)$(gnomehelpdir)/$(figdir)"; \
 	fi;
 	for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`basename $$file`; \
-	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(docdir)/$(figdir)/$$basefile"; \
+	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(gnomehelpdir)/$(figdir)/$$basefile"; \
 	done
 
 
 install-data-hook: ${OMF_DATA_HOOK}
 
 install-html: html
-	$(mkinstalldirs) $(DESTDIR)$(docdir)/$(docname);\
+	$(mkinstalldirs) $(DESTDIR)$(otherdocdir)/$(docname);\
 	for file in $(docname)/*.html; do\
 	    basefile=`basename $$file`; \
-	    $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$(docname)/$$basefile;\
+	    $(INSTALL_DATA) $$file $(DESTDIR)$(otherdocdir)/$(docname)/$$basefile;\
 	done
-	$(mkinstalldirs) "$(DESTDIR)$(docdir)/$(docname)/$(figdir)"; \
+	$(mkinstalldirs) "$(DESTDIR)$(otherdocdir)/$(docname)/$(figdir)"; \
 	for file in $(docname)/$(figdir)/*.png; do \
 	    basefile=`basename $$file`; \
-	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(docdir)/$(docname)/$(figdir)/$$basefile"; \
+	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(otherdocdir)/$(docname)/$(figdir)/$$basefile"; \
 	done
-	$(mkinstalldirs) "$(DESTDIR)$(docdir)/$(docname)/stylesheet"; \
+	$(mkinstalldirs) "$(DESTDIR)$(otherdocdir)/$(docname)/stylesheet"; \
 	for file in $(styledir)/*.png; do \
 	    basefile=`basename $$file`; \
-	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(docdir)/$(docname)/stylesheet/$$basefile"; \
+	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(otherdocdir)/$(docname)/stylesheet/$$basefile"; \
 	done
 
 uninstall-local: uninstall-local-doc ${UNINSTALL_OMF}
+
 
 uninstall-local-doc:
 	-if test "$(figdir)"; then \
 	    for file in $(srcdir)/$(figdir)/*.png; do \
 	        basefile=`basename $$file`; \
-	        rm -f "$(DESTDIR)$(docdir)/$(figdir)/$$basefile"; \
+	        rm -f "$(DESTDIR)$(gnomehelpdir)/$(figdir)/$$basefile"; \
 	    done; \
-	fi
-	-if test "$(figdir)"; then \
-	    for file in $(srcdir)/$(figdir)/*.png; do \
-	        basefile=`basename $$file`; \
-	        rm -f "$(DESTDIR)$(docdir)/$(docname)/$(figdir)/$$basefile"; \
-	    done; \
-	fi
-	-if test "$(docname)"; then \
-	    for file in $(styledir)/*.png; do \
-	        basefile=`basename $$file`; \
-	        rm -f "$(DESTDIR)$(docdir)/$(docname)/stylesheet/$$basefile"; \
-	    done; \
-	    for file in $(srcdir)/$(docname)/*.html; do \
-	        basefile=`basename $$file`; \
-	        rm -f "$(DESTDIR)$(docdir)/$(docname)/$$basefile"; \
-	    done; \
+	    rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)/$(figdir)"; \
 	fi
 	-for file in $(xml_files); do \
-	    rm -f "$(DESTDIR)$(docdir)/$$file"; \
+	    rm -f "$(DESTDIR)$(gnomehelpdir)/$$file"; \
 	done
+	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)"
+
+
+uninstall-html:
+	-if test "$(docname)"; then \
+	    if test "$(figdir)"; then \
+	        for file in $(docname)/$(figdir)/*.png; do \
+	            basefile=`basename $$file`; \
+	            rm -f "$(DESTDIR)$(otherdocdir)/$(docname)/$(figdir)/$$basefile"; \
+	        done; \
+	        rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(otherdocdir)/$(docname)/$(figdir)"; \
+	    fi; \
+	    for file in $(styledir)/*.png; do \
+	        basefile=`basename $$file`; \
+	        rm -f "$(DESTDIR)$(otherdocdir)/$(docname)/stylesheet/$$basefile"; \
+	    done; \
+	    rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(otherdocdir)/$(docname)/stylesheet"; \
+	    for file in $(docname)/*.html; do \
+	        basefile=`basename $$file`; \
+	        rm -f "$(DESTDIR)$(otherdocdir)/$(docname)/$$basefile"; \
+	    done; \
+	    rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(otherdocdir)/$(docname)"; \
+	    rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(otherdocdir)"; \
+	fi
