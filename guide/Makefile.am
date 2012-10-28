@@ -1,6 +1,6 @@
 SUBDIRS = C de_DE it_IT ja_JP
 
-gnomehelpdir = $(datadir)/gnome/help/gnucash-guide
+gnomehelpdir = $(datadir)/gnome/help
 
 if WITH_MOBI
   MOBI = mobi
@@ -28,5 +28,10 @@ epub $(MOBI):
 	  || eval $$failcom; \
 	done; test -z "$$fail"
 
+install-data-hook:
+	cd "$(DESTDIR)$(gnomehelpdir)"; \
+	ln -sf gnucash gnucash-guide
+
 uninstall-hook:
-	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)"
+	rm -f "$(DESTDIR)$(gnomehelpdir)/gnucash-guide"
+	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)/gnucash"

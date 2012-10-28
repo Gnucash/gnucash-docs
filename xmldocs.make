@@ -35,7 +35,7 @@
 # These variables (gnomehelpdir and otherdocdir) specify where the documents
 # should be installed. The default values should work for most packages.
 # Gnome Help expects all documents here (this is where the xml files should go):
-gnomehelpdir = $(datadir)/gnome/help/$(docname)/$(lang)
+gnomehelpdir = $(datadir)/gnome/help/gnucash/$(lang)
 # Our other document versions go here:
 otherdocdir = $(docdir)/$(lang)
 
