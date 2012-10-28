@@ -1,5 +1,7 @@
 SUBDIRS = C de_DE it_IT
 
+gnomehelpdir = $(datadir)/gnome/help/gnucash-help
+
 if WITH_MOBI
   MOBI = mobi
 endif
@@ -26,3 +28,5 @@ epub $(MOBI):
 	  || eval $$failcom; \
 	done; test -z "$$fail"
 
+uninstall-hook:
+	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)"
