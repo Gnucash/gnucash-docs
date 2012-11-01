@@ -14,7 +14,9 @@ DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 
 dist-hook:
 	rm -rf `find $(distdir)/stylesheet -name \.svn`
+	rm -rf `find $(distdir)/stylesheet -name \.git`
 	rm -rf `find $(distdir)/xsl -name \.svn`
+	rm -rf `find $(distdir)/xsl -name \.git`
 
 distuninstallcheck_listfiles =  \
 find -regex '.*/var/scrollkeeper/.*' -prune -or -type f -print
