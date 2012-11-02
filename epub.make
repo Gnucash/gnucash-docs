@@ -16,9 +16,9 @@ epub-am:
 	$(XSLTPROC) --stringparam base.dir OEBPS/ \
 	            --stringparam epub.metainf.dir META-INF/ \
 	            --stringparam epub.oebps.dir OEBPS/ \
-	            $(top_srcdir)/xsl/1.75.2/epub/docbook.xsl \
-	            $(srcdir)/$(docname).xml && \
-	cp -L -R $(srcdir)/figures OEBPS/ && \
+	            $(abs_top_srcdir)/xsl/1.75.2/epub/docbook.xsl \
+	            $(abs_srcdir)/$(docname).xml && \
+	cp -L -R $(abs_srcdir)/figures OEBPS/ && \
 	zip -X -r ../$(epubfile) mimetype META-INF OEBPS && \
 	cd ..) && posthook=''; \
 	if test -d "$$EPUB_TMPDIR"; then \
