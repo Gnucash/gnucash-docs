@@ -806,191 +806,247 @@
 
       <sect1 id="acct-reconcile">
         <title>Reconciling an Account to a Statement</title>
+
         <para>Reconciliation of Accounts in <application>&app;</application> with statements from a bank or other
          institution is a way of double checking the accuracy of your (and your banks) transactions and the balance
-         of your accounts. It also is useful to track uncleared checks and other outstanding transactions. </para>
+         of your accounts. It also is useful to track uncleared checks and other outstanding transactions.</para>
+
+      <para>The reconciling process in <application>&app;</application> involves two dialogs: the 
+      <xref linkend="tool-reconcile" /> dialog followed by the <xref linkend="rec-win" /> window. They provide access 
+      to various <application>&app;</application> functions to make it easy to enter and update 
+      account information during the reconciliation.</para>
+
+      <tip>
+        <para>The Reconcile window is accessed from the account tree window or the account register window by
+        going to <menuchoice><guimenu>Actions</guimenu><guimenuitem>Reconcile...</guimenuitem></menuchoice> 
+        or using the menu shortcut <keycombo><keycap>Alt</keycap><keycap>A</keycap></keycombo>, <keycap>R</keycap>.</para>
+      </tip>
 
         <para>The <emphasis>Summary Bar</emphasis> at the bottom of the Account Register Window indicates the amounts
-         of Present (Balance), Future (Balance), Cleared (Transactions), Reconciled (Transactions) and
-         Projected Minimum. On-line account information can be used to
-         mark which transactions the bank has processed by changing the R (reconciliation status)
-         column in the register from n (new) to c (cleared). The bank statement is then used
-         with the Reconcile Window to reconcile the account which changes the R field to y
-         (reconciled).</para>
+         of <guilabel>Present</guilabel> (Balance), <guilabel>Future</guilabel> (Balance), <guilabel>Cleared</guilabel>
+         (Transactions), <guilabel>Reconciled</guilabel> (Transactions) and
+         <guilabel>Projected Minimum</guilabel>. On-line account information can be used to
+         mark which transactions the bank has processed by changing the <guilabel>R</guilabel> (reconciliation status)
+         column in the register from <guilabel>n</guilabel> (new) to <guilabel>c</guilabel> (cleared). The bank statement is then used
+         with the <guilabel>Reconcile</guilabel> window to reconcile the account which changes the <guilabel>R</guilabel> field to
+         <guilabel>y</guilabel> (reconciled).</para>
 
-        <para>The Reconciling Windows are accessed in the Account Tree Window or the Account Register Window by
-         going to <menuchoice><guimenu>Actions</guimenu><guimenuitem>Reconcile...</guimenuitem></menuchoice> 
-         (menu shortcut <keycombo><keycap>Alt</keycap><keycap>A</keycap></keycombo>, <keycap>R</keycap>).</para>
+    <sect2 id="tool-reconcile">
+      <title>Reconciling Information</title>
+
+        <para>The <guilabel>Reconcile Information</guilabel> dialog is used to indicate the closing <guilabel>Statement Date</guilabel>
+        and the <guilabel>Starting Balance</guilabel> (fixed from last reconciliation) and <guilabel>Ending Balance</guilabel> 
+        from the statement. The <guilabel>Include Sub-accounts</guilabel> check-box is used if one or more subaccounts are used to track
+        the account you are reconciling. The <guibutton>Enter Interest Payment</guibutton> button is used to add a transfer to the
+        accounts for an interest payment. If selected a dialog will be displayed to add the 
+        <xref linkend="tool-ent-int" /> to the account.</para>
+        <note>
+          <para>The <guibutton>Enter Interest Payment</guibutton> button is shown only if you are reconciling an account of
+          <emphasis>Bank</emphasis> type.</para>
+        </note>
+
+        <para>When you have entered all relevant data, press <guibutton>Ok</guibutton> to proceed to the 
+        <xref linkend="rec-win" /> dialog or <guibutton>Cancel</guibutton> to discard the reconciliation process.</para>
+
+        <sect3 id="tool-ent-int">
+          <title>Interest Payment</title>
+            <para>There are three panes in the <guilabel>Interest Payment</guilabel> dialog. At the bottom is a
+            button called <guibutton>No Auto Interest Payments for this Account</guibutton> which will cancel the
+            dialog. The top pane contains the <guilabel>Payment Information</guilabel>.</para>
+
+            <itemizedlist>
+              <listitem>
+                <para><guilabel>Amount:</guilabel> Enter the amount of the interest payment.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Date:</guilabel> Select the date for the interest payment.</para>
+              </listitem>
+
+                <listitem>
+                  <para><guilabel>Num:</guilabel> Enter a number for the transaction (optional).</para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Description:</guilabel> Enter an informational description for the transaction.</para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Memo:</guilabel> Enter a note about the transaction (optional).</para>
+                </listitem>
+              </itemizedlist>
 
 
-      <sect2 id="tool-reconcile">
-<!--        <title>Reconciling Windows</title>
+            <para>The <guilabel>Reconcile Account</guilabel> pane highlights in the tree the account that the
+            interest payment will be transferred to or from.</para>
 
-        <para>The Reconciling Windows are used to reconcile bank statements to
-        <application>&app;</application> accounts. They provide access to various <application>&app;</application> functions to
-        make it easy to enter and update account information during the
-        reconciliation.</para>
+            <para>The <guilabel>Payment From</guilabel> pane contains a list of accounts where you can select the source 
+            account.</para>
+ 
+            <note>
+              <para>If the payment is for a credit or loan account then usually the payment would be from an 
+              <emphasis>Expense</emphasis> account. If the payment is for a checking or savings account then 
+              usually this would be from an <emphasis>Income</emphasis> account.</para>
+            </note>
 
-        <sect3 id="rec-info">-->
-          <title>Reconciling Information Window</title>
+	    <tip>
+              <para>The <guibutton>Show Income/Expense</guibutton> check-box shows or hides the 
+              <emphasis>Income</emphasis> and <emphasis>Expense</emphasis> accounts.</para>
+            </tip>
 
-          <para>The Reconcile Information dialog is used to indicate the closing statement date
-           and the starting (fixed from last reconciliation) and ending balance from the statement. The <guilabel>Include
-           Sub-accounts</guilabel> check-box is used if two or more accounts are used to track a single
-           bank account. The <guilabel>Enter Interest Payment</guilabel> button is used to add a transfer to the
-           accounts for an interest payment. If selected a dialog will be displayed to add the interest
-           payment to the account.</para>
+            <para>Select <guibutton>OK</guibutton> to enter the interest transaction (or <guibutton>Cancel</guibutton> 
+            the payment) and return to the initial reconciliation screen.</para>
 
-          <para>There are three panes in the Interest Payment dialog. At the bottom is a
-           button called <guibutton>No Auto Interest Payments for this Account</guibutton> which will cancel the
-           dialog. The top pane contains the Payment Information.</para>
+          </sect3>
 
-          <itemizedlist>
-            <listitem>
-              <para><guilabel>Amount:</guilabel> Enter the amount of the interest payment.</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>Date:</guilabel> Select the date for the interest payment.</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>Num:</guilabel> Enter a number for the transaction (optional).</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>Description:</guilabel> Enter an informational description for the transaction.</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>Memo:</guilabel> Enter a note about the transaction (optional).</para>
-            </listitem>
-          </itemizedlist>
-
-          <para>The next window contains a list of accounts for the <quote>Payment From</quote> account. If the
-           payment is for a credit or loan account then usually this would be from an Expense
-           account. If the payment is for a checking or savings account then usually this would
-           be from an Income account. The Show Income/Expense check-box shows or hides the
-           Income and Expense accounts.</para>
-
-          <para>Select <guibutton>OK</guibutton> to enter the interest transaction and return to the initial
-           reconciliation screen.</para>
-
-          <para><!--The next pane contains the Reconcile Account. This shows the account that the
-           interest payment will be transferred to or from.--></para>
         </sect2>
 
         <sect2 id="rec-win">
-          <title>Reconcile Window</title>
+          <title>Reconcile</title>
+          <note>
+            <para>For a detailed description of menu items and buttons on the reconcile window, see
+            <xref linkend="rcn-menu" />.</para>
+          </note>
 
-          <para><!--The parts of the Reconcile Window are described in the Tool Windows section of
-           <application>&app;</application> Windows. This window is used to open the account and to add transaction
-           information to the account in order to reconcile the account to the bank statement.
-          --></para>
+          <para>The <guilabel>Reconcile</guilabel> dialog is where the actual process of matching your statement 
+          to <application>&app;</application> data takes place on a per transaction basis.</para>
+          <para>The <guilabel>Reconcile</guilabel> dialog is composed by a <emphasis>toolbar</emphasis> and three 
+          panes; <guilabel>Funds In</guilabel> on the left, <guilabel>Funds out</guilabel> on the right and a balance pane.</para>
+          
+          <note>
+            <para>If you enabled the option <guilabel>Use formal accounting labels</guilabel> in the 
+            <guilabel>Accounts</guilabel> section of the <application>&app;</application> preferences, 
+            you will see <guilabel>Debits</guilabel> and <guilabel>Credits</guilabel> panes instead of 
+            <guilabel>Funds In</guilabel> and <guilabel>Funds Out</guilabel> panes.</para>
+          </note> 
 
-          <para>The set of unreconciled transactions in the Funds In and Funds Out panes can
-           be changed by using the menus and <emphasis>Toolbar</emphasis> to access the account and transaction
-           information. If you wish to postpone the reconciliation until later use the
-           <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Postpone</guimenuitem></menuchoice> 
-           menu item (menu shortcut <keycombo><keycap>Ctrl</keycap><keycap>P</keycap></keycombo>) or pressing the
-           <guibutton>Postpone</guibutton> icon.  If you wish to cancel the reconciliation use the
-           <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Cancel</guimenuitem></menuchoice> menu item or press the
-           <guibutton>Cancel</guibutton> icon.</para>
+          <para>The <guilabel>Funds In</guilabel> and <guilabel>Funds Out</guilabel> pane shows all unreconciled 
+          deposits to the account. Both panes are composed by five columns.</para>
 
-          <para>Select each unreconciled transaction matching a transaction on the statement so a
-           green tick appears in the R column. The Balance pane changes to reflect each
-           selected transaction until the Ending Balance equals the Reconciled Balance and the
-           Difference is zero. Once this is done select the <guibutton>Finish</guibutton> button or
-           <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Finish</guimenuitem></menuchoice> 
-           (menu shortcut <keycombo><keycap>Ctrl</keycap><keycap>F</keycap></keycombo>) to finish the reconcile process.</para>
+          <tip>
+            <para>To order the listed transactions with a preferred criteria, click on the relevant column header. 
+            To reverse the selected order click a second time on the column header.</para>
+          </tip>
 
-        </sect2>
+          <variablelist>
+            <varlistentry>
+              <term><guilabel>Date</guilabel></term>
+              <listitem>
+                <para>The date of the unreconciled transaction.</para>
+              </listitem>
+            </varlistentry>
 
-        <sect2 id="rec-main">
-          <title>Reconciling Window</title>
+            <varlistentry>
+              <term><guilabel>Num</guilabel></term>
+              <listitem>
+                <para>The number of the unreconciled transaction.</para>
+              </listitem>
+            </varlistentry>
 
-          <para>The <guilabel>Funds In</guilabel> pane shows all unreconciled deposits to the
-          account.</para>
+            <varlistentry>
+              <term><guilabel>Description</guilabel></term>
+              <listitem>
+                <para>The Description of the unreconciled
+                transaction.</para>
+              </listitem>
+            </varlistentry>
 
-          <itemizedlist>
+            <varlistentry>
+              <term><guilabel>Amount</guilabel></term>
             <listitem>
-              <para><guilabel>Date</guilabel>: The date of the unreconciled transaction.</para>
+              <para>The Amount of the unreconciled transaction.</para>
             </listitem>
+            </varlistentry>
 
-            <listitem>
-              <para><guilabel>Num</guilabel>: The number of the unreconciled transaction.</para>
-            </listitem>
+            <varlistentry>
+              <term><guilabel>R</guilabel></term>
+              <listitem>
+                <para>Shows a green tick if the transaction will be
+                reconciled when done.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
 
-            <listitem>
-              <para><guilabel>Description</guilabel>: The Description of the unreconciled
-              transaction.</para>
-            </listitem>
+          <para>To mark a transaction as reconciled just click on it and a green checkmark will appear
+          on the relevant <guilabel>R</guilabel> column.</para>
 
-            <listitem>
-              <para><guilabel>Amount</guilabel>: The Amount of the unreconciled transaction.</para>
-            </listitem>
+          <note>
+            <para>Under each pane a <guilabel>Total</guilabel> for 
+            reconciled transactions is shown.</para>
+          </note>
 
-            <listitem>
-              <para><guilabel>R</guilabel>: Shows a green tick if the transaction will be
-              reconciled when done.</para>
-            </listitem>
-          </itemizedlist>
-
-          <para>The <guilabel>Funds Out</guilabel> pane shows all unreconciled expenses from the
-          account.</para>
-
-          <itemizedlist>
-            <listitem>
-              <para><guilabel>Date</guilabel>: The date of the unreconciled transaction.</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>Num</guilabel>: The number of the unreconciled transaction.</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>Description</guilabel>: The Description of the unreconciled
-              transaction.</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>Amount</guilabel>: The Amount of the unreconciled transaction.</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>R</guilabel>: Shows a green tick if the transaction will be
-              reconciled when done.</para>
-            </listitem>
-          </itemizedlist>
-
-          <para>The <guilabel>Balance</guilabel> pane shows the balances used in
+          <para>The balance pane shows a summary of the balances used in
           reconciliation.</para>
 
-          <itemizedlist>
-            <listitem>
-              <para><guilabel>Starting Balance</guilabel>: The balance at the end of the last
-              reconciliation.</para>
-            </listitem>
+          <variablelist>
+            <varlistentry>
+              <term><guilabel>Statement Date</guilabel></term>
+              <listitem>
+                <para>The date on the statement set on the <xref linkend="tool-reconcile" />.</para>
+              </listitem>
+            </varlistentry>
 
-            <listitem>
-              <para><guilabel>Ending Balance</guilabel>: The balance entered from the
-              statement.</para>
-            </listitem>
+            <varlistentry>
+              <term><guilabel>Starting Balance</guilabel></term>
+              <listitem>
+                <para>The balance at the end of the last reconciliation.</para>
+              </listitem>
+            </varlistentry>
 
-            <listitem>
-              <para><guilabel>Reconciled Balance</guilabel>: The balance of selected
-              transactions.</para>
-            </listitem>
+            <varlistentry>
+              <term><guilabel>Ending Balance</guilabel></term>
+              <listitem>
+                <para>The balance entered from the statement.</para>
+              </listitem>
+            </varlistentry>
 
-            <listitem>
-              <para><guilabel>Difference</guilabel>: The difference between the Reconciled and
-              Ending Balances.</para>
-            </listitem>
-          </itemizedlist>
-<!--      </sect3>-->
-     </sect2>
+            <varlistentry>
+              <term><guilabel>Reconciled Balance</guilabel></term> 
+              <listitem>
+                <para>The balance of selected transactions.</para>
+              </listitem>
+            </varlistentry>
 
-    </sect1>
+            <varlistentry>
+              <term><guilabel>Difference</guilabel></term>
+              <listitem>
+                <para>The difference between the <guilabel>Reconciled</guilabel> and 
+                <guilabel>Ending</guilabel> balances.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <para>The set of unreconciled transactions in the <guilabel>Funds In</guilabel> and <guilabel>Funds Out</guilabel> panes can
+          be changed by using the menus and <emphasis>Toolbar</emphasis> to access the account and transaction
+          information. You can create a <guibutton>New</guibutton> transaction, <guibutton>Edit</guibutton> a selected transaction, 
+          add a <guilabel>Balance</guilabel> transaction (of the same amount as listed under <guilabel>Difference</guilabel> in the balance pane),
+          and delete the selected transaction.</para>
+
+          <tip>
+            <para>To modify a listed transaction, double click on it.</para>
+          </tip>
+
+	  <para>By pressing the <guilabel>Open</guilabel> icon the register of the account to reconcile will be opened.</para>
+          
+	  <para>If you wish to postpone the reconciliation until later use the
+          <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Postpone</guimenuitem></menuchoice> 
+          menu item (menu shortcut <keycombo><keycap>Ctrl</keycap><keycap>P</keycap></keycombo>) or pressing the
+          <guibutton>Postpone</guibutton> icon. If you wish to cancel the reconciliation use the
+          <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Cancel</guimenuitem></menuchoice> menu item or press the
+          <guibutton>Cancel</guibutton> icon.</para>
+
+	  <para>All previous command are also available in the <guilabel>Reconcile</guilabel> dialog menu.</para>
+
+          <para>Select each unreconciled transaction matching a transaction on the statement so a
+          green tick appears in the <guilabel>R</guilabel> column. The <guilabel>Balance</guilabel> pane changes to reflect each
+          selected transaction until the <guilabel>Ending Balance</guilabel> <emphasis>equals</emphasis>
+          the <guilabel>Reconciled Balance</guilabel> and the <guilabel>Difference</guilabel> is <emphasis>zero</emphasis>.
+          Once this is done select the <guibutton>Finish</guibutton> button or
+          <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Finish</guimenuitem></menuchoice> 
+          (menu shortcut <keycombo><keycap>Ctrl</keycap><keycap>F</keycap></keycombo>) to finish the reconcile process.</para>
+        </sect2>
+
+   </sect1>
 
 </chapter>
 
