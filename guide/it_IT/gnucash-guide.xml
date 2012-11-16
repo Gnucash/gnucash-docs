@@ -1246,7 +1246,7 @@
   <sect1 id="basics-backup1">
     <title>Creare copie di sicurezza e recuperare i dati</title>
 
-    <para><application>&app;</application> crea diversi tipi di file per assicurarsi che i dati non vadano persi. Controllando nella cartella in cui è stato salvato il proprio file <filename>.gnucash</filename>, saranno probabilmente presenti altri file generati automaticamente da <application>&app;</application> con le seguenti estensioni: <filename>.gnucash</filename>, <filename>.log</filename>, <filename>.LCK</filename>, <filename>.LNK</filename>. La descrizione delle caratteristiche fornite da ogni formato è riportata di seguito.</para>
+    <para><application>&app;</application> crea diversi tipi di file per assicurarsi che i dati non vadano persi. Controllando nella cartella in cui è stato salvato il proprio file, saranno probabilmente presenti altri file generati automaticamente da <application>&app;</application> con le seguenti estensioni: <filename>.gnucash</filename>, <filename>.log</filename>, <filename>.LCK</filename>, <filename>.LNK</filename>. La descrizione delle caratteristiche fornite da ogni formato è riportata di seguito.</para>
     
     <note>
     <para>Le seguenti sezioni hanno rilevanza solamente se si stanno salvando i propri dati finanziari nel formato <acronym>XML</acronym>.</para>
@@ -1280,7 +1280,7 @@
     <sect2 id="basics-backuplog2">
       <title>File di log (.log)</title>
 
-      <para>Ogni volta che viene aperto un file in <application>&app;</application>, viene creato un file <filename>.log</filename> con lo stesso nome del file di backup di estensione <filename>.YYYYMMDDHHMMSS.gnucash</filename>. Nel momento in cui si effettuano delle modifiche al file dei dati aperto, il file di log registra solamente queste modifiche. I file di log non sono dei file di backup completi: registrano semplicemente i cambiamenti fatti al file dei dati nella sessione corrente di <application>&app;</application>.</para>
+      <para>Ogni volta che viene aperto un file in <application>&app;</application>, <application>&app;</application> crea un file di log che contiene le modifiche effettuate sul file dei dati. Il file di log utilizza un nome simile a quello dei file di backup: <filename>.YYYYMMDDHHMMSS.log</filename>. I file di log non sono dei file di backup completi: registrano semplicemente i cambiamenti fatti al file dei dati nella sessione corrente di <application>&app;</application>.</para>
 
       <para>Nel caso <application>&app;</application> terminasse inaspettatamente, per esempio a causa di un blackout elettrico o di un blocco del sistema, sarà possibile recuperare la maggior parte del lavoro svolto dall&rsquo;ultima volta che il file di <application>&app;</application> è stato salvato, utilizzando il file di log. Questa è la procedura da seguire:</para>
 
@@ -1335,14 +1335,99 @@
      <title>Migrare i dati finanziari</title>
      <para>La migrazione dei dati di <application>&app;</application> si esaurisce con la semplice copia dei file con estensione <filename>.gnucash</filename> utilizzando un gestore di file se si conosce la posizione in cui i file risiedono. Se questa non è nota, ma il file viene aperto in <application>&app;</application>, è sufficiente salvare questo file in un percorso conosciuto.</para>
 
-     <para>Il resto consiste in file per copie di sicurezza o registrazione di eventi. Fondamentalmente non fa alcuna differenza copiare o non copiare anche questi.</para>
+     <para>I restanti file nella cartella consistono in file per copie di sicurezza (file di backup) o registrazione di eventi (file di log). Fondamentalmente non fa alcuna differenza copiare o non copiare anche questi.</para>
    </sect2>
 
    <sect2 id="migrate-prefs">
      <title>Migrare le preferenze</title>
-     <para>Il percorso in cui i file delle preferenze di <application>&app;</application> sono salvati, può variare a seconda del sistema operativo.</para>
+     <para>Sono presenti tre diverse cartelle con i file di supporto: una per le preferenze di <application>&app;</application>, una per i resoconti e una per le impostazioni dell'online banking. Le preferenze sono gestite da <application>gconf</application>, i resoconti sono gestiti da <application>&app;</application> e l'online banking è gestito da <application>aqbanking</application>. Se non si utilizza l'onlinje banking, la relativa cartella non sarà presente nel proprio sistema.</para>
+     <para>I percorsi in cui vengono salvati i file delle preferenze di <application>&app;</application>  dipendono dal sistema operativo in uso. (vedere <xref linkend="App-sett-loc"/>, <xref linkend="Report-loc"/> e <xref linkend="OB-sett-loc"/>). Per creare una copia di sicurezza e trasferire l'intera installazione, si consiglia di copiare anche queste cartelle.</para>
 
-     <para>Su MacOSX, copiare <filename class="directory">~/Library/Application Support/gnucash</filename>, <filename class="directory">~/.aqbanking</filename> e <filename class="directory">~/.gconf*</filename>. Queste sono le proprie impostazioni e i resoconti personalizzati. Se non si usa l&rsquo;online banking, non si avrà <filename class="directory">.aqbanking</filename>.</para>
+     
+        <table id="App-sett-loc"><title>Posizione delle impostazioni dell&rsquo;applicazione</title>
+        <tgroup cols="2" align="left">
+          <thead>
+            <row>
+                <entry>Sistema operativo</entry>
+                <entry>cartella</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Unix</entry>        
+              <entry><filename class="directory">~/.gconf/apps/gnucash</filename></entry>
+            </row>
+            <row>
+              <entry>Mac OSX</entry>
+              <entry><filename class="directory">~/.gconf/apps/gnucash</filename></entry>
+            </row>
+            <row>
+              <entry>Finestre</entry>
+              <entry><filename class="directory">Documents and Settings/Nomeutente/.gconf/apps/gnucash</filename></entry>
+            </row>
+          </tbody>
+        </tgroup>
+        </table>
+
+        <table id="Report-loc"><title>Posizione dei resoconti salvati</title>
+        <tgroup cols="2" align="left">
+          <thead>
+            <row>
+                <entry>Sistema operativo</entry>
+                <entry>cartella</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Unix</entry>
+              <entry><filename class="directory">~/.gnucash</filename></entry>
+            </row>
+            <row>
+              <entry>Mac OSX</entry>
+              <entry><filename class="directory">~/Library/Application Support/gnucash</filename></entry>
+            </row>
+            <row>
+              <entry>Finestre</entry>
+              <entry><filename class="directory">Documents and Settings/Nomeutente/.gnucash</filename></entry>
+            </row>
+          </tbody>
+        </tgroup>
+        </table>
+
+
+        <table id="OB-sett-loc"><title>Posizione delle impostazioni per l'Online Banking</title>
+        <tgroup cols="2" align="left">
+          <thead>
+            <row>
+                <entry>Sistema operativo</entry>
+                <entry>cartella</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Unix</entry>
+              <entry><filename class="directory">~/.aqbanking</filename></entry>
+            </row>
+            <row>
+              <entry>Mac OSX</entry>
+              <entry><filename class="directory">~/.aqbanking</filename></entry>
+            </row>
+            <row>
+              <entry>Finestre</entry>
+              <entry><filename class="directory">Documents and Settings/Nomeutente/.aqbanking</filename></entry>
+            </row>  
+          </tbody>
+        </tgroup>
+        </table>
+
+     <note>
+       <para>Nei sistemi Unix e Mac OSX, queste cartelle non sono generalmente visualizzate nel gestore dei file. per poterle vedere il gestore dei file deve essere impostato in modo da visualizzare i file e le cartelle nascoste.</para>
+     </note>
+
+     <tip>
+       <para>Nei sistemi Unix e Mac OSX, il simbolo <keycap>~</keycap> rappresenta un&rsquo;abbreviazione della cartella <filename class="directory">home</filename></para>
+     </tip>
+
    </sect2>
 
   </sect1>
@@ -1489,6 +1574,8 @@
     </listitem>
 
     <listitem>
+      <para>Dopo aver premuto il pulsante <guibutton>Apply</guibutton> nella finestra precedente, verrà visualizzata la finestra di salvataggio. Selezionare il <guilabel>Formato dati</guilabel> <acronym>XML</acronym>, inserire il <guilabel>Nome</guilabel> <filename>gcashdata_1</filename> per il file, selezionare la cartella dove salvarlo (è importante ricordarla perché questo file dei dati verrà utilizzato negli altri esempi all&rsquo;interno di questa guida) e infine premere il pulsante <guibutton>Salva come</guibutton>.</para>
+
         <para>La finestra principale dovrebbe ora assomigliare a questa:</para>
 
           <screenshot id="basics-EmptyAccounts">
@@ -1506,8 +1593,6 @@
               </textobject>
             </mediaobject>
           </screenshot>
-        
-        <para>In seguito, creare un file in cui salvare i dati di prova. Questo è il file che verrà utilizzato nella guida di questo manuale. Selezionare <menuchoice><guimenu>File</guimenu><guimenuitem>Salva come...</guimenuitem></menuchoice> (o premere <keycombo><keycap>Maiusc</keycap><keycap>Ctrl</keycap><keycap>S</keycap></keycombo> sulla propria tastiera) per aprire la finestra di salvataggio. Selezionare il formato dei dati <acronym>XML</acronym>, nominare il file <filename>gcashdata_1</filename> e selezionare la cartella in cui salvarlo.</para>
     </listitem>
     
   </orderedlist>
@@ -9912,7 +9997,7 @@ Author:
 -->
 
 <chapter id="ch_python_bindigs">
-  <title>Python Extensions</title>
+  <title>Estensioni in Python</title>
   <para><application>&app;</application> è sembre stato un&rsquo;applicazione tradizionale nel senso che è sempre stato utilizzato attraverso un&rsquo;interfaccia grafica che permette di aprire, modificare e salvare i propri dati. Questo fatto può essere considerato come una limitazione dato che è possibile fare solamente quello che i menu, le finestre e la barra degli strumenti permettono di fare.</para>
   <para>A volte però si avverte il bisogno di una maggiore flessibilità. Per esempio si potrebbe aver bisogno di un resoconto con alcune informazioni diverse da quelle fornite dai resoconti inclusi in <application>&app;</application>, oppure si vuole automatizzare un&rsquo;operazione frequente. Queste manipolazioni personalizzate sono le candidate ideali per essere scritte in un linguaggio di programmazione piuttosto che in un altro.</para>
   <para>A partire dalla versione 2.4 di <application>&app;</application> è possibile utilizzare degli script di <application>Python</application> per manipolare i propri dati finanziari.</para>
@@ -10144,9 +10229,7 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
   <listitem>
     <para>Copiare il file dei dati <acronym>XML</acronym> di <application>&app;</application> in un file che funziona.</para>
     <note>
-      <para>If the file was last modified by a version of <application>GnuCash</application> older than 2.0, then
-before to continue to the next step you will need to modify the working file’s &lt;gnc-v2&gt;
-tag to read something like this:</para>
+      <para>Se il file è stato modificato l&rsquo;ultima volta con una versione di <application>&app;</application> precedente alla 2.0, allora prima di continuare al passo successivo, è necessario modificare il tag &lt;gnc-v2&gt; come di seguito indicato:</para>
     <literallayout>
 &lt;gnc-v2 xmlns:cd="http://www.gnucash.org/XML/cd"
         xmlns:book="http://www.gnucash.org/XML/book"
@@ -10170,8 +10253,7 @@ tag to read something like this:</para>
         xmlns:fs="http://www.gnucash.org/XML/fs"
         xmlns:addr="http://www.gnucash.org/XML/custaddr"&gt;
     </literallayout>
-    <para>You can put pretty much anything you want behind the equal signs, but a <acronym>URL</acronym>
-is what is typically used.</para>
+    <para>Si può inserire più o meno qualsiasi cosa prima del segno di uguale, ma generalmente si utilizza un <acronym>URL</acronym>.</para>
     </note>
   </listitem>
   <listitem>
@@ -10910,7 +10992,7 @@ Blocking_Chars
       <para><address>Free Software Foundation, Inc. <street>59 Temple Place, Suite 330</street>, <city>Boston</city>, <state>MA</state><postcode>02111-1307</postcode><country>USA</country></address> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.</para>
     </legalnotice>
   </appendixinfo>
-  <title>documentazione sulla licenza libera GNU (in inglese)</title>
+  <title>Documentazione sulla licenza libera GNU (in inglese)</title>
 
   <sect1 id="fdl-preamble">
     <title>0. PREAMBLE</title>
