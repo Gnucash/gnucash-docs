@@ -6,7 +6,13 @@
 fofile  = $(docname).fo
 pdffile = $(docname).pdf
 
-pdf: $(pdffile)
+pdf: $(abs_builddir)/figures $(pdffile)
+
+# This is only needed for out of tree builds. If you build
+# from within the source directory, the build system
+# will ignore this (mentioning a circular dependency)
+$(abs_builddir)/figures: $(abs_srcdir)/figures
+	ln -s '$<' '$@'
 
 $(fofile): $(entities)
 
