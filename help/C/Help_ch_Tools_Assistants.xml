@@ -23,59 +23,118 @@
        <guimenu>Tools</guimenu> menu.  Several of these tools may not be displayed depending on if your
        software was not configured to support Online banking, or the tools appropriate for the current window.</para>
 
-  <sect1 id="tool-find">
-   <title>Find Transactions</title>
+  <sect1 id="tool-find"><title>Find</title>
+    <para>The <application>&app;</application> <emphasis>Find</emphasis> assistant can be used to <link linkend="tool-find-txn">find 
+    transactions</link> or to perform <link linkend="tool-find-bsnss">business related</link> research on your data file.</para>
 
-        <para>Find Transactions is used to search for transactions in <application>&app;</application>
-        and display the results in a register window. The <emphasis>Titlebar</emphasis> of the
-        <guilabel>Find Transactions</guilabel> dialog contains <guilabel>Search For...</guilabel> and the first line
-        of the dialog has <guilabel>Split Search</guilabel>. In other search dialogs used in
-        <application>&app;</application> the first line contains a different description but the same
-        basic layout.</para>
+    <sect2 id="tool-find-txn">
+      <title>Find Transaction</title>
+        <para><guilabel>Find Transaction</guilabel> is used to search for transactions in <application>&app;</application>
+        and display the results in a register window. To open the <guilabel>Find Transaction</guilabel> dialog in 
+        <guilabel>Split Search</guilabel> mode, you can type the keyboard shortcut <keycombo><keycap>Ctrl</keycap><keycap>f</keycap></keycombo>.</para>
 
-        <note><para>The <guilabel>Find</guilabel> tool will also search for; a Customer, an Invoice, a Job, a Vendor,
-        Bill(s), Employee(s), or Expense Voucher(s). The target of the search is determined by where the tools is
-        invoked.  Access to the Tool via <menuchoice><guimenu>Business</guimenu><guisubmenu>(Customer/Vendor/Employee)</guisubmenu></menuchoice>.
-        </para></note>
+        <note>
+          <para>The first row of the <guilabel>Find Transaction</guilabel> dialog
+          indicates that you are performing a <guilabel>Split Search</guilabel>.</para>
+        </note>
+ 
+        <para>There are two panes in the <guilabel>Find Transaction</guilabel> dialog. The top pane contains
+        the <guilabel>Search Criteria</guilabel> buttons and the bottom pane contains the <guilabel>Type of
+        Search</guilabel> selection.</para>
 
-        <para>To open the Find Transactions dialog in the Account Tree Window
-        go to the Tools menu and select Find Transactions or type menu
-        shortcut Ctrl-F. To open the Find Transactions dialog in the Account
-        Register Window go to the Edit menu and select Find... or type menu
-        shortcut F6.</para>
-
-        <para>There are two panes in the search dialog. The top pane contains
-        the Search Criteria buttons and the bottom pane contains the Type of
-        Search selection.</para>
-
-        <para>There are two buttons in the top of the Search Criteria pane.
-        The left button allows you to add another criteria row to search for
+        <para>There are two buttons in the top of the <guilabel>Search Criteria</guilabel> pane.
+        The left button allows you to <guibutton>Add</guibutton> another criteria row to search for
         multiple criteria. The existing criteria row needs to be completed
-        before adding a new row. The right button is used to Search for items
-        where all criteria are met or Search for items where any criteria are
-        met. The all criteria are met search requires all of the criteria rows
-        to have at least one match. The any criteria are met search requires
+        before adding a new row. The right button is used to <guilabel>Search for items
+        where all criteria are met</guilabel> or <guilabel>Search for items where any criteria are
+        met</guilabel>. The <guilabel>all criteria are met</guilabel> search requires all of the criteria rows
+        to have at least one match. The <guilabel>any criteria are met</guilabel> search requires
         only one of the criteria rows to be matched.</para>
 
-        <para>The criteria row is used to combine different criteria buttons.
-        The following table describes the possible button combinations (regex
-        means regular expression search);</para>
+        <para>The criteria row  in the <guilabel>Search Criteria</guilabel> pane is used to combine different 
+        criteria buttons (see table <xref linkend="tool-find-bttns" /> for a comprehensive list of combinations)</para>
 
-        <table frame="topbot" id="tool-find-buttons">
-          <title>Search criteria buttons.</title>
+ 	<para>In the <guilabel>Type of Search</guilabel> pane there are five selections. The first option is always enabled, the following
+        three are available when you invoke the <guimenuitem>Find...</guimenuitem> option from a register window or after performing the 
+        first <guibutton>Find</guibutton> if the <guimenuitem>Find...</guimenuitem> command was invoked from any other window. 
+        Last option is available only for <link linkend="tool-find-bsnss">Business search</link>.</para>
 
-          <tgroup cols="8">
+        <variablelist>
+          <varlistentry>
+            <term><guilabel>New Search</guilabel></term>
+            <listitem>
+              <para>Perform a new transaction search</para>
+            </listitem>
+          </varlistentry>
+  
+          <varlistentry>
+            <term><guilabel>Refine current search</guilabel></term>
+            <listitem>
+              <para>Search within the results of the previous search</para>
+            </listitem>
+          </varlistentry>
+  
+          <varlistentry>
+            <term><guilabel>Add results to current search</guilabel></term>
+            <listitem>
+              <para>Search based on the first set of criteria or the new criteria</para>
+            </listitem>
+          </varlistentry>
+  
+          <varlistentry>
+            <term><guilabel>Delete results from current search</guilabel></term>
+            <listitem>
+              <para>Discard any results that match the previous search results</para>
+            </listitem>
+          </varlistentry>
+  
+          <varlistentry>
+            <term><guilabel>Search only active data</guilabel></term>
+          <listitem>
+            <para>Search only if data are marked as active. This selector
+            is greyed out for the <guilabel>Split Search</guilabel> as it is meaningful only for 
+            <link linkend="tool-find-bsnss">business related search</link></para>
+          </listitem>
+          </varlistentry>
+        </variablelist>
+        
+        <note>
+          <para>When selecting search criteria keep in mind that criteria are applied to
+	  individual splits or fields in transactions, and that the entire transaction is
+	  included in the results. There is no visual indication in the results to
+	  indicate which split or field met the search criteria.</para>
+        </note>
+
+	<tip>
+	  <para>To search within a smaller group of transactions, you may start from within a single account register
+          and also use the register view <guimenuitem>filter by...</guimenuitem> option to include a limited number of
+          transactions. When starting from a single account register, only the parts of transactions applying to that
+          account are searched. Thus the transfer accounts, notes and transfer values are not searched, but they do
+          appear in the search result register.</para>
+	</tip>
+
+	<para>When search criteria are selected, you can press the <guibutton>Find</guibutton> button. You will be
+        presented with the search results in a new register tab.</para>
+
+        <note>
+          <para>Press the <guibutton>Close</guibutton> button to close the <guilabel>Find Transaction</guilabel> dialog.</para>
+        </note>
+
+        <table frame="topbot" id="tool-find-bttns">
+          <title>Search criteria buttons - Split Search</title>
+
+          <tgroup cols="8" rowsep="1">
             <thead>
               <row>
                 <entry><para>Button 1</para></entry>
 
-                <entry><para>Button2</para></entry>
+                <entry><para>Button 2</para></entry>
 
-                <entry><para>Button3</para></entry>
+                <entry><para>Button 3</para></entry>
 
-                <entry><para>Button4</para></entry>
+                <entry><para>Button 4</para></entry>
 
-                <entry><para>Button5</para></entry>
+                <entry><para>Button 5</para></entry>
 
                 <entry><para>Button 6</para></entry>
 
@@ -87,1125 +146,430 @@
 
             <tbody>
               <row>
-                <entry><para>Description</para></entry>
+                <entry morerows="2" valign="middle"><para>Description<footnote id="DMN"><para>The Description, Memo, Number
+                are common to all lines in a transaction.</para></footnote></para></entry>
 
                 <entry><para>contains</para></entry>
 
-                <entry><para>Criteria entry field</para></entry>
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
 
-                <entry><para>Is entry Case Insensitive?</para></entry>
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Description</para></entry>
-
-                <entry><para>does not contain</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>matches regex<footnote id="rgx"><para><emphasis>regex</emphasis>
+                means regular expression text search as used in various computer programs such
+                as <application>Perl</application></para></footnote></para></entry>
               </row>
 
               <row>
-                <entry><para>Description</para></entry>
-
-                <entry><para>matches regex</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
               </row>
 
               <row>
-                <entry><para>Description</para></entry>
-
-                <entry><para>does not match regex</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-              </row>
-
-              <row>
-                <entry><para>Memo</para></entry>
+                <entry morerows="2" valign="middle"><para>Memo<footnoteref linkend="DMN"/></para></entry>
 
                 <entry><para>contains</para></entry>
 
-                <entry><para>Criteria entry field</para></entry>
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
 
-                <entry><para>Is entry Case Insensitive?</para></entry>
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Memo</para></entry>
-
-                <entry><para>does not contain</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
               </row>
 
               <row>
-                <entry><para>Memo</para></entry>
-
-                <entry><para>matches regex</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
               </row>
 
               <row>
-                <entry><para>Memo</para></entry>
-
-                <entry><para>does not match regex</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-              </row>
-
-              <row>
-                <entry><para>Number</para></entry>
+                <entry morerows="2" valign="middle"><para>Number<footnoteref linkend="DMN"/></para></entry>
 
                 <entry><para>contains</para></entry>
 
-                <entry><para>Criteria entry field</para></entry>
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
 
-                <entry><para>Is entry Case Insensitive?</para></entry>
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Number</para></entry>
-
-                <entry><para>does not contain</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
               </row>
 
               <row>
-                <entry><para>Number</para></entry>
-
-                <entry><para>matches regex</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
               </row>
 
               <row>
-                <entry><para>Number</para></entry>
-
-                <entry><para>does not match regex</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-              </row>
-
-              <row>
-                <entry><para>Action</para></entry>
+                <entry morerows="2" valign="middle"><para>Action</para></entry>
 
                 <entry><para>contains</para></entry>
 
-                <entry><para>Criteria entry field</para></entry>
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
 
-                <entry><para>Is entry Case Insensitive?</para></entry>
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Action</para></entry>
-
-                <entry><para>does not contain</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
               </row>
 
               <row>
-                <entry><para>Action</para></entry>
-
-                <entry><para>matches regex</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
               </row>
 
               <row>
-                <entry><para>Action</para></entry>
-
-                <entry><para>does not match regex</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-              </row>
-
-              <row>
-                <entry><para>Note</para></entry>
+                <entry morerows="2" valign="middle"><para>Notes</para></entry>
 
                 <entry><para>contains</para></entry>
 
-                <entry><para>Criteria entry field</para></entry>
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
 
-                <entry><para>Is entry Case Insensitive?</para></entry>
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="2" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Note</para></entry>
-
-                <entry><para>does not contain</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
               </row>
 
               <row>
-                <entry><para>Note</para></entry>
-
-                <entry><para>matches regex</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
               </row>
 
               <row>
-                <entry><para>Note</para></entry>
-
-                <entry><para>does not match regex</para></entry>
-
-                <entry><para>Criteria entry field</para></entry>
-
-                <entry><para>Is entry Case Insensitive?</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-              </row>
-
-              <row>
-                <entry><para>Date Posted</para></entry>
+                <entry morerows="5" valign="middle"><para>Date Posted</para></entry>
 
                 <entry><para>is before</para></entry>
 
-                <entry><para>Date selection field</para></entry>
+                <entry morerows="5" valign="middle"><para>Date selection field</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Date Posted</para></entry>
-
                 <entry><para>is before or on</para></entry>
-
-                <entry><para>Date selection field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Date Posted</para></entry>
-
                 <entry><para>is on</para></entry>
-
-                <entry><para>Date selection field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Date Posted</para></entry>
-
                 <entry><para>is not on</para></entry>
-
-                <entry><para>Date selection field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Date Posted</para></entry>
-
                 <entry><para>is after</para></entry>
-
-                <entry><para>Date selection field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Date Posted</para></entry>
-
                 <entry><para>is on or after</para></entry>
-
-                <entry><para>Date selection field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
+                <entry morerows="17" valign="middle"><para>Value</para></entry>
 
-                <entry><para>has credits or debits</para></entry>
+                <entry morerows="5" valign="middle"><para>has credits or debits</para></entry>
 
                 <entry><para>less than</para></entry>
 
-                <entry><para>Amount entry field</para></entry>
+                <entry morerows="17" valign="middle"><para>Amount entry field</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="17" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="17" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="17" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="17" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits or debits</para></entry>
-
                 <entry><para>less than or equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits or debits</para></entry>
-
                 <entry><para>equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits or debits</para></entry>
-
                 <entry><para>not equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits or debits</para></entry>
-
                 <entry><para>greater than</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits or debits</para></entry>
-
                 <entry><para>greater than or equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits</para></entry>
+                <entry morerows="5" valign="middle"><para>has credits</para></entry>
 
                 <entry><para>less than</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits</para></entry>
-
                 <entry><para>less than or equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits</para></entry>
-
                 <entry><para>equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits</para></entry>
-
                 <entry><para>not equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits</para></entry>
-
                 <entry><para>greater than</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has credits</para></entry>
-
                 <entry><para>greater than or equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has debits</para></entry>
+                <entry morerows="5" valign="middle"><para>has debits</para></entry>
 
                 <entry><para>less than</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has debits</para></entry>
-
                 <entry><para>less than or equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has debits</para></entry>
-
                 <entry><para>equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has debits</para></entry>
-
                 <entry><para>not equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has debits</para></entry>
-
                 <entry><para>greater than</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Value</para></entry>
-
-                <entry><para>has debits</para></entry>
-
                 <entry><para>greater than or equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Shares</para></entry>
+                <entry morerows="5" valign="middle"><para>Shares</para></entry>
 
-                <entry><para>less than</para></entry>
+                <entry><para>is less than</para></entry>
 
-                <entry><para>Amount entry field</para></entry>
+                <entry morerows="5" valign="middle"><para>Amount entry field</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Shares</para></entry>
-
-                <entry><para>less than or equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>is less than or equal to</para></entry>
               </row>
 
               <row>
-                <entry><para>Shares</para></entry>
-
-                <entry><para>equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>equals</para></entry>
               </row>
 
               <row>
-                <entry><para>Shares</para></entry>
-
-                <entry><para>not equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>does not equal to</para></entry>
               </row>
 
               <row>
-                <entry><para>Shares</para></entry>
-
-                <entry><para>greater than</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>is greater than</para></entry>
               </row>
 
               <row>
-                <entry><para>Shares</para></entry>
-
-                <entry><para>greater than or equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>is greater than or equal to</para></entry>
               </row>
 
               <row>
-                <entry><para>Share Price</para></entry>
+                <entry morerows="5" valign="middle"><para>Share Price</para></entry>
 
-                <entry><para>less than</para></entry>
+                <entry><para>is less than</para></entry>
 
-                <entry><para>Amount entry field</para></entry>
+                <entry morerows="5" valign="middle"><para>Amount entry field</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="5" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Share Price</para></entry>
-
-                <entry><para>less than or equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>is less than or equal to</para></entry>
               </row>
 
               <row>
-                <entry><para>Share Price</para></entry>
-
-                <entry><para>equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>equals</para></entry>
               </row>
 
               <row>
-                <entry><para>Share Price</para></entry>
-
-                <entry><para>not equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>is not equal to</para></entry>
               </row>
 
               <row>
-                <entry><para>Share Price</para></entry>
-
-                <entry><para>greater than</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>is greater than</para></entry>
               </row>
 
               <row>
-                <entry><para>Share Price</para></entry>
-
-                <entry><para>greater than or equal to</para></entry>
-
-                <entry><para>Amount entry field</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
+                <entry><para>is greater than or equal to</para></entry>
               </row>
 
               <row>
-                <entry><para>Reconcile</para></entry>
+                <entry morerows="1" valign="middle"><para>Reconcile<footnote><para>The 
+                <guilabel>Reconcile</guilabel> option applies the selected criteria to each line
+		of a transaction individually. Each transaction line may have only one of the indicated values,
+		but there is often a mix of values within a complete transaction, so companion lines may 
+		not meet the selected criteria. See separate note defining status values.</para></footnote>
+                </para></entry>
 
                 <entry><para>is</para></entry>
 
-                <entry><para>Not Cleared</para></entry>
+                <entry morerows="1" valign="middle"><para>Not Cleared</para></entry>
 
-                <entry><para>Cleared</para></entry>
+                <entry morerows="1" valign="middle"><para>Cleared</para></entry>
 
-                <entry><para>Reconciled</para></entry>
+                <entry morerows="1" valign="middle"><para>Reconciled</para></entry>
 
-                <entry><para>Frozen</para></entry>
+                <entry morerows="1" valign="middle"><para>Frozen</para></entry>
 
-                <entry><para>Voided</para></entry>
+                <entry morerows="1" valign="middle"><para>Voided</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="1" valign="middle"><para>Remove row</para></entry>
               </row>
 
               <row>
-                <entry><para>Reconcile</para></entry>
 
                 <entry><para>is not</para></entry>
 
-                <entry><para>Not Cleared</para></entry>
-
-                <entry><para>Cleared</para></entry>
-
-                <entry><para>Reconciled</para></entry>
-
-                <entry><para>Frozen</para></entry>
-
-                <entry><para>Voided</para></entry>
-
-                <entry><para>Remove row</para></entry>
               </row>
 
               <row>
-                <entry><para>Balanced</para></entry>
+                <entry morerows="1" valign="middle"><para>Balanced</para></entry>
 
                 <entry><para>is</para></entry>
 
-                <entry><para>set true</para></entry>
+                <entry morerows="1" valign="middle"><para>set true</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="1" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="1" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="1" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="1" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="1" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Balanced</para></entry>
 
                 <entry><para>is not</para></entry>
 
-                <entry><para>set true</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Account</para></entry>
+                <entry morerows="1" valign="middle"><para>Account<footnote><para>The 
+                <guilabel>Account</guilabel> option performs a search where the accounts selected
+                in the <guilabel>Choose Accounts</guilabel> dialog will both be searched individually for
+	        results. This means that a match in any of the selected accounts will
+        	either be displayed (matches any account) or discarded (matches no
+        	account).</para></footnote></para></entry>
 
                 <entry><para>matches any account</para></entry>
 
-                <entry><para>Choose Accounts</para></entry>
+                <entry morerows="1" valign="middle"><para>Choose Accounts</para></entry>
 
-                <entry><para>Remove row</para></entry>
+                <entry morerows="1" valign="middle"><para>Remove row</para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="1" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="1" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="1" valign="middle"><para></para></entry>
 
-                <entry><para></para></entry>
+                <entry morerows="1" valign="middle"><para></para></entry>
               </row>
 
               <row>
-                <entry><para>Account</para></entry>
 
-                <entry><para>matches no account</para></entry>
+                <entry><para>matches no accounts</para></entry>
 
-                <entry><para>Choose Accounts</para></entry>
-
-                <entry><para>Remove row</para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
-
-                <entry><para></para></entry>
               </row>
 
               <row>
-                <entry><para>All Accounts</para></entry>
+                <entry><para>All Accounts<footnote><para>The <guilabel>All Accounts</guilabel> 
+                option performs a search where accounts selected in the <guilabel>Choose Accounts</guilabel>
+                dialog will only return results that match in both accounts.</para></footnote></para></entry>
 
-                <entry><para>matches all account</para></entry>
+                <entry><para>matches all accounts</para></entry>
 
                 <entry><para>Choose Accounts</para></entry>
 
@@ -1222,46 +586,1571 @@
             </tbody>
           </tgroup>
         </table>
+      </sect2>
 
-        <para>The Account button performs a search where the accounts selected
-        in the Choose Accounts dialog will both be searched individually for
-        results. This means that a match in any of the selected accounts will
-        either be displayed (matches any account) or discarded (matches no
-        account).</para>
+      <sect2 id="tool-find-bsnss">
+        <title>Find Customer, Invoice, Job, Vendor, Bill, Employee, Expense Voucher</title>
+        <para>The business find assistant, is used to search for business related items (Customer,
+        Invoice, Job, Vendor, Bill, Employee, Expense Voucher). To open the business search dialog 
+        select the desired item to <guimenuitem>Find</guimenuitem> from the 
+        <menuchoice><guimenu>Business</guimenu><guisubmenu>Customer/Vendor/Employee </guisubmenu></menuchoice> submenus.</para>
 
-        <para>The All Accounts button performs a search where accounts
-        selected in the Choose Accounts dialog will only return results that
-        match in both accounts.</para>
+        <tip> 
+          <para>The tiltebar and the first row of the assistant dialog reports the item type you are searching for: <guilabel>Customer, 
+          Invoice, Job, Vendor, Bill, Employee, Expense Voucher</guilabel>.</para>
+        </tip>
 
-        <para>There are four selections in the Type of Search pane. When a new
-        search is started only the New Search button is selectable. The other
-        buttons become selectable only when the Search Results register window
-        is visible.</para>
+        <para>There are two panes in the <guilabel>Find</guilabel> dialog. The top pane contains
+        the <guilabel>Search Criteria</guilabel> buttons and the bottom pane contains the <guilabel>Type of
+        Search</guilabel> selection.</para>
 
-        <itemizedlist>
+        <para>There are two buttons in the top of the <guilabel>Search Criteria</guilabel> pane.
+        The left button allows you to <guibutton>Add</guibutton> another criteria row to search for
+        multiple criteria.</para>
+
+        <note>
+          <para>The existing criteria row needs to be completed
+          before adding a new row.</para>
+        </note>
+
+        <para>The right button is used to <guilabel>Search for items
+        where all criteria are met</guilabel> or <guilabel>Search for items where any criteria are
+        met</guilabel>. The <guilabel>all criteria are met</guilabel> search requires all of the criteria rows
+        to have at least one match. The <guilabel>any criteria are met</guilabel> search requires
+        only one of the criteria rows to be matched.</para>
+
+        <para>The criteria row  in the <guilabel>Search Criteria</guilabel> pane is used to combine different 
+        criteria buttons (see tables <xref linkend="tool-find-cstmr" />,
+        <xref linkend="tool-find-nvc" />, <xref linkend="tool-find-jb" />, <xref linkend="tool-find-vndr" />,
+        <xref linkend="tool-find-bll" />, <xref linkend="tool-find-mply" /> <xref linkend="tool-find-vx" />
+        for a comprehensive list of combinations)</para>
+
+ 	<para>In the <guilabel>Type of Search</guilabel> pane there are five selections. The first and alst options are
+        always selectable while the following three are available only when you perform the first search by setting
+        some search criteria and pressing the <guibutton>Find</guibutton> button.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term><guilabel>New Search</guilabel></term>
+            <listitem>
+              <para>Perform a new search</para>
+            </listitem>
+          </varlistentry>
+  
+          <varlistentry>
+            <term><guilabel>Refine current search</guilabel></term>
+            <listitem>
+              <para>Search within the results of the previous search</para>
+            </listitem>
+          </varlistentry>
+  
+          <varlistentry>
+            <term><guilabel>Add results to current search</guilabel></term>
+            <listitem>
+              <para>Search based on the first set of criteria or the new criteria</para>
+            </listitem>
+          </varlistentry>
+  
+          <varlistentry>
+            <term><guilabel>Delete results from current search</guilabel></term>
+            <listitem>
+              <para>Discard any results that match the previous search results</para>
+            </listitem>
+          </varlistentry>
+  
+          <varlistentry>
+            <term><guilabel>Search only active data</guilabel></term>
           <listitem>
-            <para>New Search: Perform a new transaction search</para>
+            <para>Search only if data are marked as active.</para>
           </listitem>
+          </varlistentry>
+        </variablelist>
+        
+	<para>When search criteria are selected, you can press the <guibutton>Find</guibutton> button. You will be
+        presented with the list of search results in the same <guilabel>Find</guilabel> dialog.</para> 
 
-          <listitem>
-            <para>Refine current search: Search within the results of the
-            previous search.</para>
-          </listitem>
+        <tip>
+          <para>Aside the results, <application>&app;</application> gives you some buttons to manage 
+          the highlighted result.</para>
+        </tip>
 
-          <listitem>
-            <para>Add results to current search: Search based on the first set
-            of criteria or the new criteria.</para>
-          </listitem>
+	<tip>
+          <para>In the bottom right of the <guilabel>Find</guilabel> dialog there is a button that allows to create a 
+          <guibutton>New</guibutton> business item.</para>
+        </tip>
 
-          <listitem>
-            <para>Delete results from current search: Discard any results that
-            match the previous search results.</para>
-          </listitem>
-        </itemizedlist>
+        <note>
+          <para>Press the <guibutton>Close</guibutton> button to close the <guilabel>Find</guilabel> assistant dialog.</para>
+        </note>
+  
+        <table frame="topbot" id="tool-find-cstmr">
+          <title>Search criteria buttons - Customer Search</title>
 
+          <tgroup cols="8" rowsep="1">
+            <thead>
+              <row>
+                <entry><para>Button 1</para></entry>
+
+                <entry><para>Button 2</para></entry>
+
+                <entry><para>Button 3</para></entry>
+
+                <entry><para>Button 4</para></entry>
+
+                <entry><para>Button 5</para></entry>
+
+                <entry><para>Button 6</para></entry>
+
+                <entry><para>Button 7</para></entry>
+
+                <entry><para>Button 8</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry morerows="2" valign="middle"><para>Company Name</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Customer ID</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Billing Contact</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Shipping Contact</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <table frame="topbot" id="tool-find-nvc">
+          <title>Search criteria buttons - Invoice Search</title>
+
+          <tgroup cols="8" rowsep="1">
+            <thead>
+              <row>
+                <entry><para>Button 1</para></entry>
+
+                <entry><para>Button 2</para></entry>
+
+                <entry><para>Button 3</para></entry>
+
+                <entry><para>Button 4</para></entry>
+
+                <entry><para>Button 5</para></entry>
+
+                <entry><para>Button 6</para></entry>
+
+                <entry><para>Button 7</para></entry>
+
+                <entry><para>Button 8</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry morerows="2" valign="middle"><para>Invoice ID</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Company Name</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry morerows="5" valign="middle"><para>Date Opened</para></entry>
+
+                <entry><para>is before</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Date selection field</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is before or on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is after</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on or after</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="1" valign="middle"><para>Is Posted?</para></entry>
+
+                <entry><para>is</para></entry>
+
+                <entry morerows="1" valign="middle"><para>set true</para></entry>
+
+                <entry morerows="1" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not</para></entry>
+              </row>
+
+
+              <row>
+                <entry morerows="5" valign="middle"><para>Date Posted</para></entry>
+
+                <entry><para>is before</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Date selection field</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is before or on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is after</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on or after</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="1" valign="middle"><para>Is Paid?</para></entry>
+
+                <entry><para>is</para></entry>
+
+                <entry morerows="1" valign="middle"><para>set true</para></entry>
+
+                <entry morerows="1" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="2" valign="middle"><para>Billing ID</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry morerows="2" valign="middle"><para>Invoice Notes</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry morerows="7" valign="middle"><para>Invoice Owner</para></entry>
+
+                <entry morerows="3" valign="middle"><para>is</para></entry>
+
+                <entry><para>Customer</para></entry>
+
+                <entry morerows="7" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="7" valign="middle"><para>Select...</para></entry>
+
+                <entry morerows="7" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="7" valign="middle"><para></para></entry>
+
+                <entry morerows="7" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>Vendor</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Employee</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Job</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="3" valign="middle"><para>is not</para></entry>
+
+                <entry><para>Customer</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Vendor</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Employee</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Job</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <table frame="topbot" id="tool-find-jb">
+          <title>Search criteria buttons - Job Search</title>
+
+          <tgroup cols="8" rowsep="1">
+            <thead>
+              <row>
+                <entry><para>Button 1</para></entry>
+
+                <entry><para>Button 2</para></entry>
+
+                <entry><para>Button 3</para></entry>
+
+                <entry><para>Button 4</para></entry>
+
+                <entry><para>Button 5</para></entry>
+
+                <entry><para>Button 6</para></entry>
+
+                <entry><para>Button 7</para></entry>
+
+                <entry><para>Button 8</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry morerows="2" valign="middle"><para>Job Name</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Job Number</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Billing ID</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry morerows="1" valign="middle"><para>Only Active?</para></entry>
+
+                <entry><para>is</para></entry>
+
+                <entry morerows="1" valign="middle"><para>set true</para></entry>
+
+                <entry morerows="1" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="2" valign="middle"><para>Owner's Name</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <table frame="topbot" id="tool-find-vndr">
+          <title>Search criteria buttons - Vendor Search</title>
+
+          <tgroup cols="8" rowsep="1">
+            <thead>
+              <row>
+                <entry><para>Button 1</para></entry>
+
+                <entry><para>Button 2</para></entry>
+
+                <entry><para>Button 3</para></entry>
+
+                <entry><para>Button 4</para></entry>
+
+                <entry><para>Button 5</para></entry>
+
+                <entry><para>Button 6</para></entry>
+
+                <entry><para>Button 7</para></entry>
+
+                <entry><para>Button 8</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry morerows="2" valign="middle"><para>Company Name</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Vendor ID</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Billing Contact</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <table frame="topbot" id="tool-find-bll">
+          <title>Search criteria buttons - Bill Search</title>
+
+          <tgroup cols="8" rowsep="1">
+            <thead>
+              <row>
+                <entry><para>Button 1</para></entry>
+
+                <entry><para>Button 2</para></entry>
+
+                <entry><para>Button 3</para></entry>
+
+                <entry><para>Button 4</para></entry>
+
+                <entry><para>Button 5</para></entry>
+
+                <entry><para>Button 6</para></entry>
+
+                <entry><para>Button 7</para></entry>
+
+                <entry><para>Button 8</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry morerows="2" valign="middle"><para>Bill ID</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Company Name</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry morerows="5" valign="middle"><para>Due Date</para></entry>
+
+                <entry><para>is before</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Date selection field</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is before or on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is after</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on or after</para></entry>
+              </row>
+
+
+              <row>
+                <entry morerows="5" valign="middle"><para>Date Opened</para></entry>
+
+                <entry><para>is before</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Date selection field</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is before or on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is after</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on or after</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="1" valign="middle"><para>Is Posted?</para></entry>
+
+                <entry><para>is</para></entry>
+
+                <entry morerows="1" valign="middle"><para>set true</para></entry>
+
+                <entry morerows="1" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="5" valign="middle"><para>Date Posted</para></entry>
+
+                <entry><para>is before</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Date selection field</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is before or on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is after</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on or after</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="1" valign="middle"><para>Is Paid?</para></entry>
+
+                <entry><para>is</para></entry>
+
+                <entry morerows="1" valign="middle"><para>set true</para></entry>
+
+                <entry morerows="1" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="2" valign="middle"><para>Billing ID</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry morerows="2" valign="middle"><para>Bill Notes</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry morerows="7" valign="middle"><para>Bill Owner</para></entry>
+
+                <entry morerows="3" valign="middle"><para>is</para></entry>
+
+                <entry><para>Customer</para></entry>
+
+                <entry morerows="7" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="7" valign="middle"><para>Select...</para></entry>
+
+                <entry morerows="7" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="7" valign="middle"><para></para></entry>
+
+                <entry morerows="7" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>Vendor</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Employee</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Job</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="3" valign="middle"><para>is not</para></entry>
+
+                <entry><para>Customer</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Vendor</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Employee</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Job</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <table frame="topbot" id="tool-find-mply">
+          <title>Search criteria buttons - Employee Search</title>
+
+          <tgroup cols="8" rowsep="1">
+            <thead>
+              <row>
+                <entry><para>Button 1</para></entry>
+
+                <entry><para>Button 2</para></entry>
+
+                <entry><para>Button 3</para></entry>
+
+                <entry><para>Button 4</para></entry>
+
+                <entry><para>Button 5</para></entry>
+
+                <entry><para>Button 6</para></entry>
+
+                <entry><para>Button 7</para></entry>
+
+                <entry><para>Button 8</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry morerows="2" valign="middle"><para>Employee Name</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Employee Username</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Employee ID</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <table frame="topbot" id="tool-find-vx">
+          <title>Search criteria buttons - Expense Voucher Search</title>
+
+          <tgroup cols="8" rowsep="1">
+            <thead>
+              <row>
+                <entry><para>Button 1</para></entry>
+
+                <entry><para>Button 2</para></entry>
+
+                <entry><para>Button 3</para></entry>
+
+                <entry><para>Button 4</para></entry>
+
+                <entry><para>Button 5</para></entry>
+
+                <entry><para>Button 6</para></entry>
+
+                <entry><para>Button 7</para></entry>
+
+                <entry><para>Button 8</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry morerows="2" valign="middle"><para>Voucher ID</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+              <row>
+                <entry morerows="2" valign="middle"><para>Employee Name</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry morerows="5" valign="middle"><para>Due Date</para></entry>
+
+                <entry><para>is before</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Date selection field</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is before or on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is after</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on or after</para></entry>
+              </row>
+
+
+              <row>
+                <entry morerows="5" valign="middle"><para>Date Opened</para></entry>
+
+                <entry><para>is before</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Date selection field</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is before or on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is after</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on or after</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="1" valign="middle"><para>Is Posted?</para></entry>
+
+                <entry><para>is</para></entry>
+
+                <entry morerows="1" valign="middle"><para>set true</para></entry>
+
+                <entry morerows="1" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="5" valign="middle"><para>Date Posted</para></entry>
+
+                <entry><para>is before</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Date selection field</para></entry>
+
+                <entry morerows="5" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+
+                <entry morerows="5" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is before or on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not on</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is after</para></entry>
+              </row>
+
+              <row>
+                <entry><para>is on or after</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="1" valign="middle"><para>Is Paid?</para></entry>
+
+                <entry><para>is</para></entry>
+
+                <entry morerows="1" valign="middle"><para>set true</para></entry>
+
+                <entry morerows="1" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+
+                <entry morerows="1" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>is not</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="2" valign="middle"><para>Billing ID</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry morerows="2" valign="middle"><para>Voucher Notes</para></entry>
+
+                <entry><para>contains</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Is entry Case Insensitive?</para></entry>
+
+                <entry morerows="2" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+
+                <entry morerows="2" valign="middle"><para></para></entry>
+              </row>
+
+               <row>
+                <entry><para>matches regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry><para>does not match regex<footnoteref linkend="rgx"/></para></entry>
+              </row>
+
+              <row>
+                <entry morerows="7" valign="middle"><para>Voucher Owner</para></entry>
+
+                <entry morerows="3" valign="middle"><para>is</para></entry>
+
+                <entry><para>Customer</para></entry>
+
+                <entry morerows="7" valign="middle"><para>Criteria entry field</para></entry>
+
+                <entry morerows="7" valign="middle"><para>Select...</para></entry>
+
+                <entry morerows="7" valign="middle"><para>Remove row</para></entry>
+
+                <entry morerows="7" valign="middle"><para></para></entry>
+
+                <entry morerows="7" valign="middle"><para></para></entry>
+              </row>
+
+              <row>
+                <entry><para>Vendor</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Employee</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Job</para></entry>
+              </row>
+
+              <row>
+                <entry morerows="3" valign="middle"><para>is not</para></entry>
+
+                <entry><para>Customer</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Vendor</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Employee</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Job</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+    </sect2>
   </sect1>
-   
-   <sect1 id="trans-sched-slr">
+
+  <sect1 id="trans-sched-slr">
     <title>Since Last Run Assistant</title>
 
       <para>The <guilabel>Since Last Run</guilabel> assistant is run automatically when 
