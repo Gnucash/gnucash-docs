@@ -2939,4 +2939,97 @@
 
    </sect1>
 
+   <sect1 id="tool-close-book"><title>Close Book</title>
+     <para>The <guilabel>Close Book</guilabel> dialog box is used
+     for &ldquo;closing the books,&rdquo;--an accounting process that
+     resets the balances of the income and expense accounts. In this
+     process, income account balances are transferred into an income
+     equity account, while expense account balances are transferred
+     into an expense equity account. You must specify both these
+     accounts, which may be the same. You must also specify the date
+     for the closing transfer.</para>
+
+     <sect2 id="tool-close-book-anatomy"><title>Dialog Box
+     Details</title>
+       <para>The dialog box has the following parts:</para>
+
+       <itemizedlist>
+         <listitem>
+           <para><guilabel>Closing Date:</guilabel> Specify the date
+           for the closing transfer. You can type in a date or
+           choose one from the drop-down.</para>
+         </listitem>
+
+         <listitem>
+           <para><guilabel>Income Total:</guilabel> Specify the
+           account into which the total balance of all income
+           accounts will be transferred. Optionally you can create a
+           new account to receive the transfer using the <guibutton>
+           New</guibutton> button.</para>
+         </listitem>
+
+         <listitem>
+           <para><guilabel>Expense Total:</guilabel> Specify the
+           account into which the total balance of all expense
+           accounts will be transferred. Again, you can optionally
+           create a new account to receive the transfer using the
+           <guibutton>New</guibutton> button.</para>
+         </listitem>
+
+         <listitem>
+           <para><guilabel>Description:</guilabel> Specify the
+           description that will be entered in the closing entry.
+           </para>
+         </listitem>
+
+       </itemizedlist>
+     </sect2>
+
+     <sect2 id="tool-close-book-workings"><title>How It Works</title>
+       <para><application>&app;</application> closes books by
+       creating one transaction per currency for income accounts,
+       and one transaction per currency for expense accounts. The
+       transactions all use the date selected by the user, and each
+       transaction may contain any number of splits. Each split
+       moves the balance out of one income or expense account. The
+       last split in each closing transaction moves the total
+       offsetting debit/credit balance into the specified equity
+       account.</para>
+
+       <para>Each transaction will use the description provided by
+       the user in the <guilabel>Description:</guilabel> entry.</para>
+
+       <para>The fact that <application>&app;</application> just
+       uses transactions to close the books makes it very simple to
+       undo a book closing: just delete the closing transactions.</para>
+     </sect2>
+
+     <sect2 id="tool-close-book-not"><title>What It Doesn&rsquo;t
+     Do</title>
+       <para>The book closing tool does not delete any accounts or
+       transactions; create any new files; or hide any accounts.</para>
+     </sect2>
+
+     <sect2 id="tool-close-book-need"><title>Necessity</title>
+       <para>Note that closing the books in <application>&app;
+       </application> is unnecessary. You do not need to zero out
+       your income and expense accounts at the end of each financial
+       period. <application>&app;</application>&rsquo;s built-in
+       reports automatically handle concepts like retained earnings
+       between two different financial periods.</para>
+
+       <para>In fact, closing the books reduces the usefulness of
+       the standard reports because the reports don&rsquo;t
+       currently understand closing transactions. So from their
+       point of view it simply looks like the net income or expense
+       in each account for a given period was simply zero.</para>
+     </sect2>
+
+     <sect2 id="tool-close-book-conclusion"><title>Conclusion</title>
+       <para>If you close your books, be prepared to see inaccuracies
+       in the standard reports. On the other hand, you will see
+       current-period income and expense figures in the chart of
+       accounts.</para>
+     </sect2>
+   </sect1>
 </chapter>
