@@ -1,7 +1,8 @@
 <!--
       (Do not remove this comment block.)
   Version: 2.0.1
-  Last modified: September 26th 2010
+  Last modified: January 16th 2013
+       modified: September 26th 2010
        modified: December 7th 2009
        modified: August 2nd 2008
        modified: March 21th 2007
@@ -52,13 +53,21 @@
     select <menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice>
     (<menuchoice><guimenu>GnuCash</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice> on Mac OS X).
     The <guilabel>&app; Preferences</guilabel> window will open. 
-    Using the tabs on the left make your desired changes.</para>
+    Using the tabs on the left make your desired changes. The settings in
+    this dialog are set per user and not stored with the file. This is
+    in contrast to the settings described in <xref linkend="book-options"/>,
+    which are kept with, and are part of, the file (or Book), and as such are
+    common to all users. So <guilabel>&app; Preferences</guilabel> settings are
+    individual to each user who uses a given file and any changes made by one
+    user will not affect other users of that file. Also, a given user's
+    preferences will be common to all files that that user opens with
+    <application>&app;</application>.</para>
     <tip>
       <para>Pausing the cursor for a couple of seconds over options in these windows
       will display a tooltip with in-depth information on the choice.</para>
     </tip>
     <note>
-      <para>The changes you made will be applied directly.</para>
+      <para>The changes you make will be applied at once.</para>
     </note>  
     <para>To close the <guilabel>&app; Preferences</guilabel> window press the
     <guibutton>Close</guibutton> button.</para>
@@ -423,9 +432,41 @@
               <guimenuitem>New File</guimenuitem></menuchoice> is selected from the 
               <application>&app;</application> menu.</para>
             </listitem>
-          </itemizedlist>
-        </listitem>
 
+            <listitem>
+              <para><guilabel>Set book option on new files to use split "action"
+              field for "Num" field on registers/reports</guilabel> &mdash;
+              If selected, the displayed setting on the <guilabel>New Book
+              Options</guilabel> dialog for the <guilabel>Use Split Action Field
+              for Number</guilabel> setting will be selected and, if saved, the
+              book option for the new file will be set so that
+              the "Num" field on registers shows/updates the split-action field
+              and the transaction-num field is shown on the second line in
+              double line mode (and is not visible in single line mode).
+              Otherwise, the displayed setting on the dialog will not be
+              selected and, if saved, the book option for the new file will be
+              set so that the "Num" field on registers shows/updates the
+              transaction-num field. See the discussion in <xref
+              linkend="book-options"/> about how to set book options including
+              the option for <xref linkend="num-action-book-option"/>.
+              Regardless of the setting of this preference, the
+              user can modify the initially displayed setting for this option on
+              the <guilabel>New Book Options</guilabel> dialog before saving the
+              options.</para>
+            </listitem>
+          </itemizedlist>
+            <note>
+              <para>If the <guilabel>New Book Options</guilabel> dialog appears
+              in situations where a new book is being set up, the settings from
+              this preference will determine the default setting for the
+              corresponding check box on the dialog. However, the
+              <guibutton>OK</guibutton> button on the <guilabel>New Book
+              Options</guilabel> dialog must be pressed for the setting to be
+              made for the new book; otherwise it will default to <emphasis>not
+              selected</emphasis>.</para>
+            </note>
+
+        </listitem>
         <listitem>
           <para><guilabel>Numbers</guilabel></para>
             <itemizedlist>
@@ -1082,6 +1123,230 @@
     </sect2>
   </sect1>
 
+    <sect1 id="book-options">
+      <title>Book Options</title>
+
+      <para>The <menuchoice><guimenu>File</guimenu>
+       <guimenuitem>Properties</guimenuitem></menuchoice>
+       menu item is used to set or modify choices that affect how a specific
+       <application>&app;</application> file (also referred to as a Book)
+       operates. Selecting this menu item brings up the <guilabel>Book Options
+       </guilabel> dialog. This dialog also appears in situations where you are
+       importing transactions into a new book, with the title <guilabel>New Book
+       Options</guilabel>. It is automatically raised in these 'new book'
+       situations because these settings can affect how imported data
+       are converted to <application>&app;</application> transactions and so
+       should be considered and set before your first import (specifically, the
+       <xref linkend="num-action-book-option"/> setting).
+      </para>
+
+      <para>The settings in this dialog are kept with, and are part of, the file
+       (or Book). This is in contrast to the settings described in
+       <xref linkend="set-prefs"/>, which are set per user and not stored with
+       the file. So <guilabel>Book Options</guilabel> settings are shared
+       by all users who use a given file and any changes made by one
+       user will affect all users of that file.
+      </para>
+
+      <tip>
+        <para>Pausing the cursor for a couple of seconds over options in these
+         tabs will display a tooltip with a more detailed description of the
+         choice.
+        </para>
+      </tip>
+
+      <para>The <guilabel>Book Options</guilabel> dialog has five buttons that
+        are common to all tabs. The <guibutton>Reset defaults</guibutton> button
+        takes all items on the visible tab and sets their value to the default
+        setting; it only affects the visible tab. The <guibutton>Help</guibutton>
+        button opens up a help window to this section. The <guibutton>Cancel</guibutton>
+        button closes the dialog, making no changes to the saved settings for
+        <guilabel>Book Options</guilabel>. The <guibutton>Apply</guibutton>
+        button is initially insensitive but becomes sensitive when any setting
+        is set or changed. Selecting it saves the setting(s) for the book but
+        keeps the <guilabel>Book Options</guilabel> dialog open. Typically, the
+        changes are reflected in the affected areas of <application>&app;</application>
+        as soon as the button is pressed, so it can be used to 'see' the effect
+        of a given option without having to re-open the dialog. The
+        <guibutton>Apply</guibutton> button is not sensitive on the dialog if 
+        it appears during transaction import (that is, 'new book') situations.
+        The <guibutton>OK</guibutton> button behaves like the
+        <guibutton>Apply</guibutton> button except that it immediately
+        <emphasis>closes</emphasis> the dialog, as well.
+      </para>
+
+      <sect2 id="accounts-book-options">
+        <title>Accounts Book Options Tab</title>
+
+        <para>The <guilabel>Accounts</guilabel> tab of this dialog allows
+          the selection of options that affect how accounting registers function.
+        </para>
+ 
+        <sect3 id="trading-accounts-book-option">
+          <title>Use Trading Accounts</title>
+
+          <para>Check the <guilabel>Use Trading Accounts</guilabel> checkbox to
+            have trading accounts used for transactions involving more than one
+            currency or commodity.
+          </para>
+        </sect3>
+
+        <sect3 id="read-only-days-option">
+          <title>Day Threshold for Read-Only Transactions</title>
+
+          <para>Use the <guilabel>Day Threshold for Read-Only
+            Transactions</guilabel> spin-box to choose the number of days before
+            today, prior to which, transactions will be read-only and cannot be
+            edited anymore in the registers. This threshold is marked by a red
+            line in the account register windows. If zero, all transactions can
+            be edited and none are read-only. This feature is intended to be
+            used to guard against accidental changes to non-current transactions.
+          </para>
+        </sect3>
+
+        <sect3 id="num-action-book-option">
+          <title>Use Split Action Field for Number</title>
+
+          <note>
+            <para>This option is only available in <application>&app;
+             </application> version 2.5 or later.</para>
+          </note>  
+          <para>Check the <guilabel>Use Split Action Field for Number</guilabel>
+            checkbox to have the split action field of the anchor split used for
+            the 'Num' column in registers, reports and import/export functions,
+            where applicable, in place of the transaction number; the
+            transaction number is then shown as 'T-Num' on reports and on the
+            second line of registers. This choice has a corresponding effect on
+            business features.
+          </para>
+          <para>The difference between the two is that with the checkbox not
+            selected, the same 'Num' is displayed for a given transaction
+            regardless of what register it is viewed in and with the checkbox
+            selected, a different 'Num' can be entered/displayed for a given
+            transaction in each register it is viewed in. In both cases, the
+            'next number logic' of the 'Num' cell is based on the account of the
+            register the transaction is entered to or viewed from but in one
+            case it fills the transaction number, in the other, it fills the
+            split action field of the anchor split. In both cases, both fields
+            are visible and can be viewed and used as free-form text in
+            double-line mode for any value the user wants.
+          </para>
+          <warning>
+            <para>Initial setup of <application>&app;</application>: It is
+             expected that, after careful consideration of the consequences,
+             this option will be set when a new <application>&app;</application>
+             file is created and not changed thereafter (see next warning). For
+             this reason, a preference is provided (see <link
+             linkend="prefs-general">Setting Preferences - General </link>) that
+             can establish an initial default setting for new files, so that if
+             you will have more than one file, it is easier to set them all up
+             consistently. You may wish to set up a test file and experiment
+             with the two settings to understand the differences before
+             establishing your first real <application>&app;</application> file.
+            </para>
+          </warning>
+          <tip>
+            <para>Moving from Quicken: For users that are switching from other
+             personal accounting applications, such as Quicken, selecting this
+             option may be more consistent with the numbering approach used
+             there and can preserve the numbering of historical data brought
+             over; this option should be set before performing the initial
+             import.
+            </para>
+          </tip>
+          <warning>
+            <para>Changing this option for an existing <application>&app;
+             </application> file: If you change this option for an existing
+             file, historical data will not be changed. This means that if you
+             set the option one way, enter (or import) transactions, then change
+             the option and enter (or import) additional transactions and switch
+             back-and-forth, you will end up with a file that will appear to
+             have inconsistent treatment of numbers in registers, reports and
+             exports. This is because the setting of this option at the time of
+             data entry/import determines where the number data is stored and
+             the setting at the time of data display/reporting/exporting
+             determines which field is displayed as number.
+            </para>
+            <para>There is no reason to avoid changing this option for an
+             existing <application>&app;</application> file if you understand
+             the implications. If you elect to make this change, it should
+             probably be done between accounting periods with the understanding
+             that number data prior to the date the option is changed will be
+             displayed/reported/exported differently from that after the date.
+            </para>
+          </warning>
+          <warning>
+            <para>If you change this option, and press <guibutton>Apply
+             </guibutton> or <guibutton>OK</guibutton>, open registers and
+             labels on query and sorting dialogs will be refreshed to reflect
+             the new option immediately. But open reports need to be
+             individually reloaded by the user to have the change reflected on
+             the report.
+            </para>
+          </warning>
+          <warning>
+            <para>This option is only available in <application>&app;
+             </application> version 2.5 or later. If a <application>&app;
+             </application> file from an earlier version is opened in version
+             2.5 or later, and this feature is not used, this feature will not
+             prevent the file from being opened in the earlier version of
+             <application>&app;</application>. However, if the option is set,
+             the file will not be able to be opened by the earlier version, even
+             if the option is set back to its original setting. A warning dialog
+             will be displayed from the earlier version. Do not set this option
+             if you want to open the file with an earlier version.
+            </para>
+          </warning>
+        </sect3>
+
+     </sect2>
+
+      <sect2 id="budgeting-book-options">
+        <title>Budgeting Book Options Tab</title>
+
+        <para>The <guilabel>Budgeting</guilabel> tab allows you to specify the
+         budget to be used when none has otherwise been specified.</para>
+      </sect2>
+
+      <sect2 id="business-book-options">
+        <title>Business Book Options Tab</title>
+
+        <para>The <guilabel>Business</guilabel> tab allows you to enter values
+         in the various fields shown that are in turn used by the business
+         features of <application>&app;</application>.</para>
+      </sect2>
+
+      <sect2 id="counters-book-options">
+        <title>Counters Book Options Tab</title>
+
+        <para>The <guilabel>Counters</guilabel> tab allows you to set the
+         'previous' value for each number indicated: Bill, Customer, Employee,
+         etc.</para>
+
+        <para>The number entered here will be incremented when the various
+         business features calculate a value for a corresponding field on a
+         dialog (for example, if you leave the Customer Number field blank on
+         the New Customer dialog, the customer will be assigned the number in
+         the counter field plus 1). The numbers displayed in the tab are
+         incremented as these business features are used (but note that if you
+         have the <guilabel>Book Options</guilabel> dialog open, you need to
+         close it and re-open it to see the changes; the displayed field values
+         are not automatically refreshed).</para>
+
+        <para>The corresponding format fields are
+         used to specify printf-style format strings that are used to format the
+         printing of the number. For example, to put the literal "C - " in front
+         of the customer number, you would put "C - %li" (without the quotes;
+         "li" on Unix, "I64i" on Windows) in the customer format string field.
+         If the value in the customer number field was 5, the next cutomer added
+         would be assigned the number "C - 6". As another example, if you wanted
+         the number to be printed with leading zeros and 5 characters wide, you
+         would enter "C - %05li" and the next customer number would be assigned
+         the number "C - 00006".</para>
+      </sect2>
+
+    </sect1>
+  
     <sect1 id="change-style">
       <title>Changing Style Sheets</title>
 
@@ -2071,7 +2336,7 @@
     </sect1>
     
     <sect1  id="chang-lang">
-      <title>Changing the language</title>
+      <title>Changing the Language</title>
       
       <para>The language of the <application>&app;</application> user interface is not modifiable
       directly from the program&rsquo;s preferences.</para>
