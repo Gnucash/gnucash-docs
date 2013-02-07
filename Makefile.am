@@ -8,7 +8,8 @@ EXTRA_DIST = gnucash-docs.spec \
 	     pdf.make \
 	     stylesheet \
 	     xsl \
-	     HACKING
+	     HACKING \
+	     README
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 
