@@ -9,7 +9,8 @@ entities = \
 	legal.xml \
 	chartofaccts.xml \
 	chtacctseg.xml \
-	txf-categories.xml
+	txf-categories.xml \
+	Help_tips-appendix.xml
 DISTCLEANFILES =  $(docname)-de_DE.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
 include $(top_srcdir)/xmldocs.make
