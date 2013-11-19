@@ -3,9 +3,12 @@ docname = gnucash-guide
 lang = de_DE
 omffile = $(docname)-de_DE.omf
 entities = \
- ch_basics.xml \
- ch_oview.xml \
  ch_accts.xml \
+ ch_basics.xml \
+ ch_capgain.xml \
+ ch_loans.xml \
+ ch_oth_assets.xml \
+ ch_oview.xml \
  ch_txns.xml \
  appendixe.xml \
  glossary.xml \
