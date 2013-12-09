@@ -1,4 +1,4 @@
-SUBDIRS = C de_DE it_IT ja_JP
+SUBDIRS = C de it ja
 
 gnomehelpdir = $(datadir)/gnome/help
 
