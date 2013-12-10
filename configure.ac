@@ -2,7 +2,7 @@
 # copyright (c) 2003-2013 GnuCash Development Team
 
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(gnucash-docs.spec.in)
+AC_INIT(gnucash-docs, 2.6.0)
 
 dnl ==========================================================================
 dnl
@@ -30,7 +30,7 @@ dnl ====================================
 dnl = End tests for scrollkeeper
 dnl ====================================
 
-AM_INIT_AUTOMAKE(gnucash-docs,2.6.0)
+AM_INIT_AUTOMAKE()
 
 dnl
 dnl Check for xsltproc
