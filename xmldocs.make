@@ -150,3 +150,5 @@ uninstall-html:
 	    rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(otherdocdir)"; \
 	fi
 
+check:
+	xmllint --valid --noout ${srcdir}/${docname}.xml
