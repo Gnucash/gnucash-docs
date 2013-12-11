@@ -34,10 +34,16 @@ AM_INIT_AUTOMAKE()
 
 dnl
 dnl Check for xsltproc
+dnl Some distributions package it separately of libxslt
 dnl
 AC_PATH_PROG(XSLTPROC, xsltproc)
 if test -z "$XSLTPROC"; then
-  AC_MSG_ERROR([xsltproc not found, perhaps you should install the libxslt package ?])
+  AC_MSG_ERROR([xsltproc not found, perhaps you should install the xsltproc or libxslt package ?])
+fi
+dnl Same for xmllint
+AC_PATH_PROG(XMLLINT, xmllint, [""])
+if test -z "$XMLLINT"; then
+  AC_MSG_ERROR([xmllint not found, perhaps you should install the xmllint or libxslt package ?])
 fi
 
 dnl
