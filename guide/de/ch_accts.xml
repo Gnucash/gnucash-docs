@@ -1,9 +1,676 @@
-﻿<chapter id="chapter-accts">
-  <title>Konten</title>
-  <para></para>
+﻿<!--
+      (Do not remove this comment block.)
+  Version: 2.2.1
+  Last modified: September 26, 2010
+  Maintainers: 
+                Tom Bullock  <tbullock@nd.edu>
+               Chris Lyttle  <chris@wilddev.net>
+  Authors:
+                 Jon Lapham  <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+Originally written by
+             Carol Champagne
+Translators:
+ 			 Martin Mainka <martin@mainka-it.Default>
+			 Frank H. Ellenberger <frank.h.ellenberger@gmail.com>
+-->
+<!-- Translation based on svn 20777 + changes to be committed -->
+<chapter id="chapter_accts">
+<title>Konten</title>
+
+  <para>
+    Dieses Kapitel behandelt nützliche Konzepte, für die Verwaltung Ihrer Konten.
+    Da <application>&app;</application> Ihnen keinen speziellen Kontenrahmen aufdrängt,
+    sind Sie frei, Ihre Kontenhierarchie in jeder gewünschten Weise zu gestalten.
+    Es gibt jedoch einige grundsätzliche Buchführungskonzepte, die Sie
+    bei der Gestaltung Ihrer Kontenhierarchie wahrscheinlich berücksichtigen wollen,
+    um ihre Brauchbarkeit zu maximieren.</para>
+
+  <sect1 id="accts-concepts1">
+    <title>Buchhaltungsgrundsätze</title>
+
+    <para>Wie wir im vorigen Kapitel gesehen haben, basiert die Buchführung auf fünf grundlegenden
+		Kontenarten: <guilabel>Aktiva</guilabel>, <guilabel>Fremdkapital</guilabel>, 
+    <guilabel>Eigenkapital</guilabel>, <guilabel>Ertrag</guilabel> und <guilabel>Aufwand</guilabel>. 
+    Wir erweitern nun unser Verständnis dieser Kontentypen und zeigen, wie sie in 
+    <application>&app;</application> dargestellt werden.
+		Zuerst aber wollen wir die Kontenarten in zwei Gruppen aufteilen: 
+		die <guilabel>Bestandskonten</guilabel>, deren Zusammenfassung die <emphasis>Bilanz zu einem bestimmten Zeitpunkt</emphasis> ist,
+		und die <guilabel>Erfolgskonten</guilabel>, welche mit Aufwand und Ertrag die wertmäßigen <emphasis>Veränderungen
+		 in einem Zeitraum</emphasis> wie dem Wirtschaftsjahr darstellen.</para>
+
+    <para>Bevor wir uns näher mit jedem Kontentyp befassen, lassen Sie uns noch einmal
+    zur Erinnerung die Buchhaltungsgleichung 
+    (<emphasis>Aktiva - Fremdkapital = Eigenkapital + (Ertrag - Aufwand)</emphasis>)
+    betrachten.</para>
+
+    <screenshot id="accts-AccountRelationships">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/basics_AccountRelationships.png"
+                     srccredit="Jon Lapham"
+                     format="PNG"></imagedata>
+        </imageobject>
+        <imageobject role="fo">
+          <imagedata fileref="figures/basics_AccountRelationships.svg"
+                     format="SVG" srccredit="Geert Janssens" contentwidth="4in"></imagedata>
+        </imageobject>
+
+        <textobject>
+          <phrase>Die Grundkonten</phrase>
+        </textobject>
+        <caption>
+          <para>
+            Graphische Darstellung der Beziehungen der 5 Grundkonten zueinander.  
+            Das Reinvermögen (Eigenkapital) erhöht sich durch Erträge und 
+            vermindert sich durch Aufwendungen. Die Pfeile repräsentieren die
+            Wertbewegungen.
+          </para>
+        </caption>
+      </mediaobject>
+    </screenshot>    
+
+    <sect2 id="accts-bsa2">
+      <title>Bestandskonten</title>
+
+      <para>Die drei sogenannten <emphasis>Bestandskonten</emphasis> sind 
+      <guilabel>Aktiva</guilabel>, <guilabel>Fremdkapital</guilabel>, und
+      <guilabel>Eigenkapital</guilabel>. Bestandskonten werden benutzt um über 
+      Ihren Besitz und Ihre Schulden Buch zu führen.</para>
+
+      <para><guilabel>Aktiva</guilabel> bezeichnet den Bereich Ihres Besitzes.
+			Aktiva können zum Beispiel ein Auto, Bargeld, ein Haus,	Aktien und alles andere 
+			sein, was einen konvertiblen Wert besitzt. Konvertibler Wert bedeutet, dass Sie 
+			diesen Besitz zumindest theoretisch für Geld verkaufen können.</para>
+
+      <para><guilabel>Fremdkapital</guilabel> bezeichnet den Bereich Ihrer Schulden.
+      Fremdkapital können zum Beispiel ein Autokredit, ein Studiendarlehen,
+      ein Hypothekendarlehen, ein Überziehungskredit und alles Andere sein, was Sie
+			zu einem späteren Zeitpunkt zurückzahlen müssen.</para>
+
+      <para><guilabel>Eigenkapital</guilabel> ist dasselbe wie "Reinvermögen".
+        Er stellt dar, was übrig bleibt, wenn Sie Ihr Fremdkapital von Ihren Aktiva
+        abziehen. Es kann als der Teil Ihrer Aktiva betrachtet werden, den Sie
+        ohne irgendwelche Schulden besitzen.</para>
+    </sect2>
+
+    <sect2 id="accts-ie2">
+      <title>Erfolgskonten</title>
+
+      <para>Die zwei Kontentypen <guilabel>Ertrag</guilabel> und <guilabel>Aufwand</guilabel> 
+        werden benutzt, um den Wert Ihrer Bestandskonten zu erhöhen oder zu vermindern. 
+        Somit erlauben Ihnen Ertrags- und Aufwandskonten, den Wert der Bestandskonten zu  
+        <emphasis>ändern</emphasis>, während die Bestandskonten selbst nur den Wert des 
+        Besitzes, oder des Darlehens <emphasis>erfassen</emphasis>.
+      </para>
+
+      <para><guilabel>Ertrag</guilabel> ist die Bezahlung, die Sie für Ihre Zeit,
+      Ihre Dienstleistungen, oder den Gebrauch Ihres Geldes erhalten. Wenn Sie 
+      Ihr Gehalt erhalten, dann ist das zum Beispiel die Bezahlung für
+      die Arbeit, die Sie für Ihren Arbeitgeber verrichtet haben. Andere Beispiele
+      für Erträge sind Kommissionen, Trinkgelder, Dividenden Ihrer Aktien und Zinsen
+      Ihrer Bankkonten. Erträge erhöhen immer den Wert Ihrer Aktiva und somit des 
+      Eigenkapitals.</para>
+
+      <para><guilabel>Aufwand</guilabel>
+      	bezieht sich auf Geld, welches Sie ausgeben, um Dinge oder
+      	Dienstleistungen eines anderen
+      	<emphasis>zum baldigen Verbrauch</emphasis>
+      	zu erwerben. Beispiele von Aufwendungen sind ein Essen in
+      	einem Restaurant, Mietzahlungen, Lebensmitteleinkäufe,
+      	Treibstoff für Ihr Auto oder Eintrittskarten für ein
+      	Fußballspiel. Aufwendungen verringern immer Ihr Eigenkapital.
+      	Wenn Sie für die Aufwendungen direkt bezahlen, dann verringern
+      	Sie damit Ihre Aktiva, wenn Sie dagegen Aufwendungen über
+      	einen Kredit begleichen, dann erhöhen Sie Ihr Fremdkapital.
+      </para>
+      <para>Aufwands- und Ertragskonten lassen sich unter dem Oberbegriff 
+      <emphasis>Erfolgskonten</emphasis> zusammenfassen.</para>
+    </sect2>
+  </sect1>
+
   <sect1 id="accts-types1">
-  <title>...</title>
-  <para></para>
+    <title><application>&app;</application>-Konten</title>
+
+    <para>Dieser Abschnitt beschreibt, wie die <application>&app;</application>-Definition 
+    eines Kontos mit den grundlegenden 5 Kontentypen zusammenpasst.</para>
+
+    <para>Lassen Sie uns zuerst mit der Definition eines <guilabel>Kontos</guilabel>
+      in <application>&app;</application> anfangen. Ein <application>&app;</application>-
+      <guilabel>Konto</guilabel> ist ein Objekt, welches andere Unterkonten oder 
+      <guilabel>Buchungen</guilabel> enthält. Da ein Konto andere Konten beinhalten kann,
+      sehen Sie oft <guilabel>Konten-Bäume</guilabel> in <application>&app;</application>,
+      bei denen sinngemäß zusammenhängende Konten unter einem gemeinsamen Oberkonto
+      zu einer Gruppe zusammengefasst werden.
+    </para>
+
+    <para>Ein <application>&app;</application> Konto muss einen eindeutigen Namen haben 
+      (den Sie zuweisen), und eine der vorgegebenen <application>&app;</application>-
+      <quote>Kontenarten</quote>. Es gibt insgesamt 12 Kontenarten in 
+      <application>&app;</application>. 
+      Diese 12 Kontenarten basieren auf den fünf grundlegenden Kontentypen; Grund für 
+      die höhere Anzahl an <application>&app;</application>-Kontenarten ist, dass
+      <application>&app;</application> dadurch für diese Konten eine besondere Erfassung und 
+      Behandlung von Buchungsvorgängen ermöglicht. 
+      Es gibt 6 Aktiva-Kontenarten (<emphasis>Bargeld</emphasis>, 
+      <emphasis>Bank</emphasis>, <emphasis>Aktienkonto</emphasis>, 
+      <emphasis>Investmentfonds</emphasis>, <emphasis>Forderungen</emphasis>, 
+      und <emphasis>Sonstige Aktiva</emphasis>), 3 Fremdkapital-Kontenarten 
+      (<emphasis>Kreditkarte</emphasis>, <emphasis>Verbindlichkeiten</emphasis>, 
+      und <emphasis>Fremdkapital</emphasis>),
+      1 Eigenkapital-Kontoart (<emphasis>Eigenkapital</emphasis>), 1 Ertrags-Kontoart
+      (<emphasis>Ertrag</emphasis>), und eine Aufwands-Kontoart
+      (<emphasis>Aufwand</emphasis>).</para>
+
+      <para>Diese <application>&app;</application> Kontenarten werden weiter unten 
+      genauer dargestellt.</para>
+
+    <sect2 id="accts-gc-bsa2">
+      <title>Bestandskonten</title>
+
+      <para>Das erste Bestandskonto, das wir untersuchen werden, ist das Konto
+      <emphasis>Aktiva</emphasis>, welches sich, wie Sie sich sicherlich erinnern,
+      auf Ihren Besitz bezieht.</para>
+
+      <para>Um Ihnen zu helfen, Ihre Aktiva zu organisieren und um die Eingabe von Buchungen
+      zu vereinfachen, unterstützt <application>&app;</application> verschiedene Typen 
+      von Aktiva-Konten:</para>
+
+      <orderedlist>
+        <listitem>
+          <para><guilabel>Bargeld:</guilabel> Benutzen Sie diese Kontoart, um
+          die Geldbeträge zu verfolgen, welche Sie in der Hand, Ihrer Geldbörse,
+          Ihrem Sparschwein, unter Ihrer Matratze oder an einem anderen 
+          Platz aufbewahren, um direkten Zugriff darauf zu haben. Das sind 
+          die am leichtesten <emphasis>verfügbaren</emphasis> oder 
+          <emphasis>liquiden</emphasis> Geldmittel.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Bank:</guilabel> Benutzen Sie diese Kontoart um Ihren
+          Guthaben bei Institutionen wie zum Beispiel Banken, Bausparkassen
+          oder Maklerfirmen (wo jemand anders Ihr Geld absichert) zu verfolgen. 
+          Das sind die am zweit leichtesten verfügbaren Geldmittel, da sie leicht
+          in Bargeld umgewandelt werden können.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Aktienkonto:</guilabel> Benutzen Sie diesen Kontentyp um
+          die Entwicklung Ihrer persönlichen Aktien und Rentenpapiere zu verfolgen.
+          Die Buchungsansicht dieses Kontentyps stellt Ihnen zusätzliche Spalten für die 
+          Eingabe der Anzahl der Aktien und ihres Preises zur Verfügung. Diese Art
+          von Vermögen können Sie nicht so einfach in Bargeld umwandeln, es sei denn,
+          Sie finden einen Käufer. Sie bekommen auch nicht unbedingt den selben
+          Geldbetrag, den Sie beim Kauf der Aktien und Rentenpapiere bezahlt haben.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Investmentfonds:</guilabel> Dieser Kontentyp ist dem
+          Aktienkonto ähnlich, außer dass er dazu benutzt wird, die Entwicklung von Investmentfonds 
+          zu verfolgen. Die Buchungsansicht stellt Ihnen dieselben zusätzlichen Spalten für
+          die Eingabe der Anzahl der Fondsanteile und ihres Preises zur Verfügung wie beim
+          Aktienkonto. Investmentfonds stellen einen Miteigentumsanteil für eine Vielzahl 
+          von Geldanlagen dar, und wie Aktien garantieren sie keinen festen Geldwert.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Forderungen</guilabel>: Dieser Kontentyp wird normalerweise
+          nur im Geschäftsleben verwendet, da Sie hier noch nicht eingegangene
+          Zahlungen für von Ihnen erbrachte Leistungen oder gelieferte Produkte verwalten.
+          Diese Beträge werden schon als Vermögen betrachtet, weil Sie normalerweise 
+          damit rechnen können, dass diese geschuldeten Geldbeträge bei Ihnen eintreffen.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Sonstiges Vermögen:</guilabel> Unabhängig davon, wie unterschiedlich
+          dieses Vermögen ist, kann <application>&app;</application> einfach viele
+          unterschiedliche Situationen verwalten. Der Bereich <quote>Sonstiges Vermögen</quote>
+          deckt alle Aktiva ab, die oben noch nicht aufgezählt wurden.</para>
+
+          <para>Konten sind Informationsspeicher, die dazu benutzt werden, um
+          die Art von auftretenden Vorgängen aufzuzeichnen oder zu verfolgen,
+          für die das Konto eingerichtet wurde.</para>
+
+          <para>Im Wirtschaftsleben sind häufig die Vorgänge, die aufgezeichneten und verfolgt 
+          werden, feiner aufgeteilt als wir bisher betrachtet haben. Für eine fortgeschrittene
+          Behandlung der Möglichkeiten lesen Sie bitte die Beschreibung in Kapitel
+          <xref linkend="chapter_other_assets"/> in diesem Kurs.</para>
+
+          <para>Für Ihre persönlichen Finanzen können Sie die in der Wirtschaft verwendeten
+          Kontenrahmen benutzen oder nicht, je nachdem, ob sie Ihnen für die Erfassung, Verfolgung
+          und den Bericht der auftretenden Vorgänge bei der Verwaltung Ihrer persönlichen Finanzen
+          nützlich erscheinen. Zusätzliche Informationen finden Sie unter
+          <xref linkend="chapter_other_assets"/> in diesem Leitfaden.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>Das zweite Bestandskonto ist das Konto
+      <emphasis>Fremdkapital</emphasis>, welches sich, wie Sie sich sicherlich erinnern,
+        auf Ihre Schulden bezieht, also auf Geld, welches Sie geliehen haben
+        und zu einem späteren Zeitpunkt zurückzahlen müssen. Dies stellt das Recht
+        Ihrer Geldgeber dar, von Ihnen eine Rückzahlung zu erhalten. Die Beobachtung
+        Ihrer Darlehenstandes zeigt Ihnen, wie viele Schulden Sie zu einem bestimmten
+        Zeitpunkt haben.</para>
+
+      <para><application>&app;</application> bietet drei Kontentypen für Fremdkapital:</para>
+
+      <orderedlist>
+        <listitem>
+          <para><guilabel>Kreditkarte</guilabel> Nutzen Sie diese Kontoart, um
+          Ihre Zahlungen mit der Kreditkarte zu verwalten und mit der Abrechnung
+          der Kreditkartengesellschaft abzugleichen. Kreditkarten stellen ein 
+          Kurzzeit-Darlehen dar, und Sie sind verpflichtet den Betrag an die 
+          Kreditkartengesellschaft zurückzuzahlen. Dieser Kontentyp kann auch für 
+          andere Kurzzeit-Darlehen benutzt werden, wie zum Beispiel einen
+          Überziehungskredit Ihrer Bank.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Verbindlichkeiten</guilabel> Diese Kontoart wird
+          normalerweise nur im Geschäftsleben verwendet, da Sie hier eingegangene,
+          aber noch nicht bezahlte Rechnungen für Waren und Dienstleistungen 
+          anderer verwalten. Diese Beträge werden als Darlehen betrachtet, weil 
+          Sie diese geschuldeten Geldbeträge zum Fälligkeitsdatum bezahlen müssen.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Fremdkapital</guilabel> Nutzen Sie diese Kontoart für 
+          alle anderen Darlehen. Das sind normalerweise langfristige Darlehen wie
+          Immobiliendarlehen oder Autokredite. Dieser Kontentyp hilft Ihnen
+          dabei, die Übersicht darüber zu behalten, wie viel Sie anderen noch 
+          schulden und wie viel Sie bereits zurückgezahlt haben.</para>
+        </listitem>
+      </orderedlist>
+
+      <tip>
+        <para>Fremdkapital hat in der Buchführungs den gegenteiligen Effekt
+          wie Aktiva: <emphasis>Haben</emphasis> (Einträge in der rechten Spalte) 
+          erhöhen die Kontenstände der Darlehnskonten und <emphasis>Soll</emphasis> 
+          (Einträge in der linken Spalte) vermindert sie (siehe Anmerkung
+          weiter unten in diesem Kapitel).</para>
+      </tip>
+
+      <para>Die letzte Bestandskontoart ist <emphasis>Eigenkapital</emphasis>,
+        was auch gleichbedeutend ist mit <quote>Reinvermögen</quote>.
+        Er stellt dar, was übrig bleibt, wenn Sie Ihr Fremdkapital von Ihren Aktiva
+        abziehen. Es kann als der Teil Ihrer Aktiva betrachtet werden, den Sie
+        ohne irgendwelche Schulden besitzen. Nutzen Sie diese Kontoart in
+        <application>&app;</application> als Quelle für die Eröffnungsbuchungen, 
+        die Erfassung der Anfangsbestände Ihrer Konten, 
+        da deren Summe Ihrem anfänglichen Nettowert oder Reinvermögen entspricht.</para>
+
+      <para>Es gibt normalerweise nur ein <application>&app;</application> Eigenkapitalkonto,
+      welches logischerweise auch <guilabel>Eigenkapital</guilabel> genannt wird. 
+      Bei Firmen, WGs usw. kann aber pro Teilhaber ein Unterkonto angelegt werden.</para>
+
+      <tip>
+        <para>
+          In Eigenkapitalkonten erhöhen Haben-Buchungen die Kontenstände und Soll-Buchungen
+          verringern sie (mehr dazu später in diesem Kapitel).</para>
+      </tip>
+
+      <note>
+        <para>Die Gleichung, die die Bestandskontentypen verbindet ist
+        Aktiva = Darlehen + Eigenkapital oder auch umgestellt 
+        Aktiva - Darlehen = Eigenkapital. Umgangssprachlich, die 
+        <emphasis>Dinge die Sie besitzen</emphasis> minus die <emphasis>Dinge die Sie schulden</emphasis>
+        ist gleich dem <emphasis>Reinvermögen</emphasis>.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="accts-gc-ie2">
+      <title>Erfolgskonten</title>
+
+      <para><emphasis>Ertrag</emphasis> ist die Zahlung die Sie für Ihre bereitgestellte Zeit,
+        für von Ihnen erbrachte Dienstleistungen oder für die Nutzung Ihres
+        Geldes erhalten. Nutzen Sie ein Konto vom Typ <guilabel>Ertrag </guilabel>, 
+        um diese Zahlungen in <application>&app;</application> zu verfolgen.</para>
+
+      <tip>
+        <para>Haben-Buchungen erhöhen den Kontostand eines Ertragskontos und Soll-Buchungen
+        vermindern ihn. Wie in <xref linkend="basics-accounting1"></xref> beschrieben, 
+        repräsentieren Haben-Buchungen Geld, welches <emphasis>von</emphasis> einem 
+        Konto genommen wird. Speziell für Ertragskonten gilt, wenn Sie Geld <emphasis>von</emphasis> 
+        diesem Konto (Haben) zu einem anderen Konto transferieren, <emphasis>erhöht</emphasis> 
+        sich der Kontostand des Ertragskontos. Wenn Sie zum Beispiel eine Gehaltsbuchung
+        als Transaktionen von einem Ertragskonto zu Ihrem Bankkonto eingeben,
+        erhöht sich der Kontostand beider Konten.</para>
+      </tip>
+
+      <para><emphasis>Aufwand</emphasis> bezieht sich auf Geld, welches Sie ausgeben, 
+      um Waren und Dienstleistungen eines Anderen zu erwerben. Benutzen Sie in
+      <application>&app;</application> ein Konto vom Typ <guilabel>Aufwand</guilabel>,
+      um Ihre Aufwendungen zu erfassen.</para>
+
+      <tip>
+        <para>Soll-Buchungen erhöhen den Kontostand von Aufwandskonten und
+        Haben-Buchungen vermindern den Kontostand (siehe unten).</para>
+      </tip>
+
+      <note>
+        <para>Wenn Sie für eine bestimmte Zeit Ihre gesamten Aufwendungen von 
+        Ihren gesamten Erträge abziehen, erhalten Sie Ihren Nettoertrag. Dieser 
+        Nettoertrag wird in der Bilanz als einbehaltener Gewinn aufgeführt,
+        woraus mit Abschluß des Wirtschaftsjahres
+        <guilabel>Eigenkapital</guilabel> wird.</para>
+      </note>
+
+      <para>Unten sehen Sie <guilabel>Ertrags-</guilabel> and
+      <guilabel>Aufwands-</guilabel>Konten nach der Auswahl von 
+        <guilabel>Allgemeine Konten</guilabel> 
+      im Assistenten für die Erstellung eines neuen Kontenplans
+      (<menuchoice>
+        <guimenu>Aktionen</guimenu>
+        <guimenuitem>Kontenhierarchie hinzufügen...</guimenuitem>
+      </menuchoice>).
+      </para>
+      
+      <screenshot id="accts-DefaultIncomeAccounts">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/accts_DefaultIncomeAccounts.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>vorgegebene Ertragskonten</phrase>
+            </textobject>
+
+            <caption>
+              <para>Dieses Bild zeigt die allgemeinen 
+                <emphasis>Ertrags</emphasis>-Konten</para>
+            </caption>
+          </mediaobject>
+        </screenshot> 
+        <screenshot id="accts-DefaultExpenseAccounts">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/accts_DefaultExpenseAccounts.png"
+                         format="PNG" srccredit="Cristian Marchi" ></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>Einige vorgegebene Aufwandskonten</phrase>
+            </textobject>
+
+            <caption>
+              <para>Dieses Bild zeigt einige allgemeine 
+                <emphasis>Aufwands</emphasis>-Konten</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+    </sect2>
+  </sect1>
+
+  <sect1 id="accts-examples1">
+    <title>Alles zusammensetzen</title>
+
+    <para>Wir wollen jetzt, mithilfe des in diesem Kapitel Gelernten, einen 
+    allgemeinen persönlichen <emphasis>Kontenplan</emphasis> aufbauen. Ein 
+    Kontenplan ist einfach eine neue <application>&app;</application>-Datei,
+    in der Sie Ihre Konten angelegt haben, um Ihre Finanzen zu verfolgen. 
+    Beim Aufbau dieses Kontenplans ist die erste Aufgabe, die zu verfolgendenenden 
+    Posten den grundlegenden Kontentypen zuzuordnen. Das ist ziemlich einfach,
+    wie wir in folgendem Beispiel sehen können.</para>
+
+    <sect2 id="accts-examples-situation2">
+      <title>Einfaches Beispiel</title>
+
+      <para>Wir wollen annehmen, dass Sie ein Girokonto und ein Sparkonto 
+        bei der Bank haben, dass Sie angestellt sind und deshalb Gehaltszahlungen
+        empfangen. Sie haben eine Kreditkarte (Visa), und zahlen monatlich
+        Miete, Telefon und Strom. Natürlich brauchen Sie auch Bargeld
+        für den Einkauf von Lebensmitteln. Vorerst kümmern wir uns noch nicht darum, 
+        wie viel Geld Sie auf Ihren Bankkonten haben, oder wie viele offene Rechnungen
+        Ihre Kreditkarte aufweist usw. wir wollen nur das Grundgerüst für diesen 
+        Kontenplan erzeugen.</para>
+
+      <para>Ihre <guilabel>Aktiva</guilabel> sind das Sparkonto und das Girokonto.
+      Ihr <guilabel>Fremdkapital</guilabel> ist die Kreditkarte und Ihr 
+      <guilabel>Eigenkapital</guilabel> sind die Anfangskontostände Ihrer Bankkonten
+      und der Kreditkarte (auch wenn wir diese noch nicht kennen, so wissen wir doch,
+      dass es sie gibt). Sie haben <guilabel>Erträge</guilabel> in Form Ihres Arbeitslohns
+      und <guilabel>Aufwendungen</guilabel> in Form der Lebensmitteleinkäufe, der Miete,
+      der Strom- und Telefonrechnung, und Steuern und Sozialabgaben auf Ihr Einkommen.</para>
+    </sect2>
+
+    <sect2 id="accts-examples-toplevel2">
+      <title>Grundlegende Konten der obersten Ebene</title>
+
+      <para>Jetzt müssen Sie sich entscheiden wie Sie Ihre Konten gruppieren wollen. 
+      höchstwahrscheinlich wollen Sie jeweils Ihre <emphasis>Aktiva</emphasis>, 
+      Ihr <emphasis>Fremdkapital</emphasis>, Ihr <emphasis>Eigenkapital</emphasis>,
+      Ihre <emphasis>Erträge</emphasis>, und Ihre <emphasis>Aufwendungen</emphasis> 
+      zusammenfassen. Das ist die normale Art und Weise, einen <application>&app;</application>-
+      Kontenplan aufzubauen, und es wird im hohen Maße empfohlen, dass Sie immer auf 
+      diese Art und Weise anfangen.</para>
+
+      <para>Durch Betätigen von 
+      <menuchoice>
+        <guimenu>Datei</guimenu>
+        <guimenuitem>Neue Datei</guimenuitem>
+      </menuchoice>
+      fangen Sie mit einer leeren <application>&app;</application>-Datei an. Den 
+      Assistenten zum Aufbau eines Kontenplans verlassen Sie bitte durch Druck
+      auf die Taste <guibutton>Abbrechen</guibutton>, da wir diesmal nicht einen der 
+      vorgefertigten Kontenrahmen benutzen wollen. Stattdessen werden wir
+      ganz von vorne anfangen, und die grundlegenden Kontenstrukturen selber aufbauen.
+      Im leeren <application>&app;</application>-Fenster wählen Sie bitte 
+      <menuchoice>
+        <guimenu>Ansicht</guimenu>
+        <guimenuitem>Neue Kontenhierarchie</guimenuitem>
+      </menuchoice>
+      aus dem Menü: 
+      Die <guilabel>Konten</guilabel>-Seite öffnet sich. Zuletzt wählen Sie 
+      <menuchoice>
+        <guimenu>Aktionen</guimenu>
+        <guimenuitem>Neues Konto...</guimenuitem>
+      </menuchoice>.
+      </para>
+      
+      <para>Jetzt sind Sie bereit, den grundlegenden Kontenplan aufzubauen.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Kontobezeichnung <guilabel>Aktiva</guilabel> (Kontoart
+            <guilabel>Aktiva</guilabel>, Hauptkonto <guilabel>Neues Konto der 
+          obersten Ebene</guilabel>)</para>
+
+          <screenshot id="accts-CreateAssetsAccounts">
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="figures/accts_CreateAssetsAccount.png"
+                             format="PNG" srccredit="Cristian Marchi"></imagedata>
+                </imageobject>
+
+                <textobject>
+                  <phrase>Erstellung eines Aktivakontos</phrase>
+                </textobject>
+
+                <caption>
+                  <para>Dieses Bild zeigt den Dialog bei der Erstellung eines 
+                  Aktivakontos.</para>
+                </caption>
+              </mediaobject>
+            </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Kontobezeichnung <guilabel>Fremdkapital</guilabel> (Kontoart
+            <guilabel>Fremdkapital</guilabel>, Hauptkonto <guilabel>Neues Konto der 
+            obersten Ebene</guilabel>)</para>
+        </listitem>
+
+        <listitem>
+          <para>Kontobezeichnung <guilabel>Eigenkapital</guilabel> (Kontoart
+            <guilabel>Eigenkapital</guilabel>, Hauptkonto <guilabel>Neues Konto der 
+            obersten Ebene</guilabel>)</para>
+        </listitem>
+
+        <listitem>
+          <para>Kontobezeichnung <guilabel>Ertrag</guilabel> (Kontoart
+            <guilabel>Ertrag</guilabel>, Hauptkonto <guilabel>Neues Konto der 
+            obersten Ebene</guilabel>)</para>
+        </listitem>
+
+        <listitem>
+          <para>Kontobezeichnung <guilabel>Aufwand</guilabel> (Kontoart
+            <guilabel>Aufwand</guilabel>, Hauptkonto <guilabel>Neues Konto der
+              obersten Ebene
+            </guilabel>)</para>
+        </listitem>
+      </orderedlist>
+
+      <para>Nachdem Sie die Konten der obersten Ebene angelegt haben, sollte die Konto-Seite
+      in <application>&app;</application> folgendermaßen aussehen:</para>
+
+      <screenshot id="accts-toplevel">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/accts_toplevel.png" format="PNG"
+                       srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Die grundlegenden Konten der obersten Ebene</phrase>
+          </textobject>
+
+          <caption>
+            <para>Dieses Bild zeigt die grundlegenden Konten der obersten Ebene</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="accts-examples-organization2">
+      <title>Unterkonten anlegen</title>
+
+      <para>Den Konten der obersten Ebene können Sie jetzt Unterkonten hinzufügen,
+      die für die tatsächlichen Buchungen gedacht sind. Beachten Sie, dass die
+      Abgabenkonten unterhalb eines Unterkontos mit Namen <emphasis>Steuern</emphasis> 
+      angelegt werden. Sie können Unterkonten innerhalb von Unterkonten anlegen. 
+      Dies wird normalerweise für eine Gruppe zusammenhängender Konten getan, den 
+      Abgabenkonten in unserem Beispiel.</para>
+      <tip>
+        <para>Statt 
+        <menuchoice>
+          <guimenu>Aktionen</guimenu>
+          <guimenuitem>Neues Konto...</guimenuitem>
+        </menuchoice>
+        aus dem Menü zu wählen, können Sie alternativ ein Unterkonto durch einen rechts-
+        Klick auf den Namen des übergeordneten Kontos und anschließende Auswahl das 
+        Eintrags <guilabel>Neues Konto...</guilabel> erzeugen.
+        Es wird ein Dialog ähnlich dem unter <xref linkend="accts-examples-toplevel2"/>
+        dargestellten Dialog geöffnet, mit dem Unterschied, dass in diesem Dialog
+        das übergeordnete Konto bereits als Hauptkonto des neuen Kontos eingetragen ist.</para>
+      </tip>
+        <orderedlist>
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Girokonto</guilabel> (Kontoart
+            <guilabel>Bank</guilabel>, Hauptkonto
+            <emphasis>Aktiva</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Sparkonto</guilabel> (Kontoart
+            <guilabel>Bank</guilabel>, Hauptkonto
+            <emphasis>Aktiva</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Visa</guilabel> (Kontoart
+            <guilabel>Kreditkarte</guilabel>, Hauptkonto
+            <emphasis>Fremdkapital</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Gehalt</guilabel> (Kontoart
+            <guilabel>Ertrag</guilabel>, Hauptkonto
+            <emphasis>Ertrag</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Telefon</guilabel> (Kontoart
+            <guilabel>Aufwand</guilabel>, Hauptkonto
+            <emphasis>Aufwand</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Strom</guilabel> (Kontoart
+            <guilabel>Aufwand</guilabel>, Hauptkonto
+            <emphasis>Aufwand</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Miete</guilabel> (Kontoart
+            <guilabel>Aufwand</guilabel>, Hauptkonto
+            <emphasis>Aufwand</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Lebensmittel</guilabel> (Kontoart
+            <guilabel>Aufwand</guilabel>, Hauptkonto
+            <emphasis>Aufwand</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Steuern</guilabel> (Kontoart
+            <guilabel>Aufwand</guilabel>, Hauptkonto
+            <emphasis>Aufwand</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Einkommenssteuer</guilabel> (Kontoart
+            <guilabel>Aufwand</guilabel>, Hauptkonto
+            <emphasis>Aufwand:Steuer</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Rentenversicherung</guilabel> (Kontoart
+            <guilabel>Aufwand</guilabel>, Hauptkonto
+            <emphasis>Aufwand:Steuer</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Krankenversicherung</guilabel> (Kontoart
+            <guilabel>Aufwand</guilabel>, Hauptkonto
+            <emphasis>Aufwand:Steuer</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Kontobezeichnung <guilabel>Anfangsbestand</guilabel> (Kontoart
+            <guilabel>Eigenkapital</guilabel>, Hauptkonto
+            <emphasis>Eigenkapital</emphasis>)</para>
+          </listitem>
+        </orderedlist>
+
+      <para>Nachdem Sie diese zusätzlichen Unterkonten erzeugt haben, sollte das 
+      Resultat folgendermaßen aussehen:</para>
+
+      <screenshot id="accts-tree">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/accts_tree.png" format="PNG"
+                       srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Der grundlegende Kontenplan</phrase>
+          </textobject>
+
+          <caption>
+            <para>Dieses Beispiel zeigt einen einfachen Kontenplan.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Speichern Sie diesen Kontenplan unter dem Namen
+      <filename>gcashdata_3</filename>, und auch unter <filename>gcashdata_3emptyAccts</filename>,
+      da wir ihn in späteren Kapiteln weiterbenutzt werden.</para>
+
+      <para>Sie haben jetzt einen Kontenplan erzeugt, um ein einfaches Haushalts-Budget zu verfolgen.
+      Mit diesem Grundgerüst an Konten können wir nun anfangen, die Konten mit Buchungen zu füllen.
+      Dieses Thema wird im nächsten Kapitel detailliert beschrieben.</para>
+    </sect2>
   </sect1>
 </chapter>
-

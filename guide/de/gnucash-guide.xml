@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+    "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
 
-<!-- HTML codes unknown to xmllint: -->
+<!-- HTML codes unknown to xmllint and xml2po: -->
+<!ENTITY lsquo "‘">
+<!ENTITY rsquo "’">
+<!ENTITY mdash "—">
+<!ENTITY ndash "–">
 
 <!-- List of files: -->
 <!ENTITY chapter1 SYSTEM "ch_oview.xml">
 <!ENTITY chapter2 SYSTEM "ch_basics.xml">
 <!ENTITY chapter3 SYSTEM "ch_accts.xml">
 <!ENTITY chapter4 SYSTEM "ch_txns.xml">
-<!--
+<!ENTITY chapter7 SYSTEM "ch_loans.xml">
+<!ENTITY chapter9 SYSTEM "ch_capgain.xml">
+<!ENTITY chapter16 SYSTEM "ch_oth_assets.xml">  
+
+  <!--
 <!ENTITY chapter5 SYSTEM "ch_cbook.xml">
 <!ENTITY chapter6 SYSTEM "ch_cc.xml">
-<!ENTITY chapter7 SYSTEM "ch_loans.xml">
 <!ENTITY chapter8 SYSTEM "ch_invest.xml">
-<!ENTITY chapter9 SYSTEM "ch_capgain.xml">
 <!ENTITY chapter10 SYSTEM "ch_currency.xml">
 <!ENTITY chapter11 SYSTEM "ch_dep.xml">
 <!ENTITY chapter12 SYSTEM "ch_bus_ar.xml">
 <!ENTITY chapter13 SYSTEM "ch_bus_ap.xml">
 <!ENTITY chapter14 SYSTEM "ch_bus_pay.xml">
+<!ENTITY chapter15 SYSTEM "ch_budgets.xml">
+<!ENTITY chapter16 SYSTEM "ch_oth_assets.xml">
+<!ENTITY chapter17 SYSTEM "ch_python_bindings.xml">
+<!ENTITY chapter18 SYSTEM "ch_import_business_data.xml">
 <!ENTITY appendixa SYSTEM "appendixa.xml">
 <!ENTITY appendixb SYSTEM "appendixb.xml">
 <!ENTITY appendixc SYSTEM "appendixc.xml">
+<!ENTITY appendixd SYSTEM "appendixd.xml">
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY GFDL SYSTEM "fdl-appendix.xml">
 -->
@@ -35,9 +46,11 @@
   maintainance they should be collected here.
 -->
 <!ENTITY manrevision "2.4.2">
-<!ENTITY date "17th November 2012">
+<!ENTITY date "17 November 2012">
 <!ENTITY vers-unstable "trunk">
 <!ENTITY vers-stable "2.4.11">
+<!ENTITY series-unstable "trunk">
+<!ENTITY series-stable "2.4">
 <!--
   Translators:
     "&app;" replaces all occurences of "GnuCash" in the guide, so
@@ -56,23 +69,46 @@
 -->
 <!--
       (Do not remove this comment block.)
-  Version: 2.0.0
-  Last modified: July 9th 2006
+  Version: 2.2.1
+  Last modified: September 26, 2010
   Maintainers:
-               Chris Lyttle   <chris@wilddev.net)
+                Tom Bullock   <tbullock@nd.edu>
+               Chris Lyttle   <chris@wilddev.net>
   Translators:
-               (translators put your name and email here)
+			 Martin Mainka <martin@mainka-it.Default>
+			 Frank H. Ellenberger <frank.h.ellenberger@gmail.com>
+
 -->
 <book id="index" lang="de">
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
  <bookinfo>
-  <title>&app;-Kurs und Konzepte</title>
+  <title><application>&app;</application> Kurs und Konzepte</title>
   <edition>V&manrevision;</edition>
 
   <copyright>
-   <year>2012</year>
+   <year>2009-2012</year>
    <holder>&app; Documentation Team</holder>
+  </copyright>
+
+  <copyright>
+   <year>2010-2011</year>
+   <holder>Yawar Amin</holder>
+  </copyright>
+
+  <copyright>
+   <year>2010</year>
+   <holder>Tom Bullock</holder>
+  </copyright>
+
+  <copyright>
+   <year>2010-2011</year>
+   <holder>Cristian Marchi</holder>
+  </copyright>
+
+  <copyright>
+   <year>2006</year>
+   <holder>Chris Lyttle</holder>
   </copyright>
 
   <copyright>
@@ -93,14 +129,18 @@
  <!-- translators: uncomment this:
 
   <copyright>
-   <year>2000</year>
-   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+   <year>2013</year>
+   <holder>Martin Mainka (Deutsche Übersetzung)</holder>
+  </copyright>
+  <copyright>
+   <year>2013</year>
+   <holder>Frank H. Ellenberger (Deutsche Übersetzung)</holder>
   </copyright>
 
    -->
 
     <publisher>
-       <publishername> &app; Documentation Team </publishername>
+       <publishername>&app; Documentation Team</publishername>
        <address>
          <email>gnucash-user@gnucash.org</email>
        </address>
@@ -113,31 +153,82 @@
   <authorgroup>
 
     <author>
-     <firstname>Carol</firstname>
-     <surname>Champagne</surname>
-     <authorblurb>
-      <para>
-       <email>carol@io.com</email>
-      </para>
-     </authorblurb>
+      <firstname>Yawar</firstname>
+      <surname>Amin</surname>
+      <affiliation>
+        <orgname>&app; Documentation Team</orgname>
+      </affiliation>
     </author>
 
     <author>
-     <firstname>Chris</firstname>
-     <surname>Lyttle</surname>
-     <affiliation>
-          <orgname>&app; Documentation Team</orgname>
-          <address> <email>chris@wilddev.net</email> </address>
-     </affiliation>
+      <firstname>Tom</firstname>
+      <surname>Bullock</surname>
+      <email>tbullock@nd.edu</email>
     </author>
-    
+
     <author>
-     <firstname>Jon</firstname>
-     <surname>Lapham</surname>
-     <affiliation>
-          <orgname>&app; Documentation Team</orgname>
-          <address> <email>lapham@extracta.com.br</email> </address>
-     </affiliation>
+      <firstname>Carol</firstname>
+      <surname>Champagne</surname>
+      <email>carol@io.com</email>
+    </author>
+
+    <author>
+      <firstname>Mike</firstname>
+      <surname>Evans</surname>
+      <email>mikee@saxicola.idps.co.uk</email>
+    </author>
+
+    <author>
+      <firstname>Dave</firstname>
+      <surname>Herman</surname>
+      <affiliation>
+        <orgname>&app; Documentation Team</orgname>
+      </affiliation>
+      <email>dvherman@bigfoot.com</email>
+    </author>
+
+    <author>
+      <firstname>Geert</firstname>
+      <surname>Janssens</surname>
+      <affiliation>
+        <orgname>&app; Development Team</orgname>
+      </affiliation>
+    </author>
+
+    <author>
+      <firstname>Jon</firstname>
+      <surname>Lapham</surname>
+      <affiliation>
+        <orgname>&app; Documentation Team</orgname>
+      </affiliation>
+      <email>lapham@extracta.com.br</email>
+    </author>
+
+    <author>
+      <firstname>Chris</firstname>
+      <surname>Lyttle</surname>
+      <affiliation>
+        <orgname>&app; Documentation Team</orgname>
+      </affiliation>
+      <email>chris@wilddev.net</email>
+    </author>
+
+    <author>
+      <firstname>Cristian</firstname>
+      <surname>Marchi</surname>
+      <affiliation>
+        <orgname>&app; Documentation Team</orgname>
+      </affiliation>
+      <email>cri79@libero.it</email>
+    </author>
+
+    <author>
+      <firstname>Bengt</firstname>
+      <surname>Thuree</surname>
+      <affiliation>
+        <orgname>&app; Documentation Team</orgname>
+      </affiliation>
+     <email>bengt@thuree.com</email>
     </author>
     
 <!-- This is appropriate place for other contributors: translators,
@@ -150,6 +241,7 @@
           <address> <email>translator@gnome.org</email> </address>
         </affiliation>
         <contrib>Latin translation</contrib>
+        <email>email@address.com</email>
       </othercredit>
 -->
 
@@ -158,9 +250,32 @@
   <revhistory>
       <revision>
         <revnumber>&app; Tutorial and Concepts Guide v2.4.2</revnumber>
-        <date>17. November 2012</date>
+        <date>17 November 2012</date>
         <revdescription>
-          <para role="author">Geert Janssens
+          <para role="author">Multiple authors</para>
+          <para role="publisher">&app; Documentation Team</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app; Tutorial and Concepts Guide v2.4.1</revnumber>
+        <date>1 July 2011</date>
+        <revdescription>
+          <para role="author">Multiple authors</para>
+          <para role="publisher">&app; Documentation Team</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app; Tutorial and Concepts Guide v2.3.16</revnumber>
+        <date>November 7, 2010</date>
+        <revdescription>
+          <para role="author">Jon Lapham
+            <email>lapham@extracta.com.br</email>
+          </para>
+          <para role="author">Bengt Thuree
+            <email>bengt@thuree.com</email>
+          </para>
+          <para role="author">Dave Herman
+            <email>dvherman@bigfoot.com</email>
           </para>
           <para role="publisher">&app; Documentation Team</para>
         </revdescription>
@@ -171,6 +286,12 @@
         <revdescription>
           <para role="author">Jon Lapham
             <email>lapham@extracta.com.br</email>
+          </para>
+          <para role="author">Bengt Thuree
+            <email>bengt@thuree.com</email>
+          </para>
+          <para role="author">Dave Herman
+            <email>dvherman@bigfoot.com</email>
           </para>
           <para role="publisher">&app; Documentation Team</para>
         </revdescription>
@@ -248,14 +369,18 @@
         <ulink url="http://bugzilla.gnome.org"
           >GNOME Bug Tracking System</ulink>.
       </para>
-<!-- Translators may also add here feedback address for translations -->
+<!-- Translators may also add here a feedback address for translations -->
   </legalnotice>
 
 </bookinfo>
+
 &chapter1;
 &chapter2;
 &chapter3;
 &chapter4;
+&chapter7;
+&chapter9;
+&chapter16;
 
 <!--
 &chapter5;
@@ -268,9 +393,15 @@
 &chapter12;
 &chapter13;
 &chapter14;
+&chapter15;
+&chapter16;
+&chapter17;
+&chapter18;
 &appendixa;
 &appendixb;
 &appendixc;
+&appendixd;
+
 &GFDL;
 -->
 &glossary;
