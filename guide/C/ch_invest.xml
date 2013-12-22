@@ -1377,7 +1377,8 @@ Income
     <title>Selling Shares</title>
 
     <para>Entering an investment you are selling is done in the same way as
-    buying one except the total cost of the transaction is entered in the
+    buying one (see <xref linkend="invest-buy-new2" />) except the total cost 
+    of the transaction is entered in the
     <emphasis>Sell</emphasis> column and the <emphasis>Shares</emphasis>
     column is entered as a negative amount. The net proceeds from the sale
     should be transferred from the stock account to your bank or brokerage
@@ -1432,13 +1433,37 @@ Income
           </row>
 
           <row>
-            <entry>Assets:Bank</entry>
+            <entry>Assets:Bank ABC</entry>
 
             <entry></entry>
 
             <entry></entry>
 
             <entry>NET_SALE</entry>
+
+            <entry></entry>
+          </row>
+
+          <row>
+            <entry>Assets:Stock:SYMBOL</entry>
+
+            <entry>0</entry>
+
+            <entry>0</entry>
+
+            <entry>PROFIT</entry>
+
+            <entry>(Loss)</entry>
+          </row>
+
+          <row>
+            <entry>Expenses:Commissions</entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry>COMMISSION</entry>
 
             <entry></entry>
           </row>
@@ -1456,18 +1481,6 @@ Income
           </row>
 
           <row>
-            <entry>Assets:Stock:SYMBOL</entry>
-
-            <entry>0</entry>
-
-            <entry>0</entry>
-
-            <entry>PROFIT</entry>
-
-            <entry>(Loss)</entry>
-          </row>
-
-          <row>
             <entry>Income:Capital Gains</entry>
 
             <entry></entry>
@@ -1479,17 +1492,6 @@ Income
             <entry>PROFIT</entry>
           </row>
 
-          <row>
-            <entry>Expenses:Commissions</entry>
-
-            <entry></entry>
-
-            <entry></entry>
-
-            <entry>COMMISSION</entry>
-
-            <entry></entry>
-          </row>
         </tbody>
       </tgroup>
     </table>
@@ -1501,8 +1503,9 @@ Income
     <sect2 id="invest-sellexample2">
       <title>Example - Sale of stock with profit</title>
 
-      <para>As an example, assume you bought 100 shares of a stock for $20 per
-      share, then later sell them all for $36 per share. In the split
+      <para>As an example we will use the AMZN account created in the previous section.
+      So you bought 100 shares of AMZN for $20 per
+      share, then later sell them all for $36 per share with a commission of $75. In the split
       transaction scheme above, PRICEBUY is $20 (the original buying price),
       NUM_SHARES is 100, TOTALBUY is $2000 (the original buying cost),
       GROSS_SALE is $3600, and finally PROFIT is $1525
@@ -1533,7 +1536,7 @@ Income
             </row>
 
             <row>
-              <entry>Assets:Bank</entry>
+              <entry>Assets:Bank ABC</entry>
 
               <entry></entry>
 
@@ -1545,19 +1548,7 @@ Income
             </row>
 
             <row>
-              <entry>Assets:Stock:SYMBOL</entry>
-
-              <entry>-100</entry>
-
-              <entry>36.00</entry>
-
-              <entry></entry>
-
-              <entry>3600.00</entry>
-            </row>
-
-            <row>
-              <entry>Assets:Stock:SYMBOL</entry>
+              <entry>Assets:Brokerage Account:Stock:AMZN</entry>
 
               <entry>0</entry>
 
@@ -1566,18 +1557,6 @@ Income
               <entry>1600.00</entry>
 
               <entry></entry>
-            </row>
-
-            <row>
-              <entry>Income:Capital Gains</entry>
-
-              <entry></entry>
-
-              <entry></entry>
-
-              <entry></entry>
-
-              <entry>1600.00</entry>
             </row>
 
             <row>
@@ -1591,16 +1570,44 @@ Income
 
               <entry></entry>
             </row>
+
+            <row>
+              <entry>Assets:Brokerage Account:Stock:AMZN</entry>
+
+              <entry>-100</entry>
+
+              <entry>36.00</entry>
+
+              <entry></entry>
+
+              <entry>3600.00</entry>
+            </row>
+
+            <row>
+              <entry>Income:Cap Gain (Long):AMZN</entry>
+
+              <entry></entry>
+
+              <entry></entry>
+
+              <entry></entry>
+
+              <entry>1600.00</entry>
+            </row>
           </tbody>
         </tgroup>
       </table>
 
       <screenshot id="invest-sellstock">
         <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/invest_sellstock.png" format="PNG"
-                       srccredit="Dave Herman" ></imagedata>
-          </imageobject>
+           <imageobject role="html">
+             <imagedata fileref="figures/invest_sellstock.png" format="PNG"
+                        srccredit="Cristian Marchi" width="510px"></imagedata>
+           </imageobject>
+           <imageobject role="fo">
+             <imagedata fileref="figures/invest_sellstock.png" format="PNG"
+                        srccredit="Cristian Marchi"></imagedata>
+           </imageobject>
 
           <textobject>
             <phrase>Selling Stock Example</phrase>
@@ -1613,10 +1620,14 @@ Income
 
       <screenshot id="invest-sellstock2">
         <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/invest_sellstock2.png" format="PNG"
-                       srccredit="Dave Herman" ></imagedata>
-          </imageobject>
+          <imageobject role="html">
+             <imagedata fileref="figures/invest_sellstock2.png" format="PNG"
+                        srccredit="Cristian Marchi" width="510px"></imagedata>
+           </imageobject>
+           <imageobject role="fo">
+             <imagedata fileref="figures/invest_sellstock2.png" format="PNG"
+                        srccredit="Cristian Marchi"></imagedata>
+           </imageobject>
 
           <textobject>
             <phrase>Selling Stock Example</phrase>
@@ -1631,11 +1642,12 @@ Income
     <sect2 id="invest-sellexampleloss">
       <title>Example - Sale of stock with loss</title>
 
-      <para>As an example, assume you bought 100 shares of a stock for $100
-      per share, then later sell them all for $50 per share. In the split
-      transaction scheme below, PRICEBUY is $100 (the original buying price),
-      NUM_SHARES is 100, TOTAL_BUY is $10,000 (the original buying price),
-      (Loss) is $5000, and finally GROSS_SALE is $5000. Assume the commission
+      <para>As an example we will use the AMZN account created in the previous section.
+      You then have bought 51.7598 shares of IBM for $96.6001
+      per share, then later sell them all for $90 per share. In the split
+      transaction scheme below, PRICEBUY is $96.6001 (the original buying price),
+      NUM_SHARES is 51.7598, TOTAL_BUY is $5,000 (the original buying price),
+      (Loss) is $341.62, and finally GROSS_SALE is $4658.38. Assume the commission
       was $100.00.</para>
 
       <table>
@@ -1663,31 +1675,19 @@ Income
             </row>
 
             <row>
-              <entry>Assets:Bank</entry>
+              <entry>Assets:Bank ABC</entry>
 
               <entry></entry>
 
               <entry></entry>
 
-              <entry>4900.00</entry>
+              <entry>4558.38</entry>
 
               <entry></entry>
             </row>
 
             <row>
-              <entry>Assets:Stock:SYMBOL</entry>
-
-              <entry>-100</entry>
-
-              <entry>50.00</entry>
-
-              <entry></entry>
-
-              <entry>5000.00</entry>
-            </row>
-
-            <row>
-              <entry>Assets:Stock:SYMBOL</entry>
+              <entry>Assets:Brokerage Account:Stock:IBM</entry>
 
               <entry>0</entry>
 
@@ -1695,19 +1695,7 @@ Income
 
               <entry></entry>
 
-              <entry>5000.00</entry>
-            </row>
-
-            <row>
-              <entry>Income:Capital Gains</entry>
-
-              <entry></entry>
-
-              <entry></entry>
-
-              <entry>5000.</entry>
-
-              <entry>0</entry>
+              <entry>341.62</entry>
             </row>
 
             <row>
@@ -1721,13 +1709,41 @@ Income
 
               <entry></entry>
             </row>
+
+            <row>
+              <entry>Assets:Brokerage Account:Stock:IBM</entry>
+
+              <entry>-51.7598</entry>
+
+              <entry>90.00</entry>
+
+              <entry></entry>
+
+              <entry>4658.38</entry>
+            </row>
+
+            <row>
+              <entry>Income:Cap Gain (Long):IBM</entry>
+
+              <entry></entry>
+
+              <entry></entry>
+
+              <entry>341.62</entry>
+
+              <entry>0</entry>
+            </row>
+
           </tbody>
         </tgroup>
       </table>
 
-      <para>Note: You may either enter the loss as a positive number in the
+      <note>	
+      <para>You may either enter the loss as a positive number in the
       <quote>buy</quote> column or as a negative number in the <quote>sell</quote>
-      column, <application>&app;</application> will move the <quote>negative profit</quote> to the other column.</para>
+      column, <application>&app;</application> will move the <quote>negative profit</quote>
+      to the other column.</para>
+      </note>
 
       <screenshot id="invest-sellstockLoss">
         <mediaobject>
@@ -1741,8 +1757,8 @@ Income
           </textobject>
 
           <caption><para>Above is a screenshot of the example of selling
-          stock. You bought 100 shares for $100.00 per share, and sold for
-          $50.</para></caption>
+          stock. You bought $5000 worth of IBM shares with a stock value of
+	  $96.6001, and sold for $90.</para></caption>
         </mediaobject>
       </screenshot>
 
