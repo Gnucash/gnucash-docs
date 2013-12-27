@@ -710,6 +710,70 @@ Buy Stocks
 
     </sect2>
     
+    <sect2>
+      <title>Purchasing foreign stock with a domestic account</title>
+      <para>In some cases one is able to use a domestic brokerage account to purchase foreign stocks on the foreign exchange. Whether you&apos;re able to do this may depend upon the securities laws in your country and whether you can find a broker who offers this service.</para>
+      <para>Because &app; can handle only one commodity/currency pair per split, it&apos;s necessary to create a special account in the foreign currency to use to create this type of transaction. For this example, we&apos;re using a Book in UK Pounds Sterling (GBP), and trading a well-known American consumer goods stock which trades on the NASDAQ exchange. We set up the following chart of accounts:<screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/currency_foreign_stock_coa.png" scale="" scalefit="true"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot></para>
+      <para>Notice in particular the account <quote>Pricing-USD</quote>, denominated in US Dollars. (USD). We begin our stock purchase in that account in order to force the transaction currency to USD. From there, enter a stock transaction as usual, with USD values.  You&apos;ll get a <guilabel>Transfer Funds</guilabel> dialog box in which to enter the share price or number of shares, as you prefer, when you enter the stock account split. Next add an offsetting withdrawal split from the Pricing-USD for the purchase amount and a balancing deposit amount to the Brokerage Account for the equivalent in GBP. You&apos;ll get an <guilabel>Transfer Funds</guilabel> dialog box to enter the exchange rate. Do so and click <guilabel>OK</guilabel>. When you&apos;re done, your transaction should look something like this:</para>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_foreign_stock_txn_1.png"/>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+      <para>Now that we have the Brokerage Account split, we don&apos;t actually need the Pricing-USD splits any longer, but we can&apos;t delete them from here. If we switch to the Brokerage Account register, our transaction looks like:</para>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_foreign_stock_txn_2.png"/>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+      <para>And after deleting the Pricing-USD and Trading:CURRENCY:USD Splits it looks like this:</para>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_foreign_stock_txn_3.png"/>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+      <para>We guessed when we entered the transaction that the stock price would be $450/share and that the exchange rate $1.60/£. Suppose when we get our trading confirmation that the actual numbers turn out to be $452/share and $1.58/£. We make the adjustments in two steps. First, from Assets:Investment:Brokerage Account:Stock:AAPL, adjust the price. The result will be imbalanced, but don&apos;t worry about that yet. The transaction will look like:</para>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/currency_foreign_stock_adj_1.png"/>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+      <para>Now switch to the Brokerage Account register and enter the new amount in GBP. You can calculate it outside of &app; or you can just type in the calculation as <action>45200/1.58</action>. The register will look like<screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/currency_foreign_stock_adj_2.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot></para>
+      <para>Now right (or control on a Mac) click in the Brokerage Account <guilabel>Withdrawal</guilabel> cell and select <guilabel>Edit Exchange Rate</guilabel> from the context menu. Select the <guilabel>Amount</guilabel> radio button and enter 45200 so it looks like this:<screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/currency_foreign_stock_adj_3.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot></para>
+      <para>Click <guilabel>OK</guilabel> to dismiss the dialog box and press <guilabel>Enter</guilabel> to confirm the changes in the transaction, which will look like this:<screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/currency_foreign_stock_adj_4.png"/>
+            </imageobject>
+          </mediaobject>
+        </screenshot></para>
+    </sect2>
   </sect1>
 
   <sect1 id="currency_invest1">
