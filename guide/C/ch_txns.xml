@@ -546,16 +546,21 @@
   <sect1 id="txns-reconcile1">
     <title>Reconciliation</title>
 
-    <para>Transactions are typically checked against bank statements - a
-    process known as <emphasis>reconciliation</emphasis>. <application>&app;</application> keeps track of the
-    reconciliation status of each transaction.</para>
+      <para>Once transactions have been entered into <application>&app;</application>, it is important to verify
+      that they agree with the records of your financial institution. This
+      verification process is known as <emphasis role="strong">reconciliation</emphasis>, and it is key to determine
+      whether your records are accurate. Most commonly, you will check transactions
+      against bank statements, although you can use this process to verify any
+      transaction.</para>
 
-    <para>The reconciliation status of a transaction is shown by the
-    reconciliation <guilabel>R</guilabel> field. <emphasis>y</emphasis> indicates that a transaction has been
-    reconciled, <emphasis>n</emphasis> indicates that it has not, and <emphasis>c</emphasis> indicates that it has
-    been cleared, but not reconciled. You can toggle the reconciliation status
-    between <emphasis>n</emphasis> and <emphasis>c</emphasis> by clicking in the <guilabel>R</guilabel> field; you can set 
-    it to <emphasis>y</emphasis> by using the <guilabel>Reconciliation Window</guilabel>.</para>
+      <para><application>&app;</application> keeps track of the reconciliation status of each
+      transaction. The reconciliation status of a transaction is shown by the
+      reconciliation <guilabel>R</guilabel> field in a register:
+      <emphasis>y</emphasis> indicates that a transaction has been
+      reconciled, <emphasis>n</emphasis> indicates that it has not, and <emphasis>c</emphasis> indicates that it has
+      been cleared, but not reconciled. You can toggle the reconciliation status
+      between <emphasis>n</emphasis> and <emphasis>c</emphasis> by clicking in the <guilabel>R</guilabel> field; you can set 
+      it to <emphasis>y</emphasis> by using <xref linkend="txns-reconcile-window2" />.</para>
     
       <para>At the bottom of the account window, there are (among others) two running
       balances (the <guilabel>cleared</guilabel> and <guilabel>reconciled</guilabel> balance), and the 
@@ -574,10 +579,18 @@
       window. There, you will be able to change the <guilabel>R</guilabel> field to <emphasis>y</emphasis> (reconciled).</para>
       
       <note>
-        <para>You cannot reconcile in the register window, you must use the
+        <para>You cannot reconcile directly in a register window by clicking in the <emphasis>R</emphasis> field. You must use the
         reconciliation window. Once a transaction has been marked <emphasis>reconciled</emphasis>,
         it can no longer be easily changed without breaking the 
         <link linkend="rec-start-blnc"><guilabel>Starting Balance</guilabel></link> of the next reconciliation.</para>
+      </note>
+
+      <note>
+        <para>It is important to understand that reconciliation is done for a given
+        date, and when you reconcile an account based on a statement from a given date,
+        you are reconciling <emphasis role="strong">all transactions prior to that date</emphasis>. Therefore, if you
+        add or modify transactions that predate your last reconciliation, your
+        <emphasis role="strong">reconciled</emphasis> balances will be thrown off.</para>
       </note>
 
     <sect2 id="txns-reconcile-window2">
@@ -629,25 +642,29 @@
             <para>This is a non-editable item which displays the balance from the previous
             reconciliation. It should match the starting balance in your statement.</para>
 
-	  <note>
+	  <warning>
 	    <para>Sometimes, the opening balance in <application>&app;</application> does not match that 
 	    found on your statement. This can happen the first time you reconcile your account or 
 	    when a previously-reconciled transaction is de-reconciled or deleted.</para>
-	  </note>
+	  </warning>
 	  
-	  <para>The first time you reconcile your account, the <guilabel>starting balance</guilabel> will 
-	  be <guilabel>0.00</guilabel>, thus probably not the  <emphasis>opening balance</emphasis> of your account. 
-	  When you reconcile the account, the <emphasis>opening balance</emphasis> for the account 
-	  will be included in the reconciliation, and the result should balance.</para>
-            
-	  <para>In the case when a previously-reconciled transaction is accidentally de-reconciled, you can simply 
-	  re-reconcile the transaction along with the transactions on the current statement, and the
+          <note>
+	    <para>The first time you reconcile your account, the <guilabel>starting balance</guilabel> will 
+	    be <guilabel>0.00</guilabel>, thus probably not the  <emphasis>opening balance</emphasis> of your account. 
+	    When you reconcile the account, the <emphasis>opening balance</emphasis> for the account 
+	    will be included in the reconciliation, and the result should balance.</para>
+          </note>
+
+          <tip>   
+	    <para>In the case when a previously-reconciled transaction is accidentally de-reconciled, you can simply 
+	    re-reconcile the transaction along with the transactions on the current statement, and the
             result should balance.</para>
 
             <para>The case of accidentally deleting a previously-reconciled transaction presents
             more of a challenge; if you cannot determine what was
             deleted and restore it to the register, you will have to create a dummy
             transaction to get the reconciliation to finish.</para>
+          </tip>
           </listitem>
         </varlistentry>
 
