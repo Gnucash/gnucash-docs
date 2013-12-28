@@ -191,7 +191,7 @@
         <listitem>
           <para><guilabel>Reverse Balanced accounts</guilabel> &mdash; This option
           lets you determine whether account balances will display as positive
-          or negative numbers: 
+          or negative numbers:</para>
             <itemizedlist>
               <listitem>
                 <para><guilabel>Income &amp; Expense</guilabel> assigns a
@@ -213,7 +213,7 @@
                 <para><guilabel>None</guilabel> shows all credit balances as
                 negative and all debit balances as positive.</para>
               </listitem>
-            </itemizedlist></para>
+            </itemizedlist>
         </listitem>
 
         <listitem>
@@ -242,7 +242,24 @@
             </listitem>
           </itemizedlist>
         </listitem>
-      </itemizedlist>
+  
+        <listitem>
+          <para><guilabel>Account Color</guilabel> &mdash; This option
+          lets you manage the display of the account color set in the 
+          <guilabel>Edit Account</guilabel> window:</para>
+            <itemizedlist>
+              <listitem>
+                <para><guilabel>Show the Account Colors as background</guilabel> &mdash; show the
+                accounts color as account name background in the Accounts Page.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Show the Account Colors on tabs</guilabel> &mdash; show the accounts 
+                color as background in the account register tabs.</para>
+              </listitem>
+            </itemizedlist>
+        </listitem>
+    </itemizedlist>
     </sect2>
 
     <sect2 id="prefs-biz">
@@ -269,10 +286,14 @@
       </figure>
 
       <itemizedlist>
-
         <listitem>
         <para><guilabel>General</guilabel></para>
           <itemizedlist>
+            <listitem>
+              <para><guilabel>Enable extra buttons</guilabel> &mdash; If checked,
+              extra toolbar buttons for common business functions are shown.</para>
+            </listitem>
+
             <listitem>
               <para><guilabel>Open in new window</guilabel> &mdash; If checked, each
               invoice will be opened in its own top level window. If clear, the
@@ -291,9 +312,28 @@
         <para><guilabel>Invoices</guilabel></para>
           <itemizedlist>
             <listitem>
+              <para><guilabel>Report for printing:</guilabel> &mdash; Allows to select
+              the invoice report to be used for printing.</para>
+            </listitem>
+
+            <listitem>
               <para><guilabel>Tax Included</guilabel> &mdash; Whether tax are
               included by default in entries on invoices. This setting is
               inherited by new customers and vendors.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Auto pay on posting</guilabel> &mdash; If enabled, at post 
+              time automatically attempt to pay customer documents with outstanding 
+              pre-payments and counter documents.</para>
+              <note>
+                <para>Counter documents are documents with 
+                opposite sign. For example for an invoice, customer credit notes and negative
+                invoices are considered counter documents.</para>
+
+                <para>The pre-payments and documents obviously
+                have to be against the same customer.</para>
+              </note>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -316,6 +356,20 @@
               <para><guilabel>Tax Included</guilabel> &mdash; Whether tax are
               included by default in entries on bills. This setting is inherited
               by new customers and vendors.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Auto pay on posting</guilabel> &mdash; If enabled, at post 
+              time automatically attempt to pay vendor documents with outstanding 
+              pre-payments and counter documents.</para>
+              <note>
+                <para>Counter documents are documents with 
+                opposite sign. For example for a bill, vendor credit notes and negative
+                bills are considered counter documents.</para>
+
+                <para>The pre-payments and documents obviously
+                have to be against the same vendor.</para>
+              </note>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -364,10 +418,6 @@
           The available choices are:</para>
             <itemizedlist>
              <listitem>
-              <para><guilabel>Locale</guilabel> &mdash; Use the date format specified by the system locale.</para>
-             </listitem>
-
-             <listitem>
               <para><guilabel>US</guilabel> &mdash; Use the date format common in the United States.</para>
              </listitem>
 
@@ -382,7 +432,29 @@
              <listitem>
               <para><guilabel>ISO</guilabel> &mdash; Use the date format specified by the ISO-8601 standard.</para>
              </listitem>
+
+             <listitem>
+              <para><guilabel>Locale</guilabel> &mdash; Use the date format specified by the system locale.</para>
+             </listitem>
             </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Date completion</guilabel> &mdash; This option
+          lets you manage the case when a date is entered without a year: 
+            <itemizedlist>
+              <listitem>
+                <para><guilabel>In the current calendar year</guilabel> (Default) &mdash; Dates will be completed so that 
+                they are within the current calendar year.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>In a sliding 12-month window starting a configurable number of months before 
+                the current month</guilabel> &mdash; Dates will be completed so that they are close to the current 
+                date. You can enter the maximum number of months to go backwards in time when completing dates.</para>
+              </listitem>
+            </itemizedlist>
+          </para>
         </listitem>
       </itemizedlist>
     </sect2>
@@ -513,6 +585,14 @@
             </listitem>
 
             <listitem>
+              <para><guilabel>Enable timout on "Save changes on closing" question</guilabel> &mdash;
+              If enabled, the <guilabel>Save changes on closing</guilabel> question will only wait a 
+              limited number of seconds for an answer. If the user didn&rsquo;t answer within that time,
+              the changes will be saved automatically and the question window closed.
+              You can sete the number of seconds in the <guilabel>Time to wait for answer</guilabel> field.</para>    
+            </listitem>
+
+            <listitem>
               <para><guilabel>Retain log files</guilabel> &mdash; In this section you could set
               your preferences about the log files using the provided radio buttons.</para> 
               <itemizedlist>
@@ -579,12 +659,45 @@
               might want to turn off this option. Turning off the option gives you
               less detail in the importer screens.</para>
             </listitem>
+
+            <listitem>
+              <para><guilabel>Default transaction status (overridden by the status given by the QIF file)</guilabel> &mdash;
+              In this section you could set the default status for imported transactions using the provided 
+              self-explainingradio buttons:</para> 
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Not cleared</guilabel> (Default)</para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Cleared</guilabel></para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Reconciled</guilabel></para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
           </itemizedlist>
         </listitem>
 
         <listitem>
         <para><guilabel>Generic Importer</guilabel></para>
           <itemizedlist>
+            <listitem>
+              <para><guilabel>Enable skip transaction action</guilabel> &mdash; Enable the SKIP
+              action in the transaction matcher. If enabled, a transaction whose best match&rsquo;s score
+              is in the yellow zone (above the Auto-ADD threshold but below the Auto-CLEAR threshold)
+              will be skipped by default.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Enable update match action</guilabel> &mdash; Enable the UPDATE AND RECONCILE
+              action in the transaction matcher. If enabled, a transaction whose best match&rsquo;s score is 
+              above the Auto-CLEAR threshold and has a different date or amount than the matching existing 
+              transaction will cause the existing transaction to be updated and cleared by default.</para>
+            </listitem>
+
             <listitem>
               <para><guilabel>Use Bayesian matching</guilabel> &mdash; Use Bayesian
                algorithms to match new transactions with existing accounts.</para>
@@ -621,16 +734,27 @@
               transaction will be recognized as a match by 
               <application>&app;</application>.</para>
             </listitem>
+
+            <listitem>
+              <para><guilabel>Automatically create new commodities</guilabel> &mdash; Enables the 
+              automatic creation of new commodities if any unknown commodity is encountered during 
+              import. If not enabled, the user will be asked what to do with each unknown commodity.</para>
+            </listitem>
           </itemizedlist>
         </listitem>
 
         <listitem>
         <para><guilabel>Online Banking</guilabel></para>
         <note>
-          <para>This section is showed only if <application>&app;</application> is compiled with
+          <para>This section is shown only if <application>&app;</application> is compiled with
           Aqbanking and <acronym>HBCI</acronym> support.</para>
         </note>
           <itemizedlist>
+            <listitem>
+              <para><guilabel>Close log window when finished</guilabel> &mdash; Close the log window 
+              when the operation is completed.</para>
+            </listitem>
+
             <listitem>
               <para><guilabel>Remember PIN</guilabel> &mdash; Enable this option if you
               want <application>&app;</application> to remember the PIN you
@@ -802,6 +926,7 @@
               selected, <application>&app;</application> will draw a vertical line between the cells in
               each row.</para>
              </listitem>
+
           </itemizedlist>
         </listitem>
       </itemizedlist>
@@ -888,7 +1013,6 @@
               <para><guilabel>Number of transactions</guilabel> &mdash; How many
               transactions to show in a register. Set to 0 to show all transactions.</para>
             </listitem>
-
           </itemizedlist>
         </listitem>
       </itemizedlist>
@@ -1005,13 +1129,13 @@
             </listitem>
 
             <listitem>
-              <para><guilabel>Create in advance, days</guilabel> &mdash; The default
+              <para><guilabel>Create in advance</guilabel> &mdash; The default
               number of days in advance to create the registered scheduled
               transactions.</para>
             </listitem>
 
             <listitem>
-              <para><guilabel>Remind in advance, days</guilabel> &mdash; The default
+              <para><guilabel>Remind in advance</guilabel> &mdash; The default
               number of days in advance to remind on new scheduled
               transactions.</para>
             </listitem>
@@ -1056,36 +1180,6 @@
         </listitem>
 
         <listitem>
-          <para><guilabel>Toolbar style</guilabel></para>
-          <para>You can choose from five different styles for the <emphasis>Toolbar</emphasis>:</para>
-           <itemizedlist>
-            <listitem>
-             <para><guilabel>Use system default</guilabel> (default) &mdash; Use the system setting 
-             for displaying <emphasis>Toolbar</emphasis> items.
-             </para>
-            </listitem>
-
-            <listitem>
-             <para><guilabel>Text below icons</guilabel> &mdash; Display <emphasis>Toolbar</emphasis> items with the text label below the icon.
-              Labels are shown for all items.</para>
-            </listitem>
-
-            <listitem>
-             <para><guilabel>Priority text beside icons</guilabel> &mdash; Display <emphasis>Toolbar</emphasis> items with the text label
-              beside the icon.  Labels are only shown for the most important items.</para>
-            </listitem>
-
-            <listitem>
-             <para><guilabel>Icons only</guilabel> &mdash; Display <emphasis>Toolbar</emphasis> items as icons only.</para>
-            </listitem>
-
-            <listitem>
-             <para><guilabel>Text only</guilabel> &mdash; Display <emphasis>Toolbar</emphasis> items as text only.</para>
-            </listitem>
-           </itemizedlist>
-        </listitem>
-        
-        <listitem>
         <para><guilabel>Tabs</guilabel></para>
           <itemizedlist>
             <listitem>
@@ -1101,7 +1195,14 @@
             
             <listitem>
               <para><guilabel>Width:</guilabel> &mdash; The width of tab label 
-              expressed in characters.</para>
+              expressed in characters.
+              <note>
+                <para>If the text in the tab is longer than this value 
+                (the test is approximate) then the tab label will have the middle cut 
+                and replaced with an ellipsis.
+                </para>
+              </note>
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
