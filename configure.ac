@@ -29,7 +29,8 @@ dnl ====================================
 dnl = End tests for scrollkeeper
 dnl ====================================
 
-AM_INIT_AUTOMAKE(gnucash-docs,2.4.2)
+AM_INIT_AUTOMAKE(gnucash-docs,2.4.3
+)
 
 dnl
 dnl Check for xsltproc
