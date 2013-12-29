@@ -1,7 +1,7 @@
 figdir = figures
 docname = gnucash-help
-lang = de_DE
-omffile = $(docname)-de_DE.omf
+lang = de
+omffile = $(docname)-de.omf
 entities = \
 	Help_ch_Intro.xml \
 	Help_ch_GettingStarted.xml \
@@ -11,7 +11,7 @@ entities = \
 	Help_chtacctseg.xml \
 	Help_txf-categories.xml \
 	Help_tips-appendix.xml
-DISTCLEANFILES =  $(docname)-de_DE.omf.out
+DISTCLEANFILES =  $(docname)-de.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make

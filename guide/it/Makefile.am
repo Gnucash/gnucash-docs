@@ -1,8 +1,8 @@
 figdir = figures
 docname = gnucash-guide
-lang = it_IT
-omffile = $(docname)-it_IT.omf
-DISTCLEANFILES =  $(docname)-it_IT.omf.out
+lang = it
+omffile = $(docname)-it.omf
+DISTCLEANFILES =  $(docname)-it.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make

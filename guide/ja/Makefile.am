@@ -1,8 +1,8 @@
 figdir = figures
 docname = gnucash-guide
-lang = ja_JP
+lang = ja
 fopconfig = fop.xconf
-omffile = $(docname)-ja_JP.omf
+omffile = $(docname)-ja.omf
 entities = \
 	fdl-appendix.xml \
 	legal.xml \
@@ -27,7 +27,7 @@ entities = \
 	appendixb.xml \
 	appendixc.xml \
 	appendixd.xml
-DISTCLEANFILES =  $(docname)-ja_JP.omf.out mincho.xml gothic.xml $(fopconfig)
+DISTCLEANFILES =  $(docname)-ja.omf.out mincho.xml gothic.xml $(fopconfig)
 CLEANFILES =  $(DISTCLEANFILES)
 FOPFLAGS = -l $(lang) -c $(fopconfig)
 XSLTFLAGS_FO= --stringparam paper.type A4
