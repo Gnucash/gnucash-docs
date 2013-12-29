@@ -5,11 +5,11 @@ omffile = $(docname)-de_DE.omf
 entities = \
 	Help_ch_Intro.xml \
 	Help_ch_GettingStarted.xml \
-	fdl-appendix.xml \
-	legal.xml \
-	chartofaccts.xml \
-	chtacctseg.xml \
-	txf-categories.xml \
+	Help_fdl-appendix.xml \
+	Help_legal.xml \
+	Help_chartofaccts.xml \
+	Help_chtacctseg.xml \
+	Help_txf-categories.xml \
 	Help_tips-appendix.xml
 DISTCLEANFILES =  $(docname)-de_DE.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
