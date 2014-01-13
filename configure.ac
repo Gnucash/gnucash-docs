@@ -75,8 +75,8 @@ AC_ARG_WITH([japanese-gothic-ttf],
 
 JAPANESE_MINCHO_TTF=
 JAPANESE_GOTHIC_TTF=
-dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local)
-japanese_fontdir="/usr/share/fonts/truetype/ipaexfont /usr/share/fonts/opentype/ipaexfont /usr/share/fonts/ipa-gothic /usr/share/fonts/ipa-mincho /usr/local/share/fonts/i ."
+dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
+japanese_fontdir="/usr/share/fonts/truetype/ipaexfont /usr/share/fonts/opentype/ipaexfont /usr/share/fonts/ipa-gothic /usr/share/fonts/ipa-mincho /usr/local/share/fonts/i /usr/share/fonts/ipa-ex-gothic /usr/share/fonts/ipa-ex-mincho ."
 
 if test "x$with_japanese_fontdir" != "xcheck" && test "x$with_japanese_fontdir" != "xyes" ; then
    japanese_fontdir="$with_japanese_fontdir $japanese_fontdir"
