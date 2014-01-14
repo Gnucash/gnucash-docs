@@ -9,7 +9,10 @@ EXTRA_DIST = gnucash-docs.spec \
 	     stylesheet \
 	     xsl \
 	     HACKING \
-	     README
+	     README \
+	     fonts/ume-tgo4.ttf \
+	     fonts/ume-tmo3.ttf \
+	     fonts/README.Fonts
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 

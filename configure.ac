@@ -68,15 +68,15 @@ AC_ARG_WITH([japanese-fontdir],
 			[with_japanese_fontdir=check])
 AC_ARG_WITH([japanese-mincho-ttf],
 	[AS_HELP_STRING([--with-japanese-mincho-ttf],
-			[specify Japanese Mincho TrueType font (default is ipaexm.ttf)])],,[with_japanese_mincho_ttf=ipaexm.ttf])
+			[specify Japanese Mincho TrueType font (default is ipaexm.ttf)])],,[with_japanese_mincho_ttf=ume-tmo3.ttf])
 AC_ARG_WITH([japanese-gothic-ttf],
 	[AS_HELP_STRING([--with-japanese-gothic-ttf],
-			[specify Japanese Gothic TrueType font (default is ipaexg.ttf)])],,[with_japanese_gothic_ttf=ipaexg.ttf])
+			[specify Japanese Gothic TrueType font (default is ipaexg.ttf)])],,[with_japanese_gothic_ttf=ume-tgo4.ttf])
 
 JAPANESE_MINCHO_TTF=
 JAPANESE_GOTHIC_TTF=
 dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
-japanese_fontdir="/usr/share/fonts/truetype/ipaexfont /usr/share/fonts/opentype/ipaexfont /usr/share/fonts/ipa-gothic /usr/share/fonts/ipa-mincho /usr/local/share/fonts/i /usr/share/fonts/ipa-ex-gothic /usr/share/fonts/ipa-ex-mincho ."
+japanese_fontdir="/usr/share/fonts/truetype/ipaexfont /usr/share/fonts/opentype/ipaexfont /usr/share/fonts/ipa-gothic /usr/share/fonts/ipa-mincho /usr/local/share/fonts/i /usr/share/fonts/ipa-ex-gothic /usr/share/fonts/ipa-ex-mincho ./fonts"
 
 if test "x$with_japanese_fontdir" != "xcheck" && test "x$with_japanese_fontdir" != "xyes" ; then
    japanese_fontdir="$with_japanese_fontdir $japanese_fontdir"
@@ -117,10 +117,14 @@ unset font
 if test -z "$JAPANESE_MINCHO_TTF" || test -z "$JAPANESE_GOTHIC_TTF" ; then
    AC_MSG_WARN([
 
-Japanese TrueType fonts not found. You can't create Japanese PDF files.
-If you'd like to create Japanese PDF files, please download IPAex Fonts from
-  http://ossipedia.ipa.go.jp/ipafont/index.html
-and specify --with-japanese-fontdir=DIR option.
+Japanese TrueType fonts were not found. They're required to build the
+Japanese PDF version of the Guide, and should have been distributed
+with these sources. If you need to generate the Japaneseeee PDF,
+you'll need to install Japanese Mincho and Gothic TrueType fonts and
+indicate their localtion and names with the with-japanese configure
+options. Note that fop-ttfreader can't handle OpenType fonts, the
+fonts must be TrueType.
+
 ])
   AM_CONDITIONAL([WITH_JAPANESE_PDF],[false])
 elif test -z "$FOP_TTFREADER"; then
