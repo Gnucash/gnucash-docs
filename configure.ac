@@ -55,7 +55,9 @@ if test -z "$FOP"; then
 else
   AC_PATH_PROG(FOP_TTFREADER, fop-ttfreader)
   if test -z "$FOP_TTFREADER"; then
-    AC_MSG_WARN([fop-ttfreader not found. You won't be able to generate non-latin PDF files.])
+    if test -e /usr/share/java/fop.jar; then
+      FOP_TTFREADER="java -cp /usr/share/java/fop.jar:/usr/share/java/avalon-framework.jar:/usr/share/java/commons-logging.jar:/usr/share/java/commons-io.jar:/usr/share/java/xmlgraphics-commons.jar org.apache.fop.fonts.apps.TTFReader"
+    fi
   fi
 fi
 
@@ -68,74 +70,65 @@ AC_ARG_WITH([japanese-fontdir],
 			[with_japanese_fontdir=check])
 AC_ARG_WITH([japanese-mincho-ttf],
 	[AS_HELP_STRING([--with-japanese-mincho-ttf],
-			[specify Japanese Mincho TrueType font (default is ipaexm.ttf)])],,[with_japanese_mincho_ttf=ume-tmo3.ttf])
+			[specify Japanese Mincho TrueType font (default is ipaexm.ttf)])],,)
 AC_ARG_WITH([japanese-gothic-ttf],
 	[AS_HELP_STRING([--with-japanese-gothic-ttf],
-			[specify Japanese Gothic TrueType font (default is ipaexg.ttf)])],,[with_japanese_gothic_ttf=ume-tgo4.ttf])
+			[specify Japanese Gothic TrueType font (default is ipaexg.ttf)])],,)
 
-JAPANESE_MINCHO_TTF=
-JAPANESE_GOTHIC_TTF=
-dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
-japanese_fontdir="/usr/share/fonts/truetype/ipaexfont /usr/share/fonts/opentype/ipaexfont /usr/share/fonts/ipa-gothic /usr/share/fonts/ipa-mincho /usr/local/share/fonts/i /usr/share/fonts/ipa-ex-gothic /usr/share/fonts/ipa-ex-mincho ./fonts"
+JAPANESE_MINCHO_TTF=`pwd`/fonts/ume-tmo3.ttf
+JAPANESE_GOTHIC_TTF=`pwd`/fonts/ume-tmo3.ttf
+japanese_mincho_metric=fonts/mincho.xml
+japanese_gothic_metric=fonts/gothic.xml
 
-if test "x$with_japanese_fontdir" != "xcheck" && test "x$with_japanese_fontdir" != "xyes" ; then
-   japanese_fontdir="$with_japanese_fontdir $japanese_fontdir"
-fi
-
-for fontdir in $japanese_fontdir ""; do
-    if test "x$JAPANESE_MINCHO_TTF" != "x" ; then 
-        case $JAPANESE_MINCHO_TTF in
-            /*)
-               ;;
-            *)
-                JAPANESE_MINCHO_TTF=`pwd`/$JAPANESE_MINCHO_TTF
-               ;;
-        esac	
-        break
-    fi
-    font=$fontdir/$with_japanese_mincho_ttf
-    AC_CHECK_FILE($font,[JAPANESE_MINCHO_TTF=$font],)
-done
-
-
-for fontdir in $japanese_fontdir ""; do
-    if test "x$JAPANESE_GOTHIC_TTF" != "x" ; then 
-        case $JAPANESE_GOTHIC_TTF in
-            /*)
-               ;;
-            *)
-                JAPANESE_GOTHIC_TTF=`pwd`/$JAPANESE_GOTHIC_TTF
-               ;;
-        esac	
-        break 
-    fi
-    font=$fontdir/$with_japanese_gothic_ttf
-    AC_CHECK_FILE($font,[JAPANESE_GOTHIC_TTF=$font],)
-done
-unset font
-
-if test -z "$JAPANESE_MINCHO_TTF" || test -z "$JAPANESE_GOTHIC_TTF" ; then
+if test -z "$FOP_TTFREADER"; then
    AC_MSG_WARN([
-
-Japanese TrueType fonts were not found. They're required to build the
-Japanese PDF version of the Guide, and should have been distributed
-with these sources. If you need to generate the Japaneseeee PDF,
-you'll need to install Japanese Mincho and Gothic TrueType fonts and
-indicate their localtion and names with the with-japanese configure
-options. Note that fop-ttfreader can't handle OpenType fonts, the
-fonts must be TrueType.
-
+        fop-ttfreader not found, using the default Japanese fonts.
 ])
-  AM_CONDITIONAL([WITH_JAPANESE_PDF],[false])
-elif test -z "$FOP_TTFREADER"; then
-   AC_MSG_WARN([
 
-fop-ttfreader not found. You can't create Japanese PDF files.
-If you'd like to create Japanese PDF files, please setup FOP properly.
-])
-  AM_CONDITIONAL([WITH_JAPANESE_PDF],[false])
 else
-  AM_CONDITIONAL([WITH_JAPANESE_PDF],[true])
+dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
+  japanese_fontdir="/usr/share/fonts/truetype /usr/share/fonts /usr/local/share/fonts /usr/local/share/fonts"
+
+  if test "x$with_japanese_fontdir" != "xcheck" && test "x$with_japanese_fontdir" != "xyes" ; then
+     japanese_fontdir="$with_japanese_fontdir $japanese_fontdir"
+  fi
+  
+  if test "x$with_japanese_mincho_ttf" != "x" ; then
+      for fontdir in $japanese_fontdir ""; do
+          font=$fontdir/$with_japanese_mincho_ttf
+          AC_CHECK_FILE($font,[
+			       JAPANESE_MINCHO_TTF=$font
+      	    		       unset japanese_mincho_metric
+			       break
+      			       ],)
+      done
+      if test -z $font; then
+          AC_MSG_WARN([$with_japanese_mincho_ttf not found, using default mincho font])
+      fi
+      unset font
+  fi
+  if test "x$with_japanese_gothic_ttf" != "x" ; then 
+      for fontdir in $japanese_fontdir ""; do
+          font=$fontdir/$with_japanese_gothic_ttf
+          AC_CHECK_FILE($font,[
+	         	       JAPANESE_GOTHIC_TTF=$font
+			       unset japanese_gothic_metric
+			       break
+			      ],)
+      done
+      if test -z $font; then
+          AC_MSG_WARN([$with_japanese_gothic_ttf not found, using default gothic font])
+      fi
+      unset font
+   fi
+fi
+echo Mincho Metric: $japanese_mincho_metric
+if test "x$japanese_mincho_metric" != "x"; then
+   cp $japanese_mincho_metric guide/ja
+fi
+echo Gothic Metric: $japanese_gothic_metric
+if test "x$japanese_gothic_metric" != "x"; then
+   cp $japanese_gothic_metric guide/ja
 fi
 AC_SUBST(JAPANESE_MINCHO_TTF)
 AC_SUBST(JAPANESE_GOTHIC_TTF)

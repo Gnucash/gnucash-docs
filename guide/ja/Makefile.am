@@ -32,23 +32,15 @@ CLEANFILES =  $(DISTCLEANFILES)
 FOPFLAGS = -l $(lang) -c $(fopconfig)
 XSLTFLAGS_FO= --stringparam paper.type A4
 include $(top_srcdir)/xmldocs.make
-if WITH_JAPANESE_PDF
 include $(top_srcdir)/pdf.make
-endif
 include $(top_srcdir)/epub.make
 if WITH_MOBI
 include $(top_srcdir)/mobi.make
 endif
 
-if WITH_JAPANESE_PDF
-mincho.xml: @JAPANESE_MINCHO_TTF@
+mincho.xml: $(JAPANESE_MINCHO_TTF)
 	$(FOP_TTFREADER) $< $@
-
-gothic.xml: @JAPANESE_GOTHIC_TTF@
+gothic.xml: $(JAPANESE_GOTHIC_TTF)
 	$(FOP_TTFREADER) $< $@
-
-$(docname).pdf: $(docname).fo mincho.xml gothic.xml $(fopconfig)
+$(docname).pdf: $(docname).fo mincho.xml gothic.xml  $(fopconfig)
 	$(FOP) $(FOPFLAGS) -fo $(docname).fo -pdf $@
-else
-$(docname).pdf:
-endif
