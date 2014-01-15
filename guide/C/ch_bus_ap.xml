@@ -11,6 +11,12 @@
   Translators:
                (translators put your name and email here)
 -->
+
+<!--
+A lot of the following text is duplicated in the GnuCash help. The text here in the guide should be 
+corrected to be less describing of the interface and more tutorial oriented
+-->
+
  <chapter id="chapter_bus_ap">
  <title>Accounts Payable</title>
  <para>Accounts Payable (or A/P) refers to the accounting of products or services which a company has bought and needs to pay off.</para>
@@ -111,53 +117,7 @@ Basic A/P Account Hierarchy:
   <title>New</title>
  <para>To register a new vendor, select the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Vendor</guimenuitem></menuchoice> menu item.  Fill in general information about the vendor, such as Company Name, Address, Phone, Fax, etc.  Below is a list of the other options: </para>
 
- <itemizedlist>
- <listitem>
- <para><guilabel>Identification - Vendor Number</guilabel> - can be any number by which you would like to refer to this vendor.  You may leave it blank and a number will be chosen automatically.</para>
- </listitem>
- <listitem>
- <para><guilabel>Identification - Active</guilabel> - differentiates active vendors from inactive ones. This is useful when you have many past vendors, and you want to see only those marked active</para>
- </listitem>
- <listitem>
- <para><guilabel>Payment Address - Name</guilabel> - is the contact name of the person to receive payments you make.</para>
- </listitem>
- <listitem>
- <para><guilabel>Notes</guilabel> - records any additional comments about the vendor.  Use it to track names of contact people within the vendor&rsquo;s company, for example.</para>
- </listitem>
- <listitem>
- <para><guilabel>Payment Information - Currency</guilabel> - specifies the default payment currency.</para>
- </listitem>
- <listitem>
- <para><guilabel>Payment Information - Terms</guilabel> - specifies the default payment terms for this vendor.  Payment terms must be preregistered using <menuchoice><guimenu>Business</guimenu><guimenuitem>Billing Terms</guimenuitem></menuchoice>.</para>
- </listitem>
-
- <listitem>
- <para><guilabel>Payment Information - Tax Included</guilabel> - specifies if tax is included in bills from this vendor.  You can choose <guilabel>Yes</guilabel>, <guilabel>No</guilabel>, or <guilabel>Use Global</guilabel>.
-          <itemizedlist>
-              <listitem>
-                <para><guilabel>Yes</guilabel> means that tax is already
-                included in amounts on bills.</para>
-              </listitem>
-
-              <listitem>
-                <para><guilabel>No</guilabel> means tax is not included.</para>
-              </listitem>
-
-              <listitem>
-                <para><guilabel>Use Global</guilabel> means to use the setting
-                made in the global preferences accessible through
-                <menuchoice><guimenu>Edit</guimenu>
-                <guimenuitem>Preferences</guimenuitem></menuchoice>
-                (<menuchoice><guimenu>Gnucash</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice> on Mac OS X).</para>
-              </listitem>
-            </itemizedlist></para>
- </listitem>
- <listitem>
- <para><guilabel>Payment Information - Tax Table</guilabel> - specifies a default tax table to apply to bills from this vendor.  Tax tables must be registered using the <menuchoice><guimenu>Business</guimenu><guimenuitem>Tax Table</guimenuitem></menuchoice> menu item.</para>
- </listitem>
- </itemizedlist>
-
-  <para>This is what the New Vendor registration window looks like:</para>
+   <para>This is what the New Vendor registration window looks like:</para>
 	<screenshot id="bus-ap-vendornew">
 	  <mediaobject>
 	    <imageobject>
@@ -212,9 +172,8 @@ Basic A/P Account Hierarchy:
  <note>
  <para>To return a list of all registered active vendors, set the search criterion to <guilabel>matches regex</guilabel>, and place a single dot <quote>.</quote> in the text field area.  Make sure <guilabel>Search only active data</guilabel> is checked, then click <guibutton>Find</guibutton>.  The regular expression <quote>.</quote> means to match anything.</para>
  </note>
-
   </sect2>
-  </sect1>
+</sect1>
 
   <sect1 id="bus-ap-bills1">
   <title>Bills</title>
@@ -222,45 +181,6 @@ Basic A/P Account Hierarchy:
   <sect2 id="bus-ap-billnew2">
   <title>New</title>
  <para>When you receive a bill from a vendor and want to enter it into <application>&app;</application>, you must create a new bill.  To create a new bill use the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Bill</guimenuitem></menuchoice> menu item, and fill in the resulting window appropriately.</para>
-  <itemizedlist>
-  <listitem>
-  <para><guilabel>Invoice Info - Invoice ID</guilabel> (optional) - the identification number of the invoice as emitted by the vendor (IE: the vendor&rsquo;s internal number for this invoice).</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Invoice Info - Date Opened</guilabel> - the date the Invoice was emitted by the vendor.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Billing Info - Vendor</guilabel> - the issuing vendor. If you remember the <emphasis>company name</emphasis>
-  you entered in the <guilabel>New Vendor</guilabel> window for this vendor,
-  start to type it in this field and <application>&app;</application> will try auto complete 
-  it for you. Else, press the <guibutton>Select...</guibutton> button to access the <guilabel>Find
-  Vendor</guilabel> window described in <xref linkend="bus-ap-vendorfind2" />. Highlight the vendor you are looking for with a click 
-  in the search results, then press the <guibutton>Select</guibutton> button.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Billing Info - Job</guilabel> (optional) - associates a vendor job (see <xref linkend="bus-ap-jobs1" />) with this bill. 
-  If you remember the <emphasis>job name</emphasis>
-  you entered in the <guilabel>New Job</guilabel> window for this job, 
-  start to type it in this field and <application>&app;</application> will try auto complete 
-  it for you. Else, press the <guibutton>Select...</guibutton> button to access the <guilabel>Find
-  Job</guilabel> window. This window is very similar to the one described in 
-  <xref linkend="bus-ap-vendorfind2" />. Highlight the job you are looking for with a click 
-  in the search results, then press the <guibutton>Select</guibutton> button.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Billing Info - Billing ID</guilabel> (optional) - the vendor&rsquo;s ID for the bill (e.g.: their invoice #).</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Billing Info - Terms</guilabel> - the pay back terms agreement for this bill. A list of registered terms is available within the pop up menu.  If you specified a a default value for the selected vendor, this field is initialized with the default.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Chargeback Project - Customer</guilabel> (optional) - the customer to associate with this bill.  This is used to charge your customer later.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Chargeback Project - Job</guilabel> (optional) - the customer job to associate with this bill.</para>
-  </listitem>
-  </itemizedlist>
-
 	<screenshot id="bus-ap-billnew">
 	  <mediaobject>
 	    <imageobject>
@@ -277,9 +197,9 @@ Basic A/P Account Hierarchy:
           </mediaobject>
         </screenshot>
 
-
   <para>When you click the <guibutton>OK</guibutton> the <guilabel>Edit Bill</guilabel> opens.</para>
   </sect2>
+
   <sect2 id="bus-ap-billedit2">
   <title>Edit</title>    
   <para>From the Edit Bill window you can enter an itemized list of things purchased, in a manner similar to how the account register works.</para>  
@@ -298,48 +218,8 @@ Basic A/P Account Hierarchy:
           </mediaobject>
         </screenshot>
 
-  <para>There are 12 columns in the Invoice Entries area:</para>
-  <itemizedlist>
-  <listitem>
-  <para><guilabel>Date</guilabel> - The date this item was sold.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Invoiced?</guilabel> - <guilabel>X</guilabel>  means the item is attached to this invoice, an empty box means the item is not attached to this invoice.  If the box is empty you can attach the item to the invoice by first selecting the item row and then clicking in this box.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Description</guilabel> (optional) - is what the item or service is called.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Action</guilabel> (optional) - is a user defined field.  You can place Cost Center information here, or use one of the 3 predefined actions, Hours, Material, or Project.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Expense Account</guilabel> - selects the expense account to change for this item.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Quantity</guilabel> - tracks how many of the items you bought.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Unit Price</guilabel> - is the unit price of the item.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Taxable?</guilabel> - is this item taxable?  <guilabel>X</guilabel> means yes, a blank field means no. You can click the field to toggle the setting.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Tax Included?</guilabel> - has the tax already been included in the unit price?  <guilabel>X</guilabel> means yes, a blank field means no.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Tax Table</guilabel> (optional) - this is a pop up menu of all the available tax tables.  If the item is taxable and tax has not been included in the unit price, then this tax table is used to compute the amount of tax.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Subtotal</guilabel> (uneditable) - computed subtotal for this item (less tax)</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Billable</guilabel> - is this item billable to the chargeback customer/job?</para>
-  </listitem>
-  </itemizedlist>
-
   <para>When you have finished entering all the items, <guilabel>Post</guilabel> the bill. </para>
-  </sect2>
+</sect2>
 
   <sect2 id="bus-ap-billpost2">
   <title>Post</title>
@@ -360,71 +240,11 @@ Basic A/P Account Hierarchy:
 	    </caption>
           </mediaobject>
         </screenshot>
-
-  <itemizedlist>
-    <listitem>
-      <para><guilabel>Post Date</guilabel> - specifies the date for the transactions entered into the accounts payable account.</para>
-    </listitem>
-    <listitem>
-      <para><guilabel>Due Date</guilabel> - is the date on which payment for the bill is expected.</para>
-          
-          <itemizedlist>
-            <listitem>
-              <para>If you specified payment terms when you created the bill,
-              the date is calculated according to selected terms, and
-              the entry field is insensitive.</para>
-            </listitem>
-
-            <listitem>
-              <para>If you did not specify payment terms, enter the expected
-              payment due date here.</para>
-            </listitem>
-          </itemizedlist>
-    </listitem>
-
-    <listitem>
-       <para><guilabel>Description</guilabel> - is an arbitrary
-       description. When bill transactions are placed in the accounts
-       payable account, this description is entered in the memo field of
-       those transactions.</para>
-    </listitem>
-
-    <listitem>
-       <para><guilabel>Post To Account</guilabel> - selects the accounts
-        payable account in which bill transactions are posted. You can
-        select the account from a list of existing A/Payable
-        accounts.</para>
-     </listitem>
-
-
-        <listitem>
-          <para><guilabel>Accumulate Splits</guilabel> - determines if bill
-          items which transfer to the same account are combined into a single
-          split for that account or entered individually. For the sample
-          bill for Letterhead and Envelopes, the setting affects post
-          results as follows:</para>
-
-          <itemizedlist>
-            <listitem>
-              <para>Checked (splits are accumulated) - a single transfer of
-              $100.00 to the <emphasis>Expenses:Office Supplies</emphasis> account is recorded.</para>
-            </listitem>
-
-            <listitem>
-              <para>Not checked - the transaction created in the A/Payable
-              account, shows two transfers to <emphasis>Expenses:Office Supplies</emphasis> account
-              $75.00 and $25.00.  The memo fields in the splits indicate the
-              purchase of Letterhead and Envelopes (the item descriptions
-              entered on the bill) respectively.</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-  </itemizedlist>
   </sect2>
 
   <sect2 id="bus-ap-billfind2">
   <title>Find</title>
-  <para>To find an existing bill, use the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>Find Bill</guimenuitem></menuchoice> application.  From the results of the search, you can select a bill to edit, or view.</para>
+  <para>To find an existing bill, use the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>Find Bill</guimenuitem></menuchoice> menu item.  From the results of the search, you can select a bill to edit, or view.</para>
   <note>
   <para>Before you can edit a posted bill, you will need to <guilabel>Unpost</guilabel> it.</para>
   </note>
@@ -432,44 +252,13 @@ Basic A/P Account Hierarchy:
   <note>
   <para>There are other ways to access an existing bill.  These are similar to accessing invoices for your customers.  See <xref linkend="bus-ar-invoicefind2" /> for more information.</para>
   </note>
-
   </sect2>
-  </sect1>
+</sect1>
 
   <sect1 id="bus-ap-jobs1">
   <title>Vendor Jobs</title>
   <para>Vendor Jobs are used to group multiple bills from a single vendor.  Use of the vendor jobs feature is optional.  The feature is useful when you have multiple <guilabel>jobs</guilabel> for the same vendor, and would like to view all the bills for a single job.</para>
-  <para>To use vendor jobs, you must create them using the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Job</guimenuitem></menuchoice> application.  You will see the <guilabel>New Job</guilabel> window.  The editable fields are:</para>
-
-
-    <itemizedlist>
-      <listitem>
-        <para><guilabel>Job Info - Job Number</guilabel> (optional) - enter
-        the number for this job. If left blank, a number will be chosen for
-        you.</para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Job Info - Job Name</guilabel> - the name you want to
-        assign to the new job.</para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Owner Info - Vendor</guilabel> - the vendor for
-        whom the job is created.</para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Owner Info - Billing ID</guilabel> - the vendor&rsquo;s
-        reference to this job (e.g. their PO Number).</para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Job Active</guilabel> - toggles this job being active
-        or not. This is useful when you have many inactive jobs, since it is
-        easier to search only among jobs that are marked active.</para>
-      </listitem>
-    </itemizedlist>
+  <para>To use vendor jobs, you must create them using the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Job</guimenuitem></menuchoice> menu item.  You will see the <guilabel>New Job</guilabel> window.</para>
 
   	<screenshot id="bus-ap-jobnew">
 	  <mediaobject>
@@ -486,16 +275,15 @@ Basic A/P Account Hierarchy:
           </mediaobject>
         </screenshot>
 
-
     <para>To edit an existing vendor job, use the <menuchoice>
     <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu>
-    <guimenuitem>Find Job</guimenuitem></menuchoice> application. Select the desired job in the
+    <guimenuitem>Find Job</guimenuitem></menuchoice> menu item. Select the desired job in the
     search results, and click the <guilabel>View/Edit Job</guilabel>
     button.</para>
 
     <para>To select from the bills associated with a given job, use <menuchoice>
     <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu>
-    <guimenuitem>Find Job</guimenuitem></menuchoice> application. Select the desired job in the
+    <guimenuitem>Find Job</guimenuitem></menuchoice> menu item. Select the desired job in the
     search results and click the <guilabel>View Invoices</guilabel> button. A
     window listing bills associated with this job appears. Select a
     bill and click the <guilabel>View Invoice</guilabel> button to open a
@@ -505,42 +293,7 @@ Basic A/P Account Hierarchy:
   <sect1 id="bus-ap-payment1">
   <title>Process Payment</title>
   <para>Eventually, you need to pay your bills.  To do so, use the Process Payment application found in <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>Process Payment</guimenuitem></menuchoice>.</para>
-  <para>The Process Payment application consists of:</para>
-  <itemizedlist>
-  <listitem>
-  <para><guilabel>Payment Information - Vendor</guilabel> - the vendor you wish to pay. If you remember the <emphasis>company name</emphasis>
-  you entered in the <guilabel>New Vendor</guilabel> window for this vendor,
-  start to type it in this field and <application>&app;</application> will try auto complete 
-  it for you. Else, press the <guibutton>Select...</guibutton> button to access the <guilabel>Find
-  Vendor</guilabel> window described in <xref linkend="bus-ap-vendorfind2" />. Highlight the vendor you are looking for with a click 
-  in the search results, then press the <guibutton>Select</guibutton> button.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Payment Information - Bill</guilabel> - the bill you wish to pay. If you remember the <emphasis>bill ID</emphasis>,
-  start to type it in this field and <application>&app;</application> will try auto complete 
-  it for you. Else, press the <guibutton>Select...</guibutton> button to access the <guilabel>Find
-  Bill</guilabel> window described in <xref linkend="bus-ap-billfind2" />. Highlight the bill you are looking for with a click 
-  in the search results, then press the <guibutton>Select</guibutton> button in the search window.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Payment Information - Date</guilabel> - the date you wish to make the payment, normally the current date.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Payment Information - Amount</guilabel> - the amount of money to transfer in this payment.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Payment Information - Num</guilabel> - the check number.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Payment Information - Memo</guilabel> - any comments about this payment.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Post To</guilabel> - the A/Payable account to post this transaction.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Transfer Account</guilabel> - the account from which money for the payments comes from, such as a checking account.</para>
-  </listitem>
-  </itemizedlist>
+
     <para>Below is the <application>&app;</application> Accounts Receivable payment window.</para>
   	<screenshot id="bus-ap-payment">
 	  <mediaobject>
