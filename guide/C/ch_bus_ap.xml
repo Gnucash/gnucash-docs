@@ -97,6 +97,10 @@ Basic A/P Account Hierarchy:
   </listitem>
   <listitem>
   <para><guilabel>Bills</guilabel> represent the physical bills vendors send to request payment from you.  A bill contains an itemized list of things you purchased.</para>
+        <para>In addition, GnuCash also has support for <guilabel>Credit Notes</guilabel>
+        which represent the inverse of Bills. A credit note is usually received from
+        a vendor to correct items that were erroneously billed or returned.</para>
+        <para>Both document types will be set up using the same menu items.</para>
   </listitem>
   <listitem>
   <para><guilabel>Jobs</guilabel> (optional) is where you register Vendor Jobs.  Jobs are mechanism by which you can group multiple bills from a particular vendor.</para>
@@ -177,10 +181,23 @@ Basic A/P Account Hierarchy:
 
   <sect1 id="bus-ap-bills1">
   <title>Bills</title>
- <para>A bill is a request for payment you receive from a vendor.  <application>&app;</application> can track bills.</para>
+  <para>A bill is a request for payment you receive from a vendor.  <application>&app;</application> can track bills.</para>
+
+    <para>A credit note is the document you receive from a vendor to correct
+    products or services rendered that you were incorrectly charged for on a bill. <application>&app;</application> can generate and track
+    credit notes via the same menu entries as bills.</para>
+
+    <note>
+      <para>This section applies to both bills and
+      credit notes. In order to avoid repeating everything twice and to keep
+      the text easier to read it will refer only to bills. You can apply
+      it equally to credit notes. Only where the behaviour of credit notes
+      differs from bills this will be explicitly mentioned.</para>
+    </note>
+
   <sect2 id="bus-ap-billnew2">
   <title>New</title>
- <para>When you receive a bill from a vendor and want to enter it into <application>&app;</application>, you must create a new bill.  To create a new bill use the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Bill</guimenuitem></menuchoice> menu item, and fill in the resulting window appropriately.</para>
+  <para>When you receive a bill from a vendor and want to enter it into <application>&app;</application>, you must create a new bill.  To create a new bill use the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Bill</guimenuitem></menuchoice> menu item, and fill in the resulting window appropriately.</para>
 	<screenshot id="bus-ap-billnew">
 	  <mediaobject>
 	    <imageobject>
@@ -202,7 +219,10 @@ Basic A/P Account Hierarchy:
 
   <sect2 id="bus-ap-billedit2">
   <title>Edit</title>    
-  <para>From the Edit Bill window you can enter an itemized list of things purchased, in a manner similar to how the account register works.</para>  
+  <para>From the Edit Bill window you can enter an itemized list of
+      goods and services you purchased, in a manner similar to how the account
+      register works. For credit notes you enter an itemized list of goods and
+      services the vendor refunded instead.</para>  
   	<screenshot id="bus-ap-billedit">
 	  <mediaobject>
 	    <imageobject>
@@ -223,7 +243,9 @@ Basic A/P Account Hierarchy:
 
   <sect2 id="bus-ap-billpost2">
   <title>Post</title>
-  <para>When you finish editing a bill, you should <guilabel>Post</guilabel> the bill.  You do not have to post the bill, you can close it and return to it later. You have to post the bill eventually.  Posting a bill places its transactions into an accounts payable account.  The Post Bill window appears and asks you to enter information:</para>
+  <para>When you finish editing a bill, you should <guilabel>Post</guilabel> the bill.  You do not have to post the bill,
+      you can close it and return to it later. You have to post the bill eventually.  Posting a bill places its transactions into an accounts payable account.
+      The Post Bill window appears and asks you to enter information:</para>
 
   	<screenshot id="bus-ap-billpost">
 	  <mediaobject>
@@ -257,7 +279,7 @@ Basic A/P Account Hierarchy:
 
   <sect1 id="bus-ap-jobs1">
   <title>Vendor Jobs</title>
-  <para>Vendor Jobs are used to group multiple bills from a single vendor.  Use of the vendor jobs feature is optional.  The feature is useful when you have multiple <guilabel>jobs</guilabel> for the same vendor, and would like to view all the bills for a single job.</para>
+  <para>Vendor Jobs are used to group multiple bills and credit notes from a single vendor.  Use of the vendor jobs feature is optional.  The feature is useful when you have multiple <guilabel>jobs</guilabel> for the same vendor, and would like to view all the bills and credit notes for a single job.</para>
   <para>To use vendor jobs, you must create them using the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Job</guimenuitem></menuchoice> menu item.  You will see the <guilabel>New Job</guilabel> window.</para>
 
   	<screenshot id="bus-ap-jobnew">
@@ -285,8 +307,8 @@ Basic A/P Account Hierarchy:
     <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu>
     <guimenuitem>Find Job</guimenuitem></menuchoice> menu item. Select the desired job in the
     search results and click the <guilabel>View Invoices</guilabel> button. A
-    window listing bills associated with this job appears. Select a
-    bill and click the <guilabel>View Invoice</guilabel> button to open a
+    window listing bills and credit notes associated with this job appears. Select a
+    bill or credit note and click the <guilabel>View Invoice</guilabel> button to open a
     bill editor in the main application window.</para>
   </sect1>
 
