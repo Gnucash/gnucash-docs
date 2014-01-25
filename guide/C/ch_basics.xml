@@ -972,15 +972,15 @@
 
    <sect2 id="migrate-prefs">
      <title>Migrating preferences data</title>
-     <para>There are three different folders with supporting files: one for <application>&app;</application> preferences, 
+     <para>Preferences are stored in three different locations: one for <application>&app;</application> preferences, 
      one for reports, and one for online banking settings. Preferences are managed by
-     <application>gconf</application>, reports are managed by <application>&app;</application> 
+     <application>gsettings</application>, reports are managed by <application>&app;</application> 
      itself, and online banking is managed by <application>aqbanking</application>. If you do not use online banking,
      then you will not have this folder on your machine.</para>
-     <para>The paths where the <application>&app;</application> preferences files are stored vary
+     <para>Where the <application>&app;</application> preferences are stored varies
      depending on your operating system (see <xref linkend="App-sett-loc" />, <xref linkend="Report-loc" />, and 
      <xref linkend="OB-sett-loc" />). To back up and transfer your entire installation, you must copy
-     these folders as well.</para>
+     these preferences as well.</para>
 
      
 	<table id="App-sett-loc"><title>Application Settings Locations</title>
@@ -994,15 +994,17 @@
 	  <tbody>
             <row>
      	      <entry>Unix</entry>        
-     	      <entry><filename class="directory">~/.gconf/apps/gnucash</filename></entry>
+     	      <entry><application>&app;</application> preferences are stored in <application>dconf</application>.
+                  You can use the commands <code>dconf dump /org/gnucash/</code> on the old machine
+                  and <code>dconf load /org/gnucash/</code> on the new machine to migrate your preferences.</entry>
             </row>
             <row>
               <entry>Mac OSX</entry>
-              <entry><filename class="directory">~/.gconf/apps/gnucash</filename></entry>
+              <entry><filename class="directory">~/Library/Preferences/gnucash.plist</filename></entry>
             </row>
             <row>
               <entry>Windows</entry>
-              <entry><filename class="directory">Documents and Settings/Username/.gconf/apps/gnucash </filename></entry>
+              <entry>The preferences are stored in the Windows registry<filename class="directory">HKEY_CURRENT_USER/software/GSettings</filename></entry>
             </row>
 	  </tbody>
 	</tgroup>
@@ -1027,7 +1029,8 @@
             </row>
             <row>
               <entry>Windows</entry>
-              <entry><filename class="directory">Documents and Settings/Username/.gnucash</filename></entry>
+              <entry><filename class="directory">Documents and Settings/Username/.gnucash</filename> or
+                     <filename class="directory">Users/Username/.gnucash</filename></entry>
             </row>
 	  </tbody>
 	</tgroup>
