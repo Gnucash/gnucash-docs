@@ -94,7 +94,7 @@
       <para>After you have built the account structure, register the <application>&app;</application>
       file as belonging to your company by filling in the data requested in 
       the <xref linkend="business-book-options" /> accessible from the 
-      <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> menu.</para>
+      <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> menu item.</para>
     </sect2>
   </sect1>
 
@@ -1339,8 +1339,249 @@ ________________________________________________________________________________
   <para><guilabel>Post To</guilabel> - the A/Payable account to post this transaction.</para>
   </listitem>
   <listitem>
-  <para><guilabel>Transfer Account</guilabel> - the account from which money for the payments comes from, such as a checking account.</para>
+  <para><guilabel>Transfer Account</guilabel> - the account from which money for the payments
+   comes from, such as a checking account.</para>
   </listitem>
   </itemizedlist>
  </sect1>
+ 
+   <sect1 id="busnss-emply">
+    <title>Employees</title>
+    <para><application>&app;</application> can help your company by tracking employees. You can register a 
+    <xref linkend="busnss-emplynew" />, <xref linkend="busnss-emplyedit" /> existing employees, create
+    <xref linkend="busnss-emply-newvchr" /> and <xref linkend="busnss-emply-editvchr" />.</para>
+ 
+    <para>Expense voucher are used to reimburse employees for authorized expenses (f.e. travels, parking, food etc...). 
+    Employees credit notes are the opposite of expense vouchers.</para>
+ 
+ <sect2 id="busnss-emplynew">
+  <title>New Employee</title>
+    <para>To register a new employee, select the <menuchoice><guimenu>Business</guimenu><guisubmenu>Employee</guisubmenu>
+    <guimenuitem>New Employee</guimenuitem></menuchoice> menu item. The <guilabel>New Employee</guilabel> 
+    window will open with two tabs:</para>
+    <itemizedlist>
+      <listitem><para><xref linkend="mply-tab1" /></para></listitem>
+      <listitem><para><xref linkend="mply-tab2" /></para></listitem>
+    </itemizedlist>
+
+    <itemizedlist id="mply-tab1">
+      <title>Employee tab</title>
+      <listitem>
+        <para><guilabel>Identification - Employee Number</guilabel> - can be any number by which you would 
+        like to refer to this vendor. You may leave it blank and a number will be chosen automatically.
+        See <xref linkend="counters-book-options" /> for more info.</para>
+      </listitem>
+      
+      <listitem>
+        <para><guilabel>Identification - Username</guilabel> (Mandatory) - a unique username to identify the employee.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Identification - Active</guilabel> (Optional) - differentiates active employees from inactive 
+        ones. This is useful when you have many past employees, and you want to see only those marked 
+        <guilabel>Active</guilabel>.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Address - Name</guilabel> (Mandatory) - the full name of the employee.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Address - Address</guilabel> (Mandatory) - the address of the employee.</para>
+      </listitem>
+      
+      <listitem>
+        <para><guilabel>Payment Address - Phone, Fax, Email</guilabel> (Optional)- others optionals contact information for the employee.</para>
+      </listitem>
+      
+      <listitem>
+        <para><guilabel>Interface - Language</guilabel> (Optional) - </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Currency</guilabel> (Optional) - specifies the default payment 
+        currency.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Terms</guilabel> (Optional) - specifies the default payment terms 
+        for this employee. Payment terms must be preregistered using 
+        <menuchoice><guimenu>Business</guimenu><guimenuitem>Billing Terms</guimenuitem></menuchoice>.</para>
+      </listitem>
+      
+       <listitem>
+        <para><guilabel>Billing - Default Hours per Day</guilabel> (Optional) - </para>
+       </listitem>
+
+       <listitem>
+        <para><guilabel>Billing - Default Rate</guilabel> (Optional) - </para>
+       </listitem>
+
+       <listitem>
+        <para><guilabel>Billing - Currency</guilabel> (Optional) - </para>
+       </listitem>
+
+       <listitem>
+        <para><guilabel>Billing - Credit Account</guilabel> (Optional) - </para>
+       </listitem>
+
+      </itemizedlist>
+      
+      <itemizedlist id="mply-tab2">
+      <title>Access Control tab</title>
+      <listitem>
+        <para>Access Control List</para>
+      </listitem>
+      </itemizedlist>
+      
+  </sect2>
+
+    <sect2 id="busnss-emplyedit">
+    <title>Find and Edit</title>
+
+      <para>To search for an existing employee, use the <menuchoice><guimenu>Business</guimenu>
+      <guisubmenu>Employee</guisubmenu><guimenuitem>Find Employee...</guimenuitem></menuchoice> menu.
+      You select an employee to <guibutton>View/Edit</guibutton> from the results of the search.
+      This window is also used to look up an employee when entering voucher and processing payments.</para>
+
+      <para>If many employees match the search criteria you provide, the
+      search can be refined by running an additional search within the current
+      results. The current result set is searched when the <guilabel>Refine
+      Current Search</guilabel> radio button is selected. In fact, <application>&app;</application>
+      selects this option for you after you run the initial search.</para>
+      
+      <note> 
+        <para>If the employee you are searching for does not match the supplied
+        search criteria, change the search criteria, click the <guilabel>New
+        Search</guilabel> radio button and then the <guibutton>Find</guibutton>
+        button. The relevant step is the <guilabel>New Search</guilabel>
+        selection. If the employee is not in the result of the original search,
+        and you only search within this set, the employee cannot be found,
+        regardless of new search criteria.</para>
+      </note>
+
+      <tip>
+        <para>To return a list of all registered active employees, set the search criterion to 
+        <guilabel>matches regex</guilabel>, and place a single dot <quote>.</quote> in the text field area.
+        Make sure <guilabel>Search only active data</guilabel> is checked, then click <guibutton>Find</guibutton>.
+        The regular expression <quote>.</quote> means to match anything.</para>
+      </tip>
+    </sect2>
+
+    <sect2 id="busnss-emply-newvchr">
+    <title>New Expense Voucher/Credit Note</title>
+    <para>To register a new expense voucher/ Credit Note, select the <menuchoice><guimenu>Business</guimenu><guisubmenu>Employee</guisubmenu>
+    <guimenuitem>New Expense Voucher...</guimenuitem></menuchoice> menu item. The <guilabel>New Expense Voucher</guilabel> 
+    window will open. You can enter the following data:</para>
+
+    <itemizedlist>
+      
+      <listitem>
+        <para><guilabel>Voucher information - Type</guilabel> (Optional) - select if you are entering 
+        a Voucher or a credit note.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Voucher information - Voucher ID</guilabel> (Optional) - can be any number by which you would 
+        like to refer to this voucher. You may leave it blank and a number will be chosen automatically.
+        See <xref linkend="counters-book-options" /> for more info.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Voucher information - Date opened</guilabel> - the date of the voucher. Click on 
+        the button on the right of the date to open a calendar.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Billing information - Employee</guilabel> (Mandatory) - the employee to which 
+        voucher refers.</para> 
+        <tip>
+          <para>The field supports auto-completion so if you start typing <application>&app;</application>
+          will try to complete the text automatically using existing employees name. You can also press the button 
+          <guibutton>Select...</guibutton> to open the <link linkend="busnss-emplyedit">Find Employee</link> 
+          window.</para>
+        </tip>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Billing information - Billing ID</guilabel> (Optional) - the identification number 
+        of the document (f.e. the bill number for a dinner).</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Billing information - Terms</guilabel> (Optional) - the pay back terms agreement 
+        for this bill. A list of registered terms is available within the pop up menu.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Default chargeback project - Customer</guilabel> (Optional) - the Customer 
+        to wich voucher refers.</para>
+        <tip>
+          <para>The field supports auto-completion so if you start typing <application>&app;</application>
+          will try to complete the text automatically using existing Customer name. You can also press the button 
+          <guibutton>Select...</guibutton> to open the <link linkend="busnss-ar-custfind2">Find Customer</link> 
+          window.</para>
+        </tip>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Default chargeback project - Job</guilabel> (Optional) - the Customer Job 
+        to wich voucher refers.</para>
+
+        <note>
+          <para> you can type in this field only if there is one or more job registered in 
+          <application>&app;</application> belonging to the selected Customer.</para>
+        </note>
+
+        <tip>
+          <para>The field supports auto-completion so if you start typing <application>&app;</application>
+          will try to complete the text automatically using existing Customer name. You can also press the button 
+          <guibutton>Select...</guibutton> to open the <link linkend="busnss-ar-custfind2">Find Customer</link> 
+          window.</para>
+        </tip>
+      </listitem>
+
+     <listitem>
+        <para><guilabel>Notes</guilabel> - records any additional comments about the voucher/credit note. </para>
+     </listitem>
+
+    </itemizedlist>
+
+    </sect2>
+  
+    <sect2 id="busnss-emply-editvchr">
+    <title>Find and Edit Expense Voucher/Credit Note</title>
+
+      <para>To search for an existing Expense Voucher, use the <menuchoice><guimenu>Business</guimenu>
+      <guisubmenu>Employee</guisubmenu><guimenuitem>Find Expense Voucher...</guimenuitem></menuchoice>
+      menu item.
+      You select an Expense Voucher to <guibutton>View/Edit</guibutton> from the results of the search.
+      This window is also used to look up an expense voucher when entering voucher and processing
+      payments.</para>
+
+      <para>If many expense vouchers match the search criteria you provide, the
+      search can be refined by running an additional search within the current
+      results. The current result set is searched when the <guilabel>Refine
+      Current Search</guilabel> radio button is selected. In fact, <application>&app;</application>
+      selects this option for you after you run the initial search.</para>
+      
+      <note> 
+        <para>If the expense voucher you are searching for does not match the supplied
+        search criteria, change the search criteria, click the <guilabel>New
+        Search</guilabel> radio button and then the <guibutton>Find</guibutton>
+        button. The relevant step is the <guilabel>New Search</guilabel>
+        selection. If the expense voucher is not in the result of the original search,
+        and you only search within this set, the voucher cannot be found,
+        regardless of new search criteria.</para>
+      </note>
+
+      <tip>
+        <para>To return a list of all expense vouchers, set the search criterion to 
+        <guilabel>matches regex</guilabel>, and place a single dot <quote>.</quote> in the text field area.
+        Make sure <guilabel>Search only active data</guilabel> is checked, then click <guibutton>Find</guibutton>.
+        The regular expression <quote>.</quote> means to match anything.</para>
+      </tip>
+    </sect2>
+
+</sect1>
 </chapter>
