@@ -4,6 +4,10 @@
 # Exit this script if any command fails with non-zero exit status.
 set -e
 
+if test -z "$srcdir" ; then srcdir=`dirname $0` ; fi
+if test -z "$srcdir" ; then srcdir=.            ; fi
+cd $srcdir
+
 PROJECT=gnucash-docs
 DIE=0
 
@@ -18,6 +22,7 @@ DIE=0
 : ${AUTOHEADER=autoheader}
 : ${AUTOMAKE=automake}
 : ${AUTOCONF=autoconf}
+ACLOCAL_FLAGS="$ACLOCAL_FLAGS -I ."
 
 (${AUTOCONF} --version) < /dev/null > /dev/null 2>&1 || {
 	echo
