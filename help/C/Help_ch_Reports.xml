@@ -217,6 +217,80 @@
       <itemizedlist>
        <listitem>
         <para>Budget Report:</para>
+        
+		  <para>This report is used to compare budgeted and real amounts for selected accounts. It
+allows you to review how well you follow the budget.</para>
+
+		  <para>Report is generated as a table where each row represent an account and a sets of columns show
+budgeted amount, real amount and the difference between them for each report period.</para>
+
+		  <para>Real amount is a sum of transactions for a budget period, so if you have a budget with 12
+periods and each period is a month, then real amount columns will contain monthly
+transactions sums for budgeted year.</para>
+
+		  <para>Report support selecting a range of periods instead all of them. Periods, that are out of
+range, can be included in report as the consolidated columns around selected range. This
+allows you to focus on particular periods, for example current one, and is especially
+useful for budgets with many periods, so if you have 12 period budget you can make a 3
+column report in format "(all periods before columns set) (current period columns set) (all periods
+after columns set)" that is easily fits to screen and allows you to match values with account names.</para>        
+        
+		  <para><emphasis>Budget report options</emphasis></para>
+		 
+		  <para>
+		  	<note>Budget report have a lot of options, that can be divided into 2 categories: common
+				and report specific. Here we describe only options that is
+				specific for this report. You can find information about standard parameters in <xref linkend="report-custom"></xref> 
+				section
+			</note>        
+         <itemizedlist>
+        		<listitem><emphasis>Show budget</emphasis> - include budgeted values for period</listitem>
+				<listitem><emphasis>Show actual</emphasis> - include real values for period</listitem>
+				<listitem><emphasis>Show difference</emphasis> - include difference between budged and real values for period. Turning
+ 					this option on does not force including budgeted and actual values in report</listitem>
+				<listitem><emphasis>Show Column with totals</emphasis> - if on, additional column with sum across all used periods
+ 					will be added to the report after all period columns. This column will include the same
+ 					values (budgeted, actual, difference) as usual period columns</listitem>
+				<listitem><emphasis>Rollup budget amounts to parent</emphasis> - not used in report, can be deleted or should be fixed</listitem>
+				<listitem><emphasis>Include accounts with zero total balances and budget values</emphasis> - if off, then accounts will
+ 					not be included in report if it's actual and budgeted value are zero</listitem>
+				<listitem><emphasis>Budget</emphasis> - a budget to use for report generation</listitem>
+				<listitem><emphasis>Report for range of budget periods</emphasis> - if on, enables options for ranged report
+ 					generation: range start, range end, and period collapse options are enabled</listitem>
+				<listitem><emphasis>Range start</emphasis> - a combobox with a list of variants how to select start period:
+					<orderedlist>
+  						<listitem><emphasis>First</emphasis> - select first budget period</listitem>
+  						<listitem><emphasis>Previous</emphasis> - select previous period. See details below</listitem>
+  						<listitem><emphasis>Current</emphasis> - select current period. See details below</listitem>
+  						<listitem><emphasis>Next</emphasis>  - select current period. See details below</listitem>
+  						<listitem><emphasis>Last</emphasis> - select last budget period</listitem>
+  						<listitem><emphasis>Manual</emphasis> - enables spinbox where you can select exact period</listitem>
+  					</orderedlist>
+				</listitem>
+				<listitem><emphasis>Exact start period</emphasis> - options for select exact start period, enabled only if range start
+ 					option is set to <emphasis>Manual</emphasis></listitem>
+				<listitem><emphasis>Range end</emphasis> - a combobox with a list of variants how to select end period. Values are the
+ 					same as in <emphasis>Range start</emphasis> options</listitem>
+				<listitem><emphasis>Exact end period</emphasis> - the same as <emphasis>Exact start period</emphasis> but for the end of range</listitem>
+				<listitem><emphasis>Include collapsed periods before selected</emphasis> - if on, then includes in report all budget
+ 					periods, that are before selected period range, as a single consolidated column set</listitem>
+				<listitem><emphasis>Include collapsed periods after selected</emphasis> - if on, then includes in report all budget
+ 					periods, that are after selected period range, as a single consolidated column set.</listitem>
+         </itemizedlist>
+        </para>
+        <para><emphasis>Details of ranged report options</emphasis></para>
+        <para>Start/end range selection options can be divided in two types: absolute and relative.</para>
+		  <para>Absolute options are: first, last and manual. They always produce the same period for the
+report, whenever you execute it's generation (of course, assuming that count of budget
+periods are not changing).</para>
+		  <para>Relative options are: previous, current and next. When using them, period selection
+depends on date when you execute report. So for "current" option, we determine current
+date during report generation and find period, this date is belong to. For "previous" and
+"next" options it is the same but we shift found period back or forth. If relative
+report options fall out of valid period range of a selected budget, then the closest valid 
+period is selected for report generation: if report periods are in future, then we 
+select first period, if it in the past we select last period.
+		  </para>
        </listitem>
 
        <listitem>
