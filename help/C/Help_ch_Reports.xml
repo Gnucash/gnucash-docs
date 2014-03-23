@@ -85,12 +85,136 @@
    <sect1 id="report-assets">
     <title>Assets &amp; Liabilities</title>
 
-     <para>The Assets &amp; Liabilities reports includes the Balance Sheet report,
-      Investment reports and the Net Worth report.</para>
+     <para>The Assets &amp; Liabilities reports includes the Balance Sheet             report, Investment reports and the Net Worth report.</para>
 
       <itemizedlist>
+
        <listitem>
         <para>Advanced Portfolio:</para>
+
+        <para>Columns</para>
+          <itemizedlist>
+
+            <listitem><para><guilabel>Account</guilabel> &mdash; Stock Account</para>
+            </listitem>
+
+            <listitem><para><guilabel>Symbol</guilabel> &mdash; Ticker Symbol/Abbreviation as defined in the Security Editor. A report option can suppress this column.</para>
+            </listitem>
+
+            <listitem><para><guilabel>Listing</guilabel> &mdash; Type as defined in the Security Editor. A report option can suppress this column.</para>
+            </listitem>
+
+            <listitem><para><guilabel>Shares</guilabel> &mdash; Number of shares           (quantity). A report option sets how many decimal places to show.
+	    A report option can suppress this column.</para>
+            </listitem>
+
+            <listitem><para><guilabel>Price</guilabel> &mdash; Unit market price as at report date. A report option can suppress this column.</para>
+            </listitem>
+
+            <listitem><para><guilabel>Basis</guilabel> &mdash; Cost of all shares acquired by any means, including brokerage fees if the option to include them is checked. Report option <emphasis>Basis calculation method</emphasis> can be set to Average, LIFO or FIFO.</para>
+	    </listitem>
+
+            <listitem><para><guilabel>Value</guilabel> &mdash; Number of shares * Unit market price as at report date</para>
+            </listitem>
+
+            <listitem><para><guilabel>Money In</guilabel> &mdash; Sum of the cost of stock purchased, excluding stock acquired as part of a Dividend Reinvestment Plan. I.e. External money used to purchase shares.</para>
+	    </listitem>
+
+            <listitem><para><guilabel>Money Out</guilabel> &mdash; Money from selling shares or a spin off transaction.</para>
+	    </listitem>
+
+            <listitem><para><guilabel>Realized Gain</guilabel> &mdash; Money received for selling shares minus basis for shares sold, minus brokerage fees for the sale if the option to include them in basis is checked.</para>
+	    </listitem>
+
+            <listitem><para><guilabel>Unrealized Gain</guilabel> &mdash; Value less Basis for unsold shares</para>
+	    </listitem>
+
+            <listitem><para><guilabel>Total Gain</guilabel> &mdash; Realized Gain + Unrealized Gain</para>
+	    </listitem>
+
+            <listitem><para><guilabel>Rate of Gain</guilabel> &mdash; Total Gain / Money In * 100 (from <application>&app;</application> 2.6.1 onwards)</para>
+	    </listitem>
+
+            <listitem><para><guilabel>Income</guilabel> &mdash; Total of all income transactions associated with a stock account.</para>
+              <note>
+                <para>To include income from dividends which are not reinvested:</para>
+                <para>Ensure there is a dummy transaction split to the stock account with quantity 0 price 1 value 0 in the dividend transaction. You can just enter the dummy stock split with no values in the dividend account and it will create the transaction with price 1 even though you cannot see the Price column in that register.</para>
+	      </note>
+	    </listitem>
+
+            <listitem><para><guilabel>Brokerage Fees</guilabel> &mdash; Brokerage Fees</para>
+	    </listitem>
+
+            <listitem><para><guilabel>Total Return</guilabel> &mdash; Total Gain + Income</para>
+	    </listitem>
+
+            <listitem><para><guilabel>Rate of Return</guilabel> &mdash; Total Return / Money In * 100</para>
+	    </listitem>
+
+          </itemizedlist>
+
+        <para>Common report options are described in <xref linkend="report-custom"/></para>
+
+        <para>Report Specific Options</para>
+
+        <itemizedlist>	<!-- list of Tabs -->
+
+          <listitem><para>Accounts Tab</para>
+
+            <itemizedlist>
+
+              <listitem><para><guilabel>Include accounts with no shares</guilabel> &mdash; Unchecked (default) or checked.</para>
+              </listitem>
+
+            </itemizedlist>
+
+          </listitem>	<!-- end of Accounts Tab -->
+
+          <listitem><para>Display Tab</para>
+
+            <itemizedlist>
+
+              <listitem><para><guilabel>Show ticker symbols</guilabel> &mdash; Checked default) or unchecked. If unchecked, Symbol column will be omitted.</para>
+              </listitem>
+
+              <listitem><para><guilabel>Show listings</guilabel> &mdash; Checked (default) or unchecked. If unchecked, Listing column (source of shares price quotes) will be omitted.</para>
+              </listitem>
+
+              <listitem><para><guilabel>Show number of shares</guilabel> &mdash; Checked (default) or unchecked. If unchecked, Shares column will be omitted.</para>
+              </listitem>
+
+              <listitem><para><guilabel>Share decimal places</guilabel> &mdash; The number of decimal places to show in the number of shares. Default is 2.</para>
+              </listitem>
+
+              <listitem><para><guilabel>Show prices</guilabel> &mdash; Checked (default) or unchecked. If unchecked, Price column will be omitted.</para>
+              </listitem>
+
+            </itemizedlist>
+
+          </listitem>	<!-- end of Display Tab -->
+
+          <listitem><para>General Tab</para>
+
+            <itemizedlist>
+
+              <listitem><para><guilabel>Price Source</guilabel> &mdash; Nearest in time (default) or Most Recent.</para>
+              </listitem>
+
+              <listitem><para><guilabel>Basis calculation method</guilabel> &mdash; Average (default), FIFO or LIFO.</para>
+              </listitem>
+
+              <listitem><para><guilabel>Set preference for price list data</guilabel> &mdash; Checked (default): Use price list data. If there is no relevant price list data, transaction prices will be used and there will be a warning. Unchecked: Get prices from stock transactions.</para>
+              </listitem>
+
+              <listitem><para><guilabel>How to report brokerage fees</guilabel> &mdash; Include in basis (default), Include in gain or Ignore.</para>
+              </listitem>
+
+            </itemizedlist>
+
+          </listitem>
+
+        </itemizedlist>
+
        </listitem>
 
        <listitem>
