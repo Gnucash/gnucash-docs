@@ -38,9 +38,9 @@ if WITH_MOBI
 include $(top_srcdir)/mobi.make
 endif
 
-mincho.xml: $(JAPANESE_MINCHO_TTF)
+mincho.xml: $(JAPANESE_MINCHO_TTF_ABS)
 	$(FOP_TTFREADER) $< $@
-gothic.xml: $(JAPANESE_GOTHIC_TTF)
+gothic.xml: $(JAPANESE_GOTHIC_TTF_ABS)
 	$(FOP_TTFREADER) $< $@
 $(docname).pdf: $(docname).fo mincho.xml gothic.xml  $(fopconfig)
 	$(FOP) $(FOPFLAGS) -fo $(docname).fo -pdf $@

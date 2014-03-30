@@ -74,15 +74,17 @@ AC_ARG_WITH([japanese-fontdir],
 			[with_japanese_fontdir=check])
 AC_ARG_WITH([japanese-mincho-ttf],
 	[AS_HELP_STRING([--with-japanese-mincho-ttf],
-			[specify Japanese Mincho TrueType font (default is ipaexm.ttf)])],,)
+			[specify Japanese Mincho TrueType font (default is ume-tmo3.ttf)])],,)
 AC_ARG_WITH([japanese-gothic-ttf],
 	[AS_HELP_STRING([--with-japanese-gothic-ttf],
-			[specify Japanese Gothic TrueType font (default is ipaexg.ttf)])],,)
+			[specify Japanese Gothic TrueType font (default is ume-tmo3.ttf)])],,)
 
-JAPANESE_MINCHO_TTF=`pwd`/fonts/ume-tmo3.ttf
-JAPANESE_GOTHIC_TTF=`pwd`/fonts/ume-tmo3.ttf
-japanese_mincho_metric=fonts/mincho.xml
-japanese_gothic_metric=fonts/gothic.xml
+JAPANESE_MINCHO_TTF=fonts/ume-tmo3.ttf
+JAPANESE_GOTHIC_TTF=fonts/ume-tmo3.ttf
+JAPANESE_MINCHO_TTF_ABS='${top_srcdir}/${JAPANESE_MINCHO_TTF}'
+JAPANESE_GOTHIC_TTF_ABS='${top_srcdir}/${JAPANESE_GOTHIC_TTF}'
+japanese_mincho_metric=/fonts/mincho.xml
+japanese_gothic_metric=/fonts/gothic.xml
 
 if test -z "$FOP_TTFREADER"; then
    AC_MSG_WARN([
@@ -96,31 +98,41 @@ dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
   if test "x$with_japanese_fontdir" != "xcheck" && test "x$with_japanese_fontdir" != "xyes" ; then
      japanese_fontdir="$with_japanese_fontdir $japanese_fontdir"
   fi
-  
+
   if test "x$with_japanese_mincho_ttf" != "x" ; then
-      for fontdir in $japanese_fontdir ""; do
-          font=$fontdir/$with_japanese_mincho_ttf
-          AC_CHECK_FILE($font,[
-			       JAPANESE_MINCHO_TTF=$font
-      	    		       unset japanese_mincho_metric
-			       break
-      			       ],)
-      done
+       AC_CHECK_FILE($with_japanese_mincho_ttf,
+		     [JAPANESE_MINCHO_TTF=$with_japanase_mincho_ttf
+		      JAPANESE_MINCHO_TTF_ABS=$font
+		      unset japanese_mincho_metric
+		      font = $with_japanese_mincho_ttf],
+		     [for fontdir in $japanese_fontdir ""; do
+          	     	  font=$fontdir/$with_japanese_mincho_ttf
+          		  AC_CHECK_FILE($font,
+					[JAPANESE_MINCHO_TTF=$font
+					 JAPANESE_MINCHO_TTF_ABS=$font
+      	    		       		 unset japanese_mincho_metric
+			       		 break],)
+      			  done])
       if test -z $font; then
           AC_MSG_WARN([$with_japanese_mincho_ttf not found, using default mincho font])
       fi
       unset font
   fi
-  if test "x$with_japanese_gothic_ttf" != "x" ; then 
-      for fontdir in $japanese_fontdir ""; do
-          font=$fontdir/$with_japanese_gothic_ttf
-          AC_CHECK_FILE($font,[
-	         	       JAPANESE_GOTHIC_TTF=$font
-			       unset japanese_gothic_metric
-			       break
-			      ],)
-      done
-      if test -z $font; then
+  if test "x$with_japanese_gothic_ttf" != "x" ; then
+        AC_CHECK_FILE($with_japanese_gothic_ttf,
+		     [JAPANESE_GOTHIC_TTF=$with_japanase_gothic_ttf
+		      JAPANESE_GOTHIC_TTF_ABS=$font
+		      unset japanese_gothic_metric
+		      font = $with_japanese_gothic_ttf],
+		     [for fontdir in $japanese_fontdir ""; do
+          	     	  font=$fontdir/$with_japanese_gothic_ttf
+          		  AC_CHECK_FILE($font,
+					[JAPANESE_GOTHIC_TTF=$font
+					 JAPANESE_GOTHIC_TTF_ABS=$font
+      	    		       		 unset japanese_gothic_metric
+			       		 break],)
+      			  done])
+       if test -z $font; then
           AC_MSG_WARN([$with_japanese_gothic_ttf not found, using default gothic font])
       fi
       unset font
@@ -128,14 +140,20 @@ dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
 fi
 echo Mincho Metric: $japanese_mincho_metric
 if test "x$japanese_mincho_metric" != "x"; then
-   cp $japanese_mincho_metric guide/ja
+   AC_CONFIG_COMMANDS([mincho_metric],
+		      [cp $ac_top_srcdir$mincho_metric guide/ja],
+		      [mincho_metric=$japanese_mincho_metric])
 fi
 echo Gothic Metric: $japanese_gothic_metric
 if test "x$japanese_gothic_metric" != "x"; then
-   cp $japanese_gothic_metric guide/ja
+   AC_CONFIG_COMMANDS([gothic_metric],
+		      [cp $ac_top_srcdir$gothic_metric guide/ja],
+		      [gothic_metric=$japanese_gothic_metric])
 fi
 AC_SUBST(JAPANESE_MINCHO_TTF)
+AC_SUBST(JAPANESE_MINCHO_TTF_ABS)
 AC_SUBST(JAPANESE_GOTHIC_TTF)
+AC_SUBST(JAPANESE_GOTHIC_TTF_ABS)
 
 dnl
 dnl Check for mobi target and optional ebook-convert
@@ -154,7 +172,7 @@ else
   AC_MSG_NOTICE([Didn't make mobi target.  If you need, specify --with-mobi])
 fi
 
-AC_OUTPUT(
+AC_CONFIG_FILES([
 gnucash-docs.spec
 help/Makefile
 help/C/Makefile
@@ -165,5 +183,8 @@ guide/C/Makefile
 guide/de/Makefile
 guide/it/Makefile
 guide/ja/Makefile
-guide/ja/fop.xconf
-Makefile)
+Makefile])
+
+AC_CONFIG_FILES([guide/ja/fop.xconf])
+
+AC_OUTPUT
