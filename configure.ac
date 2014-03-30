@@ -17,15 +17,19 @@ AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
 dnl ====================================
 dnl = Begin tests for scrollkeeper
 dnl ====================================
-AC_ARG_ENABLE([scrollkeeper],
-	[AC_HELP_STRING([--disable-scrollkeeper],
-			[do not make updates to the scrollkeeper database])],,
-	enable_scrollkeeper=yes)
-AM_CONDITIONAL(ENABLE_SK, test "x$enable_scrollkeeper" = "xyes")
-AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
-if (test "x$enable_scrollkeeper" = "xyes") && (test x$SCROLLKEEPER_CONFIG = xno); then
-  AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net)
+SCROLLKEEPER_CONFIG=no
+AC_ARG_WITH([scrollkeeper],
+	[AC_HELP_STRING([--with-scrollkeeper],
+			[do not make updates to the scrollkeeper database (default=check)])],
+	[], [with_scrollkeeper=check])
+if test x$with_scrollkeeper != "xno"; then
+   AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config, no)
+   if (test "x$with_scrollkeeper" = "xyes") && (test x$SCROLLKEEPER_CONFIG = xno); then
+      AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net or rarian: http://rarian.freedesktop.org and link the rarian executables to their scrollkeeper equivalents.)
+   fi
 fi
+AM_CONDITIONAL(ENABLE_SK, test "x$SCROLLKEEPER_CONFIG" = "xyes")
+
 dnl ====================================
 dnl = End tests for scrollkeeper
 dnl ====================================
