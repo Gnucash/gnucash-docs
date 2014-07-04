@@ -1,14 +1,1582 @@
-﻿<chapter id="chapter_txns">
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally written by Carol Champagne.
+  Translators:
+        (translators put your name and email here)
+        Martin Mainka <martin@mainka-it.de>
+-->
+
+<chapter id="chapter_txns">
   <title>Buchungen</title>
-  <para></para>
-  <sect1 id="txns-registers1">
-  <title>...</title>
-  <para></para>
-  </sect1>
-  <sect1 id="txns-reconcile1">
-    <title>...</title>
-    <para></para>
+
+  <para>Dieses Kapitel vermittelt Ihnen grundlegende Informationen, die sie brauchen, um Buchungen
+  in <application>&app;</application> zu verstehen und anzuwenden. Während Konten das Gerüst und die 
+  Struktur eines Kontenplans darstellen, sind Buchungen die Dateneinträge in jedem Konto.</para>
+
+  <sect1 id="txns-concepts1">
+    <title>Grundlagen</title>
+
+    <para>Eine <emphasis>Buchung</emphasis> in einem System der doppelten Buchführung wie z.B. 
+    <application>&app;</application> ist ein Austausch zwischen mindestens zwei Konten. Deshalb
+    besteht eine Buchung immer aus mindestens zwei Teilen, einem <emphasis>von-Konto</emphasis>
+    und einem <emphasis>nach-Konto</emphasis>. Der Geldbetrag wird von einem <emphasis>von-Konto</emphasis>
+    auf ein <emphasis>nach-Konto</emphasis> transferiert.
+    Buchhalter nennen diese Teile einer Buchung <emphasis>Einträge ins Kontenblatt</emphasis>. 
+    In <application>&app;</application>, werden sie <emphasis>Buchungsteile</emphasis> genannt.
+    </para>
+
+    <para>Ein Buchungsteil beschreibt das Konto zu dem er gehört, den Geldbetragt, der von diesem Konto
+    oder auf dieses Konto transferiert wurde, und kann bei Bedarf noch einige andere Informationen enthalten.
+    <application>&app;</application> unterstützt mehrere Buchungsteile in einer Buchung, und die Buchungsteile
+    können beliebig Geldbeträge auf die betroffenen Konten oder von ihnen weg transferieren.</para>
+
+    <para>Sie erhalten zum Beispiel eine Gehaltszahlung auf Ihr Girokonto bei der Bank.
+    Die daraus folgende<emphasis>Buchung</emphasis> ist, dass das Girokonto (ein Aktiva) den Betrag 
+    der Gehaltszahlung von Ihrem Ertragskonto erhält. Zwei Konten werden beeinflusst, und in diesem
+    Fall erhöht sich Ihr Eigenkapital.</para>
+
+    <para>Die Arbeit mit Buchungen in <application>&app;</application> wird in der sogenannten
+    <emphasis>Buchungsansicht</emphasis> durchgeführt. Jedes von ihnen erzeugte Konto hat eine
+    Buchungsansicht. Sie wird Ihnen bekannt vorkommen, sieht sie doch aus wie die Umsatzanzeige
+    oder die Kontoauszüge Ihrer Bank.</para>
+
+    <para>Die Buchungsansicht wird im nachfolgenden Abschnitt erklärt,
+    <xref linkend="txns-registers1"/>.</para>
   </sect1>
 
+  <sect1 id="txns-registers1">
+    <title>Die Buchungsansicht</title>
+
+    <para>Die <emphasis>Buchungsansicht</emphasis> ist das <application>&app;</application> Fenster,
+    in dem Sie bestehende Buchungen ansehen und verändern können. Hier können Sie auch neue Buchungen
+    für dieses Konto eingeben. In die Buchungsansicht gelangen Sie durch einen Doppelklick auf den 
+    Kontennamen in der Kontenhierarchie. Alternativ können Sie auch den Kontennamen in der Kontenhierarchie, 
+    markieren und gelangen durch Auswahl der <guibutton>Öffnen</guibutton> Taste in der 
+    <emphasis>Werkzeugleiste</emphasis> oder das Optionsmenü (rechte Maustaste) zur Buchungsansicht.
+    <application>&app;</application> zeigt jetzt die Buchungsansicht an.</para>
+
+    <sect2 id="txns-registers-twoaccount2">
+      <title>Einfacher Buchung</title>
+
+      <para>Für unser Beispiel benutze wir den Kontenrahmen, den wir in dem vorherigen Kapitel
+        erstellt haben (<filename>gcashdata_3</filename>). Mit einem Doppelklick auf das Konto
+        <guilabel>Girokonto</guilabel> öffnen Sie die Buchungsansicht. Jetzt wollen wir eine
+        einfache Buchung auf dem Girokonto eingeben. Normalerweise geben sie einem Konto bei der
+        Einrichtung in <application>&app;</application> einen Anfangskontostand.</para>
+
+      <para>In der ersten Buchungszeile geben Sie bitte das Datum der Buchung ein (zum Beispiel 
+      den 1.3.2013), eine Beschreibung (zum Beispiel <quote>Anfangskontostand</quote>). 
+      Ein Klick auf <guilabel>Buchen</guilabel> öffnet ein Pop-Up Menü in dem sie jetzt
+      <emphasis>Eigenkapital:Anfangsbestand</emphasis> auswählen. Geben Sie eine Einzahlung
+      von 1000 € ein, und drücken Sie die <keycap function="enter">Enter</keycap> Taste. 
+      Die Buchungsansicht sollte jetzt folgendermaßen aussehen:</para>
+
+      <screenshot id="txns-register-2account">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_2account.png"
+                       format="PNG" srccredit="Bengt  Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Buchungsansicht - Girokonto</phrase>
+          </textobject>
+
+          <caption><para>Die Abbildung zeigt die Buchungsansicht des Kontos 
+          <emphasis>Aktiva:Girokonto</emphasis> -
+          nach Eingabe eines Anfangskontostandes.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Die Eingabe eines Anfangskontostandes ist ein Beispiel für eine einfache 
+      Buchung zwischen zwei Konten. In unserem Beispiel beeinflusst sie die Konten
+      <emphasis>Aktiva:Girokonto</emphasis> und <emphasis>Eigenkapital:Anfangsbestand</emphasis>.
+      </para>
+
+      <para>Als weiteres Beispiel für eine Buchung zwischen zwei Konten wollen wir jetzt eine
+      Buchung eingeben, die einen Lebensmitteleinkauf von 45,21 € beschreibt. Der Betrag wurde 
+      Bar bezahlt, deshalb geben wir diese Buchung in der Buchungsansicht des Kontos
+      <emphasis>Aktiva:Bargeld</emphasis> ein. Wählen Sie bei dieser Buchung im Feld
+      <guilabel>Buchen</guilabel> den Eintrag <emphasis>Aufwand:Lebensmittel</emphasis>. 
+      Die Buchungsansicht sollte jetzt folgendermaßen aussehen:</para>
+
+      <screenshot id="txns-register-2account2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_2account2.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Buchungsansicht - Girokonto</phrase>
+          </textobject>
+
+          <caption><para>Die Abbildung zeigt die Buchungsansicht des Kontos
+            <emphasis>Aktiva:Bargeld</emphasis> -
+            nach Eingabe einer Buchung für Lebensmittel.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-registers-multiaccount2">
+      <title>Mehrteilige Buchung</title>
+
+      <para>Die Notwendigkeit für drei oder mehr Teilbuchungen in einer Buchung ergibt sich
+      wenn Sie bei einer Buchung entweder mehrere <quote>Von-</quote> oder mehrere
+      <quote>Nach-</quote> Konten angeben wollen. Ein klassisches Beispiel dafür ist
+      eine Gehaltsbuchung. Das Geldbetrag welchen Sie ausgezahlt bekommen, ist normalerweise
+      geringer als Ihr Bruttoverdienst. Der Unterschied kommt durch Lohnabzüge wie
+      Steuern, Rentenversicherung, Krankenkasse etc. zustande. Die einfache Buchung
+      Ihres Gehaltes beeinflusst deshalb neben <emphasis>Aktiva:Girokonto</emphasis> und 
+      <emphasis>Ertrag:Gehalt</emphasis> auch andere Konten.</para>
+
+      <para>Um die Gehaltszahlung in der Buchungsansicht des Kontos <emphasis>Aktiva:Girokonto</emphasis>
+      einzugeben klicken Sie auf eine neue Buchungszeile und klicken dann auf 
+      <guibutton>Vollständig</guibutton>.
+      Geben Sie jetzt in der ersten Zeile die Beschreibung der Buchung ein (zum Beispiel
+      <quote>Employers R Us</quote>). In die darunterliegenden Zeilen geben Sie nacheinander
+      die verschiedenen Buchungsteile ein, aus denen die Buchung besteht. Wählen Sie
+      zuerst das Konto, und geben danach den auf dieses Konto zu transferierenden
+      Betrag ein. Dann klicken Sie auf die nächste Zeile und wiederholen den Vorgang.</para>
+
+      <para>In diesem Beispiel wählen Sie als Konto für die Einzahlungen das Konto
+      (<emphasis>Aktiva:Girokonto</emphasis>) und geben dann unter Einzahlung (Soll) den eingezahlten
+      Geldbetrag an (zum Beispiel 670 €). Nachfolgend geben sie die Beträge für die verschiedenen 
+      Abgaben ein:
+      Konto <emphasis>Aufwendungen:Steuern:Einkommensteuer</emphasis> 180 €;
+      Konto <emphasis>Aufwendungen:Steuern:Krankenversicherungs</emphasis> 90 €;
+      und Konto <emphasis>Aufwendungen:Steuern:Rentenversicherung</emphasis> 60 €.
+      Zum Schluss geben Sie den Bruttobetrag ihres Gehalts (1000 € in diesem Beispiel)
+      als Abhebung (Haben) von ihrem Konto <emphasis>Ertrag:Gehalt</emphasis> ein.</para>
+
+      <para>Die komplette mehrteilige Buchung sollte jetzt folgendermaßen aussehen 
+      <xref linkend="txns-register-multiaccount"/>. Vergessen Sie nicht, nach Eingabe der 
+      Buchungsteile, die Buchung durch Druck der Taste <keycap function="enter">Enter</keycap>  
+      abzuschließen. Die Ansicht der Buchung wechselt durch Druck auf die Taste <keycap function="enter">Enter</keycap>
+      wieder auf die einzeilige Darstellung. Die Einträge der Teilbuchungen sind noch vorhanden, 
+      und können durch klicken auf <guilabel>Vollständig</guilabel> wieder angezeigt werden. 
+      Siehe auch <xref linkend="txns-registers-features2"/> für weitere Einzelheiten.</para>
+
+      <figure id="txns-register-multiaccount">
+        <title>Eingabe einer mehrteiligen Buchung</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_multiaccount.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+          <textobject>
+            <phrase>Buchungsansicht - mehrteilige Buchung</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+    </sect2>
+
+    <sect2 id="txns-registers-features2">
+      <title>Funktionen der Buchungsansicht</title>
+
+      <para>Die <emphasis>Kopfzeile</emphasis> der Buchungsansicht zeigt den Namen des Kontos an, 
+      in diesem Fall <emphasis>Aktiva:Girokonto</emphasis>. Die darunter befindliche
+      <emphasis>Werkzeugleiste</emphasis> enthält praktische Knöpfe für die Arbeit innerhalb der 
+      Buchungsansicht.</para>
+
+      <para>Obwohl jede Buchung zumindest aus zwei Buchungsteilen besteht, ist alles was Sie normalerweise 
+      sehen, die Zusammenfassung der Buchungsteile, welche das gewählte Konto betreffen. 
+      In der Spalte <guilabel>Buchen</guilabel> können Sie das korrespondierende Konto sehen, von dem
+      oder zu dem Geld <emphasis>übertragen</emphasis> wird. Wenn die Buchung mehr als zwei Konten beeinflusst
+      zeigt <application>&app;</application> an dieser Stelle den Text <guilabel>-- Mehrteilige Buchung --</guilabel>
+      an, um zu dokumentieren, dass es sich bei dieser Buchung um eine mehrteilige Buchung handelt.
+      Sie können sich die einzelnen Buchungsteile zu jeder Buchung anzeigen lassen, indem sie 
+      die gewünschte Buchung anwählen, und danach auf die Taste <guibutton>Vollständig</guibutton> 
+      in der Werkzeugleiste drücken.</para>
+
+      <para>
+        Bei mehrteiligen Buchungen ist die erste Zeile der Buchung die <emphasis>Buchungszeile</emphasis>.
+        Sie enthält ein <guilabel>Datum</guilabel>, optional eine <guilabel>Nummer</guilabel>
+        (zum Beispiel eine Schecknummer oder eine Buchungsnummer), eine <guilabel>Beschreibung</guilabel> 
+        der Buchung, den Gesamtbetrag, der das gewählte Konto beeinflusst (in unserem Beispiel
+        <guilabel>Gesamt Einzahlung</guilabel>), und den aktualisierten <guilabel>Kontostand</guilabel> 
+        nach der Buchung. Beachten Sie, dass in der vollständigen Ansicht die Spaltenüberschrift
+        <guilabel>Buchen</guilabel> verschwindet, und in diesem Feld auch kein Kontoname angegeben wird.
+        Die <emphasis>Buchungszeile</emphasis> zeigt ihnen lediglich die Auswirkung der Buchung 
+        auf das angezeigte Konto. Für Einzelheiten müssen Sie die zu Grunde liegenden 
+        Buchungsteile betrachten.</para>
+
+      <para>Die Teilzeilen unter der Buchungszeile sind die <emphasis>Buchungsteil-Zeilen</emphasis>.
+      Sie werden durch graue Linien voneinander getrennt. Wenn Sie einen Buchungsteil markieren
+      ändern sich die Spaltenüberschriften, um die den Buchungsteil betreffenden Felder anzuzeigen:</para>
+
+      <screenshot id="txns-registersplit2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit2.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Wie sich Spaltenüberschriften für Buchungsteile ändern</phrase>
+          </textobject>
+
+          <caption><para>Dieses Bild zeigt, wie sich Spaltenüberschriften 
+          für Buchungsteile ändern.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Jeder Buchungsteil enthält ein optionales Feld <guilabel>Aktion</guilabel>, oder
+      Art des Buchungsteils, welches sie entweder durch eintippen, oder durch Auswahl
+      in einer Auswahlliste eingeben können. Weiterhin enthält er ein optionales 
+      Feld <guilabel>Buchungstext</guilabel> welches den Buchungsteil beschreibt.
+      Jeder Buchungsteil beeinflusst ein <guilabel>Konto</guilabel>, welches aus einer
+      mit Ihren Kontenbezeichungen gefüllten Auswahlliste gewählt werden kann. 
+      Das Feld <guilabel>J</guilabel> zeigt an, ob ein Buchungsteile schon abgeglichen wurde.
+      die letzten zwei Spalten zeigen den Betrag des Buchungsteils, und ob das Geld
+      auf das Konto (Soll), oder von dem Konto (Haben) transferiert wurde.</para>
+
+      <para>Wie schon in Kapitel <xref linkend="basics-accounting1" /> besprochen, 
+      muss für jede Buchung die Gesamt-Zunahme (Beträge in der linken Spalte oder das Soll) 
+      gleich der Gesamt-Abname (Beträge in der rechten Spalte oder Haben) sein.
+      im oben oben gezeigten Beispiel ist die Gesamt-Zunahme gleich der Gesamt-Abnahme, 
+      die Buchung ist also ausgeglichen. Wie Sie feststellen können, ist der Geldbetrag 
+      in der Buchungszeile derselbe wie unter Buchungsteil <guilabel>Girokonto</guilabel>. 
+      Warum wird dieser zweimal gezeigt? Weil die Buchungszeile lediglich eine 
+      <emphasis>Zusammenfassung</emphasis> des Effekts der Buchung auf das zur Zeit
+      angezeigte Konto darstellt. Die Buchungszeile derselben Buchung in der Buchungsansicht
+      eines anderen Kontos wurde den Effekt der Buchung auf das jeweilige Konto anzeigen.
+      Sie können das sehen, indem sie einen anderen Buchungsteil markieren, und auf den Knopf
+      <guibutton>Gegenbuchung</guibutton> in der <emphasis>Werkzeugleiste</emphasis> klicken.</para>
+
+      <para>Wenn Sie in diesem Beispiel zur Gegenbuchung im Konto <emphasis>Ertrag:Gehalt</emphasis>
+      gehen, zeigt Ihnen <application>&app;</application> dieselbe Buchung in der Buchungsansicht
+      des Kontos <emphasis>Ertrag:Gehalt</emphasis>:</para>
+
+      <screenshot id="txns-registersplit3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit3.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Die Gegenbuchung im <emphasis>Ertrag:Gehalt</emphasis> Konto</phrase>
+          </textobject>
+
+          <caption><para>Dieses Bild zeigt Ihnen die Gegenbuchung in der Buchungsansicht des Kontos
+          <emphasis>Ertrag:Gehalt</emphasis>.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Beachten Sie, dass die Buchungszeile jetzt die Zusammenfassung der Auswirkungen
+      auf das Konto <emphasis>Ertrag:Gehalt</emphasis> und nicht mehr auf das Konto
+      <emphasis>Aktiva:Girokonto</emphasis> darstellt, da Sie jetzt die Buchungsansicht 
+      des Kontos <emphasis>Ertrag:Gehalt</emphasis> betrachten. Die Teilbuchungen sind 
+      die Selben, aber die Buchungszeile stellt jetzt den Einfluss auf das Konto
+      <emphasis>Ertrag:Gehalt</emphasis> dar.</para>
+
+      <para>At the bottom left of the register window, <application>&app;</application> displays
+      helpful messages as you move about the register. To the right, you can
+      see the current account balance and the total of cleared splits.</para>
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="txns-regstyle1">
+    <title>Einstellungen Buchungsansicht</title>
+
+    <para><application>&app;</application> bietet mehrere Optionen die Buchungsansicht anzuzeigen.
+    Die Standardeinstellung ist <guilabel>Einzeilig</guilabel>, diese zeigt lediglich die 
+    Zusammenfassung der Buchungsteile, die das gewählte Konto beeinflussen. Diese Ansicht
+    ähnelt der Ansicht der meisten anderen Buchführungsprogramme.</para>
+
+    <para>Sie können auch eine andere Ansicht wählen. Indem sie z.B. 
+    <menuchoice>
+      <guimenu>Ansicht</guimenu>
+      <guimenuitem>Aktive-vollständig</guimenuitem>
+    </menuchoice> auswählen wird die jeweils gewählte Buchung automatisch mit all ihren 
+    Buchungsteilen angezeigt.
+    Die Auswahl 
+    <menuchoice>
+      <guimenu>Ansicht</guimenu>
+      <guimenuitem>Vollständig</guimenuitem>
+    </menuchoice> zeigt die Buchungsansicht im Stil eines Buchungsjournals, in dem alle
+    Buchungsteile für alle Buchungen dargestellt werden.</para>
+    
+    <!--
+    
+    beschriebene Option kann nicht gefunden werden 2.4.13
+    <para>All styles permit you to view your data in either single-line or
+    double-line format. Select <menuchoice><guimenu>View</guimenu>
+    <guimenuitem>Double Line</guimenuitem></menuchoice>, and you will see your transaction
+    line expand to two register lines.</para>
+    -->
+    
+    <para>Wir wollen jetzt genauer betrachten, wie sich die einzeilige Darstellung und die 
+      vollständige Darstellung unterscheiden.
+    </para>
+    <para>Für dieses Beispiel wollen wir annehmen, dass der Kontostand ihres Girokontos 10.000 € 
+    beträgt, und Sie in einer Kauforgie drei Jeans für zusammen 1000 € gekauft haben.
+    Sie haben mit Scheck gezahlt, deshalb wird der Kauf auf dem Girokonto gebucht. 
+    Sie können diesen Kauf jetzt entweder als einfache Buchung von 1000 € auf das Konto 
+    <emphasis>Aufwendungen:Kleidung</emphasis> buchen, oder Sie können den Kauf jeder einzelnen 
+    Jeans innerhalb einer mehrteiligen Buchung buchen.</para>
+ 
+    <para>Im Prinzip kommt es auf dasselbe raus, aber vom buchhalterischen Standpunkt ergibt eine 
+    Buchung jeder einzelnen Jeans innerhalb einer mehrteiligen Buchung, drei unterschiedliche 
+    Buchungen auf dem Konto <emphasis>Aufwand:Kleidung</emphasis>.</para>
+    
+    <para>Die folgenden Bilder werden das etwas besser verdeutlichen.</para>
+    
+    <para>Lassen Sie uns zuerst den Kauf der Jeans auf Ihrem Girokonto buchen</para>
+    
+          <screenshot id="txns-registersplit4">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit4.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Kauf von drei Jeans</phrase>
+          </textobject>
+
+          <caption><para>
+            Dieses Bild zeigt eine mehrteilige Buchung über den Kauf von 3 Jeans
+          </para></caption>
+        </mediaobject>
+      </screenshot>
+      
+     <para>Dann öffnen wir das Konto <emphasis>Aufwand:Kleidung</emphasis>, und betrachten es in
+     der Standardansicht (einzeilige Ansicht). Wie Sie sehen können, haben wir hier drei Einträge, 
+     aber es gibt nur einen Eintrag auf dem Girokonto. Bei genauerer Betrachtung sehen Sie, dass 
+     jede Zeile einen unterschiedlichen Betrag (Preis der Jeans) aufweist, 200 €, 300 €, und 500 €.
+     Jede der genannten Buchungszeilen entspricht einer Zeile in das Splitbuchung.</para>
+    
+      <screenshot id="txns-registersplit5">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit5.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Ansicht des Kontos <emphasis>Aufwand:Kleidung</emphasis></phrase>
+          </textobject>
+
+          <caption><para>Dieses Bild zeigt das Konto <emphasis>Aufwand:Kleidung</emphasis>
+          in der Standardansicht.</para></caption>
+        </mediaobject>
+      </screenshot>
+      
+      <para>Wenn wir das Konto <emphasis>Aufwand:Kleidung</emphasis> jetzt in der 
+      vollständigen Ansicht betrachten, sehen Sie nur die originale mehrteilige Buchung.</para>
+      
+      <screenshot id="txns-registersplit6">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit6.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Ansicht des Kontos <emphasis>Aufwand:Kleidung</emphasis></phrase>
+          </textobject>
+
+          <caption><para>Dieses Bild zeigt das Konto <emphasis>Aufwand:Kleidung</emphasis>
+          in der vollständigen Ansicht.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+    
+  </sect1>
+
+  <sect1 id="txns-shortcuts1">
+    <title>Die Benutzung von Tastaturkürzeln</title>
+
+    <para><application>&app;</application> stellt verschiedene zeitsparende Tastaturkürzel
+      für die Dateneingabe zur Verfügung. Wenn Sie die ersten Buchstaben einer Beschreibung,
+      eingeben, die Sie vorher schon einmal verwendet haben, dann ergänzt die Ausfüllhilfe
+      automatisch die einzugebende Beschreibung zu der passenden zuletzt eingegebenen
+      Beschreibung. Wenn Sie die ersten Buchstaben eines Kontonamens entweder im Feld
+      <guilabel>Buchen</guilabel> in der Buchungszeile oder im Feld <guilabel>Konto</guilabel> 
+      in der Zeile der Teilbuchungen eingeben, versucht die Ausfüllhilfe automatisch den Namen 
+      entsprechend ihrer Kontenliste zu ergänzen. Sie hilft auch bei der Eingabe von Unterkonten 
+      in diese Felder: geben Sie dafür die Anfangsbuchstaben des Hauptkontos gefolgt von einem : 
+      und den ersten Buchstaben des Unterkontos ein. Zum Beispiel können Sie für die Eingabe 
+      von <emphasis>Aktiva:Girokonto</emphasis> folgendes eingeben: 
+      <userinput>A:G</userinput> und <application>&app;</application>
+      den Rest ergänzen lassen.</para>
+
+    <para><application>&app;</application> verfügt in der Buchungsansicht auch über verschiedene
+      Tastaturkürzel, die Ihnen bei der Eingabe viel Zeit und Mühe sparen können. Im Datumsfeld
+      können folgende Tastaturkürzel verwenden werden:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><keycap>+</keycap> oder <keycap>=</keycap> um zum nächsten Tag zu gehen
+        und <keycap>-</keycap> oder <keycap>_</keycap> um zum vorherigen Tag zu gehen</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>]</keycap> oder <keycap>}</keycap> um zum nächsten Monat zu gehen
+        und <keycap>[</keycap> oder <keycap>{</keycap> um zum vorherigen Monat zu gehen</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>M</keycap> oder <keycap>m</keycap> um zum ersten Tag eines Monats zu gehen</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>H</keycap> oder <keycap>h</keycap> um zum letzten Tag eines Monats zu gehen</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>Y</keycap> oder <keycap>y</keycap> um zum ersten Tag eines Jahres zu gehen</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>R</keycap> oder <keycap>r</keycap> um zum letzten Tag eines Jahres zu gehen</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>T</keycap> oder <keycap>t</keycap> um zum heutigen Datum zu gehen</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Im Feld <guilabel>Nr.</guilabel> einer Buchungszeile können Sie die Taste <keycap>+</keycap>
+    verwenden um die nächsthöheren Buchungsnummer einzugeben genauso wie die Taste <keycap>-</keycap>
+    um die Buchungsnummer um eins zu vermindern. Das funktioniert auch im Feld <guilabel>Aktion</guilabel> 
+    einer mehrteiligen Buchung, für den Fall dass Sie auch hier nummerieren wollen. Das Feld 
+    <guilabel>Aktion</guilabel> hat auch eine Ausfüllhilfe - wenn Sie die Anfangsbuchstaben
+    einer normalen Aktion, wie zum Beispiel <guilabel>Einzahlung</guilabel> eingeben, wird
+    <application>&app;</application> den Rest ergänzen.</para>
+
+    <para>Das Feld <guilabel>Buchen</guilabel> besitzt eine Ausfüllhilfe für Kontonamen.
+    Geben Sie die Anfangsbuchstaben das Kontonamens ein, und <application>&app;</application> 
+    ergänzt den fehlenden Teil des Namens. Wenn sie (zu einem beliebigen Zeitpunkt) das 
+    Trennzeichen (:) eingeben, wird der bisher gewählte Teil des Namens abgeschlossen, 
+    und mit der Auswahl des Unterkontos begonnen. zum Beispiel wird die Eingabe <keycap>A:G</keycap>
+    in unserem Beispielkontorahmen ergänzt zum Konto <emphasis>Aktiva:Girokonto</emphasis>.
+    Sie können auch die Tasten <keycap>Menü</keycap> oder 
+    <keycombo><keycap>Ctrl</keycap><keycap>Down</keycap></keycombo> in diesem Feld drücken,
+    um eine Auswahlliste aller Kontonamen zu erhalten.</para>
+
+    <para>In jedem der eingebauten Betragsfelder können Sie den eingebauten Rechner benutzen.
+    Geben Sie dazu den ersten Wert gefolgt von <keycap>+</keycap>, <keycap>-</keycap>, 
+    <keycap>*</keycap>, oder <keycap>/</keycap>, gefolgt von dem zweiten Wert ein. 
+    <application>&app;</application> errechnet das Ergebnis und gibt es im Betragsfeld aus,
+    sobald Sie die <keycap>Tab-</keycap>Taste betätigen.</para>
+
+    <para>Für alle Menüpunkte sind Tastaturkürzel definiert, die durch den unterstrichenen 
+    Buchstaben in der Bezeichnung gekennzeichnet sind. Drücken Sie die Taste 
+    <keycap>Alt</keycap> + [unterstrichenen Buchstaben] um das Menü zu öffnen, und wählen
+    dann einen Eintrag durch Drücken des unterstrichenen Buchstabens. Zum Beispiel öffnet
+    <keycombo>
+      <keycap>Alt</keycap>
+        <keycap>k</keycap>
+      </keycombo> das Aktionenmenü, ein weiterer Druck auf <keycap>m</keycap> öffnet die 
+      Buchung in der vollständigen Ansicht. Einigen Menüpunkten sind zusätzlich Tastaturkürzel
+      für den direkten Aufruf zugeordnet (normalerweise im Zusammenspiel mit der 
+      <keycap>Ctrl</keycap> Taste). Diese Kürzel werden hinter dem Menüpunkt angegeben.</para>
+
+    <para>Um sich schnell innerhalb der Buchungsansicht bewegen zu können, benutzen Sie folgende
+    Tasten:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><keycap>Tab</keycap> um zum nächsten Feld zu gelangen, 
+        <keycombo><keycap>Shift</keycap><keycap>Tab</keycap></keycombo>
+        um zum vorherigen Feld zu gelangen</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>Pos1</keycap> um zum Anfang des gewählten Feldes zu gelangen,
+        <keycap>End</keycap> um zum Ende des Gewähltenfeldes zu gelangen</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap function="enter">Enter</keycap> oder <keycap>↓</keycap> 
+        um zur nächsten Buchung zu gelangen, <keycap>↑</keycap> um zur vorherigen 
+        Buchung zu gelangen</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>Page Up</keycap> um eine Seite hoch zu blättern, <keycap>Page
+        Down</keycap> um eine Seite herunter zu blättern</para>
+      </listitem>
+
+      <listitem>
+        <para><keycombo>
+            <keycap>Shift</keycap>
+
+            <keycap>Page Up</keycap>
+          </keycombo> um zur ersten Buchung zu gehen, <keycombo>
+            <keycap>Shift</keycap>
+
+            <keycap>Page Down</keycap>
+          </keycombo> um zur letzten Buchung zu gehen</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Im Fenster <guilabel>Abgleichen</guilabel> können sie folgende Tastaturkürzel 
+    nutzen:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><keycap>Tab</keycap> bringt Sie zur nächsten Liste und
+        <keycombo><keycap>Shift</keycap><keycap>Tab</keycap></keycombo>
+        zur vorherigen Liste</para>
+      </listitem>
+
+      <listitem>
+        <para>Die Leertaste schaltet den Status der Buchung zwischen abgeglichen und 
+        nicht abgeglichen hin und her.</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>↑</keycap> und <keycap>↓</keycap> bewegt die Markierung
+        innerhalb der gewählten Liste.</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="txns-reconcile1">
+    <title>Kontoabgleich</title>
+
+    <para>Buchungen werden normalerweise mit vorliegenden Kontoauszügen der Bank 
+      verglichen - ein Vorgang, der als <emphasis>Abstimmung</emphasis> oder 
+      <emphasis>Abgleich</emphasis> bekannt ist. <application>&app;</application> 
+      behält den Überblick über den Abgleichstatus einer jeden Buchung.</para>
+
+    <para>Der Abgleichzustand einer Buchung wird im Feld <guilabel>J</guilabel> in der 
+      Buchungsansicht angezeigt. Der Buchstabe <emphasis>b</emphasis> zeigt an, dass eine 
+      Buchung bereits abgeglichen ist, ein <emphasis>n</emphasis> zeigt an, dass ein Abgleich 
+      noch nicht erfolgt ist, und <emphasis>b</emphasis> zeigt an, dass die Buchung gelöscht 
+      aber noch nicht abgeglichen ist. Durch Klicken in das Feld <guilabel>J</guilabel> der 
+      Buchung können Sie zwischen den Zuständen <emphasis>n</emphasis> und <emphasis>b</emphasis> 
+      umschalten. Sie können den Zustand auf <emphasis>y</emphasis> setzen, indem Sie den
+      Dialog <guilabel>Abgleichen</guilabel> verwenden.</para>
+    
+    <para>Am unteren Ende der Buchungsansicht gibt es Anzeigen für verschidene Kontostände.
+      Während die Anzeigen <guilabel>Bestätigt</guilabel> und <guilabel>Abgeglichen</guilabel>
+      Ihre Finanzen aus Sicht der Bank (aufgrund eingegangener Zahlungsbelege)
+      darstellen, werden unter <guilabel>Aktueller Wert</guilabel> auch offene
+      d.h. der Bank noch nicht mitgeteilte Finanztransaktionen berücksichtigt.</para>
+
+    <para>Wenn Sie z.B. einen Scheck für irgend etwas ausstellen, sollten Sie dies in
+      <application>&app;</application> buchen. Das Feld Abgleich (<guilabel>J</guilabel>)
+      der Buchung enthält am Anfang den Wert <guilabel>n</guilabel> (neu). Die neue
+      Buchung trägt zum Kontostand <guilabel>Aktueller Wert</guilabel> bei, aber nicht
+      zum Konstostand <guilabel>Bestätigt</guilabel> und <guilabel>Abgeglichen</guilabel>.
+      Später, wenn Sie annehmen, dass der Scheck eingelöst wurde, können Sie auf das Feld
+      Abgleich (<guilabel>J</guilabel>) dieser Buchung klicken, um den Wert auf 
+      <emphasis>b</emphasis> umzustellen (bestätigt). Sobald Sie das tun ändert sich der
+      Kontostand in der Anzeige <guilabel>Bestätigt</guilabel> um jetzt auch diese
+      Transaktion zu berücksichtigen. Wenn der Kontoauszug eintrifft, können Sie dann
+      Ihre in <application>&app;</application> eingegebenen Buchungsdaten mit denen der Bank
+      vergleichen. Im Dialog Kontoabgleich können Sie die Übereinstimmung der von der Bank
+      gebuchten Transaktionen und damit den Wert im Feld <guilabel>J</guilabel> auf 
+      <emphasis>j</emphasis> (abgeglichen) ändern.</para>
+      
+      <note>
+        <para>Sie können Buchungen nicht direkt in der Buchungsansicht abgleichen, sondern müssen
+        das Fenster Kontoabgleich nutzen. Sobald eine Buchung als <emphasis>Abgeglichen</emphasis>
+        gekennzeichnet wurde, kann sie nicht mehr so einfach geändert werden, ohne dass der 
+        <link linkend="rec-start-blnc">
+          <guilabel>Anfangskontostand</guilabel>
+        </link>
+        des nächsten Kontoabgleichs abweicht.</para>
+      </note>
+
+    <sect2 id="txns-reconcile-window2">
+      <title>Abgleichsdialog</title>
+
+      <para>Der Abgleichsdialog wird verwendet, um ein <application>&app;</application> Konto in 
+      Übereinstimmung zu bringen mit einem Kontoauszug den Sie von einer Bank oder einer anderen 
+      Finanzinstitution bekommen haben. Ein Kontoabgleich ist nicht nur nützlich um Ihre 
+      Buchführung mit der Ihrer Bank zu überprüfen, sondern auch, um ein besseres Verständnis 
+      von offenen Geschäftsvorfällen zu erhalten, z.B. noch nicht eingelösten Schecks.</para>
+
+      <para>Um den Abgleichsdialog zu öffnen wählen Sie ein Konto in Ihrem Kontenrahmen und klicken
+      auf den Menüpunkt <menuchoice><guimenu>Aktionen</guimenu><guimenuitem>Abgleichen</guimenuitem></menuchoice>.
+      Das untenstehende Fenster erscheint, in welchem Sie die Informationen für den Kontoabgleich
+      eingeben können.</para>
+
+      <screenshot id="txns-reconcile-window-1">
+        <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/txns_reconcile_window1.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/txns_reconcile_window1.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+
+          <textobject>
+            <phrase>Abgleichsfenster</phrase>
+          </textobject>
+
+          <caption><para>Das Anfangsfenster des Kontoabgleichs.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>In dem Anfangsfenster des Kontoabgleichs müssen einige <guilabel>Abgleichsparameter</guilabel>
+      eingegeben werden.</para>
+      <variablelist>
+        <varlistentry><term><guilabel>Datum des Kontoauszugs</guilabel></term>
+          <listitem>
+            <para>Das Datum bis zu dem der Abgleich erfolgen soll.</para>
+	  <tip>
+	    <para>Um einen Kalender zu öffnen klicken Sie auf den Pfeil nach unten rechts neben dem Eingabefeld.</para>
+	  </tip>
+          </listitem>
+        </varlistentry>
+
+     <varlistentry id="rec-start-blnc"><term><guilabel>Anfangssaldo</guilabel></term>
+      <listitem>
+        <para>Dies ist ein vorgegebener Wert, der den Kontostand des letzten Abgleichs
+              anzeigt. Dieser Wert sollte mit dem Anfangskontostand Ihres Kontoauszugs 
+              übereinstimmen.</para>
+
+	    <note>
+	    <para>Manchmal stimmt der Anfangssaldo in <application>&app;</application> nicht
+      mit dem von Ihrer Bank übermittelten überein. Dies tritt beim ersten Abgleich des 
+      Kontos auf, oder wenn bereits abgeglichene Buchungen verändert oder gelöscht wurden.</para>
+	    </note>
+	  
+	    <para>Beim ersten Abgleich Ihres Kontos beträgt der <guilabel>Anfangssaldo</guilabel>
+      <guilabel>0.00</guilabel>. Dies ist höchstwarscheinlich nicht der <emphasis>Anfangskontostand</emphasis>
+      Ihres Kontos. Beim Abgleich wird der <emphasis>Anfangskontostand</emphasis> des Kontos 
+	    im Abgleich berüchsichtigt, und das Ergebnis sollte ausgeglichen sein.</para>
+            
+	    <para>Im Falle dass eine vorher abgeglichene Buchung versehendlich de-reconciled wurde
+      können Sie einfach die Buchung zusammen mit den anderen Buchungen im jetzigen
+      Kontoauszug re-reconcile und das Ergebnis sollte ausgeglichen sein.</para>
+
+      <para>Die Korrektur von versehendlich gelöschten bereist abgeglichenen Buchungen ist eine
+      größere Herausforderung. Falls Sie nicht mehr feststellen können welche Buchung gelöscht 
+      wurde, und Sie sie deshalb nicht mehr wieder eingeben können müssen Sie eine Dummy-Buchung
+      einfügen, um den Kontoabgleich abzuschliessen.</para>
+      </listitem>
+      </varlistentry>
+        
+      <varlistentry><term><guilabel>Schlußsaldo</guilabel></term>
+          <listitem>
+            <para>In dieses Feld sollte der Schlussaldo des Kontoauszugs Ihrer Bank eingetragen werden.</para>
+	          <note>
+	            <para><application>&app;</application> trägt in dieses Feld automatisch den im 
+              unteren Teil der Kontoansicht angezeigten <guilabel>aktuellen Wert</guilabel> ein.</para>
+	          </note>
+          </listitem>
+      </varlistentry>
+
+      <varlistentry><term><guilabel>Unterkonten mit einbeziehen</guilabel></term>
+          <listitem>
+            <para>Wählen Sie diese Option, wenn Sie in dem Abgleich auch Buchungen von 
+            Unterkonten des gewählten Kontos berücksichtigen möchten.</para>
+          </listitem>
+      </varlistentry>
+
+        <varlistentry><term><guibutton>Zahlung Habenzins eingeben...</guibutton></term>
+          <listitem>
+            <para>Ein Klick auf diesen Knopf öffnet das Fenster <guilabel>Habenzinsen</guilabel>
+            zur Eingabe einer Zinsbuchung in das abzugleichenden Konto.</para>
+	    <tip>
+	      <para>Das Fenster <guilabel>Habenzinsen</guilabel> kann auch beim Abgleich 
+        eines Kontos vom Typ <emphasis>Bank</emphasis>, <emphasis>Kreditkarte</emphasis>,
+        <emphasis>Mutual</emphasis>, <emphasis>Aktiva</emphasis>, <emphasis>Offene Forderungen</emphasis>,
+	      <emphasis>Offene Verbindlichkeiten</emphasis>, und <emphasis>Fremdkapital</emphasis>
+        automatisch geöffnet werden.
+        Wenn Sie dieses Verhalten für alle vorgenannten Kontentypen ausschalten wollen, 
+        entfernen Sie die Markierung bei der Option <guilabel>Automatisch Zinsbuchungen</guilabel>
+        auf der Karteikarte <guilabel>Kontobuch</guilabel> im Fenster <guilabel>&app; Einstellungen</guilabel>.
+        Um nur das Verhalten für das gewählte Konto auszuschalten drücken Sie den Knopf  
+	      <guibutton>Keine automatischen Habenzins-Zahlungen für dieses Konto</guibutton> im Fenster 
+	      <guilabel>Habenzinsen</guilabel>.</para>
+	    </tip>  
+          </listitem>
+        </varlistentry>
+       </variablelist>
+
+      <para>Drücken Sie die Taste <guibutton>Ok</guibutton>, und es erscheint das Fenster
+      mit der Buchungsliste zum Abgleich:</para>
+
+      <screenshot id="txns-reconcile-window-2">
+        <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/txns_reconcile_window2.png"
+                         format="PNG" srccredit="Cristian Marchi" width="510"></imagedata>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/txns_reconcile_window2.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+
+          <textobject>
+            <phrase>Fenster Abgleichen</phrase>
+          </textobject>
+
+          <caption><para>Die Liste der Buchungen im Fenster Kontoabgleich.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Die zwei Fensterbereiche mit Namen <guilabel>Gutschrift</guilabel> und
+      <guilabel>Belastung</guilabel>, listen alle nicht abgeglichen Buchungen auf, die
+      zu dem abzugleichenden Konto gehören. Die Spalte <guilabel>J</guilabel> zeigt an,
+      ob die Buchungen bereits abgeglichen sind.</para>
+      
+      <para>Betrachten Sie jetzt jeden Eintrag in Ihrem Kontoauszug, und suchen den passenden
+        Eintrag im Fenster <guilabel>Abgleichen</guilabel>.</para>
+
+      <para>Falls Sie eine Buchung nicht finden, haben Sie vielleicht vergessen sie einzugeben, 
+      oder es war Ihnen unbekannt, dass die Buchung stattgefunden hat. Sie können die Taste 
+      <guibutton>Neu</guibutton> in der <emphasis>Werkzeugleiste</emphasis> benutzen, oder den Menüeintrag 
+      <menuchoice><guimenu>Buchung</guimenu><guimenuitem>Neu</guimenuitem></menuchoice>
+      in der Menüleiste, um in der Buchungsansicht die fehlende Buchung einzugeben. 
+      Sobald Sie die Eingabe der Buchung durch Drücken der Taste <guibutton>Enter</guibutton>
+      abgeschlossen haben erscheint der Eintrag im Fenster <guilabel>Abgleichen</guilabel>.</para>
+
+      <para>Für jeden Eintrag im Fenster <guilabel>Abgleichen</guilabel> vergleichen Sie jetzt den
+      Betrag mit dem Betrag in Ihrem Kontoauszug. Wenn beide Einträge nicht übereinstimmen, haben 
+      Sie vielleicht einen Fehler bei der Eingabe der Transaktion in <application>&app;</application>
+      gemacht. Sie können in diesem Fall die Taste <guibutton>Bearbeiten</guibutton> in der 
+      <emphasis>Werkzeugleiste</emphasis> drücken, oder den Menüeintrag
+      <menuchoice><guimenu>Transaction</guimenu><guimenuitem>Bearbeiten</guimenuitem></menuchoice>
+      benutzen um die Buchangsansicht zu öffnen und die Buchung zu korrigieren.</para>
+
+      <para>Wenn die Beträge übereinstimmen, klicken Sie auf den Eintrag im Fenster <guilabel>Abgleichen</guilabel>.
+      Die gewählte Transaktion wird durch ein Häkchen in der Spalte <guilabel>J</guilabel> markiert. 
+      <application>&app;</application> aktualisiert automatisch die Beträge im Zusammenfassungsbereich
+      unten rechts.</para>
+      
+      <tip>
+        <para>Sie können die Pfeiltasten <keycap>hoch</keycap>/<keycap>runter</keycap> 
+        benützen, um zu einem Eintrag zu gelangen, die <keycap>Leertaste</keycap> um einen 
+        Eintrag als Abgeglichen zu markieren und die <keycap>Tab</keycap> Taste um zwischen 
+        den Bereichen umzuschalten.</para>
+      </tip>
+
+      <para>Diesen Vorgang wiederholen Sie für jeden Eintrag auf dem Kontoauszug, bestätigen
+      dass der Betrag mit Ihrer Buchungen in <application>&app;</application> übereinstimmt,
+      und haken die Buchung in <application>&app;</application> als abgeglichen ab.</para>
+
+      <para>Unten rechts gibt im Fenster <guilabel>Abgleichen</guilabel> gibt es ein Feld
+      <guilabel>Differenz</guilabel>, welches den Betrag <guilabel>0.00</guilabel> aufweisen
+      sollte, wenn Sie den Abgleich abgeschlossen haben. Wenn dort ein anderer Wert auftritt,
+      dann haben Sie entweder Buchungen ausgelassen, oder einige Buchungsbeträge wurden falsch
+      in <application>&app;</application> eingegeben, oder (was etwas unwahrscheinlicher ist)
+      die Bank hat einen Fehler gemacht.</para>
+
+      <para>Nachdem Sie alle Einträge auf dem Kontoauszug abgehakt haben, und die
+      Differenz 0.00 ist, drücken Sie den Eintrag <guibutton>Fertig</guibutton> auf 
+      der <emphasis>Werkzeugleiste</emphasis> oder wählen den Eintrag 
+      <menuchoice><guimenu>Abgleichen</guimenu><guimenuitem>Fertig</guimenuitem></menuchoice>
+      aus dem Menü. Das Fenster <guilabel>Abgleichen</guilabel> schließt sich.
+      In der Buchungsansicht ändert sich der Wert im Feld <guilabel>J</guilabel> der
+      abgeglichenen Buchungen auf <emphasis>j</emphasis>.</para>
+
+      <para>Im dargestellten Fall haben wir noch nicht alle Informationen erhalten, deshalb 
+      drückenso wir den Eintrag <guibutton>Unterbrechen</guibutton> in der Werkzeugleiste,
+      damit wir zu einem späteren Zeitpunkt mit dem Abgleich fortfahren können. 
+      Beachten Sie, dass in der Spalte <guilabel>J</guilabel> zwei Einträge als
+      bestätigt (<emphasis>b</emphasis>) gekennzeichnet werden. Sie wurden noch nicht
+      abgeglichen, aber diese zwei Buchungen wurden bestätigt. Wenn Sie sich die 
+      <emphasis>Statusleiste</emphasis> am unteren Rand der Buchungsansicht ansehen,
+      finden Sie eine Zusammenfassung dessen was bestätigt wurde, und was abgeglichen 
+      wurde (<guilabel>Bestätigt: 954.79€ Abgeglichen: 0.00€</guilabel>)</para>
+
+      <screenshot id="txns-reconcile-window-3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_reconcile_window3.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Girokonto</phrase>
+          </textobject>
+
+          <caption><para>Das Girokonto nach Unterbrechen des Kontoabgleichs.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+  </sect1>
+
+
+  <sect1 id="txns-sxn1">
+    <title>Terminierte Buchungen</title>
+
+    <para>Terminierte Buchungen werden verwendet, um wiederkehrende Finanztransaktionen
+      wie zum Beispiel Abonnements, Versicherungsbeiträge, Mietzahlungen einzugeben.
+      Durch Verwendung von terminierten Buchungen brauchen sie die betreffende Buchung
+      nur einmal zusammen mit einigen Parametern wie Startdatum, Ausführungsdatum und 
+      Frequenz und einer kleinen Beschreibung einzugeben, dann erinnert <application>&app;</application> 
+      Sie an die Fälligkeit einer Buchung, und erstellt sie für Sie.</para>
+
+    <para>In diesem Leitfaden nutzen wir ein monatliches Internetabo über 20 € mit
+      Ausführungsdatum am 28. eines jeden Monats als Beispiel.
+    </para>
+
+    <para>In <application>&app;</application> gibt es zwei Wege um terminierte Buchungen 
+    anzulegen, <link linkend="txns-sxn-ledger2">in der Buchungsansicht</link> oder durch
+    den Editor für terminierte Buchungen 
+    <link linkend="txns-sxn-editor2">Terminierte Buchungen Editor</link>.</para>
+
+    <sect2 id="txns-sxn-ledger2">
+      <title>Erstellung in der Buchungsansicht</title>
+
+      <para>Geben Sie das erste Auftreten Ihrer terminierten Buchungen in der Buchungsansicht
+      ein. Im Feld <guilabel>Buchen</guilabel> der Buchung geben Sie 
+      <emphasis>Aufwendungen:Internet</emphasis> ein, wie es in der nächsten Abbildung gezeigt
+      wird.</para>
+
+      <screenshot id="txns-sxn-ledger-1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger1.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Erster Schritt zur Erstellung einer terminierten Buchung
+            in der Buchungsansicht</phrase>
+          </textobject>
+
+          <caption><para>
+            Erster Schritt zur Erstellung einer terminierten Buchung
+            in der Buchungsansicht</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <note>
+        <para>Da wir das Konto <emphasis>Aufwendungen:Internet</emphasis> noch nicht 
+        erstellt haben, fordert uns <application>&app;</application> auf es anzulegen.</para>
+      </note>
+
+      <para>Klicken Sie dann mit der rechten Maustaste auf diese Buchung, und wählen
+      <guilabel>Terminiert...</guilabel></para>
+
+      <screenshot id="txns-sxn-ledger-2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger2.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Zweiter Schritt zur Erstellung einer terminierten Buchung
+              in der Buchungsansicht</phrase>
+          </textobject>
+
+          <caption><para>Zweiter Schritt zur Erstellung einer terminierten Buchung
+            in der Buchungsansicht</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Es erscheint folgendes Fenster:</para>
+
+      <screenshot id="txns-sxn-ledger-3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger3.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Dritter Schritt zur Erstellung einer terminierten Buchung
+              in der Buchungsansicht</phrase>
+          </textobject>
+
+          <caption><para>Dritter Schritt zur Erstellung einer terminierten Buchung
+            in der Buchungsansicht</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Jetzt wollen wir die Daten der Buchung eintragen. Wir wissen, dass die
+          Zahlung des Abo am 28. jedes Monats erfolgt, und die nächste Ausführung
+          im nächsten Monat stattfindet (wir haben diesen Monat ja schon manuell gebucht):</para>
+
+      <screenshot id="txns-sxn-ledger-4">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger4.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Eintrag der Daten einer terminierten Buchung</phrase>
+          </textobject>
+
+          <caption><para>Eintrag der Daten einer terminierten Buchung</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Klicken Sie auf den Knopf <guibutton>OK</guibutton>, um die Eingabe der terminierten
+      Buchung abzuschließen. <application>&app;</application> hat diese Buchung jetzt gespeichert
+      und wird am 28. des nächsten Monats fragen, ob die Buchung automatisch erstellt werden soll
+      (siehe auch die Abbildung weiter unten).</para>
+    </sect2>
+
+    <sect2 id="txns-sxn-editor2">
+      <title>Erstellung im Editor für terminierte Buchungen</title>
+
+      <para>Ein anderer Weg der Eingabe von terminierten Buchungen ist die Eingabe im
+      <guilabel>Editor für terminierte Buchungen</guilabel>. Wenn wir mehrere terminierte 
+      Buchungen hintereinander erstellen wollen kann das der schnellere Weg sein.</para>
+
+      <para>Wählen sie dazu in der <emphasis>Menüleiste</emphasis> des Hauptfensters den
+      Eintrag <menuchoice><guimenu>Aktionen</guimenu><guisubmenu>Terminierte Buchungen</guisubmenu>
+      <guimenuitem>Terminierte Buchungen Editor</guimenuitem></menuchoice>.
+      Eine neue Karteikarte <guilabel>Terminierte Buchungen</guilabel> wird 
+      von <application>&app;</application> wie unten dargestellt im Hauptfenster angezeigt:</para>
+
+      <screenshot id="txns-sxn-editor-2">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-2.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-2.png" format="PNG"
+                       srccredit="Cristian Marchi"/>
+          </imageobject>
+
+          <textobject>
+            <phrase>Leere Karteikarte <guilabel>Terminierte Buchungen</guilabel></phrase>
+          </textobject>
+
+          <caption><para>Leere Karteikarte <guilabel>Terminierte Buchungen</guilabel></para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Diese Karteikarte enthält eine (zur Zeit leere) Liste aller terminierten Buchungen. 
+      Wir erzeugen eine neue terminierte Buchung durch Klicken der Taste <guibutton>Neu</guibutton> 
+      in der <emphasis>Werkzeugleiste</emphasis>. Es erscheint das unten dargestellte Fenster:</para>
+
+      <screenshot id="txns-sxn-editor-3-overview">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-3-overview.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-3-overview.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Fenster <guilabel>Terminierte Buchung bearbeiten</guilabel> &mdash;
+            Karteikarte <guilabel>Übersicht</guilabel></phrase>
+          </textobject>
+
+          <caption><para>Fenster <guilabel>Terminierte Buchung bearbeiten</guilabel> &mdash;
+            Karteikarte <guilabel>Übersicht</guilabel></para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Zuerst tragen wir oben im Fenster einen Namen für die neu erstellte 
+      terminierte Buchung ein.</para>
+      <note>
+        <para>Dieser Name dient nur der Kennzeichnung der Buchung in der Liste der 
+        terminierten Buchungen im Fenster <guilabel>Terminierte Buchung bearbeiten</guilabel>, 
+        und tritt nicht in der Buchungsansicht auf.</para>
+      </note>
+
+      <para>Im Bereich <guilabel>Optionen</guilabel> der Karteikarte <guilabel>Übersicht</guilabel>
+      gibt es vier Auswahlmöglichkeiten:</para>
+      
+      <variablelist>
+        <varlistentry><term><guilabel>Aktiv</guilabel></term>
+          <listitem>
+            <para>bestimmt den Status der terminierten Buchung.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Automatisch erstellen</guilabel></term>
+          <listitem>
+            <para>Wenn diese Option gewählt wird, wird die terminierte Buchung ohne
+            Rückfrage ins Hauptbuch eingetragen (siehe unten). 
+            Durch die Auswahl von <guilabel>Bei Erstellung benachrichtigen</guilabel> 
+            können Sie einstellen, dass Sie über den Eintrag der Buchung informiert 
+            werden.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Im Voraus erstellen</guilabel></term>
+          <listitem>
+            <para>Mit dieser Option können Sie einstellen, ob, und wieviel Tage
+            im Voraus die Buchung erstellt werden soll.</para>
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry><term><guilabel>Im Voraus erinnern</guilabel></term>
+          <listitem>
+            <para>Mit dieser Option können Sie einstellen, ob, und wieviel Tage
+            im Voraus Sie an eine fällige Zahlung erinnert werden wollen. Das ist sehr 
+            nützlich, wenn Sie ein Zahlungsziel ausnützen wollen, und eine Erinnerung
+            eine Woche vor Ablauf der Zahlungsfrist ermöglicht es Ihnen die Zahlung 
+            Termingerecht zu veranlassen (oder den Scheck zuzusenden).</para>
+          </listitem>
+        </varlistentry>  
+      </variablelist>
+
+      <para>Der Bereich <guilabel>Auftreten</guilabel> ermöglicht es Ihnen <application>&app;</application>
+      mitzuteilen, dass die terminierte Buchung nur bis zu einem bestimmten Datum 
+      ausgeführt werden soll. Zum Beispiel können Sie, wenn sie ein Darlehen zurückzahlen, 
+      entweder das Enddatum, oder die Anzahl der noch offenen Zahlungen einstellen.</para>
+      
+      <para>Wählen Sie jetzt die Karteikate <guilabel>Häufigkeit</guilabel> im Fenster
+      <guilabel>Terminierte Buchungen bearbeiten</guilabel>.
+      Hier können Sie die zeitbezogenen Werte der Buchung einstellen.</para>
+      
+      <screenshot id="txns-sxn-editor-3-frequency">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-3-frequency.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-3-frequency.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase><guilabel>Terminierte Buchungen bearbeiten</guilabel> &mdash;
+            <guilabel>Häufigkeit</guilabel> Karteikarte</phrase>
+          </textobject>
+
+          <caption><para><guilabel>Terminierte Buchungen bearbeiten</guilabel> &mdash;
+            <guilabel>Häufigkeit</guilabel> Karteikarte</para></caption>
+        </mediaobject>
+      </screenshot>      
+      
+      <variablelist>
+        <varlistentry><term><guilabel>Häufigkeit</guilabel></term>
+          <listitem>
+            <para>Stellt die Häufigkeit des Auftretens der Buchung ein, mit Einstellungen 
+            für <guilabel>einmal</guilabel>, <guilabel>täglich</guilabel>, 
+            <guilabel>wöchentlich</guilabel>, <guilabel>halbmonatlich</guilabel> 
+            und <guilabel>monatlich</guilabel>.
+            In unserem Beispiel setzen Sie die Häufigkeit auf <guilabel>monatlich</guilabel>.</para>
+            <note>
+              <para>Durch die Einstellung unter <guilabel>Alle</guilabel> ist es möglich 
+              einzustellen, dass die Buchung auch in anderen Intervallen, als den in der Liste 
+              <guilabel>Häufigkeit</guilabel> angegebenen, auftreten soll (siehe unten).</para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Anfangsdatum</guilabel></term>
+          <listitem>
+            <para>Stellt ein, wann die Buchung des erste Mal ausgeführt werden soll.
+            In unserem Beispiel würde es auf den Beginn des nächsten Monats gesetzt.</para>
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry><term><guilabel>Alle</guilabel></term>
+          <listitem>
+            <para>Diese Option erlaubt Ihnen, den Termin für die Buchung auf ein Vielfaches
+            des Wertes im Feld <guilabel>Häufigkeit</guilabel> einzustellen. Zur Planung einer 
+            Buchung, die alle drei Wochen durchgeführt werden soll, stellen Sie zum Beispiel 
+            <guilabel>Häufigkeit</guilabel> auf <guilabel>wöchentlich</guilabel> und 
+            <guilabel>Alle</guilabel> auf <guilabel>3</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+         
+        <varlistentry><term><guilabel>Am</guilabel> und <guilabel>außer am Wochenende</guilabel></term>
+          <listitem>
+            <para>Diese Eingabefelder dienen der Auswahl des Ausführungstags, und legen fest, wie 
+            <application>&app;</application> vorgehen soll, wenn dieser Tag auf ein Wochenende fällt.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+        
+      <note>
+        <para>Wir wissen, dass die Gebühr am 28. jeden Monats fällig wird, deshalb geben
+        wir als <guilabel>Anfangsdatum</guilabel> zum Beispiel den 1. November 2003 ein
+        (unter der Annahme, dass im November die nächste Zahlung erfolgen soll).
+        Die <guilabel>Häufigkeit</guilabel> stellen wir auf <guilabel>monatlich</guilabel>.
+        Mit diesen Einstellungen wird die Buchung jeden Monat am 28. erzeugt. Da in 
+        unserem Beispiel die Zahlungen für das Internet monatlich abgebucht werden, 
+        brauchen wir die Buchung weder im Voraus zu generieren, noch müssen wir ein 
+        Enddatum eingeben.</para>
+      </note>
+     
+      <para>Wenn die Einstellungen auf dieser Karteikarte durchgeführt wurden, markiert
+      <application>&app;</application> das Ausführungsdatum der zukünftigen Buchungen im
+      unten auf der Karteikarte dargestellten Kalender.</para>
+
+      <para>Wählen Sie zum Schluss die Karteikarte <guilabel>Buchungsvorlage</guilabel> 
+      und geben Sie die Buchung im unteren Teil der Karteikarte ein, wie Sie es 
+      normalerweise im Hauptbuch tun würden. Der einzige Unterschied besteht darin, dass 
+      Sie bei der Eingabe kein Datum eingeben.</para>
+
+      <para>Jetzt sollte ihr Fenster folgendermaßen aussehen:</para>
+
+      <screenshot id="txns-sxn-editor-3-template">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-3-template.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-3-template.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase><guilabel>Terminierte Buchungen bearbeiten</guilabel> Karteikarte
+            <guilabel>Buchungsvorlage</guilabel></phrase>
+          </textobject>
+
+          <caption><para><guilabel>Terminierte Buchungen bearbeiten</guilabel> Karteikarte
+            <guilabel>Buchungsvorlage</guilabel></para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Bitte klicken Sie auf das Symbol <guibutton>Eingabe</guibutton>, um die Buchungsvorlage
+      abzuspeichern.</para>
+
+      <para>Klicken Sie jetzt auf <guibutton>OK</guibutton>, um zur Karteikarte für
+      <guilabel>Terminierte Buchungen</guilabel> zu gelangen. Diese zeigt jetzt den
+      Eintrag für die terminierte Buchung in der Liste <guilabel>Buchungen</guilabel>:</para>
+
+      <screenshot id="txns-sxn-editor-4">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-4.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-4.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Eingegebene terminierte Buchung</phrase>
+          </textobject>
+
+          <caption><para>Eingegebene terminierte Buchung</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <tip>
+        <para>Wenn Sie mit der Maus auf den Kalender klicken, wird ein kleines
+          Fenster eingeschaltet, welches für den Tag auf den die Maus zeigt
+          alle terminierten Buchungen anzeigt. Um das Fenster wieder auszuschalten
+          klicken Sie noch einmal auf den Kalender.</para>
+      </tip>
+      
+      <para>Sie können jetzt die Karteikarte <guilabel>Terminierte Buchung</guilabel> 
+      schließen, und Ihre Eingabe <guilabel>speichern</guilabel>.</para>
+
+      <note>
+        <para>Das Folgende ist nur eine Beschreibung, und muss nicht an dieser Stelle in die
+        <application>&app;</application> Datenbank eingetragen werden. Gemäß diesem Beispiel
+        werden die untenstehenden Dialoge erscheinen, sobald die terminierten Buchungen 
+        durchgeführt werden sollen.</para>
+      </note>
+
+      <para>Sobald <application>&app;</application> gestartet wird erhalten Sie von
+        jetzt an die Anzeige des Fenster <guilabel>Seit letztem Aufruf...</guilabel>
+        mit der Zusammenfassung der aktuell anstehenden terminierten Buchungen mit
+        Status (<guilabel>Erinnerung</guilabel>, <guilabel>Zu Erstellen</guilabel> etc...)
+        eine detaillierte Beschreibung der Optionen finden Sie im 
+        <application>&app;</application> Handbuch:</para>
+
+      <screenshot id="txns-sxn-editor-slr">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor_slr.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor_slr.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Terminierte Buchungen Erinnerungsfenster</phrase>
+          </textobject>
+
+          <caption><para>Terminierte Buchungen Erinnerungsfenster</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Falls nötig können Sie auf die Spalte <guilabel>Status</guilabel> klicken, 
+      um den Status der terminierten Buchung zu ändern. Klicken Sie dann auf den 
+      <guibutton>Ok</guibutton> Knopf, um das Fenster <guilabel>Seit letztem Aufruf...</guilabel>
+      zu schließen, und die anstehenden Transaktionen zu buchen. Wählen Sie 
+      <guibutton>Abbrechen</guibutton> um die Eintragung der anstehenden Transaktionen in das 
+      Hauptbuchto zu überspringen.</para>
+
+      <para>Wenn Sie im Feld <guilabel>Status</guilabel> die Option <guilabel>Zu Erstellen</guilabel>
+      gewählt haben, werden Sie bei einem Blick in die Buchungsansicht Ihres Kontos sehen, dass
+      die Buchung erstellt wurde:</para>
+     
+      <tip>
+        <para>Wenn Sie die Option <guilabel>Erzeugte Buchungen durchsehen</guilabel> 
+        in der unteren rechten Ecke des Fensters <guilabel>Seit letztem Aufruf...</guilabel> 
+        wählen, öffnet <application>&app;</application> nach Bestätigung mit 
+        <guibutton>Ok</guibutton> die Karteikarten aller Konten, in die automatisch 
+        die terminierten Buchungen eingetragen wurden.</para>
+      </tip>
+
+      <note>
+        <para>If you entered the transaction for 28 of April at this stage,
+        then please <emphasis>revert back</emphasis> to the last saved <application>&app;</application> file
+        by selecting <menuchoice><guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice> and
+        choosing the previously saved <filename>gcashdata_3</filename> <application>&app;</application> file.</para>
+      </note>
+    </sect2>
+  </sect1>
+
+<!--  
+  
+  <sect1 id="txns-puttoget1">
+    <title>Putting It All Together</title>
+
+    <para>In the previous sections of this chapter the concepts and mechanics
+    of working with transactions in <application>&app;</application> have been discussed. This section
+    will expand upon the chart of accounts initially built in the previous
+    chapter, by setting some opening balances, adding transactions and a
+    Terminierte Buchung.</para>
+
+    <sect2 id="txns-puttoget-openfile">
+      <title>Open <application>&app;</application> file</title>
+
+      <para>Start with opening the previous datafile we stored,
+      <filename>gcashdata_3emptyAccts</filename>, and store it as
+      <filename>gcashdata_4</filename> directly. The main window should look
+      something like this:</para>
+
+      <screenshot id="txns-puttoget1-Charts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Starting point for Putting It All Together</phrase>
+          </textobject>
+
+          <caption><para>This image shows the starting point for this
+          section.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-puttoget-open2">
+      <title>Anfangskontostände</title>
+
+      <para>As shown earlier with the <emphasis>Aktiva:Girokonto</emphasis>
+      account, the starting balances in an account are typically assigned to a
+      special account called <emphasis>Eigenkapital:Anfangsbestand</emphasis>. To
+      start filling in this chart of account, begin by setting the starting
+      balances for the accounts. Assume that there is $1000 in the savings
+      account and $500 charged on the credit card.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Open the <emphasis>Aktiva:Sparkonto</emphasis> account register.
+          Select <guimenu>View</guimenu> from the menu and check to make sure
+          you are in Basic Ledger style. You will view your transactions in
+          the other modes later, but for now let&rsquo;s enter a basic transaction
+          using the basic default style.</para>
+        </listitem>
+
+        <listitem>
+          <para>From the <emphasis>Aktiva:Sparkonto</emphasis> account register
+          window, enter a basic 2 account transaction to set your starting
+          balance to $1000, transferred from <emphasis>Eigenkapital:Anfangsbestand</emphasis>.
+          Remember, basic transactions transfer money from
+          a source account to a destination account. Record the transaction
+          (press the <keycap function="enter">Enter</keycap> key, or click on 
+          the <guibutton>Enter</guibutton> icon).</para>
+        </listitem>
+
+        <listitem>
+          <para>From the <emphasis>Aktiva:Girokonto</emphasis> account register
+          window, enter a basic 2 account transaction to set your starting
+          balance to $1000, transferred from <emphasis>Eigenkapital:Anfangsbestand</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>In der Buchungsansicht des Kontos <emphasis>Fremdkapital:Visa</emphasis> geben Sie eine
+          2 Konten Buchung ein, um den Anfangskontostand auf 500 € zu setzen
+          
+          to $500, transferred from <emphasis>Eigenkapital:Anfangsbestand</emphasis>.
+          This is done by entering the $500 as a <guilabel>charge</guilabel>
+          in the <emphasis>Visa</emphasis> account (or <guilabel>decrease</guilabel> in the <emphasis>Anfangskontostand</emphasis> account),
+          since it is money you borrowed. Record the transaction (press the 
+          <keycap function="enter">Enter</keycap> key, or click on 
+          the <guibutton>Enter</guibutton> icon).</para>
+        </listitem>
+      </orderedlist>
+
+      <para>You should now have 3 accounts with opening balances set.
+      <emphasis>Aktiva:Girokonto</emphasis>,
+      <emphasis>Aktiva:Sparkonto</emphasis>, and
+      <emphasis>Fremdkapital:Visa</emphasis>.</para>
+
+      <screenshot id="txns-puttoget1-Charts1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts1.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Chart accounts after setting Anfangskontostand</phrase>
+          </textobject>
+
+          <caption><para>This image shows the opening
+          balances.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-puttoget-add2">
+      <title>Additional Transaction Examples</title>
+
+      <para>Now add some more transactions to simulate a month&rsquo;s Aufwendungen.
+      During the month, $78 is spent on electricity, $45 on phone, and $350 on
+      rent. All paid by check. We also spent $45.21 on groceries, received $670
+      as salary, and paid our Internet bill this month. Finally, let&rsquo;s move
+      $100 from the savings account to the Girokonto account.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Open the <emphasis>Aufwendungen:Electricity</emphasis> account
+          register and enter a simple 2 account transaction to pay the $78
+          electrical bill at the end of the current month (eg: March 28,
+          2006). Enter a description (eg: Light Company) and the check number
+          (eg: 102). The <guilabel>Transfer</guilabel> account should be
+          <emphasis>Aktiva:Girokonto</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Open the <emphasis>Aktiva:Girokonto</emphasis> account register
+          and enter a simple 2 account transaction to pay the $45 phone bill
+          at the end of the current month (eg: March 28, 2006). Enter a
+          description (eg: Phone Company Name) and the check number (eg: 103).
+          The <guilabel>Transfer</guilabel> account should be
+          <emphasis>Aufwendungen:Phone</emphasis>. Notice that you can enter
+          expense transactions from either the credit side (the expense
+          accounts) or the debit side (the asset account).</para>
+        </listitem>
+
+        <listitem>
+          <para>Öffnen Sie die Buchungsansicht des Kontos <emphasis>Aufwendungen:Miete</emphasis> 
+          und geben sie eine einfache Buchung ein um 350 € Miete am Ende des laufenden Monats
+          zu zahlen (zum Beispiel am 28. März 2006). Geben Sie eine Beschreibung ein (Miete April)
+          und einer Buchungsnummer (zum Beispiel 104). Der Eintrag im Feld <guilabel>Buchen</guilabel>
+          ist hierbei <emphasis>Aktiva:Girokonto</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Kopieren Sie die Buchung durch Drücken des <guibutton>Dublizieren</guibutton>
+          Knopfes in der <emphasis>Werkzeugleiste</emphasis>. Start by
+          clicking on the current rent transaction, and click on the
+          <guilabel>Duplicate</guilabel> icon. Enter the transaction date a
+          month out in the future (eg: April 28, 2006), and notice the blue
+          line separator that <application>&app;</application> uses to separate future transactions
+          from current ones. In this way, you can enter transactions before
+          they occur.</para>
+
+          <para>Sie können auch eine terminierte Buchung einrichten, um ihre Miete zu zahlen,
+          da der Betrag ihrer Miete voraussichtlich für die nächste Zukunft konstant ist.
+          
+          <itemizedlist>
+              <listitem>
+                <para>Start by clicking on the current (April 28) rent
+                transaction, and click on the <guilabel>Schedule</guilabel>
+                icon</para>
+              </listitem>
+
+              <listitem>
+                <para>Change to <guilabel>Monthly</guilabel>, change
+                description if needed and press <guibutton>OK</guibutton></para>
+              </listitem>
+            </itemizedlist></para>
+        </listitem>
+
+        <listitem>
+          <para>Um Geld von ihrem Sparkonto auf ihr Girokonto zu übertragen, öffnen Sie die 
+          Buchungsansicht des Kontos <emphasis>Aktiva:Sparkonto</emphasis>, und fügen
+          eine neue Buchungen  hinzu. Geben Sie unter Datum den 6. März 2006 ein, wählen unter 
+          <guilabel>Buchen</guilabel> das Konto <emphasis>Aktiva:Girokonto</emphasis> und 
+          als Betrag der Abhebung (Haben) 100 €.</para>
+        </listitem>
+
+        <listitem>
+          <para>As another example of a simple 2 account transaction, add
+          another transaction to describe the purchase of $45.21 worth of
+          groceries on 5 of March. From within the <emphasis>Aktiva:Girokonto</emphasis> account, you
+          would set <guilabel>Buchen</guilabel> to
+          <emphasis>Aufwendungen:Lebensmittel</emphasis>. The account register should
+          now appear:</para>
+        </listitem>
+
+        <listitem>
+          <para>Zur Eingabe einer Gehaltsbuchung in der Buchungsansicht des Kontos 
+          <emphasis>Aktiva:Girokonto</emphasis> klicken Sie auf eine neue Buchungszeile
+          und klicken danach auf <guilabel>Vollständig</guilabel>. Geben Sie in der ersten 
+          Zeile zuerst das Buchungsdatum (14. März) und die Beschreibung der Buchung ein 
+          (Zum Beispiel <quote>Employers R Us</quote>). In den folgenden Zeilen der
+          Teilbuchungen geben sie die Einzahlung auf das Konto <emphasis>Aktiva:Girokonto</emphasis>
+          (670 €), gefolgt von den verschiedenen Abgaben <emphasis>Aufwendungen:Steuern:Einkommenssteuer</emphasis>
+          (180 €), <emphasis>Aufwendungen:Steuern:Krankenversicherung</emphasis> (90 €), und
+          <emphasis>Aufwendungen:Steuern:Rentenversicherung</emphasis> (60 €) und zuletzt das
+          Bruttogehalt (1000 €) als Abbuchung von Ihrem Konto <emphasis>Ertrag:Gehalt</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>You also need to pay for your Internet subscription of 20 USD on
+          the 28th.</para>
+        </listitem>
+      </orderedlist>
+
+      <screenshot id="txns-puttoget2-Charts1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts2.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Chart accounts after setting all the various
+            transactions</phrase>
+          </textobject>
+
+          <caption><para>This image shows the ending balances after <xref
+          linkend="chapter_txns" />.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-puttoget-save">
+      <title>Save file</title>
+
+      <para>Before we go to the report section, let&rsquo;s save the <application>&app;</application> data
+      file (<filename>gcashdata_4</filename>).</para>
+    </sect2>
+
+    <sect2 id="txns-puttoget-reports">
+      <title>Reports</title>
+
+      <para>But only having data available on the computer screen will not
+      make your accountant happy, therefore <application>&app;</application> comes with a large number
+      of highly customizable reports.</para>
+
+-->
+  
+  
+<!-- Add this note when the reports chapter is ready
+      <note>
+        <para>More details on the reports can be found in <xref linkend="chapter_reports" /></para>
+      </note>
+-->
+
+<!--  
+  
+
+      <para>Let&rsquo;s have a look at a <guilabel>Cash Flow</guilabel>, and a
+      <guilabel>Transaction</guilabel> Report.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>First let&rsquo;s have a look at the <guilabel>Cash Flow</guilabel>
+          report for the month of March.</para>
+
+          <para>Select the cash flow report from <menuchoice><guimenu>Reports</guimenu>
+          <guisubmenu>Income &amp; Expense</guisubmenu>
+          <guimenuitem>Cash Flow</guimenuitem></menuchoice>.</para>
+
+          <screenshot id="txns-puttoget2-Cash">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_CashFlow.png" format="PNG"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Cash Flow report for the month of March</phrase>
+              </textobject>
+
+              <caption><para>This image shows the Cash Flow report after <xref
+              linkend="chapter_txns" />.</para></caption>
+            </mediaobject>
+          </screenshot>
+
+          <para>To get this customized report, right click in the report and
+          choose <guilabel>Report Options</guilabel>. Then set the time
+          period, and specify which accounts you want in the report.</para>
+        </listitem>
+
+        <listitem>
+          <para>Now let&rsquo;s have a look at corresponding transaction report for
+          the Checking account.</para>
+
+          <para>Select the transaction report from <menuchoice><guimenu>Reports</guimenu>
+          <guimenuitem>Transaction Report</guimenuitem></menuchoice>.</para>
+
+          <screenshot id="txns-puttoget2-TransactionRptChecking">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_TransactionRptChecking.png"
+                           format="PNG" srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Transaction Report for the Checking account during
+                March</phrase>
+              </textobject>
+
+              <caption><para>This image shows the Transaction Report for the
+              Checking account during March. </para></caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Now let&rsquo;s change the transaction report to only show the
+          various Aufwendungen accounts.</para>
+
+          <screenshot id="txns-puttoget2-TransactionRptExpenses">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_TransactionRptExpenses.png"
+                           format="PNG" srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Transaction Report for the Aufwendungen accounts during
+                March</phrase>
+              </textobject>
+
+              <caption><para>This image shows the Transaction Report for the
+              various Expense accounts during March. </para></caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+      </orderedlist>
+    </sect2>
+  </sect1>
+-->  
+  
 </chapter>
+
 
