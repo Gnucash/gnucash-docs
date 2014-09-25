@@ -12,6 +12,7 @@
         (translators put your name and email here)
         Martin Mainka <martin@mainka-it.de>
         Mechtilde Stehmann<ooo@mechtilde.de>
+        Frank H. Ellenberger <frank.h.ellenberger@gmail.com>
 -->
 
 <chapter id="chapter_txns">
@@ -187,7 +188,7 @@
       <emphasis>Werkzeugleiste</emphasis> enthält praktische Knöpfe für die Arbeit innerhalb der 
       Buchungsansicht.</para>
 
-      <para>Obwohl jede Buchung zumindest aus zwei Buchungsteilen besteht, ist alles, was Sie normalerweise 
+      <para>Obwohl jede Buchung aus mindestens zwei Buchungsteilen besteht, ist alles, was Sie normalerweise
       sehen, die Zusammenfassung der Buchungsteile, welche das gewählte Konto betreffen. 
       In der Spalte <guilabel>Buchen</guilabel> können Sie das korrespondierende Konto sehen, von dem
       oder zu dem Geld <emphasis>übertragen</emphasis> wird. Wenn die Buchung mehr als zwei Konten beeinflusst,
@@ -279,8 +280,8 @@
       dieselben, aber die Buchungszeile stellt jetzt den Einfluss auf das Konto
       <emphasis>Ertrag:Gehalt</emphasis> dar.</para>
 
-      <para>Am unteren Rand des Registerfensters zeigt <application>&app;</application>
-      hilfreiche Informationen, wenn Sie die Maus über das Register bewegen. Au fder rechten Seite
+      <para>Am unteren Rand des Kontofensters zeigt <application>&app;</application> links
+      hilfreiche Informationen, wenn Sie die Maus über das Kontenblatt bewegen. Auf der rechten Seite
       können Sie den laufenden Kontostand und die Summe der erledigten Splitbuchungen sehen.</para>
     </sect2>
 
@@ -406,12 +407,16 @@
       <guilabel>Buchen</guilabel> in der Buchungszeile oder im Feld <guilabel>Konto</guilabel> 
       in der Zeile der Teilbuchungen eingeben, versucht die Ausfüllhilfe automatisch den Namen 
       entsprechend ihrer Kontenliste zu ergänzen. Sie hilft auch bei der Eingabe von Unterkonten 
-      in diese Felder: geben Sie dafür die Anfangsbuchstaben des Hauptkontos gefolgt von einem : (colon)
+      in diese Felder: geben Sie dafür die Anfangsbuchstaben des Hauptkontos gefolgt von einem <keycap>:</keycap> (Doppelpunkt)
       und den ersten Buchstaben des Unterkontos ein. Zum Beispiel können Sie für die Eingabe 
       von <emphasis>Aktiva:Girokonto</emphasis> folgendes eingeben: 
       <userinput>A:G</userinput> und <application>&app;</application>
       den Rest ergänzen lassen.</para>
-
+    <warning><para>Da <keycap>:</keycap> das Konten-Trennzeichen ist,
+      können Sie es nicht innerhalb Ihrer Kontennamen verwenden.</para></warning>
+    <tip><para>Sollten Sie aber den Doppelpunkt unbedingt in Ihren Kontennamen benötigen, können Sie ein anderes Trennzeichen in
+      <menuchoice><guimenu>Bearbeiten</guimenu><guisubmenu>Einstellungen</guisubmenu><guisubmenu>Konten</guisubmenu>
+      <guilabel>Trennzeichen</guilabel></menuchoice>.</para></tip>
     <para><application>&app;</application> verfügt in der Buchungsansicht auch über verschiedene
       Tastaturkürzel, die Ihnen bei der Eingabe viel Zeit und Mühe sparen können. Im Datumsfeld
       können folgende Tastaturkürzel verwenden werden:</para>
@@ -459,7 +464,7 @@
     <para>Das Feld <guilabel>Buchen</guilabel> besitzt eine Ausfüllhilfe für Kontonamen.
     Geben Sie die Anfangsbuchstaben das Kontonamens ein und <application>&app;</application> 
     ergänzt den fehlenden Teil des Namens. Wenn sie (zu einem beliebigen Zeitpunkt) das 
-    Trennzeichen (:) eingeben, wird der bisher gewählte Teil des Namens abgeschlossen 
+    Trennzeichen <keycap>:</keycap> eingeben, wird der bisher gewählte Teil des Namens abgeschlossen 
     und mit der Auswahl des Unterkontos begonnen. Zum Beispiel wird die Eingabe <keycap>A:G</keycap>
     in unserem Beispielkontorahmen ergänzt zum Konto <emphasis>Aktiva:Girokonto</emphasis>.
     Sie können auch die Tasten <keycap>Menü</keycap> oder 
@@ -554,10 +559,13 @@
       behält den Überblick über den Abgleichstatus einer jeden Buchung.</para>
 
     <para>Der Abgleichzustand einer Buchung wird im Feld <guilabel>J</guilabel> in der 
-      Buchungsansicht angezeigt. Der Buchstabe <emphasis>b</emphasis> zeigt an, dass eine 
+      Buchungsansicht angezeigt. Der Buchstabe <emphasis>j</emphasis> zeigt an, dass eine 
       Buchung bereits abgeglichen ist, ein <emphasis>n</emphasis> zeigt an, dass ein Abgleich 
-      noch nicht erfolgt ist, und <emphasis>b</emphasis> zeigt an, dass die Buchung gelöscht, 
-      aber noch nicht abgeglichen ist. Durch Klicken in das Feld <guilabel>J</guilabel> der 
+      noch nicht erfolgt ist, und <emphasis>b</emphasis> zeigt an, dass die Buchung bestätigt,
+      also z.B. vom ausführenden Institut akzeptiert wurde, aber noch nicht abgeglichen ist.
+      Ein bestätigter Buchungsteil zeigt an, dass Sie irgendeine Bestätigung haben, daß die 
+      Institution den Auftrag angenommen hat - beispielsweise besitzen die Quittung eines 
+      Restaurants, dass Sie dort mit Ihrer Kreditkarte bezahlt haben. Durch Klicken in das Feld <!-- FIXME: in 2.6.3 leer: --><guilabel>J</guilabel> der
       Buchung können Sie zwischen den Zuständen <emphasis>n</emphasis> und <emphasis>b</emphasis> 
       umschalten. Sie können den Zustand auf <emphasis>y</emphasis> setzen, indem Sie den
       Dialog <guilabel>Abgleichen</guilabel> verwenden.</para>
@@ -569,12 +577,12 @@
       d.h. der Bank noch nicht mitgeteilte Finanztransaktionen berücksichtigt.</para>
 
     <para>Wenn Sie z.B. einen Scheck für irgend etwas ausstellen, sollten Sie dies in
-      <application>&app;</application> buchen. Das Feld Abgleich (<guilabel>J</guilabel>)
+      <application>&app;</application> buchen. Das Feld Abgleich <!-- FIXME: in 2.6.3 leer: -->(<guilabel>J</guilabel>)
       der Buchung enthält am Anfang den Wert <guilabel>n</guilabel> (neu). Die neue
       Buchung trägt zum Kontostand <guilabel>Aktueller Wert</guilabel> bei, aber nicht
       zum Konstostand <guilabel>Bestätigt</guilabel> und <guilabel>Abgeglichen</guilabel>.
-      Später, wenn Sie annehmen, dass der Scheck eingelöst wurde, können Sie auf das Feld
-      Abgleich (<guilabel>J</guilabel>) dieser Buchung klicken, um den Wert auf 
+      Später, wenn Sie eine Bestätigung erhalten, dass der Scheck eingelöst wurde, können Sie
+      auf das Feld Abgleich <!-- FIXME: in 2.6.3 leer: -->(<guilabel>J</guilabel>) dieser Buchung klicken, um den Wert auf 
       <emphasis>b</emphasis> umzustellen (bestätigt). Sobald Sie das tun, ändert sich der
       Kontostand in der Anzeige <guilabel>Bestätigt</guilabel>, um jetzt auch diese
       Transaktion zu berücksichtigen. Wenn der Kontoauszug eintrifft, können Sie dann
@@ -588,18 +596,26 @@
         das Fenster Kontoabgleich nutzen. Sobald eine Buchung als <emphasis>Abgeglichen</emphasis>
         gekennzeichnet wurde, kann sie nicht mehr so einfach geändert werden, ohne dass der 
         <link linkend="rec-start-blnc">
-          <guilabel>Anfangskontostand</guilabel>
+          <guilabel>Anfangssaldo</guilabel>
         </link>
         des nächsten Kontoabgleichs abweicht.</para>
       </note>
+
+      <warning>
+        <para>Es ist wichtig zu verstehen, dass der Abgleich für ein gegebenes
+        Datum erfolgt, und wenn Sie ein Konto aufgrund eines Auszugs von einem bestimmten Datum abgleichen,
+        Sie <emphasis role="strong">alle Buchungen bis zu diesem Datum</emphasis> als abgeglichen markieren.
+        Falls Sie also Buchungen einfügen oder verändern, welche vor dem Datum Ihres letzten Abgleichs liegen,
+        wird der entsprechende <emphasis role="strong">Abgeglichen</emphasis>-Saldo nicht mehr stimmen.</para>
+      </warning>
 
     <sect2 id="txns-reconcile-window2">
       <title>Abgleichsdialog</title>
 
       <para>Der Abgleichsdialog wird verwendet, um ein <application>&app;</application> Konto in 
       Übereinstimmung zu bringen mit einem Kontoauszug, den Sie von einer Bank oder einer anderen 
-      Finanzinstitution bekommen haben. Ein Kontoabgleich ist nicht nur nützlich, um Ihre 
-      Buchführung mit der Ihrer Bank zu überprüfen, sondern auch, um ein besseres Verständnis 
+      Finanzinstitution bekommen haben. Ein Kontoabgleich ist nicht nur nützlich, um die Übereinstimmung
+      Ihrer Buchführung mit der Ihrer Bank zu gewährleisten, sondern auch, um ein besseres Verständnis 
       von offenen Geschäftsvorfällen zu erhalten, z.B. noch nicht eingelösten Schecks.</para>
 
       <para>Um den Abgleichsdialog zu öffnen, wählen Sie ein Konto in Ihrem Kontenrahmen und klicken
@@ -638,35 +654,40 @@
           </listitem>
         </varlistentry>
 
-     <varlistentry id="rec-start-blnc"><term><guilabel>Anfangssaldo</guilabel></term>
-      <listitem>
-        <para>Dies ist ein vorgegebener Wert, der den Kontostand des letzten Abgleichs
+        <varlistentry id="rec-start-blnc"><term><guilabel>Anfangssaldo</guilabel></term>
+          <listitem>
+            <para>Dies ist ein vorgegebener Wert, der den Kontostand des letzten Abgleichs
               anzeigt. Dieser Wert sollte mit dem Anfangskontostand Ihres Kontoauszugs 
-              übereinstimmen.</para>
+              übereinstimmen.
+            </para>
+            <warning><para>Manchmal stimmt der Anfangssaldo in <application>&app;</application> nicht
+              mit dem von Ihrer Bank übermittelten überein. Dies tritt beim ersten Abgleich des 
+              Kontos auf, oder wenn bereits abgeglichene Buchungen verändert oder gelöscht wurden.</para>
+            </warning>
+            <note><para>Beim ersten Abgleich Ihres Kontos beträgt der <guilabel>Anfangssaldo</guilabel>
+              <guilabel>0,00</guilabel>. Dies ist höchstwarscheinlich nicht der <emphasis>Anfangskontostand</emphasis>
+              Ihres Kontos. Beim Abgleich wird der <emphasis>Anfangskontostand</emphasis> des Kontos 
+              im Abgleich berüchsichtigt, und das Ergebnis sollte ausgeglichen sein.</para>
+            </note>
+            <tip>
+              <para>Im Falle, dass eine vorher abgeglichene Buchung versehentlich nicht mehr abgeglichen ist,
+                können Sie einfach die Buchung zusammen mit den anderen Buchungen im jetzigen
+                Kontoauszug wieder abgleichen, und das Ergebnis sollte ausgeglichen sein.
+              </para>
+              <para>Die Korrektur von versehentlich gelöschten, bereits abgeglichenen Buchungen ist eine
+                größere Herausforderung. Falls Sie nicht mehr feststellen können, welche Buchung gelöscht 
+                wurde, und Sie sie deshalb nicht mehr wieder eingeben können, müssen Sie eine Ausgleichsbuchung
+                einfügen, um den Kontoabgleich abzuschließen.
+              </para>
+            </tip>
+            <caution><para>Während letzter Fall in Ihrer privaten Buchführung nicht weiter schlimm ist, sollten
+              Sie eine sehr gute Erklärung für Ihre Prüfer parat haben, falls Sie die Bücher eines Vereins oder
+              einer Firma führen.</para>
+            </caution>
+          </listitem>
+        </varlistentry>
 
-	    <note>
-	    <para>Manchmal stimmt der Anfangssaldo in <application>&app;</application> nicht
-      mit dem von Ihrer Bank übermittelten überein. Dies tritt beim ersten Abgleich des 
-      Kontos auf, oder wenn bereits abgeglichene Buchungen verändert oder gelöscht wurden.</para>
-	    </note>
-	  
-	    <para>Beim ersten Abgleich Ihres Kontos beträgt der <guilabel>Anfangssaldo</guilabel>
-      <guilabel>0.00</guilabel>. Dies ist höchstwarscheinlich nicht der <emphasis>Anfangskontostand</emphasis>
-      Ihres Kontos. Beim Abgleich wird der <emphasis>Anfangskontostand</emphasis> des Kontos 
-	    im Abgleich berüchsichtigt, und das Ergebnis sollte ausgeglichen sein.</para>
-            
-	    <para>Im Falle, dass eine vorher abgeglichene Buchung versehentlich nicht mehr abgeglichen ist,
-      können Sie einfach die Buchung zusammen mit den anderen Buchungen im jetzigen
-      Kontoauszug wieder abgleichen, und das Ergebnis sollte ausgeglichen sein.</para>
-
-      <para>Die Korrektur von versehentlich gelöschten bereist abgeglichenen Buchungen ist eine
-      größere Herausforderung. Falls Sie nicht mehr feststellen können, welche Buchung gelöscht 
-      wurde, und Sie sie deshalb nicht mehr wieder eingeben können, müssen Sie eine Dummy-Buchung
-      einfügen, um den Kontoabgleich abzuschließen.</para>
-      </listitem>
-      </varlistentry>
-        
-      <varlistentry><term><guilabel>Schlußsaldo</guilabel></term>
+        <varlistentry><term><guilabel>Schlußsaldo</guilabel></term>
           <listitem>
             <para>In dieses Feld sollte der Schlussaldo des Kontoauszugs Ihrer Bank eingetragen werden.</para>
 	          <note>
@@ -674,14 +695,14 @@
               unteren Teil der Kontoansicht angezeigten <guilabel>aktuellen Wert</guilabel> ein.</para>
 	          </note>
           </listitem>
-      </varlistentry>
+        </varlistentry>
 
-      <varlistentry><term><guilabel>Unterkonten miteinbeziehen</guilabel></term>
+        <varlistentry><term><guilabel>Unterkonten miteinbeziehen</guilabel></term>
           <listitem>
             <para>Wählen Sie diese Option, wenn Sie in dem Abgleich auch Buchungen von 
             Unterkonten des gewählten Kontos berücksichtigen möchten.</para>
           </listitem>
-      </varlistentry>
+        </varlistentry>
 
         <varlistentry><term><guibutton>Zahlung Habenzins eingeben...</guibutton></term>
           <listitem>
@@ -1233,9 +1254,8 @@
         <guibutton>Ok</guibutton> die Karteikarten aller Konten, in die automatisch 
         die terminierten Buchungen eingetragen wurden.</para>
       </tip>
-<!--
       <note>
-        <para>Wenn Sie die Buchung für den 28. April  hier erstellen, dann  <emphasis>Greifen Sie zurück</emphasis> auf die zuletzt gespeicherte <application>&app;</application>-Datei 
+        <para>Wenn Sie die Buchung für den 28. April hier erstellten, dann <emphasis>greifen Sie zurück</emphasis> auf die zuletzt gespeicherte <application>&app;</application>-Datei 
         durch Auswahl von <menuchoice><guimenu>Datei</guimenu><guimenuitem>Öffnen</guimenuitem></menuchoice> und
         auswählen der vorherigen <filename>gcashdata_3</filename> <application>&app;</application>-Datei.</para>
       </note>
@@ -1246,17 +1266,18 @@
     <title>Alles Zusammensetzen</title>
 
     <para>In den vorherigen Abschnitten dieses Kapitels wurden die Konzepte und Mechanismen behandelt. Dieser Abschnitt
-    wird auf den Kontenplan ausdehnen, welcher eingangs in den vorherigen Kapiteln erstelt wurde,
-    in dem einige Anfangsbestände erstellt, Geschäftsvorfälle  und eine
+    wird, aufbauend auf den Kontenplan, welcher bereits im vorherigen Kapitel erstelt wurde, ihre Datei erweitern,
+    in dem einige Anfangsbestände erstellt, Geschäftsvorfälle und eine
     Terminierte Buchung hinzugefügt wurden.</para>
 
     <sect2 id="txns-puttoget-openfile">
-      <title>Open <application>&app;</application>-Datei</title>
+      <title>Offnen der <application>&app;</application>-Datei</title>
 
       <para>Starten Sie mit der vorherigen Datei, die unter 
       <filename>gcashdata_3emptyAccts</filename> gespeichert ist und spreichern Sie diese sofort unter
-      <filename>gcashdata_4</filename>. Das Hauptfesnter sollte wie folgt aussehen:     
+      <filename>gcashdata_4</filename>. Das Hauptfenster sollte wie folgt aussehen:     
       </para>
+<!--
  
       <screenshot id="txns-puttoget1-Charts">
         <mediaobject>
@@ -1570,9 +1591,9 @@
           </screenshot>
         </listitem>
       </orderedlist>
+-->  
     </sect2>
   </sect1>
--->  
   
 </chapter>
 
