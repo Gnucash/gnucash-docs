@@ -1,7 +1,7 @@
 <!--
       (Do not remove this comment block.)
   Version: 2.0.0
-  Last modified: July 9th 2006
+  Last modified: 2014-09-26 (fell)
   Maintainers: 
                Chris Lyttle <chris@wilddev.net>
   Author:
@@ -390,20 +390,24 @@
     <title>Using Entry Shortcuts</title>
 
     <para><application>&app;</application> provides several time-saving shortcuts for entering your
-    data. When you type the first few characters of a description that you
-    have used before, the QuickFill feature automatically fills in the rest of
-    the transaction as you last entered it. When you type in the first
-    characters of an account name in either the <guilabel>Transfer</guilabel>
-    field of the transaction line or the <guilabel>Account</guilabel> field of
-    the split line, QuickFill will automatically complete the name from your
-    account list. It also helps you with entering sub-accounts in these
-    fields: simply type the first characters of the parent account name
-    followed by a colon and the first characters of the sub-account name. For
-    example, to enter <emphasis>Assets:Checking</emphasis>, you might type
-    <userinput>A:C</userinput> and let <application>&app;</application> fill in the rest.</para>
-
+      data. When you type the first few characters of a description that you
+      have used before, the QuickFill feature automatically fills in the rest of
+      the transaction as you last entered it. When you type in the first
+      characters of an account name in either the <guilabel>Transfer</guilabel>
+      field of the transaction line or the <guilabel>Account</guilabel> field of
+      the split line, QuickFill will automatically complete the name from your
+      account list. It also helps you with entering sub-accounts in these
+      fields: simply type the first characters of the parent account name
+      followed by a <keycap>:</keycap> (colon) and the first characters of the sub-account name. For
+      example, to enter <emphasis>Assets:Checking</emphasis>, you might type
+      <userinput>A:C</userinput> and let <application>&app;</application> fill in the rest.</para>
+    <warning><para>Because <keycap>:</keycap> is the account separator symbol,
+      you can not use it in your account names.</para></warning>
+    <tip><para>If you really need the colon in your account names, you can select another symbol by
+      <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu><guisubmenu>Accounts</guisubmenu>
+      <guilabel>Character</guilabel></menuchoice>.</para></tip>
     <para>Register keyboard shortcuts also save you time, and <application>&app;</application> provides
-    several of them. In the date field, you can type:</para>
+      several of them. In the date field, you can type:</para>
 
     <itemizedlist>
       <listitem>
@@ -558,13 +562,15 @@
       transaction.</para>
 
       <para><application>&app;</application> keeps track of the reconciliation status of each
-      transaction. The reconciliation status of a transaction is shown by the
-      reconciliation <guilabel>R</guilabel> field in a register:
-      <emphasis>y</emphasis> indicates that a transaction has been
-      reconciled, <emphasis>n</emphasis> indicates that it has not, and <emphasis>c</emphasis> indicates that it has
-      been cleared, but not reconciled. You can toggle the reconciliation status
-      between <emphasis>n</emphasis> and <emphasis>c</emphasis> by clicking in the <guilabel>R</guilabel> field; you can set 
-      it to <emphasis>y</emphasis> by using <xref linkend="txns-reconcile-window2" />.</para>
+        transaction. The reconciliation status of a transaction is shown by the
+        reconciliation <guilabel>R</guilabel> field in a register:
+        <emphasis>y</emphasis> indicates that a transaction has been
+        reconciled, <emphasis>n</emphasis> indicates that it has not, and <emphasis>c</emphasis> indicates that it has
+        been cleared, but not reconciled. A split marked cleared signifies that you got some kind of confirmation
+        that the institution accepted the order (e.g. you have the restaurant's receipt for your credit card purchase).
+        You can toggle the reconciliation status
+        between <emphasis>n</emphasis> and <emphasis>c</emphasis> by clicking in the <guilabel>R</guilabel> field; you can set 
+        it to <emphasis>y</emphasis> by using <xref linkend="txns-reconcile-window2" />.</para>
     
       <para>At the bottom of the account window, there are (among others) two running
       balances (the <guilabel>cleared</guilabel> and <guilabel>reconciled</guilabel> balance), and the 
@@ -575,7 +581,7 @@
       enter the transaction into <application>&app;</application>. The reconciliation <guilabel>R</guilabel> field of the
       transaction will initially contain <guilabel>n</guilabel> (new). Your new entry will
       contribute to the <guilabel>total</guilabel> balance, but not to the <guilabel>cleared</guilabel> and
-      <guilabel>reconciled</guilabel> balance. Later, if you think that the check has been cashed,
+      <guilabel>reconciled</guilabel> balance. Later, if you got some confirmation that the check has been cashed,
       you might click on the transaction&rsquo;s <guilabel>R</guilabel> field to change it to <emphasis>c</emphasis>
       (cleared). When you do this, the <guilabel>cleared</guilabel> balance will
       change to include this amount. When the bank statement arrives, you can
@@ -589,13 +595,13 @@
         <link linkend="rec-start-blnc"><guilabel>Starting Balance</guilabel></link> of the next reconciliation.</para>
       </note>
 
-      <note>
+      <warning>
         <para>It is important to understand that reconciliation is done for a given
         date, and when you reconcile an account based on a statement from a given date,
         you are reconciling <emphasis role="strong">all transactions prior to that date</emphasis>. Therefore, if you
         add or modify transactions that predate your last reconciliation, your
         <emphasis role="strong">reconciled</emphasis> balances will be thrown off.</para>
-      </note>
+      </warning>
 
     <sect2 id="txns-reconcile-window2">
       <title>Reconcile windows</title>
@@ -644,31 +650,30 @@
         <varlistentry id="rec-start-blnc"><term><guilabel>Starting Balance</guilabel></term>
           <listitem>
             <para>This is a non-editable item which displays the balance from the previous
-            reconciliation. It should match the starting balance in your statement.</para>
+              reconciliation. It should match the starting balance in your statement.</para>
 
-	  <warning>
-	    <para>Sometimes, the opening balance in <application>&app;</application> does not match that 
-	    found on your statement. This can happen the first time you reconcile your account or 
-	    when a previously-reconciled transaction is de-reconciled or deleted.</para>
-	  </warning>
-	  
-          <note>
-	    <para>The first time you reconcile your account, the <guilabel>starting balance</guilabel> will 
-	    be <guilabel>0.00</guilabel>, thus probably not the  <emphasis>opening balance</emphasis> of your account. 
-	    When you reconcile the account, the <emphasis>opening balance</emphasis> for the account 
-	    will be included in the reconciliation, and the result should balance.</para>
-          </note>
+            <warning><para>Sometimes, the opening balance in <application>&app;</application> does not match
+              that found on your statement. This can happen the first time you reconcile your account or 
+              when a previously-reconciled transaction is de-reconciled or deleted.</para></warning>
 
-          <tip>   
-	    <para>In the case when a previously-reconciled transaction is accidentally de-reconciled, you can simply 
-	    re-reconcile the transaction along with the transactions on the current statement, and the
-            result should balance.</para>
+            <note><para>The first time you reconcile your account, the <guilabel>starting balance</guilabel>
+              will be <guilabel>0.00</guilabel>, thus probably not the  <emphasis>opening balance</emphasis>
+              of your account. When you reconcile the account, the <emphasis>opening balance</emphasis> for the
+              account will be included in the reconciliation, and the result should balance.</para></note>
 
-            <para>The case of accidentally deleting a previously-reconciled transaction presents
-            more of a challenge; if you cannot determine what was
-            deleted and restore it to the register, you will have to create a dummy
-            transaction to get the reconciliation to finish.</para>
-          </tip>
+            <tip>
+              <para>In the case when a previously-reconciled transaction is accidentally de-reconciled, you
+                can simply re-reconcile the transaction along with the transactions on the current statement, and
+                the result should balance.</para>
+
+              <para>The case of accidentally deleting a previously-reconciled transaction presents
+                more of a challenge; if you cannot determine what was
+                deleted and restore it to the register, you will have to create a dummy
+                transaction to get the reconciliation to finish.</para>
+            </tip>
+            <caution><para>While the latter case does not matter for your private accounting,
+              you should have a really good explanation for your auditors, if you are the
+              accountant of a club or a company.</para></caution>
           </listitem>
         </varlistentry>
 
