@@ -10,6 +10,8 @@ EXTRA_DIST = gnucash-docs.spec \
 	     xsl \
 	     HACKING \
 	     README \
+	     fonts/gothic.xml \
+	     fonts/mincho.xml \
 	     fonts/ume-tgo4.ttf \
 	     fonts/ume-tmo3.ttf \
 	     fonts/README.Fonts
