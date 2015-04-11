@@ -137,8 +137,29 @@
 
             <listitem><para><guilabel>Income</guilabel> &mdash; Total of all income transactions associated with a stock account.</para>
               <note>
-                <para>To include income from dividends which are not reinvested:</para>
-                <para>Ensure there is a dummy transaction split to the stock account with quantity 0 price 1 value 0 in the dividend transaction. You can just enter the dummy stock split with no values in the dividend account and it will create the transaction with price 1 even though you cannot see the Price column in that register.</para>
+                <para>To include income from dividends which are not reinvested (if there is no split to the stock account in the income transaction, the report has no way of associating the income with a particular stock) :
+                </para>
+		<para>Ensure there is a dummy transaction split to the stock         account with quantity 0, price 1 and value 0 in the dividend transaction. Enter the dummy stock split with no values in the dividend account and it will create the transaction with price 1 even though you cannot see the Price column in that register.
+		</para>
+                <para>In GnuCash 2.6.6, this report was modified to simplify the recording of dividend and interest payments. With this
+                change it may not be necessary to include the dummy stock split in the transaction. The report will find income (and expense) transactions that are in the parent account of the stock account being reported on. This is done by looking in the parent account for transactions that have exactly two splits (not counting trading account splits) where the other split is to an income or expense account with the same name as the stock's account.
+                </para>
+                <para>For example given an account structure like
+                </para>
+                <literallayout>
+                Assets (type ASSET)
+                  Broker (type ASSET)
+                    Widget Stock (type STOCK)
+                Income (type INCOME)
+                  Dividends (type INCOME)
+                    Widget Stock (type INCOME)
+                </literallayout>
+                <para>A transaction that debits the "Assets:Broker" account and credits the "Income:Dividends:Widget Stock" account will count as income even though it doesn't have a split with account "Assets:Broker:Widget Stock".
+                </para>
+                <para>This only works if the parent account ("Assets:Broker" in this case) is a Bank or Asset account and the Income/Expense account has the same name as the stock account. It won't double count transactions that have a dummy split since they won't have exactly two split transactions.
+                </para>
+                <para>It will not work if the income or expense account split is to a subaccount of the account with the same name as the stock account i.e. "Income:Dividends:Widget Stock:Franked"
+                </para>
 	      </note>
 	    </listitem>
 
