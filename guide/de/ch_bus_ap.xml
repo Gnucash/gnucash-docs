@@ -1,0 +1,346 @@
+<!--
+      (Do not remove this comment block.)
+  Originally designed by Carol Champagne.
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+        updated Patrick Schweiger <pks@spiffykitty.com>
+  Translators:
+               Mechtilde Stehmann<ooo@mechtilde.de>
+-->
+
+<!--
+A lot of the following text is duplicated in the GnuCash help. The text here in the guide should be 
+corrected to be less describing of the interface and more tutorial oriented
+-->
+
+ <chapter id="chapter_bus_ap">
+ <title>Kreditorenbuchhaltung</title>
+ <para>Die Kreditorenbuchhaltung bezieht sich auf Lieferungen und Leistungen, die ein Unternehmen gekauft hat und nun bezahlen muss.</para>
+
+  <sect1 id="bus-ap-concepts1">
+  <title>Grundgedanken</title>
+  <para>Dieses Kapitel konzentriert sich auf die Kreditorenbuchhaltung. Diese bezieht sich auf Lieferungen und Leistungen, die ein Unternehmen gekauft hat, für die eine Zahlung geplant werden muss.</para>
+   </sect1>
+
+  <sect1 id="bus-ap-setup1">
+  <title>Starteinrichtung</title>
+  <para>Um die Kreditorenbuchhaltung in <application>&app;</application> einzurichten, müssen zunächst zwei Dinge getan werden. 
+  Das Erste ist die Erstellung einer zweckdienlichen Kontenhierarchie, und das Zweite ist die Registrierung des Unternehmens in <application>&app;</application>.</para>
+
+  <sect2 id="bus-ap-setupacct2">
+  <title>Konteneinrichtung</title>
+
+      <para>Es gibt viele verschiedene Möglichkeiten, eine Geschäftskontenhierarchie 
+      einzurichten. Sie können mit der Einrichtung der Geschäftskonten anfangen, 
+      die mit dem Neuen Kontenplan erstellen Assistenten zur Verfügung gestellt wird, oder einen Kontenplan 
+      händisch erstellen. Um auf die vorgefertigten Geschäftskontenpläne zuzugreifen, 
+      starten Sie<application>&app;</application> und
+      Klicken auf <menuchoice><guimenu>Datei</guimenu><guimenuitem>Neue Datei</guimenuitem></menuchoice> und
+      fahren fort, bis Sie eine Liste der verfügbaren Kontenpläne sehen. Dort wählen Sie 
+      den gewünschten Kontenrahmen (z.B. SKR03 und SKR04) aus.</para>
+
+      <para>Die vorgefertigte Geschäftskontenhierarchie wird nicht exakt Ihren Bedürfnissen 
+      entsprechen. Sie werden Anpassungen an der Kontenhierarchie durchführen, damit diese Ihre 
+      spezielle Situation wiedergibt. Wahrscheinlich wird sie soweit passen, dass  empfohlen werden kann, damit anzufangen.</para>
+
+      <para>Die Kreditorenbuchhaltung bezieht sich auf von Ihrem 
+      Unternehmen gekaufte Lieferungen und Leistungen, für die noch keine Zahlung 
+      erfolgte. Dies wird in der Bilanz als Verbindlichkeit dargestellt, weil Sie 
+      dafür zahlen müssen. Um <application>&app;</application>&rsquo;s eingebaute 
+      Kreditorenbuchhaltung nutzen zu können, müssen Sie zuerst, ein Konto mit 
+      der Kontoart <emphasis>Verbindlichkeit</emphasis> einrichten. Das <emphasis>Verbindlichkeitskonto</emphasis> ist üblicherweise ein Unterkonto unter Passiva. Innerhalb dieses Kontos wird die integrierte 
+      Kreditorenbuchhaltung Geschäftsvorfälle buchen.</para>
+  <literallayout>
+Basishierarchie für Kreditorenbuchhaltung:
+
+-Aktiva
+   -Bank
+-Verbindlichkeiten
+   -Verbindlichkeiten aus Lieferungen und Leistungen
+-Ausgaben
+   -AP Ausgaben
+  </literallayout>
+
+ 
+ <para>Sie benötigen zusätzlich hinzugefügte Aktiva- und Aufwandskonten, um die 
+  Hierarchie nutzbar zu machen. Diese wichtigen Aspekte dieser Hierarchie sind die Nutzung 
+  eines Aufwandkontos und eines Verbindlichkeitskonto mit der Kontoart <emphasis>Offene Verbindlichkeit</emphasis>.</para>
+  </sect2>
+
+  <sect2 id="bus-ap-setupcname2">
+  <title>Registrierung des Unternehmens</title>
+
+      <para>Nachdem Sie die Kontenstruktur abgebildet haben, registrieren Sie <application>&app;</application>
+      Datei als zu Ihrem Unternehmen gehörend. Für die Registrierung Ihres Unternehmens wählen Sie in
+      <menuchoice><guimenu>Datei</guimenu><guimenuitem>Eigenschaften</guimenuitem><guimenuitem>Geschäft</guimenuitem></menuchoice>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>den Namen Ihres Unternehmens mit den Kontaktinformationen 
+          wie Telefon-, Faxnummern, E-Mail Adresse und URL der Webseite</para>
+        </listitem>
+
+        <listitem>
+          <para>die Identifikationsnummer Ihres Unternehmens (z.b die UStID) 
+          im Feld <guilabel>Firmennummer</guilabel>.</para>
+        </listitem>
+
+       </itemizedlist>
+  </sect2>
+  </sect1>
+
+  <sect1 id="bus-ap-components1">
+  <title>Systemkomponenten</title>
+  <para><application>&app;</application> hat eine integrierte Kreditorenbuchhaltung. 
+  Die von der Kreditorenbuchhaltung erzeugten Geschäftsvorfälle werden im Konto Verbindlichkeiten aus Lieferung und Leistung aufgezeichnet. 
+  In der Regel arbeiten Sie nicht direkt mit diesem Konto, sondern nutzen die vier integierten <application>&app;</application> Passiva-Anwendungsbestandteile.
+  Die Passiva-Anwendungsbestandteile sind im <menuchoice><guimenu>Geschäft</guimenu><guisubmenu>Kunde</guisubmenu></menuchoice> Untermenü erreichbar. Diese Passiva-Anwendungsbestandteile sind :</para>
+
+  <itemizedlist>
+  <listitem>
+  <para><guilabel>Lieferanten</guilabel> sind Personen oder Unternehmen, von denen Sie 
+  Produkte oder Dienstleistungen auf Kredit gekauft haben.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Lieferantenrechnungen </guilabel> bilden die materiellen Rechnungen ab, die Lieferanten senden, um von Ihnen Zahlunge zu erhalten. Eine Rechnung enthält eine aufgegliederte Liste der Dinge, die Sie gekauft haben.</para>
+        <para>Zusätzlich unterstützt <application>&app;</application> auch <guilabel>Gutschriften</guilabel>
+        welches die Umkehrung der Rechnung bildet. Eine Gutschrift erhält man gewöhnlich vom 
+        Lieferanten, um Posten zu korrigieren, die irrtümlich in Rechnung gestellt oder zurückgesandt wurden..</para>
+        <para>Beide Dokumentenarten werden mit den gleichen Menüpunkten eingerichtet.</para>
+  </listitem>
+  <listitem>
+  <para><guilabel>Aufträge</guilabel> (optional) ist, wo Sie Lieferantenaufträge eintragen. Aufträge sind eine Einrichtung, mit der man mehrere Rechnungen eines einzelnen Lieferanten gruppieren kann.</para>
+  </listitem>
+  <listitem>
+  <para>Unter <guilabel>Zahlung verarbeiten...</guilabel> können Sie Zahlungen an einen Lieferanten aufzeichnen, dem Sie Geld schulden.</para>
+  </listitem>
+  </itemizedlist>
+
+  <para>Die folgenden Abschnitte führen in die einzelnen Passiva-Anwendungsbestandteile ein.</para>
+ </sect1>
+
+  <sect1 id="bus-ap-vendors1">
+  <title>Lieferanten</title>
+ <para>Ein Lieferant ist eine Gesellschaft oder eine Person, von der Sie Waren oder Leistungen kaufen. Lieferanten müssen im Passiva-System registiert sein.</para>
+ 
+  <sect2 id="bus-ap-vendornew2">
+  <title>Neu</title>
+ <para>Um einen neuen Lieferanten zu registrieren, wählen Sie den <menuchoice><guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Neuer Lieferant</guimenuitem></menuchoice> Menüentrag. Geben Sie die allgemeinen Informationen über den Lieferanten, wie Firmenname, Adresse, Telefon- und Faxnummer, etc ein. Unten finden Sie eine Liste weiterer Optionen: </para>
+
+   <para>So sieht das Registrierungsfenster für einen neuen Lieferanten aus:</para>
+	<screenshot id="bus-ap-vendornew">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_vendornew.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Neuer Lieferant - Registrierungsfenster</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Neuer Lieferant - Registrierungsfenster
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  </sect2>
+  <sect2 id="bus-ap-vendorfind2">
+  <title>Lieferant suchen</title>
+
+ <para>Um einen existierenden Lieferanten zu suchen, nutzen Sie das <menuchoice><guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Lieferanten suchen...</guimenuitem></menuchoice> Fenster. Sie wählen einen Lieferanten mit <guibutton>Lieferant anzeigen/bearbeiten</guibutton> aus den Suchergebnissen. Dieses Fenster wird auch benutzt, um einen Lieferanten zu suchen, wenn Rechnungen eingehen und Zahlungen geleistet werden.</para>
+	<screenshot id="bus-ar-vendorfind">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_vendorfind.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Lieferanten suchen Fenster</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Lieferanten suchen </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+      <para>Wenn viele Lieferanten den Suchkriterien entsprechen, kann die gewählte Suche 
+      durch eine zusätzliche Suche in den aktuellen Suchergebnissen 
+      verfeinert werden. Das aktuelle Ergebnis wird durchsucht, wenn der <guilabel>Verfeinern der 
+      aktuellen Suche</guilabel> Radiobutton ausgewählt ist. Tatsächlich wählt <application>&app;</application>
+      diese Option für Sie, nachdem Sie die anfängliche Suche haben laufen lassen.</para>
+
+      <para>Wenn der Lieferant, den Sie suchen, nicht den gewählten 
+      Suchkriterien entspricht, können Sie die Suchkriterien ändern durch Klicken des <guilabel>Neue
+      Suche</guilabel> Radiobutton und dann des <guibutton>Suchen</guibutton>
+      Button. Der wichtige Schritt ist die Auswahl  <guilabel>Neue Suche</guilabel>. 
+      Wenn der Lieferant nicht im Ergebnis der ursprünglichen Suche ist 
+      und Sie nur in diesem Ergebnissatz suchen, kann der Lieferant trotz 
+      neuer Suchkriterien nicht gefunden werden.</para>
+
+ <note>
+ <para>Um eine Liste aller registrierten aktiven Lieferanten zu erhalten, setzen Sie das Suchkriterium auf <guilabel>entspricht regulärem Ausdruck</guilabel>  und setzen einen einzelnen Punkt <quote>.</quote> in  das Texteingabefeld. Stellen Sie sicher, dass <guilabel>Nur aktive Daten durchsuchen</guilabel> ausgewählt ist. Dann klicken Sie <guibutton>Suchen</guibutton>. Der reguläre Ausdruck <quote>.</quote> findet alles.</para>
+ </note>
+  </sect2>
+</sect1>
+
+  <sect1 id="bus-ap-bills1">
+  <title>Lieferantenrechnung</title>
+  <para>Eine Lieferantenrechnung ist eine Zahlungsaufforderung von einem Lieferanten. <application>&app;</application> kann Rechnungen nachverfolgen.</para>
+
+    <para>Eine Gutschrift ist ein Dokument, dass Sie vom Lieferanten erhalten, um geleistete Lieferungen oder Leistungen  
+    zu berichtigen, die in einer Rechnung falsch berechnet wurden. <application>&app;</application> kann Gutschriften erzeugen und 
+    verfolgen durch dieselben Menüeinträge wie bei Rechnungen.</para>
+
+    <note>
+      <para>Dieser Abschnitt trifft sowohl auf Rechnungen als auch auf 
+      Gutschriften zu. Um Wiederholungen zu vermeiden und den Text 
+      leichter lesbar zu halten, wird er sich nur auf Rechnungen beziehen. Sie können ihn 
+      genauso auf Gutschriften anwenden. Nur wo sich das Verhalten der Gutschriften von 
+      den Rechnungen unterscheidet, wird dies ausdrücklich angesprochen.</para>
+    </note>
+
+  <sect2 id="bus-ap-billnew2">
+  <title>Neu</title>
+  <para>Wenn Sie eine Rechnung von einem Lieferanten erhalten und diese in <application>&app;</application> eingeben wollen, müssen Sie eine neue Rechnung erstellen. Um eine neue Rechnung zu erstellen, nutzen Sie den Menüeintrag <menuchoice><guimenu>Geschäft</guimenu><guisubmenu>Leferant</guisubmenu><guimenuitem>Neue Rechnung</guimenuitem></menuchoice>, und füllen das  erscheinende Fenster entsprechend aus.</para>
+	<screenshot id="bus-ap-billnew">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_billnew.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Neue Rechnung - Registrierungsfenster</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Neue Rechnung - Registrierungsfenster
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  <para>Wenn Sie nun auf <guibutton>OK</guibutton> klicken, öffnet sich <guilabel>Neue Lieferantenrechnung bearbeiten</guilabel>.</para>
+  </sect2>
+
+  <sect2 id="bus-ap-billedit2">
+  <title>Neue Lieferantenrechnung bearbeiten</title>    
+  <para>Im Neue Lieferantenrechnung bearbeiten Fenster können Sie eine aufgeschlüsselte Liste der
+      Waren und Leistungen, die Sie erworben haben, in einer Weise eingeben, ähnlich wie die Kontenregistrierung 
+      arbeitet. Für Gutschriften geben Sie eine aufgeschlüsselte Liste der
+      Waren und Leistungen ein, die der Lieferant stattdessen erstattet.</para>  
+  	<screenshot id="bus-ap-billedit">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_billedit.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Neue Lieferantenrechnung bearbeiten</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Neue Lieferantenrechnung bearbeiten</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+  <para>Wenn Sie die Eingabe aller Elemente beendet haben, müssen Sie<guilabel>Diese Rechnung in Ihre Konten buchen</guilabel>. </para>
+</sect2>
+
+  <sect2 id="bus-ap-billpost2">
+  <title>Diese Rechnung in Ihre Konten buchen</title>
+  <para>Wenn Sie die Eingabe einer Rechnung beendet haben, müssen Sie  <guilabel>Diese Rechnung in Ihre Konten buchen</guilabel>. Sie müssen nicht gleich die Rechnung in die Konten buchen, 
+      Sie können das Fenster schließen und später dahin zurückkehren. In diesem Fall müssen Sie dann noch die Rechnung buchen. Erst das Buchen der Rechnung  stellt ihre Geschäftsvorfälle in ein Verbindlichkeitskonto.
+      Das Buchungsfenster erscheint und fordert von Ihnen, Informationen einzugeben:</para>
+
+  	<screenshot id="bus-ap-billpost">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_billpost.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Buchungsfenster</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Buchungsfenster
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+  </sect2>
+
+  <sect2 id="bus-ap-billfind2">
+  <title>Suchen</title>
+  <para>Um eine vorhandene Rechnung zu suchen, nutzen Sie den Menüeintrag<menuchoice><guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Leferantenrechnung suchen...</guimenuitem></menuchoice>. Von den Suchergebnissen können Sie eine Rechnung zur Bearbeitung oder zur Ansicht auswählen.</para>
+  <note>
+  <para>Bevor Sie eine gebuchte Rechnung bearbeiten können, müssen Sie die <guilabel>Rechnungsbuchung rückgängig</guilabel> machen.</para>
+  </note>
+
+  <note>
+  <para>Es gibt andere Wege, auf eine vorhandene Rechnung zuzugreifen. Diese sind ähnlich wie der Zugriff auf Ausgangsrechnungen für Ihre Kunden. Siehe auch <xref linkend="bus-ar-invoicefind2" /> für mehr Informationen.</para>
+  </note>
+  </sect2>
+</sect1>
+
+  <sect1 id="bus-ap-jobs1">
+  <title>Lieferantenaufträge</title>
+  <para>Lieferantenaufträge werden benutzt, um mehrere Rechnungen und Gutschriften von einem einzelnen Lieferanten zu gruppieren. Die Nutzung dieser Funktion ist freigestellt. Die Funktion ist nützlich, wenn Sie mehrere <guilabel>Aufträge</guilabel> für denselben Lieferanten haben und alle Rechnungen und Gutschriften für einen einzelnen Auftrag anschauen wollen.</para>
+  <para>Um Aufträge zu nutzen, müssen Sie diesen unter  <menuchoice><guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Neuer Auftrag</guimenuitem></menuchoice> erstellen. Sie werden nun das <guilabel>Neuer Auftrag</guilabel> Fenster sehen.</para>
+
+  	<screenshot id="bus-ap-jobnew">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_jobnew.png" 
+	      srccredit="Jon Lapham" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Neuer Lieferantenauftrag</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Neuer Lieferantenauftrag</para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+    <para>Um einen vorhandenen Lieferantenauftrag zu bearbeiten, nutzen Sie den  <menuchoice>
+    <guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu>
+    <guimenuitem>Aufträge suchen</guimenuitem></menuchoice> Menüeintrag. Wählen Sie den gewünschten Auftrag in den 
+    Suchergebnissem und klicken Sie <guilabel>Auftrag anzeigen/bearbeiten</guilabel>
+    Button.</para>
+
+    <para>Um eine Auswahl unter den Rechnungen, die mit einem gegebenen Auftrag verbunden sind, zu treffen, nutzen Sie den <menuchoice>
+    <guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu>
+    <guimenuitem>Auftrag suchen</guimenuitem></menuchoice> Menüeintrag. Wählen Sie den gewünschten Auftrag in den 
+    Suchergebnissen und klicken Sie den <guilabel>Rechnungen anzeigen</guilabel>Button. Ein Fenster erscheint, 
+    das die Rechnungen und Gutschriften, die mit diesem Auftrag verbunden sind, auflistet. Wählen Sie eine 
+    Rechnung oder Gutschrift und klicken Sie den <guilabel>Rechnung anzeigen</guilabel>Button, um den 
+    Rechnungseditor im Hauptanwendungsfenster zu öffnen.</para>
+  </sect1>
+
+  <sect1 id="bus-ap-payment1">
+  <title>Zahlung verarbeiten</title>
+  <para>Irgendwann müssen Sie Ihre Rechnungen auch bezahlen. Dazu nutzen Sie die Zahlungsanwendung unter <menuchoice><guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Zahlung verarbeiten...</guimenuitem></menuchoice>.</para>
+
+    <para>Darunter ist das Fenster <application>&app;</application> Zahlungen veranbeiten.</para>
+  	<screenshot id="bus-ap-payment">
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="figures/bus_ap_payment.png" 
+	      srccredit="Patrick Schweiger" format="PNG"/>
+            </imageobject>
+	    <textobject>
+	        <phrase>Zahlungen verarbeiten</phrase>
+	    </textobject>
+	    <caption>
+	       <para>Zahlungen verarbeiten
+	       </para>
+	    </caption>
+          </mediaobject>
+        </screenshot>
+
+ </sect1>
+
+ </chapter>
