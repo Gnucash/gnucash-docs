@@ -5,6 +5,8 @@ omffile = $(docname)-de.omf
 entities = \
  ch_accts.xml \
  ch_basics.xml \
+ ch_bus_ap.xml \
+ ch_bus_ar.xml \
  ch_capgain.xml \
  ch_loans.xml \
  ch_oth_assets.xml \
