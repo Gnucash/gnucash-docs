@@ -52,28 +52,367 @@
     <xref linkend="txns-registers1"/>.</para>
   </sect1>
 
-  <sect1 id="txns-registers1">
+  <sect1 id="txns-register-oview">
     <title>The Account Register</title>
 
-    <para>The <emphasis>account register</emphasis> is the <application>&app;</application> window
-    which allows you to view or edit preexisting transactions, or add new
-    transactions for a particular account. To enter the account register,
-    simply highlight the account name in the account tree window and click the
-    <guibutton>Open</guibutton> button in the <emphasis>Toolbar</emphasis> or use the right mouse
-    button menu to open the account. <application>&app;</application> will display the account register
-    window.</para>
+    <para>The <emphasis>account register</emphasis> is the <application>&app;</application> window, which allows you to view or edit preexisting transactions, or add new transactions for a particular account. To open an account register from the Account Tree, double-click the account name, right click the account name and select Open Account from the menu, or use the Open button on the toolbar. <application>&app;</application> will display the account register window.</para>
+        <sect2 id="txns-registers-features2">
+            <title>Features of the Account Register</title>
+        
+            <para>The <emphasis>Titlebar</emphasis> of the account register displays the account name. Below the <emphasis>Titlebar</emphasis>, the <emphasis>Menubar</emphasis> displays the menu items available within the account register, and the <emphasis>Toolbar</emphasis> contains handy buttons that help you work with the account register.</para>
+        
+            <para>At the bottom left of the register window, <application>&app;</application> displays helpful messages as you move about the register. To the right, you can see the current account balance and the total of cleared splits.</para>
+        </sect2>
+<sect2 id="txns-regstyle1">
+    <title>Choosing a Register Style</title>
+    
+    <para><application>&app;</application> offers several options for viewing your registers. The
+        default style is <guilabel>Basic Ledger</guilabel> mode, which displays
+        only the summary of splits affecting the current account. This is the
+        style that most closely resembles other popular personal financial
+        packages. You can choose a different register style from the <menuchoice><guimenu>View</guimenu></menuchoice> menu. There are two other view modes:</para>
+    <itemizedlist>
+        <listitem><menuchoice><guimenu>View</guimenu><guimenuitem>Auto-Split Ledger</guimenuitem></menuchoice>
+        style expands the current transaction automatically. As you highlight a
+        new transaction in the register, the transaction automatically expands to
+        show all splits.</listitem>
+        <listitem><menuchoice><guimenu>View</guimenu><guimenuitem>Transaction
+            Journal</guimenuitem></menuchoice> style shows all splits for all transactions in the register, which is more like an accounting journal.</listitem>
+        </itemizedlist>
+    
+    <para>All styles permit you to view your data in either single-line or
+        double-line format. Select <menuchoice><guimenu>View</guimenu>
+            <guimenuitem>Double Line</guimenuitem></menuchoice>, and you will see your transaction
+        line expand to two register lines. Double-line mode will also display the transaction-level Notes field.</para>
+    
+    <para>Below are screenshots that demonstrate how the Basic Ledger and Transaction Journal views differ.
+    </para>
+    <para>For this example, let&rsquo;s assume that you have purchased 3 pair of Jeans for $1,000, and have recorded the purchase as a split transaction with each pair entered on a separate split.</para>
+    <para>The below screenshots illustrate the different view modes.</para>
+    
+    <para>First let&rsquo;s view the Jeans transaction from your checking account:</para>
+    
+    <screenshot id="txns-registersplit4">
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/txns_registersplit4.png" format="PNG"
+                srccredit="Bengt Thuree" />
+            </imageobject>
+            
+            <textobject>
+                <phrase>3 Jeans purchases</phrase>
+            </textobject>
+            
+            <caption><para>
+                This image shows one split transaction with 3 Jeans purchases
+            </para></caption>
+        </mediaobject>
+    </screenshot>
+    
+    <para>Now, let's open the <emphasis>Expenses:Clothes</emphasis> account, and look at it in Basic view.</para>
 
-    <tip>
-      <para>A double click on a last level account (the ones without a symbol on the left of the 
-      accounts name) will open the register window for that account.</para>
-    </tip>
+<screenshot id="txns-registersplit5">
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/txns_registersplit5.png" format="PNG"
+                srccredit="Bengt Thuree" />
+            </imageobject>
+            
+            <textobject>
+                <phrase>A jump to the <emphasis>Expenses:Clothes</emphasis> account</phrase>
+            </textobject>
+            
+            <caption><para>This image shows <emphasis>Expenses:Clothes</emphasis> account
+                in Basic Ledger mode.</para></caption>
+        </mediaobject>
+    </screenshot>
+<para>Three entries appear here, but there was only the single split entry in the checking account. Further examination shows that each row has a different amount, $200, $300, and $500. This demonstrates that each row in this view reflects a single split from the original transaction.</para>
+
+    <para>Changing to Transaction Journal mode will display only the original split transaction.</para>
+    
+    <screenshot id="txns-registersplit6">
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/txns_registersplit6.png" format="PNG"
+                srccredit="Bengt Thuree" />
+            </imageobject>
+            
+            <textobject>
+                <phrase>A jump to the <emphasis>Expenses:Clothes</emphasis> account</phrase>
+            </textobject>
+            
+            <caption><para>This image shows <emphasis>Expenses:Clothes</emphasis> account in
+                Transaction Journal mode.</para></caption>
+        </mediaobject>
+    </screenshot>
+    
+</sect2>
+
+<sect2 id="txns-shortcuts1">
+    <title>Using Entry Shortcuts</title>
+    
+    <para><application>&app;</application> provides several time-saving shortcuts for entering your
+        data. When you type the first few characters of a description that you
+        have used before, the QuickFill feature automatically fills in the rest of
+        the transaction as you last entered it. When you type in the first
+        characters of an account name in either the <guilabel>Transfer</guilabel>
+        field of the transaction line or the <guilabel>Account</guilabel> field of
+        the split line, QuickFill will automatically complete the name from your
+        account list. It also helps you with entering sub-accounts in these
+        fields: simply type the first characters of the parent account name
+        followed by a <keycap>:</keycap> (colon) and the first characters of the sub-account name. For
+        example, to enter <emphasis>Assets:Checking</emphasis>, you might type
+        <userinput>A:C</userinput> and let <application>&app;</application> fill in the rest.</para>
+    <warning><para>Because <keycap>:</keycap> is the account separator symbol,
+        you can not use it in your account names.</para></warning>
+    <tip><para>If you really need the colon in your account names, you can select another symbol by
+        <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu><guisubmenu>Accounts</guisubmenu>
+            <guilabel>Character</guilabel></menuchoice>.</para></tip>
+    <para>Register keyboard shortcuts also save you time, and <application>&app;</application> provides
+        several of them. In the date field, you can type:</para>
+    
+    <itemizedlist>
+        <listitem>
+            <para><keycap>+</keycap> or <keycap>=</keycap> to increment the date
+                and <keycap>-</keycap> or <keycap>_</keycap> to decrement the
+                date</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>]</keycap> or <keycap>}</keycap> to increment the month
+                and <keycap>[</keycap> or <keycap>{</keycap> to decrement the
+                month</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>M</keycap> or <keycap>m</keycap> to enter the first date
+                of the month</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>H</keycap> or <keycap>h</keycap> to enter the last date
+                of the month</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>Y</keycap> or <keycap>y</keycap> to enter the first date
+                of the year</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>R</keycap> or <keycap>r</keycap> to enter the last date
+                of the year</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>T</keycap> or <keycap>t</keycap> to enter today&rsquo;s
+                date</para>
+        </listitem>
+    </itemizedlist>
+    
+    <para>In the <guilabel>Num</guilabel> field of the transaction line, you
+        can type <keycap>+</keycap> to increment the transaction number from the
+        last one you typed in. Typing <keycap>-</keycap> will decrement the
+        number. This will also work in the <guilabel>Action</guilabel> field of
+        the split line, if you choose to enter split numbers there. The
+        <guilabel>Action</guilabel> field also supports QuickFill - if you type
+        the first characters of a common action (such as
+        <guilabel>Deposit</guilabel>), <application>&app;</application> will fill in the rest.</para>
+    
+    <para>The <guilabel>Transfer</guilabel> field supports QuickFill
+        of account names.  You can start typing an account name and
+        <application>&app;</application> will fill in the remaining part of the name.  Typing the
+        separator character at any time will complete the current level of
+        the account name, leaving the cursor positioned to start the next
+        level of account name.  For example, typing <keycap>A:C</keycap> the
+        standard set of account names will complete to the
+        <emphasis>Assets:Checking</emphasis> account.  You can also type the
+        <keycap>Menu</keycap> or <keycombo><keycap>Ctrl</keycap><keycap>Down</keycap></keycombo> keys in this
+        field to pop up a list of all account names.</para>
+    
+    <para>In any of the amount fields, you can use a built-in calculator.
+        Simply type in the first value, followed by <keycap>+</keycap>,
+        <keycap>-</keycap>, <keycap>*</keycap>, or <keycap>/</keycap>, then type
+        in the second value. <application>&app;</application> will perform the calculation and return the
+        resulting value to the amount field when you press the
+        <keycap>Tab</keycap> key.</para>
+    
+    <para>All of the menu items have access keys defined, and these are marked
+        by underlined characters in the menu names. Press <keycap>Alt</keycap> +
+        [underlined character] to bring up the menu, then select an item by typing
+        its underlined character. For example, typing <keycombo>
+            <keycap>Alt</keycap>
+            
+            <keycap>A</keycap>
+        </keycombo> brings up the Actions menu, then typing
+        <keycap>P</keycap> will split the transaction. A few of the menu items
+        also have shortcut keys that immediately invoke the command (typically
+        using the <keycap>Ctrl</keycap> key).  These shortcuts are listed next
+        to the item.</para>
+    
+    <para>To move around the register, use these keys to save time:</para>
+    
+    <itemizedlist>
+        <listitem>
+            <para><keycap>Tab</keycap> to move to the next field, <keycombo>
+                <keycap>Shift</keycap>
+                
+                <keycap>Tab</keycap>
+            </keycombo> to move to the previous field</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>Home</keycap> to move to the beginning of the field,
+                <keycap>End</keycap> to move to the end of the field</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap function="enter">Enter</keycap> or <keycap>↓</keycap> to move to the next
+                transaction, <keycap>↑</keycap> to move to the previous
+                transaction</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>Page Up</keycap> to move up one screen, <keycap>Page
+                Down</keycap> to move down one screen</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycombo>
+                <keycap>Shift</keycap>
+                
+                <keycap>Page Up</keycap>
+            </keycombo> to go to the first transaction, <keycombo>
+                <keycap>Shift</keycap>
+                
+                <keycap>Page Down</keycap>
+            </keycombo> to go to the last transaction</para>
+        </listitem>
+    </itemizedlist>
+    
+    <para>In the <guilabel>Reconcile</guilabel> window you can use these
+        keyboard shortcuts:</para>
+    
+    <itemizedlist>
+        <listitem>
+            <para><keycap>Tab</keycap> moves to the next box and
+                <keycombo><keycap>Shift</keycap><keycap>Tab</keycap></keycombo>
+                moves to the previous
+                box</para>
+        </listitem>
+        
+        <listitem>
+            <para>Space bar toggles the status between reconciled and not
+                reconciled</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>↑</keycap> and <keycap>↓</keycap> navigate through the
+                entries within the current box</para>
+        </listitem>
+    </itemizedlist>
+</sect2>
+</sect1>
+    <sect1 id="txns-registers-txntypes">
+    <title>Simple vs. Split Transactions</title>
+    
+    <para>Every transaction in <application>&app;</application> has at least two splits, but a transaction can have more than two splits. A transaction with only two splits is called a <emphasis>simple transaction</emphasis>, since it only involves the current account and a single remote account. A transaction with three or more accounts is called a <emphasis>split transaction</emphasis>.</para>
+    <para>When the register is in Basic view, you will see a summary of the splits affecting the current account. For a simple transaction, the <guilabel>Transfer</guilabel> column will display the other account from which money is <emphasis>transferred</emphasis>. For a split transaction, the <guilabel>Transfer</guilabel> column will display <guilabel>-- Split Transaction --</guilabel>. You can see the individual splits of each
+        transaction by clicking the <guibutton>Split</guibutton> button in the
+        <emphasis>Toolbar</emphasis> while selecting the appropriate transaction.</para>
+    
+    <para>For split transactions, the first line of the transaction is the
+        <emphasis>transaction line</emphasis>. It contains a
+        <guilabel>Date</guilabel>, optional <guilabel>Num</guilabel> (such as a
+        check number), transaction <guilabel>Description</guilabel>, total
+        amount affecting the current account (<guilabel>Tot Deposit</guilabel>
+        here), and updated account <guilabel>Balance</guilabel> after the
+        current transaction. Note that in the expanded view, the
+        <guilabel>Transfer</guilabel> column heading disappears, and there is no
+        account name listed in that field. This line shows you only a summary of
+        the transaction&rsquo;s effect on the current account. For more detailed
+        information, you need to look at the individual splits that make up the
+        transaction.</para>
+
+<para>The partial lines below the transaction line are the
+    <emphasis>split lines</emphasis>, and they are separated by gray lines.
+    As you highlight one of the split lines, the column headings change to
+    show the split-related fields:</para>
+
+<screenshot id="txns-registersplit2">
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="figures/txns_registersplit2.png" format="PNG"
+            srccredit="Bengt Thuree" />
+        </imageobject>
+        
+        <textobject>
+            <phrase>How split headings change</phrase>
+        </textobject>
+        
+        <caption><para>This image shows how split headings
+            change.</para></caption>
+    </mediaobject>
+</screenshot>
+
+<para>Each split contains an optional <guilabel>Action</guilabel>, or
+    type of split, which you can either type in or choose from a pull-down
+    list. The split also contains an optional <guilabel>Memo</guilabel>
+    which describes the split. Each split affects an
+    <guilabel>Account</guilabel>, which can be selected from a pull-down
+    list of your accounts. The <guilabel>R</guilabel> field indicates
+    whether the split has been reconciled. The last two columns show the
+    amount of the split and whether money is coming into or going out of the
+    account.</para>
+
+<para>As we discussed in <xref linkend="basics-accounting1" />, total
+    debits (left-column entries) must equal total credits (right-column
+    entries) for each transaction. In the example shown above, the total
+    debits equal the total credits, so this transaction is balanced. If you
+    notice, the transaction line contains the same debit amount as the
+    <guilabel>Checking</guilabel> split line. Why is this shown twice?
+    Because the transaction line is merely a <emphasis>summary</emphasis> of
+    the transaction&rsquo;s effect on the current account. The same transaction in
+    a different account will have a different transaction line, one that
+    shows the effect on that particular account. You can see this by
+    highlighting another split line and clicking the
+    <guibutton>Jump</guibutton> button on the <emphasis>Toolbar</emphasis>.</para>
+
+<para>In this example, if you jump to the
+    <emphasis>Income:Salary</emphasis> account, <application>&app;</application> brings up the same
+    transaction in the <emphasis>Income:Salary</emphasis> - Register:</para>
+
+<screenshot id="txns-registersplit3">
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="figures/txns_registersplit3.png" format="PNG"
+            srccredit="Bengt Thuree" />
+        </imageobject>
+        
+        <textobject>
+            <phrase>A jump to the <emphasis>Income:Salary</emphasis> account</phrase>
+        </textobject>
+        
+        <caption><para>This image shows a jump to the
+            <emphasis>Income:Salary</emphasis> account.</para></caption>
+    </mediaobject>
+</screenshot>
+
+<para>Note that the transaction line total now summarizes the effect on
+    the <emphasis>Income:Salary</emphasis> account instead of the
+    <emphasis>Checking Account</emphasis>, because you are looking at the
+    <emphasis>Income:Salary</emphasis> account register. The splits are
+    exactly the same, but the transaction line now reflects the credit to
+    the <emphasis>Income:Salary</emphasis> account.</para>
+
+</sect2>
 
     <sect2 id="txns-registers-twoaccount2">
-      <title>Simple Transaction</title>
+      <title>Simple Transaction Example</title>
 
-      <para>For example, starting with the chart of accounts we created in the
+      <para>Starting with the chart of accounts we created in the
       previous chapter <filename>gcashdata_3</filename>, double click on the
-      <guilabel>checking</guilabel> asset account. Let&rsquo;s add a simple
+      <guilabel>Checking</guilabel> asset account. Let&rsquo;s add a simple
       transaction to the checking account. When you first create your accounts
       in <application>&app;</application>, it is common to start them off with an initial
       balance.</para>
@@ -132,7 +471,7 @@
     </sect2>
 
     <sect2 id="txns-registers-multiaccount2">
-      <title>Split Transaction</title>
+      <title>Split Transaction Example</title>
 
       <para>The need for 3 or more splits in a transaction occurs when you need
       to split either the <quote>from</quote> or the <quote>to</quote> account in a transaction into
@@ -181,374 +520,6 @@
         </mediaobject>
       </figure>
     </sect2>
-
-    <sect2 id="txns-registers-features2">
-      <title>Features of the Account Register</title>
-
-      <para>The <emphasis>Titlebar</emphasis> of the account register displays the account name,
-      which in this case is <emphasis>Assets:Checking</emphasis>. Below the
-      <emphasis>Titlebar</emphasis>, the <emphasis>Menubar</emphasis> displays the menu items available within the
-      account register, and the <emphasis>Toolbar</emphasis> contains handy buttons that help you
-      work with the account register.</para>
-
-      <para>Although each transaction has at least two splits, all you see in
-      the basic register is a summary of the splits affecting the current
-      account. In the <guilabel>Transfer</guilabel> column, you can see the other account from
-      which money is <emphasis>transferred</emphasis> into or out of this
-      account. If the transaction affects more than two accounts, <application>&app;</application>
-      displays <guilabel>-- Split Transaction --</guilabel> to show it is a
-      multiple-split transaction. You can see the individual splits of each
-      transaction by clicking the <guibutton>Split</guibutton> button in the
-      <emphasis>Toolbar</emphasis> while selecting the appropriate transaction.</para>
-
-      <para>For split transactions, the first line of the transaction is the
-      <emphasis>transaction line</emphasis>. It contains a
-      <guilabel>Date</guilabel>, optional <guilabel>Num</guilabel> (such as a
-      check number), transaction <guilabel>Description</guilabel>, total
-      amount affecting the current account (<guilabel>Tot Deposit</guilabel>
-      here), and updated account <guilabel>Balance</guilabel> after the
-      current transaction. Note that in the expanded view, the
-      <guilabel>Transfer</guilabel> column heading disappears, and there is no
-      account name listed in that field. This line shows you only a summary of
-      the transaction&rsquo;s effect on the current account. For more detailed
-      information, you need to look at the individual splits that make up the
-      transaction.</para>
-
-      <para>The partial lines below the transaction line are the
-      <emphasis>split lines</emphasis>, and they are separated by gray lines.
-      As you highlight one of the split lines, the column headings change to
-      show the split-related fields:</para>
-
-      <screenshot id="txns-registersplit2">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit2.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
-
-          <textobject>
-            <phrase>How split headings change</phrase>
-          </textobject>
-
-          <caption><para>This image shows how split headings
-          change.</para></caption>
-        </mediaobject>
-      </screenshot>
-
-      <para>Each split contains an optional <guilabel>Action</guilabel>, or
-      type of split, which you can either type in or choose from a pull-down
-      list. The split also contains an optional <guilabel>Memo</guilabel>
-      which describes the split. Each split affects an
-      <guilabel>Account</guilabel>, which can be selected from a pull-down
-      list of your accounts. The <guilabel>R</guilabel> field indicates
-      whether the split has been reconciled. The last two columns show the
-      amount of the split and whether money is coming into or going out of the
-      account.</para>
-
-      <para>As we discussed in <xref linkend="basics-accounting1" />, total
-      debits (left-column entries) must equal total credits (right-column
-      entries) for each transaction. In the example shown above, the total
-      debits equal the total credits, so this transaction is balanced. If you
-      notice, the transaction line contains the same debit amount as the
-      <guilabel>Checking</guilabel> split line. Why is this shown twice?
-      Because the transaction line is merely a <emphasis>summary</emphasis> of
-      the transaction&rsquo;s effect on the current account. The same transaction in
-      a different account will have a different transaction line, one that
-      shows the effect on that particular account. You can see this by
-      highlighting another split line and clicking the
-      <guibutton>Jump</guibutton> button on the <emphasis>Toolbar</emphasis>.</para>
-
-      <para>In this example, if you jump to the
-      <emphasis>Income:Salary</emphasis> account, <application>&app;</application> brings up the same
-      transaction in the <emphasis>Income:Salary</emphasis> - Register:</para>
-
-      <screenshot id="txns-registersplit3">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit3.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
-
-          <textobject>
-            <phrase>A jump to the <emphasis>Income:Salary</emphasis> account</phrase>
-          </textobject>
-
-          <caption><para>This image shows a jump to the
-          <emphasis>Income:Salary</emphasis> account.</para></caption>
-        </mediaobject>
-      </screenshot>
-
-      <para>Note that the transaction line total now summarizes the effect on
-      the <emphasis>Income:Salary</emphasis> account instead of the
-      <emphasis>Checking Account</emphasis>, because you are looking at the
-      <emphasis>Income:Salary</emphasis> account register. The splits are
-      exactly the same, but the transaction line now reflects the credit to
-      the <emphasis>Income:Salary</emphasis> account.</para>
-
-      <para>At the bottom left of the register window, <application>&app;</application> displays
-      helpful messages as you move about the register. To the right, you can
-      see the current account balance and the total of cleared splits.</para>
-    </sect2>
-
-  </sect1>
-
-  <sect1 id="txns-regstyle1">
-    <title>Choosing a Register Style</title>
-
-    <para><application>&app;</application> offers several options for viewing your registers. The
-    default style is <guilabel>Basic Ledger</guilabel> mode, which displays
-    only the summary of splits affecting the current account. This is the
-    style that most closely resembles other popular personal financial
-    packages.</para>
-
-    <para>You can choose a different register style by selecting
-    <menuchoice><guimenu>View</guimenu><guimenuitem>Auto-Split Ledger</guimenuitem></menuchoice>
-    style expands the current transaction automatically. As you highlight a
-    new transaction in the register, the transaction automatically expands to
-    show all splits. The <menuchoice><guimenu>View</guimenu><guimenuitem>Transaction
-    Journal</guimenuitem></menuchoice> style is more like an accounting journal, in which
-    all splits are shown for all transactions.</para>
-
-    <para>All styles permit you to view your data in either single-line or
-    double-line format. Select <menuchoice><guimenu>View</guimenu>
-    <guimenuitem>Double Line</guimenuitem></menuchoice>, and you will see your transaction
-    line expand to two register lines.</para>
-    
-    <para>Let&rsquo;s have a closer look at how the Basic Ledger and Transaction Journal view differs.
-    </para>
-    <para>For this example, let&rsquo;s assume that you have a checking account with $10,000,
-    and have decided to really splurge by purchasing 3 pair of Jeans for $1,000.
-    Now, you can either record this as one simple transaction and move $1,000 to <emphasis>Expenses:Clothes</emphasis>.
-    Or, you can record a split transaction, and record each Jeans individually.</para>
-    <para>Technically they are the same, but from an accounting point of view, when you 
-    record each Jeans purchase separately, the <emphasis>Expenses:Clothes</emphasis> account will record three
-    different transactions.</para>
-    <para>The below screenshots will illustrate this a bit better</para>
-    
-    <para>First let&rsquo;s purchase the Jeans from your checking account</para>
-    
-          <screenshot id="txns-registersplit4">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit4.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
-
-          <textobject>
-            <phrase>3 Jeans purchases</phrase>
-          </textobject>
-
-          <caption><para>
-            This image shows one split transaction with 3 Jeans purchases
-          </para></caption>
-        </mediaobject>
-      </screenshot>
-      
-     <para>The we open the <emphasis>Expenses:Clothes</emphasis> account, and look at it from the default Basic Ledger view.
-     As you can see, we have three entries here, but there were only one entry in the checking account.
-     If you look carefully, you will see that each row have a different amount, $200, $300, and $500.
-     Each row&rsquo;s transaction line reflects a one split row.</para> 
-      <screenshot id="txns-registersplit5">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit5.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
-
-          <textobject>
-            <phrase>A jump to the <emphasis>Expenses:Clothes</emphasis> account</phrase>
-          </textobject>
-
-          <caption><para>This image shows <emphasis>Expenses:Clothes</emphasis> account
-          in Basic Ledger mode.</para></caption>
-        </mediaobject>
-      </screenshot>
-      
-      <para>If we view the <emphasis>Expenses:Clothes</emphasis> account in Transaction Journal mode, you will again, only see
-      the original split transaction.</para>
-      
-      <screenshot id="txns-registersplit6">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit6.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
-
-          <textobject>
-            <phrase>A jump to the <emphasis>Expenses:Clothes</emphasis> account</phrase>
-          </textobject>
-
-          <caption><para>This image shows <emphasis>Expenses:Clothes</emphasis> account in
-          Transaction Journal mode.</para></caption>
-        </mediaobject>
-      </screenshot>
-
-    
-  </sect1>
-
-  <sect1 id="txns-shortcuts1">
-    <title>Using Entry Shortcuts</title>
-
-    <para><application>&app;</application> provides several time-saving shortcuts for entering your
-      data. When you type the first few characters of a description that you
-      have used before, the QuickFill feature automatically fills in the rest of
-      the transaction as you last entered it. When you type in the first
-      characters of an account name in either the <guilabel>Transfer</guilabel>
-      field of the transaction line or the <guilabel>Account</guilabel> field of
-      the split line, QuickFill will automatically complete the name from your
-      account list. It also helps you with entering sub-accounts in these
-      fields: simply type the first characters of the parent account name
-      followed by a <keycap>:</keycap> (colon) and the first characters of the sub-account name. For
-      example, to enter <emphasis>Assets:Checking</emphasis>, you might type
-      <userinput>A:C</userinput> and let <application>&app;</application> fill in the rest.</para>
-    <warning><para>Because <keycap>:</keycap> is the account separator symbol,
-      you can not use it in your account names.</para></warning>
-    <tip><para>If you really need the colon in your account names, you can select another symbol by
-      <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu><guisubmenu>Accounts</guisubmenu>
-      <guilabel>Character</guilabel></menuchoice>.</para></tip>
-    <para>Register keyboard shortcuts also save you time, and <application>&app;</application> provides
-      several of them. In the date field, you can type:</para>
-
-    <itemizedlist>
-      <listitem>
-        <para><keycap>+</keycap> or <keycap>=</keycap> to increment the date
-        and <keycap>-</keycap> or <keycap>_</keycap> to decrement the
-        date</para>
-      </listitem>
-
-      <listitem>
-        <para><keycap>]</keycap> or <keycap>}</keycap> to increment the month
-        and <keycap>[</keycap> or <keycap>{</keycap> to decrement the
-        month</para>
-      </listitem>
-
-      <listitem>
-        <para><keycap>M</keycap> or <keycap>m</keycap> to enter the first date
-        of the month</para>
-      </listitem>
-
-      <listitem>
-        <para><keycap>H</keycap> or <keycap>h</keycap> to enter the last date
-        of the month</para>
-      </listitem>
-
-      <listitem>
-        <para><keycap>Y</keycap> or <keycap>y</keycap> to enter the first date
-        of the year</para>
-      </listitem>
-
-      <listitem>
-        <para><keycap>R</keycap> or <keycap>r</keycap> to enter the last date
-        of the year</para>
-      </listitem>
-
-      <listitem>
-        <para><keycap>T</keycap> or <keycap>t</keycap> to enter today&rsquo;s
-        date</para>
-      </listitem>
-    </itemizedlist>
-
-    <para>In the <guilabel>Num</guilabel> field of the transaction line, you
-    can type <keycap>+</keycap> to increment the transaction number from the
-    last one you typed in. Typing <keycap>-</keycap> will decrement the
-    number. This will also work in the <guilabel>Action</guilabel> field of
-    the split line, if you choose to enter split numbers there. The
-    <guilabel>Action</guilabel> field also supports QuickFill - if you type
-    the first characters of a common action (such as
-    <guilabel>Deposit</guilabel>), <application>&app;</application> will fill in the rest.</para>
-
-    <para>The <guilabel>Transfer</guilabel> field supports QuickFill
-    of account names.  You can start typing an account name and
-    <application>&app;</application> will fill in the remaining part of the name.  Typing the
-    separator character at any time will complete the current level of
-    the account name, leaving the cursor positioned to start the next
-    level of account name.  For example, typing <keycap>A:C</keycap> the
-    standard set of account names will complete to the
-    <emphasis>Assets:Checking</emphasis> account.  You can also type the
-    <keycap>Menu</keycap> or <keycombo><keycap>Ctrl</keycap><keycap>Down</keycap></keycombo> keys in this
-    field to pop up a list of all account names.</para>
-
-    <para>In any of the amount fields, you can use a built-in calculator.
-    Simply type in the first value, followed by <keycap>+</keycap>,
-    <keycap>-</keycap>, <keycap>*</keycap>, or <keycap>/</keycap>, then type
-    in the second value. <application>&app;</application> will perform the calculation and return the
-    resulting value to the amount field when you press the
-    <keycap>Tab</keycap> key.</para>
-
-    <para>All of the menu items have access keys defined, and these are marked
-    by underlined characters in the menu names. Press <keycap>Alt</keycap> +
-    [underlined character] to bring up the menu, then select an item by typing
-    its underlined character. For example, typing <keycombo>
-        <keycap>Alt</keycap>
-
-        <keycap>A</keycap>
-      </keycombo> brings up the Actions menu, then typing
-    <keycap>P</keycap> will split the transaction. A few of the menu items
-    also have shortcut keys that immediately invoke the command (typically
-    using the <keycap>Ctrl</keycap> key).  These shortcuts are listed next
-    to the item.</para>
-
-    <para>To move around the register, use these keys to save time:</para>
-
-    <itemizedlist>
-      <listitem>
-        <para><keycap>Tab</keycap> to move to the next field, <keycombo>
-            <keycap>Shift</keycap>
-
-            <keycap>Tab</keycap>
-          </keycombo> to move to the previous field</para>
-      </listitem>
-
-      <listitem>
-        <para><keycap>Home</keycap> to move to the beginning of the field,
-        <keycap>End</keycap> to move to the end of the field</para>
-      </listitem>
-
-      <listitem>
-        <para><keycap function="enter">Enter</keycap> or <keycap>↓</keycap> to move to the next
-        transaction, <keycap>↑</keycap> to move to the previous
-        transaction</para>
-      </listitem>
-
-      <listitem>
-        <para><keycap>Page Up</keycap> to move up one screen, <keycap>Page
-        Down</keycap> to move down one screen</para>
-      </listitem>
-
-      <listitem>
-        <para><keycombo>
-            <keycap>Shift</keycap>
-
-            <keycap>Page Up</keycap>
-          </keycombo> to go to the first transaction, <keycombo>
-            <keycap>Shift</keycap>
-
-            <keycap>Page Down</keycap>
-          </keycombo> to go to the last transaction</para>
-      </listitem>
-    </itemizedlist>
-
-    <para>In the <guilabel>Reconcile</guilabel> window you can use these
-    keyboard shortcuts:</para>
-
-    <itemizedlist>
-      <listitem>
-        <para><keycap>Tab</keycap> moves to the next box and
-        <keycombo><keycap>Shift</keycap><keycap>Tab</keycap></keycombo>
-        moves to the previous
-        box</para>
-      </listitem>
-
-      <listitem>
-        <para>Space bar toggles the status between reconciled and not
-        reconciled</para>
-      </listitem>
-
-      <listitem>
-        <para><keycap>↑</keycap> and <keycap>↓</keycap> navigate through the
-        entries within the current box</para>
-      </listitem>
-    </itemizedlist>
   </sect1>
 
   <sect1 id="txns-reconcile1">
@@ -778,9 +749,11 @@
       other value, then either you have missed transactions, or some amounts
       may be incorrect in <application>&app;</application>. (Or, less likely, the bank may have made an
       error.)</para>
+      
+      <note><para>Under some circumstances, it may be difficult or impossible to determine why an account will not reconcile. If you are unable to correct the discrepancy between your books and a statement, <application>&app;</application> includes a <guibutton>Balance</guibutton> button on the <emphasis>Toolbar</emphasis> that will automatically create a balancing entry for you in the amount that cannot be reconciled.</para>
+          <para>To use this, carry out the full reconciliation (marking all transactions that you can identify) and then click this button. <application>&app;</application> will create a balancing entry for the remaining discrepancy that uses the <emphasis>Special Accounts:Orphan-XXX</emphasis> account (where "XXX" represents your currency). The Reconcile window will close; re-opening it will allow you to check the newly-created balancing entry and finish the process.</para></note>
 
-      <para>When you have marked off all the items on the bank statement, and
-      when the difference is 0.00, press the <guibutton>Finish</guibutton> button on the <emphasis>Toolbar</emphasis> or
+      <para>When you have marked off all the items on the bank statement and the difference is 0.00, press the <guibutton>Finish</guibutton> button on the <emphasis>Toolbar</emphasis> or
       select <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Finish</guimenuitem></menuchoice> from the menu. 
       The <guilabel>Reconcile</guilabel> window will close.
       In the register window, the <guilabel>R</guilabel> field of the reconciled transactions will
