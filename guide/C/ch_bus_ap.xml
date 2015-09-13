@@ -19,7 +19,7 @@ corrected to be less describing of the interface and more tutorial oriented
 
  <chapter id="chapter_bus_ap">
  <title>Accounts Payable</title>
- <para>Accounts Payable (or A/P) refers to the accounting of products or services which a company has bought and needs to pay off.</para>
+ <para>Accounts Payable (or A/P) refers to the accounting of products or services which a company has bought and needs to pay for.</para>
 
   <sect1 id="bus-ap-concepts1">
   <title>Basic Concepts</title>
@@ -28,7 +28,11 @@ corrected to be less describing of the interface and more tutorial oriented
 
   <sect1 id="bus-ap-setup1">
   <title>Initial Setup</title>
-  <para>To set up <application>&app;</application> to handle accounts payable for a company, two preliminary things must be done.  The first is to build an appropriate Account Hierarchy and the second is to register the company in <application>&app;</application>.</para>
+  <para>To set up <application>&app;</application> to handle accounts payable for a company, four
+    preliminary things must be done. The first is to build an appropriate
+    Account Hierarchy. The second is set up tax tables. The third is to register the company in
+    <application>&app;</application>. The fourth is to set up billing terms.
+  </para>
 
   <sect2 id="bus-ap-setupacct2">
   <title>Account Setup</title>
@@ -54,6 +58,9 @@ Basic A/P Account Hierarchy:
    -Bank
 -Liabilities
    -Accounts Payable
+   -Tax
+      -Tax on Purchases
+      -Tax on Sales
 -Expenses
    -AP Expenses
   </literallayout>
@@ -66,18 +73,31 @@ Basic A/P Account Hierarchy:
         changed or deleted in any way other than by using 
         <itemizedlist>
           <listitem><para>post/unpost bill/invoice/voucher or</para></listitem>
-	  <listitem><para>process payment"</para></listitem>
+	  <listitem><para>process payment</para></listitem>
 	</itemizedlist>
       </para>
 
   </sect2>
 
+  <sect2 id="bus-ap-setuptaxtables">
+    <title>Tax Tables</title>
+    
+    <para>Vendor tax tables are set up in the same way as Customer tax tables.  As the account tax is
+      posted to, is specified on each tax table, to keep transactions for tax collected from customer sales
+      separate from tax paid for vendor purchases, set up distinct tax tables for customers and vendors.
+      See <xref linkend="bus-ar-setuptaxtables" />
+    </para>
+
+  </sect2>
+   
   <sect2 id="bus-ap-setupcname2">
   <title>Company Registration</title>
 
-      <para>After you have built the account structure, register the <application>&app;</application>
-      file as belonging to your company. To register your company, select
-      <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice>:</para>
+      <para>After you have built the account structure, and defined your tax tables, register the <application>&app;</application>
+        file as belonging to your company. To register your company, select the <guilabel>Business</guilabel> tab
+      in the <guilabel>Book Options</guilabel> window accessible by selecting
+      <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem>
+      </menuchoice>:</para>
 
       <itemizedlist>
         <listitem>
@@ -90,8 +110,21 @@ Basic A/P Account Hierarchy:
           <para>Enter your company&rsquo;s tax payer id number in the
           <guilabel>Company ID</guilabel> field.</para>
         </listitem>
+        
+        <listitem>
+          <para>Set the default tax table applicable to most vendors.</para>
+        </listitem>        
 
        </itemizedlist>
+  </sect2>
+  
+    <sect2 id="bus-ap-setupterms">
+      <title>Billing Terms</title>
+  
+    <para>Vendor billing terms are set up in the same way as Customer billing terms. 
+      See <xref linkend="bus-ar-setupterms" />
+    </para>
+      
   </sect2>
   </sect1>
 

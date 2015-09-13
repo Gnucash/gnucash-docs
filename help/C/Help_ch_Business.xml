@@ -40,9 +40,10 @@
     <title>Initial Setup</title>
 
     <para>To set up <application>&app;</application> to handle accounts receivable and accounts payable 
-    for a company two preliminary things must be done. The first is to build an appropriate
-    Account Hierarchy and the second is to register the company in
-    <application>&app;</application>.</para>
+      for a company  four preliminary things must be done. The first is to build an appropriate
+      Account Hierarchy. The second is set up tax tables. The third is to register the company in
+      <application>&app;</application>. The fourth is to set up billing terms.
+    </para>
 
     <sect2 id="busnss-setupacct2">
       <title>Account Setup</title>
@@ -88,14 +89,159 @@
 
     </sect2>
 
+    <sect2 id="busnss-ar-setuptaxtables">
+      <title>Tax Tables</title>
+
+      <para>Tax Tables can used to determine the tax for customer invoices (or vendor bills).
+      </para>
+        
+      <para> A tax table can be assigned to an invoice line or bill line.</para>
+
+      <para> The default invoice line tax table can be assigned to each customer and the default bill 
+        line tax table can be assigned to each vendor.
+      </para>
+
+      <para>The default tax table for new customers or new vendors can  be specified in the <emphasis>Book Options </emphasis>
+        window which can be accessed by
+        <menuchoice><guimenu>File</guimenu>
+          <guisubmenu>Properties</guisubmenu>
+          <guimenuitem>Business</guimenuitem>
+        </menuchoice> tab.
+      </para>
+
+      <para>Tax Tables are maintained using the <emphasis>Sales Tax Table</emphasis> editor which is accessed via menu 
+        <menuchoice><guimenu>Business</guimenu><guimenuitem>Sales Tax Table</guimenuitem></menuchoice>.
+        The following fields should be entered:
+      </para>
+            
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Name</guilabel> This is the tax table name.</para>
+        </listitem>
+        <listitem>
+          <para><guilabel>Type</guilabel> Either <guilabel>Percent %</guilabel>
+ or <guilabel>Value $
+</guilabel>.</para>
+        </listitem>
+        <listitem>
+          <para><guilabel>Value
+</guilabel>This is the percentage or value depending on <guilabel>Type</guilabel>.</para>
+        </listitem>
+        <listitem>
+          <para><guilabel>Account</guilabel> This is the account to which tax will be posted.
+            For tax collected from customers, this should probably be a Liability account as it must be payed to the government.
+            For tax paid to vendors, if tax laws allow tax paid to vendors to offset tax collected from customers, this should probably
+            also be a Liability account (even though it will usually have a debit balance)
+            so that the net tax owed to the government can be easily observed.
+          </para>
+          <para>If you set up Tax on Purchases and Tax on Sales as subaccounts of Liabilities:Tax then the net tax will be rolled up
+            and can be seen in the  <application>&app;</application> Accounts tab.
+          </para>
+          <para><emphasis>If unsure about tax law requirements, get professional advise. </emphasis></para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    
     <sect2 id="busnss-setupcname">
       <title>Company Registration</title>
 
-      <para>After you have built the account structure, register the <application>&app;</application>
-      file as belonging to your company by filling in the data requested in 
-      the <xref linkend="business-book-options" /> accessible from the 
-      <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> menu item.</para>
+      <para>After you have built the account structure and defined your tax tables, register the <application>&app;</application>
+        file as belonging to your company by filling in the data requested in 
+        the <xref linkend="business-book-options" /> accessible from the 
+        <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice> menu item.
+      </para>
     </sect2>
+    
+    <sect2 id="busnss-ar-setupterms">
+      <title>Billing Terms</title>
+
+      <para>Billing Terms can be used to determine the payment due date  and be a guide for determining discount for early payment of invoices (or vendor bills).
+      </para>
+
+        <note>
+        <para>As of <application>&app;</application> 2.6.7, Billing terms are only partially supported. Date due is calculated but discount amount is not.</para>
+        <para>
+          Discount for early invoice payment is not implemented. There are 2 ways this may be done, although neither is recommended, and 
+          professional advise should be used to confirm that regulations are being complied with:
+          <itemizedlist>
+            <listitem>
+              <para>After creating and posting a payment which pays the invoice in full, manually edit the payment transaction (usually strongly discouraged)
+                and split the payment to reduce it by the amount of the discount and a create a compensating split in an income (discount) account.
+              </para>
+            </listitem>
+            
+            <listitem>
+              <para>Alternatively, after creating and posting a payment for the discounted amount, create a credit note for the discount using a specific negative 
+                sales income (discount) account for the transfer account. 
+              </para>
+            </listitem>
+
+            </itemizedlist>
+        </para>
+      </note>
+
+      <para>You can specify the billing terms on each invoice/bill.
+        Invoice billing terms will default from the customer billing terms.
+        Bill billing terms will default from the vendor billing terms.
+      </para>
+  
+      <para>Billing Terms are maintained using the Billing Terms Editor which is accessed via menu 
+        <menuchoice><guimenu>Business</guimenu><guimenuitem>Billing Terms Editor</guimenuitem></menuchoice>.
+        The following fields should be entered:
+      </para>
+            
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Name</guilabel> The internal name of the billing term. For some examples of billing term names and descriptions see
+             <ulink url="http://wiki.gnucash.org/wiki/Terms" />
+          </para>
+        </listitem>
+        <listitem>
+          <para><guilabel>Description</guilabel> The description of the billing term, printed on invoices</para>
+        </listitem>
+        <listitem>
+          <para>There are 2 types of billing terms, with different information to be entered</para>
+          <itemizedlist>
+            <listitem>
+              <para>Type Days</para>
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Due Days</guilabel> The invoice or bill is due to be paid within this number of days after the post date</para>
+                </listitem>
+                <listitem>
+                  <para><guilabel>Discount Days</guilabel> The number of days after the post date during which a discount will
+                    be applied for early payment
+                  </para>
+                </listitem>
+                <listitem>
+                  <para><guilabel>Discount %</guilabel> The percentage discount applied for early payment</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para>Type Proximo</para>
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Due Day</guilabel> The day of the month bills are due</para>
+                </listitem>
+                <listitem>
+                  <para><guilabel>Discount Day</guilabel> The last day of the month for the early payment discount</para>
+                </listitem>
+                <listitem>
+                  <para><guilabel>Discount %</guilabel> The discount percentage applied if paid early</para>
+                </listitem>
+                <listitem>
+                  <para><guilabel>Cutoff Day</guilabel> The cutoff day for applying bills to the next month. After the
+                    cutoff, bills are applied to the following month. Negative values
+                    count backwards from the end of the month.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </listitem>  
+      </itemizedlist>
+    </sect2>    
   </sect1>
 
   <sect1 id="busnss-ar-components1">
@@ -118,24 +264,29 @@
         Basic A/R Account Hierarchy:
 
         -Assets
-        -Checking
-        -Accounts Receivable
+          -Accounts Receivable
+          -Checking
         -Income
-        -Sales
+          -Sales
+        -Liabilities
+          -Tax
+            -Tax on Purchases
+            -Tax on Sales
+          
       </literallayout>
 
       <note>
         <para>You need to add additional asset, expense, and income accounts to
-        this hierarchy for it to be useful. The important aspects of this
-        hierarchy are the use of an income account and the <emphasis>Accounts Receivable</emphasis>
-        asset account, with account type set to
-        <emphasis>A/Receivable</emphasis>.</para>
+          this hierarchy for it to be useful. The important aspects of this
+          hierarchy are the use of an income account and the <emphasis>Accounts Receivable</emphasis>
+          asset account, with account type set to <emphasis>A/Receivable</emphasis>.
+        </para>
+        <para>
+          If you deal with customers in more than one currency you will
+          need a separate <emphasis>Accounts Receivable</emphasis>
+          account for each currency.
+        </para>
       </note>
-      <note><para>
-        If you deal with customers in more than one currency you will
-        need a separate <emphasis>Accounts Receivable</emphasis>
-        account for each currency.
-      </para></note>
 
     <para>The transactions generated by the A/R system are recorded within the <emphasis>Accounts
     Receivable</emphasis> account. You generally do not work directly with this account.
@@ -340,7 +491,8 @@
       credit notes. In order to avoid repeating everything twice and to keep
       the text easier to read it will refer only to invoices. You can apply
       it equally to credit notes. Only where the behaviour of credit notes
-      differs from invoices this will be explicitly mentioned.</para>
+      differs from invoices this will be explicitly mentioned.  Credit notes were introduced starting with
+      <application>&app;</application> stable release 2.6.0.</para>
     </note>
 
     <sect2 id="busnss-ar-invoicenew2">
