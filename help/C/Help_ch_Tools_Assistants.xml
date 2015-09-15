@@ -2729,23 +2729,67 @@
        </sect1>
 
    <sect1 id="tool-price">
-        <title>Price Editor</title>
+     <title>Price Editor</title>
+     <note><application>&app;</application> uses the term <emphasis
+     role="Italic">commodity</emphasis> to mean anything that it
+     counts: Currencies, securities (i.e intangible assets like stock
+     or mutual fund shares and bonds), or tangible assets like trucks
+     and computers. When valuing one commodity in terms of another it
+     uses the term <emphasis role="Italic">Exchange Rate</emphasis>
+     between two currencies and <emphasis
+     role="Italic">Price</emphasis> between a non-currency commodity
+     and a currency commodity. For the rest of this section we'll use
+     "price" to mean both price and exchange rate and "commodity" to
+     mean any sort of commodity except where currency behavior is
+     different.</note>
 
-        <para>The Price Editor is used to track/modify the value of a currency, mutual fund and stocks.
-         It provides a unified interface to updating the values of these commodities and is able to update manually
-         or through on-line quotes.</para>
-
-        <para>Each entry in the editor shows a record of a security/commodity price(s):</para>
-
+     <para>The Price Editor is used to list and edit the price of one
+     commodity in another commodity. New prices can be added, existing
+     prices can be edited, and prices can be retrieved from a variety
+     of sources on the World-Wide Web when the commodity is properly
+     configured.</para>
+     <para>Each commodity pair can have one price per day. An existing
+     price will be overwritten by a newer one if the newer one has the
+     same or a more preferred source. The order of source preference
+     (1 is most prefered) is:
+     <orderedlist>
+       <listitem>user:price-editor: Prices created manually in the
+       Price Editor</listitem>
+       <listitem>Finance::Quote: Online quotes</listitem>
+       <listitem>user:price: Prices entered explicitly in the
+       <guilabel>Exchange Rate</guilabel>entry of the
+       <guilabel>Transfer Funds</guilabel> dialog box or in the
+       <guilabel>Price</guilabel> column of a register for an account
+       of types STOCK or MUTUAL</listitem>
+       <listitem>user:xfer-dialog: Prices calculated from an entry in
+       the <guilabel>To Amount</guilabel> entry of the
+       <guilabel>Transfer Funds</guilabel> dialog box.</listitem>
+       <listitem>user:split-register: Prices calculated from the
+       <guilabel>Shares</guilabel> and <guilabel>Debit</guilabel> or
+       <guilabel>Credit</guilabel> columns of a register for an
+       account of types STOCK or MUTUAL</listitem>
+       <listitem>user:stock-split: Prices entered in the
+       <guilabel>Stock Split Assistant</guilabel> </listitem>
+     </orderedlist>
+     <note>Prices created manually in the <guilabel>Price
+     Editor</guilabel> are preferred over prices retrieved via
+     Finance::Quote so Finance::Quote will fail to update such
+     manually-created prices.</note>
+     </para>
+     <para> The <guilabel>Price Editor</guilabel> displays existing prices as follows:
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Security: </emphasis>The Security/commodity being priced. The display is sorted
-             by the <guilabel>exchange</guilabel> that the individual securities are listed on.  The list is expanded by clicking on the
-             <guilabel>caret</guilabel> on the left of the name.</para>
+            <para><emphasis role="bold">Security: </emphasis>The
+            Security/commodity being priced. The display is sorted by
+            the <guilabel>Namespace</guilabel> that the individual
+            securities are listed on.  The list is expanded by
+            clicking on the <guilabel>caret</guilabel> on the left of
+            the name.</para>
           </listitem>
 
           <listitem>
-            <para><emphasis role="bold">Currency: </emphasis>The currency the price is recorded in.</para>
+            <para><emphasis role="bold">Currency: </emphasis>The
+            currency the price is recorded in.</para>
           </listitem>
 
           <listitem>
@@ -2753,48 +2797,56 @@
           </listitem>
 
           <listitem>
-            <para><emphasis role="bold">Source: </emphasis>The source of the commodities price quote. Typically, this
-             will be either <guilabel>user:price-editor</guilabel>, indicating you entered it directly, or <guilabel>Finance::Quote</guilabel>, indicating
-             that it was retrieved from an on-line source by the <application>Finance::Quote</application> module.</para>
+            <para><emphasis role="bold">Source: </emphasis>The source
+            of the commodities price quote, listed above.</para>
           </listitem>
 
           <listitem>
-            <para><emphasis role="bold">Type: </emphasis>There are several different types
-            of stock price quotes.</para>
+            <para><emphasis role="bold">Type: </emphasis>There are
+            several different types of stock price quotes.</para>
 
            <itemizedlist>
             <listitem>
-             <para><emphasis role="bold">Bid: </emphasis>Indicates what a specialist dealer is prepared to pay for a
-              stock.</para>
+             <para><emphasis role="bold">Bid: </emphasis>Indicates
+             what a specialist dealer is prepared to pay for a
+             stock.</para>
             </listitem>
 
             <listitem>
-             <para><emphasis role="bold">Ask: </emphasis>Indicates at what price the dealers are prepared to sell a
-              stock.</para>
+             <para><emphasis role="bold">Ask: </emphasis>Indicates at
+             what price the dealers are prepared to sell a
+             stock.</para>
              </listitem>
 
             <listitem>
-             <para><emphasis role="bold">Last: </emphasis>Indicate the price at which the last trade in that
-              stock/security occurred at. This is the price most commonly quoted in the media.</para>
+             <para><emphasis role="bold">Last: </emphasis>Indicate the
+             price at which the last trade in that stock/security
+             occurred at. This is the price most commonly quoted in
+             the media.</para>
             </listitem>
 
             <listitem>
-             <para><emphasis role="bold">Net Asset Value: </emphasis>Are typically used for mutual funds. They are
-              calculated on the net value of the fund&rsquo;s assets.</para>
+             <para><emphasis role="bold">Net Asset Value:
+             </emphasis>Are typically used for mutual funds. They are
+             calculated on the net value of the fund&rsquo;s assets
+             each day around the time of the market close and are in
+             effect until the next recalculation.</para>
             </listitem>
 
             <listitem>
-             <para><emphasis role="bold">Unknown: </emphasis>Use this if the type of price quoted is not known.</para>
+             <para><emphasis role="bold">Unknown: </emphasis>Use this
+             if the type of price quoted is not known.</para>
             </listitem>
 
            </itemizedlist>
           </listitem>
 
           <listitem>
-            <para><emphasis role="bold">Price: </emphasis>The actual price of the commodity.</para>
+            <para><emphasis role="bold">Price: </emphasis>The actual
+            price of the commodity.</para>
           </listitem>
         </itemizedlist>
-
+     </para>
     <sect2 id="invest-stockprice-manual">
        <title>Adding a stock price manually</title>
 
