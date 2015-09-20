@@ -109,64 +109,107 @@ Translators:
     information in a multi-currency transaction (see <xref
     linkend="trans-currency-enter"/>).</para></listitem></itemizedlist>
     </para>
-    <note><para>The following sections will be disabled in the
-    <guilabel>Transfer Funds</guilabel> dialog when it is being used
-    only to collect exchange rate or amount information.</para></note>
-    <orderedlist>
+    <note><para>The <guilabel>Basic Information</guilabel> and
+    <guilabel>Transfer Accounts</guilabel> panes will be disabled in
+    the <guilabel>Transfer Funds</guilabel> dialog when it is being
+    used only to collect exchange rate or amount
+    information.</para></note>
+    <sect2><title>Basic Information</title>
+    <para> The Basic Information section collects the entries for
+    constructing a transaction: Date, description, amount, etc.</para>
+    <itemizedlist>
+      <listitem><guilabel>Amount:</guilabel> The amount of the transaction in the <guilabel>Transfer From</guilabel>account's commodity.</listitem>
+      <listitem><guilabel>Date:</guilabel> The posting date for the
+      transaction, i.e. the date that you want to record it in your
+      book.</listitem>
+      <listitem><guilabel>Num:</guilabel> A reference number for the
+      transaction, often a check number.</listitem>
+      <listitem><guilabel>Description:</guilabel> The description of
+      the transaction, often the payer or payee.</listitem>
+      <listitem><guilabel>Memo:</guilabel> Additional information you
+      might want to note about the transaction. Anything entered here
+      will be added to the <guilabel>Memo</guilabel> fields of
+      <emphasis role="italic">both</emphasis> splits.</listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2><title>Transfer Accounts</title>
+    <para>The <guilabel>Transfer From</guilabel> and
+    <guilabel>Transfer To</guilabel> tree views are used to select the
+    accounts which will participate in the transaction. They normally
+    show only Asset and Liability accounts. If you need to use an
+    Income or Expense account in one of them, check the <guilabel>Show
+    Income/Expense</guilabel> checkbox below the appropriate
+    view.</para>
+    <itemizedlist>
       <listitem>
-        <para>Enter in the <guilabel>Basic Information</guilabel> pane
-        the <guilabel>Amount</guilabel>, <guilabel>Date</guilabel> and
-        <guilabel>Description</guilabel>. The <guilabel>Num</guilabel>
-        and <guilabel>Memo</guilabel> fields are optional. Entries in
-        the <guilabel>Memo</guilabel> field are copied to the
-        <guilabel>Memo</guilabel> fields of <emphasis
-        role="italic">both</emphasis> splits.</para>
+        <para>Choose the <guilabel>Transfer From</guilabel> account.</para>
       </listitem>
 
       <listitem>
-        <para>Choose the <guilabel>Transfer From</guilabel>
-        account. If you need to see Income and Expense accounts in the
-        tree check the <guilabel>Show Income/Expense</guilabel> box at
-        the bottom of the <guilabel>Transfer From</guilabel>
-        pane.</para>
+        <para>Choose the <guilabel>Transfer To</guilabel> account.</para>
       </listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2 id="trans-win-price"><title>Currency Transfer</title>
+    <para> The <guilabel>Currency Transfer</guilabel> pane is used to
+    collect the needed information to enter the amount of the
+    <guilabel>Transfer To</guilabel> split. You may enter either a
+    price or an amount and <application>&app;</application> will
+    compute the other. If you have Online Price Retrieval installed
+    (see <xref linkend="Online-price-setup"/>) you can use the
+    <guilabel>Fetch Rate</guilabel> button to retrieve a current
+    quote.</para>
+    <para>The <guilabel>Currency Transfer</guilabel> pane is enabled
+    only if the selected accounts use different commodities or the
+    <guilabel>Transfer Funds</guilabel> dialog was launched to collect
+    price or amount information from editing a transaction in the
+    register. </para>
+    <para>The <guilabel>Currency Transfer</guilabel> pane is organized
+    as a radio group with two selections, <guilabel>Exchange
+    Rate</guilabel> and <guilabel>To Amount</guilabel>. Each consists
+    of a radio button and a numeric entry.</para>
+    <para> If a relevant price is available in the price database (see
+    <xref linkend="invest-stockprice-manual"/>) the <guilabel>Exchange
+    Rate</guilabel> will have that as a default entry.</para>
+    <itemizedlist>
+      <listitem> Select the <guilabel>Exchange Rate</guilabel> radio
+      button if you want to enter a price or use the <guilabel>Fetch
+      Rate</guilabel> button.</listitem>
+      <listitem> Select the
+      <guilabel>To Amount</guilabel> radio button if you want to enter
+      the amount of the <emphasis role="italic">To Account</emphasis>
+      split.</listitem>
+      <listitem> Enter the price/exchange rate or the amount in the
+      numeric entry corresponding to radio button you
+      selected. <application>&app;</application> will calculate the
+      other amount for you when you exit the field. If it's enabled
+      you can use the <guilabel>Fetch Rate</guilabel> button to
+      retrieve a current quote.</listitem>
 
-      <listitem>
-        <para>Choose the <guilabel>Transfer To</guilabel> account. If
-        you need to see Income and Expense accounts in the tree check
-        the <guilabel>Show Income/Expense</guilabel> box at the bottom
-        of the <guilabel>Transfer To</guilabel> pane.</para>
-      </listitem>
-    </orderedlist>
-    <para>If one of the accounts above uses a different currency from
-    the other account or the <guilabel>Transfer Funds</guilabel>
-    dialog was launched to collect price or amount information from
-    editing a transaction in the register the <guilabel>Currency
-    Transfer</guilabel> pane will be enabled to add either an
-    <guilabel>Exchange Rate</guilabel> or a <guilabel>To
-    Amount</guilabel>.</para>
-    <para> Select which you want to enter with the appropriate
-    radio-button and enter the rate or
-    amount. <application>&app;</application> will calculate the other
-    value from your entry when you exit the field.</para>
-    <para>If you have online quote retrieval set up the
-    <guibutton>Fetch Rate</guibutton> button will be enabled. Clicking
-    this button will retrieve the current exchange rate from yahoo.com
-    and fill in the <guilabel>Exchange Rate</guilabel> field. <note><para>If
-    you have created a price in the <guilabel>Price Editor</guilabel>
-    (see <xref linkend="invest-stockprice-manual"/>) for the current
-    date quote retrieval will not update that price. You must first
-    delete the manually-created prce in the <guilabel>Price
-    Editor</guilabel> before clicking the <guibutton>Fetch
-    Rate</guibutton> button.</para></note><note><para>The <guibutton>Fetch Rate</guibutton> button will immediately create or replace a price in the <guilabel>Price Editor</guilabel> unless there is an existing manually-created price for today.</para></note></para>
 
+      <note><para>If you have created a price in the <guilabel>Price
+      Editor</guilabel> (see <xref
+      linkend="invest-stockprice-manual"/>) for the current date quote
+      retrieval will not update that price. You must first delete the
+      manually-created prce in the <guilabel>Price Editor</guilabel>
+      before clicking the <guibutton>Fetch Rate</guibutton>
+      button.</para></note>
+      <note><para>The <guibutton>Fetch
+      Rate</guibutton> button will immediately create or replace a
+      price in the <guilabel>Price Editor</guilabel> unless there is
+      an existing manually-created price for
+      today.</para></note>
+    </itemizedlist>
+    </sect2>
+    <sect2><title>Finishing Up</title>
     <para>Select <guibutton>OK</guibutton> to commit the transaction
-    or <guibutton>Cancel</guibutton> to dismiss the dialog without
-    entering the transaction.<note><para>When committing a transaction or
+    (or confirm the price/amount) or <guibutton>Cancel</guibutton> to
+    dismiss the dialog without entering the
+    transaction.<note><para>When committing a transaction or
     confirming an exchange rate the price on the transaction date in
     the <guilabel>Price Editor</guilabel> may be updated. See <xref
     linkend="tool-price"/> for details.</para></note></para>
-
+    </sect2>
   </sect1>
 
   <sect1 id="trans-enter">
@@ -432,9 +475,9 @@ Translators:
     the fields disabled to collect either an <guilabel>Exchange
     Rate</guilabel> or a <guilabel>To Amount</guilabel> (the amount in
     the other currency/comodity). Please see (<xref
-    linkend="trans-win-enter"></xref>) for details of using this
+    linkend="trans-win-price"></xref>) for details of using this
     dialog.</para>
-<note><para>When committing a transaction or confirming
+    <note><para>When committing a transaction or confirming
     an exchange rate the price on the transaction date in the
     <guilabel>Price Editor</guilabel> may be updated. See <xref
     linkend="tool-price"/> for details.</para></note>

@@ -2,12 +2,13 @@
       (Do not remove this comment block.)
   Originally designed by Carol Champagne.
   Version: 2.0.0
-  Last modified: July 9th 2006
+  Last modified: Sep 19th 2015
   Maintainers: 
                Chris Lyttle <chris@wilddev.net>
   Author:
   		Jon Lapham <lapham@extracta.com.br>
         updated Patrick Schweiger <pks@spiffykitty.com>
+                        Chris Good <chris.good@ozemail.com.au>
   Translators:
                (translators put your name and email here)
 -->
@@ -17,175 +18,117 @@ A lot of the following text is duplicated in the GnuCash help. The text here in 
 corrected to be less describing of the interface and more tutorial oriented
 -->
 
- <chapter id="chapter_bus_ap">
- <title>Accounts Payable</title>
- <para>Accounts Payable (or A/P) refers to the accounting of products or services which a company has bought and needs to pay off.</para>
-
-  <sect1 id="bus-ap-concepts1">
-  <title>Basic Concepts</title>
-  <para>This chapter focuses on Accounts Payable (or A/P).  A/P refers to the accounting of products or services that your company has bought, for which payment needs to be scheduled.</para>
-   </sect1>
-
+<chapter id="chapter_bus_ap">
+  <title>Accounts Payable</title>
+  <para>Accounts Payable (or A/P) refers to the accounting of products or services which a company has
+    bought and needs to pay for.
+  </para>
+ 
   <sect1 id="bus-ap-setup1">
-  <title>Initial Setup</title>
-  <para>To set up <application>&app;</application> to handle accounts payable for a company, two preliminary things must be done.  The first is to build an appropriate Account Hierarchy and the second is to register the company in <application>&app;</application>.</para>
-
-  <sect2 id="bus-ap-setupacct2">
-  <title>Account Setup</title>
-
-      <para>There are many different ways to set up a business account
-      hierarchy. You can start with the Business Accounts setup which is
-      available from the New Account Hierarchy assistant, or you could build one
-      manually. To access the prebuilt Business Accounts, start <application>&app;</application> and
-      click on <menuchoice><guimenu>File</guimenu><guimenuitem>New File</guimenuitem></menuchoice> and
-      proceed until you see the list of available accounts, select Business
-      Accounts.</para>
-
-      <para>The prebuilt Business Account hierarchy will not meet your needs
-      exactly. You will need make adjustments for the hierarchy to function
-      well with your particular situation. It should be close enough that it
-      is recommended you begin with it.</para>
-
-      <para>Accounts Payable (or A/P) refers to products or services bought by your company for which payment has not yet been sent.  This is represented on the balance sheet as a liability because you will have to pay for them.  To use <application>&app;</application>&rsquo;s integrated accounts payable system, you must first setup an account of the <emphasis>A/Payable</emphasis> type.  The <emphasis>A/Payable</emphasis> account is usually a sub-account under Liabilities.  It is within this account that the integrated A/P system places transactions.</para>
-  <literallayout>
-Basic A/P Account Hierarchy:
-
--Assets
-   -Bank
--Liabilities
-   -Accounts Payable
--Expenses
-   -AP Expenses
-  </literallayout>
-
-      <para>You need to add additional asset accounts and real expense accounts to make this hierarchy useful.
-        The important aspects of this hierarchy are that you need an expense account and an Accounts Payable account, with account type set to <emphasis>A/Payable</emphasis>.
-      </para>
-      
-      <para>Transactions involving an Accounts Payable account should not be added,
-        changed or deleted in any way other than by using 
-        <itemizedlist>
-          <listitem><para>post/unpost bill/invoice/voucher or</para></listitem>
-	  <listitem><para>process payment"</para></listitem>
-	</itemizedlist>
-      </para>
-
-  </sect2>
-
-  <sect2 id="bus-ap-setupcname2">
-  <title>Company Registration</title>
-
-      <para>After you have built the account structure, register the <application>&app;</application>
-      file as belonging to your company. To register your company, select
-      <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice>:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>Enter the name of your company along with contact information
-          such as your phone number, fax number, e-mail address and website
-          URL.</para>
-        </listitem>
-
-        <listitem>
-          <para>Enter your company&rsquo;s tax payer id number in the
-          <guilabel>Company ID</guilabel> field.</para>
-        </listitem>
-
-       </itemizedlist>
-  </sect2>
+    <title>Initial Setup</title>
+    <para>Perform set up tasks listed in <xref linkend="chapter_bus_setup" />.
+    </para>
   </sect1>
 
   <sect1 id="bus-ap-components1">
-  <title>System Components</title>
-  <para><application>&app;</application> has an integrated accounts payable system.  The transactions generated by the A/P system are placed within the Accounts Payable account, 
-  as a record of what occurs.  Generally you do not directly work with this account but use the four integrated <application>&app;</application> A/P application components.
-  The A/P components are available from the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu></menuchoice> sub-menu.  These A/P components are:</para>
+    <title>System Components</title>
+    <para><application>&app;</application> has an integrated accounts payable system.  The transactions generated by the A/P system are placed within the Accounts Payable account, 
+      as a record of what occurs.  Generally you do not directly work with this account but use the four integrated <application>&app;</application> A/P application components.
+      The A/P components are available from the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu></menuchoice> sub-menu.  These A/P components are:
+    </para>
 
-  <itemizedlist>
-  <listitem>
-  <para><guilabel>Vendors</guilabel> are people or companies from which you buy products or services on credit.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Bills</guilabel> represent the physical bills vendors send to request payment from you.  A bill contains an itemized list of things you purchased.</para>
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Vendors</guilabel> are people or companies from which you buy products or services on credit.</para>
+      </listitem>
+        
+      <listitem>
+        <para><guilabel>Bills</guilabel> represent the physical bills vendors send to request payment from you.  A bill contains an itemized list of things you purchased.</para>
         <para>In addition, GnuCash also has support for <guilabel>Credit Notes</guilabel>
-        which represent the inverse of Bills. A credit note is usually received from
-        a vendor to correct items that were erroneously billed or returned.</para>
+          which represent the inverse of Bills. A credit note is usually received from
+          a vendor to correct items that were erroneously billed or returned.
+        </para>
         <para>Both document types will be set up using the same menu items.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Jobs</guilabel> (optional) is where you register Vendor Jobs.  Jobs are mechanism by which you can group multiple bills from a particular vendor.</para>
-  </listitem>
-  <listitem>
-  <para><guilabel>Process Payments</guilabel> is where you register payments to a vendor to whom you owe money.</para>
-  </listitem>
-  </itemizedlist>
-
-  <para>The following sections introduce the individual Accounts Payable application components.</para>
- </sect1>
+      </listitem>
+      
+      <listitem>
+        <para><guilabel>Jobs</guilabel> (optional) is where you register Vendor Jobs.  Jobs are mechanism by which you can group multiple bills from a particular vendor.
+        </para>
+      </listitem>
+      
+      <listitem>
+        <para><guilabel>Process Payments</guilabel> is where you register payments to a vendor to whom you owe money.</para>
+      </listitem>
+    </itemizedlist>
+    
+    <para>The following sections introduce the individual Accounts Payable application components.</para>
+  </sect1>
 
   <sect1 id="bus-ap-vendors1">
-  <title>Vendors</title>
- <para>A vendor is a company or person from whom you purchase goods or services.  Vendors must be registered within the A/P system.</para>
+    <title>Vendors</title>
+    <para>A vendor is a company or person from whom you purchase goods or services.  Vendors must be registered within the A/P system.</para>
  
-  <sect2 id="bus-ap-vendornew2">
-  <title>New</title>
- <para>To register a new vendor, select the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Vendor</guimenuitem></menuchoice> menu item.  Fill in general information about the vendor, such as Company Name, Address, Phone, Fax, etc.  Below is a list of the other options: </para>
+    <sect2 id="bus-ap-vendornew2">
+      <title>New</title>
+      <para>To register a new vendor, select the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>
+        New Vendor</guimenuitem></menuchoice> menu item.  Fill in general information about the vendor, such as Company Name, Address, Phone,
+        Fax, etc.  Below is a list of the other options: </para>   <para>This is what the New Vendor registration window looks like:
+      </para>
+      <screenshot id="bus-ap-vendornew">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ap_vendornew.png" srccredit="Patrick Schweiger" format="PNG"/>
+          </imageobject>
+          <textobject>
+            <phrase>New Vendor Registration Window</phrase>
+          </textobject>
+          <caption>
+            <para>New Vendor Registration Window</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+  
+    <sect2 id="bus-ap-vendorfind2">
+      <title>Find and Edit</title>
 
-   <para>This is what the New Vendor registration window looks like:</para>
-	<screenshot id="bus-ap-vendornew">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_vendornew.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>New Vendor Registration Window</phrase>
-	    </textobject>
-	    <caption>
-	       <para>New Vendor Registration Window
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
+    <para>To search for an existing vendor, use the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>
+      Find Vendor</guimenuitem></menuchoice> window.  You select a vendor to <guibutton>View/Edit</guibutton> from the results of the search.  
+      This window is also used to look up a vendor when entering bills and processing payments.
+    </para>
+    <screenshot id="bus-ar-vendorfind">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ap_vendorfind.png" srccredit="Patrick Schweiger" format="PNG"/>
+        </imageobject>
+        <textobject>
+          <phrase>Find Vendor Window</phrase>
+        </textobject>
+        <caption>
+          <para>Find Vendor Window</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
 
-  </sect2>
-  <sect2 id="bus-ap-vendorfind2">
-  <title>Find and Edit</title>
-
- <para>To search for an existing vendor, use the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>Find Vendor</guimenuitem></menuchoice> window.  You select a vendor to <guibutton>View/Edit</guibutton> from the results of the search.  This window is also used to look up a vendor when entering bills and processing payments.</para>
-	<screenshot id="bus-ar-vendorfind">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_vendorfind.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>Find Vendor Window</phrase>
-	    </textobject>
-	    <caption>
-	       <para>Find Vendor Window
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
-
-      <para>If many vendors match the search criteria you provide, the
+    <para>If many vendors match the search criteria you provide, the
       search can be refined by running an additional search within the current
       results. The current result set is searched when the <guilabel>Refine
       Current Search</guilabel> radio button is selected. In fact, <application>&app;</application>
       selects this option for you after you run the initial search.</para>
 
-      <para>If the vendor you are searching for does not match the supplied
+    <para>If the vendor you are searching for does not match the supplied
       search criteria, change the search criteria, click the <guilabel>New
       Search</guilabel> radio button and then the <guibutton>Find</guibutton>
       button. The relevant step is the <guilabel>New Search</guilabel>
       selection. If the vendor is not in the result of the original search,
       and you only search within this set, the vendor cannot be found,
-      regardless of new search criteria.</para>
+      regardless of new search criteria.
+    </para>
 
- <note>
- <para>To return a list of all registered active vendors, set the search criterion to <guilabel>matches regex</guilabel>, and place a single dot <quote>.</quote> in the text field area.  Make sure <guilabel>Search only active data</guilabel> is checked, then click <guibutton>Find</guibutton>.  The regular expression <quote>.</quote> means to match anything.</para>
- </note>
+    <note>
+      <para>To return a list of all registered active vendors, set the search criterion to <guilabel>matches regex</guilabel>, and place a single dot <quote>.</quote> in the text field area.  Make sure <guilabel>Search only active data</guilabel> is checked, then click <guibutton>Find</guibutton>.  The regular expression <quote>.</quote> means to match anything.
+      </para>
+    </note>
   </sect2>
 </sect1>
 
@@ -206,72 +149,70 @@ Basic A/P Account Hierarchy:
     </note>
 
   <sect2 id="bus-ap-billnew2">
-  <title>New</title>
-  <para>When you receive a bill from a vendor and want to enter it into <application>&app;</application>, you must create a new bill.  To create a new bill use the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Bill</guimenuitem></menuchoice> menu item, and fill in the resulting window appropriately.</para>
-	<screenshot id="bus-ap-billnew">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_billnew.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>New Bill Registration Window</phrase>
-	    </textobject>
-	    <caption>
-	       <para>New Bill Registration Window
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
+    <title>New</title>
+    <para>When you receive a bill from a vendor and want to enter it into <application>&app;</application>, you must create a new bill.  To create a new bill use the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Bill</guimenuitem></menuchoice> menu item, and fill in the resulting window appropriately.</para>
+    <screenshot id="bus-ap-billnew">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ap_billnew.png" srccredit="Patrick Schweiger" format="PNG"/>
+        </imageobject>
+        <textobject>
+          <phrase>New Bill Registration Window</phrase>
+        </textobject>
+        <caption>
+          <para>New Bill Registration Window
+          </para>
+        </caption>
+      </mediaobject>
+    </screenshot>
 
-  <para>When you click the <guibutton>OK</guibutton> the <guilabel>Edit Bill</guilabel> opens.</para>
+    <para>When you click the <guibutton>OK</guibutton> the <guilabel>Edit Bill</guilabel> opens.</para>
   </sect2>
 
   <sect2 id="bus-ap-billedit2">
-  <title>Edit</title>    
-  <para>From the Edit Bill window you can enter an itemized list of
+    <title>Edit</title>    
+    <para>From the Edit Bill window you can enter an itemized list of
       goods and services you purchased, in a manner similar to how the account
       register works. For credit notes you enter an itemized list of goods and
-      services the vendor refunded instead.</para>  
-  	<screenshot id="bus-ap-billedit">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_billedit.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>Edit Bill Window</phrase>
-	    </textobject>
-	    <caption>
-	       <para>Edit Bill Window</para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
+      services the vendor refunded instead.
+    </para>
+    <screenshot id="bus-ap-billedit">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ap_billedit.png" srccredit="Patrick Schweiger" format="PNG"/>
+        </imageobject>
+        <textobject>
+          <phrase>Edit Bill Window</phrase>
+        </textobject>
+        <caption>
+          <para>Edit Bill Window</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
 
-  <para>When you have finished entering all the items, <guilabel>Post</guilabel> the bill. </para>
-</sect2>
+    <para>When you have finished entering all the items, <guilabel>Post</guilabel> the bill. </para>
+  </sect2>
 
   <sect2 id="bus-ap-billpost2">
-  <title>Post</title>
-  <para>When you finish editing a bill, you should <guilabel>Post</guilabel> the bill.  You do not have to post the bill,
+    <title>Post</title>
+    <para>When you finish editing a bill, you should <guilabel>Post</guilabel> the bill.  You do not have to post the bill,
       you can close it and return to it later. You have to post the bill eventually.  Posting a bill places its transactions into an accounts payable account.
-      The Post Bill window appears and asks you to enter information:</para>
-
-  	<screenshot id="bus-ap-billpost">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_billpost.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>Post Bill Window</phrase>
-	    </textobject>
-	    <caption>
-	       <para>Post Bill Window
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
+      The Post Bill window appears and asks you to enter information:
+    </para>
+      
+    <screenshot id="bus-ap-billpost">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ap_billpost.png" srccredit="Patrick Schweiger" format="PNG"/>
+        </imageobject>
+        <textobject>
+          <phrase>Post Bill Window</phrase>
+        </textobject>
+        <caption>
+          <para>Post Bill Window</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
   </sect2>
 
   <sect2 id="bus-ap-billfind2">
@@ -288,24 +229,29 @@ Basic A/P Account Hierarchy:
 </sect1>
 
   <sect1 id="bus-ap-jobs1">
-  <title>Vendor Jobs</title>
-  <para>Vendor Jobs are used to group multiple bills and credit notes from a single vendor.  Use of the vendor jobs feature is optional.  The feature is useful when you have multiple <guilabel>jobs</guilabel> for the same vendor, and would like to view all the bills and credit notes for a single job.</para>
-  <para>To use vendor jobs, you must create them using the <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Job</guimenuitem></menuchoice> menu item.  You will see the <guilabel>New Job</guilabel> window.</para>
-
-  	<screenshot id="bus-ap-jobnew">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_jobnew.png" 
-	      srccredit="Jon Lapham" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>New Vendor Job</phrase>
-	    </textobject>
-	    <caption>
-	       <para>New Vendor Job</para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
+    <title>Vendor Jobs</title>
+    <para>Vendor Jobs are used to group multiple bills and credit notes from a single vendor.  Use of the vendor jobs feature is optional.  
+      The feature is useful when you have multiple <guilabel>jobs</guilabel> for the same vendor, and would like to view all the bills and 
+      credit notes for a single job.
+    </para>
+    <para>To use vendor jobs, you must create them using the 
+      <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Job</guimenuitem>
+      </menuchoice> menu item.  You will see the <guilabel>New Job</guilabel> window.
+    </para>
+    
+    <screenshot id="bus-ap-jobnew">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ap_jobnew.png" srccredit="Jon Lapham" format="PNG"/>
+        </imageobject>
+        <textobject>
+          <phrase>New Vendor Job</phrase>
+        </textobject>
+        <caption>
+          <para>New Vendor Job</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
 
     <para>To edit an existing vendor job, use the <menuchoice>
     <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu>
@@ -323,26 +269,28 @@ Basic A/P Account Hierarchy:
   </sect1>
 
   <sect1 id="bus-ap-payment1">
-  <title>Process Payment</title>
-  <para>Eventually, you need to pay your bills.  To do so, use the Process Payment application found in <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>Process Payment</guimenuitem></menuchoice>.</para>
+    <title>Process Payment</title>
+    <para>Eventually, you need to pay your bills.  To do so, use the Process Payment application found in 
+      <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>Process Payment</guimenuitem>
+      </menuchoice>.
+    </para>
 
     <para>Below is the <application>&app;</application> Accounts Receivable payment window.</para>
-  	<screenshot id="bus-ap-payment">
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="figures/bus_ap_payment.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
-            </imageobject>
-	    <textobject>
-	        <phrase>Process Payment</phrase>
-	    </textobject>
-	    <caption>
-	       <para>Process Payment Window
-	       </para>
-	    </caption>
-          </mediaobject>
-        </screenshot>
+    <screenshot id="bus-ap-payment">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_ap_payment.png" srccredit="Patrick Schweiger" format="PNG"/>
+        </imageobject>
+        <textobject>
+          <phrase>Process Payment</phrase>
+        </textobject>
+        <caption>
+         <para>Process Payment Window
+         </para>
+        </caption>
+      </mediaobject>
+    </screenshot>
 
- </sect1>
+  </sect1>
 
- </chapter>
+</chapter>
