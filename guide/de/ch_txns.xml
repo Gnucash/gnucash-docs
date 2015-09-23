@@ -311,60 +311,96 @@
     Eine Buchung mit nur zwei Teilbuchungen wird ein <emphasis>einfache Buchung</emphasis> genannt, weil nur das laufende Konto und ein einzelnes entferntes Konto beteiligt ist. 
     Eine Buchung mit drei oder mehr Konten wird eine <emphasis>mehrteilige Buchung</emphasis> genannt.</para>
 
-    <para>When the register is in Basic view, you will see a summary of the splits affecting the current account. For a simple transaction, the <guilabel>Transfer</guilabel> column will display the other account from which money is <emphasis>transferred</emphasis>. For a split transaction, the <guilabel>Transfer</guilabel> column will display <guilabel>-- Split Transaction --</guilabel>. You can see the individual splits of each
-        transaction by clicking the <guibutton>Split</guibutton> button in the
-        <emphasis>Toolbar</emphasis> while selecting the appropriate transaction.</para>
-   <para>For split transactions, the first line of the transaction is the
-        <emphasis>transaction line</emphasis>. It contains a
-        <guilabel>Date</guilabel>, optional <guilabel>Num</guilabel> (such as a
-        check number), transaction <guilabel>Description</guilabel>, total
-        amount affecting the current account (<guilabel>Tot Deposit</guilabel>
-        here), and updated account <guilabel>Balance</guilabel> after the
-        current transaction. Note that in the expanded view, the
-        <guilabel>Transfer</guilabel> column heading disappears, and there is no
-        account name listed in that field. This line shows you only a summary of
-        the transaction&rsquo;s effect on the current account. For more detailed
-        information, you need to look at the individual splits that make up the
-        transaction.</para>
+    <para>In der einfachen Ansicht sehen Sie eine Zusammenfassung der Teilbuchungen bezogen auf das laufende Konto. 
+    für einfache Buchungen zeigt die Spalte <guilabel>Buchen</guilabel> das andere Konto, von dem das Geld <emphasis>überwiesen </emphasis>wird. 
+    Für eine Teilbuchung zeigt die Spalte <guilabel>Buchung</guilabel> <guilabel>-- Mehrteilige Buchung --</guilabel>. 
+    Sie können die einzelnen Teilbuchung jeder Buchung sehen, indem Sie das <guibutton>Buchungsteile</guibutton>-Symbol in der <emphasis>Werkzeugleiste</emphasis> anklicken, während Sie die Buchung ausgewählt haben.</para>
+    
+   <para>Bei Teilbuchungen ist die erste Zeile einer Buchung die Buchungszeile <emphasis>transaction line</emphasis>. 
+   Sie enthält das <guilabel>Datum</guilabel>, optional die <guilabel>Nr.</guilabel> (wie die Überweisungsnummer), Buchungs-<guilabel>Beschreibung</guilabel>, Gesamtbetrag für das laufende Konto(<guilabel>Gesamt Soll</guilabel> oder <guilabel>Gesamt Aufwand<guilabel> hier), 
+   und den aktuellen Konten-<guilabel>Saldo</guilabel> nach der aktuellen Buchung. 
+   Beachten Sie, dass in der erweiterten Ansicht der Spaltenkopf der <guilabel>Buchungs</guilabel>sspalte verschwindet und es gibt keinen Kontennamen in diesem Feld. 
+   Diese Zeile zeigt Ihnen nur eine Zusammenfassung der Auswirkung der Buchung auf dem laufendne Konto. 
+   Für mehr Inforamtionen kööne Sie in die einzelnen Teilbuchungen schauen, die die mehrteilige Buchung ausmachen.</para>
 
-<para>The partial lines below the transaction line are the
-    <emphasis>split lines</emphasis>, and they are separated by gray lines.
-    As you highlight one of the split lines, the column headings change to
-    show the split-related fields:</para>
+   <para>Die eingerückten Zeilen unter der Buchungszeile sind die <emphasis>Teilbuchungszielen</emphasis>. Sie sind grauen Zeilen unterteilt.
+   Wenn Sie eine der Teilbuchungeszeilen hervorheben, wechseln die Spaltenköpfe, um die teilbuchungsrelevanten Felder zu benennen:</para>
 
      <screenshot id="txns-registersplit2">
         <mediaobject>
           <imageobject>
-            <imagedata fileref="figures/txns_registersplit2.png" format="PNG"
+            <imagedata fileref="figures/txns_registersplit2.png" format="PNG" srccredit="Mechtilde Stehmann" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Wie sich Spaltenüberschriften für Teilbuchungen ändern</phrase>
+          </textobject>
+
+          <caption><para>Dieses Bild zeigt, wie sich Spaltenüberschriften 
+          für Teilbuchungen ändern.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+    <para>Jeder Buchungsteil enthält ein optionales Feld <guilabel>Aktion</guilabel> oder Art des Buchungsteils, 
+    welches Sie entweder durch eintippen, oder durch Auswahl in einer Auswahlliste eingeben können. 
+    Weiterhin enthält er ein optionales Feld <guilabel>Buchungstext</guilabel>, welches den Buchungsteil beschreibt.
+    Jeder Buchungsteil beeinflusst ein <guilabel>Konto</guilabel>, welches aus einer
+    mit Ihren Kontenbezeichungen gefüllten Auswahlliste gewählt werden kann. 
+      Das Feld <guilabel>J</guilabel> zeigt an, ob ein Buchungsteil schon abgeglichen wurde.
+      Die letzten zwei Spalten zeigen den Betrag des Buchungsteils, und ob das Geld
+      auf das Konto (Soll), oder von dem Konto (Haben) transferiert wurde.</para>
+
+      <para>Wie schon in Kapitel <xref linkend="basics-accounting1" /> besprochen, 
+      muss für jede Buchung die Gesamt-Zunahme (Beträge in der linken Spalte oder das Soll) 
+      gleich der Gesamt-Abname (Beträge in der rechten Spalte oder Haben) sein.
+      Im oben oben gezeigten Beispiel ist die Gesamt-Zunahme gleich der Gesamt-Abnahme, 
+      die Buchung ist also ausgeglichen. Wie Sie feststellen können, ist der Geldbetrag 
+      in der Buchungszeile derselbe wie unter Buchungsteil <guilabel>Girokonto</guilabel>. 
+      Warum wird dieser zweimal gezeigt? Weil die Buchungszeile lediglich eine 
+      <emphasis>Zusammenfassung</emphasis> des Effekts der Buchung auf das zur Zeit
+      angezeigte Konto darstellt. Die Buchungszeile derselben Buchung in der Buchungsansicht
+      eines anderen Kontos würde den Effekt der Buchung auf das jeweilige Konto anzeigen.
+      Sie können das sehen, indem Sie einen anderen Buchungsteil markieren und auf den Knopf
+      <guibutton>Gegenbuchung</guibutton> in der <emphasis>Werkzeugleiste</emphasis> klicken.</para>
+
+      <para>Wenn Sie in diesem Beispiel zur Gegenbuchung im Konto <emphasis>Ertrag:Gehalt</emphasis>
+      gehen, zeigt Ihnen <application>&app;</application> dieselbe Buchung in der Buchungsansicht
+      des Kontos <emphasis>Ertrag:Gehalt</emphasis>:</para>
+
+      <screenshot id="txns-registersplit3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit3.png" format="PNG"
                        srccredit="Bengt Thuree" />
           </imageobject>
 
           <textobject>
-            <phrase>Wie sich Spaltenüberschriften für Buchungsteile ändern</phrase>
+            <phrase>Die Gegenbuchung im <emphasis>Ertrag:Gehalt</emphasis> Konto</phrase>
           </textobject>
 
-          <caption><para>Dieses Bild zeigt, wie sich Spaltenüberschriften 
-          für Buchungsteile ändern.</para></caption>
+          <caption><para>Dieses Bild zeigt Ihnen das Konto
+          <emphasis>Ertrag:Gehalt</emphasis>.</para></caption>
         </mediaobject>
       </screenshot>
 
-
-
-
-
-
+   <para>Beachten Sie, dass die Buchungszeile jetzt die Zusammenfassung der Auswirkungen
+   auf das Konto <emphasis>Ertrag:Gehalt</emphasis> und nicht mehr auf das Konto
+   <emphasis>Aktiva:Girokonto</emphasis> darstellt, da Sie jetzt die Buchungsansicht 
+   des Kontos <emphasis>Ertrag:Gehalt</emphasis> betrachten. Die Teilbuchungen sind 
+   dieselben, aber die Buchungszeile stellt jetzt den Einfluss auf das Konto
+   <emphasis>Ertrag:Gehalt</emphasis> dar.</para>
 
    <sect2 id="txns-registers-twoaccount2">
-      <title>Einfacher Buchung</title>
+      <title>Einfache Buchung</title>
 
       <para>Für unser Beispiel benutzen wir den Kontenrahmen, den wir in dem vorherigen Kapitel
-        erstellt haben (<filename>gcashdata_3</filename>). Mit einem Doppelklick auf das Konto
-        <guilabel>Girokonto</guilabel> öffnen Sie die Buchungsansicht. Jetzt wollen wir eine
-        einfache Buchung auf dem Girokonto eingeben. Normalerweise geben sie einem Konto bei der
-        Einrichtung in <application>&app;</application> einen Anfangskontostand.</para>
+      erstellt haben (<filename>test.gnucash</filename>). Mit einem Doppelklick auf das Konto
+      <guilabel>Girokonto</guilabel> öffnen Sie die Buchungsansicht. Jetzt wollen wir eine
+      einfache Buchung auf dem Girokonto eingeben. Normalerweise geben sie einem Konto bei der
+      Einrichtung in <application>&app;</application> einen Anfangskontostand.</para>
 
       <para>In der ersten Buchungszeile geben Sie bitte das Datum der Buchung ein (zum Beispiel 
-      den 1.3.2013), eine Beschreibung (zum Beispiel <quote>Anfangskontostand</quote>). 
+      den 01.03.2015), eine Beschreibung (zum Beispiel <quote>Anfangskontostand</quote>). 
       Ein Klick auf <guilabel>Buchen</guilabel> öffnet ein Pop-Up Menü in dem sie jetzt
       <emphasis>Eigenkapital:Anfangsbestand</emphasis> auswählen. Geben Sie eine Einzahlung
       von 1000 € ein, und drücken Sie die <keycap function="enter">Enter</keycap> Taste. 
@@ -374,7 +410,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/txns_register_2account.png"
-                       format="PNG" srccredit="Bengt  Thuree" />
+                       format="PNG" srccredit="Mechtilde Stehmann" />
           </imageobject>
 
           <textobject>
@@ -403,7 +439,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/txns_register_2account2.png"
-                       format="PNG" srccredit="Bengt Thuree" />
+                       format="PNG" srccredit="Mechtilde Stehmann" />
           </imageobject>
 
           <textobject>
@@ -431,12 +467,22 @@
 
       <para>Um die Gehaltszahlung in der Buchungsansicht des Kontos <emphasis>Aktiva:Girokonto</emphasis>
       einzugeben klicken Sie auf eine neue Buchungszeile und klicken dann auf 
-      <guibutton>Vollständig</guibutton>.
+      <guibutton>Vollständig</guibutton>.      
       Geben Sie jetzt in der ersten Zeile die Beschreibung der Buchung ein (zum Beispiel
-      <quote>Employers R Us</quote>). In die darunterliegenden Zeilen geben Sie nacheinander
+      <quote>Employers ALDI</quote>). In die darunterliegenden Zeilen geben Sie nacheinander
       die verschiedenen Buchungsteile ein, aus denen die Buchung besteht. Wählen Sie
       zuerst das Konto, und geben danach den auf dieses Konto zu transferierenden
-      Betrag ein. Dann klicken Sie auf die nächste Zeile und wiederholen den Vorgang.</para>
+      Betrag ein. Dann klicken Sie auf die nächste Zeile und wiederholen den Vorgang.
+      Beachten Sie , dass sich in der  Aktivakontoansicht, der Betrag in 
+      dern linken Spalte das Saldo erhöht und der Betrag in der rechten 
+      Spalte das Saldo erniedigt (mehr finden Sie unter <xref linkend="basics-transactions2"/>).
+      Tab or click the next split line and repeat the process. Note that if you are using the keyboard to navigate the transaction, use<keycap> Tab
+      </keycap> to move from field to field, as using <keycap>Enter</keycap> will commit the transaction and create splits to an Imbalance account.</para>
+      <note>
+      <para>When creating a transaction in <application>&app;</application>, splits can be entered in any order.
+      However, when the transaction is closed (either when leaving the transaction, or when 
+      pressing the <keycap function="enter">Enter</keycap> key), all debit splits will jump ahead of all credit splits.</para>
+      </note>
 
       <para>In diesem Beispiel wählen Sie als Konto für die Einzahlungen das Konto
       (<emphasis>Aktiva:Girokonto</emphasis>) und geben dann unter Einzahlung (Soll) den eingezahlten
@@ -473,55 +519,7 @@
   <!-- 
  
 
-      <para>Jeder Buchungsteil enthält ein optionales Feld <guilabel>Aktion</guilabel>, oder
-      Art des Buchungsteils, welches sie entweder durch eintippen, oder durch Auswahl
-      in einer Auswahlliste eingeben können. Weiterhin enthält er ein optionales 
-      Feld <guilabel>Buchungstext</guilabel>, welches den Buchungsteil beschreibt.
-      Jeder Buchungsteil beeinflusst ein <guilabel>Konto</guilabel>, welches aus einer
-      mit Ihren Kontenbezeichungen gefüllten Auswahlliste gewählt werden kann. 
-      Das Feld <guilabel>J</guilabel> zeigt an, ob ein Buchungsteil schon abgeglichen wurde.
-      Die letzten zwei Spalten zeigen den Betrag des Buchungsteils, und ob das Geld
-      auf das Konto (Soll), oder von dem Konto (Haben) transferiert wurde.</para>
-
-      <para>Wie schon in Kapitel <xref linkend="basics-accounting1" /> besprochen, 
-      muss für jede Buchung die Gesamt-Zunahme (Beträge in der linken Spalte oder das Soll) 
-      gleich der Gesamt-Abname (Beträge in der rechten Spalte oder Haben) sein.
-      Im oben oben gezeigten Beispiel ist die Gesamt-Zunahme gleich der Gesamt-Abnahme, 
-      die Buchung ist also ausgeglichen. Wie Sie feststellen können, ist der Geldbetrag 
-      in der Buchungszeile derselbe wie unter Buchungsteil <guilabel>Girokonto</guilabel>. 
-      Warum wird dieser zweimal gezeigt? Weil die Buchungszeile lediglich eine 
-      <emphasis>Zusammenfassung</emphasis> des Effekts der Buchung auf das zur Zeit
-      angezeigte Konto darstellt. Die Buchungszeile derselben Buchung in der Buchungsansicht
-      eines anderen Kontos würde den Effekt der Buchung auf das jeweilige Konto anzeigen.
-      Sie können das sehen, indem Sie einen anderen Buchungsteil markieren und auf den Knopf
-      <guibutton>Gegenbuchung</guibutton> in der <emphasis>Werkzeugleiste</emphasis> klicken.</para>
-
-      <para>Wenn Sie in diesem Beispiel zur Gegenbuchung im Konto <emphasis>Ertrag:Gehalt</emphasis>
-      gehen, zeigt Ihnen <application>&app;</application> dieselbe Buchung in der Buchungsansicht
-      des Kontos <emphasis>Ertrag:Gehalt</emphasis>:</para>
-
-      <screenshot id="txns-registersplit3">
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/txns_registersplit3.png" format="PNG"
-                       srccredit="Bengt Thuree" />
-          </imageobject>
-
-          <textobject>
-            <phrase>Die Gegenbuchung im <emphasis>Ertrag:Gehalt</emphasis> Konto</phrase>
-          </textobject>
-
-          <caption><para>Dieses Bild zeigt Ihnen die Gegenbuchung in der Buchungsansicht des Kontos
-          <emphasis>Ertrag:Gehalt</emphasis>.</para></caption>
-        </mediaobject>
-      </screenshot>
-
-      <para>Beachten Sie, dass die Buchungszeile jetzt die Zusammenfassung der Auswirkungen
-      auf das Konto <emphasis>Ertrag:Gehalt</emphasis> und nicht mehr auf das Konto
-      <emphasis>Aktiva:Girokonto</emphasis> darstellt, da Sie jetzt die Buchungsansicht 
-      des Kontos <emphasis>Ertrag:Gehalt</emphasis> betrachten. Die Teilbuchungen sind 
-      dieselben, aber die Buchungszeile stellt jetzt den Einfluss auf das Konto
-      <emphasis>Ertrag:Gehalt</emphasis> dar.</para>
+   
 
       <para>Am unteren Rand des Kontofensters zeigt <application>&app;</application> links
       hilfreiche Informationen, wenn Sie die Maus über das Kontenblatt bewegen. Auf der rechten Seite
