@@ -6,8 +6,8 @@
   Maintainers:
                Chris Lyttle <chris@wilddev.net>
   Author:
-  		Jon Lapham <lapham@extracta.com.br>
-  	Updated	Bengt Thuree <bengt@thuree.com>
+        Jon Lapham <lapham@extracta.com.br>
+        Updated	Bengt Thuree <bengt@thuree.com>
   Originally written by Carol Champagne.
   Translators:
         (translators put your name and email here)
@@ -32,11 +32,11 @@
     und einem <emphasis>nach-Konto</emphasis>. Der Geldbetrag wird von einem <emphasis>von-Konto</emphasis>
     auf ein <emphasis>nach-Konto</emphasis> transferiert.
     Buchhalter nennen diese Teile einer Buchung <emphasis>Einträge ins Kontenblatt</emphasis>. 
-    In <application>&app;</application>, werden sie <emphasis>Buchungsteile</emphasis> genannt.</para>
+    In <application>&app;</application>, werden sie <emphasis>Teilbuchungen</emphasis> genannt.</para>
 
-    <para>Ein Buchungsteil beschreibt das Konto, zu dem er gehört, den Geldbetrag, der von diesem Konto
+    <para>Eine Teilbuchung beschreibt das Konto, zu dem er gehört, den Geldbetrag, der von diesem Konto
     oder auf dieses Konto transferiert wurde und kann bei Bedarf noch einige andere Informationen enthalten.
-    <application>&app;</application> unterstützt mehrere Buchungsteile in einer Buchung, und die Buchungsteile
+    <application>&app;</application> unterstützt mehrere Teilbuchungen in einer Buchung, und die TeilbBuchungen
     können beliebig Geldbeträge auf die betroffenen Konten oder von ihnen weg bewegen.</para>
 
     <para>Sie erhalten zum Beispiel eine Gehaltszahlung auf Ihr Girokonto bei der Bank.
@@ -60,6 +60,7 @@
     Hier können Sie auch neue Buchungen für dieses Konto eingeben. 
     In die Buchungsansicht gelangen Sie durch einen Doppelklick auf den Kontennamen in der Kontenhierarchie. 
     Alternativ können Sie auch den Kontennamen in der Kontenhierarchie markieren und gelangen durch Auswahl des <guibutton>Öffnen</guibutton>-Symbols in der <emphasis>Werkzeugleiste</emphasis> oder das Optionsmenü (rechte Maustaste) zur Buchungsansicht.
+
     <application>&app;</application> zeigt jetzt die Buchungsansicht an.</para>
 
     <sect2 id="txns-registers-features2">
@@ -78,7 +79,7 @@
 
     <para><application>&app;</application> bietet mehrere Optionen, die Buchungsansicht anzuzeigen.
     Die Standardeinstellung ist <guilabel>Einzeilig</guilabel>. 
-    Diese zeigt lediglich die Zusammenfassung der Buchungsteile, die das gewählte Konto beeinflussen. 
+    Diese zeigt lediglich die Zusammenfassung derTeilbuchungen, die das gewählte Konto beeinflussen. 
     Diese Ansicht ähnelt der Ansicht der meisten anderen Buchführungsprogramme. 
     Sie können auch eine andere Ansicht aus dem Menü<menuchoice>
     <guimenu>Ansicht</guimenu></menuchoice> wählen. 
@@ -88,7 +89,7 @@
       erweitert die aktuelle Buchung automatisch. Wenn Sie eine neue Buchung in der Ansicht hervorheben, wird die Buchung automatisch um alle Teilbuchungen erweitert.</para> </listitem>
       <listitem><para>Die Auswahl<menuchoice> <guimenu>Ansicht</guimenu>  <guimenuitem>Vollständig</guimenuitem></menuchoice> 
       zeigt die Buchungsansicht im Stil eines Buchungsjournals, in dem alle
-      Buchungsteile für alle Buchungen dargestellt werden.</para></listitem>
+      Teilbuchungen für alle Buchungen dargestellt werden.</para></listitem>
     </itemizedlist>
  
  <!-- beschriebene Option kann nicht gefunden werden 2.4.13 (auch 2.6.7)
@@ -314,7 +315,7 @@
     <para>In der einfachen Ansicht sehen Sie eine Zusammenfassung der Teilbuchungen bezogen auf das laufende Konto. 
     für einfache Buchungen zeigt die Spalte <guilabel>Buchen</guilabel> das andere Konto, von dem das Geld <emphasis>überwiesen </emphasis>wird. 
     Für eine Teilbuchung zeigt die Spalte <guilabel>Buchung</guilabel> <guilabel>&ndash;&ndash; Mehrteilige Buchung &ndash;&ndash;</guilabel>. 
-    Sie können die einzelnen Teilbuchung jeder Buchung sehen, indem Sie das <guibutton>Buchungsteile</guibutton>-Symbol in der <emphasis>Werkzeugleiste</emphasis> anklicken, während Sie die Buchung ausgewählt haben.</para>
+    Sie können die einzelnen Teilbuchung jeder Buchung sehen, indem Sie das <guibutton>Teilbuchungen</guibutton>-Symbol in der <emphasis>Werkzeugleiste</emphasis> anklicken, während Sie die Buchung ausgewählt haben.</para>
 
     <para>Bei Teilbuchungen ist die erste Zeile einer Buchung die Buchungszeile <emphasis>transaction line</emphasis>. 
     Sie enthält das <guilabel>Datum</guilabel>, optional die <guilabel>Nr.</guilabel> (wie die Überweisungsnummer), Buchungs-<guilabel>Beschreibung</guilabel>, Gesamtbetrag für das laufende Konto(<guilabel>Gesamt Soll</guilabel> oder <guilabel>Gesamt Aufwand</guilabel>guilabel> hier), 
@@ -341,31 +342,120 @@
         </mediaobject>
       </screenshot>
 
-    <para>Jeder Buchungsteil enthält ein optionales Feld <guilabel>Aktion</guilabel> oder Art des Buchungsteils, 
+    <para>Jeder Teilbuchungen enthält ein optionales Feld <guilabel>Aktion</guilabel> oder Art der Teilbuchung, 
     welches Sie entweder durch eintippen, oder durch Auswahl in einer Auswahlliste eingeben können. 
-    Weiterhin enthält er ein optionales Feld <guilabel>Buchungstext</guilabel>, welches den Buchungsteil beschreibt.
-    Jeder Buchungsteil beeinflusst ein <guilabel>Konto</guilabel>, welches aus einer
+    Weiterhin enthält er ein optionales Feld <guilabel>Buchungstext</guilabel>, welches die Teilbuchung beschreibt.
+    Jede Teilbuchung beeinflusst ein <guilabel>Konto</guilabel>, welches aus einer
     mit Ihren Kontenbezeichungen gefüllten Auswahlliste gewählt werden kann. 
-    Das Feld <guilabel>J</guilabel> zeigt an, ob ein Buchungsteil schon abgeglichen wurde.
-    Die letzten zwei Spalten zeigen den Betrag des Buchungsteils, und ob das Geld
-      auf das Konto (Soll), oder von dem Konto (Haben) transferiert wurde.</para>
+    Das Feld <guilabel>J</guilabel> zeigt an, ob eine Teilbuchung schon abgeglichen wurde.
+    Die letzten zwei Spalten zeigen den Betrag des Teilbuchung, und ob das Geld
+    auf das Konto (Soll), oder von dem Konto (Haben) transferiert wurde.</para>
 
       <para>Wie schon in Kapitel <xref linkend="basics-accounting1" /> besprochen, 
       muss für jede Buchung die Gesamt-Zunahme (Beträge in der linken Spalte oder das Soll) 
       gleich der Gesamt-Abname (Beträge in der rechten Spalte oder Haben) sein.
       Im oben oben gezeigten Beispiel ist die Gesamt-Zunahme gleich der Gesamt-Abnahme, 
       die Buchung ist also ausgeglichen. Wie Sie feststellen können, ist der Geldbetrag 
-      in der Buchungszeile derselbe wie unter Buchungsteil <guilabel>Girokonto</guilabel>. 
+      in der Buchungszeile derselbe wie unter Teilbuchung <guilabel>Girokonto</guilabel>. 
       Warum wird dieser zweimal gezeigt? Weil die Buchungszeile lediglich eine 
       <emphasis>Zusammenfassung</emphasis> des Effekts der Buchung auf das zur Zeit
       angezeigte Konto darstellt. Die Buchungszeile derselben Buchung in der Buchungsansicht
       eines anderen Kontos würde den Effekt der Buchung auf das jeweilige Konto anzeigen.
-      Sie können das sehen, indem Sie einen anderen Buchungsteil markieren und auf den Knopf
+      Sie können das sehen, indem Sie einen anderen Teilbuchung markieren und auf den Knopf
       <guibutton>Gegenbuchung</guibutton> in der <emphasis>Werkzeugleiste</emphasis> klicken.</para>
 
       <para>Wenn Sie in diesem Beispiel zur Gegenbuchung im Konto <emphasis>Ertrag:Gehalt</emphasis>
       gehen, zeigt Ihnen <application>&app;</application> dieselbe Buchung in der Buchungsansicht
       des Kontos <emphasis>Ertrag:Gehalt</emphasis>:</para>
+
+      <screenshot id="txns-registersplit3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_registersplit3.png" format="PNG"
+                       srccredit="Mechtilde Stehmann" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Die Gegenbuchung im <emphasis>Ertrag:Gehalt</emphasis> Konto</phrase>
+          </textobject>
+
+          <caption><para>Dieses Bild zeigt Ihnen das Konto
+          <emphasis>Ertrag:Gehalt</emphasis>.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+   <para>Beachten Sie, dass die Buchungszeile jetzt die Zusammenfassung der Auswirkungen
+   auf das Konto <emphasis>Ertrag:Gehalt</emphasis> und nicht mehr auf das Konto
+   <emphasis>Aktiva:Girokonto</emphasis> darstellt, da Sie jetzt die Buchungsansicht 
+   des Kontos <emphasis>Ertrag:Gehalt</emphasis> betrachten. Die Teilbuchungen sind 
+   dieselben, aber die Buchungszeile stellt jetzt den Einfluss auf das Konto
+   <emphasis>Ertrag:Gehalt</emphasis> dar.</para>
+
+   <sect2 id="txns-registers-twoaccount2">
+      <title>Einfache Buchung</title>
+
+      <para>Für unser Beispiel benutzen wir den Kontenrahmen, den wir in dem vorherigen Kapitel
+      erstellt haben (<filename>test.gnucash</filename>). Mit einem Doppelklick auf das Konto
+      <guilabel>Girokonto</guilabel> öffnen Sie die Buchungsansicht. Jetzt wollen wir eine
+      einfache Buchung auf dem Girokonto eingeben. Normalerweise geben sie einem Konto bei der
+      Einrichtung in <application>&app;</application> einen Anfangskontostand.</para>
+
+      <para>In der ersten Buchungszeile geben Sie bitte das Datum der Buchung ein (zum Beispiel 
+      den 01.03.2015), eine Beschreibung (zum Beispiel <quote>Anfangskontostand</quote>). 
+      Ein Klick auf <guilabel>Buchen</guilabel> öffnet ein Pop-Up Menü in dem sie jetzt
+      <emphasis>Eigenkapital:Anfangsbestand</emphasis> auswählen. Geben Sie eine Einzahlung
+      von 1000 € ein, und drücken Sie die <keycap function="enter">Enter</keycap> Taste. 
+      Die Buchungsansicht sollte jetzt folgendermaßen aussehen:</para>
+
+      <screenshot id="txns-register-2account">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_2account.png"
+                       format="PNG" srccredit="Mechtilde Stehmann" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Buchungsansicht - Girokonto</phrase>
+          </textobject>
+
+          <caption><para>Die Abbildung zeigt die Buchungsansicht des Kontos 
+          <emphasis>Aktiva:Girokonto</emphasis> -
+          nach Eingabe eines Anfangskontostandes.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Die Eingabe eines Anfangskontostandes ist ein Beispiel für eine einfache 
+      Buchung zwischen zwei Konten. In unserem Beispiel beeinflusst sie die Konten
+      <emphasis>Aktiva:Girokonto</emphasis> und <emphasis>Eigenkapital:Anfangsbestand</emphasis>.
+      </para>
+
+      <para>Als weiteres Beispiel für eine Buchung zwischen zwei Konten wollen wir jetzt eine
+      Buchung eingeben, die einen Lebensmitteleinkauf von 45,21 € beschreibt. Der Betrag wurde 
+      Bar bezahlt, deshalb geben wir diese Buchung in der Buchungsansicht des Kontos
+      <emphasis>Aktiva:Bargeld</emphasis> ein. Wählen Sie bei dieser Buchung im Feld
+      <guilabel>Buchen</guilabel> den Eintrag <emphasis>Aufwand:Lebensmittel</emphasis>. 
+      Die Buchungsansicht sollte jetzt folgendermaßen aussehen:</para>
+
+      <screenshot id="txns-register-2account2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_2account2.png"
+                       format="PNG" srccredit="Mechtilde Stehmann" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Buchungsansicht - Girokonto</phrase>
+          </textobject>
+
+          <caption><para>Die Abbildung zeigt die Buchungsansicht des Kontos
+            <emphasis>Aktiva:Bargeld</emphasis> -
+            nach Eingabe einer Buchung für Lebensmittel.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-registers-multiaccount2">
+      <title>Mehrteilige Buchung</title>
 
       <screenshot id="txns-registersplit3">
         <mediaobject>
@@ -470,7 +560,7 @@
       <guibutton>Vollständig</guibutton>.      
       Geben Sie jetzt in der ersten Zeile die Beschreibung der Buchung ein (zum Beispiel
       <quote>Employers ALDI</quote>). In die darunterliegenden Zeilen geben Sie nacheinander
-      die verschiedenen Buchungsteile ein, aus denen die Buchung besteht. Wählen Sie
+      die verschiedenen Teilbuchungen ein, aus denen die Buchung besteht. Wählen Sie
       zuerst das Konto, und geben danach den auf dieses Konto zu transferierenden
       Betrag ein. Dann klicken Sie auf die nächste Zeile und wiederholen den Vorgang.
       Beachten Sie , dass sich in der  Aktivakontoansicht, der Betrag in 
@@ -496,7 +586,7 @@
 
       <para>Die komplette mehrteilige Buchung sollte jetzt folgendermaßen aussehen 
       <xref linkend="txns-register-multiaccount"/>. Vergessen Sie nicht, nach Eingabe der 
-      Buchungsteile, die Buchung durch Druck der Taste <keycap function="enter">Enter</keycap>  
+      Teilbuchungen, die Buchung durch Druck der Taste <keycap function="enter">Enter</keycap>  
       abzuschließen. Die Ansicht der Buchung wechselt durch Druck auf die Taste <keycap function="enter">Enter</keycap>
       wieder auf die einzeilige Darstellung. Die Einträge der Teilbuchungen sind noch vorhanden, 
       und können durch klicken auf <guilabel>Vollständig</guilabel> wieder angezeigt werden. 
@@ -610,9 +700,9 @@
         <varlistentry><term><guilabel>Datum des Kontoauszugs</guilabel></term>
           <listitem>
             <para>Das Datum, bis zu dem der Abgleich erfolgen soll.</para>
-            <tip>
-              <para>Um einen Kalender zu öffnen, klicken Sie auf den Pfeil nach unten rechts neben dem Eingabefeld.</para>
-            </tip>
+    <tip>
+        <para>Um einen Kalender zu öffnen, klicken Sie auf den Pfeil nach unten rechts neben dem Eingabefeld.</para>
+    </tip>
           </listitem>
         </varlistentry>
 
@@ -649,36 +739,37 @@
         <varlistentry><term><guilabel>Schlusssaldo</guilabel></term>
           <listitem>
             <para>In dieses Feld sollte der Schlussaldo des Kontoauszugs Ihrer Bank eingetragen werden.</para>
-	          <note>
-	            <para><application>&app;</application> trägt in dieses Feld automatisch den im 
+                <note>
+                <para><application>&app;</application> trägt in dieses Feld automatisch den im 
               unteren Teil der Kontoansicht angezeigten <guilabel>aktuellen Wert</guilabel> ein.</para>
-	          </note>
+                </note>
           </listitem>
         </varlistentry>
 
-        <varlistentry><term><guilabel>Unterkonten miteinbeziehen</guilabel></term>
+        <varlistentry><term><guilabel>Unterkonten einbeziehen</guilabel></term>
           <listitem>
             <para>Wählen Sie diese Option, wenn Sie in dem Abgleich auch Buchungen von 
             Unterkonten des gewählten Kontos berücksichtigen möchten.</para>
           </listitem>
+
         </varlistentry>
 
         <varlistentry><term><guibutton>Zahlung Habenzins eingeben&hellip;</guibutton></term>
           <listitem>
             <para>Ein Klick auf diesen Knopf öffnet das Fenster <guilabel>Habenzinsen</guilabel>
             zur Eingabe einer Zinsbuchung in das abzugleichende Konto.</para>
-	    <tip>
-	      <para>Das Fenster <guilabel>Habenzinsen</guilabel> kann auch beim Abgleich 
-              eines Kontos vom Typ <emphasis>Bank</emphasis>, <emphasis>Kreditkarte</emphasis>,
-              <emphasis>Mutual</emphasis>, <emphasis>Aktiva</emphasis>, <emphasis>Offene Forderungen</emphasis>,
-              <emphasis>Offene Verbindlichkeiten</emphasis>, und <emphasis>Fremdkapital</emphasis> automatisch geöffnet werden.
-              Wenn Sie dieses Verhalten für alle vorgenannten Kontentypen ausschalten wollen, 
-              entfernen Sie die Markierung bei der Option <guilabel>Automatisch Zinsbuchungen</guilabel>
-              auf der Karteikarte <guilabel>Kontobuch</guilabel> im Fenster <guilabel>&app; Einstellungen</guilabel>.
-              Um nur das Verhalten für das gewählte Konto auszuschalten, drücken Sie den Knopf 
-              <guibutton>Keine automatischen Habenzins-Zahlungen für dieses Konto</guibutton> im Fenster 
-              <guilabel>Habenzinsen</guilabel>.</para>
-            </tip>  
+        <tip>
+        <para>Das Fenster <guilabel>Habenzinsen</guilabel> kann auch beim Abgleich 
+        eines Kontos vom Typ <emphasis>Bank</emphasis>, <emphasis>Kreditkarte</emphasis>,
+        <emphasis>Mutual</emphasis>, <emphasis>Aktiva</emphasis>, <emphasis>Offene Forderungen</emphasis>,
+        <emphasis>Offene Verbindlichkeiten</emphasis>, und <emphasis>Fremdkapital</emphasis> automatisch geöffnet werden.
+        Wenn Sie dieses Verhalten für alle vorgenannten Kontentypen ausschalten wollen, 
+        entfernen Sie die Markierung bei der Option <guilabel>Automatisch Zinsbuchungen</guilabel>
+        auf der Karteikarte <guilabel>Kontobuch</guilabel> im Fenster <guilabel>&app; Einstellungen</guilabel>.
+        Um nur das Verhalten für das gewählte Konto auszuschalten, drücken Sie den Knopf 
+        <guibutton>Keine automatischen Habenzins-Zahlungen für dieses Konto</guibutton> im Fenster 
+        <guilabel>Habenzinsen</guilabel>.</para>
+        </tip>  
           </listitem>
         </varlistentry>
        </variablelist>
@@ -720,7 +811,6 @@
       in der Menüleiste, um in der Buchungsansicht die fehlende Buchung einzugeben. 
       Sobald Sie die Eingabe der Buchung durch Drücken der Taste <guibutton>Enter</guibutton>
       abgeschlossen haben, erscheint der Eintrag im Fenster <guilabel>Abgleichen</guilabel>.</para>
-
       <para>Für jeden Eintrag im Fenster <guilabel>Abgleichen</guilabel> vergleichen Sie jetzt den
       Betrag mit dem Betrag in Ihrem Kontoauszug. Wenn beide Einträge nicht übereinstimmen, haben 
       Sie vielleicht einen Fehler bei der Eingabe der Transaktion in <application>&app;</application>
@@ -813,7 +903,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/txns_sxn_ledger1.png" format="PNG"
-                       srccredit="Bengt Thuree" />
+                       srccredit="Mechtilde Stehmann" />
           </imageobject>
 
           <textobject>
@@ -839,7 +929,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/txns_sxn_ledger2.png" format="PNG"
-                       srccredit="Bengt Thuree" />
+                       srccredit="Mechtilde Stehmann" />
           </imageobject>
 
           <textobject>
@@ -879,7 +969,7 @@
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/txns_sxn_ledger4.png" format="PNG"
-                       srccredit="Bengt Thuree" />
+                       srccredit="Mechtilde Stehmann" />
           </imageobject>
 
           <textobject>
@@ -913,12 +1003,12 @@
         <mediaobject>
           <imageobject role="html">
             <imagedata fileref="figures/txns_sxn_editor-2.png" format="PNG"
-                       srccredit="Cristian Marchi" width="510"/>
+                       srccredit="Mechtilde Stehmann" width="510"/>
           </imageobject>
 
           <imageobject role="fo">
             <imagedata fileref="figures/txns_sxn_editor-2.png" format="PNG"
-                       srccredit="Cristian Marchi"/>
+                       srccredit="Mechtilde Stehmann"/>
           </imageobject>
 
           <textobject>
@@ -937,12 +1027,12 @@
         <mediaobject>
           <imageobject role="html">
             <imagedata fileref="figures/txns_sxn_editor-3-overview.png" format="PNG"
-                       srccredit="Cristian Marchi" width="510"/>
+                       srccredit="Mechtilde Stehmann" width="510"/>
           </imageobject>
 
           <imageobject role="fo">
             <imagedata fileref="figures/txns_sxn_editor-3-overview.png" format="PNG"
-                       srccredit="Cristian Marchi" />
+                       srccredit="Mechtilde Stehmann" />
           </imageobject>
 
           <textobject>
@@ -1014,12 +1104,12 @@
         <mediaobject>
           <imageobject role="html">
             <imagedata fileref="figures/txns_sxn_editor-3-frequency.png" format="PNG"
-                       srccredit="Cristian Marchi" width="510"/>
+                       srccredit="Mechtilde Stehmann" width="510"/>
           </imageobject>
 
           <imageobject role="fo">
             <imagedata fileref="figures/txns_sxn_editor-3-frequency.png" format="PNG"
-                       srccredit="Cristian Marchi" />
+                       srccredit="Mechtilde Stehmann" />
           </imageobject>
 
           <textobject>
@@ -1099,12 +1189,12 @@
         <mediaobject>
           <imageobject role="html">
             <imagedata fileref="figures/txns_sxn_editor-3-template.png" format="PNG"
-                       srccredit="Cristian Marchi" width="510"/>
+                       srccredit="Mechtilde Stehmann" width="510"/>
           </imageobject>
 
           <imageobject role="fo">
             <imagedata fileref="figures/txns_sxn_editor-3-template.png" format="PNG"
-                       srccredit="Cristian Marchi" />
+                       srccredit="Mechtilde Stehmann" />
           </imageobject>
 
           <textobject>
@@ -1128,12 +1218,12 @@
         <mediaobject>
           <imageobject role="html">
             <imagedata fileref="figures/txns_sxn_editor-4.png" format="PNG"
-                       srccredit="Cristian Marchi" width="510"/>
+                       srccredit="Mechtilde Stehmann" width="510"/>
           </imageobject>
 
           <imageobject role="fo">
             <imagedata fileref="figures/txns_sxn_editor-4.png" format="PNG"
-                       srccredit="Cristian Marchi" />
+                       srccredit="Mechtilde Stehmann" />
           </imageobject>
 
           <textobject>
@@ -1172,12 +1262,12 @@
         <mediaobject>
           <imageobject role="html">
             <imagedata fileref="figures/txns_sxn_editor_slr.png" format="PNG"
-                       srccredit="Cristian Marchi" width="510"/>
+                       srccredit="Mechtilde Stehmann" width="510"/>
           </imageobject>
 
           <imageobject role="fo">
             <imagedata fileref="figures/txns_sxn_editor_slr.png" format="PNG"
-                       srccredit="Cristian Marchi" />
+                       srccredit="Mechtilde Stehmann" />
           </imageobject>
 
           <textobject>
@@ -1238,27 +1328,24 @@
           </imageobject>
 
           <textobject>
-            <phrase>Startpunkt für die Zusammenfanssung</phrase>
+            <phrase>Startpunkt für die Zusammenfassung</phrase>
           </textobject>
 
           <caption><para>Dieses Bild zeigt den Startpunkt dieses Abschnittes.</para></caption>
         </mediaobject>
       </screenshot>
     </sect2>
-    
-
-<!-- note><para>&untranslated;</para></note -->
-
+ 
     <sect2 id="txns-puttoget-open2">
       <title>Anfangskontostände</title>
-<!--
-      <para>As shown earlier with the <emphasis>Aktiva:Girokonto</emphasis>
-      account, the starting balances in an account are typically assigned to a
+
+      <para>Wie früher mit dem <emphasis>Aktiva:Girokonto</emphasis>
+      gezeigt, the starting balances in an account are typically assigned to a
       special account called <emphasis>Eigenkapital:Anfangsbestand</emphasis>. To
       start filling in this chart of account, begin by setting the starting
       balances for the accounts. Assume that there is $1000 in the savings
       account and $500 charged on the credit card.</para>
-
+<!--
       <orderedlist>
         <listitem>
           <para>Open the <emphasis>Aktiva:Sparkonto</emphasis> account register.
