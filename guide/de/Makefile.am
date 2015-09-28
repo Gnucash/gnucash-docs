@@ -9,6 +9,7 @@ entities = \
  ch_bus_ar.xml \
  ch_capgain.xml \
  ch_loans.xml \
+ ch_invest.xml \
  ch_oth_assets.xml \
  ch_oview.xml \
  ch_txns.xml \
