@@ -1,0 +1,511 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0 /2.6 maint
+  Last modified: July 9th 2006 (Englisch 2015-08-27)
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+        Jon Lapham <lapham@extracta.com.br>
+    Updated	Bengt Thuree <bengt@thuree.com>
+  Originally written by Carol Champagne.
+  Translators:
+               (Mechtilde Stehmann<ooo@mechtilde.de>)
+-->
+<chapter id="chapter_cc">
+  <title>Kreditkarten</title>
+
+  <para>Dieses Kapitel zeigt uns, wie Sie Ihre Kreditkarten mit <application>&app;</application> verwalten.</para>
+
+  <sect1 id="cc-concepts1">
+    <title>Konzepte</title>
+
+    <para>Da Sie vermutlich einen Scheck ausstellen oder eine elektronische Zahlung jeden Monat an Ihr Kreditkartenunternehmen leisten, halten Sie Ihre Kreditkartenrechnung für einen Aufwand - aber es ist nicht wirklich ein Aufwand. 
+    Warum? 
+    Ein Kreditkartenkonto in ein kurzfristiges Darlehen - Sie kaufen Dinge auf diesem Darlehenskonto und zahlen dann dieses Geld zurück, oft mit Zinen (Ihren Finanzierungsgebühr).
+    Den Kauf, den Sie mit der Kreditkarte machen ist Ihr Aufwand.</para>
+
+    <para>Sie haben mehrere Optionen, wenn Sie Kreditkartenbuchungen eingeben.
+    Wählen Sie diejenige, die Ihrem erwarteten Detailgrad entspricht. 
+    Die einfachste Methode ist, einfach die monatlichen Zahlungen an Ihr Kreditkartenunternehmen zu verfolgen.
+    Von Ihrem Bankkonto geben Sie jeden Monat einen Geldübertrag auf das Kreditkartenaufwandskonto ein. 
+    Dies zeigt Ihnen dann den Geldbetrag, den Sie jeden Monat an Ihr Kreditkartenunternehmen zahlen. 
+    Aber es zeigt Ihnen keine Inforamtionen über Ihr Kreditkatensaldo oder Ihre Käufe damit..</para>
+
+    <para>Ein vollständigerer Weg, Ihre Kreditkarte in <application>&app;</application> zu verfolgen, ist, jeden Kauf und jede Zahlung als separate Buchung einzugeben. 
+    Wenn Sie die Kreditkartenkontoansicht nutzen, geben Sie Ihre Quittungen durchgehend den ganzen Monat ein. 
+    Wenn Sie Ihre Kreditkartenabrechnung erhalten, gleichen Sie das Kreditkartenkonto gegen diese Abrechnung ab und geben Ihre Zahlungals Geldübertrag von Ihrem Girokonto auf das Kreditkartenkonto ein. 
+    Diese Methode gibt Ihnen mehr Informationen während des Monats über den Saldo und macht Sie auf jede Diskrepanz während des Abgleichens aufmerksam. Aber dies benötigt mehr Dateneinträge.</para>
+  </sect1>
+
+  <sect1 id="cc-accounts1">
+    <title>Konten einrichten</title>
+
+    <para>Um mit der Verwaltung Ihrer Kreditkarten in <application>&app;</application> zu beginnen, sollten Sie ein
+    <guilabel>Verbindlichkeit</guilabel>skonto einrichten und darunter ein Kreditkartenkonto für jede Kreditkarte, die Sie nutzen. 
+    Wenn Sie nur Ihre Zahlungen verfolgen, die Sie an ds Kreditkartenunternehmen leisten, benötigen Sie nur ein Bankkonto und ein Kreditkartenkonto, um die Buchungen einzugeben.</para>
+
+    <para>Die Kosten, die Sie mit der Kreditkarte ahben sind Aufwendungen, deshlab werden Sie auch diese Konten unter dem Konto <guilabel>Aufwendungen</guilabel>einrichten. 
+    Wenn Sie sich entscheiden, genauere Aufzeichnungen Ihrer Käufe zu machen, müssen Sie Aufwandskonten für jede Kaufart erstellen. 
+    Da Sie also die Salden gegen Ihre Kreditkartenabrechnung abgleichen wollen, sollten Sie einen Anfangsbestand für jedes Kreditkartenkonto erstellen. 
+    Die einfachste Art, dies zu tun, ist Ihre letzte Abrechnung als Anfangsbestand zu nutzen.</para>
+
+    <sect2 id="cc-accounts-simple2">
+      <title>Einfache Einrichtung</title>
+
+      <para>Wenn Sie nicht jede Aufwendung verfolgen wollen, die Sie mit der Kreditkarte gemacht haben, können Sie eine einfache Kontenhierarchie wie diese einrichten:</para>
+
+      <literallayout>
+-Aktiva
+   -Bank
+-Verbindlichkeiten
+   -Kreditkarte
+-Aufwendungen
+   -Kreditkarte
+   </literallayout>
+
+      <para>In diesem Beispiel geben Sie Ihre Gesamtkosten pro Monat als eine Buchung zwischen <emphasis>Verbindlichkeiten:Kreditkarte</emphasis> und <emphasis>Aufwendungen:Kreditkarte</emphasis> ein. 
+      Wenn Sie eine Zahling leisten, geben Sie eine Buchung zwischen <emphasis>Aktiva:Bank</emphasis> und <emphasis>Berbindlichkeiten:Kreditkarte</emphasis> ein.</para>
+
+      <para>Die offensichtliche Beschränkung dieser einfachen Kreditkarteneinstellung  ist, dass Sie nicht sehen, wohin das Geld geht. 
+      All Ihre Kreditkartenaufwendungen werden auf das Aufwandskonto Kreditkarte eingegeben. 
+      Dies ist jedoch sehr einfach einzurichten und zu pflegen.</para>
+    </sect2>
+
+    <sect2 id="cc-accounts-complete2">
+      <title>Vollständige Einrichtung</title>
+
+      <para>Wenn Sie Ihre Aufwendungen vollständiger verfolgen wollen, sollten Sie mehrere Aufwandskonten einrichten, mit den Namen für die verschiedenen Arten von Aufwendungen, die Sie haben. 
+      Jede Gebühr auf Ihrer Kreditkarte wird dann als separate Buchung zwischen Ihrer Kreditkartenverbindlichkeitskonto und einem besonderen Aufwandskonto eingegeben. 
+      Unten ist ein beispile für eine solche Kontenierarchie:</para>
+
+      <literallayout>
+-Aktiva
+    -Bank
+-Verbindlichkeit
+    -Kreditkarte
+-Aufwendungen
+    -Lebensmittel
+    -Auto
+    -Kelidung
+    -Unterhaltung
+    -Zinsen
+    -Gebühren
+   </literallayout>
+
+      <para>Clearly, you should enter specific expense accounts which fit your spending habits. 
+      The only difference with this setup as compared to the simple setup is that the expenses have been subdivided by groups. 
+      Also notice that there is an <quote>Zinsen</quote> expense, this is used for when your credit card charges interest on your monthly unpaid balance. 
+      The  <quote>Gebühr</quote> expense account is used to track service expenses associated with the credit card, such as the yearly usage fee if it exists. 
+      With this setup, you will be able to see where your money goes every month, grouped according to the expense accounts.</para>
+
+      <para>Der Rest des Kapitels geht davon aus, dass Sie die vollständige Einrichtung nutzen.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="cc-entercharge1">
+    <title>Gebühren eingeben</title>
+
+    <para>Die Eingabe Ihrer Gebühren stellt Ihnen ein vollständigeres Bild Ihrer Ausgabengewohnheiten bereit. 
+    Gebühren für die Kreditkarte werden als Buchung zwischen dem Kreditkarten-Verbindlichkeitskonto und dem entsprechenden Aufwandskonto.</para>
+
+    <para>Wenn Sie Waren oder Dienstleistungen mit Ihrer Kreditkare bezahlen, weisen Sie Ihre Kreditkartenunternehmen an, den Kaufmann für Sie zu bezahlen. 
+    Diese Buchung erhöht den Geldbetrag, den Sie dem Kreditkartenunternehmen schulden, und das Kreditkartensaldo erhöht sich. 
+    Die andere Seite dieser Buchungen ist meist ein Aufwandskonto. 
+    Wenn Sie beispielsweise Kleidung in einem Kaufhasus für 50,- € mit der Kreditkarte kaufen, übertragen Sie dieses Geld vom Kreditkartenkonto auf Aufwendungen:Kleidung.</para>
+
+    <para>Die Eingabe dieser Buchungen in <application>&app;</application> erlaubt Ihnen nachzuverfolgen, wie viel Sie dem Kreditkartenunternehmenschulden, wie es ebenso Ihnen ein besseres Bild über alle Ihre Konten bereitstellt.
+    Es erlaubt Ihnen auch, Ihre Konten zu überwachen und sicherzustellen, dass Betrug vermieden wird.</para>
+
+    <para>Das Hinzufügen von Buchungen zu einen Kreditkartenkonto ist ähnlich der der Eingabe in andere Konten. 
+    Sie können diese händisch eingeben oder Sie von Ihrem Kreditkartenunternehmen in einem austauschbaren Format importieren.</para>
+
+    <para>eZur Unterstützung bei der Eingabe der Buchungen schauen Sie auch unter <!--FIXME If help is ready &ndash; Chapter 6 of the Help manual and --><xref linkend="chapter_txns"></xref>.</para>
+  </sect1>
+
+  <sect1 id="cc-enterpay1">
+    <title>Auszahlungen eingeben</title>
+
+    <para>Die meisten zahlungen auf Ihre Kreditkartenrechnung werden als Übertrag vom Bankkonto (Aktiva) auf das Kreditkartenkonto (Verbindlichkeit) eingegeben. 
+    Wenn Sie die monatliche Rechnung bezahlen, heben Sie Geld von Ihrem Bankkonto ab, um Ihr Kreditkartensaldo zu bezahlen. 
+    Diese Buchung verringert beides, Ihr Bankkontensalso und den Betrag der Kreditkartenverbindlichkeiten, die Sie schulden.</para>
+
+    <para>Wenn Sie einen Kauf rückgängig machen, erhalten Sie eine Erstattung auf Ihrer Kreditkarte. 
+    Dies ist eine andere Art der Zahlung, in der die Kreditkartenverbindlichkkeiten abnehmen, die Sie schulden. 
+    Wenn Sie die original Buchungen über den Kauf als einen Übertrag vom Kreditkartenkonto auf Aufwendungen aufgezeichnet haben, machen Sie nun einfach diese Buchung rückgängig: übertragen das Geld zurück von Aufwendungen auf das Kreditkartenkonto. 
+    Diese Buchung verringert beides, das Aufwandskontensaldo und das Kreditkartensaldo. 
+    Wenn Sie beispielweise Kleidung mit der Kreditkart kaufen, ist die Buchung ein Übertrag vom Kreditkartenkonto auf das Aufwandskonto Kleidung. 
+    Wenn Sie dann die Kleidung zurückgeben gegen eine Erstattung, übertragen Sie einfach das Geld zurück vom Aufwandskonto Kelidung auf das Kreditkartenkonto.</para>
+
+    <note>
+      <para>Ein üblicher Fehler ist, eine Erstattung als Ertrag einzugeben. Es ist kein Ertrag, sondern eher ein <quote>negativer Aufwand</quote>. 
+      Deshalb müssen Sie das Geld vom Aufwandskonto auf Ihr Kreditkartenkonto übertragen, wenn Sie eine Erstattung erhalten.</para>
+    </note>
+
+    <para>Um das zu erläutern, lassen Sie uns ein Beipiel durchspielen. 
+    Sie kaufen einige Jeans für 74,99 @ mit Ihrer VISA Karte, aber bemerken einen Tag später, dass diese zu groß sind, und wollen sie umtauschen. 
+    Der Laden stimmt dem höflich zu und erstattet auf Ihre Kreditkarte.</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Starten Sie mit dem Öffnen der vorherigen Datendatei, die wir unter (<filename>test2.gnucash</filename>)gespeichert haben und speichern Sie diese unter<filename>test3.gnucash</filename>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Öffnen Sie die Kontenansicht von <emphasis>Verbindlichkeiten:Kreditkarte</emphasis> und geben Sie eine einfache 2-Konten-Buchung ein, um die 74,99 € für den Jeanskauf zu bezahlen. 
+        Das <guilabel>Übertrag</guilabel>skonto sollte <emphasis>Aufwendungen:Kleidung</emphasis> sein, und Sie <guilabel>Belasten </guilabel> Ihr <emphasis>Kreditkarte</emphasis>nkonto mit den 74,99 €.</para>
+
+        <note>
+          <para>Wenn sie das Konto <emphasis>Anwendungen:Kleidung</emphasis> noch nicht erstellt haben, veranlasst <application>&app;</application> uns, dieses zu erstellen. 
+          Erinnern Sie sich, dieses als ein<guilabel>Aufwendungen</guilabel> Konto zu erstellen</para>
+        </note>
+      </listitem>
+
+      <listitem>
+        <para>Eingabe der Erstattung auf eine der folgenden Art und Weise.</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Geben Sie die gleiche Buchung as Kaufbuchung ein, aber anstelle des <quote>Belastung</quote>sbetrages nutzen Sie einen <quote>Zahlung</quote>sbetrag in der Kreditkartenansicht.</para>
+          </listitem>
+
+          <listitem>
+            <para>Wählen Sie die Kaufbuchung, die Sie erstatten wollen (das ist in unserem Fall die Buchung für die Jeans) und wählen <menuchoice><guimenu>Buchung</guimenu><guisubmenu>Stornobuchung hinzufügen</guisubmenu></menuchoice>. 
+            Verändern Sie das Datum, wenn nötig.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>Nach der Stornobuchung sollte Ihr Kreditkartenkonto wie folgt aussehen:</para>
+        <screenshot id="cc-Reversing-Transaction-1">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_Reversing_Transaction_1.png"
+                           format="PNG" srccredit="Mechtilde Stehmann" ></imagedata>
+              </imageobject>
+
+              <textobject>
+                <phrase>Stornobuchung eines Kaufes mit Kreditkarte</phrase>
+              </textobject>
+
+              <caption>
+                <para>Dieses Bild zeigt <emphasis>Verbindlichkeit:Kreditkarte</emphasis> - Ansicht nach der Stornobuchung eines Kaufes mit Kreditkarte.</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+
+        <para>Und die <emphasis>Aufwendungen:Kleidung</emphasis>sansicht sollte etwa so aussehen:</para>
+        <screenshot id="cc-Reversing-Transaction-2">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_Reversing_Transaction_2.png"
+                           format="PNG" srccredit="Mechtilde Stehmann" ></imagedata>
+              </imageobject>
+
+              <textobject>
+                <phrase>Stornobuchung eines Kaufes mit Kreditkarte</phrase>
+              </textobject>
+
+              <caption>
+                <para>Dieses Bild zeigt <emphasis>Aufwendungen:Kleidung</emphasis>nach der Stornobuchung eines Kaufes mit Kreditkarte.</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+      </listitem>
+
+      <listitem>
+        <para>Save the <application>&app;</application> data file.</para>
+      </listitem>
+    </orderedlist>
+  </sect1>
+
+  <sect1 id="cc-together1">
+    <title>Alles Zusammensetzenether</title>
+
+    <para>Nun haben wir die Grundideen hinter den verschiedenen Buchungen erfasst, damit Sie erfolreich Ihre Kreditkarte in <application>&app;</application> verfolgen können. 
+    Lassen Sie uns das beispielhaft durchgehen. 
+    In diesem Beispiel führen wir Kreditkartenkäufe durch, erstatten zwei der Käufe, bekommen Verzugszinsen auf das unausgeglichene Saldo, gleichen das Kreditkartenkonto aus und machen schließlich eine Teilabrechung der Kreditkarte.</para>
+
+    <sect2 id="cc-puttoget-openfile">
+      <title>Öffnen Sie die <application>&app;</application> Datei</title>
+
+      <para>Starten Sie mit dem Öffnen der vorherigen Datendatei, die wir als <filename>test.gnucash</filename>gespeichert haben und speichern diese direkt als
+      <filename>test3.gnucash</filename>. Das Hauptfenster sollte so in etwa so aussehen: </para>
+
+    <screenshot id="cc-accounts">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/cc_accounts.png" format="PNG"
+                     srccredit="Mechtilde Stehmann" ></imagedata>
+        </imageobject>
+
+        <textobject>
+          <phrase>Kontenstruktur zu Beginn</phrase>
+        </textobject>
+
+        <caption>
+          <para>Anfangskontenstruktur zur Verfolgung einer Kreditkarte im Beispiel Alles zusammenfassen.</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-purchases2">
+      <title>Käufe</title>
+
+      <para>Lassen Sie uns einige Einkäufe  mit der Kreditkarte durchführen. Starten Sie mit einem Kauf von Lebensmittel im Wert von 25,- € vom Greasy Spoon Cafe, Kleidung im Wert vom 100,- € vom Fashionhaus, Benzin im Wert von 25,- € von Premium Gasoline, Lebensmittel im Wert von 125,- € vom Haushalts- und Lebensmittelhändler (als Teilbuchungen zwischen 85,- € für Lebensmittel und 40,- € für Haushaltsgegenstände) und schließlich Haushaltsgegenstaände im WErt von 60,- € vom Billigmarkt.</para>
+
+      <para>Wir wiederholen also die Übung aus dem vorherigen Kapitel mit Kauf einer Jeans für 74,99 € am 03.04.2015 und der Rückgabe zwei Tage später.</para>
+
+      <para>Das Fensteer der Kreditkartenansicht für die Kreditkartenverbindlichkeit sollte in etwa so aussehen:</para>
+
+      <screenshot id="cc-purchases">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_purchases.png" format="PNG"
+                       srccredit="Mechtilde Stehmann" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Erstkäufe auf Kreditkarte</phrase>
+          </textobject>
+
+          <caption>
+            <para>Erstkäufe auf Kreditkarte.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-refund2">
+      <title>(Rück-)Erstattung</title>
+
+      <para>Nun nehmen Sie an, dass Sie am 15.04.20115 die Kleidung, die Sie am 11.04.2015 vom Fashionhaus gekauft haben, zurückgeben und sie Ihnen eine Gutschrift auf Ihre Kreditkarte geben. 
+      Geben Sie eine Buchung für Ihre Kreditkartenrückerstattung über den vollen Betrag von 100,- € ein. 
+      Erinnern Sie sich, die gleichen Übertragskonten zu nutzen, die Sie für den  Originalkauf nutzten, und den Betrag in der Zahlungsspalte einzugeben.
+      <application>&app;</application> vervollständigt automatisch den Namen und das Übertragskonto für Sie. <!-- FIXME? It seems to be right &ndash;  but it will also automatically enter the $100 in the Charge column. 
+      You will need to reenter the amount in the Payment column.-->
+      Die Buchung sollte so aussehen:</para>
+
+      <screenshot id="cc-refund">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_refund.png" format="PNG"
+                       srccredit="Mechtilde Stehmann" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Eintrag der Stornobuchung</phrase>
+          </textobject>
+
+          <caption>
+            <para>Rückgabe der Kleidung zum Fashionhaus, Erstattung auf die Kreditkarte.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-interest2">
+      <title>Zinsbelastung</title>
+
+      <para>Nach einem Monat von Ausgaben kommt unglücklicherweise die Kreditkartenrechnung per Mail an, oder Sie greifen online über das Internet darauf zu. 
+      Sie wurden am letzten Tag im April mit 20,- € an Zinsen belastet  wegen des Saldos vom Vormonat. 
+      Dies wird im Kreditkartenkonto als Aufwand gebucht.</para>
+
+      <screenshot id="cc-interest">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_interest.png" format="PNG"
+                       srccredit="Mechtilde Stehmann" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Zinsbelastung</phrase>
+          </textobject>
+
+          <caption>
+            <para>Zinsbelastung.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-reconcile2">
+      <title>Abgleichen</title>
+
+      <para>Wenn Sie Ihre Kreditkartenrechnung erhalten, sollten Sie  Ihre Kreditkartenkonto gegen dieses Dokument. 
+      Dies geschieht mit der in <application>&app;</application> eingebauten Abgelichen-Funktion. 
+      Heben Sie das Kreditkartenkonto hervor und klicken Sie auf <menuchoice><guimenu>Aktionen</guimenu>
+      <guimenuitem>Abgelichen&hellip;</guimenuitem></menuchoice>. 
+      Dieses Verfahren des Abgelichens ist ausführlich in <xref linkend="txns-reconcile1"></xref> beschrieben.
+      Aber wir führen hier auch diesen Process durch. 
+      Lassen Sie uns beispielweise annehmen, dass die Kreditkartenabrechnung vom 01.05.2015 mit einem Abschlusssaldo von 455,- € ist. 
+      Geben Sie diesen Wert in das Abgleichenfenster ein, wie hier gezeigt.</para>
+
+      <screenshot id="cc-reconcile-init">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_reconcile_init.png" format="PNG"
+                       srccredit="Mechtilde Stehmann" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Abgleichen - Startfenster</phrase>
+          </textobject>
+
+          <caption>
+            <para>Konten abgleichen - Startfenster.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Während des Abgleichens haken Sie jede Buchung in dem Konto so ab wie Sie bestätigen, dass die Buchung beiden, Ihrem <application>&app;</application> Konto und der Kreditkartenabrechnung erscheint. 
+      Für dieses Beispiel gibt es eine Differenz von 300,- € zwischen Ihren <application>&app;</application> Konten und der KReditkartenabrechnung, wie unten gezeigt.</para>
+
+      <screenshot id="cc-reconcile">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_reconcile.png" format="PNG"
+                       srccredit="Mechtilde Stehmann" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Hauptabgleichsfenster</phrase>
+          </textobject>
+
+          <caption>
+            <para>Hauptabgleichsfenster - stellt eine Unstimmigkeit von 300,- € dar.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Einige Nachforschungen haben ergeben, dass Sie vergessen haben, eine Zhalung aufzuzeichnen, die Sie am 05.03.2015 gegenüber dem Kreditkartenunternehmen über 300 ,- € gemacht haben. 
+      Sie müssen diese Zahlungsbuchung von Ihrem Bankkonto auf das Kreditkartenkonteo eingeben. 
+      Nun kann die Kreditkartenabrechnung und Ihr <application>&app;</application> Konto mit dem Saldo von 455,- € abgeglichen werden.</para>
+    </sect2>
+
+    <sect2 id="cc-together-payment2">
+      <title>Auszahlung</title>
+
+      <para>Angenommen Sie haben Ihr Kreditkartenkonto vollständig abgeglichen, müssen Sie nun eine Zahlung an das Kreditkartenunternehmen leisten. 
+      In diesem Beispiel schulden Sie 455,- €, aber wollen diesen Monat wieder eine Teilzahlung von 300,- €  leisten 
+      Um dies zu tun, geben Sie eine Buchung von Ihrem Bankkonto auf das Kreditkartenkonto von 300,- € ein. Dies reduziert das Kreditkartensaldo auf 155,- €. Ihre Kreditkantenkontoansicht sollte wie folgt aussehen:</para>
+
+      <screenshot id="cc-payment">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_payment.png" format="PNG"
+                       srccredit="Mechtilde Stehmann" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Abgleichen und Zahlung</phrase>
+          </textobject>
+
+          <caption>
+            <para>Kontenansicht nach dem Kontenabgleich und einer Zahlung.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Gehen Sie zurück zum Hauptfenster und speichern Ihre Datei (<filename>test.gnucash</filename>). 
+      Ihre Kontenansicht wächst stetig und sollte nun so aussehen:</para>
+
+      <screenshot id="cc-final">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_final.png" format="PNG"
+                       srccredit="Mechtilde Stehmann" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase><application>&app;</application> Hauptfenster</phrase>
+          </textobject>
+
+          <caption>
+            <para><application>&app;</application> Kontenansicht nach dem Abgleichen der Konten und der Zahlung.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+    
+    <sect2 id="cc-puttoget-save">
+      <title>Datei speichern</title>
+      
+    <para>Zuletzt speichern Sie die <application>&app;</application> Datendatei (<filename>test.gnucash</filename>).</para>
+    </sect2>
+ 
+    <sect2 id="cc-puttoget-reports">
+      <title>Berichte</title>
+            
+      <para>Wie bereits in den vorherigen Kapiteln, schauen wir uns den <guilabel>Cash Flow</guilabel> und einen <guilabel>Transaction</guilabel> an.</para>   
+
+      <orderedlist>
+        <listitem>
+          <para>Zuerst schauen wir auf den Bericht <guilabel>Kapitalfluss</guilabel> für das Verbindlichkeitskonto <guilabel>Kreditkarte</guilabel> während der Monatr März und April an.</para>
+          <para>Wählen Sie den Bericht Kapitalfluss im Menü unter <menuchoice><guimenu>Berichte</guimenu> <guisubmenu>Erträge &amp; Aufwendungen</guisubmenu> <guimenuitem>Kapitalfluss</guimenuitem></menuchoice>.</para>
+
+        <screenshot id="cc-puttoget2-Cash">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_CashFlow.png" format="PNG"
+                           srccredit="Mechtilde Stehmann" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Bericht Kapitalfluss für die Monate März und April</phrase>
+              </textobject>
+
+              <caption>
+                <para>Dieses Bild zeigt den Kapitalfluss nach <xref linkend="chapter_cc"></xref>.</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Nun schauen wir und den entsprechenden Buchungsbericht für das Kreditkartenkonto an account. </para>
+          <para>Wählen Sie den Buchungsbericht unter <menuchoice><guimenu>Berichte</guimenu> <guimenuitem>Buchungsbericht</guimenuitem></menuchoice>.
+          </para>
+          
+      	  <screenshot id="cc-puttoget2-TransactionRptVisa">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_TransactionRptVisa.png" 
+                           format="PNG" srccredit="Mechtilde Stehmann" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Buchungsbericht für das Kreditkartenkonto für die Monate März und April</phrase>
+              </textobject>
+
+              <caption>
+                <para>Dieses Bild zeigt den Buchungsbericht für das Kreditkartenkonto für die Monate März und April </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Nun schauen wir uns noch den Buchungsreport für die verscheidenen Aufwandskonten an.</para>
+          
+      	  <screenshot id="cc-puttoget2-TransactionRptExpenses">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_TransactionRptExpenses.png" 
+                           format="PNG" srccredit="Mechtilde Stehmann" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Buchungsbericht für die Aufwandskonten im Monat April</phrase>
+              </textobject>
+
+              <caption>
+                <para>Dieses Bild zeigt den Buchungsreport für die verschiedenen Aufwandskonten im Monat April. </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+      </orderedlist>
+    </sect2> 
+
+  </sect1>
+</chapter>
