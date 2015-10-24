@@ -16,8 +16,7 @@ entities = \
  ch_oview.xml \
  ch_txns.xml \
  appendixe.xml \
- glossary.xml \
- index.xml
+ glossary.xml
 DISTCLEANFILES =  $(docname)-de.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
 include $(top_srcdir)/xmldocs.make
