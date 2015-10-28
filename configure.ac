@@ -63,6 +63,7 @@ else
       FOP_TTFREADER="java -cp /usr/share/java/fop.jar:/usr/share/java/avalon-framework.jar:/usr/share/java/commons-logging.jar:/usr/share/java/commons-io.jar:/usr/share/java/xmlgraphics-commons.jar org.apache.fop.fonts.apps.TTFReader"
     fi
   fi
+  fop_version=`$FOP -version | cut -f 3 -d ' ' | cut -c 1`
 fi
 
 dnl
@@ -138,20 +139,28 @@ dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
       unset font
    fi
 fi
-echo Mincho Metric: $japanese_mincho_metric
-if test "x$japanese_mincho_metric" != "x"; then
-   AC_CONFIG_COMMANDS([mincho_metric],
-		      [cp $ac_top_srcdir$mincho_metric guide/ja],
-		      [mincho_metric=$japanese_mincho_metric])
+JAPANESE_MINCHO_METRIC=
+JAPANESE_GOTHIC_METRIC=
+if [[ $fop_version -lt 2 ]]; then
+   echo Mincho Metric: $japanese_mincho_metric
+   	if test "x$japanese_mincho_metric" != "x"; then
+	   AC_CONFIG_COMMANDS([mincho_metric],
+			      [cp $ac_top_srcdir$mincho_metric guide/ja],
+			      [mincho_metric=$japanese_mincho_metric])
+	fi
+	echo Gothic Metric: $japanese_gothic_metric
+	if test "x$japanese_gothic_metric" != "x"; then
+	AC_CONFIG_COMMANDS([gothic_metric],
+			   [cp $ac_top_srcdir$gothic_metric guide/ja],
+		      	   [gothic_metric=$japanese_gothic_metric])
+	fi
+	JAPANESE_MINCHO_METRIC='metrics-url="mincho.xml"'
+	JAPANESE_GOTHIC_METRIC='metrics-url="gothic.xml"'
 fi
-echo Gothic Metric: $japanese_gothic_metric
-if test "x$japanese_gothic_metric" != "x"; then
-   AC_CONFIG_COMMANDS([gothic_metric],
-		      [cp $ac_top_srcdir$gothic_metric guide/ja],
-		      [gothic_metric=$japanese_gothic_metric])
-fi
+AC_SUBST(JAPANESE_MINCHO_METRIC)
 AC_SUBST(JAPANESE_MINCHO_TTF)
 AC_SUBST(JAPANESE_MINCHO_TTF_ABS)
+AC_SUBST(JAPANESE_GOTHIC_METRIC)
 AC_SUBST(JAPANESE_GOTHIC_TTF)
 AC_SUBST(JAPANESE_GOTHIC_TTF_ABS)
 
