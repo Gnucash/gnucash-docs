@@ -2,6 +2,8 @@
 
 mobifile = $(docname).mobi
 
+$(mobifile): $(entities) $(figfiles)
+
 mobi: $(mobifile)
 
 mobi-am:
