@@ -6,6 +6,8 @@
 fofile  = $(docname).fo
 pdffile = $(docname).pdf
 
+$(pdffile): $(figfiles)
+
 pdf: $(abs_builddir)/figures $(pdffile)
 
 # This is only needed for out of tree builds. If you build

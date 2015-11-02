@@ -82,7 +82,7 @@ all: ${OMF}
 # ************** Rules to make and install html documentation ********************
 styledir = $(top_srcdir)/stylesheet
 CLEANFILES += $(docname)/*.html
-
+figfiles = $(figdir)/*.png
 html: all convert-html copy-pics copy-style
 
 # Convert xml to html with xsltproc

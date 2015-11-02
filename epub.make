@@ -2,7 +2,7 @@
 
 epubfile = $(docname).epub
 
-$(epubfile): $(entities)
+$(epubfile): $(entities) $(figfiles)
 
 epub: $(epubfile)
 
