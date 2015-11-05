@@ -13,6 +13,7 @@ entities = \
 	Help_tips-appendix.xml
 DISTCLEANFILES =  $(docname)-de.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
+XSLTFLAGS_FO= --stringparam paper.type A4
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
 include $(top_srcdir)/epub.make

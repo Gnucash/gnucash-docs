@@ -4,6 +4,7 @@ lang = it
 omffile = $(docname)-it.omf
 DISTCLEANFILES =  $(docname)-it.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
+XSLTFLAGS_FO= --stringparam paper.type A4
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
 include $(top_srcdir)/epub.make
