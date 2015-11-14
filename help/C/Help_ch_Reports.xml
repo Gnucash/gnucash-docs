@@ -35,15 +35,16 @@
      <sect1 id="report-general">
       <title>General Reports</title>
 
-       <para>The General Reports include the Account Summary Report, Custom Reports, the Tax Schedule Report and <acronym>TXF</acronym> Export, and the Transaction Report and also the reports in the Sample &amp; Custom menu.</para>
+      <para>The General Reports include the Account Summary Report, Custom Reports, the Tax Schedule Report and <acronym>TXF</acronym> Export, and the Transaction Report and also the reports in the Sample &amp; Custom menu.</para>
 
-        <itemizedlist>
-         <listitem>
-          <para>Account Summary:</para>
-         </listitem>
+      <sect2>
+        <title>Account Summary</title>
+        <para> </para>
+      </sect2>
 
-         <listitem id="report-taxreport">
-          <para>Tax Schedule Report and <acronym>TXF</acronym> Export: The tax schedule report lists all taxable income and deductible expense amounts used in the preparation of US Income Tax returns. The purpose of the report is to provide a complete audit trail for these amounts. The report is intended to be used by a tax payer to manually prepare his or her own tax return, or alternatively, to be provided to a tax preparer for that purpose. The report can also be used to generate an export of all tax related income and expenses to a <acronym>TXF</acronym> (Tax eXchange Format) file (this is in addition to exporting to the <acronym>HTML</acronym> format that all reports allow). The <acronym>TXF</acronym> file can be imported into tax filing programs such as TaxCut or TurboTax. The report should be run, inspected carefully for errors or omissions, and then corrections made to transactions, report settings, currency conversion rates or the account structure as needed. This process should be repeated as often as needed until all the amounts on the report are correct before a final version is used and saved along with the tax returns.</para>
+      <sect2 id="report-taxreport">
+        <title>Tax Schedule Report and <acronym>TXF</acronym> Export</title>
+        <para>The tax schedule report lists all taxable income and deductible expense amounts used in the preparation of US Income Tax returns. The purpose of the report is to provide a complete audit trail for these amounts. The report is intended to be used by a tax payer to manually prepare his or her own tax return, or alternatively, to be provided to a tax preparer for that purpose. The report can also be used to generate an export of all tax related income and expenses to a <acronym>TXF</acronym> (Tax eXchange Format) file (this is in addition to exporting to the <acronym>HTML</acronym> format that all reports allow). The <acronym>TXF</acronym> file can be imported into tax filing programs such as TaxCut or TurboTax. The report should be run, inspected carefully for errors or omissions, and then corrections made to transactions, report settings, currency conversion rates or the account structure as needed. This process should be repeated as often as needed until all the amounts on the report are correct before a final version is used and saved along with the tax returns.</para>
 
           <para> For accounts specified in the report options (none = all) that are also flagged as <guilabel>Tax-related</guilabel>, all transactions for the time period selected (also in the report options) are included. The report sorts transactions by date within account providing subtotals by account within tax code within Form or Schedule line number. Support is also provided for multiple copies of and for sub-line items for selected Forms/Schedules. Optionally uses special date processing to include federal estimated tax payments after year end.</para>
 
@@ -56,29 +57,389 @@
            also must set the <acronym>TXF</acronym> category of each tax related account. The Income Tax
            Information dialog is described in the <xref linkend="set-tax-options"></xref> section.</para></note>
 
-         </listitem>
+      </sect2>
 
-         <listitem>
-          <para>Transaction Report:</para>
-         </listitem>
+      <sect2>
+        <title>Transaction Report</title>
 
-         <listitem>
-          <para>Welcome Sample Report:</para>
-         </listitem>
+        <para>This report lists transactions in selected accounts during a specified financial period. Two fields may be optionally
+          used for sorting and totalling.
+        </para>
 
-         <listitem>
-          <para>Custom Multicolumn Report: This report is used to place multiple reports
-           into a single report window to examine a set of financial information at a glance.</para>
-         </listitem>
+        <sect3 id="report-txrpt-opts">
+          <title>Report Options</title>
 
-         <listitem>
-          <para>Sample Graphs</para>
-         </listitem>
+           <figure>
+             <title><emphasis>Transaction Report &mdash; Report Options</emphasis></title>
+             <screenshot id="Help_TxRptOpt_Screen">
+               <mediaobject>
+                 <imageobject role="html">
+                   <imagedata fileref="figures/Help_TxRptOpt_Screen.png" format="PNG"
+                     srccredit="Geert Janssens" width="510px"></imagedata>
+                 </imageobject>
 
-         <listitem>
-          <para>Sample Report with Examples:</para>
-         </listitem>
-        </itemizedlist>
+                 <imageobject role="fo">
+                   <imagedata fileref="figures/Help_TxRptOpt_Screen.png" format="PNG"
+                     srccredit="Geert Janssens" ></imagedata>
+                 </imageobject>
+
+                 <textobject><phrase>Transaction Report &mdash; Report Options screen</phrase>
+                 </textobject>
+                   <caption><para>This is an image of the <emphasis>Transaction Report &mdash; Report Options &mdash; Display tab.</emphasis></para>
+                 </caption>
+               </mediaobject>
+             </screenshot>
+           </figure>
+
+           <itemizedlist>
+             <listitem><para><emphasis>Accounts tab</emphasis></para>
+               <itemizedlist>
+                 <listitem><para><guilabel>Accounts</guilabel> &mdash; Select one or more accounts to be reported.</para>
+                   <para>There are 4 buttons to aid account selection</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Select All</entry><entry>Select all accounts</entry></row>
+                         <row><entry>Clear All</entry> <entry>Clear the selection and unselect all accounts</entry></row>
+                         <row><entry>Select Children</entry><entry>Select all descendants of selected account</entry></row>
+                         <row><entry>Select Default</entry><entry>Select the default account selection</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Show Hidden Accounts</guilabel> &mdash; Show accounts that have been marked hidden.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Filter By</guilabel> &mdash; Optionally select accounts to be either included or
+                   excluded depending on Filter type</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Show Hidden Accounts</guilabel> &mdash; Show accounts that have been
+                   marked hidden in the Filter By list of accounts</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Filter Type</guilabel> &mdash; One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>None</entry><entry>Do not do any filtering</entry></row>
+                         <row><entry>Include Transactions to/from Filter Accounts</entry>
+                           <entry>Include Transactions to/from Filter Accounts only</entry>
+                         </row>
+                         <row><entry>Exclude Transactions to/from Filter Accounts</entry>
+                           <entry>Exclude Transactions to/from all Filter Accounts</entry>
+                         </row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Void Transactions</guilabel> &mdash; One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Non-void only</entry><entry>Show only non-voided transactions</entry></row>
+                         <row><entry>Void only</entry><entry>Show only voided transactions</entry></row>
+                         <row><entry>Both</entry><entry>Show both and include voided transactions in totals</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Reset defaults button</guilabel> &mdash; Reset all values to their defaults</para>
+                 </listitem>
+               </itemizedlist>
+
+             </listitem>
+
+             <listitem><para><emphasis>Display tab</emphasis></para>
+
+               <itemizedlist>
+                 <listitem><para><guilabel>Date</guilabel></para></listitem>
+                 <listitem><para><guilabel>Reconciled Date</guilabel></para></listitem>
+                 <listitem><para><guilabel>Num</guilabel></para></listitem>
+                 <listitem><para><guilabel>Description</guilabel></para></listitem>
+                 <listitem><para><guilabel>Memo</guilabel></para></listitem>
+                 <listitem><para><guilabel>Notes</guilabel> &mdash; Display the notes if the memo is unavailable</para></listitem>
+                 <listitem><para><guilabel>Account Name</guilabel></para></listitem>
+                 <listitem><para><guilabel>Use Full Account Name</guilabel></para></listitem>
+                 <listitem><para><guilabel>Account Code</guilabel></para></listitem>
+
+                 <listitem><para><guilabel>Other Account Name</guilabel> &mdash; For multi-split transactions, this parameter should be unticked. See below for more details.</para>
+                 </listitem>
+                 <listitem><para><guilabel>Use Full Other Account Name</guilabel></para></listitem>
+                 <listitem><para><guilabel>Other Account Code</guilabel></para></listitem>
+                 <listitem><para><guilabel>Shares</guilabel> &mdash; Display number of shares</para></listitem>
+                 <listitem><para><guilabel>Price</guilabel> &mdash; Display share prices</para></listitem>
+
+                 <listitem><para><guilabel>Amount</guilabel> &mdash; One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>None</entry><entry>Do not display Amount</entry></row>
+                         <row><entry>Single</entry><entry>Single column display</entry></row>
+                         <row><entry>Double</entry><entry>Two column display</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Running Balance</guilabel></para></listitem>
+                 <listitem><para><guilabel>Totals</guilabel></para></listitem>
+
+                 <listitem><para><guilabel>Sign Reverses</guilabel> &mdash; One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>None</entry><entry>Do not display signs reversed</entry></row>
+                         <row><entry>Credit Accounts</entry><entry>Reverse amount display for Liability, Payable, Equity, Credit Card and Income accounts</entry></row>
+                         <row><entry>Income and Expense</entry><entry>Reverse amount display for Income and Expense accounts</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Reset defaults button	Reset all values to their defaults</guilabel></para></listitem>
+               </itemizedlist>
+             </listitem>
+
+             <listitem><para><emphasis>General tab</emphasis></para>
+               <itemizedlist>
+                 <listitem><para><guilabel>Report name</guilabel> &mdash; Enter a descriptive name for this report</para></listitem>
+                 <listitem><para><guilabel>Stylesheet</guilabel> &mdash; Select Default, Easy, Footer or Technicolor</para></listitem>
+
+                 <listitem><para><guilabel>Start Date</guilabel> &mdash; Enter or select a specific Start Date</para>
+                   <para>or 	select one of the following named start date options which will be used to	determine the start date each time the report is run
+                   </para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Today</entry><entry>The current date</entry></row>
+                         <row><entry>Start of this month</entry><entry>First day of the current month</entry></row>
+                         <row><entry>Start of previous month</entry><entry>First day of the previous month</entry></row>
+                         <row><entry>Start of current quarter</entry><entry>First day of the current quarterly accounting period</entry></row>
+                         <row><entry>Start of previous quarter</entry><entry>First day of the previous quarterly accounting period</entry></row>
+                         <row><entry>Start of this year</entry><entry>First day of the current calendar year</entry></row>
+                         <row><entry>Start of previous year</entry><entry>First day of the previous calendar year</entry></row>
+                         <row><entry>Start of accounting period</entry><entry>First day of the accounting period as defined in the global preferences</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>End Date</guilabel> &mdash; 	Enter or select a specific End Date,</para>
+                   <para>or	select one of the following named end date options which will be used to determine the end date each time the report is run
+                   </para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Today</entry><entry>The current date</entry></row>
+                         <row><entry>End of this month</entry><entry>Last day of the current month</entry></row>
+                         <row><entry>End of previous month</entry><entry>Last day of the previous month</entry></row>
+                         <row><entry>End of current quarter</entry><entry>Last day of the current quarterly accounting period</entry></row>
+                         <row><entry>End of previous quarter</entry><entry>Last day of the previous quarterly accounting period</entry></row>
+                         <row><entry>End of this year</entry><entry>Last day of the current calendar year</entry></row>
+                         <row><entry>End of previous year</entry><entry>Last day of the previous calendar year</entry></row>
+                         <row><entry>End of accounting period</entry><entry>Last day of the accounting period as defined in the global preferences</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Style</guilabel> &mdash; One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Single</entry><entry>Display 1 line</entry></row>
+                         <row><entry>Multi-Line</entry><entry>Display N lines</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                   <note><para>In stable version 2.8.0, the <emphasis>Style</emphasis> option will be renamed to <emphasis>Detail Level</emphasis>
+                     and moved to the Display tab.</para>
+                   </note>
+                 </listitem>
+
+                 <listitem><para><guilabel>Common Currency</guilabel> &mdash; Convert all transactions into a common currency</para></listitem>
+                 <listitem><para><guilabel>Report's currency</guilabel> &mdash; Select the currency to display values</para></listitem>
+                 <listitem><para><guilabel>Table for Exporting</guilabel> &mdash; Formats the table for cut &amp; paste exporting with extra cells</para></listitem>
+                 <listitem><para><guilabel>Reset defaults button</guilabel> &mdash; Reset all values to their defaults</para></listitem>
+               </itemizedlist>
+             </listitem>
+
+             <listitem><para><emphasis>Sorting tab</emphasis></para>
+               <itemizedlist>
+
+                 <listitem><para><guilabel>Primary Key</guilabel> &mdash; Primary Sort Key. One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>None</entry><entry>Do not sort</entry></row>
+                         <row><entry>Account Name</entry><entry>Sort and subtotal by account name</entry></row>
+                         <row><entry>Account Code</entry><entry>Sort and subtotal by account code</entry></row>
+                         <row><entry>Date</entry><entry>Sort by date</entry></row>
+                         <row><entry>Exact Time</entry><entry>Sort by exact time</entry></row>
+                         <row><entry>Reconciled Date</entry><entry>Sort by the reconciled date</entry></row>
+                         <row><entry>Register Order</entry><entry>Sort as within the register</entry></row>
+                         <row><entry>Other Account Name</entry><entry>Sort by account transferred from/to's name</entry></row>
+                         <row><entry>Other Account Code</entry><entry>Sort by account transferred from/to's code</entry></row>
+                         <row><entry>Amount</entry><entry>Sort by amount</entry></row>
+                         <row><entry>Description</entry><entry>Sort by description</entry></row>
+                         <row><entry>Number</entry><entry>Sort by check/transaction number</entry></row>
+                         <row><entry>Memo</entry><entry>Sort by memo</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Show Full Account Name</guilabel> &mdash; Show the full account name for subtotals and subtitles</para></listitem>
+                 <listitem><para><guilabel>Show Account Code</guilabel> &mdash; Show the account code for subtotals and subtitles</para></listitem>
+                 <listitem><para><guilabel>Primary Subtotal</guilabel> &mdash; Subtotal according to the primary key</para></listitem>
+                 <listitem><para><guilabel>Primary Subtotal for Date Key</guilabel> &mdash; Do a date subtotal. Only configurable if primary key is date, exact time or register order.
+                   One of None, weekly, monthly, quarterly or yearly</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Primary Sort Order</guilabel> &mdash; One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Ascending</entry><entry>Smallest to largest, earliest to latest</entry></row>
+                         <row><entry>Descending</entry><entry>Largest to smallest, latest to earliest</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Secondary Key</guilabel> &mdash; Secondary Sort Key. Same options as Primary Key</para></listitem>
+                 <listitem><para><guilabel>Secondary Subtotal</guilabel> &mdash; Subtotal according to the secondary key</para></listitem>
+                 <listitem><para><guilabel>Secondary Subtotal for Date Key</guilabel> &mdash; Do a date subtotal. Only configurable if primary key is date, exact time or register order.
+                   One of None, weekly, monthly, quarterly or yearly</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Secondary Sort Order</guilabel> &mdash; One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Ascending</entry><entry>Smallest to largest, earliest to latest</entry></row>
+                         <row><entry>Descending</entry><entry>Largest to smallest, latest to earliest</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Reset defaults button</guilabel> &mdash; Reset all values to their defaults</para></listitem>
+               </itemizedlist>
+             </listitem>
+           </itemizedlist>
+        </sect3>
+
+        <sect3 id="report-txrpt-splits">
+          <title>Displaying Split Account Details</title>
+          <para>This is controled by the <emphasis>Style</emphasis> option on the General tab.</para>
+          <note>
+           <para>In stable version 2.8.0 this option will be renamed to <emphasis>Detail Level</emphasis> on the Display tab.</para>
+          </note>
+          <para>In <emphasis>Single</emphasis> line mode, there's only one line per transaction. So you can have
+            the account name on one side of the equation and
+          </para>
+
+          <para>a. the other account name if there's only one other split in the transaction</para>
+
+          <para>or</para>
+
+          <para>b. "Split" if there are multiple other splits in the transaction. You can't
+            display multiple "other" account names in one line. There's just no room for it.
+          </para>
+
+          <para>In the case of <emphasis>Multi-Line</emphasis> mode, this report uses a completely different concept.
+            For each transaction, every split (both the split in this account and the
+            split(s) in the other account(s) !) is printed on a separate line. And every
+            split really means every split:  both the split which belongs in the account
+            being reported and the split(s) in the other account(s) that balance the
+            transaction. So even the most basic transaction, with only two splits (this
+            account and other account) will print two lines in multiline mode.
+          </para>
+
+          <para>For a simple transaction like this</para>
+          <informaltable>
+            <tgroup cols="4">
+              <tbody>
+                <row>
+                  <entry><emphasis>Description</emphasis></entry>
+                  <entry><emphasis>Account</emphasis></entry>
+                  <entry><emphasis>Debit</emphasis></entry>
+                  <entry><emphasis>Credit</emphasis></entry>
+                </row>
+                <row><entry>Cheques Received</entry></row>
+                <row><entry>"multiple payers"</entry><entry>IncomeAccount</entry><entry></entry><entry>£30.00</entry></row>
+                <row><entry></entry><entry>BankAccount</entry><entry>£30.00</entry><entry></entry></row>
+              </tbody>
+            </tgroup>
+          </informaltable>
+
+          <para>then on a Transaction Report for the bank account the details appear pretty much as above.</para>
+
+          <para>For clarity of the accounts, you might enter transactions with multiple splits referring to the same
+            account. For example, the above transaction might well be entered like this
+          </para>
+
+          <informaltable>
+            <tgroup cols="4">
+              <tbody>
+                <row>
+                  <entry><emphasis>Description</emphasis></entry>
+                  <entry><emphasis>Account</emphasis></entry>
+                  <entry><emphasis>Debit</emphasis></entry>
+                  <entry><emphasis>Credit</emphasis></entry>
+                </row>
+                <row><entry>Cheques Received</entry></row>
+                <row><entry>"FirstPayer"</entry><entry>IncomeAccount</entry><entry></entry><entry>£10.00</entry></row>
+                <row><entry>"SecondPayer"</entry><entry>IncomeAccount</entry><entry></entry><entry>£20.00</entry></row>
+                <row><entry></entry><entry>BankAccount</entry><entry>£30.00</entry><entry></entry></row>
+              </tbody>
+            </tgroup>
+          </informaltable>
+
+          <para>When this transaction is printed on the bank account's Transaction Report in <emphasis>Single</emphasis> line mode, then
+            under <emphasis>other account</emphasis> it simply prints the word <emphasis>split</emphasis> instead of the account name.
+          </para>
+
+          <para>To display the additional split detail, you need to set <emphasis>Single/Multi-Line</emphasis> to
+            <emphasis>Multi-Line</emphasis> and then tick <emphasis>Display</emphasis> -> <emphasis>Account Name</emphasis>.
+            Do NOT tick <emphasis>Display</emphasis> -> <emphasis>Other Account Name</emphasis>.
+          </para>
+
+          <para>You can choose whether or not to turn off the full account name using <emphasis>Display</emphasis> ->
+            <emphasis>Use Full Account Name.</emphasis></para>
+
+          <para><emphasis>Use Full Other Account Name</emphasis> has no effect in <emphasis>Multi-Line</emphasis> mode.</para>
+
+        </sect3>
+
+      </sect2>
+
+      <sect2>
+        <title>Welcome Sample Report</title>
+        <para> </para>
+      </sect2>
+
+      <sect2>
+        <title>Custom Multicolumn Report</title>
+        <para>This report is used to place multiple reports
+           into a single report window to examine a set of financial information at a glance.
+        </para>
+      </sect2>
+
+      <sect2>
+        <title>Sample Graphs</title>
+        <para> </para>
+      </sect2>
+
+      <sect2>
+        <title>Sample Report with Examples</title>
+        <para> </para>
+      </sect2>
 
    </sect1>
 
