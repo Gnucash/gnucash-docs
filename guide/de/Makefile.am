@@ -8,6 +8,7 @@ entities = \
  ch_bus_ap.xml \
  ch_bus_ar.xml \
  ch_bus_intro.xml \
+ ch_bus_setup.xml \
  ch_capgain.xml \
  ch_cbook.xml \
  ch_cc.xml \
