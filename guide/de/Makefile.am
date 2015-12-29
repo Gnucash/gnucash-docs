@@ -7,9 +7,11 @@ entities = \
  ch_basics.xml \
  ch_bus_ap.xml \
  ch_bus_ar.xml \
+ ch_bus_intro.xml \
  ch_capgain.xml \
  ch_cbook.xml \
  ch_cc.xml \
+ ch_currency.xml \
  ch_loans.xml \
  ch_invest.xml \
  ch_oth_assets.xml \
