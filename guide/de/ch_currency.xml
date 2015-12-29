@@ -1,7 +1,7 @@
 <!--
       (Do not remove this comment block.)
   Version: 2.4.0 /2.6.9
-  Last modified: March 16th 2010 (Englisch 25.02.1014=
+  Last modified: March 16th 2010 (Englisch 25.02.1014)
   Maintainers: 
                Chris Lyttle <chris@wilddev.net>
   Author:
@@ -506,41 +506,40 @@ Beachten Sie, dass die Währung jeden Kontos in Klammern gesetzt ist.
       various income and expense amounts per stock and broker.</para>
 
       <para>Sie entscheiden sich Aktien des Beijing Airport (Hong Kong) zu kaufen.
-      (After all, the 2008 Olympics in Beijing have finished and the price has
-      returned to Earth.)</para>
+      (Immerhin, die Olympischen Spiele 2008 in Peking sind beendet und der Kurs 
+      ist auf den Boden der Tatsachen zurückgekehrt.)</para>
 
       <note><para>
-         The above stock (Beijing Airport) has been chosen only as an example,
-         and should not be taken as any kind of stock purchase advice.
+         Die oben erwähnte Aktie (Beijing Airport) wurde nur als ein Beispiel 
+         gewählt und sollte nicht als irgendeine Kaufempfehung genommen werden.
       </para></note>
 
-      <para>You need to find out what the stock ticker is for this 
-      stock. To do this, you do a bit of investigation on the Internet, and
-      in particular on <ulink
-      url="http://finance.yahoo.com/lookup"><citetitle>Yahoo! Finance - Ticker
+      <para>Sie müssen herausfinden, was der Aktienticker für diese Aktie meldet. 
+      Dafür müssen Sie einige Nachforschungen im Internet anstellen und 
+      speziell <ulink url="http://finance.yahoo.com/lookup"><citetitle>Yahoo! Finance - Ticker
       Symbol Lookup</citetitle></ulink> (http://finance.yahoo.com/lookup).
-      This gives you the following:</para>
+      Dies erledigen Sie wie folgt:</para>
 
       <itemizedlist>
         <listitem>
-          <para><emphasis>Beijing Airport</emphasis> has the Stock Symbol
-          0694.HK at Yahoo</para>
+          <para><emphasis>Beijing Airport</emphasis> hat das Aktiensymbol
+          0694.HK auf Yahoo</para>
         </listitem>
       </itemizedlist>
       
-      <para>Since we wanted to be able to track all various income and expense amounts,
-      we come up with the following Account structure:</para>
+      <para>Weil wir alle verschiedenen Erträge und Aufwendungen verfolgen wollen,
+      haben wir uns die folgende Kontenstrukture erstellt:</para>
 
       <literallayout>
-Assets:Investments:Brokerage Accounts:Boom:0694.HK     (Beijing Airport)
-Assets:Investments:Brokerage Accounts:Boom:Bank        (HKD)
-Equity:Opening Balances:HKD                            (HKD)
-Expenses:Commissions:Boom.0694.HK                      (HKD)
-Income:Investments:Dividend:Boom:0694.HK               (HKD)
+Aktiva:Investments:Maklerkonto:Boom:0694.HK         (Beijing Airport)
+Aktiva:Investments:Maklerkonto:Boom:Bank            (HKD)
+Eigenkapital:Anfangsbestand:HKD                     (HKD)
+Aufwendungen:Kommisionen:Boom.0694.HK               (HKD)
+Erträge:Investments:Dividende:Boom:0694.HK          (HKD)
       </literallayout>
       
-      <para>The Chart of Accounts looks like this after creating all the
-      needed accounts:</para>
+      <para>Der Kontenplan sieht wie folgt nach der Erstellung aller 
+      benötigten Konten aus:</para>
 
       <screenshot id="currency_purchase_BeforeStocks.png">
         <mediaobject>
@@ -550,16 +549,15 @@ Income:Investments:Dividend:Boom:0694.HK               (HKD)
           </imageobject>
 
           <textobject>
-            <phrase>Chart of Accounts for international stocks</phrase>
+            <phrase>Kontenplan für internationale Aktien</phrase>
           </textobject>
 
-          <caption><para>Chart of Accounts for international
-          stocks</para></caption>
+          <caption><para>Kontenplan für internationale Aktien</para></caption>
         </mediaobject>
       </screenshot>
 
-      <para>The stock definition can be seen in the Security Editor.
-      (<menuchoice><guimenu>Tools</guimenu><guimenu>Security Editor</guimenu></menuchoice>)
+      <para>Der Aktienbegriff kann im Wertpapier-Editor angesehen werden.
+      (<menuchoice><guimenu>Werkzeuge</guimenu><guimenu>Wertpapier-Editor</guimenu></menuchoice>)
       </para>
 
       <screenshot id="currency_purchase_Commodities.png">
@@ -570,33 +568,33 @@ Income:Investments:Dividend:Boom:0694.HK               (HKD)
           </imageobject>
 
           <textobject>
-            <phrase>International securities</phrase>
+            <phrase>Internationale Wertpapiere</phrase>
           </textobject>
 
-          <caption><para>International securities</para></caption>
+          <caption><para>Internationale Wertpapiere</para></caption>
         </mediaobject>
       </screenshot>
 
-      <para>If you have not moved money (HKD 50,000) into the brokerage&rsquo;s
-      cash account (<emphasis>Assets:Investments:Brokerage Account:Boom:Bank</emphasis>), do so
-      now, either using the Equity (HKD) account, or an existing bank account
-      (Currency Transfer).</para>
+      <para>Wenn Sie kein Geld (HKD 50.000) auf Ihr Maklerkonto
+      (<emphasis>Aktiva:Investments:Maklerkonto:Boom:Bank</emphasis>) bewegt haben, 
+      so können sie nun entweder das Eigenkapitalkonto (HKD) oder ein existierendes 
+      Bankkonto (Devisentransfer) nutzen.</para>
 
-      <para>Let&rsquo;s assume that the stock price is HKD 3 per share. To record the
-      purchase, open the brokerage&rsquo;s HKD cash account
-      (<emphasis>Assets:Investments:Brokerage Account:Boom:Bank</emphasis>), and enter
-      the following:</para>
+      <para>Nehmen wir an, dass der Aktienkurs HKD 3 pro Anteil ist. Um den Kauf 
+      aufzuzeichnen, öffnen Sie das Maklerkonto in HKD 
+      (<emphasis>Aktiva:Investments:Maklerkonto:Boom:Bank</emphasis>)und geben 
+      folgendes ein:</para>
 <literallayout>
-Buy Stocks
-	Assets:Investments:Brokerage Account:Boom:Bank  Withdrawal 50,000
-	Expenses:Investments:Commission:Boom_HKD	Deposit 500
-	Assets:Investments:Brokerage Account:Boom:0694  Deposit 49,500 (16,500 shares)
+Aktienkauf
+    Aktiva::Investments:Maklerkonto:Boom:Bank  Abbuchung 50.000
+    Aufwand:Investments:Kommision:Boom_HKD     Einzahlung 500
+    Aktiva::Investments:Maklerkonto:Boom:0694  Einzahlung 49.500 (16.500 Anteile)
 </literallayout>
 
-      <para>If the exchange rate dialog box does not appear automatically,
-      right-click on the stock row, and select <guilabel>Edit
-      Exchange Rate</guilabel>. Enter the number of shares (16,500) as the
-      <guilabel>To Amount</guilabel>.
+      <para>Wenn der Wechselkursdialog nicht automatisch erscheint, 
+      klicken Sie mit rechts auf die Aktienzeile und wählen <guilabel>Bearbeiten
+      Wechselkurd</guilabel>. Gegen Sie die Anzahl der Anteile (16.500) als die
+      <guilabel>Zum Betrag</guilabel> ein.
       </para>
       
       <screenshot id="currency_purchase_ToAmount.png">
@@ -607,15 +605,15 @@ Buy Stocks
           </imageobject>
 
           <textobject>
-            <phrase>Transfer Funds</phrase>
+            <phrase>Umbuchung</phrase>
           </textobject>
 
-          <caption><para>Setting the number of shares in the Transfer Funds dialog</para></caption>
+          <caption><para>Anzahl der Anteile in den Umbuchungsdialog eintragen</para></caption>
         </mediaobject>
       </screenshot>
 
-      <para>If you return to the Chart of Accounts, you will see the
-      purchased shares reflected in the stock account&rsquo;s total.</para>
+      <para>Wenn Sie zum Kontenplan zurückkehren, werden sie sehen,
+      dass der Kauf der Anteile im Aktienkonto wiedergegeben werden.</para>
       
       <screenshot id="currency_purchase_AfterStocks.png">
         <mediaobject>
@@ -625,32 +623,31 @@ Buy Stocks
           </imageobject>
 
           <textobject>
-            <phrase>Purchased international stocks</phrase>
+            <phrase>gekaufte internationale Aktien</phrase>
           </textobject>
           <caption><para>
-            Chart of Accounts with some international stocks
+            Kontenplan mit einigen internationalen Aktien
           </para></caption>
         </mediaobject>
       </screenshot>
 
-      <para>However, as you can see, the USD totals may be zero if
-      <application>&app;</application> doesn&rsquo;t have an exchange rate between USD and HKD.
-      To fix this, go to <menuchoice><guimenu>Tools</guimenu><guimenuitem>Price
-      Editor</guimenuitem></menuchoice>
-      and click the <guibutton>Get Quotes</guibutton> button to
-      automatically retrieve the exchange rates you need.</para>
+      <para>Wie Sie jedoch sehen können, könne die Gesamt EUR Null sein, wenn
+      <application>&app;</application> keinen Wechselkurs zwischen EUR und HKD hat.
+      Um dies in Ordnung zu bringen, gehen Sie auf <menuchoice><guimenu>Werkzeuge</guimenu><guimenuitem>Kurs-Editor</guimenuitem></menuchoice>
+      und klicken auf die Schlatfläche <guibutton>Kurs abrufen</guibutton>, um 
+      automatisch die Wechselkurse abzurufen, die Sie benötigen.</para>
 
       <note>
-        <para>This example shows how stock can be purchased in any currency
-         by entering the transaction in the register of the cash account used
-         to make payment. It is also possible to enter the purchase
-         in the stock account&rsquo;s register, but proceed with caution!
-         When doing it that way, the stock is assumed to be priced
-         in the currency of the stock account&rsquo;s parent.</para>
-        <para>In this example, the stock account&rsquo;s parent
-         (<emphasis>Assets:Investments:Brokerage Account:Boom</emphasis>) is denominated in HKD.
-         Since this is same currency as the stock price, the purchase
-         can be safely entered in the stock account&rsquo;s register.</para>
+        <para>Dieses Beispiel zeigt, wie Aktien in jeglicher Währung gekauft werden können 
+        durch Eingabe der Buchung unter dem Reiter des Barvermögens, um eine Zahlung zu leisten.
+        Es it auch möglich, den Kauf in das Aktienkonto einzugeben, 
+        aber setzen Sie dies mit Vorsicht ein!
+        Wenn Sie es so machen. werden die Aktien so angezeigt, als seine die 
+        Aktien in der Währung des Aktienoberkontos.</para>
+        <para>In diesem Beispiel ist das Aktienoberkonto 
+         (<emphasis>Aktiva:Investments:Maklerkonto:Boom</emphasis>) benannt in HKD.
+         Da dies die gleiche Währung wie der Aktienkurs ist, kann der Kauf 
+         gefahrlos auf dem Aktienkonto eingegeben werden.</para>
       </note>
 
     </sect2>
@@ -658,156 +655,153 @@ Buy Stocks
   </sect1>
 
   <sect1 id="currency_invest1">
-    <title>Tracking Currency Investments (How-To)</title>
+    <title>Währungsspekulation aufzeichnen (How-To)</title>
 
-    <para>Currency investment is when you decide to invest in different
-    countries' currency, and hope that their currency will raise in value
-    relative your own currency.</para>
+    <para>Währungsspekulation ist, wenn Sie sich entscheiden, in verschiedene 
+    Landeswährungen zu investieren in der Hoffnung, dass deren Währung im 
+    Wert gegenüber Ihrer eigenen Währung ansteigt.</para>
 
-    <para>When you enter these transactions into <application>&app;</application>, you will have to
-    decide on how much detail you would like to have.</para>
+    <para>Wenn Sie diese Buchungen in <application>&app;</application> eingeben, müssen Sie 
+    selbst entscheiden, wie ausführlich Sie das haben wollen.</para>
 
-    <para>If you are not interested in detail at all, a very simple account
-    structure would be enough. Something like this;</para>
-
-    <literallayout>
-    Assets:Investments:Currency:Bank (USD)
-    Assets:Investments:Currency:XXX (XXX)</literallayout>
-
-    <para>But, if you do want to be able to track the Capital Gains or Losses,
-    as well as the various fees, you do need a bit more complexed layout.
-    Something like this;</para>
+    <para>Wenn Sie nicht an alle Einzelheiten interessiert sind, genügt eine einfaches Kontostruktur wie die Folgende:</para>
 
     <literallayout>
-    Assets:Investments:Currency:Bank                    (USD)
-    Assets:Investments:Currency:Currency Bank:XXX       (XXX)
-    Expenses:Investments:Currency:Currency Bank:XXX     (XXX)
-    Income:Investments:Currency Bank:Capital Gains:XXX  (XXX)</literallayout>
+    Aktiva:Investments:Währung:Bank (EUR)
+    Aktiva:Investments:Währung:XXX (XXX)</literallayout>
 
-    <para>Where XXX is the currency you are investing in.</para>
+    <para>Aber wenn Sie in der Lage sein wollen, die Kapitalerträge und -verluste 
+    nachzuverfolgen, genauso wie die verschiedenen Gebühren, benötigen Sie ein etwas 
+    aufwändigeres Layoutwie das Folgende:</para>
+
+    <literallayout>
+    Aktiva:Investments:Währung:Bank                      (EUR)
+    Aktiva:Investments:Währung:Währung Bank:XXX          (XXX)
+    Aufwendungen:Investments:Währung:Währung Bank:XXX    (XXX)
+    Ertrag:Investments:Währung Bank:Kapitalerträge:XXX   (XXX)</literallayout>
+
+    <para>Dabei ist XXX die Währung in die Sie investieren.</para>
 
     <sect2 id="currency_invest12">
-      <title>Purchasing a currency investment</title>
+      <title>Währungsspekulationen erwerben</title>
 
-      <para>A typical purchase order might be something like this, seen from
-      the <emphasis>Assets:Investments:Currency:Bank</emphasis>.</para>
+      <para>Ein typischer Kaufauftrag lautet ungefähr wie folgt aus der Perspektive von <emphasis>Aktiva:Investments:Währung:Bank</emphasis>.</para>
 
       <para><table>
-          <title>Buying a currency with a Split Transaction Scheme</title>
+          <title>Kauf einer Fremdwährungmit einer Splitbuchung</title>
 
           <tgroup cols="3">
             <tbody>
               <row>
-                <entry><emphasis>Account</emphasis></entry>
+                <entry><emphasis>Konto</emphasis></entry>
 
-                <entry><emphasis>Deposit</emphasis></entry>
+                <entry><emphasis>Einzahlung</emphasis></entry>
 
-                <entry><emphasis>Withdrawal</emphasis></entry>
+                <entry><emphasis>Auszahlung</emphasis></entry>
               </row>
 
               <row>
-                <entry>Assets:Investments:Currency:Bank</entry>
+                <entry>Aktiva:Investments:Währung:Bank</entry>
 
                 <entry></entry>
 
-                <entry>Invested Amount</entry>
+                <entry>Investierter Betrag</entry>
               </row>
 
               <row>
-                <entry>Expenses:Investments:Currency:Currency Bank:XXX</entry>
+                <entry>Aufwand:Investments:Währung:Währung Bank:XXX</entry>
 
-                <entry>Exchange Fee</entry>
+                <entry>Umtauschgebühr</entry>
 
                 <entry></entry>
               </row>
 
               <row>
-                <entry>Assets:Investments:Currency:XXX</entry>
+                <entry>Aktiva:Investments:Währung:XXX</entry>
 
-                <entry>Invested Amount - Exchange Fee</entry>
+                <entry>Investierter Betrag - Umtauschgebühr</entry>
 
                 <entry></entry>
               </row>
             </tbody>
           </tgroup>
-        </table>You should get an Exchange Rate window popping up when you
-      leave the last row in the split above (Currency Transaction). If this
-      window does not pop up, right click on the row, and select <guilabel>Edit
-      Exchange Rate</guilabel>. In the Exchange Rate window you specify the
-      exchange rate you got from the bank.</para>
+        </table>Es sollte ein Wechselkursfenster aufgehen, wenn Sie die letzte 
+        Zeile der obigen Splitbuchung (Währungsbuchung) verlassen (Currency Transaction). 
+        Wenn dieses Fenster nicht aufgeht, klicken Sie rechts auf die Zeile und 
+        wählen Sie  <guilabel>Bearbeiten Wechselkurs</guilabel>. Im Wechselkursfenster geben Sie 
+        den Wechselkurs an, den Sie von der Bank erhalten haben.</para>
     </sect2>
 
     <sect2 id="currency_invest13">
-      <title>Selling a currency investment</title>
+      <title>Verkauf einer Fremdwährung</title>
 
-      <para>Entering a currency sale is done in the same way as
-      a currency buy except that you are now transferring money from the Currency
-      account to your Savings account (very similar to <xref
-      linkend="invest-sell1" />).</para>
+      <para>Der Verkauf einer Fremdwährung wird in der gleichen Weise eingegeben 
+      wie der Kauf, außer dass Sie nun Geld vom Währungskonto auf Ihr Sparkonto 
+      übertragen (ziemlich ähnlich zu <xref linkend="invest-sell1" />).</para>
 
-      <para>The proper recording of the currency sale *must* be done using a
-      split transaction. In the split transaction, you must account for the
-      profit (or loss) as coming from an <emphasis>Income:Capital Gains</emphasis> account (or
-      <emphasis>Expenses:Capital Loss</emphasis>). To balance this income, you will need to enter
-      the Currency asset twice in the split. Once to record the actual sale
-      (using the correct amount and correct exchange rate) and once to balance
-      the income profit (setting the amount to 0).</para>
+      <para>Die ordentliche Aufzeichnung des Währungsverkaufs *muss* durch eine 
+      Splitbuchung erfolgen. In der Splitbuchung müssen Sie den Gewinn 
+      (oder Verlust) als von einem  <emphasis>Ertrag:Kapitalgewinn</emphasis> Konto (oder
+      <emphasis>Aufwand:Kapitalverlust</emphasis>) ausweisen. 
+      Um diesen Ertrag auszugleichen, müssen Sie den Währungsbestand zweimal 
+      in die Splitbuchung eingeben. Einmal den aktuellen Verkauf aufzeichnen 
+      (nutzt den genauen Betrag und den genauen Wechselkurs) und einmal die 
+      Gewinneinkünfte (setzt den Betrag auf 0) ausgleichen.</para>
 
-      <para>In short, a selling Currency transaction should look something
-      like below, seen again from the <emphasis>Assets:Investments:Currency:Bank</emphasis>.</para>
+      <para>Kurzgesagt, ein Verkauf einer Fremdwährung sollte wie im Folgenden aussehen, 
+      sehen Sie auch wieder unter <emphasis>Aktiva:Investments:Währung:Bank</emphasis>.</para>
 
       <table>
-        <title>Selling a currency with a Split Transaction Scheme</title>
+        <title>Verkauf einer Fremdwährung mit einer Splitbuchung</title>
 
         <tgroup cols="3">
           <tbody>
             <row>
-              <entry><emphasis>Account</emphasis></entry>
+              <entry><emphasis>Konto</emphasis></entry>
 
-              <entry><emphasis>Deposit</emphasis></entry>
+              <entry><emphasis>Einzahlung</emphasis></entry>
 
-              <entry><emphasis>Withdrawal</emphasis></entry>
+              <entry><emphasis>Auszahlung</emphasis></entry>
             </row>
 
             <row>
-              <entry>Assets:Investments:Currency:Bank</entry>
+              <entry>Aktiva:Investments:Währung:Bank</entry>
 
-              <entry>Sold Amount - Exchange Fee</entry>
+              <entry>Verkaufsbetrag - Umtauschgebühr</entry>
 
               <entry></entry>
             </row>
 
             <row>
-              <entry>Expenses:Investments:Currency:Currency Bank:XXX</entry>
+              <entry>Ausgaben:Investments:Währung:Währung Bank:XXX</entry>
 
-              <entry>Exchange Fee</entry>
-
-              <entry></entry>
-            </row>
-
-            <row>
-              <entry>Assets:Investments:Currency:XXX</entry>
+              <entry>Umtauschgebühr</entry>
 
               <entry></entry>
-
-              <entry>Sold Amount</entry>
             </row>
 
             <row>
-              <entry>Income:Investments:Currency Bank:Capital
-              Gains:XXX</entry>
+              <entry>Aktiva:Investments:Währung:XXX</entry>
 
-              <entry>[LOSS]</entry>
+              <entry></entry>
 
-              <entry>PROFIT</entry>
+              <entry>Verkaufsbetrag</entry>
             </row>
 
             <row>
-              <entry>Assets:Investments:Currency:XXX</entry>
+              <entry>Ertrag:Investments:Währung Bank:Kapitalgewinne:XXX</entry>
 
-              <entry>PROFIT (with To Amount = 0)</entry>
+              <entry>[VERLUST]</entry>
 
-              <entry>[LOSS (with To Amount = 0) ]</entry>
+              <entry>GEWINN</entry>
+            </row>
+
+            <row>
+              <entry>Aktiva:Investments:Währung:XXX</entry>
+
+              <entry>GEWINN (um auf 0 auszugleichen)</entry>
+
+              <entry>[VERLUST (um auf 0 auszugleichen) ]</entry>
             </row>
           </tbody>
         </tgroup>
@@ -817,58 +811,60 @@ Buy Stocks
   </sect1>
 
   <sect1 id="currency_reconcile1">
-    <title>Reconciling Statements in a Foreign Currency (How-To)</title>
+    <title>Auszüge in ausländischer Währung abgleichen (How-To)</title>
 
-    <para>Reconciling foreign statement are done in the same manner as when
-    you reconcile your local bank statement. If you have created a Chart of
-    Accounts structure which allows you to have the same Currency per account
-    as your Reconcile Statement, it is actually exactly the same as
-    reconciling your local bank statement, apart from the fact you might need
-    a dictionary</para>
+    <para>Ausländische Auszüge abzugleichen geschieht in der selben Weise, 
+    wie Sie einen Auszug Ihrer lokalen Bank abgleichen. Wenn Sie eine 
+    Kontenplanstruktur erstellt haben, der es Ihnen erlaubt, die gleiche Währung 
+    je Konto zu nutzen wie Ihr Kontoauszug, ist es aktuell exakt dasselbe 
+    wie das Abgleichen mit Ihrem lokalen Bankauszug, abgesehen davon, dass 
+    Sie möglicherweise ein Wörterbuch benötigen.</para>
 
-    <para>If you have different currencies you might have to manually convert
-    the amounts from one currency to another while you reconcile the
-    accounts.</para>
+    <para>Wenn Sie verschiedene Währungen benutzen, müssen Sie möglicherweise 
+    die Beträge händisch won einer Währung in die Andere umrechnen, 
+    während Sie die Konten abgleichen.</para>
   </sect1>
 
   <sect1 id="currency_examples1">
-    <title>Putting It All Together (Examples)</title>
+    <title>Alles zusammensetzen (Beispiele)</title>
 
-    <para>In this Putting It All Together you will use quite a bit of what you
-    have learned so far in this guide with a bit of a twist. The twist being
-    a lot of different currencies.</para>
+    <para>In diesem <quote>Alles zusammensetzen</quote> werden Sie ziemlich 
+    viel davon benutzen, was Sie bisher in diesem Leitfaden gelernt 
+    haben mit mehr Komplexität. Die Komplexität ist die Verwenung der vielen 
+    Währungen.</para>
 
     <sect2>
-      <title>Basic scenario</title>
+      <title>Ausgangslage</title>
 
-      <para>The following are the basic scenarios.</para>
+      <para>Wir gehen von folgendem aus:</para>
 
       <itemizedlist>
         <listitem>
-          <para>You live in Australia and use AUD as our default
-          currency</para>
+          <para>Sie leben in Australien und nutzen AUD ($)als Ihre 
+          Standardwährung</para>
         </listitem>
 
         <listitem>
-          <para>You win the lottery as well as inherit some money</para>
+          <para>Sie gewinnen in der Lotterie oder erben ein Vermögen.</para>
         </listitem>
 
         <listitem>
-          <para>You pay off your existing house loan</para>
+          <para>Sie begleichen Ihr existierendes Hypothekendarlehen</para>
         </listitem>
 
         <listitem>
-          <para>You purchase some stock in Sweden using SEK (Ericsson
+          <para>Sie kaufen einige Aktien in Schweden und nutzen SEK (kr) (Ericsson
           B-Fria)</para>
         </listitem>
 
         <listitem>
-          <para>You purchase some stock in HK using HKD (Beijing
+          <para>Sie kaufen einige Aktien in HK (Honkong) und nutzen HKD ($)(Beijing
           Airport)</para>
         </listitem>
 
         <listitem>
-          <para>You purchase some stock in US using USD (Amazon)</para>
+          <para>Sie kaufen einige Aktien in US (Vereinigten Staaten) 
+          und nutzen USD ($) (Amazon)</para>
         </listitem>
 
         <!--
@@ -878,50 +874,52 @@ Buy Stocks
 -->
 
         <listitem>
-          <para>You lend some EURO to a friend (Peter)</para>
+          <para>Sie leihen einem Freund (Peter) einige EURO (€).</para>
         </listitem>
 
         <listitem>
-          <para>You borrow some money from a Japanese bank</para>
+          <para>Sie leihen sich Geld von einer japanischen Bank (¥)</para>
         </listitem>
 
         <listitem>
-          <para>You buy a house in New Zealand</para>
+          <para>Sie kaufen ein Haus in Neuseeland ($)</para>
         </listitem>
 
         <listitem>
-          <para>You use a credit card in Australia</para>
+          <para>Sie nutzen eine Kreditkarte in Australien</para>
         </listitem>
 
         <listitem>
-          <para>You would like to have maximum control of your expenses</para>
+          <para>Sie möchten die größtmögliche Kontrolle über Ihre Ausgaben 
+          haben.</para>
         </listitem>
 
       </itemizedlist>
       <note>
-        <para>Again these examples are not intended as valid and
-          accurate advice. They are only to be considered as an example for
-          the techniques used in <application>&app;</application>, and not as Investment Advice.
-          Please consult a proper financial advisor for more information
-          regarding international investments/loans.</para>
+        <para> Nochmal: Diese Beispiele sind nicht als gültige und korrekte 
+          Ratschläge gedacht. Sie kommen allenfalls als Beispiel für die 
+          Methoden in Betracht, die in <application>&app;</application> 
+          genutzt werden und nicht als Investionsempfehlung.
+          Bitte fragen Sie einen geeigneten Finanzberater nach mehr Informationen 
+          hinsichtlich internationaler Investments/Darlehen.</para>
         </note>
 
 
     </sect2>
 
     <sect2>
-      <title>Configure Accounts</title>
+      <title>Konten festlegen</title>
 
-      <para>This time let&rsquo;s start with a fresh and new <application>&app;</application> data file, so
-      <menuchoice><guimenu>File</guimenu><guimenuitem>New File</guimenuitem></menuchoice>, and edit
-      preferences (<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice>,
-      <menuchoice><guimenu>&app;</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice> on Mac OS X) 
-      to set Default Currency as AUD. Since you have
-      decided to be able to track as much detail of your income and expenses
-      as possible, the following account hierarchy could be used;</para>
+      <para>Diesmal starten wir mit einer neuen und frischen <application>&app;</application> 
+      Datei mit   
+      <menuchoice><guimenu>Datei</guimenu><guimenuitem>Neue Datei</guimenuitem></menuchoice> und bearbeiten 
+      die Einstellungen unter (<menuchoice><guimenu>Bearbeiten</guimenu><guimenuitem>Einstellungen</guimenuitem></menuchoice> unter Mac OSX <menuchoice><guimenu>&app;</guimenu><guimenuitem>Einstellungen</guimenuitem></menuchoice>) und setzen die Standardwährung auf AUD (Australischer Dollar).
+      Da Sie sich entschieden haben, so viele Angaben als möglich über  
+      Ihre Erträge und Aufwendungen zu verfolgen, kann die folgende 
+      Kontenhierarchie genutzt werden:</para>
 
       <literallayout>
-Assets:Current Assets:Savings Account         (AUD)
+Aktiva:Barvermögen:Sparkonto         (AUD)
       </literallayout>
 
       <para></para>
@@ -929,50 +927,51 @@ Assets:Current Assets:Savings Account         (AUD)
 
 
     <sect2>
-      <title>Opening Balance</title>
+      <title>Anfangsbestand</title>
 
-      <para>You open the mail one morning, and to your enormous surprise find
-      that you are the last living relative of a very distant relative who
-      happened to be very rich. And so, now you are $500,000 AUD richer. That was not
-      all though; another item in the mail states that you won the lottery, and got $250,000
-      AUD for that. </para>
+      <para>Eins Morgens öffnen Sie Ihre Post und zu Ihrer riesigen Überraschung 
+      entdecken Sie, dass Sie der letzte lebende Anverwandte eines fernen Verwandten 
+      sind, der zufällig sehr reich war. So sind Sie nun um 500.000,- $ AUD richer. 
+      Das ist nicht alles; ein weiterer Eintrag in dem Brief leg dar, dass 
+      Sie in der Lotterie gewonnen haben und dafür 250.000,- $ AUD erhalten.</para>
       
-      <para>To record these transaction we need the following accounts</para>
+      <para>Um diese Buchungen aufzuzeichnen, benötigen wir die follgenden 
+      Konten:</para>
       <literallayout>
-Equity:Lottery         (AUD)
-Equity:Inheritance     (AUD)      
+Anfangsbestand:Lotterie         (AUD)
+Anfangsbestand:Erbschaft     (AUD)      
       </literallayout>
 
 
-      <para>The transactions you enter into your 
-      <emphasis>Assets:Current Assets:Savings Account</emphasis>
-      should look like this.</para>
+      <para>Die Buchungen, die geben in Ihr Konto  
+      <emphasis>Aktiva:Barvermögen:Sparkonto</emphasis> eingeben, 
+      sollten wie folgt aussehen:</para>
 
       <table>
-          <title>You come into some extra money</title>
+          <title>Sie erben zusätzliches Geld</title>
 
           <tgroup cols="3">
             <tbody>
               <row>
-                <entry>Account</entry>
+                <entry>Konto</entry>
 
-                <entry>Increase</entry>
+                <entry>Zunahme</entry>
 
-                <entry>Decrease</entry>
+                <entry>Abnahme</entry>
               </row>
 
               <row>
-                <entry>Equity:Lottery</entry>
+                <entry>Anfangsbestand:Lotterie</entry>
 
-                <entry>$250,000</entry>
+                <entry>250.000,- $</entry>
 
                 <entry></entry>
               </row>
 
               <row>
-                <entry>Equity:Inheritance</entry>
+                <entry>Anfangsbestand:Erbschaft</entry>
 
-                <entry>$500,000</entry>
+                <entry>500.000,- $</entry>
 
                 <entry></entry>
               </row>
@@ -980,7 +979,8 @@ Equity:Inheritance     (AUD)
           </tgroup>
         </table>
 
-      <para>And the Chart of Accounts looks like this after above transactions have been entered.</para>
+      <para>Und der Kontenplan sieht nun nach der Eingabe der Buchungen 
+      wie folgt aus:.</para>
       <screenshot id="currency_PutTogether_AfterMoney.png">
         <mediaobject>
           <imageobject>
@@ -989,10 +989,10 @@ Equity:Inheritance     (AUD)
           </imageobject>
 
           <textobject>
-            <phrase>Chart Of Accounts</phrase>
+            <phrase>Kontenplan</phrase>
           </textobject>
           <caption><para>
-            Chart Of Accounts after receiving some money
+            Kontenplan nach dem Erhalt des Geldes 
           </para></caption>
         </mediaobject>
       </screenshot>
@@ -1001,55 +1001,55 @@ Equity:Inheritance     (AUD)
     </sect2>
     
     <sect2>
-      <title>Purchase a house</title>
+      <title>Ein Haus kaufen</title>
 
-      <para>At last you can afford to pay off that house loan you had to take some years ago 
-      (with a $50,000 deposit).</para>
+      <para>Zuletzt können Sie es sich leisten, das Hypothekendarlehen, das 
+      Sie vor ein paar Jahren aufgenommen haben (mit einer Einzahlung von 50.000,- $) zurückzuzahlen.</para>
 
       <literallayout>
-Assets:Fixed Assets:House                  (AUD) $300,000
-Liabilities:Loans:Mortgage                 (AUD) $250,000
-Expenses:Interest:Mortgage Interest        (AUD)
-Equity:Opening Balance                     (AUD) $50,000
+Aktiva:Anlagevermögen:Haus                  (AUD) 300.000,- $
+Verbindlichkeiten:Darlehen:Hypothek         (AUD) 250.000,- $
+Aufwand:Zinsen:Hypothekenzinsen             (AUD)
+Eigenkapital:Anfangsbestand                 (AUD) 50.000,- $
       </literallayout>
 
-      <para>After you have had a small chat with your Mortgage bank, they
-      agree to let you pay it all off in one go, plus some interest (AUD
-      30,000). You should enter the following split transaction into
-      <emphasis>Assets:Fixed Assets:House</emphasis> account.</para>
+      <para>Nach einem kurzen Gespräch mit Ihrer Hypothekenbank, stimmen 
+      diese zu, dass Sie alles in einem bezahlen plus Zinsen (AUD
+      30.000,- $). Sie sollten nun die folgende Splitbuchung in Ihr 
+      Konto <emphasis>Aktiva:Anlagevermögen:Haus</emphasis> eingeben.</para>
 
       <table>
-          <title>Paying of the house mortgage</title>
+          <title>Zahlung der Hypothek für das Haus</title>
 
           <tgroup cols="3">
             <tbody>
               <row>
-                <entry>Account</entry>
+                <entry>Konto</entry>
 
-                <entry>Increase</entry>
+                <entry>Zunahme</entry>
 
-                <entry>Decrease</entry>
+                <entry>Abnahme</entry>
               </row>
 
               <row>
-                <entry>Assets:Current Assets:Savings Account</entry>
+                <entry>Aktiva:Barvermögen:Sparkonto</entry>
 
                 <entry></entry>
 
-                <entry>280000</entry>
+                <entry>280.000,- $</entry>
               </row>
 
               <row>
-                <entry>Expenses:Interest:Mortgage Interest</entry>
+                <entry>Aufwand:Zinsen:Hypothekenzinsen</entry>
 
-                <entry>30000</entry>
+                <entry>30.000,- $</entry>
 
                 <entry></entry>
               </row>
               <row>
-                <entry>Liabilities:Loans:Mortgage</entry>
+                <entry>Verbindlichkeiten:Darlehen:Hypothek</entry>
 
-                <entry>250000</entry>
+                <entry>250.000,- $</entry>
 
                 <entry></entry>
               </row>
@@ -1057,8 +1057,8 @@ Equity:Opening Balance                     (AUD) $50,000
           </tgroup>
         </table>
         
-      <para>The <emphasis>Liabilities:Loans:Mortgage</emphasis> account Transaction Ledger looks like 
-      this after the transactions have been entered</para>
+      <para>Das Kontoblatt <emphasis>Verbindlichkeiten:Darlehen:Hypothek</emphasis> 
+      sieht aus wie dieses, nachdem die Buchungen eingegeben wurden.</para>
       
       <screenshot id="currency_PutTogether_AussieHouse.png">
         <mediaobject>
@@ -1068,98 +1068,98 @@ Equity:Opening Balance                     (AUD) $50,000
           </imageobject>
 
           <textobject>
-            <phrase>House Mortgage</phrase>
+            <phrase>Haus Hypothek</phrase>
           </textobject>
           <caption><para>
-            Transaction Ledger of the House Loan
+            Buchungskonto für das Hausdarlehen
           </para></caption>
         </mediaobject>
       </screenshot>
     </sect2>
 
     <sect2>
-      <title>Purchasing Stock</title>
+      <title>Aktienkauf</title>
 
-      <para>Since you quite suddenly have a lot of money in your bank account,
-      you decide to visit a Financial Advisor, and after his recommendation
-      (remember, this is fictional - not genuine stock purchase advice) you
-      decide to purchase Telecommunication (Ericsson in Sweden), Beijing
-      Airport (Hong Kong), and Amazon (USA).</para>
+      <para>Da Sie ganz plötzlich eine Menge Geld auf Ihren Bankkonto haben, 
+      entscheiden Sie sich, einen Finanzberater aufzusuchen. Nach seiner 
+      Empfehlung (erinnern Sie sich, dies ist eine Fiktion - keine 
+      ernstgemeinte Aktienkaufempfehlung) entscheiden Sie sich, 
+      Telecommunication (Ericsson in Sweden), Beijing
+      Airport (Hong Kong) und Amazon (USA) zu kaufen.</para>
 
-      <para>The needed accounts to track these investments look like
-      this:</para>
+      <para>Die benutzten Konten, um diese Investments zu verfolgen, 
+      sollten wie folgt aussehen:</para>
 
       <literallayout>
-Assets:Investments:Swedish Broker:ERIC.ST                 (STOCK ERIC.ST Yahoo)
-Assets:Investments:Swedish Broker:Bank                    (SEK)
-Assets:Investments:HK Broker:0694.HK                      (STOCK 0694.HK Yahoo)
-Assets:Investments:HK Broker:Bank                         (HKD)
-Assets:Investments:US Broker:AMZN                         (STOCK AMZN Nasdaq)
-Assets:Investments:US Broker:Bank                         (USD)
-Expenses:Investments:Commissions:Swedish Broker:ERIC.ST   (SEK)
-Expenses:Investments:Commissions:HK Broker:0694.HK        (HKD)
-Expenses:Investments:Commissions:US Broker:AMZN           (USD)
-Expenses:Investments:Currency Transfer                    (AUD)
+Aktiva:Investments:Swedish Broker:ERIC.ST                 (STOCK ERIC.ST Yahoo)
+Aktiva:Investments:Swedish Broker:Bank                    (SEK)
+Aktiva:Investments:HK Broker:0694.HK                      (STOCK 0694.HK Yahoo)
+Aktiva:Investments:HK Broker:Bank                         (HKD)
+Aktiva:Investments:US Broker:AMZN                         (STOCK AMZN Nasdaq)
+Aktiva:Investments:US Broker:Bank                         (USD)
+Aufwand:Investments:Kommision:Swedish Broker:ERIC.ST      (SEK)
+Aufwand:Investments:Kommision:HK Broker:0694.HK           (HKD)
+Aufwand:Investments:Kommision:US Broker:AMZN              (USD)
+Aufwand:Investments:Devisentransfer                       (AUD)
 </literallayout>
 
-      <para>You decide to invest $100,000 into each stock, and to do this
-      we first do a currency transaction to the various bank accounts
-      associated with the stock. </para>
+      <para>Sie entscheiden sich, 100.000,- $ je Aktie anzulegen und 
+       führen dazu zunächst einen Devisentransver auf die verscheidenen 
+       Bankkonten, die mit den Aktien verbunden sind, durch. </para>
 
-      <para>The transaction you enter into your 
-      <emphasis>Assets:Current Assets:Savings Account</emphasis>
-      should look like this.</para>
+      <para>Die Buchung, die Sie in Ihr Konto The transaction you enter into your 
+      <emphasis>Aktiva:Barvermögen:Sparkonten</emphasis> eingegeben haben, 
+      sollte wie folgt aussehen.</para>
 
       <table>
-        <title>Transfer money to overseas with a multiple currency transaction
-        split.</title>
+        <title>Geld nach Übersee überweisen mit einer Mehrwährungssplitbuchung.</title>
 
         <tgroup cols="5">
           <tbody>
             <row>
-              <entry>Account</entry>
+              <entry>Konto</entry>
 
-              <entry>Deposit</entry>
+              <entry>Einzahlung</entry>
 
-              <entry>Withdrawal</entry>
+              <entry>Auszahlung</entry>
 
-              <entry>Exchange Rate</entry>
+              <entry>Wechselkurs</entry>
 
-              <entry>Transaction Fee</entry>
+              <entry>Wechselgebühr</entry>
             </row>
 
             <row>
-              <entry>Assets:Investments:Swedish Broker:Bank</entry>
+              <entry>Aktiva:Investments:Swedish Broker:Bank</entry>
 
-              <entry>100000</entry>
+              <entry>100.000</entry>
 
               <entry></entry>
 
-              <entry>5.5869</entry>
+              <entry>5,5869</entry>
 
               <entry>35</entry>
             </row>
 
             <row>
-              <entry>Assets:Investments:HK Broker:Bank</entry>
+              <entry>Aktiva:Investments:HK Broker:Bank</entry>
 
-              <entry>100000</entry>
+              <entry>100.000</entry>
 
               <entry></entry>
 
-              <entry>5.8869</entry>
+              <entry>5,8869</entry>
 
               <entry>30</entry>
             </row>
 
             <row>
-              <entry>Assets:Investments:USD Broker:Bank</entry>
+              <entry>Aktiva:Investments:USD Broker:Bank</entry>
 
-              <entry>100000</entry>
+              <entry>100.000</entry>
 
               <entry></entry>
 
-              <entry>0.7593</entry>    
+              <entry>0,7593</entry>    
 
               <entry>25</entry>
             </row>
@@ -1167,35 +1167,36 @@ Expenses:Investments:Currency Transfer                    (AUD)
         </tgroup>
       </table>
 
-      <para>Now when there is some money in the various stock brokerage
-      accounts, you ask each broker to buy shares of stock for the specified amount.
-      Remember to execute the transaction from the bank account associated with the
-      stock, and if the Exchange Rate window does not pop up, right click the
-      row and manually select it. Enter the number of shares you purchase in
-      the last entry (To Amount:).</para>
+      <para>Da nun etwas Geld auf den verschiedenen Aktienhändlerkonten ist, 
+      bitten Sie jeden Händler Aktien für den genannten Betrag zu kaufen. 
+      Beachten Sie, die Buchung vom Bankkonto, welches mit der Aktie verbunden 
+      ist, auszuführen. Wenn dann das Wechselkursfenster nicht aufgeht, 
+      klicken Sie mit rechts auf die Zeile und wählen es händisch aus. 
+      Geben Sie die Anzahl der Aktien, die Sie erworben haben im letzen 
+      Eingabefeld ein (Zum Betrag:).</para>
 
       <para>
         <table>
-          <title>Purchasing oversea stocks</title>
+          <title>Aktien in Übersee kaufen</title>
 
           <tgroup cols="4">
             <tbody>
               <row>
-                <entry>Stock Symbol</entry>
+                <entry>Aktiensymbol</entry>
 
-                <entry>Number of shares</entry>
+                <entry>Zahl der Aktien</entry>
 
-                <entry>Amount</entry>
+                <entry>Betrag</entry>
 
-                <entry>Commission</entry>
+                <entry>Kommision</entry>
               </row>
 
               <row>
                 <entry>ERIC.ST</entry>
 
-                <entry>15000</entry>
+                <entry>15 000</entry>
 
-                <entry>270000</entry>
+                <entry>270 000</entry>
 
                 <entry>400</entry>
               </row>
@@ -1203,9 +1204,9 @@ Expenses:Investments:Currency Transfer                    (AUD)
               <row>
                 <entry>0694.HK</entry>
 
-                <entry>70000</entry>
+                <entry>70.000</entry>
 
-                <entry>280000</entry>
+                <entry>280.000</entry>
 
                 <entry>300</entry>
               </row>
@@ -1213,9 +1214,9 @@ Expenses:Investments:Currency Transfer                    (AUD)
               <row>
                 <entry>AMZN</entry>
 
-                <entry>1000</entry>
+                <entry>1.000</entry>
 
-                <entry>32000</entry>
+                <entry>32.000</entry>
 
                 <entry>25</entry>
               </row>
@@ -1224,9 +1225,10 @@ Expenses:Investments:Currency Transfer                    (AUD)
         </table>
       </para>
         
-      <para>As you can see in the Chart of Accounts, you have now purchased shares of stock in three
-      different currencies (HK, USD, as well as in SEK), but the Chart of Account (as seen below)
-      does not indicate how much they are valued in your home currency, AUD.</para>
+      <para>Wie Sie im Kontenplan sehen können, haben Sie nun Aktienanteile 
+      in drei verschiedenen Währungen (HK, USD, sowie in SEK) gekauft, aber 
+      der Kontenplan (wie unten zu sehen) zeigt nicht an, wie viel diese 
+      in Ihrer Landeswährung AUD valutieren.</para>
       <screenshot id="currency_PutTogether_AfterStocks.png">
         <mediaobject>
           <imageobject>
@@ -1235,129 +1237,132 @@ Expenses:Investments:Currency Transfer                    (AUD)
           </imageobject>
 
           <textobject>
-            <phrase>Chart of Account after Stocks</phrase>
+            <phrase>Kontenplan nach dme Aktienkauf</phrase>
           </textobject>
           <caption><para>
-            Some of the accounts in Chart of Accounts after the stock purchase
+            Einige Konten im Kontenplan nach dem Aktienkauf
           </para></caption>
         </mediaobject>
       </screenshot>
 
-      <para>The next section will ensure you get the various exchange rates so that <application>&app;</application> can show your
-      total worth in the local currency (AUD in this case),</para>
+      <para>Der nächsten Abschnitt stellt sicher, dass Sie die verschiedenen 
+      Wechselkurse erhalten, damit <application>&app;</application> den 
+      Gesamtwert in Ihrer lokalen Währung (AUD in diesem Fall) anzeigen.</para>
     </sect2>
 
     <sect2>
-      <title>Get the online quotes</title>
+      <title>Online-Kurse abrufen</title>
 
-      <para>To get the current exchange rates and stock quotes, go to
-      <menuchoice><guimenu>Tools</guimenu><guimenuitem>Price Editor</guimenuitem></menuchoice> and then
-      click on <guibutton>Get Quotes</guibutton>. </para>
+      <para>Um die aktuellen Wechselkurse und Aktienkurse zu erhalten, gehen Sie auf
+      <menuchoice><guimenu>Werkzeuge</guimenu><guimenuitem>Kurs-Editor</guimenuitem></menuchoice> und 
+      klicken dann auf die Schaltfläche <guibutton>Kurse abrufen</guibutton>. </para>
 
       <para></para>
     </sect2>
 
 
     <sect2>
-      <title>Lending money to a friend</title>
+      <title>Einem Freund Geld leihen</title>
 
-      <para>Peter has run into some difficulties all the way over in Europe
-      Land. Since he is a very dear pal of yours, you decide to help him out
-      with a personal loan of 40,000 Euro.</para>
+      <para>Peter ist in ganz Euroland in Schwierigkeiten geraten. 
+      Da er ein liebe Freund von Ihnen ist, entscheiden Sie sich, ihm 
+      mit einem persönlichen Darlehen von 40.000,- € auszuhelfen.</para>
 
       <para>
         <literallayout>
-Assets:Money owed to me:Euro:Peter            (Euro)
-Income:Interest Income:Peter                  (Euro)
-Expenses:Bank Charge                          (AUD)
+Aktiva:Geld gehört mir:Euro:Peter            (Euro)
+Ertrag:Zinsertrag:Peter                      (Euro)
+Aufwand:Bankgebühr                           (AUD)
         </literallayout>
       </para>
-      <para>This is a
-        simple currency transaction from your Savings Account (AUD), to your
-        Assets:Money owed to me:Peter (EURO) account. You got the exchange rate
-        of 0.606161, which means you need to withdraw AUD 65,989.10, as well as
-        pay the service fee of 35 AUD.</para>
+      <para>Dies ist ein einfaches Devisengeschäft von Ihrem Sparkonto 
+       auf Ihr Aktiva:Geld gehört mir:Peter (EURO) Konto. Sie erhalten einen 
+       Wechselkurs von 0,606161, d.h. Sie benötigen eine Ausgabe von AUD 65.989,10 $ 
+       sowie die Zahlung der Bearbeitungsgebühr von AUD 35,-.</para>
     </sect2>
 
     <sect2>
-      <title>Buying property in New Zealand with a loan from Japan</title>
+      <title>Eigentum in Neuseeland  mit einem Darlehen aus Japan erwerben</title>
 
-      <para>Your long-time Japanese friend offers you a Japanese house loan if
-      you purchase a property overseas, with only AUD 50,000 as deposit. After
-      having discussed this with your Financial Advisor in Australia and gone
-      through the various risks and benefits related to your situation, you
-      decide to accept his offer. </para>
+      <para>Ihr langjähriger japanischer Freund bittet Ihnen ein japanisches 
+      Hausdarlehen, wenn Sie ein Eigentum in Übersee kaufen, mit einer 
+      Anzahlung von nur AUD 50.000,- $. Nach dem Sie dies mit Ihrem 
+      Finanzberater in Australien besprochen und die Vor- und Nachteile 
+      in Ihrer Situation aufgezeigt haben, haben 
+      Sie sich entschieden, das Angebot anzunehmen. </para>
 
       <note>
-        <para>Again, this should not be taken as financial advice. Please
-        consult with a registered financial advisor before undertaking
-        investing (or speculating) in overseas markets, or local markets for
-        that matter.</para>
-
-        <para>A word of warning might be of interest here, taking a loan
-        overseas for a very low interest rate might seem like a very good
-        deal. Do keep in mind though that the exchange rate might change and
-        can change drastically. If you take a loan in your local currency, you
-        only have to worry about the interest rate. If you take a loan overseas,
-        you then have to worry about the interest rate and the exchange rate.
+        <para>Nochmal: Dies sollten Sie nicht als Anlageempfehlung annehmen. 
+          Bitte fragen Sie einen geeigneten Finanzberater, bevor Sie 
+          Investionen (oder Spekulationen) in den Überseemärkten oder auf 
+          lokalen Märken unternehmen.</para>
+ 
+        <para>Eine weitere Warning scheint hier angebracht zu sein: 
+         Ein Darlehen aus Übersee gegen sehr geringe Darlehenszinsen 
+         aufzunehmen, scheint ein gutes Geschäft zu sein. Sie sollten 
+         jedoch nicht außer Acht lassen, dass der Wechselkurs sich ändern 
+         und zwar massiv ändern kann. Wenn Sie ein Darlehen in Ihrer lokalen 
+         Währung aufnehmen, müssen Sie sich nur über Ihre Zinssatz kümmern. 
+         Wenn Sie ein Darlehen in Übersee aufnehmen, müssen Sie sich um den 
+         Zinssatz und den Wechselkurs kümmern.
         </para>
       </note>
 
-      <para>You found a nice small cottage in a small coastal town near
-      Auckland which would be a perfect summer house, and you decide to use
-      the money from Japan for this purpose.</para>
+      <para>Sie finde ein hübshes kleines Landhaus in einer kleinen 
+      Küstenstadt in der Nähe von Auckland, welches ein ausgezeichnetes 
+      Ferienhaus sei und Sie entscheiden, dafür das Geld aus Japan zu nutzen.</para>
 
-      <para>We need the following accounts for this example;</para>
+      <para>Wir benötigen die folgenden Konten für dieses Beispiel:</para>
 
       <literallayout>
-Liabilities:Loans:Japan Loan                  (JPY)
-Expenses:Interest:Japan Loan                  (JPY)
-Expenses:Mortgage Adm Fees:Japan Loan         (JPY)
-Assets:Current Assets:Japan Bank              (JPY)
-Assets:Fixed Assets:NZ House                  (NZ)
+Verbindlichkeiten:Darlehen:Japanisches Darlen              (JPY)
+Aufwand:Zinsen:Japanisches Darlehen                        (JPY)
+Aufwand:Hypothek Verwaltungsgebühr:Japanisches Darlehen    (JPY)
+Aktiva:Barvermögen:Japan Bank                              (JPY)
+Aktiva:Anlagevermögen:Haus in Neuseeland                   (NZ)
 </literallayout>
 
       <table>
-          <title>Buying a NZ House Split Transaction</title>
+          <title>Splitbuchung eines Hauskaufes in Neuseeland</title>
 
           <tgroup cols="3">
             <tbody>
               <row>
-                <entry>Account</entry>
+                <entry>Konto</entry>
 
-                <entry>Increase</entry>
+                <entry>Zunahme</entry>
 
-                <entry>Decrease</entry>
+                <entry>Abnahme</entry>
               </row>
 
               <row>
-                <entry>Assets:Fixed Assets:NZ House</entry>
+                <entry>Aktiva:Anlagevermögen:Haus in Neuseeland</entry>
 
-                <entry>300000 (NZD)</entry>
+                <entry>300.000 (NZD)</entry>
 
                 <entry></entry>
               </row>
 
               <row>
-                <entry>Assets:Current Assets:Savings Account</entry>
+                <entry>Aktiva:Barvermögen:Sparkonto</entry>
 
                 <entry></entry>
 
-                <entry>50000 (AUD) (1.18926)</entry>
+                <entry>50.000 (AUD) (1,18926)</entry>
               </row>
 
               <row>
-                <entry>Liabilities:Loans:Japan Loan</entry>
+                <entry>Verbindlichkeiten:Dalehen:Japanisches Dalehen</entry>
 
                 <entry></entry>
 
-                <entry>28000000 (JPY) (0.0137609)</entry>
+                <entry>28.000.000 (JPY) (0,0137609)</entry>
               </row>
 
               <row>
-                <entry>Expenses:Mortgage Adm Fees:Japan Loan</entry>
+                <entry>Aufwand:Hypothek Verwaltungsgebühr:Japanisches Darlehen</entry>
 
-                <entry>300000 (JPY) (0.0137609)</entry>
+                <entry>300.000 (JPY) (0,0137609)</entry>
 
                 <entry></entry>
               </row>
@@ -1369,10 +1374,10 @@ Assets:Fixed Assets:NZ House                  (NZ)
     </sect2>
  
     <sect2>
-      <title>Whats next?</title>
-      <para>As you have seen in the above examples you have only done the initial purchases. 
-      The rest, that is, various selling transactions and unrealized gains tracking is left for you to 
-      ponder.</para>
+      <title>Was nun?</title>
+      <para>Wie Sie in den obigen Beispielen gesehen haben, haben sie nur 
+      den Erstkauf eingegeben. Der Rest, die verschiedenen Verkaufsbuchungen 
+      und die der nicht realisierten Gewinne bleiben Ihnen überlassen.</para>
     </sect2>
    
     
