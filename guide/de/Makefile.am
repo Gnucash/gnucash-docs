@@ -22,7 +22,12 @@ entities = \
  ch_oview.xml \
  ch_python_bindings.xml \
  ch_txns.xml \
+ appendixa.xml \
+ appendixb.xml \
+ appendixc.xml \
+ appendixd.xml \
  appendixe.xml \
+ fdl-appendix.xml \
  glossary.xml
 DISTCLEANFILES =  $(docname)-de.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
