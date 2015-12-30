@@ -19,6 +19,7 @@ entities = \
  ch_invest.xml \
  ch_oth_assets.xml \
  ch_oview.xml \
+ ch_python_bindings.xml \
  ch_txns.xml \
  appendixe.xml \
  glossary.xml
