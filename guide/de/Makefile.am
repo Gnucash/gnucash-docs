@@ -15,6 +15,7 @@ entities = \
  ch_cbook.xml \
  ch_cc.xml \
  ch_currency.xml \
+ ch_dep.xml \
  ch_import_business_data.xml \
  ch_loans.xml \
  ch_invest.xml \
