@@ -54,6 +54,7 @@ dnl
 dnl Check for optional fop
 dnl
 AC_PATH_PROG(FOP, fop)
+fop_version=0
 if test -z "$FOP"; then
   AC_MSG_WARN([fop not found. You will not be able to generate PDF files.])
 else
@@ -141,7 +142,7 @@ dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
 fi
 JAPANESE_MINCHO_METRIC=
 JAPANESE_GOTHIC_METRIC=
-if [[ $fop_version -lt 2 ]]; then
+if test $fop_version -gt 0 && test $fop_version -lt 2; then
    echo Mincho Metric: $japanese_mincho_metric
    	if test "x$japanese_mincho_metric" != "x"; then
 	   AC_CONFIG_COMMANDS([mincho_metric],
