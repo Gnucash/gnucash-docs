@@ -1,3 +1,9 @@
+if LANG_US
+XSLTFLAGS_FO = --stringparam paper.type letter
+else
+XSLTFLAGS_FO = --stringparam paper.type A4
+endif
+
 figdir = figures
 docname = gnucash-guide
 lang = C
