@@ -181,7 +181,15 @@ if test "x$with_mobi" = "xyes"; then
 else
   AC_MSG_NOTICE([Didn't make mobi target.  If you need, specify --with-mobi])
 fi
+if test -z $LANG; then LANG="C"; fi
+case $LANG in
+     *_US*|C)
+        lang_us=true ;;
+     *)
+        lang_us=false ;;
+esac
 
+AM_CONDITIONAL([LANG_US], [test x${lang_us} = "xtrue"])
 AC_CONFIG_FILES([
 gnucash-docs.spec
 help/Makefile
