@@ -1,0 +1,1121 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.x
+  Last modified: December 7th 2009
+       modified: March 28th 2007
+       modified: August 12th 2006
+	   modified: February 28th 2005
+
+  Maintainers:
+               Alex Aycinena <alex.aycinena@gmail.com>
+               Chris Lyttle <chris@wilddev.net>
+               Neil Williams <linux@codehelp.co.uk>
+
+  Author:
+               Chris Lyttle <chris@wilddev.net>
+  Translators:
+               (Pedro Albuquerque <palbuquerque73@gmail.com)
+-->
+
+<chapter id="setup-accounts">
+      <title>Configurar, editar e trabalhar com contas</title>
+
+      <para>Esta secção descreve o processo de configurar, editar e trabalhar com 
+      contas do <application>&app;</application>. No <application>&app;</application> 
+      uma conta é usada como ferramenta básica para registar de onde vem o seu dinheiro 
+      e para onde vai. O <application>&app;</application> também expande o conceito 
+      de conta no mundo real, tal como uma conta bancária ou conta de empréstimo 
+      para agrupar contas de receita e despesa. Isto permite-lhe ver rapidamente onde 
+      gastou o seu dinheiro e quais são as suas maiores receitas e despesas. O 
+      <application>&app;</application> define tipos de conta (como descrito na secção 
+      seguinte) para ajudar a organizar e agrupar contas. Estes tipos de conta podem 
+      ser usados para criar um plano de contas.
+      </para>
+
+      <sect1 id="acct-types">
+        <title>Tipos de conta <application>&app;</application></title>
+
+        <para>O <application>&app;</application> suporta vários tipos de conta. 
+        Recomendamos que escolha o tipo de conta apropriado, baseado na lista de 
+        tipos de conta descritos abaixo.</para>
+
+         <warning>
+           <para>Os tipos Contas pagáveis e Contas cobráveis são usados internamente 
+           pelas funcionalidades para pequenos negócios do &app;. Transações envolvendo 
+           estas contas não devem ser adicionadas, alteradas ou eliminadas de nenhuma 
+           outra forma que não seja usando:
+              <itemizedlist>
+                <listitem><para>emitir/anular emissão de pagamento/fatura/vale de despesa;</para></listitem>
+	        <listitem><para>processar pagamento</para></listitem>
+	      </itemizedlist>
+	   </para>
+
+         </warning>
+
+        <table frame="topbot" id="TypeAccounts">
+         <title>Tipos de conta <application>&app;</application>.</title>
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry><para>Tipo de conta</para></entry>
+                <entry><para>Descrição</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry><para>Contas pagáveis</para></entry>
+                <entry><para>Contas pagáveis são usadas por empresas para registar 
+                montantes que têm de ser pagos. Exemplo: a empresa comprou algo 
+                que só vai ser pago mais tarde.</para>
+                  <note><para>Versões anteriores desta ajuda definiam C/P e C/R de 
+                  forma inversa.</para></note>
+                </entry>
+              </row>
+
+              <row>
+                <entry><para>Contas cobráveis</para></entry>
+                <entry><para>Contas cobráveis registam montantes para os quais o 
+                dinheiro ainda não foi recebido. Exemplo: a empresa vendeu algo que 
+                o cliente ainda não pagou.</para>
+                  <note><para>Versões anteriores desta ajuda definiam C/P e C/R de 
+                  forma inversa.</para></note>
+                </entry>
+              </row>
+
+              <row>
+                <entry><para>Ativo</para></entry>
+                <entry><para>Contas do Ativo são usadas para rastreio de objetos 
+                de valor que podem ser vendidos ou usados para pagar dívidas 
+                (normalmente são marcadores de posição).
+                 </para></entry>
+              </row>
+
+              <row>
+                <entry><para>Banco</para></entry>
+                <entry><para>O tipo Banco denota contas à ordem ou de poupança num 
+                banco ou instituição financeira. Algumas destas contas podem gerar 
+                juros. São também as contas apropriadas para cartões de débito, 
+                que fazem pagamentos diretamente de uma conta à ordem. </para></entry>
+              </row>
+
+              <row>
+                <entry><para>Dinheiro</para></entry>
+                <entry><para>O tipo Dinheiro é usado para rastreio do dinheiro que 
+                guarda na carteira, caixa de sapatos, mealheiro ou colchão.</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Cartão de crédito</para></entry>
+                <entry><para>O tipo Cartão de crédito é usado para rastreio de contas 
+                de cartões de crédito, tanto para cartões que permitem linhas de 
+                crédito flutuantes (ex. VISA, MasterCard ou Discover), como para 
+                cartões que não permitem saldos continuados (ex. American Express) </para></entry>
+              </row>
+
+              <row>
+                <entry><para>Moeda</para></entry>
+                <entry><para>Contas Moeda eram usadas para o mercado monetário mas 
+                foram substituídas pelo painel Transferência de moeda na janela 
+                Transferir fundos. Ver 
+                 (<xref linkend="trans-win-enter"></xref>).</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Capital próprio</para></entry>
+                <entry><para>Contas Capital próprio são usadas para gravar saldos 
+                iniciais quando começa a usar o <application>&app;</application> 
+                ou começa um novo período contabilístico.</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Despesa</para></entry>
+                <entry><para>Qualquer despesa, seja comida, roupa, impostos, etc. 
+                Este tipo é chamado Categoria no Quicken.</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Receita</para></entry>
+                <entry><para>Qualquer receita, seja salários, juros, rendas, etc.
+                Este tipo é chamado Categoria no Quicken.</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Passivo</para></entry>
+                <entry><para>Contas Passivo são usadas para rastreio de dívidas ou 
+                obrigações financeiras (normalmente são marcadores de posição).</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Fundos mutualistas</para></entry>
+                <entry><para>Um portfólio de ações, obrigações ou outros investimentos 
+                divididos em participações, gerido profissionalmente.</para></entry>
+              </row>
+
+              <row>
+                <entry><para>Ação</para></entry>
+                <entry><para>Uma participação numa empresa, que confere ao titular 
+                todos os riscos e recompensas que daí advenham.</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <para>O assistente <emphasis role="bold">Configurar nova hierarquia de contas</emphasis> ,
+        descrito na primeira secção desta ajuda, é uma forma conveniente de configurar 
+        um plano de contas para usar como estrutura de tipos de conta.</para>
+
+        <para>Quando são criadas novas contas, as escolhas indisponíveis são postas 
+        em cinzento, de acordo com o tipo da conta-mãe. A lista seguinte contém as 
+        escolhas possíveis.</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Contas pagáveis: qualquer conta pode ser conta-filho, exceto Capital 
+            próprio, Despesa e Receita.</para>
+          </listitem>
+
+          <listitem>
+            <para>Contas cobráveis: qualquer conta pode ser conta-filho, exceto Capital 
+            próprio, Despesa e Receita.</para>
+          </listitem>
+
+          <listitem>
+            <para>Ativo: qualquer conta pode ser conta-filho, exceto Capital 
+            próprio, Despesa e Receita.</para>
+          </listitem>
+
+          <listitem>
+            <para>Banco: qualquer conta pode ser conta-filho, exceto Capital 
+            próprio, Despesa e Receita.</para>
+          </listitem>
+
+          <listitem>
+            <para>Dinheiro: qualquer conta pode ser conta-filho, exceto Capital 
+            próprio, Despesa e Receita.</para>
+          </listitem>
+
+          <listitem>
+            <para>Cartão de crédito: qualquer conta pode ser conta-filho, exceto Capital 
+            próprio, Despesa e Receita.</para>
+          </listitem>
+
+          <listitem>
+            <para>Moeda: qualquer conta pode ser conta-filho, exceto Capital 
+            próprio, Despesa e Receita.</para>
+          </listitem>
+
+          <listitem>
+            <para>Capital próprio: só contas de capital próprio podem ser contas-filho.</para>
+          </listitem>
+
+          <listitem>
+            <para>Despesa: só contas de Receita ou Despesa podem ser contas-filho.</para>
+          </listitem>
+
+          <listitem>
+            <para>Receita: só contas de Despesa ou Receita podem ser contas-filho.</para>
+          </listitem>
+
+          <listitem>
+            <para>Passivo: qualquer conta pode ser conta-filho, exceto Capital 
+            próprio, Despesa e Receita.</para>
+          </listitem>
+
+          <listitem>
+            <para>Fundos mutualistas: qualquer conta pode ser conta-filho, exceto Capital 
+            próprio, Despesa e Receita.</para>
+          </listitem>
+
+          <listitem>
+            <para>Ações: qualquer conta pode ser conta-filho, exceto Capital 
+            próprio, Despesa e Receita.</para>
+          </listitem>
+
+        </itemizedlist>
+
+      </sect1>
+
+      <sect1 id="chart-create">
+        <title>Criar um plano de contas</title>
+
+        <para>O plano de contas é como o índice das suas finanças. A melhor forma de 
+        o imaginar é como uma árvore. Os ramos principais representam categorias ou 
+        grupos, enquanto as folhas da árvore representam contas bancárias individuais,
+        ou categorias de despesa. Quando é pedido um relatório de sumário, tipicamente 
+        só os ramos principais são mostrados no relatório, não as contas individuais. 
+        Por eemplo, um plano de contas poderia ser parecido com o seguinte:</para>
+
+         <literallayout>
+			<literal>              300       Despesas
+					 |
+					 +--310         Despesas pessoais
+					 |   |
+					 |   +--311     Cerveja
+					 |   |
+					 |   +--312     TV por cabo
+					 |
+					 +--320         Despesas empresariais
+					 |   |
+					 |   +--321     Disquetes 8"
+					 |   |
+					 |   +--322     DVDs Blue Ray RW
+					 |   |
+					 :   :</literal>
+</literallayout>
+
+
+        <note id="accts-code">
+        <title>Códigos de contas</title>
+          <para>Note que as contas não têm só nomes; podem ter códigos para ordenação.
+          Quando um relatório é gerado, a ordem é determinada pela numeração. É 
+          habitual que as contas "folha"  terminem em dígitos não zero, enquanto 
+          as contas-mãe têm um número crescente de zeros.</para>
+        </note>
+
+        <warning>
+          <para>O <application>&app;</application> não impede numeração duplicada, 
+          embora seja aconselhável evitá-la. Os códigos de conta são tratados como 
+          números em base 36. Assim, se esgotar os números, pode usar letras, de 
+          "a" a "z".</para>
+        </warning>
+
+      </sect1>
+
+      <sect1 id="chart-edit">
+        <title>Editar um plano de contas</title>
+
+        <para>Editar o plano de contas é feito dentro do painel <guilabel>Conta-mãe</guilabel> 
+        no diálogo <guilabel>Editar conta</guilabel>. É possível mover uma conta  
+        para qualquer parte do plano de contas. Recomendamos que mantenha as contas 
+        sob o mesmo tipo de conta relacionado, conforme descrito em 
+        <xref linkend="acct-types" />. Isto ajuda a preservar a estrutura do plano de contas.</para>
+
+        <para>Para mover a conta selecionada para uma conta-mãe diferente, selecione 
+        a conta no painel <guilabel>Conta-mãe</guilabel>. Se tiver selecionado 
+        <guilabel>Nova conta de topo</guilabel>, a conta será movida para o nível 
+        mais alto.</para>
+      </sect1>
+
+      <sect1 id="acct-create">
+        <title>Criar uma nova conta</title>
+
+        <para>Para criar uma nova conta, vá a <menuchoice><guimenu>Ações</guimenu><guimenuitem>Nova conta...</guimenuitem></menuchoice> 
+        ou clique no ícone <guibutton>Nova</guibutton> na <emphasis>barra de ferramentas</emphasis> 
+        no separador da árvore de contas. Será aberto o diálogo <guilabel>Nova conta</guilabel>.</para>
+        
+        <para>O diálogo de propriedades de <guilabel>nova conta</guilabel> consiste 
+        em dois separadores, o <guilabel>Geral</guilabel> e o <guilabel>Saldo inicial</guilabel>.</para>
+
+        <para>Criar uma nova conta envolve planeamento adiantado para vários detalhes 
+        que serão usados no diálogo <guilabel>Nova conta</guilabel>: </para>
+
+         <itemizedlist>
+          <listitem>
+            <para>que tipo de conta é necessário;</para>
+          </listitem>
+
+          <listitem>
+            <para>onde é que se encaixa na estrutura do plano de contas;</para>
+          </listitem>
+
+          <listitem>
+            <para>se tem um saldo inicial;</para>
+          </listitem>
+
+          <listitem>
+            <para>se há uma mercadoria (garantia/moeda) necessária para a conta;</para>
+          </listitem>
+
+          <listitem>
+            <para>se é necessária uma atualização online da cotação da mercadoria.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>Estes detalhes são descritos abaixo.</para>
+
+        <sect2 id="gen-info">
+          <title>Separador de informação geral</title>
+
+          <para>O separador <guilabel>Geral</guilabel> é usado para aceder à informação 
+          básica sobre a conta. Oferece uma forma de ligar a conta a informação de 
+          ações, se for uma conta de tipo Moeda, Fundo mutualista ou Ação. Também 
+          pode ser marcada como <link linkend="accts-placeholder">Marcador de posição</link>. 
+          Mostra ainda se está marcada como <guilabel>Relativa a impostos</guilabel> 
+          (que é definido através de <menuchoice><guimenu>Editar</guimenu>
+          <guimenuitem>Opções do relatório Impostos</guimenuitem></menuchoice>).</para>
+
+          <para>Há sete campos na secção <guilabel>Identificação</guilabel> deste separador.</para>
+
+          <orderedlist>
+            <listitem>
+              <para><guilabel>Nome de conta:</guilabel> o nome da conta, por exemplo, 1ºBanco - 
+              Ordem.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Código de conta:</guilabel> o código numérico opcional, como descrito em 
+              <xref linkend="accts-code" />.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Descrição:</guilabel> descrição opcional da conta.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Garantia/Moeda:</guilabel> </para>
+
+                 <note><para>O campo <guilabel>Tipo</guilabel> em <guilabel>Selecione a garantia</guilabel> 
+                 é determinado pela seleção no painel <guilabel>Tipo de conta</guilabel> 
+                 no ecrã <guilabel>Nova conta</guilabel>.</para></note>
+
+          <itemizedlist>
+            <listitem>
+              <para>Para contas que não sejam <emphasis>Ação</emphasis> ou <emphasis>Fundo de 
+              investimento</emphasis> isto deve ser a moeda predefinida EUR (Euro), 
+              ou o seu símbolo regional. Se esta conta é para uma moeda estrangeira, 
+              use o botão <guibutton>Selecionar...</guibutton> para escolher uma 
+              moeda diferente na lista pendente.</para>
+            </listitem>
+
+            <listitem>
+              <para>Para contas <emphasis>Ação</emphasis> e <emphasis>Fundo de investimento</emphasis>, 
+              selecione primeiro <guilabel>Ação</guilabel> ou <guilabel>Fundo de investimento</guilabel> 
+              no painel <guilabel>Tipo de conta</guilabel>, depois a <guilabel>Conta-mãe</guilabel>, 
+              use o botão <guibutton>Selecionar...</guibutton> para escolher o <guilabel>Tipo</guilabel> 
+              (normalmente a moeda em que a garantia é negociada) e a garantia na janela 
+              <guilabel>Selecione garantia</guilabel>.</para>
+
+              <para>Se a garantia/fundo não estiver na lista, e tem o <guilabel>Tipo</guilabel> 
+              correto, terá de criar a garantia/fundo. Para criar uma mercadoria para 
+              contas de fundos mutualistas e ações, clique em  <guibutton>Novo...</guibutton> 
+              no ecrã <guilabel>Selecione garantia</guilabel>, para abrir o diálogo
+              <guilabel>Nova garantia</guilabel>. As opções são descritas em detalhe 
+              na secção do editor de garantias. Ver <xref linkend="tool-security-edit"></xref>.
+              Preencha o <guilabel>nome</guilabel>, <guilabel>símbolo</guilabel>, 
+              <guilabel>tipo</guilabel> e clique em <guibutton>Fechar</guibutton> 
+              para criar a garantia. Após a criação, selecione o <guilabel>Tipo:</guilabel> 
+              (normalmente a moeda em que a garantia é negociada) e o nome na lista pendente 
+              <guilabel>Garantia/Moeda:</guilabel> e clique em <guibutton>Fechar</guibutton> 
+              para terminar.</para>
+            </listitem>
+            
+           </itemizedlist>
+
+          </listitem>
+
+          <listitem>
+              <para><guilabel>Menor fração:</guilabel> a menor fração a ser seguida.</para>
+          </listitem>
+
+           <listitem>
+              <para><guilabel>Cor da conta:</guilabel> a cor a atribuir ao separador do 
+              diário de conta. Clique no botão de cores para abrir o ecrã <guilabel>Selecione 
+              uma cor</guilabel>. Para repor a cor da conta, clique em <guibutton>Predefinição</guibutton>.</para>
+           </listitem>
+
+          <listitem>
+              <para><guilabel>Notas:</guilabel> caixa de texto livre. Usada para notas 
+              adicionais sobre a conta.</para>
+          </listitem>
+         </orderedlist>
+
+           <para>Abaixo dos painéis estão caixas de marcação: uma para mostrar se a 
+           conta é <guilabel>Relativa a impostos</guilabel> (que é definido 
+           através de <menuchoice><guimenu>Editar</guimenu><guimenuitem>Opções do 
+           relatório Impostos</guimenuitem></menuchoice>) e duas para marcar a conta como
+           <guilabel>Marcador de posição</guilabel> e/ou <guilabel>Oculta</guilabel>.</para>
+
+           <para>A caixa <guilabel>Relativa a impostos</guilabel> significa que esta 
+           conta foi marcada para ser incluída no relatório Impostos. Esta marca só 
+           é mostrada no diálogo <guilabel>Editar conta</guilabel> e é definida no 
+           diálogo <guilabel>Informação de impostos</guilabel> (<menuchoice><guimenu>Editar</guimenu>
+           <guimenuitem>Opções do relatório Impostos</guimenuitem></menuchoice>). 
+           Veja a secção Relatório de impostos &amp; Exportação Mod. <acronym>IRS</acronym> 
+           no capítulo <xref linkend="report-general"></xref>.</para>
+           <para>A caixa <guilabel>Marcador de posição</guilabel> marca esta conta 
+           como marcador de posição na hierarquia, a conta só é usada para permitir a configuração 
+           da hierarquia de contas.</para>
+           
+           <note id="accts-placeholder">
+             <para>Um <guilabel>marcador de posição</guilabel> significa que esta conta 
+             não é usada para dados de transações. Não pode emitir transações nesta 
+             conta, só em subcontas dela mesma que não estejam também marcadas como 
+             <guilabel>marcadores de posição</guilabel>.</para>
+           </note>
+
+           <para>A caixa <guilabel>Oculta</guilabel> marca esta conta (e todas as subcontas) 
+           para serem ocultadas na árvore de contas e no balão com a lista de contas 
+           nos diários. Para repor esta opção, terá primeiro de abrir o diálogo 
+           <menuchoice><guimenu>Ver</guimenu><guimenuitem>Filtrar por...</guimenuitem></menuchoice>, 
+           separador <guilabel>Outro</guilabel> na árvore de contas e marcar a caixa 
+           <guilabel>Mostrar contas ocultas</guilabel>. Fazê-lo permitir-lhe-á selecionar 
+           a conta e reabrir este diálogo.</para>
+
+          <para>O painel seguinte contém uma lista de <guilabel>tipos de contas</guilabel>. 
+          Selecione um tipo nas descrições em <xref linkend="acct-types" />.</para>
+
+           <para>O painel seguinte contém uma árvore de contas para escolher a 
+           <guilabel>conta-mãe</guilabel>. Para criar uma nova árvore de contas, 
+           selecione <guilabel>Nova conta de topo</guilabel>.
+
+           <note>
+             <para>As escolhas disponíveis no painel <guilabel>Tipo de conta</guilabel> 
+             dependem da conta selecionada no painel <guilabel>Conta-mãe</guilabel>. 
+             Por exemplo, se a <guilabel>conta-mãe</guilabel> for <emphasis>Ativo</emphasis>, 
+             só verá <emphasis>Capital próprio</emphasis> no painel <guilabel>Tipo de conta</guilabel>. 
+             Isto ajuda a manter a estrutura de contas apropriada no plano de contas.</para>
+           </note>
+           </para>
+
+       <sect3 id="Online-price-setup"><title>Passos para ativar a atualização de cotações online</title>
+
+           <itemizedlist>
+            <listitem><para>O <application>&app;</application> depende de uma ferramenta externa 
+            para obter as cotações online. Esta ferramenta é um módulo Perl chamado 
+            <quote>Finance::Quote</quote> e tem de ser instalado independentemente no 
+            seu computador. O primeiro passo na ativação de cotações online terá pois 
+            de ser a garantia que o <application>Finance::Quote</application> está 
+            corretamente instalado.</para>
+
+             <para>Para determinar se o módulo Perl <application>Finance::Quote</application> 
+             já está instalado no seu sistema, digite <quote>perldoc Finance::Quote</quote> 
+             num terminal e veja se há alguma documentação disponível. Se vê a documentação, 
+             o módulo está instalado, senão, ainda não foi instalado.</para>
+              
+            <para>Instalar o <application>Finance::Quote</application> difere entre 
+            sistemas operativos. Pode seguir estas linhas-guia para os vários 
+            sistemas operativos suportados:</para>
+            
+            <itemizedlist>
+             <listitem><para><guilabel>Linux:</guilabel> a maioria das distribuições linux 
+             (tais como Fedora, openSuse, Mandriva, Ubuntu, etc.) têm um pacote nos 
+             seus repositórios de programas para o módulo Perl <application>Finance::Quote</application>. 
+             Assim, na maioria dos casos pode usar o seu gestor de pacotes preferido 
+             (yum, apt, rpm, synaptics, yast,...) para instalar o módulo. O nome do 
+             pacote pode variar entre distribuições. É qualquer coisa como 
+             <quote>perl-Finance-Quote</quote>.</para></listitem>
+
+             <listitem><para><guilabel>Windows:</guilabel> o <application>Finance::Quote</application> 
+             em Windows requer que o perl já esteja instalado. Se ainda não o fez, 
+             por favor instale o ActivePerl.</para>
+
+              <para>O instalador Windows na página do <application>&app;</application> vem 
+              com um pequeno programa de ajuda para instalar o <application>Finance::Quote</application>. 
+              Pode encontrá-lo no menu Iniciar, na pasta do <application>&app;</application>
+              e chama-se <quote>Install Online Price Retrieval</quote>.</para></listitem>
+
+             <listitem><para><guilabel>Mac OS X:</guilabel> se instalou o <application>&app;</application>
+              com o instalador encontrado na página do <application>&app;</application>, 
+              o <application>Finance::Quote</application> já está instalado.</para></listitem>
+
+             <listitem><para>Se nenhuma das descições acima se aplica ao seu caso, pode 
+             tentar estas instruções genéricas, em alternativa:</para>
+              <orderedlist>
+               <listitem><para>Feche todas as instâncias do <application>&app;</application>.</para></listitem>
+
+               <listitem><para>Localize a pasta onde o <application>&app;</application> está instalado, 
+               procurando por<quote>gnc-fq-update</quote> (sem as aspas).</para></listitem>
+
+               <listitem><para>Vá para essa pasta, abra um terminal como root e execute 
+               o comando <quote>gnc-fq-update</quote> (sem aspas). Isto inicia uma sessão 
+               de atualização Perl CPAN que vai à Internet e instala o módulo 
+               <application>Finance::Quote</application> no seu sistema. O programa 
+               gnc-fq-update é interativo mas, na maioria dos sistemas deverá poder 
+               responder <quote>não</quote> à primeira pergunta:
+                <quote>Are you ready for manual configuration? [yes]</quote> e a 
+                atualização continuará automaticamente a partir daí.</para>
+               </listitem>
+              </orderedlist>
+
+             </listitem>
+            </itemizedlist>
+
+             <para>Após a instalação estar completa, deve executar o programa <quote>gnc-fq-dump</quote>, 
+             na mesma pasta, distribuído com o <application>&app;</application> para 
+             testar se o <application>Finance::Quote</application> está instalado e 
+             a funcionar corretamente.</para>
+
+             <note>
+              <para>Se não se sente confortável a realizar estes passos, por favor, 
+              envie um email para a lista de correio <application>&app;</application>-user 
+              (<email>gnucash-user@gnucash.org</email>) para assistência ou visite o 
+              canal IRC do <application>&app;</application> em irc.gnome.org. Também 
+              pode ignorar este passo e atualizar manualmente as cotações.</para>
+             </note>
+            </listitem>
+
+            <listitem>
+              <para>Crie a conta para o fundo mutualista ou ação, listados no campo 
+              <guilabel>Garantia/Moeda</guilabel>, como descrito acima.</para>
+
+                <tip><para>Ao criar estas contas, é uma boa altura para criar contas 
+                de receita para rastreio de dividendos, ganhos de capital (longos e curtos) 
+                e contas de despesa para rastreio de comissões e prejuízos (se o 
+                quiser fazer).</para></tip>
+            </listitem>
+
+            <listitem>
+              <para>Crie o fundo mutualista ou ação com o <guilabel>Editor de garantias</guilabel> 
+              para fundos/ações existentes ou com o diálogo <guilabel>Nova garantia/moeda</guilabel> 
+              para um fundo ou ação novos.</para>
+              <para>Selecione <guilabel>Obter cotações online:</guilabel>, <guilabel>Origem 
+              das cotações</guilabel> e <guilabel>Fuso horário.</guilabel></para>
+
+              <para>Cotações online de moeda requerem que as caixas Cotações online e 
+              Fuso horário estejam marcadas no ecrã de garantias e a caixa Obter cotação,
+              no Editor de garantias esteja também marcada para as moedas a serem transferidas.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Get On-line Quotes:</guilabel> This check-box is to enable this security/fund to
+               have quotes downloaded from an on-line source.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Type of Quote Source</guilabel> use the radio buttons to select the type of source
+               for the Online quotes.  <guilabel>Multiple:</guilabel> quote sources like <quote>Europe</quote> should be used if
+               fail-over to multiple sites are desirable.  <guilabel>Single:</guilabel> selections will only return
+               information from the specified source.</para>
+
+               <para>After selecting the type of source for price quotes, select a quote source from the pull-down menu.
+               Currently among the supported quote sources are; Yahoo, Yahoo Europe, Fidelity
+               Investments, T. Rowe Price, the Vanguard Group, the Australian Stock Exchange
+               (ASX) and TIAA-CREF.</para>
+
+               <note><para>Note that Yahoo will provide price quotes for many mutual
+               funds including Fidelity, T.Rowe Price and Vanguard, and that the quoted prices
+               at Yahoo should be identical to those that may be found at the source sites.</para></note>
+
+               <para>If you are outside the US and use one of the different Yahoo sources or
+               multiple sources containing Yahoo, you should append the market code for the security
+               such as PA for Paris, BE for Berlin, etc. Example: 12150.PA (a Peugeot security
+               in the Paris market).  <xref linkend="gnc-tbl-fq-yahoo-exchange-codes"></xref> below lists suffixes for various
+               markets around the world.</para>
+
+              <para>Pseudo-symbols for TIAA-CREF funds are listed in table <xref linkend="PsSymbs-TIAA-CREF"></xref>.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Timezone for these quotes:</guilabel> Select the timezone for the source of the
+               on-line quotes you are receiving. For example, Yahoo normally quotes Eastern
+               timezone, so choose America/New York if you use that quote source.</para>
+            </listitem>
+          </itemizedlist>
+          </listitem>
+
+
+            <listitem>
+              <para>Select a commodity to the Price Editor.</para>
+            </listitem>
+
+            <listitem>
+              <para>Select <guibutton>Get Quotes</guibutton> in the Price Editor.</para>
+            </listitem>
+
+            <listitem>
+              <para>Check the latest price for the selected security.</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>If you wish to update price quotes from the command line, you can do so by
+           the following command;</para>
+
+          <para><userinput>gnucash --add-price-quotes &lt;gnucash-file-name&gt;</userinput>
+          </para>
+
+          <para>The command <userinput>gnucash --add-price-quotes &lt;gnucash-file-name&gt;</userinput>
+          can be used to fetch the current prices of your stocks.  The file specified
+          <quote>&lt;gnucash-file-name&gt;</quote> will depend on the name and location of your
+          data file.  This can be determined by the name displayed in the top frame of the <application>&app;</application> window,
+          before the <quote>-</quote>.  The file name can also be found under <guimenu>File</guimenu>
+          in the list of recently opened file; the first item, numbered 1, is the name of the currently
+          open file.</para>
+
+          <para>This can be automated by creating a crontab entry. For example, to update your file every Friday
+          evening (18:00) after markets close (modify the time accordingly for your time zone), you could add
+          the following to your personal crontab:</para>
+
+          <para>0 18 * * 5 gnucash --add-price-quotes $HOME/gnucash-filename &gt; /dev/null 2&gt;&amp;1</para>
+
+          <para>Remember that Mutual Fund <quote>prices</quote> are really <quote>Net Asset Value</quote>
+          and require several hours after the exchange closes before being available. If NAVs are downloaded before
+          the current days NAVs are determined, yesterday&rsquo;s NAVs are retrieved.</para>
+
+        </sect3>
+
+        </sect2>
+
+        <sect2 id="open-balance">
+          <title>Opening Balance tab</title>
+
+      <para>The <guilabel>Opening Balance</guilabel> tab is visible only when creating a new account, and is disabled for <guilabel>Stock</guilabel> and<guilabel> Mutual Fund </guilabel>accounts. In the latter case, opening balances must be created by hand. Please see Section 8.5.1 in the <emphasis role="italic">Tutorial and Concepts Guide</emphasis> for instructions if you need to create an opening balance in a <guilabel>Stock</guilabel> or <guilabel>Mutual Fund</guilabel> account. It is
+           used to record the beginning balance for an account. This allows it to be used for
+           two different scenarios. If using <application>&app;</application> for the first time to record transactions,
+           it can be used as a beginning balance. If the accounts in use are closed at the end
+           of a period and new accounts are created, it is used to close and carry balances
+           forward.</para>
+
+          <para>There are three panes in this tab. The top pane contains the <guilabel>Balance
+           Information</guilabel>.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Balance:</guilabel> The balance to start the account with.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Date:</guilabel> The date the opening balance should be recorded.</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>The next pane is the <guilabel>Transfer Type</guilabel> pane.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Use Opening Balances Equity account:</guilabel> This transfers the opening balance
+               for the account from a standard Equity account called Opening Balances.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Select Transfer Account:</guilabel> This enables the pane below so a different
+               account can be used to transfer the opening balance.</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>The last pane is the <guilabel>Transfer Account</guilabel> pane. Select the account to use for
+           opening balances from the list of accounts in this pane.</para>
+        </sect2>
+      </sect1>
+
+      <sect1 id="acct-edit">
+       <title>Editing an Account</title>
+        <para>The <guilabel>Edit Account</guilabel> dialog consists of just the <guilabel>General</guilabel> tab. This tab
+        has the same information that was described in <xref linkend="acct-create"></xref>.
+        To access the <guilabel>Edit Account</guilabel> dialog go to <menuchoice><guimenu>Edit</guimenu>
+        <guimenuitem>Edit Account</guimenuitem></menuchoice> 
+        (menu shortcut <keycombo><keycap>Ctrl</keycap><keycap>E</keycap></keycombo>) or
+        click the <guibutton>Edit</guibutton> <emphasis>Toolbar</emphasis> icon in the Account Tree Window.</para>
+      </sect1>
+
+      <sect1 id="chart-renumber">
+        <title>Renumbering Subaccounts</title>
+          <para>Use <guilabel>Renumber Subaccounts</guilabel> to rewrite the account codes for all children of the
+           current account.  For example, you have the following account structure:</para>
+
+        <table frame="topbot" id="table-renumber1">
+          <title>Starting account numbers.</title>
+
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry><para>Code</para></entry>
+                <entry><para>Name</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry><para>10</para></entry>
+                <entry><para>Colors</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-1</para></entry>
+                <entry><para>Red</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-2</para></entry>
+                <entry><para>Orange</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-3</para></entry>
+                <entry><para>Yellow.</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-4</para></entry>
+                <entry><para>Blue</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-5</para></entry>
+                <entry><para>Violet</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+         <para>You now need to add the <quote>Green</quote> account, but you want it to sort between
+          the Yellow and Blue accounts.  Instead of having to manually renumber all the
+          accounts starting with Blue, you can use the <guilabel>Renumber subaccount</guilabel> command on the
+          Colors account.  In the pop-up dialog the prefix value should default to <quote>10</quote>, the
+          account code for the colors account.  If you set an interval value of <quote>5</quote> and click
+          <guilabel>Renumber</guilabel> you will end up with the following account structure:</para>
+
+        <table frame="topbot" id="table-renumber2">
+          <title>Renumbered account numbers</title>
+
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry><para>Code</para></entry>
+                <entry><para>Name</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry><para>10</para></entry>
+                <entry><para>Colors</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-05</para></entry>
+                <entry><para>Red</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-10</para></entry>
+                <entry><para>Orange</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-15</para></entry>
+                <entry><para>Yellow.</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-20</para></entry>
+                <entry><para>Blue</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-25</para></entry>
+                <entry><para>Violet</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <para>Now you have room in the account code numbering space to add the Green account
+         with an account code to force the proper ordering.</para>
+
+        <table frame="topbot" id="table-renumber3">
+          <title>Final account numbers.</title>
+
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry><para>Code</para></entry>
+                <entry><para>Name</para></entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry><para>10</para></entry>
+                <entry><para>Colors</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-05</para></entry>
+                <entry><para>Red</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-10</para></entry>
+                <entry><para>Orange</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-15</para></entry>
+                <entry><para>Yellow.</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-18</para></entry>
+                <entry><para>Green</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-20</para></entry>
+                <entry><para>Blue</para></entry>
+              </row>
+
+              <row>
+                <entry><para>10-25</para></entry>
+                <entry><para>Violet</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+      </sect1>
+
+      <sect1 id="acct-delete">
+        <title>Deleting an Account</title>
+        <para></para>
+        <para>Deleting an Account means removing all transaction information and information about this
+         account from the file. This cannot be undone. You will be prompted to verify that you wish to
+         remove the account. If the account still contains transaction information you will be warned that this
+         account contains transactions.</para>
+
+        <para>A side effect of removing an account that contains transactions is that you will
+         end up with unbalanced accounts. This will be indicated in the account by a gray
+         check-box next to the debit and credit amounts. You can repair automatically these
+         unbalanced accounts by using the <menuchoice><guimenu>Actions</guimenu><guimenuitem>Check &amp; 
+         Repair</guimenuitem></menuchoice> menu. This will automatically assign the unbalanced amounts 
+         to a new account named <emphasis role="bold">Imbalance.
+         </emphasis></para>
+      </sect1>
+
+      <sect1 id="acct-reconcile">
+        <title>Reconciling an Account to a Statement</title>
+
+        <para>Reconciliation of Accounts in <application>&app;</application> with statements from a bank or other
+         institution is a way of double checking the accuracy of your (and your banks) transactions and the balance
+         of your accounts. It also is useful to track uncleared checks and other outstanding transactions.</para>
+
+      <para>The reconciling process in <application>&app;</application> involves two dialogs: the 
+      <xref linkend="tool-reconcile" /> dialog followed by the <xref linkend="rec-win" /> window. They provide access 
+      to various <application>&app;</application> functions to make it easy to enter and update 
+      account information during the reconciliation.</para>
+
+      <tip>
+        <para>The Reconcile window is accessed from the account tree window or the account register window by
+        going to <menuchoice><guimenu>Actions</guimenu><guimenuitem>Reconcile...</guimenuitem></menuchoice> 
+        or using the menu shortcut <keycombo><keycap>Alt</keycap><keycap>A</keycap></keycombo>, <keycap>R</keycap>.</para>
+      </tip>
+
+        <para>The <emphasis>Summary Bar</emphasis> at the bottom of the Account Register Window indicates the amounts
+         of <guilabel>Present</guilabel> (Balance), <guilabel>Future</guilabel> (Balance), <guilabel>Cleared</guilabel>
+         (Transactions), <guilabel>Reconciled</guilabel> (Transactions) and
+         <guilabel>Projected Minimum</guilabel>. On-line account information can be used to
+         mark which transactions the bank has processed by changing the <guilabel>R</guilabel> (reconciliation status)
+         column in the register from <guilabel>n</guilabel> (new) to <guilabel>c</guilabel> (cleared). The bank statement is then used
+         with the <guilabel>Reconcile</guilabel> window to reconcile the account which changes the <guilabel>R</guilabel> field to
+         <guilabel>y</guilabel> (reconciled).</para>
+
+    <sect2 id="tool-reconcile">
+      <title>Reconciling Information</title>
+
+        <para>The <guilabel>Reconcile Information</guilabel> dialog is used to indicate the closing <guilabel>Statement Date</guilabel>
+        and the <guilabel>Starting Balance</guilabel> (fixed from last reconciliation) and <guilabel>Ending Balance</guilabel> 
+        from the statement. The <guilabel>Include Sub-accounts</guilabel> check-box is used if one or more subaccounts are used to track
+        the account you are reconciling. The <guibutton>Enter Interest Payment</guibutton> button is used to add a transfer to the
+        accounts for an interest payment. If selected a dialog will be displayed to add the 
+        <xref linkend="tool-ent-int" /> to the account.</para>
+        <note>
+          <para>The <guibutton>Enter Interest Payment</guibutton> button is shown only if you are reconciling an account of
+          <emphasis>Bank</emphasis> type.</para>
+        </note>
+
+        <para>When you have entered all relevant data, press <guibutton>Ok</guibutton> to proceed to the 
+        <xref linkend="rec-win" /> dialog or <guibutton>Cancel</guibutton> to discard the reconciliation process.</para>
+
+        <sect3 id="tool-ent-int">
+          <title>Interest Payment</title>
+            <para>There are three panes in the <guilabel>Interest Payment</guilabel> dialog. At the bottom is a
+            button called <guibutton>No Auto Interest Payments for this Account</guibutton> which will cancel the
+            dialog. The top pane contains the <guilabel>Payment Information</guilabel>.</para>
+
+            <itemizedlist>
+              <listitem>
+                <para><guilabel>Amount:</guilabel> Enter the amount of the interest payment.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Date:</guilabel> Select the date for the interest payment.</para>
+              </listitem>
+
+                <listitem>
+                  <para><guilabel>Num:</guilabel> Enter a number for the transaction (optional).</para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Descrição:</guilabel> Enter an informational description for the transaction.</para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Memo:</guilabel> Enter a note about the transaction (optional).</para>
+                </listitem>
+              </itemizedlist>
+
+
+            <para>The <guilabel>Reconcile Account</guilabel> pane highlights in the tree the account that the
+            interest payment will be transferred to or from.</para>
+
+            <para>The <guilabel>Payment From</guilabel> pane contains a list of accounts where you can select the source 
+            account.</para>
+ 
+            <note>
+              <para>If the payment is for a credit or loan account then usually the payment would be from an 
+              <emphasis>Expense</emphasis> account. If the payment is for a checking or savings account then 
+              usually this would be from an <emphasis>Income</emphasis> account.</para>
+            </note>
+
+	    <tip>
+              <para>The <guibutton>Show Income/Expense</guibutton> check-box shows or hides the 
+              <emphasis>Income</emphasis> and <emphasis>Expense</emphasis> accounts.</para>
+            </tip>
+
+            <para>Select <guibutton>OK</guibutton> to enter the interest transaction (or <guibutton>Cancel</guibutton> 
+            the payment) and return to the initial reconciliation screen.</para>
+
+          </sect3>
+
+        </sect2>
+
+        <sect2 id="rec-win">
+          <title>Reconcile</title>
+          <note>
+            <para>For a detailed description of menu items and buttons on the reconcile window, see
+            <xref linkend="rcn-menu" />.</para>
+          </note>
+
+          <para>The <guilabel>Reconcile</guilabel> dialog is where the actual process of matching your statement 
+          to <application>&app;</application> data takes place on a per transaction basis.</para>
+          <para>The <guilabel>Reconcile</guilabel> dialog is composed by a <emphasis>toolbar</emphasis> and three 
+          panes; <guilabel>Funds In</guilabel> on the left, <guilabel>Funds out</guilabel> on the right and a balance pane.</para>
+          
+          <note>
+            <para>If you enabled the option <guilabel>Use formal accounting labels</guilabel> in the 
+            <guilabel>Accounts</guilabel> section of the <application>&app;</application> preferences, 
+            you will see <guilabel>Debits</guilabel> and <guilabel>Credits</guilabel> panes instead of 
+            <guilabel>Funds In</guilabel> and <guilabel>Funds Out</guilabel> panes.</para>
+          </note> 
+
+          <para>The <guilabel>Funds In</guilabel> and <guilabel>Funds Out</guilabel> pane shows all unreconciled 
+          deposits to the account. Both panes are composed by five columns.</para>
+
+          <tip>
+            <para>To order the listed transactions with a preferred criteria, click on the relevant column header. 
+            To reverse the selected order click a second time on the column header.</para>
+          </tip>
+
+          <variablelist>
+            <varlistentry>
+              <term><guilabel>Date</guilabel></term>
+              <listitem>
+                <para>The date of the unreconciled transaction.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>Num</guilabel></term>
+              <listitem>
+                <para>The number of the unreconciled transaction.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>Descrição</guilabel></term>
+              <listitem>
+                <para>The Descrição of the unreconciled
+                transaction.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>Amount</guilabel></term>
+            <listitem>
+              <para>The Amount of the unreconciled transaction.</para>
+            </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>R</guilabel></term>
+              <listitem>
+                <para>Shows a green tick if the transaction will be
+                reconciled when done.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <para>To mark a transaction as reconciled just click on it and a green checkmark will appear
+          on the relevant <guilabel>R</guilabel> column.</para>
+
+          <note>
+            <para>Under each pane a <guilabel>Total</guilabel> for 
+            reconciled transactions is shown.</para>
+          </note>
+
+          <para>The balance pane shows a summary of the balances used in
+          reconciliation.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><guilabel>Statement Date</guilabel></term>
+              <listitem>
+                <para>The date on the statement set on the <xref linkend="tool-reconcile" />.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>Starting Balance</guilabel></term>
+              <listitem>
+                <para>The balance at the end of the last reconciliation.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>Ending Balance</guilabel></term>
+              <listitem>
+                <para>The balance entered from the statement.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>Reconciled Balance</guilabel></term> 
+              <listitem>
+                <para>The balance of selected transactions.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>Difference</guilabel></term>
+              <listitem>
+                <para>The difference between the <guilabel>Reconciled</guilabel> and 
+                <guilabel>Ending</guilabel> balances.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <para>The set of unreconciled transactions in the <guilabel>Funds In</guilabel> and <guilabel>Funds Out</guilabel> panes can
+          be changed by using the menus and <emphasis>Toolbar</emphasis> to access the account and transaction
+          information. You can create a <guibutton>New</guibutton> transaction, <guibutton>Edit</guibutton> a selected transaction, 
+          add a <guilabel>Balance</guilabel> transaction (of the same amount as listed under <guilabel>Difference</guilabel> in the balance pane),
+          and delete the selected transaction.</para>
+
+          <tip>
+            <para>To modify a listed transaction, double click on it.</para>
+          </tip>
+
+	  <para>By pressing the <guilabel>Open</guilabel> icon the register of the account to reconcile will be opened.</para>
+          
+	  <para>If you wish to postpone the reconciliation until later use the
+          <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Postpone</guimenuitem></menuchoice> 
+          menu item (menu shortcut <keycombo><keycap>Ctrl</keycap><keycap>P</keycap></keycombo>) or pressing the
+          <guibutton>Postpone</guibutton> icon. If you wish to cancel the reconciliation use the
+          <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Cancel</guimenuitem></menuchoice> menu item or press the
+          <guibutton>Cancel</guibutton> icon.</para>
+
+	  <para>All previous command are also available in the <guilabel>Reconcile</guilabel> dialog menu.</para>
+
+          <para>Select each unreconciled transaction matching a transaction on the statement so a
+          green tick appears in the <guilabel>R</guilabel> column. The <guilabel>Balance</guilabel> pane changes to reflect each
+          selected transaction until the <guilabel>Ending Balance</guilabel> <emphasis>equals</emphasis>
+          the <guilabel>Reconciled Balance</guilabel> and the <guilabel>Difference</guilabel> is <emphasis>zero</emphasis>.
+          Once this is done select the <guibutton>Finish</guibutton> button or
+          <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Finish</guimenuitem></menuchoice> 
+          (menu shortcut <keycombo><keycap>Ctrl</keycap><keycap>F</keycap></keycombo>) to finish the reconcile process.</para>
+        </sect2>
+
+   </sect1>
+
+</chapter>
+
