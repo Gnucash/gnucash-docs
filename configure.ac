@@ -1,8 +1,9 @@
 # copyright (c) 2000-2002 Chris Lyttle
-# copyright (c) 2003-2015 GnuCash Development Team
+# copyright (c) 2003-2016 GnuCash Development Team
 
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(gnucash-docs, 2.6.99)
+
 
 dnl ==========================================================================
 dnl
