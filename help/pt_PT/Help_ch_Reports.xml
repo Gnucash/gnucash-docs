@@ -221,6 +221,7 @@
                  </listitem>
 
                  <listitem><para><guilabel>Botão Repor predefiniçoes</guilabel> &mdash; repõe todos os valores predefinidos</para>
+                 </listitem>
                </itemizedlist>
              </listitem>
 
@@ -287,6 +288,7 @@
                  <listitem><para><guilabel>Tabela para exportação</guilabel> &mdash; formata a tabela para exportação 
                  com cortar &amp; colar com células extra</para></listitem>
                  <listitem><para><guilabel>Botão Repor predefiniçoes</guilabel> &mdash; repõe todos os valores predefinidos</para>
+                 </listitem>
                </itemizedlist>
              </listitem>
 
@@ -356,6 +358,7 @@
                  </listitem>
 
                  <listitem><para><guilabel>Botão Repor predefiniçoes</guilabel> &mdash; repõe todos os valores predefinidos</para>
+                 </listitem>
                </itemizedlist>
              </listitem>
            </itemizedlist>
@@ -549,90 +552,103 @@
                 (sem contar com transações da conta de negócio) onde a outra parcela seja para uma conta de receita ou 
                 de despesa com o mesmo nome que a conta de ações.
                 </para>
-                <para>For example given an account structure like
+                <para>Por exemplo, dada uma estrutura como a seguinte:
                 </para>
                 <literallayout>
-                Assets (type ASSET)
-                  Broker (type ASSET)
-                    Widget Stock (type STOCK)
-                Income (type INCOME)
-                  Dividends (type INCOME)
-                    Widget Stock (type INCOME)
+                Ativos (tipo ATIVO)
+                  Corretor (tipo ATIVO)
+                    Ação widget (tipo AÇÃO)
+                Receita (tipo RECEITA)
+                  Dividendos (tipo RECEITA)
+                    Ação widget (tipo RECEITA)
                 </literallayout>
-                <para>A transaction that debits the "Assets:Broker" account and credits the "Income:Dividends:Widget Stock" account will count as income even though it doesn't have a split with account "Assets:Broker:Widget Stock".
+                <para>Uma transação que debita a conta "Ativos:Corretor" e credita a conta "Receita:Dividendos:Ação widget" 
+                conta como receita mesmo que não tenha uma parcela na conta "Ativos:Corretor:Ação widget".
                 </para>
-                <para>This only works if the parent account ("Assets:Broker" in this case) is a Bank or Asset account and the Income/Expense account has the same name as the stock account. It won't double count transactions that have a dummy split since they won't have exactly two split transactions.
+                <para>Isto só funciona se a conta-mãe ("Ativos:Corretor" neste caso) for uma conta Banco ou Ativo e a 
+                conta de Receita/Despesa tenha o mesmo nome da conta de ações. Não conta duas vezes transações que tenham 
+                uma parcela fictícia, dado que elas não têm exatamente duas transações com parcelas.
                 </para>
-                <para>It will not work if the income or expense account split is to a subaccount of the account with the same name as the stock account i.e. "Income:Dividends:Widget Stock:Franked"
+                <para>Não funciona se a parcela da conta de receita ou despesafor para uma subconta da conta com o mesmo 
+                nome que a conta de ação, i.e. "Receita:Dividendos:Ação widget:Franquiada"
                 </para>
 	      </note>
 	    </listitem>
 
-            <listitem><para><guilabel>Brokerage Fees</guilabel> &mdash; Brokerage Fees</para>
+            <listitem><para><guilabel>Taxas de corretagem</guilabel> &mdash; taxas de corretagem</para>
 	    </listitem>
 
-            <listitem><para><guilabel>Total Return</guilabel> &mdash; Total Gain + Income</para>
+            <listitem><para><guilabel>Entrada total</guilabel> &mdash; ganho total + receita</para>
 	    </listitem>
 
-            <listitem><para><guilabel>Rate of Return</guilabel> &mdash; Total Return / Money In * 100</para>
+            <listitem><para><guilabel>Percentagem de entrada</guilabel> &mdash; Entrada total / Dinheiro entrado * 100</para>
 	    </listitem>
 
           </itemizedlist>
 
-        <para>Common report options are described in <xref linkend="report-custom"/></para>
+        <para>Opções comuns do relatório são descritas em <xref linkend="report-custom"/></para>
 
-        <para>Report Specific Options</para>
+        <para>Opções específicas do relatório</para>
 
         <itemizedlist>	<!-- list of Tabs -->
 
-          <listitem><para>Accounts Tab</para>
+          <listitem><para>Separador Contas</para>
 
             <itemizedlist>
 
-              <listitem><para><guilabel>Include accounts with no shares</guilabel> &mdash; Unchecked (default) or checked.</para>
+              <listitem><para><guilabel>Incluir contas sem ações</guilabel> &mdash; desmarcada (predefinição) ou marcada.</para>
               </listitem>
 
             </itemizedlist>
 
           </listitem>	<!-- end of Accounts Tab -->
 
-          <listitem><para>Display Tab</para>
+          <listitem><para>Separador Mostrar</para>
 
             <itemizedlist>
 
-              <listitem><para><guilabel>Show ticker symbols</guilabel> &mdash; Checked default) or unchecked. If unchecked, Symbol column will be omitted.</para>
+              <listitem><para><guilabel>Mostrar símbolo de bolsa</guilabel> &mdash; desmarcada (predefinição) ou marcada. 
+              Se desmarcada, a coluna Símbolo será omitida.</para>
               </listitem>
 
-              <listitem><para><guilabel>Show listings</guilabel> &mdash; Checked (default) or unchecked. If unchecked, Listing column (source of shares price quotes) will be omitted.</para>
+              <listitem><para><guilabel>Mostrar listagem</guilabel> &mdash; desmarcada (predefinição) ou marcada. 
+              Se desmarcada, a coluna Listagem (origem de cotação de ações) será omitida.</para>
               </listitem>
 
-              <listitem><para><guilabel>Show number of shares</guilabel> &mdash; Checked (default) or unchecked. If unchecked, Shares column will be omitted.</para>
+              <listitem><para><guilabel>Mostrar número de ações</guilabel> &mdash; desmarcada (predefinição) ou marcada. 
+              Se desmarcada, a coluna Ações será omitida.</para>
               </listitem>
 
-              <listitem><para><guilabel>Share decimal places</guilabel> &mdash; The number of decimal places to show in the number of shares. Default is 2.</para>
+              <listitem><para><guilabel>Casas decimais das ações</guilabel> &mdash; o número de casas decimais a mostrar 
+              no número de ações. A predefinição é 2.</para>
               </listitem>
 
-              <listitem><para><guilabel>Show prices</guilabel> &mdash; Checked (default) or unchecked. If unchecked, Price column will be omitted.</para>
+              <listitem><para><guilabel>Mostrar cotações</guilabel> &mdash; desmarcada (predefinição) ou marcada. 
+              Se desmarcada, a coluna Preço será omitida.</para>
               </listitem>
 
             </itemizedlist>
 
           </listitem>	<!-- end of Display Tab -->
 
-          <listitem><para>General Tab</para>
+          <listitem><para>Separador Geral</para>
 
             <itemizedlist>
 
-              <listitem><para><guilabel>Price Source</guilabel> &mdash; Nearest in time (default) or Most Recent.</para>
+              <listitem><para><guilabel>Origem da cotação</guilabel> &mdash; mais próxima no tempo (predefinição) ou Mais recente.</para>
               </listitem>
 
-              <listitem><para><guilabel>Basis calculation method</guilabel> &mdash; Average (default), FIFO or LIFO.</para>
+              <listitem><para><guilabel>Método de cálculo base</guilabel> &mdash; Médio (predefinição), FIFO ou LIFO.</para>
               </listitem>
 
-              <listitem><para><guilabel>Set preference for price list data</guilabel> &mdash; Checked (default): Use price list data. If there is no relevant price list data, transaction prices will be used and there will be a warning. Unchecked: Get prices from stock transactions.</para>
+              <listitem><para><guilabel>Definir preferência para dados da lista de cotações</guilabel> &mdash; 
+              marcada (predefinição): usar dados da lista de cotações. Se não houver uma lista de cotações relevante, 
+              serão usadas as cotações de transações e é emitido um aviso. Desmarcada: obter cotação de transação de 
+              ações.</para>
               </listitem>
 
-              <listitem><para><guilabel>How to report brokerage fees</guilabel> &mdash; Include in basis (default), Include in gain or Ignore.</para>
+              <listitem><para><guilabel>Como reportar taxas de corretagem</guilabel> &mdash; Incluir na base (predefinição), 
+              Incluir no ganho ou Ignorar.</para>
               </listitem>
 
             </itemizedlist>
@@ -644,265 +660,281 @@
        </listitem>
 
        <listitem>
-        <para>Asset Barchart:</para>
+        <para>Gráfico de barras do ativo:</para>
 
-        <para>The Asset Barchart report displays bars that present the value of all assets in a
-        <application>&app;</application> file over time.  By default, the report shows all accounts
-        in <emphasis>Accounts Receivable</emphasis>, <emphasis>Current Assets</emphasis>,
-        <emphasis>Fixed Assets</emphasis>, <emphasis>Investments</emphasis> and Special Accounts
-        (if they exist) and it displays monthly bars for the current financial period. 
-        This report provides a graphic view of the assets in the file over time.</para>
+        <para>Este gráfico mostra barras que representam o valor de todos os ativos num ficheiro do 
+        <application>&app;</application> ao longo do tempo. Como predefinição, o relatório mostra todas as contas 
+        em <emphasis>Contas cobráveis</emphasis>, <emphasis>Ativos atuais</emphasis>, <emphasis>Ativos fixos</emphasis>, 
+        <emphasis>Investimentos</emphasis> e Contas especiais (se existirem), mostrando barras mensais para o período 
+        contabilístico atual. Este relatório oferece uma visão gráfica dos ativos no ficheiro ao longo do tempo.</para>
 
         <tip>
-          <para>Like all the generic reports, the user can assign a title and save the report with 
-          it's selected options for re-use later.</para>
+          <para>Como todos os relatórios genéricos, o utilizador pode atribuir um título e gravar o relatório com as  
+          suas opções personalizadas, para uso posterior.</para>
         </tip>  
         
-        <para>The display is in the form of either a stacked barchart or simple barchart with an 
-        option to display a table of the values.</para>
+        <para>Pode optar entre barras empilhadas ou barras simples com a possibilidade de mostrar uma tabela de valores.</para>
 
-        <para>This report calculates and displays a default of 8 bars or up to 24 separate asset
-        accounts value at the end of the day on several dates through a specified time period.
-        The report automatically selects the most significant accounts to display with all other
-        selected accounts summed as <emphasis>Other</emphasis>.</para>
+        <para>Este relatório calcula e mostra uma predefinição de oito barras ou até 24 valores de contas separadas de 
+        ativos no final do dia, em várias datas ao longo de um período de tempo especificado. O relatório seleciona 
+        automaticamente as contas mais significativas a mostrar, com todas as outras contas somadas como 
+        <emphasis>Outras</emphasis>.</para>
 
-        <para>The report exploits the outline structure of the chart of accounts to allow the user
-        to select top level accounts and sub-accounts down to a user-selectable depth.  Selected 
-        sub-accounts below the selected depth are automatically <emphasis>summed up</emphasis> into
-        the next level when it is also selected.  The default number of sub-account levels is 2,
-        giving a summary view.  Increasing the number of sub-levels increases the detail available
-        to display. It is possible to un-select a higher level account and leave sub-accounts 
-        selected to force greater detail to appear in the report.</para>
+        <para>O relatório explora a estrutura da árvore de contas para permitir ao utilizador selecionar contas de 
+        topo e subcontas até uma profundidade escolhida por si. Subcontas selecionadas abaixo da profundidade selecionada  
+        são automaticamente <emphasis>somadas</emphasis> ao nível seguinte, quando também está selecionado. O nível 
+        predefinido de subcontas é 2, dando um sumário geral.Aumentar os subníveis aumenta o detalhe disponível. É 
+        possível remover a seleção de uma conta de nível mais alto e deixar as subcontas selecionadas para forçar mais 
+        detalhes no relatório.</para>
 
-        <para>By default the report includes all <emphasis>asset</emphasis> accounts and sub-accounts,
-        as well as <emphasis>Imbalance</emphasis> and <emphasis>Orphan</emphasis> Special accounts
-        in whatever currencies or commodities may be present. The report's base currency is the 
-        default currency of the <application>&app;</application> file but if the file has data
-        for multiple currencies, then it can be changed to another currency.</para>
+        <para>Por predefinição, o relatório inclui todas as contas e subcontas de <emphasis>ativos</emphasis>, 
+        assim como as contas especiais <emphasis>Desequilíbrio</emphasis> e <emphasis>Orfã</emphasis> em quaisquer 
+        moedas ou mercadorias que possam estar presentes. A moeda base do gráfico é a moeda predefinida do ficheiro do  
+        <application>&app;</application>, mas se o ficheiro tiver dados em múltiplas moedas, pode ser mudado para outra 
+        moeda.</para>
 
-        <para>Since each account may be individually selected, the report can be designed to focus 
-        on a small subset of data such as current assets or investments.</para>
+        <para>Dado que pode selecionar individualmente cada conta, o relatório pode ser desenhado para se focar num  
+        pequeno subconjunto de dados, tal como ativos atuais ou investimentos.</para>
 
-        <para>The overall interval of the report defaults to start at the start of the current 
-        accounting period and to end at the end of the current accounting period. Numerous 
-        other starting choices and ending choices are available.</para>
+        <para>O intervalo global do ǵráfico é predefinido para começar no início do periodo contabilístico atual e 
+        terminar no final desse mesmo período. Estão disponíveis inúmeras outras escolhas para datas de início e fim 
+        do gráfico.</para>
 
-        <para>The first bar shows the selected values at the end of the day on the first date chosen.
-        There are a number of choices for step size from <emphasis>day</emphasis> to 
-        <emphasis>year</emphasis> with the default being <emphasis>month</emphasis>. Note that if any 
-        step date would fall on the 29th, 30th or 31st in a month that does not have such a date
-        the next interval will be 31 days later. For that step only the date will <emphasis>slip</emphasis>
-        up to 3 days into the following month. This is true for releases at least through 2.4.13.
-        Bug 639049 is open in Bugzilla to modify this behavior.</para>
+        <para>A primeira barrra mostra os valores selecionados no final do dia da primeira data escolhida. Há várias 
+        escolhas para o tamanho do passo, desde <emphasis>Dia</emphasis> até <emphasis>Ano</emphasis>, sendo a 
+        predefinição <emphasis>Mês</emphasis>. Note que se alguma data de passo cair a 29, 30 ou 31 de um mês que não 
+        tenha tais dias, o próximo intervalo será 31 dias depois. Para esse passo, só a data <emphasis>escorrega</emphasis> 
+        até 3 dias do mês seguinte. Isto acontece em versões pelo menos até à 2.4.13. O erro 639049 está aberto no 
+        Bugzilla para modificar este comportamento.</para>
 
-        <para>Currently, there is no option to start the report on the last day of any period. 
-        There is also no option to show <emphasis>beginning</emphasis> balances or <emphasis>end of 
-        previous step</emphasis> balances. This makes it difficult to correlate this report to 
-        business quarterly reports, for example.</para>
+        <para>Atualmente, não há opção para começar o relatório no último dia de qualquer período. Também não há opção 
+        para mostrar saldos <emphasis>iniciais</emphasis> ou saldo no <emphasis>fim do passo anterior</emphasis>. 
+        Isto dificulta correlacionar este gráfico para gráficos trimestrais em empresas, por exemplo.</para>
 
-        <para>The Net Worth linechart report, Liability barchart report and Net Worth barchart 
-        report are similar except for the graphic type and default account groups selected.</para>
+        <para>O gráfico de linha de valor líquido, o gráfico de barras do passivo e o gráfico de barras de valor 
+        líquido, são semelhantes, exceto no tipo de gráfico e na seleção de contas predefinida.</para>
 
-       <para>Other features are customizable in a manner similar to other standard reports.</para>
+       <para>Há outras funcionalidades configuráveis de forma similar a outros relatórios padrão.</para>
 
        </listitem>
 
        <listitem>
-        <para>Asset Piechart:</para>
+        <para>Gráfico circular do ativo:</para>
        </listitem>
 
        <listitem>
-        <para>Average Balance:</para>
+        <para>Saldo médio:</para>
        </listitem>
 
        <listitem>
-        <para>Balance Sheet: This report summarizes assets, liabilities, and equity.
-         When properly maintained, assets should equal the sum of liabilities and equity.
-         If that is not the case, there is some kind of internal imbalance in the
-         accounts.</para>
+        <para>Folha de saldo: este relatório sumariza ativos, passivo e capital próprio. Nma contabilidade correta, 
+         os ativos devem igualr a soma do passivo com o capital próprio. Se não for o caso, há um qualquer desequilíbrio 
+         interno na contabilidade.</para>
        </listitem>
 
        <listitem>
-        <para>General Journal:</para>
+        <para>Diário geral:</para>
        </listitem>
 
        <listitem>
-        <para>General Journal:</para>
+        <para>Livro razão geral:</para>
        </listitem>
 
        <listitem>
-        <para>Investment Portfolio: This report summarizes the value of the stocks in
-         the current portfolio.</para>
+        <para>Portfólio de investimentos: este relatório sumariza o valor das ações no portfólio atual.</para>
        </listitem>
 
        <listitem>
-        <para>Liability Barchart:</para>
+        <para>Gráfico de barras do passivo:</para>
        </listitem>
 
        <listitem>
-        <para>Liability Piechart:</para>
+        <para>Gráfico circular do passivo:</para>
        </listitem>
 
        <listitem>
-        <para>Net Worth Barchart: Net worth is the difference between the value of assets
-         or liabilities.</para>
+        <para>Gráfico de barras do valor líquido: valor líquido é a diferença entre o valor dos ativos e do passivo.</para>
        </listitem>
 
        <listitem>
-        <para>Net Worth Linechart: Net worth plotted over time.  Net worth is the difference between the value of assets
-         or liabilities.</para>
+        <para>Gráfico de linha do valor líquido: linha do valor líquido ao longo do tempo. Valor líquido é a diferença 
+        entre o valor dos ativos e do passivo.</para>
        </listitem>
 
        <listitem>
-        <para>Price Scatterplot:</para>
+        <para>Gráfico de dispersão de cotações:</para>
        </listitem>
       </itemizedlist>
    </sect1>
 
    <sect1 id="report-income">
-    <title>Income &amp; Expense</title>
+    <title>Receita &amp; Despesa</title>
 
-     <para>The Income &amp; Expense reports includes the Cash Flow and Income Statement reports.</para>
+     <para>Os relatórios de Receita &amp; Despesa incluem o Fluxo de caixa e a Declaração de rendimento.</para>
 
       <itemizedlist>
        <listitem>
-        <para>Budget Report:</para>
-	<para>This report is used to compare budgeted and real amounts for selected accounts. It allows you to review how well you follow the budget.</para>
-	<para>The report is generated as a table in which each row represents an account and each set of columns shows the <emphasis>budgeted amount</emphasis>, the <emphasis>real amount</emphasis>, and the <emphasis>difference</emphasis> between them for each report period.</para>
-	<para>Each entry in the <emphasis>real amount</emphasis> column is the sum of all the splits in the row's account over the column's period. For example, if the report is set up for monthly periods, the column is for May, and the row is for Expences:Groceries, then the value will be the sum of all Expenses:Groceries splits for that May.</para>
-	<para>The report supports selecting a range of periods instead all of them. Periods that are out of range can be included in report as the consolidated columns around the selected range. This allows you to focus on particular periods, for example the current one, and is especially useful for budgets with many periods. For example, if you have a 12 period budget you can make a 3 column report with the format "(all periods before columns set) (current period columns set) (all periods after columns set)" that is easily fits on the screen and allows you to match values with account names.</para>
-	<para><emphasis>Budget report options</emphasis></para>
+        <para>Relatório de orçamento:</para>
+	<para>Este relatório é usado para comparar valores reais e orçamentados nas contas selecionadas. Permite-lhe rever 
+	a forma como cumpre o orçamento.</para>
+	<para>O relatório é gerado como uma tabela em que cada linha representa uma conta e cada conjunto de colunas mostra 
+	o <emphasis>valor orçamentado</emphasis>, o <emphasis>valor real</emphasis> e a <emphasis>diferença</emphasis> 
+	entre eles, para cada período do relatório.</para>
+	<para>Cada entrada na coluna do <emphasis>valor real</emphasis> é a soma de todas as parcelas na conta da linha ao 
+	longo do período da coluna. Por exemplo, se o relatório está configurado para períodos mensais, a coluna é maio, 
+	e a linha é Despesas:Mercearia, o valor será a soma de todas as parcelas de Despesas:Mercearia para esse maio.</para>
+	<para>O relatório suporta a seleção de um intervalo de períodos, em vez de todos. Períodos fora do intervalo podem 
+	ser incluídos no relatório como colunas consolidadas à volta do intervalo selecionado. Isto permite-lhe focar-se 
+	em períodos específicos, por exemplo, o atual. Particularmente útil para orçamentos com muitos períodos. Por exemplo, 
+	se tem um orçamento com 12 períodos, pode criar um relatório de três colunas com o formato 
+	"(todos os períodos antes do conjunto atual) (conjunto de colunas do período atual) (todos os períodos após 
+	o conjunto atual)" que cabe facilmente no ecrã e permite-lhe comparar valores com nomes de conta.</para>
+	<para><emphasis>Opções do relatório de orçamento</emphasis></para>
 	<para>
-	  <note><para>Here we describe only options that are specific for the Budget Report. You can find information about standard parameters in <xref linkend="report-custom"/>.</para> </note>
+	  <note><para>Só são aqui descritas as opções específicas deste relatório. Pode encontrar informação sobre opções de 
+	  relatórios padrão em <xref linkend="report-custom"/>.</para> </note>
 	  <itemizedlist>
-	    <listitem><para><emphasis>Show budget</emphasis> - include the budgeted values for the period</para></listitem>
-	    <listitem><para><emphasis>Show actual</emphasis> - include the real values for the period</para></listitem>
-	    <listitem><para><emphasis>Show difference</emphasis> - include the difference between budgeted and real values for the period. Enabling this option does not force including budgeted and actual values in report</para></listitem>
-	    <listitem><para><emphasis>Show Column with totals</emphasis> - Adds a final column set containing budgeted, real value, and difference columns summing those values across all periods of the report.</para></listitem>
-	    <listitem><para><emphasis>Rollup budget amounts to parent</emphasis> - not used in report, can be deleted or should be fixed</para></listitem>
-	    <listitem><para><emphasis>Include accounts with zero total balances and budget values</emphasis> - enables display of accounts with no budget or splits in any period.</para></listitem>
-	    <listitem><para><emphasis>Budget</emphasis> - Select the budget to use for report generation</para></listitem>
-	    <listitem><para><emphasis>Report for range of budget periods</emphasis> - Enables reporting on a subset of the budget by selecting a beginning and an ending period.</para></listitem>
-	    <listitem><para><emphasis>Range start</emphasis> - a combobox with a list of variants how to select start period:
+	    <listitem><para><emphasis>Mostrar  orçamento</emphasis> - inclui os valores orçamentados para o período</para></listitem>
+	    <listitem><para><emphasis>Mostrar atual</emphasis> - inclui os valores reais para o período</para></listitem>
+	    <listitem><para><emphasis>Mostrar diferença</emphasis> - inclui a diferença entre valores orçamentados e reais 
+	    para o período. Ativar esta opção não força a inclusão de valores orçamentados e reais.</para></listitem>
+	    <listitem><para><emphasis>Mostrar coluna de totais</emphasis> - adiciona umconjunto de colunas final contendo 
+	    valores orçamentados, reais e diferença, somando esses valores ao longo de todos os períodos do relatório.</para></listitem>
+	    <listitem><para><emphasis>Rolar valores orçamentados para conta-mãe</emphasis> - não usado no relatório.</para></listitem>
+	    <listitem><para><emphasis>Incluir contas com saldos zero e sem valores orçamentados</emphasis> - ativa a exibição 
+	    de contas sem orçamento ou parcelas em qualquer período.</para></listitem>
+	    <listitem><para><emphasis>Orçamento</emphasis> - selecione o orçamento a usar para o relatório</para></listitem>
+	    <listitem><para><emphasis>Relatório para intervalo de períodos</emphasis> - permite reportar um subconjunto 
+	     do orçamento, selecionando um período inicial e um período final.</para></listitem>
+	    <listitem><para><emphasis>Início do intervalo</emphasis> - caixa de combinação com uma lista de variantes sobre
+	    como selecionar o período iniial:
 	    <orderedlist>
-	      <listitem><para><emphasis>First</emphasis> - select first budget period</para></listitem>
-	      <listitem><para><emphasis>Previous</emphasis> - select previous period.</para></listitem>
-	      <listitem><para><emphasis>Current</emphasis> - select current period.</para></listitem>
-	      <listitem><para><emphasis>Next</emphasis>  - select next period.</para></listitem>
-	      <listitem><para><emphasis>Last</emphasis> - select last budget period</para></listitem>
-	      <listitem><para><emphasis>Manual</emphasis> - enables spinbox where you can select exact period</para></listitem>
+	      <listitem><para><emphasis>Primeiro</emphasis> - seleciona o primeiro período do orçamento</para></listitem>
+	      <listitem><para><emphasis>Anterior</emphasis> - seleciona o período anterior.</para></listitem>
+	      <listitem><para><emphasis>Atual</emphasis> - seleciona o período atual.</para></listitem>
+	      <listitem><para><emphasis>Seguinte</emphasis>  - seleciona o período seguinte.</para></listitem>
+	      <listitem><para><emphasis>Último</emphasis> - seleciona o último epríodo do orçamento</para></listitem>
+	      <listitem><para><emphasis>Manual</emphasis> - ativa um botão giratório onde pode escolher o período exato</para></listitem>
 	    </orderedlist></para>
-	    <note><para>The <emphasis>current</emphasis>, <emphasis>previous</emphasis>, and <emphasis>next</emphasis> options select the period based on the date on which the report is run, with <emphasis>current</emphasis> being the period in which the date falls, <emphasis>previous</emphasis> being the one before that, and <emphasis>next</emphasis> the period after. If the current date falls outside the date range covered by the budget, the <emphasis>first</emphasis> or <emphasis>last</emphasis> period will be used as appropriate.</para></note>
+	    <note><para>As opções <emphasis>Atual</emphasis>, <emphasis>Anterior</emphasis> e <emphasis>Seguinte</emphasis> 
+	    selecionam o período baseadas na data em que o relatório é executado, sendo <emphasis>Atual</emphasis> o período 
+	    em que a data cai, <emphasis>Anterior</emphasis> sendo o anterior a este último e <emphasis>Seguinte</emphasis> 
+	    o período a seguir. Se a data atual cai fora do intervalo coberto pelo orçamento, serão usados o 
+	    <emphasis>Primeiro</emphasis> ou <emphasis>Último</emphasis> períodos, conforme for mais adequado.</para></note>
 	    </listitem>
-	    <listitem><para><emphasis>Exact start period</emphasis> - options for select exact start period, enabled only if range start option is set to <emphasis>Manual</emphasis></para></listitem>
-	    <listitem><para><emphasis>Range end</emphasis> - a combobox with a list of variants how to select end period. Values are the same as in <emphasis>Range start</emphasis> options</para></listitem>
-	    <listitem><para><emphasis>Exact end period</emphasis> - the same as <emphasis>Exact start period</emphasis> but for the end of range</para></listitem>
-	    <listitem><para><emphasis>Include collapsed periods before selected</emphasis> - if on, then includes in report all budget periods, that are before selected period range, as a single consolidated column set</para></listitem>
-	    <listitem><para><emphasis>Include collapsed periods after selected</emphasis> - if on, then includes in report all budget periods, that are after selected period range, as a single consolidated column set.</para></listitem>
+	    <listitem><para><emphasis>Período inicial exato</emphasis> - opções para selecionar o período inicial exato, 
+	    só ativo se a opção de seleção do intervalo for definida para <emphasis>Manual</emphasis></para></listitem>
+	    <listitem><para><emphasis>Fim do intervalo</emphasis> - caixa de combinação com uma lista de variantes sobre
+	    como selecionar o período final. Os valores são os mesmos que nas opções do <emphasis>Início do intervalo</emphasis></para></listitem>
+	    <listitem><para><emphasis>Período final exato</emphasis> - o mesmo que <emphasis>Período inicial exato</emphasis> 
+	    mas para o final do intervalo</para></listitem>
+	    <listitem><para><emphasis>Incluir períodos colapsados antes da seleção</emphasis> - se ativo, inclui no relatório 
+	    todos os períodos do orçamento antes do intervalo selecionado, como um único conjunto de colunas consolidado</para></listitem>
+	    <listitem><para><emphasis>Incluir períodos colapsados após a seleção</emphasis> - se ativo, inclui no relatório 
+	    todos os períodos do orçamento após o intervalo selecionado, como um único conjunto de colunas consolidado.</para></listitem>
 	  </itemizedlist>
 	</para>
       </listitem>
 
        <listitem>
-        <para>Cash Flow:</para>
+        <para>Fluxo de caixa:</para>
        </listitem>
 
        <listitem>
-        <para>Equity Statement:</para>
+        <para>Declaração de capital próprio:</para>
        </listitem>
 
        <listitem>
-        <para>Expense Barchart:</para>
+        <para>Gráfico de barras de despesa:</para>
        </listitem>
 
        <listitem>
-        <para>Expense Piechart:</para>
+        <para>Gráfico circular de despesa:</para>
        </listitem>
 
        <listitem>
-        <para>Expense vs Day of Week:</para>
+        <para>Despesa vs Dia da semana:</para>
        </listitem>
 
        <listitem>
-        <para>Income Barchart:</para>
+        <para>Gráfico de barras de receita:</para>
        </listitem>
 
        <listitem>
-        <para>Income &amp; Expense Chart:</para>
+        <para>Gráfico de receitas e despesas:</para>
        </listitem>
 
        <listitem>
-        <para>Income Statement: This report summarizes sources of income and expenditure.
-         (This report was called Profit &amp; Loss in gnucash-1.8.)</para>
+        <para>Declaração de rendimento: este relatório sumariza origens de receita e despesa (era chamado 
+        Lucro &amp; Prejuízo no &app; 1.8)</para>
        </listitem>
 
        <listitem>
-        <para>Income Statement:</para>
+        <para>Declaração de rendimento:</para>
        </listitem>
 
        <listitem>
-        <para>Income vs Day of Week:</para>
+        <para>Receita vs Dia da semana:</para>
        </listitem>
 
        <listitem>
-        <para>Trial Balance: This report summarizes sources of income and expenditure.</para>
+        <para>Balanço teste: este relatório sumariza origens de receita e despesa.</para>
        </listitem>
       </itemizedlist>
 
    </sect1>
 
    <sect1 id="report-biz">
-    <title>Business Reports</title>
+    <title>Relatórios de negócios</title>
 
-      <para>The Business Reports includes Customer and Vendor Reports and Printable
-       Invoices as well as Aging reports.</para>
+      <para>Estes relatórios incluem relatórios de clientes, fornecedores, faturas imprimíveis e relatórios de 
+      idade.</para>
 
        <itemizedlist>
         <listitem>
-         <para>Customer Report:</para>
+         <para>Relatório de clientes:</para>
         </listitem>
 
         <listitem>
-         <para>Easy Invoice:</para>
+         <para>Fatura simples:</para>
         </listitem>
 
         <listitem>
-         <para>Employee Report:</para>
+         <para>Relatório de empregados:</para>
         </listitem>
 
         <listitem>
-         <para>Fancy Invoice:</para>
+         <para>Fatura elegante:</para>
         </listitem>
 
         <listitem>
-         <para>Payable Aging:</para>
+         <para>Idade pagável:</para>
         </listitem>
 
         <listitem>
-         <para>Printable Invoice:</para>
+         <para>Fatura imprimível:</para>
         </listitem>
 
         <listitem>
-         <para>Receivable Aging:</para>
+         <para>Idade cobrável:</para>
         </listitem>
 
         <listitem>
-         <para>Vendor Report:</para>
+         <para>Relatório de fornecedores:</para>
         </listitem>
        </itemizedlist>
 
      </sect1>
 
      <sect1 id="report-custom">
-      <title>Customizing Reports and Graphs</title>
+      <title>Personalizar relatórios e gráficos</title>
 
-        <para><application>&app;</application> reports have many options
-        for customization. First, run the original report itself. Then,
-        access the report options with the <guibutton>Options</guibutton>
-        button on the toolbar.</para>
+        <para>Os relatórios do <application>&app;</application> têm muitas opções de personalização. Primeiro, 
+        execute o relatório. De seguida, aceda às opções do relatório com o botão <guibutton>Opções</guibutton>
+        na barra de ferramentas.</para>
 
-           <note> <para>Check changed Graphic Engine Options and describe Saving Customized Reports</para></note>
-<!--
+<!--    <note> <para>Check changed Graphic Engine Options and describe Saving Customized Reports</para></note>
+
               suggest how to save report options E.g. Choose definite options when you
               want to see an Income Statement, so you want to save them for future and
               not to choose all the time.
@@ -910,143 +942,135 @@
                 File -> Add Report   (in 2.0.5).
               But first, you must change the title of the report in the options. -->
 
-        <para>Many reports share similar sorts of options. Some common ones include:</para>
+        <para>Muitos relatórios partilham várias opções semelhantes. Algumas comuns incluem:</para>
 
         <itemizedlist>
           <listitem>
-            <para>Report Name: Set the title of the report. This is also used to print the
-             report for later viewing.</para>
+            <para>Nome do relatório: define o título do relatório. Também usado para imprimir o relatório 
+            para ver mais tarde.</para>
           </listitem>
 
           <listitem>
-            <para>Date Options: Reports typically specify either a single date, or a date
-             range, for the report. Dates can be specified in two ways, either directly
-             (using the date selector), or by selecting a relative date from the menu.
-             Relative dates allow you to specify dates like <guilabel>Beginning of this year</guilabel> or
-             <guilabel>Today</guilabel>.</para>
+            <para>Opções de data: tipicamente, os relatórios especificam ou uma única data, ou um intervalo de datas. 
+            As datas podem ser especificadas de duas maneiras, diretamente (com o seletor de datas) ou selecionando 
+            uma data relativa no menu. Datas relativas permitem especificar coisa como <guilabel>Princípio deste 
+            ano</guilabel> ou <guilabel>Hoje</guilabel>.</para>
           </listitem>
 
           <listitem>
-            <para>Step Size: This option is used on bar charts to determine the interval which
-             each bar represents. Typical values are daily, weekly, monthly, and yearly.</para>
+            <para>Tamanho do passo: esta opção é usada em gráficos de barras para determinar o intervalo que cada 
+            barra representa. Valores típicos são Dia, Semana, Mês, ano, etc..</para>
           </listitem>
 
           <listitem>
-            <para>Accounts: Select the appropriate accounts for the report. Note that in some
-             reports only certain types of accounts can be selected. For example, an expense
-             piechart only allows expense accounts to be selected. </para>
+            <para>Contas: seleção das contas apropriadas para o relatório. Note que em alguns relatórios só pode 
+            selecionar certo tipo de contas. Por exemplo, um gráfico circular de despesa só permite a seleção de 
+            contas de despesa. </para>
           </listitem>
 
           <listitem>
-            <para>Show Long Account Names: This option allows displaying either short account
-             names (for example, Power) or long account names (for example, Utilities:Power).
+            <para>Mostrar nomes completos de conta: esta opção permite mostrar nomes curtos (por exemplo, Eletricidade), 
+            ou nomes longos (por exemplo, Serviços:Eletricidade).</para>
+          </listitem>
+
+          <listitem>
+            <para>Incluir subcontas?: relatórios sumário têm esta opção, que, se marcada, garante que todas as subcontas 
+            são incluídas se a conta-mãe o estiver.</para>
+          </listitem>
+
+          <listitem>
+            <para>Profundidade: esta opção permite a seleção de níveis de subcontas a mostrar no relatório. Se as 
+            subcontas forem mais profundas, é calculado um valor global para todas as subcontas e incluído num total. 
+            Para garantir que cada conta selecionada é mostrada individualmente, selecione <guibutton>Tudo</guibutton>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Folha de estilo: seleção de uma folha de estilo. As folhas de estilo controlam a forma como os 
+            relatórios são mostrados. De momento, há quatro folhas de estilo: <guilabel>Predefinição</guilabel>, 
+            <guilabel>Simples</guilabel>, <guilabel>Rodapé</guilabel> e <guilabel>Technicolor</guilabel>.
+            Pode personalizar cada uma delas indo a <menuchoice><guimenu>Editar</guimenu><guimenuitem>Folhas de 
+             estilo...</guimenuitem></menuchoice>. Isto é descrito na secção <xref linkend="change-style"></xref>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Dimensões do gráfico: há opções na maioria dos gráficos para definir a largura e a altura, em pixels.</para>
+          </listitem>
+
+          <listitem>
+            <para>Moeda do relatório: seleção da moeda do relatório. Geralmente, os valores a mostrar serão convertidos 
+            para esta moeda.</para>
+          </listitem>
+
+          <listitem>
+            <para>Origem da cotação: seleção de como são calculadas as cotações de moedas e ações neste relatório. 
+            Escolha entre uma média ponderada de cotações entre todas as transações, cotações ao valor atual ou cotações 
+            à data do relatório.</para>
+          </listitem>
+
+          <listitem>
+            <para>Totais: os gráficos mostram totais na legenda, se esta opção estiver marcada.</para>
+          </listitem>
+
+          <listitem>
+            <para>Fatias máximas: controla o número máximo de fatias a mostrar num gráfico circular - as excedentes 
+            são agrupadas numa fatia chamada Outro. </para>
+          </listitem>
+
+          <listitem>
+            <para>Barras máximas: controla o número máximo de barras a mostrar num gráfico de barras.
             </para>
           </listitem>
 
           <listitem>
-            <para>Include Subaccounts?: Summary reports typically have an include all
-             subaccounts option, which if selected ensures that all subaccounts are included
-             if the parent account is.</para>
-          </listitem>
-
-          <listitem>
-            <para>Depth: This option allows the selection of how many levels the report
-             displays subaccounts. If the subaccounts go deeper than selected, an overall value
-             for all the subaccounts is calculated and included in a total. To make sure every
-             account selected is individually displayed, select <guibutton>All</guibutton>.</para>
-          </listitem>
-
-          <listitem>
-            <para>Style Sheet: Select a Style Sheet. Style sheets control how reports are
-             displayed. At the moment, there are four style sheets: <guilabel>Default</guilabel>, <guilabel>Easy</guilabel>,
-             <guilabel>Footer</guilabel> and <guilabel>Technicolor</guilabel>.
-             You can customize each of these from the <menuchoice><guimenu>Edit</guimenu><guimenuitem>Style
-             Sheets...</guimenuitem></menuchoice> menu item.
-             This is described in the Changing Style Sheets section. <xref linkend="change-style"></xref></para>
-          </listitem>
-
-          <listitem>
-            <para>Plot Dimensions: There are width and height options for most graphs, which
-             specify the displayed dimensions (in pixels).</para>
-          </listitem>
-
-          <listitem>
-            <para>Report Currency: Select the report currency. Generally, values will be
-             converted to this currency for display.</para>
-          </listitem>
-
-          <listitem>
-            <para>Price Source: Select how stock and currency prices are calculated in this
-             report. Choose between a weighted average of prices over all transactions, prices
-             at current values, or prices at the time of the report date.</para>
-          </listitem>
-
-          <listitem>
-            <para>Totals: Charts display totals in the chart legend if this option is selected.
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>Maximum Slices: Controls the maximum number of slices displayed in a
-             piechart - other accounts will be placed in a slice marked Other. </para>
-          </listitem>
-
-          <listitem>
-            <para>Maximum Bars: Controls the maximum number of bars displayed in a barchart.
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>Display Columns: Choose columns to show from the register.</para>
+            <para>Mostrar colunas: permite escolher colunas do diário a mostrar.</para>
           </listitem>
         </itemizedlist>
       </sect1>
 
       <sect1 id="report-print">
-        <title>Printing or Exporting Reports and Graphs</title>
+        <title>Imprimir ou exportar relatórios e gráficos</title>
 
-          <note><para> Verify !!!  How customize printing with Gnome?</para></note>
+<!--          <note><para> Verify !!!  How customize printing with Gnome?</para></note>  -->
 
-        <para><application>&app;</application> is able to print reports and to export the reports to <acronym>HTML</acronym> (web) pages. The
-         Print <application>&app;</application> Document dialog is accessed from the <guibutton>Print</guibutton> button on the <emphasis>Toolbar</emphasis> or
-         go to <menuchoice><guimenu>File</guimenu><guimenuitem>Print</guimenuitem></menuchoice> in the menu. To Export a report to a web page (<acronym>HTML</acronym>) select
-         the <guibutton>Export</guibutton> button on the <emphasis>Toolbar</emphasis> and type in a file name.</para>
+        <para>O <application>&app;</application> é capaz de imprimir relatórios e exportá-los para <acronym>HTML</acronym> 
+        (páginas web). O diálogo Imprimir documento do <application>&app;</application> é acedido clicando em 
+        <guibutton>Imprimir</guibutton> na <emphasis>barra de ferramentas</emphasis> ou indo a <menuchoice><guimenu>Ficheiro
+        </guimenu><guimenuitem>Imprimir</guimenuitem></menuchoice>. para exportar um relatório para página web 
+        (<acronym>HTML</acronym>), clique em <guibutton>Exportar</guibutton> na <emphasis>barra de ferramentas</emphasis> 
+        e insira um nome para o ficheiro.</para>
+
+        <para>O diálogo Imprimir documento do <application>&app;</application> é usado para selecionar para que impressora 
+        enviar a tarefa de impressão ou para imprimir para um ficheiro. Também contém um botão <guibutton>Antever 
+        impressão</guibutton> para ver o documento antes de imprimir. Clique em <guibutton>Imprimir</guibutton> para 
+        enviar a tarefa para a impressora selecionada ou <guibutton>Cancelar</guibutton> para sair do diálogo.</para>
 
 
-        <para>The Print <application>&app;</application> Document dialog is used to select which Printer to send the
-         print job to or to print to a File. It also contains a Preview button to view the
-         document before printing. Press Print to send the job to the selected printer or
-         <guibutton>Cancel</guibutton> to dismiss the Print dialog.</para>
-
-
-        <para>Printing from an open register prints the Account Report, which is also called
-         the Register Report. This lists transactions in the account with a total. Other
-         reports print as viewed in the Report screen.</para>
+        <para>Imprimir de um diário aberto imprime o relatório de conta, que também é chamado Relatório de diário. Lista 
+        as transações na conta, com um total. Outros relatórios imprimem aquilo que se vê no ecrã.</para>
       </sect1>
 
       <sect1 id="report-create">
-        <title>Creating Reports and Graphs</title>
+        <title>Criar relatórios e gráficos</title>
 
-             <note><para>This section may need updating !!!</para> </note>
+             <note><para>Esta secção pode precisar de atualizações !!!</para> </note>
 
-        <para>It is possible to write reports if the current ones are not suitable. To do this
-         you will need to know Scheme (a LISP-like programming language), and it is an
-         excellent idea to have a copy of the <application>&app;</application> source code available. </para>
+        <para>É possível escrever relatórios, se os atuais não lhe servirem. Para o fazer, tem de saber Scheme 
+        (uma linguagem de programação tipo LISP) e é uma excelente ideia ter uma cópia do código fonte do 
+        <application>&app;</application> disponível. </para>
 
-        <para>The reporting interface is documented in the source code file
-         <filename>src/report/report-system/doc/report-html.txt</filename>. The file <filename>src/report/utility-reports/hello-world.scm</filename>
-         in the <application>&app;</application> source distribution provides a good example of how reports are
-         developed.</para>
+        <para>O ambiente dos relatórios é documentado no ficheiro do código fonte
+         <filename>src/report/report-system/doc/report-html.txt</filename>. 
+         O ficheiro <filename>src/report/utility-reports/hello-world.scm</filename> na distribuição do código fonte do 
+         <application>&app;</application> oferece um bom exemplo de como são desenvolvidos os relatórios.</para>
 
-        <para>It is also necessary to access data from the engine to get information for your
-         report. This is performed by a set of Scheme wrapper functions that are documented in
-         the file <filename>src/g-wrap/gnc.html</filename>. Examine some of the other reports in src/scm/report for
-         an indication of how they are used.</para>
+        <para>Também é necessário aceder a dados do motor para obter informação para o seu relatório. Isto é feito 
+         por um conjunto de funções do Scheme, documentadas no ficheiro <filename>src/g-wrap/gnc.html</filename>. 
+         Examine alguns dos outros relatórios em src/scm/report para ter uma indicação sobre como são usadas.</para>
 
-        <para>At present, reports are produced by calling a <acronym>HTML</acronym>-generation API, which outputs
-         a dialect of <acronym>HTML</acronym> and rendering this with a <acronym>HTML</acronym> widget. This has limitations,
-         particularly when trying to align objects precisely, as might be necessary for
-         printing onto pre-printed invoices for example.</para>
+        <para>De momento, os relatórios são produzidos chamando uma API de geração de <acronym>HTML</acronym>, que produz 
+        um dialeto de <acronym>HTML</acronym> e o desenha com um widget <acronym>HTML</acronym>. Isto tem limitações, 
+        particularmente ao tentar alinhar precisamente objetos, como poderá ser necessário para alinhar a impressão em 
+        faturas pré-impressas, por exemplo.</para>
    </sect1>
 
 </chapter>
