@@ -1,7 +1,7 @@
 figdir = figures
 docname = gnucash-help
-lang = C
-omffile = $(docname)-C.omf
+lang = pt
+omffile = $(docname)-pt.omf
 entities = \
 	Help_ch_Intro.xml \
         Help_ch_GettingHelp.xml \
@@ -19,8 +19,9 @@ entities = \
 	Help_txf-categories.xml \
 	Help_fdl-appendix.xml \
         Help_tips-appendix.xml
-DISTCLEANFILES =  $(docname)-C.omf.out
+DISTCLEANFILES =  $(docname)-pt.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
+XSLTFLAGS_FO= --stringparam paper.type A4
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
 include $(top_srcdir)/epub.make
