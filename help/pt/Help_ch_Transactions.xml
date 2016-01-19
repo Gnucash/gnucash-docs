@@ -1,0 +1,922 @@
+<!--
+    (Do not remove this comment block.)
+    Version: 2.0.x
+    Last modified: April 15th 2007
+    modified: August 12th 2006
+    modified: February 28th 2005
+
+Maintainers:
+Chris Lyttle <chris@wilddev.net>
+Neil Williams <linux@codehelp.co.uk>
+
+Author:
+Chris Lyttle <chris@wilddev.net>
+Translators:
+(Pedro Albuquerque <palbuquerque73@gmail.com)
+-->
+
+<!--
+    Common Transaction Operations Items Here !!!
+-->
+
+<chapter id="ch_Common_Trans_Ops">
+  <title>Operações comuns com transações</title>
+
+  <para>Uma <emphasis>transação</emphasis> representa o movimento de dinheiro de uma conta para outra. Sempre que 
+  gasta ou recebe dinheiro, ou transfere dinheiro entre contas, faz uma transação. No <application>&app;</application>, 
+  as transações envolvem sempre, pelo menos, duas contas.</para>
+
+  <para>O <application>&app;</application> usa contas como forma de agrupar ou organizar o registo de transações. 
+  Esta secção descreve os métodos que o <application>&app;</application> tem para ajudar a inserir transações 
+  rapidamente nos diários. </para>
+  <para></para>
+
+  <para>O <application>&app;</application> tem vários métodos disponíveis para inserir transações.</para>
+
+  <itemizedlist>
+    <listitem>
+      <para>Trabalhar diretamente na janela do diário é a forma mais comum de inserir transações.</para>
+    </listitem>
+
+    <listitem>
+      <para>Usar a janela <guilabel>Transferir fundos</guilabel>.</para>
+    </listitem>
+
+    <listitem>
+      <para>Importar transações de um ficheiro <acronym>QIF</acronym>/<acronym>OFX</acronym> ou através do 
+      "banco online <acronym>OFX</acronym>".</para>
+    </listitem>
+
+  </itemizedlist>
+  <!--
+      <note>
+      <para>Where should the Importing of data from downloaded files" and "On-line" banking be covered?.
+      </para></note>
+  -->
+  <sect1 id="reg-views">
+    <title>Alterar o aspeto do diário</title>
+
+    <para>O <application>&app;</application> tem várias opções para alterar a forma como o diário é mostrado 
+    para que as transações possam ser mais claras. O estilo predefinido é o Livro razão básico. Este mostra 
+    transações numa linha única, para permitir a apresentação mais concisa possível com todos os detalhes 
+    relevantes.</para>
+
+    <para>Pode alterar este estilo no menu <guimenu>Ver</guimenu>, onde tem três opções disponíveis. 
+    Quando fechar o separador, o estilo reverte para o Livro razão básico. Para tornar esta alteração permanente, 
+    altere o estilo no separador <guilabel>Predefinições do diário</guilabel>, nas 
+    <guilabel>preferências do &app;</guilabel>.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guimenu>Livro razão básico:</guimenu> o estilo de linha única predefinido. As parcelas são 
+        mostradas como sumário. O ícone 
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/icons/split_transaction.png" format="PNG"
+                       srccredit="Pedro Albuquerque" width="47"></imagedata>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/split_transaction.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+        </mediaobject> e o item de menu 
+        <menuchoice><guimenu>Ações</guimenu><guimenuitem>Dividir transação</guimenuitem></menuchoice> estão ativos.</para>
+      </listitem>
+
+      <listitem>
+        <para><guimenu>Livro razão de parcelas automáticas:</guimenu> este estilo expande automaticamente 
+        as parcelas em todas as transações divididas selecionadas.</para>
+      </listitem>
+
+      <listitem>
+        <para><guimenu>Diário de transações:</guimenu> este estilo expande todas as transaçõs para que 
+        se possa ver a transação completa.</para>
+      </listitem>
+
+      <listitem>
+        <para><guimenu>Linha dupla:</guimenu> esta caixa altera qualquer um dos estilos acima para adicionar 
+        linhas para notas sobre a transação.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>As outras duas opções para alterar o aspeto dos diários são restringir os itens mostrados através de 
+    <menuchoice><guimenu>Ver</guimenu><guimenuitem>Filtrar por ...</guimenuitem></menuchoice> e alterar a ordem 
+    através de <menuchoice><guimenu>Ver</guimenu><guimenuitem>Ordenar por</guimenuitem></menuchoice>. Veja
+    <xref linkend="Trans-view-menu"></xref>.
+    </para>
+
+  </sect1>
+
+  <sect1 id="trans-win-enter">
+    <title>Diálogo Transferir fundos</title>
+    <para>O <guilabel>Diálogo Transferir fundos</guilabel>, acedido através de 
+    <menuchoice><guimenu>Ações</guimenu><guimenuitem>Transferir...</guimenuitem></menuchoice>, 
+    pelo seu atalho ou clicando em <guibutton>Transferir</guibutton> no separador do diário de 
+    conta, serve dois propósitos no <application>&app;</application>: 
+    <itemizedlist>
+		<listitem><para>uma forma de criar uma transação simples (i.e. c/ duas parcelas) entre 
+			contas arbitrárias.</para>
+		</listitem>
+		<listitem><para>Reunir taxas de câmbio ou informação de montante numa transação multi-moeda  
+			(veja <xref linkend="trans-currency-enter"/>).</para>
+		</listitem>
+	</itemizedlist>
+    </para>
+    <note><para>Os painéis <guilabel>Informação básica</guilabel> e as <guilabel>contas de transferência</guilabel> 
+    estarão inativos no diálogo <guilabel>Transferir fundos</guilabel> quando o usar para reunir taxas de câmbio 
+    ou informação de montante.</para></note>
+    <sect2><title>Informação básica</title>
+    <para> Esta secção reune a informação para construir uma transação: data, descrição, montante, etc..</para>
+    <itemizedlist>
+      <listitem><para><guilabel>Montante:</guilabel> o montante da transação na conta 
+		<guilabel>Transferir de</guilabel>.</para>
+	  </listitem>
+      <listitem>
+		  <para><guilabel>Data:</guilabel> a data de emissão da transação, i.e. a data em que fica 
+		  registada no livro.</para>
+	  </listitem>
+      <listitem><para><guilabel>Nº:</guilabel> um número de referência da transação, frequentemente um 
+		número de cheque.</para>
+      </listitem>
+      <listitem>
+		  <para><guilabel>Descrição:</guilabel> a descrição da transação, normalmente o pagador ou recebedor.</para>
+	  </listitem>
+      <listitem>
+		  <para><guilabel>Notas:</guilabel> informação adicional que poderá querer anotar sobre a transação. 
+		  Tudo o que acrescentar aqui será adicionado ao campo <guilabel>Memorando</guilabel> de
+		  <emphasis role="italic">ambas</emphasis> as parcelas.</para>
+	  </listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2><title>Contas de transferência</title>
+    <para>As árvores <guilabel>Transferir de</guilabel> e
+    <guilabel>Transferir para</guilabel> são usadas para selecionar as contas que 
+    participam na transação. Normalmente mostram contas do ativo e do passivo. 
+    Se precisar de usar contas de receita ou despesa, marque a caixa <guilabel>Mostrar 
+    Receitas/Despesas</guilabel> ligeiramente abaixo.</para>
+    <itemizedlist>
+      <listitem>
+        <para>Escolha a conta <guilabel>Transferir de</guilabel>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Escolha a conta <guilabel>Transferir para</guilabel>.</para>
+      </listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2 id="trans-win-price"><title>Transferência de moeda</title>
+    <para> O painel <guilabel>Transferência de moeda</guilabel> é usado para reunir
+    a informação necessária para inserir o montante da parcela 
+    <guilabel>Transferir para</guilabel>. Pode inserir uma cotação ou um 
+    montante e o <application>&app;</application> calcula a ordem. Se tiver 
+    procura online instalada (veja <xref linkend="Online-price-setup"/>), pode 
+    usar o botão <guilabel>Obter taxa</guilabel> para obter a cotação atual.</para>
+    <para>O painel <guilabel>Transferência de moeda</guilabel> só está ativo se as contas 
+    selecionadas usarem mercadorias diferentes ou se o diálogo <guilabel>Transferir 
+    fundos</guilabel> foi lançado para reunir informação de cotação ou montante 
+    a partir da edição de uma transação no diário. </para>
+    <para>O painel <guilabel>Transferência de moeda</guilabel> está organizado 
+    como grupo de opções com duas possibilidades, <guilabel>Taxa de câmbio</guilabel> e 
+    <guilabel>Montante de débito</guilabel>. Cada uma consiste em botão rádio e 
+    campo numérico.</para>
+    <para> Se estiver disponível uma cotação relevante na base de dados (veja 
+    <xref linkend="invest-stockprice-manual"/>), a <guilabel>Taxa de câmbio</guilabel> 
+    terá um valor predefinido.</para>
+    <itemizedlist>
+      <listitem>
+		  <para>Selecione o botão <guilabel>Taxa de câmbio</guilabel> se quiser inserir 
+		  uma cotação, ou use o botão <guilabel>Obter taxa</guilabel>.</para>
+	  </listitem>
+      <listitem>
+		  <para>Selecione o botão <guilabel>Montante de débito</guilabel> se quiser inserir 
+		  o montante da parcela <emphasis role="italic">Para a conta</emphasis>.</para>
+	  </listitem>
+      <listitem>
+		  <para>Insira a cotação/taxa de câmbio ou o montante no campo numérico correspondente 
+          ao botão que selecionou. O <application>&app;</application> calcula o outro montante 
+	      quando sair do campo. Se estiver ativo, pode usar o botão <guilabel>Obter taxa</guilabel> 
+          para ir buscar uma cotação atual.</para>
+       </listitem>
+    </itemizedlist>
+      <note><para>Se criou uma cotação no <guilabel>Editor de cotações</guilabel> 
+      (veja <xref linkend="invest-stockprice-manual"/>) para a data atual, este botão 
+      não atualiza essa cotação. Terá primeiro de eliminar a cotação criada manualmente 
+      no <guilabel>Editor de cotações</guilabel> antes de clicar no botão 
+      <guibutton>Obter taxa</guibutton>.</para></note>
+      <note><para>O botão <guibutton>Obter taxa</guibutton> cria ou substitui imediatamente 
+      uma cotação existente no <guilabel>Editor de cotações</guilabel> a não ser que 
+      exista uma cotação criada manualmente para hoje.</para></note>
+    </sect2>
+    <sect2><title>Terminar</title>
+    <para>Clique em <guibutton>Aceitar</guibutton> para submeter a transação (ou confirmar 
+    a cotação/montante) ou <guibutton>Cancelar</guibutton> para fechar o diálogo sem registar 
+    a transação.
+    <note><para>Ao submeter uma transação ou confirmar uma taxa de câmbio, a cotação no 
+    <guilabel>Editor de cotações</guilabel> na data da transação pode ser atualizada. veja 
+    <xref linkend="tool-price"/> para mais detalhes.</para></note></para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="trans-enter">
+    <title>Inserir uma transação pelo diário</title>
+
+    <para>Quando o separador de diário de conta está aberto, a lista de transações dessa conta 
+    é mostrada. Este separador tem o nome da conta. Os menus contêm várias funções que alteram 
+    o aspeto das transações. A <emphasis>barra de ferramentas</emphasis> também contém diversas 
+    funções que são frequentemente usadas ao inserir ou manipular transações. Estas são descritas 
+    na secção <xref linkend="account-register"></xref> deste documento.</para>
+
+    <sect2 id="trans-reg-enter">
+      <title>Inserir diretamente na janela de diário</title>
+
+      <para>A janela de diário varia ligeiramente de aspeto, dependendo das opções de estilo que 
+      escolheu. Segue-se uma descrição sobre como inserir transações simples no estilo <guilabel>Livro 
+      razão básico</guilabel>. O cursor está colocado no campo <guilabel>Data</guilabel> por predefinição 
+      quando a janela de diário é aberta.</para>
+
+      <note>
+        <para>Ao trabalhar em transações no <application>&app;</application>, esteja ciente que as teclas 
+        <keycap function="enter">Enter</keycap> e <keycap function="tab">Tab</keycap> se comportam de 
+        forma diferente e realizam ações diferentes.</para>
+        <para>A tecla <keycap function="enter">Enter</keycap> move-o para o primeiro campo da parcela 
+        seguinte, independentemente do campo em que esteja. Se não houver parcela seguinte, continua para 
+        a transação seguinte. Em qualquer caso, <keycap function="enter">Enter</keycap> termina a edição da 
+        transação e qualquer desequilíbrio é emitido para a conta <emphasis>Desequilíbrio-MOEDA</emphasis>, 
+        onde <emphasis>MOEDA</emphasis> é a moeda da transação.</para>
+        <para>A tecla <keycap function="tab">Tab</keycap> move-o para o campo seguinte da parcela atual.  
+        Se estiver no último campo, move-o para a parcela seguinte, criando uma nova se não houver nenhuma. 
+        Se a parcela estiver em branco, a tecla <keycap function="tab">Tab</keycaptermina a edição da 
+        transação e qualquer desequilíbrio é emitido para a conta <emphasis>Desequilíbrio-MOEDA</emphasis>,
+        tal como acima.</para>
+      </note>
+
+      <orderedlist>
+        <listitem>
+          <para>Clicar no pequeno ícone à direita do campo Data, abre um calendário. Use as setas para 
+          selecionar o mês e ano corretos e depois escolha o dia. Clicar no ícone novamente encerra o 
+          calendário. Também é possível digitar a data ou parte dela e deixar o <application>&app;</application> 
+          preencher o resto.</para>
+        </listitem>
+
+        <listitem>
+          <para>Prima <keycap>Tab</keycap> para se mover para o campo <guilabel>Nº</guilabel>. Aqui pode inserir 
+          um número de cheque, fatura ou transação. Premir <keycap>+</keycap> (mais) avança automaticamente 
+          o número da última transação em 1, caso esteja numerada.</para>
+        </listitem>
+
+        <listitem>
+          <para>Prima <keycap>Tab</keycap> para se mover para o campo <guilabel>Descrição</guilabel>. Este campo 
+          é usado para inserir um sacador ou outra descrição para a transação. Tentará automaticamente preencher 
+          o campo com informação anterior à medida que escreve.</para>
+        </listitem>
+
+        <listitem>
+          <para>Neste ponto, quando premir <keycap>Tab</keycap> acontece uma de duas coisas. Se o 
+          <application>&app;</application> encontrar uma transação coincidente, o cursor salta para um dos 
+          campos de montante, preenchendo automaticamente a conta de transferência. Selecionar qualquer um 
+          campo com o rato em vez de usar <keycap>Tab</keycap> não faz este preenchimento automático. 
+          Se não houver transações coincidentes (existentes), o <application>&app;</application> move o 
+          cursor para o campo <guilabel>Transferência</guilabel> com uma só linha de transação fornecida.</para>
+        </listitem>
+
+        <listitem>
+          <para>Ao digitar no campo Transferência, o <application>&app;</application> também tentará automaticamente 
+          comparar o nome da conta com as contas existentes. Fá-lo alfabeticamente, por exemplo, digitar 
+          <keycap>Desp</keycap> resulta na secção <emphasis>Despesas</emphasis> da lista de contas. Uma vez achada a 
+          secção, é possível escolher uma conta filho premindo <keycap>:</keycap> (dois pontos). Se após digitar 
+          <keycap>Desp</keycap> premir <keycap>:</keycap>, o cursor move-se para a primeira conta filho de despesas 
+          que estiver na lista. Digitar combinações de letras e <keycap>:</keycap> também causa o movimento rápido 
+          na lista de contas. O pequeno ícone à direita da caixa <guilabel>Transferência</guilabel> pode ser usado 
+          como forma alternativa de selecionar as contas. As setas <emphasis>acima</emphasis> e <emphasis>abaixo</emphasis> 
+          também movem o cursor para selecionar contas.
+          </para>
+          <note>A descrição acima utiliza o carácter ":". Se escolheu um carácter diferente no separador 
+          <guilabel>Contas</guilabel> nas <guilabel>preferências do &app;</guilabel>, será esse que tem de usar 
+          para obter o efeito descrito.</note>
+        </listitem>
+
+        <listitem>
+          <para>O campo seguinte (R) é usado para reconciliação. Isto é descrito na secção 
+          <xref linkend="acct-reconcile"></xref>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Prima <keycap>Tab</keycap> para se mover para o primeiro dos campos de montante. Os nomes das duas 
+          colunas seguintes diferem de acordo com o tipo da conta aberta. Por exemplo, contas <emphasis>Banco</emphasis> 
+          mostram <guilabel>Depósito</guilabel> e <guilabel>Levantamento</guilabel>, contas <emphasis>Cartão de 
+          crédito</emphasis> mostram <guilabel>Pagamento</guilabel> e <guilabel>Crédito</guilabel>, contas 
+          <emphasis>Ação</emphasis> mostram <guilabel>Ações</guilabel>, <guilabel>Cotação</guilabel>, 
+          <guilabel>Comprar</guilabel> e <guilabel>Vender</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Insira o montante da transação no campo adequado. Quando a transação estiver "saldada" premindo 
+          <keycap function="enter">Enter</keycap>, clicar em <guibutton>Enter</guibutton> ou ir a
+          <menuchoice><guimenu>Transação</guimenu><guimenuitem>Registar transação</guimenuitem></menuchoice> 
+          termina a transação. Clicar em <guibutton>Cancelar</guibutton> ou ir a <menuchoice><guimenu>Transação</guimenu>
+          <guimenuitem>Cancelar transação</guimenuitem></menuchoice> apaga a transação.</para>
+        </listitem>
+
+        <listitem>
+          <para>Transações só com uma conta de transferência mostram o nome dessa conta no campo 
+          <guilabel>Transferência</guilabel> nas transações terminadas (o campo <guilabel>Transferência</guilabel> 
+          é o quarto a contar da esquerda na janela de diário).</para>
+        </listitem>
+
+        <listitem>
+          <para>Para se mover para a transação em branco no final do diário, clique em 
+          <guibutton>Vazia</guibutton> na <emphasis>barra de ferramentas</emphasis> ou vá a 
+          <menuchoice><guimenu>Ações</guimenu><guimenuitem>Transação em branco</guimenuitem></menuchoice>.
+          </para>
+        </listitem>
+      </orderedlist>
+    </sect2>
+  </sect1>
+
+
+  <sect1 id="trans-multi-enter">
+    <title>Transações com múltiplas parcelas</title>
+
+    <para>A janela de diário varia ligeiramente de aspeto, dependendo das opções de estilo que 
+      escolheu. Segue-se uma descrição sobre como inserir transações com múltiplas parcelas no estilo 
+      <guilabel>Livro razão básico</guilabel>. O cursor está colocado no campo <guilabel>Data</guilabel> 
+      por predefinição quando a janela de diário é aberta.</para>
+    
+    <para>As múltiplas linhas de conta não serão mostradas no livro razão básico a não ser que clique em 
+    <guibutton>Parcelas</guibutton> ou a opção <menuchoice><guimenu>Ações</guimenu>
+    <guimenuitem>Dividir transação</guimenuitem></menuchoice> tenha sido selecionada.
+    </para>
+
+    <orderedlist>
+      <listitem>
+        <para>Clicar no pequeno ícone à direita do campo Data, abre um calendário. Use as setas para 
+          selecionar o mês e ano corretos e depois escolha o dia. Clicar no ícone novamente encerra o 
+          calendário. Também é possível digitar a data ou parte dela e deixar o <application>&app;</application> 
+          preencher o resto.</para>
+      </listitem>
+
+      <listitem>
+        <para>Prima <keycap>Tab</keycap> para se mover para o campo <guilabel>Nº</guilabel>. Aqui pode inserir 
+          um número de cheque, fatura ou transação. Premir <keycap>+</keycap> (mais) avança automaticamente 
+          o número da última transação em 1, caso esteja numerada.</para>
+      </listitem>
+
+      <listitem>
+        <para>Prima <keycap>Tab</keycap> para se mover para o campo <guilabel>Descrição</guilabel>. Este campo 
+          é usado para inserir um sacador ou outra descrição para a transação. Tentará automaticamente preencher 
+          o campo com informação anterior à medida que escreve.</para>
+      </listitem>
+
+      <listitem>
+		<para>Neste ponto, quando premir <keycap>Tab</keycap> acontece uma de duas coisas. Se o 
+        <application>&app;</application> encontrar uma transação coincidente, o cursor salta para um dos 
+        campos de montante, preenchendo automaticamente a conta de transferência. Selecionar qualquer um 
+        campo com o rato em vez de usar <keycap>Tab</keycap> não faz este preenchimento automático. 
+        Se não houver transações coincidentes (existentes), o <application>&app;</application> move o 
+        cursor para o campo <guilabel>Transferência</guilabel> com uma só linha de transação fornecida.</para>        
+      </listitem>
+
+      <listitem>
+          <para>Ao digitar no campo Transferência, o <application>&app;</application> também tentará automaticamente 
+          comparar o nome da conta com as contas existentes. Fá-lo alfabeticamente, por exemplo, digitar 
+          <keycap>Desp</keycap> resulta na secção <emphasis>Despesas</emphasis> da lista de contas. Uma vez achada a 
+          secção, é possível escolher uma conta filho premindo <keycap>:</keycap> (dois pontos). Se após digitar 
+          <keycap>Desp</keycap> premir <keycap>:</keycap>, o cursor move-se para a primeira conta filho de despesas 
+          que estiver na lista. Digitar combinações de letras e <keycap>:</keycap> também causa o movimento rápido 
+          na lista de contas. O pequeno ícone à direita da caixa <guilabel>Transferência</guilabel> pode ser usado 
+          como forma alternativa de selecionar as contas. As setas <emphasis>acima</emphasis> e <emphasis>abaixo</emphasis> 
+          também movem o cursor para selecionar contas.</para>
+          <note>A descrição acima utiliza o carácter ":". Se escolheu um carácter diferente no separador 
+          <guilabel>Contas</guilabel> nas <guilabel>preferências do &app;</guilabel>, será esse que tem de usar 
+          para obter o efeito descrito.</note>
+      </listitem>
+
+      <listitem>
+        <para>O campo seguinte (R) é usado para reconciliação. Isto é descrito na secção  
+        <xref linkend="acct-reconcile"></xref>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Prima <keycap>Tab</keycap> para se mover para o primeiro dos campos de montante. Os nomes das duas 
+        colunas seguintes diferem de acordo com o tipo da conta aberta. Por exemplo, contas <emphasis>Banco</emphasis> 
+        mostram <guilabel>Depósito</guilabel> e <guilabel>Levantamento</guilabel>, contas <emphasis>Cartão de 
+        crédito</emphasis> mostram <guilabel>Pagamento</guilabel> e <guilabel>Crédito</guilabel>, contas 
+        <emphasis>Ação</emphasis> mostram <guilabel>Ações</guilabel>, <guilabel>Cotação</guilabel>, 
+        <guilabel>Comprar</guilabel> e <guilabel>Vender</guilabel>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Insira o montante da transação no campo adequado. Leia o passo seguinte antes de premir <keycap>Tab</keycap> ou 
+        <keycap function="enter">Enter</keycap>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Para inserir as parcelas adicionais, clique em <guibutton>Parcelas</guibutton>, na <emphasis>barra de 
+        ferramentas</emphasis> ou selecione <menuchoice><guimenu>Ações</guimenu><guimenuitem>Dividir 
+        transação</guimenuitem></menuchoice>. As transações com mais de uma parcela mostram o texto 
+        <emphasis>--Transação com parcelas--</emphasis> e terá de clicar em <guibutton>Parcelas</guibutton> 
+        para ver os detalhes.</para>
+      </listitem>
+
+      <listitem>
+        <para>A linha expande-se, os títulos das colunas de montante serão renomeados e o nome da coluna 
+        <guilabel>Transferência</guilabel> estará em branco. A primeira linha contém a descrição e o montante 
+        da transação. A segunda linha contém o nome da conta atualmente aberta no campo <guilabel>Conta</guilabel> 
+        e o montante da transação. A terceira linha contém o nome da conta de transferência no campo 
+        <guilabel>Conta</guilabel>. Se o montante não estiver saldado, o <application>&app;</application> indica-o 
+        colocando caixas de marcação cinzentas nas colunas de montante e o montante em desequilíbrio numa última 
+        linha em branco.</para>
+      </listitem>
+
+      <listitem>
+        <para>Quando uma das linhas curtas está selecionada, os títulos das colunas alteram-se. A primeira e última
+        colunas (<guilabel>Data</guilabel> e <guilabel>Saldo</guilabel>) têm os títulos em branco. <guilabel>Nº</guilabel>
+        muda para <guilabel>Ação</guilabel>, <guilabel>Descrição</guilabel> para <guilabel>Nota</guilabel>,
+        a coluna <guilabel>Transferência</guilabel>, agora em branco, muda para <guilabel>Conta</guilabel>. As últimas 
+        duas colunas de montante mostram o nome descrito no passo sete.</para>
+      </listitem>
+
+      <listitem>
+        <para>As colunas <guilabel>Ação</guilabel> e <guilabel>Nota</guilabel> são de preenchimento opcional neste ponto. 
+        <guilabel>Ação</guilabel> é usada para descrever que tipo de conta de transferência está envolvida. 
+        <guilabel>Nota</guilabel> é uma descrição adicional da transferência.</para>
+      </listitem>
+
+      <listitem>
+        <para>Mova-se para o campo com o montante em falta na terceira linha e preencha-o. Premir 
+        <keycap function="enter">Enter</keycap>, clicar em <guibutton>Enter</guibutton> ou ir a 
+        <menuchoice><guimenu>Ações</guimenu><guimenuitem>Registar transação</guimenuitem></menuchoice> 
+        vai mover o cursor para a linha seguinte.</para>
+      </listitem>
+
+      <listitem>
+        <para>A coluna <guilabel>Conta</guilabel> contém a lista de contas de transferência. Esta coluna é a que
+        é usada para adicionar parcelas. O método descrito no passo cinco pode ser usado para selecionar outra 
+        conta numa linha em branco. Adicione tantas parcelas quantas necessite.</para>
+      </listitem>
+
+      <listitem>
+        <para>Quando a transação estiver saldada, as caixas de marcação cinzentas desaparecem e a última linha 
+        em branco não terá montante.</para>
+      </listitem>
+
+      <listitem>
+        <para>Premir <keycap function="enter">Enter</keycap> como descrito acima salta para a transação seguinte. 
+        Selecionar a transação seguinte fecha a divisão. Ou pode-a fechar manualmente clicando em 
+        <guibutton>Parcelas</guibutton> ou selecionando  
+        <menuchoice><guimenu>Ações</guimenu><guimenuitem>Dividir transação</guimenuitem></menuchoice>.</para>
+      </listitem>
+    </orderedlist>
+
+  </sect1>
+
+  <sect1 id="trans-currency-enter">
+    <title>Transações multi moeda/mercadoria</title>
+
+    <para>Qualquer transação com parcelas cujas contas sejam denominadas em mercadorias diferentes 
+    (as moedas são um subconjunto de mercadorias) requerem uma taxa de câmbio para conversão 
+    entre elas. Para mais informação, por favor veja o capítulo 10 do <emphasis role="italic">Tutorial 
+    e guia de conceitos</emphasis>.</para>
+    <para>Diários de contas de tipo AÇÃO ou FUNDO mostram quatro colunas, <guilabel>Ações</guilabel>,
+    <guilabel>Cotação</guilabel>, <guilabel>Comprar</guilabel>, <guilabel>Vender</guilabel> (as últimas 
+    duas serão <guilabel>Crédito</guilabel> e <guilabel>Débito</guilabel> respetivamente, se ativou 
+    <guilabel>Usar rótulos contabilísticos formais</guilabel> no separador <guilabel>Contas</guilabel> 
+    das <guilabel>Preferências do &app;</guilabel>). Insira quaisquer dois e o <application>&app;</application> 
+    calcula  o outro por si. Se inserir três e o resultado não estiver equilibrado, o <application>&app;</application> 
+    pergunta qual quer alterar para equilibrar o saldo.</para>
+    <para>Diários de outros tipos só têm <guilabel>Crédito</guilabel> e <guilabel>Débito</guilabel> (os nomes 
+    diferem dependendo do tipo de conta, se não ativou <guilabel>Usar rótulos contabilísticos formais</guilabel>), 
+    use o <guilabel>diálogo Transferir</guilabel> com a maioria dos campos desativados para reunir ou a 
+    <guilabel>Taxa de câmbio</guilabel> ou o <guilabel>Montante de débito</guilabel> (o montante na outra 
+    moeda/mercadoria). Por favor, veja <xref linkend="trans-win-price"></xref> para detalhes sobre como usar 
+    este diálogo.</para>
+    <note><para>Ao submeter uma transação ou confirmar uma taxa de câmbio, a cotação na data da transação no 
+    <guilabel>Editor de cotações</guilabel> pode ser atualizado. Veja <xref linkend="tool-price"/> para 
+    mais detalhes.</para></note>
+  </sect1>
+
+  <sect1 id="trans-edit">
+    <title>Editar uma transação</title>
+
+    <para>Editar uma transação envolve selecionar só a parte que precisa de ser alterada. Uma vez feitas as 
+    alterações, premir <keycap function="enter">Enter</keycap>, clicar em <guibutton>Enter</guibutton> ou ir 
+    a <menuchoice><guimenu>Transação</guimenu><guimenuitem>Registar transação</guimenuitem></menuchoice> vai 
+    mover o cursor para a linha seguinte da transação.
+    </para>
+
+    <para>Para ter uma visão mais detalhada de uma transação a editar no livro razão geral, clique em 
+    <guibutton>Parcelas</guibutton> na <emphasis>barra de ferramentas</emphasis> ou vá a 
+    <menuchoice><guimenu>Ações</guimenu><guimenuitem>Dividir transação</guimenuitem></menuchoice>.</para>
+  </sect1>
+
+  <sect1 id="trans-delete">
+    <title>Eliminar uma transação</title>
+
+    <para>Se tiver de remover uma transação de um diário, selecione-a e clique em <guibutton>Eliminar</guibutton> 
+    na <emphasis>barra de ferramentas</emphasis> ou vá a <menuchoice><guimenu>Transações</guimenu>
+    <guimenuitem>Eliminar transação</guimenuitem></menuchoice>.
+
+    Aparece uma janela para confirmar a eliminação, a não ser que o aviso tenha sido alterado. A janela oferece 
+    duas opções: "Lembrar e não perguntar novamente" e "Lembrar e não perguntar novamente nesta sessão". A resposta 
+    será definida de acordo com a caixa que marcar. Esta preferência pode ser reposta através de  
+    <menuchoice><guimenu>Ações</guimenu><guimenuitem>Repor avisos</guimenuitem></menuchoice>. 
+    Ver <xref linkend="reset-warning"></xref>.</para>
+
+    <para>Também pode remover partes de uma transação clicando em <guibutton>Parcelas</guibutton> na <emphasis>barra 
+    de ferramentas</emphasis> ou indo a <menuchoice><guimenu>Ações</guimenu><guimenuitem>Dividir 
+    transação</guimenuitem></menuchoice>. A parte que precisa de ser eliminada pode então ser selecionada.</para>
+  </sect1>
+
+  <sect1 id="trans-split-remove">
+    <title>Remover parcelas de transações</title>
+
+    <para>Remover parcelas de transações envolve apagar todas as parcelas exceto a da conta que está aberta.
+    Esta é uma forma útil de reutilizar uma transação anterior com múltiplas parcelas que precisam de ser alteradas
+    (note que isto pode ser feito sem abrir a divisão, mas fazendo-o torna o efeito mais visível)</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Se estiver no livro razão básico, clique em <guibutton>Parcelas</guibutton> na <emphasis>barra de 
+        ferraments</emphasis> ou vá a <menuchoice><guimenu>Ações</guimenu><guimenuitem>Dividir 
+        transação</guimenuitem></menuchoice> para abrir a transação. Noutros modos, selecione a transação.</para>
+      </listitem>
+
+      <listitem>
+        <para>Selecione <menuchoice><guimenu>Transação</guimenu><guimenuitem>Remover todas as parcelas</guimenuitem></menuchoice>.</para>
+        Aparece uma janela para confirmar a eliminação, a não ser que o aviso tenha sido alterado. A janela oferece 
+    duas opções: "Lembrar e não perguntar novamente" e "Lembrar e não perguntar novamente nesta sessão". A resposta 
+    será definida de acordo com a caixa que marcar. Esta preferência pode ser reposta através de  
+    <menuchoice><guimenu>Ações</guimenu><guimenuitem>Repor avisos</guimenuitem></menuchoice>. 
+    Veja  <xref linkend="reset-warning"></xref>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Todas as parcelas de outras contas e seus detalhes serão removidas exceto a da conta atualmente aberta.</para>
+      </listitem>
+
+      <listitem>
+        <para>O montante não está saldado e o <application>&app;</application> indica-o colocando caixas de 
+        marcação cinzentas nas colunas de montante, com o montante desequilibrado na última linha em branco.</para>
+      </listitem>
+
+      <listitem>
+        <para>Editar a transação para preencher os novos detalhes.</para>
+      </listitem>
+    </orderedlist>
+  </sect1>
+
+  <sect1 id="trans-copy">
+    <title>Copiar uma transação</title>
+
+    <para>A cópia de transações está disponível através do menu <guimenu>Transação</guimenu>. Este menu 
+    dispõe dos comandos <guimenu>Cortar transação</guimenu>, <guimenu>Copiar transação</guimenu> e 
+    <guimenu>Colar transação</guimenu> que permitem cortar, copiar ou colar uma transação completa numa nova 
+    linha de transação. Esta forma de copiar usa a data da nova linha de transação em branco.
+    </para>
+
+    <para>A escolha <menuchoice><guimenu>Transação</guimenu><guimenuitem>Duplicar transação...</guimenuitem></menuchoice> 
+    ou o ícone da <emphasis>barra de ferramentas</emphasis> <guimenu>Duplicar</guimenu>, ao contrário do método 
+    de cópia, permitem escolher uma data diferente.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Selecione a transação a duplicar.</para>
+      </listitem>
+
+      <listitem>
+        <para>Vá a <menuchoice><guimenu>Transação</guimenu><guimenuitem>Duplicar transação...</guimenuitem></menuchoice></para>
+      </listitem>
+
+      <listitem>
+        <para>Abre-se um diálogo chamado <emphasis role="bold">Duplicar transação</emphasis> onde pode inserir uma 
+        nova data e um novo número para a transação.</para>
+      </listitem>
+
+      <listitem>
+        <para>Clique em <guibutton>Aceitar</guibutton> para adicionar a transação ao diário.</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="trans-stts">
+    <title>Definir o estado de recociliação (campo <guilabel>R</guilabel>) de uma transação</title>
+    <para>Nos diários do <application>&app;</application> há uma coluna chamada <guilabel>R</guilabel>. Este campo  
+    indica o estado de uma transação. Valores possíveis são:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><guilabel>n</guilabel></term>
+        <listitem>
+          <para>estado predefinido quando uma transação é criada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guilabel>c</guilabel></term>
+        <listitem>
+          <para>Confirmada. Este estado pode ser atribuído manualmente ou por um processo de importação.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guilabel>r</guilabel></term>
+        <listitem>
+          <para>Estado atribuído unicamente pelo processo de reconciliação (veja <xref linkend="acct-reconcile" />).  
+          Coloca limites, opcionalmente requerendo confirmação antes de editar campos nessa linha de uma 
+          transação.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guilabel>s</guilabel></term>
+        <listitem>
+          <para>Suspensa. Ainda não implementado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guilabel>v</guilabel></term>
+        <listitem>
+          <para>Esvaziada. Estado atribuído ou levantado manualmente através do menu de transações 
+          (veja  <xref linkend="Trans-transaction-menu" />) a uma transação e que se aplica a todas 
+          as linhas da transação. Oculta a maioria dos detalhes da transação mas não os elimina. Quando 
+          uma transação é esvaziada, é requerida uma entrada de motivo, que aparece à direita da descrição.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </sect1>
+
+  <sect1 id="acct-jump">
+    <title>Saltar para outro diário de conta</title>
+
+    <para>Ao usar uma janela de diário, é frequentemente útil poder ver outra conta ao mesmo tempo que a conta 
+    de transferência. O <application>&app;</application> permite-lhe fazer isto rapidamente clicando em 
+    <guibutton>Saltar</guibutton>, disponível na <emphasis>barra de ferramentas</emphasis> ou indo a 
+    <menuchoice><guimenu>Ações</guimenu><guimenuitem>Saltar</guimenuitem></menuchoice> na janela do diário.</para>
+
+    <para>Selecione a transação no diário de conta e clique no ícone <guibutton>Saltar</guibutton> ou selecione 
+    <menuchoice><guimenu>Ações</guimenu><guimenuitem>Saltar</guimenuitem></menuchoice> para abrir o diário de 
+    conta destino. Se a transação estiver dividida por mais de uma conta, terá de mostrar primeiro todas as parcelas 
+    e selecionar a que contém a conta para onde quer saltar.</para>
+  </sect1>
+
+  <sect1 id="trans-sched">
+    <title>Agendar transações</title>
+
+    <para>Transações agendadas oferecem a capacidade de ter lembretes ou transações agendadas para serem inseridas 
+    numa data indicada. Isto é combinado com o assistente <emphasis role="bold">Desde a última execução</emphasis> 
+    (veja <xref linkend="trans-sched-slr"></xref>) para rever e inserir as transações. O assistente 
+    <guilabel>Amortização de hipotecas e empréstimos</guilabel> (veja <xref linkend="trans-sched-loans"></xref>) 
+    é usado para configurar uma transação agendada para pagamento de um empréstimo com juros compostos. O editor de 
+    transações agendadas (veja <xref linkend="sched-editor"></xref>) é usado para criar e editar transações que devem 
+    ser adicionadas ao diário de forma automática.</para>
+
+    <para>A maneira mais fácil de agendar uma transação é usar uma transação existente num diário de conta como 
+    modelo. Selecione a transação que quer usar como modelo e depois ou clica no ícone <guibutton>Agendar</guibutton> 
+    na <emphasis>barra de ferramentas</emphasis> ou vai a <menuchoice><guimenu>Ações</guimenu>
+    <guimenuitem>Agendar...</guimenuitem></menuchoice>. Isto abre o diálogo <emphasis role="bold">Agendar 
+    transação</emphasis>.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Nome:</guilabel> insira um nome a usar para a transação agendada. Este será usado 
+        no ficheiro <guilabel>Descrição</guilabel> da transação.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Frequência:</guilabel> escolha o período de tempo que quer entre entradas agendas. As
+        datas em que as transações serão inseridas aparecem no calendário à direita.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Data inicial:</guilabel> escolha a data em que a transação se inicia.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Sem fim:</guilabel> esta transação não tem data final.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Data final:</guilabel> escolha a data em que a transação termina.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Número de ocorrências:</guilabel> insira o número de vezes que quer que a 
+        transação seja adicionada ao diário.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>O botão <guilabel>Avançado...</guilabel> abre o diálogo de edição de transações agendadas 
+    para editar a transação agendada. Este processo é descrito em <xref linkend="sched-editor"></xref>.</para>
+
+    <sect2 id="sched-trans-win">
+      <title>Janela de transações agendadas</title>
+
+      <para>Esta janela é usada para aceder à lista de transações agendadas e criar, editar ou removê-las. 
+      Também fornece um calendário que mostra transações agendadas futuras. Clicar no calendário e pairar 
+      sobre qualquer data abre um pequeno diálogo que mostra as transações agendadas para essa data. Os realces 
+      amarelos no calendário indicam em que dias há transações agendadas. Para descartar esse diálogo, volte 
+      a clicar no calendário.</para>
+
+      <para>O painel superior contém a lista de transações agendadas atualmente configuradas. Esta janela lista 
+      o nome da transação, se ela estiver ativada para agendamento, a frequência (mês e dia) com que deve ser 
+      inserida, a última vez que foi inserida e a data da próxima inserção.</para>
+
+      <para>O lado direito deste painel tem uma seta para baixo que, quando clicada, abre um balão para permitir 
+      a seleção das características mostradas na lista. Desmarcar a caixa respetiva remove a característica 
+      da lista.</para>
+
+      <para>A <emphasis>barra de ferramentas</emphasis> desta janela contém três botões para criar, eliminar 
+      e editar transações agendadas.
+      Os botões <guibutton>Nova</guibutton> e <guibutton>Editar</guibutton> abrem o diálogo de edição de transação 
+      agendada. 
+      <guibutton>Eliminar</guibutton> remove a transação agendada selecionada. Tem as mesmas opções disponíveis em 
+      <menuchoice><guimenu>Agendada</guimenu><guimenuitem>Nova/Editar/Eliminar</guimenuitem></menuchoice>, 
+      no separador de transações agendadas.</para>
+
+      <para>Abaixo da lista de transações agendadas está o calendário. Este mostra todos os eventos durante o ano 
+      e realça as datas em que as transações devem ocorrer de forma fácil de identificar. Clicar numa data do 
+      calendário chama uma lista de transações agendadas nessa data. Pairar com o rato sobre outras datas altera 
+      a lista para as transações dessas datas. Clicar novamente no calendário remove a lista.</para>
+
+      <para>A janela Transações agendadas é ativada a partir do separador de conta ou do diário de transações 
+      indo a <menuchoice><guimenu>Ações</guimenu><guisubmenu>Transações agendadas</guisubmenu>
+      <guimenuitem>Editor de transações agendadas...</guimenuitem></menuchoice>.</para>
+
+    </sect2>
+  </sect1>
+  <sect1 id="sched-editor">
+    <title>Janela de edição de transações agendadas</title>
+
+    <para>Esta janela está dividida nas áreas de nome, opções, ocorrências, frequência, calendário e painel de 
+    modelos.</para>
+
+    <para>O campo <emphasis role="bold">Nome</emphasis> é usado para inserir o nome da transação agendada. 
+    Este será usado na <guilabel>Descrição</guilabel> da transação.</para>
+
+    <para>A área de <emphasis role="bold">Opções</emphasis> contém caixas de marcação para definir se a transação 
+    é criada automaticamente e com quantos dias de antecedência é criada e/ou emitido um aviso.
+    </para>
+
+    <para>A área <emphasis role="bold">Ocorrências</emphasis> contém seleções para definir limites de datas 
+    em transações a serem inseridas ou o número de transações a inserir.</para>
+
+    <para>A área <emphasis role="bold">Frequência</emphasis> contém seleções para definir quantas vezes a transação 
+    deve ser adicionada e em que datas é que ocorre a adição.</para>
+
+    <para>O calendário oferece uma indicação visual de quais as transações já agendadas.</para>
+
+    <para>O painel <emphasis role="bold">Transação modelo</emphasis> permite-lhe configurar a transação 
+    tal como quer que ela seja inserida no diário.</para>
+
+    <para>Estas opções são descritas com mais detalhe em <xref linkend="trans-sched"></xref></para>
+
+    <itemizedlist>
+      <listitem><para>No separador Transações agendadas, selecionar uma transação na lista e clicar em 
+      <guibutton>Editar</guibutton> ou <guibutton>Nova</guibutton> abre o diálogo de edição de transações 
+      agendadas.</para>
+      </listitem>
+    </itemizedlist>
+
+  </sect1>
+
+  <sect1 id="print-check">
+    <title>Imprimir cheques</title>
+
+    <para>Os cheques, no <application>&app;</application>, são imprimidos a partir do diário de conta. 
+    O <application>&app;</application> oferece a possibilidade de imprimir vários cheques padrão Quicken 
+    (incluindo US Letter) ou de criar um formato personalizado. A posição do cheque e os formatos de 
+    data também são personalizáveis.</para>
+
+    <para>Para imprimir um único cheque no <application>&app;</application>, selecione a transação para 
+    a qual imprimir e vá a <menuchoice><guimenu>Ficheiro</guimenu><guimenuitem>Imprimir cheques</guimenuitem></menuchoice>. 
+    Isto vai abrir o diálogo de propriedades de impressão de cheques para imprimir a transação selecionada.</para>
+
+    <para>Para imprimir múltiplos cheques no <application>&app;</application> execute uma procura para localizar 
+    as transações que quer imprimir. Com a janela dos resultados da procura em foco, vá a 
+    <menuchoice><guimenu>Ficheiro</guimenu><guimenuitem>Imprimir cheques</guimenuitem></menuchoice>. Isto vai abrir 
+    o diálogo de propriedades de impressão de cheques para imprimir todas as transações na janela de resultados de 
+    procura.</para>
+
+    <para>O diálogo Imprimir cheques tem dois separadores. O primeiro, Opções, é usado para configurar as opções 
+    mais comuns de impressão de cheques. O segundo, Formato personalizado, é usado para configurar a posição de 
+    vários campos no cheque. Útil para imprimir um teste numa folha de papel em branco primeiro e usá-la para 
+    fazer os ajustes necessários.
+
+    <para>A seleção predefinida em Opções é cheques Quicken/Quickbooks (tm) US-Letter.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Formato do cheque: teste primeiro com Quicken e depois use a personalização se a posição estiver 
+        incorreta.</para>
+      </listitem>
+
+      <listitem>
+        <para>Posição do cheque: define se é imprimido o topo, o meio ou o fundo do cheque. Use a personalização 
+        se a posição dos cheques na página for incorreta.</para>
+      </listitem>
+
+      <listitem>
+        <para>Formato de data: a predefinição é a da secção internacional das preferências. Escolha um formato de 
+        data. Também o pode ajustar usando os campos <guilabel>Meses:</guilabel> e <guilabel>Anos:</guilabel>. 
+        A personalização permite definir o formato de data na caixa Formato: (%m significa mês, %d dia, %Y ano). 
+        Abaixo pode ver um exemplo do formato escolhido.</para>
+      </listitem>
+      <listitem>
+        <para>Endereço: define o endereço do sacador, se o formato do cheque incluir um espaço para isso e estiver 
+        a imprimir um único cheque.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>O formato personalizado tem duas secções. A metade superior da janela (acima da linha divisória) 
+    permite-lhe posicionar os campos em cada cheque. Contém duas colunas para inserir as coordenadas X e Y 
+    da posição do campo no cheque. As posições nesta área do formato personalizado são especificadas com 
+    x = 0 na margem esquerda do cheque, aumentando para a direita e y=0 na margem superior do cheque, 
+    aumentando para baixo (se está a usar uma versão GTK anterior à 2.10, y = 0 está no fundo da página 
+    e aumenta para cima).</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Sacador: </para>
+      </listitem>
+
+      <listitem>
+        <para>Data: </para>
+      </listitem>
+
+      <listitem>
+        <para>Montante (por extenso): </para>
+      </listitem>
+
+      <listitem>
+        <para>Montante (numérico): </para>
+      </listitem>
+
+      <listitem>
+        <para>Endereço: </para>
+      </listitem>
+
+      <listitem>
+        <para>Notas: </para>
+      </listitem>
+
+      <listitem>
+        <para>Memorando: </para>
+      </listitem>
+
+      <listitem>
+        <para>Montante das parcelas: </para>
+      </listitem>
+
+      <listitem>
+        <para>Memorando das parcelas: </para>
+      </listitem>
+
+      <listitem>
+        <para>Conta das parcelas: </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>A parte do separador Formato personalizado abaixo da linha divisória contém campos 
+    para posicionar todo o cheque corretamente na página. O campo Tradução é a distância desde 
+    o canto superior esquerdo e  o campo Rotação roda o cheque à direita pelo valor indicado.</para>
+
+    <para>O campo unidades na metade inferior da janela especifica as unidades usadas em todos os 
+    campos da janela.</para>
+
+    <para>Uma vez que clique em <guibutton>Aceitar</guibutton> no diálogo Imprimir cheque, 
+    é mostrado o diálogo Imprimir documento do <application>&app;</application>. Clique em 
+    <guibutton>Aceitar</guibutton> para imprimir o cheque.</para>
+
+  </sect1>
+
+  <sect1 id="trans-online">
+    <title>Ações online ...</title>
+
+    <note><para>Esta secção está "em construção - qualquer ajuda é bem vinda !!".</para></note>
+
+    <sect2> <title>Obter saldo</title><para></para></sect2>
+    <sect2> <title>Obter transações ...</title><para></para></sect2>
+    <sect2> <title>Emitir transação</title><para></para></sect2>
+    <sect2> <title>Débito direto</title><para></para></sect2>
+
+  </sect1>
+
+  <sect1  id="general-journal">
+    <title>Diário geral</title>
+    <para>O diário geral é um diário avançado usado para inserir transações sem necessidade de abrir as 
+    contas individuais. Este diário mostra as transações completas de todas as contas num só diário.</para>
+
+    <para>Inserir transações no diário geral é mais complicado que inseri-las nos diários de conta 
+    individuais. A vantagem é que o diário geral oferece uma visão mais abrangente das transações que 
+    inseriu em todas as suas contas.</para>
+
+    <para>O diário geral mostra só as transações do mês anterior, por predefinição. Pode alterar este 
+    comportamento indo a <menuchoice><guimenu>Ver</guimenu>
+    <guimenuitem>Filtrar por...</guimenuitem></menuchoice>.</para>
+  </sect1>
+
+</chapter>
+

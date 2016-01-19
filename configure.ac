@@ -4,7 +4,6 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(gnucash-docs, 2.6.99)
 
-
 dnl ==========================================================================
 dnl
 dnl If you add a version number here, you *must* add an AC_SUBST line for
@@ -197,6 +196,7 @@ help/Makefile
 help/C/Makefile
 help/de/Makefile
 help/it/Makefile
+help/pt/Makefile
 guide/Makefile
 guide/C/Makefile
 guide/de/Makefile
