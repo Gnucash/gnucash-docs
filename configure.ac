@@ -196,6 +196,7 @@ help/Makefile
 help/C/Makefile
 help/de/Makefile
 help/it/Makefile
+help/pt/Makefile
 guide/Makefile
 guide/C/Makefile
 guide/de/Makefile
