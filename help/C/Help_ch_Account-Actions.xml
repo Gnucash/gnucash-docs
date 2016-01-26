@@ -444,7 +444,8 @@
               another. It&rsquo;s called often something like <quote>perl-Finance-Quote</quote>.</para></listitem>
 
              <listitem><para><guilabel>Windows:</guilabel> <application>Finance::Quote</application> on Windows requires perl
-              to be installed already. If you haven&rsquo;t done so, you should first install ActivePerl.</para>
+              to be installed already. If you haven&rsquo;t done so, you should first install ActivePerl, or more recently,
+              Strawberry Perl.</para>
 
               <para>The Windows installer from the <application>&app;</application> home page comes with a small helper program to
               install <application>Finance::Quote</application> for you. You can find it in the Start Menu under the <application>&app;</application>
@@ -480,7 +481,9 @@
              <note>
               <para>If you feel uncomfortable about performing any of these steps, please either email the <application>&app;</application>-user
                mailing list (<email>gnucash-user@gnucash.org</email>) for help or come to the <application>&app;</application> IRC channel on
-               irc.gnome.org. You can also leave out this step and manually update your stock prices.</para>
+               irc.gnome.org. More information is available on the <application>&app;</application> Wiki FAQ for example
+               <ulink url="http://wiki.gnucash.org/wiki/FAQ#Q:_How_do_I_fix_a_.22system_error.22_or_.22unknown_error.22_when_getting_stock_quotes.3F" />
+               You can also leave out this step and manually update your stock prices.</para>
              </note>
             </listitem>
 
@@ -557,7 +560,7 @@
           </itemizedlist>
 
           <para>If you wish to update price quotes from the command line, you can do so by
-           the following command;</para>
+           the following command:</para>
 
           <para><userinput>gnucash --add-price-quotes &lt;gnucash-file-name&gt;</userinput>
           </para>
@@ -570,12 +573,18 @@
           in the list of recently opened file; the first item, numbered 1, is the name of the currently
           open file.</para>
 
-          <para>This can be automated by creating a crontab entry. For example, to update your file every Friday
+          <para>This can be automated in Mac OSX by creating a crontab entry. For example, to update your file every Friday
           evening (18:00) after markets close (modify the time accordingly for your time zone), you could add
           the following to your personal crontab:</para>
 
-          <para>0 18 * * 5 gnucash --add-price-quotes $HOME/gnucash-filename &gt; /dev/null 2&gt;&amp;1</para>
-
+          <para><userinput>0 18 * * 5 /path/to/gnucash --add-price-quotes /path/to/gnucash-filename &gt; /dev/null 2&gt;&amp;1'</userinput></para>
+          
+          <para>For Linux, which needs dbus, usually started by the desktop
+            manager, to communicate with dconf or gconf:</para>
+          
+          <para><userinput>0 18 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT; /path/to/gnucash
+            --add-price-quotes /path/to/gnucash-filename &gt; /dev/null 2&gt;&amp;1'</userinput></para>
+          
           <para>Remember that Mutual Fund <quote>prices</quote> are really <quote>Net Asset Value</quote>
           and require several hours after the exchange closes before being available. If NAVs are downloaded before
           the current days NAVs are determined, yesterday&rsquo;s NAVs are retrieved.</para>
