@@ -1,0 +1,1168 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: 2014-08-28 (fell)
+       modified: October 25th 2010
+       modified: de janeiro de 12th 2007
+       modified: de julho de 9th 2006
+  Maintainers: 
+               Cristian Marchi <cri.penta@gmail.com> 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally written by Carol Champagne.
+  Translators:
+               (Pedro Albuquerque palbuquerque73@gmail.com)
+-->
+<chapter id="chapter_basics">
+  <title>O básico</title>
+
+  <para>Este capítulo introduz algumas bases para usar o <application>&app;</application>. Recomenda-se que o leia 
+  antes de começar a fazer algum trabalho real com o <application>&app;</application>. Nos capítulos seguintes verá 
+  exemplos onde pode "pôr as mãos".</para>
+
+  <sect1 id="basics-accounting1">
+    <title>Conceitos contabilísticos</title>
+
+    <para>Embora o <application>&app;</application>  seja suficientemente fácil de usar para que não haja a obrigação de ter uma 
+    compreensão completa de princípios contabilísticos, verá que algum conhecimento básico sobre contabilidade provará 
+    ser inestimável, uma vez que o <application>&app;</application> foi desenhado usando estes princípios como modelo. 
+    É altamente recomendável que compreenda esta secção do guia antes de continuar.</para>
+
+    <sect2 id="basics-accounting52">
+      <title>As 5 contas básicas</title>
+
+      <para>Regras contabilísticas básicas agrupam todas as coisas relacionadas com finanças em 5 tipos fundamentais de 
+      <quote>contas</quote>. Ou seja, tudo aquilo com que as contas lidam pode ser colocado numa destas 5 contas:</para>
+
+      <variablelist>
+      <title>Tipos de contas</title>
+        <varlistentry>
+          <term><emphasis>Ativo</emphasis></term>
+          <listitem>
+            <para>Aquilo que possui</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><emphasis>Passivo</emphasis></term>
+          <listitem>
+            <para>Aquilo que deve</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><emphasis>Capital próprio</emphasis></term>
+          <listitem>
+            <para>Valor líquido global</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><emphasis>Receita</emphasis></term>
+          <listitem>
+            <para>Aumentam o valor das suas contas</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><emphasis>Despesa</emphasis></term>
+          <listitem>
+            <para>Diminuem o valor das suas contas</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Está claro que se pode categorizar o seu mundo financeiro nestes 5 grupos. Por exemplo, o dinheiro na 
+      sua conta bancária é um ativo, o seu crédito à habitação é um passivo, o seu salário é uma receita e o jantar fora 
+      da noite passada é uma despesa.</para>
+    </sect2>
+
+    <sect2 id="basics-accountingequation2">
+      <title>A equação contabilística</title>
+
+      <para>Com 5 contas básicas definidas, qual é a relação entre elas? Como é que um tipo de conta afeta as outras? 
+      Primeiro, o capital próprio é definido pelo ativo e pelo passivo. Ou seja, o seu valor líquido é calculado subtraindo 
+      o seu passivo do seu ativo:</para>
+
+      <para><emphasis>Ativo - Passivo = Capital próprio</emphasis></para>
+
+      <para>Para além disto, pode aumentar o seu capital próprio com receitas e diminui-lo com despesas. Isto faz sentido, 
+      claro. Quando recebe o seu salário fica mais <quote>rico</quote> e quando paga o jantar fica mais <quote>pobre</quote>. 
+      Isto é expresso matematicamente por aquilo que é conhecido como a equação contabilística:</para>
+
+      <para><emphasis>Ativo - Passivo = Capital próprio + (Receita - Despesa)</emphasis></para>
+
+      <para>Esta equação tem de estar sempre equilibrada, uma condição que só pode ser satisfeita se inserir valores em 
+      múltiplas contas. Por exemplo, se receber dinheiro na forma de receita, tem de ver um aumento igual no seu ativo. 
+      Outro exemplo, pode ter um aumento no ativo se tiver um aumento paralelo no passivo.</para>
+
+      <figure pgwide="1">
+        <title>As relações básicas entre contas</title>
+        <screenshot id="basics-AccountRelationships">
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/basics_AccountRelationships.png"
+                         format="PNG" srccredit="Pedro Albuquerque" ></imagedata>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/basics_AccountRelationships.svg"
+                         format="SVG" srccredit="Pedro Albuquerque"
+                         contentwidth="4in"></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>As relações básicas entre contas</phrase>
+            </textobject>
+
+            <caption>
+              <para>Uma imagem das relações entre as cinco contas básicas. O valor líquido (capital próprio) aumenta 
+              através da receita e diminui através da despesa. As setas representam o movimento do valor.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </figure>
+    </sect2>
+
+    <sect2 id="basics-accountingdouble2">
+      <title>Dupla entrada</title>
+
+      <para>A equação contabilística é o próprio coração de um <firstterm>sistema contabilístico de dupla entrada</firstterm>. 
+      Para cada alteração de valor numa conta da equação contabilística, tem de haver uma alteração equilibrada noutra. 
+      Este conceito é conhecido como <firstterm>Princípio do equilíbrio</firstterm>, e é de importância fundamental para 
+      compreender o <application>&app;</application> e outros sistemas contabilísticos de dupla entrada. Quando trabalha 
+      como o <application>&app;</application>, estará sempre preocupado com pelo menos duas contas, para manter a 
+      equação contabilística equilibrada.</para>
+
+      <para>Equilibrar alterações (ou transferir dinheiro) entre contas é feito debitando uma conta e, simultaneamente, 
+      creditando outra. <firstterm>Débitos</firstterm> e <firstterm>Créditos</firstterm> contabilísticos não significam 
+      <quote>decréscimo</quote> e <quote>acréscimo</quote>. Tanto os débitos como os créditos aumentam certas contas 
+      e diminuem outras. Em contas de ativos e despesas, os débitos aumentam o saldo e os créditos diminuem-no. Nas contas 
+      de passivo, capital próprio e receita, os créditos aumentam o saldo e os débitos diminuem-no.</para>
+      
+      <para>Na contabilidade tradicional de dupla entrada, a coluna esquerda do diário é usada para débitos, enquanto a 
+      coluna direita é usada para créditos. Os contabilistas registam aumentos do ativo e despesas na coluna dos débitos 
+      (esquerda) e aumentos do passivo e capital próprio e receitas nos créditos (direita). O <application>&app;</application> 
+      segue esta convenção nos diários.</para> 
+      
+      <note>
+        <para>Esta terminologia contabilística pode ser confusa para novos utilizadores, que é o motivo porque o <application>&app;</application> 
+        lhe permite usar termos como <guilabel>Depósito</guilabel> e <guilabel>Levantamento</guilabel>. Se preferir 
+        os termos contabilísticos formais, pode forçar os cabeçalhos de coluna a usá-los no separador <guilabel>Contas</guilabel> 
+        nas <guilabel>Preferências</guilabel> (consulte o manual de ajuda do <application>&app;</application> para obter mais informação 
+        sobre como definir preferências).</para>
+      </note>
+
+      <warning>
+        <para>A utilização comum das palavras <emphasis>débito</emphasis> e <emphasis>crédito</emphasis> não corresponde 
+        à forma como os contabilistas usam estes termos. Em termos comuns, <emphasis>crédito</emphasis> tem uma associação 
+        positiva. Em contabilidade, <emphasis>crédito</emphasis> significa <emphasis>afetar a coluna direita</emphasis> 
+        de um diário de conta. Isto é associado a um <emphasis>decréscimo</emphasis> no ativo e nas despesas, mas a um 
+        <emphasis>acréscimo</emphasis> de receita, passivo e capital próprio.</para>
+        <para>Para mais detalhes, veja <ulink url="https://pt.wikipedia.org/wiki/D%C3%A9bito_e_cr%C3%A9dito">Débitos e créditos</ulink>.</para>
+      </warning>
+
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-entry1">
+    <title>Conceitos de introdução de dados</title>
+
+    <para>Ao introduzir dados no <application>&app;</application>, deve estar sempre atento a 3 níveis de organização 
+    em que o <application>&app;</application> divide os seus dados: ficheiros,contas e transações. Estes níveis são 
+    apresentados pela sua ordem de complexidade, um ficheiro contém muitas contas e uma conta contém muitas transações. 
+    Esta divisão é fundamental para saber como usar o <application>&app;</application>.</para>
+
+    <sect2 id="basics-files2">
+      <title>Ficheiros</title>
+
+      <para>O <application>&app;</application> armazena informação ao mais alto nível em ficheiros. Um ficheiro pode ser 
+      armazenado no seu computador com um único ficheiro <acronym>XML</acronym> (em todas as versões do 
+      <application>&app;</application>), ou numa base de dados <acronym>SQL</acronym> (no <application>&app;</application> 
+      verso 2.4 e posteriores).</para>
+
+      <!--<note>
+        <para><acronym>SQL</acronym> is pronounced <quote>sequel</quote>,
+        so in spoken and written language we would say <quote>a SQL
+        database</quote>.</para>
+      </note>-->
+
+      <para>Com o formato <acronym>XML</acronym>, o <application>&app;</application> armazena os seus dados num
+      ficheiro de dados <acronym>XML</acronym>, normalmente comprimido (embora isto possa ser alterado no separador 
+      <guilabel>Geral</guilabel> das <guilabel>Preferências</guilabel> do <application>&app;</application>).</para>
+
+      <para>Com o armazenamento em <acronym>SQL</acronym>, o <application>&app;</application> grava os seus dados 
+      numa base de dados <acronym>SQL</acronym> sob a aplicação que selecionar (SQLite3, MySQL ou PostgreSQL).</para>
+
+      <para>Precisará de um ficheiro ou base de dados principal para cada conjunto de contas que mantenha. Para aprender a 
+      criar e gerir ficheiros do <application>&app;</application>, veja <xref linkend="basics-files1"/>.</para>
+
+      <note>
+        <para>Se pensa que precisará de mais de um conjunto de contas, talvez deva consultar um contabilista profissional antes 
+        de continuar. A maioria dos utilizadores muito provavelmente só precisa de um ficheiro.</para>
+      </note>
+
+      <para>Cópias de segurança e ficheiros de registo são gerados automaticamente pelo <application>&app;</application> 
+      quando necessário. Este ficheiros são descritos em <xref linkend="basics-backup1"/>.</para>
+    </sect2> <!-- basics-files2 -->
+    <sect2 id="basics-accounts2">
+      <title>Contas</title>
+
+      <para>Uma <firstterm>conta</firstterm> controla aquilo que possui, deve, gasta ou recebe. Cada ficheiro do 
+      <application>&app;</application> pode conter qualquer número de contas e cada conta pode conter muitas subcontas 
+      até um número arbitrário de níveis. Esta simples funcionalidade dá ao <application>&app;</application> muito do seu 
+      poder de gestão das suas finanças, como verá mais adiante.</para>
+
+      <para>Exemplos de contas incluem: contas à ordem, contas poupança, contas de cartões de crédito, hipotecas e 
+      empréstimos. Cada conta <application>&app;</application> controla a atividade da conta <quote>real</quote> 
+      e pode informá-lo do seu estado.</para>
+
+      <para>Além disto, as contas também são usadas para categorizar o dinheiro que recebe ou gasta. Por exemplo, pode criar 
+      contas de despesa para dinheiro que gasta em serviços e mercearias. Embora estas contas não recebam extratos, 
+      permitem-lhe determinar quanto dinheiro gasta em cada área.</para>
+
+      <para>As contas são explicadas em mais detalhe em <xref linkend="chapter_accts"/>.</para>
+    </sect2> <!-- basics-accounts2 -->
+    <sect2 id="basics-transactions2">
+      <title>Transações</title>
+
+      <para>Uma <firstterm>transação</firstterm> representa o movimento de dinheiro entre contas. Sempre que gasta ou 
+      recebe dinheiro, ou transfere dinheiro entre contas, faz uma transação.</para>
+
+      <para>Mais exemplos de transações são: pagar uma conta telefónica, transferir dinheiro da conta à ordem para a conta 
+      de poupanças, comprar uma pizza, levantar dinheiro ou depositar um cheque. <xref linkend="chapter_txns"/> aprofunda 
+      a forma de inserir transações.</para>
+
+      <para>Em <link linkend="basics-accountingdouble2">contabilidade de dupla entrada</link>, as transações envolvem 
+      sempre pelo menos duas contas &ndash; uma conta origem e uma conta destino. O <application>&app;</application> 
+      gere esta situação inserindo uma linha na transação para cada conta afetada  e registando os montantes envolvidos 
+      em cada linha. Uma linha destas é chamada <firstterm>parcela</firstterm>. Uma transação pode conter qualquer 
+      número de parcelas.</para>
+      <note>  
+        <para>As parcelas das transações serão estudadas em <xref linkend="txns-registers-multiaccount2"/></para>
+      </note>
+    </sect2> <!-- basics-transactions2 -->
+  </sect1> <!-- basics-entry1 -->
+
+  <sect1 id="basics-interface1">
+    <title>Ambiente de trabalho</title>
+
+    <para>A primeira vez que abre o <application>&app;</application>, verá o ecrã <guilabel>Boas vindas ao &app;!</guilabel>. 
+    A partir daí, o <application>&app;</application> oferece outras ferramentas para ajudar a encontrar facilmente aquilo 
+    que procura. Vamos espreitar alguns do ecrãs e diálogos mais comuns.</para>
+
+    <sect2 id="basics-tip2">
+      <title>Dica do dia</title>
+
+      <para>O <application>&app;</application> dá-lhe <guilabel>dicas do dia</guilabel> com sugestões úteis na utilização 
+      do programa:</para>
+
+      <screenshot id="basics-TipOfDay">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_TipOfDay.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Dica do dia</phrase>
+          </textobject>
+
+          <caption>
+            <para>Esta imagem mostra a <guilabel>Dica do dia</guilabel>.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Estas dicas dão informação útil a utilizadores principiantes. Para ver mais dicas, clique em <guibutton>Avançar</guibutton>. 
+      Se não quiser ver este ecrã no arranque, desmarque a caixa <guilabel>Mostrar sugestões no arranque</guilabel>. Quando terminar, 
+      clique em <guibutton>Fechar</guibutton> para sair do ecrã <guilabel>Dica do dia</guilabel>.</para>
+    </sect2>
+
+    <sect2 id="basics-main2">
+      <title>Janela da árvore de contas</title>
+
+      <para>Deve agora ver a janela <guilabel>Contas</guilabel>, que se parece com a que é mostrada abaixo. A disposição 
+      exata da árvore de contas depende das contas predefinidas que selecionou durante a configuração da nova hierarquia 
+      de contas. Neste exemplo, são mostradas as <guilabel>contas comuns</guilabel>.</para>
+
+      <screenshot id="basics-Accounts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/basics_Accounts.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>A janela da árvore de contas</phrase>
+          </textobject>
+
+          <caption>
+            <para>Esta imagem mostra a janela <guilabel>Contas</guilabel>.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>A janela Árvore de contas (também conhecida como Plano de contas) oferece uma visão geral dos dados contidos 
+      no ficheiro atual. Pode ver uma lista de nomes de conta e os seus saldos atuais.</para>
+      <para>A partir desta janela, pode abrir o diário de qualquer conta, seja com um duplo clique no seu nome, seja com um 
+      clique direito e selecionando <guilabel>Abrir conta</guilabel> no menu contextual, seja usando o botão <guibutton>Abrir</guibutton> 
+      na barra de ferramentas. O <application>&app;</application> permite abrir tantos diários de conta quantos desejar. Para mais 
+      informação sobre a utilização de diários de conta, veja <xref linkend="basics-register2" />.</para>
+
+      <tip>
+        <para>Clicar no pequeno triângulo à esquerda do nome de uma conta que tenha contas filho expande a árvore, mostrando essas contas.</para>
+      </tip>
+      
+      <para>Ao cimo desta janela está a <emphasis>barra de título</emphasis>, que mostra o nome de ficheiro deste conjunto 
+      de contas (uma vez que grave o ficheiro). Logo abaixo está a<emphasis> barra de menus</emphasis>. Pode aceder às 
+      opções dos menus clicando nos títulos ou usando atalhos de teclado (veja <xref linkend="basics-shortcut2" />). 
+      A seguir está a <emphasis>barra de ferramentas</emphasis>, que contém botões para as funções mais comuns da janela 
+      em foco.</para>
+      
+      <para>A árvore de contas aparece abaixo da <emphasis>barra de ferramentas</emphasis>. Uma vez que comece a criar 
+      contas, os seus nomes aparecem na árvore. Pode personalizar os títulos que vê usando a <guiicon>seta para baixo,</guiicon> 
+      no lado direito e acima da árvore de contas.</para>
+
+      <para>Ao fundo está a <emphasis>barra de estado</emphasis>, contendo informação acerca do que possui (ativos líquidos) 
+      e quanto dinheiro é que já fez (lucro).</para>
+
+
+    </sect2>
+
+    <sect2 id="basics-register2">
+      <title>Janela de diário de conta</title>
+
+      <para>As janelas de diários de conta são usadas para inserir e editar os seus dados contabilísticos. São semelhantes ao talão 
+      de controlo do seu livro de cheques.</para>
+
+      <screenshot id="basics-CheckAccount">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_CheckAccount.png" format="PNG"
+                       srccredit="Pedro Albuquerque" width="510"></imagedata>
+          </imageobject>
+          
+          <imageobject role="fo">
+            <imagedata fileref="figures/basics_CheckAccount.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>O diário da conta à ordem</phrase>
+          </textobject>
+
+          <caption>
+            <para>Esta imagem mostra o <guilabel>diário da conta à ordem</guilabel> com várias transações.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Em <xref linkend="chapter_txns"></xref> encontra mais explicações sobre diários de conta e como inserir 
+      dados. Por agora, note que as secções da janela de diário são semelhantes às da janela da árvore de contas, descrita antes. 
+      A <emphasis>barra de título</emphasis> no topo contém o nome da conta. Abaixo, a <emphasis>barra de menu</emphasis> 
+      contém opções relacionadas com o diário da conta. Os botões da <emphasis>barra de ferramentas</emphasis> simplificam 
+      funções comuns de introdução de dados. A <emphasis>barra de estado</emphasis> em baixo mostra alguns saldos 
+      de conta, cobertos no capítulo <xref linkend="chapter_txns"></xref>. Ao fundo da janela aparece informação sobre os 
+      campos onde o cursor está atualmente localizado.</para>
+      
+      <note>
+      <para>Nas janelas de diários, pode dimensionar as várias colunas que o <application>&app;</application> mostra, mas 
+      lembre-se que a coluna de descrição expande-se automaticamente para preencher todo o espaço livre. Assim, deve primeiro expandir 
+      todas as outras colunas e só depois diminuir o tamanho da coluna Descrição.</para>
+      </note>
+      
+    </sect2>
+
+    <sect2 id="basics-toolbar2">
+      <title>Botões da barra de ferramentas</title>
+
+      <para>Tanto a janela da árvore de contas como a janela de diário de conta contêm botões na <emphasis>barra de ferramentas</emphasis>. 
+      Estes botões oferecem acesso rápido a várias funções comuns, tais como <guibutton>Gravar</guibutton> e <guibutton>Abrir</guibutton>, 
+      na árvore de contas e <guibutton>Registar</guibutton> e <guibutton>Eliminar</guibutton> no diário de conta. Se não estiver certo 
+      do que um botão faz, paire com o rato em cima dele durante algum tempo e verá uma descrição da sua função.</para>
+
+      <para>Eis um resumo dos botões da janela de diário:</para>
+
+      <variablelist>
+      <title>Botões da janela de diário</title>
+        <varlistentry>
+        <term><guibutton>Gravar</guibutton></term>
+        <listitem>
+          <para>Grava o ficheiro atual em disco</para>
+        </listitem>
+        </varlistentry>
+
+        <varlistentry>
+        <term><guibutton>Fechar</guibutton></term>
+        <listitem>
+          <para>Fecha o separador em foco</para>
+        </listitem>
+        </varlistentry>
+
+        <varlistentry>
+        <term><guibutton>Abrir</guibutton>, <guibutton>Editar</guibutton>, <guibutton>Novo</guibutton> e <guibutton>Eliminar</guibutton></term>
+        <listitem>
+          <para>Estas são funções relacionadas com contas. São discutidas em <xref linkend="chapter_accts"></xref>.</para>
+        </listitem>
+        </varlistentry>
+      </variablelist>
+      
+      <para>Botões específicos dos diários são discutidos em <xref linkend="chapter_txns"></xref>.
+      </para>
+    </sect2>
+
+    <sect2 id="basics-tabbar">
+      <title>Barra de separadores</title>
+      
+      <para>O <application>&app;</application> usa um modelo em separadores que lhe permite abrir múltiplos diários de conta  e 
+      relatórios simultaneamente. A cada janela aberta (que pode incluir separadores de diários de conta, relatórios ou transações agendadas) 
+       é dado um separador nesta barra, que pode clicar para ver. Os separadores podem ser configurados nas Preferências para serem vistos 
+       em qualquer dos lados da janela do <application>&app;</application>.</para>
+    
+    <para>Para ver o nome completo de um separador, paire com o rato sobre esse separador durante algum tempo.</para>
+    
+    <para>Se tiver mais separadores abertos do que aqueles que cabem no ecrã, alguns desaparecem. No entanto, surgem, em ambos os 
+    lados da <emphasis>barra de separadores</emphasis>, umas pequenas setas que pode usar para se deslocar entre separadores. Pode 
+    ainda ver uma lista dos separadores abertos se clicar com o botao direito do rato num dos separadores, podendo em seguida clicar 
+    naquele que quiser.</para>
+    </sect2>
+
+    <sect2 id="basics-options2">
+      <title>Itens de menu</title>
+
+      <para>Os separadores da árvore de contas e dos diários de conta contêm títulos de menu na <emphasis>barra de menus</emphasis>. 
+      Clicar num deles mostra os itens de menu desse título.</para>
+
+      <para>Pode clicar nos títulos de menu e depois mover o ponteiro do rato sobre os itens para ver o que eles fazem. À medida 
+      que o ponteiro se move sobre um item, surge uma descrição no canto inferior esquerdo da janela (dentro da <emphasis>barra de 
+      estado</emphasis>). Para selecionar um item de menu, clique-o.</para>
+
+      <para>Também pode aceder aos itens de menu mais comuns num separador clicando com o botão direito do rato em qualquer sítio 
+      desse separador. Na árvore de contas, abre uma lista de itens de conta. Num diário de conta abre uma lista de itens de transações..</para>
+
+      <para>Outra forma de aceder aos itens de menu é através de atalhos de teclado, descritos a seguir.</para>
+    </sect2>
+
+    <sect2 id="basics-shortcut2">
+      <title>Atalhos de menu</title>
+
+      <para>Todos os itens de menu têm teclas de acesso, que estão marcadas por caracteres sublinhados nos nomes dos menus. 
+      Premir a tecla <keycap>Alt</keycap> e o carácter sublinhado no título do menu mostra os itens desse menu. Em seguida, 
+      digite o carácter sublinhado do item que quer usar para o ativar. Por exemplo, digitar <keycombo><keycap>Alt</keycap>
+      <keycap>F</keycap></keycombo> na janela principal abre o menu <guimenu>Ficheiro</guimenu>, se digitar em seguida 
+      <keycombo><keycap>Ctrl</keycap><keycap>S</keycap></keycombo> grava o ficheiro. As teclas de acesso são fixas e não 
+      podem ser alteradas pelos utilizadores.</para>
+
+      <para>Alguns dos itens de menu mais comummente usados também têm atalhos de teclado que ativam o comando diretamente 
+      sem ter de passar através da estrutura dos menus. Tipicamente estes usam a tecla <keycap>Ctrl</keycap>, embora possam usar 
+      qualquer combinação de teclas. Estes atalhos são mostrados a seguir aos itens de menu.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-help1">
+    <title>Obter ajuda</title>
+
+    <para>O <application>&app;</application> oferece várias formas de ajuda. Já falámos da <link linkend="basics-tip2">
+    <guilabel>Dica do dia</guilabel></link>, que lhe dá sugestões úteis no arranque da sessão do <application>&app;</application>. 
+    O <application>&app;</application> também oferece um extenso manual de ajuda.</para>
+
+    <sect2 id="basics-manual2">
+      <title>Manual de ajuda</title>
+
+      <para>Uma vez aberto o <application>&app;</application>, verá na <emphasis>barra de menus</emphasis> o título 
+      <guilabel>Ajuda</guilabel>, onde encontra o item <guibutton>Conteúdos F1</guibutton>, que abre o manual de ajuda. Este 
+      manual está organizado por tópicos, que podem ser expandidos para ver os respetivos subtópicos.</para>
+
+      <para>Os tópicos estão listados à esquerda. Para selecionar um tópico ou subtópico, clique-o e deverá ver o texto 
+      correspondente à direita. Use os botões <guibutton>Anterior</guibutton> e <guibutton>Seguinte</guibutton> para navegar 
+      entre os tópicos. Pode também imprimir um tópico através do menu <guibutton>Página</guibutton>.</para>
+    </sect2>
+
+    <sect2 id="basics-web2">
+      <title>Acesso à Internet</title>
+
+      <para>A janela de <guilabel>ajuda do &app;</guilabel> também atua como um navegador web simples, para que possa abrir 
+      uma página web para obter informação adicional. Pode abrir qualquer página nesta janela clicando em 
+      <guibutton>Abrir</guibutton> na <emphasis>barra de ferramentas</emphasis> e digitando o URL. Use os botões 
+      <guibutton>Recuar</guibutton>, <guibutton>Avançar</guibutton>, <guibutton>Recarregar</guibutton>, <guibutton>Parar</guibutton>, 
+      e <guibutton>Imprimir</guibutton> tal como num navegador web padrão.</para>
+
+      <para>A <ulink
+      url="http://www.gnucash.org"><citetitle>página web do &app;</citetitle></ulink> contém informação útil sobre o programa 
+      e suas atualizações. Também contém ligações às listas de correio do <application>&app;</application> para utilizadores e 
+      programadores e permite a procura nos <ulink url="https://lists.gnucash.org/cgi-bin/namazu.cgi"><citetitle>arquivos 
+      das listas de correio do <application>&app;</application></citetitle></ulink> por discussões sobre um tópico específico. 
+      Se não encontrar as respostas que procura, pode perguntar na <ulink url="https://lists.gnucash.org/mailman/listinfo/gnucash-user">
+      lista de utilizadores do &app;</ulink> e alguém nessa lista tentará responder-lhe.</para>
+
+      <para>As <guilabel>FAQ do &app;</guilabel> mais atualizadas estão localizadas em <ulink url="http://wiki.gnucash.org/wiki/FAQ">
+      Faq do &app;</ulink> e contêm respostas às perguntas mais frequentes.</para>
+    </sect2>
+
+    <sect2 id="basics-topic2">
+      <title>Procura por tópico</title>
+
+      <para>O manual também oferece uma função de procura. Para procurar um tópico em particular, 
+      clique no campo da lupa, <guilabel>Procura</guilabel> no cimo da janela do manual e digite o que quer procurar.
+      Surge uma lista de escolhas logo abaixo, onde pode clicar para ir para o tópico desejado.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-files1">
+    <title>Armazenar os seus dados financeiros</title>
+
+    <para>O <application>&app;</application> é capaz de <link linkend="basics-store-data">armazenar</link> os seus dados financeiros 
+    em ficheiros ou bases de dados <acronym>SQL</acronym> para que possam ser <link linkend="basics-open-data">abertos</link> e 
+    modificados posteriormente. Mas primeiro tem de <link linkend="basics-create-data">criar</link> um contentor para os seus dados.</para>
+    
+    <sect2 id="basics-create-data">
+    <title>Criar um ficheiro</title>
+    <para>Para criar um novo ficheiro do <application>&app;</application> faça o seguinte:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Na <emphasis>barra de menu</emphasis> do <application>&app;</application>, escolha <menuchoice><guimenu>Ficheiro</guimenu>
+        <guimenuitem>Novo ficheiro</guimenuitem></menuchoice>. Inicia-se o assistente <guilabel>Nova hierarquia de contas</guilabel>.</para>
+        <note>
+          <para>Se está a executar o <application>&app;</application> pela primeira vez, verá o diálogo <guilabel>Boas vindas ao &app;!</guilabel>. 
+          Este diálogo é descrito em detalhe no manual do <application>&app;</application>.</para>
+        </note>
+      </listitem>
+
+      <listitem>
+        <para>Configure as suas preferências no assistente e mova-se entre os ecrãs com os botões <guibutton>Avançar</guibutton>, 
+        <guibutton>Cancelar</guibutton> e <guibutton>Recuar</guibutton>.</para>
+      </listitem>
+    </orderedlist>
+
+    </sect2>
+    
+    <sect2 id="basics-store-data">
+    <title>Gravar dados</title>
+    <para>Siga estes passos para gravar o ficheiro com o seu nome preferido:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Escolha <menuchoice><guimenu>Ficheiro</guimenu> <guimenuitem>Gravar como...</guimenuitem></menuchoice> na 
+        <emphasis>barra de menus</emphasis> ou clique no botão <guibutton>Gravar</guibutton> na <emphasis>barra de ferramentas</emphasis>. 
+         O <application>&app;</application> abre o diálogo de gravação.</para>
+      </listitem>
+
+      <listitem>
+        <para>Selecione o <guilabel>formato dos dados</guilabel> do ficheiro que está a gravar na lista pendente. A seleção predefinida é 
+        <acronym>XML</acronym>, mas se tiver um motor de base de dados configurado, pode mudar para esse formato.</para>
+        <para>Dependendo do <guilabel>formato de dados</guilabel> selecionado, a janela pode mudar, como descrito a seguir.</para>  
+      </listitem>
+
+      <listitem>
+      <para></para>
+        <itemizedlist>
+          <listitem>
+            <para>Se selecionou <acronym>XML</acronym> ou <acronym>sqlite3</acronym> verá um ecrã como este:</para>
+
+        <figure>
+        <title>Ecrã de gravação quando seleciona <acronym>XML</acronym> ou <acronym>sqlite3</acronym>.</title>
+        <screenshot id="basics-SaveXML">
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/basics_SaveXML.png" format="PNG"
+                         srccredit="Pedro Albuquerque" width="510px"></imagedata>
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="figures/basics_SaveXML.png" format="PNG"
+                         srccredit="Pedro Albuquerque"></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>O ecrã de gravação</phrase>
+            </textobject>
+
+            <caption>
+              <para>Esta imagem mostra o ecrã <guilabel>Gravar como...</guilabel> quando o <guilabel>formato dos dados </guilabel> é 
+              <acronym>XML</acronym> ou <acronym>sqlite3</acronym>.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+        </figure>
+
+            <para>Digite o nome escolhido no campo <guilabel>Nome</guilabel>. Não é necessário especificar uma extensão.O 
+             <application>&app;</application> adiciona a extensão <filename>.gnucash</filename> automaticamente ao ficheiro.</para>
+            <note>
+              <para>A extensão <filename>.gnucash</filename> foi introduzida na série 2.3 do <application>&app;</application>.
+              Para ficheiros já existentes,a extensão nunca será alterada. Assim, se abrir um ficheiro chamado <emphasis>MeuFichAntigo</emphasis>, 
+              esse nome não é alterado quando gravar o ficheiro. Pode usar o comando <guimenuitem>Gravar como...</guimenuitem>  e dar 
+              um novo nome ao ficheiro para o ter gravado com a extensão <filename>.gnucash</filename>.</para>
+            </note>
+            <para>Selecione o caminho onde o ficheiro será gravado navegando na árvore nos três painéis inferiores.</para>
+            <tip>
+              <para>Clique em <guibutton>Criar pasta</guibutton> para criar uma nova pasta com um nome personalizado no caminho escolhido.</para>
+            </tip>
+          </listitem>
+        
+          <listitem>
+            <para>Se selecionou <acronym>mysql</acronym> ou <acronym>postgres</acronym> para <guilabel>formato de dados</guilabel> 
+            verá um ecrã como este:</para>
+
+            <figure>
+            <title>Ecrã de gravação quando seleciona <acronym>mysql</acronym> ou <acronym>postgres</acronym>.</title>        
+            <screenshot id="basics-SaveSQL">
+              <mediaobject>
+                <imageobject role="html">
+                  <imagedata fileref="figures/basics_SaveSQL.png" format="PNG"
+                             srccredit="Pedro Albuquerque" width="510px"></imagedata>
+                </imageobject>
+
+                <imageobject role="fo">
+                  <imagedata fileref="figures/basics_SaveSQL.png" format="PNG"
+                             srccredit="Pedro Albuquerque"></imagedata>
+                </imageobject>
+
+                <textobject>
+                  <phrase>O ecrã de gravação</phrase>
+                </textobject>
+
+                <caption>
+                  <para>Esta imagem mostra o ecrã <guilabel>Gravar como...</guilabel> quando o <guilabel>formato dos dados</guilabel> é 
+                  <acronym>mysql</acronym> ou <acronym>postgres</acronym>.</para>
+                </caption>
+              </mediaobject>
+            </screenshot>
+            </figure>
+
+            <para>Insira nesta janela a informação de <guilabel>ligação à base de dados</guilabel>:
+            <guilabel>Máquina</guilabel>, <guilabel>Base de dados</guilabel>, <guilabel>Utilizador</guilabel> e <guilabel>Senha</guilabel>.</para>
+            <warning>
+              <para>Gravar como <acronym>mysql</acronym> ou <acronym>postgres</acronym> requer as permissões adequadas para a 
+              base de dados, ou seja, tem de ter permissão para criar uma nova base de dados com o nome indicado, ou tem de ter permissão de 
+              escrita numa base de dados existente com o nome indicado.</para>
+            </warning>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>Clique em <guibutton>Gravar como</guibutton> para gravar o ficheiro.</para>
+      </listitem>
+    </orderedlist>
+
+    <para>Se está a controlar as finanças de uma única família, só precisa de um ficheiro. Mas se também controla as finanças da empresa,
+    ou quer manter dados separados por alguma razão, precisará de mais de um ficheiro.</para>
+
+    <para>Antes de terminar uma sessão do <application>&app;</application>, certifique-se que grava as alterações, usando 
+    <menuchoice><guimenu>Ficheiro</guimenu><guimenuitem>Gravar</guimenuitem></menuchoice> ou o botão <guibutton>Gravar</guibutton> 
+    na <emphasis>barra de ferramentas</emphasis>.
+    <note>
+        <para>Dado que é muito importante gravar frequentemente os seus dados para não os perder por qualquer motivo, o 
+        <application>&app;</application> pode gravar automaticamente o ficheiro aberto em determinados períodos de tempo.
+        Este intervalo pode ser definido no separador <guilabel>Geral</guilabel> indo a 
+        <menuchoice><guimenu>Editar</guimenu><guimenuitem>Preferências</guimenuitem></menuchoice>
+        (<menuchoice><guimenu>GnuCash</guimenu><guimenuitem>Preferências</guimenuitem></menuchoice> em Mac OS X).
+        Lembre-se que esta opção só é relevante se estiver a gravar em formato <acronym>XML</acronym>. Se trabalha com uma base 
+        de dados, o botão <guibutton>Gravar</guibutton> e o item de menu <guimenuitem>Gravar</guimenuitem> estarão em cinzento,
+        dado que as alterações são imediatamente gravadas.</para>
+    </note>
+    </para>
+    </sect2>
+    
+    <sect2 id="basics-open-data">
+    <title>Abrir dados</title>
+    <para>Para abrir um ficheiro ou base de dados existente, selecione <menuchoice><guimenu>Ficheiro</guimenu>
+    <guimenuitem>Abrir</guimenuitem></menuchoice> na <emphasis>barra de menus</emphasis>. Na janela que surge,
+    selecione o <guilabel>formato de dados</guilabel>. Se selecionou <guilabel>Ficheiro</guilabel> escolha o ficheiro que
+     quer abrir, navegando pelas pastas nos painéis inferiores. Senão, insira a necessária informação para <guilabel>ligação 
+     à base de dados</guilabel>.</para>
+    <tip>
+      <para>O <application>&app;</application> mantém uma lista de ficheiros recentemente abertos. Abra o menu 
+      <guilabel>Ficheiro</guilabel> e verá essa lista, em baixo. Clique no nome desejado para o abrir.</para>
+    </tip>
+    </sect2>
+
+    <sect2 id="basics-expt-acct">
+    <title>Duplicar a hierarquia de contas</title>
+    <para>Nalguns casos, poderá ser útil duplicar a estrutura de um ficheiro de dados existente. Por exemplo, pode querer 
+    experimentar uma nova técnica de contabilização sem corromper o ficheiro atual, ou pode precisar de começar o ano com 
+    um novo conjunto de livros.</para>
+
+    <para>O <application>&app;</application> permite criar uma cópia vazia do plano de contas simplesmente selecionando 
+    <menuchoice><guimenu>Ficheiro</guimenu><guisubmenu>Exportar</guisubmenu><guimenuitem>Exportar contas</guimenuitem></menuchoice>.
+    Quando seleciona este comando, é-lhe pedido que forneça um nome para o novo ficheiro vazio e o <application>&app;</application> 
+    cria um novo ficheiro de dados contendo só a árvore de contas (ou seja, não há dados de transações). Uma vez gravado, 
+    o novo ficheiro pode ser aberto tal como qualquer outro ficheiro de dados do <application>&app;</application>.</para>
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="basics-backup1">
+    <title>Fazer e restaurar cópias de segurança</title>
+
+    <para>O <application>&app;</application> cria vários tipos de ficheiros para ajudar a garantir que os seus dados não se perdem. 
+Se procurar na pasta onde grava o seu ficheiro,poderá ver outros ficheiros gerados pelo <application>&app;</application> com as 
+seguintes extensões: <filename>.gnucash</filename>, <filename>.log</filename>, <filename>.LCK</filename>, <filename>.LNK</filename>, 
+todos na mesma pasta que o seu ficheiro primário de dados. O que cada um destes ficheiros faz é descrito abaixo.</para>
+    
+    <note>
+    <para>As secções seguintes só são relevantes se grava o seu ficheiro de dados em formato <acronym>XML</acronym>.</para>
+    </note>
+ 
+    <programlisting>
+      $ ls 
+      meufich.gnucash
+      meufich.gnucash.20100414185747.gnucash
+      meufich.gnucash.20100414223248.log
+      meufich.gnucash.20100415114340.gnucash
+      meufich.gnucash.20100415154508.log
+      meufich.gnucash.20100415173322.gnucash
+      meufich.gnucash.20100415194251.log
+      meufich.gnucash.7f0982.12093.LNK
+      meufich.gnucash.LCK
+    </programlisting>
+
+    <sect2 id="basics-backupxac2">
+      <title>Cópia de segurança (.gnucash)</title>
+
+      <para>Sempre que grava o seu ficheiro de dados, também é  gravada uma cópia de segurança com a extensão 
+      <filename>.AAAAMMDDHHMMSS.gnucash</filename>. Este ficheiro é uma cópia completa do seu ficheiro de dados anterior.
+      E o formato do nome de ficheiro refere-se ao ano, mês, dia e hora da cópia de segurança. Por exemplo, o ficheiro 
+      <filename>meufich.gnucash.20160122180000.gnucash</filename> indica que esta é uma cópia de segurança do ficheiro 
+      <filename>meufich</filename>, gravado a 22 de janeiro de 2016, exatamente às 18:00.</para>
+
+      <para>Para restaurar uma cópia de segurança, abra simplesmente o ficheiro <filename>AAAAMMDDHHMMSS.gnucash</filename> 
+      com a data a que quer voltar. Certifique-se que grava esse ficheiro com um nome diferente.</para>
+      
+      <note>
+       <para>
+         <filename>.AAAAMMDDHHMMSS.xac</filename> em vez da extensão atual <filename>.AAAAMMDDHHMMSS.gnucash</filename>. 
+         Se atualizar da série 2.2 para a 2.4, poderá acabar com as duas, <filename>.AAAAMMDDHHMMSS.xac</filename> e 
+         <filename>.AAAAMMDDHHMMSS.gnucash</filename> cópias de segurança na sua pasta.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="basics-backuplog2">
+      <title>Ficheiro de registo (.log)</title>
+
+      <para>De cada vez que abre e edita um ficheiro no <application>&app;</application>, é criado um ficheiro de registo, 
+      que grava as alterações feitas ao seu ficheiro de dados. Este ficheiro de registo usa um formato de nome semelhante ao 
+      das cópias de segurança: <filename>.AAAAMMDDHHMMSS.log</filename>. Os ficheiros de registo não são uma cópia 
+      completa do seu ficheiro de dados - simplesmente gravam as alterações feitas ao ficheiro de dados na sessão atual do 
+      <application>&app;</application>.</para>
+
+      <para>Caso saia do <application>&app;</application> inadvertidamente, possivelmente por uma falha elétrica ou um 
+      rebentamento do sistema, pode recuperar a maior parte do seu trabalho desde que gravou o seu ficheiro do 
+      <application>&app;</application>  pela última vez, usando este ficheiro de registo. Proceda desta forma:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Abra o último ficheiro gravado do <application>&app;</application>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Vá a <menuchoice><guimenu>Ficheiro</guimenu><guisubmenu>Importar</guisubmenu> 
+          <guimenuitem>Reproduzir ficheiro .log do &app;...</guimenuitem></menuchoice> e selecione aquele que tiver a 
+          mesma data que o ficheiro gravado que acabou de abrir. Certifique-se que escolhe o ficheiro correto ou corre o 
+          risco de lançar o caos nas suas contas.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>A reprodução do ficheiro recupera qualquer transação que afete o saldo inserida desde a última gravação, 
+      incluindo aquelas criadas a partir de transações agendadas e funcionalidades de negócios (faturas, pagamentos, etc.).</para>
+
+      <warning>
+        <para>Alterações às transações agendadas, faturas ou pagamentos em si mesmos NÃO são recuperadas e as suas 
+        transações que o foram podem não estar corretamente associadas a elas. Deve portanto verificar tudo cuidadosamente. 
+        Especialmente transações de negócios, onde poderá ter de eliminar e recriar algumas. Se não o fizer, embora o balanço 
+        possa estar correto, alguns relatórios não estarão.</para>
+      </warning>
+    </sect2>
+
+    <sect2 id="basics-backuplock2">
+      <title>Ficheiros tranca (.LNK e .LCK)</title>
+
+      <para>Ocasionalmente poderá ver ficheiros <filename>.LNK</filename> e <filename>.LCK</filename> . Estes não contêm 
+      quaisquer dados, mas são criados para impedir mais de um utilizador de abrir o mesmo ficheiro em simultâneo. São criados 
+      automaticamente quando abre um ficheiro para o trancar de forma a que mais ninguém lhe aceda. Quando fecha a sessão no 
+      <application>&app;</application> ou abre outro ficheiro, o <application>&app;</application> destranca o primeiro ficheiro 
+      eliminando os ficheiros <filename>.LCK</filename> e <filename>.LNK</filename>.</para>
+
+      <para>Se o <application>&app;</application> rebentar enquanto tiver um ficheiro de dados aberto, os ficheiros 
+      <filename>.LCK</filename> e <filename>.LNK</filename> não são eliminados. Quando tentar abrir novamente o 
+      <application>&app;</application>, será avisado que o ficheiro está trancado. A mensagem aparece porque os ficheiros 
+      <filename>.LNK</filename> e <filename>.LCK</filename> ainda estão na sua pasta. É seguro escolher <guibutton>Sim</guibutton> 
+      para abrir o ficheiro de dados, mas deve eliminar os ficheiros <filename>.LNK</filename> e <filename>.LCK</filename> (usando 
+      uma janela de terminal ou o seu gestor de ficheiros).Uma vez eliminados, já não voltará a receber o aviso. A não ser que o 
+      <application>&app;</application> volte a rebentar.</para>
+    </sect2>
+
+    <sect2 id="basics-backupmanage2">
+      <title>Gestão de ficheiros</title>
+
+      <para>Então que ficheiros é que deve manter?Mantenha o seu ficheiro de dados, claro. É boa ideia conservar algumas das mais 
+      recentes cópias de segurança <filename>.AAAAMMDDHHMMSS.gnucash</filename>, mas pode eliminar os ficheiros 
+      <filename>.log</filename>, dado que não são cópias completas dos seus dados.</para>
+
+      <note>
+        <para>Se atualizou o <application>&app;</application> da versão 2.4 ou anterior, poderá também ter cópias de segurança 
+        no antigo formato <filename>.xac</filename>. Para estes, pode aplicar o mesmo princípio descrito acima para os ficheiros 
+        <filename>.AAAAMMDDHHMMSS.gnucash</filename>.</para>
+      </note>
+
+      <para>Também deve eliminar todos os ficheiros <filename>.LCK</filename> e <filename>.LNK</filename> que vir após fechar o 
+      <application>&app;</application>. Se decidir fazer uma cópia de segurança manual noutro disco, basta copiar o ficheiro 
+      de dados principal - não as cópias de segurança <filename>.AAAAMMDDHHMMSS.gnucash</filename>.</para>
+
+      <note>
+        <para>Por predefinição, o <application>&app;</application> elimina automaticamente qualquer ficheiro <filename>.log</filename> 
+        e <filename>.AAAAMMDDHHMMSS.gnucash</filename> com mais de 30 dias. Pode alterar este comportamento nas preferências do 
+        <application>&app;</application>. Vá a <menuchoice><guimenu>Editar</guimenu><guimenuitem>Preferências</guimenuitem></menuchoice>, 
+        separador <guilabel>Geral</guilabel> (<menuchoice><guimenu>GnuCash</guimenu><guimenuitem>Preferências</guimenuitem></menuchoice> 
+        em Mac OS X).</para>
+      </note>
+      
+    </sect2>
+  </sect1>
+
+  <sect1 id="basics-migrate-settings">
+    <title>Migrar dados do <application>&app;</application></title>
+      <para>Por vezes poderá precisar de mover os seus dados financeiros e definições do <application>&app;</application> para outra máquina.
+      Casos típicos serão a compra de um novo computador ou a utilização das mesmas definições em dois sistemas operativos diferentes.</para>
+
+   <sect2 id="migrate-financial">
+     <title>Migrar dados financeiros</title>
+     <para>Migrar os seus dados financeiros do <application>&app;</application>  tão simples como copiar o ficheiro <filename>.gnucash</filename> 
+     com um gestor de ficheiros, se souber onde eles estão.Se não se lembrar onde os guardou mas os consegue abrir no <application>&app;
+     </application>, grave-os no local desejado com o <application>&app;</application>.</para>
+
+     <para>Todos os outros ficheiros na pasta são ou cópias de segurança ou ficheiros de registo. Não faz mal se também os copiar, 
+     mas também não tem utilidade.</para>
+   </sect2>
+
+   <sect2 id="migrate-prefs">
+     <title>Migrar as preferências</title>
+     <para>As preferências são armazenadas em três locais diferentes: um para as preferências do <application>&app;</application>, 
+     um para os relatórios e um para as definições dos bancos. As preferências são geridas pelo <application>gsettings</application>, 
+     os relatórios são geridos pelo <application>&app;</application> e a banca online é gerida pelo <application>aqbanking</application>. 
+     Se não usa a banca online, não terá esta pasta na sua máquina.</para>
+     <para>Onde as preferências do <application>&app;</application> estão armazenadas varia, dependendo do seu sistema operativo 
+     (veja <xref linkend="App-sett-loc" />, <xref linkend="Report-loc" />, e <xref linkend="OB-sett-loc" />). Para fazer uma cópia de segurança 
+     da instalação completa, tem de incluir estas preferências todas.</para>
+
+     
+	<table id="App-sett-loc"><title>Localização das definições da aplicação</title>
+	<tgroup cols="2" align="left">
+  	  <thead>
+	    <row>
+  		<entry>SO</entry>
+		<entry>Pasta</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+            <row>
+     	      <entry>Unix</entry>        
+     	      <entry>As preferências do <application>&app;</application> estão armazenadas no <application>dconf</application>.
+                  Pode usar o comando <code>dconf dump /org/gnucash/</code> na máquna antiga e <code>dconf load /org/gnucash/</code> 
+                  na máquina nova para migrar as suas preferências.</entry>
+            </row>
+            <row>
+              <entry>Mac OSX</entry>
+              <entry><filename class="directory">~/Library/Preferences/gnucash.plist</filename></entry>
+            </row>
+            <row>
+              <entry>Windows</entry>
+              <entry>As preferências estão armazenadas no registo do Windows <filename class="directory">HKEY_CURRENT_USER/software/GSettings</filename></entry>
+            </row>
+	  </tbody>
+	</tgroup>
+	</table>
+
+        <table id="Report-loc"><title>Localização dos relatórios gravados</title>
+	<tgroup cols="2" align="left">
+  	  <thead>
+	    <row>
+  		<entry>SO</entry>
+		<entry>Pasta</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+            <row>
+     	      <entry>Unix</entry>
+              <entry><filename class="directory">~/.gnucash</filename></entry>
+            </row>
+            <row>
+              <entry>Mac OSX</entry>
+              <entry><filename class="directory">~/Library/Application Support/gnucash</filename></entry>
+            </row>
+            <row>
+              <entry>Windows</entry>
+              <entry><filename class="directory">Documents and Settings/Username/.gnucash</filename> or
+                     <filename class="directory">Users/Username/.gnucash</filename></entry>
+            </row>
+	  </tbody>
+	</tgroup>
+	</table>
+
+
+	<table id="OB-sett-loc"><title>Localização da definições do Online Banking</title>
+	<tgroup cols="2" align="left">
+  	  <thead>
+	    <row>
+  		<entry>SO</entry>
+		<entry>Pasta</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+            <row>
+     	      <entry>Unix</entry>
+              <entry><filename class="directory">~/.aqbanking</filename></entry>
+            </row>
+            <row>
+              <entry>Mac OSX</entry>
+              <entry><filename class="directory">~/.aqbanking</filename></entry>
+            </row>
+            <row>
+              <entry>Windows</entry>
+              <entry><filename class="directory">Documents and Settings/Username/.aqbanking</filename></entry>
+            </row>  
+	  </tbody>
+	</tgroup>
+	</table>
+
+     <note>
+       <para>Em Unix e Mac OSX, estas pastas habitualmente não são mostradas nos gestores de ficheiros. Tem de optar por 
+       mostrar ficheiros e pastas  ocultos para as poder ver.</para>
+     </note>
+
+     <tip>
+       <para>Em Unix e Mac OSX, o símbolo <keycap>~</keycap> significa a pasta <filename class="directory">home</filename>.</para>
+     </tip>
+
+   </sect2>
+
+  </sect1>
+
+  <sect1 id="basics-together1">
+    <title>Juntar as peças</title>
+
+    <note>
+      <para>Esta secção começa com um tutorial que continuará ao longo de todo o livro. No final de cada capítulo, verá 
+      uma secção <guilabel>Juntar as peças</guilabel> que o acompanha através de exemplos que ilustram os conceitos 
+      previamente discutidos. Cada uma das secções <guilabel>Juntar as peças</guilabel> é construída sobre a anterior, 
+      certifique-se que grava o seu ficheiro para mais fácil acesso.</para>
+    </note>
+
+    <para>Vamos começar!</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Primeiro vamos criar um ficheiro para armazenar os seus dados reais.Abra o <application>&app;</application>
+        e selecione <menuchoice><guimenu>Ficheiro</guimenu><guimenuitem>Novo ficheiro</guimenuitem></menuchoice> 
+        na <emphasis>barra de menu</emphasis>. Isto inicia o assistente <guilabel>Nova hierarquia de contas</guilabel>, 
+        que lhe permite criar várias contas de uma só vez.</para>
+        <note>
+          <para>Se está a executar o <application>&app;</application> pela primeira vez, verá o ecrã <guilabel>Impossível encontrar 
+          valores predefinidos</guilabel>, que é descrito detalhadamente no manual do <application>&app;</application>.</para>
+        </note>
+
+      <screenshot id="basics-NewAccountHierarchySetup">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup.png"
+                       format="PNG" srccredit="Pedro Albuquerque" width="510"></imagedata>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup.png"
+                       format="PNG" srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+        
+          <textobject>
+            <phrase>O assistente Nova hierarquia de contas</phrase>
+          </textobject>
+
+          <caption>
+            <para>Esta imagem mostra o primeiro ecrã do assistente <guilabel>Nova hierarquia de contas</guilabel>.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+      
+      <para>Este ecrã dá-lhe uma breve descrição daquilo que o assistente faz. Clique em <guibutton>Avançar</guibutton> para 
+      passar ao ecrã seguinte.</para>
+    </listitem>
+
+    <listitem>
+      <para>No segundo ecrã, selecione na lista pendente a moeda a usar em novas contas. Depois, clique em <guibutton>Avançar</guibutton>.</para>
+      <note>
+        <para>A moeda que selecionar aqui será associada a todas as <guilabel>contas</guilabel> criadas neste assistente.</para>
+      </note>
+      
+      <screenshot id="basics-NewAccountHierarchySetup-currency">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_currency.png"
+                       format="PNG" srccredit="Pedro Albuquerque" width="510"></imagedata>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_currency.png"
+                       format="PNG" srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>O assistente Nova hierarquia de contas - Moeda</phrase>
+          </textobject>
+
+          <caption>
+            <para>Esta imagem mostra o segundo ecrã do assistente <guilabel>Nova hierarquia de contas</guilabel>, onde seleciona 
+            a moeda.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </listitem>
+
+<listitem>
+      <para>No terceiro ecrã, encontra quatro separadores, <guilabel>Contas</guilabel>, <guilabel>Orçamento</guilabel>, 
+      <guilabel>Negócios</guilabel> e <guilabel>Contadores</guilabel>. Todas estas opções são descritas em detalhe no manual do 
+      <application>&app;</application>. Quando terminar, clique em <guibutton>Avançar</guibutton>.</para>
+            
+      <screenshot id="basics-NewAccountHierarchySetup-book-options">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_book_options.png"
+                       format="PNG" srccredit="Pedro Albuquerque" width="510"></imagedata>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_book_options.png"
+                       format="PNG" srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>O assistente Nova hierarquia de contas - Opções do livro</phrase>
+          </textobject>
+
+          <caption>
+            <para>Esta imagem mostra o terceiro ecrã do assistente <guilabel>Nova hierarquia de contas</guilabel>, onde seleciona 
+            as opções do novo livro.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </listitem>
+
+    <listitem>
+      <para>No quarto ecrã, selecione o grupo <guilabel>Contas comuns</guilabel> no painel <guilabel>Categorias</guilabel>. 
+      Clique em <guibutton>Avançar</guibutton> para continuar.</para>
+      <note>
+        <para>Se quiser, pode selecionar mais de um grupo predefinido de contas.Para mais informação sobre os tipos de contas, 
+        veja <xref linkend="accts-types1"></xref>.</para>
+      </note>
+
+      <screenshot id="basics-NewAccountHierarchySetup-Accounts">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Accounts.png"
+                       format="PNG" srccredit="Pedro Albuquerque" width="510"></imagedata>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Accounts.png"
+                       format="PNG" srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>O assistente Nova hierarquia de contas - Contas</phrase>
+          </textobject>
+
+          <caption>
+            <para>Esta imagem mostra o quarto ecrã do assistente <guilabel>Nova hierarquia de contas</guilabel>, onde escolhe as 
+            várias contas.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </listitem> 
+
+    <listitem>
+      <para>No quinto ecrã poderá definir <guilabel>saldos iniciais</guilabel> para cada uma das contas, assim como indicar se as contas são 
+      <guilabel>Marcador de posição</guilabel>. Como estas funcionalidades serão discutidas nos próximos capítulos, deixe tudo 
+      tal como está predefinido pelo <application>&app;</application> e clique em <guibutton>Avançar</guibutton> para abrir o 
+      último ecrã do assistente.</para>
+      
+      <screenshot id="basics-NewAccountHierarchySetup-Setup.png">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Setup.png"
+                       format="PNG" srccredit="Pedro Albuquerque" width="510"></imagedata>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Setup.png"
+                       format="PNG" srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>O assistente Nova hierarquia de contas - Configurar</phrase>
+          </textobject>
+
+          <caption>
+            <para>Esta imagem mostra o quinto ecrã do assistente <guilabel>Nova hierarquia de contas</guilabel> .</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </listitem>
+
+    <listitem>
+      <para>No último ecrã do assistente, clique em <guibutton>Aplicar</guibutton> para criar todas as contas e sair do assistente.</para>
+
+      <screenshot id="basics-NewAccountHierarchySetup-Finish">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Finish.png"
+                       format="PNG" srccredit="Pedro Albuquerque" width="510"></imagedata>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Finish.png"
+                       format="PNG" srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>O assistente Nova hierarquia de contas - Final</phrase>
+          </textobject>
+
+          <caption>
+            <para>Esta imagem mostra o último ecrã do assistente <guilabel>Nova hierarquia de contas</guilabel>.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </listitem>
+
+    <listitem>
+      <para>Após clicar em <guibutton>Aplicar</guibutton>, verá o diálogo de gravação. Selecione o <guilabel>formato de dados</guilabel> 
+      <acronym>XML</acronym>, <guilabel>nomeie</guilabel> o ficheiro como <filename>gcashdata_1</filename> e selecione a pasta onde 
+      gravar o ficheiro. Lembre-se disto, porque este ficheiro será usado nos tutoriais seguintes e clique em <guibutton>Gravar como</guibutton>.</para>
+
+        <para>A sua janela principal deverá agora parecer-se com esta:</para>
+
+          <screenshot id="basics-EmptyAccounts">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata fileref="figures/basics_EmptyAccounts.png"
+                           format="PNG" srccredit="Pedro Albuquerque" width="510"></imagedata>
+              </imageobject>
+              
+              <imageobject role="fo">
+                <imagedata fileref="figures/basics_EmptyAccounts.png"
+                           format="PNG" srccredit="Pedro Albuquerque" ></imagedata>
+              </imageobject>
+
+              <textobject>
+                <phrase>A janela principal mostrando o ficheiro de teste</phrase>
+              </textobject>
+            </mediaobject>
+          </screenshot>
+    </listitem>
+    
+  </orderedlist>
+    
+  </sect1>
+</chapter>

@@ -1,0 +1,1301 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: 2014-09-26 (fell)
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally written by Carol Champagne.
+  Translators:
+               (Pedro Albuquerque <palbuquerque73@gmail.com>)
+-->
+<chapter id="chapter_txns">
+  <title>Transações</title>
+
+  <para>Este capítulo dá-lhe a informação básica necessária para compreender e usar transações no <application>&app;</application>. 
+  Enquanto as contas são a estrutura de uma árvores de contas, as transações são os dados que cada conta contém.</para>
+
+  <sect1 id="txns-concepts1">
+    <title>Conceitos básicos</title>
+
+    <para>Uma <emphasis>transação</emphasis> num sistema contabilístico de dupla entrada tal como o <application>&app;</application> 
+    é uma troca entre pelo menos duas contas. Logo, uma transação simples tem de consistir sempre de duas partes, uma conta 
+    <emphasis>de</emphasis> e uma conta <emphasis>para</emphasis>. A conta <emphasis>de</emphasis> está a transferir valor para a 
+    conta <emphasis>para</emphasis>. Os contabilistas chamam a estas partes da transação <emphasis>Entradas do razão</emphasis>. No 
+    <application>&app;</application>, chamamos-lhes <emphasis>parcelas</emphasis>.</para>
+
+    <para>Uma parcela identifica a conta a que se refere, o montante  específico em dinheiro que é movido de ou para essa conta e pode 
+    conter mais algumas peças específicas de informação, se necessário. O <application>&app;</application> suporta múltiplas parcelas numa 
+    única transação que podem mover dinheiro arbitrariamente de ou para as contas envolvidas.</para>
+
+    <para>Por exemplo, recebeu um ordenado e depositou-o na sua conta poupança, no banco. A <emphasis>transação</emphasis> que 
+    ocorre é que a conta poupança no banco (um ativo) recebeu dinheiro da conta de receita. Duas contas são afetadas e, neste caso, há um 
+    aumento líquido do seu capital próprio.</para>
+
+    <para>O trabalho com transações no <application>&app;</application> é feito usando o que é conhecido por <emphasis>diário de 
+    conta</emphasis>. Cada conta que cria tem um diário de conta. Ser-lhe-á familiar porque se parece com o talão usado para controlar o 
+    livro de cheques.</para>
+
+    <para>O diário de conta é explicado na secção seguinte, <xref linkend="txns-register-oview"/>.</para>
+  </sect1>
+
+  <sect1 id="txns-register-oview">
+    <title>O diário de conta</title>
+
+    <para>O <emphasis>diário de conta</emphasis>  a janela do <application>&app;</application>, que lhe permite ver e editar transações 
+    pré-existentes, ou adicionar novas transações numa conta em particular. Para abrir um diário de conta a partir da árvore de contas, faça 
+    um duplo clique no nome da conta, clique com o botão direito no nome e selecione <menuchoice><guimenu>Abrir conta</guimenu></menuchoice> 
+    no menu ou use o botão na barra de ferramentas. O <application>&app;</application> abre a janela do diário de conta.</para>
+        <sect2 id="txns-registers-features2">
+            <title>Funcionalidades do diário de conta</title>
+        
+            <para>A <emphasis>barra de título</emphasis> do diário de conta mostra o nome da conta. Abaixo da <emphasis>barra de título</emphasis>, 
+            a <emphasis>barra de menu</emphasis> mostra os itens de menu disponíveis dentro do diário de conta e a <emphasis>barra de 
+            ferramentas</emphasis> contém cómodos botões que o ajudam a trabalhar com o diário de conta.</para>
+        
+            <para>Ao fundo à esquerda da janela do diário, o <application>&app;</application> mostra mensagens úteis à medida que se move dentro do 
+            diário. À direita, pode ver o saldo atual da conta e o total de parcelas confirmadas.</para>
+        </sect2>
+<sect2 id="txns-regstyle1">
+    <title>Escolher um estilo de diário</title>
+    
+    <para>O <application>&app;</application> oferece várias opções para ver os diários. O estilo predefinido é <guilabel>Livro razão básico</guilabel>, 
+    que mostra só o sumário das parcelas que afetam a conta atual. Este é o estilo que mais se parece com outros pacotes de gestão populares. 
+    Pode escolher um estilo de diário diferente indo a <menuchoice><guimenu>Ver</guimenu></menuchoice>. Há ainda mais dois modos:</para>
+    <itemizedlist>
+        <listitem><para>O estilo <menuchoice><guimenu>Ver</guimenu><guimenuitem>Livro razão de parcelas automáticas</guimenuitem></menuchoice>
+        expande a transação atual automaticamente. Quando põe uma transação em foco no diário, ela expande-se automaticamente para mostrar 
+        todas as parcelas.</para></listitem>
+    <listitem><para>O estilo <menuchoice><guimenu>Ver</guimenu><guimenuitem>Diário de transações</guimenuitem></menuchoice> 
+    mostra todas as parcelas no diário, o que se parece mais com um diário contabilístico.</para></listitem>
+    </itemizedlist>
+    
+    <para>Todos os estilos lhe permitem ver os seus dados em modo de linha única ou em modo de linha dupla. Selecione 
+        <menuchoice><guimenu>Ver</guimenu><guimenuitem>Linha dupla</guimenuitem></menuchoice> e verá a sua linha de transação
+        expandida para duas linhas do diário. O modo de linha dupla também mostra o campo Notas da transação.</para>
+    
+    <para>Abaixo estão imagens que demonstram as diferenças entre  o livro razão básico e o diário de transações.
+    </para>
+    <para>Para este exemplo, imaginemos que comprou três pares de calças de ganga por 1,000 &euro; e registou a compra como uma transação 
+    com parcelas, com cada par numa parcela.</para>
+    <para>Estas imagens ilustram as diferenças entre os modos.</para>
+    
+    <para>Primeiro vejamos a transação a partir da conta à ordem:</para>
+    
+    <screenshot id="txns-registersplit4">
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/txns_registersplit4.png" format="PNG"
+                srccredit="Pedro Albuquerque" />
+            </imageobject>
+            
+            <textobject>
+                <phrase>Compra de 3 pares de calças</phrase>
+            </textobject>
+            
+            <caption><para>
+                Esta imagem mostra uma transação com parcelas de compra de calças
+            </para></caption>
+        </mediaobject>
+    </screenshot>
+    
+    <para>Agora, vejamos a conta <emphasis>Despesas:Roupa</emphasis>, no modo básico.</para>
+
+<screenshot id="txns-registersplit5">
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/txns_registersplit5.png" format="PNG"
+                srccredit="Pedro Albuquerque" />
+            </imageobject>
+            
+            <textobject>
+                <phrase>Um salto até à conta <emphasis>Despesas:Roupa</emphasis></phrase>
+            </textobject>
+            
+            <caption><para>Esta imagem mostra a conta <emphasis>Despesas:Roupa</emphasis> em modo Livro razão básico.</para></caption>
+        </mediaobject>
+    </screenshot>
+<para>Surgem aqui três entradas, mas só havia uma única entrada com parcelas na conta à ordem. Um exame mais apurado mostra que 
+cada linha tem um montante diferente, 200&euro;, 300&euro; e 500&euro;. Isto demonstra que cada linha nesta vista reflete uma 
+única parcela da transação original.</para>
+
+    <para>Se mudar para o modo Diário de transações verá só a transação original com parcelas.</para>
+    
+    <screenshot id="txns-registersplit6">
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/txns_registersplit6.png" format="PNG"
+                srccredit="Pedro Albuquerque" />
+            </imageobject>
+            
+            <textobject>
+                <phrase>Um salto até à conta <emphasis>Despesas:Roupa</emphasis></phrase>
+            </textobject>
+            
+            <caption><para>Esta imagem mostra a conta <emphasis>Despesas:Roupa</emphasis> em modo Diário de transações.</para></caption>
+        </mediaobject>
+    </screenshot>
+    
+</sect2>
+
+<sect2 id="txns-shortcuts1">
+    <title>Usando atalhos de introdução</title>
+    
+    <para>O <application>&app;</application> oferece vários atalhos para poupar tempo ao inserir os seus dados. Quando digita os 
+        primeiros caracteres de uma descrição que já utilizou, a funcionalidade Preenchimento rápido preenche automaticamente o resto 
+        da transação tal como a inseriu antes. Quando digita o primeiro carácter de um nome de conta, seja no campo <guilabel>Transferência</guilabel>, 
+        da linha da transação, seja no campo <guilabel>Conta</guilabel> da linha da parcela, o nome é completado automaticamente a partir 
+        da sua lista de contas. Também o ajuda a inserir subcontas nestes campos: digite os primeiros caracteres da conta-mãe, seguidos de 
+        <keycap>:</keycap> (dois pontos) [ou o carácter que escolheu como separador de contas]e os primeiros caracteres do nome 
+        da subconta. Por exemplo, para inserir <emphasis>Ativo:Conta à ordem</emphasis>, pode digitar <userinput>A:C</userinput> e deixar 
+        o <application>&app;</application> fazer o resto.</para>
+    <warning><para>Por <keycap>:</keycap> ser o símbolo de separação de contas, não o pode usar nos nomes de conta.</para></warning>
+    <tip><para>Se realmente precisa dos dois pontos no nome de uma conta, pode escolher outro símbolo indo a 
+        <menuchoice><guimenu>Editar</guimenu><guisubmenu>Preferências</guisubmenu><guisubmenu>Contas</guisubmenu>
+            <guilabel>Carácter</guilabel></menuchoice>.</para></tip>
+    <para>Os atalhos de teclado do diário também lhe poupam tempo e o <application>&app;</application> oferece-lhe vários. No campo 
+    de data pode digitar:</para>
+    
+    <itemizedlist>
+        <listitem>
+            <para><keycap>+</keycap> ou <keycap>=</keycap> para incrementar a data e <keycap>-</keycap> ou <keycap>_</keycap> para a 
+            decrementar</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>]</keycap> ou <keycap>}</keycap> para incrementar o mês e <keycap>[</keycap> ou <keycap>{</keycap> para 
+            o decrementar</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>M</keycap> ou <keycap>m</keycap> para inserir a primeira data do mês</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>H</keycap> ou <keycap>h</keycap> para inserir a última data do mês</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>Y</keycap> ou <keycap>y</keycap> para inserir a primeira data do ano</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>R</keycap> ou <keycap>r</keycap> para inserir a última data do ano</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>T</keycap> ou <keycap>t</keycap> para inserir a data de hoje</para>
+        </listitem>
+    </itemizedlist>
+    
+    <para>No campo <guilabel>Nº</guilabel> da linha da transação, pode digitar <keycap>+</keycap> para incrementar o número da 
+    transação a partir do último que inseriu. Digitar <keycap>-</keycap> decrementa-o. Isto também funciona no campo <guilabel>Ação</guilabel> 
+    da linha da parcela, se escolher inserir números de parcela aí. O campo <guilabel>Ação</guilabel> também suporta preenchimento rápido 
+    - se digitar os primeiros caracteres de uma ação comum (tal como <guilabel>Depósito</guilabel>), o <application>&app;</application> 
+    preenche o resto.</para>
+    
+    <para>O campo <guilabel>Transferência</guilabel> suporta o preenchimento rápido dos nomes de conta. Pode começar a escrever 
+    o nome da conta e o <application>&app;</application> preenche o que falta. Digitar o carácter separador a qualquer altura completa o 
+    nome de conta no nível atual, deixando o cursor posicionado no início do nome da próxima subconta. Por exemplo, se escrever 
+    <keycap>A:C</keycap>, será completado para <emphasis>Ativos:Conta à ordem</emphasis>. Também pode usar as combinações 
+    <keycap>Menu</keycap> ou <keycombo><keycap>Ctrl</keycap><keycap>Seta abaixo</keycap></keycombo> neste campo para ver 
+    uma lista de todos os nomes de conta.</para>
+    
+    <para>Em qualquer um dos campos de montantes, pode usar uma calculadora interna. Simplesmente digite o primeiro valor, seguido de 
+        <keycap>+</keycap>, <keycap>-</keycap>, <keycap>*</keycap>, ou <keycap>/</keycap> e escreva o segundo valor. O 
+        <application>&app;</application> faz o cálculo e insere o resultado no campo de montante quando premir <keycap>Tab</keycap>. Por 
+        exemplo, pode inserir <keycap>50*100/123</keycap> para inserir uma compra de 50 &euro; sem IVA a 23 %</para>
+    
+    <para>Todos os itens de menu têm teclas de caesso definida e estão marcadas por caracteres sublinhados nos nomes de menu. 
+    Prima <keycap>Alt</keycap> + [carácter sublinhado] para abrir o menu e depois selecione o item digitando o seu carácter sublinhado. 
+        Por exemplo,  escrever <keycombo><keycap>Alt</keycap><keycap>A</keycap></keycombo> abre o menu Ações, seguido de 
+        <keycap>P</keycap> divide a transação. Alguns dos itens de menu têm ainda atalhos que chamam o comando diretamente 
+        (tipicamente usando <keycap>Ctrl</keycap>). Estes atalhos estão listados a seguir ao item.</para>
+    
+    <para>Para se mover dentro do diário, use estas teclas para poupar tempo:</para>
+    
+    <itemizedlist>
+        <listitem>
+            <para><keycap>Tab</keycap> para passar ao campo seguinte, <keycombo><keycap>Shift</keycap><keycap>Tab</keycap></keycombo> 
+            para passar ao campo anterior</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>Home</keycap> para se mover para o início do campo, <keycap>End</keycap> para se mover para o final do campo</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap function="enter">Enter</keycap> ou <keycap>↓</keycap> para se mover para a próxima transação, 
+            <keycap>↑</keycap> para se mover para a transação anterior</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>Page Up</keycap> para se mover um ecrã acima, <keycap>Page Down</keycap> para se mover um ecrã abaixo</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycombo><keycap>Shift</keycap><keycap>Page Up</keycap></keycombo> para ir para a primeira transação, 
+            <keycombo><keycap>Shift</keycap><keycap>Page Down</keycap></keycombo> para ir para a última transação</para>
+        </listitem>
+    </itemizedlist>
+    
+    <para>Na janela de <guilabel>reconciliação</guilabel> pode usar estes atalhos de teclado:</para>
+    
+    <itemizedlist>
+        <listitem>
+            <para><keycap>Tab</keycap> move para a caixa seguinte e <keycombo><keycap>Shift</keycap><keycap>Tab</keycap></keycombo>
+                move para a caixa anterior</para>
+        </listitem>
+        
+        <listitem>
+            <para>A barra de espaço alterna o estado entre reconciliada e não reconciliada</para>
+        </listitem>
+        
+        <listitem>
+            <para><keycap>↑</keycap> e <keycap>↓</keycap> navegam pelas entradas dentro da caixa atual</para>
+        </listitem>
+    </itemizedlist>
+</sect2>
+</sect1>
+    <sect1 id="txns-registers-txntypes">
+    <title>Transações Simples vs. Com parcelas</title>
+    
+    <para>Cada transação no <application>&app;</application> tem pelo menos duas parcelas, mas uma mesma transação pode ter mais 
+    de duas parcelas. Uma transação com duas parcelas é chamada de <emphasis>transação simples</emphasis>, dado que só envolve 
+    a conta atual e uma única conta remota. Uma transação com três ou mais contas é chamada uma <emphasis>transação com parcelas</emphasis>.</para>
+    <para>Quando o diário está em modo básico, verá um sumário das parcelas que afetam a conta atual. Para uma transação simples, a coluna 
+    <guilabel>Transferência</guilabel> mostra a outra conta de onde o dinheiro foi <emphasis>transferido</emphasis>. Para uma transação 
+    com parcelas, a coluna <guilabel>Transferência</guilabel> mostra <guilabel>-- Transação com parcelas --</guilabel>. Pode ver as parcelas 
+    individuais de cada transação clicando em <guibutton>Parcelas</guibutton> na <emphasis>barra de ferramentas</emphasis> depois de 
+    selecionar a transação apropriada.</para>
+    
+    <para>Para transações com parcelas, a primeira linha da transação é a <emphasis>linha de transação</emphasis>. Contém uma 
+    <guilabel>Data</guilabel>, um <guilabel>Nº</guilabel> opcional (tal como um número de cheque), uma <guilabel>Descrição</guilabel>, 
+    o montante total que afeta a conta atual (<guilabel>Tot Crédito</guilabel> aqui) e <guilabel>saldo</guilabel> atualizado após a transação 
+    atual. Note que na vista expandida, o cabeçalho da coluna <guilabel>Transferência</guilabel> desaparece e não há nome de conta nesse 
+    campo. Esta linha mostra-lhe só um sumário do efeito da transação na conta atual. Para obter informação mais detalhada, tem de ver as 
+    parcelas individuais que constituem a transação.</para>
+
+<para>As linhas parciais abaixo da linha de transação são as <emphasis>linhas de parcelas</emphasis>, e são separadas por linhas cinzentas. 
+Quando puser em foco uma dessas linhas de parcelas, os cabeçalhos de colunas alteram-se para mostrar os campos relacionados com as 
+parcelas:</para>
+
+<screenshot id="txns-registersplit2">
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="figures/txns_registersplit2.png" format="PNG"
+            srccredit="Pedro Albuquerque" />
+        </imageobject>
+        
+        <textobject>
+            <phrase>Como se alteram os cabeçalhos das parcelas</phrase>
+        </textobject>
+        
+        <caption><para>Esta imagem mostra como se alteram os cabeçalhos das colunas.</para></caption>
+    </mediaobject>
+</screenshot>
+
+<para>Cada parcela contém uma <guilabel>Ação</guilabel> opcional, ou tipo de parcela, que pode inserir ou escolher duma lista. Contém 
+também um <guilabel>Memorando</guilabel> opcional, que descreve a parcela. Cada parcela afeta uma <guilabel>Conta</guilabel>, que 
+pode ser selecionada de uma lista pendente de contas. O campo <guilabel>R</guilabel> indica se a parcela foi reconciliada. As últimas 
+duas colunas mostram o montante da parcela e se o dinheiro está a entrar ou a sair da conta.</para>
+
+<para>Tal como discutimos em <xref linkend="basics-accounting1" />, o total de débitos (coluna esquerda) deve ser igual ao total de 
+créditos (coluna direita) para cada transação. No exemplo mostrado acima, o total de débitos é igual ao total de créditos, pelo que a 
+transação está saldada. Se reparar, a linha de transação contém o mesmo montante de débito que a linha da parcela <guilabel>Conta 
+à ordem</guilabel>. Porque é que vemos isto duas vezes? Porque a linha de transação é meramente um <emphasis>sumário</emphasis> 
+do efeito da transação na conta atual. A mesma transação numa conta diferente terá uma linha de transação diferente, uma que mostre 
+o efeito nessa conta em particular. Pode confirmar isto selecionando outra linha de parcela e clicando no botão <guibutton>Saltar</guibutton> 
+na <emphasis>barra de ferramentas</emphasis>.</para>
+
+<para>Neste exemplo, se saltar para a conta <emphasis>Receitas:Ordenado</emphasis>, o <application>&app;</application> abre a 
+mesma transação no diário <emphasis>Receitas:Ordenado</emphasis>:</para>
+
+<screenshot id="txns-registersplit3">
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="figures/txns_registersplit3.png" format="PNG"
+            srccredit="Pedro Albuquerque" />
+        </imageobject>
+        
+        <textobject>
+            <phrase>Um salto até à conta <emphasis>Receitas:Ordenado</emphasis></phrase>
+        </textobject>
+        
+        <caption><para>Esta imagem mostra um salto até à conta <emphasis>Receitas:Ordenado</emphasis>.</para></caption>
+    </mediaobject>
+</screenshot>
+
+<para>Note que o total da linha de transação agora sumariza o efeito na conta <emphasis>Receitas:Ordenado</emphasis> em vez da 
+<emphasis>Conta à ordem</emphasis>, porque está a olhar para o diário da conta <emphasis>Receitas:Ordenado</emphasis>. As 
+parcelas são exatamente as mesmas, mas a linha de transação agora reflete o crédito para a conta <emphasis>Receitas:Ordenado</emphasis>.</para>
+
+    <sect2 id="txns-registers-twoaccount2">
+      <title>Exemplo com uma transação simples</title>
+
+      <para>Começando com a árvore de contas que cirámos no capítulo anterior, <filename>gcashdata_3</filename>, faça duplo 
+      clique em <guilabel>Conta à ordem</guilabel>. Vamos adicionar uma transação simples a esta conta. Quando primeiro cria as 
+      suas contas no <application>&app;</application>, é habitual começar com um saldo inicial.</para>
+
+      <para>Na primeira linha da transação, insira uma data (ex: 1 de janeiro de 2006), uma descrição (ex: <quote>Saldo inicial</quote>), 
+      clique na lista pendente <guilabel>Transferência</guilabel> e selecione <emphasis>Capital próprio:Saldo inicial</emphasis>, 
+      adicione um depósito de 1000&euro; e prima <keycap function="enter">Enter</keycap>. O diário da conta deverá estar parecido 
+      com esta imagem:</para>
+
+      <screenshot id="txns-register-2account">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_2account.png"
+                       format="PNG" srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>O diário da conta à ordem</phrase>
+          </textobject>
+
+          <caption><para>Esta imagem mostra o diário de <emphasis>Ativos:Conta à ordem</emphasis> após inserir uma transação 
+          de valor inicial.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Definir o saldo inicial de uma conta é um exemplo de uma transação simples entre duas contas. Neste caso, afetando 
+      as contas <emphasis>Ativos:Conta à ordem</emphasis> e <emphasis>Capital próprio:Saldo inicial</emphasis>.</para>
+
+      <para>Como outro exemplo de uma transação simples afetando só duas contas, adicione outra transação para descrever a 
+      compra de mercearias no valor de 45.21&euro;. Dentro da conta <emphasis>Ativos:Conta à ordem</emphasis>, defina 
+      <guilabel>Transferência</guilabel> para <emphasis>Despesas:Comida</emphasis>. O diário de conta deve agora parecer-se 
+      com:</para>
+
+      <screenshot id="txns-register-2account2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_2account2.png"
+                       format="PNG" srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>O diário da conta à ordem</phrase>
+          </textobject>
+
+          <caption><para>Esta imagem mostra o diário de <emphasis>Ativos:Conta à ordem</emphasis> após adicionar uma transação 
+          para compra de mercearias.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-registers-multiaccount2">
+      <title>Exemplo de transação com parcelas</title>
+
+      <para>A necessidade para três ou mais parcelas ocorre quando precisa de dividir uma das contas <quote>de</quote> ou 
+      <quote>para</quote> numa mesma transação em múltiplas contas. O exemplo clássico disto será a receção de um cheque de 
+      ordenado. Aquilo que realmente recebe é tipicamente menos que aquilo que lhe pagam, sendo a diferença devida a impostos, 
+      segurança social e/ou outros itens. Logo, a transação simples de receber um cheque de ordenado envolve outras contas além 
+      da conta <emphasis>Ativos:Conta à ordem</emphasis> e <emphasis>Receitas:Ordenado</emphasis>.</para>
+      <para>Para adicionar a transação com parcelas a partir do diário de conta <emphasis role="italic"> Ativos:Conta à ordem</emphasis>, 
+      clique numa linha de nova transação e clique em <guilabel>Parcelas</guilabel>. Note que se definiu a vista do diário para Livro razão 
+      de parcelas automáticas ou Diário de transações, as parcelas abrem-se sozinhas. Insira a descrição desta transação na primeira linha 
+      (ex: “Empregador”). Nas linhas de parcelas abaixo, insira as várias parcelas que compõem esta transação, uma a uma. Para inserir 
+      as parcelas, primeiro escolha a conta, depois insira o montante por que alterar a conta. Tenha em mente que quando está num diário 
+      de conta de ativos, os montantes inseridos na coluna esquerda aumentam o saldo da conta, enquanto montantes inseridos na coluna 
+      direita o diminuem (para mais informação, veja <xref linkend="basics-transactions2"/>). Prima Tab ou clique na próxima linha de parcela 
+      e repita o processo. Note que, se está a usar o teclado para navegar na transação, use <keycap>Tab</keycap> para se mover entre 
+      campos, uma vez que a tecla <keycap>Enter</keycap> regista a transação e cria parcelas numa conta de desequilíbrio.</para>
+      <note>
+        <para>Quando cria uma transação no <application>&app;</application>, as parcelas podem ser inseridas em qualquer ordem. 
+        Contudo, quando a transação é fechada (seja saindo da transação, seja premindo <keycap function="enter">Enter</keycap>), 
+        todas as parcelas de débito passam à frente das parcelas de crédito.</para>
+      </note>
+
+      <para>Neste exemplo, escolha a conta de depósito (<emphasis>Ativos:Conta à ordem</emphasis>) e insira o montante a depositar 
+      (ex: 670&euro;). Continue a inserir os vários montantes para impostos: 
+      conta <emphasis>Despesas:Impostos:IRS</emphasis>, 180&euro;;
+      conta <emphasis>Despesas:Impostos:Segurança Social</emphasis>, $90&euro;; e
+      conta <emphasis>Despesas:Impostos:Seguro</emphasis>, $60&euro;. Finalmente, insira o valor bruto do cheque ($1,000&euro; 
+      neste exemplo) como levantamento da conta <emphasis>Receitas:Ordenado</emphasis>.</para>
+
+      <para>A divisão final deverá parecer-se com <xref linkend="txns-register-multiaccount"/>. Lembre-se de premir 
+      <keycap function="enter">Enter</keycap> quando terminar a introdução. Mas também deve saber que quando prime 
+      <keycap function="enter">Enter</keycap>, as parcelas serão <quote>dobradas</quote> numa vista de transação simples. As 
+      parcelas ainda lá estão, só tem de clicar em <guilabel>Parcelas</guilabel> para as ver. Veja <xref linkend="txns-registers-features2"/> 
+      para mais detalhes.</para>
+
+      <figure id="txns-register-multiaccount">
+        <title>Inserir uma transação com parcelas</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_multiaccount.png"
+                       format="PNG" srccredit="Pedro Albuquerque" />
+          </imageobject>
+          <textobject>
+            <phrase>Diário de conta - transação com parcelas</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+    </sect2>
+  </sect1>
+
+  <sect1 id="txns-reconcile1">
+    <title>Reconciliação</title>
+
+      <para>Uma vez inseridas transações no <application>&app;</application>, é importante verificar se elas estão de acordo 
+      com o extrato da sua instituição financeira. Este processo de verificação é conhecido por <emphasis role="strong">reconciliação</emphasis> 
+      e é a chave para determinar se os seus registos estão corretos. O mais habitual é comparar as suas transações com os extratos bancários, 
+      mas pode usar este processo para verificar qualquer transação.</para>
+
+      <para>O <application>&app;</application> mantém o estado de reconciliação de cada transação sob controlo. Este estado é mostrado 
+      pelo campo <guilabel>R</guilabel> num diário: <emphasis>r</emphasis> indica que uma transação foi reconciliada, <emphasis>nc</emphasis> 
+      indica que não foi confirmada, e <emphasis>c</emphasis> indica que foi confirmada mas não reconciliada. Uma transação marcada como 
+      confirmada significa que tem alguma confirmação de que a sua ordem foi aceite (por ex., tem o recibo do cartão de crédito que o restaurante 
+      emitiu). Pode alternar o estado de reconciliação entre <emphasis>nc</emphasis> e <emphasis>c</emphasis> clicando no campo 
+      <guilabel>R</guilabel>; pode defini-lo para <emphasis>r</emphasis> usando <xref linkend="txns-reconcile-window2" />.</para>
+    
+      <para>Ao fundo da janela da conta, há (entre outros) dois saldos em execução (os saldos <guilabel>Confirmado</guilabel> e 
+      <guilabel>Reconciliado</guilabel>) e o saldo <guilabel>Futuro</guilabel>. Os primeiros devem corresponder aquilo que o seu banco 
+      pensa que tem na conta, enquanto o último inclui transações pendentes.</para>
+
+      <para>Por exemplo, quando passa um cheque, deve inserir a transação no <application>&app;</application>. O campo de reconciliação 
+      <guilabel>R</guilabel> da transação conterá inicialmente <guilabel>nc</guilabel> (não confirmada).A sua nova entrada vai contribuir 
+      para o saldo <guilabel>Futuro</guilabel>, mas não para os saldos <guilabel>Confirmado</guilabel> e <guilabel>Reconciliado</guilabel>. 
+      Mais tarde, se obteve confirmação que o cheque foi cobrado, pode clicar no campo <guilabel>R</guilabel> para o alterar para 
+      <emphasis>c</emphasis> (confirmado). Ao fazer isto, o saldo <guilabel>Confirmado</guilabel> altera-se para incluir esse montante. 
+      Quando chegar o extrato do banco, poderá compará-lo com o que registou no <application>&app;</application>, abrindo a janela de 
+      reconciliação. Aí, poderá alterar o campo <guilabel>R</guilabel> para <emphasis>r</emphasis> (reconciliada).</para>
+      
+      <note>
+        <para>Não pode reconciliar diretamente numa janela de diário simplesmente clicando no campo <emphasis>R</emphasis>. Tem de 
+        usar a janela de reconciliação. Uma vez que uma transação esteja marcada como <emphasis>reconciliada</emphasis>, já não pode ser 
+        facilmente alterada sem quebrar o <link linkend="rec-start-blnc"><guilabel>Saldo inicial</guilabel></link> da próxima reconciliação.</para>
+      </note>
+
+      <warning>
+        <para>É importante compreender que a reconciliação é feita para uma determinada data e que quando reconcilia uma conta baseado 
+        num extrato com uma dada data, está a reconciliar <emphasis role="strong">todas as transações anteriores a essa data</emphasis>. 
+        Portanto, se adicionar ou modificar transações com data anterior à da última reconciliação, os seus saldos <emphasis role="strong">reconciliados</emphasis> 
+        ficam em desequilíbrio.</para>
+      </warning>
+
+    <sect2 id="txns-reconcile-window2">
+      <title>Janelas de reconciliação</title>
+
+      <para>As janelas de reconciliação são usadas para reconciliar uma conta do <application>&app;</application> com um extrato que um 
+      banco ou outra instituição financeira lhe enviou. A recociliação é útil, não só para verificar duplamente os seus registos com os do banco, 
+      mas também para ter uma melhor ideia do que ainda tem pendente, por exemplo, cheques não cobrados.</para>
+
+      <para>Para usar as janelas de reconciliação, selecione uma conta da árvore de contas e clique em <menuchoice><guimenu>Ações</guimenu>
+      <guimenuitem>Reconciliar</guimenuitem></menuchoice>. Abre-se uma janela semelhante à que está abaixo, onde pode inserir a informação 
+      de reconciliação.</para>
+
+      <screenshot id="txns-reconcile-window-1">
+        <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/txns_reconcile_window1.png"
+                         format="PNG" srccredit="Pedro Albuquerque"></imagedata>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/txns_reconcile_window1.png"
+                         format="PNG" srccredit="Pedro Albuquerque"></imagedata>
+            </imageobject>
+
+          <textobject>
+            <phrase>Janela Reconciliar</phrase>
+          </textobject>
+
+          <caption><para>A janela inicial de reconciliação.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Na janela inicial de reconciliação, tem de inserir alguma <guilabel>informação de reconciliação</guilabel>.</para>
+      <variablelist>
+        <varlistentry><term><guilabel>Data do extrato</guilabel></term>
+          <listitem>
+            <para>A data do extrato contra o qual vai fazer a reconciliação.</para>
+	  <tip>
+	    <para>Clique na seta à direita deste campo para abrir um calendário.</para>
+	  </tip>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="rec-start-blnc"><term><guilabel>Saldo inicial</guilabel></term>
+          <listitem>
+            <para>Este é um item não editável que mostra o saldo da reconciliação anterior. Deve corresponder ao saldo inicial do seu extrato.</para>
+
+            <warning><para>Por vezes, o saldo inicial no <application>&app;</application> não corresponde ao encontrado no seu extrato. Isto 
+            pode acontecer na primeira vez que reconcilia a sua conta ou quando uma transação previamente reconciliada foi alterada ou 
+            eliminada.</para></warning>
+
+            <note><para>Na primeira vez que reconcilar a sua conta, o <guilabel>saldo inicial</guilabel> será <guilabel>0.00</guilabel>, logo 
+            provavelmente não é o <emphasis>saldo inicial</emphasis> da sua conta. Quando reconciliar a conta, o <emphasis>saldo 
+            inicial</emphasis> da conta será incluído na reconciliação e o resultado deverá ficar equilibrado.</para></note>
+
+            <tip>
+              <para>No caso de uma transação previamente reconciliada ser acidentalmente alterada, pode simplesmente voltar a reconciliá-la 
+              juntamente com as transações do extrato atual e o resultado deverá ficar equilibrado.</para>
+
+              <para>O caso de acidentalmente eliminar uma transação previamente reconciliada apresenta um desafio maior. Se não puder determinar o 
+              que foi apagado e restaurá-lo no diário correspondente, terá de criar uma transação fictícia para conseguir terminar a reconciliação.</para>
+            </tip>
+            <caution><para>Embora o último caso não tenha importância na sua contabilidade privada, se for o contabilista de um clube ou 
+            de uma empresa, é melhor que tenha preparada uma boa explicação para o sucedido.</para></caution>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Saldo final</guilabel></term>
+          <listitem>
+            <para>Este campo deve ser preenchido com o saldo final que aparece no extrato.</para>
+	  <note>
+	    <para>O <application>&app;</application> preenche automaticamente este campo com o saldo <guilabel>Atual</guilabel> mostrado 
+	    na parte inferior do diário da conta.</para>
+	  </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Incluir subcontas</guilabel></term>
+          <listitem>
+            <para>Marque esta opção se quiser incluir as transações que pertencem às subcontas da conta selecionada na reconciliação. 
+            Note que todas as subcontas têm de estar na mesma moeda/mercadoria que a conta-mãe para poder ativar a opção.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guibutton>Inserir pagamento de juros</guibutton></term>
+          <listitem>
+            <para>Clicar neste botão abre uma nova janela que lhe permite inserir uma transação de juros na conta a ser reconciliada.</para>
+	    <tip>
+	      <para>A janela de <guilabel>pagamento de juros</guilabel> poderá abrir automaticamente quando inicia uma reconciliação de uma 
+	      conta de tipo <emphasis>Banco</emphasis>, <emphasis>Crédito</emphasis>, <emphasis>Fundo</emphasis>, <emphasis>Ativo</emphasis>, 
+	      <emphasis>Cobrável</emphasis>, <emphasis>Pagável</emphasis> e <emphasis>Passivo</emphasis>. Se quiser desativar este comportamento, 
+	      para qualquer uma das contas mencionadas, vá ao separador <guilabel>Diário</guilabel> nas <guilabel>Preferências do &app;</guilabel> 
+	      e desmarque a caixa <guilabel>Transferência automática de juros</guilabel>. Em alternativa, para desativar este comportamento só para a 
+	      conta selecionada, clique em <guibutton>Sem pagamento automático de juros nesta conta</guibutton> na janela 
+	      <guilabel>Inserir pagamento de juros</guilabel>.</para>
+	    </tip>
+          </listitem>
+        </varlistentry>
+       </variablelist>
+
+      <para>Depois clique em <guibutton>Aceitar</guibutton> e verá a janela de reconciliação com a lista das transações:</para>
+
+      <screenshot id="txns-reconcile-window-2">
+        <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/txns_reconcile_window2.png"
+                         format="PNG" srccredit="Pedro Albuquerque" width="510"></imagedata>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/txns_reconcile_window2.png"
+                         format="PNG" srccredit="Pedro Albuquerque"></imagedata>
+            </imageobject>
+
+          <textobject>
+            <phrase>Janela de reconciliação</phrase>
+          </textobject>
+
+          <caption><para>A lista de transações na janela de reconciliação.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Os dois painéis chamados <guilabel>Fundos entrados</guilabel> e <guilabel>Fundos saídos</guilabel>, listam todas as 
+      transações não reconciliadas que pertencem à conta que vai ser reconciliada. A coluna <guilabel>R</guilabel> mostra se a transação 
+      já foi reconciliada.</para>
+      
+      <para>Agora, examine cada item no extrato do banco e procure o item correspondente na janela <guilabel>Reconciliar</guilabel>.</para>
+
+      <para>Se não conseguir encontrar uma transação, talvez se tenha esquecido de a inserir, ou não soubesse que ela tinha acontecido. 
+      Pode usar o botão <guibutton>Nova</guibutton> na <emphasis>barra de ferramentas</emphasis>, ou o item de menu 
+      <menuchoice><guimenu>Transação</guimenu><guimenuitem>Nova</guimenuitem></menuchoice> para abrir o diário e inserir a transação 
+      em falta. O novo item vai aparecer na janela <guilabel>Reconciliar</guilabel> quando premir <guibutton>Enter</guibutton> no diário 
+      após inserir a transação.</para>
+
+      <para>Quando encontrar o item na janela <guilabel>Reconciliar</guilabel>, compare o montante do item com o montante do extrato. 
+      Se discordar, pode ter cometido um error quando inseriu a transação no <application>&app;</application>. Pode usar o botão 
+      <guibutton>Editar</guibutton> na <emphasis>barra de ferramentas</emphasis> ou ir a <menuchoice><guimenu>Transaction</guimenu>
+      <guimenuitem>Editar</guimenuitem></menuchoice> para abrir o diário de conta e corrigir a transação.</para>
+
+      <para>Se os montantes concordam, clique no item na janela <guilabel>Reconciliar</guilabel>. Surge uma marca na coluna 
+      <guilabel>R</guilabel> ao lado da transação selecionada. O <application>&app;</application> atualiza automaticamente os montantes 
+      no painel de sumário inferior direito.</para>
+      
+      <tip>
+        <para>Pode usar as teclas de seta <keycap>acima</keycap>/<keycap>abaixo</keycap> para rolar até ao item, a tecla <keycap>espaço</keycap> 
+        para marcar o item como reconciliado e a tecla <keycap>Tab</keycap> para alternar entre painéis.</para>
+      </tip>
+
+      <para>Repita estes passos para cada item que aparece no extrato bancário, verificando se os montantes correspondem aos montantes do 
+      <application>&app;</application> e marcando as transações no <application>&app;</application> à medida que estejam reconciliadas.</para>
+
+      <para>Ao fundo da janela <guilabel>Reconciliar</guilabel> há um campo <guilabel>Diferença</guilabel>, que deverá mostrar 
+      <guilabel>0.00</guilabel> quando terminar a reconciliação. Se mostrar qualquer outro valor, ou falhou transações ou alguns montantes estão 
+      incorretos no <application>&app;</application> (ou, menos provável, o banco pode ter cometido um erro).</para>
+      
+      <note><para>Sob determinadas circunstâncias, pode ser difícil ou mesmo impossível determinar porque é que uma conta não reconcilia.
+      Se não for capaz de corrigir a discrepância entre os seus livros e o extrato, o <application>&app;</application> inclui um botão 
+      <guibutton>Saldo</guibutton> na <emphasis>barra de ferramentas</emphasis> que cria automaticamente uma entrada de equilíbrio 
+      para o montante em falta.</para>
+          <para>Para usar isto, faça todas as reconciliações (marcando todas as transações que conseguir identificar)e clique neste botão.
+          O  <application>&app;</application> cria a entrada para equilibrar a discrepância restante que usa a conta especial 
+          <emphasis>Contas especiais:Orfã-XXX</emphasis> (onde "XXX" representa a sua moeda). A janela <guilabel>Reconciliar</guilabel> 
+          fecha-se; Se a reabrir, conseguirá verificar a recém criada entrada de equilíbrio e terminar o processo.</para></note>
+
+      <para>Quando tiver marcado todos os itens do extrato bancário e a diferença for 0.00, clique em <guibutton>Terminar</guibutton> 
+      na <emphasis>barra de ferramentas</emphasis> ou selecione <menuchoice><guimenu>Reconciliar</guimenu>
+      <guimenuitem>Terminar</guimenuitem></menuchoice> no menu. A janela <guilabel>Reconciliar</guilabel> fecha-se. No diário de 
+      conta, o campo <guilabel>R</guilabel> das transações reconciliadas altera-se para <emphasis>r</emphasis>.</para>
+
+      <para>Neste caso, ainda não recebemos toda a informação, portanto clicamos em <guibutton>Adiar</guibutton>, para que possamos 
+      continuar mais tarde. Observe que a coluna <guilabel>R</guilabel> indica que confirmámos (<emphasis>c</emphasis>) duas transações. 
+      Ainda não foram reconciliadas, mas verificámos duas transações, pelo que foram marcadas como confirmadas. Se olhar para a 
+      <emphasis>barra de sumário</emphasis> ao fundo do diário de conta, verá um sumário do que foi reconciliado e do que foi confirmado 
+      (<guilabel>Confirmado: 954.79&euro; Reconciliado: 0.00&euro;</guilabel>)</para>
+
+      <screenshot id="txns-reconcile-window-3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_reconcile_window3.png"
+                       format="PNG" srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Conta à ordem</phrase>
+          </textobject>
+
+          <caption><para>A conta à ordem após ter adiado a reconciliação.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+  </sect1>
+
+  <sect1 id="txns-sxn1">
+    <title>Transações agendadas</title>
+
+    <para>As transações agendadas são criadas para ajudara a inserir operações monetárias repetitivas, como subscrições, seguros ou impostos. 
+    Usando transações agendadas, só tem de inserir a transação uma vez, definir alguns parâmetros, como data inicial e frequência, fazer uma 
+    breve descrição e depois o <application>&app;</application> avisa quando uma transação agendada estiver pronta para ser criada e cria-a 
+    por si.</para>
+
+    <para>Neste Como fazer, vamos exemplificar com uma subscrição na Internet com o valor de 20&euro;, paga a 29 de cada mês.</para>
+
+    <para>No <application>&app;</application>, há duas maneiras de criar transações agendadas,
+    <link linkend="txns-sxn-ledger2">a partir do diário</link> ou no <link linkend="txns-sxn-editor2">Editor de transações agendadas</link>.</para>
+
+    <sect2 id="txns-sxn-ledger2">
+      <title>Criar a partir do diário</title>
+
+      <para>Insira a primeira ocorrência da transação a agendar no diário. No campo <guilabel>Transferência</guilabel> desta transação, 
+      digite <emphasis>Despesas:Internet</emphasis> como mostrado na imagem seguinte.</para>
+
+      <screenshot id="txns-sxn-ledger-1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger1.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Primeiro passo para criar a transação agendada a partir do diário</phrase>
+          </textobject>
+
+          <caption><para>Primeiro passo para criar a transação agendada a partir do diário</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <note>
+        <para>Uma vez que não criámos previamente a conta <emphasis>Despesas:Internet</emphasis>, o <application>&app;</application>
+        pergunta-nos se a queremos criar.</para>
+      </note>
+
+      <para>De seguida, clique com o botão direito do rato e selecione <guilabel>Agenda...</guilabel></para>
+
+      <screenshot id="txns-sxn-ledger-2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger2.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Segundo passo para criar a transação agendada a partir do diário</phrase>
+          </textobject>
+
+          <caption><para>Segundo passo para criar a transação agendada a partir do diário</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Surge uma janela parecida com esta:</para>
+
+      <screenshot id="txns-sxn-ledger-3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger3.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Terceiro passo para criar a transação agendada a partir do diário</phrase>
+          </textobject>
+
+          <caption><para>Terceiro passo para criar a transação agendada a partir do diário</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Vamos preencher os valores, sabemos que a subscrição é paga a 29 de cada mês, sendo a próxima para o mês que vem (uma vez 
+      que inserimos a deste mês manualmente) :</para>
+
+      <screenshot id="txns-sxn-ledger-4">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger4.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Dados preenchidos numa transação agendada</phrase>
+          </textobject>
+
+          <caption><para>Dados preenchidos numa transação agendada</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Clique em <guibutton>Aceitar</guibutton> e a transação será agendada. O <application>&app;</application> memorizou esta 
+      transação e a 29 do mês que vem abre uma janela perguntando-lhe se a deve criar (veja mais abaixo uma 
+      <link linkend="txns-sxn-editor-slr">imagem desta janela</link>).</para>
+    </sect2>
+
+    <sect2 id="txns-sxn-editor2">
+      <title>Criar no Editor de transações agendadas</title>
+
+      <para>A outra maneira de inserir transações agendas é a partir do <guilabel>Editor de transações agendadas</guilabel>, que pode ser mais 
+      rápida se tivermos várias transações a criar de uma só vez.</para>
+
+      <para>Na janela principal de contas, selecione <menuchoice><guimenu>Ações</guimenu><guisubmenu>Transações agendadas</guisubmenu>
+      <guimenuitem>Editor de transações agendadas</guimenuitem></menuchoice> na <emphasis>barra de menus</emphasis>. Abre-se 
+      um novo separador <guilabel>Transações agendadas</guilabel> na janela atual do <application>&app;</application>, como mostrado 
+      abaixo:</para>
+
+      <screenshot id="txns-sxn-editor-2">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-2.png" format="PNG"
+                       srccredit="Pedro Albuquerque" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-2.png" format="PNG"
+                       srccredit="Pedro Albuquerque"/>
+          </imageobject>
+
+          <textobject>
+            <phrase>Separador <guilabel>Transações agendadas</guilabel> vazio</phrase>
+          </textobject>
+
+          <caption><para>Separador <guilabel>Transações agendadas</guilabel> vazio</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Este separador contém uma lista, aqui vazia, de todas as transações agendadas. Vamos criar uma nova, clicando em 
+      <guibutton>Nova</guibutton> na <emphasis>barra de ferramentas</emphasis>. Abre-se uma janela como a seguinte:</para>
+
+      <screenshot id="txns-sxn-editor-3-overview">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-3-overview.png" format="PNG"
+                       srccredit="Pedro Albuquerque" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-3-overview.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Separador <guilabel>Visão geral</guilabel> da janela <guilabel>Editar transação agendada</guilabel></phrase>
+          </textobject>
+
+          <caption><para>Separador <guilabel>Visão geral</guilabel> da janela <guilabel>Editar transação agendada</guilabel></para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Primeiro, vamos inserir um nome para esta nova transação, ao cimo da janela.</para>
+      <note>
+        <para>Este nome só identifica a transação na janela <guilabel>Editar transação agendada</guilabel>, nunca aparece no diário.</para>
+      </note>
+
+      <para>No painel <guilabel>Opções</guilabel> da <guilabel>Visão geral</guilabel> tem quatro opções:</para>
+      
+      <variablelist>
+        <varlistentry><term><guilabel>Ativar</guilabel></term>
+          <listitem>
+            <para>Define o estado da transação agendada.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Criar automaticamente</guilabel></term>
+          <listitem>
+            <para>Se marcada, insere esta transação no diário sem lhe perguntar primeiro (veja abaixo). Se necessário, pode ser avisado quando 
+            a transação for inserida, marcando a caixa <guilabel>Notificar-me quando criada</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Criar antecipadamente</guilabel></term>
+          <listitem>
+            <para>Define com quantos dias de antecedência a transação será criada.</para>
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry><term><guilabel>Lembrar antecipadamente</guilabel></term>
+          <listitem>
+            <para>Define com quantos dias de antecedência o lembrete é mostrado. Pode ser usado para, por exemplo, quando tem de pagar 
+            algo por cheque. Um lembrete antecipado permite-lhe enviar o cheque sem exceder o prazo.</para>
+          </listitem>
+        </varlistentry>  
+      </variablelist>
+
+      <para>O painel <guilabel>Ocorrências</guilabel> permite-lhe dizer ao <application>&app;</application> que esta transação agendada 
+      não dura para sempre. Por exemplo, se está a pagar um empréstimo, pode inserir a data de fim do empréstimo ou o número de 
+      ocorrências restantes.</para>
+      
+      <para>Selecione agora o separador <guilabel>Frequência</guilabel> na janela <guilabel>Editar transação agendada</guilabel>. Aqui 
+      pode definir as opções temporais da transação.</para>
+      
+      <screenshot id="txns-sxn-editor-3-frequency">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-3-frequency.png" format="PNG"
+                       srccredit="Pedro Albuquerque" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-3-frequency.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Separador <guilabel>Frequência</guilabel> da janela <guilabel>Editar transação agendada</guilabel></phrase>
+          </textobject>
+
+          <caption><para>Separador <guilabel>Frequência</guilabel> da janela <guilabel>Editar transação agendada</guilabel></para></caption>
+        </mediaobject>
+      </screenshot>      
+      
+      <variablelist>
+        <varlistentry><term><guilabel>Frequência</guilabel></term>
+          <listitem>
+            <para>Define a frequência básica da transação, com opções para <guilabel>Uma vez</guilabel>, <guilabel>Diariamente</guilabel>, 
+            <guilabel>Semanalmente</guilabel>, <guilabel>Quinzenalmente</guilabel> e <guilabel>Mensalmente</guilabel>. Neste exemplo, 
+            está definida como <guilabel>Mensalmente</guilabel>.</para>
+            <note>
+              <para>É possível definir uma transação de forma a que ocorra noutros intervalos <emphasis>diferentes</emphasis> daqueles que 
+              constam na lista <guilabel>Frequência</guilabel>, alterando a definição no controlo <guilabel>Cada</guilabel> (veja abaixo).</para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Data inicial</guilabel></term>
+          <listitem>
+            <para>Define quando começa a transação. No exemplo, estaria definida para o dia 29 do mês que vem.</para>
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry><term><guilabel>Cada</guilabel></term>
+          <listitem>
+            <para>Esta opção permite-lhe agendar transações em múltiplos do valor no campo <guilabel>Frequência</guilabel>. Por exemplo, 
+            para criar uma transação que ocorre a cada três semanas, defina <guilabel>Frequência</guilabel> para <guilabel>Semanalmente</guilabel> 
+            e <guilabel>Cada</guilabel> para <guilabel>3</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+         
+        <varlistentry><term><guilabel>A</guilabel> e <guilabel>exceto aos fins de semana</guilabel></term>
+          <listitem>
+            <para>Define o dia do mês em que a transação está agendada e controla o que o <application>&app;</application> faz quando o dia 
+            ocorrer a um fim de semana.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+        
+      <note>
+        <para>Sabemos que a subscrição é paga a 29 de cada mês, portanto a <guilabel>Data inicial</guilabel>  será 29 de janeiro de 2016 
+        (assumindo que janeiro é o mês seguinte), a <guilabel>Frequência</guilabel> será <guilabel>Mensalmente</guilabel>, será paga 
+        mensalmente a 29 de cada mês. Dado que no nosso exemplo, a subscrição na Internet á paga automaticamente da conta, não há 
+        necessidade de a criar antecipadamente, nem de indicar uma data final.</para>
+      </note>
+     
+      <para>Quando os elementos neste separador estiverem preenchidos, o <application>&app;</application> realça os calendários abaixo 
+      para indicar quando é que vão ocorrer as futuras transações.</para>
+
+      <para>Finalmente, selecione o separador <guilabel>Transação modelo</guilabel> e insira a sua transação na parte inferior, tal como 
+      faria no diário de conta, com a única diferença de não ter data.</para>
+
+      <para>Deverá agora ter uma janela como esta:</para>
+
+      <screenshot id="txns-sxn-editor-3-template">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-3-template.png" format="PNG"
+                       srccredit="Pedro Albuquerque" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-3-template.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Separador <guilabel>Transação modelo</guilabel> da janela <guilabel>Editar transação agendada</guilabel></phrase>
+          </textobject>
+
+          <caption><para>Separador <guilabel>Transação modelo</guilabel> da janela <guilabel>Editar transação agendada</guilabel></para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Lembre-se de clicar no ícone <guibutton>Registar</guibutton>, para validar e inserir a transação.</para>
+
+      <para>Clique em <guibutton>Aceitar</guibutton>, e voltará ao separador <guilabel>Transações agendadas</guilabel>, que agora mostra 
+      um item na lista <guilabel>Transações</guilabel>:</para>
+
+      <screenshot id="txns-sxn-editor-4">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-4.png" format="PNG"
+                       srccredit="Pedro Albuquerque" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-4.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Transação agendada inserida</phrase>
+          </textobject>
+
+          <caption><para>Transação agendada inserida</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <tip>
+        <para>Se clicar nos calendários, abre-se um balão, que segue o rato e mostra o que está planeado para cada dia. Para fazer 
+        desaparecer o balão, clique novamente no calendário.</para>
+      </tip>
+      
+      <para>Agora já pode fechar o separador <guilabel>Transações agendadas</guilabel> e <guilabel>gravar</guilabel> o seu trabalho.</para>
+
+      <note>
+        <para>O que vê abaixo é só uma ilustração e não deve ser inserido na base de dados do <application>&app;</application> nesta altura. 
+        Para este exemplo, o diálogo abaixo surge quando a transação agendada for executada.</para>
+      </note>
+
+      <para>A partir de agora, quando o <application>&app;</application> iniciar e uma transação estiver agendada ou precisar de ser 
+      inserida, poderá ver uma janela <guilabel>Desde a última execução...</guilabel>, sumarizando as operações com transações 
+      agendadas (<guilabel>Lembrete</guilabel>, <guilabel>A criar</guilabel> etc.. Pode encontrar uma melhor descrição de cada opção 
+      no manual do <application>&app;</application>):</para>
+
+      <screenshot id="txns-sxn-editor-slr">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor_slr.png" format="PNG"
+                       srccredit="Pedro Albuquerque" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor_slr.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Janela de lembretes de transações agendadas</phrase>
+          </textobject>
+
+          <caption><para>Janela de lembretes de transações agendadas</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Pode clicar na coluna <guilabel>Estado</guilabel> para alterar o estado da transação agendada, se necessário. Depois clique em 
+      <guibutton>Aceitar</guibutton> para fechar a janela <guilabel>Desde a última execução...</guilabel> e aplicar as operações pendentes. 
+      Selecione <guibutton>Cancelar</guibutton> para saltar a introdução das operações pendentes no diário.</para>
+
+      <para>Se o campo <guilabel>Estado</guilabel> foi definido como <guilabel>A criar</guilabel>, se reparar no diário da sua conta à ordem, 
+      verá que a transação já foi criada.</para>
+     
+      <tip>
+        <para>Se ativar a opção <guilabel>Rever transações criadas</guilabel> ao fundo à direita na janela <guilabel>Desde a última 
+        execução...</guilabel>, o <application>&app;</application> abre, após clicar em <guibutton>Aceitar</guibutton>, o diário de cada conta 
+        onde as transações agendadas foram inseridas automaticamente.</para>
+      </tip>
+
+      <note>
+        <para>Se inseriu a transação para 29 de janeiro nesta fase, por favor <emphasis>reverta</emphasis> para a última gravação do 
+        ficheiro do <application>&app;</application>, selecionando <menuchoice><guimenu>Ficheiro</guimenu>
+        <guimenuitem>Abrir</guimenuitem></menuchoice> e escolhendo a gravação anterior do ficheiro <filename>gcashdata_3</filename> 
+        do <application>&app;</application>.</para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="txns-puttoget1">
+    <title>Juntar as peças</title>
+
+    <para>Nas secções anteriores deste capítulo foram discutidos os conceitos e a mecânica do trabalho com transações no 
+    <application>&app;</application>. Esta secção vai laborar sobre a árvore de contas inicialmente construída no capítulo anterior, 
+    definindo saldos iniciais, adicionando transações e agendando uma transação.</para>
+
+    <sect2 id="txns-puttoget-openfile">
+      <title>Abrir o ficheiro do <application>&app;</application></title>
+
+      <para>Comece por abrir o ficheiro de dados previamente gravado, <filename>gcashdata_3_vazia</filename> e grave-o como 
+      <filename>gcashdata_4</filename> diretamente. A janela principal deverá parecer-se com esta:</para>
+
+      <screenshot id="txns-puttoget1-Charts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Ponto de partida para Juntar as peças</phrase>
+          </textobject>
+
+          <caption><para>Esta imagem mostra o ponto de partida desta secção.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-puttoget-open2">
+      <title>Saldos iniciais</title>
+
+      <para>Tal como mostrado antes com a conta <emphasis>Ativos:Conta à ordem</emphasis>, os saldos iniciais numa conta são 
+      tipicamente atribuídos a uma conta especial, chamada <emphasis>Capital próprio:Saldo inicial</emphasis>. Para começa a preencher
+      esta árvore de contas, comece por definir os saldos iniciais das contas. Assuma que tem 1000&euro; na conta de poupanças e 500&euro; 
+      em dívida no cartão de crédito.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Abra o diário <emphasis>Ativos:Conta poupança</emphasis>. Selecione <guimenu>Ver</guimenu> no menu e certifique-se 
+          que está no modo Livro razão básico. Terá de ver as suas transações noutros modos mais tarde, por agora vamos inserir uma transação 
+          bãsica no modo básico predefinido.</para>
+        </listitem>
+
+        <listitem>
+          <para>No diário <emphasis>Ativos:Conta poupança</emphasis>, insira uma transação básica entre duas contas para definir o seu 
+          saldo inicial para 1000&euro;, transferidos da conta <emphasis>Capital próprio:Saldo inicial</emphasis>. Lembre-se, transações 
+          básicas transferem dinheiro de uma conta origem para uma conta destino. Grave a transação (prima 
+          <keycap function="enter">Enter</keycap> ou clique no ícone <guibutton>Enter</guibutton>).</para>
+        </listitem>
+
+        <listitem>
+          <para>No diário <emphasis>Ativos:Conta à ordem</emphasis>, insira uma transação básica entre duas contas para definir o seu 
+          saldo inicial para 1000&euro;, transferidos da conta <emphasis>Capital próprio:Saldo inicial</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>No diário <emphasis>Passivo:Visa</emphasis>, insira uma transação básica entre duas contas para definir o seu 
+          saldo inicial para 500&euro;, transferidos da conta <emphasis>Capital próprio:Saldo inicial</emphasis>. Isto é feito inserindo 
+          os 500&euro; como <guilabel>A crédito</guilabel> na conta <emphasis>Visa</emphasis> (ou <guilabel>Tot Decréscimo</guilabel> na 
+          conta <emphasis>Saldo inicial</emphasis>), uma vez que é dinheiro que pediu emprestado. Registe a transação (prima 
+          <keycap function="enter">Enter</keycap> ou cliqeu no ícone <guibutton>Enter</guibutton>).</para>
+        </listitem>
+      </orderedlist>
+
+      <para>Deverá ter agora três contas com os saldos iniciais definidos, <emphasis>Ativos:Conta à ordem</emphasis>, <emphasis>Ativos:
+      Conta poupança</emphasis>, e <emphasis>Passivo:Visa</emphasis>.</para>
+
+      <screenshot id="txns-puttoget1-Charts1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts1.png"
+                       format="PNG" srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Árvore de contas após definir os saldos iniciais</phrase>
+          </textobject>
+
+          <caption><para>Esta imagem mostra os saldos iniciais.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-puttoget-add2">
+      <title>Exemplos adicionais de transações</title>
+
+      <para>Vamos agora adicionar mais algumas transações para simular as despesas do mês. Durante o mês gastou 78&euro; em 
+      eletricidade, 45&euro; em telefone e 350&euro; em renda. Tudo pago com cheque. Gastou ainda 45,21&euro; em mercearias, 
+      recebeu 670&euro; de ordenado e pagou a sua subscrição mensal na Internet. Finalmente, tem de mover 100&euro; da conta 
+      poupança para a conta à ordem.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Abra o diário <emphasis>Despesas:Eletricidade</emphasis> e insira uma transação simples entre duas contas para pagar 
+          os 78&euro; da fatura de eletricidade, com a data do final do mês (no exemplo, 30-01-2016) e o número do cheque (ex: 102). 
+          Insira uma descrição (ex: Elétrica Barata). A conta de <guilabel>Transferência</guilabel> deve ser <emphasis>Ativos:Conta à 
+          ordem</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Abra o diário <emphasis>Ativos:Conta à ordem</emphasis> e insira uma transação simples entre duas contas para pagar 
+          os 45&euro; da fatura de telefone, com a data do final do mês (no exemplo, 30-01-2016) e o número do cheque (ex: 103). 
+          Insira uma descrição (ex: Telefone fixo). A conta de <guilabel>Transferência</guilabel> deve ser <emphasis>Despesas:Telefone</emphasis>. 
+          Note que pode inserir transações de despesa tanto do lado do crédito (as contas de despesa) como do lado do débito (as contas de 
+          ativos).</para>
+        </listitem>
+
+        <listitem>
+          <para>Abra o diário <emphasis>Despesas:Renda</emphasis>  e insira uma transação simples entre duas contas para pagar 
+          os 350&euro; da renda de casa, com a data do final do mês (no exemplo, 30-01-2016) e o número do cheque (ex: 104). 
+          Insira uma descrição (ex: Renda de janeiro). A conta de <guilabel>Transferência</guilabel> deve ser <emphasis>Ativos:Conta à 
+          ordem</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Duplique esta transação, usando o botão <guibutton>Duplicar</guibutton> na <emphasis>barra de ferramentas</emphasis>. 
+          Comece por selecionar a transação de renda atual e clique em <guilabel>Duplicar</guilabel>. Insira a data da transação algures no 
+          futuro (ex: 29 de março) e repare na linha azul que o <application>&app;</application> usa para separar transações futuras de transações 
+          atuais. Assim pode inserir transações antes de elas ocorrerem.</para>
+
+          <para>Também pode configurar uma transação agendada para pagar a renda de casa, uma vez que não se prevêm alterações de 
+          valor num futuro próximo. <itemizedlist>
+              <listitem>
+                <para>Selecione a transação de renda atual e clique em <guilabel>Agenda</guilabel></para>
+              </listitem>
+
+              <listitem>
+                <para>Altere para <guilabel>Mensalmente</guilabel>, altere a descrição, se necessário e clique em <guibutton>Aceitar</guibutton></para>
+              </listitem>
+            </itemizedlist></para>
+        </listitem>
+
+        <listitem>
+          <para>Para transferir dinheiro da sua conta de poupança para a conta à ordem, abra o diário <emphasis>Ativos:Conta poupança</emphasis> 
+          e adicione uma nova transação, definindo <guilabel>Transferência</guilabel> para <emphasis>Ativos:Conta à ordem</emphasis>, 
+          com um montante de 100&euro; (com data de 1 de janeiro de 2016).</para>
+        </listitem>
+
+        <listitem>
+          <para>Como mais um exemplo de transação simples, adicione outra transação para descrever a compra de mercearias no valor de 
+          45,21&euro; a 5 de janeiro de 2016. No diário da conta <emphasis>Ativos:Conta à ordem</emphasis>, defina <guilabel>Transferência</guilabel> 
+          para <emphasis>Despesas:Comida</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Para adicionar uma transação de recebimento de ordenado, abra o diário <emphasis>Ativos:Conta à ordem</emphasis> 
+          clique numa linha em branco e clique em <guilabel>Parcelas</guilabel>. Insira a descrição da transação na primeira linha 
+          (ex: <quote>Ordenado</quote>), assim como a data. Na linha de <quote>parcela</quote> abaixo desta, insira o depósito nas contas 
+          <emphasis>Ativos:Conta à ordem</emphasis> 670&euro;, <emphasis>Despesas:Impostos:IRS</emphasis> 180&euro;,
+          <emphasis>Despesas:Impostos:Seguro</emphasis> 90&euro;, <emphasis>Despesas:Impostos:Segurança social</emphasis> 60&euro; 
+          e por fim, o total bruto do recebimento, 1000&euro; como levantamento transferido da conta <emphasis>Receitas:Ordenado</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Também tem de pagar a subscrição na Internet, 20&euro; a cada dia 25.</para>
+        </listitem>
+      </orderedlist>
+
+      <screenshot id="txns-puttoget2-Charts1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts2.png"
+                       format="PNG" srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Árvore de contas após definir todas as transações</phrase>
+          </textobject>
+
+          <caption><para>Esta imagem mostra os saldos finais após definir todas as <xref linkend="chapter_txns" /> do mês de janeiro de 
+          2016.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="txns-puttoget-save">
+      <title>Gravar o ficheiro</title>
+
+      <para>Antes de passarmos à secção de relatórios, vamos gravar o ficheiro de dados do <application>&app;</application> 
+      (<filename>gcashdata_4</filename>).</para>
+    </sect2>
+
+    <sect2 id="txns-puttoget-reports">
+      <title>Relatórios</title>
+
+      <para>Mas ter os dados disponíveis só no ecrã do seu computador não fará o seu contabilista feliz. Assim, o <application>&app;</application> 
+      tem um grande número de relatórios altamente personalizáveis.</para>
+
+<!-- Add this note when the reports chapter is ready -->
+      <note>
+        <para>Poderá encontrar mais detalhes em <xref linkend="chapter_reports" />. No entanto, essa secção ainda está em construção</para>
+      </note>
+ <!-- -->
+
+      <para>Vamos dar uma vista de olhos ao <guilabel>Fluxo de caixa</guilabel> e ao <guilabel>Relatório de transações</guilabel>.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Primeiro o <guilabel>Fluxo de caixa</guilabel> para o mês de janeiro.</para>
+
+          <para>Selecione o relatório no menu <menuchoice><guimenu>Relatórios</guimenu><guisubmenu>Receita &amp; Despesa</guisubmenu>
+          <guimenuitem>Fluxo de caixa</guimenuitem></menuchoice>.</para>
+
+          <screenshot id="txns-puttoget2-Cash">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_CashFlow.png" format="PNG"
+                           srccredit="Pedro Albuquerque" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Fluxo de caixa para o mês de janeiro de 2016</phrase>
+              </textobject>
+
+              <caption><para>Esta imagem mostra o fluxo de caixa para as <xref linkend="chapter_txns" /> do mês de janeiro de 2016.</para></caption>
+            </mediaobject>
+          </screenshot>
+
+          <para>Para obter este relatório personalizado, clique com o botão direito do rato no relatório e escolha <guilabel>Opções do 
+          relatório</guilabel>. Defina o intervalo de datas e especifique as contas que quer ver no relatório.</para>
+        </listitem>
+
+        <listitem>
+          <para>Agora vamos ver o correspondente relatorio de transações para a conta <emphasis>Ativos:Conta à 
+          ordem</emphasis>.</para>
+
+          <para>Selecione o relatório de transações no menu <menuchoice><guimenu>Relatórios</guimenu><guimenuitem>Relatório de 
+          transações</guimenuitem></menuchoice>.</para>
+
+          <screenshot id="txns-puttoget2-TransactionRptChecking">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_TransactionRptChecking.png"
+                           format="PNG" srccredit="Pedro Albuquerque" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Relatório de transações da conta à ordem durante o mês de janeiro de 2016</phrase>
+              </textobject>
+
+              <caption><para>Esta imagem mostra o relatório de transações da conta à ordem durante o mês de janeiro de 2016.</para></caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Agora vamos alterar o relatório de transações para mostrar só as várias contas de despesa.</para>
+
+          <screenshot id="txns-puttoget2-TransactionRptExpenses">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_TransactionRptExpenses.png"
+                           format="PNG" srccredit="Pedro Albuquerque" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Relatório de transações das contas de despesas durante o mês de janeiro de 2016</phrase>
+              </textobject>
+
+              <caption><para>Esta imagem mostra o relatório de transações das contas de despesas durante o mês de janeiro de 2016.</para></caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+      </orderedlist>
+    </sect2>
+  </sect1>
+</chapter>

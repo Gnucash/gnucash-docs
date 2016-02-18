@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+    "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+
+<!-- HTML codes unknown to xmllint and xml2po: -->
+<!ENTITY lsquo "‘">
+<!ENTITY rsquo "’">
+<!ENTITY mdash "—">
+<!ENTITY ndash "–">
+<!ENTITY euro "€">
+
+<!-- List of files: -->
+<!ENTITY chapter1 SYSTEM "ch_oview.xml">
+<!ENTITY chapter2 SYSTEM "ch_basics.xml">
+<!ENTITY chapter3 SYSTEM "ch_accts.xml">
+<!ENTITY chapter4 SYSTEM "ch_txns.xml">
+<!ENTITY chapter5 SYSTEM "ch_cbook.xml">
+<!ENTITY chapter6 SYSTEM "ch_cc.xml">
+<!ENTITY chapter7 SYSTEM "ch_loans.xml">
+<!ENTITY chapter8 SYSTEM "ch_invest.xml">
+<!ENTITY chapter9 SYSTEM "ch_capgain.xml">
+<!ENTITY chapter10 SYSTEM "ch_currency.xml">
+<!ENTITY chapter11 SYSTEM "ch_bus_intro.xml">
+<!ENTITY chapter12 SYSTEM "ch_bus_setup.xml">
+<!ENTITY chapter13 SYSTEM "ch_bus_ar.xml">
+<!ENTITY chapter14 SYSTEM "ch_bus_ap.xml">
+<!ENTITY chapter15 SYSTEM "ch_bus_pay.xml">
+<!ENTITY chapter16 SYSTEM "ch_budgets.xml">
+<!ENTITY chapter17 SYSTEM "ch_oth_assets.xml">
+<!ENTITY chapter18 SYSTEM "ch_dep.xml">
+<!ENTITY chapter19 SYSTEM "ch_python_bindings.xml">
+<!ENTITY chapter20 SYSTEM "ch_import_business_data.xml">
+<!ENTITY chapter21 SYSTEM "ch_reports.xml">
+<!ENTITY chapter22 SYSTEM "ch_reports_general.xml">
+<!ENTITY chapter23 SYSTEM "ch_reports_asset_liability.xml">
+<!ENTITY chapter24 SYSTEM "ch_reports_example.xml">
+<!ENTITY chapter25 SYSTEM "ch_reports_business.xml">
+<!ENTITY chapter26 SYSTEM "ch_reports_budget.xml">
+<!ENTITY chapter27 SYSTEM "ch_reports_income_expense.xml">
+<!ENTITY appendixa SYSTEM "appendixa.xml">
+<!ENTITY appendixb SYSTEM "appendixb.xml">
+<!ENTITY appendixc SYSTEM "appendixc.xml">
+<!ENTITY appendixd SYSTEM "appendixd.xml">
+<!ENTITY legal SYSTEM "legal.xml">
+<!ENTITY GFDL SYSTEM "fdl-appendix.xml">
+
+<!--
+  Some global declarations which are used in the files. For easier
+  maintainance they should be collected here.
+-->
+<!ENTITY manrevision "2.6.11">
+<!ENTITY date "28 de fevereiro de 2016">
+<!ENTITY vers-unstable "master">
+<!ENTITY vers-stable "2.6.11">
+<!ENTITY series-unstable "master">
+<!ENTITY series-stable "2.6">
+<!--
+  Translators:
+    "&app;" replaces all occurences of "GnuCash" in the guide, so
+   transliterate "GnuCash" here.
+-->
+<!ENTITY app "GnuCash">
+<!--
+  Translators:
+    If you can only offer a partial translation, that is fine.
+    Just inform the reader and potential successors about the state by inserting
+    the (localized) "&untranslated;" entity and commenting off the still untranslated part.
+    You should localize the &untranslated; text, e.g. name the user group of your language.
+-->
+<!ENTITY untranslated 'Dear Reader, we are really sorry, but nobody offered a translation
+  for the following parts. If you would like to help us, follow the instructions at <ulink
+    url="http://wiki.gnucash.org/wiki/Translation#How_to_translate_the_GnuCash_guide_and.2For_help_files">
+  <citetitle>Gnucash wiki: How to translate the GnuCash guide and/or help files</citetitle></ulink>.
+  Questions can be discussed at the gnucash-XX@gnucash.org mailing list.'>
+]>
+<!--
+      (Do not remove this comment block.)
+  Template Maintained by the GNOME Documentation Project:
+	  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Feb 12, 2002
+-->
+<!--
+      (Do not remove this comment block.)
+  Version: 2.6.8
+  Last modified: 27 de setembro de 2015
+  Maintainers:
+        Gnucash Development Team <gnucash-devel@gnucash.org>
+  Translators:
+               (Pedro Albuquerque <palbuquerque73@gmail.com>)
+-->
+<book id="index" lang="pt-PT">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+ <bookinfo>
+  <title>Tutorial e guia de conceitos do <application>&app;</application></title>
+  <edition>V&manrevision;</edition>
+
+  <copyright>
+   <year>2009-2015</year>
+   <holder>Equipa de documentação do &app;</holder>
+  </copyright>
+
+  <copyright>
+   <year>2010-2011</year>
+   <holder>Yawar Amin</holder>
+  </copyright>
+
+  <copyright>
+   <year>2010</year>
+   <holder>Tom Bullock</holder>
+  </copyright>
+
+  <copyright>
+   <year>2010-2011</year>
+   <holder>Cristian Marchi</holder>
+  </copyright>
+
+  <copyright>
+   <year>2006</year>
+   <holder>Chris Lyttle</holder>
+  </copyright>
+
+  <copyright>
+   <year>2003-2004</year>
+   <holder>Jon Lapham</holder>
+  </copyright>
+  
+  <copyright>
+   <year>2002</year>
+   <holder>Chris Lyttle</holder>
+  </copyright>
+  
+  <copyright>
+   <year>2001</year>
+   <holder>Carol Champagne and Chris Lyttle</holder>
+  </copyright>
+
+ <!-- translators: uncomment this:
+
+  <copyright>
+   <year>2000</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+
+    <publisher>
+       <publishername>Equipa de documentação do &app;</publishername>
+       <address>
+         <email>gnucash-devel@gnucash.org</email>
+       </address>
+    </publisher>
+
+  &legal;
+
+  <authorgroup>
+
+    <author>
+      <firstname>Yawar</firstname>
+      <surname>Amin</surname>
+      <affiliation>
+        <orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+    </author>
+
+    <author>
+      <firstname>J. Alex</firstname>
+      <surname>Aycinena</surname>
+      <affiliation>
+        <orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+      <email>alex.aycinena@gmail.com</email>
+    </author>
+
+    <author>
+      <firstname>Tom</firstname>
+      <surname>Bullock</surname>
+      <email>tbullock@nd.edu</email>
+    </author>
+
+    <author>
+      <firstname>Carol</firstname>
+      <surname>Champagne</surname>
+      <email>carol@io.com</email>
+    </author>
+
+    <author>
+      <firstname>Frank</firstname>
+      <surname>Ellenberger</surname>
+      <affiliation>
+        <orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+      <email>frank.h.ellenberger@gmail.com</email>
+    </author>
+
+    <author>
+      <firstname>Mike</firstname>
+      <surname>Evans</surname>
+      <email>mikee@saxicola.idps.co.uk</email>
+    </author>
+
+    <author>
+      <firstname>Dave</firstname>
+      <surname>Herman</surname>
+      <affiliation>
+        <orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+      <email>dvherman@bigfoot.com</email>
+    </author>
+
+    <author>
+      <firstname>Geert</firstname>
+      <surname>Janssens</surname>
+      <affiliation>
+        <orgname>Equipa de desenvolvimento do &app;</orgname>
+      </affiliation>
+    </author>
+
+    <author>
+      <firstname>Jon</firstname>
+      <surname>Lapham</surname>
+      <affiliation>
+        <orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+      <email>lapham@extracta.com.br</email>
+    </author>
+
+    <author>
+      <firstname>Chris</firstname>
+      <surname>Lyttle</surname>
+      <affiliation>
+        <orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+      <email>chris@wilddev.net</email>
+    </author>
+
+    <author>
+      <firstname>Cristian</firstname>
+      <surname>Marchi</surname>
+      <affiliation>
+        <orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+      <email>cri79@libero.it</email>
+    </author>
+
+    <author>
+      <firstname>John</firstname>
+      <surname>Ralls</surname>
+      <affiliation>
+        <orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+      <email>jralls@ceridwen.us</email>
+    </author>
+
+    <author>
+      <firstname>Robert</firstname>
+      <surname>Ratliff</surname>
+      <affiliation>
+	<orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+      <email>ratliff.bobby@gmail.com</email>
+    </author>
+
+    <author>
+      <firstname>Christian</firstname>
+      <surname>Stimming</surname>
+      <affiliation>
+        <orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+      <email>stimming@tuhh.de</email>
+    </author>
+
+    <author>
+      <firstname>Bengt</firstname>
+      <surname>Thuree</surname>
+      <affiliation>
+        <orgname>Equipa de documentação do &app;</orgname>
+      </affiliation>
+     <email>bengt@thuree.com</email>
+    </author>
+
+    <author>
+	<firstname>David</firstname>
+	<surname>T</surname>
+	<affiliation>
+	  <orgname>Equipa de documentação do &app;</orgname>
+	</affiliation>
+	<email>sunfish62@yahoo.com</email>
+      </author>
+
+<!-- This is appropriate place for other contributors: translators,
+      maintainers,  etc. Commented out by default. -->
+       <othercredit role="translator">
+        <firstname>Pedro</firstname>
+        <surname>Albuquerque</surname>
+        <affiliation>
+          <orgname>European Portuguese Team</orgname>
+          <!-- <address> <email>translator@gnome.org</email> </address> -->
+        </affiliation>
+        <contrib>European Portuguese translation</contrib>
+        <email>palbuquerque73@gmail.com</email>
+      </othercredit>
+
+  </authorgroup>
+
+  <revhistory>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v2.6.8</revnumber>
+        <date>27 de setembro de 2015</date>
+        <revdescription>
+          <para role="author">Múltiplos autores</para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v2.6.7</revnumber>
+        <date>28 de junho de 2015</date>
+        <revdescription>
+          <para role="author">Múltiplos autores</para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v2.6.3</revnumber>
+        <date>30 de março de 2014</date>
+        <revdescription>
+          <para role="author">Múltiplos autores</para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v2.6.2</revnumber>
+        <date>2 de março de 2014</date>
+        <revdescription>
+          <para role="author">Múltiplos autores</para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v2.6.1</revnumber>
+        <date>26 de janeiro de 2014</date>
+        <revdescription>
+          <para role="author">Múltiplos autores</para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v2.6.0</revnumber>
+        <date>29 de dezembro de 2013</date>
+        <revdescription>
+          <para role="author">Múltiplos autores</para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v2.4.2</revnumber>
+        <date>17 de novembro de 2012</date>
+        <revdescription>
+          <para role="author">Múltiplos autores</para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v2.4.1</revnumber>
+        <date>1 de julho de 2011</date>
+        <revdescription>
+          <para role="author">Múltiplos autores</para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v2.3.16</revnumber>
+        <date>de novembro de 7, 2010</date>
+        <revdescription>
+          <para role="author">Jon Lapham
+            <email>lapham@extracta.com.br</email>
+          </para>
+          <para role="author">Bengt Thuree
+            <email>bengt@thuree.com</email>
+          </para>
+          <para role="author">Dave Herman
+            <email>dvherman@bigfoot.com</email>
+          </para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v2.0.0</revnumber>
+        <date>Julho de 2006</date>
+        <revdescription>
+          <para role="author">Jon Lapham
+            <email>lapham@extracta.com.br</email>
+          </para>
+          <para role="author">Bengt Thuree
+            <email>bengt@thuree.com</email>
+          </para>
+          <para role="author">Dave Herman
+            <email>dvherman@bigfoot.com</email>
+          </para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v1.8.3</revnumber>
+        <date>Agosto de 2003</date>
+        <revdescription>
+          <para role="author">Jon Lapham
+            <email>lapham@extracta.com.br</email>
+          </para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v1.8.2</revnumber>
+        <date>Agosto de 2003</date>
+        <revdescription>
+          <para role="author">Jon Lapham
+            <email>lapham@extracta.com.br</email>
+          </para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v1.8.1</revnumber>
+        <date>Maio de 2003</date>
+        <revdescription>
+          <para role="author">Chris Lyttle
+            <email>chris@wilddev.net</email>
+          </para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app;Tutorial e guia de conceitos v1.8.0</revnumber>
+        <date>Janeiro de 2003</date>
+        <revdescription>
+          <para role="author">Chris Lyttle
+            <email>chris@wilddev.net</email>
+          </para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app; User Guide v1.6.5</revnumber>
+        <date>Junho de 2002</date>
+        <revdescription>
+          <para role="author">Chris Lyttle
+            <email>chris@wilddev.net</email>
+          </para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>&app; User Guide v1.6.0</revnumber>
+        <date>Outubro de 2001</date>
+        <revdescription>
+          <para role="author">Carol Champagne
+            <email>carol@io.com</email>
+          </para>
+          <para role="publisher">Equipa de documentação do &app;</para>
+        </revdescription>
+      </revision>
+    </revhistory>
+
+  <releaseinfo>
+   Este guia contém um tutorial para utilização do &app; e decreve os conceitos por trás
+   do &app;.
+  </releaseinfo>
+  <legalnotice>
+    <title>Comentários</title>
+      <para>Para reportar um erro ou fazer uma sugestão a respeito deste pacote ou deste guia, 
+        siga as instruções no <ulink url="http://bugzilla.gnome.org">Sistema de rastreio 
+        de erros do GNOME</ulink>.
+      </para>
+<!-- Translators may also add here a feedback address for translations -->
+  </legalnotice>
+
+</bookinfo>
+
+<part>
+    <title>Primeiros passos</title>
+    &chapter1;
+    &chapter2;
+    &chapter3;
+    &chapter4;
+</part>
+<part>
+    <title>Gerir as finanças pessoais</title>
+    &chapter5;
+    &chapter6;
+    &chapter7;
+    &chapter8;
+    &chapter9;
+    &chapter10;
+</part>
+<part>
+    <title>Gerir as finanças da empresa</title>
+    <sect1>
+        <subtitle>Os capítulos relativos a negócios ainda não estão traduzidos</subtitle>
+        <para>Estes capítulos ainda não estão traduzidos</para>
+        <para>Se tiver interesse em colaborar na tradução, consulte</para>
+        <para><ulink url="http://wiki.gnucash.org/wiki/Translation#How_to_translate_the_GnuCash_guide_and.2For_help_files">
+              Gnucash wiki: How to translate the GnuCash guide and/or help files</ulink>
+        </para>
+    </sect1>
+<!--
+&chapter11;
+&chapter12;
+&chapter13;
+&chapter14;
+&chapter15;
+&chapter16;
+&chapter17;
+&chapter18;
+&chapter19;
+&chapter20;-->
+</part>
+<part>
+    <title>Relatórios</title>
+    &chapter21;
+    &chapter22;
+    &chapter23;
+    &chapter24;
+    &chapter25;
+    &chapter26;
+    &chapter27;
+</part>
+<part>
+    <title>Apêndices</title>
+    &appendixa;
+    &appendixb;
+    &appendixc;
+    &appendixd;
+</part>
+&GFDL;
+
+</book>

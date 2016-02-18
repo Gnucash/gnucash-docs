@@ -1,0 +1,476 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Pedro Albuquerque <bengt@thuree.com>
+  Originally designed by Carol Champagne.
+  Translators:
+               (Pedro Albuquerque <palbuquerque73@gmail.com>)
+-->
+<chapter id="chapter_capgain">
+  <title>Ganhos de capital</title>
+
+  <para>Este capítulo apresenta algumas das técnicas usadas para controlar ganhos e perdas realizados
+  e não realizados, mais conhecidos por ganhos e perdas de capital.</para>
+
+  <sect1 id="capgain_concepts1">
+    <title>Conceitos básicos</title>
+
+    <para>Certos ativos vendáveis podem mudar de valor ao longo do tempo, tais como ações, obrigações, 
+    casas, carros, etc.. Alguns ativos (por exemplo, uma ação) podem aumentar de valor, outros (por 
+    exemplo, um carro) podem diminuir. É importante poder controlar estas variações ao longo do tempo. 
+    Vamos mostrar-lhe como o fazer.</para>
+
+    <para>Provavelmente, tudo o que possui vai aumentar ou diminuir de valor ao longo do tempo. Portanto, 
+    a questão é para quais dos seus ativos deve controlar este valor variável? A resposta mais simples é 
+    que deve controlar os itens que podem ser vendidos no futuro ou aqueles sujeitos a impostos.</para>
+
+    <para>Itens consumíveis e não reutilizáveis (ex.: comida, gasolina ou papel de impressora) obviamente 
+    não estão aqui incluídos. Logo, embora as roupas novas que comprou se desvalorizem, não há interesse 
+    em controlar esta desvalorização, dado que não pensa em vender essas roupas, assim como não há 
+    implicações de impostos nessa desvalorização. Assim sendo, a compra de roupas neste exemplo deve ser 
+    registada como despesa pura... Gastou o dinheiro e foi-se!</para>
+
+    <para>A valorização de ativos ocorre quando algo que possui aumenta de valor ao longo do tempo. Quando 
+    isto acontece, a diferença entre a preço de compra e o novo valor é conhecida por <emphasis>ganhos 
+    não realizados</emphasis>. Quando vende o ativo, o lucro é conhecido como <emphasis>ganhos 
+    realizados</emphasis> ou <emphasis>ganhos de capital</emphasis>. Um exemplo de um ativo do qual 
+    poderia ter ganhos não realizados e eventuais ganhos de capital, é uma ação de uma empresa pública.</para>
+  </sect1>
+
+  <sect1 id="capgain_value1">
+    <title>Estimar valorizações</title>
+
+    <para>Como mencionado atrás, os ganhos de capital são os lucros recebidos da venda de um ativo. 
+    Esta secção descreve como registar ganhos de capital no <application>&app;</application>.</para>
+
+    <para>Os métodos contabilísticos para registar uma valorização são algo diferentes da desvalorização, 
+    porque, tipicamente só há preocupação com o momento da venda do ativo e realização do ganho de 
+    capital. Isto é o oposto à natureza contínua do controlo da desvalorização. Os ganhos de capital são 
+    um assunto importante no mundo fiscal, porque os governos tendem a ter neles muito interesse, de uma 
+    ou de outra maneira.</para>
+
+    <note>
+      <para>Como sempre, há exceções. Se detiver uma obrigação que paga todos os juros no vencimento, 
+      as autoridades fiscais impõem muitas vezes a declaração de juros anuais e recusam o tratamento como 
+      ganho de capital. Consulte os códigos fiscais adequados para determinar o tratamento apropriado 
+      para cada tipo de ativo que possa ser abrangido por impostos relativos a ganhos de capital.</para>
+    </note>
+
+    <para>Estimar o aumento de valor dos ativos não é, de maneira geral, tarefa simples. Muitas 
+    vezes é difícil saber o valor exato até ao momento da venda.</para>
+
+    <para>Mercadorias negociadas diariamente em mercados abertos, como as bolsas de valores, são 
+    possivelmente o tipo de ativo mais fácil de avaliar e vender o ativo a preço de mercado pode ser 
+    tão simples como contactar um corretor e emitir uma ordem de mercado. Por outro lado, estimar o valor 
+    de uma casa é mais difícil. As casas vendem-se menos que as ações e as vendas tendem a envolver um 
+    gasto considerável de esforço e negociações, o que significa que as estimativas são menos precisas. 
+    Igualmente, a venda de um automóvel usado envolve uma negociação que torna a avaliação menos 
+    previsível.</para>
+
+    <para>Valores de objetos de coleção, tais como jóias, arte, coleção de selos, etc., são ainda mais 
+    difíceis de avaliar. Os mercados para este tipo de objetos são ainda mais restritos que o mercado 
+    imobiliário ou automóvel. Pior ainda são os ativos únicos no mundo. As fábricas produzem, por vezes, 
+    um produto único e muito específico e personalizado que pode custar centenas de milhares de euros. 
+    Estes produtos podem ter vários valores conflituosos, nenhum dos quais pode ser correto sem 
+    ambiguidades.</para>
+
+    <para>Em contabilidade, a regra geral para estimar ganhos (ou perdas) de capital é que só deve 
+    reavaliar ativos como ações, que estão prontos a vender e para os quais há estimativas de valor 
+    fidedignas. Para todos os outros ativos, é melhor esperar até que os venda, altura em que pode 
+    determinar exatamente os ganhos de capital. Claro, não há nenhuma regra rígida a respeito disto, 
+    diferentes contabilistas podem ter diferentes opiniões.</para>
+  </sect1>
+
+  <sect1 id="capgain_accounts1">
+    <title>Configuração das contas</title>
+
+    <para>Assim como na maioria das práticas contabilísticas, há um sem número diferente de configurar 
+    contas de ganhos de capital. Apresentamos aqui um método geral que deve ser suficientemente 
+    flexível para gerir a maioria das situações. A primeira conta que precisa é uma conta de 
+    <emphasis>custo do ativo</emphasis> (conta <application>&app;</application> tipo 
+    <guilabel>Ativo</guilabel>), que é simplesmente um local onde regista a compra original do ativo. 
+    Normalmente, esta compra é conseguida com uma transação a partir da conta bancária.</para>
+
+    <para>Para controlar a valorização do ativo, precisa de três contas. A primeira é a conta de ativo 
+    <emphasis>Ganhos não realizados</emphasis>, na qual reune a soma de todos os montantes de valorização. 
+    Esta conta é saldada com a conta de receita <emphasis>Ganhos não realizados</emphasis>, na qual 
+    toda a valorização periódica recebida é registada. Finalmente, é precisa outra conta de receita, 
+    chamada <emphasis>Ganhos realizados</emphasis>, na qual regista os ganhos de capital reais após a 
+    venda do ativo.</para>
+
+    <para>Abaixo está uma hierarquia de contas genérica para controlar a valorização de dois ativos, 
+    <emphasis>ITEM1</emphasis> e <emphasis>ITEM2</emphasis>. As contas <emphasis>Ativos:Ativos 
+    fixos:ITEMX:Custo</emphasis> são saldadas pela conta <emphasis>Ativos:Ativos atuais:Conta 
+    poupança</emphasis> e as contas <emphasis>Ativos:Ativos fixos:ITEMX:Ganhos não realizados</emphasis>
+    são saldadas pela conta <emphasis>Receita:Ganhos não realizados</emphasis>.</para>
+    
+    <note>
+        <para>Deverá criar uma estrutura igual para cada ativo que pretenda controlar, ITEM1, ITEM2, ..., 
+            ITEMN.</para>
+    </note>
+
+    <literallayout>
+-Ativos
+    -Ativos atuais
+        -Conta poupança
+    -Ativos fixos
+        -ITEM1 
+            -Custo
+            -Ganhos não realizados
+        -ITEM2
+            -Custo
+            -Ganhos não realizados
+-Receita
+    -Ganhos realizados
+    -Ganhos não realizados
+  </literallayout>
+  </sect1>
+
+  <sect1 id="capgain_example1">
+    <title>Exemplo</title>
+
+    <para>Vamos supor que compou um ativo que se espera que aumente de valor, por exemplo uma 
+    pintura de Degas, para a qual quer controlar a valorização (a companhia de seguros preocupa-se 
+    com isto, mesmo que mais ninguém o faça).</para>
+
+    <para>Comece com um plano de contas semelhante ao mostrado em <xref
+    linkend="capgain_accounts1" />, mas substitua <quote>ITEM1</quote> por <quote>Degas</quote> e 
+    remova as contas <quote>ITEM2</quote>. Vamos presumir que a pintura de Degas tinha um valor inicial de 
+    cem mil euros. Ofereça a si mesmo os 100.000&euro; para a conta à ordem e depois transfira-os para 
+    a conta <emphasis>Ativos:Ativos fixos:Degas:Custo</emphasis> (a transação de compra do ativo). A 
+    sua janela pricipal deverá ser parecida a esta:</para>
+
+    <screenshot id="capgain_appmain">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/capgain_appmain.png" format="PNG"
+                     srccredit="Pedro Albuquerque" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Contas de valorização de ativos</phrase>
+        </textobject>
+
+        <caption><para>Exemplo de contas para controlo da valorização de ativos</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <sect2 id="capgain_exampleunrealized2">
+      <title>Ganhos não realizados</title>
+
+      <para>Um mês depois, tem motivos para suspeitar que o valor da sua pintura aumentou em 10.000&euro; 
+      (um ganho não realizado). Para registar esta alteração, transfira os 10.000&euro; da conta 
+      <emphasis>Receita:Ganhos não realizados</emphasis> para a conta <emphasis>Ativos:Ativos 
+      fixos:Degas:Ganhos não realizados</emphasis>:</para>
+
+      <screenshot id="capgain_app2main">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/capgain_app2main.png" format="PNG"
+                       srccredit="Pedro Albuquerque" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Contas de valorização de ativos</phrase>
+          </textobject>
+
+          <caption><para>Plano de contas depois do ganho não realizado</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="capgain_examplesell2">
+      <title>Vender</title>
+
+      <para>Vamos supor que algum tempo depois os valores das pinturas de Degas subiram ainda mais, 
+      cerca de 20,000&euro; estimados. Diligentemente, regista a subida como anteriormente e decide 
+      vender a pintura.</para>
+
+      <para>Surgem três possibilidades. Pode ter <emphasis>valorizado precisamente</emphasis> o ganho 
+      não realizado, <emphasis>subvalorizado</emphasis> o ganho não realizado, ou 
+      <emphasis>sobrevalorizado</emphasis> o ganho não realizado.</para>
+
+      <orderedlist>
+        <listitem>
+          <para><emphasis>Valorização precisa</emphasis> do ganho não realizado.</para>
+
+          <para>A sua valorização otimista da pintura estava correta. Primeiro tem de registar os 
+          lucros como ganhos realizados. Faça-o transferindo a receita de <emphasis>Receita:Ganhos 
+          não realizados</emphasis> para <emphasis>Receita:Ganhos realizados</emphasis>.</para>
+
+          <para>Segundo, tem de creditar a sua conta bancária com o preço de venda da pintura. O dinheiro 
+          vem diretamente das subcontas de <emphasis>Ativos:Ativos fixos:Degas</emphasis>. Transfira o 
+          total da conta <emphasis>Ativos:Ativos fixos:Degas:Custo</emphasis> para 
+          <emphasis>Ativos:Ativos atuais:Conta poupança</emphasis> e o total da conta 
+          <emphasis>Ativos:Ativos fixos:Degas:Ganhos não realizados</emphasis> para a conta 
+          <emphasis>Ativos:Ativos atuais:Conta poupança</emphasis>.</para>
+
+          <para>As transações devem estar como se segue:</para>
+
+          <para><table>
+              <title>Transformar um  ganho acumulado num ganho realizado</title>
+
+              <tgroup cols="4">
+                <tbody>
+                  <row>
+                    <entry><emphasis>Conta</emphasis></entry>
+
+                    <entry><emphasis>Transferir para</emphasis></entry>
+
+                    <entry><emphasis>Montante da transação</emphasis></entry>
+
+                    <entry><emphasis>Total da conta</emphasis></entry>
+                  </row>
+
+                  <row>
+                    <entry>Receita:Ganhos não realizados</entry>
+
+                    <entry>Receita:Ganhos realizados</entry>
+
+                    <entry>30.000&euro;</entry>
+
+                    <entry>0&euro;</entry>
+                  </row>
+
+                  <row>
+                    <entry>Ativos:Ativos fixos:Degas:Custo</entry>
+
+                    <entry>Ativos:Ativos atuais:Conta poupança</entry>
+
+                    <entry>100.000&euro;</entry>
+
+                    <entry>0&euro;</entry>
+                  </row>
+
+                  <row>
+                    <entry>Ativos:Ativos fixos:Degas:Ganhos não realizados</entry>
+
+                    <entry>Ativos:Ativos atuais:Conta poupança</entry>
+
+                    <entry>30.000&euro;</entry>
+
+                    <entry>0&euro;</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table></para>
+
+          <para>Isto deixa a conta <emphasis>Ativos:Ativos atuais:Conta poupança</emphasis> com um total de 
+          130.000&euro; e a conta <emphasis>Receita:Ganhos realizados</emphasis> com um total 
+          de 30.000&euro;.</para>
+
+          <screenshot id="capgain_app3main">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/capgain_app3main.png" format="PNG"
+                           srccredit="Pedro Albuquerque" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Contas de valorização de ativos</phrase>
+              </textobject>
+
+              <caption><para>Plano de contas após um ganho realizado</para></caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Subvalorização</emphasis> de ganhos não realizados.</para>
+
+          <para>Foi demasiado otimista sobre o valor da pintura. Em vez dos 130.000&euro; que pensava 
+          que a pintura valia, só lhe oferecem 120.000&euro;. Mas mesmo assim decide vender, porque 
+          dá mais valor ao dinheiro do que à pintura. Os números alteraram-se, mas não dramaticamente.</para>
+
+          <para>As transações serão como se segue (observe a última transação, que salda as contas
+          <emphasis>Ganhos não realizados</emphasis>):</para>
+
+          <para><table>
+              <title>Transformar um ganho acumulado num ganho realizado</title>
+
+              <tgroup cols="4">
+                <tbody>
+                  <row>
+                    <entry><emphasis>Conta</emphasis></entry>
+
+                    <entry><emphasis>Transferir para</emphasis></entry>
+
+                    <entry><emphasis>Montante da transação</emphasis></entry>
+
+                    <entry><emphasis>Total da conta</emphasis></entry>
+                  </row>
+
+                  <row>
+                    <entry>Receita:Ganhos não realizados</entry>
+
+                    <entry>Receita:Ganhos realizados</entry>
+
+                    <entry>20.000&euro;</entry>
+
+                    <entry>10.000&euro;</entry>
+                  </row>
+
+                  <row>
+                    <entry>Ativos:Ativos fixos:Degas:Custo</entry>
+
+                    <entry>Ativos:Ativos atuais:Conta poupança</entry>
+
+                    <entry>100.000&euro;</entry>
+
+                    <entry>0&euro;</entry>
+                  </row>
+
+                  <row>
+                    <entry>Ativos:Ativos fixos:Degas:Ganhos não realizados</entry>
+
+                    <entry>Ativos:Ativos atuais:Conta poupança</entry>
+
+                    <entry>20.000&euro;</entry>
+
+                    <entry>10.000&euro;</entry>
+                  </row>
+
+                  <row>
+                    <entry>Ativos:Ativos fixos:Degas:Ganhos não realizados</entry>
+
+                    <entry>Receita:Ganhos não realizados</entry>
+
+                    <entry>10.000&euro;</entry>
+
+                    <entry>0&euro;</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table></para>
+
+          <para>Isto deixa a conta <emphasis>Ativos:Ativos atuais:Conta poupança</emphasis> com um 
+          total de 120.000&euro; e a conta <emphasis>Receita:Ganhos realizados</emphasis> com um total 
+          de 20.000&euro;.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Sobrevalorização</emphasis> de ganhos não realizados.</para>
+
+          <para>Conseguiu vender a pintura por um valor acima dos seus sonhos, por 150.000&euro;. 
+          O valor extra é, de novo, registado como ganho, i.e., receita.</para>
+
+          <para>As transações serão como se segue (observe a última transação, que salda as contas
+          <emphasis>Ganhos não realizados</emphasis>):</para>
+
+          <para><table>
+              <title>Transformar um ganho acumulado num ganho realizado</title>
+
+              <tgroup cols="4">
+                <tbody>
+                  <row>
+                    <entry><emphasis>Conta</emphasis></entry>
+
+                    <entry><emphasis>Transferir para</emphasis></entry>
+
+                    <entry><emphasis>Montante da transação</emphasis></entry>
+
+                    <entry><emphasis>Total da conta</emphasis></entry>
+                  </row>
+
+                  <row>
+                    <entry>Receita:Ganhos não realizados</entry>
+
+                    <entry>Receita:Ganhos realizados</entry>
+
+                    <entry>50.000&euro;</entry>
+
+                    <entry>-20.000&euro;</entry>
+                  </row>
+
+                  <row>
+                    <entry>Ativos:Ativos fixos:Degas:Custo</entry>
+
+                    <entry>Ativos:Ativos atuais:Conta poupança</entry>
+
+                    <entry>100.000&euro;</entry>
+
+                    <entry>0&euro;</entry>
+                  </row>
+
+                  <row>
+                    <entry>Ativos:Ativos fixos:Degas:Ganhos não realizados</entry>
+
+                    <entry>Ativos:Ativos atuais:Conta poupança</entry>
+
+                    <entry>50.000&euro;</entry>
+
+                    <entry>-20.000&euro;</entry>
+                  </row>
+
+                  <row>
+                    <entry>Receita:Ganhos não realizados</entry>
+
+                    <entry>Ativos:Ativos fixos:Degas:Ganhos não realizados</entry>
+
+                    <entry>20.000&euro;</entry>
+
+                    <entry>0&euro;</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table></para>
+
+          <para>Isto deixa a conta <emphasis>Ativos:Ativos atuais:Conta poupança</emphasis> com um 
+          total de 150.000&euro; e a conta <emphasis>Receita:Ganhos realizados</emphasis> com um total 
+          de 50.000&euro;.</para>
+        </listitem>
+      </orderedlist>
+    </sect2>
+
+    <sect2 id="capgain_examplecaution2">
+      <title>Cautela com as avaliações</title>
+
+      <para>Como vimos neste exemplo, para ativos não financeiros é difícil estimar corretamente o 
+      <quote>verdadeiro</quote> valor de um ativo. É bastante fácil pensar que estamos ricos, baseados em 
+      estimativas questionáveis que não refletem o <quote>dinheiro no banco</quote>.</para>
+
+      <para>Quando se lida com valorização de ativos,</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>tenha cuidado com a estimativa dos valores, não embarque em sonhos impossíveis;</para>
+        </listitem>
+
+        <listitem>
+          <para>nunca, nunca, conte com dinheiro que não tenha no banco ou em casa. Até que tenha 
+          realmente vendido o seu ativo e recebido o dinheiro, quaisquer números num papel (ou padrões 
+          magnéticos no seu disco rígido) são meramente isso. Se conseguir convencer um banqueiro a 
+          emprestar-lhe dinheiro usando os seus ativos como garantia, já é prova convincente do valor 
+          desses ativos, já que os mutuantes tendem a ser profissionalmente desconfiados a respeito de 
+          sobrevalorizações dúbias. Esteja atento: demasiadas empresas que pareciam <quote>lucrativas</quote> 
+          no papel foram à falência por falta de dinheiro em caixa, devido a <quote>ativos valiosos</quote> 
+          que não são a mesma coisa que dinheiro na mão.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="capgain_tax1">
+    <title>Impostos</title>
+
+    <para>As políticas de impostos variam consideravelmente de país para país, portanto torna-se 
+    virtualmente impossível dizer algo que seja universalmente útil. Contudo, é comum que as receitas 
+    geradas por ganhos de capital não sejam taxadas até à data em que o ativo é efetivamente vendido. 
+    E nalguns casos, nem mesmo assim. Os norteamericanos que vendem a sua residência familiar verificam 
+    que os ganhos de capital gerados por essa venda estão isentos de impostos. Noutros países, isto é tratado 
+    de maneira diferente, cobrando impostos às pessoas por esses ganhos. As autoridades alemãs, por exemplo, 
+    só cobram impostos sobre esses ganhos se possuiu a propriedade por menos de dez anos.</para>
+
+    <para>O Chris Browne tem uma história dos seus dias de preparação profissional de formulários de 
+    impostos em que uma família vendeu uma quinta, esperando uma liquidação de impostos considerável, 
+    acabando por ser virtualmente nula por terem mantido a propriedade desde antes de 1971 (data crítica de 
+    <quote>Dia de valorização</quote> no Canadá) e devido a ser uma quinta de produtos diários, com algumas 
+    deduções bastante peculiares. A moral desta história é que embora aquilo que aqui se disse pareça 
+    relativamente simples, as declarações de impostos são muitas vezes terrivelmente complicadas...</para>
+  </sect1>
+</chapter>
