@@ -1,0 +1,553 @@
+EPUB_TMPDIR=`mktemp -d .epubtmpXXXXXXXX`; \
+	posthook='exit 1'; \
+	(cd "$EPUB_TMPDIR" && \
+	echo "application/epub+zip" > mimetype && \
+	/usr/bin/xsltproc --stringparam base.dir OEBPS/ \
+	            --stringparam epub.metainf.dir META-INF/ \
+	            --stringparam epub.oebps.dir OEBPS/ \
+	            /home/pedro/Programas/GnucashGit/gnucash-docs/xsl/1.75.2/epub/docbook.xsl \
+	            /home/pedro/Programas/GnucashGit/gnucash-docs/guide/pt/gnucash-guide.xml && \
+	cp -L -R /home/pedro/Programas/GnucashGit/gnucash-docs/guide/pt/figures OEBPS/ && \
+	zip -X -r ../gnucash-guide.epub mimetype META-INF OEBPS && \
+	cd ..) && posthook=''; \
+	if test -d "$EPUB_TMPDIR"; then \
+	  rm -v -fr "$EPUB_TMPDIR"; \
+	fi; \
+	eval "$posthook";
+  adding: mimetype (stored 0%)
+  adding: META-INF/ (stored 0%)
+  adding: META-INF/container.xml (deflated 33%)
+  adding: OEBPS/ (stored 0%)
+  adding: OEBPS/apas02.html (deflated 42%)
+  adding: OEBPS/content.opf (deflated 86%)
+  adding: OEBPS/ch10s04.html (deflated 68%)
+  adding: OEBPS/ch04s03.html (deflated 70%)
+  adding: OEBPS/apas05.html (deflated 66%)
+  adding: OEBPS/pt04.html (deflated 38%)
+  adding: OEBPS/ch05s04.html (deflated 52%)
+  adding: OEBPS/ch08s05.html (deflated 63%)
+  adding: OEBPS/apes08.html (deflated 51%)
+  adding: OEBPS/ch02s08.html (deflated 71%)
+  adding: OEBPS/apb.html (deflated 70%)
+  adding: OEBPS/ch01.html (deflated 55%)
+  adding: OEBPS/apas03.html (deflated 42%)
+  adding: OEBPS/ch07s02.html (deflated 52%)
+  adding: OEBPS/apes03.html (deflated 64%)
+  adding: OEBPS/ch09s04.html (deflated 76%)
+  adding: OEBPS/ape.html (deflated 55%)
+  adding: OEBPS/ch02s04.html (deflated 63%)
+  adding: OEBPS/ch07s05.html (deflated 69%)
+  adding: OEBPS/apc.html (deflated 68%)
+  adding: OEBPS/ch10s03.html (deflated 72%)
+  adding: OEBPS/ch03s03.html (deflated 75%)
+  adding: OEBPS/ch05s02.html (deflated 54%)
+  adding: OEBPS/apes11.html (deflated 44%)
+  adding: OEBPS/apbs03.html (deflated 71%)
+  adding: OEBPS/ch05s05.html (deflated 75%)
+  adding: OEBPS/ch07s04.html (deflated 60%)
+  adding: OEBPS/apes10.html (deflated 52%)
+  adding: OEBPS/ch08s04.html (deflated 70%)
+  adding: OEBPS/ch08s02.html (deflated 70%)
+  adding: OEBPS/ch04.html (deflated 58%)
+  adding: OEBPS/ch03s02.html (deflated 71%)
+  adding: OEBPS/apbs04.html (deflated 50%)
+  adding: OEBPS/ch08s06.html (deflated 72%)
+  adding: OEBPS/ch07s08.html (deflated 74%)
+  adding: OEBPS/ch02s06.html (deflated 70%)
+  adding: OEBPS/ch09s02.html (deflated 53%)
+  adding: OEBPS/pt03.html (deflated 42%)
+  adding: OEBPS/ch08s03.html (deflated 64%)
+  adding: OEBPS/ch08s09.html (deflated 76%)
+  adding: OEBPS/ch06s05.html (deflated 72%)
+  adding: OEBPS/ch05.html (deflated 61%)
+  adding: OEBPS/pt02.html (deflated 41%)
+  adding: OEBPS/ch03.html (deflated 62%)
+  adding: OEBPS/ch02s05.html (deflated 73%)
+  adding: OEBPS/ch06s02.html (deflated 63%)
+  adding: OEBPS/ch10s06.html (deflated 48%)
+  adding: OEBPS/ch06s03.html (deflated 51%)
+  adding: OEBPS/apes04.html (deflated 48%)
+  adding: OEBPS/figures/ (stored 0%)
+  adding: OEBPS/figures/bus_ap_jobnew.png (deflated 4%)
+  adding: OEBPS/figures/txns_sxn_editor-3-template.png (deflated 1%)
+  adding: OEBPS/figures/txns_sxn_editor-3-frequency.png (deflated 1%)
+  adding: OEBPS/figures/bus_ar_invoiceedit.png (deflated 1%)
+  adding: OEBPS/figures/currency_AfterGetOnlineQuotes.png (deflated 0%)
+  adding: OEBPS/figures/accts_DefaultExpenseAccounts.png (deflated 3%)
+  adding: OEBPS/figures/invest_peditor2.png (deflated 0%)
+  adding: OEBPS/figures/invest_int1.png (deflated 0%)
+  adding: OEBPS/figures/txns_TransactionRptChecking.png (deflated 3%)
+  adding: OEBPS/figures/invest_int3.png (deflated 0%)
+  adding: OEBPS/figures/txns_registersplit5.png (deflated 3%)
+  adding: OEBPS/figures/currency_PutTogether_AussieHouse.png (deflated 0%)
+  adding: OEBPS/figures/invest_stockvalue_report.png (deflated 2%)
+  adding: OEBPS/figures/invest_split3.png (deflated 1%)
+  adding: OEBPS/figures/loans_mortgage2.png (deflated 0%)
+  adding: OEBPS/figures/basics_EmptyAccounts.png (deflated 2%)
+  adding: OEBPS/figures/basics_TipOfDay.png (deflated 4%)
+  adding: OEBPS/figures/basics_NewAccountHierarchySetup_Finish.png (deflated 5%)
+  adding: OEBPS/figures/bus_terms_new.png (deflated 3%)
+  adding: OEBPS/figures/bus_ap_billedit.png (deflated 1%)
+  adding: OEBPS/figures/invest_peditor.png (deflated 3%)
+  adding: OEBPS/figures/dep_assetmain.png (deflated 7%)
+  adding: OEBPS/figures/bus_ar_invoicepost.png (deflated 4%)
+  adding: OEBPS/figures/txns_reconcile_window1.png (deflated 3%)
+  adding: OEBPS/figures/oview_intro.png (deflated 2%)
+  adding: OEBPS/figures/basics_AccountRelationships.svg (deflated 78%)
+  adding: OEBPS/figures/cbook_reconciledCheckAct.png (deflated 0%)
+  adding: OEBPS/figures/txns_registersplit4.png (deflated 0%)
+  adding: OEBPS/figures/bus_ar_custnew.png (deflated 6%)
+  adding: OEBPS/figures/currency_main3.png (deflated 0%)
+  adding: OEBPS/figures/invest_sellstockLoss2.png (deflated 0%)
+  adding: OEBPS/figures/invest_simplesplit1.png (deflated 0%)
+  adding: OEBPS/figures/currency_purchase_MoveMoney.png (deflated 0%)
+  adding: OEBPS/figures/loans_mortgage3.png (deflated 0%)
+  adding: OEBPS/figures/basics_SaveXML.png (deflated 2%)
+  adding: OEBPS/figures/invest_setup_portfolio1.png (deflated 0%)
+  adding: OEBPS/figures/loans_PrivateLoanSecondPayment.png (deflated 0%)
+  adding: OEBPS/figures/currency_purchase_SetExchangeRate.png (deflated 2%)
+  adding: OEBPS/figures/invest_stockvalue.png (deflated 0%)
+  adding: OEBPS/figures/capgain_app2main.png (deflated 0%)
+  adding: OEBPS/figures/txns_reconcile_window2.png (deflated 8%)
+  adding: OEBPS/figures/currency_PutTogether_AfterStocks.png (deflated 0%)
+  adding: OEBPS/figures/txns_sxn_editor-2.png (deflated 1%)
+  adding: OEBPS/figures/txns_sxn_editor-3-overview.png (deflated 2%)
+  adding: OEBPS/figures/currency_BeforeGetOnlineQuotes.png (deflated 1%)
+  adding: OEBPS/figures/invest_sellstockLoss.png (deflated 0%)
+  adding: OEBPS/figures/cbook_checkexamp.png (deflated 0%)
+  adding: OEBPS/figures/bus_ar_invoicechange2.png (deflated 7%)
+  adding: OEBPS/figures/invest_int2-1.png (deflated 0%)
+  adding: OEBPS/figures/cbook_chartaccts5.png (deflated 0%)
+  adding: OEBPS/figures/basics_NewAccountHierarchySetup_book_options.png (deflated 5%)
+  adding: OEBPS/figures/loans_PrivateLoanInitial.png (deflated 0%)
+  adding: OEBPS/figures/loans_mortgage1.png (deflated 1%)
+  adding: OEBPS/figures/bus_co_reg.png (deflated 8%)
+  adding: OEBPS/figures/cbook_TransactionRptAssets.png (deflated 3%)
+  adding: OEBPS/figures/basics_NewAccountHierarchySetup_Accounts.png (deflated 0%)
+  adding: OEBPS/figures/basics_DoubleEntryIntro_compact.png (deflated 1%)
+  adding: OEBPS/figures/basics_mainwin.xcf (deflated 87%)
+  adding: OEBPS/figures/txns_sxn_ledger1.png (deflated 1%)
+  adding: OEBPS/figures/accts_CreateAssetsAccount.png (deflated 4%)
+  adding: OEBPS/figures/txns_CashFlow.png (deflated 3%)
+  adding: OEBPS/figures/basics_AccountsSampleQIF.png (deflated 4%)
+  adding: OEBPS/figures/currency_main1.png (deflated 0%)
+  adding: OEBPS/figures/loans_PrivateLoanCalculation.png (deflated 0%)
+  adding: OEBPS/figures/invest_newsecurity.png (deflated 1%)
+  adding: OEBPS/figures/txns_sxn_editor_slr.png (deflated 1%)
+  adding: OEBPS/figures/invest_split2.png (deflated 3%)
+  adding: OEBPS/figures/basics_DoubleEntryIntro_SalarySplit.png (deflated 1%)
+  adding: OEBPS/figures/capgain_appmain.png (deflated 0%)
+  adding: OEBPS/figures/invest_merge2.png (deflated 2%)
+  adding: OEBPS/figures/bus_ap_payment.png (deflated 7%)
+  adding: OEBPS/figures/capgain_app3main.png (deflated 0%)
+  adding: OEBPS/figures/bus_ap_vendornew.png (deflated 6%)
+  adding: OEBPS/figures/cc_purchases.png (deflated 0%)
+  adding: OEBPS/figures/txns_puttoget_Charts.png (deflated 2%)
+  adding: OEBPS/figures/txns_register_multiaccount.png (deflated 0%)
+  adding: OEBPS/figures/cc_interest.png (deflated 0%)
+  adding: OEBPS/figures/cbook_reconexamp.png (deflated 1%)
+  adding: OEBPS/figures/invest_merge3.png (deflated 1%)
+  adding: OEBPS/figures/basics_NewAccountHierarchySetup_Setup.png (deflated 1%)
+  adding: OEBPS/figures/bus_pay_ex1.png (deflated 9%)
+  adding: OEBPS/figures/loans_PrivateLoanSecondPaymentAccounts.png (deflated 0%)
+  adding: OEBPS/figures/bus_ar_invoicechange1.png (deflated 1%)
+  adding: OEBPS/figures/cc_refund.png (deflated 0%)
+  adding: OEBPS/figures/cbook_atm.png (deflated 0%)
+  adding: OEBPS/figures/invest_dividendreinvest1.png (deflated 0%)
+  adding: OEBPS/figures/bus_pay_ex3.png (deflated 7%)
+  adding: OEBPS/figures/cc_accounts.png (deflated 0%)
+  adding: OEBPS/figures/basics_QIF_Import_welcome.png (deflated 4%)
+  adding: OEBPS/figures/bus_tax_main.png (deflated 5%)
+  adding: OEBPS/figures/currency_peditor.png (deflated 2%)
+  adding: OEBPS/figures/txns_TransactionRptExpenses.png (deflated 3%)
+  adding: OEBPS/figures/txns_puttoget_Charts1.png (deflated 4%)
+  adding: OEBPS/figures/bus_ar_jobnew.png (deflated 3%)
+  adding: OEBPS/figures/basics_NewAccountHierarchySetup_currency.png (deflated 10%)
+  adding: OEBPS/figures/txns_registersplit3.png (deflated 0%)
+  adding: OEBPS/figures/cc_Reversing_Transaction_1.png (deflated 1%)
+  adding: OEBPS/figures/txns_sxn_editor-4.png (deflated 0%)
+  adding: OEBPS/figures/basics_DoubleEntryIntro_salary.png (deflated 1%)
+  adding: OEBPS/figures/cbook_TransactionRptExpenses.png (deflated 4%)
+  adding: OEBPS/figures/cc_TransactionRptVisa.png (deflated 3%)
+  adding: OEBPS/figures/txns_register_2account2.png (deflated 1%)
+  adding: OEBPS/figures/currency_purchase_BeforeStocks.png (deflated 0%)
+  adding: OEBPS/figures/bus_ar_invoicenew.png (deflated 4%)
+  adding: OEBPS/figures/cc_payment.png (deflated 0%)
+  adding: OEBPS/figures/cc_final.png (deflated 0%)
+  adding: OEBPS/figures/bus_ar_invoiceprint.png (deflated 2%)
+  adding: OEBPS/figures/cbook_gcashdata4.png (deflated 0%)
+  adding: OEBPS/figures/cbook_bankstmt.png (deflated 0%)
+  adding: OEBPS/figures/currency_purchase_ToAmount.png (deflated 2%)
+  adding: OEBPS/figures/invest_setup_current.png (deflated 0%)
+  adding: OEBPS/figures/invest_SetupPortfolio2.png (deflated 1%)
+  adding: OEBPS/figures/cbook_CashFlow.png (deflated 4%)
+  adding: OEBPS/figures/invest_split5.png (deflated 1%)
+  adding: OEBPS/figures/dep_assetreg.png (deflated 1%)
+  adding: OEBPS/figures/txns_sxn_ledger4.png (deflated 4%)
+  adding: OEBPS/figures/txns_reconcile_window3.png (deflated 3%)
+  adding: OEBPS/figures/invest_selectsecurity.png (deflated 2%)
+  adding: OEBPS/figures/bus_terms_main.png (deflated 6%)
+  adding: OEBPS/figures/currency_purchase_Commodities.png (deflated 1%)
+  adding: OEBPS/figures/invest_split1.png (deflated 0%)
+  adding: OEBPS/figures/loans_fcalc.png (deflated 1%)
+  adding: OEBPS/figures/basics_DoubleEntryIntro_expanded.png (deflated 1%)
+  adding: OEBPS/figures/invest_stockmerge1.png (deflated 1%)
+  adding: OEBPS/figures/currency_main2.png (deflated 0%)
+  adding: OEBPS/figures/invest_dividendcash.png (deflated 0%)
+  adding: OEBPS/figures/basics_Accounts.png (deflated 2%)
+  adding: OEBPS/figures/invest_stockvalue_report_options.png (deflated 0%)
+  adding: OEBPS/figures/invest_sellstock2.png (deflated 0%)
+  adding: OEBPS/figures/bus_ap_billpost.png (deflated 4%)
+  adding: OEBPS/figures/invest_int2.png (deflated 0%)
+  adding: OEBPS/figures/txns_registersplit6.png (deflated 0%)
+  adding: OEBPS/figures/bus_ar_invoicechange3.png (deflated 5%)
+  adding: OEBPS/figures/bus_ar_payment.png (deflated 8%)
+  adding: OEBPS/figures/currency_PutTogether_AfterMoney.png (deflated 0%)
+  adding: OEBPS/figures/bus_ap_vendorfind.png (deflated 2%)
+  adding: OEBPS/figures/cc_CashFlow.png (deflated 4%)
+  adding: OEBPS/figures/basics_SaveSQL.png (deflated 7%)
+  adding: OEBPS/figures/currency_purchase_BeforeBoat.png (deflated 0%)
+  adding: OEBPS/figures/cc_reconcile_init.png (deflated 3%)
+  adding: OEBPS/figures/cbook_servch.png (deflated 0%)
+  adding: OEBPS/figures/txns_sxn_ledger3.png (deflated 5%)
+  adding: OEBPS/figures/basics_CheckAccount.png (deflated 0%)
+  adding: OEBPS/figures/bus_tax_new.png (deflated 3%)
+  adding: OEBPS/figures/invest_newaccount.png (deflated 4%)
+  adding: OEBPS/figures/cc_Reversing_Transaction_2.png (deflated 1%)
+  adding: OEBPS/figures/basics_AccountRelationships.png (deflated 0%)
+  adding: OEBPS/figures/invest_sellstock.png (deflated 0%)
+  adding: OEBPS/figures/txns_puttoget_Charts2.png (deflated 4%)
+  adding: OEBPS/figures/basics_DoubleEntryIntro_groceries.png (deflated 1%)
+  adding: OEBPS/figures/cc_TransactionRptExpenses.png (deflated 4%)
+  adding: OEBPS/figures/currency_purchase_AfterBoat.png (deflated 0%)
+  adding: OEBPS/figures/basics_NewAccountHierarchySetup.png (deflated 5%)
+  adding: OEBPS/figures/accts_tree.png (deflated 5%)
+  adding: OEBPS/figures/accts_toplevel.png (deflated 2%)
+  adding: OEBPS/figures/bus_pay_ex4.png (deflated 8%)
+  adding: OEBPS/figures/invest_AccountsPredef.png (deflated 0%)
+  adding: OEBPS/figures/txns_sxn_ledger2.png (deflated 0%)
+  adding: OEBPS/figures/currency_addcurr.png (deflated 3%)
+  adding: OEBPS/figures/bus_ap_billnew.png (deflated 5%)
+  adding: OEBPS/figures/cbook_transferin.png (deflated 1%)
+  adding: OEBPS/figures/bus_pay_ex2.png (deflated 1%)
+  adding: OEBPS/figures/invest_split4.png (deflated 1%)
+  adding: OEBPS/figures/txns_registersplit2.png (deflated 0%)
+  adding: OEBPS/figures/accts_DefaultIncomeAccounts.png (deflated 3%)
+  adding: OEBPS/figures/cc_reconcile.png (deflated 1%)
+  adding: OEBPS/figures/currency_purchase_AfterStocks.png (deflated 0%)
+  adding: OEBPS/figures/txns_register_2account.png (deflated 1%)
+  adding: OEBPS/figures/bus_ar_custfind.png (deflated 1%)
+  adding: OEBPS/figures/dep_example.png (deflated 7%)
+  adding: OEBPS/index.html (deflated 81%)
+  adding: OEBPS/ch01s04.html (deflated 45%)
+  adding: OEBPS/ch10s05.html (deflated 68%)
+  adding: OEBPS/ch02s03.html (deflated 69%)
+  adding: OEBPS/apes13.html (deflated 59%)
+  adding: OEBPS/ch09s03.html (deflated 61%)
+  adding: OEBPS/apd.html (deflated 45%)
+  adding: OEBPS/ch01s02.html (deflated 69%)
+  adding: OEBPS/ch02s02.html (deflated 64%)
+  adding: OEBPS/ch04s06.html (deflated 74%)
+  adding: OEBPS/ch10.html (deflated 53%)
+  adding: OEBPS/apes09.html (deflated 52%)
+  adding: OEBPS/apes06.html (deflated 71%)
+  adding: OEBPS/ch09s05.html (deflated 45%)
+  adding: OEBPS/apa.html (deflated 57%)
+  adding: OEBPS/apbs02.html (deflated 69%)
+  adding: OEBPS/apes07.html (deflated 59%)
+  adding: OEBPS/ch06.html (deflated 55%)
+  adding: OEBPS/ch10s07.html (deflated 72%)
+  adding: OEBPS/ch08s08.html (deflated 61%)
+  adding: OEBPS/ch07.html (deflated 64%)
+  adding: OEBPS/ch01s03.html (deflated 72%)
+  adding: OEBPS/ch06s04.html (deflated 66%)
+  adding: OEBPS/pt01.html (deflated 39%)
+  adding: OEBPS/ch08.html (deflated 68%)
+  adding: OEBPS/ch09.html (deflated 55%)
+  adding: OEBPS/toc.ncx (deflated 88%)
+  adding: OEBPS/ch02.html (deflated 66%)
+  adding: OEBPS/ch11.html (deflated 43%)
+  adding: OEBPS/ch08s07.html (deflated 73%)
+  adding: OEBPS/ch10s02.html (deflated 64%)
+  adding: OEBPS/apas04.html (deflated 41%)
+  adding: OEBPS/ch05s03.html (deflated 57%)
+  adding: OEBPS/ch04s04.html (deflated 72%)
+  adding: OEBPS/ch02s07.html (deflated 73%)
+  adding: OEBPS/apes05.html (deflated 57%)
+  adding: OEBPS/ch07s03.html (deflated 70%)
+  adding: OEBPS/apes02.html (deflated 51%)
+  adding: OEBPS/ch07s06.html (deflated 54%)
+  adding: OEBPS/apes12.html (deflated 53%)
+  adding: OEBPS/bk01-toc.html (deflated 81%)
+  adding: OEBPS/ch04s02.html (deflated 74%)
+  adding: OEBPS/ch07s07.html (deflated 55%)
+  adding: OEBPS/ch04s05.html (deflated 75%)
+«.epubtmpsb18pGJC/mimetype» removido
+«.epubtmpsb18pGJC/META-INF/container.xml» removido
+pasta removida: «.epubtmpsb18pGJC/META-INF»
+«.epubtmpsb18pGJC/OEBPS/apas02.html» removido
+«.epubtmpsb18pGJC/OEBPS/content.opf» removido
+«.epubtmpsb18pGJC/OEBPS/ch10s04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch04s03.html» removido
+«.epubtmpsb18pGJC/OEBPS/apas05.html» removido
+«.epubtmpsb18pGJC/OEBPS/pt04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch05s04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch08s05.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes08.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch02s08.html» removido
+«.epubtmpsb18pGJC/OEBPS/apb.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch01.html» removido
+«.epubtmpsb18pGJC/OEBPS/apas03.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch07s02.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes03.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch09s04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ape.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch02s04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch07s05.html» removido
+«.epubtmpsb18pGJC/OEBPS/apc.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch10s03.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch03s03.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch05s02.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes11.html» removido
+«.epubtmpsb18pGJC/OEBPS/apbs03.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch05s05.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch07s04.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes10.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch08s04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch08s02.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch03s02.html» removido
+«.epubtmpsb18pGJC/OEBPS/apbs04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch08s06.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch07s08.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch02s06.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch09s02.html» removido
+«.epubtmpsb18pGJC/OEBPS/pt03.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch08s03.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch08s09.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch06s05.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch05.html» removido
+«.epubtmpsb18pGJC/OEBPS/pt02.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch03.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch02s05.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch06s02.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch10s06.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch06s03.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes04.html» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ap_jobnew.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_sxn_editor-3-template.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_sxn_editor-3-frequency.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_invoiceedit.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_AfterGetOnlineQuotes.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/accts_DefaultExpenseAccounts.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_peditor2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_int1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_TransactionRptChecking.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_int3.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_registersplit5.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_PutTogether_AussieHouse.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_stockvalue_report.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_split3.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/loans_mortgage2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_EmptyAccounts.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_TipOfDay.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_NewAccountHierarchySetup_Finish.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_terms_new.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ap_billedit.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_peditor.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/dep_assetmain.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_invoicepost.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_reconcile_window1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/oview_intro.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_AccountRelationships.svg» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_reconciledCheckAct.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_registersplit4.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_custnew.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_main3.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_sellstockLoss2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_simplesplit1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_purchase_MoveMoney.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/loans_mortgage3.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_SaveXML.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_setup_portfolio1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/loans_PrivateLoanSecondPayment.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_purchase_SetExchangeRate.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_stockvalue.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/capgain_app2main.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_reconcile_window2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_PutTogether_AfterStocks.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_sxn_editor-2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_sxn_editor-3-overview.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_BeforeGetOnlineQuotes.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_sellstockLoss.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_checkexamp.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_invoicechange2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_int2-1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_chartaccts5.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_NewAccountHierarchySetup_book_options.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/loans_PrivateLoanInitial.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/loans_mortgage1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_co_reg.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_TransactionRptAssets.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_NewAccountHierarchySetup_Accounts.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_DoubleEntryIntro_compact.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_mainwin.xcf» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_sxn_ledger1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/accts_CreateAssetsAccount.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_CashFlow.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_AccountsSampleQIF.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_main1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/loans_PrivateLoanCalculation.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_newsecurity.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_sxn_editor_slr.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_split2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_DoubleEntryIntro_SalarySplit.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/capgain_appmain.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_merge2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ap_payment.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/capgain_app3main.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ap_vendornew.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_purchases.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_puttoget_Charts.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_register_multiaccount.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_interest.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_reconexamp.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_merge3.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_NewAccountHierarchySetup_Setup.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_pay_ex1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/loans_PrivateLoanSecondPaymentAccounts.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_invoicechange1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_refund.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_atm.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_dividendreinvest1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_pay_ex3.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_accounts.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_QIF_Import_welcome.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_tax_main.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_peditor.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_TransactionRptExpenses.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_puttoget_Charts1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_jobnew.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_NewAccountHierarchySetup_currency.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_registersplit3.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_Reversing_Transaction_1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_sxn_editor-4.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_DoubleEntryIntro_salary.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_TransactionRptExpenses.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_TransactionRptVisa.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_register_2account2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_purchase_BeforeStocks.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_invoicenew.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_payment.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_final.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_invoiceprint.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_gcashdata4.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_bankstmt.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_purchase_ToAmount.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_setup_current.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_SetupPortfolio2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_CashFlow.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_split5.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/dep_assetreg.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_sxn_ledger4.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_reconcile_window3.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_selectsecurity.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_terms_main.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_purchase_Commodities.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_split1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/loans_fcalc.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_DoubleEntryIntro_expanded.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_stockmerge1.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_main2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_dividendcash.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_Accounts.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_stockvalue_report_options.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_sellstock2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ap_billpost.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_int2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_registersplit6.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_invoicechange3.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_payment.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_PutTogether_AfterMoney.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ap_vendorfind.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_CashFlow.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_SaveSQL.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_purchase_BeforeBoat.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_reconcile_init.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_servch.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_sxn_ledger3.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_CheckAccount.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_tax_new.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_newaccount.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_Reversing_Transaction_2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_AccountRelationships.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_sellstock.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_puttoget_Charts2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_DoubleEntryIntro_groceries.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_TransactionRptExpenses.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_purchase_AfterBoat.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/basics_NewAccountHierarchySetup.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/accts_tree.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/accts_toplevel.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_pay_ex4.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_AccountsPredef.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_sxn_ledger2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_addcurr.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ap_billnew.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cbook_transferin.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_pay_ex2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/invest_split4.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_registersplit2.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/accts_DefaultIncomeAccounts.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/cc_reconcile.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/currency_purchase_AfterStocks.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/txns_register_2account.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/bus_ar_custfind.png» removido
+«.epubtmpsb18pGJC/OEBPS/figures/dep_example.png» removido
+pasta removida: «.epubtmpsb18pGJC/OEBPS/figures»
+«.epubtmpsb18pGJC/OEBPS/index.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch01s04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch10s05.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch02s03.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes13.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch09s03.html» removido
+«.epubtmpsb18pGJC/OEBPS/apd.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch01s02.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch02s02.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch04s06.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch10.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes09.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes06.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch09s05.html» removido
+«.epubtmpsb18pGJC/OEBPS/apa.html» removido
+«.epubtmpsb18pGJC/OEBPS/apbs02.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes07.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch06.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch10s07.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch08s08.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch07.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch01s03.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch06s04.html» removido
+«.epubtmpsb18pGJC/OEBPS/pt01.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch08.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch09.html» removido
+«.epubtmpsb18pGJC/OEBPS/toc.ncx» removido
+«.epubtmpsb18pGJC/OEBPS/ch02.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch11.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch08s07.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch10s02.html» removido
+«.epubtmpsb18pGJC/OEBPS/apas04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch05s03.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch04s04.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch02s07.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes05.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch07s03.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes02.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch07s06.html» removido
+«.epubtmpsb18pGJC/OEBPS/apes12.html» removido
+«.epubtmpsb18pGJC/OEBPS/bk01-toc.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch04s02.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch07s07.html» removido
+«.epubtmpsb18pGJC/OEBPS/ch04s05.html» removido
+pasta removida: «.epubtmpsb18pGJC/OEBPS»
+pasta removida: «.epubtmpsb18pGJC»
