@@ -1,0 +1,225 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  Originally designed by Carol Champagne.
+  Translators:
+               (Pedro Albuquerque <palbuquerque73@gmail.com)
+-->
+  <appendix id="appendixb">
+    <title>Questões frequentes</title>
+    <para>Esta é uma lista de perguntas feitas nas listas de correio para as quais não há realmente uma 
+    secção na documentação que lhes dê resposta.</para>
+    <sect1 id="appendixb_info">
+      <title>Fontes de informação</title>
+
+      <sect2 id="appendixb_info_where">
+        <title>P: Onde estão as FAQ?</title>
+        <para>R: Está a olhar para elas. Pode encontrar a cópia mais atualizada na
+            <ulink url="http://wiki.gnucash.org/wiki/FAQ">wiki do <application>&app;</application></ulink>.</para>
+      </sect2>
+
+      <sect2 id="appendixb_info_mail">
+        <title>P: Há listas de correio para o <application>&app;</application>?</title>
+        <para>R: Sim. Vá a <ulink url="http://lists.gnucash.org/mailman/listinfo/gnucash-user">
+            http://lists.gnucash.org/mailman/listinfo/gnucash-user</ulink> e a 
+            <ulink url="http://lists.gnucash.org/mailman/listinfo/gnucash-devel">
+            http://lists.gnucash.org/mailman/listinfo/gnucash-devel</ulink> para as subscrever.</para>
+      </sect2>
+
+      <sect2 id="appendixb_info_mailarchive">
+        <title>P: Há algum arquivo onde se possa fazer procuras?</title>
+        <para>R: Sim, pode procurar nos arquivos de correio em 
+        <ulink url="http://news.gmane.org/gmane.comp.gnome.apps.gnucash.devel"></ulink> e 
+        <ulink url="http://news.gmane.org/gmane.comp.gnome.apps.gnucash.user"></ulink> 
+        (e em <ulink url="http://news.gmane.org/gmane.comp.gnome.apps.gnucash.german"></ulink> 
+        se fala Alemão).</para>
+      </sect2>
+
+      <sect2 id="appendixb_info_other">
+        <title>P: Há outros meios para obter assistência ao <application>&app;</application>?</title>
+        <para>R: Sim. Muitos dos programadores estão no icq, discussão #gnucash em irc.gnome.org. 
+        Há ainda uma wiki online em <ulink url="http://wiki.gnucash.org/wiki/&app;">
+        http://wiki.gnucash.org/wiki/&app;</ulink>.</para>
+      </sect2>
+    </sect1>
+
+    <sect1 id="appendixb_general">
+      <title>Informação geral</title>
+
+      <sect2 id="appendixb_software_windows">
+        <title>P: Posso executar o <application>&app;</application> em Windows?</title>
+        <para>R: Sim. A partir da versão 2.2.0, o <application>&app;</application> também está disponível 
+        para Windows.</para>
+        <para>Outras opções disponíveis serão o colinux, VMWare e windows-based X-server hospedando uma 
+        sessão remota do <application>&app;</application>.</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_hard2compile">
+        <title>P: Ouvi dizer que era muito díficl compilar o <application>&app;</application>!</title>
+        <para>R: Isto foi provavelmente verdade quando a versão 1.6.0 foi lançada. Hoje em dia já não é 
+        verdade, dado que a maioria das ditribuições Linux já têm todas as bibliotecas necessárias 
+        (exceto a g-wrap, ou seja, há realmente <quote>uma</quote> biblioteca extra a instalar antes de 
+        compilar o <application>&app;</application>). Contudo, por predefinição, as distribuições não 
+        instalam pacotes de desenvolvimento das bibliotecas requeridas, pelo que poderá ter que iniciar 
+        o programa de instalação da sua distribuição e dizer-lhe que instale também as bibliotecas de 
+        desenvolvimento (-devel). Em geral, notou-se que este problema afeta muitas aplicações no domínio 
+        Gnome, o que se reduz ao fato de que não há efetivamente algo como <quote>um pacote gnome 
+        monolítico</quote>.</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_batchmode">
+        <title>P: Há algum modo de o <application>&app;</application> construir relatórios em lote, de forma 
+        não interativa?</title>
+        <para>R: Não, por agora o <application>&app;</application> tem de usar interatividade.</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_multuser">
+        <title>P: Pode o mesmo ficheiro de dados do <application>&app;</application> ser acedido por múltiplas 
+        pessoas?</title>
+        <para>R: Pode ter múltiplas pessoas com acesso ao mesmo ficheiro de dados, mas não em simultâneo.</para>
+        <para>Para configurar o acesso multiutilizador, todos terão de ter direitos de leitura/escrita na pasta 
+        que contém o ficheiro (para ler os ficheiros criados por outros e para criar novos ficheiros). 
+        Uma forma de o fazer é criar um grupo de utilizadores e definir a pasta de dados como propriedade 
+        partilhada do grupo, definida para modo 2775. O <quote>2</quote> torna a pasta setgid, o que copia as 
+        permissões para todos os ficheiros.</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_WhyC">
+        <title>P: Porque é que o <application>&app;</application> está escrito em C?</title>
+        <para>R: A funcionalidade central do <application>&app;</application> é escrita em C, mas não se 
+        esqueça que muito do núcleo pode ser acedido pelo Guile (scheme). Há um sem número de razões para o 
+        <application>&app;</application> ser escrito em C. A primeira é histórica, o 
+        <application>&app;</application> começou em 1996 (ou talvez antes!)  e muitos dos compiladores OOP 
+        (C++, Java, Python) ainda não tinham amadurecido e estabilizado o suficiente nas várias plataformas 
+        consideradas na altura, portanto C era a única opção nessa época. Uma segunda razão seria por o GUI 
+        (ambiente de trabalho) padrão do <application>&app;</application> usar GTK, que é escrito em C.</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_rewrite">
+        <title>P: Porque é que não reescrevem o <application>&app;</application> na linguagem xyz para 
+        que eu possa contribuir facilmente?</title>
+        <para>R: A resposta rápida é <quote>Não o faremos</quote>. A resposta mais longa é complexa mas é a 
+        mesma. O <application>&app;</application> é um enorme corpo de código mantido por um pequeno 
+        grupo de programadores que se sentem confotáveis com C e Scheme (Guile). De fato, 80% é em C 
+        e aproximadamente 13% é em Scheme/Lisp. Não há nenhuma razão válida que justifique reescrever a quantidade 
+        de código existente numa linguagem diferente. Além disso, criar associações de linguagem a linguagens 
+        recentes como Python ou Ruby ou qualquer outra da sua preferência é trabalho intenso e já temos trabalho 
+        que chegue mantendo e desenvolvendo o código existente.</para>
+        <para>Dito isto, este é um projeto de código aberto e é livre de fazer o que quiser ou de contribuir 
+        com aquilo que quiser. Mas não espere assistência se o motivo das suas alterações for não estar 
+        disposto a aprender C ou Scheme. Além disto, o <application>&app;</application> costumava ter 
+        associações SWIG (<ulink url="http://www.swig.org"></ulink>) que foram usadas por algum código programado 
+        em perl. De acordo com uma discussão na lista, estas associações SWIG podem ainda ser uma forma de incluir 
+        outras linguagens no <application>&app;</application>, embora atualmente não sejam usadas nem 
+        mantidas.</para>
+      </sect2>
+
+      <sect2 id="appendixb_general_newFeatures">
+        <title>P: Gostava realmente de ter a funcionalidade XYZ mas o <application>&app;</application> não 
+        a tem. Como é que a posso adicionar?</title>
+        <para>R: Peça com educação. :-) Pode fazer um pedido de melhoria em 
+        <ulink url="http://bugzilla.gnome.org/enter_bug.cgi?product=&app;"></ulink>. Por favor, lembre-se 
+        de descrever a sua melhoria proposta de forma bastante completa. O truque aqui é aprender a dar a 
+        melhor informação aos programadores sobre o que a sua melhoria proposta vai fazer. Se quer acelerar 
+        o processo de desenvolvimento, considere doar algum dinheiro, conforme descrito em 
+        <application>&app;</application>Development.</para>
+      </sect2>
+
+      <sect2 id="appendixb_software_web">
+        <title>P: Há alguma interface web disponível para o <application>&app;</application>?</title>
+        <para>R: Não</para>
+      </sect2>
+
+      <sect2 id="appendixb_software_security">
+        <title>P: Como é que posso garantir a segurança dos dados do <application>&app;</application> 
+        usando CFS, etc.)</title>
+        <para>R: Sem resposta</para>
+      </sect2>
+
+      <sect2 id="appendixb_software_contribute">
+        <title>P: Como é que posso contribuir para o projeto do <application>&app;</application>?</title>
+        <para>R: Estamos a trabalhar num processo mais formal, mas para já, pode subscrever as listas de 
+        correio em 
+        <ulink url="http://lists.gnucash.org/mailman/listinfo/gnucash-user">
+            http://lists.gnucash.org/mailman/listinfo/gnucash-user</ulink> e em 
+        <ulink url="http://lists.gnucash.org/mailman/listinfo/gnucash-devel">
+            http://lists.gnucash.org/mailman/listinfo/gnucash-devel</ulink> e discutir como pode contribuir 
+        com os participantes da lista. Note que o <application>&app;</application> está escrito em C e Scheme 
+        (veja acima , <quote>Porque é que o <application>&app;</application> está escrito em C?</quote> se 
+        quiser saber porquê). Se não está disposto a trabalhar com estas linguagens, considere outros tipos de 
+        contribuição.</para>
+      </sect2>
+
+      <sect2 id="appendixb_software_bugs">
+        <title>P: Penso que encontrei um erro. Como é que o reporto?</title>
+        <para>R: Primeiro, tente verificar se é realmente um erro e se ainda não foi reportado. Procure 
+        nos arquivos de correio (veja a FAQ acima). Depois procure na base de dados do  
+        <ulink url="http://bugzilla.gnome.org">Bugzilla do Gnome</ulink>.</para>
+        <para>Se achar que realmente encontrou um novo erro, pode reportá-lo em 
+        <ulink url="http://bugzilla.gnome.org/enter_bug.cgi?product=&app;"></ulink>. Lembre-se de ser eloquente 
+        e claro. Tente aprender como deve informar os programadores a reproduzir o erro. Um programador só 
+        consegue reparar um erro que consiga ver, se não o conseguir ver, o erro não será reparado.!</para>
+      </sect2>
+
+    </sect1>
+    <sect1 id="appendixb_using">
+      <title>Usando o <application>&app;</application></title>
+
+      <sect2 id="appendixb_using_moveAtoB">
+        <title>P: Como é que posso mover transações da conta <quote>A</quote> para a conta <quote>B</quote>, 
+        ou seja, combinando-as?</title>
+        <para>R: De momento, o <application>&app;</application> não oferece uma forma de mover grupos de 
+        parcelas entre contas. Terá de as mover uma a uma. Abra o diário da conta <quote>A</quote> e 
+        selecione <menuchoice><guimenu>Ver</guimenu><guimenuitem>Diário de transações</guimenuitem></menuchoice> 
+        para ver todas as parcelas. Para cada parcela onde o campo <quote>Conta</quote> mostrar conta
+        <quote>A</quote> altere para conta <quote>B</quote>. Para o fazer rapidamente e com segurança, 
+        primeiro use <keycombo><keycap>Ctrl</keycap><keycap>C</keycap></keycombo> para copiar o nome da conta 
+        destino (<quote>conta B</quote>) para a área de transferência. Em seguida, realce cada referência à 
+        conta <quote>A</quote> com um duplo clique e use <keycombo><keycap>Ctrl</keycap><keycap>V</keycap>
+        </keycombo> para colar o nome da conta destino. Premindo <keycap function="enter">Enter</keycap> 
+        após cada colagem, move a transação para fora do diário silenciosamente.</para>
+        <para>Tenha cuidado! Se definir o campo <quote>Conta</quote> para uma localização errada 
+        inadvertidamente, terá de procurar em todas as contas para localizar a transação perdida para 
+        corrigir o erro.</para>
+      </sect2>
+
+      <sect2 id="appendixb_using_merge2files">
+        <title>P: É possível unir dois ficheiro do <application>&app;</application>?</title>
+        <para>R: De momento não.</para>
+      </sect2>
+
+      <sect2 id="appendixb_using_SaveAcctTemplate">
+        <title>P: Como é que posso gravar um modelo do meu plano de contas?</title>
+        <para>R: Isto está disponível no menu: <menuchoice><guimenu>Ficheiro</guimenu>
+        <guisubmenu>Exportar</guisubmenu><guimenuitem>Exportar contas</guimenuitem>
+        </menuchoice>
+        </para>
+      </sect2>
+      <sect2 id="appendixb_using_ListAll">
+        <title>P: Quando procuro clientes (ou qualquer outra coisa), como é que posso obter uma lista de tudo?</title>
+        <para>R: Insira um critério de procura <guilabel>satizfaz expreg</guilabel> e ponha um único ponto 
+        <quote>.</quote> na área do texto. Depois, clique em <guibutton>Procurar</guibutton>. A expressão 
+        regular <quote>.</quote> significa procurar tudo.</para>
+      </sect2>
+      <sect2 id="appendixb_using_Dates">
+        <title>P: Como posso registar uma transação em datas diferentes (data real e data do banco)?</title>
+        <para>R: Regista a transação no dia em que passa o cheque ou inicia a transação. Quando 
+        <quote>chegar</quote> ao banco, pode clicar no campo <quote>R</quote>  para <quote>confirmar</quote> 
+        a transação (altera <quote>nc</quote> para <quote>c</quote>).</para>
+      </sect2>
+    </sect1>
+    <sect1 id="appendixb_accounting">
+      <title>Contabilidade</title>
+      <sect2 id="appendixb_accounting_Taxes">
+        <title>P: Como é que trato os impostos? Como uma conta a pagar ou como despesa?</title>
+        <para>R: Esta é uma pergunta com rasteira e devia realmente falar com o seu contabilista. 
+        A forma como trata dos impostos depende do tipo de imposto e de como o <emphasis>QUER</emphasis> 
+        tratar. Nalguns casos são despesas, noutros são passivo.</para>
+      </sect2>
+    </sect1>
+  </appendix>
