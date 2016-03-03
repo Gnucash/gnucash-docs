@@ -1,0 +1,528 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: de julho de 9th 2006
+  Maintainers: 
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally written by Carol Champagne.
+  Translators:
+               (Pedro Albuquerque <palbuquerque73@gmail.com>)
+-->
+<chapter id="chapter_cc">
+  <title>Cartões de crédito</title>
+
+  <para>Neste capítulo vamos mostrar-lhe como gerir os seus cartões de crédito usando o <application>&app;</application>.</para>
+
+  <sect1 id="cc-concepts1">
+    <title>Conceitos</title>
+
+    <para>Dado que muito provavelmente passa um cheque ou faz um pagamento eletrónico à companhia do cartão de crédito uma vez 
+    por mês, poderá pensar no cartão de crédito como sendo uma despesa - mas na realidade não o é. Porquê? Um cartão de crédito é 
+    um empréstimo a curto prazo, permite comprar coisas nessa conta de empréstimo e depois terá de pagar esse dinheiro, muitas vezes 
+    com juros (a sua taxa financeira). As compras que faz com o cartão de crédito é que são as despesas.</para>
+
+    <para>Tem algumas opções disponíveis quando insere transações com cartões de crédito, portanto escolha aquela que mais se adequar 
+    ao nível de detalhe desejado. O método mais simples é controlar simplesmente o pagamento mensal à companhia do cartão. A partir 
+    da sua conta à ordem, faz uma transferência mensal de dinheiro para a conta de despesa do cartão de crédito. Isto mostra-lhe a 
+    quantidade de dinheiro que paga por mês à companhia do cartão, mas não lhe mostra informação sobre o saldo do cartão ou compras 
+    a crédito.</para>
+
+    <para>Uma maneira mais completa de controlar os seus cartões de crédito no <application>&app;</application> é inserir cada compra 
+    e cada pagamento como uma transação separada. Usando o diário da conta do cartão de crédito, insere os recibos ao longo do mês. 
+    Quando chegar o extrato do cartão, faz a reconciliação da conta com o extrato e insere uma transferência da conta à ordem para a conta 
+    cartão. Este método dá-lhe mais informação sobre o seu saldo e evidencia discrepâncias durante a reconciliação, mas tem mais dados 
+    para inserir.</para>
+  </sect1>
+
+  <sect1 id="cc-accounts1">
+    <title>Configurar as contas</title>
+
+    <para>Para começar a gerir os seus cartões de crédito no <application>&app;</application>, deve configurar uma conta de topo 
+    de tipo <guilabel>Passivo</guilabel> e, sob esta conta-mãe, criar as contas de tipo <guilabel>Cartão de crédito</guilabel> que usa. 
+    Se só está a controlar os pagamentos que faz à companhia, só precisa de uma conta à ordem e uma conta de cartão de crédito para 
+    inserir as suas transações.</para>
+
+    <para>As compras que faz com o cartão de crédito são despesas, logo, terá de configurar estas contas sob a conta de topo de tipo 
+    <guilabel>Despesa</guilabel>. Se decidir manter um registo mais detalhado das suas compras, terá de criar contas de despesa para 
+    cada tipo de compra que faça. Uma vez que também irá reconciliar o saldo da conta com o extrato do cartão, também deve inserir 
+    um saldo inicial em cada conta <guilabel>Cartão de crédito</guilabel>. A maneira mais fácil de o fazer é usar o último extrato como 
+    saldo inicial.</para>
+
+    <sect2 id="cc-accounts-simple2">
+      <title>Configuração simples</title>
+
+      <para>Se não quer controlar cada despesa feita com o cartão de crédito, pode configurar um plano de contas simples, como este:</para>
+
+      <literallayout>
+-Ativos
+   -Banco
+-Passivo
+   -Cartão de crédito
+-Despesas
+   -Cartão de crédito
+   </literallayout>
+
+      <para>Neste exemplo, insere o montante total gasto com o cartão por mês como uma transação entre <emphasis>Passivo:Cartão 
+      de crédito</emphasis> e <emphasis>Despesas:Cartão de crédito</emphasis>. Quando fizer um pagamento, insere uma transação 
+      entre <emphasis>Ativos:Banco</emphasis> e <emphasis>Passivo:Cartão de crédito</emphasis>.</para>
+
+      <para>A limitação óbvia desta configuração simplista de cartões de crédito é que não consegue ver para onde vai o dinheiro.  Todas 
+      as compras com o cartão são inseridas numa mesma conta de despesa. No entanto, é muito simples configurar e manter este tipo de 
+      controlo.</para>
+    </sect2>
+
+    <sect2 id="cc-accounts-complete2">
+      <title>Configuração completa</title>
+
+      <para>Se quer controlar as suas despesas com mais rigor, deve configurar múltiplas contas de despesa, nomeadas a partir do tipo 
+      de despesa que tem. Cada compra feita com o cartão de crédito é então inserida como uma transação separada entre a conta do passivo 
+      e uma conta de despesa específica. Abaixo encontra um exemplo de plano de contas deste tipo:</para>
+
+      <literallayout>
+-Ativos
+    -Banco
+-Passivo
+    -Cartão de crédito
+-Despesas
+    -Comida
+    -Carro
+    -Roupas
+    -Lazer
+    -Juros
+    -Taxas de serviço
+   </literallayout>
+
+      <para>Claramente, deve criar contas de despesa que se adequem aos seus hábitos de consumo. A única diferença entre esta configuração e a 
+      outra mais simples, é que as despesas foram divididas em grupos. Note ainda que há uma despesa de tipo <quote>Juros</quote>, usada 
+      quando o seu cartão de crédito lhe cobra juros por saldo não liquidado. A conta <quote>Taxa de serviço</quote>  usada para controlar 
+      despesas de serviço associadas com o cartão de crédito, por exemplo, o custo anual do cartão, se existir. Com esta configuração, poderá 
+      ver para onde vai o seu dinheiro todos os meses, agrupado de acordo com as suas contas de despesa.</para>
+
+      <para>No resto deste capítulo, vamos assumir que usa a configuração completa.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="cc-entercharge1">
+    <title>Inserir compras</title>
+
+    <para>Inserir as suas compras oferece-lhe um quadro mais completo dos seus hábitos de consumo. As compras com um cartão de crédito 
+    são controladas como transações entre a conta cartão do passivo e as contas.</para>
+
+    <para>Quando paga bens ou serviços com o seu cartão de crédito, está a dizer à companhia do cartão de crédito que faça o pagamento por si. 
+    Esta transação aumenta o montante de dinheiro que deve à companhia do cartão de crédito e o saldo do cartão de crédito aumenta. O outro 
+    lado destas transação será, na maioria dos casos, uma conta de despesa. Por exemplo, se comprar roupa numa loja com o cartão de crédito 
+    por 50&euro;, estará a transferir dinheiro da conta do cartão de crédito para a conta Despesas:Roupas.</para>
+
+    <para>Inserir estas transações no <application>&app;</application> permite-lhe controlar quanto é que deve à companhia do cartão de crédito, 
+    assim como lhe oferece uma melhor visão geral das suas contas. Também lhe permite monitorizar a sua conta e garantir que evita fraudes.</para>
+
+    <para>Adicionar transações a uma conta de cartão de crédito é semelhante a fazê-lo em qualquer outra conta. Pode inseri-las manualmente, 
+    ou importá-las da companhia do cartão, usando um formato de importação compatível.</para>
+
+    <para>Para assistência na introdução de transações, por favor consulte o capítulo 6 do manual de ajuda e também o capítulo sobre 
+    <xref linkend="chapter_txns"></xref>.</para>
+  </sect1>
+
+  <sect1 id="cc-enterpay1">
+    <title>Inserir pagamentos</title>
+
+    <para>A maioria dos pagamentos à companhia do cartão de crédito são inseridos sob a forma de transações entre uma conta bancária 
+    (ativo) e uma conta de cartão de crédito (passivo). Quando paga a quantia mensal, está a levantar dinheiro de uma conta bancária para 
+    liquidar o saldo do cartão. Esta transação diminui tanto o saldo da conta bancária como o montante da dívida no cartão de crédito.</para>
+
+    <para>Quando devolve uma compra, recebe um reembolso no seu cartão de crédito. Este é outro tipo de pagamento que diminui o montante 
+    em dívida no cartão de crédito. Se registou a transação de compra original como transferência do cartão de crédito para uma conta de despesa, 
+    terá simplesmente de reverter a transação: transfira o dinheiro da conta de despesa de volta para a conta cartão. Esta transação diminui 
+    tanto o saldo da conta de despesa como o do cartão de crédito. Por exemplo, se gravou originalmente uma compra de roupa com o cartão 
+    de crédito, a transação é uma transferência do cartão de crédito para a conta de despesa. Se entretanto devolveu a roupa e recebeu um 
+    reembolso, volte a transferir o dinheiro da conta de despesa para a conta cartão.</para>
+
+    <note>
+      <para>Um erro comum é inserir um reembolso como receita. Não é uma receita, mas simplesmente uma <quote>despesa negativa</quote>. 
+      É por isso que tem de transferir o dinheiro da sua conta de despesa para a sua conta do cartão de crédito quando recebe um reembolso.</para>
+    </note>
+
+    <para>Para clarificar isto, vamos criar um exemplo. Comprou algumas calças por 74,99&euro; com o seu cartão Visa, mas depois de as 
+    experimentar, verificou que são muito grandes e tem de as devolver. A lojista aceita graciosamente a devolução e reembolsa o seu cartão.</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Comece por abrir o ficheiro gravado anterior, (<filename>gcashdata_5</filename>), e grave-o como <filename>gcashdata_6</filename>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Abra o diário <emphasis>Passivo:Visa</emphasis> e insira uma transação simples entre duas contas para pagar os 74.99&euro; 
+        em calças. A conta de <guilabel>Transferência</guilabel> deve ser <emphasis>Despesas:Roupa</emphasis> e vai <guilabel>creditar</guilabel> 
+        a sua conta <emphasis>Visa</emphasis> em 74.99&euro;.</para>
+
+        <note>
+          <para>Dado que ainda não tínhamos criado a conta<emphasis>Despesas:Roupa</emphasis>, o <application>&app;</application> 
+          pede-nos que o façamos. Lembre-se só de a criar como conta de <guilabel>Despesas</guilabel>.</para>
+        </note>
+      </listitem>
+
+      <listitem>
+        <para>Insira o reembolso de uma das seguintes formas:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>insira  a mesma transação que a transação de compra, mas em vez de um montante de <quote>crédito</quote>, use um montante de 
+            <quote>Pagamento</quote> no diário do cartão de crédito;</para>
+          </listitem>
+
+          <listitem>
+            <para>selecione a transação de compra que quer reembolsar (ou seja, a compra das calças, neste caso) e selecione 
+            <menuchoice><guimenu>Transação</guimenu><guisubmenu>Adicionar transação reversa</guisubmenu></menuchoice>. Modifique 
+            a data como for necessário.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>Após reverter a transação, a sua conta do cartão de crédito deverá parecer-se com isto:</para>
+        <screenshot id="cc-Reversing-Transaction-1">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_Reversing_Transaction_1.png"
+                           format="PNG" srccredit="Pedro Albuquerque" ></imagedata>
+              </imageobject>
+
+              <textobject>
+                <phrase>Compra com cartão de crédito reembolsada</phrase>
+              </textobject>
+
+              <caption>
+                <para>Esta imagem mostra um diário de conta <emphasis>Passivo:Cartão de crédito</emphasis> após reverter uma transação 
+                de compra.</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+
+        <para>E o diário <emphasis>Despesas:Roupas</emphasis> deve parecer-se com isto:</para>
+        <screenshot id="cc-Reversing-Transaction-2">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_Reversing_Transaction_2.png"
+                           format="PNG" srccredit="Pedro Albuquerque" ></imagedata>
+              </imageobject>
+
+              <textobject>
+                <phrase>Compra com cartão de crédito reembolsada</phrase>
+              </textobject>
+
+              <caption>
+                <para>Esta imagem mostra um diário de conta <emphasis>Despesas:Roupa</emphasis> após reverter uma transação 
+                de compra.</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+      </listitem>
+
+      <listitem>
+        <para>Grave o ficheiro do <application>&app;</application>.</para>
+      </listitem>
+    </orderedlist>
+  </sect1>
+
+  <sect1 id="cc-together1">
+    <title>Juntar as peças</title>
+
+    <para>Agora que cobrimos as ideias básicas por trás das várias transações que tem de fazer para controlar eficazmente o seu cartão 
+    de crédito no <application>&app;</application>, vamos ver outro exemplo. Aqui, vamos fazer compras com o cartão de crédito, reembolsos 
+    de duas dessas compras, pagar juros sobre saldo não liquidado, reconciliar a conta cartão e finalmente, fazer um pagamento parcial do 
+    cartão de crédito.</para>
+
+    <sect2 id="cc-puttoget-openfile">
+      <title>Abra o ficheiro do <application>&app;</application></title>
+
+      <para>Comece por abrir o ficheiro <filename>gcashdata_5</filename> e grave-o como <filename>gcashdata_6</filename> diretamente. 
+      A janela principal deve parecer-se com esta: </para>
+
+    <screenshot id="cc-accounts">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/cc_accounts.png" format="PNG"
+                     srccredit="Pedro Albuquerque" ></imagedata>
+        </imageobject>
+
+        <textobject>
+          <phrase>Árvore de contas inicial</phrase>
+        </textobject>
+
+        <caption>
+          <para>Árvore de contas inicial para controlar um cartão de crédito no exemplo Juntar as peças.</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-purchases2">
+      <title>Compras</title>
+
+      <para>Vamos fazer compras com o cartão Visa. Comece por comprar comida no valor de 25&euro; no Café Gorduroso, 100&euro; de roupa 
+      na Modista da moda, 25&euro; de gasolina na Rodinhas, 125&euro; em mercearias e detergentes no Hipermercado da avenida (divida a 
+      compra em 85&euro; em mercearias e 40&euro; em detergentes) e, finalmente, 60&euro; em ferragens na Drogaria ABC.</para>
+
+      <para>Também refazemos o exercício da secção anterior, com a compra de calças por 74,99&euro; e respetivo reembolso dois dias depois.</para>
+
+      <para>O diário para a conta do passivo do cartão de crédito deve parecer-se com isto:</para>
+
+      <screenshot id="cc-purchases">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_purchases.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Compras iniciais com o cartão de crédito</phrase>
+          </textobject>
+
+          <caption>
+            <para>Compras iniciais com o cartão de crédito.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-refund2">
+      <title>Reembolso</title>
+
+      <para>Agora suponha que a 15 de fevereiro devolveu as roupas que comprou na Modista da moda a 11 de fevereiro e que a loja 
+      devolveu o dinheiro ao seu cartão de crédito. Insira uma transação para reembolso no cartão de crédito no valor total de 100&euro;.
+      Lembre-se de usar a mesma conta de transferência que usou antes para a compra original e insira o montante na coluna pagamento. 
+      O <application>&app;</application> completa automaticamente o nome e a conta de transferência por si, mas também insere os 
+      100&euro; automaticamente na coluna de crédito. Tem de reinserir este valor na coluna de pagamentos. A transação parece-se 
+      com isto:</para>
+
+      <screenshot id="cc-refund">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_refund.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Transação de devolução de item</phrase>
+          </textobject>
+
+          <caption>
+            <para>Devolução de roupa à modista da moda, reembolso no cartão de crédito.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-interest2">
+      <title>Crédito de juros</title>
+
+      <para>Após o mês de gastos, infelizmente chega a conta do cartão de crédito, por correio ou por a Internet. Foram-lhe cobrados 
+      20&euro; em juros no último dia de fevereiro por causa do saldo do mês anterior. Isto é inserido no diário do cartão de crédito como 
+      uma despesa.</para>
+
+      <screenshot id="cc-interest">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_interest.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Cobrança de juros</phrase>
+          </textobject>
+
+          <caption>
+            <para>Cobrança de juros.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="cc-together-reconcile2">
+      <title>Reconciliação</title>
+
+      <para>Quando o extrato do seu cartão de crédito chega, deve reconciliar a sua conta com este documento. Isto é feito usando a aplicação 
+      interna do <application>&app;</application>. Ponha a conta do cartão de crédito em foco e vá a <menuchoice><guimenu>Ações</guimenu>
+      <guimenuitem>Reconciliar...</guimenuitem></menuchoice>. Este processo de reconciliação é descrito com detalhe em 
+      <xref linkend="txns-reconcile1"></xref>, mas vamos passar pelo processo aqui também. Para este exemplo, vamos assumir que o extrato 
+      do cartão de crédito está datado de 1 de março, com um saldo final de 455&euro;. Insira estes valores na janela inicial de reconciliação.</para>
+
+      <screenshot id="cc-reconcile-init">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_reconcile_init.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Janela inicial de reconciliação</phrase>
+          </textobject>
+
+          <caption>
+            <para>Janela inicial de reconciliação da conta.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Durante o processo de reconciliação, marque cada transação na conta para confirmar que elas aparecem tanto na conta do 
+      <application>&app;</application>, como no extrato do cartão de crédito. Neste exemplo, há uma diferença de 300&euro; entre a 
+      sua conta no <application>&app;</application> e o extrato do cartão de crédito.</para>
+
+      <screenshot id="cc-reconcile">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_reconcile.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Janela principal de reconciliação</phrase>
+          </textobject>
+
+          <caption>
+            <para>Janela principal de reconciliação de conta, demonstrando uma discrepância de 300&euro;.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Com alguma investigação, descobre que se esqueceu de registar um pagamento que fez a 5 de fevereiro à companhia do cartão 
+      de crédito, no valor de 300&euro;, tem de inserir esta transação de pagamento da sua conta à ordem para a conta cartão. Agora o extrato 
+      do cartão de crédito e a sua conta no <application>&app;</application> podem ser reconciliadas com um saldo de 455&euro;.</para>
+    </sect2>
+
+    <sect2 id="cc-together-payment2">
+      <title>Pagamento</title>
+
+      <para>Assumindo que completou a reconciliação da sua conta de cartão de crédito, tem de fazer um pagamento à companhia do 
+      cartão de crédito. Neste exemplo, devemos 455&euro;, mas só vamos fazer um pagamento parcial de 300&euro; este mês. Para tal, 
+      insira uma transação da sua conta à ordem para a conta cartão, no valor de 300&euro;, o que deverá reduzir o saldo do seu cartão para 
+      155&euro;. O seu diário da conta cartão deverá agora parecer-se com isto:</para>
+
+      <screenshot id="cc-payment">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_payment.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Reconciliação e pagamento</phrase>
+          </textobject>
+
+          <caption>
+            <para>Diário de conta após reconciliação e pagamento.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Volte à janela principal e grave o seu ficheiro como (<filename>gcashdata_6</filename>). A sua árvore de contas continua a crescer 
+      consistentemente e deve agora parecer-se com esta:</para>
+
+      <screenshot id="cc-final">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/cc_final.png" format="PNG"
+                       srccredit="Pedro Albuquerque" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>Janela principal do <application>&app;</application></phrase>
+          </textobject>
+
+          <caption>
+            <para>Árvore de contas do <application>&app;</application> após reconciliação e pagamento do cartão de crédito.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+    
+    <sect2 id="cc-puttoget-save">
+      <title>Gravar o ficheiro</title>
+      <para>Por último, grave o o ficheiro de dados do <application>&app;</application> (<filename>gcashdata_6</filename>).</para>
+    </sect2>
+ 
+    <sect2 id="cc-puttoget-reports">
+      <title>Relatórios</title>
+            
+      <para>Tal como nos capítulos anteriores, vamos ver o <guilabel>Fluxo de caixa</guilabel> e um <guilabel>Relatório de transações</guilabel>.
+      </para>   
+
+      <orderedlist>
+        <listitem>
+          <para>Comecemos pelo <guilabel>Fluxo de caixa</guilabel> para a conta do passivo <guilabel>Visa</guilabel> durante o mês de fevereiro.</para>
+          <para>Selecione o relatório em <menuchoice><guimenu>Relatórios</guimenu><guisubmenu>Receita &amp; Despesa</guisubmenu>
+            <guimenuitem>Fluxo de caixa</guimenuitem></menuchoice>.
+          </para>
+      
+      	  <screenshot id="cc-puttoget2-Cash">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_CashFlow.png" format="PNG"
+                           srccredit="Pedro Albuquerque" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Fluxo de caixa para o mês de fevereiro</phrase>
+              </textobject>
+
+              <caption>
+                <para>Esta imagem mostra o fluxo de caixa para o mês de fevereiro após o capítulo <xref linkend="chapter_cc"></xref>.</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Agora vejamos o correspondente relatório de transações.</para>
+          <para>Selecione o relatório em <menuchoice><guimenu>Relatórios</guimenu><guimenuitem>Relatório de 
+          transações</guimenuitem></menuchoice>.
+          </para>
+          
+      	  <screenshot id="cc-puttoget2-TransactionRptVisa">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_TransactionRptVisa.png" 
+                           format="PNG" srccredit="Pedro Albuquerque" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Relatório de transações para a conta Visa durante fevereiro/março</phrase>
+              </textobject>
+
+              <caption>
+                <para>Esta imagem mostra o relatório de transações para a conta Visa durante fevereiro/março.</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+          
+        </listitem>
+ 
+          
+        <listitem>
+          <para>Vamos alterar o relatório de transações para mostrar só as contas de despesa.</para>
+          
+      	  <screenshot id="cc-puttoget2-TransactionRptExpenses">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/cc_TransactionRptExpenses.png" 
+                           format="PNG" srccredit="Pedro Albuquerque" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Relatório de transações para o mês de fevereiro</phrase>
+              </textobject>
+
+              <caption>
+                <para>Esta imagem mostra o relatório de transações para o mês de fevereiro.</para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+          
+        </listitem>
+        
+      </orderedlist>
+    </sect2> 
+    
+  </sect1>
+</chapter>
