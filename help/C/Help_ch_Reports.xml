@@ -993,51 +993,438 @@
       <para>The Business Reports includes Customer and Vendor Reports and Printable
        Invoices as well as Aging reports.</para>
 
-       <itemizedlist>
-        <listitem>
-         <para>Customer Report:</para>
-        </listitem>
+       <sect3>
+        <title>Customer Report</title>
+        <para> </para>
+       </sect3>
 
-        <listitem>
-         <para>Customer Summary:</para>
-        </listitem>
+        <sect3>
+         <title>Customer Summary</title>
+         <para> </para>
+        </sect3>
 
-        <listitem>
-         <para>Easy Invoice:</para>
-        </listitem>
+        <sect3>
+         <title>Easy Invoice</title>
+         <para> </para>
+        </sect3>
 
-        <listitem>
-         <para>Employee Report:</para>
-        </listitem>
+        <sect3>
+         <title>Employee Report</title>
+         <para> </para>
+        </sect3>
 
-        <listitem>
-         <para>Fancy Invoice:</para>
-        </listitem>
+        <sect3>
+         <title>Fancy Invoice</title>
+         <para> </para>
+        </sect3>
 
-        <listitem>
-         <para>Job Report:</para>
-        </listitem>
+        <sect3>
+         <title>Job Report</title>
+         <para> </para>
+        </sect3>
 
-        <listitem>
-         <para>Payable Aging:</para>
-        </listitem>
+        <sect3>
+         <title>Payable Aging</title>
+         <para>This report provides a listing of vendors and their aged
+           outstanding balances. Vendors may be included if they have posted
+           business transactions (e.g. invoices) for the selected accounts payable
+           account. It shows their current balance, and how much they have
+           due from invoices over time periods 0-30 days, 31-60 days,
+           61-90 days, and over 90 days. The report also contains links to each
+           vendor and to their current vendor report.
+         </para>
+         <para>Optionally, vendor address details may be also shown.</para>
 
-        <listitem>
-         <para>Printable Invoice:</para>
-        </listitem>
+         <tip><para>To export vendor address details, say in order to do a mail
+           merge, select the optional vendor address details in the report options
+           display tab, apply the options to regenerate the report, then copy and
+           paste the report into a spreadsheet. Alternatively, the report can be
+           exported to a .html file, then read into a spreadsheet.</para>
+         </tip>
 
-        <listitem>
-         <para>Receivable Aging:</para>
-        </listitem>
+         <sect4 id="report-pay-aging-opts">
+           <title>Report Options</title>
 
-        <listitem>
-         <para>Tax Invoice:</para>
-        </listitem>
+           <note><para>See <emphasis>Common Report Options</emphasis> in the
+             <emphasis>Configuring Reports and Charts</emphasis> section of this
+             help manual for more details of the common options.
+             </para>
+           </note>
 
-        <listitem>
-         <para>Vendor Report:</para>
-        </listitem>
-       </itemizedlist>
+           <itemizedlist>
+             <listitem><para><emphasis>General tab</emphasis></para>
+               <itemizedlist>
+                 <listitem><para><guilabel> Report name</guilabel> &mdash;
+                   Enter a descriptive name for this report - see common report
+                   options.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Stylesheet</guilabel> &mdash;
+                   Select a style sheet for this report - see common report
+                   options.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>To</guilabel> &mdash; Select a date
+                   to report on or a named date. Transactions up to and
+                   including the selected date will be used to calculate the
+                   outstanding aged balances. See common report options.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Report's currency</guilabel> &mdash;
+                   Select the currency to display the values in - see common
+                   report options.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Price Source</guilabel> &mdash;
+                   Select the source of price information used for currency
+                   conversion if needed. One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Average Cost</entry><entry>The
+                           volume-weighted average cost of purchases</entry>
+                         </row>
+                         <row><entry>Weighted Average (default)</entry><entry>
+                           The weighted average of all currency transactions
+                           in the past</entry>
+                         </row>
+                         <row><entry>Most recent</entry><entry>The most recent
+                           recorded price</entry>
+                         </row>
+                         <row><entry>Nearest in time</entry><entry>The price
+                           recorded nearest in time to the report date</entry>
+                         </row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Show Multi-currency Totals</guilabel>
+                    &mdash; If not selected, all totals are shown in the report
+                   currency.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Sort By</guilabel> &mdash; Sort
+                   companies by one of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Name (default)</entry><entry>Company name
+                           </entry>
+                         </row>
+                         <row><entry>Total Owed</entry><entry>Total amount owed
+                           to company</entry>
+                         </row>
+                         <row><entry>Bracket Total Owed</entry><entry>Amount
+                           owed in oldest bracket. If same, use next oldest
+                           </entry>
+                         </row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Sort Order</guilabel> &mdash; One of
+                   </para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Increasing (default)</entry></row>
+                         <row><entry>Decreasing</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Show zero balance items</guilabel>
+                   &mdash; Show companies even if they have a zero outstanding
+                   balance.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Due or Post Date</guilabel> &mdash;
+                   Leading date. Which date to use to determine aging. One of
+                   </para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Due Date (default)</entry></row>
+                         <row><entry>Post Date</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Payable Account</guilabel> &mdash;
+                   The accounts payable account used to select vendors to be
+                   reported. Vendors are included if they have a posted
+                   business transaction (usually an invoice) on or before the
+                   report date and also meet the <emphasis>Show zero balance
+                   items</emphasis> criteria.</para>
+                 </listitem>
+               </itemizedlist>
+             </listitem>
+
+             <listitem><para><emphasis>Display tab</emphasis></para>
+               <itemizedlist>
+                 <listitem><para><guilabel>Address Name</guilabel> &mdash;
+                   Display vendor address name. This, and other fields, may be
+                   useful if copying this report to a spreadsheet for use in a
+                   mail merge.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Address 1</guilabel> &mdash; Display
+                   address line 1.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Address 2</guilabel> &mdash; Display
+                   address line 2.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Address 3</guilabel> &mdash; Display
+                   address line 3.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Address 4</guilabel> &mdash; Display
+                   address line 4.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Phone</guilabel> &mdash; Display
+                   address phone number.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Fax</guilabel> &mdash; Display
+                   address fax number.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Email</guilabel> &mdash; Display
+                   email address.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Active</guilabel> &mdash; Display
+                   vendor active status.</para>
+                 </listitem>
+               </itemizedlist>
+             </listitem>
+           </itemizedlist>
+         </sect4>
+
+        </sect3>
+
+        <sect3>
+         <title>Printable Invoice</title>
+         <para> </para>
+        </sect3>
+
+        <sect3>
+         <title>Receivable Aging</title>
+         <para>This report provides a listing of customers and their aged
+           outstanding balances. Customers may be included if they have posted
+           business transactions (e.g. invoices) for the selected accounts receivable
+           account. It shows their current balance, and how much they have
+           outstanding from invoices over time periods 0-30 days, 31-60 days,
+           61-90 days, and over 90 days. The report also contains links to each
+           customer and to their current customer report.
+         </para>
+         <para>Optionally, customer address details may be also shown.</para>
+
+         <tip><para>To export customer address details, say in order to do a mail
+           merge, select the optional customer address details in the report options
+           display tab, apply the options to regenerate the report, then copy and
+           paste the report into a spreadsheet. Alternatively, the report can be
+           exported to a .html file, then read into a spreadsheet.</para>
+         </tip>
+
+         <sect4 id="report-rec-aging-opts">
+           <title>Report Options</title>
+
+           <note><para>See <emphasis>Common Report Options</emphasis> in the
+             <emphasis>Configuring Reports and Charts</emphasis> section of this
+             help manual for more details of the common options.
+             </para>
+           </note>
+
+           <itemizedlist>
+             <listitem><para><emphasis>General tab</emphasis></para>
+               <itemizedlist>
+                 <listitem><para><guilabel> Report name</guilabel> &mdash;
+                   Enter a descriptive name for this report - see common report
+                   options.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Stylesheet</guilabel> &mdash;
+                   Select a style sheet for this report - see common report
+                   options.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>To</guilabel> &mdash; Select a date
+                   to report on or a named date. Transactions up to and
+                   including the selected date will be used to calculate the
+                   outstanding aged balances. See common report options.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Report's currency</guilabel> &mdash;
+                   Select the currency to display the values in - see common
+                   report options.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Price Source</guilabel> &mdash;
+                   Select the source of price information used for currency
+                   conversion if needed. One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Average Cost</entry><entry>The
+                           volume-weighted average cost of purchases</entry>
+                         </row>
+                         <row><entry>Weighted Average (default)</entry><entry>
+                           The weighted average of all currency transactions
+                           in the past</entry>
+                         </row>
+                         <row><entry>Most recent</entry><entry>The most recent
+                           recorded price</entry>
+                         </row>
+                         <row><entry>Nearest in time</entry><entry>The price
+                           recorded nearest in time to the report date</entry>
+                         </row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Show Multi-currency Totals</guilabel>
+                    &mdash; If not selected, all totals are shown in the report
+                   currency.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Sort By</guilabel> &mdash; Sort
+                   companies by one of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Name (default)</entry><entry>Company name
+                           </entry>
+                         </row>
+                         <row><entry>Total Owed</entry><entry>Total amount owed
+                           by company</entry>
+                         </row>
+                         <row><entry>Bracket Total Owed</entry><entry>Amount
+                           owed in oldest bracket. If same, use next oldest
+                           </entry>
+                         </row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Sort Order</guilabel> &mdash; One of
+                   </para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Increasing (default)</entry></row>
+                         <row><entry>Decreasing</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Show zero balance items</guilabel>
+                   &mdash; Show companies even if they have a zero outstanding
+                   balance.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Due or Post Date</guilabel> &mdash;
+                   Leading date. Which date to use to determine aging. One of
+                   </para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Due Date (default)</entry></row>
+                         <row><entry>Post Date</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Receivables Account</guilabel> &mdash;
+                   The accounts receivable account used to select customers to be
+                   reported. Customers are included if they have a posted
+                   business transaction (usually an invoice) on or before the
+                   report date and also meet the <emphasis>Show zero balance
+                   items</emphasis> criteria.</para>
+                 </listitem>
+               </itemizedlist>
+             </listitem>
+
+             <listitem><para><emphasis>Display tab</emphasis></para>
+               <itemizedlist>
+                 <listitem><para><guilabel>Address Source</guilabel> &mdash;
+                   Which customer address fields to display. One of</para>
+                   <informaltable>
+                     <tgroup cols="2">
+                       <tbody>
+                         <row><entry>Billing (default)</entry><entry>Address fields from
+                           billing address.</entry></row>
+                         <row><entry>Shipping</entry><entry>Address fields from
+                           shipping address.</entry></row>
+                       </tbody>
+                     </tgroup>
+                   </informaltable>
+                 </listitem>
+
+                 <listitem><para><guilabel>Address Name</guilabel> &mdash;
+                   Display customer address name. This, and other fields, may be
+                   useful if copying this report to a spreadsheet for use in a
+                   mail merge.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Address 1</guilabel> &mdash; Display
+                   address line 1.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Address 2</guilabel> &mdash; Display
+                   address line 2.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Address 3</guilabel> &mdash; Display
+                   address line 3.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Address 4</guilabel> &mdash; Display
+                   address line 4.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Phone</guilabel> &mdash; Display
+                   address phone number.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Fax</guilabel> &mdash; Display
+                   address fax number.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Email</guilabel> &mdash; Display
+                   email address.</para>
+                 </listitem>
+
+                 <listitem><para><guilabel>Active</guilabel> &mdash; Display
+                   vendor active status.</para>
+                 </listitem>
+               </itemizedlist>
+             </listitem>
+           </itemizedlist>
+         </sect4>
+
+        </sect3>
+
+        <sect3>
+         <title>Tax Invoice</title>
+         <para> </para>
+        </sect3>
+
+        <sect3>
+         <title>Vendor Report</title>
+         <para> </para>
+        </sect3>
 
      </sect2>
 
