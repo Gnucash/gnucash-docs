@@ -986,6 +986,29 @@
     <guisubmenu>Customer</guisubmenu><guimenuitem>Process
     Payment</guimenuitem></menuchoice>.</para>
 
+    <tip>
+      <para>There is an alternative way of assigning a payment to (one or more)
+        invoices where the payment transaction already exists, say in the case
+        where transactions have been imported from a bank. There is no way to
+        assign a payment to an invoice during the import process, so this must
+        be done after transactions have been imported.
+      </para>
+      
+      <para>This can best be done starting from the asset account register
+        holding the imported payment transaction (like your bank account). In
+        that account, select the payment, right-click (control-click for Mac OS
+        X) and choose <guilabel>Assign as payment...</guilabel>. The payment
+        window will pop-up, partly filled in with the information from the
+        transaction. Fill in the missing information like the proper customer
+        and invoice to complete the payment.
+      </para>
+      
+      <para>One caveat: the logic behind <guilabel>Assign as payment...
+        </guilabel> won't properly detect credit note reimbursements and will
+          wrongfully interpret such a transaction as a vendor bill.
+      </para>
+    </tip>
+    
     <para>The Process Payment application consists of:</para>
 
     <itemizedlist>
@@ -1053,6 +1076,118 @@
     
   </sect2>
 
+  <sect2 id="busnss-ar-partpay2">
+    <title>Partial Payments</title>
+    
+    <para>Partial payments are possible too. Select the invoice to pay.
+      <application>&app;</application> will automatically suggest that invoice's
+      remaining balance as payment amount. Simply adjust that amount to what you
+      want to pay.
+    </para>
+    
+  </sect2>
+  
+  <sect2 id="busnss-ar-baddebt">
+    <title>Writing Off a Bad Debt</title>
+
+    <note><para>Please check with your accountant to ensure the following is
+      acceptable in your region.</para>
+    </note>
+    
+    <para>The usual way to do this is to process a payment for the invoice to a
+      <emphasis>BadDebt</emphasis> account. Such an account would be an expense
+      account. However, in <application>&app;</application>, you can't process a
+      payment for an invoice directly to an expense account, so it takes two
+      steps:
+    </para>
+    
+    <itemizedlist>
+      <listitem><para>Pay the invoice to an asset or liability account, such as
+        your checking account.</para>
+      </listitem>
+      
+      <listitem><para>Change the asset or liability account, in the <emphasis>
+        non</emphasis> Accounts Receivable split of the payment transaction, to
+        the BadDebt expense account.</para>
+      </listitem>
+
+    </itemizedlist>
+
+    <para>Specifically</para>
+    
+        <itemizedlist>
+      <listitem><para>Remove all transactions from the A/R account related to
+        the invoice, except for the invoice's transaction itself. This includes
+        any payment transactions, and transactions between your BadDebt and A/R
+        account.</para>
+        
+        <para>In case the payment has associated lot link transactions
+          <link linkend="busnss-ar-baddeb-lot">(1)</link>, remove those as well.
+        </para>
+        
+        <para>If all is well, your <guilabel>Process Payment</guilabel> window
+          for this customer should list the invoice the customer won't pay, and
+          no prepayments.
+        </para>
+      </listitem>
+      
+      <listitem><para>Pay your invoice to an arbitrary asset or liability
+        account. It can be your checking account. We will fix that in the next
+        step.</para>
+      </listitem>
+      
+      <listitem><para>Open the account register for your A/R account. For this
+        invoice there should now be one payment transaction. If you are using
+        <application>&app;</application> 2.6.0 - 2.6.4 there will also be one
+        lot link transaction <link linkend="busnss-ar-baddeb-lot">(1)</link>.
+        </para>
+      </listitem>
+      
+      <listitem><para> Select the payment transaction and change the transfer
+        account to your <emphasis>BadDebt</emphasis> account. Make sure to leave
+        the transaction (eg by clicking on another transaction) to save the
+        changes.</para>
+      </listitem>
+    </itemizedlist>
+      
+    <para>If all is well, your <guilabel>Process Payment</guilabel> window
+      should still be clean: no pre-payments, and the bad debt invoice gone.
+    </para>
+      
+    <note id="busnss-ar-baddeb-lot"><para>(1): <application>&app;</application>
+      versions 2.6.0 to 2.6.4 created lot link transactions which show in the
+      A/R account register. This came with its own set of subtle issues. It is
+      recommended to upgrade to the latest (or at least 2.6.6) version, which
+      fixes a lot of small problems. Version 2.6.5 had a flaw in the logic
+      cleaning up the lot links. Once upgraded, please run <menuchoice><guimenu>
+      Actions</guimenu><guimenuitem>Check &amp; Repair</guimenuitem>
+      </menuchoice> on your A/R and A/P accounts to clean up most of the lot
+      link legacy. Don't forget to make a backup first just in case.</para>
+      
+      <para>Lots are used internally for relating payments to invoices. Lots
+        themselves are invisible in the account registers. 
+        To see them you need to open the lot viewer, which can be found in 
+        <menuchoice><guimenu>Actions</guimenu><guimenuitem>View lots
+        </guimenuitem></menuchoice> while in any A/R or A/P account register.
+        Select a lot to see the <emphasis>Splits in lot</emphasis>. 
+      </para>
+      
+      <para><emphasis>Lot links</emphasis> are <emphasis>transactions</emphasis>
+        which you can see in your A/R and A/P accounts. They are unusual in the
+        sense that all their splits are in one account (A/R or A/P). Each split
+        in a lot link transaction is <emphasis>linked</emphasis> (hence the
+        name) to an invoice or payment transaction by means of a lot.
+      </para>
+
+    </note>
+      
+    <para>See <ulink
+     url="http://wiki.gnucash.org/wiki/Business_Features_Issues"
+     /> for more information.
+    </para>
+  
+  </sect2>
+  
   </sect1>
 
   <sect1 id="busnss-ar-invoicechange">
@@ -1518,6 +1653,28 @@ ________________________________________________________________________________
   <sect1 id="busnss-ap-payment1">
   <title>Process Payment</title>
   <para>Eventually, you need to pay your bills.  To do so, use the Process Payment application found in <menuchoice><guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>Process Payment</guimenuitem></menuchoice>.</para>
+  
+  <tip>
+    <para>There is an alternative way of assigning a payment to (one or more)
+      bills where the payment transaction already exists, say in the case
+      where transactions are imported from a bank.
+    </para>
+      
+    <para>This can best be done starting from the asset account register
+      holding the imported payment transaction (like your bank account). In
+      that account, select the payment, right-click (control-click for Mac OS
+      X) and choose <guilabel>Assign as payment...</guilabel>. The payment
+      window will pop-up, partly filled in with the information from the
+      transaction. Fill in the missing information like the proper vendor
+      and bill to complete the payment.
+    </para>
+      
+    <para>One caveat: the logic behind <guilabel>Assign as payment...
+      </guilabel> won't properly detect credit note reimbursements and will
+        wrongfully interpret such a transaction as a customer invoice.
+    </para>
+  </tip>
+  
   <para>The Process Payment application consists of:</para>
   <itemizedlist>
   <listitem>
@@ -1555,6 +1712,28 @@ ________________________________________________________________________________
    comes from, such as a checking account.</para>
   </listitem>
   </itemizedlist>
+  
+  <sect2 id="busnss-ap-overpay2">
+    <title>Over Payments or Pre-Payments</title>
+  
+    <para>If you wish to overpay an invoice or pay for goods or services before
+      they have been invoiced, Process Payment for the total amount payed.
+      <application>&app;</application> will then keep track of the over-payment
+      (or pre-payment) in the A/P account and you can use the residual in the
+      future.
+    </para>
+  </sect2>
+
+  <sect2 id="busnss-ap-partpay2">
+    <title>Partial Payments</title>
+    
+    <para>You may wish to partially pay a bill. Select the bill to pay.
+      <application>&app;</application> will automatically suggest that bill's
+      remaining balance as payment amount. Simply adjust that amount to what you
+      want to pay.
+    </para> 
+  </sect2>
+
  </sect1>
  
    <sect1 id="busnss-emply">
