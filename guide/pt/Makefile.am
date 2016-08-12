@@ -6,7 +6,7 @@ endif
 
 figdir = figures
 docname = gnucash-guide
-lang = pt_PT
+lang = pt
 omffile = $(docname)-pt.omf
 entities = \
 	fdl-appendix.xml \
