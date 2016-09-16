@@ -33,4 +33,6 @@ COMPONENTS = \
 
 gnucash-help.xml: ${COMPONENTS} ${srcdir}/it.po
 	xml2po -e -p ${srcdir}/it.po -o $@ ${top_srcdir}/help/C/gnucash-help.xml
-	mv $@ ${srcdir}
+	if test "${srcdir}" != "${builddir}"; then mv $@ ${srcdir} fi
+
+EXTRA_DIST += it.po
