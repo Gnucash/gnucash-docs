@@ -13,6 +13,7 @@ include $(top_srcdir)/mobi.make
 endif
 
 COMPONENTS = \
+	${top_srcdir}/guide/C/gnucash-guide.xml \
 	${top_srcdir}/guide/C/fdl-appendix.xml \
 	${top_srcdir}/guide/C/legal.xml \
 	${top_srcdir}/guide/C/ch_oview.xml \
