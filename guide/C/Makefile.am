@@ -17,6 +17,7 @@ entities = \
 	ch_txns.xml \
 	ch_cbook.xml \
 	ch_cc.xml \
+	ch_expenses.xml \
 	ch_loans.xml \
 	ch_invest.xml \
 	ch_capgain.xml \
