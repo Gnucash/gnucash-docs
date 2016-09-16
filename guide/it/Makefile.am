@@ -21,6 +21,7 @@ COMPONENTS = \
 	${top_srcdir}/guide/C/ch_txns.xml \
 	${top_srcdir}/guide/C/ch_cbook.xml \
 	${top_srcdir}/guide/C/ch_cc.xml \
+	${top_srcdir}/guide/C/ch_expenses.xml \
 	${top_srcdir}/guide/C/ch_loans.xml \
 	${top_srcdir}/guide/C/ch_invest.xml \
 	${top_srcdir}/guide/C/ch_capgain.xml \
