@@ -9,21 +9,22 @@
 <!ENTITY chapter3 SYSTEM "ch_accts.xml">
 <!ENTITY chapter4 SYSTEM "ch_txns.xml">
 <!ENTITY chapter5 SYSTEM "ch_cbook.xml">
-<!ENTITY chapter6 SYSTEM "ch_cc.xml">
-<!ENTITY chapter7 SYSTEM "ch_loans.xml">
-<!ENTITY chapter8 SYSTEM "ch_invest.xml">
-<!ENTITY chapter9 SYSTEM "ch_capgain.xml">
-<!ENTITY chapter10 SYSTEM "ch_currency.xml">
-<!ENTITY chapter11 SYSTEM "ch_bus_intro.xml">
-<!ENTITY chapter12 SYSTEM "ch_bus_setup.xml">
-<!ENTITY chapter13 SYSTEM "ch_bus_ar.xml">
-<!ENTITY chapter14 SYSTEM "ch_bus_ap.xml">
-<!ENTITY chapter15 SYSTEM "ch_bus_pay.xml">
-<!ENTITY chapter16 SYSTEM "ch_budgets.xml">
-<!ENTITY chapter17 SYSTEM "ch_oth_assets.xml">
-<!ENTITY chapter18 SYSTEM "ch_dep.xml">
-<!ENTITY chapter19 SYSTEM "ch_python_bindings.xml">
-<!ENTITY chapter20 SYSTEM "ch_import_business_data.xml">
+<!ENTITY chapter6 SYSTEM "ch_expenses.xml">
+<!ENTITY chapter7 SYSTEM "ch_cc.xml">
+<!ENTITY chapter8 SYSTEM "ch_loans.xml">
+<!ENTITY chapter9 SYSTEM "ch_invest.xml">
+<!ENTITY chapter10 SYSTEM "ch_capgain.xml">
+<!ENTITY chapter11 SYSTEM "ch_currency.xml">
+<!ENTITY chapter12 SYSTEM "ch_bus_intro.xml">
+<!ENTITY chapter13 SYSTEM "ch_bus_setup.xml">
+<!ENTITY chapter14 SYSTEM "ch_bus_ar.xml">
+<!ENTITY chapter15 SYSTEM "ch_bus_ap.xml">
+<!ENTITY chapter16 SYSTEM "ch_bus_pay.xml">
+<!ENTITY chapter17 SYSTEM "ch_budgets.xml">
+<!ENTITY chapter18 SYSTEM "ch_oth_assets.xml">
+<!ENTITY chapter19 SYSTEM "ch_dep.xml">
+<!ENTITY chapter20 SYSTEM "ch_python_bindings.xml">
+<!ENTITY chapter21 SYSTEM "ch_import_business_data.xml">
 <!ENTITY appendixa SYSTEM "appendixa.xml">
 <!ENTITY appendixb SYSTEM "appendixb.xml">
 <!ENTITY appendixc SYSTEM "appendixc.xml">
@@ -34,7 +35,7 @@
   Some global declarations which are used in the files. For easier
   maintainance they should be collected here.
 --><!ENTITY manrevision "2.6.14">
-<!ENTITY date "17 settembre 2016">
+<!ENTITY date "17 September 2016">
 <!ENTITY vers-unstable "master">
 <!ENTITY vers-stable "2.6.14">
 <!ENTITY series-unstable "master">
@@ -77,7 +78,7 @@
 <!-- appropriate code -->
  <bookinfo>
   <title>Guida ai concetti e manuale di <application>&app;</application></title>
-  <edition>V2.6.13</edition>
+  <edition>V2.6.14</edition>
 
   <copyright>
    <year>2009-2016</year>
@@ -560,7 +561,7 @@
           <para><emphasis>Multi-platform Compatibility</emphasis>: <application>GnuCash</application> is
           supported on a variety of platforms and operating systems. The list
           of fully supported operating systems (and platforms) for <application>GnuCash</application>
-          2.6.13 is: GNU/Linux (x86, x86_64, Sparc, PPC), FreeBSD (x86, x86_64), OpenBSD
+          2.6.14 is: GNU/Linux (x86, x86_64, Sparc, PPC), FreeBSD (x86, x86_64), OpenBSD
           (x86, x86_64), Solaris (Sparc), and MacOS X (Intel, PPC). Previous versions of
           <application>GnuCash</application> have been known to work with, SGI IRIX (MIPS), IBM AIX 4.1.5
           (RS/6000), Unixware 7 (Intel), and SCO OpenServer 5.0.4 (Intel), but
@@ -2464,12 +2465,13 @@ Translators:
     <tip><para>Specifically for dates there's another way you can save time: you can enter
             partial dates. For example if you only enter one number, <application>GnuCash</application>
             will interpret it as the day in the current month of the current year. If you only enter
-            a day and month, <application>GnuCash</application> will automatically append the year. By
-            default this is the current year. You can however also configure
-            <application>GnuCash</application> to take such a date in a sliding window starting
-            a number of months before the current month. This can be done via
+            a day and month, <application>GnuCash</application> will automatically append the year. The
+            default this to take such a date in a sliding window starting 11 months before the current
+            month. This means that if you enter 1/5 (January 5th) as date while the current date is
+            in December 2015, the date will be completed as 1/5/16. This default can be changed via
             <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu><guisubmenu>Date/Time</guisubmenu>
-            <guilabel>Date Completion</guilabel></menuchoice>.</para></tip>
+            <guilabel>Date Completion</guilabel></menuchoice>. You can change it to either always
+            evaluate a date in the current calendar year or change the start of the sliding window.</para></tip>
 
     <para>Nel campo <guilabel>Nr.</guilabel> nella linea di una transazione, è possibile premere <keycap>+</keycap> per incrementare il numero della transazione, mentre premendo <keycap>-</keycap> verrà diminuito il numero. Questo funzionerà anche nel campo <guilabel>Operazione</guilabel> nella linea della suddivisione, se si sceglie di immettere i numeri della suddivisione qui. Il campo <guilabel>Operazione</guilabel> supporta anche <emphasis>Quickfill</emphasis>: se si digitano i primi caratteri di una operazione comune (come <emphasis>Deposito</emphasis>), <application>&app;</application> completerà il resto.</para>
     
@@ -2529,6 +2531,14 @@ Translators:
         <emphasis>Toolbar</emphasis> while selecting the appropriate transaction.</para>
     
     <para>Per le transazioni suddivise, la prima linea rappresenta la <emphasis>linea della transazione</emphasis>; essa contiene una <guilabel>Data</guilabel>, un <guilabel>Nr.</guilabel> opzionale (ad esempio il numero dell&rsquo;assegno), la <guilabel>Descrizione</guilabel> della transazione, l&rsquo;importo totale che interessa il conto selezionato (<guilabel>Deposito Tot</guilabel> in questo caso) e il <guilabel>Saldo</guilabel> aggiornato dopo la transazione corrente. Si noti che nella vista espansa, l&rsquo;intestazione della colonna <guilabel>Trasferimento</guilabel> scompare, e non viene visualizzato nessun nome di conto in questo campo. Questa riga mostra solamente un sommario degli effetti della transazione sul conto selezionato. Per avere informazioni più dettagliate, occorre visualizzare le suddivisioni che compongono la transazione.</para>
+        <note>
+          <para>Note: An account register displays a transaction when that 
+          transaction has a split assigned to the account. If a given transaction 
+          has more than one split assigned to a single account, then in Basic and 
+          Auto-Split view modes that transaction will appear in the register one 
+          time for each split assigned to that account. In Transaction Journal 
+          mode, such a transaction will only appear once in the register.</para>
+        </note>
 
 <para>Le righe parziali sotto a quella della transazione, sono le <emphasis>righe delle suddivisioni</emphasis> e sono separate da linee grigie. Quando si seleziona una delle linee di suddivisione, l&rsquo;intestazione della colonna cambia, visualizzando le voci relative ai campi della suddivisione:</para>
 
@@ -3739,6 +3749,92 @@ Translators:
   </sect1>
 </chapter>
 
+<!--
+      (Do not remove this comment block.)
+  Version: 2.6.0
+  Last modified: September 12th 2016
+       modified: September 12th 2016
+  Maintainers: 
+               Alex Aycinena <alex.aycinena@gmail.com>
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+   	Updated	Bengt Thuree <bengt@thuree.com>
+ Originally written by Carol Champagne.
+  Translators:
+               (translators put your name and email here)
+-->
+<chapter id="chapter_expenses">
+  <title>Expense Accounts</title>
+
+  <para>If managing your checkbook is the first step in tracking your finances, then using expense accounts 
+  to see where you are expending money is a close second step. This chapter will give you an understanding of 
+  how <application>GnuCash</application> uses expense accounts to help you keep track of many different 
+  categories of transactions.</para>
+    
+  <sect1 id="expenses-concepts">
+    <title>Concetti</title>
+    <para>An expense type account is used to allow you to track how much you spend on specific 
+    expenses. Technically, expense accounts are not a part of traditional accounting,
+    but have become common with the increased capabilities of computer-based accounting systems.
+    Many people's first experience with tracking expenses comes from Quicken(tm), where 
+    transactions can be assigned to one or more categories. In <application>GnuCash</application>, these categories 
+    are set up as separate accounts, which are designated as Expense type accounts. 
+    This allows <application>GnuCash</application> to apply the rules of double-entry accounting consistently. 
+    Expense accounts can be as detailed or as general as you need. Some users need only a few accounts for 
+    personal expense tracking. Others use <application>GnuCash</application> expense accounts to manage their expenses 
+    in great detail. The level of detail you choose is up to you. Keep in mind that with <application>GnuCash</application>, 
+    you can change accounts for transactions, so if your needs change later on, it is possible to move 
+    transactions around.</para>
+    </sect1>
+  <sect1 id="expenses-setup">
+    <title>Impostare i conti</title>
+    <sect2 id="expenses-su-simple">
+      <title>Simple Expense Account Setup</title>
+      <para>For many users, the easiest way to set up expense accounts is to check the "Common Accounts" 
+      when you create a new Account Hierarchy. This will establish many of the most common expense accounts 
+      that users need. See "New Account Hierarchy Setup" in Chapter 3 of the Help guide for more information.</para>
+      </sect2>
+    <sect2 id="expenses-su-complex">
+      <title>Complex Expense Account Setup</title>
+      <para>If you have different expense accounting needs, you can refer to <xref linkend="chapter_txns"/>, 
+      or Chapter 5.4 in the Help manual for instructions on how to create accounts.</para> 
+      <para>Typical reasons for adding new or different expense accounts include: to track 
+      expenses for particular business purposes (e.g., specific types of supply expenses), 
+      to track expenses for particular tax purposes (e.g., tax expenses that must be reported 
+      to others), or simply to track expenses that are meaningful to you (e.g., payments made 
+      to a particular charity).</para>
+      </sect2>
+  </sect1>
+  <sect1 id="expenses-entering">
+    <title>Entering Expense Transactions</title>
+    <para>While it is possible to enter transactions directly into expense accounts, it is 
+    not normally how these are entered. For most people, transactions for an expense account 
+    are added when the user is entering data into the other account in the transaction. 
+    In other words, if you have an expense account for Charitable Donations (e.g., Expenses:Charity), 
+    you will typically add a transaction to the expense account by assigning a check in your 
+    checking account register to the Charity account.</para>
+    <para>If you open an expense account, you will see a register similar to most others you find 
+    in <application>GnuCash</application>. The informal column headings for the transaction amounts
+    are slightly different, however. The left (debit) column will read <emphasis>Tot Expense</emphasis>, while 
+    the right (credit) column will read <emphasis>Tot Rebate</emphasis>.</para>
+  </sect1>
+  <sect1 id="expenses-other">
+    <title>Other Considerations for Expense Accounts</title>
+    <para>Because expense accounts are generated entirely by you, there are no statements against 
+    which you would reconcile your data. Therefore, there is technically nothing to reconcile. You 
+    can, of course use the reconcile process for expense accounts, which will lock the transactions 
+    for future editing.</para>
+    <para>One point to consider is that as your use of <application>GnuCash</application> continues, the 
+    balances in these accounts will grow, since there are usually very few credit transactions that 
+    reduce the balances. There is nothing wrong with this situation, but some users may wish to clear 
+    the balances in their expense accounts periodically. Zeroing transactions can be entered that 
+    transfer the balance of the account to an Equity account. <application>GnuCash</application> includes 
+    a Closing Books procedure that includes zeroing out expense accounts. Keep in mind that this is 
+    not necessary, and that if you need to gather information on a given expense account, you can 
+    use various reports to extract that data without zeroing the account out.</para>
+  </sect1>
+</chapter>
 <!--
       (Do not remove this comment block.)
   Version: 2.0.0
@@ -11209,7 +11305,7 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
 <para>Il beneficio risiede nel fatto che non è necessario scrivere un modulo in Scheme o una nuova routine in C per eseguire la trasformazione. Chiunque conosca o abbia voglia di imparare il linguaggio <acronym>XML</acronym> può cimentarsi in questa operazione: sinceramente, niente di più difficile che scrivere una pagina web....</para>
 
 <para>Anyhow, I just wanted this tidbit to be captured somewhere permanently. 
-The process works on 2.6.13 datafiles, and ought to
+The process works on 2.6.14 datafiles, and ought to
 work on earlier versions, too.</para>
 
  </sect1>
