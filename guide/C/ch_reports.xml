@@ -88,6 +88,28 @@ Configuration.</para>
 price information in your file, the report will indicate an error. This report
 includes extended information about commodity holdings, including information
 about the basis, gain, and return of individual commodities.</para>
+
+  <sect4 id="rpt-advport-capgains">
+    <title>Advanced Portfolio Capital Gains</title>
+    <para>
+      The Advanced Portfolio report doesn’t use the capital gain splits to
+      calculate capital gains. It calculates the gains from the various buy and
+      sell transactions in the account without regard to whether the gains and
+      losses are recorded or not. Any realized gain splits are ignored.
+      Realized gain splits are recognized as two splits,  one in the stock’s
+      account with a zero number of shares and a non-zero value, the other in an
+      income account with a value that is the negative of the split in the stock
+      account. These two splits can be in a separate transaction (as created by
+      scrubbing) or in the same transaction as the sale (this will cause 
+      incorrect future scrubbing).
+    </para>
+      
+    <para>Thus, if you wish to subclassify capital gains, say into taxable or
+      non taxable, do this as a transfer, say from Capital Gains to 
+      Capital Gains Taxable and Capital Gain Non Taxable in a separate 
+      transaction which does not include a split to the stock's account.
+    </para>
+  </sect4>
 </sect3>
 
 <sect3 id="rpt_assetbarchart">
