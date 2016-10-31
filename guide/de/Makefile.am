@@ -16,12 +16,14 @@ entities = \
  ch_cc.xml \
  ch_currency.xml \
  ch_dep.xml \
+ ch_expenses.xml \
  ch_import_business_data.xml \
  ch_loans.xml \
  ch_invest.xml \
  ch_oth_assets.xml \
  ch_oview.xml \
  ch_python_bindings.xml \
+ ch_reports
  ch_txns.xml \
  appendixa.xml \
  appendixb.xml \
