@@ -1809,6 +1809,964 @@ Einnahmen
         </mediaobject>
       </screenshot>
     </sect2>
+
+   <sect2 id="invest-sellLots">
+      <title>Automatische Kalkulation der Gewinne oder Verluste bei der Nutzung von Losen</title>
+
+      <sect3 id="invest-sellLotsIntro">
+        <title>Einführung</title>
+
+        <para>
+          Lose bedeuten hier Quantitäten finanzieller Instrumente
+        </para>
+
+        <para>
+          <application>&app;</application> hat eine eingebaute Los-Management-Einrichtung, 
+          die genutzt werden kann, um die Gewinne oder Verluste zu verfolgen, die 
+          aus Aktienverkäufen herrühren. An- und Verkaufsbuchungen werden 
+          zum Zweck der Berechnung der Kosten der Veräußerung in Losen zusammengefasst.
+          Noch genauer wird ein Lo dazu benutzt, einzelne Kauf- und Verkaufsteilbuchungen 
+          zu verbinden. Lose können automatisch oder händisch erstellt und verbunden 
+          werden. Kapitalgewinne oder -verluste können automatisch berechnet und Buchungen für die Unterschiede zwischen dem Veräußerungswerte und den Kosten der verkauften Wertpapiere erstellt werden. <application>&app;</application> bezeichnet diesen Prozess als 
+          <emphasis>Wertberichtigung</emphasis>.
+        </para>
+
+        <para>Der Begriff <emphasis>Wertberichtigung</emphasis> wird genutzt, weil 
+        Wertpapierkonten because security
+          accounts need to be cleaned after sales to ensure the difference
+          between the cost paid for securities, and value received from selling
+          them, is accounted for as capital gain or loss. Wenn die Kapitalerträge
+          und -verluste nicht correct sind, zeigt die Rohbilanz
+          (<menuchoice>
+            <guimenu>Berichte</guimenu>
+            <guisubmenu>Ertrag &amp; Aufwand</guisubmenu>
+            <guimenuitem>Rohbilanz</guimenuitem>
+          </menuchoice>) bottom line total debits will not balance to
+            total credits.
+        </para>
++
++        <note><para>If you make an error, you can delete the capital gain/loss
++          transaction(s) and lot(s) and retry.</para>
++        </note>
++
++        <para>
++          If you are not familiar with FIFO, LIFO or Average costing, please see
++          Wikipedia <ulink
++            url="https://en.wikipedia.org/wiki/FIFO_and_LIFO_accounting">
++            FIFO and LIFO accounting</ulink> and <ulink
++            url="https://en.wikipedia.org/wiki/Average_cost_method">
++              Average cost method</ulink>.
++        </para>
++
++        <para>
++          If you are not familiar with the difference between <application>&app;
++          </application> transactions and splits, please see
++          <xref linkend="txns-registers-txntypes" />.
++        </para>
++
++        <para>
++          The <application>&app;</application> lot management facility can be a
++          useful feature, reducing manual calculation, especially if dividends
++          have been reinvested over years and there are many different costs
++          involved. It can automatically link buy transactions to sell
++          transactions using FIFO cost method and one can manually link specific
++          buy transactions to sell transactions in order to use LIFO.
++          Advanced Portfolio Report basis costs and gains/losses will agree with
++          the costs and gain/loss transactions created by scrubbing if either
++          the FIFO or LIFO cost methods are used.
++        </para>
++      </sect3>
++
++      <sect3 id="invest-sellLotsWin">
++        <title>Lots in Account Window</title>
++        <para>
++          The <guilabel>Lots in Account SSSS</guilabel> window, where SSSS is
++          a security account, is used to manually or automatically link
++          security transaction splits to lots and create capital gain/loss
++          transactions to account for the difference between the costs of buying
++          a security and the value received by selling it.
++        </para>
++
++        <para>To open the <guilabel>Lots in Account</guilabel> window, open the
++          security account register, then select
++          <menuchoice>
++            <guimenu>Actions</guimenu>
++            <guimenuitem>View Lots</guimenuitem>
++          </menuchoice>.
++        </para>
++
++        <figure pgwide="1">
++          <title>Selling Shares - Capital Gains - Lots in Account window
++          </title>
++          <screenshot id="tool-lotsInAcct">
++            <mediaobject>
++              <imageobject role="html">
++              <imagedata fileref="figures/investLots2_BeforeScrub1Lot.png"
++                format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++              </imageobject>
++              <imageobject role="fo">
++                <imagedata fileref="figures/investLots2_BeforeScrub1Lot.png"
++                           format="PNG" srccredit="Chris Good" ></imagedata>
++              </imageobject>
++
++              <textobject>
++                <phrase>Example of Lots in Account window</phrase>
++              </textobject>
++
++              <caption><para>An image of the <emphasis>Lots in Account
++                </emphasis> window.</para>
++              </caption>
++            </mediaobject>
++          </screenshot>
++        </figure>
++
++<!--  Link to future (soon!) new Help section
++        <para>Refer to the <ulink
++url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html">
++            Help Manual, Chapter 8 Tools &amp; Assistants, Lots in Account
++            </ulink> for details of the Lots in Account screen elements.
++        </para>
++-->
++      </sect3>
++
++      <sect3 id="invest-sellProcedure">
++        <title>Procedure Summary</title>
++
++        <para>Using the lot management facility for the automatic calculation of
++          capital gain or loss typically follows these steps:
++        </para>
++
++        <orderedlist>
++          <!-- Manual Lot Creation and Linking -->
++          <listitem><para><xref linkend="invest-sellManual" />  (Optional
++            depending on cost method)</para>
++          </listitem>
++
++          <listitem>
++            <!-- Automatic Creation of Capital Gain Or Loss Transactions -->
++            <para><xref linkend="invest-sellAuto" /></para>
++          </listitem>
++
++          <listitem>
++            <!-- Change Orphaned Gains-CCC to Gain/Loss Account -->
++            <para><xref linkend="invest-sellChgCapGainsAcct" /></para>
++          </listitem>
++
++          <listitem>
++            <!-- Run a Trial Balance  -->
++            <para><xref linkend="invest-sellTrialBal" /> report to ensure total
++              debits balance to total credits</para>
++          </listitem>
++
++        </orderedlist>
++
++      </sect3>
++
++      <sect3 id="invest-sellManual">
++        <title>Manual Lot Creation and Linking</title>
++
++        <para>Before using this feature, ensure you have read
++          <xref linkend="invest-sellConsiderations" />.
++        </para>
++
++        <para>This functionality allows the manual linking of specfic buy and
++          sell transactions. It may be used in the case where a user wishes to
++          use a different cost method than the automatic linking method (FIFO).
++          Effectively, if one wishes the cost basis and capital gains in the
++          Advanced Portfolio Report to be consistent with the capital gains
++          transactions created by scrubbing, manual lot creation only needs to
++          be used when using LIFO or <quote>sale of designated lots</quote>
++          (the same thing for securities as far as US personal tax law is
++          concerned). This is because the scrub function can automatically do
++          FIFO linking so there is no need to do it manually and scrubbing
++          cannot be used for average costing.
++        </para>
++
++        <para>See <xref linkend="invest-sellManualExample" />.
++        </para>
++      </sect3>
++
++      <sect3 id="invest-sellAuto">
++        <title>Automatic Creation of Capital Gain Or Loss Transactions</title>
++        <note><para>Do <emphasis>NOT</emphasis> do this unless you are using
++          FIFO or LIFO to cost sales. See
++          <xref linkend="invest-sellConsiderations" /></para>
++        </note>
++
++        <para><application>&app;</application> can automatically calculate and
++          create security sale capital gain/loss transactions. Lots are used to
++          link buy transaction splits with sell transaction splits so the
++          correct cost of the securities sold can be determined.
++          <application>&app;</application> will use any existing lots, and
++          create new lots for any buy transaction splits not already linked to a
++          lot. Buy and sell transaction splits are linked to lots using FIFO
++          method.
++        </para>
++
++        <para>See:</para>
++        <para><xref linkend="invest-sellAutoExample" /></para>
++        <para><xref linkend="invest-sellAutoExample2" /></para>
++        <para><xref linkend="invest-sellFifoSplit" /></para>
++      </sect3>
++
++      <sect3 id="invest-sellChgCapGainsAcct">
++        <title>Change Orphaned Gains-CCC to Gain/Loss Account</title>
++
++        <para>
++          The capital gain/loss transaction(s) created by scrubbing uses an
++          automatically created generic <emphasis>Orphaned Gains-CCC</emphasis>
++          account (where CCC is the security currency) because <application>
++          &app;</application> doesn't know which capital gain or loss account
++          should be used. After scrubbing, the user should edit the <emphasis>
++          Orphaned Gains-CCC</emphasis> transaction split to re-assign the
++          income account to a more meaningful income (or expense) gain or loss
++          account (e.g. <emphasis>Income:Long Term Capital Gain:IBM</emphasis>).
++        </para>
++
++        <para>See <xref linkend="invest-sellChgCapGainsAcctExample" />.
++        </para>
++      </sect3>
++
++      <sect3 id="invest-sellTrialBal">
++        <title>Run a Trial Balance</title>
++        <para>Running a Trial Balance report
++          (<menuchoice>
++            <guimenu>Reports</guimenu>
++            <guisubmenu>Income &amp; Expense</guisubmenu>
++            <guimenuitem>Trial Balance</guimenuitem>
++          </menuchoice>) after creating capital gain/loss
++          transactions, is a basic check that capital gains/losses are
++          correctly accounting for the difference between the cost paid for
++          securities, and value received from selling them. At the end of the
++          report, total debits should equal total credits.
++        </para>
++
++        <tip>
++          <para>A Trial Balance may not balance due to some other problem. To
++            determine if the cause of an imbalance is from incorrectly
++            accounting for capital gain/loss:
++          </para>
++
++          <para>If necessary, temporarily change the date of the sell
++            transaction and the capital gain/loss transaction, so they are
++            the only transactions for a particular date, then run the Trial
++            Balance as at the day before. If the Trial Balance is still out
++            by the same amount, it is not the capital gain/loss that is
++            causing the problem.
++          </para>
++
++          <para>If you find a prior <emphasis>out of balance
++            </emphasis> Trial Balance, keep running the Trial Balance
++            report with different dates until you find the date it starts
++            being out of balance. Temporarily change the transaction dates
++            for each transaction on the problem date to the following
++            day, then change the dates back to the correct date 1 at a time,
++            running the Trial Balance each time, until you identify the
++            problem transaction. When you change the date of a security
++            sell transaction, you also need to change the date of the
++            corresponding capital gain transaction as it is only the
++            sum of these that will balance in the Trial Balance.
++          </para>
++        </tip>
++      </sect3>
++
++      <sect3 id="invest-sellConsiderations">
++        <title>Considerations</title>
++
++        <para>There are some points that should be considered before using the
++          lot management facility.
++        </para>
++
++        <orderedlist>
++          <listitem>
++            <para><application>&app;</application> implements only the First In/
++              First Out (FIFO) cost method when automatically linking buy
++              transactions to sell transactions. I.e. The oldest securities are
++              always sold first. The Last In First Out (LIFO) cost method may be
++              used by manually linking the most recent buy security splits to
++              the sell split before scrubbing.
++            </para>
++          </listitem>
++
++          <listitem>
++            <para>The Advanced Portfolio Report does not use lot information
++              when calculating costs, just the security transaction splits. It
++              calculates the cost basis and gains or losses using the selected
++              <emphasis>Basis calculation method</emphasis> report option
++              (Average, FIFO or LIFO). If one wishes the Advanced Portfolio
++              Report costs and gains/losses to be consistent with the capital
++              gain/loss transactions created by scrubbing, the same cost model
++              must be used in both places.
++            </para>
++         </listitem>
++
++          <listitem>
++            <para>Scrubbing does not work correctly if there has been a previous
++              sale where the capital gain splits have been manually entered as
++              part of the sale transaction. Therefore ensure previous sales are
++              recorded as 2 transactions:
++            </para>
++
++            <table>
++              <title>Transaction 1 dealing with value received, reduction of the
++                number of shares and (optionally) commission
++              </title>
++              <tgroup cols="5">
++                <tbody>
++                  <row>
++                    <entry><emphasis>Account</emphasis></entry>
++                    <entry><emphasis>Tot Shares</emphasis></entry>
++                    <entry><emphasis>(Unit) Price</emphasis></entry>
++                    <entry><emphasis>Buy (Debit)</emphasis></entry>
++                    <entry><emphasis>Sell (Credit)</emphasis></entry>
++                  </row>
++                  <row>
++                    <entry>Brokerage or Bank</entry>
++                    <entry></entry>
++                    <entry></entry>
++                    <entry>Debit</entry>
++                   <entry></entry>
++                  </row>
++                  <row>
++                    <entry>Commission (optional)</entry>
++                    <entry></entry>
++                    <entry></entry>
++                    <entry>Debit</entry>
++                    <entry></entry>
++                  </row>
++                  <row>
++                    <entry>Security</entry>
++                    <entry>-NumSold</entry>
++                    <entry>SaleUnitPrice</entry>
++                    <entry></entry>
++                    <entry>SaleValue</entry>
++                  </row>
++                </tbody>
++              </tgroup>
++            </table>
++
++            <table>
++              <title>Transaction 2 capital gain/loss (loss in this example)
++              </title>
++              <tgroup cols="5">
++                <tbody>
++                  <row>
++                    <entry><emphasis>Account</emphasis></entry>
++                    <entry><emphasis>Tot Shares</emphasis></entry>
++                    <entry><emphasis>(Unit) Price</emphasis></entry>
++                    <entry><emphasis>Buy (Debit)</emphasis></entry>
++                    <entry><emphasis>Sell (Credit)</emphasis></entry>
++                  </row>
++                  <row>
++                      <entry>Capital Loss</entry>
++                      <entry></entry>
++                      <entry></entry>
++                      <entry>Debit</entry>
++                      <entry></entry>
++                  </row>
++                  <row>
++                      <entry>Security</entry>
++                      <entry>0</entry>
++                      <entry>0</entry>
++                      <entry></entry>
++                      <entry>Credit</entry>
++                  </row>
++                </tbody>
++              </tgroup>
++            </table>
++          </listitem>
++
++          <listitem>
++            <para>The automatic capital gains calculations can handle
++              straightforward buy, sell, and return of capital transactions but
++              any transaction that affect the number of shares, even simple
++              splits, will cause it to produce wrong answers so those cases must
++              be handled manually.
++            </para>
++          </listitem>
++        </orderedlist>
++      </sect3>
++
++      <sect3 id="invest-sellManualExample">
++        <title>Example of Manual Lot Creation and Linking</title>
++
++        <para>Here is an example of selling part of a security holding using
++          the LIFO method. In this example, the most recent buy transaction
++          (dated 01/07/2016, a reinvested dividend), is linked to a lot, along
++          with the sell transaction, and the <application>&app;</application>
++          scrub function is used to calculate capital gain or loss and create
++          the capital gain/loss transaction.
++        </para>
++
++        <orderedlist>
++          <listitem><para>Open the security account's register.</para>
++            <figure pgwide="1">
++              <title>Selling Shares - Capital Gains - Security register before
++                scrubbing a single lot
++              </title>
++              <screenshot id="invest-lots0reg">
++                <mediaobject>
++                  <imageobject role="html">
++                  <imagedata fileref="figures/investLots0_RegB4Scrub.png"
++                    format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++                  </imageobject>
++                  <imageobject role="fo">
++                    <imagedata fileref="figures/investLots0_RegB4Scrub.png"
++                               format="PNG" srccredit="Chris Good" ></imagedata>
++                  </imageobject>
++
++                  <textobject>
++                    <phrase>Example of security register before lot scrubbing
++                    </phrase>
++                  </textobject>
++
++                  <caption><para>An image of the Security Account register in
++                    transaction journal view, before lot scrubbing.</para>
++                  </caption>
++                </mediaobject>
++              </screenshot>
++            </figure>
++          </listitem>
++
++          <listitem><para>Ensure all previous capital gain/loss transactions
++            are separate transactions to the sell transactions which record the
++            reduction in the number of shares and the value received.</para>
++
++          </listitem>
++
++          <listitem>
++            <para>Select
++            <menuchoice>
++              <guimenu>Actions</guimenu>
++              <guimenuitem>View Lots</guimenuitem>
++            </menuchoice> to open the <guilabel>Lots in Account SSSS</guilabel>
++            window where SSSS is the security account.
++            </para>
++
++            <figure pgwide="1">
++              <title>Selling Shares - Capital Gains - Lots before scrubbing a
++                single lot
++              </title>
++              <screenshot id="invest-lots1B4CreateLot">
++                <mediaobject>
++                  <imageobject role="html">
++                  <imagedata fileref="figures/investLots1_BeforeCreateLot.png"
++                    format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++                  </imageobject>
++                  <imageobject role="fo">
++                    <imagedata fileref="figures/investLots1_BeforeCreateLot.png"
++                               format="PNG" srccredit="Chris Good" ></imagedata>
++                  </imageobject>
++
++                  <textobject>
++                    <phrase>Example of Lots in Account window before lot scrubbing
++                    </phrase>
++                  </textobject>
++
++                  <caption><para>An image of the <emphasis>Lots in Account
++                    </emphasis> window before lot scrubbing.</para></caption>
++                </mediaobject>
++              </screenshot>
++            </figure>
++          </listitem>
++
++          <listitem>
++            <para>Create a new lot using the <guimenu>New Lot</guimenu> button.
++            Initially this lot is not linked to any buy or sell split.</para>
++          </listitem>
++
++          <listitem><para>Highlight the new lot in the <guilabel>Lots in This
++            Account</guilabel> panel.</para>
++          </listitem>
++
++          <listitem>
++            <para>Highlight the buy split (dated 01/07/2016) of the
++              security to be sold in the <guilabel>Splits free</guilabel> panel.
++            </para>
++          </listitem>
++
++          <listitem>
++            <para>Click the <guilabel> >> </guilabel> button to link the buy
++            split with the highlighted lot. The split moves from the <guilabel>
++            Splits free</guilabel> panel to the <guilabel>Splits in Lot
++            </guilabel> panel.</para>
++          </listitem>
++
++          <listitem><para>Repeat the previous 2 steps for any other buy splits
++            that should be included in the lot (in this example, there is only
++            1 buy split in the sale).</para>
++          </listitem>
++
++          <listitem>
++            <para>Highlight the sell split in the <guilabel>Splits free
++              </guilabel> panel.</para>
++          </listitem>
++
++          <listitem>
++            <para>Click the <guilabel> >> </guilabel> button to link the sell
++              split with the highlighted lot.</para>
++          </listitem>
++
++          <listitem>
++            <para>Check the lot <guilabel>Balance</guilabel> is as expected.
++              I.e. in this example the lot balance should be zero as the number
++              of securities sold in the lot, is matched with the same number of
++              security buys.
++            </para>
++
++            <figure pgwide="1">
++              <title>Selling Shares - Capital Gains - Lots before scrubbing a
++                single lot, after manual linking
++              </title>
++              <screenshot id="invest-lots2B4Scrub1Lot">
++                <mediaobject>
++                  <imageobject role="html">
++                  <imagedata fileref="figures/investLots2_BeforeScrub1Lot.png"
++                    format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++                  </imageobject>
++                  <imageobject role="fo">
++                    <imagedata fileref="figures/investLots2_BeforeScrub1Lot.png"
++                               format="PNG" srccredit="Chris Good" ></imagedata>
++                  </imageobject>
++
++                  <textobject>
++                    <phrase>Example of Lots in Account window before scrubbing a
++                      single lot
++                    </phrase>
++                  </textobject>
++
++                  <caption><para>An image of the <emphasis>Lots in Account
++                    </emphasis> window before scrubbing a single lot.</para>
++                  </caption>
++                </mediaobject>
++              </screenshot>
++            </figure>
++          </listitem>
++
++          <listitem>
++            <para>Click the <guilabel>Scrub</guilabel> button (<emphasis>NOT
++              </emphasis> the <guilabel>Scrub Account</guilabel> button).
++            </para>
++
++            <para>The <guilabel>Lots in Account</guilabel> window has not
++              changed after using the <guilabel>Scrub</guilabel> button
++              so no example screen image is supplied.
++            </para>
++          </listitem>
++
++          <listitem><para>Continue to
++            <xref linkend="invest-sellChgCapGainsAcct" /></para>
++          </listitem>
++        </orderedlist>
++      </sect3>
++
++      <sect3 id="invest-sellAutoExample">
++        <title>Example 1 of Automatic Creation of Capital Gain Or Loss
++          Transactions</title>
++
++        <para>Create the capital gains transaction by following these steps:
++        </para>
++
++        <orderedlist>
++          <listitem>
++            <para>Open the security account's register.</para>
++          </listitem>
++
++          <listitem><para>Ensure the sell transaction has been entered with no
++            splits for capital gains or losses.</para>
++          </listitem>
++
++          <listitem><para>Select <menuchoice><guimenu>Actions</guimenu>
++            <guimenuitem>View Lots</guimenuitem></menuchoice> to open the
++            <guilabel>Lots in Account SSSS</guilabel> window where SSSS is the
++            security account.</para>
++          </listitem>
++
++          <listitem><para>If using LIFO, use the above procedure
++            <xref linkend="invest-sellManual" /> to create a lot for each sell
++            transaction, link the lot with the sell transaction and each of
++            the buy transactions that make up the sale.</para>
++          </listitem>
++
++          <listitem>
++            <para>Click the <guilabel>Scrub Account</guilabel> button which:
++            </para>
++
++            <itemizedlist>
++              <listitem>
++                <para>Creates lots for any buy transactions that are not already
++                  linked to a lot and links them to sell transactions splits
++                  using the FIFO method. As a transaction split can only
++                  be linked to 1 lot, if a sell transaction needs to be linked
++                  to multiple lots, the sell transaction split is itself split
++                  into multiple subsplits. In the case of multiple subsplits,
++                  it is possible to have different splits from the same
++                  transaction in both the <guilabel>Splits free</guilabel> and
++                  <guilabel>Splits in lot</guilabel> panels.
++                </para>
++              </listitem>
++
++              <listitem><para>Creates a separate transaction per lot for
++                capital gain/loss.</para>
++
++                <note><para>
++		  If there are already gain/loss splits as part of a sell
++                  transaction, <application>&app;</application> scrubbing does
++                  not recognize them. So if manually adding gain/loss,
++                  separate gain/loss transaction splits from the transaction
++                  that reduces the <guilabel>No of Shares</guilabel>) by putting
++                  them in a separate transaction if you may use scrubbing in
++                  future.</para>
++                </note>
++              </listitem>
++            </itemizedlist>
++          </listitem>
++
++          <listitem><para>Continue with the instructions in the next section.
++            </para>
++          </listitem>
++
++        </orderedlist>
++      </sect3>
++
++      <sect3 id="invest-sellAutoExample2">
++        <title>Example 2 of Automatic Creation of Capital Gain Or Loss
++          Transactions - 2 Sales at Once</title>
++
++        <para>Here is an example of FIFO scrubbing without manual lot creation.
++          In this example, the transactions for 2 sales are scrubbed at once
++          but usually scrubbing would be performed after each sale. One reason
++          for scrubbing 2 sales at once, could be because there were multiple
++          sales on the same day.
++        </para>
++
++        <figure pgwide="1">
++          <title>Selling Shares - Capital Gains - Register before Scrub Account
++          </title>
++          <screenshot id="invest2-lots0reg">
++            <mediaobject>
++              <imageobject role="html">
++              <imagedata fileref="figures/invest2Lots0RegB4Scrub.png"
++                format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++              </imageobject>
++              <imageobject role="fo">
++                <imagedata fileref="figures/invest2Lots0RegB4Scrub.png"
++                           format="PNG" srccredit="Chris Good" ></imagedata>
++              </imageobject>
++
++              <textobject>
++                <phrase>Example of security register before Scrub Account is used.
++                </phrase>
++              </textobject>
++
++              <caption><para>An image of the Security Account register in
++                transaction journal view, before Scrub Account is used.</para>
++              </caption>
++            </mediaobject>
++          </screenshot>
++        </figure>
++
++        <orderedlist>
++          <listitem>
++            <para>Select <menuchoice>
++              <guimenu>Actions</guimenu>
++              <guimenuitem>View Lots</guimenuitem></menuchoice> to open the
++              <guilabel>Lots in Account SSSS</guilabel> window where SSSS is the
++              security account.
++            </para>
++
++            <figure pgwide="1">
++              <title>Selling Shares - Capital Gains - Lots before Scrub Account
++              </title>
++              <screenshot id="invest2-lots1B4ScrubAcct">
++                <mediaobject>
++                  <imageobject role="html">
++                  <imagedata fileref="figures/invest2Lots1B4Scrub.png"
++                    format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++                  </imageobject>
++                  <imageobject role="fo">
++                    <imagedata fileref="figures/invest2Lots1B4Scrub.png"
++                               format="PNG" srccredit="Chris Good" ></imagedata>
++                  </imageobject>
++
++                  <textobject>
++                    <phrase>Example of Lots in Account window before Scrub Account
++                      is used.
++                    </phrase>
++                  </textobject>
++
++                  <caption><para>An image of the <emphasis>Lots in Account
++                    </emphasis> window before Scrub Account is used.</para>
++                  </caption>
++                </mediaobject>
++              </screenshot>
++            </figure>
++          </listitem>
++
++          <listitem>
++            <para>Click the <guilabel>Scrub Account</guilabel> button.</para>
++
++            <figure pgwide="1">
++              <title>Selling Shares - Capital Gains - Lots after Scrub Account
++              </title>
++              <screenshot id="invest2-lots2AftScrubAcct">
++                <mediaobject>
++                  <imageobject role="html">
++                  <imagedata fileref="figures/invest2Lots2LotsAftScrubAcct.png"
++                    format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++                  </imageobject>
++                  <imageobject role="fo">
++                    <imagedata fileref="figures/invest2Lots2LotsAftScrubAcct.png"
++                               format="PNG" srccredit="Chris Good" ></imagedata>
++                  </imageobject>
++
++                  <textobject>
++                    <phrase>Example of Lots in Account window after using Scrub
++                      Account
++                    </phrase>
++                  </textobject>
++
++                  <caption><para>An image of the <emphasis>Lots in Account
++                    </emphasis> window after using Scrub Account.</para>
++                  </caption>
++                </mediaobject>
++              </screenshot>
++            </figure>
++
++            <note>
++              <para>After using the <guilabel>Scrub Account</guilabel> button only
++                the last lot is shown, so the above image is after the <guilabel>
++                Lots in Account</guilabel> window has been closed and reopened so
++                all the lots show.
++              </para>
++            </note>
++          </listitem>
++
++          <listitem>
++            <para>Close the <guilabel>Lots in Account SSSS</guilabel> window and
++              return to the security account register.
++            </para>
++
++            <figure pgwide="1">
++              <title>Selling Shares - Capital Gains - Register after Scrub Account
++              </title>
++              <screenshot id="invest2-lots3AftScrubAcct">
++                <mediaobject>
++                  <imageobject role="html">
++                  <imagedata fileref="figures/invest2Lots3RegAftScrubAcct.png"
++                    format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++                  </imageobject>
++                  <imageobject role="fo">
++                    <imagedata fileref="figures/invest2Lots3RegAftScrubAcct.png"
++                               format="PNG" srccredit="Chris Good" ></imagedata>
++                  </imageobject>
++
++                  <textobject>
++                    <phrase>Example of security register after using Scrub Account
++                    </phrase>
++                  </textobject>
++
++                  <caption><para>An image of the <emphasis>security register
++                    </emphasis> after using Scrub Account.</para>
++                  </caption>
++                </mediaobject>
++              </screenshot>
++            </figure>
++
++            <note>
++              <para>The security splits in the sell transactions have been split
++                into subsplits, one subsplit per lot, and a capital gain transaction
++                has been created for each security subsplit of each sell
++                transaction.
++              </para>
++            </note>
++          </listitem>
++
++          <listitem>
++            <para>Continue to <xref linkend="invest-sellChgCapGainsAcct" />
++            </para>
++          </listitem>
++        </orderedlist>
++      </sect3>
++
++      <sect3 id="invest-sellFifoSplit">
++        <title>Example 3 of Automatic Creation of Capital Gain Or Loss
++          Transactions - After a Simple Stock Split</title>
++        <para>Here is an example of FIFO scrubbing without manual lot
++          creation/linking, where the Stock Split Assistant has been used for a
++          simple stock split. In this example, 100 shares of security XYZ were
++          bought for $10.00 each, there was a simple 2 for 1 stock split for
++          zero cost (so the holding was then 200 shares @ $5.00 each), then all
++          200 shares were sold for $6.00 each.
++        </para>
++
++        <figure pgwide="1">
++          <title>Selling Shares - Capital Gains - Register after Scrub Account
++          </title>
++          <screenshot id="investLotsSplitReg">
++            <mediaobject>
++              <imageobject role="html">
++              <imagedata fileref="figures/investLotsSplitReg.png"
++                format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++              </imageobject>
++              <imageobject role="fo">
++                <imagedata fileref="figures/investLotsSplitReg.png"
++                           format="PNG" srccredit="Chris Good" ></imagedata>
++              </imageobject>
++
++              <textobject>
++                <phrase>Example of security register after Scrub Account is used.
++                </phrase>
++              </textobject>
++
++              <caption><para>An image of the Security Account register in
++                transaction journal view, after Scrub Account is used.</para>
++              </caption>
++            </mediaobject>
++          </screenshot>
++        </figure>
++
++        <figure pgwide="1">
++          <title>Selling Shares - Capital Gains - Lot 0 after Scrub Account
++          </title>
++          <screenshot id="investLotsSplitLot0">
++            <mediaobject>
++              <imageobject role="html">
++              <imagedata fileref="figures/investLotsSplitLot0.png"
++                format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++              </imageobject>
++              <imageobject role="fo">
++                <imagedata fileref="figures/investLotsSplitLot0.png"
++                           format="PNG" srccredit="Chris Good" ></imagedata>
++              </imageobject>
++
++              <textobject>
++                <phrase>Example of security register after Scrub Account is used.
++                </phrase>
++              </textobject>
++
++              <caption><para>An image of the Security Account register in
++                transaction journal view, after Scrub Account is used.</para>
++              </caption>
++            </mediaobject>
++          </screenshot>
++        </figure>
++
++        <figure pgwide="1">
++          <title>Selling Shares - Capital Gains - Lot 1 after Scrub Account
++          </title>
++          <screenshot id="investLotsSplitLot1">
++            <mediaobject>
++              <imageobject role="html">
++              <imagedata fileref="figures/investLotsSplitLot1.png"
++                format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++              </imageobject>
++              <imageobject role="fo">
++                <imagedata fileref="figures/investLotsSplitLot1.png"
++                           format="PNG" srccredit="Chris Good" ></imagedata>
++              </imageobject>
++
++              <textobject>
++                <phrase>Example of security register after Scrub Account is used.
++                </phrase>
++              </textobject>
++
++              <caption><para>An image of the Security Account register in
++                transaction journal view, after Scrub Account is used.</para>
++              </caption>
++            </mediaobject>
++          </screenshot>
++        </figure>
++
++        <para>
++          The above screen shots show that scrubbing created:
++        </para>
++
++        <para>2 lots. A separate lot for each buy (it essentially treats the
++          stock split as a buy of 100 for no cost)
++        </para>
++
++        <para>2 capital gain transactions (one for each lot) on the date of the
++          sale:
++        </para>
++
++        <itemizedlist>
++          <listitem><para>
++            Lot 0: 1/7/2009 loss $400 (sale $600 - cost $1000)</para>
++          </listitem>
++          <listitem><para>
++            Lot 1: 1/7/2009 gain $600 (sale $600 - cost $0)</para>
++          </listitem>
++        </itemizedlist>
++
++        <para>Total gain $200 is correct. Whether the gain is a single long-term
++          one or one each of long-term and short-term or whether there's even a
++          distinction depends on the user's tax jurisdiction and the way the
++          split is structured. If the user needs help figuring it out they
++          should consult a professional.
++        </para>
++
++      </sect3>
++
++      <sect3 id="invest-sellChgCapGainsAcctExample">
++        <title>Example of Changing the Orphaned Gains-CCC to Gain/Loss Account</title>
++
++        <orderedlist>
++          <listitem>
++            <para>Close the <guilabel>Lots in Account SSSS</guilabel> window if
++              open and return to the security account register.
++            </para>
++
++            <figure pgwide="1">
++              <title>Selling Shares - Capital Gains - Register after scrubbing a
++                single lot
++              </title>
++              <screenshot id="invest-lots4AftScrub1LotReg">
++                <mediaobject>
++                  <imageobject role="html">
++                  <imagedata fileref="figures/investLots4_AfterScrub1LotReg.png"
++                    format="PNG" srccredit="Chris Good" width="510px"></imagedata>
++                  </imageobject>
++                  <imageobject role="fo">
++                    <imagedata fileref="figures/investLots4_AfterScrub1LotReg.png"
++                               format="PNG" srccredit="Chris Good" ></imagedata>
++                  </imageobject>
++
++                  <textobject>
++                    <phrase>Example of security register after scrubbing a
++                      single lot
++                    </phrase>
++                  </textobject>
++
++                  <caption><para>An image of the <emphasis>security register
++                    </emphasis> after scrubbing a single lot.</para>
++                  </caption>
++                </mediaobject>
++              </screenshot>
++            </figure>
++          </listitem>
++
++          <listitem>
++            <para>Find each new <emphasis>Realized Gain/Loss</emphasis>
++              transaction in the security account register &mdash; they will
++              have the same date as the sell transactions. Edit the <emphasis>
++              Orphaned Gains-CCC</emphasis> transaction split to re-assign the
++              income account to a more meaningful income (or expense) gain or
++              loss account (e.g. <emphasis>Income:Long Term Capital
++              Gain:IBM</emphasis>).
++            </para>
++
++            <tip>
++              <para>You may like to split the capital gain/loss into
++                taxable and non taxable parts if that is in accord with your
++                tax laws.
++              </para>
++            </tip>
++          </listitem>
++        </orderedlist>
++      </sect3>
++    </sect2>
+
   </sect1>
 
   <sect1 id="invest-dividends1">
