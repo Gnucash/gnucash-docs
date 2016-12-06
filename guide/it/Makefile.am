@@ -37,6 +37,7 @@ COMPONENTS = \
 	${top_srcdir}/guide/C/ch_oth_assets.xml \
 	${top_srcdir}/guide/C/ch_python_bindings.xml \
 	${top_srcdir}/guide/C/ch_import_business_data.xml \
+	${top_srcdir}/guide/C/gnc-glossary.xml \
 	${top_srcdir}/guide/C/appendixa.xml \
 	${top_srcdir}/guide/C/appendixb.xml \
 	${top_srcdir}/guide/C/appendixc.xml \
