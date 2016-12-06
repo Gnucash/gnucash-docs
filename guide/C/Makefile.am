@@ -33,6 +33,7 @@ entities = \
 	ch_oth_assets.xml \
 	ch_python_bindings.xml \
 	ch_import_business_data.xml \
+	gnc-glossary.xml \
 	appendixa.xml \
 	appendixb.xml \
 	appendixc.xml \
