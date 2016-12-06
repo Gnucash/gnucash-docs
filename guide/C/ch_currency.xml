@@ -77,16 +77,16 @@
     structure for this would be:</para>
 
     <literallayout>
--Assets                       (USD)
-   -Current Assets            (USD)
-      -US Bank                (USD)
-      -European Bank          (EUR)
-      -HK Bank                (HKD)
--Equity                       (USD)
-   -Opening Balances
-      -USD                    (USD)
-      -EUR                    (EUR)
-      -HKD                    (HKD)
+-Assets (USD)
+   -Current Assets (USD)
+      -US Bank (USD)
+      -European Bank (EUR)
+      -HK Bank (HKD)
+-Equity (USD)
+   -Opening Balances (USD)
+      -USD (USD)
+      -EUR (EUR)
+      -HKD (HKD)
 
 Note: the currency of each account is shown in parenthesis.
  </literallayout>
@@ -446,15 +446,15 @@ Note: the currency of each account is shown in parenthesis.
       structure:</para>
 
       <literallayout>
--Assets                       (USD)
-   -Current Assets            (USD)
-      -US Bank                (USD)
-      -Jamaican Bank          (JMD)
-   -Fixed Assets              (USD)
-      -Boat                   (JMD)
--Equity                       (USD)
-   -Opening Balances
-      -USD                    (USD)
+-Assets (USD)
+   -Current Assets (USD)
+      -US Bank (USD)
+      -Jamaican Bank (JMD)
+   -Fixed Assets (USD)
+      -Boat (JMD)
+-Equity (USD)
+   -Opening Balances (USD)
+      -USD (USD)
 
 Note: the currency of each account is shown in parenthesis.
  </literallayout>
@@ -564,11 +564,11 @@ Note: the currency of each account is shown in parenthesis.
       account structure:</para>
 
       <literallayout>
-Assets:Investments:Brokerage Accounts:Boom:0694.HK     (0694.HK)
-Assets:Investments:Brokerage Accounts:Boom:Bank        (HKD)
-Equity:Opening Balances:HKD                            (HKD)
-Expenses:Commissions:Boom.0694.HK                      (HKD)
-Income:Investments:Dividend:Boom:0694.HK               (HKD)
+Assets:Investments:Brokerage Accounts:Boom:0694.HK (0694.HK)
+Assets:Investments:Brokerage Accounts:Boom:Bank (HKD)
+Equity:Opening Balances:HKD (HKD)
+Expenses:Commissions:Boom.0694.HK (HKD)
+Income:Investments:Dividend:Boom:0694.HK (HKD)
       </literallayout>
 
       <para>The Chart of Accounts looks like this after creating all the
@@ -623,12 +623,21 @@ Income:Investments:Dividend:Boom:0694.HK               (HKD)
       purchase, open the brokerage&rsquo;s HKD cash account
       (<emphasis>Assets:Investments:Brokerage Account:Boom:Bank</emphasis>), and enter
       the following:</para>
-<literallayout>
-Buy Stocks
-	Assets:Investments:Brokerage Account:Boom:Bank  Withdrawal 50,000
-	Expenses:Investments:Commission:Boom_HKD	Deposit 500
-	Assets:Investments:Brokerage Account:Boom:0694  Deposit 49,500 (16,500 shares)
-</literallayout>
+<bridgehead renderas='sect4'>Buy Stocks</bridgehead>
+<informaltable frame='none' colsep='0' rowsep='0'>
+      <tgroup cols='3'>
+	<colspec colwidth='3*' align='left'/>
+	<colspec colwidth='1*' align='left'/>
+	<colspec colwidth='1*' align='right'/>
+	<tbody>
+	<row><entry>Assets:Investments:Brokerage Account:Boom:Bank</entry><entry>Withdrawal</entry><entry>50,000</entry></row>
+	<row><entry>Expenses:Investments:Commission:Boom_HKD</entry><entry>Deposit</entry><entry>500</entry></row>
+	<row><entry>Assets:Investments:Brokerage
+	Account:Boom:0694</entry><entry>Deposit</entry><entry>49,500
+	(16,500 shares)</entry></row>
+	</tbody>
+      </tgroup>
+</informaltable>
 
       <para>If the exchange rate dialog box does not appear automatically,
       right-click on the stock row, and select <guilabel>Edit
@@ -707,8 +716,9 @@ Buy Stocks
     structure would suffice:</para>
 
     <literallayout>
-    Assets:Investments:Currency:Bank    (USD)
-    Assets:Investments:Currency:XXX     (XXX)</literallayout>
+    Assets:Investments:Currency:Bank (USD)
+    Assets:Investments:Currency:XXX (XXX)
+    </literallayout>
 
     <para>You would simply enter transfers between the two accounts, noting 
     exchange rates as you went.</para>
@@ -717,10 +727,11 @@ Buy Stocks
     as well as any fees, you do need a more complex account structure, such as:</para>
 
     <literallayout>
-    Assets:Investments:Currency:Bank                    (USD)
-    Assets:Investments:Currency:Currency Bank:XXX       (XXX)
-    Expenses:Investments:Currency:Currency Bank:XXX     (XXX)
-    Income:Investments:Currency Bank:Capital Gains:XXX  (XXX)</literallayout>
+    Assets:Investments:Currency:Bank (USD)
+    Assets:Investments:Currency:Currency Bank:XXX (XXX)
+    Expenses:Investments:Currency:Currency Bank:XXX (XXX)
+    Income:Investments:Currency Bank:Capital Gains:XXX (XXX)
+    </literallayout>
 
     <sect2 id="currency_invest12">
       <title>Purchasing Currency</title>
@@ -730,12 +741,19 @@ Buy Stocks
       For example, you might buy USD 10,000 worth of Andorran Francs, at 5 Francs
       to the dollar, with a transaction fee of $150.</para>
       
-<literallayout>
-Buy Currency
-	Assets:Investments:Currency:Bank                  Withdrawal     10,000
-	Expenses:Investments:Currency:Currency Bank:ADF   Deposit           150
-	Assets:Investments:Currency:ADF                   Deposit        49,250 
-</literallayout>
+      <bridgehead renderas='sect4'>Buy Currency</bridgehead>
+      <informaltable frame='none' colsep='0' rowsep='0'>
+      <tgroup cols='3'>
+	<colspec colwidth='5*' align='left'/>
+	<colspec colwidth='2*' align='left'/>
+	<colspec colwidth='1*' align='right'/>
+	<tbody>
+	  <row><entry>Assets:Investments:Currency:Bank</entry><entry>Withdrawal</entry><entry>10,000</entry></row>
+	  <row><entry>Expenses:Investments:Currency:Currency Bank:ADF</entry><entry>Deposit</entry><entry>150</entry></row>
+	  <row><entry>Assets:Investments:Currency:ADF</entry><entry>Deposit</entry><entry>49,250</entry></row>
+	</tbody>
+      </tgroup>
+      </informaltable>
 
     <para>The Exchange Rate window should pop up when you
       leave the last row in the split above (Currency Transaction). If this
@@ -769,55 +787,19 @@ Buy Currency
         <title>Selling a currency with a Split Transaction Scheme</title>
 
         <tgroup cols="3">
+	  <colspec colwidth='3*' align='left'/>
+	  <colspec colwidth='1*' align='center'/>
+	  <colspec colwidth='1*' align='center'/>
+	  <thead>
+            <row><entry>Account</entry><entry>Deposit</entry><entry>Withdrawal</entry></row>
+	  </thead>
           <tbody>
             <row>
-              <entry><emphasis>Account</emphasis></entry>
-
-              <entry><emphasis>Deposit</emphasis></entry>
-
-              <entry><emphasis>Withdrawal</emphasis></entry>
-            </row>
-
-            <row>
-              <entry>Assets:Investments:Currency:Bank</entry>
-
-              <entry>Sold Amount - Exchange Fee</entry>
-
-              <entry></entry>
-            </row>
-
-            <row>
-              <entry>Expenses:Investments:Currency:Currency Bank:XXX</entry>
-
-              <entry>Exchange Fee</entry>
-
-              <entry></entry>
-            </row>
-
-            <row>
-              <entry>Assets:Investments:Currency:XXX</entry>
-
-              <entry></entry>
-
-              <entry>Sold Amount</entry>
-            </row>
-
-            <row>
-              <entry>Income:Investments:Currency Bank:Capital
-              Gains:XXX</entry>
-
-              <entry>[LOSS]</entry>
-
-              <entry>PROFIT</entry>
-            </row>
-
-            <row>
-              <entry>Assets:Investments:Currency:XXX</entry>
-
-              <entry>PROFIT (with To Amount = 0)</entry>
-
-              <entry>[LOSS (with To Amount = 0) ]</entry>
-            </row>
+              <entry>Assets:Investments:Currency:Bank</entry> <entry>Sold Amount - Exchange Fee</entry> <entry></entry> </row> 
+            <row> <entry>Expenses:Investments:Currency:Currency Bank:XXX</entry> <entry>Exchange Fee</entry> <entry></entry> </row>
+	    <row> <entry>Assets:Investments:Currency:XXX</entry> <entry></entry> <entry>Sold Amount</entry> </row>
+	    <row> <entry>Income:Investments:Currency Bank:Capital Gains:XXX</entry> <entry>[LOSS]</entry> <entry>PROFIT</entry> </row> 
+            <row> <entry>Assets:Investments:Currency:XXX</entry> <entry>PROFIT (with To Amount = 0)</entry> <entry>[LOSS (with To Amount = 0) ]</entry> </row>
           </tbody>
         </tgroup>
       </table>
