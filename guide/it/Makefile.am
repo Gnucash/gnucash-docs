@@ -43,7 +43,7 @@ COMPONENTS = \
 	${top_srcdir}/guide/C/appendixd.xml
 
 gnucash-guide.xml: ${COMPONENTS} ${srcdir}/it.po
-	xml2po -e -p ${srcdir}/it.po  -o $@ ${top_srcdir}/guide/C/gnucash-guide.xml
+	xml2po -e -p ${srcdir}/it.po -o $@ ${top_srcdir}/guide/C/gnucash-guide.xml
 	if test "${srcdir}" != "${buildir}"; then mv $@ ${srcdir}; fi
 
 EXTRA_DIST += it.po
