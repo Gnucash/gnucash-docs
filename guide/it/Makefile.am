@@ -25,6 +25,7 @@ COMPONENTS = \
 	${top_srcdir}/guide/C/ch_expenses.xml \
 	${top_srcdir}/guide/C/ch_loans.xml \
 	${top_srcdir}/guide/C/ch_invest.xml \
+	${top_srcdir}/guide/C/ch_reports.xml \
 	${top_srcdir}/guide/C/ch_capgain.xml \
 	${top_srcdir}/guide/C/ch_currency.xml \
 	${top_srcdir}/guide/C/ch_dep.xml \

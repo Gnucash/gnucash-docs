@@ -20,6 +20,7 @@ entities = \
 	ch_expenses.xml \
 	ch_loans.xml \
 	ch_invest.xml \
+	ch_reports.xml \
 	ch_capgain.xml \
 	ch_currency.xml \
 	ch_dep.xml \
