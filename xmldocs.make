@@ -32,7 +32,7 @@
 # This file is changed from the original to generate html files for GnuCash,
 # install them in a subdir with the docname and copy the stylesheet png's in.
 # Dec 2002 Chris Lyttle
-# Oct 2012 Geert Janssens - Simplified xml doc installtation and distribution
+# Oct 2012 Geert Janssens - Simplified xml doc installation and distribution
 
 
 # ************* Begin of section some packagers may need to modify  **************
