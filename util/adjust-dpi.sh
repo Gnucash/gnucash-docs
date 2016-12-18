@@ -22,13 +22,13 @@ do
     fi
   fi
   # convert dpi from pixelsperinch to pixelspercentimeter
-  #  Note: bc truncates to scale decimals so use awk to round to 2 decimals
-  dpi_cm=$(echo "scale=8; $dpi/2.54" | bc | awk '{ printf("%.2f",$1); }')
+  #  Note: bc truncates to scale decimals so use awk to round to 1 decimals
+  dpi_cm=$(echo "scale=8; $dpi/2.54" | bc | awk '{ printf("%.1f",$1); }')
   # get the existing dpi from figure as XX PixelsPerCentimeter
   existing_dpi=$(identify -format "%x" "$figure")
   # some vers of identify suffix the returned dpi with " PixelsPerCentimeter"
   #  and/or do not round the return value of identify -format "%x"
-  existing_dpi=$( echo "$existing_dpi" | awk '{ printf("%.2f",$1); }')
+  existing_dpi=$( echo "$existing_dpi" | awk '{ printf("%.1f",$1); }')
   # set the future dpi figure to XX.XX (PixelsPerCentimeter)
   future_dpi="$dpi_cm"
   # apply new dpi only if it's changed from the existing
