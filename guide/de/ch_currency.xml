@@ -1,7 +1,7 @@
 <!--
       (Do not remove this comment block.)
   Version: 2.4.0 /2.6.9
-  Last modified: March 16th 2010 (Englisch 25.02.1014)
+  Last modified: March 16th 2010 (Englisch 10.12.2016)
   Maintainers: 
                Chris Lyttle <chris@wilddev.net>
   Author:
@@ -186,6 +186,8 @@ Beachten Sie, dass die Währung jedes Kontos in Klammern gesetzt ist.
         <caption><para>Anfangseinrichtung dreier Bankkonten mit unterschiedlicher Währungen. </para></caption>
       </mediaobject>
     </screenshot>
+    <para>Wie Sie sehen, spiegelt die Gesamtbilanz bislang keinen Wert für 
+    EUR- oder HKD-Beteiligungen. Das hinzufügen der Umrechnungskurse wird dies beheben.</para> 
 
     <sect2 id="currency_howto_Manual">
       <title>Händisches aktualisieren der Wechselkurse</title>
@@ -506,30 +508,9 @@ Beachten Sie, dass die Währung jedes Kontos in Klammern gesetzt ist.
       Makler zu beobachten.</para>
 
       <para>Sie entscheiden sich Aktien des Beijing Airport (Hong Kong) zu kaufen.
-      (Immerhin, die Olympischen Spiele 2008 in Peking sind beendet und der Kurs 
-      ist auf den Boden der Tatsachen zurückgekehrt.)</para>
-
-      <note><para>
-         Die oben erwähnte Aktie (Beijing Airport) wurde nur als ein Beispiel 
-         gewählt und sollte nicht als irgendeine Kaufempfehung genommen werden.
-      </para></note>
-
-      <para>Sie müssen herausfinden, was der Aktienticker für diese Aktie meldet. 
-      Dafür müssen Sie einige Nachforschungen im Internet anstellen und 
-      speziell <ulink url="http://finance.yahoo.com/lookup"><citetitle>Yahoo! Finance - Ticker
-      Symbol Lookup</citetitle></ulink> (http://finance.yahoo.com/lookup).
-      Dies erledigen Sie wie folgt:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para><emphasis>Beijing Airport</emphasis> hat das Aktiensymbol
-          0694.HK auf Yahoo</para>
-        </listitem>
-      </itemizedlist>
+      Der Ticker ist für diese Aktie 0694.HK auf Yahoo! Weil Sie alle verschiedene 
+      Erträge und Aufwendungen verfolgen wollen, gibt es die folgende Kontenstruktur:</para>
       
-      <para>Weil wir alle verschiedenen Erträge und Aufwendungen verfolgen wollen,
-      haben wir uns die folgende Kontenstruktur erstellt:</para>
-
       <literallayout>
 Aktiva:Anlagen:Maklerkonto:Boom:0694.HK         (Beijing Airport)
 Aktiva:Anlagen:Maklerkonto:Boom:Bank            (HKD)
@@ -579,11 +560,17 @@ Erträge:Investments:Dividende:Boom:0694.HK      (HKD)
       (<emphasis>Aktiva:Anlagen:Maklerkonto:Boom:Bank</emphasis>) bewegt haben, 
       so können Sie jetzt entweder das Eigenkapitalkonto (HKD) oder ein existierendes 
       Bankkonto (Devisentransfer) nutzen.</para>
+      
+      <para>Es gibt zwei Wege den aktuellen Kaufvorgang einzugeben: Sie können
+      ihn vom Bargeldkonto aus eingeben (wie unten gezeigt wird) oder vom 
+      Aktienkonto. <emphasis>Wenn Sie ihn vom Aktienkonto eingeben, wird die 
+      Aktie als Vorgabe in der Währung des Elternkontos ausgezeichent.</emphasis>.</para> 
 
       <para>Nehmen wir an, dass der Aktienkurs 3,- HKD pro Aktie ist. Um den Kauf 
       aufzuzeichnen, öffnen Sie das HKD-Maklerkonto in  
       (<emphasis>Aktiva:Anlagen:Maklerkonto:Boom:Bank</emphasis>) und geben 
       folgendes ein:</para>
+
 <literallayout>
 Aktienkauf
     Aktiva:Anlagen:Maklerkonto:Boom:Bank     Abbuchung 50.000,-
@@ -670,6 +657,8 @@ Aktienkauf
     Aktiva:Investments:Währung:Bank (EUR)
     Aktiva:Investments:Währung:XXX (XXX)</literallayout>
 
+    <para>Würde man einfach Überträge zwischen zwei Konten eingeben, You would simply enter transfers between the two accounts, vermerkt man die Wechselkurse bbeim Verlassen.</para>
+
     <para>Aber wenn Sie in der Lage sein wollen, die Kapitalerträge und -verluste 
     genauso wie die verschiedenen Gebühren nachzuverfolgen, benötigen Sie ein 
     etwas aufwändigeres Layout wie das Folgende:</para>
@@ -680,12 +669,14 @@ Aktienkauf
     Aufwendungen:Investments:Währung:Währung Bank:XXX    (XXX)
     Ertrag:Investments:Währung Bank:Kapitalerträge:XXX   (XXX)</literallayout>
 
-    <para>Dabei ist XXX die Währung, in die Sie investieren.</para>
-
     <sect2 id="currency_invest12">
       <title>Fremdwährungsanlagen erwerben</title>
 
-      <para>Ein typischer Kaufauftrag lautet aus der Perspektive von <emphasis>Aktiva:Investments:Währung:Bank</emphasis> ungefähr wie folgt:</para>
+      <para>Beim Kauf anderer Währungen wird man eine bestimmte Anzahl von 
+      Einheiten fremder Währung mit der eigenen Währung zu einem bestimmten 
+      Umrechnungskurs kaufen.
+      Zum Beispiel könnte man für 10.000 USD Andorran Francs kaufen zu 5 Francs
+      je Dollar mit einer Umtauschgebühr von $150.</para>
 
       <para><table>
           <title>Kauf einer Fremdwährung mit einer Splitbuchung</title>
@@ -814,7 +805,7 @@ Aktienkauf
   <sect1 id="currency_reconcile1">
     <title>Auszüge in ausländischer Währung abgleichen (How-To)</title>
 
-    <para>Ausländische Auszüge abzugleichen, geschieht in der selben Weise, 
+    <para>Ausländische Auszüge abzugleichen, geschieht in der gleichen Weise, 
     wie Sie einen Auszug Ihrer lokalen Bank abgleichen. Wenn Sie eine 
     Kontenplanstruktur erstellt haben, die es Ihnen erlaubt, die gleiche Währung 
     je Konto wie Ihr Kontoauszug zu nutzen, ist es aktuell exakt dasselbe 
@@ -825,7 +816,9 @@ Aktienkauf
     die Beträge händisch von einer Währung in die andere umrechnen, 
     während Sie die Konten abgleichen.</para>
   </sect1>
+  
 
+  <!-- Wurde aus dem englischen Text entfernt! 
   <sect1 id="currency_examples1">
     <title>Alles zusammensetzen (Beispiele)</title>
 
@@ -868,11 +861,10 @@ Aktienkauf
           und nutzen USD ($) (Amazon)</para>
         </listitem>
 
-        <!--
       <listitem>
         <para>You invest in Chinese Reminbi</para>
       </listitem>
--->
+
 
         <listitem>
           <para>Sie leihen einem Freund (Peter) einige EURO (€).</para>
@@ -1382,5 +1374,5 @@ Aktiva:Anlagevermögen:Haus in Neuseeland                   (NZ)
    
     
   </sect1>
-  
+-->
 </chapter>
