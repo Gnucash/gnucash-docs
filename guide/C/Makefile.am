@@ -24,7 +24,7 @@ entities = \
 	ch_capgain.xml \
 	ch_currency.xml \
 	ch_dep.xml \
-	ch_bus_intro.xml \
+	ch_bus_features.xml \
 	ch_budgets.xml \
 	ch_oth_assets.xml \
 	ch_python_bindings.xml \
