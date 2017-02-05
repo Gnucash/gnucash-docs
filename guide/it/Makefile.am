@@ -29,11 +29,7 @@ COMPONENTS = \
 	${top_srcdir}/guide/C/ch_capgain.xml \
 	${top_srcdir}/guide/C/ch_currency.xml \
 	${top_srcdir}/guide/C/ch_dep.xml \
-	${top_srcdir}/guide/C/ch_bus_intro.xml \
-	${top_srcdir}/guide/C/ch_bus_setup.xml \
-	${top_srcdir}/guide/C/ch_bus_ar.xml \
-	${top_srcdir}/guide/C/ch_bus_ap.xml \
-	${top_srcdir}/guide/C/ch_bus_pay.xml \
+	${top_srcdir}/guide/C/ch_bus_features.xml \
 	${top_srcdir}/guide/C/ch_budgets.xml \
 	${top_srcdir}/guide/C/ch_oth_assets.xml \
 	${top_srcdir}/guide/C/ch_python_bindings.xml \
