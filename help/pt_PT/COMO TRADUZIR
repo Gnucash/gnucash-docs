@@ -1,0 +1,24 @@
+Para traduzir a ajuda
+
+1) na pasta help/ abrir um terminal;
+
+2) verificar a validade da ajuda inglesa com o seguinte comando:
+xmllint --noout --noent --valid C/gnucash-help.xml
+
+3) SE E SÓ SE O COMANDO ANTERIOR NÃO DEVOLVEU ERROS, CONTINUAR 
+(senão, os erros xml deverão primeiro ser corrigidos no ficheiro C/gnucash-help.xml)
+
+4) criar o ficheiro pot e uni-lo com a tradução portuguesa existente com o seguinte comando:
+xml2po -e -u pt_PT/pt_PT.po C/gnucash-help.xml
+
+5) traduzir o ficheiro pt_PT/pt_PT.po
+
+6) Gerar o ficheiro xml da tradução portuguesa a partir do ficheiro po com o seguinte comando:
+xml2po -e -p pt_PT/pt_PT.po C/gnucash-help.xml > pt_PT/gnucash-help.xml
+
+7) verificar a validade do ficheiro xml traduzido com o seguinte comando:
+xmllint --noout --noent --valid pt_PT/gnucash-help.xml
+NOTA: em caso de erros, corrigi-los no ficheiro pt_PT.po e repetir o processo a partir do ponto 6)
+
+No final da tradução escrever no ficheiro pt_PT.po, na linha:
+"Project-Id-Version:" o número da revisão que foi traduzida.
