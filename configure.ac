@@ -2,7 +2,7 @@
 # copyright (c) 2003-2016 GnuCash Development Team
 
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([gnucash-docs], [2.6.15], [https://bugzilla.gnome.org/page.cgi?id=browse.html&product=GnuCash], , [http://www.gnucash.org/])
+AC_INIT([gnucash-docs], [2.6.16], [https://bugzilla.gnome.org/page.cgi?id=browse.html&product=GnuCash], , [http://www.gnucash.org/])
 
 dnl ==========================================================================
 dnl
