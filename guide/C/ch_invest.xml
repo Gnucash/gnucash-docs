@@ -942,14 +942,33 @@ Income
     <sect2 id="invest-buy-stock2">
       <title>Entering Preexisting Shares</title>
 
-      <para>To register the initial 100 shares of this stock that you
-      purchased previously, on the first transaction line, enter the date of
-      the purchase (eg: Jan. 1 2005), a description (eg: Initial Purchase),
-      transfer from <emphasis>Equity:Opening Balances</emphasis>, Shares (eg:
-      100), and Price (eg: $20). You do not need to fill in the
-      <guilabel>Buy</guilabel> column, as it will be calculated for you. This example
-      assumed there was no commission on this transaction to simplify the example. Your
-      AMZN Commodity view should now appear like this:</para>
+      <para>
+        The examples in this section use <guilabel>Transaction Journal
+        </guilabel> view.
+      </para>
+
+      <para>To register the initial 100 shares of this stock that you purchased
+        previously, on the first (transaction) line, enter the date of the
+        purchase (eg: Jan. 1 2005) and <guilabel>Description</guilabel> (eg:
+        Opening Balance). On the first split line, enter 100 in <guilabel>Shares
+        </guilabel>, delete the (unit) <guilabel>Price</guilabel> (it will be
+        calculated when you <keycap>Tab</keycap> out of the split) and enter
+        2000 in the <guilabel>Buy</guilabel> column.
+      </para>
+
+      <note>
+        <para>It is also possible to use <application>&app;</application> to
+          calculate <guilabel>Shares</guilabel> or <guilabel>Buy</guilabel> from
+          the other 2 columns but to avoid rounding errors, it is better to
+          automaticaly calculate <guilabel>Price</guilabel>.
+        </para>
+      </note>
+
+      <para><keycap>Tab</keycap> to the second split line, enter transfer from
+        account <emphasis>Equity:Opening Balances</emphasis>. For simplicity,
+        this example assumed there were no commissions on this transaction.
+        Your AMZN Commodity view should now appear like this:
+      </para>
 
       <screenshot id="invest-setup-portfolio1">
         <mediaobject>
@@ -966,61 +985,184 @@ Income
             <phrase>Setup Current Portfolio</phrase>
           </textobject>
 
-          <caption><para>This image is of the transaction register of the AMZN account
-          after the first stock account <quote>purchase</quote>.</para></caption>
+          <caption><para>This image is of the transaction register of the AMZN
+            account after the first stock <quote>purchase</quote>.</para>
+          </caption>
         </mediaobject>
       </screenshot>
 
-      <para>Notice that the <guilabel>Balance</guilabel> is in the units of
-      the commodity (AMZN shares) not in currency units. Thus, the balance is
-      100 (AMZN units) rather than $2000. This is how it should be.</para>
+      <para>Notice that the <guilabel>Balance</guilabel> (last column) is in the
+        units of the commodity (AMZN shares) not in currency units. Thus, the
+        balance is 100 (AMZN units) rather than $2000. This is how it should be.
+      </para>
     </sect2>
 
     <sect2 id="invest-buy-new2">
       <title>Buying New Shares</title>
 
-      <para>The only difference between setting up a new stock purchase
-      versus the setup for preexisting stocks as described in the previous
-      section is that instead of transferring the money used to purchase the
-      stock from the <emphasis>Equity:Opening Balances</emphasis> account, you use your
-      <emphasis>Assets:Bank ABC</emphasis> account.</para>
+      <para>The main difference between setting up a new stock purchase
+        versus the setup for preexisting stocks as described in the previous
+        section is that instead of transferring the money used to purchase the
+        stock from the <emphasis>Equity:Opening Balances</emphasis> account, you
+        transfer from  your <emphasis>Assets:Bank ABC</emphasis> or <emphasis>
+        Assets:Brokerage Account</emphasis> account.
+      </para>
 
-      <para>Now you will purchase $5000 of IBM stock, with a commission of $100. First
-      step will be to create the stock account for IBM. The existing <emphasis>Expenses:Commissions</emphasis>
-      account will be used. If you wish to track commissions to the individual stock
-      an additional sub-account would be necessary.</para>
+      <sect3 id="invest-buy-com">
+        <title>Handling Commissions and Fees</title>
 
-      <para>Now for the transaction, on the first transaction line, enter the date of
-      the purchase (eg: Jan. 3 2005), a description (eg: Initial IBM Purchase),
-      Shares will be skipped (to be calculated), Price (eg: $96.60), and Buy ($5000).
-      You do not need to fill in the <guilabel>Shares</guilabel> column, as it will be
-      calculated for you. The next line in the split transaction will be
-      <emphasis>Expenses:Commissions</emphasis> and fill in Buy ($100).
-      The third line will be to transfer from <emphasis>Assets:Bank ABC:Savings</emphasis>,
-      $5100 to balance the transaction.
-      Your IBM Commodity view should now appear like this:</para>
+        <para>For conciseness, this document will refer to the money you pay to
+          a broker for buying and selling securities as <emphasis>Commissions
+          </emphasis>. Government fees may also be payable. Unless otherwise
+          stated, fees are handled in a similar way.
+        </para>
 
-      <screenshot id="invest-setup-portfolio2">
-        <mediaobject>
-           <imageobject role="html">
-             <imagedata fileref="figures/invest_SetupPortfolio2.png" format="PNG"
-                        srccredit="Cristian Marchi" width="510px"></imagedata>
-           </imageobject>
-           <imageobject role="fo">
-             <imagedata fileref="figures/invest_SetupPortfolio2.png" format="PNG"
-                        srccredit="Cristian Marchi"></imagedata>
-           </imageobject>
+        <para>
+          In <application>&app;</application> there are 2 alternate ways to
+          handle commissions (for simplicity this document section will refer to
+          these ways as net pricing and gross pricing):
+        </para>
 
-          <textobject>
-            <phrase>Setup Current Portfolio</phrase>
-          </textobject>
+        <itemizedlist>
+          <listitem><para><emphasis>Net Pricing:</emphasis> You enter a net
+            price (adjusted by commissions) when buying and selling
+            securities. You do <emphasis>not</emphasis> also record commissions
+            in a specific commissions account in order to later claim it as an
+            expense, as this would be claiming commissions twice. This way
+            <emphasis>is</emphasis> compatible with using
+            <xref linkend="invest-sellLots"></xref>. This results in a
+            slightly misleading price being added to the price database (the
+            effective price you paid) but is not usually of any concern.</para>
+          </listitem>
+        </itemizedlist>
 
-          <caption><para>This image is of the transaction register of the IBM account
-          after the first stock account <quote>purchase</quote> with a commission.</para>
-          </caption>
-        </mediaobject>
-      </screenshot>
+        <para>OR</para>
 
+        <itemizedlist>
+          <listitem><para><emphasis>Gross Pricing:</emphasis> You enter the
+            price not adjusted by commissions and enter the commissions expense
+            on a separate split in the transaction. This enables the tracking of
+            commissions but is <emphasis>not</emphasis> compatible with using
+            <xref linkend="invest-sellLots"></xref>. Scrubbing doesn't know to
+            deduct commissions and fees from the gains, so capital gains or
+            losses must be manually calculated (see
+            <xref linkend="invest-sell-man"></xref>).</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>Please get professional advice if you are unsure which of these
+          ways are applicable to your jurisdiction.
+        </para>
+      </sect3>
+
+      <sect3 id="invest-buy-gross">
+        <title>Example: Buying Shares with Gross Pricing</title>
+
+        <para>In this example you will purchase $5000 of IBM stock, with a
+          commission of $100. First step will be to create the stock account for
+          IBM. The existing <emphasis>Expenses:Commission</emphasis>
+          account will be used. If you wish to track commissions to the
+          individual stock level an additional sub-account would be necessary.
+          E.g. <emphasis>Expenses:Commission:IBM</emphasis>.
+        </para>
+
+        <para>Now for the transaction, on the first (transaction) line, enter
+          the <guilabel>Date</guilabel> of the purchase (eg: Jan. 3 2005) and
+          <guilabel>Description</guilabel> (eg: Initial IBM Purchase). On the
+          first split line, enter 50 in <guilabel>Shares</guilabel>, delete
+          <guilabel>Price</guilabel> (leave it empty so it will be calculated)),
+          and enter 5000 in <guilabel>Buy</guilabel>. You do not need to fill in
+          the <guilabel>Price</guilabel> column, as it will be calculated for
+          you when you <keycap>Tab</keycap> to the next split. The next line in
+          the split transaction will be <emphasis>Expenses:Commissions
+          </emphasis> and fill in <guilabel>Buy</guilabel> ($100). The third
+          line will be to transfer $5100 from account <emphasis>
+          Assets:Bank ABC</emphasis> to balance the transaction. Your IBM
+          Commodity view should now appear like this:
+        </para>
+
+        <screenshot id="invest-setup-portfolio2">
+          <mediaobject>
+             <imageobject role="html">
+               <imagedata fileref="figures/invest_SetupPortfolio2.png" format="PNG"
+                          srccredit="Chris Good" width="510px"></imagedata>
+             </imageobject>
+             <imageobject role="fo">
+               <imagedata fileref="figures/invest_SetupPortfolio2.png" format="PNG"
+                          srccredit="Chris Good"></imagedata>
+             </imageobject>
+
+            <textobject>
+              <phrase>Setup Current Portfolio</phrase>
+            </textobject>
+
+            <caption><para>This image is of the transaction register of the IBM
+              account after the first stock <quote>purchase</quote> with a
+              commission.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
+
+      <sect3 id="invest-buy-net">
+        <title>Example: Buying Shares with Net Pricing</title>
+
+        <para>Repeating the previous example using Net Pricing instead of Gross
+          Pricing, in Transaction Journal view:
+        </para>
+
+        <para>Purchase $5000 of IBM stock being 50 Shares for $100.00 each, plus
+          a commission of $100.</para>
+
+        <para>Now for the transaction, on the first (transaction) line, enter
+          the <guilabel>Date</guilabel> of the purchase (eg: Jan. 3 2005) and a
+          <guilabel>Description</guilabel> (eg: Initial IBM Purchase). On the
+          first split line, optionally enter more details in <guilabel>Memo
+          </guilabel>, then 50 in <guilabel>Shares</guilabel>, delete
+          anything in <guilabel>Price</guilabel> (so it will be calculated by
+          dividing <guilabel>Buy</guilabel> by <guilabel>Shares</guilabel> when
+          you <keycap>Tab</keycap> out of the split), 5100 in <guilabel>Buy
+          </guilabel> (50 * $100.00 + $100). Alternatively use
+          <application>&app;</application> to calculate <guilabel>Buy</guilabel>
+          by entering the formula <emphasis>5000+100</emphasis> or <emphasis>
+          (50 * 100) + 100 </emphasis> in <guilabel>Buy</guilabel> (
+          <guilabel>Buy</guilabel> will be calculated when you <keycap>Tab
+          </keycap> out of the column. Use the <keycap>Tab</keycap> key as many
+          times as needed to proceed to the next split.
+        </para>
+
+        <para>
+          Do <emphasis>not</emphasis> enter a separate split for Commission as
+          it has already been included in the <guilabel>Buy</guilabel> value.
+          The second split line will be to transfer from <emphasis>
+          Assets:Bank ABC</emphasis> $5100 to balance the transaction. After the
+          splits are all correct, use the <keycap function="enter" >Enter
+          </keycap> key to save the transaction. Your IBM Commodity view should
+          now appear like this:
+        </para>
+
+        <screenshot id="invest-setup-portfolio3">
+          <mediaobject>
+             <imageobject role="html">
+               <imagedata fileref="figures/invest_SetupPortfolio3.png" format="PNG"
+                          srccredit="Chris Good" width="510px"></imagedata>
+             </imageobject>
+             <imageobject role="fo">
+               <imagedata fileref="figures/invest_SetupPortfolio3.png" format="PNG"
+                          srccredit="Chris Good"></imagedata>
+             </imageobject>
+
+            <textobject>
+              <phrase>Setup Current Portfolio</phrase>
+            </textobject>
+
+            <caption><para>This image is of the transaction register of the IBM
+              account after the first stock <quote>purchase</quote> with a
+              commission.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
     </sect2>
   </sect1>
 
@@ -1403,419 +1545,918 @@ Income
   <sect1 id="invest-sell1">
     <title>Selling Shares</title>
 
-    <para>Entering an investment you are selling is done in the same way as
-    buying one (see <xref linkend="invest-buy-new2" />) except the total cost
-    of the transaction is entered in the
-    <emphasis>Sell</emphasis> column and the <emphasis>Shares</emphasis>
-    column is entered as a negative amount. The net proceeds from the sale
-    should be transferred from the stock account to your bank or brokerage
-    account.</para>
-
-    <para>The proper recording of the stock sale *must* be done using a split
-    transaction. In the split transaction, you must account for the profit (or
-    loss) as coming from an <emphasis>Income:Capital Gains</emphasis> account
-    (or <emphasis>Expenses:Capital Loss</emphasis>). To balance this income,
-    you will need to enter the stock asset
-    twice in the split. Once to record the actual sale (using the correct
-    number of shares and correct price per share) and once to balance the
-    income profit (setting the number of shares to 0 and price per share to
-    0).</para>
-
-    <note>
-      <para>In order to get <application>&app;</application> to commit this
-      zero-share, zero-price split to the transaction, you *must*
-      <keycap>Tab</keycap> out of the split. If you use the
-      <keycap function="enter">Enter</keycap> key, <application>&app;</application>
-      will convert the split into shares of the commodity.</para>
-    </note>
-
-    <para>In the split transaction scheme presented below, the symbol
-    NUM_SHARES is the number of shares you are selling, SELL_PRICE is the
-    price for which you sold the shares, GROSS_SALE is the total price for
-    which you sold shares, equal to NUM_SHARES*SELL_PRICE. PROFIT is the
-    amount of money you made on the sale. COMMISSIONS are the brokerage
-    commissions. NET_SALE is the net amount of money received from the sale,
-    equal to GROSS_SALE - COMMISSIONS.</para>
-
-    <table>
-      <title>Selling Stock using Split Transaction Scheme</title>
-
-      <tgroup cols="5">
-		<colspec colnum="1" colwidth="2*"/>
-		<colspec colnum="1" colwidth="2*"/>
-		<colspec colnum="1" colwidth="2*"/>
-		<colspec colnum="1" colwidth="2*"/>
-		<colspec colnum="1" colwidth="2*"/>
-        <tbody>
-          <row>
-            <entry><emphasis>Account</emphasis></entry>
-
-            <entry><emphasis>Number of Shares</emphasis></entry>
-
-            <entry><emphasis>Share Price</emphasis></entry>
-
-            <entry><emphasis>Total Buy</emphasis></entry>
-
-            <entry><emphasis>Total Sell</emphasis></entry>
-          </row>
-
-          <row>
-            <entry>Assets:Bank ABC</entry>
-
-            <entry></entry>
-
-            <entry></entry>
-
-            <entry>NET_SALE</entry>
-
-            <entry></entry>
-          </row>
-
-          <row>
-            <entry>Assets:Stock:SYMBOL</entry>
-
-            <entry>0</entry>
-
-            <entry>0</entry>
-
-            <entry>PROFIT</entry>
-
-            <entry>(Loss)</entry>
-          </row>
-
-          <row>
-            <entry>Expenses:Commissions</entry>
-
-            <entry></entry>
-
-            <entry></entry>
-
-            <entry>COMMISSION</entry>
-
-            <entry></entry>
-          </row>
-
-          <row>
-            <entry>Assets:Stock:SYMBOL</entry>
-
-            <entry>-NUM_SHARES</entry>
-
-            <entry>SELL_PRICE</entry>
-
-            <entry></entry>
-
-            <entry>GROSS_SALE</entry>
-          </row>
-
-          <row>
-            <entry>Income:Capital Gains</entry>
-
-            <entry></entry>
-
-            <entry></entry>
-
-            <entry>(Loss)</entry>
-
-            <entry>PROFIT</entry>
-          </row>
-
-        </tbody>
-      </tgroup>
-    </table>
-
-    <para>If you will be recording the sale of the stock as a capital gain (or
-    loss), please see <xref linkend="chapter_capgain" /> and <xref linkend="chapter_dep" />
-    for more information on this topic.</para>
-
-    <sect2 id="invest-sellexample2">
-      <title>Example - Sale of stock with profit</title>
-
-      <para>As an example we will use the AMZN account created in the previous section.
-      So you bought 100 shares of AMZN for $20 per
-      share, then later sell them all for $36 per share with a commission of $75. In the split
-      transaction scheme above, PRICEBUY is $20 (the original buying price),
-      NUM_SHARES is 100, TOTALBUY is $2000 (the original buying cost),
-      GROSS_SALE is $3600, and finally PROFIT is $1525
-      (GROSS_SALE-TOTALBUY-COMMISSION).</para>
-
-      <table>
-        <title>Selling Stock Split Transaction Scheme</title>
-
-        <?dbfo table-width="70%" ?>
-
-        <tgroup cols="5">
-		<colspec colnum="1" colwidth="4*"/>
-		<colspec colnum="1" colwidth="2*"/>
-		<colspec colnum="1" colwidth="2*"/>
-		<colspec colnum="1" colwidth="1*"/>
-		<colspec colnum="1" colwidth="1*"/>
-          <tbody>
-            <row>
-              <entry><emphasis>Account</emphasis></entry>
-
-              <entry><emphasis>Shares</emphasis></entry>
-
-              <entry><emphasis>Price</emphasis></entry>
-
-              <entry><emphasis>Buy</emphasis></entry>
-
-              <entry><emphasis>Sell</emphasis></entry>
-            </row>
-
-            <row>
-              <entry>Assets:Bank ABC</entry>
-
-              <entry></entry>
-
-              <entry></entry>
-
-              <entry>3525.00</entry>
-
-              <entry></entry>
-            </row>
-
-            <row>
-              <entry>Assets:Brokerage Account:Stock:AMZN</entry>
-
-              <entry>0</entry>
-
-              <entry>0</entry>
-
-              <entry>1600.00</entry>
-
-              <entry></entry>
-            </row>
-
-            <row>
-              <entry>Expenses:Commissions</entry>
-
-              <entry></entry>
-
-              <entry></entry>
-
-              <entry>75.00</entry>
-
-              <entry></entry>
-            </row>
-
-            <row>
-              <entry>Assets:Brokerage Account:Stock:AMZN</entry>
-
-              <entry>-100</entry>
-
-              <entry>36.00</entry>
-
-              <entry></entry>
-
-              <entry>3600.00</entry>
-            </row>
-
-            <row>
-              <entry>Income:Cap Gain (Long):AMZN</entry>
-
-              <entry></entry>
-
-              <entry></entry>
-
-              <entry></entry>
-
-              <entry>1600.00</entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table>
-
-      <screenshot id="invest-sellstock">
-        <mediaobject>
-           <imageobject role="html">
-             <imagedata fileref="figures/invest_sellstock.png" format="PNG"
-                        srccredit="Cristian Marchi" width="510px"></imagedata>
-           </imageobject>
-           <imageobject role="fo">
-             <imagedata fileref="figures/invest_sellstock.png" format="PNG"
-                        srccredit="Cristian Marchi"></imagedata>
-           </imageobject>
-
-          <textobject>
-            <phrase>Selling Stock Example</phrase>
-          </textobject>
-
-          <caption><para>An example of selling stock for gain. You bought 100
-          shares of AMZN for $20 per share, and sold for $36.</para></caption>
-        </mediaobject>
-      </screenshot>
-
-      <screenshot id="invest-sellstock2">
-        <mediaobject>
-          <imageobject role="html">
-             <imagedata fileref="figures/invest_sellstock2.png" format="PNG"
-                        srccredit="Cristian Marchi" width="510px"></imagedata>
-           </imageobject>
-           <imageobject role="fo">
-             <imagedata fileref="figures/invest_sellstock2.png" format="PNG"
-                        srccredit="Cristian Marchi"></imagedata>
-           </imageobject>
-
-          <textobject>
-            <phrase>Selling Stock Example</phrase>
-          </textobject>
-
-          <caption><para>An image of the account tree after the example of
-          selling stock for gain. </para></caption>
-        </mediaobject>
-      </screenshot>
-    </sect2>
-
-    <sect2 id="invest-sellexampleloss">
-      <title>Example - Sale of stock with loss</title>
-
-      <para>As an example we will use the IBM account created in the previous section.
-      You then have bought 51.7598 shares of IBM for $96.6001
-      per share, then later sell them all for $90 per share. In the split
-      transaction scheme below, PRICEBUY is $96.6001 (the original buying price),
-      NUM_SHARES is 51.7598, TOTAL_BUY is $5,000 (the original buying price),
-      (Loss) is $341.62, and finally GROSS_SALE is $4658.38. Assume the commission
-      was $100.00.</para>
-
-      <table>
-        <title>Selling Shares at loss Split Transaction Scheme</title>
-
-        <?dbfo table-width="70%" ?>
-
-        <tgroup cols="5">
-		<colspec colnum="1" colwidth="4*"/>
-		<colspec colnum="1" colwidth="2*"/>
-		<colspec colnum="1" colwidth="2*"/>
-		<colspec colnum="1" colwidth="1*"/>
-		<colspec colnum="1" colwidth="1*"/>
-          <tbody>
-            <row>
-              <entry><emphasis>Account</emphasis></entry>
-
-              <entry><emphasis>Shares</emphasis></entry>
-
-              <entry><emphasis>Price</emphasis></entry>
-
-              <entry><emphasis>Buy</emphasis></entry>
-
-              <entry><emphasis>Sell</emphasis></entry>
-            </row>
-
-            <row>
-              <entry>Assets:Bank ABC</entry>
-
-              <entry></entry>
-
-              <entry></entry>
-
-              <entry>4558.38</entry>
-
-              <entry></entry>
-            </row>
-
-            <row>
-              <entry>Assets:Brokerage Account:Stock:IBM</entry>
-
-              <entry>0</entry>
-
-              <entry>0</entry>
-
-              <entry></entry>
-
-              <entry>341.62</entry>
-            </row>
-
-            <row>
-              <entry>Expenses:Commissions</entry>
-
-              <entry></entry>
-
-              <entry></entry>
-
-              <entry>100</entry>
-
-              <entry></entry>
-            </row>
-
-            <row>
-              <entry>Assets:Brokerage Account:Stock:IBM</entry>
-
-              <entry>-51.7598</entry>
-
-              <entry>90.00</entry>
-
-              <entry></entry>
-
-              <entry>4658.38</entry>
-            </row>
-
-            <row>
-              <entry>Income:Cap Gain (Long):IBM</entry>
-
-              <entry></entry>
-
-              <entry></entry>
-
-              <entry>341.62</entry>
-
-              <entry>0</entry>
-            </row>
-
-          </tbody>
-        </tgroup>
-      </table>
+    <para>Entering an investment sale transaction is done in a similar way to
+      entering a buy transaction (see <xref linkend="invest-buy-new2" />) except
+      the amount entered in the <emphasis>Shares</emphasis> column is negative
+      and the proceeds of the transaction is entered in the <emphasis>Sell
+      </emphasis> column. The net proceeds from the sale should be
+      transferred from the shares account to your bank or brokerage account.
+    </para>
+
+    <para>For information on handling <emphasis>commissions</emphasis> and the
+      use of <emphasis>Net Pricing</emphasis> or <emphasis>Gross Pricing</emphasis>,
+      please see <xref linkend="invest-buy-com" />.
+    </para>
+
+    <para>If you will be recording a capital gain or loss on the sale, please
+      see <xref linkend="chapter_capgain" /> and <xref linkend="chapter_dep" />
+      for more information on this topic.
+    </para>
+
+    <para>To use the <application>&app;</application><emphasis> Automatic
+      Calculation of Capital Gain or Loss Using Lots</emphasis> feature, please
+      see <xref linkend="invest-sellLots" /> otherwise continue to the next
+      section.
+    </para>
+
+    <sect2 id="invest-sell-man">
+      <title>Selling Shares with Manual Calculation of Capital Gain or Loss
+      </title>
 
       <note>
-      <para>You may either enter the loss as a positive number in the
-      <quote>buy</quote> column or as a negative number in the <quote>sell</quote>
-      column, <application>&app;</application> will move the <quote>negative profit</quote>
-      to the other column.</para>
+        <para>In order for <application>&app;</application> to commit the
+          zero-share, zero-price split for account <emphasis>Assets:Stock:SYMBOL
+          </emphasis> to the transaction in the following schemes, you *must*
+          <keycap>Tab</keycap> out of that split. If you use the
+          <keycap function="enter">Enter</keycap> key, <application>&app;
+          </application> will convert the split into shares of the commodity.
+        </para>
       </note>
 
-      <screenshot id="invest-sellstockLoss">
-        <mediaobject>
-          <imageobject role="html">
-             <imagedata fileref="figures/invest_sellstockLoss.png" format="PNG"
-                        srccredit="Cristian Marchi" width="510px"></imagedata>
-           </imageobject>
-           <imageobject role="fo">
-             <imagedata fileref="figures/invest_sellstockLoss.png" format="PNG"
-                        srccredit="Cristian Marchi"></imagedata>
-           </imageobject>
+      <para>In the schemes of transaction splits presented below, the
+        following symbols are used:
+      </para>
 
-          <textobject>
-            <phrase>Selling Stock at loss Example</phrase>
-          </textobject>
+      <itemizedlist>
+        <listitem><para>NUM_SHARES: number of shares you are selling</para>
+        </listitem>
 
-          <caption><para>Above is a screenshot of the example of selling
-          stock. You bought $5000 worth of IBM shares with a stock value of
-	  $96.6001, and sold for $90.</para></caption>
-        </mediaobject>
-      </screenshot>
+        <listitem><para>COMMISSION: brokerage commissions or fees</para>
+        </listitem>
 
-      <screenshot id="invest-sellstockLoss2">
-        <mediaobject>
-          <imageobject role="html">
-             <imagedata fileref="figures/invest_sellstockLoss2.png" format="PNG"
-                        srccredit="Cristian Marchi" width="510px"></imagedata>
-           </imageobject>
-           <imageobject role="fo">
-             <imagedata fileref="figures/invest_sellstockLoss2.png" format="PNG"
-                        srccredit="Cristian Marchi"></imagedata>
-           </imageobject>
+        <listitem><para>GROSS_SELL_PRICE: unit price for which you sold the
+          shares, not reduced by COMMISSION</para>
+        </listitem>
 
-          <textobject>
-            <phrase>Selling Stock at loss Example</phrase>
-          </textobject>
+        <listitem>
+          <para>NET_SELL_PRICE: unit price for which you sold the shares,
+            reduced by COMMISSION</para>
+        </listitem>
 
-          <caption><para>An image of the account tree after the example of
-          selling stock for loss. </para></caption>
-        </mediaobject>
-      </screenshot>
+        <listitem>
+          <para>GROSS_BUY_PRICE: unit price for which you bought the shares,
+            not increased by COMMISSION</para>
+        </listitem>
+
+        <listitem>
+          <para>NET_BUY_PRICE: unit price for which you bought the shares,
+            increased by COMMISSION</para>
+        </listitem>
+
+        <listitem><para>GROSS_BUY: total price for which you bought shares,
+          excluding COMMISSION, equal to NUM_SHARES * GROSS_BUY_PRICE</para>
+        </listitem>
+
+        <listitem>
+          <para>NET_BUY: amount of money for which you bought shares
+            including COMMISSION, equal to GROSS_BUY + COMMISSION.</para>
+        </listitem>
+
+        <listitem><para>GROSS_SALE: total price for which you sold shares,
+          equal to NUM_SHARES * GROSS_SELL_PRICE</para>
+        </listitem>
+
+        <listitem>
+          <para>NET_SALE: amount of money received from the sale, equal to
+            GROSS_SALE &minus; COMMISSION</para>
+        </listitem>
+
+        <listitem>
+          <para>GROSS_PROFIT: amount of money you made on the sale, not
+            reduced by COMMISSION</para>
+        </listitem>
+
+        <listitem>
+          <para>NET_PROFIT: amount of money you made on the sale, reduced by
+            COMMISSION</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>There are 2 ways of manually recording the capital gain or loss.
+        The capital gain/loss can be combined with the sale in one transaction
+        or it can be entered in a separate transaction.
+
+      </para>
+
+      <sect3 id="invest-sell-man-comb">
+        <title>Combine the Sale and Capital Gain/Loss in One Transaction</title>
+
+        <para>This has the advantage that all parts of the sale event are kept
+          together. This is <emphasis>not</emphasis> compatible with using
+          <emphasis>scrubbing</emphasis>
+          (see <xref linkend="invest-sellLots" />). If you may in future use
+          scrubbing on a specific security, save some work later by entering the
+          capital gain/loss splits in a separate transaction now.
+        </para>
+
+        <para>When the capital gain/loss splits are combined with the sale
+          splits in one transaction, there are 2 splits for the security
+          account in the same transaction, so the transaction must be entered
+          with the security register in <guilabel> Auto-Split Ledger</guilabel>
+          or <guilabel>Transaction Journal</guilabel> view. One of the splits
+          for the security account is for the sale and the other is for the
+          capital gain or loss. The security account split for the capital gain
+          or loss must be entered with 0 number of shares and 0 price per share
+          to stop the automatic recalculation of these fields.
+        </para>
+
+        <para>
+          Account for the profit or loss as coming from an
+          <emphasis>Income:Capital Gains</emphasis> or
+          <emphasis>Expenses:Capital Loss</emphasis> account.
+        </para>
+
+        <sect4 id="invest-sell-man-comb-gr">
+          <title>Combined, Gross Pricing</title>
+
+          <table>
+            <title>Selling Shares Split Scheme, Sale and Capital Gain/Loss Are
+              Combined, Gross Pricing</title>
+
+            <tgroup cols="5">
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+              <tbody>
+                <row>
+                  <entry><emphasis>Account</emphasis></entry>
+                  <entry><emphasis>Number of Shares</emphasis></entry>
+                  <entry><emphasis>Share Price</emphasis></entry>
+                  <entry><emphasis>Total Buy</emphasis></entry>
+                  <entry><emphasis>Total Sell</emphasis></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Bank ABC</entry>
+                  <entry></entry>
+                  <entry></entry>
+                  <entry>NET_SALE</entry>
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Stock:SYMBOL</entry>
+                  <entry>0</entry>
+                  <entry>0</entry>
+                  <entry>GROSS_PROFIT</entry>
+                  <entry>(Loss)</entry>
+                </row>
+
+                <row>
+                  <entry>Expenses:Commission</entry>
+                  <entry></entry>
+                  <entry></entry>
+                  <entry>COMMISSION</entry>
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Stock:SYMBOL</entry>
+                  <entry>&minus;NUM_SHARES</entry>
+                  <entry>GROSS_SELL_PRICE</entry>
+                  <entry></entry>
+                  <entry>GROSS_SALE</entry>
+                </row>
+
+                <row>
+                  <entry>Income:Capital Gains</entry>
+                  <entry></entry>
+                  <entry></entry>
+                  <entry>(Loss)</entry>
+                  <entry>GROSS_PROFIT</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+        </sect4>
+
+        <sect4 id="invest-sell-man-comb-net">
+          <title>Combined, Net Pricing</title>
+
+          <table>
+            <title>Selling Shares Split Scheme, Sale and Capital Gain/Loss Are
+              Combined, Net Pricing</title>
+
+            <tgroup cols="5">
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+              <tbody>
+                <row>
+                  <entry><emphasis>Account</emphasis></entry>
+                  <entry><emphasis>Number of Shares</emphasis></entry>
+                  <entry><emphasis>Share Price</emphasis></entry>
+                  <entry><emphasis>Total Buy</emphasis></entry>
+                  <entry><emphasis>Total Sell</emphasis></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Bank ABC</entry>
+                  <entry></entry>
+                  <entry></entry>
+                  <entry>NET_SALE</entry>
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Stock:SYMBOL</entry>
+                  <entry>0</entry>
+                  <entry>0</entry>
+                  <entry>NET_PROFIT</entry>
+                  <entry>(Loss)</entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Stock:SYMBOL</entry>
+                  <entry>&minus;NUM_SHARES</entry>
+                  <entry>NET_SELL_PRICE</entry>
+                  <entry></entry>
+                  <entry>NET_SALE</entry>
+                </row>
+
+                <row>
+                  <entry>Income:Capital Gain</entry>
+                  <entry></entry>
+                  <entry></entry>
+                  <entry>(Loss)</entry>
+                  <entry>NET_PROFIT</entry>
+                </row>
+
+              </tbody>
+            </tgroup>
+          </table>
+        </sect4>
+      </sect3>
+
+      <sect3 id="invest-sell-man-sep">
+        <title>Separate the Capital Gain/Loss Transaction from the Sale
+          Transaction.</title>
+
+        <para>This is <emphasis>required</emphasis> if using <emphasis>scrubbing
+          </emphasis> to automatically calculate and create capital gain/loss
+          transactions (otherwise scrubbing will not detect them and will create
+          an incorrectly valued gain/loss transaction).
+        </para>
+
+        <sect4 id="invest-sell-man-sep-gr">
+          <title>Separated, Gross Pricing</title>
+
+          <table>
+            <title>Selling Shares Split Scheme, Sale and Capital Gain/Loss Are
+              Separate Transactions, Sale Transaction</title>
+
+            <tgroup cols="5">
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+              <tbody>
+                <row>
+                  <entry><emphasis>Account</emphasis></entry>
+                  <entry><emphasis>Number of Shares</emphasis></entry>
+                  <entry><emphasis>Share Price</emphasis></entry>
+                  <entry><emphasis>Total Buy</emphasis></entry>
+                  <entry><emphasis>Total Sell</emphasis></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Bank ABC</entry>
+                  <entry></entry>
+                  <entry></entry>
+                  <entry>NET_SALE</entry>
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>Expenses:Commission</entry>
+                  <entry></entry>
+                  <entry></entry>
+                  <entry>COMMISSION</entry>
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Stock:SYMBOL</entry>
+                  <entry>&minus;NUM_SHARES</entry>
+                  <entry>GROSS_SELL_PRICE</entry>
+                  <entry></entry>
+                  <entry>GROSS_SALE</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+
+          <table>
+            <title>Selling Shares Split Scheme, Sale and Capital Gain/Loss Are
+              Separate Transactions, Capital Gain/Loss Transaction</title>
+
+            <tgroup cols="5">
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+              <tbody>
+                <row>
+                  <entry><emphasis>Account</emphasis></entry>
+                  <entry><emphasis>Number of Shares</emphasis></entry>
+                  <entry><emphasis>Share Price</emphasis></entry>
+                  <entry><emphasis>Total Buy</emphasis></entry>
+                  <entry><emphasis>Total Sell</emphasis></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Stock:SYMBOL</entry>
+                  <entry>0</entry>
+                  <entry>0</entry>
+                  <entry>GROSS_PROFIT</entry>
+                  <entry>(Loss)</entry>
+                </row>
+
+                <row>
+                  <entry>Income:Capital Gain</entry>
+                  <entry></entry>
+                  <entry></entry>
+                  <entry>(Loss)</entry>
+                  <entry>GROSS_PROFIT</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+        </sect4>
+
+        <sect4 id="invest-sell-man-sep-net">
+          <title>Separated, Net Pricing</title>
+
+          <table>
+            <title>Selling Shares Split Scheme, Sale and Capital Gain/Loss Are
+              Separate Transactions, Sale Transaction</title>
+
+            <tgroup cols="5">
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+              <tbody>
+                <row>
+                  <entry><emphasis>Account</emphasis></entry>
+                  <entry><emphasis>Number of Shares</emphasis></entry>
+                  <entry><emphasis>Share Price</emphasis></entry>
+                  <entry><emphasis>Total Buy</emphasis></entry>
+                  <entry><emphasis>Total Sell</emphasis></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Bank ABC</entry>
+                  <entry></entry>
+                  <entry></entry>
+                  <entry>NET_SALE</entry>
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Stock:SYMBOL</entry>
+                  <entry>&minus;NUM_SHARES</entry>
+                  <entry>NET_SELL_PRICE</entry>
+                  <entry></entry>
+                  <entry>NET_SALE</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+
+          <table>
+            <title>Selling Shares Split Scheme, Sale and Capital Gain/Loss Are
+              Separate Transactions, Capital Gain/Loss Transaction</title>
+
+            <tgroup cols="5">
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+                      <colspec colnum="1" colwidth="2*"/>
+              <tbody>
+                <row>
+                  <entry><emphasis>Account</emphasis></entry>
+                  <entry><emphasis>Number of Shares</emphasis></entry>
+                  <entry><emphasis>Share Price</emphasis></entry>
+                  <entry><emphasis>Total Buy</emphasis></entry>
+                  <entry><emphasis>Total Sell</emphasis></entry>
+                </row>
+
+                <row>
+                  <entry>Assets:Stock:SYMBOL</entry>
+                  <entry>0</entry>
+                  <entry>0</entry>
+                  <entry>NET_PROFIT</entry>
+                  <entry>(Loss)</entry>
+                </row>
+
+                <row>
+                  <entry>Income:Capital Gain</entry>
+                  <entry></entry>
+                  <entry></entry>
+                  <entry>(Loss)</entry>
+                  <entry>NET_PROFIT</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+        </sect4>
+      </sect3>
+    </sect2>
+
+    <sect2 id="invest-sell-man-examples">
+      <title>Examples of Selling Shares with Manually Entry of Capital Gain or
+        Loss</title>
+
+      <para>In these examples we will use the AMZN account created in the
+        previous section.
+      </para>
+
+      <sect3 id="invest-sell-man-prof-comb-gross">
+        <title>Example: Sale of Shares with Profit, Manual Profit/Loss
+          Calculation, Sale &amp; Profit Combined, Gross Pricing</title>
+
+        <para>In this example you bought 100 shares of AMZN for $20 per share,
+          then later sell them all for $36 per share with a commission of $75.
+          In the split transaction scheme above, GROSS_BUY_PRICE is $20 (the
+          original buying price), NUM_SHARES is 100, GROSS_BUY is $2000 (the
+          original buying cost), GROSS_SALE is $3600, and finally GROSS_PROFIT
+          is $1600 (GROSS_SALE &minus; GROSS_BUY).
+        </para>
+
+        <table>
+          <title>Selling Shares Split Scheme, Sale &amp; Gain Combined, Gross
+            Pricing</title>
+
+          <?dbfo table-width="70%" ?>
+
+          <tgroup cols="5">
+                  <colspec colnum="1" colwidth="4*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+            <tbody>
+              <row>
+                <entry><emphasis>Account</emphasis></entry>
+                <entry><emphasis>Shares</emphasis></entry>
+                <entry><emphasis>Price</emphasis></entry>
+                <entry><emphasis>Buy</emphasis></entry>
+                <entry><emphasis>Sell</emphasis></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Bank ABC</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>3525.00</entry>
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Brokerage Account:Stock:AMZN</entry>
+                <entry>0</entry>
+                <entry>0</entry>
+                <entry>1600.00</entry>
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Expenses:Commission</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>75.00</entry>
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Brokerage Account:Stock:AMZN</entry>
+                <entry>&minus;100</entry>
+                <entry>36.00</entry>
+                <entry></entry>
+                <entry>3600.00</entry>
+              </row>
+
+              <row>
+                <entry>Income:Capital Gain (Long Term):AMZN</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>1600.00</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <screenshot id="invest-sellstockManProfComb">
+          <mediaobject>
+             <imageobject role="html">
+               <imagedata fileref="figures/invest_sellstock.png" format="PNG"
+                          srccredit="Chris Good" width="510px"></imagedata>
+             </imageobject>
+             <imageobject role="fo">
+               <imagedata fileref="figures/invest_sellstock.png" format="PNG"
+                          srccredit="Chris Good"></imagedata>
+             </imageobject>
+
+            <textobject>
+              <phrase>Selling Shares Example</phrase>
+            </textobject>
+
+            <caption><para>An example of selling shares for gain. You bought 100
+              shares of AMZN for $20 per share, and sold for $36.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <note><para>In the above screenshot, it appears there are 2 transactions
+          for Mar 21st 2006. This is because the register is in <guilabel>
+          Auto-Split Ledger</guilabel> view and there are 2 splits for the
+          register account in the 1 transaction. <guilabel>Transaction Journal
+          </guilabel> view may be clearer. Refer to
+          <xref linkend="txns-registers-txntypes" />. As there are 2 splits for
+          the register account in the sale transaction, this transaction must be
+          entered in <guilabel>Auto-Split Ledger</guilabel> or <guilabel>
+          Transaction Journal</guilabel> view. It cannot be entered in
+          <guilabel>Basic Ledger</guilabel> view.</para>
+        </note>
+
+        <para> </para>
+
+        <screenshot id="invest-sellstockManProfComb2">
+          <mediaobject>
+            <imageobject role="html">
+               <imagedata fileref="figures/invest_sellstock2.png" format="PNG"
+                          srccredit="Chris Good" width="510px"></imagedata>
+             </imageobject>
+             <imageobject role="fo">
+               <imagedata fileref="figures/invest_sellstock2.png" format="PNG"
+                          srccredit="Chris Good"></imagedata>
+             </imageobject>
+
+            <textobject>
+              <phrase>Selling Shares Example</phrase>
+            </textobject>
+
+            <caption><para>An image of the account tree after the example of
+            selling shares for gain. </para></caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
+
+      <sect3 id="invest-sell-man-prof-comb-net">
+        <title>Example: Sale of Shares with Profit, Manual Profit/Loss
+          Calculation, Sale &amp; Profit Combined, Net Pricing</title>
+
+        <para>In this example you bought 100 shares of AMZN for $20 per share
+          (including commissions), then later sell them all for $36 per share
+          with a commission of $75. In the split transaction scheme above,
+          NUM_SHARES is 100, NET_BUY_PRICE is $20 (the original buying price),
+          NET_BUY is $2000 (the original buying cost), NET_SELL_PRICE is $35.25
+          (($3600 &minus; $75) / 100)), GROSS_SALE is $3600, NET_SALE is $3525,
+          and finally NET_PROFIT is $1525 (NET_SALE &minus; NET_BUY).
+        </para>
+
+        <table>
+          <title>Selling Shares Split Scheme, Sale &amp; Gain Combined, Net
+            Pricing</title>
+
+          <?dbfo table-width="70%" ?>
+
+          <tgroup cols="5">
+                  <colspec colnum="1" colwidth="4*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+            <tbody>
+              <row>
+                <entry><emphasis>Account</emphasis></entry>
+                <entry><emphasis>Shares</emphasis></entry>
+                <entry><emphasis>Price</emphasis></entry>
+                <entry><emphasis>Buy</emphasis></entry>
+                <entry><emphasis>Sell</emphasis></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Bank ABC</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>3525.00</entry>
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Brokerage Account:Stock:AMZN</entry>
+                <entry>0</entry>
+                <entry>0</entry>
+                <entry>1525.00</entry>
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Brokerage Account:Stock:AMZN</entry>
+                <entry>&minus;100</entry>
+                <entry>35.25</entry>
+                <entry></entry>
+                <entry>3525.00</entry>
+              </row>
+
+              <row>
+                <entry>Income:Capital Gain (Long Term):AMZN</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>1525.00</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <screenshot id="invest-sellstockManProfCombNet">
+          <mediaobject>
+             <imageobject role="html">
+               <imagedata fileref="figures/invest_sellstockManProfCombNet.png" format="PNG"
+                          srccredit="Chris Good" width="510px"></imagedata>
+             </imageobject>
+             <imageobject role="fo">
+               <imagedata fileref="figures/invest_sellstockManProfCombNet.png" format="PNG"
+                          srccredit="Chris Good"></imagedata>
+             </imageobject>
+
+            <textobject>
+              <phrase>Selling Shares Example</phrase>
+            </textobject>
+
+            <caption><para>An example of selling shares for gain using net
+              pricing in transaction journal view. You bought 100 shares of AMZN
+              for $20 per share, and sold for $36.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para> </para>
+      </sect3>
+
+      <sect3 id="invest-sell-man-prof-sep-gross">
+        <title>Example: Sale of Shares with Profit, Manual Profit/Loss
+          Calculation, Sale &amp; Profit Separated, Gross Pricing</title>
+
+        <para>You bought 100 shares of AMZN for $20 per share and commissions
+          $20, then later sell them all for $36 per share with a commission of
+          $75. In the split transaction scheme above, GROSS_BUY_PRICE is $20
+          (the original buying price), NUM_SHARES is 100, GROSS_BUY is $2000
+          (the original buying cost), GROSS_SALE is $3600, and finally
+          GROSS_PROFIT is $1600 (GROSS_SALE &minus; GROSS_BUY).
+        </para>
+
+        <table>
+          <title>Selling Shares Split Scheme, Sale Transaction</title>
+
+          <?dbfo table-width="70%" ?>
+
+          <tgroup cols="5">
+                  <colspec colnum="1" colwidth="4*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+            <tbody>
+              <row>
+                <entry><emphasis>Account</emphasis></entry>
+                <entry><emphasis>Shares</emphasis></entry>
+                <entry><emphasis>Price</emphasis></entry>
+                <entry><emphasis>Buy</emphasis></entry>
+                <entry><emphasis>Sell</emphasis></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Bank ABC</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>3525.00</entry>
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Expenses:Commission</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>75.00</entry>
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Brokerage Account:Stock:AMZN</entry>
+                <entry>&minus;100</entry>
+                <entry>36.00</entry>
+                <entry></entry>
+                <entry>3600.00</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <table>
+          <title>Selling Shares Split Scheme, Gain Transaction</title>
+
+          <?dbfo table-width="70%" ?>
+
+          <tgroup cols="5">
+                  <colspec colnum="1" colwidth="4*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+            <tbody>
+              <row>
+                <entry><emphasis>Account</emphasis></entry>
+                <entry><emphasis>Shares</emphasis></entry>
+                <entry><emphasis>Price</emphasis></entry>
+                <entry><emphasis>Buy</emphasis></entry>
+                <entry><emphasis>Sell</emphasis></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Brokerage Account:Stock:AMZN</entry>
+                <entry>0</entry>
+                <entry>0</entry>
+                <entry>1600.00</entry>
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Income:Capital Gain (Long Term):AMZN</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>1600.00</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <screenshot id="invest-sellstockManProfSep">
+          <mediaobject>
+             <imageobject role="html">
+               <imagedata fileref="figures/invest_sellstockManProfSep.png" format="PNG"
+                          srccredit="Chris Good" width="510px"></imagedata>
+             </imageobject>
+             <imageobject role="fo">
+               <imagedata fileref="figures/invest_sellstockManProfSep.png" format="PNG"
+                          srccredit="Chris Good"></imagedata>
+             </imageobject>
+
+            <textobject>
+              <phrase>Selling Shares Example</phrase>
+            </textobject>
+
+            <caption><para>An example of selling shares for gain where the sale
+              and gain are recorded in separate transactions, in <guilabel>
+              Transaction Journal</guilabel> view. You bought 100 shares of AMZN
+              for $20 per share, and sold for $36.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
+
+      <sect3 id="invest-sell-man-prof-sep-net">
+        <title>Example: Sale of Shares with Profit, Manual Profit/Loss
+          Calculation, Sale &amp; Profit Separated, Net Pricing</title>
+
+        <para>You bought 100 shares of AMZN for $20 per share (including
+          commissions), then later sell them all for $36 per share with a
+          commission of $75. In the split transaction scheme above, NUM_SHARES
+          is 100, NET_BUY_PRICE is $20 (the original buying price), NET_BUY is
+          $2000 (the original buying cost), NET_SELL_PRICE is $35.25
+          (($3600 &minus; $75) / 100)), GROSS_SALE is $3600, NET_SALE is $3525,
+          and finally NET_PROFIT is $1525 (NET_SALE &minus; NET_BUY).
+        </para>
+
+        <table>
+          <title>Selling Shares Split Scheme, Sale Transaction</title>
+
+          <?dbfo table-width="70%" ?>
+
+          <tgroup cols="5">
+                  <colspec colnum="1" colwidth="4*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+            <tbody>
+              <row>
+                <entry><emphasis>Account</emphasis></entry>
+                <entry><emphasis>Shares</emphasis></entry>
+                <entry><emphasis>Price</emphasis></entry>
+                <entry><emphasis>Buy</emphasis></entry>
+                <entry><emphasis>Sell</emphasis></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Bank ABC</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>3525.00</entry>
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Brokerage Account:Stock:AMZN</entry>
+                <entry>&minus;100</entry>
+                <entry>35.25</entry>
+                <entry></entry>
+                <entry>3525.00</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <table>
+          <title>Selling Shares Split Scheme, Gain Transaction</title>
+
+          <?dbfo table-width="70%" ?>
+
+          <tgroup cols="5">
+                  <colspec colnum="1" colwidth="4*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="2*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+                  <colspec colnum="1" colwidth="1*"/>
+            <tbody>
+              <row>
+                <entry><emphasis>Account</emphasis></entry>
+                <entry><emphasis>Shares</emphasis></entry>
+                <entry><emphasis>Price</emphasis></entry>
+                <entry><emphasis>Buy</emphasis></entry>
+                <entry><emphasis>Sell</emphasis></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Brokerage Account:Stock:AMZN</entry>
+                <entry>0</entry>
+                <entry>0</entry>
+                <entry>1525.00</entry>
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Income:Capital Gain (Long Term):AMZN</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>1525.00</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <screenshot id="invest-sellstockManProfSepNet">
+          <mediaobject>
+             <imageobject role="html">
+               <imagedata fileref="figures/invest_sellstockManProfSepNet.png" format="PNG"
+                          srccredit="Chris Good" width="510px"></imagedata>
+             </imageobject>
+             <imageobject role="fo">
+               <imagedata fileref="figures/invest_sellstockManProfSep.png" format="PNG"
+                          srccredit="Chris Good"></imagedata>
+             </imageobject>
+
+            <textobject>
+              <phrase>Selling Shares Example</phrase>
+            </textobject>
+
+            <caption><para>An example of selling shares for gain where the sale and
+              gain are recorded in separate transactions, in <guilabel>Transaction
+              Journal</guilabel> view. You bought 100 shares of AMZN for $20 per
+              share, and sold for $36.</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
     </sect2>
 
     <sect2 id="invest-sellLots">
-      <title>Automatic Calculation of Capital Gain or Loss Using Lots</title>
+      <title>Selling Shares with Automatic Calculation of Capital Gain or Loss
+        Using Lots</title>
 
       <sect3 id="invest-sellLotsIntro">
         <title>Introduction</title>
@@ -1855,8 +2496,12 @@ Income
             total credits.
         </para>
 
-        <note><para>If you make an error, you can delete the capital gain/loss
-          transaction(s) and lot(s) and retry.</para>
+        <note><para>If you make an error, you can delete the lot(s) and capital
+          gain/loss transaction(s) and retry. Ensure you delete the lot, or at
+          least unlink sale transactions from the lot, before you delete a
+          capital gain/loss transaction. Otherwise, the <guilabel>Lots in
+          Account</guilabel> screen will recreate the capital gain/loss
+          transaction when you select the lot.</para>
         </note>
 
         <para>
@@ -1946,6 +2591,13 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
         </para>
 
         <orderedlist>
+          <listitem>
+            <para>Record the sale transaction using Net Pricing (but stop short
+              of entering the Capital Gain transaction as it will be created by
+              scrubbing). See <xref linkend="invest-sell-man-prof-sep-net" />.
+            </para>
+          </listitem>
+
           <!-- Manual Lot Creation and Linking -->
           <listitem><para><xref linkend="invest-sellManual" />  (Optional
             depending on cost method)</para>
@@ -1968,7 +2620,6 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
           </listitem>
 
         </orderedlist>
-
       </sect3>
 
       <sect3 id="invest-sellManual">
@@ -2109,16 +2760,27 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
             </para>
          </listitem>
 
+         <listitem>
+           <para>
+             Scrubbing does not recognize commissions or fees so makes no
+             allowance for them in the calculation of gain or loss. Therefore
+             you must use <emphasis>Net Pricing</emphasis> rather than
+             <emphasis>Gross Pricing</emphasis> if you wish to use scrubbing.
+             See <xref linkend="invest-buy-com" />.
+           </para>
+
+         </listitem>
+
           <listitem>
-            <para>Scrubbing does not work correctly if there has been a previous
-              sale where the capital gain splits have been manually entered as
-              part of the sale transaction. Therefore ensure previous sales are
-              recorded as 2 transactions:
+            <para>Scrubbing does not recognize capital gain/loss transaction
+              splits if they have been manually entered as part of the sale
+              transaction. Therefore ensure previous sales are recorded as 2
+              transactions:
             </para>
 
             <table>
-              <title>Transaction 1 dealing with value received, reduction of the
-                number of shares and (optionally) commission
+              <title>Transaction 1 dealing with value received and the reduction
+                of the number of shares
               </title>
               <tgroup cols="5">
                 <tbody>
@@ -2137,15 +2799,8 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
                    <entry></entry>
                   </row>
                   <row>
-                    <entry>Commission (optional)</entry>
-                    <entry></entry>
-                    <entry></entry>
-                    <entry>Debit</entry>
-                    <entry></entry>
-                  </row>
-                  <row>
                     <entry>Security</entry>
-                    <entry>-NumSold</entry>
+                    <entry>&minus;NumSold</entry>
                     <entry>SaleUnitPrice</entry>
                     <entry></entry>
                     <entry>SaleValue</entry>
@@ -2197,7 +2852,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
       </sect3>
 
       <sect3 id="invest-sellManualExample">
-        <title>Example of Manual Lot Creation and Linking</title>
+        <title>Example 1: Manual Lot Creation and Linking</title>
 
         <para>Here is an example of selling part of a security holding using
           the LIFO method. In this example, the most recent buy transaction
@@ -2268,7 +2923,8 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
                   </imageobject>
 
                   <textobject>
-                    <phrase>Example of Lots in Account window before lot scrubbing
+                    <phrase>Example of Lots in Account window before lot
+                      scrubbing
                     </phrase>
                   </textobject>
 
@@ -2363,6 +3019,40 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
             </para>
           </listitem>
 
+          <listitem>
+            <para>Close the <guilabel>Lots in Account SSSS</guilabel> window and
+              return to the security account register.
+            </para>
+
+            <figure pgwide="1">
+              <title>Selling Shares - Capital Gains - Register after manual
+                linking and scrubbing a single lot
+              </title>
+              <screenshot id="invest-lots2RegAftScrub1Lot">
+                <mediaobject>
+                  <imageobject role="html">
+                  <imagedata fileref="figures/investLots2_RegAfterScrub1Lot.png"
+                    format="PNG" srccredit="Chris Good" width="510px"></imagedata>
+                  </imageobject>
+                  <imageobject role="fo">
+                    <imagedata fileref="figures/investLots2_RegAfterScrub1Lot.png"
+                               format="PNG" srccredit="Chris Good" ></imagedata>
+                  </imageobject>
+
+                  <textobject>
+                    <phrase>Example of Register after scrubbing a
+                      single lot
+                    </phrase>
+                  </textobject>
+
+                  <caption><para>An image of the Register after scrubbing a
+                    single lot.</para>
+                  </caption>
+                </mediaobject>
+              </screenshot>
+            </figure>
+          </listitem>
+
           <listitem><para>Continue to
             <xref linkend="invest-sellChgCapGainsAcct" /></para>
           </listitem>
@@ -2370,7 +3060,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
       </sect3>
 
       <sect3 id="invest-sellAutoExample">
-        <title>Example 1 of Automatic Creation of Capital Gain Or Loss
+        <title>Example 2: Automatic Creation of Capital Gain Or Loss
           Transactions</title>
 
         <para>Create the capital gains transaction by following these steps:
@@ -2381,8 +3071,9 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
             <para>Open the security account's register.</para>
           </listitem>
 
-          <listitem><para>Ensure the sell transaction has been entered with no
-            splits for capital gains or losses.</para>
+          <listitem><para>Ensure any previous manually entered capital gain/loss
+            transaction splits have been entered in separate transactions to the
+            the sell transactions.</para>
           </listitem>
 
           <listitem><para>Select <menuchoice><guimenu>Actions</guimenu>
@@ -2417,30 +3108,19 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
 
               <listitem><para>Creates a separate transaction per lot for
                 capital gain/loss.</para>
-
-                <note><para>
-		  If there are already gain/loss splits as part of a sell
-                  transaction, <application>&app;</application> scrubbing does
-                  not recognize them. So if manually adding gain/loss,
-                  separate gain/loss transaction splits from the transaction
-                  that reduces the <guilabel>No of Shares</guilabel>) by putting
-                  them in a separate transaction if you may use scrubbing in
-                  future.</para>
-                </note>
               </listitem>
             </itemizedlist>
           </listitem>
 
-          <listitem><para>Continue with the instructions in the next section.
-            </para>
+          <listitem><para>Continue to
+            <xref linkend="invest-sellChgCapGainsAcct" /></para>
           </listitem>
-
         </orderedlist>
       </sect3>
 
       <sect3 id="invest-sellAutoExample2">
-        <title>Example 2 of Automatic Creation of Capital Gain Or Loss
-          Transactions - 2 Sales at Once</title>
+        <title>Example 3: Automatic Creation of Capital Gain Or Loss
+            Transactions, 2 Sales at Once</title>
 
         <para>Here is an example of FIFO scrubbing without manual lot creation.
           In this example, the transactions for 2 sales are scrubbed at once
@@ -2543,10 +3223,10 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
             </figure>
 
             <note>
-              <para>After using the <guilabel>Scrub Account</guilabel> button only
-                the last lot is shown, so the above image is after the <guilabel>
-                Lots in Account</guilabel> window has been closed and reopened so
-                all the lots show.
+              <para>After using the <guilabel>Scrub Account</guilabel> button
+                only the last lot is shown, so the above image is after the
+                <guilabel>Lots in Account</guilabel> window has been closed and
+                reopened so all the lots show.
               </para>
             </note>
           </listitem>
@@ -2557,7 +3237,8 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
             </para>
 
             <figure pgwide="1">
-              <title>Selling Shares - Capital Gains - Register after Scrub Account
+              <title>Selling Shares - Capital Gains - Register after Scrub
+                Account
               </title>
               <screenshot id="invest2-lots3AftScrubAcct">
                 <mediaobject>
@@ -2571,7 +3252,8 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
                   </imageobject>
 
                   <textobject>
-                    <phrase>Example of security register after using Scrub Account
+                    <phrase>Example of security register after using Scrub
+                      Account
                     </phrase>
                   </textobject>
 
@@ -2584,9 +3266,9 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
 
             <note>
               <para>The security splits in the sell transactions have been split
-                into subsplits, one subsplit per lot, and a capital gain transaction
-                has been created for each security subsplit of each sell
-                transaction.
+                into subsplits, one subsplit per lot, and a capital gain
+                transaction has been created for each security subsplit of each
+                sell transaction.
               </para>
             </note>
           </listitem>
@@ -2599,8 +3281,8 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
       </sect3>
 
       <sect3 id="invest-sellFifoSplit">
-        <title>Example 3 of Automatic Creation of Capital Gain Or Loss
-          Transactions - After a Simple Stock Split</title>
+        <title>Example 4: Automatic Creation of Capital Gain Or Loss
+            Transactions - After a Simple Stock Split</title>
         <para>Here is an example of FIFO scrubbing without manual lot
           creation/linking, where the Stock Split Assistant has been used for a
           simple stock split. In this example, 100 shares of security XYZ were
@@ -2624,7 +3306,8 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
               </imageobject>
 
               <textobject>
-                <phrase>Example of security register after Scrub Account is used.
+                <phrase>Example of security register after Scrub Account is
+                  used.
                 </phrase>
               </textobject>
 
@@ -2676,7 +3359,8 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
               </imageobject>
 
               <textobject>
-                <phrase>Example of security register after Scrub Account is used.
+                <phrase>Example of security register after Scrub Account is
+                  used.
                 </phrase>
               </textobject>
 
@@ -2687,9 +3371,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
           </screenshot>
         </figure>
 
-        <para>
-          The above screen shots show that scrubbing created:
-        </para>
+        <para>The above screen shots show that scrubbing created:</para>
 
         <para>2 lots. A separate lot for each buy (it essentially treats the
           stock split as a buy of 100 for no cost)
@@ -2701,10 +3383,10 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
 
         <itemizedlist>
           <listitem><para>
-            Lot 0: 1/7/2009 loss $400 (sale $600 - cost $1000)</para>
+            Lot 0: 1/7/2009 loss $400 (sale $600 &minus; cost $1000)</para>
           </listitem>
           <listitem><para>
-            Lot 1: 1/7/2009 gain $600 (sale $600 - cost $0)</para>
+            Lot 1: 1/7/2009 gain $600 (sale $600 &minus; cost $0)</para>
           </listitem>
         </itemizedlist>
 
@@ -2718,7 +3400,9 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
       </sect3>
 
       <sect3 id="invest-sellChgCapGainsAcctExample">
-        <title>Example of Changing the Orphaned Gains-CCC to Gain/Loss Account</title>
+        <title>
+            Example 5: Changing the Orphaned Gains-CCC to Gain/Loss Account
+          </title>
 
         <orderedlist>
           <listitem>
@@ -2733,11 +3417,11 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
               <screenshot id="invest-lots4AftScrub1LotReg">
                 <mediaobject>
                   <imageobject role="html">
-                  <imagedata fileref="figures/investLots4_AfterScrub1LotReg.png"
+                  <imagedata fileref="figures/investLots2_RegAfterScrub1Lot.png"
                     format="PNG" srccredit="Chris Good" width="510px"></imagedata>
                   </imageobject>
                   <imageobject role="fo">
-                    <imagedata fileref="figures/investLots4_AfterScrub1LotReg.png"
+                    <imagedata fileref="figures/investLots2_RegAfterScrub1Lot.png"
                                format="PNG" srccredit="Chris Good" ></imagedata>
                   </imageobject>
 
@@ -3151,7 +3835,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
           <para>In our example it is a .77942 for 1 split so the number of shares will
           decrease from the number of shares currently in the register.  You may use <application>&app;</application>&rsquo;s
           ability to preform calculations on an entry form by entering data directly
-          (E.g. <quote>(.77942*100)-100</quote>) to calculate the decrease in shares
+          (E.g. <quote>(.77942*100)&minus;100</quote>) to calculate the decrease in shares
           from the split.</para>
         </listitem>
 
