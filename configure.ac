@@ -203,6 +203,7 @@ guide/de/Makefile
 guide/it/Makefile
 guide/ja/Makefile
 guide/pt/Makefile
+guide/ru/Makefile
 Makefile])
 
 AC_CONFIG_FILES([guide/ja/fop.xconf])
