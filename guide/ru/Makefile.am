@@ -28,7 +28,7 @@ entities = \
     appendixb.xml \
     appendixc.xml \
     appendixd.xml
-DISTCLEANFILES = $(docname)-C.omf.out
+DISTCLEANFILES = $(docname)-ru.omf.out
 CLEANFILES = $(DISTCLEANFILES)
 XSLTFLAGS_FO = --stringparam paper.type A4
 include $(top_srcdir)/xmldocs.make
