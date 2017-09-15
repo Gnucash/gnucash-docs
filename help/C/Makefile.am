@@ -27,9 +27,13 @@ entities = \
         Help_tips-appendix.xml
 DISTCLEANFILES =  $(docname)-C.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
+if GNC_WINDOWS
+include $(top_srcdir)/chm.make
+else
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
 include $(top_srcdir)/epub.make
 if WITH_MOBI
 include $(top_srcdir)/mobi.make
+endif
 endif

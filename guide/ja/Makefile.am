@@ -31,11 +31,15 @@ DISTCLEANFILES =  $(docname)-ja.omf.out mincho.xml gothic.xml $(fopconfig)
 CLEANFILES =  $(DISTCLEANFILES)
 FOPFLAGS = -l $(lang) -c $(fopconfig)
 XSLTFLAGS_FO= --stringparam paper.type A4
+if GNC_WINDOWS
+include $(top_srcdir)/chm.make
+else
 include $(top_srcdir)/xmldocs.make
 include $(top_srcdir)/pdf.make
 include $(top_srcdir)/epub.make
 if WITH_MOBI
 include $(top_srcdir)/mobi.make
+endif
 endif
 
 mincho.xml: $(JAPANESE_MINCHO_TTF_ABS)

@@ -6,6 +6,7 @@ EXTRA_DIST = gnucash-docs.spec \
 	     xmldocs.make \
 	     omf.make \
 	     pdf.make \
+             chm.make \
 	     stylesheet \
 	     xsl \
 	     HACKING \
@@ -55,4 +56,3 @@ epub-recursive $(MOBI_RECURSIVE):
 	  ($(am__cd) $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
 	  || eval $$failcom; \
 	done; test -z "$$fail"
-

@@ -3,6 +3,7 @@
 
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT([gnucash-docs], [2.6.99], [https://bugzilla.gnome.org/page.cgi?id=browse.html&product=GnuCash], , [http://www.gnucash.org/])
+AC_CANONICAL_HOST
 
 dnl ==========================================================================
 dnl
@@ -189,6 +190,20 @@ case $LANG in
         lang_us=false ;;
 esac
 
+ac_cv_gnc_windows="no"
+case $host_os in
+  mingw*)
+  ac_cv_gnc_windows="yes"
+  AC_PATH_PROG([HHC], hhc.exe, [hhc_not_found], [/c/Program Files (x86)/Html Help Workshop:/c/Program Files/Html Help Workshop])
+  if test ! -x "${HHC}"; then
+     AC_MSG_ERROR([Html Help Workshop Not Found])
+  fi
+  AM_EXTRA_RECURSIVE_TARGETS([chm install-chm])
+  ;;
+  *)
+  ;;
+esac
+AM_CONDITIONAL([GNC_WINDOWS], [test x${ac_cv_gnc_windows} = "xyes"])
 AM_CONDITIONAL([LANG_US], [test x${lang_us} = "xtrue"])
 AC_CONFIG_FILES([
 gnucash-docs.spec
