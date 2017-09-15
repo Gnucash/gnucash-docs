@@ -10,7 +10,6 @@ htmlhelp_xsl="http://docbook.sourceforge.net/release/xsl/current/htmlhelp/htmlhe
 
 $(chmfile): $(entities) $(figfiles)
 $(mapfile): $(chmfile)
-	mv htmlhelp.hhmap $(mapfile)
 
 chm-local: $(chmfile) $(mapfile)
 
@@ -40,8 +39,9 @@ install-chm-local: $(chmfile) $(mapfile)
 	rm mymaps
 	"${HHC}" htmlhelp.hhp  >/dev/null  || true
 	mv htmlhelp.chm $(chmfile)
+	mv htmlhelp.hhmap $(mapfile)
 
-CLEANFILES += $(chmfile) $(mapfile) htmlhelp.hhp
+CLEANFILES += $(chmfile) $(mapfile) htmlhelp.hhp *.html toc.hhc
 # Don't try to make dist from windows, this is here only to silence an
 # error from the Italian translations.
 EXTRA_DIST = $(entities) $(docname).xml
