@@ -613,4 +613,183 @@ an empty report will be generated.</para>
 </sect3>
 </sect2>
 </sect1>
+
+<sect1 id="rpt_transaction">
+  <title>Transaction Report</title>
+  <sect2 id="rpt_TR_new">
+    <title>New in Gnucash 3.0</title>
+    <para>The Transaction Report has undergone several major upgrades, bug fixes, and new features. It aims to be the most versatile report to retrieve useful information from the financial records.</para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis>New!</emphasis> Debit and Credit subtotals are now displayed in the appropriate columns. Within a grouping section, if debit totals > credit totals, the group subtotal will be displayed in the debit column.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis>New!</emphasis> Multiple data columns enable display of foreign currency and original currency in separate columns.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis>New!</emphasis> Additional sortkeys e.g. sort by reconcile status (unreconciled -> cleared -> reconciled), sort by weekday, allow additional views into the financial records.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis>New!</emphasis> Full text filter enabled for description, notes and memo, and for account full names. This allows easier selection of source account names and tailored reporting. Filters can optionally use full POSIX regular expressions.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis>New!</emphasis> Indenting of columns will indent the report columns for easier understanding of grouping and sorting. (This is now enabled by default)</para>
+      </listitem>
+      <listitem>
+        <para><emphasis>New!</emphasis> Subtotal table is useful to understand the relationship in the data e.g. account values in time series.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis>New!</emphasis> Filter by Closing Transactions will disallow closing transactions (i.e. income &amp; expense accounts to equity) which should not routinely be included in transaction reports. (This is now enabled by default.)</para>
+      </listitem>
+      <listitem>
+        <para><emphasis>New!</emphasis> Options Summary will print a list of report options that were changed by the user. This is mainly useful to troubleshoot reports.</para>
+      </listitem>
+      <listitem>
+        <para>Bugs fixed - numerous bugs identified were fixed; e.g. sign display was fixed, correct grouping of periodic dates.</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2 id="rpt_TR_newbie">
+    <title>The Newbie Guide to the Transaction Report</title>
+    <para>The Transaction Report can be heavily customised to produce most reports appropriate for personal finance and business bookkeeping purposes. It aims to retrieve and filter information from the database, and present transactions and totals, useful for the user and the accountant.</para>
+    <para>The following newbie guide to the Transaction Report will assume the user has set up the chart of accounts according to conventional bookkeeping practice. For example, the following describes a typical household book with skeleton accounts. Further accounts will undoubtedly be necessary.</para>
+    <table>
+      <title>CHART OF ACCOUNTS</title>
+      <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+        <thead>
+          <row>
+            <entry>Account Name</entry>
+            <entry>Account Type</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>Asset</entry>
+            <entry>ASSET (placeholder)</entry>
+          </row>
+          <row>
+            <entry>Asset:Bank</entry>
+            <entry>BANK</entry>
+          </row>
+          <row>
+            <entry>Asset:Property</entry>
+            <entry>ASSET</entry>
+          </row>
+          <row>
+            <entry>Liability</entry>
+            <entry>LIABILITY (placeholder)</entry>
+          </row>
+          <row>
+            <entry>Liability:Credit Card</entry>
+            <entry>CREDIT CARD</entry>
+          </row>
+          <row>
+            <entry>Liability:Home Loan</entry>
+            <entry>LIABILITY</entry>
+          </row>
+          <row>
+            <entry>Income</entry>
+            <entry>INCOME (placeholder)</entry>
+          </row>
+          <row>
+            <entry>Income:Salary</entry>
+            <entry>INCOME</entry>
+          </row>
+          <row>
+            <entry>Income:Interest</entry>
+            <entry>INCOME</entry>
+          </row>
+          <row>
+            <entry>Expense</entry>
+            <entry>EXPENSE (placeholder)</entry>
+          </row>
+          <row>
+            <entry>Expense:Groceries</entry>
+            <entry>EXPENSE</entry>
+          </row>
+          <row>
+            <entry>Expense:Auto</entry>
+            <entry>EXPENSE</entry>
+          </row>
+          <row>
+            <entry>Expense:Medical</entry>
+            <entry>EXPENSE</entry>
+          </row>
+          <row>
+            <entry>Equity</entry>
+            <entry>EQUITY (placeholder)</entry>
+          </row>
+          <row>
+            <entry>Equity:Opening Balances</entry>
+            <entry>EQUITY</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <para>Conventionally, the oldest transaction would be equity transfers from Equity:Opening Balances to Asset and Liability Accounts. Most subsequent transactions would be transfers from Income/Expense accounts to Assets/Liability accounts (representing day-to-day activity e.g. receiving salary, paying utility bill), or transfers between assets and liability accounts (representing movements between loans and assets, e.g. paying credit card bill, receiving a loan).</para>
+    <para>The following use cases will be illustrated, and the options to be selected explained:</para>
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>How much did I spend on various expense accounts last year?</para>
+        </question>
+        <answer>
+          <para>Accounts: click Expense, and Select Children</para>
+          <para>General: Choose relative dates “Start of Previous Year” and “End of Previous Year”</para>
+          <para>Sorting: Primary Key: Accounts, Secondary Key: Date</para>
+          <para>Sorting: Primary Key Subtotal: Enabled, Secondary Key Subtotal: None </para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>How much did I spend on various expenses, grouped by month?</para>
+        </question>
+        <answer>
+          <para>As above</para>
+          <para>Sorting: Secondary Key Subtotal: Monthly</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>How much did I spend on various expenses, with monthly comparison?</para>
+        </question>
+        <answer>
+          <para>    As above</para>
+          <para>General: Subtotal Table enabled</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>I wish a list of transactions showing my income for the year 1 July 2015 to 30 June 2016, grouped by quarter</para>
+        </question>
+        <answer>
+          <para>Accounts: click Income, and Select Children</para>
+          <para>General: Choose absolute dates “01/07/2015” to “30/06/2016”</para>
+          <para>Sorting: Primary Key: Accounts, Secondary Key: Date</para>
+          <para>Sorting: Primary Key Subtotal: Enabled, Secondary Date Subtotal: Quarter</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>I wish a list of transactions showing income transactions, grouped by day of week</para>
+        </question>
+        <answer>
+          <para>As above</para>
+          <para>Sorting: Secondary Key Subtotal: Weekday</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>I wish to print my bank account or credit card transactions, reconciled first, then cleared, then unreconciled transactions</para>
+        </question>
+        <answer>
+          <para>Accounts: select the relevant bank or credit card account</para>
+          <para>General: Choose absolute dates “01/07/2015” to “30/06/2016”</para>
+          <para>Sorting: Primary Key: Reconcile Status, Secondary Key: Date</para>
+          <para>Secondary Date Subtotal: None</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </sect2>
+</sect1>
 </chapter>
