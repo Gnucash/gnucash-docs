@@ -770,8 +770,8 @@ an empty report will be generated.</para>
         <answer>
           <para>The following sequence will select all subaccounts from the
           parent Expense account, select appropriate dates, and sort by account
-          and date. This will usually be the most
-          basic transaction report format.
+          and date. This will usually be the most useful basic transaction
+          report format.
           </para>
           <orderedlist>
             <listitem><para><emphasis>Accounts</emphasis>: click Expense, and
@@ -790,9 +790,12 @@ an empty report will be generated.</para>
           <para>How much did I spend on various expenses, grouped by month?</para>
         </question>
         <answer>
-          <para>The following sequence will modify the above Transaction Report
-          options to subdivide each account into monthly groups and separately
-          produce subtotals.</para>
+          <para>The following will modify the above Transaction Report to use
+          a secondary grouping strategy. The first grouping (i.e. Primary Key =
+          Accounts, Subtotal = enabled) will group transactions from the same
+          accounts, whereas the secondary grouping (i.e. Secondary Key = Date,
+          Subtotal = Monthly) will also calculate monthly sums within each
+          account.</para>
           <orderedlist>
             <listitem><para>Select options as above</para></listitem>
             <listitem><para><emphasis>Sorting</emphasis>: Secondary Key
@@ -806,10 +809,10 @@ an empty report will be generated.</para>
           comparison?</para>
         </question>
         <answer>
-          <para>The following sequence will add a subtotal summary table in a
-          grid, which will ease comparison of accounts across date periods.
-          The subtotal summary grid displays the same subtotal calculations as
-          above, presented in a grid structure.
+          <para>The Display / Subtotal Summary Grid adds a subtotal summary
+          table, which will ease comparison of accounts across date periods.
+          This displays the same subtotal calculations as the main table,
+          presented in a grid structure.
           </para>
           <orderedlist>
             <listitem><para>As above</para></listitem>
@@ -824,7 +827,7 @@ an empty report will be generated.</para>
         <answer>
           <para>New to Gnucash 3.0, accounts and transactions can be filtered
           for reporting according to account full name (e.g. ":Business:" will
-          select account structure Income:Business:Sales Income:Business:Grants,
+          select account structure Income:Business:Sales, Income:Business:Grants,
           Expenses:Business:Rent, Expenses:Business:Utilities) or transaction
           description/notes/memo (select transactions tagged #gift or #travel).
           The filtering text may be either a standard string, or a POSIX regular
@@ -843,6 +846,15 @@ an empty report will be generated.</para>
           July 2015 to 30 June 2016, grouped by quarter</para>
         </question>
         <answer>
+          <para>Generally, the Accounts selection box will be used to specify
+          the source accounts containing transactions that require reporting.
+          Selecting Income, then "Select Children" will include all
+          subaccounts from the Income account, e.g. Income:Freelance,
+          Income:Salary, Income:Interest can all be included. Please
+          note the account list is saved between <application>&app;</application>
+          sessions. If the account structure is modified (e.g. moving
+          accounts, deleting/adding new accounts), the account selection
+          must usually be recreated.</para>
           <orderedlist>
             <listitem><para><emphasis>Accounts</emphasis>: click Income, and
             Select Children</para></listitem>
@@ -857,7 +869,7 @@ an empty report will be generated.</para>
       </qandaentry>
       <qandaentry>
         <question>
-          <para>I wish a list of transactions showing income transactions,
+          <para>I want a list of transactions showing income transactions,
           grouped by day of week</para>
         </question>
         <answer>
@@ -873,7 +885,7 @@ an empty report will be generated.</para>
       </qandaentry>
       <qandaentry>
         <question>
-          <para>I wish to print my bank account or credit card transactions,
+          <para>I want to print my bank account or credit card transactions,
           similar to the reconciliation report.</para>
         </question>
         <answer>
@@ -883,8 +895,8 @@ an empty report will be generated.</para>
           <orderedlist>
             <listitem><para><emphasis>Accounts</emphasis>: select the relevant
             bank or credit card account</para></listitem>
-            <listitem><para><emphasis>General</emphasis>: Choose absolute dates
-            “01/07/2015” to “30/06/2016”</para></listitem>
+            <listitem><para><emphasis>General</emphasis>: Choose appropriate dates
+            e.g. past 3 months</para></listitem>
             <listitem><para><emphasis>Sorting</emphasis>: Primary Key: Reconcile
             Status, Secondary Key: Date</para></listitem>
             <listitem><para><emphasis>Sorting</emphasis> Secondary Date
