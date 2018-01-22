@@ -1,10 +1,11 @@
 ﻿<!--
       (Do not remove this comment block.)
   Version: 2.6.15
-  Last modified: October 31, 2016
+  Last modified: January, 2018
   Maintainers:
                Chris Lyttle <chris@wilddev.net>
                Chris Good <chris.good@ozemail.com.au>
+               Christopher Lam
   Author:
   		Jon Lapham <lapham@extracta.com.br>
   Originally designed by Carol Champagne.
@@ -618,41 +619,67 @@ an empty report will be generated.</para>
   <title>Transaction Report</title>
   <sect2 id="rpt_TR_new">
     <title>New in Gnucash 3.0</title>
-    <para>The Transaction Report has undergone several major upgrades, bug fixes, and new features. It aims to be the most versatile report to retrieve useful information from the financial records.</para>
+    <para>The Transaction Report has undergone several major upgrades, bug
+    fixes, and new features. It aims to be the most versatile report to retrieve
+    useful information from the financial records.</para>
     <itemizedlist>
       <listitem>
-        <para><emphasis>New!</emphasis> Debit and Credit subtotals are now displayed in the appropriate columns. Within a grouping section, if debit totals > credit totals, the group subtotal will be displayed in the debit column.</para>
+        <para><emphasis>New!</emphasis> Debit and Credit subtotals are now
+        displayed in the appropriate columns. Within a grouping section, if
+        debit totals > credit totals, the group subtotal will be displayed in
+        the debit column.</para>
       </listitem>
       <listitem>
-        <para><emphasis>New!</emphasis> Multiple data columns enable display of foreign currency and original currency in separate columns.</para>
+        <para><emphasis>New!</emphasis> Multiple data columns enable display of
+        foreign currency and original currency in separate columns.</para>
       </listitem>
       <listitem>
-        <para><emphasis>New!</emphasis> Additional sortkeys e.g. sort by reconcile status (unreconciled -> cleared -> reconciled), sort by weekday, allow additional views into the financial records.</para>
+        <para><emphasis>New!</emphasis> Additional sortkeys e.g. sort by
+        reconcile status (unreconciled -> cleared -> reconciled), sort by
+        weekday, allow additional views into the financial records.</para>
       </listitem>
       <listitem>
-        <para><emphasis>New!</emphasis> Full text filter enabled for description, notes and memo, and for account full names. This allows easier selection of source account names and tailored reporting. Filters can optionally use full POSIX regular expressions.</para>
+        <para><emphasis>New!</emphasis> Full text filter enabled for
+        description, notes and memo, and for account full names. This allows
+        easier selection of source account names and tailored reporting. Filters
+        can optionally use full POSIX regular expressions.</para>
       </listitem>
       <listitem>
-        <para><emphasis>New!</emphasis> Indenting of columns will indent the report columns for easier understanding of grouping and sorting. (This is now enabled by default)</para>
+        <para><emphasis>New!</emphasis> Indenting of columns will indent the
+        report columns for easier understanding of grouping and sorting. (This
+        is now enabled by default)</para>
       </listitem>
       <listitem>
-        <para><emphasis>New!</emphasis> Subtotal table is useful to understand the relationship in the data e.g. account values in time series.</para>
+        <para><emphasis>New!</emphasis> Subtotal table is useful to understand
+        the relationship in the data e.g. account values in time series.</para>
       </listitem>
       <listitem>
-        <para><emphasis>New!</emphasis> Filter by Closing Transactions will disallow closing transactions (i.e. income &amp; expense accounts to equity) which should not routinely be included in transaction reports. (This is now enabled by default.)</para>
+        <para><emphasis>New!</emphasis> Filter by Closing Transactions will
+        disallow closing transactions (i.e. income &amp; expense accounts to
+        equity) which should not routinely be included in transaction reports.
+        (This is now enabled by default.)</para>
       </listitem>
       <listitem>
-        <para><emphasis>New!</emphasis> Options Summary will print a list of report options that were changed by the user. This is mainly useful to troubleshoot reports.</para>
+        <para><emphasis>New!</emphasis> Options Summary will print a list of
+        report options that were changed by the user. This is mainly useful to
+        troubleshoot reports.</para>
       </listitem>
       <listitem>
-        <para>Bugs fixed - numerous bugs identified were fixed; e.g. sign display was fixed, correct grouping of periodic dates.</para>
+        <para>Bugs fixed - numerous bugs identified were fixed; e.g. sign
+        display was fixed, correct grouping of periodic dates.</para>
       </listitem>
     </itemizedlist>
   </sect2>
   <sect2 id="rpt_TR_newbie">
     <title>The Newbie Guide to the Transaction Report</title>
-    <para>The Transaction Report can be heavily customised to produce most reports appropriate for personal finance and business bookkeeping purposes. It aims to retrieve and filter information from the database, and present transactions and totals, useful for the user and the accountant.</para>
-    <para>The following newbie guide to the Transaction Report will assume the user has set up the chart of accounts according to conventional bookkeeping practice. For example, the following describes a typical household book with skeleton accounts. Further accounts will undoubtedly be necessary.</para>
+    <para>The Transaction Report can be heavily customised to produce most
+    reports appropriate for personal finance and business bookkeeping purposes.
+    It aims to retrieve and filter information from the database, and present
+    transactions and totals, useful for the user and the accountant.</para>
+    <para>The following newbie guide to the Transaction Report will assume the
+    user has set up the chart of accounts according to conventional bookkeeping
+    practice. For example, the following describes a typical household book with
+    skeleton accounts. Further accounts will undoubtedly be necessary.</para>
     <table>
       <title>CHART OF ACCOUNTS</title>
       <tgroup cols='2' align='left' colsep='1' rowsep='1'>
@@ -726,23 +753,35 @@ an empty report will be generated.</para>
         </tbody>
       </tgroup>
     </table>
-    <para>Conventionally, the oldest transaction would be equity transfers from Equity:Opening Balances to Asset and Liability Accounts. Most subsequent transactions would be transfers from Income/Expense accounts to Assets/Liability accounts (representing day-to-day activity e.g. receiving salary, paying utility bill), or transfers between assets and liability accounts (representing movements between loans and assets, e.g. paying credit card bill, receiving a loan).</para>
-    <para>The following use cases will be illustrated, and the options to be selected explained:</para>
+    <para>Conventionally, the oldest transaction would be equity transfers from
+    Equity:Opening Balances to Asset and Liability Accounts. Most subsequent
+    transactions would be transfers from Income/Expense accounts to
+    Assets/Liability accounts (representing day-to-day activity e.g. receiving
+    salary, paying utility bill), or transfers between assets and liability
+    accounts (representing movements between loans and assets, e.g. paying
+    credit card bill, receiving a loan).</para>
+    <para>The following use cases will be illustrated, and the options to be
+    selected explained:</para>
     <qandaset defaultlabel='none'>
       <qandaentry>
         <question>
           <para>How much did I spend on various expense accounts last year?</para>
         </question>
         <answer>
-          <para>The following sequence will select all subaccounts from the parent Expense account,
-          select appropriate dates, and sort by account and date. This will usually be the most
+          <para>The following sequence will select all subaccounts from the
+          parent Expense account, select appropriate dates, and sort by account
+          and date. This will usually be the most
           basic transaction report format.
           </para>
           <orderedlist>
-            <listitem><para><emphasis>Accounts</emphasis>: click Expense, and Select Children</para></listitem>
-            <listitem><para><emphasis>General</emphasis>: Choose relative dates “Start of Previous Year” and “End of Previous Year”</para></listitem>
-            <listitem><para><emphasis>Sorting</emphasis>: Primary Key: Accounts, Secondary Key: Date</para></listitem>
-            <listitem><para><emphasis>Sorting</emphasis>: Primary Key Subtotal: Enabled, Secondary Key Subtotal: None </para></listitem>
+            <listitem><para><emphasis>Accounts</emphasis>: click Expense, and
+            Select Children</para></listitem>
+            <listitem><para><emphasis>General</emphasis>: Choose relative dates
+            “Start of Previous Year” and “End of Previous Year”</para></listitem>
+            <listitem><para><emphasis>Sorting</emphasis>: Primary Key: Accounts,
+            Secondary Key: Date</para></listitem>
+            <listitem><para><emphasis>Sorting</emphasis>: Primary Key Subtotal:
+            Enabled, Secondary Key Subtotal: None </para></listitem>
           </orderedlist>
         </answer>
       </qandaentry>
@@ -751,22 +790,26 @@ an empty report will be generated.</para>
           <para>How much did I spend on various expenses, grouped by month?</para>
         </question>
         <answer>
-          <para>The following sequence will modify the above Transaction Report options
-          to subdivide each account into monthly groups and separately produce subtotals.</para>
+          <para>The following sequence will modify the above Transaction Report
+          options to subdivide each account into monthly groups and separately
+          produce subtotals.</para>
           <orderedlist>
             <listitem><para>Select options as above</para></listitem>
-            <listitem><para><emphasis>Sorting</emphasis>: Secondary Key Subtotal: Monthly</para></listitem>
+            <listitem><para><emphasis>Sorting</emphasis>: Secondary Key
+            Subtotal: Monthly</para></listitem>
           </orderedlist>
         </answer>
       </qandaentry>
       <qandaentry>
         <question>
-          <para>How much did I spend on various expenses, with monthly comparison?</para>
+          <para>How much did I spend on various expenses, with monthly
+          comparison?</para>
         </question>
         <answer>
-          <para>The following sequence will add a subtotal summary table in a grid, which
-          will ease comparison of accounts across date periods. The subtotal summary grid
-          displays the same subtotal calculations as above, presented in a grid structure.
+          <para>The following sequence will add a subtotal summary table in a
+          grid, which will ease comparison of accounts across date periods.
+          The subtotal summary grid displays the same subtotal calculations as
+          above, presented in a grid structure.
           </para>
           <orderedlist>
             <listitem><para>As above</para></listitem>
@@ -779,57 +822,73 @@ an empty report will be generated.</para>
           <para>Can I select tagged accounts or transactions for reporting?</para>
         </question>
         <answer>
-          <para>New to Gnucash 3.0, accounts and transactions can be filtered for reporting according
-          to account full name (e.g. ":Business:" will select account structure Income:Business:Sales
-          Income:Business:Grants, Expenses:Business:Rent, Expenses:Business:Utilities) or transaction
-          description/notes/memo (select transactions tagged #gift or #travel). The filtering text
-          may be either a standard string, or a POSIX regular expression matcher.
+          <para>New to Gnucash 3.0, accounts and transactions can be filtered
+          for reporting according to account full name (e.g. ":Business:" will
+          select account structure Income:Business:Sales Income:Business:Grants,
+          Expenses:Business:Rent, Expenses:Business:Utilities) or transaction
+          description/notes/memo (select transactions tagged #gift or #travel).
+          The filtering text may be either a standard string, or a POSIX regular
+          expression.
           </para>
           <orderedlist>
-            <listitem><para><emphasis>Filter</emphasis>: Select either Account Name Filter, or
-            Transaction Filter. Optionally toggle the regular expression check boxes to toggle
-            full POSIX regex matching.</para></listitem>
+            <listitem><para><emphasis>Filter</emphasis>: Select either Account
+            Name Filter, or Transaction Filter. Optionally toggle the regular
+            expression check boxes to toggle full POSIX regex matching.</para></listitem>
           </orderedlist>
         </answer>
       </qandaentry>
       <qandaentry>
         <question>
-          <para>I wish a list of transactions showing my income for the year 1 July 2015 to 30 June 2016, grouped by quarter</para>
+          <para>I want a list of transactions showing my income for the year 1
+          July 2015 to 30 June 2016, grouped by quarter</para>
         </question>
         <answer>
           <orderedlist>
-            <listitem><para><emphasis>Accounts</emphasis>: click Income, and Select Children</para></listitem>
-            <listitem><para><emphasis>General</emphasis>: Choose absolute dates “01/07/2015” to “30/06/2016”</para></listitem>
-            <listitem><para><emphasis>Sorting</emphasis>: Primary Key: Accounts, Secondary Key: Date</para></listitem>
-            <listitem><para><emphasis>Sorting</emphasis>: Primary Key Subtotal: Enabled, Secondary Date Subtotal: Quarter</para></listitem>
+            <listitem><para><emphasis>Accounts</emphasis>: click Income, and
+            Select Children</para></listitem>
+            <listitem><para><emphasis>General</emphasis>: Choose absolute dates
+            “01/07/2015” to “30/06/2016”</para></listitem>
+            <listitem><para><emphasis>Sorting</emphasis>: Primary Key: Accounts,
+            Secondary Key: Date</para></listitem>
+            <listitem><para><emphasis>Sorting</emphasis>: Primary Key Subtotal:
+            Enabled, Secondary Date Subtotal: Quarter</para></listitem>
           </orderedlist>
         </answer>
       </qandaentry>
       <qandaentry>
         <question>
-          <para>I wish a list of transactions showing income transactions, grouped by day of week</para>
+          <para>I wish a list of transactions showing income transactions,
+          grouped by day of week</para>
         </question>
         <answer>
-          <para>This report may be pertinent to businesses operating with variable daily income, e.g. food industry.
-          The weekday sortkey will allow subtotal comparisons according to day of week.</para>
+          <para>This report may be pertinent to businesses operating with
+          variable daily income, e.g. food industry. The weekday sortkey will
+          allow subtotal comparisons according to day of week.</para>
           <orderedlist>
             <listitem><para>As above</para></listitem>
-            <listitem><para><emphasis>Sorting</emphasis>: Secondary Key Subtotal: Weekday</para></listitem>
+            <listitem><para><emphasis>Sorting</emphasis>: Secondary Key
+            Subtotal: Weekday</para></listitem>
           </orderedlist>
         </answer>
       </qandaentry>
       <qandaentry>
         <question>
-          <para>I wish to print my bank account or credit card transactions, similar to the reconciliation report.</para>
+          <para>I wish to print my bank account or credit card transactions,
+          similar to the reconciliation report.</para>
         </question>
         <answer>
-          <para>This sortkey 'reconcile status' will separate reconciled, cleared and unreconciled transactions.
-          This report may be useful in producing a printable reconciliation report.</para>
+          <para>This sortkey 'reconcile status' will separate reconciled,
+          cleared and unreconciled transactions. This report may be useful in
+          producing a printable reconciliation report.</para>
           <orderedlist>
-            <listitem><para><emphasis>Accounts</emphasis>: select the relevant bank or credit card account</para></listitem>
-            <listitem><para><emphasis>General</emphasis>: Choose absolute dates “01/07/2015” to “30/06/2016”</para></listitem>
-            <listitem><para><emphasis>Sorting</emphasis>: Primary Key: Reconcile Status, Secondary Key: Date</para></listitem>
-            <listitem><para><emphasis>Sorting</emphasis> Secondary Date Subtotal: None</para></listitem>
+            <listitem><para><emphasis>Accounts</emphasis>: select the relevant
+            bank or credit card account</para></listitem>
+            <listitem><para><emphasis>General</emphasis>: Choose absolute dates
+            “01/07/2015” to “30/06/2016”</para></listitem>
+            <listitem><para><emphasis>Sorting</emphasis>: Primary Key: Reconcile
+            Status, Secondary Key: Date</para></listitem>
+            <listitem><para><emphasis>Sorting</emphasis> Secondary Date
+            Subtotal: None</para></listitem>
           </orderedlist>
         </answer>
       </qandaentry>
