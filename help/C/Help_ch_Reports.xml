@@ -424,18 +424,6 @@
                    </informaltable>
                  </listitem>
 
-                 <listitem><para><guilabel>Void Transactions:</guilabel> One of</para>
-                   <informaltable>
-                     <tgroup cols="2">
-                       <tbody>
-                         <row><entry>Non-void only</entry><entry>Show only non-voided transactions</entry></row>
-                         <row><entry>Void only</entry><entry>Show only voided transactions</entry></row>
-                         <row><entry>Both</entry><entry>Show both and include voided transactions in totals</entry></row>
-                       </tbody>
-                     </tgroup>
-                   </informaltable>
-                 </listitem>
-
                  <listitem><para><guilabel>Reset defaults button:</guilabel> Reset all values to their defaults</para>
                  </listitem>
                </itemizedlist>
@@ -445,15 +433,23 @@
              <listitem><para><emphasis>Display tab</emphasis></para>
 
                <itemizedlist>
-                 <listitem><para><guilabel>Date</guilabel></para></listitem>
-                 <listitem><para><guilabel>Reconciled Date</guilabel></para></listitem>
-                 <listitem><para><guilabel>Num</guilabel></para></listitem>
-                 <listitem><para><guilabel>Description</guilabel></para></listitem>
-                 <listitem><para><guilabel>Memo</guilabel></para></listitem>
+                 <listitem><para><guilabel>Date</guilabel> refers to the 'posted date' i.e.
+                 effective date of a transaction.</para></listitem>
+                 <listitem><para><guilabel>Reconciled Date</guilabel> refers to the 'date of
+                 reconciliation' of a transaction.</para></listitem>
+                 <listitem><para><guilabel>Num</guilabel> is commonly used for check
+                 numbers.</para></listitem>
+                 <listitem><para><guilabel>Description</guilabel> is a description of the transaction
+                 </para></listitem>
+                 <listitem><para><guilabel>Memo</guilabel> is the memo field of a transaction. This
+                 can be used as a secondary description of a transaction.</para></listitem>
                  <listitem><para><guilabel>Notes:</guilabel> Display the notes if the memo is unavailable</para></listitem>
-                 <listitem><para><guilabel>Account Name</guilabel></para></listitem>
-                 <listitem><para><guilabel>Use Full Account Name</guilabel></para></listitem>
-                 <listitem><para><guilabel>Account Code</guilabel></para></listitem>
+                 <listitem><para><guilabel>Account Name</guilabel> will print the account name
+                 containing the transaction.</para></listitem>
+                 <listitem><para><guilabel>Use Full Account Name</guilabel> if the account name is
+                 enabled, this option will display the full account name hierarchy.</para></listitem>
+                 <listitem><para><guilabel>Account Code</guilabel> this refers to the 'account code'
+                 related to the account.</para></listitem>
                  <listitem><para><guilabel>Detail Level</guilabel>&mdash; One of</para>
                    <informaltable>
                      <tgroup cols="2">
@@ -476,7 +472,8 @@
 
                  <listitem><para><guilabel>Other Account Name:</guilabel> For multi-split transactions, this parameter should be unticked. See below for more details.</para>
                  </listitem>
-                 <listitem><para><guilabel>Use Full Other Account Name</guilabel></para></listitem>
+                 <listitem><para><guilabel>Use Full Other Account Name</guilabel> will enable
+                 display of full corresponding account name.</para></listitem>
                  <listitem><para><guilabel>Other Account Code</guilabel></para></listitem>
                  <listitem><para><guilabel>Shares:</guilabel> Display number of shares</para></listitem>
                  <listitem><para><guilabel>Price:</guilabel> Display share prices</para></listitem>
@@ -493,13 +490,16 @@
                    </informaltable>
                  </listitem>
 
-                 <listitem><para><guilabel>Running Balance</guilabel></para></listitem>
-                 <listitem><para><guilabel>Totals</guilabel></para></listitem>
+                 <listitem><para><guilabel>Running Balance</guilabel> refers to the running balance
+                 of the account holding the transaction.</para></listitem>
+                 <listitem><para><guilabel>Totals</guilabel> will add a 'Grand Total' line
+                 adding all transactions in the report.</para></listitem>
 
                  <listitem><para><guilabel>Sign Reverses:</guilabel> One of</para>
                    <informaltable>
                      <tgroup cols="2">
                        <tbody>
+                         <row><entry>Global Preference</entry><entry>Use reversing option specified in global preference.</entry></row>
                          <row><entry>None</entry><entry>Do not display signs reversed</entry></row>
                          <row><entry>Credit Accounts</entry><entry>Reverse amount display for Liability, Payable, Equity, Credit Card and Income accounts</entry></row>
                          <row><entry>Income and Expense</entry><entry>Reverse amount display for Income and Expense accounts</entry></row>
@@ -508,10 +508,46 @@
                    </informaltable>
                  </listitem>
 
-                 <listitem><para><guilabel>Reset defaults button	Reset all values to their defaults</guilabel></para></listitem>
+                 <listitem><para><guilabel>Reset defaults button</guilabel> Reset all values to their defaults</para></listitem>
                </itemizedlist>
              </listitem>
 
+             <listitem><para><emphasis>Filter tab</emphasis></para>
+             <itemizedlist>
+               <listitem><para><guilabel>Account Name Filter</guilabel> will include only selected accounts
+               containing the substring. Alternatively, if the next option is checked, the account name
+               filter will be matched according to full POSIX regular expressions.</para></listitem>
+               <listitem><para><guilabel>Use regular expressions for account name filter</guilabel></para></listitem>
+               <listitem><para><guilabel>Transaction Filter</guilabel> will include only transactions
+               which contain this substring in the description, notes, or memo. Alternatively if the
+               next option is checked, the filter will be matched using full POSIX regular expressions.</para></listitem>
+               <listitem><para><guilabel>Use regular expressions for transaction filter</guilabel></para></listitem>
+               <listitem><para><guilabel>Reconcile Status</guilabel></para>
+               <informaltable>
+                 <tgroup cols="2">
+                   <tbody>
+                     <row><entry>All</entry><entry>Show all transactions</entry></row>
+                     <row><entry>Unreconciled</entry><entry>Unreconciled only</entry></row>
+                     <row><entry>Cleared</entry><entry>Cleared only</entry></row>
+                     <row><entry>Reconciled</entry><entry>Reconciled only</entry></row>
+                   </tbody>
+                 </tgroup>
+               </informaltable>
+               </listitem>
+               <listitem><para><guilabel>Void Transactions:</guilabel> One of</para>
+               <informaltable>
+                 <tgroup cols="2">
+                   <tbody>
+                     <row><entry>Non-void only</entry><entry>Show only non-voided transactions</entry></row>
+                     <row><entry>Void only</entry><entry>Show only voided transactions</entry></row>
+                     <row><entry>Both</entry><entry>Show both and include voided transactions in totals</entry></row>
+                   </tbody>
+                 </tgroup>
+               </informaltable>
+               </listitem>
+             </itemizedlist>
+             </listitem>
+             
              <listitem><para><emphasis>General tab</emphasis></para>
                <itemizedlist>
                  <listitem><para><guilabel>Report name:</guilabel> Enter a descriptive name for this report</para></listitem>
@@ -537,7 +573,8 @@
                  </listitem>
 
                  <listitem><para><guilabel>End Date:</guilabel> Enter or select a specific End Date,</para>
-                   <para>or	select one of the following named end date options which will be used to determine the end date each time the report is run
+                 <para>or select one of the following named end date options which will be used to
+                 determine the end date each time the report is run
                    </para>
                    <informaltable>
                      <tgroup cols="2">
@@ -571,12 +608,17 @@
 
                  <listitem><para><guilabel>Common Currency:</guilabel> Convert all transactions into a common currency</para></listitem>
                  <listitem><para><guilabel>Report's currency:</guilabel> Select the currency to display values</para></listitem>
+                 <listitem><para><guilabel>Show original currency amount</guilabel> Also show original currency amounts</para></listitem>
                  <listitem><para><guilabel>Table for Exporting:</guilabel> Formats the table for cut &amp; paste exporting with extra cells</para></listitem>
+                 <listitem><para><guilabel>Add options summary:</guilabel> Adds an informative text
+                 describing options that were changed by user. This is mainly useful for
+                 troubleshooting reports.</para></listitem>
                  <listitem><para><guilabel>Reset defaults button:</guilabel> Reset all values to their defaults</para></listitem>
                </itemizedlist>
              </listitem>
 
-             <listitem><para><emphasis>Sorting tab</emphasis></para>
+               
+               <listitem><para><emphasis>Sorting tab</emphasis></para>
                <itemizedlist>
 
                  <listitem><para><guilabel>Primary Key:</guilabel> Primary Sort Key. One of</para>
@@ -601,8 +643,6 @@
                    </informaltable>
                  </listitem>
 
-                 <listitem><para><guilabel>Show Full Account Name:</guilabel> Show the full account name for subtotals and subtitles</para></listitem>
-                 <listitem><para><guilabel>Show Account Code:</guilabel> Show the account code for subtotals and subtitles</para></listitem>
                  <listitem><para><guilabel>Primary Subtotal:</guilabel> Subtotal according to the primary key</para></listitem>
                  <listitem><para><guilabel>Primary Subtotal for Date Key:</guilabel> Do a date subtotal. Only configurable if primary key is date, exact time or register order.
                    One of None, weekly, monthly, quarterly or yearly</para>
@@ -635,7 +675,15 @@
                      </tgroup>
                    </informaltable>
                  </listitem>
-
+                 <listitem><para><guilabel>Show Full Account Name:</guilabel> Show the full account name for subtotals and subtitles</para></listitem>
+                 <listitem><para><guilabel>Show Account Code:</guilabel> Show the account code for subtotals and subtitles</para></listitem>
+                 <listitem><para><guilabel>Show Account Description:</guilabel> Show the account description for subtitles</para></listitem>
+                 <listitem><para><guilabel>Show Informal Debit/Credit Headers:</guilabel> Show informal names for debit/credit
+                 in the report. This requires that subtotal is enabled, and the primary or sortkey is account or account code.</para></listitem>
+                 <listitem><para><guilabel>Add indenting columns:</guilabel> Add columns to align transactions within the same
+                 grouping together, and can be useful to highlight groups.</para></listitem>
+                 <listitem><para><guilabel>Show subtotals only (hide transactional data):</guilabel> Will hide transactions.
+                 This may be useful for reports whereby only subtotals are required.</para></listitem>
                  <listitem><para><guilabel>Reset defaults button:</guilabel> Reset all values to their defaults</para></listitem>
                </itemizedlist>
              </listitem>
