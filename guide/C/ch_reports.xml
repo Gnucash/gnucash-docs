@@ -82,21 +82,24 @@ Configuration.</para>
   <sect2 id="rpt_txnrept">
     <title>Transaction Report</title>
     <para>The Transaction Report is a fundamental report that allows
-    users to retrieve a wide variety of useful information from the
-    financial records. The report includes many features that allow
-    powerful and flexible reporting from the single basic report.</para>
+      users to retrieve a wide variety of useful information from the
+      financial records. The report includes many features that allow
+      powerful and flexible reporting from the single basic
+      report.</para>
     <itemizedlist>
-      <listitem><para>Debit and Credit subtotals can be displayed, and
-      within a grouping section, if debit totals > credit totals, the
-      group subtotal will be displayed in the debit column.</para>
-      </listitem>
       <listitem>
-        <para>Multiple data columns enable display of foreign currency
-        and original currency in separate columns.</para>
+        <para>Debit and Credit subtotals can be displayed, and within
+        a grouping section, if debit totals > credit totals, the group
+        subtotal will be displayed in the debit column.</para>
+        </listitem>
+      <listitem>
+        <para>Multiple data columns enable display of transaction
+        amounts in report currency and original currency in separate
+        columns.</para>
       </listitem>
       <listitem>
         <para>Additional sortkeys e.g. sort by reconcile status
-        (unreconciled -> cleared -> reconciled), sort by weekday, allow
+        (unreconciled -> cleared -> reconciled), sort by weeks, allow
         additional views into the financial records.</para>
       </listitem>
       <listitem>
@@ -107,18 +110,15 @@ Configuration.</para>
       </listitem>
       <listitem>
         <para>Indenting of columns will indent the report columns for
-        easier understanding of grouping and sorting. (This
-        is now enabled by default)</para>
+        easier understanding of grouping and sorting. (This is now
+        enabled by default)</para>
       </listitem>
       <listitem>
         <para>Subtotal table is useful to understand the relationship
-        in the data e.g. account values in time series.</para>
-      </listitem>
-      <listitem>
-        <para>Filter by Closing Transactions will disallow closing
-        transactions (i.e. income &amp; expense accounts to
-        equity) which should not routinely be included in transaction reports.
-        (This is now enabled by default.)</para>
+        in the data. This feature compiles the primary and secondary
+        subtotals into a table view, allowing additional insight into
+        financial records, e.g. account subtotals in different time
+        series.</para>
       </listitem>
     </itemizedlist>
     <para>For further ideas on how to use the Transaction Report to produce
@@ -755,29 +755,38 @@ an empty report will be generated.</para>
       basic transaction report format. To create this report:
       </para>
       <orderedlist>
-        <listitem><para>Open the report options, from the
-        <emphasis>Accounts</emphasis> tab, click the Expense
-        placeholder account and <emphasis>Select Children</emphasis>.</para></listitem>
-        <listitem><para>From the <emphasis>General</emphasis> tab,
-        Choose relative dates “Start of Previous Year” and “End of
-        Previous Year”.</para></listitem>
-        <listitem><para>From the <emphasis>Sorting</emphasis> tab,
-        set <emphasis>Primary Key</emphasis> to Accounts, and enable
-        <emphasis>Primary Key Subtotal</emphasis>.
-        </para></listitem>
-        <listitem><para>Set the <emphasis>Secondary Key</emphasis> to
-        Date, and set the <emphasis>Secondary Key Subtotal</emphasis>
-        to None. </para></listitem>
+        <listitem>
+          <para>Open the report options, from the
+          <emphasis>Accounts</emphasis> tab, click the Expense
+          placeholder account and <emphasis>Select
+          Children</emphasis>.</para>
+        </listitem>
+        <listitem>
+          <para>From the <emphasis>General</emphasis> tab, Choose
+          relative dates “Start of Previous Year” and “End of Previous
+          Year”.</para>
+        </listitem>
+        <listitem>
+          <para>From the <emphasis>Sorting</emphasis> tab, set
+          <emphasis>Primary Key</emphasis> to Accounts, and enable
+          <emphasis>Primary Key Subtotal</emphasis>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Set the <emphasis>Secondary Key</emphasis> to Date,
+          and set the <emphasis>Secondary Key Subtotal</emphasis> to
+          None. </para>
+        </listitem>
       </orderedlist>
     </sect3>
     <sect3>
       <title>Secondary level grouping</title>
-      <para>The following will modify the above Transaction Report to use
-      a secondary grouping strategy. The first grouping (i.e. Primary Key =
-      Accounts, Subtotal = enabled) will group transactions from the same
-      accounts, whereas the secondary grouping (i.e. Secondary Key = Date,
-      Subtotal = Monthly) will also calculate monthly sums within each
-      account.</para>
+      <para>The following will modify the above Transaction Report to
+      use a secondary grouping strategy. The first grouping
+      (i.e. Primary Key = Accounts, Subtotal = enabled) will group
+      transactions from the same accounts, whereas the secondary
+      grouping (i.e. Secondary Key = Date, Subtotal = Monthly) will
+      also calculate monthly sums within each account.</para>
       <orderedlist>
         <listitem><para>Select options as above</para></listitem>
         <listitem><para>From the <emphasis>Sorting</emphasis> tab,
@@ -787,15 +796,15 @@ an empty report will be generated.</para>
     </sect3>
     <sect3>
       <title>Using secondary grouping for periodic comparison</title>
-      <para>The Display / Subtotal Summary Grid adds a subtotal summary
-      table, which will ease comparison of accounts across date periods.
-      This displays the same subtotal calculations as the main table,
-      presented in a grid structure.
+      <para>The Display / Subtotal Table adds a subtotal summary
+      table, which will ease comparison of accounts across date
+      periods.  This displays the same subtotal calculations as the
+      main table, presented in a grid structure.
       </para>
       <orderedlist>
         <listitem><para>Select options as above</para></listitem>
         <listitem><para>From the <emphasis>Display</emphasis> tab,
-        enable the <emphasis>Subtotal Summary Grid</emphasis>.</para>
+        enable the <emphasis>Subtotal Table</emphasis>.</para>
         </listitem>
       </orderedlist>
     </sect3>
@@ -819,24 +828,6 @@ an empty report will be generated.</para>
         #gift or #travel. They can be complicated and are best learned
         from external guides.</para>
         </listitem>
-      </orderedlist>
-    </sect3>
-    <sect3>
-      <title>I want a list of transactions showing income transactions,
-      grouped by day of week</title>
-      <para>This report may be pertinent to businesses operating with
-      variable daily income, e.g. food industry. The weekday sortkey will
-      allow subtotal comparisons according to day of week.</para>
-      <orderedlist>
-        <listitem><para>From the <emphasis>Accounts</emphasis> tab,
-        click Income, and Select Children</para></listitem>
-        <listitem><para>From <emphasis>General</emphasis> tab,
-        choose appropriate dates.</para></listitem>
-        <listitem><para>From the <emphasis>Sorting</emphasis> tab,
-        set <emphasis>Primary Key</emphasis> to Accounts, and
-        <emphasis>Secondary Key</emphasis> to Date</para></listitem>
-        <listitem><para>From the <emphasis>Sorting</emphasis> tab,
-        set <emphasis>Secondary Key Subtotal</emphasis> to Weekday</para></listitem>
       </orderedlist>
     </sect3>
     <sect3>
