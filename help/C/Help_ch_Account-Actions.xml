@@ -291,7 +291,7 @@
           </listitem>
 
           <listitem>
-            <para>If on-line updating of the commodity price is needed.</para>
+            <para>If online updating of the commodity price is needed.</para>
           </listitem>
         </itemizedlist>
 
@@ -423,9 +423,9 @@
            </note>
            </para>
 
-       <sect3 id="Online-price-setup"><title>Steps to enable On-line price updating</title>
+       <sect3 id="Online-price-setup"><title>Steps to enable Online price updating</title>
 
-           <itemizedlist>
+           <orderedlist>
             <listitem><para><application>&app;</application> relies on an external tool to retrieve online quotes. This
               tool is a Perl module named <quote>Finance::Quote</quote> and has to be installed
               on your computer independently from <application>&app;</application>. The first step in enabling online price
@@ -441,14 +441,14 @@
             the various supported systems, you can follow these guidelines:</para>
 
             <itemizedlist>
-             <listitem><para><guilabel>Linux:</guilabel> Most linux distributions (like
+             <listitem><para><systemitem class="osname">Linux</systemitem>: Most linux distributions (like
               Fedora, openSuse, Mandriva, Ubuntu, and so on) have a package in their software
               repositories for the <application>Finance::Quote</application> perl module. So in most cases, you can
               simply use your preferred package manager (yum, apt, rpm, synaptics, yast,...)
               to install the module. The name of the package may vary from one distribution to
               another. It&rsquo;s often called something like <quote>perl-Finance-Quote</quote>.</para></listitem>
 
-             <listitem><para><guilabel>Windows:</guilabel> <application>Finance::Quote</application> on Windows requires perl
+             <listitem><para><systemitem class="osname">Windows</systemitem>: <application>Finance::Quote</application> on Windows requires perl
               to be installed already. If you haven&rsquo;t done so, you should first install ActivePerl, or more recently,
               Strawberry Perl.</para>
 
@@ -456,7 +456,7 @@
               install <application>Finance::Quote</application> for you. You can find it in the Start Menu under the <application>&app;</application>
               group and is called <quote>Install Online Price Retrieval</quote>.</para></listitem>
 
-             <listitem><para><guilabel>Mac OS X:</guilabel> If you have installed <application>&app;</application>
+             <listitem><para><systemitem class="osname">Mac OS X</systemitem>: If you have installed <application>&app;</application>
               from the installer found on the <application>&app;</application> home page, <application>Finance::Quote</application> is already
               installed for you.</para></listitem>
 
@@ -468,9 +468,9 @@
                <listitem><para>Locate the folder where <application>&app;</application> is installed by searching for <quote>gnc-fq-update</quote>
                 (without the quotes).</para></listitem>
 
-               <listitem><para>Change to that directory, open a root shell and run the command <quote>gnc-fq-update</quote>
-                (without the quotation marks). This will launch a Perl CPAN update session that will go out onto the
-                Internet and install the <application>Finance::Quote</application> module on your system. The gnc-fq-update program is interactive,
+               <listitem><para>Change to that directory, open a root shell and run the command <command>gnc-fq-update</command>.
+                This will launch a Perl CPAN update session that will go out onto the
+                Internet and install the <application>Finance::Quote</application> module and its dependencies on your system. The gnc-fq-update program is interactive,
                 however, with most systems you should be able to answer <quote>no</quote> to the first question:
                 <quote>Are you ready for manual configuration? [yes]</quote> and the update will continue automatically
                 from that point.</para>
@@ -480,7 +480,7 @@
              </listitem>
             </itemizedlist>
 
-             <para>After installation is complete, you should run the <quote>gnc-fq-dump</quote> test program, in the
+             <para>After installation is complete, you should run the <quote>gnc-fq-check</quote> test program, in the
               same directory, distributed with <application>&app;</application> to test if <application>Finance::Quote</application> is installed and working properly.</para>
 
              <note>
@@ -504,7 +504,7 @@
             <listitem>
               <para>Create the mutual fund or stock with either the <guilabel>Security Editor</guilabel> for existing stock/funds or the
                <guilabel>New Security/Currency</guilabel> dialog for a new stock/fund.</para>
-              <para>Select <guilabel>Get On-line Quotes:</guilabel>, <guilabel>Type of Quote Source</guilabel> and
+              <para>Select <guilabel>Get Online Quotes</guilabel>, <guilabel>Type of Quote Source</guilabel> and
               <guilabel>Timezone.</guilabel></para>
 
               <para>Online currency quotes require that the check-box for Online quotes and the timezone be
@@ -513,8 +513,8 @@
 
           <itemizedlist>
             <listitem>
-              <para><guilabel>Get On-line Quotes:</guilabel> This check-box is to enable this security/fund to
-               have quotes downloaded from an on-line source.</para>
+              <para><guilabel>Get Online Quotes</guilabel> This check-box is to enable this security/fund to
+               have quotes downloaded from an online source.</para>
             </listitem>
 
             <listitem>
@@ -524,9 +524,7 @@
                information from the specified source.</para>
 
                <para>After selecting the type of source for price quotes, select a quote source from the pull-down menu.
-               Currently among the supported quote sources are; Yahoo, Yahoo Europe, Fidelity
-               Investments, T. Rowe Price, the Vanguard Group, the Australian Stock Exchange
-               (ASX) and TIAA-CREF.</para>
+               For details on currently supported sources see <xref linkend="fq-sources"></xref>.</para>
 
                <note><para>Note that Yahoo will provide price quotes for many mutual
                funds including Fidelity, T.Rowe Price and Vanguard, and that the quoted prices
@@ -544,7 +542,7 @@
 
             <listitem>
               <para><guilabel>Timezone for these quotes:</guilabel> Select the timezone for the source of the
-               on-line quotes you are receiving. For example, Yahoo normally quotes Eastern
+               online quotes you are receiving. For example, Yahoo normally quotes Eastern
                timezone, so choose America/New York if you use that quote source.</para>
             </listitem>
           </itemizedlist>
@@ -562,7 +560,7 @@
             <listitem>
               <para>Check the latest price for the selected security.</para>
             </listitem>
-          </itemizedlist>
+          </orderedlist>
 
           <para>If you wish to update price quotes from the command line, you can do so by
            the following command:</para>
@@ -845,7 +843,7 @@
         <para>The <emphasis>Summary Bar</emphasis> at the bottom of the Account Register Window indicates the amounts
          of <guilabel>Present</guilabel> (Balance), <guilabel>Future</guilabel> (Balance), <guilabel>Cleared</guilabel>
          (Transactions), <guilabel>Reconciled</guilabel> (Transactions) and
-         <guilabel>Projected Minimum</guilabel>. On-line account information can be used to
+         <guilabel>Projected Minimum</guilabel>. Online account information can be used to
          mark which transactions the bank has processed by changing the <guilabel>R</guilabel> (reconciliation status)
          column in the register from <guilabel>n</guilabel> (new) to <guilabel>c</guilabel> (cleared). The bank statement is then used
          with the <guilabel>Reconcile</guilabel> window to reconcile the account which changes the <guilabel>R</guilabel> field to
