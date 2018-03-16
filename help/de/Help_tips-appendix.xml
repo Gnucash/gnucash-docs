@@ -1,17 +1,16 @@
 <!--
       (Do not remove this comment block.)
-  Version: 2.6.13
-   Last modified: August 08th 2016 (reflect updates by F::Q 1.38)
-        modified: April 11th 2013 (reflect bugfixes by F::Q 1.18)
+  Version: 2.6.20
+   Last modified: see <releaseinfo>
         modified: September 21th 2012
-        modified: March 15th 2007 
-        modified: August 12th 2006 
+        modified: March 15th 2007
+        modified: August 12th 2006
         modified: February 28th 2005
 
    Maintainers:
-                Frank H. Ellenberger <frank.h.ellenberger@gmail.com> 
-	  Previous: Chris Lyttle <chris@wilddev.net> 
-	  			Neil Williams <linux@codehelp.co.uk> 
+                Frank H. Ellenberger <frank.h.ellenberger@gmail.com> 2013-18
+	  Previous: Chris Lyttle <chris@wilddev.net>
+	  			Neil Williams <linux@codehelp.co.uk>
 
    Author:
                 Chris Lyttle <chris@wilddev.net>
@@ -23,7 +22,8 @@
 <appendix id="tips">
 	<appendixinfo>
 		<releaseinfo>
-			&app; Version 2.6.11 + Finance::Quote Version 1.38, February 2016
+			&app; Version 2.6.20 + Finance::Quote Version 1.47, March 2018
+            <!-- Version 2.6.11 + Finance::Quote Version 1.38, February 2016, FEll -->
 			<!-- Version 2.4.11 + Finance::Quote Version 1.18, April 2013, FEll -->
 			<!-- Version 1.0, December 2006 -->
 		</releaseinfo>
@@ -39,7 +39,7 @@
 		</para>
 	</abstract>
 
-	<sect1>
+	<sect1 id="fq-sources">
 		<title>Die Datenquellen in Finance::Quote</title>
 		<para>Es gibt drei Arten von Quellen. Dabei ist die erste - Währung - fest implementiert
 			und dafür zuständig, die Wechselkurse der von der ISO registrierten Währungen abzurufen.
@@ -68,7 +68,7 @@
 						</row>
 					</thead>
 
-					<tbody>
+					<tbody valign='middle'>
 						<row>
 							<entry>
 								<para>Währung</para>
@@ -77,8 +77,9 @@
 								<para>currency</para>
 							</entry>
 							<entry>
-								<para> In 2012 wurde die Website verändert.
-									Daher ist es erforderlich F::Q auf Version 1.18 zu aktualisieren. 
+								<para>Ende 2017 wurde der Anbieter ausgewechselt.
+									Aktualisieren Sie daher F::Q auf Version 1.47
+									und folgen Sie den Anweisungen bei Alphavantage unten. 
 								</para>
 							</entry>
 						</row>
@@ -104,12 +105,44 @@
 								<para>Finance::Quote Name</para>
 							</entry>
 							<entry>
-								<para>Anmerkungen</para>
+								<para>URL, Anmerkungen</para>
 							</entry>
 						</row>
 					</thead>
 
-					<tbody>
+					<tbody valign='middle'>
+                        <row>
+                            <entry>
+                                <para>Alphavantage, US</para>
+                            </entry>
+                            <entry>
+                                <para>alphavantage</para>
+                            </entry>
+                            <entry>
+                                <para>Sie müssen
+                                    <orderedlist spacing="compact">
+                                        <listitem><para>sich auf <ulink url="https://www.alphavantage.co" /> registrieren und</para></listitem>
+                                        <listitem><para>Ihren dort erhaltenen Schlüssel in 
+                                          <!-- Fixme: unwritten: <link linkend="prefs-online-quotes"> /-->
+                                            <menuchoice>
+                                              <guimenu><accel>B</accel>earbeiten</guimenu>
+                                              <guimenuitem><accel>E</accel>instellungen</guimenuitem>
+                                              <guilabel>Online Kurse</guilabel>
+                                            </menuchoice>
+                                          <!-- Fixme: unwritten: </link> /--> eingeben.</para>
+                                        </listitem>
+                                        <listitem><para>Um ihn auch mit <command>gnc-fq-<replaceable>*</replaceable></command>
+                                           Befehlen zu verwenden, müssen Sie ihn auch in einer <emphasis>Umgebungsvariable</emphasis> <envar>ALPHAVANTAGE_API_KEY</envar> setzen.
+                                           Ziehen Sie dazu die Dokumentation Ihres Betriebssystems oder Befehlszeieninterpreters zu Rate.
+                                            <example><title>Umgebungsvariable in <filename>.bashrc</filename></title>
+                                              <screen>export ALPHAVANTAGE_API_KEY=<replaceable>##############</replaceable></screen>
+                                            </example>
+                                          </para>
+                                        </listitem>
+                                    </orderedlist>
+                                 </para>
+                            </entry>
+                        </row>
 						<row>
 							<entry>
 								<para>Amsterdam Euronext eXchange, NL</para>
@@ -118,8 +151,8 @@
 								<para>aex</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.aex.nl" /></para>
-								<para>einschließlich Futures und Optionen</para>
+								<para><ulink url="https://www.aex.nl" /></para>
+								<para>inclusive der früheren Quellen AEX-<quote>Futures</quote> und -<quote>Options</quote></para>
 							</entry>
 						</row>
 						<row>
@@ -130,7 +163,7 @@
 								<para>aiahk</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.aia.com.hk" /></para>
+								<para><ulink url="https://www.aia.com.hk" /></para>
 							</entry>
 						</row>
 						<row>
@@ -141,7 +174,7 @@
 								<para>amfiindia</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.amfiindia.com" /></para>
+								<para><ulink url="https://www.amfiindia.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -152,7 +185,7 @@
 								<para>asegr</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.ase.gr" /></para>
+								<para><ulink url="https://www.ase.gr" /></para>
 							</entry>
 						</row>
 						<row>
@@ -162,9 +195,15 @@
 							<entry>
 								<para>asx</para>
 							</entry>
-							<entry>
-								<para><ulink url="http://www.asx.com.au" /></para>
-							</entry>
+                            <entry>
+                              <para><ulink url="https://www.asx.com.au" /></para>
+                                <!-- <note><title>Known Issues</title>...</note> uses too much space-->
+                              <para>Requires F::Q 1.41, but unfortunately the ASX website is only working sometimes.
+                                And then only with a small no of stocks in 1 go. From final comment on:
+                                <ulink url="https://bugzilla.gnome.org/show_bug.cgi?id=770132#c12">
+                                Price editor does not find ASX:XRO</ulink>
+                              </para>
+                            </entry>
 						</row>
 						<row>
 							<entry>
@@ -174,7 +213,7 @@
 								<para>bamosz</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.bamosz.hu" /></para>
+								<para><ulink url="https://www.bamosz.hu" /></para>
 							</entry>
 						</row>
 						<row>
@@ -185,7 +224,7 @@
 								<para>bmonesbittburns</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://bmonesbittburns.com" /></para>
+								<para><ulink url="https://bmonesbittburns.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -196,7 +235,7 @@
 								<para>bsero</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.bvb.ro" /></para>
+								<para><ulink url="https://www.bvb.ro" /></para>
 							</entry>
 						</row>
 						<row>
@@ -207,7 +246,7 @@
 								<para>bse or bet</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.bet.hu" /></para>
+								<para><ulink url="https://www.bet.hu" /></para>
 							</entry>
 						</row>
 						<row>
@@ -218,7 +257,7 @@
 								<para>citywire</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://citywire.co.uk" /></para>
+								<para><ulink url="https://citywire.co.uk" /></para>
 							</entry>
 						</row>
 						<row>
@@ -229,7 +268,7 @@
 								<para>cse</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.cse.lk" />
+								<para><ulink url="https://www.cse.lk" />
 								</para>
 							</entry>
 						</row>
@@ -241,8 +280,8 @@
 								<para>cominvest</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.cominvest-am.de" /></para>
-								<para>Veraltet, aktuelles Modul: <ulink url="http://eggert.org/software/Comdirect.pm"/>
+								<para><ulink url="https://www.cominvest-am.de" /></para>
+								<para>Veraltet, aktuelles Modul: <ulink url="https://eggert.org/software/Comdirect.pm"/>
 								</para>
 							</entry>
 						</row>
@@ -254,7 +293,7 @@
 								<para>deka</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.deka.de" /></para>
+								<para><ulink url="https://www.deka.de" /></para>
 							</entry>
 						</row>
 						<row>
@@ -265,7 +304,7 @@
 								<para>dwsfunds</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.dws.de" /></para>
+								<para><ulink url="https://www.dws.de" /></para>
 							</entry>
 						</row>
 						<row>
@@ -276,7 +315,7 @@
 								<para>za_unittrusts</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.equinox.co.za" /></para>
+								<para><ulink url="https://www.equinox.co.za" /></para>
 							</entry>
 						</row>
 						<row>
@@ -287,9 +326,20 @@
 								<para>fidelity_direct</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.fidelity.com"  /></para>
+								<para><ulink url="https://www.fidelity.com" /></para>
 							</entry>
 						</row>
+                        <row>
+                            <entry>
+                                <para>Fidelity Fixed, US</para>
+                            </entry>
+                            <entry>
+                                <para>fidelityfixed</para>
+                            </entry>
+                            <entry>
+                                <para><ulink url="https://www.fidelity.com/fixed-income-bonds/overview" /></para>
+                            </entry>
+                        </row>
 						<row>
 							<entry>
 								<para>Finance Canada</para>
@@ -298,7 +348,7 @@
 								<para>financecanada</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://finance.canada.com" /></para>
+								<para><ulink url="https://finance.canada.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -309,7 +359,7 @@
 								<para>ftfunds</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://funds.ft.com" /></para>
+								<para><ulink url="https://funds.ft.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -320,7 +370,7 @@
 								<para>finanzpartner</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.finanzpartner.de" /></para>
+								<para><ulink url="https://www.finanzpartner.de" /></para>
 							</entry>
 						</row>
 						<row>
@@ -331,7 +381,7 @@
 								<para>ftportfolios_direct</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.ftportfolios.com" /></para>
+								<para><ulink url="https://www.ftportfolios.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -342,7 +392,7 @@
 								<para>fundlibrary</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.fundlibrary.com" /></para>
+								<para><ulink url="https://www.fundlibrary.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -353,7 +403,7 @@
 								<para>goldmoney</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.goldmoney.com" /></para>
+								<para><ulink url="https://www.goldmoney.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -364,7 +414,7 @@
 								<para>hex</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.hex.com" /></para>
+								<para><ulink url="https://www.hex.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -375,7 +425,7 @@
 								<para>maninv</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.maninvestments.com.au" /></para>
+								<para><ulink url="https://www.maninvestments.com.au" /></para>
 							</entry>
 						</row>
 						<row>
@@ -386,7 +436,7 @@
 								<para>mstaruk</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://morningstar.co.uk" /></para>
+								<para><ulink url="https://morningstar.co.uk" /></para>
 							</entry>
 						</row>
 						<row>
@@ -397,7 +447,7 @@
 								<para>morningstarjp</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.morningstar.co.jp" /></para>
+								<para><ulink url="https://www.morningstar.co.jp" /></para>
 							</entry>
 						</row>
 						<row>
@@ -408,7 +458,7 @@
 								<para>morningstar</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.morningstar.se" /></para>
+								<para><ulink url="https://www.morningstar.se" /></para>
 							</entry>
 						</row>
 						<row>
@@ -419,7 +469,7 @@
 								<para>fool</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.fool.com" /></para>
+								<para><ulink url="https://www.fool.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -430,7 +480,7 @@
 								<para>nzx</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.nzx.com" /></para>
+								<para><ulink url="https://www.nzx.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -441,7 +491,7 @@
 								<para>bourso</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.boursorama.com" /></para>
+								<para><ulink url="https://www.boursorama.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -452,7 +502,7 @@
 								<para>lerevenu</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://bourse.lerevenu.com" /></para>
+								<para><ulink url="https://bourse.lerevenu.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -463,7 +513,7 @@
 								<para>platinum</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.platinum.com.au" /></para>
+								<para><ulink url="https://www.platinum.com.au" /></para>
 							</entry>
 						</row>
 						<row>
@@ -474,7 +524,7 @@
 								<para>sixfunds</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.six-swiss-exchange.com" /></para>
+								<para><ulink url="https://www.six-swiss-exchange.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -485,7 +535,7 @@
 								<para>sixshares</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.six-swiss-exchange.com" /></para>
+								<para><ulink url="https://www.six-swiss-exchange.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -496,8 +546,8 @@
 								<para>seb_funds</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.seb.se" /></para>
-								<para>Siehe <ulink url="http://taz.vv.sebank.se/cgi-bin/pts3/pow/Fonder/kurser/kurslista_body.asp" /> für alle verfügbaren Fonds.</para>
+								<para><ulink url="https://www.seb.se" /></para>
+								<para>Siehe <ulink url="https://taz.vv.sebank.se/cgi-bin/pts3/pow/Fonder/kurser/kurslista_body.asp" /> für alle verfügbaren Fonds.</para>
 							</entry>
 						</row>
 						<row>
@@ -508,7 +558,7 @@
 								<para>za</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.sharenet.co.za" /></para>
+								<para><ulink url="https://www.sharenet.co.za" /></para>
 							</entry>
 						</row>
 						<row>
@@ -519,18 +569,18 @@
 								<para>stockhousecanada_fund</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.stockhouse.ca" /></para>
+								<para><ulink url="https://www.stockhouse.ca" /></para>
 							</entry>
 						</row>
 						<row>
 							<entry>
-								<para>TD Waterhouse Canada, CA</para>
+								<para>TD Waterhouse Funds, CA</para>
 							</entry>
 							<entry>
 								<para>tdwaterhouse</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.tdwaterhouse.ca" /></para>
+								<para><ulink url="https://www.tdassetmanagement.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -541,7 +591,7 @@
 								<para>tdefunds</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.stockhouse.ca" /></para>
+								<para><ulink url="https://www.tdwaterhouse.ca" /></para>
 							</entry>
 						</row>
 						<row>
@@ -552,9 +602,7 @@
 								<para>tiaacref</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.tiaa-cref.org" /></para>
-								<para>Auch hier gab es Änderungen, welche F::Q 1.18 erfordern.
-								</para>
+								<para><ulink url="https://www.tiaa-cref.org" /></para>
 							</entry>
 						</row>
 						<row>
@@ -565,7 +613,7 @@
 								<para>tsx</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.TMXmoney.com" /></para>
+								<para><ulink url="https://www.TMXmoney.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -576,18 +624,29 @@
 								<para>troweprice_direct</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.troweprice.com" /></para>
+								<para><ulink url="https://www.troweprice.com" /></para>
 							</entry>
 						</row>
+                        <row>
+                            <entry>
+                                <para>Trustnet via tnetuk.pm, GB</para>
+                            </entry>
+                            <entry>
+                                <para>tnetuk</para>
+                            </entry>
+                            <entry>
+                                <para><ulink url="https://www.trustnet.com" /></para>
+                            </entry>
+                        </row>
 						<row>
 							<entry>
-								<para>Trustnet, GB</para>
+								<para>Trustnet via trustnet.pm, GB</para>
 							</entry>
 							<entry>
 								<para>trustnet</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.trustnet.co.uk" /></para>
+								<para><ulink url="https://www.trustnet.com" /></para>
 							</entry>
 						</row>
 						<row>
@@ -598,7 +657,7 @@
 								<para>unionfunds</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.union-invest.de" /></para>
+								<para><ulink url="https://www.union-invest.de" /></para>
 							</entry>
 						</row>
 						<row>
@@ -609,7 +668,7 @@
 								<para>usfedbonds</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.publicdebt.treas.gov" /></para>
+								<para><ulink url="https://www.publicdebt.treas.gov" /></para>
 							</entry>
 						</row>
 						<row>
@@ -620,7 +679,7 @@
 								<para>tsp</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://www.tsp.gov" /></para>
+								<para><ulink url="https://www.tsp.gov" /></para>
 							</entry>
 						</row>
 						<row>
@@ -631,7 +690,7 @@
 								<para>vanguard</para>
 							</entry>
 							<entry>
-								<para>Teil des yahoo_us-Moduls</para>
+								<para>Teil des AlphaVantage-Moduls</para>
 							</entry>
 						</row>
 						<row>
@@ -650,89 +709,55 @@
 						<row>
 							<entry>
 								<para>Yahoo USA</para>
+                                <para>Yahoo Asia</para>
+                                <para>Yahoo Australia</para>
+                                <para>Yahoo Brasil</para>
+                                <para>Yahoo Europe</para>
+                                <para>Yahoo New Zealand</para>
 							</entry>
 							<entry>
 								<para>yahoo</para>
+                                <para>yahoo_asia</para>
+                                <para>yahoo_australia</para>
+                                <para>yahoo_brasil</para>
+                                <para>yahoo_europe</para>
+                                <para>yahoo_nz</para>
 							</entry>
 							<entry>
-								<para><ulink url="http://finance.yahoo.com" /></para>
-							</entry>
-						</row>
-						<row>
-							<entry>
-								<para>Yahoo Asia</para>
-							</entry>
-							<entry>
-								<para>yahoo_asia</para>
-							</entry>
-							<entry>
-								<para><ulink url="http://sg.finance.yahoo.com" /></para>
+								<para>CSV-Schnittstelle seit 01.11.2017 abgeschaltet</para>
 							</entry>
 						</row>
 						<row>
 							<entry>
-								<para>Yahoo Australia</para>
-							</entry>
-							<entry>
-								<para>yahoo_australia</para>
-							</entry>
-							<entry>
-								<para><ulink url="http://au.finance.yahoo.com" /></para>
-							</entry>
-						</row>
-						<row>
-							<entry>
-								<para>Yahoo Brasil</para>
-							</entry>
-							<entry>
-								<para>yahoo_brasil</para>
-							</entry>
-							<entry>
-								<para><ulink url="http://br.finance.yahoo.com" /></para>
-							</entry>
-						</row>
-						<row>
-							<entry>
-								<para>Yahoo Europe</para>
-							</entry>
-							<entry>
-								<para>yahoo_europe</para>
-							</entry>
-							<entry>
-								<para><ulink url="http://finance.uk.yahoo.com" /></para>
-							</entry>
-						</row>
-						<row>
-							<entry>
-								<para>Yahoo New Zealand</para>
-							</entry>
-							<entry>
-								<para>yahoo_nz</para>
-							</entry>
-							<entry>
-								<para><ulink url="http://nz.finance.yahoo.com" /></para>
-							</entry>
-						</row>
-						<row>
-							<entry>
-								<para>Yahoo Finance through JSON call</para>
+								<para>Yahoo as JSON, US</para>
 							</entry>
 							<entry>
 								<para>yahoo_json</para>
 							</entry>
 							<entry>
-								<para></para>
+								<para><ulink url="https://finance.yahoo.com" /> mittels "JavaScript Object Notation"</para>
 							</entry>
 						</row>
+                        <row>
+                            <entry>
+                                <para>Yahoo als YQL, US</para>
+                            </entry>
+                            <entry>
+                                <para>yahoo_yql</para>
+                            </entry>
+                            <entry>
+                                <para><ulink url="https://finance.yahoo.com" /> mittels "Yahoo Query Language"</para>
+                            </entry>
+                        </row>
 						<row>
 							<entry>
-								<para>Zuerich Investments (veraltet)</para>
+								<para>Zuerich Investments (ersetzt)</para>
 							</entry>
 							<entry>
 								<para>zifunds</para>
 							</entry>
 							<entry>
-								<para></para>
+								<para>Zürich Invest wurde von der Deutschen Bank gekauft und in die DWS integriert.</para>
 							</entry>
 						</row>
 					</tbody>
@@ -759,29 +784,32 @@
 
 					<tbody>
 						<row>
-							<entry>Asia (Yahoo, ...)</entry>
+							<entry>Asia verschwand mit Yahoo</entry>
 						</row>
 						<row>
-							<entry>Australia (ASX, Yahoo, ...)</entry>
+							<entry>Australia (ASX, ...)</entry>
 						</row>
 						<row>
-							<entry>Brasil (Yahoo, ...)</entry>
+							<entry>Brasil verschwand mit Yahoo</entry>
 						</row>
 						<row>
-							<entry>Canada (Yahoo, ...)</entry>
+							<entry>Canada (Alphavantage, TSX, ...)</entry>
 						</row>
 						<row>
-							<entry>Canada Mutual (Fund Library, ...)</entry>
+							<entry>Canada Mutual (Fund Library, StockHouse, ...)</entry>
 						</row>
 						<row>
 							<entry>Dutch (AEX, ...)</entry>
 						</row>
 						<row>
-							<entry>Europe (Yahoo, ...)</entry>
+							<entry>Europe (asegr,.bsero, hex ...)</entry>
 						</row>
 						<row>
 							<entry>Greece (ASE, ...)</entry>
 						</row>
+                        <row>
+                            <entry>Hungary (Bamosz, BET, ...)</entry>
+                        </row>
 						<row>
 							<entry>India Mutual (AMFI, ...)</entry>
 						</row>
@@ -795,36 +823,45 @@
 							<entry>First Trust (First Trust, ...)</entry>
 						</row>
 						<row>
-							<entry>France (Boursorama, ...)</entry>
+							<entry>France (Boursorama, LeRevenu, ...)</entry>
 						</row>
 						<row>
-							<entry>Nasdaq (Yahoo, ...)</entry>
+							<entry>Nasdaq (Alphavantage, Fool, ...)</entry>
 						</row>
 						<row>
-							<entry>New Zealand (Yahoo, ...)</entry>
+							<entry>New Zealand (NZX, ...)</entry>
 						</row>
 						<row>
-							<entry>NYSE (Yahoo, ...)</entry>
+							<entry>NYSE (Alphavantage, Fool, ...)</entry>
 						</row>
-						<!-- <row><entry>South Africa (Sharenet, ...)</entry></row> -->
+						<row>
+                            <entry>South Africa (Sharenet, ...)</entry>
+                        </row>
+						<row>
+							<entry>Romania (bsero, ...)</entry>
+						</row>
 						<row>
 							<entry>T. Rowe Price</entry>
 						</row>
+                        <row>
+                            <entry>U.K. Funds (citywire, FTfunds, MStar, tnetuk, ...)</entry>
+                        </row>
 						<row>
-							<entry>U.K. Unit Trusts</entry>
+							<entry>U.K. Unit Trusts (trustnet, ...)</entry>
 						</row>
 						<row>
-							<entry>USA (Yahoo, Fool ...)</entry>
+							<entry>USA (Alphavantage, Fool ...)</entry>
 						</row>
 					</tbody>
 				</tgroup>
 			</table>
 
 			<para>Quellen:
-				src/engine/gnc-commodity.c:gnc_quote_source (commit 05da881, welche an
-				Finance::Quote 1.38 angepaßt wurde), 
-      &app;-Wiki,
-				bugzilla, Mailinglistenarchive.
+				src/engine/gnc-commodity.c:gnc_quote_source (commit c0fd3b3, welche an
+				Finance::Quote 1.47 angepaßt wurde), 
+      			<ulink url="https://wiki.gnucash.org">&app;-Wiki</ulink>,
+				<ulink url="https://bugzilla.gnome.org/page.cgi?id=browse.html&amp;product=GnuCash">bugzilla</ulink>,
+				<ulink url="https://wiki.gnucash.org/wiki/Mailing_Lists#Mailing_List_Archives">Mailinglistenarchive</ulink>.
 			</para>
 		</sect2>
 	</sect1>
@@ -832,7 +869,8 @@
 	<sect1>
 		<title>Yahoo-Besonderheiten</title>
 		<abstract>
-			<para>Yahoo bietet Kurse von vielen Börsen und Märkten. Außer
+			<para>Yahoo hat Kurse von vielen Börsen und Märkten angeboten. Alphavatage
+			sollte sich küntig ähnlich verhalten, aber ohne Verzögerung. Außer
 				für US-Märkte ist anzugeben, wo nachgesehen werden soll. Ein
 				typisches Yahoo-Symbol hat die Form &lt;ISIN&gt;&lt;Markt-Suffix&gt;.
 			</para>
@@ -1729,7 +1767,7 @@
 			</tgroup>
 		</table>
 		<para>Quelle:
-			<ulink url="http://help.yahoo.com/l/us/yahoo/finance/quotes/fitadelay.html"/>
+			<ulink url="https://help.yahoo.com/l/us/yahoo/finance/quotes/fitadelay.html"/>
 			abgefragt am 2012-09-22.</para>
 	</sect1>
 
