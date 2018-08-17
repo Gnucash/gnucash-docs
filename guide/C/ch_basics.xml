@@ -619,11 +619,151 @@
 
   <sect1 id="basics-files1">
     <title>Storing your financial data</title>
+	<sect2 id="basics-files1-overview">
+		<title>Overview</title>
+		
+		<para><application>&app;</application> offers several formats for storing 
+		your financial data. The default file storage format is <acronym>XML</acronym>, 
+		while <acronym>SQL</acronym> storage is available in SQLite, MySQL, and PostgreSQL 
+		formats. Users can choose a file format from the <menuchoice><guimenu>File</guimenu> 
+		<guimenuitem>Save </guimenuitem></menuchoice> and <menuchoice><guimenu>File</guimenu> 
+		<guimenuitem>Save As...</guimenuitem></menuchoice> dialogs.</para>
+		
+		<para>The <acronym>XML</acronym> storage format is a text file that is compressed 
+		with gzip, which is a preference that is set at <menuchoice><guimenu>Edit</guimenu> 
+		<guimenuitem>Preferences</guimenuitem></menuchoice> <guilabel>General</guilabel> 
+		<guilabel>Compress files</guilabel>. <acronym>SQL</acronym> storage is available 
+		via the <acronym>DBI</acronym> back end; use of MySQL and PostgreSQL requires 
+		installation of those <acronym>DBMS</acronym> packages as well as additional 
+		<acronym>DBI</acronym> drivers.</para>
+		
+		<note>
+		<para>Users can change the format at any time by using <menuchoice><guimenu>File</guimenu> 
+		<guimenuitem>Save As...</guimenuitem></menuchoice>. This will create a copy of 
+		the data file in the selected format.</para>
+		</note>
+		<sect3 id="basics-files-storage-comparison">
+			<title>Storage Comparison</title>
+			
+			<para>Each storage format has benefits and shortcomings that users should 
+			consider for their needs and abilities. See the Storage Comparison Table below 
+			for further details.</para>
+			
+			<para>The <acronym>XML</acronym> format is the most stable and established, 
+			and for this reason, it is recommended for most users. <acronym>SQL</acronym>
+			storage was added for the 2.4 release and has become an increasingly popular 
+			choice for users, but can require experience with <acronym>DBMS</acronym> 
+			applications.</para>
+			
+			<note>
+				<para>Use of a <acronym>SQL</acronym> back end for storage implies to many 
+				that <application>&app;</application> has fully implemented <acronym>DBMS</acronym> 
+				features, including multi-user and incremental data manipulation.  However, 
+				<application>&app;</application> does not currently implement these features, 
+				although it is a long term goal of the development team. </para>
+			</note>
 
-    <para><application>&app;</application> is able to <link linkend="basics-store-data">store</link>
-    your financial data in files or <acronym>SQL</acronym> databases so that they can be
-    <link linkend="basics-open-data">opened</link> and modified at a later time.
-    But first you need to <link linkend="basics-create-data">create</link> a container for your data.</para>
+            <table frame="topbot" id="storage-comparison">
+              <title>Storage Comparison</title>
+
+              <tgroup align="left" cols="5">
+                <colspec colname="c1item" ></colspec>
+                <colspec colname="c2xml" ></colspec>
+                <colspec colname="c3sqlite" ></colspec>
+                <colspec colname="c4mysql" ></colspec>
+                <colspec colname="c5postgresql" ></colspec>
+
+                <thead>
+                  <row>
+                    <entry> </entry>
+                    <entry align="center">XML</entry>
+                    <entry align="center">SQLite</entry>
+                    <entry align="center">MySQL</entry>
+                    <entry align="center">PostgreSQL</entry>
+                  </row>
+                </thead>
+
+                <tbody>
+                <row>
+                  <entry >Installation</entry>
+  				<entry align="center" namest="c2xml"        > Default </entry>
+  				<entry align="center" namest="c3sqlite"     > libdbi - 1 </entry>
+  				<entry align="center" namest="c4mysql"      > libdbi </entry>
+  				<entry align="center" namest="c5postgresql" > libdbi </entry>
+                </row>
+
+                <row>
+                  <entry >File extension</entry>
+  				<entry align="center" namest="c2xml"        > gnucash </entry>
+  				<entry align="center" namest="c3sqlite"     > gnucash </entry>
+  				<entry align="center" namest="c4mysql"      > N/A - 2 </entry>
+  				<entry align="center" namest="c5postgresql" > N/A - 2 </entry>
+                </row>
+
+                <row>
+                  <entry >Additional software</entry>
+  				<entry align="center" namest="c2xml"        > None </entry>
+  				<entry align="center" namest="c3sqlite"     > None </entry>
+  				<entry align="center" namest="c4mysql"      > MySQL </entry>
+  				<entry align="center" namest="c5postgresql" > PostgreSQL </entry>
+                </row>
+
+                <row>
+                  <entry >Additional expertise</entry>
+  				<entry align="center" namest="c2xml"        > None </entry>
+  				<entry align="center" namest="c3sqlite"     > None </entry>
+  				<entry align="center" namest="c4mysql"      > DBMS </entry>
+  				<entry align="center" namest="c5postgresql" > DBMS </entry>
+                </row>
+
+                <row>
+                  <entry >Compression</entry>
+  				<entry align="center" namest="c2xml"        > Y </entry>
+  				<entry align="center" namest="c3sqlite"     > N </entry>
+  				<entry align="center" namest="c4mysql"      > N </entry>
+  				<entry align="center" namest="c5postgresql" > N </entry>
+               </row>
+
+                <row>
+                  <entry >Save on command</entry>
+  				<entry align="center" namest="c2xml"        > Y </entry>
+  				<entry align="center" namest="c3sqlite"     > N </entry>
+  				<entry align="center" namest="c4mysql"      > N </entry>
+  				<entry align="center" namest="c5postgresql" > N </entry>
+                </row>
+
+                <row>
+                  <entry >Save on commit</entry>
+  				<entry align="center" namest="c2xml"        > N </entry>
+  				<entry align="center" namest="c3sqlite"     > Y </entry>
+  				<entry align="center" namest="c4mysql"      > Y </entry>
+  				<entry align="center" namest="c5postgresql" > Y </entry>
+                </row>
+
+                <row>
+                  <entry >Uses log files</entry>
+  				<entry align="center" namest="c2xml"        > Y </entry>
+  				<entry align="center" namest="c3sqlite"     > N </entry>
+  				<entry align="center" namest="c4mysql"      > N </entry>
+  				<entry align="center" namest="c5postgresql" > N </entry>
+                </row>
+
+                <row>
+                  <entry >Multi-user</entry>
+  				<entry align="center" namest="c2xml"        > N </entry>
+  				<entry align="center" namest="c3sqlite"     > N </entry>
+  				<entry align="center" namest="c4mysql"      > N </entry>
+  				<entry align="center" namest="c5postgresql" > N </entry>
+                </row>
+                </tbody>
+              </tgroup>
+            </table>
+			<para>1 - SQLite relies on libdbi. However, it is available by 
+			default on Mac OS and Windows. Linux users may need to manually 
+			install libdbi drivers for SQLite.</para>
+			<para>2 - MySQL and PostgreSQL place data within their own storage system.</para>
+		</sect3>
+	</sect2>
 
     <sect2 id="basics-create-data">
     <title>Creating a file</title>
