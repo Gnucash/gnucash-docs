@@ -298,14 +298,145 @@
     </sect2> <!-- basics-transactions2 -->
   </sect1> <!-- basics-entry1 -->
 
-  <sect1 id="basics-interface1">
-    <title>Interface</title>
+  <sect1 id="basics-running-gnucash">
+    <title>Running <application>&app;</application></title>
+    <para><application>&app;</application> can be run from your desktop main menu by selecting the associated menu entry.</para>
+    <para>Alternatively it can be run from a command line prompt with the command <command>gnucash</command>.</para>
 
+    <para>During start up, <application>&app;</application> will display the
+    Splash Screen, where some information about the program (version number, build, etc.)
+    and the loading process are displayed.</para>
+
+    <sect2 id="basics-welcome-to-gnucash">
+    <title><guilabel>Welcome to &app;</guilabel> dialog</title>
     <para>The very first time you open <application>&app;</application>, you will see the
-    <guilabel>Welcome to &app;!</guilabel> screen. From there, <application>&app;</application>
-    provides other tools to help you easily find what you are looking for.
-    Let&rsquo;s take a look at some of the common screens and screen boxes you will
-    see.</para>
+    <guilabel>Welcome to &app;!</guilabel> screen. This dialog includes three choices:</para>
+	<!-- Recommend screen shot here of Welcome to GnuCash! dialog -->
+
+      <itemizedlist id="welcome-screen-options">
+        <listitem>
+          <para><guilabel>Create a new set of accounts</guilabel> - Runs the
+          <guilabel>New Account Hierarchy Setup</guilabel> assistant (see <xref linkend="basics-acct-hierarchy"/>). Select
+          this option if you want to be assisted in creating a set of accounts.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Import my QIF files</guilabel> - Runs the
+          <guilabel>Import QIF Files</guilabel> assistant (see <xref linkend="importing-qif"/>). Select this option
+          if you already have Quicken files (<filename>.qif</filename> files) and wish 
+		  to import them into <application>&app;</application>.</para>
+        </listitem>
+
+        <listitem>
+            <para><guilabel>Open the new user tutorial</guilabel> - 
+            Opens the <application>&app;</application> Tutorial and Concepts Guide. Select this
+            option if you are completely new to <application>&app;</application> and
+            accounting concepts.</para>
+        </listitem>
+      </itemizedlist>
+
+      <note>
+        <para>It is possible to access each of these items after you have left this screen,
+        but the <guilabel>Welcome to &app;!</guilabel> screen will not reappear.
+        To create a new set of accounts, see <xref linkend="basics-acct-hierarchy" />. To import
+		QIF files, see <xref linkend="importing-qif" />.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="basics-acct-hierarchy">
+      <title>New Account Hierarchy Setup</title>
+
+      <para>The <emphasis>New Account Hierarchy Setup</emphasis> assistant helps you 
+	  to create a set of <application>&app;</application> accounts. It will
+      appear if you choose <guibutton>Create a new set of accounts</guibutton>
+      in the <guilabel>Welcome to &app;!</guilabel> menu, or when you select 
+	  <menuchoice><guimenu>File</guimenu><guimenuitem>New</guimenuitem></menuchoice>.</para>
+      <para>This assistant will create a new blank <application>&app;</application> file and
+	  guide you through the creation of a <emphasis>Chart of Accounts</emphasis>. There are several
+	  steps in the assistant, which are outlined below.</para>
+
+	  <orderedlist>
+		  <listitem>
+			  <para>The first screen briefly describes what this assistant does. </para>
+		  </listitem>
+		  <listitem>
+			  <para><guilabel>New Book Options</guilabel> allows you to set different attributes 
+			  for your file that affect the file as a whole. This screen has four tabs: 
+			  Accounts, Budgeting, Business, and Counters. These items are explained elsewhere in
+			  the Guide, and can be changed at a later point.</para>
+		  </listitem>
+		  <listitem>
+			  <para><guilabel>Choose Currency</guilabel> sets the default currency for new accounts.
+			  This is based on the computer locale settings, and can be modified later in the 
+			  <guilabel>Accounts</guilabel> tab under <guilabel>Preferences</guilabel> 
+			  (see <xref linkend="configuring-preferences-accounts"/>).</para>
+		  </listitem>
+		  <listitem>
+			  <para><guilabel>Choose accounts to create</guilabel> allows you to create
+			  an initial set of accounts. These can be edited as needed afterward. 
+			  The screen is divided into three parts.</para>
+			  <itemizedlist>
+				  <listitem>
+					  <para>The left upper portion has a list of
+						  <guilabel>Categories</guilabel> for commonly used hierarchies of
+						  accounts. Select from this list the types of accounts you wish to
+						  use. You can select as many of the categories of accounts as you
+						  wish.</para>
+				  </listitem>
+				  <listitem>
+					  <para>The left lower section has a <guilabel>Category
+						  Description</guilabel> that displays a detailed description of the
+						  category currently highlighted.</para>
+				  </listitem>
+				  <listitem>
+					  <para>The right side has a list of the <guilabel>Accounts</guilabel>
+					  that will be created from a selected category. Note that the accounts
+					  listed here are <emphasis>only</emphasis> the selected category; your
+					  final data file will include <emphasis>all</emphasis> of the accounts
+					  for all of the selected Categories.</para>
+				  </listitem>
+			  </itemizedlist>
+		  </listitem>
+		  <listitem>
+			  <para><guilabel>Setup selected accounts</guilabel> lists all the accounts you
+			  selected on <guilabel>Choose accounts to create</guilabel>, and allows you to
+			  enter opening balances and to designate <emphasis>Placeholder</emphasis> accounts.</para>
+			  <note>
+				  <para>Equity accounts do not have opening balances, so the
+					  opening balance value for this kind of account
+					  is locked and set to zero.</para>
+			  </note>
+			  <note id="placeholder-acct">
+				  <para><emphasis>Placeholder</emphasis> accounts are used to create a hierarchy of accounts and
+				  normally do not have transactions or opening balances.</para>
+			  </note>
+			  <itemizedlist>
+				  <listitem>
+					  <para>The left side of the screen has a list of <guilabel>Account
+					  Names</guilabel>. Select an account by "clicking" once in the
+					  <guilabel>Account Names</guilabel> column with the account highlighted. This will open
+					  the account name for changes.</para>
+				  </listitem>
+				  <listitem>
+					  <para>The right side of the screen has a check-box to make an
+					  account a <guilabel>Placeholder</guilabel> and a box to add the
+					  <guilabel>Opening Balance</guilabel> for the selected account. Again
+					  a single click in the <guilabel>Opening Balance</guilabel> or
+					  <guilabel>Placeholder</guilabel> column will
+					  open the field for changes.</para>
+				  </listitem>
+			  </itemizedlist>
+		  </listitem>
+		  <listitem>
+			  <para><guilabel>Finish account setup</guilabel> is the last screen and
+			  gives you a final option to cancel the process.</para>
+			  <warning>
+				  <para>If you choose to cancel, any selections you have made up to
+				  this point will be lost.</para>
+			  </warning>
+		  </listitem>
+	  </orderedlist>
+    </sect2>
 
     <sect2 id="basics-tip2">
       <title>Tip of the Day</title>
@@ -547,73 +678,6 @@
       structure.  These shortcuts typically use the <keycap>Ctrl</keycap>
       key, although they can use any key combination.  Menu shortcuts are
       displayed at the end of each menu item.</para>
-    </sect2>
-  </sect1>
-
-  <sect1 id="basics-help1">
-    <title>Getting Help</title>
-
-    <para><application>&app;</application> offers help in many ways. We have already covered the <link linkend="basics-tip2">
-    <guilabel>Tip of the Day</guilabel></link> screen that gives you helpful hints
-    upon start-up of your <application>&app;</application> session. <application>&app;</application> also offers an extensive
-    help manual.</para>
-
-    <sect2 id="basics-manual2">
-      <title>Help Manual</title>
-
-      <para>Once you have opened <application>&app;</application>, you will see the <guilabel>Account
-      Tree</guilabel> window <guilabel>Help</guilabel> menu heading, which
-      opens the Help manual. The Help manual is organized by topic, and
-      you can expand each topic into its subtopics.</para>
-
-      <para>Topics are listed on the left side. To select a topic or subtopic,
-      click on it, and you should see the text for that topic appear on the
-      right. Use the <guibutton>Back</guibutton> and
-      <guibutton>Forward</guibutton> buttons to navigate through your topic
-      choices, and print any text using the <guibutton>Print</guibutton>
-      button.</para>
-    </sect2>
-
-    <sect2 id="basics-web2">
-      <title>Web Access</title>
-
-      <para>The <guilabel>&app; Help</guilabel> window also acts as a simple
-      web browser, so you can pull up a web site for additional information.
-      You can open any web site under this window by clicking the
-      <guibutton>Open</guibutton> <emphasis>Toolbar</emphasis> button and then typing in the URL.
-      Use the <guibutton>Back</guibutton>, <guibutton>Forward</guibutton>,
-      <guibutton>Reload</guibutton>, <guibutton>Stop</guibutton>, and
-      <guibutton>Print</guibutton> buttons as you would in a standard
-      browser.</para>
-
-      <para>The <ulink
-      url="http://www.gnucash.org"><citetitle>&app;</citetitle></ulink> web
-      site contains helpful information about the program and about any
-      updates to it. It also contains links to the <application>&app;</application> mailing lists for
-      developers and users, and you can search the <ulink
-      url="https://lists.gnucash.org/cgi-bin/namazu.cgi"><citetitle>archives
-      of <application>&app;</application> mailing lists</citetitle></ulink> for discussions on a
-      particular topic. If you don&rsquo;t find the answers you are looking for, you
-      can post your question to the <ulink
-      url="https://lists.gnucash.org/mailman/listinfo/gnucash-user"><citetitle>&app;
-      user list</citetitle></ulink>, and someone on the list will attempt to
-      answer you.</para>
-
-      <para>The most updated <guilabel>&app; FAQ</guilabel> is also located
-      on the <ulink url="http://wiki.gnucash.org/wiki/FAQ"><citetitle>&app;
-      FAQ website</citetitle></ulink>, and contains answers to the popular
-      questions.</para>
-    </sect2>
-
-    <sect2 id="basics-topic2">
-      <title>Topic Search</title>
-
-      <para>The online manual also provides a search function. To search for a
-      particular topic, click the <guilabel>Search</guilabel> tab at the
-      bottom of the help window and type in your topic in the field provided.
-      Click the <guibutton>Search</guibutton> button to complete your search.
-      A list of choices should appear in the box below, clicking a choice will
-      bring up its text on the right.</para>
     </sect2>
   </sect1>
 
@@ -1451,8 +1515,2236 @@
             </mediaobject>
           </screenshot>
     </listitem>
-
   </orderedlist>
+</sect1>
+<sect1 id="chapter_accts">
+  <title>Accounts</title>
 
-  </sect1>
+  <para>This section discusses some useful concepts for organizing your
+  accounts. Since <application>&app;</application> does not impose any specific account tree layout,
+  you are free to design your account structure in any manner you wish.
+  However, there are a few basic accounting concepts which you will probably
+  want to follow when designing your accounts to maximize their
+  utility.</para>
+
+  <sect2 id="accts-concepts1">
+    <title>Basic Accounting Concepts</title>
+
+    <para>As we saw in the previous chapter, accounting is based on 5 basic
+    account types: <guilabel>Assets</guilabel>,
+    <guilabel>Liabilities</guilabel>, <guilabel>Equity</guilabel>,
+    <guilabel>Income</guilabel> and <guilabel>Expenses</guilabel>. We will now
+    expand on our understanding of these account types, and show how they are
+    represented in <application>&app;</application>. But first, let&rsquo;s divide them into 2 groups, the
+    balance sheet accounts and the income and expense accounts.
+    As the name says the balance sheet accounts can be summarized in the
+    balance of what you own and owe <emphasis>at a point in the time</emphasis>,
+    while the income and expense accounts can be summarized in the Profit &amp; Loss report,
+    which shows the <emphasis>change of values in a period of time</emphasis> like the economic year </para>
+
+    <para>Let&rsquo;s have a quick look at the Accounting Equation (<emphasis>Assets
+    - Liabilities = Equity + (Income - Expenses)</emphasis>) again as a
+    reminder, before we go deeper into each account type.</para>
+
+    <screenshot id="accts-AccountRelationships">
+      <mediaobject>
+        <imageobject role="html">
+          <imagedata fileref="figures/basics_AccountRelationships.png"
+                     format="PNG" srccredit="Geert Janssens" ></imagedata>
+        </imageobject>
+
+        <imageobject role="fo">
+          <imagedata fileref="figures/basics_AccountRelationships.svg"
+                     format="SVG" srccredit="Geert Janssens"
+                     contentwidth="4in"></imagedata>
+          </imageobject>
+        <textobject>
+          <phrase>The basic accounts relationships</phrase>
+        </textobject>
+
+        <caption>
+          <para>A graphical view of the relationship between the 5 basic
+          accounts. Net worth (equity) increases through income and decreases
+          through expenses. The arrows represent the movement of value.</para>
+        </caption>
+      </mediaobject>
+    </screenshot>
+
+    <sect3 id="accts-bsa2">
+      <title>Balance Sheet Accounts</title>
+
+      <para>The three so-called <emphasis>Balance Sheet Accounts</emphasis>
+      are <guilabel>Assets</guilabel>, <guilabel>Liabilities</guilabel>, and
+      <guilabel>Equity</guilabel>. Balance Sheet Accounts are used to track
+      the things you own or owe.</para>
+
+      <para><guilabel>Assets</guilabel> is the group of things that you own.
+      Your assets could include a car, cash, a house, stocks, or anything else
+      that has convertible value. Convertible value means that theoretically
+      you could sell the item for cash.</para>
+
+      <para><guilabel>Liabilities</guilabel> is the group of things on which
+      you owe money. Your liabilities could include a car loan, a student
+      loan, a mortgage, your investment margin account, or anything else which
+      you must pay back at some time.</para>
+
+      <para><guilabel>Equity</guilabel> is the same as "net worth." It
+      represents what is left over after you subtract your liabilities from
+      your assets. It can be thought of as the portion of your assets that you
+      own outright, without any debt.</para>
+    </sect3>
+
+    <sect3 id="accts-ie2">
+      <title>Income and Expense Accounts</title>
+
+      <para>The two <guilabel>Income and Expense Accounts</guilabel> are used
+      to increase or decrease the value of your accounts. Thus, while the
+      balance sheet accounts simply <emphasis>track</emphasis> the value of
+      the things you own or owe, income and expense accounts allow you to
+      <emphasis>change</emphasis> the value of these accounts.</para>
+
+      <para><guilabel>Income</guilabel> is the payment you receive for your
+      time, services you provide, or the use of your money. When you receive a
+      paycheck, for example, that check is a payment for labor you provided to
+      an employer. Other examples of income include commissions, tips,
+      dividend income from stocks, and interest income from bank accounts.
+      Income will always increase the value of your Assets and thus your
+      Equity.</para>
+
+      <para><guilabel>Expense</guilabel> refers to money you spend to purchase
+      goods or services provided by someone else
+      <emphasis>for early consumption</emphasis>. Examples of expenses are a
+      meal at a restaurant, rent, groceries, gas for your car, or tickets to
+      see a play. Expenses will always decrease your Equity. If you pay for
+      the expense immediately, you will decrease your Assets, whereas if you
+      pay for the expense on credit you increase your Liabilities.</para>
+<!--
+  Translators:
+    Your language might have a generic term for 'income and expense'.
+    Then you should introduce it here in a separate paragraph
+    and replace 'income and expense' by it in the latter sections of this book.
+-->
+    </sect3>
+  </sect2>
+
+  <sect2 id="accts-types1">
+    <title><application>&app;</application> Accounts</title>
+
+    <para>This section will show how the <application>&app;</application> definition of an account fits
+    into the view of the 5 basic accounting types.</para>
+
+    <para>But first, let&rsquo;s begin with a definition of an
+    <guilabel>account</guilabel> in <application>&app;</application>. A <application>&app;</application>
+    <guilabel>account</guilabel> is an entity which contains other
+    sub-accounts, or that contains <guilabel>transactions</guilabel>. Since an
+    account can contain other accounts, you often see <guilabel>account
+    trees</guilabel> in <application>&app;</application>, in which logically associated accounts are grouped
+    together within a common parent account.</para>
+
+    <para>A <application>&app;</application> account must have a unique name (that you assign) and one
+    of the predefined <application>&app;</application> <quote>account types</quote>. There are a total of 12 account
+    types in <application>&app;</application>. These 12 account types are based on the 5 basic
+    accounting types; the reason there are more <application>&app;</application> account types than
+    basic accounting types is that this allows <application>&app;</application> to perform specialized
+    tracking and handling of certain accounts. There are 6 asset accounts
+    (<emphasis>Cash</emphasis>, <emphasis>Bank</emphasis>,
+    <emphasis>Stock</emphasis>, <emphasis>Mutual Fund</emphasis>,
+    <emphasis>Accounts Receivable</emphasis>, and <emphasis>Other Assets</emphasis>),
+    3 liability accounts (<emphasis>Credit Card</emphasis>,
+    <emphasis>Accounts Payable</emphasis>, and <emphasis>Liability</emphasis>),
+    1 equity account (<emphasis>Equity</emphasis>), 1 income account
+    (<emphasis>Income</emphasis>), and 1 expense account
+    (<emphasis>Expenses</emphasis>).</para>
+
+    <para>These <application>&app;</application> account types are presented in more detail
+    below.</para>
+
+    <sect3 id="accts-gc-bsa2">
+      <title>Balance Sheet Accounts</title>
+
+      <para>The first balance sheet account we will examine is
+      <emphasis>Assets</emphasis>, which, as you remember from the previous
+      section, refers to things you own.</para>
+
+      <para>To help you organize your asset accounts and to simplify
+      transaction entry, <application>&app;</application> supports several types of asset
+      accounts:</para>
+
+      <orderedlist>
+        <listitem>
+          <para><guilabel>Cash</guilabel> Use this account to track the money
+          you have on hand, in your wallet, in your piggy bank, under your
+          mattress, or wherever you choose to keep it handy. This is the most
+          <emphasis>liquid</emphasis>, or easily traded, type of asset.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Bank</guilabel> This account is used to track your
+          cash balance that you keep in institutions such as banks, credit
+          unions, savings and loan, or brokerage firms - wherever someone else
+          safeguards your money. This is the second most
+          <emphasis>liquid</emphasis> type of account, because you can easily
+          convert it to cash on hand.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Stock</guilabel> Track your individual stocks and
+          bonds using this type of account. The stock account&rsquo;s register
+          provides extra columns for entering number of shares and price of
+          your investment. With these types of assets, you may not be able to
+          easily convert them to cash unless you can find a buyer, and you are
+          not guaranteed to get the same amount of cash you paid for
+          them.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Mutual Fund</guilabel> This is similar to the stock
+          account, except that it is used to track funds. Its account register
+          provides the same extra columns for entering share and price
+          information. Funds represent ownership shares of a variety of
+          investments, and like stocks they do not offer any guaranteed cash
+          value.</para>
+
+          <para><application>&app;</application> treats account types Stock and
+            Mutual Fund the same.
+          </para>
+
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Accounts Receivable</guilabel> (A/Receivable) This
+          is typically a business use only account in which you place
+          outstanding debts owed to you. It is considered an asset because you
+          should be able to count on these funds arriving.</para>
+
+          <para>Transactions involving an Accounts Receivable account should not be added,
+            changed or deleted in any way other than by using
+          </para>
+          <itemizedlist>
+            <listitem><para>post/unpost bill/invoice/voucher or</para>
+            </listitem>
+	    <listitem><para>process payment</para></listitem>
+	  </itemizedlist>
+	</listitem>
+
+        <listitem>
+          <para><guilabel>Asset</guilabel> No matter how diverse they
+          are, <application>&app;</application> handles many other situations
+          easily. The account type <quote>Asset</quote>, covers all assets not
+          listed above.</para>
+
+          <para><application>&app;</application> treats account types Cash,
+            Bank and Asset the same.
+          </para>
+
+          <para>Accounts are repositories of information used to track or record
+          the kinds of actions that occur related to the purpose for which the
+          account is established.</para>
+
+          <para>For businesses, activities being tracked and reported are
+          frequently subdivided more finely than what has been considered thus
+          far. For a more developed treatment of the possibilities, please read
+          the descriptions presented in
+          <xref linkend="chapter_other_assets"/> of this Guide.</para>
+
+          <para>For personal finances a person can follow the business groupings
+          or not, as they seem useful to the activities the person is tracking
+          and to the kind of reporting that person needs to have to manage their
+          financial assets. For additional information, consult
+          <xref linkend="chapter_other_assets"/> of this Guide.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>The second balance sheet account is
+      <emphasis>Liabilities</emphasis>, which as you recall, refers to what
+      you owe, money you have borrowed and are obligated to pay back some day.
+      These represent the rights of your lenders to obtain repayment from you.
+      Tracking the liability balances lets you know how much debt you have at
+      a given point in time.</para>
+
+      <para><application>&app;</application> offers three liability account types:</para>
+
+      <orderedlist>
+        <listitem>
+          <para><guilabel>Credit Card</guilabel> Use this to track your credit
+          card receipts and reconcile your credit card statements. Credit
+          cards represent a short-term loan that you are obligated to repay to
+          the credit card company. This type of account can also be used for
+          other short-term loans such as a line of credit from your
+          bank.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Accounts Payable</guilabel> (A/Payable) This is
+            typically a business use only account in which you place bills you
+            have yet to pay.
+          </para>
+
+          <para>Transactions involving an Accounts Payable account should not be added,
+            changed or deleted in any way other than by using
+            <itemizedlist>
+              <listitem><para>post/unpost bill/invoice/voucher or</para></listitem>
+	      <listitem><para>process payment</para></listitem>
+	    </itemizedlist>
+	  </para>
+          </listitem>
+
+        <listitem>
+          <para><guilabel>Liability</guilabel> Use this type of account for
+          all other loans, generally larger long-term loans such as a mortgage
+          or vehicle loan. This account can help you keep track of how much
+          you owe and how much you have already repaid.</para>
+
+          <para><application>&app;</application> treats account types Credit
+            Card and Liability the same.
+          </para>
+
+        </listitem>
+      </orderedlist>
+
+      <tip>
+        <para>Liabilities in accounting act in an opposite manner from assets:
+        <emphasis>credits</emphasis> (right-column value entries) increase
+        liability account balances and <emphasis>debits</emphasis>
+        (left-column value entries) decrease them. (See note later in this
+        chapter)</para>
+      </tip>
+
+      <para>The final balance sheet account is <emphasis>Equity</emphasis>,
+      which is synonymous with <quote>net worth</quote>. It represents what is left over
+      after you subtract your liabilities from your assets, so it is the
+      portion of your assets that you own outright, without any debt. In
+      <application>&app;</application>, use this type of account as the source of your opening bank
+      balances, because these balances represent your beginning net
+      worth.</para>
+
+      <para>There is usually only a single <application>&app;</application> equity account, called naturally
+      enough, <guilabel>Equity</guilabel>.
+      For companies, cooperatives etc. you can create a subaccount for each partner.</para>
+
+      <tip>
+        <para>In equity accounts, credits increase account balances and debits
+        decrease them. (See note later in this chapter)</para>
+      </tip>
+
+      <note>
+        <para>The accounting equation that links balance-sheet accounts is
+        Assets = Liabilities + Equity or rearranged Assets - Liabilities =
+        Equity. So, in common terms, the <emphasis>things you own</emphasis>
+        minus the <emphasis>things you owe</emphasis> equals your
+        <emphasis>net worth</emphasis>.</para>
+      </note>
+    </sect3>
+
+    <sect3 id="accts-gc-ie2">
+      <title>Income and Expense Accounts</title>
+
+      <para><emphasis>Income</emphasis> is the payment you receive for your
+      time, services you provide, or the use of your money. In <application>&app;</application>, use an
+      <guilabel>Income</guilabel> type account to track these.</para>
+
+      <tip>
+        <para>Credits increase income account balances and debits decrease
+        them. As described in <xref linkend="basics-accounting1"></xref>,
+        credits represent money transferred
+        <emphasis>from</emphasis> an account. So in these special income
+        accounts, when you transfer money <emphasis>from</emphasis> (credit)
+        the income account to another account, the balance of the income
+        account <emphasis>increases</emphasis>. For example, when you deposit
+        a paycheck and record the transaction as a transfer from an income
+        account to a bank account, the balances of both accounts
+        increase.</para>
+      </tip>
+
+      <para><emphasis>Expenses</emphasis> refer to money you spend to purchase
+      goods or services provided by someone else. In <application>&app;</application>, use an
+      <guilabel>Expense</guilabel> type account to track your expenses.</para>
+
+      <tip>
+        <para>Debits increase expense account balances and credits decrease
+        them. (See note later in this chapter.)</para>
+      </tip>
+
+      <note>
+        <para>When you subtract total expenses from total income for a time
+        period, you get net income. This net income is then added to the
+        balance sheet as retained earnings, which is a type of
+        <guilabel>Equity</guilabel> account.</para>
+      </note>
+
+      <para>Below are the standard <guilabel>Income</guilabel> and
+      <guilabel>Expense</guilabel> accounts after selecting <guilabel>Common
+      Accounts</guilabel> in the assistant for creating a new Account Hierarchy
+      (<menuchoice><guimenu>Actions</guimenu><guimenuitem>New Account
+      Hierarchy...</guimenuitem></menuchoice>).</para>
+
+      <screenshot id="accts-DefaultIncomeAccounts">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/accts_DefaultIncomeAccounts.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>Default income accounts</phrase>
+            </textobject>
+
+            <caption>
+              <para>This image shows the standard <emphasis>Income</emphasis>
+              accounts</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+        <screenshot id="accts-DefaultExpenseAccounts">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/accts_DefaultExpenseAccounts.png"
+                         format="PNG" srccredit="Cristian Marchi" ></imagedata>
+            </imageobject>
+
+            <textobject>
+              <phrase>Some default expense accounts</phrase>
+            </textobject>
+
+            <caption>
+              <para>This image shows some standard <emphasis>Expenses</emphasis>
+              accounts</para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+    </sect3>
+
+    <sect3 id="accts-other-types">
+      <title>Other Account Types</title>
+
+      <para>There are some special other account types.</para>
+
+      <para><emphasis>Trading</emphasis> Multiple currency transactions have
+        splits in <quote>Trading</quote> accounts to make the transaction
+        balance in each currency as well as in total value. See
+        <xref linkend="chapter_currency" /> for more information.
+      </para>
+
+      <para><emphasis>Money Market</emphasis> and <emphasis>Credit Line
+        </emphasis>are used only in the OFX importer, apparently for
+        completeness with the specification.
+      </para>
+    </sect3>
+
+  </sect2>
+
+  <sect2 id="accts-examples1">
+    <title>Putting It All Together</title>
+
+    <para>Let&rsquo;s go through the process of building a common personal finance
+    <emphasis>chart of accounts</emphasis> using the information we have
+    learned from this chapter. A chart of accounts is simply a new <application>&app;</application>
+    file in which you group your accounts to track your finances. In building
+    this chart of accounts, the first task is to divide the items you want to
+    track into the basic account types of accounting. This is fairly simple,
+    let&rsquo;s go through an example.</para>
+
+    <sect3 id="accts-examples-situation2">
+      <title>Simple Example</title>
+
+      <para>Let us assume you have a checking and a savings account at a bank,
+      and are employed and thus receive a paycheck. You have a credit card
+      (Visa), and you pay monthly utilities in the form of rent, phone, and
+      electricity. Naturally, you also need to buy groceries. For now, we will
+      not worry about how much money you have in the bank, how much you owe on
+      the credit card, etc. We want to simply build the framework for this
+      chart of accounts.</para>
+
+      <para>Your <guilabel>assets</guilabel> would be the bank savings and
+      checking account. Your <guilabel>liabilities</guilabel> are the credit
+      card. Your <guilabel>Equity</guilabel> would be the starting values of
+      your bank accounts and credit card (we do not have those amounts yet,
+      but we know they exist). You have <guilabel>income</guilabel> in the
+      form of a salary, and <guilabel>expenses</guilabel> in the form of
+      groceries, rent, electricity, phone, and taxes (Federal, Social
+      Security, Medicare) on your salary.</para>
+    </sect3>
+
+    <sect3 id="accts-examples-toplevel2">
+      <title>The Basic Top Level Accounts</title>
+
+      <para>Now, you must decide how you want to group these accounts. Most
+      likely, you want your <emphasis>Assets</emphasis> grouped together, your <emphasis>Liabilities</emphasis> grouped
+      together, your <emphasis>Equity</emphasis> grouped together, your <emphasis>Income</emphasis> grouped together,
+      and your <emphasis>Expenses</emphasis> grouped together. This is the most common way of
+      building a <application>&app;</application> chart of accounts, and it is highly recommended that
+      you always begin this way.</para>
+
+      <para>Start with a clean <application>&app;</application> file by selecting
+      <menuchoice><guimenu>File</guimenu><guimenuitem>New File</guimenuitem></menuchoice> from the menu. The
+      <guilabel>New Account Hierarchy Setup</guilabel> assistant will start. Press <guibutton>Cancel</guibutton> to close
+      the assistant as we don&rsquo;t want to use one of the predefined accounts structure; instead we will build a basic
+      starting account structure from scratch. In the empty <application>&app;</application> window select
+      <menuchoice><guimenu>View</guimenu><guimenuitem>New Accounts Page</guimenuitem></menuchoice> from the menu:
+      the <guilabel>Accounts</guilabel> tab will open. Finally select
+      <menuchoice><guimenu>Actions</guimenu><guimenuitem>New Account...</guimenuitem></menuchoice>.</para>
+
+      <para>Now you are ready to build this basic starting account structure</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Account name <guilabel>Assets</guilabel> (account type
+          <guilabel>Asset</guilabel>, parent account <guilabel>New top level
+          account</guilabel>)</para>
+
+          <screenshot id="accts-CreateAssetsAccounts">
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="figures/accts_CreateAssetsAccount.png"
+                             format="PNG" srccredit="Cristian Marchi"></imagedata>
+                </imageobject>
+
+                <textobject>
+                  <phrase>Creating an Assets account</phrase>
+                </textobject>
+
+                <caption>
+                  <para>This image shows the dialog to create an assets
+                  account</para>
+                </caption>
+              </mediaobject>
+            </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Account name <guilabel>Liabilities</guilabel> (account type
+          <guilabel>Liability</guilabel>, parent account <guilabel>New top
+          level account</guilabel>)</para>
+        </listitem>
+
+        <listitem>
+          <para>Account name <guilabel>Equity</guilabel> (account type
+          <guilabel>Equity</guilabel>, parent account <guilabel>New top level
+          account</guilabel>)</para>
+        </listitem>
+
+        <listitem>
+          <para>Account name <guilabel>Income</guilabel> (account type
+          <guilabel>Income</guilabel>, parent account <guilabel>New top level
+          account</guilabel>)</para>
+        </listitem>
+
+        <listitem>
+          <para>Account name <guilabel>Expenses</guilabel> (account type
+          <guilabel>Expenses</guilabel>, parent account <guilabel>New top
+          level account</guilabel>)</para>
+        </listitem>
+      </orderedlist>
+
+      <para>When you have created the top-level accounts, the main Account page
+      in <application>&app;</application> should look like below.</para>
+
+      <screenshot id="accts-toplevel">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/accts_toplevel.png" format="PNG"
+                       srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>The Basic Top-level Accounts</phrase>
+          </textobject>
+
+          <caption>
+            <para>This image shows the basic top-level accounts.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect3>
+
+    <sect3 id="accts-examples-organization2">
+      <title>Making Sub-Accounts</title>
+
+      <para>You can now add to this basic top-level tree structure by inserting
+      some real transaction-holding sub-accounts. Notice that the tax accounts
+      are placed within a sub-account named <emphasis>Taxes</emphasis>. You can make sub-accounts
+      within sub-accounts. This is typically done with a group of related
+      accounts (such as tax accounts in this example).</para>
+      <tip>
+        <para>Instead of selecting <menuchoice><guimenu>Actions</guimenu><guimenuitem>New Account...</guimenuitem></menuchoice>
+        from the menu, you can alternatively create a new sub-account of an account by right clicking
+        on the main account&rsquo;s name and selecting the <guilabel>New Account...</guilabel> entry.
+        This will open a dialog similar to the one depicted in
+        <xref linkend="accts-examples-toplevel2" /> where the new sub-account will be already set as a
+        child of the main account.</para>
+      </tip>
+        <orderedlist>
+          <listitem>
+            <para>Account name <guilabel>Cash</guilabel> (account type
+              <guilabel>Cash</guilabel>, parent account
+              <emphasis>Assets</emphasis>)
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Checking</guilabel> (account type
+            <guilabel>Bank</guilabel>, parent account
+            <emphasis>Assets</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Savings</guilabel> (account type
+            <guilabel>Bank</guilabel>, parent account
+            <emphasis>Assets</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Visa</guilabel> (account type
+            <guilabel>Credit Card</guilabel>, parent account
+            <emphasis>Liabilities</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Salary</guilabel> (account type
+            <guilabel>Income</guilabel>, parent account
+            <emphasis>Income</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Phone</guilabel> (account type
+            <guilabel>Expense</guilabel>, parent account
+            <emphasis>Expenses</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Electricity</guilabel> (account type
+            <guilabel>Expense</guilabel>, parent account
+            <emphasis>Expenses</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Rent</guilabel> (account type
+            <guilabel>Expense</guilabel>, parent account
+            <emphasis>Expenses</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Groceries</guilabel> (account type
+            <guilabel>Expense</guilabel>, parent account
+            <emphasis>Expenses</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Taxes</guilabel> (account type
+            <guilabel>Expense</guilabel>, parent account
+            <emphasis>Expenses</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Federal</guilabel> (account type
+            <guilabel>Expense</guilabel>, parent account
+            <emphasis>Expenses:Taxes</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Social Security</guilabel> (account
+            type <guilabel>Expense</guilabel>, parent account
+            <emphasis>Expenses:Taxes</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Medicare</guilabel> (account type
+            <guilabel>Expense</guilabel>, parent account
+            <emphasis>Expenses:Taxes</emphasis>)</para>
+          </listitem>
+
+          <listitem>
+            <para>Account name <guilabel>Opening Balance</guilabel> (account
+            type <guilabel>Equity</guilabel>, parent account
+            <emphasis>Equity</emphasis>)</para>
+          </listitem>
+        </orderedlist>
+
+      <para>After you have created these additional sub-accounts, the end
+      result should look like below</para>
+
+      <screenshot id="accts-tree">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/accts_tree.png" format="PNG"
+                       srccredit="Cristian Marchi"></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>The Basic Chart of Accounts</phrase>
+          </textobject>
+
+          <caption>
+            <para>This image shows a simple chart of accounts.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Save this chart of accounts with the name
+      <filename>gcashdata_3</filename>, as well as <filename>gcashdata_3emptyAccts</filename>,
+      as we will continue to use them in the later chapters.</para>
+
+      <para>You have now created a chart of accounts to track a simple
+      household budget. With this basic framework in place, we can now begin
+      to populate the accounts with transactions. The next chapter will cover
+      this subject in greater detail.</para>
+    </sect3>
+  </sect2>
+</sect1>
+<sect1 id="chapter_txns">
+  <title>Transactions</title>
+
+  <para>This chapter will give you the basic information you need to
+  understand and use transactions in <application>&app;</application>. Whereas accounts are the
+  framework and structure of a chart of accounts, transactions are the data
+  which fills each account.</para>
+
+  <sect2 id="txns-concepts1">
+    <title>Basic Concepts</title>
+
+    <para>A <emphasis>transaction</emphasis> in a double entry accounting
+    system such as <application>&app;</application> is an exchange between at least 2 accounts. Thus, a
+    single transaction must always consist of at least two parts, a <emphasis>from</emphasis> and
+    a <emphasis>to</emphasis> account. The <emphasis>from</emphasis> account is transferring value to the <emphasis>to</emphasis> account.
+    Accountants call these parts of a transaction <emphasis>Ledger
+    Entries</emphasis>. In <application>&app;</application>, they are called
+    <emphasis>Splits</emphasis>.</para>
+
+    <para>A split identifies the account to which it refers, the
+    amount of money specifically moved to or from that account, and
+    can contain a few other specific pieces of information if needed.
+    <application>&app;</application> supports multiple splits in a
+    single transaction, and the splits can move money into or out of
+    the involved accounts arbitrarily.</para>
+
+    <para>For example, you receive a paycheck and deposit it into your savings
+    account at the bank. The <emphasis>transaction</emphasis> that occurs is
+    that your bank savings account (an asset) received money from your income
+    account. Two accounts are affected, and in this case there is a net
+    increase in your equity.</para>
+
+    <para>Working with transactions in <application>&app;</application> is performed using what is
+    known as the <emphasis>account register</emphasis>. Every account you
+    create has an account register. It will appear familiar to you as it looks
+    very similar to the log used to track checkbooks.</para>
+
+    <para>The account register is explained in the upcoming section,
+    <xref linkend="txns-register-oview"/>.</para>
+  </sect2>
+
+  <sect2 id="txns-register-oview">
+    <title>The Account Register</title>
+	<para>The <emphasis>account register</emphasis> is the window that allows you to view 
+	or edit preexisting transactions, or add new transactions for a particular account. To open 
+	an account register from the Account Tree, double-click the account name, right click the 
+	account name and select Open Account from the menu, or use the Open button on the toolbar. 
+	<application>&app;</application> will display the account register window.</para>
+	
+	<sect3 id="txns-registers-features2">
+		<title>Features of the Account Register</title>
+
+		<para>The <emphasis>Titlebar</emphasis> of the account register displays the account 
+		name. Below the <emphasis>Titlebar</emphasis>, the <emphasis>Menubar</emphasis> displays 
+		the menu items available within the account register, and the <emphasis>Toolbar</emphasis> 
+		contains handy buttons that help you work with the account register.</para>
+
+		<para>At the bottom left of the register window, <application>&app;</application> displays 
+		helpful messages as you move about the register. To the right, you can see the current account 
+		balance and the total of cleared splits.</para>
+	</sect3>
+	<sect3 id="txns-regstyle1">
+		<title>Choosing a Register Style</title>
+		<para><application>&app;</application> offers several options for viewing your registers. The
+        default style is <guilabel>Basic Ledger</guilabel> mode, which displays
+        only the summary of splits affecting the current account. This is the
+        style that most closely resembles other popular personal financial
+        packages. You can choose a different register style from the <menuchoice><guimenu>View</guimenu></menuchoice> menu. 
+		There are two other view modes:</para>
+		<itemizedlist>
+			<listitem>
+				<para><menuchoice><guimenu>View</guimenu><guimenuitem>Auto-Split Ledger</guimenuitem></menuchoice>
+				style expands the current transaction automatically. As you highlight a
+				new transaction in the register, the transaction automatically expands to
+				show all splits.</para>
+			</listitem>
+			<listitem>
+				<para><menuchoice><guimenu>View</guimenu><guimenuitem>Transaction
+				Journal</guimenuitem></menuchoice> style shows all splits for all transactions in 
+				the register, which is more like an accounting journal.</para>
+			</listitem>
+		</itemizedlist>
+
+		<para>All styles permit you to view your data in either single-line or
+        double-line format. Select <menuchoice><guimenu>View</guimenu>
+		<guimenuitem>Double Line</guimenuitem></menuchoice>, and you will see your transaction
+		line expand to two register lines. Double-line mode will also display the transaction-level Notes field.</para>
+
+		<para>Below are screenshots that demonstrate how the Basic Ledger and Transaction Journal views differ.</para>
+		<para>For this example, let&rsquo;s assume that you have purchased 3 pair of Jeans for 
+			$1,000, and have recorded the purchase as a split transaction with each pair entered 
+			on a separate split.</para>
+		<para>The below screenshots illustrate the different view modes.</para>
+
+		<para>First let&rsquo;s view the Jeans transaction from your checking account:</para>
+
+		<screenshot id="txns-registersplit4">
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/txns_registersplit4.png" format="PNG"
+                srccredit="Bengt Thuree" />
+            </imageobject>
+
+            <textobject>
+                <phrase>3 Jeans purchases</phrase>
+            </textobject>
+
+            <caption><para>
+                This image shows one split transaction with 3 Jeans purchases
+            </para></caption>
+        </mediaobject>
+		</screenshot>
+
+		<para>Now, let&rsquo;s open the <emphasis>Expenses:Clothes</emphasis> account, and look at it in Basic view.</para>
+
+		<screenshot id="txns-registersplit5">
+		<mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/txns_registersplit5.png" format="PNG"
+                srccredit="Bengt Thuree" />
+            </imageobject>
+
+            <textobject>
+                <phrase>A jump to the <emphasis>Expenses:Clothes</emphasis> account</phrase>
+            </textobject>
+
+            <caption><para>This image shows <emphasis>Expenses:Clothes</emphasis> account
+                in Basic Ledger mode.</para></caption>
+        </mediaobject>
+		</screenshot>
+		<para>Three entries appear here, but there was only the single split entry in the 
+			checking account. Further examination shows that each row has a different amount, 
+			$200, $300, and $500. This demonstrates that each row in this view reflects a single 
+			split from the original transaction.</para>
+
+		<para>Changing to Transaction Journal mode will display only the original split transaction.</para>
+
+		<screenshot id="txns-registersplit6">
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="figures/txns_registersplit6.png" format="PNG"
+                srccredit="Bengt Thuree" />
+            </imageobject>
+            <textobject>
+                <phrase>A jump to the <emphasis>Expenses:Clothes</emphasis> account</phrase>
+            </textobject>
+            <caption><para>This image shows <emphasis>Expenses:Clothes</emphasis> account in
+                Transaction Journal mode.</para></caption>
+        </mediaobject>
+		</screenshot>
+
+	</sect3>
+	<sect3 id="txns-shortcuts1">
+    <title>Using Entry Shortcuts</title>
+
+    <para><application>&app;</application> provides several time-saving shortcuts for entering your
+        data. When you type the first few characters of a description that you
+        have used before, the QuickFill feature automatically fills in the rest of
+        the transaction as you last entered it. When you type in the first
+        characters of an account name in either the <guilabel>Transfer</guilabel>
+        field of the transaction line or the <guilabel>Account</guilabel> field of
+        the split line, QuickFill will automatically complete the name from your
+        account list. It also helps you with entering sub-accounts in these
+        fields: simply type the first characters of the parent account name
+        followed by a <keycap>:</keycap> (colon) and the first characters of the sub-account name. For
+        example, to enter <emphasis>Assets:Checking</emphasis>, you might type
+        <userinput>A:C</userinput> and let <application>&app;</application> fill in the rest.</para>
+    <warning><para>Because <keycap>:</keycap> is the account separator symbol,
+        you can not use it in your account names.</para></warning>
+    <tip><para>If you really need the colon in your account names, you can select another symbol by
+        <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu><guisubmenu>Accounts</guisubmenu>
+            <guilabel>Character</guilabel></menuchoice>.</para></tip>
+    <para>Register keyboard shortcuts also save you time, and <application>&app;</application> provides
+        several of them. In the date field, you can type:</para>
+
+    <itemizedlist>
+        <listitem>
+            <para><keycap>+</keycap> or <keycap>=</keycap> to increment the date
+                and <keycap>-</keycap> or <keycap>_</keycap> to decrement the
+                date</para>
+        </listitem>
+
+        <listitem>
+            <para><keycap>]</keycap> or <keycap>}</keycap> to increment the month
+                and <keycap>[</keycap> or <keycap>{</keycap> to decrement the
+                month</para>
+        </listitem>
+
+        <listitem>
+            <para><keycap>M</keycap> or <keycap>m</keycap> to enter the first date
+                of the month</para>
+        </listitem>
+
+        <listitem>
+            <para><keycap>H</keycap> or <keycap>h</keycap> to enter the last date
+                of the month</para>
+        </listitem>
+
+        <listitem>
+            <para><keycap>Y</keycap> or <keycap>y</keycap> to enter the first date
+                of the year</para>
+        </listitem>
+
+        <listitem>
+            <para><keycap>R</keycap> or <keycap>r</keycap> to enter the last date
+                of the year</para>
+        </listitem>
+
+        <listitem>
+            <para><keycap>T</keycap> or <keycap>t</keycap> to enter today&rsquo;s
+                date</para>
+        </listitem>
+    </itemizedlist>
+
+    <tip><para>These date shortcuts not only work in the account register but everywhere
+            you can enter a date.</para></tip>
+
+    <tip><para>Specifically for dates there's another way you can save time: you can enter
+            partial dates. For example if you only enter one number, <application>&app;</application>
+            will interpret it as the day in the current month of the current year. If you only enter
+            a day and month, <application>&app;</application> will automatically append the year. The
+            default this to take such a date in a sliding window starting 11 months before the current
+            month. This means that if you enter 1/5 (January 5th) as date while the current date is
+            in December 2015, the date will be completed as 1/5/16. This default can be changed via
+            <menuchoice><guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu><guisubmenu>Date/Time</guisubmenu>
+            <guilabel>Date Completion</guilabel></menuchoice>. You can change it to either always
+            evaluate a date in the current calendar year or change the start of the sliding window.</para></tip>
+
+    <para>In the <guilabel>Num</guilabel> field of the transaction line, you
+        can type <keycap>+</keycap> to increment the transaction number from the
+        last one you typed in. Typing <keycap>-</keycap> will decrement the
+        number. This will also work in the <guilabel>Action</guilabel> field of
+        the split line, if you choose to enter split numbers there. The
+        <guilabel>Action</guilabel> field also supports QuickFill - if you type
+        the first characters of a common action (such as
+        <guilabel>Deposit</guilabel>), <application>&app;</application> will fill in the rest.</para>
+
+    <para>The <guilabel>Transfer</guilabel> field supports QuickFill
+        of account names.  You can start typing an account name and
+        <application>&app;</application> will fill in the remaining part of the name.  Typing the
+        separator character at any time will complete the current level of
+        the account name, leaving the cursor positioned to start the next
+        level of account name.  For example, typing <keycap>A:C</keycap> the
+        standard set of account names will complete to the
+        <emphasis>Assets:Checking</emphasis> account.  You can also type the
+        <keycap>Menu</keycap> or <keycombo><keycap>Ctrl</keycap><keycap>Down</keycap></keycombo> keys in this
+        field to pop up a list of all account names.</para>
+
+    <para>In any of the amount fields, you can use a built-in calculator.
+        Simply type in the first value, followed by <keycap>+</keycap>,
+        <keycap>-</keycap>, <keycap>*</keycap>, or <keycap>/</keycap>, then type
+        in the second value. <application>&app;</application> will perform the calculation and return the
+        resulting value to the amount field when you press the
+        <keycap>Tab</keycap> key.</para>
+
+	<para>All of the menu items have access keys defined, and these are marked
+		by underlined characters in the menu names. Press <keycap>Alt</keycap> +
+        [underlined character] to bring up the menu, then select an item by typing
+        its underlined character. For example, typing <keycombo>
+            <keycap>Alt</keycap>
+
+            <keycap>A</keycap>
+        </keycombo> brings up the Actions menu, then typing
+        <keycap>P</keycap> will split the transaction. A few of the menu items
+        also have shortcut keys that immediately invoke the command (typically
+        using the <keycap>Ctrl</keycap> key).  These shortcuts are listed next
+        to the item.</para>
+
+    <para>To move around the register, use these keys to save time:</para>
+
+    <itemizedlist>
+        <listitem>
+            <para><keycap>Tab</keycap> to move to the next field, <keycombo>
+                <keycap>Shift</keycap>
+
+                <keycap>Tab</keycap>
+            </keycombo> to move to the previous field</para>
+        </listitem>
+
+        <listitem>
+            <para><keycap>Home</keycap> to move to the beginning of the field,
+                <keycap>End</keycap> to move to the end of the field</para>
+        </listitem>
+
+        <listitem>
+            <para><keycap function="enter">Enter</keycap> or <keycap>↓</keycap> to move to the next
+                transaction, <keycap>↑</keycap> to move to the previous
+                transaction</para>
+        </listitem>
+
+        <listitem>
+            <para><keycap>Page Up</keycap> to move up one screen, <keycap>Page
+                Down</keycap> to move down one screen</para>
+        </listitem>
+
+        <listitem>
+            <para><keycombo>
+                <keycap>Shift</keycap>
+
+                <keycap>Page Up</keycap>
+            </keycombo> to go to the first transaction, <keycombo>
+                <keycap>Shift</keycap>
+
+                <keycap>Page Down</keycap>
+            </keycombo> to go to the last transaction</para>
+        </listitem>
+    </itemizedlist>
+
+    <para>In the <guilabel>Reconcile</guilabel> window you can use these
+        keyboard shortcuts:</para>
+
+    <itemizedlist> <listitem> <para><keycap>Tab</keycap> moves to the next box and
+    <keycombo><keycap>Shift</keycap><keycap>Tab</keycap></keycombo> moves to the previous box</para> </listitem>
+
+        <listitem>
+            <para>Space bar toggles the status between reconciled and not
+                reconciled</para>
+        </listitem>
+
+        <listitem>
+            <para><keycap>↑</keycap> and <keycap>↓</keycap> navigate through the
+                entries within the current box</para>
+        </listitem>
+    </itemizedlist>
+	</sect3>
+	</sect2>
+    <sect2 id="txns-registers-txntypes">
+    <title>Simple vs. Split Transactions</title>
+
+    <para>Every transaction in <application>&app;</application> has at least two splits, but a transaction can have more than two splits. A transaction with only two splits is called a <emphasis>simple transaction</emphasis>, since it only involves the current account and a single remote account. A transaction with three or more accounts is called a <emphasis>split transaction</emphasis>.</para>
+    <para>When the register is in Basic view, you will see a summary of the splits affecting the current account. For a simple transaction, the <guilabel>Transfer</guilabel> column will display the other account from which money is <emphasis>transferred</emphasis>. For a split transaction, the <guilabel>Transfer</guilabel> column will display <guilabel>-- Split Transaction --</guilabel>. You can see the individual splits of each
+        transaction by clicking the <guibutton>Split</guibutton> button in the
+        <emphasis>Toolbar</emphasis> while selecting the appropriate transaction.</para>
+
+    <para>For split transactions, the first line of the transaction is the
+        <emphasis>transaction line</emphasis>. It contains a
+        <guilabel>Date</guilabel>, optional <guilabel>Num</guilabel> (such as a
+        check number), transaction <guilabel>Description</guilabel>, total
+        amount affecting the current account (<guilabel>Tot Deposit</guilabel>
+        here), and updated account <guilabel>Balance</guilabel> after the
+        current transaction. Note that in the expanded view, the
+        <guilabel>Transfer</guilabel> column heading disappears, and there is no
+        account name listed in that field. This line shows you only a summary of
+        the transaction&rsquo;s effect on the current account. For more detailed
+        information, you need to look at the individual splits that make up the
+        transaction.</para>
+        <note>
+          <para>Note: An account register displays a transaction when that
+          transaction has a split assigned to the account. If a given transaction
+          has more than one split assigned to the account, then in Basic and
+          Auto-Split views, that transaction will appear in the register one
+          time for each split assigned to that account. In Transaction Journal
+          view, such a transaction will only appear once in the register.</para>
+        </note>
+
+<para>The partial lines below the transaction line are the
+    <emphasis>split lines</emphasis>, and they are separated by gray lines.
+    As you highlight one of the split lines, the column headings change to
+    show the split-related fields:</para>
+
+<screenshot id="txns-registersplit2">
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="figures/txns_registersplit2.png" format="PNG"
+            srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+            <phrase>How split headings change</phrase>
+        </textobject>
+
+        <caption><para>This image shows how split headings
+            change.</para></caption>
+    </mediaobject>
+</screenshot>
+
+<para>Each split contains an optional <guilabel>Action</guilabel>, or
+    type of split, which you can either type in or choose from a pull-down
+    list. The split also contains an optional <guilabel>Memo</guilabel>
+    which describes the split. Each split affects an
+    <guilabel>Account</guilabel>, which can be selected from a pull-down
+    list of your accounts. The <guilabel>R</guilabel> field indicates
+    whether the split has been reconciled. The last two columns show the
+    amount of the split and whether money is coming into or going out of the
+    account.</para>
+
+<para>As we discussed in <xref linkend="basics-accounting1" />, total
+    debits (left-column entries) must equal total credits (right-column
+    entries) for each transaction. In the example shown above, the total
+    debits equal the total credits, so this transaction is balanced. If you
+    notice, the transaction line contains the same debit amount as the
+    <guilabel>Checking</guilabel> split line. Why is this shown twice?
+    Because the transaction line is merely a <emphasis>summary</emphasis> of
+    the transaction&rsquo;s effect on the current account. The same transaction in
+    a different account will have a different transaction line, one that
+    shows the effect on that particular account. You can see this by
+    highlighting another split line and clicking the
+    <guibutton>Jump</guibutton> button on the <emphasis>Toolbar</emphasis>.</para>
+
+<para>In this example, if you jump to the
+    <emphasis>Income:Salary</emphasis> account, <application>&app;</application> brings up the same
+    transaction in the <emphasis>Income:Salary</emphasis> - Register:</para>
+
+<screenshot id="txns-registersplit3">
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="figures/txns_registersplit3.png" format="PNG"
+            srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+            <phrase>A jump to the <emphasis>Income:Salary</emphasis> account</phrase>
+        </textobject>
+
+        <caption><para>This image shows a jump to the
+            <emphasis>Income:Salary</emphasis> account.</para></caption>
+    </mediaobject>
+</screenshot>
+
+<para>Note that the transaction line total now summarizes the effect on
+    the <emphasis>Income:Salary</emphasis> account instead of the
+    <emphasis>Checking Account</emphasis>, because you are looking at the
+    <emphasis>Income:Salary</emphasis> account register. The splits are
+    exactly the same, but the transaction line now reflects the credit to
+    the <emphasis>Income:Salary</emphasis> account.</para>
+
+    <sect3 id="txns-registers-twoaccount2">
+      <title>Simple Transaction Example</title>
+
+      <para>Starting with the chart of accounts we created in the
+      previous chapter <filename>gcashdata_3</filename>, double click on the
+      <guilabel>Checking</guilabel> asset account. Let&rsquo;s add a simple
+      transaction to the checking account. When you first create your accounts
+      in <application>&app;</application>, it is common to start them off with an initial
+      balance.</para>
+
+      <para>In the first transaction row, enter a date (eg: March, 1, 2006), a
+      description (eg: <quote>Opening Balance</quote>), click on the <guilabel>Transfer</guilabel> pop-up menu
+      and select <emphasis>Equity:Opening Balances</emphasis>, add a deposit
+      value of $1000, and press the <keycap function="enter">Enter</keycap> key. The account register should now
+      appear similar to this figure:</para>
+
+      <screenshot id="txns-register-2account">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_2account.png"
+                       format="PNG" srccredit="Bengt  Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>The Checking Account - Register</phrase>
+          </textobject>
+
+          <caption><para>This image shows <emphasis>Assets:Checking</emphasis> -
+          Register after inserting a starting value
+          transaction.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Setting the starting balances of an account is an example of a
+      simple two account transaction. In this case, affecting the
+      <emphasis>Assets:Checking</emphasis> and the <emphasis>Equity:Opening Balances</emphasis>
+      accounts.</para>
+
+      <para>As another example of a simple 2 account transaction, add another
+      transaction to describe the purchase of $45.21 worth of groceries. From
+      within the <emphasis>Assets:Checking</emphasis> account, you would set
+      <guilabel>Transfer</guilabel> to
+      <emphasis>Expenses:Groceries</emphasis>. The account register should now
+      appear:</para>
+
+      <screenshot id="txns-register-2account2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_2account2.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>The Checking Account - Register</phrase>
+          </textobject>
+
+          <caption><para>This image shows <emphasis>Assets:Checking</emphasis> -
+          Register after adding a transaction for
+          groceries.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect3>
+
+    <sect3 id="txns-registers-multiaccount2">
+      <title>Split Transaction Example</title>
+
+      <para>The need for 3 or more splits in a transaction occurs when you need
+      to split either the <quote>from</quote> or the <quote>to</quote> account in a transaction into
+      multiple accounts. The classic example of this is when you receive a
+      paycheck. Your take home pay from a paycheck will typically be less than
+      your net pay, with the difference being due to taxes, retirement account
+      payments, and/or other items. Thus, the single transaction of you
+      receiving a paycheck involves other accounts besides simply
+      <emphasis>Assets:Checking</emphasis> and
+      <emphasis>Income:Salary</emphasis>.</para>
+      <para>To add the paycheck split transaction from the<emphasis role="italic"> Assets:Checking</emphasis> account register window, click on a new transaction line and click <guilabel>Split</guilabel>. Note that if you have set your register view to Auto-Split or Transaction Journal, the splits will be opened for you. Enter the description of this transaction on the first line(e.g. “Employers R Us”). In the split lines below this, enter the various splits that make up this transaction, one by one. To enter the splits, first choose the account, then enter the amount by which to change the account. Keep in mind that when in an asset account register, amounts entered in the left column increase the account balance, while amounts entered in the right column decrease the balance (for more about this, see <xref linkend="basics-transactions2"/>). Tab or click the next split line and repeat the process. Note that if you are using the keyboard to navigate the transaction, use<keycap> Tab</keycap> to move from field to field, as using <keycap>Enter</keycap> will commit the transaction and create splits to an Imbalance account.</para>
+      <note>
+        <para>When creating a transaction in <application>&app;</application>, splits can be entered in any order.
+        However, when the transaction is closed (either when leaving the transaction, or when
+        pressing the <keycap function="enter">Enter</keycap> key), all debit splits will jump ahead of all credit splits.</para>
+      </note>
+
+      <para>In this example, choose the deposit account
+      (<emphasis>Assets:Checking</emphasis>) and then enter the amount that
+      is being deposited into it (e.g. $670). Follow this by entering the
+      amounts for the various taxes:
+      <emphasis>Expenses:Taxes:Federal</emphasis> account, $180;
+      <emphasis>Expenses:Taxes:Medicare</emphasis> account, $90; and
+      <emphasis>Expenses:Taxes:Social Security</emphasis> account, $60. Finally,
+      enter the gross total of your paycheck ($1,000 in this example) as a
+      withdrawal transfer from <emphasis>Income:Salary</emphasis>.</para>
+
+      <para>The final split should look like <xref
+      linkend="txns-register-multiaccount"/>. Remember to press <keycap function="enter">Enter</keycap> after finishing the entry. But you
+      should also know that when you press <keycap function="enter">Enter</keycap>, the split view will be
+      <quote>folded</quote> back into a simplified transaction view. The
+      splits are still there; you just have to click
+      <guilabel>Split</guilabel> to view them. See <xref
+      linkend="txns-registers-features2"/> for details.</para>
+
+      <figure id="txns-register-multiaccount">
+        <title>Entering a split transaction</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_register_multiaccount.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+          <textobject>
+            <phrase>Account Register - Split Transaction</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+    </sect3>
+  </sect2>
+
+  <sect2 id="txns-reconcile1">
+    <title>Reconciliation</title>
+
+      <para>Once transactions have been entered into <application>&app;</application>, it is important to verify
+      that they agree with the records of your financial institution. This
+      verification process is known as <emphasis role="strong">reconciliation</emphasis>, and it is key to determine
+      whether your records are accurate. Most commonly, you will check transactions
+      against bank statements, although you can use this process to verify any
+      transaction.</para>
+
+      <para><application>&app;</application> keeps track of the reconciliation status of each
+        transaction. The reconciliation status of a transaction is shown by the
+        reconciliation <guilabel>R</guilabel> field in a register:
+        <emphasis>y</emphasis> indicates that a transaction has been
+        reconciled, <emphasis>n</emphasis> indicates that it has not, and <emphasis>c</emphasis> indicates that it has
+        been cleared, but not reconciled. A split marked cleared signifies that you got some kind of confirmation
+        that the institution accepted the order (e.g. you have the restaurant's receipt for your credit card purchase).
+        You can toggle the reconciliation status
+        between <emphasis>n</emphasis> and <emphasis>c</emphasis> by clicking in the <guilabel>R</guilabel> field; you can set
+        it to <emphasis>y</emphasis> by using <xref linkend="txns-reconcile-window2" />.</para>
+
+      <para>At the bottom of the account window, there are (among others) two running
+      balances (the <guilabel>cleared</guilabel> and <guilabel>reconciled</guilabel> balance), and the
+      <guilabel>total</guilabel> balance. The former balances should correspond to how much money
+      the bank thinks you have in your account, while the latter includes outstanding transactions.</para>
+
+      <para>For example, when you write a check for something, you should
+      enter the transaction into <application>&app;</application>. The reconciliation <guilabel>R</guilabel> field of the
+      transaction will initially contain <guilabel>n</guilabel> (new). Your new entry will
+      contribute to the <guilabel>total</guilabel> balance, but not to the <guilabel>cleared</guilabel> and
+      <guilabel>reconciled</guilabel> balance. Later, if you got some confirmation that the check has been cashed,
+      you might click on the transaction&rsquo;s <guilabel>R</guilabel> field to change it to <emphasis>c</emphasis>
+      (cleared). When you do this, the <guilabel>cleared</guilabel> balance will
+      change to include this amount. When the bank statement arrives, you can
+      then compare it to what you&rsquo;ve recorded in <application>&app;</application> by opening the reconciliation
+      window. There, you will be able to change the <guilabel>R</guilabel> field to <emphasis>y</emphasis> (reconciled).</para>
+
+      <note>
+        <para>You cannot reconcile directly in a register window by clicking in the <emphasis>R</emphasis> field. You must use the
+        reconciliation window. Once a transaction has been marked <emphasis>reconciled</emphasis>,
+        it can no longer be easily changed without breaking the
+        <link linkend="rec-start-blnc"><guilabel>Starting Balance</guilabel></link> of the next reconciliation.</para>
+      </note>
+
+      <warning>
+        <para>It is important to understand that reconciliation is done for a given
+        date, and when you reconcile an account based on a statement from a given date,
+        you are reconciling <emphasis role="strong">all transactions prior to that date</emphasis>. Therefore, if you
+        add or modify transactions that predate your last reconciliation, your
+        <emphasis role="strong">reconciled</emphasis> balances will be thrown off.</para>
+      </warning>
+
+    <sect3 id="txns-reconcile-window2">
+      <title>Reconcile windows</title>
+
+      <para>The reconciliation windows are used to reconcile a <application>&app;</application> account
+      with a statement that a bank or other institution has sent you.
+      Reconciliation is useful not only to double-check your records against
+      those of your bank, but also to get a better idea of outstanding
+      transactions, e.g. uncashed checks.</para>
+
+      <para>To use the reconciliation windows, select an account from the
+      account tree and click on <menuchoice><guimenu>Actions</guimenu>
+      <guimenuitem>Reconcile</guimenuitem></menuchoice>. A window like the one below will appear in which you can
+      enter the reconcile information.</para>
+
+      <screenshot id="txns-reconcile-window-1">
+        <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/txns_reconcile_window1.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/txns_reconcile_window1.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+
+          <textobject>
+            <phrase>Reconcile Window</phrase>
+          </textobject>
+
+          <caption><para>The initial reconcile window.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>In the initial reconcile window, some <guilabel>Reconcile Information</guilabel> need to be entered.</para>
+      <variablelist>
+        <varlistentry><term><guilabel>Statement Date</guilabel></term>
+          <listitem>
+            <para>The date of the statement you will be reconciling against.</para>
+	  <tip>
+	    <para>Click on the down arrow in the right of this field to open a calendar</para>
+	  </tip>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="rec-start-blnc"><term><guilabel>Starting Balance</guilabel></term>
+          <listitem>
+            <para>This is a non-editable item which displays the balance from the previous
+              reconciliation. It should match the starting balance in your statement.</para>
+
+            <warning><para>Sometimes, the opening balance in <application>&app;</application> does not match
+              that found on your statement. This can happen the first time you reconcile your account or
+              when a previously-reconciled transaction is de-reconciled or deleted.</para></warning>
+
+            <note><para>The first time you reconcile your account, the <guilabel>starting balance</guilabel>
+              will be <guilabel>0.00</guilabel>, thus probably not the  <emphasis>opening balance</emphasis>
+              of your account. When you reconcile the account, the <emphasis>opening balance</emphasis> for the
+              account will be included in the reconciliation, and the result should balance.</para></note>
+
+            <tip>
+              <para>In the case when a previously-reconciled transaction is accidentally de-reconciled, you
+                can simply re-reconcile the transaction along with the transactions on the current statement, and
+                the result should balance.</para>
+
+              <para>The case of accidentally deleting a previously-reconciled transaction presents
+                more of a challenge; if you cannot determine what was
+                deleted and restore it to the register, you will have to create a dummy
+                transaction to get the reconciliation to finish.</para>
+            </tip>
+            <caution><para>While the latter case does not matter for your private accounting,
+              you should have a really good explanation for your auditors, if you are the
+              accountant of a club or a company.</para></caution>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Ending Balance</guilabel></term>
+          <listitem>
+            <para>This field should be filled with the ending balance as it appears in the statement.</para>
+	  <note>
+	    <para><application>&app;</application> automatically fills this field with the
+	    <guilabel>Present</guilabel> balance as shown in the lower part of the
+	    account&rsquo;s register.</para>
+	  </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Include Sub-accounts</guilabel></term>
+          <listitem>
+            <para>Check this option if you want to include in the reconciliation the transactions
+            that belongs to the sub-accounts of the currently selected account. Note that all sub-accounts must be in the same commodity as the parent for the option to be enabled.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guibutton>Enter Interest Payment</guibutton></term>
+          <listitem>
+            <para>Clicking this button opens a new window that allow you to enter an interest transaction to the account to be
+            reconciled.</para>
+	    <tip>
+	      <para>The <guilabel>Interest Payment</guilabel> window might be opened automatically when you start a reconciliation
+	      for an account of the type <emphasis>Bank</emphasis>, <emphasis>Credit</emphasis>,
+	      <emphasis>Mutual</emphasis>, <emphasis>Asset</emphasis>, <emphasis>Receivable</emphasis>,
+	      <emphasis>Payable</emphasis>, and <emphasis>Liability</emphasis>. If you want to disable
+	      this behavior for any of the previous accounts, go to the <guilabel>Register</guilabel> tab of the
+	      <guilabel>&app; Preferences</guilabel> and uncheck the <guilabel>Automatic interest transfer</guilabel>
+	      option. Alternatively, to disable this behavior only for the selected account, press the
+	      <guibutton>No Auto Interest Payments for this Account</guibutton> button in the
+	      <guilabel>Interest Payment</guilabel> window.</para>
+	    </tip>
+          </listitem>
+        </varlistentry>
+       </variablelist>
+
+      <para>Then, click on the <guibutton>Ok</guibutton> button, and you will see
+      the transactions listing reconcile window:</para>
+
+      <screenshot id="txns-reconcile-window-2">
+        <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/txns_reconcile_window2.png"
+                         format="PNG" srccredit="Cristian Marchi" width="510"></imagedata>
+            </imageobject>
+            <imageobject role="fo">
+              <imagedata fileref="figures/txns_reconcile_window2.png"
+                         format="PNG" srccredit="Cristian Marchi"></imagedata>
+            </imageobject>
+
+          <textobject>
+            <phrase>Reconcile Window</phrase>
+          </textobject>
+
+          <caption><para>The transactions listing in the reconcile
+          window.</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>The two panes called <guilabel>Funds In</guilabel> and
+      <guilabel>Funds Out</guilabel>, lists all the unreconciled transactions that belongs to the account
+      that is going to be reconciled.
+      The <guilabel>R</guilabel> columns show whether the transactions have been reconciled.</para>
+
+      <para>Now, examine each item on the bank statement, and look for the
+      matching item in the <guilabel>Reconcile</guilabel> window.</para>
+
+      <para>If you cannot find a transaction, then perhaps you forgot to enter it, or did not know that the transaction
+      had happened. You can use the <guibutton>New</guibutton> button on the <emphasis>Toolbar</emphasis>, or the
+      <menuchoice><guimenu>Transaction</guimenu><guimenuitem>New</guimenuitem></menuchoice>
+      menu item in the  menu, to open a register window and enter the missing
+      transaction. The new item will appear in the <guilabel>Reconcile</guilabel> window when you
+      press the <guibutton>Enter</guibutton> button in the register after entering the transaction.</para>
+
+      <para>When you find the item in the <guilabel>Reconcile</guilabel> window, compare the amount
+      in the item to the amount on the statement. If they disagree, you may
+      have made an error when you entered the transaction in <application>&app;</application>. You can
+      use the <guibutton>Edit</guibutton> button on the <emphasis>Toolbar</emphasis>, or the
+      <menuchoice><guimenu>Transaction</guimenu><guimenuitem>Edit</guimenuitem></menuchoice>
+      item, to open a register window and correct the transaction.</para>
+
+      <para>If the amounts agree, click on the item in the <guilabel>Reconcile</guilabel> window.
+      A check mark wil appear in the <guilabel>R</guilabel> column aside the selected transaction.
+      <application>&app;</application> will automatically update the amounts in the lower right summary pane.</para>
+
+      <tip>
+        <para>You can use the <keycap>up</keycap>/<keycap>down</keycap> arrow keys to scroll to the item, the
+        <keycap>space</keycap> key to mark the item as reconciled and the <keycap>Tab</keycap>
+        key to switch panes.</para>
+      </tip>
+
+      <para>You then repeat this for each item that appears on the bank
+      statement, verifying that the amounts match with the amounts in <application>&app;</application>,
+      and marking off transactions in <application>&app;</application> as they are reconciled.</para>
+
+     <tip>
+       <para>You can check or uncheck the reconcile status of all transactions in 
+       either pane by clicking on a transaction in the required pane then clicking 
+       <keycap>Ctrl-A</keycap> followed by <keycap>space</keycap>. This will toggle 
+       the reconcile status of all transactions in the pane to either checked or 
+       unchecked state. This procedure can be repeated to achieve the desired status 
+       for the transactions in the pane.</para>
+     </tip>
+
+     <para>At the bottom of the <guilabel>Reconcile</guilabel> window there is a <guilabel>Difference</guilabel> field,
+      which should show <guilabel>0.00</guilabel> when you are done reconciling. If it shows some
+      other value, then either you have missed transactions, or some amounts
+      may be incorrect in <application>&app;</application>. (Or, less likely, the bank may have made an
+      error.)</para>
+
+      <note><para>Under some circumstances, it may be difficult or impossible to determine why an account will not reconcile. If you are unable to correct the discrepancy between your books and a statement, <application>&app;</application> includes a <guibutton>Balance</guibutton> button on the <emphasis>Toolbar</emphasis> that will automatically create a balancing entry for you in the amount that cannot be reconciled.</para>
+          <para>To use this, carry out the full reconciliation (marking all transactions that you can identify) and then click this button. <application>&app;</application> will create a balancing entry for the remaining discrepancy that uses the <emphasis>Special Accounts:Orphan-XXX</emphasis> account (where "XXX" represents your currency). The Reconcile window will close; re-opening it will allow you to check the newly-created balancing entry and finish the process.</para></note>
+
+      <para>When you have marked off all the items on the bank statement and the difference is 0.00, press the <guibutton>Finish</guibutton> button on the <emphasis>Toolbar</emphasis> or
+      select <menuchoice><guimenu>Reconcile</guimenu><guimenuitem>Finish</guimenuitem></menuchoice> from the menu.
+      The <guilabel>Reconcile</guilabel> window will close.
+      In the register window, the <guilabel>R</guilabel> field of the reconciled transactions will
+      change to <emphasis>y</emphasis>.</para>
+
+      <para>In this case, we have not received all the information yet, so we
+      simply press the <guibutton>Postpone</guibutton> button, so we can continue at
+      a later stage. Observe that the <guilabel>R</guilabel> column indicates we cleared (<emphasis>c</emphasis>)
+      two transactions. They have not been reconciled yet, but we have
+      verified these two transactions so they have been marked as cleared. If
+      you look at the <emphasis>Statusbar</emphasis> at the bottom of the account register, you
+      will see a summary of what has been reconciled and what has been cleared
+      (<guilabel>Cleared:USD 954.79 Reconciled:USD 0.00</guilabel>)</para>
+
+      <screenshot id="txns-reconcile-window-3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_reconcile_window3.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Checking account</phrase>
+          </textobject>
+
+          <caption><para>The Checking account after postponing the
+          reconciliation.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect3>
+  </sect2>
+
+  <sect2 id="txns-sxn1">
+    <title>Scheduled Transactions</title>
+
+    <para>Scheduled transactions are made to help entering repetitive money
+    operations, like subscriptions, insurances or taxes. By using scheduled
+    transactions, you only have to enter the concerned transaction once, set a
+    few parameters like start date, frequency and a little description, and
+    then <application>&app;</application> will tell you whenever a scheduled transaction is ready to be
+    created, and create it for you.</para>
+
+    <para>In this howto, we&rsquo;ll take a monthly Internet subscription of 20 USD
+    as example, which is taken on the 28th of each month.</para>
+
+    <para>In <application>&app;</application>, there are two ways of creating scheduled transactions,
+    <link linkend="txns-sxn-ledger2">from the ledger</link> or from the
+    <link linkend="txns-sxn-editor2">Scheduled Transactions Editor</link>.</para>
+
+    <sect3 id="txns-sxn-ledger2">
+      <title>Creating from the Ledger</title>
+
+      <para>Enter the first occurrence of your to-schedule transaction in the
+      ledger. In the <guilabel>Transfer</guilabel> field for this transaction, type
+      <emphasis>Expenses:Internet</emphasis> as shown in the next screenshot.</para>
+
+      <screenshot id="txns-sxn-ledger-1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger1.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Step one creating scheduled transaction from the
+            ledger</phrase>
+          </textobject>
+
+          <caption><para>Step one creating scheduled transaction from the
+          ledger</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <note>
+        <para>Since we did not create the <emphasis>Expenses:Internet</emphasis> account, <application>&app;</application>
+        will prompt us to create it.</para>
+      </note>
+
+      <para>Then you right click on your transaction and select
+      <guilabel>Schedule...</guilabel></para>
+
+      <screenshot id="txns-sxn-ledger-2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger2.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Step two creating scheduled transaction from the
+            ledger</phrase>
+          </textobject>
+
+          <caption><para>Step two creating scheduled transaction from the
+          ledger</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>A window like this will appear:</para>
+
+      <screenshot id="txns-sxn-ledger-3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger3.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Step three creating scheduled transaction from the
+            ledger</phrase>
+          </textobject>
+
+          <caption><para>Step three creating scheduled transaction from the
+          ledger</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Let&rsquo;s fill the values, we know that the subscription is taken on
+      the 28th each month, and the next one is for next month (since we
+      entered the one for this month manually) :</para>
+
+      <screenshot id="txns-sxn-ledger-4">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_sxn_ledger4.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Filling in data to a scheduled transaction</phrase>
+          </textobject>
+
+          <caption><para>Filling in data to a scheduled
+          transaction</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Click the <guibutton>OK</guibutton> button, and the transaction will be scheduled.
+      <application>&app;</application> now has memorized this scheduled transaction and on the 28th of
+      next month, it will pop up a window asking if it should create it (see
+      far below for a screenshot of this window).</para>
+    </sect3>
+
+    <sect3 id="txns-sxn-editor2">
+      <title>Creating from the Editor</title>
+
+      <para>Another way of entering a scheduled transaction is from the
+      <guilabel>Scheduled Transaction Editor</guilabel>, it may be faster if we have several
+      scheduled transactions to create at once.</para>
+
+      <para>From the main accounts windows, select
+      <menuchoice><guimenu>Actions</guimenu><guisubmenu>Scheduled Transactions</guisubmenu>
+      <guimenuitem>Scheduled Transaction Editor</guimenuitem></menuchoice> from the <emphasis>Menubar</emphasis>.
+      A new <guilabel>Scheduled Transactions</guilabel> tab will be opened in the
+      current <application>&app;</application> window as shown above:</para>
+
+      <screenshot id="txns-sxn-editor-2">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-2.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-2.png" format="PNG"
+                       srccredit="Cristian Marchi"/>
+          </imageobject>
+
+          <textobject>
+            <phrase>Empty <guilabel>Scheduled Transactions</guilabel> tab</phrase>
+          </textobject>
+
+          <caption><para>Empty <guilabel>Scheduled Transactions</guilabel> tab</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>This tab contains a list, now empty, of all the scheduled
+      transactions. Let&rsquo;s create a new one by clicking on the <guibutton>New</guibutton>
+      button in the <emphasis>Toolbar</emphasis>. A window like the one below will pop up:</para>
+
+      <screenshot id="txns-sxn-editor-3-overview">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-3-overview.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-3-overview.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>
+              <guimenuitem>Edit Scheduled Transaction</guimenuitem> window, 
+              <guilabel>Overview</guilabel> tab</phrase>
+          </textobject>
+
+          <caption><para><guimenuitem>Edit Scheduled Transaction</guimenuitem>
+           window, <guilabel>Overview</guilabel> tab</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>First, let&rsquo;s enter a name for this new scheduled
+      transaction in the top of the window.</para>
+      <note>
+        <para>This name will only identify the transaction
+        in the <guilabel>Edit Scheduled Transaction</guilabel> window,
+        it will never appear in the ledger.</para>
+      </note>
+
+      <para>In the <guilabel>Options</guilabel> pane of the <guilabel>Overview</guilabel>
+      tab you have four options:</para>
+
+      <variablelist>
+        <varlistentry><term><guilabel>Enable</guilabel></term>
+          <listitem>
+            <para>Sets the status of the scheduled transaction.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Create automatically</guilabel></term>
+          <listitem>
+            <para>If enabled, will insert this transaction in the
+            ledger without asking you before (see below). If needed, you can be advised
+            when the transaction is entered by checking the <guilabel>Notify me when created</guilabel>
+            option.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Create in advance</guilabel></term>
+          <listitem>
+            <para>Sets how many days in advance the transaction will be created.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Remind in advance</guilabel></term>
+          <listitem>
+            <para>Sets how many days in advance a reminder is presented. This
+            can be used, for example, when you have to pay something by check, and a reminder
+            one week before allows you to send your check before the deadline.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>The <guilabel>Occurences</guilabel> pane allows you to tell <application>&app;</application> that
+      this scheduled transaction won&rsquo;t last for ever. For example if you are repaying a loan,
+      you can enter the loan end date or the number of occurences left.</para>
+
+      <para>Select now the <guilabel>Frequency</guilabel> tab in the <guilabel>Edit Scheduled Transaction</guilabel> window.
+      Here you can set the time-related options of the transaction.</para>
+
+      <screenshot id="txns-sxn-editor-3-frequency">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-3-frequency.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-3-frequency.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>
+              <guimenuitem>Edit Scheduled Transaction</guimenuitem> window,
+              <guilabel>Frequency</guilabel> tab</phrase>
+          </textobject>
+
+          <caption><para><guimenuitem>Edit Scheduled Transaction</guimenuitem>
+            window, <guilabel>Frequency</guilabel> tab</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <variablelist>
+        <varlistentry><term><guilabel>Frequency</guilabel></term>
+          <listitem>
+            <para>Sets the basic frequency of the transaction, with options for <guilabel>once</guilabel>,
+            <guilabel>daily</guilabel>, <guilabel>weekly</guilabel>, <guilabel>semi-monthly</guilabel> and
+            <guilabel>monthly</guilabel>.
+            In this example, this is set to <guilabel>monthly</guilabel>.</para>
+            <note>
+              <para>It is possible to set a transaction to occur at intervals <emphasis>other</emphasis> than
+              those listed in the <guilabel>Frequency</guilabel> list, by changing the setting in the
+              <guilabel>Every</guilabel> control (see below).</para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Start Date</guilabel></term>
+          <listitem>
+            <para>Sets when the transaction will begin. In the example, this would
+            be set to the start of the next month.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>Every</guilabel></term>
+          <listitem>
+            <para>This option allows you to schedule transactions by multiplies of the value in
+            <guilabel>Frequency</guilabel>. For example, to create a transaction that runs every 3 weeks, set
+            <guilabel>Frequency</guilabel> to <guilabel>Weeks</guilabel> and <guilabel>Every</guilabel> to
+            <guilabel>3</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry><term><guilabel>On the</guilabel> and <guilabel>Except on weekends</guilabel></term>
+          <listitem>
+            <para>Sets the day of the month that the transaction is scheduled, and controls what
+            <application>&app;</application> will do when the day occurs on a weekend day.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <note>
+        <para>We know that the subscription is taken on the 28th each month, so the <guilabel>Start date</guilabel>
+        will be November 1, 2003 (assuming November is the next month), the <guilabel>Frequency</guilabel> will be
+        <guilabel>Monthly</guilabel>, it will be taken every month on the 28th. Since in our example the internet
+        subscription is automatically taken from the account, we have no need to create it in advance, nor
+        give an end date.</para>
+      </note>
+
+      <para>When the elements on this tab are filled in, <application>&app;</application> will highlights the
+      calendar below to indicate when future transactions will be run.</para>
+
+      <para>Finally select the <guilabel>Template Transaction</guilabel> tab and enter your transaction
+      in the lower part as you would do in the ledger, with the only difference of having no date.</para>
+
+      <para>Now, you should have a window like this:</para>
+
+      <screenshot id="txns-sxn-editor-3-template">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-3-template.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-3-template.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase><guimenuitem>Edit Scheduled Transaction</guimenuitem>
+              window, <guilabel>Template Transaction</guilabel> tab</phrase>
+          </textobject>
+
+          <caption><para><guimenuitem>Edit Scheduled Transaction</guimenuitem>
+            window, <guilabel>Template Transaction</guilabel> tab</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Remember to click on the <guibutton>Enter</guibutton> icon, to validate and enter the
+      transaction.</para>
+
+      <para>Now click <guibutton>OK</guibutton>, it takes you to the <guilabel>Scheduled Transactions</guilabel> tab,
+      now showing one item in the <guilabel>Transactions</guilabel> list:</para>
+
+      <screenshot id="txns-sxn-editor-4">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor-4.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor-4.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Entered scheduled transaction</phrase>
+          </textobject>
+
+          <caption><para>Entered scheduled transaction</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <tip>
+        <para>If you click in the calendar part on the first day of one month, a
+        small window, following your mouse, will show you what is planned for
+        this day. To make the small window disappear again, just click in it
+        one more time.</para>
+      </tip>
+
+      <para>You can now close the <guilabel>Scheduled Transaction</guilabel> tab, and
+      <guilabel>save</guilabel> your work.</para>
+
+      <note>
+        <para>What comes below is just an illustration, and is not meant to be
+        entered into the <application>&app;</application> database at this stage. As per this example,
+        the below dialogs will appear when the scheduled transaction is
+        supposed to run.</para>
+      </note>
+
+      <para>From now on, when <application>&app;</application> is launched and a scheduled
+      transaction is scheduled or need to be entered,
+      you may see a <guilabel>Since Last Run...</guilabel> window summarizing the scheduled transactions
+      operations (<guilabel>Reminder</guilabel>, <guilabel>To-Create</guilabel> etc... a better
+      description of each option can be found in the <application>&app;</application> manual):</para>
+
+      <screenshot id="txns-sxn-editor-slr">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/txns_sxn_editor_slr.png" format="PNG"
+                       srccredit="Cristian Marchi" width="510"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/txns_sxn_editor_slr.png" format="PNG"
+                       srccredit="Cristian Marchi" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Scheduled transaction popup reminder</phrase>
+          </textobject>
+
+          <caption><para>Scheduled transaction popup reminder</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>You can click on the <guilabel>Status</guilabel> column to change
+      the scheduled transaction status if needed. Then just click on <guibutton>Ok</guibutton> to
+      close the <guilabel>Since Last Run...</guilabel> window and to apply the pending operations.
+      Select <guibutton>Cancel</guibutton> to skip entering in the ledger the pending operations.</para>
+
+      <para>If the <guilabel>Status</guilabel> field was set to <guilabel>To-Create</guilabel>,
+      then if you take a look in your bank account register, you&rsquo;ll see the transaction has been created:</para>
+
+      <tip>
+        <para>If you enable the <guilabel>Review created transactions</guilabel> option in the lower right of the
+        <guilabel>Since Last Run...</guilabel> window, <application>&app;</application> will open, after pressing
+        <guibutton>Ok</guibutton>, the register tab of each account where the scheduled
+        transactions were entered automatically.</para>
+      </tip>
+
+      <note>
+        <para>If you entered the transaction for 28 of April at this stage,
+        then please <emphasis>revert back</emphasis> to the last saved <application>&app;</application> file
+        by selecting <menuchoice><guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice> and
+        choosing the previously saved <filename>gcashdata_3</filename> <application>&app;</application> file.</para>
+      </note>
+    </sect3>
+  </sect2>
+
+  <sect2 id="txns-puttoget1">
+    <title>Putting It All Together</title>
+
+    <para>In the previous sections of this chapter the concepts and mechanics
+    of working with transactions in <application>&app;</application> have been discussed. This section
+    will expand upon the chart of accounts initially built in the previous
+    chapter, by setting some opening balances, adding transactions and a
+    scheduled transaction.</para>
+
+    <sect3 id="txns-puttoget-openfile">
+      <title>Open <application>&app;</application> file</title>
+
+      <para>Start with opening the previous datafile we stored,
+      <filename>gcashdata_3emptyAccts</filename>, and store it as
+      <filename>gcashdata_4</filename> directly. The main window should look
+      something like this:</para>
+
+      <screenshot id="txns-puttoget1-Charts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts.png" format="PNG"
+                       srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Starting point for Putting It All Together</phrase>
+          </textobject>
+
+          <caption><para>This image shows the starting point for this
+          section.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect3>
+
+    <sect3 id="txns-puttoget-open2">
+      <title>Opening Balances</title>
+
+      <para>As shown earlier in <xref linkend="txns-registers-twoaccount2"/>
+      with the <emphasis>Assets:Checking</emphasis>
+      account, the starting balances in an account are typically assigned to a
+      special account called <emphasis>Equity:Opening Balance</emphasis>. To
+      start filling in this chart of account, begin by setting the starting
+      balances for the accounts. Assume that there is $1000 in the savings
+      account and $500 charged on the credit card.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Open the <emphasis>Assets:Savings</emphasis> account register.
+          Select <guimenu>View</guimenu> from the menu and check to make sure
+          you are in Basic Ledger style. You will view your transactions in
+          the other modes later, but for now let&rsquo;s enter a basic transaction
+          using the basic default style.</para>
+        </listitem>
+
+        <listitem>
+          <para>From the <emphasis>Assets:Savings</emphasis> account register
+          window, enter a basic 2 account transaction to set your starting
+          balance to $1000, transferred from <emphasis>Equity:Opening Balance</emphasis>.
+          Remember, basic transactions transfer money from
+          a source account to a destination account. Record the transaction
+          (press the <keycap function="enter">Enter</keycap> key, or click on
+          the <guibutton>Enter</guibutton> icon).</para>
+        </listitem>
+
+        <listitem>
+          <para>From the <emphasis>Assets:Checking</emphasis> account register
+          window, enter a basic 2 account transaction to set your starting
+          balance to $1000, transferred from <emphasis>Equity:Opening Balance</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>From the <emphasis>Liabilities:Visa</emphasis> account
+          register window, enter a basic 2 account transaction to set your
+          starting balance to $500, transferred from <emphasis>Equity:Opening Balance</emphasis>.
+          This is done by entering the $500 as a <guilabel>charge</guilabel>
+          in the <emphasis>Visa</emphasis> account (or <guilabel>decrease</guilabel> in the <emphasis>Opening Balance</emphasis> account),
+          since it is money you borrowed. Record the transaction (press the
+          <keycap function="enter">Enter</keycap> key, or click on
+          the <guibutton>Enter</guibutton> icon).</para>
+        </listitem>
+      </orderedlist>
+
+      <para>You should now have 3 accounts with opening balances set.
+      <emphasis>Assets:Checking</emphasis>,
+      <emphasis>Assets:Savings</emphasis>, and
+      <emphasis>Liabilities:Visa</emphasis>.</para>
+
+      <screenshot id="txns-puttoget1-Charts1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts1.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Chart accounts after setting opening balance</phrase>
+          </textobject>
+
+          <caption><para>This image shows the opening
+          balances.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect3>
+
+    <sect3 id="txns-puttoget-add2">
+      <title>Additional Transaction Examples</title>
+
+      <para>Now add some more transactions to simulate a month&rsquo;s expenses.
+      During the month, $78 is spent on electricity, $45 on phone, and $350 on
+      rent. All paid by check. We also spent $45.21 on groceries, received $670
+      as salary, and paid our Internet bill this month. Finally, let&rsquo;s move
+      $100 from the savings account to the checking account.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Open the <emphasis>Expenses:Electricity</emphasis> account
+          register and enter a simple 2 account transaction to pay the $78
+          electrical bill at the end of the current month (eg: March 28,
+          2006). Enter a description (eg: Light Company) and the check number
+          (eg: 102). The <guilabel>Transfer</guilabel> account should be
+          <emphasis>Assets:Checking</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Open the <emphasis>Assets:Checking</emphasis> account register
+          and enter a simple 2 account transaction to pay the $45 phone bill
+          at the end of the current month (eg: March 28, 2006). Enter a
+          description (eg: Phone Company Name) and the check number (eg: 103).
+          The <guilabel>Transfer</guilabel> account should be
+          <emphasis>Expenses:Phone</emphasis>. Notice that you can enter
+          expense transactions from either the credit side (the expense
+          accounts) or the debit side (the asset account).</para>
+        </listitem>
+
+        <listitem>
+          <para>Open the <emphasis>Expenses:Rent</emphasis> account register
+          and enter a simple 2 account transaction to pay the $350 in rent at
+          the end of the current month (eg: March 28, 2006). Enter a
+          description (eg: April Rent) and the check number (eg: 104). The
+          <guilabel>Transfer</guilabel> account should be
+          <emphasis>Assets:Checking</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Duplicate this transaction using the
+          <guibutton>Duplicate</guibutton> button in the <emphasis>Toolbar</emphasis>. Start by
+          clicking on the current rent transaction, and click on the
+          <guilabel>Duplicate</guilabel> icon. Enter the transaction date a
+          month out in the future (eg: April 28, 2006), and notice the blue
+          line separator that <application>&app;</application> uses to separate future transactions
+          from current ones. In this way, you can enter transactions before
+          they occur.</para>
+
+          <para>You could also set up a scheduled transaction to pay your
+          rent, since the value of the rent is likely to be constant for the
+          foreseeable future. <itemizedlist>
+              <listitem>
+                <para>Start by clicking on the current (April 28) rent
+                transaction, and click on the <guilabel>Schedule</guilabel>
+                icon</para>
+              </listitem>
+
+              <listitem>
+                <para>Change to <guilabel>Monthly</guilabel>, change
+                description if needed and press <guibutton>OK</guibutton></para>
+              </listitem>
+            </itemizedlist></para>
+        </listitem>
+
+        <listitem>
+          <para>To transfer money from your savings account to your checking
+          account, open the <emphasis>Assets:Savings</emphasis> account
+          register, add a new transaction setting
+          the <guilabel>Transfer</guilabel> to <emphasis>Assets:Checking</emphasis> in the amount
+          of $100 (date 6 March, 2006).</para>
+        </listitem>
+
+        <listitem>
+          <para>As another example of a simple 2 account transaction, add
+          another transaction to describe the purchase of $45.21 worth of
+          groceries on 5 of March. From within the <emphasis>Assets:Checking</emphasis> account, you
+          would set <guilabel>Transfer</guilabel> to
+          <emphasis>Expenses:Groceries</emphasis>. The account register should
+          now appear:</para>
+        </listitem>
+
+        <listitem>
+          <para>To add a paycheck transaction from the
+          <emphasis>Assets:Checking</emphasis> account register window, click
+          on a new transaction line, and click on <guilabel>Split</guilabel>.
+          First enter the description of this transaction on the first line
+          (eg: <quote>Employers R Us</quote>), as well as the date (14 March). In the
+          <quote>split</quote> line below this, enter the deposit into
+          <emphasis>Assets:Checking</emphasis> (eg:$670). Follow this with the various tax deposits
+          (<emphasis>Assets:Checking</emphasis> (eg: $670),
+          <emphasis>Expenses:Taxes:Federal</emphasis> account (eg: $180),
+          <emphasis>Expenses:Taxes:Medicare</emphasis> account (eg: $90), and
+          <emphasis>Expenses:Taxes:Social Security</emphasis> account (eg: $60)) and
+          lastly the gross total of your paycheck (eg: $1000) as a withdrawal
+          transfer from <emphasis>Income:Salary</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>You also need to pay for your Internet subscription of 20 USD on
+          the 28th.</para>
+        </listitem>
+      </orderedlist>
+
+      <screenshot id="txns-puttoget2-Charts1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/txns_puttoget_Charts2.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Chart accounts after setting all the various
+            transactions</phrase>
+          </textobject>
+
+          <caption><para>This image shows the ending balances after <xref
+          linkend="chapter_txns" />.</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect3>
+
+    <sect3 id="txns-puttoget-save">
+      <title>Save file</title>
+
+      <para>Before we go to the report section, let&rsquo;s save the <application>&app;</application> data
+      file (<filename>gcashdata_4</filename>).</para>
+    </sect3>
+
+    <sect3 id="txns-puttoget-reports">
+      <title>Reports</title>
+
+      <para>But only having data available on the computer screen will not
+      make your accountant happy, therefore <application>&app;</application> comes with a large number
+      of highly customizable reports.</para>
+
+<!-- Add this note when the reports chapter is ready
+      <note>
+        <para>More details on the reports can be found in <xref linkend="chapter_reports" /></para>
+      </note>
+-->
+
+      <para>Let&rsquo;s have a look at a <guilabel>Cash Flow</guilabel>, and a
+      <guilabel>Transaction</guilabel> Report.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>First let&rsquo;s have a look at the <guilabel>Cash Flow</guilabel>
+          report for the month of March.</para>
+
+          <para>Select the cash flow report from <menuchoice><guimenu>Reports</guimenu>
+          <guisubmenu>Income &amp; Expense</guisubmenu>
+          <guimenuitem>Cash Flow</guimenuitem></menuchoice>.</para>
+
+          <screenshot id="txns-puttoget2-Cash">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_CashFlow.png" format="PNG"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Cash Flow report for the month of March</phrase>
+              </textobject>
+
+              <caption><para>This image shows the Cash Flow report after <xref
+              linkend="chapter_txns" />.</para></caption>
+            </mediaobject>
+          </screenshot>
+
+          <para>To get this customized report, right click in the report and
+          choose <guilabel>Report Options</guilabel>. Then set the time
+          period, and specify which accounts you want in the report.</para>
+        </listitem>
+
+        <listitem>
+          <para>Now let&rsquo;s have a look at corresponding transaction report for
+          the Checking account.</para>
+
+          <para>Select the transaction report from <menuchoice><guimenu>Reports</guimenu>
+          <guimenuitem>Transaction Report</guimenuitem></menuchoice>.</para>
+
+          <screenshot id="txns-puttoget2-TransactionRptChecking">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_TransactionRptChecking.png"
+                           format="PNG" srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Transaction Report for the Checking account during
+                March</phrase>
+              </textobject>
+
+              <caption><para>This image shows the Transaction Report for the
+              Checking account during March. </para></caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+
+        <listitem>
+          <para>Now let&rsquo;s change the transaction report to only show the
+          various Expenses accounts.</para>
+
+          <screenshot id="txns-puttoget2-TransactionRptExpenses">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/txns_TransactionRptExpenses.png"
+                           format="PNG" srccredit="Bengt Thuree" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Transaction Report for the Expenses accounts during
+                March</phrase>
+              </textobject>
+
+              <caption><para>This image shows the Transaction Report for the
+              various Expense accounts during March. </para></caption>
+            </mediaobject>
+          </screenshot>
+        </listitem>
+      </orderedlist>
+    </sect3>
+  </sect2>
+</sect1>
 </chapter>
