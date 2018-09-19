@@ -13,8 +13,8 @@ entities = \
 	legal.xml \
 	ch_oview.xml \
 	ch_basics.xml \
-	ch_accts.xml \
-	ch_txns.xml \
+	ch_importing.xml \
+	ch_configuring.xml \
 	ch_cbook.xml \
 	ch_cc.xml \
 	ch_expenses.xml \
