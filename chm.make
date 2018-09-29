@@ -1,7 +1,7 @@
 # Create CHM help files for Win32
 # Copyright 2017 John Ralls <jralls@ceridwen.us>
 # Procedure lifted from make_chm() in gnucash-on-windows.git:install-impl.sh,
-# originally written by Andreas Köhler.
+# originally written by Andreas KÃ¶hler.
 
 chmfile=$(docname).chm
 mapfile=$(docname).hhmap
@@ -20,6 +20,9 @@ install-chm-local: $(chmfile) $(mapfile)
 
 .xml.chm:
 	${XSLTPROC} ${htmlhelp_xsl} ${srcdir}/$(docname).xml
+	if test ! -d ${builddir}/figures ; then \
+		ln -s ${srcdir}/figures ${builddir} ; \
+	fi
 	count=0
 	echo >> htmlhelp.hhp
 	echo "[ALIAS]" >> htmlhelp.hhp
@@ -28,10 +31,10 @@ install-chm-local: $(chmfile) $(mapfile)
 	echo "[Map]" > htmlhelp.hhmap
 	echo "Searching for anchors ..."
 	for id in `cat ${srcdir}/*.xml | sed '/sect.*id=/!d;s,.*id=["'\'']\([^"'\'']*\)["'\''].*,\1,'` ; do \
-		files=`grep -l "[\"']${id}[\"']" *.html` || continue; \
-		echo "IDH_$((++count))=${files}#${id}" >> htmlhelp.hhp; \
-		echo "#define IDH_${count} ${count}" >> mymaps; \
-		echo "${id}=${count}" >> htmlhelp.hhmap; \
+		files=`grep -l "[\"']$${id}[\"']" *.html` || continue; \
+		echo "IDH_$$((++count))=$${files}#$${id}" >> htmlhelp.hhp; \
+		echo "#define IDH_$${count} $${count}" >> mymaps; \
+		echo "$${id}=$${count}" >> htmlhelp.hhmap; \
 	done
 	echo >> htmlhelp.hhp
 	echo "[MAP]" >> htmlhelp.hhp

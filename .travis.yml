@@ -1,0 +1,15 @@
+# Test
+sudo: required
+language: c++
+compiler: gcc
+env:
+    - BUILDENV=ubuntu-14.04 BUILDTYPE=autotools-make
+services:
+    - docker
+install:
+    - docker --version
+    - echo BUILDENV="$BUILDENV"
+    - docker build -f util/ci/${BUILDENV}-docker -t ${BUILDENV}-gnucashbuild util/ci
+script:
+    - echo BUILDTYPE="$BUILDTYPE"
+    - docker run -v "$(pwd)":/gnucash-docs:rw --env="BUILDTYPE=$BUILDTYPE" --rm ${BUILDENV}-gnucashbuild

@@ -1,0 +1,22 @@
+#!/bin/bash -e
+
+mkdir -p "$HOME"/.local/share
+
+if [[ "$BUILDTYPE" == "autotools-make" ]]; then
+    cd gnucash-docs
+    ./autogen.sh
+    cd ..
+fi
+
+mkdir build
+cd build
+export TZ="America/Los_Angeles"
+
+if [[ "$BUILDTYPE" == "autotools-make" ]]; then
+    ../gnucash-docs/configure
+    make -j 4
+    make check || ../afterfailure
+else
+    echo "Unknown buildtype: \"$BUILDTYPE\". Not building."
+fi
+
