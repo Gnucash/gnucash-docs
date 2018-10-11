@@ -57,3 +57,7 @@ epub-recursive $(MOBI_RECURSIVE):
 	  ($(am__cd) $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
 	  || eval $$failcom; \
 	done; test -z "$$fail"
+
+pot:
+	mkdir -p po; \
+	itstool -dk -o po/gnucash-docs.pot $(top_srcdir)/guide/C/*.xml $(top_srcdir)/help/C/*.xml
