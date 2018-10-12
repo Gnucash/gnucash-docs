@@ -19,7 +19,7 @@ install-chm-local: $(chmfile) $(mapfile)
 	$(INSTALL_DATA) $(mapfile) $(DESTDIR)$(docdir)/$(lang)
 
 .xml.chm:
-	${XSLTPROC} ${htmlhelp_xsl} ${srcdir}/$(docname).xml
+	${XSLTPROC} $(XSLTPROCFLAGS) ${htmlhelp_xsl} ${srcdir}/$(docname).xml
 	if test ! -d ${builddir}/figures ; then \
 		ln -s ${srcdir}/figures ${builddir} ; \
 	fi

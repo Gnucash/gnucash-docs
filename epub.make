@@ -13,7 +13,8 @@ epub-am:
 	posthook='exit 1'; \
 	(cd "$$EPUB_TMPDIR" && \
 	echo "application/epub+zip" > mimetype && \
-	$(XSLTPROC) --stringparam base.dir OEBPS/ \
+	$(XSLTPROC) $(XSLTPROCFLAGS) \
+	            --stringparam base.dir OEBPS/ \
 	            --stringparam epub.metainf.dir META-INF/ \
 	            --stringparam epub.oebps.dir OEBPS/ \
 	            $(abs_top_srcdir)/xsl/1.79.2/epub/docbook.xsl \

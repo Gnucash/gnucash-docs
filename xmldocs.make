@@ -86,7 +86,7 @@ figfiles = $(shell ls ${srcdir}/${figdir}/*.png)
 html: all convert-html copy-pics copy-style
 
 # Convert xml to html with xsltproc
-# xsltproc   -o outputdir/ /usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl filename.xml
+# xsltproc --xinclude -o outputdir/ /usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl filename.xml
 convert-html: 
 	$(mkinstalldirs) "$(docname)"; \
 	for file in $(docname).xml; do \
@@ -151,4 +151,4 @@ uninstall-html:
 	fi
 
 check:
-	xmllint --valid --noout ${srcdir}/${docname}.xml
+	xmllint --postvalid --xinclude --noout ${srcdir}/${docname}.xml
