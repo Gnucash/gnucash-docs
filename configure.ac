@@ -2,7 +2,7 @@
 # copyright (c) 2003-2016 GnuCash Development Team
 
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([gnucash-docs], [3.3], [https://bugzilla.gnome.org/page.cgi?id=browse.html&product=GnuCash], , [http://www.gnucash.org/])
+AC_INIT([gnucash-docs], [3.3], [https://bugs.gnucash.org/describecomponents.cgi?product=Documentation], , [https://www.gnucash.org/])
 AC_CANONICAL_HOST
 
 dnl ==========================================================================
@@ -26,7 +26,7 @@ AC_ARG_WITH([scrollkeeper],
 if test x$with_scrollkeeper != "xno"; then
    AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config, no)
    if (test "x$with_scrollkeeper" = "xyes") && (test x$SCROLLKEEPER_CONFIG = xno); then
-      AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net or rarian: http://rarian.freedesktop.org and link the rarian executables to their scrollkeeper equivalents.)
+      AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net or rarian: https://rarian.freedesktop.org and link the rarian executables to their scrollkeeper equivalents.)
    fi
 fi
 AM_CONDITIONAL(ENABLE_SK, test "x$SCROLLKEEPER_CONFIG" = "xyes")
@@ -177,7 +177,7 @@ AM_CONDITIONAL([WITH_MOBI], [test "x$with_mobi" = "xyes"])
 if test "x$with_mobi" = "xyes"; then
   AC_PATH_PROG(EBOOK_CONVERT, ebook-convert, no)
   if test "x$EBOOK_CONVERT" = "xno"; then
-    AC_MSG_ERROR([Couldn't find ebook-convert. Please install the Calibre package: http://www.calibre-ebook.com/])
+    AC_MSG_ERROR([Couldn't find ebook-convert. Please install the Calibre package: https://www.calibre-ebook.com/])
   fi
 else
   AC_MSG_NOTICE([Didn't make mobi target.  If you need, specify --with-mobi])
