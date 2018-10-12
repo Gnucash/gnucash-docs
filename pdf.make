@@ -19,7 +19,7 @@ $(abs_builddir)/figures: $(abs_srcdir)/figures
 $(fofile): $(entities)
 
 .xml.fo:
-	$(XSLTPROC) $(XSLTPROCFLAGS) $(XSLTFLAGS_FO) -o '$@' --stringparam fop1.extensions 1 $(top_srcdir)/xsl/1.75.2/fo/docbook.xsl '$<'
+	$(XSLTPROC) $(XSLTPROCFLAGS) $(XSLTFLAGS_FO) -o '$@' --stringparam fop1.extensions 1 $(top_srcdir)/xsl/1.79.2/fo/docbook.xsl '$<'
 
 .fo.pdf:
 	$(FOP) $(FOPFLAGS) -fo '$<' -pdf '$@'
