@@ -7,6 +7,7 @@ EXTRA_DIST = gnucash-docs.spec \
 	     omf.make \
 	     pdf.make \
              chm.make \
+	     docbook \
 	     stylesheet \
 	     xsl \
 	     HACKING \
