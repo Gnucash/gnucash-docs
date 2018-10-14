@@ -53,6 +53,11 @@ gnomehelp_DATA =  $(xml_files)
 gnomehelpfiguresdir = $(gnomehelpdir)/$(figdir)
 gnomehelpfigures_DATA = $(shell ls ${srcdir}/${figdir}/*.png)
 
+# At install time copy our dtd next to the xml files
+install-data-hook:
+	$(mkinstalldirs) "$(DESTDIR)$(gnomehelpdir)"
+	$(INSTALL_DATA) "${top_srcdir}/docbook/gnc-docbookx.dtd" "$(DESTDIR)$(gnomehelpdir)/gnc-docbookx.dtd"
+
 uninstall-hook:
 	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpfiguresdir)"
 	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)"
