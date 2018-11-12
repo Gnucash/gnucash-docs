@@ -191,8 +191,7 @@
          damit überein, wie Buchhalter diese Worte nutzen. Im Allgemeinen ist es angenehmer,
          etwas zu <emphasis>haben</emphasis> als etwas zu <emphasis>sollen</emphasis>;
          der Kaufmann hingegen verkürzt hier "Wir <emphasis>haben</emphasis> zu zahlen" (ist der Creditor)
-         oder "Sie <emphasis>sollen</emphasis> zahlen (ist der Debitor)".</para>
-        <para>Praktisch hat <emphasis>Haben</emphasis> in der Buchhaltung
+         oder "Sie <emphasis>sollen</emphasis> zahlen (ist der Debitor)". Praktisch hat <emphasis>Haben</emphasis> in der Buchhaltung
          die Bedeutung <emphasis>auf der rechten Seite eines Kontos buchen</emphasis>,
          was dann eine Abnahme bei den Aktiva und Aufwandskonten,
          aber einer Zunahme bei den Ertragskonten und Passiva
@@ -333,6 +332,7 @@
     <sect2 id="basics-tip2">
       <title>Tipp des Tages</title>
       <indexterm><primary>Benutzeroberfläche</primary><secondary>Tipp des Tages</secondary></indexterm>
+
       <para>
         <application>&app;</application> bietet einen <guilabel>Tipp des Tages</guilabel> Dialog
         an, um nützliche Hinweise für die Benutzung des Programms zu
@@ -435,7 +435,12 @@
       <para>
         <screenshot id="basics-CheckAccount">
           <mediaobject>
-            <imageobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/basics_CheckAccount.png"
+                         srccredit="Chris Lyttle" width="510"
+                         format="PNG"></imagedata>
+            </imageobject>
+            <imageobject role="fo">
               <imagedata fileref="figures/basics_CheckAccount.png"
                          srccredit="Chris Lyttle"
                          format="PNG"></imagedata>
@@ -673,11 +678,135 @@
   <sect1 id="basics-files1">
     <title>Speichern Ihrer Finanzdaten</title>
     <indexterm><primary>Dateien</primary></indexterm>
-    <para><application>&app;</application> kann Ihre Finanzdaten in Dateien 
-    oder <acronym>SQL</acronym>-Datenbanken <link linkend="basics-store-data">speichern</link>, 
-    so dass sie zu einem späteren Zeitpunkt <link linkend="basics-file-open-data">geöffnet</link> 
-    und verändert werden können. Aber sollten Sie einen Container für Ihre 
-    Daten <link linkend="basics-create-data">erstellen</link>.</para>
+	<sect2 id="basics-files1-overview">
+		<title>Übersicht</title>
+
+                <para>FUZZY-DE <application>&app;</application> kann Ihre Finanzdaten in Dateien
+                    oder <acronym>SQL</acronym>-Datenbanken <link linkend="basics-store-data">speichern</link>,
+                    so dass sie zu einem späteren Zeitpunkt <link linkend="basics-file-open-data">geöffnet</link>
+                    und verändert werden können. Aber sollten Sie einen Container für Ihre
+                    Daten <link linkend="basics-create-data">erstellen</link>.</para>
+
+		<para>UNTRANSLATED-DE The <acronym>XML</acronym> storage format is a text file that by default is compressed,
+		which is a preference that is set at <menuchoice><guimenu>Edit</guimenu>
+		<guimenuitem>Preferences</guimenuitem></menuchoice> <guilabel>General</guilabel>
+		<guilabel>Compress files</guilabel>. SQLite storage is also available, and stores
+		your data in a single file on your system, like the <acronym>XML</acronym> format. However,
+		internally, an SQLite file is managed as a database. The MySQL and PostgreSQL storage options
+		require access to a MySQL or PostgreSQL database server and the installation of
+		additional database drivers on your machine.</para>
+
+		<tip>
+		<para>UNTRANSLATED-DE Users can change the format at any time by using <menuchoice><guimenu>File</guimenu>
+		<guimenuitem>Save As...</guimenuitem></menuchoice>. This will create a copy of
+		the data file in the selected format.</para>
+		</tip>
+	</sect2>
+
+	<sect2 id="basics-files-storage-comparison">
+		<title>UNTRANSLATED-DE Storage Comparison and Recommendations</title>
+		<para>UNTRANSLATED-DE Each storage format has benefits and shortcomings that users should
+		consider for their needs and abilities. See the
+		<link linkend='basics-storage-comparison-table' endterm="basics-storage-comparison-tbltitle"/> below
+		for further details.</para>
+
+		<para>UNTRANSLATED-DE The <acronym>XML</acronym> format is the most stable and established,
+		and for this reason, it is recommended for most users. <acronym>SQL</acronym>
+		storage was added for the 2.4 release and has become an increasingly popular
+		choice for users. The SQLite format allows users to realize the benefits of
+		<acronym>SQL</acronym> storage without the overhead of installing or managing
+		a full <acronym>DBMS</acronym>. MySQL and PostgreSQL require the installation
+		of MySQL and PostgreSQL <acronym>DBMS</acronym>, respectively, and are best
+		maintained only by experienced database administrators.</para>
+
+		<note>
+			<para>UNTRANSLATED-DE Use of a <acronym>SQL</acronym> back end for storage implies to many
+			that <application>&app;</application> has fully implemented <acronym>DBMS</acronym>
+			features, including multi-user and incremental data manipulation.  However,
+			<application>&app;</application> does not currently implement these features,
+			although it is a long term goal of the development team. </para>
+		</note>
+	</sect2>
+	<sect2 id="basics-storage-comparison-tblsect">
+		<title>UNTRANSLATED-DE Storage Comparison Table</title>
+		<table frame="topbot" id="basics-storage-comparison-table">
+			<title id="basics-storage-comparison-tbltitle">UNTRANSLATED-DE Storage Comparison</title>
+
+			<tgroup align="left" cols="5">
+				<colspec colname="c1item" ></colspec>
+				<colspec colname="c2xml" ></colspec>
+				<colspec colname="c3sqlite" ></colspec>
+				<colspec colname="c4mysql" ></colspec>
+				<colspec colname="c5pgsql" ></colspec>
+
+            <thead>
+              <row>
+                <entry> </entry>
+                <entry align="center">XML</entry>
+                <entry align="center">SQLite</entry>
+                <entry align="center">MySQL</entry>
+                <entry align="center">PostgreSQL</entry>
+              </row>
+            </thead>
+
+            <tbody>
+            <row>
+				<entry namest="c1item"                      >UNTRANSLATED-DE Availability</entry>
+  				<entry align="center" namest="c2xml"        >UNTRANSLATED-DE  Built-in </entry>
+  				<entry align="center" namest="c3sqlite" nameend="c5pgsql" >UNTRANSLATED-DE  Depends on packaging<footnote>
+					<para>UNTRANSLATED-DE SQLite relies on an additional package and driver (called libdbi
+						and libdbd-sqlite3, respectively), which are installed by
+						default on Mac OS and Windows. Linux users may need to manually
+						install these for SQLite.</para>
+					<para>UNTRANSLATED-DE MySQL and PostgreSQL may require the installation of additional software drivers
+						(libdbd-mysql and libdbd-pgsql).</para>
+					</footnote>
+				</entry>
+			</row>
+
+			<row>
+				<entry namest="c1item"                      >UNTRANSLATED-DE File extension</entry>
+  				<entry align="center" namest="c2xml" nameend="c3sqlite"       > gnucash </entry>
+  				<entry align="center" namest="c4mysql" nameend="c5pgsql" >UNTRANSLATED-DE  N/A<footnote>
+					<para>UNTRANSLATED-DE MySQL and PostgreSQL place data within their own storage system.</para></footnote></entry>
+			</row>
+
+			<row>
+                <entry namest="c1item"                      >UNTRANSLATED-DE Additional software</entry>
+  				<entry align="center" namest="c2xml" nameend="c3sqlite" >UNTRANSLATED-DE  None </entry>
+  				<entry align="center" namest="c4mysql"      > MySQL </entry>
+  				<entry align="center" namest="c5pgsql" > PostgreSQL </entry>
+			</row>
+
+			<row>
+                <entry namest="c1item"                      >UNTRANSLATED-DE Additional expertise</entry>
+  				<entry align="center" namest="c2xml" nameend="c3sqlite"  >UNTRANSLATED-DE  None </entry>
+  				<entry align="center" namest="c4mysql" nameend="c5pgsql" >UNTRANSLATED-DE  Database Administrator </entry>
+			</row>
+
+			<row>
+                <entry namest="c1item"                      >UNTRANSLATED-DE Compression</entry>
+  				<entry align="center" namest="c2xml"        > gzip </entry>
+  				<entry align="center" namest="c3sqlite" nameend="c5pgsql" >UNTRANSLATED-DE  N/A </entry>
+			</row>
+
+			<row>
+                <entry namest="c1item"                      >UNTRANSLATED-DE File Save</entry>
+  				<entry align="center" namest="c2xml"        >UNTRANSLATED-DE  On command </entry>
+  				<entry align="center" namest="c3sqlite" nameend="c5pgsql" >UNTRANSLATED-DE  On commit </entry>
+			</row>
+
+			<row>
+                <entry namest="c1item"                      >UNTRANSLATED-DE Multi-user</entry>
+  				<entry align="center" namest="c2xml"        >UNTRANSLATED-DE  No </entry>
+  				<entry align="center" namest="c3sqlite"     >UNTRANSLATED-DE  No </entry>
+  				<entry align="center" namest="c4mysql"      >UNTRANSLATED-DE  No </entry>
+  				<entry align="center" namest="c5pgsql" >UNTRANSLATED-DE  No </entry>
+			</row>
+			</tbody>
+		</tgroup>
+		</table>
+	</sect2>
 
     <sect2 id="basics-create-data">
     <title>Eine Datei erstellen</title>
@@ -867,15 +996,22 @@
     <filename>.log</filename>, <filename>.LCK</filename>, <filename>.LNK</filename> in demselben Ordner wie ihre primäre Datei.
     Was es mit diesen Dateien für eine Bewandtnis hat, ist im
     folgenden Abschnitt beschrieben.</para>
-    
+
+    <note>
+    <para>UNTRANSLATED-DE The following sections are relevant only if you are saving your financial data in the <acronym>XML</acronym> format</para>
+    </note>
+
 <programlisting>
-gcashdata.gnucash gcashdata.gnucash.20150414185747.gnucash
-gcashdata.gnucash.20150414223248.log
-gcashdata.gnucash.20150415114340.gnucash
-gcashdata.gnucash.20150415154508.log
-gcashdata.gnucash.20150415173322.gnucash
-gcashdata.gnucash.20150415194251.log
-gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
+    $ls
+    gcashdata.gnucash
+    gcashdata.gnucash.20150414185747.gnucash
+    gcashdata.gnucash.20150414223248.log
+    gcashdata.gnucash.20150415114340.gnucash
+    gcashdata.gnucash.20150415154508.log
+    gcashdata.gnucash.20150415173322.gnucash
+    gcashdata.gnucash.20150415194251.log
+    gcashdata.gnucash.7f0982.12093.LNK
+    gcashdata.gnucash.LCK
 </programlisting>
 
     <sect2 id="basics-backupxac2">
@@ -886,7 +1022,7 @@ gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
       Diese Sicherungsdatei ist eine vollständige Kopie Ihrer Datendatei. Die         Dateinamensendung gibt Jahr, Monat, Tag und Zeit der Sicherung an. 
       Zum Beispiel bedeutet der Dateiname <filename>gcashdata.gnucash.20010404185747.gnucash</filename>,
       dass die Sicherungskopie der Datei gcashdata.gnucash am 4. April 2015 um 18:57:47 Uhr erfolgte.</para>
-      
+
       <para>Um eine alte Sicherungsdatei wiederherzustellen, öffnen Sie
        einfach die <filename>.JJJJMMTTHHMMSS.gnucash</filename>-Datei mit dem Datum, zu dem Sie zurückkehren wollen. 
        Achten Sie unbedingt darauf, dass Sie die Datei unter einem anderen Namen speichern!
@@ -1048,13 +1184,13 @@ gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
         </thead>
         <tbody>
             <row>
-            <entry>Unix</entry>        
+            <entry>Unix</entry>
             <entry><application>&app;</application> Einstellungen sind in <application>dconf</application> gespeichert.
             Sie können das Kommando <code>dconf dump /org/gnucash/</code> auf der alten Maschine nutzen 
             und <code>dconf load /org/gnucash/</code> auf der neuen  Maschine nutzen, um die Einstellungen zu übertragen.</entry>
             </row>
             <row>
-              <entry>MacOSX</entry>
+              <entry>Mac OSX</entry>
               <entry>Die Einstellungen sind unter <filename class="directory">~/Library/Preferences/gnucash.plist</filename> gespeichert.</entry>
             </row>
             <row>
@@ -1155,7 +1291,12 @@ gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
         </note>
          <screenshot id="basics-NewAccountHierarchySetup">
           <mediaobject>
-            <imageobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/basics_NewAccountHierarchySetup.png"
+                         srccredit="Chris Lyttle" width="510"
+                         format="PNG"></imagedata>
+            </imageobject>
+            <imageobject role="fo">
               <imagedata fileref="figures/basics_NewAccountHierarchySetup.png"
                          srccredit="Chris Lyttle"
                          format="PNG"></imagedata>
@@ -1183,7 +1324,12 @@ gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
       </note>
        <screenshot id="basics-NewAccountHierarchySetup-currency">
         <mediaobject>
-          <imageobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_currency.png"
+                       srccredit="Chris Lyttle" width="510"
+                       format="PNG"></imagedata>
+          </imageobject>
+          <imageobject role="fo">
             <imagedata fileref="figures/basics_NewAccountHierarchySetup_currency.png"
                        srccredit="Chris Lyttle"
                        format="PNG"></imagedata>
@@ -1203,14 +1349,54 @@ gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
      </listitem>
 
     <listitem>
-      <para>Im dritten Bild wählen Sie die Gruppe <guilabel>Allgemeine Konten</guilabel> in der 
+      <para>UNTRANSLATED-DE In the third screen, set the <guilabel>New Book Options</guilabel>,
+        then press the <guibutton>Forward</guibutton> button.
+        You can also update these options later using <menuchoice><guimenu>File
+        </guimenu><guimenuitem>Properties</guimenuitem></menuchoice>.
+        For details of these options, see the <application>&app;</application>
+        Help manual, chapter Customizing GnuCash, Book Options.
+      </para>
+
+      <screenshot id="basics-NewBookOptions">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewBookOpts.png"
+                       format="PNG" srccredit="Chris Good" width="510"></imagedata>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/basics_NewBookOpts.png"
+                       format="PNG" srccredit="Chris Good" ></imagedata>
+          </imageobject>
+
+          <textobject>
+            <phrase>UNTRANSLATED-DE The New Book Options assistant</phrase>
+          </textobject>
+
+          <caption>
+            <para>UNTRANSLATED-DE This image shows the third screen of the <guilabel>New
+            Account Hierarchy Setup</guilabel> assistant where you select the
+            book options.</para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </listitem>
+
+
+    <listitem>
+      <para>FUZZY-DE Im dritten Bild wählen Sie die Gruppe <guilabel>Allgemeine Konten</guilabel> in der
       <guilabel>Kategorien</guilabel>-Fenster. Dann drücken Sie die  <guibutton>Vor</guibutton>-Schaltfläche, um fortzufahren.</para>
       <note>
         <para>Wenn Sie wollen, können Sie eine oder mehrere der vordefinierten Kontengruppen hier auswählen. Für mehr Informationen über die Kontenarten, sehen Sie in <xref linkend="accts-types1"></xref>.</para>
       </note>
        <screenshot id="basics-NewAccountHierarchySetup-Accounts">
         <mediaobject>
-          <imageobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Accounts.png"
+                       srccredit="Chris Lyttle" width="510"
+                       format="PNG"></imagedata>
+          </imageobject>
+          <imageobject role="fo">
             <imagedata fileref="figures/basics_NewAccountHierarchySetup_Accounts.png"
                        srccredit="Chris Lyttle"
                        format="PNG"></imagedata>
@@ -1220,7 +1406,7 @@ gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
             Konten</phrase>
           </textobject>
           <caption>
-            <para>Die Abbildung zeigt den dritten Bildschirm
+            <para>FUZZY-DE Die Abbildung zeigt den dritten Bildschirm
             des <guilabel>Neuen Kontenrahmen erstellen</guilabel>
             Assistenten, in dem Sie die verschiedenen Konten auswählen
             können.
@@ -1231,11 +1417,16 @@ gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
      </listitem> 
 
     <listitem>
-      <para>Im vierten Bild können Sie einen <guilabel>Anfangsbestand</guilabel> für jedes Konto angeben, was auch angezeigt ist, wenn das Konto ein <guilabel>Platzhalter</guilabel> sein sollte. Da diese Funktionen im nächsten Kapitel beschreiben werden, lassen Sie alles wie von <application>&app;</application> eingerichtet und klicken <guibutton>Vor</guibutton>, um das letzte Bild des Assistenten zu öffnen.</para>
-      
+      <para>FUZZY-DE Im vierten Bild können Sie einen <guilabel>Anfangsbestand</guilabel> für jedes Konto angeben, was auch angezeigt ist, wenn das Konto ein <guilabel>Platzhalter</guilabel> sein sollte. Da diese Funktionen im nächsten Kapitel beschreiben werden, lassen Sie alles wie von <application>&app;</application> eingerichtet und klicken <guibutton>Vor</guibutton>, um das letzte Bild des Assistenten zu öffnen.</para>
+
     <screenshot id="basics-NewAccountHierarchySetup-Setup">
         <mediaobject>
-          <imageobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Setup.png"
+                       srccredit="Chris Lyttle" width="510"
+                       format="PNG"></imagedata>
+          </imageobject>
+          <imageobject role="fo">
             <imagedata fileref="figures/basics_NewAccountHierarchySetup_Setup.png"
                        srccredit="Chris Lyttle"
                        format="PNG"></imagedata>
@@ -1245,7 +1436,7 @@ gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
             Konten einrichten</phrase>
           </textobject>
           <caption>
-            <para>Die Abbildung zeigt den vierten Bildschirm
+            <para>FUZZY-DE Die Abbildung zeigt den vierten Bildschirm
             des <guilabel>Neuen Kontenrahmen erstellen</guilabel>
             Assistenten, in dem Sie die ausgewählten Konten einrichten
             können. </para>
@@ -1258,7 +1449,12 @@ gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
       <para>Im letzten Bild des Assistenten klicken Sie auf <guibutton>Anwenden</guibutton>, um alle Konten zu erstellen und den Assistenten zu verlassen.</para>    
        <screenshot id="basics-NewAccountHierarchySetup-Finish">
         <mediaobject>
-          <imageobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_NewAccountHierarchySetup_Finish.png"
+                       srccredit="Chris Lyttle" width="510"
+                       format="PNG"></imagedata>
+          </imageobject>
+          <imageobject role="fo">
             <imagedata fileref="figures/basics_NewAccountHierarchySetup_Finish.png"
                        srccredit="Chris Lyttle"
                        format="PNG"></imagedata>
@@ -1288,7 +1484,7 @@ gcashdata.gnucash.7f0982.12093.LNK gcashdata.gnucash.LCK
                 <imagedata fileref="figures/basics_EmptyAccounts.png"
                            format="PNG" srccredit="Mechtilde Stehmann"></imagedata>
               </imageobject>
-              
+
               <imageobject role="fo">
                 <imagedata fileref="figures/basics_EmptyAccounts.png"
                            format="PNG" srccredit="Mechtilde Stehmann" ></imagedata>
