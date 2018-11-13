@@ -58,6 +58,49 @@ epub-recursive $(MOBI_RECURSIVE):
 	  || eval $$failcom; \
 	done; test -z "$$fail"
 
-pot:
-	mkdir -p po; \
-	itstool -dk -o po/gnucash-docs.pot $(top_srcdir)/guide/C/*.xml $(top_srcdir)/help/C/*.xml
+pot: $(abs_top_srcdir)/po/gnucash-docs.pot
+
+$(abs_top_srcdir)/po/gnucash-docs.pot: $(abs_top_srcdir)/guide/C/*.xml $(abs_top_srcdir)/help/C/*.xml
+	mkdir -p $(abs_top_srcdir)/po
+	cd $(abs_top_srcdir)/po; \
+	itstool -dk -o gnucash-docs.pot $(subst $(abs_top_srcdir),..,$(sort $^))
+
+# A set of temporary rules to help in the conversion from separate documents per
+# language to a single base document with translations in po format.
+LANGUAGES = de it ja pt ru
+fpots := $(foreach L,$(LANGUAGES),fpot-$(L))
+.PHONY: $(fpots)
+
+$(foreach L,$(LANGUAGES),$(eval fpot-$(L): po/gnucash-docs-$(L)-english.fpot po/gnucash-docs-$(L)-english.struct po/gnucash-docs-$(L)-native.fpot po/gnucash-docs-$(L)-native.struct))
+
+po/gnucash-docs-de-english.fpot po/gnucash-docs-it-english.fpot po/gnucash-docs-pt-english.fpot : $(abs_top_srcdir)/guide/C/*.xml $(abs_top_srcdir)/help/C/*.xml
+po/gnucash-docs-ja-english.fpot po/gnucash-docs-ru-english.fpot : $(abs_top_srcdir)/guide/C/*.xml
+po/gnucash-docs-de-native.fpot : $(abs_top_srcdir)/guide/de/*.xml $(abs_top_srcdir)/help/de/*.xml
+po/gnucash-docs-it-native.fpot : $(abs_top_srcdir)/guide/it/*.xml $(abs_top_srcdir)/help/it/*.xml
+po/gnucash-docs-ja-native.fpot : $(abs_top_srcdir)/guide/ja/*.xml
+po/gnucash-docs-pt-native.fpot : $(abs_top_srcdir)/guide/pt/*.xml $(abs_top_srcdir)/help/pt/*.xml
+po/gnucash-docs-ru-native.fpot : $(abs_top_srcdir)/guide/ru/*.xml
+
+po/gnucash-docs-%.fpot :
+	mkdir -p po
+	cd $(abs_top_srcdir)/po; \
+	itstool -dk -o $(abs_builddir)/$@ $(subst $(abs_top_srcdir),..,$(sort $^))
+
+po/gnucash-docs-%.struct: po/gnucash-docs-%.fpot
+	POTLANG=$(subst -native,,$(patsubst %-english,C,$*)); \
+	grep -E '[(]itstool[)]|^#:' $< | sed -E -e "s!/$${POTLANG}/!/<lang>/!" -e 's/xml:[0-9]*/xml:<line>/' > $@
+
+po/%.po: po/gnucash-docs-%-english.fpot po/gnucash-docs-%-native.fpot po/gnucash-docs-%-english.struct po/gnucash-docs-%-native.struct
+	@cd po; \
+	if diff -q gnucash-docs-$*-english.struct gnucash-docs-$*-native.struct >/dev/null; \
+	then \
+		$(abs_top_srcdir)/util/gen-pot.pl gnucash-docs-$*-english.fpot gnucash-docs-$*-native.fpot > $*.po; \
+		echo "Generation of $@ complete."; \
+	else \
+		echo "Error: Can't automatically generate $*.po."; \
+		echo "       Msgid order  differs differs between gnucash-docs-$*-english.fpot and gnucash-docs-$*-native.fpot."; \
+		echo "       Please adjust the original xml files such that the fpot msgid order aligns perfectly."; \
+		echo "       You can use gnucash-docs-$*-english.fpot, gnucash-docs-$*-native.fpot"; \
+		echo "       gnucash-docs-$*-english.struct and gnucash-docs-$*-native.struct in $(abs_top_builddir)/po"; \
+		echo "       to help determine where the adjustments need to be made."; \
+	fi

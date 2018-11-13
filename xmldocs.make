@@ -157,3 +157,13 @@ uninstall-html:
 
 check:
 	xmllint --postvalid --xinclude --noout ${srcdir}/${docname}.xml
+
+
+# A set of temporary rules to assist in the conversion of our current, separate documents per language
+# into a single common document with translations managed via po files.
+fpot_files = $(docname).fpot $(entities:.xml=.fpot)
+fpots: $(fpot_files)
+
+%.fpot: %.xml
+	itstool -dk -o $@ $<; \
+	grep -E '[(]itstool[)]|^#:' $@ | sed -E -e 's!/de/!/<lang>/!' -e 's/xml:[0-9]*/xml:<line>/' > $*.struct
