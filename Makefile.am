@@ -65,6 +65,10 @@ $(abs_top_srcdir)/po/gnucash-docs.pot: $(abs_top_srcdir)/guide/C/*.xml $(abs_top
 	cd $(abs_top_srcdir)/po; \
 	itstool -dk -o gnucash-docs.pot $(subst $(abs_top_srcdir),..,$(sort $^))
 
+$(abs_top_srcdir)/po/%.po: $(abs_top_srcdir)/po/gnucash-docs.pot
+	msgmerge $(abs_top_srcdir)/po/$*.po $(abs_top_srcdir)/po/gnucash-docs.pot > $(abs_top_srcdir)/po/$*.po-new
+	mv $(abs_top_srcdir)/po/$*.po-new $(abs_top_srcdir)/po/$*.po
+
 # A set of temporary rules to help in the conversion from separate documents per
 # language to a single base document with translations in po format.
 LANGUAGES = de it ja pt ru
