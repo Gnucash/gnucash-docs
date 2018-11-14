@@ -12,7 +12,9 @@ entities = \
 	ch_oview.xml \
 	ch_basics.xml \
 	ch_accts.xml \
-	ch_txns.xml
+	ch_txns.xml \
+	ch_importing.xml \
+	ch_configuring.xml
 DISTCLEANFILES =  $(docname)-C.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
 if GNC_WINDOWS

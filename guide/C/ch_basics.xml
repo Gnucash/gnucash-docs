@@ -18,7 +18,8 @@
   Translators:
                (translators put your name and email here)
 -->
-<chapter id="chapter_basics">
+<chapter id="chapter_basics"
+         xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>The Basics</title>
 
   <para>This chapter will introduce some of the basics of using <application>&app;</application>. It is
@@ -253,7 +254,7 @@
     <sect2 id="basics-accounts2">
       <title>Accounts</title>
 
-      <para>An <firstterm>account</firstterm> keeps track of what you own,
+      <para>An <glossterm linkend="gnc-gl_account">account</glossterm> keeps track of what you own,
       owe, spend or receive. Each <application>&app;</application> file can
       contain any number of accounts, and each account can contain many
       sub-accounts up to an arbitrary number of levels. This simple feature
@@ -302,15 +303,146 @@
     </sect2> <!-- basics-transactions2 -->
   </sect1> <!-- basics-entry1 -->
 
-  <sect1 id="basics-interface1">
-    <title>Interface</title>
+  <sect1 id="basics-running-gnucash">
+    <title>Running <application>&app;</application></title>
       <indexterm><primary>Interface</primary></indexterm>
+    <para><application>&app;</application> can be run from your desktop main menu by selecting the associated menu entry.</para>
+    <para>Alternatively it can be run from a command line prompt with the command <command>gnucash</command>.</para>
 
+    <para>During start up, <application>&app;</application> will display the
+    Splash Screen, where some information about the program (version number, build, etc.)
+    and the loading process are displayed.</para>
+
+    <sect2 id="basics-welcome-to-gnucash">
+    <title><guilabel>Welcome to &app;</guilabel> dialog</title>
     <para>The very first time you open <application>&app;</application>, you will see the
-    <guilabel>Welcome to &app;!</guilabel> screen. From there, <application>&app;</application>
-    provides other tools to help you easily find what you are looking for.
-    Let&rsquo;s take a look at some of the common screens and screen boxes you will
-    see.</para>
+    <guilabel>Welcome to &app;!</guilabel> screen. This dialog includes three choices:</para>
+	<!-- Recommend screen shot here of Welcome to GnuCash! dialog -->
+
+      <itemizedlist id="welcome-screen-options">
+        <listitem>
+          <para><guilabel>Create a new set of accounts</guilabel> - Runs the
+          <guilabel>New Account Hierarchy Setup</guilabel> assistant (see <xref linkend="basics-acct-hierarchy"/>). Select
+          this option if you want to be assisted in creating a set of accounts.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Import my QIF files</guilabel> - Runs the
+          <guilabel>Import QIF Files</guilabel> assistant (see <xref linkend="importing-qif"/>). Select this option
+          if you already have Quicken files (<filename>.qif</filename> files) and wish 
+		  to import them into <application>&app;</application>.</para>
+        </listitem>
+
+        <listitem>
+            <para><guilabel>Open the new user tutorial</guilabel> - 
+            Opens the <application>&app;</application> Tutorial and Concepts Guide. Select this
+            option if you are completely new to <application>&app;</application> and
+            accounting concepts.</para>
+        </listitem>
+      </itemizedlist>
+
+      <note>
+        <para>It is possible to access each of these items after you have left this screen,
+        but the <guilabel>Welcome to &app;!</guilabel> screen will not reappear.
+        To create a new set of accounts, see <xref linkend="basics-acct-hierarchy" />. To import
+		QIF files, see <xref linkend="importing-qif" />.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="basics-acct-hierarchy">
+      <title>New Account Hierarchy Setup</title>
+
+      <para>The <emphasis>New Account Hierarchy Setup</emphasis> assistant helps you 
+	  to create a set of <application>&app;</application> accounts. It will
+      appear if you choose <guibutton>Create a new set of accounts</guibutton>
+      in the <guilabel>Welcome to &app;!</guilabel> menu, or when you select 
+	  <menuchoice><guimenu>File</guimenu><guimenuitem>New</guimenuitem></menuchoice>.</para>
+      <para>This assistant will create a new blank <application>&app;</application> file and
+	  guide you through the creation of a <emphasis>Chart of Accounts</emphasis>. There are several
+	  steps in the assistant, which are outlined below.</para>
+
+	  <orderedlist>
+		  <listitem>
+			  <para>The first screen briefly describes what this assistant does. </para>
+		  </listitem>
+		  <listitem>
+			  <para><guilabel>New Book Options</guilabel> allows you to set different attributes 
+			  for your file that affect the file as a whole. This screen has four tabs: 
+			  Accounts, Budgeting, Business, and Counters. These items are explained elsewhere in
+			  the Guide, and can be changed at a later point.</para>
+		  </listitem>
+		  <listitem>
+			  <para><guilabel>Choose Currency</guilabel> sets the default currency for new accounts.
+			  This is based on the computer locale settings, and can be modified later in the 
+			  <guilabel>Accounts</guilabel> tab under <guilabel>Preferences</guilabel> 
+			  (see <xref linkend="configuring-preferences-accounts"/>).</para>
+		  </listitem>
+		  <listitem>
+			  <para><guilabel>Choose accounts to create</guilabel> allows you to create
+			  an initial set of accounts. These can be edited as needed afterward. 
+			  The screen is divided into three parts.</para>
+			  <itemizedlist>
+				  <listitem>
+					  <para>The left upper portion has a list of
+						  <guilabel>Categories</guilabel> for commonly used hierarchies of
+						  accounts. Select from this list the types of accounts you wish to
+						  use. You can select as many of the categories of accounts as you
+						  wish.</para>
+				  </listitem>
+				  <listitem>
+					  <para>The left lower section has a <guilabel>Category
+						  Description</guilabel> that displays a detailed description of the
+						  category currently highlighted.</para>
+				  </listitem>
+				  <listitem>
+					  <para>The right side has a list of the <guilabel>Accounts</guilabel>
+					  that will be created from a selected category. Note that the accounts
+					  listed here are <emphasis>only</emphasis> the selected category; your
+					  final data file will include <emphasis>all</emphasis> of the accounts
+					  for all of the selected Categories.</para>
+				  </listitem>
+			  </itemizedlist>
+		  </listitem>
+		  <listitem>
+			  <para><guilabel>Setup selected accounts</guilabel> lists all the accounts you
+			  selected on <guilabel>Choose accounts to create</guilabel>, and allows you to
+			  enter opening balances and to designate <emphasis>Placeholder</emphasis> accounts.</para>
+			  <note>
+				  <para>Equity accounts do not have opening balances, so the
+					  opening balance value for this kind of account
+					  is locked and set to zero.</para>
+			  </note>
+			  <note id="placeholder-acct">
+				  <para><emphasis>Placeholder</emphasis> accounts are used to create a hierarchy of accounts and
+				  normally do not have transactions or opening balances.</para>
+			  </note>
+			  <itemizedlist>
+				  <listitem>
+					  <para>The left side of the screen has a list of <guilabel>Account
+					  Names</guilabel>. Select an account by "clicking" once in the
+					  <guilabel>Account Names</guilabel> column with the account highlighted. This will open
+					  the account name for changes.</para>
+				  </listitem>
+				  <listitem>
+					  <para>The right side of the screen has a check-box to make an
+					  account a <guilabel>Placeholder</guilabel> and a box to add the
+					  <guilabel>Opening Balance</guilabel> for the selected account. Again
+					  a single click in the <guilabel>Opening Balance</guilabel> or
+					  <guilabel>Placeholder</guilabel> column will
+					  open the field for changes.</para>
+				  </listitem>
+			  </itemizedlist>
+		  </listitem>
+		  <listitem>
+			  <para><guilabel>Finish account setup</guilabel> is the last screen and
+			  gives you a final option to cancel the process.</para>
+			  <warning>
+				  <para>If you choose to cancel, any selections you have made up to
+				  this point will be lost.</para>
+			  </warning>
+		  </listitem>
+	  </orderedlist>
+    </sect2>
 
     <para>
         <screenshot id="gnc-welcome">
@@ -581,77 +713,10 @@
     </sect2>
   </sect1>
 
-  <sect1 id="basics-help1">
-    <title>Getting Help</title>
       <indexterm><primary>Getting Help</primary></indexterm>
-
-    <para><application>&app;</application> offers help in many ways. We have already covered the <link linkend="basics-tip2">
-    <guilabel>Tip of the Day</guilabel></link> screen that gives you helpful hints
-    upon start-up of your <application>&app;</application> session. <application>&app;</application> also offers an extensive
-    help manual.</para>
-
-    <sect2 id="basics-manual2">
-      <title>Help Manual</title>
       <indexterm><primary>Getting Help</primary><secondary>Help Manual</secondary></indexterm>
-
-      <para>Once you have opened <application>&app;</application>, you will see the <guilabel>Account
-      Tree</guilabel> window <guilabel>Help</guilabel> menu heading, which
-      opens the Help manual. The Help manual is organized by topic, and
-      you can expand each topic into its subtopics.</para>
-
-      <para>Topics are listed on the left side. To select a topic or subtopic,
-      click on it, and you should see the text for that topic appear on the
-      right. Use the <guibutton>Back</guibutton> and
-      <guibutton>Forward</guibutton> buttons to navigate through your topic
-      choices, and print any text using the <guibutton>Print</guibutton>
-      button.</para>
-    </sect2>
-
-    <sect2 id="basics-web2">
-      <title>Web Access</title>
       <indexterm><primary>Getting Help</primary><secondary>Web Access</secondary></indexterm>
-
-      <para>The <guilabel>&app; Help</guilabel> window also acts as a simple
-      web browser, so you can pull up a website for additional information.
-      You can open any website under this window by clicking the
-      <guibutton>Open</guibutton> <emphasis>Toolbar</emphasis> button and then typing in the URL.
-      Use the <guibutton>Back</guibutton>, <guibutton>Forward</guibutton>,
-      <guibutton>Reload</guibutton>, <guibutton>Stop</guibutton>, and
-      <guibutton>Print</guibutton> buttons as you would in a standard
-      browser.</para>
-
-      <para>The <ulink
-      url="https://www.gnucash.org"><citetitle>&app;</citetitle> website</ulink>
-      contains helpful information about the program and about any
-      updates to it. It also contains links to the <application>&app;</application> mailing lists for
-      developers and users, and you can search the <ulink
-      url="https://lists.gnucash.org/cgi-bin/namazu.cgi"><citetitle>archives
-      of <application>&app;</application> mailing lists</citetitle></ulink> for discussions on a
-      particular topic. If you don&rsquo;t find the answers you are looking for, you
-      can post your question to the <ulink
-      url="https://lists.gnucash.org/mailman/listinfo/gnucash-user"><citetitle>&app;
-      user list</citetitle></ulink>, and someone on the list will attempt to
-      answer you.</para>
-
-      <para>The most updated <guilabel>&app; FAQ</guilabel> is also located
-      on the <ulink url="https://wiki.gnucash.org/wiki/FAQ"><citetitle>&app;
-      FAQ website</citetitle></ulink>, and contains answers to the popular
-      questions.</para>
-    </sect2>
-
-    <sect2 id="basics-topic2">
-      <title>Topic Search</title>
       <indexterm><primary>Getting Help</primary><secondary>Topic Search</secondary></indexterm>
-
-      <para>The online manual also provides a search function. To search for a
-      particular topic, click the <guilabel>Search</guilabel> tab at the
-      bottom of the help window and type in your topic in the field provided.
-      Click the <guibutton>Search</guibutton> button to complete your search.
-      A list of choices should appear in the box below, clicking a choice will
-      bring up its text on the right.</para>
-    </sect2>
-  </sect1>
-
   <sect1 id="basics-files1">
       <title>Storing your financial data</title>
       <indexterm><primary>Financial data</primary></indexterm>
@@ -1512,8 +1577,8 @@
             </mediaobject>
           </screenshot>
     </listitem>
-
   </orderedlist>
-
-  </sect1>
+</sect1>
+<xi:include href="ch_accts.xml" />
+<xi:include href="ch_txns.xml" />
 </chapter>
