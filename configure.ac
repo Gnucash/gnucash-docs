@@ -26,7 +26,7 @@ AC_ARG_WITH([scrollkeeper],
 if test x$with_scrollkeeper != "xno"; then
    AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config, no)
    if (test "x$with_scrollkeeper" = "xyes") && (test x$SCROLLKEEPER_CONFIG = xno); then
-      AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net or rarian: http://rarian.freedesktop.org and link the rarian executables to their scrollkeeper equivalents.)
+      AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net or rarian: https://rarian.freedesktop.org and link the rarian executables to their scrollkeeper equivalents.)
    fi
 fi
 AM_CONDITIONAL(ENABLE_SK, test "x$SCROLLKEEPER_CONFIG" = "xyes")
@@ -45,6 +45,9 @@ AC_PATH_PROG(XSLTPROC, xsltproc)
 if test -z "$XSLTPROC"; then
   AC_MSG_ERROR([xsltproc not found, perhaps you should install the xsltproc or libxslt package ?])
 fi
+XSLTPROCFLAGS="--xinclude $XSLTPROCFLAGS"
+AC_SUBST([XSLTPROCFLAGS])
+
 dnl Same for xmllint
 AC_PATH_PROG(XMLLINT, xmllint, [""])
 if test -z "$XMLLINT"; then
@@ -177,7 +180,7 @@ AM_CONDITIONAL([WITH_MOBI], [test "x$with_mobi" = "xyes"])
 if test "x$with_mobi" = "xyes"; then
   AC_PATH_PROG(EBOOK_CONVERT, ebook-convert, no)
   if test "x$EBOOK_CONVERT" = "xno"; then
-    AC_MSG_ERROR([Couldn't find ebook-convert. Please install the Calibre package: http://www.calibre-ebook.com/])
+    AC_MSG_ERROR([Couldn't find ebook-convert. Please install the Calibre package: https://www.calibre-ebook.com/])
   fi
 else
   AC_MSG_NOTICE([Didn't make mobi target.  If you need, specify --with-mobi])
