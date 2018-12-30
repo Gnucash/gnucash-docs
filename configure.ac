@@ -226,19 +226,4 @@ Makefile])
 
 AC_CONFIG_FILES([guide/ja/fop.xconf])
 
-dnl Set up links to our dtd in each book directory to make
-dnl xmllint and friends work properly
-AC_CONFIG_LINKS([
-$srcdir/help/C/gnc-docbookx.dtd:docbook/gnc-docbookx.dtd
-$srcdir/help/de/gnc-docbookx.dtd:docbook/gnc-docbookx.dtd
-$srcdir/help/it/gnc-docbookx.dtd:docbook/gnc-docbookx.dtd
-$srcdir/help/pt/gnc-docbookx.dtd:docbook/gnc-docbookx.dtd
-$srcdir/guide/C/gnc-docbookx.dtd:docbook/gnc-docbookx.dtd
-$srcdir/guide/de/gnc-docbookx.dtd:docbook/gnc-docbookx.dtd
-$srcdir/guide/it/gnc-docbookx.dtd:docbook/gnc-docbookx.dtd
-$srcdir/guide/ja/gnc-docbookx.dtd:docbook/gnc-docbookx.dtd
-$srcdir/guide/pt/gnc-docbookx.dtd:docbook/gnc-docbookx.dtd
-$srcdir/guide/ru/gnc-docbookx.dtd:docbook/gnc-docbookx.dtd
-])
-
 AC_OUTPUT
