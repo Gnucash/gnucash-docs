@@ -11,14 +11,15 @@ epub-am:
 .xml.epub:
 	EPUB_TMPDIR=`mktemp -d .epubtmpXXXXXXXX`; \
 	posthook='exit 1'; \
-	(cd "$$EPUB_TMPDIR" && \
-	echo "application/epub+zip" > mimetype && \
+	( echo "application/epub+zip" > mimetype && \
 	$(XSLTPROC) $(XSLTPROCFLAGS) \
+	            -o $$EPUB_TMPDIR/ \
 	            --stringparam base.dir OEBPS/ \
 	            --stringparam epub.metainf.dir META-INF/ \
 	            --stringparam epub.oebps.dir OEBPS/ \
 	            $(abs_top_srcdir)/xsl/1.79.2/epub/docbook.xsl \
 	            $(abs_srcdir)/$(docname).xml && \
+	cd "$$EPUB_TMPDIR" && \
 	cp -L -R $(abs_srcdir)/figures OEBPS/ && \
 	zip -X -r ../$(epubfile) mimetype META-INF OEBPS && \
 	cd ..) && posthook=''; \
