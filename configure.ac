@@ -45,7 +45,7 @@ AC_PATH_PROG(XSLTPROC, xsltproc)
 if test -z "$XSLTPROC"; then
   AC_MSG_ERROR([xsltproc not found, perhaps you should install the xsltproc or libxslt package ?])
 fi
-XSLTPROCFLAGS="--xinclude $XSLTPROCFLAGS"
+XSLTPROCFLAGS="--path \${top_srcdir}/docbook --xinclude $XSLTPROCFLAGS"
 AC_SUBST([XSLTPROCFLAGS])
 
 dnl Same for xmllint
