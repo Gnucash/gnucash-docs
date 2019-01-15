@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<fop version="1.0">
+  <font-base>@extended_fontdir@</font-base>
+     <!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
+  <source-resolution>72</source-resolution>
+  <!-- Target resolution in dpi (dots/pixels per inch) for specifying the target resolution for generated bitmaps, default: 72dpi -->
+  <target-resolution>72</target-resolution>
+  
+  <!-- page-height and page-width, A4 for Russian -->
+  <default-page-settings height="297mm" width="210mm"/>
+  
+  <!-- Information for specific renderers -->
+  <!-- Uses renderer mime type for renderers -->
+  <renderers>
+    <renderer mime="application/pdf">
+      <filterList>
+        <!-- provides compression using zlib flate (default is on) -->
+        <value>flate</value>
+      </filterList>
+
+      <fonts>
+        <font embed-url="@EXTENDED_SERIF@.@extended_extension@">
+          <font-triplet name="serif" style="normal" weight="normal" />
+        </font>
+        <font embed-url="@EXTENDED_SERIF@Bold.@extended_extension@">
+          <font-triplet name="serif" style="normal" weight="bold" />
+        </font>
+        <font embed-url="@EXTENDED_SERIF@Italic.@extended_extension@">
+          <font-triplet name="serif" style="italic" weight="normal" />
+        </font>
+        <font embed-url="@EXTENDED_SANS@.@extended_extension@">
+          <font-triplet name="sans-serif" style="normal" weight="normal" />
+        </font>
+        <font embed-url="@EXTENDED_SANS@Bold.@extended_extension@">
+          <font-triplet name="sans-serif" style="normal" weight="bold" />
+        </font>
+        <font embed-url="@EXTENDED_SANS@Oblique.@extended_extension@">
+          <font-triplet name="sans-serif" style="italic" weight="normal" />
+        </font>
+        <font embed-url="@EXTENDED_MONO@.@extended_extension@">
+          <font-triplet name="monospace" style="normal" weight="normal" />
+        </font>
+        <font embed-url="@EXTENDED_MONO@Bold.@extended_extension@">
+          <font-triplet name="monospace" style="normal" weight="bold" />
+        </font>
+        <font embed-url="@EXTENDED_MONO@Oblique.@extended_extension@">
+          <font-triplet name="monospace" style="italic" weight="normal" />
+        </font>
+      </fonts>
+
+      <!-- This option lets you specify additional options on an XML handler -->
+      <xml-handler namespace="http://www.w3.org/2000/svg">
+        <stroke-text>true</stroke-text>
+      </xml-handler>
+
+    </renderer>
+</renderers>
+</fop>
