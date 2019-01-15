@@ -1,7 +1,7 @@
 figdir = figures
 docname = gnucash-guide
 lang = ru
-fopconfig = $(srcdir)/fop.xconf
+fopconfig = fop.xconf
 omffile = $(docname)-ru.omf
 entities = \
     ch_oview.xml \
