@@ -89,16 +89,17 @@ AC_ARG_WITH([japanese-mincho-ttf],
 AC_ARG_WITH([japanese-gothic-ttf],
 	[AS_HELP_STRING([--with-japanese-gothic-ttf],
 			[specify Japanese Gothic TrueType font (default is ume-tmo3.ttf)])],,)
-JAPANESE_MINCHO_TTF=fonts/ume-tmo3.ttf
-JAPANESE_GOTHIC_TTF=fonts/ume-tmo3.ttf
-JAPANESE_MINCHO_TTF_ABS='${top_srcdir}/${JAPANESE_MINCHO_TTF}'
-JAPANESE_GOTHIC_TTF_ABS='${top_srcdir}/${JAPANESE_GOTHIC_TTF}'
+JAPANESE_MINCHO_TTF=ume-tmo3.ttf
+JAPANESE_GOTHIC_TTF=ume-tmo3.ttf
+japanese_fontdir=$ac_pwd/$srcdir/fonts/truetype
+JAPANESE_MINCHO_TTF_ABS=$japanese_fontdir/$JAPANESE_MINCHO_TTF
+JAPANESE_GOTHIC_TTF_ABS=$japanese_fontdir/$JAPANESE_GOTHIC_TTF
 
 dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
-japanese_fontdir="/usr/share/fonts/truetype /usr/share/fonts /usr/local/share/fonts /usr/local/share/fonts"
+japanese_fontdirs="/usr/share/fonts /usr/local/share/fonts /usr/local/share/fonts"
 
 if test "x$with_japanese_fontdir" != "xcheck" && test "x$with_japanese_fontdir" != "xyes" ; then
-japanese_fontdir="$with_japanese_fontdir $japanese_fontdir"
+japanese_fontdirs="$with_japanese_fontdir $japanese_fontdir"
 fi
 
 if test "x$with_japanese_mincho_ttf" != "x" ; then
@@ -106,11 +107,12 @@ AC_CHECK_FILE($with_japanese_mincho_ttf,
 [JAPANESE_MINCHO_TTF=$with_japanase_mincho_ttf
 JAPANESE_MINCHO_TTF_ABS=$font
 font = $with_japanese_mincho_ttf],
-[for fontdir in $japanese_fontdir ""; do
+[for fontdir in $japanese_fontdirs ""; do
 font=$fontdir/$with_japanese_mincho_ttf
 AC_CHECK_FILE($font,
 [JAPANESE_MINCHO_TTF=$font
 JAPANESE_MINCHO_TTF_ABS=$font
+japanese_fontdir=$fontdir
 break],)
 done])
 if test -z $font; then
@@ -123,11 +125,12 @@ AC_CHECK_FILE($with_japanese_gothic_ttf,
 [JAPANESE_GOTHIC_TTF=$with_japanase_gothic_ttf
 JAPANESE_GOTHIC_TTF_ABS=$font
 font = $with_japanese_gothic_ttf],
-[for fontdir in $japanese_fontdir ""; do
+[for fontdir in $japanese_fontdirs ""; do
 font=$fontdir/$with_japanese_gothic_ttf
 AC_CHECK_FILE($font,
 [JAPANESE_GOTHIC_TTF=$font
 JAPANESE_GOTHIC_TTF_ABS=$font
+japanese_fontdir=$fontdir
 break],)
 done])
 if test -z $font; then
@@ -135,7 +138,7 @@ AC_MSG_WARN([$with_japanese_gothic_ttf not found, using default gothic font])
 fi
 unset font
 fi
-
+AC_SUBST(japanese_fontdir)
 AC_SUBST(JAPANESE_MINCHO_TTF)
 AC_SUBST(JAPANESE_MINCHO_TTF_ABS)
 AC_SUBST(JAPANESE_GOTHIC_TTF)
