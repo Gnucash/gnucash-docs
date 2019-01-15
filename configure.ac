@@ -71,6 +71,17 @@ else
   fop_version=`$FOP -version | cut -f 3 -d ' ' | cut -c 1`
 fi
 
+EXTENDED_SANS=opentype/freefont/FreeSans
+EXTENDED_SERIF=opentype/freefont/FreeSerif
+EXTENDED_MONO=opentype/freefont/FreeMono
+extended_fontdir=$ac_pwd/$srcdir/fonts
+extended_extension=otf
+AC_SUBST(EXTENDED_SANS)
+AC_SUBST(EXTENDED_SERIF)
+AC_SUBST(EXTENDED_MONO)
+AC_SUBST(extended_fontdir)
+AC_SUBST(extended_extension)
+
 dnl
 dnl Check Japanese TrueType fonts for PDF
 dnl
@@ -84,7 +95,6 @@ AC_ARG_WITH([japanese-mincho-ttf],
 AC_ARG_WITH([japanese-gothic-ttf],
 	[AS_HELP_STRING([--with-japanese-gothic-ttf],
 			[specify Japanese Gothic TrueType font (default is ume-tmo3.ttf)])],,)
-
 JAPANESE_MINCHO_TTF=fonts/ume-tmo3.ttf
 JAPANESE_GOTHIC_TTF=fonts/ume-tmo3.ttf
 JAPANESE_MINCHO_TTF_ABS='${top_srcdir}/${JAPANESE_MINCHO_TTF}'
@@ -225,5 +235,6 @@ guide/ru/Makefile
 Makefile])
 
 AC_CONFIG_FILES([guide/ja/fop.xconf])
+AC_CONFIG_FILES([guide/ru/fop.xconf])
 
 AC_OUTPUT

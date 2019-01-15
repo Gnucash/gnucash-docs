@@ -1,6 +1,7 @@
 figdir = figures
 docname = gnucash-guide
 lang = ru
+fopconfig = $(srcdir)/fop.xconf
 omffile = $(docname)-ru.omf
 entities = \
     ch_oview.xml \
@@ -30,6 +31,7 @@ entities = \
     appendixd.xml
 DISTCLEANFILES = $(docname)-ru.omf.out
 CLEANFILES = $(DISTCLEANFILES)
+FOPFLAGS = -l $(lang) -c $(fopconfig)
 XSLTFLAGS_FO = --stringparam paper.type A4
 if GNC_WINDOWS
 include $(top_srcdir)/chm.make
