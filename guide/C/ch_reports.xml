@@ -425,7 +425,7 @@ The report also contains links to each customer and to their current customer re
 </sect2>
 
 <sect2 id="rpt_grp_incexp">
-<title>Income &amp; Expense Group</title>
+<title>Income and Expense Group</title>
 <para>Reports in this group provide information about Income and Expense</para>
 
 <sect3 id="rpt_cashflow">
@@ -570,6 +570,200 @@ source code for composing a useful custom report.</para>
 <para>Trial Balance lists the ending balances in all accounts as of a particular
 date. It is typically run at the end of an accounting period and is primarily
 used to ensure that the total of all debits equals the total of all credits.</para>
+</sect3>
+<sect3 id="rpt_gst_statement">
+  <title>Income and GST Statement</title>
+  <para>The Income and GST Statement is a specialised Transaction
+  Report designed to print Business-related Sales and Receipts, as
+  well as their GST or VAT components. This report is designed for use
+  in Australia, but is also usable in any jurisdictions implementing
+  value-added taxes (or goods and services taxes) during regular
+  business sales and receipts; and the business owner is expected to
+  submit periodic reports of total sales, purchases, and taxes
+  collected on sales from clients or paid to a supplier.
+  </para>
+  <para>This report makes some assumptions upon the accounts used for
+  sales, purchases, and taxes collected on sales, and paid on purchases.
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para>Net Sales must be an Income-type account</para>
+    </listitem>
+    <listitem>
+      <para>Net Purchases must be an Expense-type account</para>
+    </listitem>
+    <listitem>
+      <para>GST/VAT on Sales must be a Liability-type account</para>
+    </listitem>
+    <listitem>
+      <para>GST/VAT on Purchases must be an Asset-type account</para>
+    </listitem>
+    <listitem>
+      <para>There may be multiple GST accounts, e.g. reduced GST,
+      standard GST etc. The GST accounts can be printed individually,
+      or summarised for sales and purchases.</para>
+    </listitem>
+    <listitem>
+      <para>There may be multiple sales and expenses accounts,
+      e.g. Income:Sales, Income:Grants, Expenses:Suppliers,
+      Expenses:Marketing, Expenses:Insurance. These amounts may be
+      reported individually, or summarised for sales and purchases.</para>
+    </listitem>
+    <listitem>
+      <para>The transactions may be entered manually as a multi-split
+      transaction, or they may be entered via the Business Invoices
+      and Bills tools.</para>
+    </listitem>
+  </itemizedlist>
+  <para>As an example, consider a business has the following
+  transactions: It incurs sales of $1,000 plus 5% GST, receiving
+  $1,050. It also incurs GST-exempt sales of $600. It purchases
+  goods/services worth $400 plus 5% = $420. The following transactions
+  will record the business activities:
+  </para>
+  <table>
+    <title>Sample Chart of Accounts</title>
+    <tgroup cols="3" colsep="1" rowsep="1">
+      <colspec colname="date"/>
+      <colspec colname="desc"/>
+      <colspec colname="account"/>
+      <colspec colname="debit" align="right"/>
+      <colspec colname="credit" align="right"/>
+      <thead>
+        <row>
+          <entry>Date</entry>
+          <entry>Description</entry>
+          <entry>Account</entry>
+          <entry>Debit</entry>
+          <entry>Credit</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry morerows="2" valign="top">01/01/2018</entry>
+          <entry morerows="2" valign="top">Sales $1,000 + 5% GST</entry>
+          <entry>Income:Sales</entry>
+          <entry></entry>
+          <entry>$1,000</entry>
+        </row>
+        <row>
+          <entry>GST on Sales [Liability]</entry>
+          <entry></entry>
+          <entry>$50</entry>
+        </row>
+        <row>
+          <entry>Asset:Bank</entry>
+          <entry>$1,050</entry>
+          <entry></entry>
+        </row>
+        <row>
+          <entry morerows="1" valign="top">02/01/2018</entry>
+          <entry morerows="1" valign="top">GST-Free Sales $600</entry>
+          <entry>Income:Sales</entry>
+          <entry></entry>
+          <entry>$600</entry>
+        </row>
+        <row>
+          <entry>Asset:Bank</entry>
+          <entry>$600</entry>
+          <entry></entry>
+        </row>
+        <row>
+          <entry morerows="2" valign="top">03/01/2018</entry>
+          <entry morerows="2" valign="top">Purchase $400 + 5% GST</entry>
+          <entry>Expenses:Purchases</entry>
+          <entry>$400</entry>
+          <entry></entry>
+        </row>
+        <row>
+          <entry>Asset:Bank</entry>
+          <entry></entry>
+          <entry>$420</entry>
+        </row>
+        <row>
+          <entry>GST on Purchases [Asset]</entry>
+          <entry>$20</entry>
+          <entry></entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <para>For the Income and GST Statement, the
+  <option>Accounts</option> selected will be the Income and Expense
+  Accounts, and the <option>Tax accounts</option> are used to select
+  the GST accounts. The GST period is selected via the
+  <guilabel>General</guilabel> tab. The resulting report is shown as
+  follows:</para>
+  <table>
+    <title>Income and GST Statement</title>
+    <tgroup cols="8" colsep="1" rowsep="1">
+      <colspec colname="date"/>
+      <colspec colname="desc"/>
+      <colspec colname="tot-sales" align="right"/>
+      <colspec colname="net-sales" align="right"/>
+      <colspec colname="tax-sales" align="right"/>
+      <colspec colname="tot-purch" align="right"/>
+      <colspec colname="net-purch" align="right"/>
+      <colspec colname="tax-purch" align="right"/>
+      <thead>
+        <row>
+          <entry>Date</entry>
+          <entry>Description</entry>
+          <entry>Total Sales</entry>
+          <entry>Net Sales</entry>
+          <entry>Tax on Sales</entry>
+          <entry>Total Purchases</entry>
+          <entry>Net Purchases</entry>
+          <entry>Tax on Purchases</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>01/01/2018</entry>
+          <entry>Sales $1,000 + 5%</entry>
+          <entry>$1,050</entry>
+          <entry>$1,000</entry>
+          <entry>$50</entry>
+          <entry></entry>
+          <entry></entry>
+          <entry></entry>
+        </row>
+        <row>
+          <entry>02/01/2018</entry>
+          <entry>GST-Free Sales $600</entry>
+          <entry>$600</entry>
+          <entry>$600</entry>
+          <entry></entry>
+          <entry></entry>
+          <entry></entry>
+          <entry></entry>
+        </row>
+        <row>
+          <entry>03/01/2018</entry>
+          <entry>Purchase $400 + 5% GST</entry>
+          <entry></entry>
+          <entry></entry>
+          <entry></entry>
+          <entry>$420</entry>
+          <entry>$400</entry>
+          <entry>$20</entry>
+        </row>
+        <row>
+          <entry>Totals</entry>
+          <entry></entry>
+          <entry>$1,650</entry>
+          <entry>$1,600</entry>
+          <entry>$50</entry>
+          <entry>$420</entry>
+          <entry>$400</entry>
+          <entry>$20</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <para>This report would indicate that there was a total of $50 GST
+  collected, and $20 GST on purchases, therefore a $30 GST liability
+  is payable to the authorities.</para>
 </sect3>
 </sect2>
 <sect2 id="rpt_grp_sampcust">
