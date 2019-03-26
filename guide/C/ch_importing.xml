@@ -14,15 +14,169 @@
 -->
 <chapter id="chapter_importing">
   <title>Importing Data into <application>&app;</application></title>
-
   <para>This chapter will detail procedures for importing data into <application>&app;</application>.</para>
+  <sect1 id="importing-from-files">
+  <title>Importing Transactions from Files</title>
+  
+  <para>Imported transactions will generally be to a specific account in your account tree. In the following 
+          this will be referred to as the <emphasis role="bold">import</emphasis> or 
+          <emphasis role="bold">base</emphasis> account. It may or may not be
+          specified in the data being imported, depending on the import format. It is usually the first split
+          of a transaction being imported.
+  </para>
+  <para>All transactions will also must have a <emphasis role="bold">destination</emphasis> account for 
+          at least matching splits. This may or may not be supplied in the imported data. If it is not,
+          an account can be assigned on the basis of the previous import history by matching to infomation in
+          the imported data. The user may always over-ride this assignment.
+  </para>
+  <para>Multi-split data previously exported from GnuCash may have both the import and destination accounts
+          for transaction splits specified in the data file.
+  </para>
+  <sect2>
+    <title>File Import Formats</title>
+    <para>Gnucash allows transactions to be imported in the following formats:</para>
+      <itemizedlist>
+        <listitem><para><emphasis role="bold"><link linkend="importing-qif">QIF</link></emphasis> 
+             (.qif) Quicken Interchange format - import data from Quicken financial software;</para></listitem>
+        <listitem><para><emphasis role="bold"><link linkend="importing-ofx">OFX/QFX</link></emphasis> 
+             (.ofx,.qfx) Open Financial eXchange format (QXF is an Intuit/Quicken proprietary version of OFX);
+        </para></listitem>
+        <listitem><para><emphasis role="bold"><link linkend="importing-csv">CSV</link></emphasis> 
+             (.csv)  Comma Separated Values;</para></listitem>
+         <listitem><para><emphasis role="bold"><link linkend="importing-mt940">MT940</link></emphasis> 
+              MT940</para></listitem>
+          <listitem><para><emphasis role="bold"><link linkend="importing-mt942">MT942</link></emphasis> 
+               MT942</para></listitem>
+           <listitem><para><emphasis role="bold"><link linkend="importing-dtaus">DTAUS</link></emphasis> 
+                DTAUS</para></listitem>
+      </itemizedlist>
+    
+    <para>These import methods can be accessed from <menuchoice><guimenu>File</guimenu>
+		<guisubmenu>Import ...</guisubmenu></menuchoice>.</para>      
+  </sect2>
 
-  <sect1 id="importing-overview">
-    <title>Overview</title>
+  <sect2 id="importing-matcher">
+    <title>Import Matcher</title>
+    <para>Several of the Import Assistants use an Import Matcher to implement a Bayesian approach to assign 
+		destination accounts, if such accounts are not specified in 
+        the imported data, to each imported transaction based on the previous import history of the import account.
+        It also attempts to match the transactions being imported to any existing transactions
+        based on the date and the description fields<!-- FIXME add any other fields used in matching -->.
+    </para>
+    <para>Transaction rows which match existing transactions already in the import account are flagged not to be imported. They 
+      will have a light green background and the A and U+R checkboxes will be unchecked and the R checkbox will be 
+      checked. To override and import the transaction, check the A checkbox. The U and R boxes will be unchecked 
+      automatically. The reliability of the match is indicated by a bar display in the Info column. If a destination
+      account for the second split is assigned by the matcher if will be appended to the info column.
+    </para>
+    <para>Transaction rows which do not match existing transactions in the import account, for which an assignment
+      of a destination account cannot be made on the basis of the previous import history to the account, will be 
+      displayed with an orange-yellow background and the A box will be checked and U+R and R unchecked. A destination 
+      account must be specified for these transactions.
+    </para>
+   <sect3><title>Assign a Destination Account to a Single Transaction</title>
+      <para>The currently selected row is selected by Left-clicking it. It is displayed with a mid dark green background.</para>
+      <para><emphasis role="bold">Double click</emphasis> on a row. This will select it and open an Account Selection
+            dialog. Select the desired destination account in the dialog and click <guilabel>OK</guilabel>. The row 
+            background will change to a light green and the assigned destination account will be displayed 
+            in the Info column.
+      </para>
+      <para>or alternatively, <emphasis role="bold">Left-click</emphasis> on a row to select it followed by a 
+         <emphasis role="bold">Right-click </emphasis>to bring up a popup menu then select
+        "Assign a transfer account" to display the Account Selection dialog, select the destination account and
+         click the <guilabel>OK</guilabel> button.
+      </para>
+    </sect3>
+    <sect3>
+      <title>Assign a Destination Account to Multiple Transactions</title>
+      <para>Sometimes you will have several transactions which will have the same destination account. Gnucash
+            allows you to select multiple transactions and apply the same destination account to all transactions
+            in the selection.
+      </para>
+      <para>Rows in a selection are displayed with a mid dark green background.</para>
+      <para>Multiple rows may be selected to have the same destination account assigned to them.</para>
+      <para>To select rows either:</para>
+      <itemizedlist>
+        <listitem><para><emphasis role="bold">Left click</emphasis> on first row and then 
+        <emphasis role="bold">Ctrl-Left click</emphasis> on other rows to add to the selection or</para></listitem>
+        <listitem><para><emphasis role="bold">Left-click</emphasis> on a first row and then 
+        <emphasis role="bold">Shift-Left-click</emphasis> on another row to select all rows between them.</para></listitem>
+      </itemizedlist>
+      <para>then <emphasis role="bold">Right-click</emphasis> to display a popup menu and then select 
+        <emphasis role="bold">"Assign a transfer account"</emphasis> to open the Account 
+         Selection dialog. Select the desired destination account and click the <guilabel>OK</guilabel>
+         button in the Account Selection dialog.</para>
+    </sect3>
+    <sect3>
+      <title>Completing the Import</title>
+    <para>Once you have assigned destination accounts for all the imported transactions using the above methods 
+      (all row backgrounds will be a light green colour), check that the assigned destination acounts are correct 
+      and then press the <guilabel>OK</guilabel> button at the bottom of the Generic Import Matcher 
+      window. The transactions selected for import will have their splits added to the selected source 
+      and destination accounts.
+    </para>
+    <para>The choices made for the destination accounts and description/memo fields are remembered and stored and 
+      used for future imports to the same account to automatically assign a destination account for transaction 
+      records not containing destination account information.
+    </para>
+    </sect3>
+  </sect2>
 
-    <para>Importing stuff is fun.</para>
-
+ 
   <sect2 id="importing-qif">
+    <title>Import QIF</title>
+    <para>To import data from Quicken®, MS Money, or other programs that use QIF(Quicken® Interchange Format),
+          you must first export your data to a QIF file. One way to do this is to export each account as a 
+          separate QIF file. An easier way, available in Quicken® 98 and beyond, is to export all accounts at
+          once into a single QIF file. Check your program's manual to determine if this option is available.
+    </para>
+    <sect3><title>To import QIF files:</title><para> </para></sect3>
+    <sect3>
+      <title>Load all of the QIF files containing data you wish to import</title>
+      <para>To do this, select <emphasis role="bold">File -> Import -> Import QIF...</emphasis> from the menu. When the QIF Import dialog
+            box appears, click <emphasis role="bold">Next</emphasis> and follow the instructions to guide you through the process of loading
+            your files.
+      </para>
+      <para>This image shows the start of the QIF Import assistant.<!--FIXME put an image of the import druid in --> </para>
+      <para>You will be prompted for a filename to load. Use the Select button to select your QIF file and
+           click Next to load it. Once the file is loaded, select Load another file if you have more files 
+           to load. When you have loaded all your QIF files, click Next to continue with the import process.
+      </para>
+    </sect3>
+    <sect3>
+      <title>Review the GnuCash accounts to be created.</title>
+      <para>The importer then matches up your QIF accounts and categories with GnuCash accounts and gives 
+            you a brief description of the matching process. Clicking Next will bring you to a view comparing
+            your QIF accounts with the corresponding GnuCash accounts created. To change an account name, select
+            the row containing that account name and edit the name in the dialog box provided. Click Next when 
+            you have finished making changes, and proceed through a similar category matching process. QIF 
+            income and expense categories import as GnuCash income and expense accounts <!--(see section 3.1 FIXME for 
+            more on this).--> Make changes to these account names if necessary, and click Next to continue.
+      </para>
+      <para><emphasis role="bold">Note:</emphasis> If you are not sure what changes are needed, it is safe to
+            accept the GnuCash account names. It is easy to edit the accounts later if you find you need to make
+            a change.
+      </para>
+      <para>From the drop-down list, select a standard currency to be used for the  imported accounts and click <emphasis role="bold">Next</emphasis>
+            to continue. If you have stocks, mutual funds, or other securities, you will be prompted for additional
+            information. The importer dialog will ask for the exchange or listing (i.e. Nasdaq), the security's 
+            full name, and the ticker symbol. If you do not have this information handy, you can edit the account
+            information later, once the import is complete. Click <emphasis role="bold">Next</emphasis> to continue.
+      </para>
+    </sect3>
+    <sect3>
+      <title>Tell GnuCash to import the data.</title>
+      <para>The last step is the import. Once you have verified your account names and investment information, 
+            click <emphasis role="bold">Finish</emphasis> in the Update your GnuCash accounts page to complete the import process. Depending 
+            upon the size of your file, the import might take a few minutes to complete, so a progress bar 
+            displays the percentage finished. When the import process is complete, GnuCash will return you 
+            to the main window, which should now display the names of the accounts you imported.
+      </para>
+    </sect3>
+  </sect2>
+  
+  <!--
+  <sect2 id="importing-qif-from-help">
     <title>Importing Quicken QIF Files</title>
 
 		<para>Many users seek to import their financial data from Quicken.</para>
@@ -392,5 +546,130 @@
 	        </tip>
 
 	    </sect2>
-	</sect1>
+	  -->
+  
+  <sect2 id="importing-ofx">
+    <title>Import OFX/QFX</title>
+    <para>This opens a file selection dialog. Navigate to the file you wish to import, select a file with 
+      the appropriate extension (.ofx  or .qfx), then press the <emphasis role="bold">Import</emphasis> button.</para>
+    <para>Gnucash opens an Account Selection dialog to select an account in your CoA corresponding to data source. Select
+      the appropriate account from the account tree and press the <emphasis role="bold">OK</emphasis> button. On subsequent import of files from the 
+      same source (identified by tags in the file), the source is remembered and the account selection dialog is not
+      displayed.</para>
+    <para>The generic import transaction matcher dialog is opened next. See the <link linkend="importing-matcher">
+          Import Matcher</link> section (common to both OFX/QFX and CSV import formats) following the Import CSV
+          section to continue the import process.
+    </para>      
+  </sect2>
+  <sect2 id="importing-csv">
+    <title>Import CSV</title>
+    <para>Clicking on <emphasis role="bold">Import CSV</emphasis> in the Import menu will bring up the Import Assistant dialog. The first step brings up a file selection 
+          dialog. Navigate to the location where the file you wish to import is located and select the file to import then click the 
+          <emphasis role="bold">OK</emphasis> button.
+    </para>
+    <para>The next window will allow you to set parameters for the importing of the file. All widgets have tooltips which explain what 
+          the setting affects and the options for the setting.
+    </para> 
+    <sect3 id="importing-csv-save">
+        <title>Load and Save Settings</title>
+        <para>If this import is a regular occurrence, once you have set the other import paramters, you can save these settings by typing
+              in a setting name in the <emphasis role="bold">Load and Save Settings Entry</emphasis> combo box and pressing the <emphasis role="bold">Save</emphasis> button just to the right of the box. 
+              Previously defined settings can be retrieved by selecting the appropriate setting name from the dropdown list activated by
+              the down arrow at the right end of the text box. The trash can button to the right of the Save button can be used to remove
+              the settings selected from the drop down list for the box. The settings group <emphasis role="bold">"GnuCash Export Settings"</emphasis> define a setting 
+              group for the export and reimport of GnuCash transaction data - use this if importing data previously exported from GnuCash.
+        </para>
+    </sect3>
+    <sect3>
+      <title>Account</title>
+      <para>This combo box allows you to select the base or import account into which the transactions will be imported.  It may be left unset
+            if the imported data contains a column listing the accounts associated with each split or the import data
+            specifies the account for first split of the transaction.</para>
+    </sect3>
+    <sect3>
+      <title>File Format</title>
+      <para>This section allows you to define whether the file has:
+      </para>
+      <itemizedlist>
+        <listitem>
+          <para><emphasis role="bold">Fixed width columns</emphasis> Selecting this radio button will allow you to define 
+               column boundaries by double clicking at the appropriate positions in the sample records displayed in the 
+               panel below. Single clicking in a column will narrow, widen or merge the column.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis role="bold">Separators</emphasis> Selecting this radio button will allow you to define characters
+                which will be used to distinguish columns in the input file. The default is comma separated however spaces,
+                tabs,colons or semicolons or any combination of them may be used to separate columns in the input file by 
+                selecting the appropriate check boxes. You may also define custom separators by typing the required characters
+                into the text box and selecting the <emphasis role="bold">Custom</emphasis> checkbox. This may be used in combination with any of the 
+                predefined separators.
+          </para>
+        </listitem>
+        <listitem>
+          <para><emphasis role="bold">Multi-split</emphasis> Selecting this check box allows the splits for a single transaction
+               to be defined on consecutive lines within the file with each line defining a single split. If not selected each
+               line is assumed to contain the information for a single transaction including one or two splits.
+          </para>
+        </listitem>                  
+      </itemizedlist>
+    </sect3>
+    <sect3>
+      <title>Miscellaneous</title>
+      <para>The miscellaneous settings allow you to set:
+      </para>
+      <itemizedlist>
+        <listitem><para><emphasis role="bold">Encoding</emphasis>This is usually the UTF-8 variant for your locale;</para></listitem>
+        <listitem><para><emphasis role="bold">Date Format</emphasis> This does not default to the Locale setting so check it matches the data you are importing;</para></listitem>
+        <listitem><para><emphasis role="bold">Currency Format</emphasis>;</para></listitem>
+        <listitem><para><emphasis role="bold">Leading Lines to Skip</emphasis>;</para></listitem>
+        <listitem><para><emphasis role="bold">Trailing Lines to Skip</emphasis>;</para></listitem>
+        <listitem><para><emphasis role="bold">Skip alternate lines</emphasis>;</para></listitem>
+        </itemizedlist>
+       <para>to match the settings for the file you are importing. Tooltips may also contain information on the setting and options.</para>
+    </sect3>
+    <sect3>
+      <title>Import Panel</title>
+      <para>The import panel shows the data being imported as it is interpreted using the settings chosen to define columns and formats.
+          The dropdown lists in the headers for each column of the import allow you to associate a specific column in the imported data
+          with a specific field in the display of a transaction in an account register. At a minimum to import data, columns in the 
+          imported data containing the following information <emphasis role="bold">must</emphasis> be specified:
+      </para>
+      <itemizedlist>
+        <listitem><para><emphasis role="bold">Date </emphasis>of transaction;</para></listitem>
+        <listitem><para><emphasis role="bold">Account</emphasis> into which transaction is to be imported (or alternatively set the base account as above);</para></listitem>
+        <listitem><para><emphasis role="bold">Description</emphasis> of the transaction;</para></listitem>
+        <listitem><para><emphasis role="bold">Deposit or Withdrawal</emphasis> column.</para></listitem>
+      </itemizedlist>
+      <para>The <emphasis role="bold">Skip Errors</emphasis> check box will skip trying to import any rows with errors in matching the columns.
+      </para>
+      <para>When you are happy with all the import settings, <link linkend="importing-csv-save">save</link> them
+           if you will use the same settings again, then press the <emphasis role="bold">Next</emphasis> button. 
+          This will bring up a window which allows you to map the accounts identified in the account column (Account Id) with accounts 
+          in the GnuCash account tree (Account name). Double click on a row to bring up a dialog to select the matching GnuCash account. 
+          When you have selected a match for all accounts, click on the <emphasis role="bold">Next</emphasis> button.
+      </para>
+      <para>The Transaction Information panel allows review of data entry settings so far.
+      </para>
+      <para>Clicking on Match Transactions will then bring up the main <link linkend="importing-matcher">Import Matcher</link>
+            window described in the next section.
+      </para>
+    </sect3>
+  </sect2>
+
+  <sect2 id="importing-mt940">
+    <title>Import MT940</title>
+    <para>Use this option to import MT940 data.</para>
+  </sect2>
+
+  <sect2 id="importing-mt942">
+    <title>Import MT942</title>
+    <para>Use this option to import MT942 data.</para>
+  </sect2>
+
+  <sect2 id="importing-dtaus">
+    <title>Import DTAUS</title>
+    <para>Use this option to import DTAUS data.</para>
+  </sect2>
+</sect1>
 </chapter>
