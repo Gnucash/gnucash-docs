@@ -14,8 +14,8 @@ EXTRA_DIST = gnucash-docs.spec \
 	     README \
 	     fonts/gothic.xml \
 	     fonts/mincho.xml \
-	     fonts/ume-tgo4.ttf \
-	     fonts/ume-tmo3.ttf \
+	     fonts/truetype/ume-tgo4.ttf \
+	     fonts/truetype/ume-tmo3.ttf \
 	     fonts/README.Fonts
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
