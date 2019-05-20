@@ -543,6 +543,43 @@
   </sect1>
 
   <sect1 id="txns-reconcile1">
+    <title>Transaction Reconciliation Status</title>
+    <para>The account register window contains a transaction reconciliation status field <guilabel>R</guilabel> to the left of the Account field. This displays the
+    reconciliation status of split of the transaction affecting the account displayed in the register (in single line mode). If the transaction
+    is expanded to display the other transaction splits, you will see that each split has the field populated with the reconciliation status of the split
+    in the account it affects. The value of this field also controls whether the amount in the split to the account register is included in the
+    <guilabel>Present</guilabel>, <guilabel>Cleared</guilabel> and <guilabel>Reconciled</guilabel> balance totals displayed in the <guilabel>Summary</guilabel> bar 
+    displayed at the foot of the register window.</para>
+    <!-- need screen shots here -->
+    <para> The reconciliation status field <guilabel>R</guilabel> can display 3 values for a split:
+    <itmeizedlist>
+    <listitem><emphasis>n</emphasis> (new)  only split value is added into only the <guilabel>Present</guilabel> balance total;</listitem>
+    <listitem><emphasis>c</emphasis> (cleared) the split value added into the <guilabel>Present</guilabel> and <guilabel>Cleared</guilabel>
+      balance totals;</listitem>
+    <listitem><emphasis>y</emphasis> (reconciled) the split value is added into <guilabel>Present</guilabel>,<guilabel>Cleared</guilabel> and 
+      <guilabel>Reconciled</guilabel> balance totals.</listitem>
+    </itemizedlist>
+    </para>
+    <para>When a transaction is initially entered its status is initally set to <emphasis>n</emphasis> and it only contibutes to the <guilabel>
+    Present</guilabel> balance total. If for example the transaction was raised when you write a check, you can set the status to <emphasis>c</emphasis>
+    when you receive confirmation that the check has been cashed and then the value will also contribute to the <guilabel>Cleared</guilabel> balance total.
+    </para>
+    <para>The staus may be toggled between the <emphasis>n</emphasis> and <emphasis>c</emphasis> staus by clicking on the stus field in the account register.
+     Shifting the focus by clicking on another transaction will then bring up a confirmation dialog to permanently save your change to this field.
+    </para>
+    <para>The reconciliation status cannot be set to <emphasis>y</emphasis>(reconciled) by clicking in the register reconciliation status 
+      <guilabel>R</guilabel> field. It may only be set using the reconcilation window discussed in <!-- add link to new reconciliation chapter -->. Once 
+      a transaction split has been marked as <emphasis>y</emphasis>(reconciled) any alteration of the split and the associated transactiond Date and 
+      Description fields will invalidate the reconciliation. This will trigger a warning dialog that the transaction split is reconciled and that continuing will
+      save the transaction with the changed reconciliation status of the split. This will invalidate any reconciliation for that account forward from the date 
+      of the transaction and give an incorrect Starting Balance for the subsequent reconciliation period. Thiswill require that the reconciliation for the
+      period containing the transaction and periods forward of that be corrected.
+    </para>
+    
+<!--  In the rewrite of reconciliation I have proposed introduced an additional chapter in the Getting Started section following Accounts and 
+    Transactions to fully introduce Reconciliation. This section then will drop back to just being a description of the transaction status flag
+    field in the register as above .. David Cousens 31/01/2019
+
     <title>Reconciliation</title>
 
       <para>Once transactions have been entered into <application>&app;</application>, it is important to verify
@@ -578,7 +615,8 @@
       change to include this amount. When the bank statement arrives, you can
       then compare it to what you&rsquo;ve recorded in <application>&app;</application> by opening the reconciliation
       window. There, you will be able to change the <guilabel>R</guilabel> field to <emphasis>y</emphasis> (reconciled).</para>
-
+-->
+<!--  The following paragraphs are retained   DavidCousens 31/01/2019 -->
       <note>
         <para>You cannot reconcile directly in a register window by clicking in the <emphasis>R</emphasis> field. You must use the
         reconciliation window. Once a transaction has been marked <emphasis>reconciled</emphasis>,
@@ -593,6 +631,11 @@
         add or modify transactions that predate your last reconciliation, your
         <emphasis role="strong">reconciled</emphasis> balances will be thrown off.</para>
       </warning>
+
+      
+<!-- The following section is flagged for eventualremoval into the Help rather than the Guide as it deals with the ui widget descriptions
+     rather than process or example  David Cousens 31/01/2019
+-->     
 
     <sect2 id="txns-reconcile-window2">
       <title>Reconcile windows</title>

@@ -1,0 +1,162 @@
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: 2014-09-26 (fell)
+  Maintainers:
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+        David Cousens <davidcousens@bigpond.com>
+        rewritten with extractions from
+        from ch_accnts.xml and ch_txns.xml
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally written by Carol Champagne.
+  Translators:
+               (translators put your name and email here)
+-->
+<chapter id="chapter_reconciliation">
+  <title>Account Reconciliation</title>
+  <para><emphasis>Reconciliation</emphasis> is a process which ensures that the information you have entered into an account in 
+    <application>&app;</application> agrees with an external record held by and supplied by another entity. Most often this will 
+    be a bank or lending institution but it may also be a vendor who supplies you with a statement of your account position with them. 
+    In principle any account for which an external statement is available or can be requested can be reconciled, however in practice
+    it will generally be:
+    <itemizedlist>
+    <listitmem> asset accounts, particularly bank accounts, and liability accounts;</listitem>,
+     <listitem>credit card and loan accounts</listitem>
+     </itemizedlist>
+     that you will reconcile regularly. This chapter will describe the principles behind reconciliation, the process as
+    implemented in <application>&app;</application>. Specific examples of reconciliation of bank (check), credit card and loan accounts 
+    are available in sections of the relevant chapters.
+  </para>
+  <sect1 id="Reconciliation_Concepts">
+    <title>Basic Concepts</title>
+    <para>A <emphasis>statement</emphasis> is usually supplied periodically by most institutions which hold our money for us or lend money to us. A
+    statement covers a specified period in time is usually defined by a number of parameters:</para>
+    <itemizedlist>
+      <listitem><para><emphasis>Opening Date</emphasis> - The first date in the period for which transactions are recorded in the statement.</para></listitem>
+      <listtem><para><emphasis>Closing Date</emphasis> - The last date in the period for which transactions are recorded in the statement.</para></listitem>
+      <listitem><para><emphasis>Opening Balance</emphasis> - The balance of the account at the Opening Date before any of the transactions recorded in the 
+      statement period have been applied.</para></listitem>
+      <listitem><para><emphasis>Closing Balance</emphasis> - The balance of the account at the closing date after all transactions recorded in the statement 
+      period have been applied.</para></listitem>
+      <listitem><para><emphasis>Transaction List</emphasis> - A sequential list of transactions as recorded by the entity/institution between the opening
+      and closing dates.</para></listitem>
+    </itemizedlist>
+    <para>Transactions will be recorded in the statement at a date-time which is relevant to the institution (clearance of the transaction between
+     banks for example). In some cases that date-time may not be in the same time-zone that you are. You may have recorded the transaction at a different 
+     date-time which is relevant to your perspective on the transaction.</para>
+  </sect1>
+  <sect1 id="Reconciliation_Process">
+    <title>Reconcil;iation Process</title>
+    <para>The process of reconciliation is one of matching the Opening Balance and Closing Balance and transaction details in your 
+    <application>&app;</application> record for the account to those details in the external statement supplied by your bank or other institution. It is 
+    implicit in this process that you have already carried out the reconciliation process on your <application>&app;</application> account records to previous 
+    statements for all transactions before the Opening Date of the statement you are currently about to reconcile.
+    </para>
+    <para>The <application>&app;</application> reconciliation process is initiated while the register for the account you wish to reconcile either 
+    by: </para>
+    <itemizedlist>
+    <listitem>Clicking on the <guilabel>Action</guilabel>-><guilabel>Reconcile</guilabel> menu item while the account register you wish to edit is displayed; or</listitem>
+    <listitemn>Clicking on the <guilabel>Reconcile</guilabel> button in the toolbar while the account register you wish to edit is displayed; or</listitem>
+    <listitem>Right click on the account you wish to reconcile in the <guilabel>Accounts</guilabel> tab of the main window and select <guilabel>Reconcile</guilabel> from the popup menu.</listitem>
+    </itemizedlist>
+    <para>This will open the Reconcile Information window <!-- insert link to window description in the help file  and or screenshot-->.</para> 
+    <sect2 id="Rec_Information">
+      <title>In the Reconciliation Information Window</title>
+      <itemizedlist>
+        <listitem><para>Set the <guilabel>Statement Date</guilabel> in the window to the Closing Date displayed on the statement you are reconciling to.</para></listitem>
+       <listitem><para>Check that the Starting Balance in the window is equal to the Opening Balance on your statement. If it is not see 
+        <!-- link to fiing previous reconciliations -->.</para></listitem>
+        <listitem><para>Enter the Closing Balance from the statement into the <guilabel>Ending Balance</guilabel> text box.</para></listitem>
+        <listitem><para>Check the <guilabel>Include subaccounts</guilabel> checkbox if the account you are reconciling has subaccounts you wish to reconcile.</para></listitem>
+        <listitem><para>If you are reconciling a Credit Card account your statement may include an interest payment for the period which will not appear in the transactions
+        listed in the statement for the period. Use the <guibutton>Enter Interest Payment</guibutton> button to start a dialog for creating a transaction to record 
+        the interest charged.</para></listitem>
+        <listitem><para> Click on the <guibutton>OK</guibutton> button to open the Reconciliation Window <!-- link to window description in help --> to continue reconciling
+        the account or the <guilabel>Cancel</guilabel> to exit the reconciliation process.</para></listitem>
+        </itemizedlist>
+    </sect2>
+    <sect2 id="Rec_Window">
+      <title>In the Reconciliation Window</title>
+      <para>The features of the <guilabel>Reconciliation Window</guilabel> are described in detail in <!-- link to help description of the reconciliation 
+        Window -->.</para>
+      <para> The pane on the left lists transactions which add funds to the account. It will be labelled <guilabel>Funds In</guilabel> if you have not
+         selected formal accounting labels in the preferences. (If you did it will be labelled <guilabel>Debits</guilabel> if you are reconciling an Asset 
+         type account or <guilabel>Credits</guilabel> if you are reconciling a Liability type account).</para>
+      <para>The pane on the right list transactions which tanke funds out of the account. It will be labelled<guilabel>Funds Out</guilabel> if you are not
+         using formal accounting labels. (If you are it will be labelled <guilabel>Credits</guilabel> for an Asset type account or <guilabel>Debits</guilabel>
+         for a Liability type account.)</para>
+      <para>Each listed transaction in both panes has a checkbox to the right of it. <application>&app;</application> will initially select transactions 
+      within the period in an attempt to achieve a <guilabel>Reconciled Balance</guilabel> equal to the <emphasis>Closing Balance</emphasis> entered into 
+      the previous window from your statement and displayed as the <guilabel>Ending Balance</guilabel> in the small pane at the bottom right of the
+       <guilabel>Reconciliation Window</guilabel>.</para>
+       <note><para>Transactions do not necessarily appear in the same order in your <application>&app;</application> accounts as they occur in a statement for 
+       that account. Dates may differ and transactions which occur on the same day may not be in the order you entered them.</para></note>
+     <para>If the displayed <guilabel>Reconciled Balance</guilabel> and the <guilabel>Ending Balance</guilabel> agree and the <guilabel>Difference</guilabel>
+      value is 0 and you are happy that the checked transactions match those in your statement, you may click on the <guilabel>Reconcile->Finish</guilabel> menu item or click 
+      the <guibutton>Finish</guibutton> button in the toolbar. This will set the transaction reconciliation status for the checked transaction splits to the account you are 
+      reconciling to <emphasis>y</emphasis>. The displayed <guilabel>Ending Balance</guilabel> will then be the <guilabel>Starting Balance</guilabel> 
+      the next time you perform a reconciliation on this account.</para>
+    <para>Some of you will prefer to check the checkboxes as you match transaction to the corresponding transaction in your statement. If this is the case 
+      before you start you can uncheck all check boxes in either the right or left pane by using <emphasis>Ctrl-A</emphasis> to select all transactions in 
+      the pane and then using the <guibutton>Unreconcile Selection</guibutton> button. You can then check each transaction line in the statement and check the box
+      against the matching transaction in the left or right pane as appropriate. Again when you have matched all transactions in your statement to those in your
+      account, then procedd as described in the previous paragraph. you can also use the <guibutton>Reconcile Selection</guibutton> buttonto check all the checkboxes
+       in either pane after selecting all transactions in the pane with <emphasis>Ctrl-A</emphasis>.
+     </para>
+     <para> Again when the <guilabel>Reconciled Balance</guilabel> and <guilabel>Ending Balance</guilabel> agree and the <guilabel>Difference</guilabel>
+      is 0, you may click on the <guilabel>Reconcile->Finish</guilabel> menu item or click the Finish button in the toolbar to complete the reconciliation.
+     </para>
+    <sect2 id="Rec_error">
+      <title>Unable to Complete Reconciliation</title>
+      <para><application>&app;</application> has one very useful feature. The Reconciliation Window is not modal, i.e. it does not have to be closed before 
+      you can carry out other operations in <application>&app;</application>. This means that you can leave the Reconciliation Window open and switch back to 
+      the register tab to edit or create or delete transactions. The Reconciliation Window is also updated when any such changes are made and saved in the register.
+      This facilitates fixing reconciliation errors on the fly without having to exit the Reconciliation Window.
+      </para>
+      <para>Clicking on the headers of the Funds In and Funds Out panes can allow you to sort by Date, Description or Amount (Reconcile Status is not 
+      currently sortable) to assist in identifying the source of a reconcilaition problem.</para>
+      <para>Sometimes you will not be able to get the <guilabel>Reconciled Balance</guilabel> and the <guilabel>Ending Balance</guilabel> to agree and 
+        <guilabel>Difference</guilabel> will not be zero. In other cases the <guilabel>Starting Balance</guilabel> will be inerror.</para>
+      <para>Common causes of this can be:
+        <itemizedlist>
+          <listitem><para> Transactions not recorded or duplicated.</para>
+          <para> If the <guilabel>Difference</guilabel> total is negative then transactions which take funds out of 
+          the account may not have been entered by you or transactions putting funds into the account may have been duplicated. If the 
+          <guilabel>Difference</guilabel> total is positive then transactions which put funds into the account may not have been entered and/or transactions
+          taking funds out of the account may be duplicated.
+          </listitem>
+          <listitem><para>Incorrect Date entered for a transaction.</para><para>If the date entered incorrectly is before the start of the period being
+           reconciled this will normally cause the Starting Balance not to agree with the Starting Balance of the statement. The transaction will normally 
+           appear unchecked in one of the panes before any of the transactions of the current period where sorted in ascending date order. Similarly if the 
+           incorrectly entered date is after the end of the current reconciliation period it will appear after any transactions from the current period 
+           when sorted in ascending date order.
+          </listitem>
+          <listitem><para>Transaction entered into the wrong account.</para><para>This can be one of the most difficult errors to locate. Accounts which appear
+           adjacent to the account you are reconciling in the account selection drop down lists are obvious candidates. Also selecting a Credit Card 
+           instead of a Bank Account or vice versa is another possibility. Payments into a Credit Card may be accidentally recorded as an Expense. If you know 
+           something about the transaction (Amount, string in the description, memo etc.), the Find Transaction dialog <!-- link to help--> may be useful to
+           locate transactions in a wrong account.</para>
+          </listitem>
+          <listitem><para>Incorrect amount entered into a transaction</para><para>Usually obvious if other details of the transaction are the same. You need to
+          be careful that you have indentified the correct transaction. </para> 
+          </listitem>
+        </itemizedlist>
+      </para>
+    </sect2>
+    <sect2 id="Rec_tips">
+      <title>Reconciliation Tips</title>        
+        <tip><para>Exercise caution when altering or deleting transactions while reconciling. If you accidentally delete a transaction you need, you can open
+        a backup file in another <application>&app;</application> instance, Use Transaction->Copy and Transaction->Paste to restore the transaction to 
+        your main file. Be careful to close the backup file in its instance before closing the main file to ensure <application>&app;</application> 
+        opens the correct file next time it is started.</para> </tip>
+        <tip><para>Rather than delete transactions, change the split so it goes to the Imbalance Account rather than the account you are reconciling. If you have
+         removed it in error, it is easy to restore. If it should have been to another account, you can redirect it there when reconciling that account. If
+         you complete all reconciliations fo all accounts for the period and you no longer need it, then you can safely delete it from the Imbalance account.</para>
+        </tip>
+        <tip><para>If you use Actions->Reset All Warnings you will get a warning before deleting.</para>
+        </tip>
+    </sect2>
+  </sect1>
+</chapter>
