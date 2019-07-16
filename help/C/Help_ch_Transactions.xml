@@ -1067,28 +1067,112 @@ Author:
     </sect2>
     <sect2 id="trans-import-matcher">
       <title>Import Matcher</title>
-      <para>The Import Matcher uses a Bayesian approach to assign a destination account, if it is not specified in 
+      <para>The Import Matcher uses a Bayesian approach to assign a transfer account, when it is not specified in 
           the imported data, to each imported transaction based on the previous import history of the import account.
-          It also attempts to match the transactions being imported to any existing transactions
-          based on the date and the description fields<!-- FIXME add any other fields used in matching -->.
+          It also attempts to match the transactions being imported to any existing transactions already recorded
+          based on the date, amount and the description fields by tokenizing that information and comparing it to stored tokens for 
+          assigned transfer accounts assigned in previous imports.<!-- FIXME add any other fields used in matching -->.
       </para>
-      <para>Transaction rows which match existing transactions already in the import account are flagged not to be imported. They 
-        will have a light green background and the A and U+R checkboxes will be unchecked and the R checkbox will be 
-        checked. To override and import the transaction, check the A checkbox. The U and R boxes will be unchecked 
-        automatically. The reliability of the match is indicated by a bar display in the Info column. If a destination
-        account for the second split is assigned by the matcher if will be appended to the info column.
+      <para>The status of the imported transaction rows is indicated by a combination of the background colour for the row and three
+       checkboxes in the columns labelled A (Add), U+R (Update and Reconcile) and R (Reconciled) as described in <xref linkend="match_status"/>.
       </para>
-      <para>Transaction rows which do not match existing transactions in the import account, for which an assignment
-        of a destination account cannot be made on the basis of the previous import history to the account, will be 
-        displayed with an orange-yellow background and the A box will be checked and U+R and R unchecked. A destination 
-        account must be specified for these transactions.
-      </para>
+      <note><para>Note that reconciled in this context is not the same as reconciled in the process of reconciling an account.</para></note>
+      <table id="match_status" frame='all'><title>Status of transactions in the Import Matcher</title>
+        <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+        <colspec colname='c1'/>
+        <colspec colname='c2'/>
+        <colspec colname='c3'/>
+        <thead>
+          <row><entrytbl cols='2' colsep='1'><tbody><row><entry>Checkbox</entry><entry>State</entry></row></tbody></entrytbl><entry>Row Background Color</entry><entry>Meaning</entry></row>
+        </thead>
+        <tbody>
+          <row>
+            <entrytbl cols='2' align='left' colsep='1' rowsep='1'>
+                <tbody>                  
+                  <row><entry><emphasis role="strong">A</emphasis></entry><entry><emphasis>X</emphasis></entry></row>
+                  <row><entry><emphasis role="strong">U+R   </emphasis></entry><entry>-</entry></row>
+                  <row><entry><emphasis role="strong">R     </emphasis></entry><entry>-</entry></row>                  
+                </tbody>
+            </entrytbl>
+           <entrytbl cols='1'>
+                <tbody>
+                <row><entry><?dbhtml bgcolor="#FFCC00"?><?dbfo bgcolor="#FFCC00"?>Yellow-Gold</entry></row> <!-- FIXME need to check the color values against those used in GnuCh -->
+                <row><entry><?dbhtml bgcolor="#CCFFCC"?><?dbfo bgcolor="#CCFFCC"?>Light Green</entry></row>
+                </tbody>
+            </entrytbl>
+           <entrytbl cols='1'>
+                <tbody>
+                <row><entry>Flagged for input-transfer account must be selected.</entry></row>
+                <row><entry>Flagged for input-transfer account matched.</entry></row>
+                </tbody>
+            </entrytbl>
+          </row>
+          <row>
+           <entrytbl  cols='2' align='left' colsep='1' rowsep='1'>
+                <tbody>
+                  <row><entry><emphasis role="strong">A    </emphasis></entry><entry>-</entry></row>
+                  <row><entry><emphasis role="strong">U+R</emphasis></entry><entry><emphasis>X</emphasis></entry></row>
+                  <row><entry><emphasis role="strong">R    </emphasis></entry><entry>-</entry></row>
+                </tbody>
+            </entrytbl>
+           <entrytbl cols='1'>
+                <tbody>
+                <row><entry><?dbhtml bgcolor="#CCFFCC"?><?dbfo bgcolor="##9FFCC"?>Light Green</entry></row>
+                <row><entry><?dbhtml bgcolor="#FF3333"?><?dbfo bgcolor="#FF3333"?>Bright Red</entry></row>
+                </tbody>
+            </entrytbl>
+           <entrytbl cols='1'>
+                <tbody>
+                <row><entry>Matches an existing transaction - import and update amount.</entry></row>
+                <row><entry>Transaction not matched - not to be imported.</entry></row> <!-- FIXME might not have this quite correct -->
+                </tbody>
+            </entrytbl>
+          </row>
+          <row>
+           <entrytbl  cols='2' align='left' colsep='1' rowsep='1'>
+                <tbody>
+                  <row><entry><emphasis role="strong">A    </emphasis></entry><entry>-</entry></row>
+                  <row><entry><emphasis role="strong">U+R  </emphasis></entry><entry>-</entry></row>
+                  <row><entry><emphasis role="strong">R</emphasis></entry><entry><emphasis>X</emphasis></entry></row>
+                </tbody>
+            </entrytbl>
+           <entrytbl cols='1'>
+                <tbody>
+                <row><entry><?dbhtml bgcolor="#CCFFCC"?><?dbfo bgcolor="#CCFFCC"?>Light Green</entry></row>
+                <row><entry><?dbhtml bgcolor="#FF3333"?><?dbfo bgcolor="#FF3333"?>Bright Red</entry></row>
+                </tbody>
+            </entrytbl>
+           <entrytbl cols='1'>
+                <tbody>
+                <row><entry>Matches an existing transaction - not to be imported.</entry></row>
+                <row><entry>Matches but not reconciled - not to be imported.</entry></row><!--FIXME might not have this quite correct -->
+                </tbody>
+            </entrytbl>
+          </row>
+          <row><entry></entry><entry><?dbhtml bgcolor="#6699CC"?><?dbfo bgcolor="#6699CC"?>Cornflower Blue</entry><entry>Row is selected</entry>
+          </row>
+        </tbody>
+        </tgroup>
+       </table>
+       <para><note>The colors illustrated here are the defaults for GnuCash on a Linux system. If you have altered the CSS
+        or are using another OS the colors may be different.</note>
+       </para>
+       <para>Where a row has been matched to an existing transaction or is to update an exitinng transaction or a transfer account 
+         has been matched and supplied, double clicking on the row will bring up a dialog which displays detail of the imported 
+         transaction and the transaction in GnuCash to which it has been matched to allow the user to vet the match and correct it,
+         if they feel the wrong transfer account has been assigned or the matcher has not produced a valid result. You may change the
+         checkbox selection if you disagree with the matcher decisions and you may reassign an assigned transfer account (see below).
+       </para>
+ 
      <sect3><title>Assign a Destination Account to a Single Transaction</title>
-        <para>The currently selected row is selected by <mousebutton>left</mousebutton> clicking it. It is displayed with a mid dark green background.</para>
-        <para>Double <mousebutton>left</mousebutton> click on a row. This will select it and open an Account Selection
-              dialog. Select the desired destination account in the dialog and click <guibutton>OK</guibutton>. The row 
-              background will change to a light green and the assigned destination account will be displayed 
-              in the Info column.
+        <para>The currently selected row is selected by <mousebutton>left</mousebutton> clicking it. It is displayed with a 
+          <phrase>Cornflower Blue</phrase> background color.</para>
+        <para>Double <mousebutton>left</mousebutton> clicking  on a row will select it and open an Account Selection
+          dialog to allow you to assign a transfer account. Select the desired transfer account in the dialog and click <guibutton>OK</guibutton>. 
+          The dialog has a <guibutton>New Account</guibutton> button which will 
+          allow you to create a suitable account if there is no existing account which can be applied as the transfer account.The row 
+          background will change to a <phrase>Light Green</phrase> and the assigned destination account will be displayed 
+          in the Info column.
         </para>
         <para>or alternatively, <mousebutton>left</mousebutton> click on a row to select it followed by a 
            <mousebutton>right</mousebutton> click to bring up a popup menu then select
@@ -1097,13 +1181,17 @@ Author:
         </para>
       </sect3>
       <sect3>
-        <title>Assign a Destination Account to Multiple Transaction</title>
-        <para>Sometimes you will have several transactions which will have the same destination account. Gnucash
+        <title>Assign a Destination Account to Multiple Transactions</title>
+        <para>Sometimes you will have several transactions which can have the same destination account. Gnucash
               allows you to select multiple transactions and apply the same destination account to all transactions
               in the selection.
         </para>
-        <para>Rows in a selection are displayed with a mid dark green background.</para>
-        <para>Multiple rows may be selected to have the same destination account assigned to them.</para>
+        <para>Rows in a selection are displayed with a <phrase>Cornflower Blue</phrase> background.</para>
+        <para>Only rows which have the <emphasis role="strong">A</emphasis> checkbox checked and either a <phrase>Light Green</phrase>
+         or <phrase>Yellow/-Gold</phrase> background colour can be selected for inclusion in a multiple selection. Rows with a
+          <phrase>Bright Red</phrase> background or with the <emphasis role="strong">U+R</emphasis>  or <emphasis role="strong">R</emphasis> 
+          checkboxes checked cannot be selected in a multiple  selection.
+        </para>
         <para>To select rows either:</para>
         <itemizedlist>
           <listitem><para>
@@ -1116,30 +1204,33 @@ Author:
             click on other rows to add to the selection or
           </para></listitem>
           <listitem><para>
-            <mousebutton>left</mousebutton> click on first row and then
+            <mousebutton>Left</mousebutton> click on first row and then
             <keycombo action='simul'>
               <keycap>Shift</keycap>
               <mousebutton>Left</mousebutton>
             </keycombo> click on another row to select all rows between them.
            </para></listitem>
+           <listitem><para>Rubber banding is also enabled so you may also click and drag over rows to create a selection. To
+           add more rows, hold down <keycap>Ctrl</keycap> and click and drag over more rows.</para>
+           </listitem>
        </itemizedlist>
         <para>then <mousebutton>right</mousebutton> click to display a popup menu and then select 
           <guimenuitem>"Assign a transfer account"</guimenuitem> to open the Account 
-           Selection dialog. Select the desired destination account and click the <guibutton>OK</guibutton>
-           button in the Account Selection dialog.</para>
+           Selection dialog. Select the desired destination account (create a new account if necessary) and click the <guibutton>OK</guibutton>
+           button in the Account Selection dialog.
+         </para>
       </sect3>
       <sect3>
         <title>Completing the Import</title>
-      <para>Once you have assigned destination accounts for all the imported transactions using the above methods 
+        <para>Once you have assigned destination accounts for all the imported transactions using the above methods 
         (all row backgrounds will be a light green colour), check that the assigned destination acounts are correct 
         and then press the <guibutton>OK</guibutton> button at the bottom of the Generic Import Matcher 
         window. The transactions selected for import will have their splits added to the selected source 
         and destination accounts.
-      </para>
-      <para>The choices made for the destination accounts and description/memo fields are remembered and stored and 
-        used for future imports to the same account to automatically assign a destination account for transaction 
-        records not containing destination account information.
-      </para>
+        </para>
+        <para>The tokenized data from the transactions assigned to a given transfer account is stored on exiting from the matcher and is used to 
+        match transactions to the appropriate transfer account in future imports.
+        </para>
       </sect3>
     </sect2>
   </sect1>
