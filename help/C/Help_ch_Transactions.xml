@@ -1067,102 +1067,87 @@ Author:
     </sect2>
     <sect2 id="trans-import-matcher">
       <title>Import Matcher</title>
-      <para>The Import Matcher uses a Bayesian approach to assign a transfer account, when it is not specified in 
-          the imported data, to each imported transaction based on the previous import history of the import account.
-          It also attempts to match the transactions being imported to any existing transactions already recorded
-          based on the date, amount and the description fields by tokenizing that information and comparing it to stored tokens for 
-          assigned transfer accounts assigned in previous imports.<!-- FIXME add any other fields used in matching -->.
+      <para>The Import Matcher checks whether an imported transaction matches an existing transaction already recorded in GnuCash 
+          within a predefined time window for the account into which the transactions are being imported. A match probablity is 
+          calculated based on the Date, Amount, Transaction ID's(if present), Check numbers (if present) and the Description
+          and split Memo fields. Exact matches will generate a high match probability and flag a transaction as matching an existing
+          transaction and therefore not to be imported. If there is a lower quality match to an existing transaction, the imported transaction
+          may be flagged for updating of non-matching information in the GnuCash record of the matching transaction. These decisions can be overridden by the user.
+      </para> 
+      <para>If no matching transaction can be identified the transaction will be flagged for import. The matcher will attempt to assign
+          a transfer account based on matches between tokenized information for previously imported transactions stored in lists associated
+          with the transfer accounts which were assigned to them on import. If a good match is obtained, the transfer account is assigned and
+          the transaction is flagged as ready to import. If a transfer account cannot be assigned, the transaction will be flagged for import and manual
+          assignment of the transfer account by the user. By default, if no transfer account is assigned, transactions will be assigned to an Imbalance
+          account on import. This is to indicate that they need an appropriate account assigned to them.
       </para>
-      <para>The status of the imported transaction rows is indicated by a combination of the background colour for the row and three
+      <note><para>It is important to assign a transfer account to each transaction prior to import of the transactions. Otherwise the tokenized information from the imported transaction
+          will not be appended to the list of tokens for an assigned account for use in future matching of transactions to transfer accounts.
+          </para></note>
+      <para>The status of the transaction rows to be imported is indicated in the matcher by a combination of the background colour for the row and three
        checkboxes in the columns labelled A (Add), U+R (Update and Reconcile) and R (Reconciled) as described in <xref linkend="match_status"/>.
       </para>
-      <note><para>Note that reconciled in this context is not the same as reconciled in the process of reconciling an account.</para></note>
-      <table id="match_status" frame='all'><title>Status of transactions in the Import Matcher</title>
-        <tgroup cols='3' align='left' colsep='1' rowsep='1'>
-        <colspec colname='c1'/>
-        <colspec colname='c2'/>
-        <colspec colname='c3'/>
-        <thead>
-          <row><entrytbl cols='2' colsep='1'><tbody><row><entry>Checkbox</entry><entry>State</entry></row></tbody></entrytbl><entry>Row Background Color</entry><entry>Meaning</entry></row>
-        </thead>
-        <tbody>
-          <row>
-            <entrytbl cols='2' align='left' colsep='1' rowsep='1'>
-                <tbody>                  
-                  <row><entry><emphasis role="strong">A</emphasis></entry><entry><emphasis>X</emphasis></entry></row>
-                  <row><entry><emphasis role="strong">U+R   </emphasis></entry><entry>-</entry></row>
-                  <row><entry><emphasis role="strong">R     </emphasis></entry><entry>-</entry></row>                  
-                </tbody>
-            </entrytbl>
-           <entrytbl cols='1'>
-                <tbody>
-                <row><entry><?dbhtml bgcolor="#FFCC00"?><?dbfo bgcolor="#FFCC00"?>Yellow-Gold</entry></row> <!-- FIXME need to check the color values against those used in GnuCh -->
-                <row><entry><?dbhtml bgcolor="#CCFFCC"?><?dbfo bgcolor="#CCFFCC"?>Light Green</entry></row>
-                </tbody>
-            </entrytbl>
-           <entrytbl cols='1'>
-                <tbody>
-                <row><entry>Flagged for input-transfer account must be selected.</entry></row>
-                <row><entry>Flagged for input-transfer account matched.</entry></row>
-                </tbody>
-            </entrytbl>
-          </row>
-          <row>
-           <entrytbl  cols='2' align='left' colsep='1' rowsep='1'>
-                <tbody>
-                  <row><entry><emphasis role="strong">A    </emphasis></entry><entry>-</entry></row>
-                  <row><entry><emphasis role="strong">U+R</emphasis></entry><entry><emphasis>X</emphasis></entry></row>
-                  <row><entry><emphasis role="strong">R    </emphasis></entry><entry>-</entry></row>
-                </tbody>
-            </entrytbl>
-           <entrytbl cols='1'>
-                <tbody>
-                <row><entry><?dbhtml bgcolor="#CCFFCC"?><?dbfo bgcolor="##9FFCC"?>Light Green</entry></row>
-                <row><entry><?dbhtml bgcolor="#FF3333"?><?dbfo bgcolor="#FF3333"?>Bright Red</entry></row>
-                </tbody>
-            </entrytbl>
-           <entrytbl cols='1'>
-                <tbody>
-                <row><entry>Matches an existing transaction - import and update amount.</entry></row>
-                <row><entry>Transaction not matched - not to be imported.</entry></row> <!-- FIXME might not have this quite correct -->
-                </tbody>
-            </entrytbl>
-          </row>
-          <row>
-           <entrytbl  cols='2' align='left' colsep='1' rowsep='1'>
-                <tbody>
-                  <row><entry><emphasis role="strong">A    </emphasis></entry><entry>-</entry></row>
-                  <row><entry><emphasis role="strong">U+R  </emphasis></entry><entry>-</entry></row>
-                  <row><entry><emphasis role="strong">R</emphasis></entry><entry><emphasis>X</emphasis></entry></row>
-                </tbody>
-            </entrytbl>
-           <entrytbl cols='1'>
-                <tbody>
-                <row><entry><?dbhtml bgcolor="#CCFFCC"?><?dbfo bgcolor="#CCFFCC"?>Light Green</entry></row>
-                <row><entry><?dbhtml bgcolor="#FF3333"?><?dbfo bgcolor="#FF3333"?>Bright Red</entry></row>
-                </tbody>
-            </entrytbl>
-           <entrytbl cols='1'>
-                <tbody>
-                <row><entry>Matches an existing transaction - not to be imported.</entry></row>
-                <row><entry>Matches but not reconciled - not to be imported.</entry></row><!--FIXME might not have this quite correct -->
-                </tbody>
-            </entrytbl>
-          </row>
-          <row><entry></entry><entry><?dbhtml bgcolor="#6699CC"?><?dbfo bgcolor="#6699CC"?>Cornflower Blue</entry><entry>Row is selected</entry>
-          </row>
-        </tbody>
+      <note><para>Note that "reconciled" in this context does not mean the same as "reconciled" in the process of reconciling an account to an external statement.</para></note>
+      <table id="match_status" frame="all" >
+        <title>Status of transactions</title>
+        <tgroup cols="3" rowsep="1" >
+          <colspec colwidth="1*+ 1cm" align="center" colsep="1" />
+          <colspec colwidth="13*" align="left" colsep="1" />
+          <colspec colwidth="26*" align="left" colsep="1" />
+          <thead>
+            <row rowsep="1">
+              <entry>Checked Box</entry>
+              <entry>Background</entry>
+              <entry>Meaning</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry><?dbhtml bgcolor="#FFD700"?><?dbfo bgcolor="#FFD700"?><emphasis role="strong">A</emphasis></entry>
+              <entry><?dbhtml bgcolor="#FFD700"?><?dbfo bgcolor="#FFD700"?>Gold</entry>
+              <entry><?dbhtml bgcolor="#FFD700"?><?dbfo bgcolor="#FFD700"?>Flagged for input: &ndash; Intervention required, transfer account must be selected.</entry>
+            </row>
+            <row>
+              <entry><?dbhtml bgcolor="#87B287"?><?dbfo bgcolor="#87B287"?><emphasis role="strong">A</emphasis></entry>
+              <entry><?dbhtml bgcolor="#87B287"?><?dbfo bgcolor="#87B287"?>DarkSeaGreen1</entry>
+              <entry><?dbhtml bgcolor="#87B287"?><?dbfo bgcolor="#87B287"?>Flagged for input: &ndash; Intervention not required, transfer account matched.</entry>
+            </row>
+            <row>
+              <entry><?dbhtml bgcolor="#87B287"?><?dbfo bgcolor="#87B287"?><emphasis role="strong">U+R</emphasis></entry>
+              <entry><?dbhtml bgcolor="#87B287"?><?dbfo bgcolor="#87B287"?>DarkSeaGreen1</entry>
+              <entry><?dbhtml bgcolor="#87B287"?><?dbfo bgcolor="#87B287"?>Matches an existing transaction: &ndash; Intervention not required, import and update amount.</entry>
+            </row>
+            <row>
+              <entry><?dbhtml bgcolor="#FF4040"?><?dbfo bgcolor="#FF4040"?><emphasis role="strong">U+R</emphasis></entry>
+              <entry><?dbhtml bgcolor="#FF4040"?><?dbfo bgcolor="#FF4040"?>Brown1</entry>
+              <entry><?dbhtml bgcolor="#FF4040"?><?dbfo bgcolor="#FF4040"?>Transaction matched: &ndash; Intervention required, not to be imported.</entry>
+            </row>
+            <row>
+              <entry><?dbhtml bgcolor="#87B287"?><?dbfo bgcolor="#87B287"?><emphasis role="strong">R</emphasis></entry>
+              <entry><?dbhtml bgcolor="#87B287"?><?dbfo bgcolor="#87B287"?>DarkSeaGreen1</entry>
+              <entry><?dbhtml bgcolor="#87B287"?><?dbfo bgcolor="#87B287"?>Matches an existing transaction: &ndash; Intervention not required, will not be imported.</entry>
+            </row>
+            <row>
+              <entry><?dbhtml bgcolor="#FF4040"?><?dbfo bgcolor="#FF4040"?><emphasis role="strong">R</emphasis></entry>
+              <entry><?dbhtml bgcolor="#FF4040"?><?dbfo bgcolor="#FF4040"?>Brown1</entry>
+              <entry><?dbhtml bgcolor="#FF4040"?><?dbfo bgcolor="#FF4040"?>Matches but not reconciled: &ndash; Intervention required, will not be imported.</entry>
+            </row>
+            <row>
+              <entry><?dbhtml bgcolor="#6495ED"?><?dbfo bgcolor="#6495ED"?></entry>
+              <entry><?dbhtml bgcolor="#6495ED"?><?dbfo bgcolor="#6495ED"?>Cornflower Blue</entry>
+              <entry><?dbhtml bgcolor="#6495ED"?><?dbfo bgcolor="#6495ED"?>Row is selected</entry>
+            </row>
+          </tbody>
         </tgroup>
-       </table>
-       <note><para>The colors illustrated here are the defaults for GnuCash on a Linux system. If you have altered the CSS
-        or are using another OS the colors may be different.</para>
-       </note>
-       <para>Where a row has been matched to an existing transaction or is to update an exitinng transaction or a transfer account 
+      </table>
+      <note><para>The colors illustrated here are the defaults for GnuCash specified in gnucash-fallback-310.css. You may experience different colors if the gtk-3.0 CSS files have been modified</para>
+      </note>
+      <para>Where a row has been matched to an existing transaction or is to update an existing transaction or a transfer account 
          has been matched and supplied, double clicking on the row will bring up a dialog which displays detail of the imported 
          transaction and the transaction in GnuCash to which it has been matched to allow the user to vet the match and correct it,
          if they feel the wrong transfer account has been assigned or the matcher has not produced a valid result. You may change the
          checkbox selection if you disagree with the matcher decisions and you may reassign an assigned transfer account (see below).
-       </para>
+      </para>
  
      <sect3><title>Assign a Destination Account to a Single Transaction</title>
         <para>The currently selected row is selected by <mousebutton>left</mousebutton> clicking it. It is displayed with a 
