@@ -68,7 +68,7 @@ fi
 EXTENDED_SANS=opentype/freefont/FreeSans
 EXTENDED_SERIF=opentype/freefont/FreeSerif
 EXTENDED_MONO=opentype/freefont/FreeMono
-extended_fontdir=$ac_pwd/$srcdir/fonts
+extended_fontdir=$ac_abs_top_srcdir/fonts
 extended_extension=otf
 AC_SUBST(EXTENDED_SANS)
 AC_SUBST(EXTENDED_SERIF)
@@ -76,6 +76,8 @@ AC_SUBST(EXTENDED_MONO)
 AC_SUBST(extended_fontdir)
 AC_SUBST(extended_extension)
 
+dnl Get the absolute path to $srcdir
+ac_abs_top_srcdir=$(cd -- "$srcdir" && pwd)
 dnl
 dnl Check Japanese TrueType fonts for PDF
 dnl
@@ -91,7 +93,7 @@ AC_ARG_WITH([japanese-gothic-ttf],
 			[specify Japanese Gothic TrueType font (default is ume-tmo3.ttf)])],,)
 JAPANESE_MINCHO_TTF=ume-tmo3.ttf
 JAPANESE_GOTHIC_TTF=ume-tmo3.ttf
-japanese_fontdir=$ac_pwd/$srcdir/fonts/truetype
+japanese_fontdir=$ac_abs_top_srcdir/fonts/truetype
 JAPANESE_MINCHO_TTF_ABS=$japanese_fontdir/$JAPANESE_MINCHO_TTF
 JAPANESE_GOTHIC_TTF_ABS=$japanese_fontdir/$JAPANESE_GOTHIC_TTF
 
