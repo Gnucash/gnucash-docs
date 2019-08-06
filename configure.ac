@@ -65,6 +65,14 @@ else
   fop_version=`$FOP -version | cut -f 3 -d ' ' | cut -c 1`
 fi
 
+dnl
+dnl Get the absolute path to $srcdir
+dnl
+ac_abs_top_srcdir=$(cd -- "$srcdir" && pwd)
+
+dnl
+dnl Set font dirs and font
+dnl
 EXTENDED_SANS=opentype/freefont/FreeSans
 EXTENDED_SERIF=opentype/freefont/FreeSerif
 EXTENDED_MONO=opentype/freefont/FreeMono
@@ -76,8 +84,6 @@ AC_SUBST(EXTENDED_MONO)
 AC_SUBST(extended_fontdir)
 AC_SUBST(extended_extension)
 
-dnl Get the absolute path to $srcdir
-ac_abs_top_srcdir=$(cd -- "$srcdir" && pwd)
 dnl
 dnl Check Japanese TrueType fonts for PDF
 dnl
