@@ -18,6 +18,12 @@ set (PACKAGE_TARNAME ${PACKAGE})
 set (PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}")
 set (PACKAGE_URL "https://www.gnucash.org/")
 
+# Extra cmake macros
+set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
+include (xmldocs)
+include (GNUInstallDirs)
+
+
 # ############################################################
 # These options are settable from the CMake command line. For example, to disable
 # enable mobi, put -D WITH_MOBI=ON on the command line.
@@ -54,22 +60,21 @@ set(JP_GOTHIC "ume-tmo3.ttf" CACHE STRING "Japanese Gothic TrueType font to use"
 #
 # AM_INIT_AUTOMAKE()
 #
-# dnl
-# dnl Check for xsltproc
-# dnl Some distributions package it separately of libxslt
-# dnl
-# AC_PATH_PROG(XSLTPROC, xsltproc)
-# if test -z "$XSLTPROC"; then
-#   AC_MSG_ERROR([xsltproc not found, perhaps you should install the xsltproc or libxslt package ?])
-# fi
-# XSLTPROCFLAGS="--path \${top_srcdir}/docbook --xinclude $XSLTPROCFLAGS"
-# AC_SUBST([XSLTPROCFLAGS])
-#
-# dnl Same for xmllint
-# AC_PATH_PROG(XMLLINT, xmllint, [""])
-# if test -z "$XMLLINT"; then
-#   AC_MSG_ERROR([xmllint not found, perhaps you should install the xmllint or libxslt package ?])
-# fi
+
+# Check for xsltproc
+# Some distributions package it separately of libxslt
+find_program(XSLTPROC xsltproc)
+if(NOT XSLTPROC)
+    message(SEND_ERROR "Can't find xsltproc, perhaps you should install the xsltproc or libxslt package ?")
+endif(NOT XSLTPROC)
+SET (XSLTPROCFLAGS --path "${CMAKE_SOURCE_DIR}/docbook" --xinclude "$ENV{XSLTPROCFLAGS}")
+
+# Same for xmllint
+find_program(XMLLINT xmllint)
+if(NOT XMLLINT)
+    message(SEND_ERROR "Can't find xmllint, perhaps you should install the xsltproc or libxslt package ?")
+endif(NOT XMLLINT)
+
 #
 # dnl
 # dnl Check for optional fop
@@ -231,6 +236,14 @@ endif()
 # AC_CONFIG_FILES([guide/ru/fop.xconf])
 #
 # AC_OUTPUT
+
+# Add global targets. Their dependencies will be filled in by subsequent command in
+# the respective subdirectories.
+add_custom_target(html)
+add_custom_target(check)
+add_custom_target(xml
+    DEPENDS check
+)
 
 
 add_subdirectory (guide)

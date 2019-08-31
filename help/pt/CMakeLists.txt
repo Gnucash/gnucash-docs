@@ -18,3 +18,6 @@ set (entities
         Help_txf-categories.xml
         Help_fdl-appendix.xml
         Help_tips-appendix.xml)
+
+add_xml_target(${docname} ${lang} "${entities}" ${figdir})
+add_html_target(${docname} ${lang} "${entities}" ${figdir})

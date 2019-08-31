@@ -30,3 +30,6 @@ set (entities
         appendixe.xml
         fdl-appendix.xml
         glossary.xml)
+
+add_xml_target(${docname} ${lang} "${entities}" ${figdir})
+add_html_target(${docname} ${lang} "${entities}" ${figdir})

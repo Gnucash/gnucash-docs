@@ -28,3 +28,6 @@ set (entities
         appendixb.xml
         appendixc.xml
         appendixd.xml)
+
+add_xml_target(${docname} ${lang} "${entities}" ${figdir})
+add_html_target(${docname} ${lang} "${entities}" ${figdir})
