@@ -28,3 +28,8 @@ add_subdirectory(C)
 add_subdirectory(de)
 add_subdirectory(it)
 add_subdirectory(pt)
+
+set(autotoolsfiles
+    Makefile.am
+    Makefile.in)
+add_to_dist(CMakeLists.txt ${autotoolsfiles})

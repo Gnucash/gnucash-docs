@@ -30,6 +30,9 @@ set (COMPONENTS
 #        xml2po -e -p ${srcdir}/it.po -o $@ ${top_srcdir}/guide/C/gnucash-guide.xml
 #        if test "${srcdir}" != "${builddir}"; then mv $@ ${srcdir}; fi
 
-#EXTRA_DIST += it.po
+add_gnc_doc_targets(${docname} "")
 
-# add_gnc_doc_targets(${docname} "${COMPONENTS}")
+set(extra_dist
+    COME-TRADURRE
+    it.po)
+add_to_dist(${extra_dist})

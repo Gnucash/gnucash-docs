@@ -23,4 +23,9 @@ set (COMPONENTS
 
 #EXTRA_DIST += it.po
 
-# add_gnc_doc_targets(${docname} "${COMPONENTS}")
+add_gnc_doc_targets(${docname} "")
+
+set(extra_dist
+    COME-TRADURRE
+    it.po)
+add_to_dist(${extra_dist})

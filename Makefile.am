@@ -1,8 +1,8 @@
 SUBDIRS = help \
 	  guide
 
-EXTRA_DIST = gnucash-docs.spec \
-	     COPYING-DOCS \
+EXTRA_DIST = COPYING-DOCS \
+	     CMakeLists.txt \
 	     xmldocs.make \
 	     omf.make \
 	     pdf.make \
@@ -12,6 +12,13 @@ EXTRA_DIST = gnucash-docs.spec \
 	     xsl \
 	     HACKING \
 	     README \
+	     cmake/dist.cmake \
+	     cmake/epub.cmake \
+	     cmake/gnc_doc_targets.cmake \
+	     cmake/MakeDistCheck.cmake \
+	     cmake/MakeDist.cmake \
+	     cmake/pdf.cmake \
+	     cmake/xmldocs.cmake \
 	     fonts/gothic.xml \
 	     fonts/mincho.xml \
 	     fonts/truetype/ume-tgo4.ttf \
@@ -28,7 +35,8 @@ EXTRA_DIST = gnucash-docs.spec \
 	     fonts/opentype/freefont/FreeSerifBold.otf \
 	     fonts/opentype/freefont/FreeSerifItalic.otf \
 	     fonts/opentype/freefont/FreeSerif.otf \
-	     fonts/README.Fonts
+	     fonts/README.Fonts \
+	     fop.xconf.in
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 

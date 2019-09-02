@@ -24,8 +24,11 @@ include (xmldocs)
 include (pdf)
 include (epub)
 include (gnc_doc_targets)
+include (dist)
 include (GNUInstallDirs)
 
+# Clear cache variables that will be filled later during the cmake run
+unset(dist_files CACHE)
 
 # ############################################################
 # These options are settable from the CMake command line. For example,
@@ -109,27 +112,6 @@ set (FOP_XCONF "${FOP_XCONF_DFLT}")
 #   ;;
 # esac
 # AM_CONDITIONAL([GNC_WINDOWS], [test x${ac_cv_gnc_windows} = "xyes"])
-# AM_CONDITIONAL([LANG_US], [test x${lang_us} = "xtrue"])
-# AC_CONFIG_FILES([
-# gnucash-docs.spec
-# help/Makefile
-# help/C/Makefile
-# help/de/Makefile
-# help/it/Makefile
-# help/pt/Makefile
-# guide/Makefile
-# guide/C/Makefile
-# guide/de/Makefile
-# guide/it/Makefile
-# guide/ja/Makefile
-# guide/pt/Makefile
-# guide/ru/Makefile
-# Makefile])
-#
-# AC_CONFIG_FILES([guide/ja/fop.xconf])
-# AC_CONFIG_FILES([guide/ru/fop.xconf])
-#
-# AC_OUTPUT
 
 # The global targets. Their dependencies will be filled in by subsequent commands in
 # the respective subdirectories.
@@ -147,3 +129,70 @@ endif()
 
 add_subdirectory (guide)
 add_subdirectory (help)
+
+set(autotoolsfiles
+    configure.ac
+    configure
+    config.guess
+    config.sub
+    COPYING
+    INSTALL
+    Makefile.am
+    Makefile.in
+    aclocal.m4
+    gnucash-docs.spec.in
+    install-sh
+    ltmain.sh
+    missing
+    chm.make
+    epub.make
+    mobi.make
+    omf.make
+    pdf.make
+    xmldocs.make)
+add_to_dist(${autotoolsfiles})
+
+file(GLOB_RECURSE extrafiles
+    RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+    cmake/* fonts/* stylesheet/* xsl/*)
+add_to_dist(${extrafiles})
+
+add_to_dist(
+    AUTHORS
+    CMakeLists.txt
+    COPYING-DOCS
+    ChangeLog
+    HACKING
+    NEWS
+    README
+    docbook/gnc-docbookx.dtd
+    fop.xconf.in)
+
+############################ BEGIN MAKE DIST #################
+
+set(PACKAGE_PREFIX "${PACKAGE}-${PACKAGE_VERSION}")
+set(DIST_FILE "${PACKAGE_PREFIX}.tar")
+
+add_custom_command(OUTPUT ${DIST_FILE}.gz ${DIST_FILE}.bz2
+        COMMAND ${CMAKE_COMMAND}
+           -D CMAKE_MODULE_PATH=${CMAKE_SOURCE_DIR}/cmake
+           -D PACKAGE_PREFIX=${PACKAGE_PREFIX}
+           -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
+           -D BUILD_SOURCE_DIR=${CMAKE_BINARY_DIR}
+           "-Ddist_files=\"${dist_files}\""
+           -P ${CMAKE_SOURCE_DIR}/cmake/MakeDist.cmake
+
+        DEPENDS
+          ${dist_files}
+        )
+
+add_custom_target(dist DEPENDS ${DIST_FILE}.gz ${DIST_FILE}.bz2)
+
+add_custom_target(distcheck DEPENDS dist
+        COMMAND ${CMAKE_COMMAND}
+            -D CMAKE_MODULE_PATH=${CMAKE_SOURCE_DIR}/cmake
+            -D PACKAGE_PREFIX=${PACKAGE_PREFIX}
+            -P ${CMAKE_SOURCE_DIR}/cmake/MakeDistCheck.cmake
+        )
+
+############################# END MAKE DIST #################

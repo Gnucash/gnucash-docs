@@ -31,3 +31,7 @@ set (FOP_XCONF "${CMAKE_CURRENT_SOURCE_DIR}/fop.xconf.in")
 set(BASEDIR_JA "${CMAKE_CURRENT_SOURCE_DIR}")
 
 add_gnc_doc_targets(${docname} "${entities}")
+
+set(extra_dist
+    fop.xconf.in)
+add_to_dist(${extra_dist})
