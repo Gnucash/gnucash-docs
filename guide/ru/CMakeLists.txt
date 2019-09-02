@@ -1,6 +1,5 @@
 set (figdir "figures")
 set (lang "ru")
-set (fopconfig "fop.xconf")
 set (entities
         ch_oview.xml
         ch_basics.xml
@@ -28,5 +27,15 @@ set (entities
         appendixc.xml
         appendixd.xml)
 
+set (FOP_XCONF "${CMAKE_CURRENT_SOURCE_DIR}/fop.xconf.in")
+# Compatibility hack for autotools
+# When autotools gets dropped this line can be removed
+# and CMAKE_CURRENT_SOURCE_DIR can be used directly in
+# fop.xconf.in
+set(BASEDIR_RU "${CMAKE_CURRENT_SOURCE_DIR}")
+
 add_xml_target(${docname} ${lang} "${entities}" ${figdir})
 add_html_target(${docname} ${lang} "${entities}" ${figdir})
+if (PDF)
+    add_pdf_target(${docname} ${lang} "${entities}" ${figdir})
+endif()

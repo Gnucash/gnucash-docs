@@ -30,7 +30,7 @@ function (add_xml_target docname lang entities figdir)
                             ${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
 
-    add_dependencies(check "${lang}-${docname}-check")
+    add_dependencies(${docname}-check "${lang}-${docname}-check")
 
 # TODO Uninstall and dist targets
 # uninstall-hook:
@@ -77,7 +77,7 @@ function (add_html_target docname lang entities figdir)
     add_custom_target("${lang}-${docname}-html"
         DEPENDS "${lang}-${docname}-html-files" "${lang}-${docname}-html-figures" "${lang}-${docname}-html-style")
 
-    add_dependencies(html "${lang}-${docname}-html")
+    add_dependencies(${docname}-html "${lang}-${docname}-html")
 
     install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${docname}
         DESTINATION "${CMAKE_INSTALL_DOCDIR}/${PACKAGE_NAME}/${lang}"

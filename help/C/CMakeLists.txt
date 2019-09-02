@@ -20,3 +20,6 @@ set (entities
 
 add_xml_target(${docname} ${lang} "${entities}" ${figdir})
 add_html_target(${docname} ${lang} "${entities}" ${figdir})
+if (PDF)
+    add_pdf_target(${docname} ${lang} "${entities}" ${figdir})
+endif()

@@ -21,21 +21,32 @@ set (PACKAGE_URL "https://www.gnucash.org/")
 # Extra cmake macros
 set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 include (xmldocs)
+include (pdf)
 include (GNUInstallDirs)
 
 
 # ############################################################
-# These options are settable from the CMake command line. For example, to disable
-# enable mobi, put -D WITH_MOBI=ON on the command line.
+# These options are settable from the CMake command line. For example,
+# to enable mobi, put -D WITH_MOBI=ON on the command line.
 
 option (WITH_MOBI "Enable build rules for Mobipocket document format" OFF)
 
-set(JP_FONTDIR "" CACHE STRING "Directory to search for Japanese fonts")
-set(JP_MINCHO "ume-tmo3.ttf" CACHE STRING "Japanese Mincho TrueType font to use")
-set(JP_GOTHIC "ume-tmo3.ttf" CACHE STRING "Japanese Gothic TrueType font to use")
+# ############################################################
+# Following parameters can equally be set using -D switches on the CMake command line.
+# Set font dirs and font for Russian pdf documents
+set(EXTENDED_SANS "opentype/freefont/FreeSans" CACHE STRING "Extended sans font used for Russian pdf")
+set(EXTENDED_SERIF "opentype/freefont/FreeSerif" CACHE STRING "Extended serif font used for Russian pdf")
+set(EXTENDED_MONO "opentype/freefont/FreeMono" CACHE STRING "Extended mono font used for Russian pdf")
+set(extended_fontdir "${CMAKE_SOURCE_DIR}/fonts" CACHE STRING "Directory to search for extended fonts")
+set(extended_extension "otf" CACHE STRING "Extended fonts extension")
 
-# AM_INIT_AUTOMAKE()
-#
+# Set font dirs and font for Japanese pdf documents
+set(JAPANESE_MINCHO_TTF "ume-tmo3.ttf" CACHE STRING "Mincho TrueType font used for Japanese pdf")
+set(JAPANESE_GOTHIC_TTF "ume-tmo3.ttf" CACHE STRING "Gothic TrueType font used for Japanese pdf")
+set(japanese_fontdir "${CMAKE_SOURCE_DIR}/fonts/truetype" CACHE STRING "Directory to search for Japanese fonts")
+
+# ############################################################
+# Find the documentation dependencies
 
 # Check for xsltproc
 # Some distributions package it separately of libxslt
@@ -51,104 +62,14 @@ if(NOT XMLLINT)
     message(SEND_ERROR "Can't find xmllint, perhaps you should install the xsltproc or libxslt package ?")
 endif(NOT XMLLINT)
 
-#
-# dnl
-# dnl Check for optional fop
-# dnl
-# AC_PATH_PROG(FOP, fop)
-# fop_version=0
-# if test -z "$FOP"; then
-#   AC_MSG_WARN([fop not found. You will not be able to generate PDF files.])
-# else
-#   fop_version=`$FOP -version | cut -f 3 -d ' ' | cut -c 1`
-# fi
-#
-# dnl
-# dnl Get the absolute path to $srcdir
-# dnl
-# ac_abs_top_srcdir=$(cd -- "$srcdir" && pwd)
-#
-# dnl
-# dnl Set font dirs and font
-# dnl
-# EXTENDED_SANS=opentype/freefont/FreeSans
-# EXTENDED_SERIF=opentype/freefont/FreeSerif
-# EXTENDED_MONO=opentype/freefont/FreeMono
-# extended_fontdir=$ac_abs_top_srcdir/fonts
-# extended_extension=otf
-# AC_SUBST(EXTENDED_SANS)
-# AC_SUBST(EXTENDED_SERIF)
-# AC_SUBST(EXTENDED_MONO)
-# AC_SUBST(extended_fontdir)
-# AC_SUBST(extended_extension)
-#
-# dnl
-# dnl Check Japanese TrueType fonts for PDF
-# dnl
-# AC_ARG_WITH([japanese-fontdir],
-# 	[AS_HELP_STRING([--with-japanese-fontdir=DIR],
-# 			[use DIR for Japanese TrueType font directory])],,
-# 			[with_japanese_fontdir=check])
-# AC_ARG_WITH([japanese-mincho-ttf],
-# 	[AS_HELP_STRING([--with-japanese-mincho-ttf],
-# 			[specify Japanese Mincho TrueType font (default is ume-tmo3.ttf)])],,)
-# AC_ARG_WITH([japanese-gothic-ttf],
-# 	[AS_HELP_STRING([--with-japanese-gothic-ttf],
-# 			[specify Japanese Gothic TrueType font (default is ume-tmo3.ttf)])],,)
-# JAPANESE_MINCHO_TTF=ume-tmo3.ttf
-# JAPANESE_GOTHIC_TTF=ume-tmo3.ttf
-# japanese_fontdir=$ac_abs_top_srcdir/fonts/truetype
-# JAPANESE_MINCHO_TTF_ABS=$japanese_fontdir/$JAPANESE_MINCHO_TTF
-# JAPANESE_GOTHIC_TTF_ABS=$japanese_fontdir/$JAPANESE_GOTHIC_TTF
-#
-# dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
-# japanese_fontdirs="/usr/share/fonts /usr/local/share/fonts /usr/local/share/fonts"
-#
-# if test "x$with_japanese_fontdir" != "xcheck" && test "x$with_japanese_fontdir" != "xyes" ; then
-# japanese_fontdirs="$with_japanese_fontdir $japanese_fontdir"
-# fi
-#
-# if test "x$with_japanese_mincho_ttf" != "x" ; then
-# AC_CHECK_FILE($with_japanese_mincho_ttf,
-# [JAPANESE_MINCHO_TTF=$with_japanase_mincho_ttf
-# JAPANESE_MINCHO_TTF_ABS=$font
-# font = $with_japanese_mincho_ttf],
-# [for fontdir in $japanese_fontdirs ""; do
-# font=$fontdir/$with_japanese_mincho_ttf
-# AC_CHECK_FILE($font,
-# [JAPANESE_MINCHO_TTF=$font
-# JAPANESE_MINCHO_TTF_ABS=$font
-# japanese_fontdir=$fontdir
-# break],)
-# done])
-# if test -z $font; then
-# AC_MSG_WARN([$with_japanese_mincho_ttf not found, using default mincho font])
-# fi
-# unset font
-# fi
-# if test "x$with_japanese_gothic_ttf" != "x" ; then
-# AC_CHECK_FILE($with_japanese_gothic_ttf,
-# [JAPANESE_GOTHIC_TTF=$with_japanase_gothic_ttf
-# JAPANESE_GOTHIC_TTF_ABS=$font
-# font = $with_japanese_gothic_ttf],
-# [for fontdir in $japanese_fontdirs ""; do
-# font=$fontdir/$with_japanese_gothic_ttf
-# AC_CHECK_FILE($font,
-# [JAPANESE_GOTHIC_TTF=$font
-# JAPANESE_GOTHIC_TTF_ABS=$font
-# japanese_fontdir=$fontdir
-# break],)
-# done])
-# if test -z $font; then
-# AC_MSG_WARN([$with_japanese_gothic_ttf not found, using default gothic font])
-# fi
-# unset font
-# fi
-# AC_SUBST(japanese_fontdir)
-# AC_SUBST(JAPANESE_MINCHO_TTF)
-# AC_SUBST(JAPANESE_MINCHO_TTF_ABS)
-# AC_SUBST(JAPANESE_GOTHIC_TTF)
-# AC_SUBST(JAPANESE_GOTHIC_TTF_ABS)
+# Check for optional fop
+set (PDF YES)
+find_program(FOP fop)
+if(NOT FOP)
+    message(WARNING "Can't find fop. You will not be able to generate PDF files.")
+    set (PDF NO)
+endif(NOT FOP)
+
 #
 # dnl
 # dnl Check for mobi target and optional ebook-convert
@@ -175,6 +96,16 @@ if (ENV_LANG AND ENV_LANG MATCHES ".*_us.*|C") # Replacing ENV_LANG here with if
 else()
     set (XSLTFLAGS_FO "--stringparam paper.type A4")
 endif()
+
+# To find our figures in the source directory each run of fop
+# will be passed a fop.xconf file to set a base-dir.
+# The default fop.xconf file below does just that.
+# Every document/language can define its own FOP_XCONF
+# to point at a document/language specific fop.xconf
+# instead for additional fop configuration as needed.
+# For example the Japanese document will use it to embed Japanese fonts
+set (FOP_XCONF_DFLT "${CMAKE_SOURCE_DIR}/fop.xconf.in")
+set (FOP_XCONF "${FOP_XCONF_DFLT}")
 
 #
 # ac_cv_gnc_windows="no"
@@ -213,13 +144,14 @@ endif()
 #
 # AC_OUTPUT
 
-# Add global targets. Their dependencies will be filled in by subsequent command in
+# The global targets. Their dependencies will be filled in by subsequent commands in
 # the respective subdirectories.
 add_custom_target(html)
 add_custom_target(check)
-add_custom_target(xml
-    DEPENDS check
-)
+add_custom_target(xml)
+if (PDF)
+    add_custom_target(pdf)
+endif()
 
 
 add_subdirectory (guide)
