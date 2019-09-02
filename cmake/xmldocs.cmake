@@ -40,27 +40,6 @@ function (add_xml_target docname lang entities figdir)
 # EXTRA_DIST = ${xml_files} ${omffile} ${figures}
 endfunction()
 
-# TODO Omf ?
-# ************** Rules to make and install omf file ******************************
-# If the following file is in a subdir (like help/) you need to add that to the path
-# include $(top_srcdir)/omf.make
-# if ENABLE_SK
-# OMF = omf
-# OMF_DATA_HOOK = install-data-hook-omf
-# UNINSTALL_OMF = uninstall-local-omf
-# else
-# OMF=
-# OMF_DATA_HOOK=
-# UNINSTALL_OMF=
-# endif
-#
-# CLEANFILES += omf_timestamp
-#
-# install-data-hook: ${OMF_DATA_HOOK}
-# uninstall-local: ${UNINSTALL_OMF}
-#
-# all: ${OMF}
-
 # ************** Rules to make and install html documentation ********************
 function (add_html_target docname lang entities figdir)
 

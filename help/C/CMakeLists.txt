@@ -1,6 +1,5 @@
 set (figdir "figures")
 set (lang "C")
-set (omffile "$(docname)-C.omf")
 set (entities
         Help_ch_Intro.xml
         Help_ch_GettingHelp.xml

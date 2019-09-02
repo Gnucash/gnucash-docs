@@ -1,7 +1,6 @@
 set (figdir "figures")
 set (lang "ja")
 set (fopconfig "fop.xconf")
-set (omffile "$(docname)-ja.omf")
 set (entities
         fdl-appendix.xml
         legal.xml

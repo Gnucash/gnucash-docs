@@ -1,6 +1,5 @@
 set (figdir "figures")
 set (lang "it")
-set (omffile "$(docname)-it.omf")
 
 set (COMPONENTS
         ${top_srcdir}/help/C/gnucash-help.xml

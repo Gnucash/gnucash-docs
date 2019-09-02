@@ -34,30 +34,6 @@ set(JP_FONTDIR "" CACHE STRING "Directory to search for Japanese fonts")
 set(JP_MINCHO "ume-tmo3.ttf" CACHE STRING "Japanese Mincho TrueType font to use")
 set(JP_GOTHIC "ume-tmo3.ttf" CACHE STRING "Japanese Gothic TrueType font to use")
 
-# SCROLLKEEPER_BUILD_REQUIRED=0.3.4
-# AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
-#
-# option (WITH_SCROLLKEEPER "Make updates to the scrollkeeper database (default=check)" "check")
-# dnl ====================================
-# dnl = Begin tests for scrollkeeper
-# dnl ====================================
-# SCROLLKEEPER_CONFIG=no
-# AC_ARG_WITH([scrollkeeper],
-# 	[AC_HELP_STRING([--with-scrollkeeper],
-# 			[do not make updates to the scrollkeeper database (default=check)])],
-# 	[], [with_scrollkeeper=check])
-# if test x$with_scrollkeeper != "xno"; then
-#    AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config, no)
-#    if (test "x$with_scrollkeeper" = "xyes") && (test x$SCROLLKEEPER_CONFIG = xno); then
-#       AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net or rarian: https://rarian.freedesktop.org and link the rarian executables to their scrollkeeper equivalents.)
-#    fi
-# fi
-# AM_CONDITIONAL(ENABLE_SK, test "x$SCROLLKEEPER_CONFIG" = "xyes")
-#
-# dnl ====================================
-# dnl = End tests for scrollkeeper
-# dnl ====================================
-#
 # AM_INIT_AUTOMAKE()
 #
 

@@ -1,6 +1,5 @@
 set (figdir "figures")
 set (lang "pt")
-set (omffile "$(docname)-pt.omf")
 set (entities
         fdl-appendix.xml
         legal.xml

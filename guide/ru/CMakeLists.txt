@@ -1,7 +1,6 @@
 set (figdir "figures")
 set (lang "ru")
 set (fopconfig "fop.xconf")
-set (omffile "$(docname)-ru.omf")
 set (entities
         ch_oview.xml
         ch_basics.xml
