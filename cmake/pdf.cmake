@@ -4,6 +4,13 @@ function (add_pdf_target docname lang entities figdir)
     set(pdffile "${docname}.pdf")
     file(GLOB figures "${CMAKE_CURRENT_SOURCE_DIR}/${figdir}/*.png")
 
+    # Determine paper format depending on language
+    # It's a pretty simple hack: only US or C will be set to letter. All others use A4.
+    if (lang MATCHES ".*_us.*|C")
+        set (XSLTFLAGS_FO "--stringparam paper.type letter")
+    else()
+        set (XSLTFLAGS_FO "--stringparam paper.type A4")
+    endif()
 
     add_custom_target("${lang}-${docname}-fo"
         COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_FO}
@@ -23,25 +30,5 @@ function (add_pdf_target docname lang entities figdir)
         DEPENDS ${lang}-${docname}-fo ${figures})
 
     add_dependencies(${docname}-pdf "${lang}-${docname}-pdf")
-
-#     $(pdffile): $(figfiles)
-#
-#     pdf: $(abs_builddir)/figures $(pdffile)
-#
-#     # This is only needed for out of tree builds. If you build
-#     # from within the source directory, the build system
-#     # will ignore this (mentioning a circular dependency)
-#     $(abs_builddir)/figures: $(abs_srcdir)/figures
-#             ln -s '$<' '$@'
-#
-#     $(fofile): $(entities)
-#
-#     .xml.fo:
-#             $(XSLTPROC) $(XSLTPROCFLAGS) $(XSLTFLAGS_FO) -o '$@' --stringparam fop1.extensions 1 $(top_srcdir)/xsl/1.79.2/fo/docbook.xsl '$<'
-#
-#     .fo.pdf:
-#             $(FOP) $(FOPFLAGS) -fo '$<' -pdf '$@'
-#
-#     CLEANFILES += $(pdffile) $(fofile)
 
 endfunction()

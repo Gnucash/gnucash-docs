@@ -83,15 +83,6 @@ else()
     message(STATUS "Mobi file format support is disabled.  Specify -DWITH_MOBY=ON if you want to enable it.")
 endif()
 
-# Determine paper format depending on locale
-# It's a pretty simple hack: only US or C will be set to letter. All others use A4.
-set (ENV_LANG $ENV{LANG})
-if (ENV_LANG AND ENV_LANG MATCHES ".*_us.*|C") # Replacing ENV_LANG here with if ($ENV{LANG}) won't work.
-    set (XSLTFLAGS_FO "--stringparam paper.type letter")
-else()
-    set (XSLTFLAGS_FO "--stringparam paper.type A4")
-endif()
-
 # To find our figures in the source directory each run of fop
 # will be passed a fop.xconf file to set a base-dir.
 # The default fop.xconf file below does just that.
