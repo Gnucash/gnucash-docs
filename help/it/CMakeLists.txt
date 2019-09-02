@@ -31,3 +31,7 @@ set (COMPONENTS
 # if (PDF)
 #     add_pdf_target(${docname} ${lang} "${entities}" ${figdir})
 # endif()
+# add_epub_target(${docname} ${lang} "${entities}" ${figdir})
+# if (MOBI)
+#     add_mobi_target(${docname} ${lang})
+# endif()

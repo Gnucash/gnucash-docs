@@ -22,6 +22,7 @@ set (PACKAGE_URL "https://www.gnucash.org/")
 set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 include (xmldocs)
 include (pdf)
+include (epub)
 include (GNUInstallDirs)
 
 
@@ -70,23 +71,17 @@ if(NOT FOP)
     set (PDF NO)
 endif(NOT FOP)
 
-#
-# dnl
-# dnl Check for mobi target and optional ebook-convert
-# dnl
-# AC_ARG_WITH([mobi],
-# 	[AC_HELP_STRING([--with-mobi],
-# 			[do make Mobipocket target])],,
-# 	with_mobi=no)
-# AM_CONDITIONAL([WITH_MOBI], [test "x$with_mobi" = "xyes"])
-# if test "x$with_mobi" = "xyes"; then
-#   AC_PATH_PROG(EBOOK_CONVERT, ebook-convert, no)
-#   if test "x$EBOOK_CONVERT" = "xno"; then
-#     AC_MSG_ERROR([Couldn't find ebook-convert. Please install the Calibre package: https://www.calibre-ebook.com/])
-#   fi
-# else
-#   AC_MSG_NOTICE([Didn't make mobi target.  If you need, specify --with-mobi])
-# fi
+set(MOBI NO)
+if(WITH_MOBI)
+    find_program(EBOOK_CONVERT ebook-convert)
+    if (EBOOK_CONVERT)
+        set(MOBI YES)
+    else()
+        message(SEND_ERROR "Couldn't find ebook-convert required for mobi file format support. Please install the Calibre package: https://www.calibre-ebook.com/")
+    endif()
+else()
+    message(STATUS "Mobi file format support is disabled.  Specify -DWITH_MOBY=ON if you want to enable it.")
+endif()
 
 # Determine paper format depending on locale
 # It's a pretty simple hack: only US or C will be set to letter. All others use A4.
@@ -151,6 +146,10 @@ add_custom_target(check)
 add_custom_target(xml)
 if (PDF)
     add_custom_target(pdf)
+endif()
+add_custom_target(epub)
+if (MOBI)
+    add_custom_target(mobi)
 endif()
 
 

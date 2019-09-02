@@ -16,6 +16,14 @@ if (PDF)
     add_dependencies(pdf ${docname}-pdf)
 endif()
 
+add_custom_target(${docname}-epub)
+add_dependencies(epub ${docname}-epub)
+
+if (MOBI)
+    add_custom_target(${docname}-mobi)
+    add_dependencies(mobi ${docname}-mobi)
+endif()
+
 add_subdirectory(C)
 add_subdirectory(de)
 add_subdirectory(it)
