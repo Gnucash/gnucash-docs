@@ -1,5 +1,3 @@
-set (figdir "figures")
-set (lang "ru")
 set (entities
         ch_oview.xml
         ch_basics.xml
@@ -34,12 +32,4 @@ set (FOP_XCONF "${CMAKE_CURRENT_SOURCE_DIR}/fop.xconf.in")
 # fop.xconf.in
 set(BASEDIR_RU "${CMAKE_CURRENT_SOURCE_DIR}")
 
-add_xml_target(${docname} ${lang} "${entities}" ${figdir})
-add_html_target(${docname} ${lang} "${entities}" ${figdir})
-if (PDF)
-    add_pdf_target(${docname} ${lang} "${entities}" ${figdir})
-endif()
-add_epub_target(${docname} ${lang} "${entities}" ${figdir})
-if (MOBI)
-    add_mobi_target(${docname} ${lang})
-endif()
+add_gnc_doc_targets(${docname} "${entities}")

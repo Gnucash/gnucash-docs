@@ -23,6 +23,7 @@ set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 include (xmldocs)
 include (pdf)
 include (epub)
+include (gnc_doc_targets)
 include (GNUInstallDirs)
 
 

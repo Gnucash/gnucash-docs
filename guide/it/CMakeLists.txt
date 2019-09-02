@@ -1,6 +1,3 @@
-set (figdir "figures")
-set (lang "it")
-
 set (COMPONENTS
         ${top_srcdir}/guide/C/gnucash-guide.xml
         ${top_srcdir}/guide/C/fdl-appendix.xml
@@ -35,12 +32,4 @@ set (COMPONENTS
 
 #EXTRA_DIST += it.po
 
-# add_xml_target(${docname} ${lang} "${entities}" ${figdir})
-# add_html_target(${docname} ${lang} "${entities}" ${figdir})
-# if (PDF)
-#     add_pdf_target(${docname} ${lang} "${entities}" ${figdir})
-# endif()
-# add_epub_target(${docname} ${lang} "${entities}" ${figdir})
-# if (MOBI)
-#     add_mobi_target(${docname} ${lang})
-# endif()
+# add_gnc_doc_targets(${docname} "${COMPONENTS}")

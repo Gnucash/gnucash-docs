@@ -1,5 +1,3 @@
-set (figdir "figures")
-set (lang "de")
 set (entities
         Help_ch_Intro.xml
         Help_ch_GettingStarted.xml
@@ -10,12 +8,4 @@ set (entities
         Help_txf-categories.xml
         Help_tips-appendix.xml)
 
-add_xml_target(${docname} ${lang} "${entities}" ${figdir})
-add_html_target(${docname} ${lang} "${entities}" ${figdir})
-if (PDF)
-    add_pdf_target(${docname} ${lang} "${entities}" ${figdir})
-endif()
-add_epub_target(${docname} ${lang} "${entities}" ${figdir})
-if (MOBI)
-    add_mobi_target(${docname} ${lang})
-endif()
+add_gnc_doc_targets(${docname} "${entities}")
