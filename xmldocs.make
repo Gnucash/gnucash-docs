@@ -48,7 +48,7 @@ otherdocdir = $(docdir)/$(lang)
 
 # ************** Rules to install xml files for gnome-help ***********************
 
-xml_files = $(entities) $(docname).xml
+xml_files = $(entities) $(docname).xml $(top_srcdir)/docbook/gnc-docbookx.dtd
 gnomehelp_DATA =  $(xml_files)
 gnomehelpfiguresdir = $(gnomehelpdir)/$(figdir)
 gnomehelpfigures_DATA = $(shell ls ${srcdir}/${figdir}/*.png)
@@ -57,7 +57,7 @@ uninstall-hook:
 	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpfiguresdir)"
 	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)"
 
-EXTRA_DIST = $(xml_files) $(omffile) $(gnomehelpfigures_DATA)
+EXTRA_DIST = $(xml_files) $(omffile) $(gnomehelpfigures_DATA) CMakeLists.txt
 
 # ************** Rules to make and install omf file ******************************
 # If the following file is in a subdir (like help/) you need to add that to the path

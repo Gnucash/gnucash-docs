@@ -32,3 +32,6 @@ if WITH_MOBI
 include $(top_srcdir)/mobi.make
 endif
 endif
+
+pt_icons = $(shell ls ${srcdir}/${figdir}/icons/*.png)
+EXTRA_DIST += ${pt_icons}

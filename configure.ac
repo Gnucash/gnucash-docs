@@ -65,16 +65,26 @@ else
   fop_version=`$FOP -version | cut -f 3 -d ' ' | cut -c 1`
 fi
 
+dnl
+dnl Get the absolute path to $srcdir
+dnl
+ac_abs_top_srcdir=$(cd -- "$srcdir" && pwd)
+
+dnl
+dnl Set font dirs and font
+dnl
 EXTENDED_SANS=opentype/freefont/FreeSans
 EXTENDED_SERIF=opentype/freefont/FreeSerif
 EXTENDED_MONO=opentype/freefont/FreeMono
-extended_fontdir=$ac_pwd/$srcdir/fonts
+extended_fontdir=$ac_abs_top_srcdir/fonts
 extended_extension=otf
+BASEDIR_RU=$ac_abs_top_srcdir/guide/ru
 AC_SUBST(EXTENDED_SANS)
 AC_SUBST(EXTENDED_SERIF)
 AC_SUBST(EXTENDED_MONO)
 AC_SUBST(extended_fontdir)
 AC_SUBST(extended_extension)
+AC_SUBST(BASEDIR_RU)
 
 dnl
 dnl Check Japanese TrueType fonts for PDF
@@ -91,9 +101,10 @@ AC_ARG_WITH([japanese-gothic-ttf],
 			[specify Japanese Gothic TrueType font (default is ume-tmo3.ttf)])],,)
 JAPANESE_MINCHO_TTF=ume-tmo3.ttf
 JAPANESE_GOTHIC_TTF=ume-tmo3.ttf
-japanese_fontdir=$ac_pwd/$srcdir/fonts/truetype
+japanese_fontdir=$ac_abs_top_srcdir/fonts/truetype
 JAPANESE_MINCHO_TTF_ABS=$japanese_fontdir/$JAPANESE_MINCHO_TTF
 JAPANESE_GOTHIC_TTF_ABS=$japanese_fontdir/$JAPANESE_GOTHIC_TTF
+BASEDIR_JA=$ac_abs_top_srcdir/guide/ja
 
 dnl Japanese fonts search path (Ubuntu, RedHat, openSUSE:local, Fedora)
 japanese_fontdirs="/usr/share/fonts /usr/local/share/fonts /usr/local/share/fonts"
@@ -143,6 +154,7 @@ AC_SUBST(JAPANESE_MINCHO_TTF)
 AC_SUBST(JAPANESE_MINCHO_TTF_ABS)
 AC_SUBST(JAPANESE_GOTHIC_TTF)
 AC_SUBST(JAPANESE_GOTHIC_TTF_ABS)
+AC_SUBST(BASEDIR_JA)
 
 dnl
 dnl Check for mobi target and optional ebook-convert

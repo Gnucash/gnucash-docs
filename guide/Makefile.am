@@ -30,3 +30,5 @@ epub $(MOBI):
 
 uninstall-hook:
 	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)"
+
+EXTRA_DIST = CMakeLists.txt

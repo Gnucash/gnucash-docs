@@ -48,4 +48,4 @@ COMPONENTS = \
 #	xml2po -e -p ${srcdir}/it.po -o $@ ${top_srcdir}/guide/C/gnucash-guide.xml
 #	if test "${srcdir}" != "${builddir}"; then mv $@ ${srcdir}; fi
 
-EXTRA_DIST += it.po
+EXTRA_DIST += it.po COME-TRADURRE
