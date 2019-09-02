@@ -4,12 +4,17 @@ function (add_pdf_target docname lang entities figdir)
     set(pdffile "${docname}.pdf")
     file(GLOB figures "${CMAKE_CURRENT_SOURCE_DIR}/${figdir}/*.png")
 
-    # Determine paper format depending on language
-    # It's a pretty simple hack: only US or C will be set to letter. All others use A4.
-    if (lang MATCHES ".*_us.*|C")
-        set (XSLTFLAGS_FO "--stringparam paper.type letter")
-    else()
-        set (XSLTFLAGS_FO "--stringparam paper.type A4")
+    # Determine paper format depending on language (which maps to the document's directory name)
+    # * for language "C" (fallback language) determine paper format based on current locale
+    # * for other languages, the will be set to letter. All others use A4.
+    set (XSLTFLAGS_FO "--stringparam paper.type A4")
+    if (lang STREQUAL "C")
+        # For the fallback language determine paper format depending on locale
+        # Only US or C will be set to letter. All others use A4.
+        set (ENV_LANG $ENV{LANG})
+        if (ENV_LANG AND ENV_LANG MATCHES ".*_us.*|C") # Replacing ENV_LANG here with if ($ENV{LANG}) won't work.
+            set (XSLTFLAGS_FO "--stringparam paper.type letter")
+        endif()
     endif()
 
     add_custom_target("${lang}-${docname}-fo"
