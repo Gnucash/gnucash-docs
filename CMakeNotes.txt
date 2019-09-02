@@ -1,0 +1,49 @@
+CMake Notes
+-----------
+CMake support is a work in progress.
+
+Current status:
+- basic cmake file layout is set up, that is all directories have
+  their CMakeLists.txt file
+- the common code to generate xml (install only) and html (build
+  and install) has been ported to cmake commands
+- pdf generation has been ported
+
+To do:
+- provide uninstall functionality like in the gnucash cmake build system
+- create dist and distcheck targets
+- add support for mobi and epub
+- handle the special build rules for it (guide and help)
+
+Notable changes:
+- scrollkeeper/omf support has been dropped. It used to be required
+  for yelp, but that tool stopped using omf after release 2.23.
+  All platforms we care about have more recent versions.
+- Japanese font substitution has been dumbed down. One can still pass
+  fonts and a font directory on the command line via -D switches,
+  but the code no longer checks if the font really exists. The resulting
+  pdf and fop output will indicate if there's an issue.
+- With autotools make one could descend into a directory for a specific
+  document and then just run make commands there. Those would affect
+  only that document. CMake on the other hand uses a top-level only
+  rules system so you can only enter commands from the top-level directory
+  That would normally also mean each command would be for the whole project
+  so entering "make html" would do so for all books and their translations.
+
+  To mitigate this, I am setting up targets in the form
+
+  <lang>-<docname>-<format>
+
+  for example
+
+  C-gnucash-guide-xml
+  C-gnucash-guide-html
+
+  For the build step you can use any of these targets to build only a particular
+  language and book. For partial installations it gets slightly more complicated.
+  In this case you have to set environment variable CMAKE_INSTALL_COMPONENT
+  to the wanted target before calling make install, for example:
+
+  CMAKE_INSTALL_COMPONENT=C-gnucash-guide-html make install
+
+  This will only install the English version of the guide in html.
