@@ -3,6 +3,7 @@ function (add_gnc_doc_targets docname entities)
     get_filename_component(lang ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
     if(entities)
+        add_chm_target(${docname} ${lang} "${entities}" figures)
         add_xml_target(${docname} ${lang} "${entities}" figures)
         add_html_target(${docname} ${lang} "${entities}" figures)
         if (PDF)

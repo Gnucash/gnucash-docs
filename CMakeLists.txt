@@ -20,6 +20,7 @@ set (PACKAGE_URL "https://www.gnucash.org/")
 
 # Extra cmake macros
 set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
+include (AddChmTarget)
 include (AddEpubTarget)
 include (AddHtmlTarget)
 include (AddPdfTarget)
@@ -98,21 +99,19 @@ endif()
 set (FOP_XCONF_DFLT "${CMAKE_SOURCE_DIR}/fop.xconf.in")
 set (FOP_XCONF "${FOP_XCONF_DFLT}")
 
-#
-# ac_cv_gnc_windows="no"
-# case $host_os in
-#   mingw*)
-#   ac_cv_gnc_windows="yes"
-#   AC_PATH_PROG([HHC], hhc.exe, [hhc_not_found], [/c/Program Files (x86)/Html Help Workshop:/c/Program Files/Html Help Workshop])
-#   if test ! -x "${HHC}"; then
-#      AC_MSG_ERROR([Html Help Workshop Not Found])
-#   fi
-#   AM_EXTRA_RECURSIVE_TARGETS([chm install-chm])
-#   ;;
-#   *)
-#   ;;
-# esac
-# AM_CONDITIONAL([GNC_WINDOWS], [test x${ac_cv_gnc_windows} = "xyes"])
+# Find the htmlhelp compiler for chm output
+if(WIN32)
+    find_program(HHC hhc.exe
+        PATHS "c:/Program Files (x86)/Html Help Workshop" "c:/Program Files/Html Help Workshop")
+    if(NOT HHC)
+        message(ERROR "Html Help Workshop not found")
+    endif()
+else(WIN32)
+    find_program(HHC chmcmd)
+    if(NOT HHC)
+        message(STATUS "Free Pascal's chmcmd not found. The chm build rules will not be able to generate the final chm file, but are still enabled for debugging purposes.")
+    endif()
+endif(WIN32)
 
 # The global targets. Their dependencies will be filled in by subsequent commands in
 # the respective subdirectories.
@@ -126,6 +125,7 @@ add_custom_target(epub)
 if (MOBI)
     add_custom_target(mobi)
 endif()
+add_custom_target(chm)
 
 
 add_subdirectory (guide)

@@ -24,6 +24,9 @@ if (MOBI)
     add_dependencies(mobi ${docname}-mobi)
 endif()
 
+add_custom_target(${docname}-chm)
+add_dependencies(chm ${docname}-chm)
+
 add_subdirectory(C)
 add_subdirectory(de)
 add_subdirectory(it)
