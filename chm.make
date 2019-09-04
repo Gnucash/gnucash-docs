@@ -19,7 +19,7 @@ install-chm-local: $(chmfile) $(mapfile)
 	$(INSTALL_DATA) $(mapfile) $(DESTDIR)$(docdir)/$(lang)
 
 .xml.chm:
-	${XSLTPROC} $(XSLTPROCFLAGS) ${htmlhelp_xsl} ${srcdir}/$(docname).xml
+	${XSLTPROC} $(XSLTPROCFLAGS) --stringparam htmlhelp.chm $(chmfile) ${htmlhelp_xsl} ${srcdir}/$(docname).xml
 	if test ! -d ${builddir}/figures ; then \
 		ln -s ${srcdir}/figures ${builddir} ; \
 	fi
@@ -41,7 +41,6 @@ install-chm-local: $(chmfile) $(mapfile)
 	cat mymaps >> htmlhelp.hhp
 	rm mymaps
 	"${HHC}" htmlhelp.hhp  >/dev/null  || true
-	mv htmlhelp.chm $(chmfile)
 	mv htmlhelp.hhmap $(mapfile)
 
 CLEANFILES += $(chmfile) $(mapfile) htmlhelp.hhp *.html toc.hhc
