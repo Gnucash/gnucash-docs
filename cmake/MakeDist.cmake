@@ -8,7 +8,7 @@
 # 3. Create the tarball and compress it with gzip and bzip2.
 # 4. Then remove the dist directory.
 
-include(${CMAKE_MODULE_PATH}/dist.cmake)
+include(${CMAKE_MODULE_PATH}/DistCommon.cmake)
 
 function(make_dist PACKAGE_PREFIX GNUCASH_SOURCE_DIR BUILD_SOURCE_DIR)
 

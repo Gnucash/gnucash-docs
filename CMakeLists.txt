@@ -20,11 +20,12 @@ set (PACKAGE_URL "https://www.gnucash.org/")
 
 # Extra cmake macros
 set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
-include (xmldocs)
-include (pdf)
-include (epub)
-include (gnc_doc_targets)
-include (dist)
+include (AddEpubTarget)
+include (AddHtmlTarget)
+include (AddPdfTarget)
+include (AddXmlTarget)
+include (AddGncDocTargets)
+include (DistCommon)
 include (GNUInstallDirs)
 
 # Clear cache variables that will be filled later during the cmake run
