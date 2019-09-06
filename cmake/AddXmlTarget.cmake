@@ -17,10 +17,10 @@ function (add_xml_target docname lang entities figdir)
 
     install(FILES ${xml_files}
         DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}"
-        COMPONENT "${lang}-${docname}-xml")
+        COMPONENT "${docname}-xml")
     install(FILES ${figures}
         DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}/${figdir}"
-        COMPONENT "${lang}-${docname}-xml")
+        COMPONENT "${docname}-xml")
 
     add_custom_target("${lang}-${docname}-check"
         COMMAND  ${XMLLINT} --postvalid
@@ -32,10 +32,8 @@ function (add_xml_target docname lang entities figdir)
 
     add_dependencies(${docname}-check "${lang}-${docname}-check")
 
-# TODO Uninstall and dist targets
+# TODO Uninstall target
 # uninstall-hook:
 # 	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpfiguresdir)"
 # 	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpdir)"
-#
-# EXTRA_DIST = ${xml_files} ${omffile} ${figures}
 endfunction()

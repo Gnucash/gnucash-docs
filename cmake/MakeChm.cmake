@@ -58,11 +58,13 @@ set(HHP "${HHP};${MAP}")
 string(REPLACE ";" "\n" HHP_OUT "${HHP}")
 string(REPLACE ";" "\n" HHMAP_OUT "${HHMAP}")
 file(APPEND "${htmlhelpdir}/htmlhelp.hhp" ${HHP_OUT})
-file(WRITE "${CURRENT_BIN_DIR}/htmlhelp/${mapfile}" ${HHMAP_OUT})
+file(WRITE "${BUILD_DIR}/${mapfile}" ${HHMAP_OUT})
 
 execute_process(
     COMMAND ${HHC} htmlhelp.hhp
-    WORKING_DIRECTORY "${CURRENT_BIN_DIR}/htmlhelp"
-#    OUTPUT_QUIET
-#    ERROR_QUIET
+    WORKING_DIRECTORY "${htmlhelpdir}"
+    OUTPUT_QUIET
+    ERROR_QUIET
 )
+
+file(COPY "${htmlhelpdir}/${docname}.chm" DESTINATION "${BUILD_DIR}")

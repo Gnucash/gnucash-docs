@@ -52,6 +52,10 @@ set(JAPANESE_MINCHO_TTF "ume-tmo3.ttf" CACHE STRING "Mincho TrueType font used f
 set(JAPANESE_GOTHIC_TTF "ume-tmo3.ttf" CACHE STRING "Gothic TrueType font used for Japanese pdf")
 set(japanese_fontdir "${CMAKE_SOURCE_DIR}/fonts/truetype" CACHE STRING "Directory to search for Japanese fonts")
 
+# Buildtime destination directories for our generated documentation
+set(DATADIR_BUILD "${CMAKE_BINARY_DIR}/share")
+set(DOCDIR_BUILD  "${DATADIR_BUILD}/doc/${PACKAGE}")
+
 # ############################################################
 # Find the documentation dependencies
 
