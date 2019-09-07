@@ -47,8 +47,8 @@ function (add_ghelp_target docname lang entities figures)
 
     install(FILES ${source_files}
         DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}"
-        COMPONENT "${docname}-xml")
+        COMPONENT "ghelp")
     install(FILES ${figures}
         DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}/figures"
-        COMPONENT "${docname}-xml")
+        COMPONENT "ghelp")
 endfunction()

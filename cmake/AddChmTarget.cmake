@@ -32,6 +32,6 @@ function (add_chm_target docname lang entities figures)
             "${BUILD_DIR}/${chmfile}"
             "${BUILD_DIR}/${mapfile}"
         DESTINATION "${CMAKE_INSTALL_DOCDIR}/${lang}"
-        COMPONENT "${docname}-chm")
+        COMPONENT "chm")
 
 endfunction()
