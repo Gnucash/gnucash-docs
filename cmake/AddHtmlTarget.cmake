@@ -35,9 +35,9 @@ function (add_html_target docname lang entities figdir)
     # Copy figures for this document
     file(MAKE_DIRECTORY "${BUILD_DIR}/${figdir}")
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/figurestrigger"
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/${figdir}"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/figurestrigger"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
         DEPENDS ${figures})
 
     # Copy style icons for this document (warning, info,...)
@@ -50,7 +50,7 @@ function (add_html_target docname lang entities figdir)
 
     add_custom_target("${lang}-${docname}-html"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
-                "${CMAKE_CURRENT_BINARY_DIR}/figurestrigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/styletrigger")
 
     add_dependencies(${docname}-html "${lang}-${docname}-html")
