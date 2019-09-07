@@ -8,12 +8,11 @@
 # - entities: list of all xml files this document is composed of
 # - figdir: name of the directory holding the images
 
-function (add_ghelp_target docname lang entities figdir)
+function (add_ghelp_target docname lang entities figures)
 
-    file(GLOB figures "${CMAKE_CURRENT_SOURCE_DIR}/${figdir}/*.png")
     set(BUILD_DIR "${DATADIR_BUILD}/gnome/help/${docname}/${lang}")
     file(MAKE_DIRECTORY "${BUILD_DIR}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}/${figdir}")
+    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
 
     set(source_files "")
     foreach(xml_file ${entities} ${docname}.xml)
@@ -33,10 +32,10 @@ function (add_ghelp_target docname lang entities figdir)
         WORKING_DIRECTORY "${BUILD_DIR}")
 
     # Copy figures for this document
-    file(MAKE_DIRECTORY "${BUILD_DIR}/${figdir}")
+    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
-        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/${figdir}"
+        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
         DEPENDS ${figures})
 
@@ -50,6 +49,6 @@ function (add_ghelp_target docname lang entities figdir)
         DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}"
         COMPONENT "${docname}-xml")
     install(FILES ${figures}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}/${figdir}"
+        DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}/figures"
         COMPONENT "${docname}-xml")
 endfunction()

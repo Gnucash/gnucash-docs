@@ -1,8 +1,7 @@
-function (add_epub_target docname lang entities figdir)
+function (add_epub_target docname lang entities figures)
 
     set(epubfile "${docname}.epub")
     set(EPUB_TMPDIR "${CMAKE_CURRENT_BINARY_DIR}/epub")
-    file(GLOB figures "${CMAKE_CURRENT_SOURCE_DIR}/${figdir}/*.png")
 
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
     file(MAKE_DIRECTORY "${BUILD_DIR}")

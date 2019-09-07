@@ -1,8 +1,7 @@
-function (add_pdf_target docname lang entities figdir)
+function (add_pdf_target docname lang entities figures)
 
     set(fofile "${docname}.fo")
     set(pdffile "${docname}.pdf")
-    file(GLOB figures "${CMAKE_CURRENT_SOURCE_DIR}/${figdir}/*.png")
 
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
     file(MAKE_DIRECTORY "${BUILD_DIR}")

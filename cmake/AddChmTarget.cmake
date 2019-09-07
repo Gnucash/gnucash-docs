@@ -1,12 +1,10 @@
-function (add_chm_target docname lang entities figdir)
+function (add_chm_target docname lang entities figures)
 
     set(chmfile "${docname}.chm")
     set(mapfile "${docname}.hhmap")
 
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
     file(MAKE_DIRECTORY "${BUILD_DIR}")
-
-    file(GLOB figures "${CMAKE_CURRENT_SOURCE_DIR}/${figdir}/*.png")
 
     file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/htmlhelp")
     add_custom_command(
