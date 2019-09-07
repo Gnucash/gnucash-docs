@@ -10,10 +10,10 @@
 
 function (add_ghelp_target docname lang entities figures)
 
-    set(BUILD_DIR "${DATADIR_BUILD}/gnome/help/${docname}/${lang}")
+    set(BUILD_DIR "${DATADIR_BUILD}/help/${lang}/${docname}")
 
     set(source_files "")
-    foreach(xml_file ${entities} ${docname}.xml)
+    foreach(xml_file ${entities} index.docbook)
         list(APPEND source_files "${CMAKE_CURRENT_SOURCE_DIR}/${xml_file}")
     endforeach()
 
@@ -25,7 +25,7 @@ function (add_ghelp_target docname lang entities figures)
     list(APPEND source_files ${dtd_files})
 
     set(dest_files "")
-    foreach(xml_file ${entities} ${docname}.xml gnc-docbookx.dtd)
+    foreach(xml_file ${entities} index.docbook gnc-docbookx.dtd)
         list(APPEND dest_files "${BUILD_DIR}/${xml_file}")
     endforeach()
 
@@ -39,7 +39,7 @@ function (add_ghelp_target docname lang entities figures)
     add_custom_command(
         OUTPUT ${dest_files}
         COMMAND ${CMAKE_COMMAND} -E copy ${source_files} "${BUILD_DIR}"
-        DEPENDS ${entities} "${docname}.xml" ${dtd_files}
+        DEPENDS ${entities} "index.docbook" ${dtd_files}
         WORKING_DIRECTORY "${BUILD_DIR}")
 
     # Copy figures for this document
@@ -67,9 +67,9 @@ function (add_ghelp_target docname lang entities figures)
     add_dependencies(${docname}-ghelp "${lang}-${docname}-ghelp")
 
     install(FILES ${source_files}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}"
+        DESTINATION "${CMAKE_INSTALL_DATADIR}/help/${lang}/${docname}"
         COMPONENT "ghelp")
     install(FILES ${figures}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}/figures"
+        DESTINATION "${CMAKE_INSTALL_DATADIR}/help/${lang}/${docname}/figures"
         COMPONENT "ghelp")
 endfunction()

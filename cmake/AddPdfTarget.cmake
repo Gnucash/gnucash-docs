@@ -27,8 +27,8 @@ function (add_pdf_target docname lang entities figures)
                             --stringparam variablelist.as.blocks 1
                             --stringparam glosslist.as.blocks 1
                             "${CMAKE_SOURCE_DIR}/xsl/1.79.2/fo/docbook.xsl"
-                            "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
-        DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
+                            "${CMAKE_CURRENT_SOURCE_DIR}/index.docbook"
+        DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
 
     configure_file("${FOP_XCONF}" "${CMAKE_CURRENT_BINARY_DIR}/fop.xconf")
 

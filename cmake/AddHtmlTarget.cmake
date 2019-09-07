@@ -27,9 +27,9 @@ function (add_html_target docname lang entities figures)
                              --param use.id.as.filename "1"
                              --stringparam chunker.output.encoding UTF-8
                              "${CMAKE_SOURCE_DIR}/xsl/general-customization.xsl"
-                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
+                             "${CMAKE_CURRENT_SOURCE_DIR}/index.docbook"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
-        DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
+        DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
 
     # Copy figures for this document
     set(source_figures "")

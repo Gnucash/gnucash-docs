@@ -17,7 +17,7 @@ execute_process(
     COMMAND ${XSLTPROC} --path "${SRC_DIR}/docbook" --xinclude
                         --stringparam htmlhelp.chm ${chmfile}
                         "${SRC_DIR}/xsl/1.79.2/htmlhelp/htmlhelp.xsl"
-                        "${CURRENT_SRC_DIR}/${docname}.xml"
+                        "${CURRENT_SRC_DIR}/index.docbook"
     WORKING_DIRECTORY "${htmlhelpdir}")
 
 file(COPY "${CURRENT_SRC_DIR}/figures" DESTINATION "${htmlhelpdir}")
