@@ -17,11 +17,11 @@ function (add_epub_target docname lang entities figures)
                             --stringparam epub.oebps.dir OEBPS/
                             --stringparam fop1.extensions 1
                             "${CMAKE_SOURCE_DIR}/xsl/1.79.2/epub/docbook.xsl"
-                            "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
+                            "${CMAKE_CURRENT_SOURCE_DIR}/index.docbook"
         COMMAND cmake -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/figures" "${EPUB_TMPDIR}/OEBPS/figures"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"
         COMMAND cd "${EPUB_TMPDIR}" && zip -X -r "${BUILD_DIR}/${epubfile}" mimetype META-INF OEBPS
-        DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd" ${figures})
+        DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd" ${figures})
 
     add_custom_target("${lang}-${docname}-epub"
         DEPENDS "${BUILD_DIR}/${epubfile}")

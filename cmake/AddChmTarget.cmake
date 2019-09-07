@@ -20,7 +20,7 @@ function (add_chm_target docname lang entities figures)
            "-Dentities=\"${entities}\""
            -D HHC=${HHC}
            -P ${CMAKE_SOURCE_DIR}/cmake/MakeChm.cmake
-        DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd" ${figures}
+        DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd" ${figures}
         WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/htmlhelp")
 
     add_custom_target("${lang}-${docname}-chm"

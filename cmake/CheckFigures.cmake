@@ -3,7 +3,7 @@ execute_process(
                        --xinclude
                        --path ${GNC_SOURCE_DIR}/docbook
                        --xpath "//imagedata/@fileref"
-                       ${GNC_CURRENT_SOURCE_DIR}/${docname}.xml
+                       ${GNC_CURRENT_SOURCE_DIR}/index.docbook
     RESULT_VARIABLE LINT_RESULT
     OUTPUT_VARIABLE xml_figures
 )

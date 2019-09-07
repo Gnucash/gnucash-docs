@@ -1,5 +1,5 @@
 set (COMPONENTS
-        ${top_srcdir}/guide/C/gnucash-guide.xml
+        ${top_srcdir}/guide/C/index.docbook
         ${top_srcdir}/guide/C/fdl-appendix.xml
         ${top_srcdir}/guide/C/legal.xml
         ${top_srcdir}/guide/C/ch_oview.xml
@@ -24,8 +24,8 @@ set (COMPONENTS
         ${top_srcdir}/guide/C/appendixa.xml
         ${top_srcdir}/guide/C/appendixd.xml)
 
-#gnucash-guide.xml: ${COMPONENTS} ${srcdir}/it.po
-#        xml2po -e -p ${srcdir}/it.po -o $@ ${top_srcdir}/guide/C/gnucash-guide.xml
+#index.docbook: ${COMPONENTS} ${srcdir}/it.po
+#        xml2po -e -p ${srcdir}/it.po -o $@ ${top_srcdir}/guide/C/index.docbook
 #        if test "${srcdir}" != "${builddir}"; then mv $@ ${srcdir}; fi
 
 add_gnc_doc_targets(${docname} "")
