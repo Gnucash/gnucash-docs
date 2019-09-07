@@ -53,7 +53,6 @@ foreach(src_xml ${entities})
     endforeach()
 endforeach()
 
-
 set(HHP "${HHP};${MAP}")
 string(REPLACE ";" "\n" HHP_OUT "${HHP}")
 string(REPLACE ";" "\n" HHMAP_OUT "${HHMAP}")

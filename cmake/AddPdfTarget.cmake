@@ -20,24 +20,28 @@ function (add_pdf_target docname lang entities figdir)
         endif()
     endif()
 
-    add_custom_target("${lang}-${docname}-fo"
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
         COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_FO}
                             -o "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
                             --stringparam fop1.extensions 1
                             "${CMAKE_SOURCE_DIR}/xsl/1.79.2/fo/docbook.xsl"
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
-        BYPRODUCTS "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
 
     configure_file("${FOP_XCONF}" "${CMAKE_CURRENT_BINARY_DIR}/fop.xconf")
-    add_custom_target("${lang}-${docname}-pdf"
+
+    add_custom_command(
+        OUTPUT "${BUILD_DIR}/${pdffile}"
         COMMAND ${FOP} ${FOPFLAGS}
                         -l ${lang}
                         -c "${CMAKE_CURRENT_BINARY_DIR}/fop.xconf"
                         -fo "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
                         -pdf "${BUILD_DIR}/${pdffile}"
-        BYPRODUCTS "${BUILD_DIR}/${pdffile}"
-        DEPENDS ${lang}-${docname}-fo ${figures})
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fofile}" ${figures})
+
+    add_custom_target("${lang}-${docname}-pdf"
+        DEPENDS "${BUILD_DIR}/${pdffile}")
 
     add_dependencies(${docname}-pdf "${lang}-${docname}-pdf")
 

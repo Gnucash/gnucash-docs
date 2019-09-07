@@ -9,7 +9,8 @@ function (add_chm_target docname lang entities figdir)
     file(GLOB figures "${CMAKE_CURRENT_SOURCE_DIR}/${figdir}/*.png")
 
     file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/htmlhelp")
-    add_custom_target("${lang}-${docname}-chm"
+    add_custom_command(
+        OUTPUT "${BUILD_DIR}/${chmfile}" "${BUILD_DIR}/${mapfile}"
         COMMAND ${CMAKE_COMMAND} -v
            -D docname=${docname}
            -D SRC_DIR=${CMAKE_SOURCE_DIR}
@@ -21,9 +22,11 @@ function (add_chm_target docname lang entities figdir)
            "-Dentities=\"${entities}\""
            -D HHC=${HHC}
            -P ${CMAKE_SOURCE_DIR}/cmake/MakeChm.cmake
-        BYPRODUCTS "${BUILD_DIR}/${chmfile}" "${BUILD_DIR}/${mapfile}"
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd" ${figures}
         WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/htmlhelp")
+
+    add_custom_target("${lang}-${docname}-chm"
+        DEPENDS "${BUILD_DIR}/${chmfile}" "${BUILD_DIR}/${mapfile}")
 
     add_dependencies(${docname}-chm "${lang}-${docname}-chm")
 

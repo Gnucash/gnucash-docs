@@ -7,7 +7,8 @@ function (add_epub_target docname lang entities figdir)
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
     file(MAKE_DIRECTORY "${BUILD_DIR}")
 
-    add_custom_target("${lang}-${docname}-epub"
+    add_custom_command(
+        OUTPUT "${BUILD_DIR}/${epubfile}"
         COMMAND rm -fr "${EPUB_TMPDIR}"
         COMMAND mkdir "${EPUB_TMPDIR}"
         COMMAND echo "application/epub+zip" > "${EPUB_TMPDIR}/mimetype"
@@ -21,8 +22,10 @@ function (add_epub_target docname lang entities figdir)
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
         COMMAND cmake -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/figures" "${EPUB_TMPDIR}/OEBPS/figures"
         COMMAND cd "${EPUB_TMPDIR}" && zip -X -r "${BUILD_DIR}/${epubfile}" mimetype META-INF OEBPS
-        BYPRODUCTS "${BUILD_DIR}/${epubfile}"
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd" ${figures})
+
+    add_custom_target("${lang}-${docname}-epub"
+        DEPENDS "${BUILD_DIR}/${epubfile}")
 
     add_dependencies(${docname}-epub "${lang}-${docname}-epub")
 
@@ -36,10 +39,13 @@ function (add_mobi_target docname lang)
     set(epubfile "${BUILD_DIR}/${docname}.epub")
     set(mobifile "${BUILD_DIR}/${docname}.mobi")
 
+    add_custom_command(
+        OUTPUT "${mobifile}"
+        COMMAND ${EBOOK_CONVERT} "${epubfile}" "${mobifile}"
+        DEPENDS "${epubfile}")
+
     add_custom_target("${lang}-${docname}-mobi"
-        COMMAND ${EBOOK_CONVERT} ${epubfile} ${mobifile}
-        BYPRODUCTS "${mobifile}"
-        DEPENDS "${lang}-${docname}-epub")
+        DEPENDS "${epubfile}")
 
     add_dependencies(${docname}-mobi "${lang}-${docname}-mobi")
 
