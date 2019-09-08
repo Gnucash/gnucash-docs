@@ -1,8 +1,10 @@
-function (add_pdf_target docname lang entities figdir)
+function (add_pdf_target docname lang entities figures)
 
     set(fofile "${docname}.fo")
     set(pdffile "${docname}.pdf")
-    file(GLOB figures "${CMAKE_CURRENT_SOURCE_DIR}/${figdir}/*.png")
+
+    set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
+    file(MAKE_DIRECTORY "${BUILD_DIR}")
 
     # Determine paper format depending on language (which maps to the document's directory name)
     # * for language "C" (fallback language) determine paper format based on current locale
@@ -17,7 +19,8 @@ function (add_pdf_target docname lang entities figdir)
         endif()
     endif()
 
-    add_custom_target("${lang}-${docname}-fo"
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
         COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_FO}
                             -o "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
                             --stringparam fop1.extensions 1
@@ -26,13 +29,18 @@ function (add_pdf_target docname lang entities figdir)
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
 
     configure_file("${FOP_XCONF}" "${CMAKE_CURRENT_BINARY_DIR}/fop.xconf")
-    add_custom_target("${lang}-${docname}-pdf"
+
+    add_custom_command(
+        OUTPUT "${BUILD_DIR}/${pdffile}"
         COMMAND ${FOP} ${FOPFLAGS}
                         -l ${lang}
                         -c "${CMAKE_CURRENT_BINARY_DIR}/fop.xconf"
                         -fo "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
-                        -pdf "${CMAKE_CURRENT_BINARY_DIR}/${pdffile}"
-        DEPENDS ${lang}-${docname}-fo ${figures})
+                        -pdf "${BUILD_DIR}/${pdffile}"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fofile}" ${figures})
+
+    add_custom_target("${lang}-${docname}-pdf"
+        DEPENDS "${BUILD_DIR}/${pdffile}")
 
     add_dependencies(${docname}-pdf "${lang}-${docname}-pdf")
 

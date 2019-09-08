@@ -1,5 +1,5 @@
 
-include(${CMAKE_MODULE_PATH}/dist.cmake)
+include(${CMAKE_MODULE_PATH}/DistCommon.cmake)
 
 function(run_dist_check PACKAGE_PREFIX EXT)
 

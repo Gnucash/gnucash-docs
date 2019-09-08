@@ -6,13 +6,13 @@ project (gnucash-docs)
 
 # Version number of gnucash
 set (GNUCASH_MAJOR_VERSION 3)
-set (GNUCASH_MINOR_VERSION 6)
+set (GNUCASH_MINOR_VERSION 7)
 set (VERSION "${GNUCASH_MAJOR_VERSION}.${GNUCASH_MINOR_VERSION}")
 set (GNUCASH_LATEST_STABLE_SERIES 3.x)
 
 set (PACKAGE gnucash-docs)
 set (PACKAGE_NAME GnuCash Docs)
-set (PACKAGE_VERSION 3.6)
+set (PACKAGE_VERSION 3.7)
 set (PACKAGE_BUGREPORT "https://bugs.gnucash.org/describecomponents.cgi?product=Documentation")
 set (PACKAGE_TARNAME ${PACKAGE})
 set (PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}")
@@ -20,11 +20,13 @@ set (PACKAGE_URL "https://www.gnucash.org/")
 
 # Extra cmake macros
 set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
-include (xmldocs)
-include (pdf)
-include (epub)
-include (gnc_doc_targets)
-include (dist)
+include (AddChmTarget)
+include (AddEpubTarget)
+include (AddGHelpTarget)
+include (AddHtmlTarget)
+include (AddPdfTarget)
+include (AddGncDocTargets)
+include (DistCommon)
 include (GNUInstallDirs)
 
 # Clear cache variables that will be filled later during the cmake run
@@ -33,7 +35,24 @@ unset(dist_files CACHE)
 # ############################################################
 # These options are settable from the CMake command line. For example,
 # to enable mobi, put -D WITH_MOBI=ON on the command line.
+# To mimic the autotools' behaviour the targets enabled by default
+# are different for Windows vs the other supported platforms.
+# On windows only chm is enabled by default
+# On any other platform chm and mobi are disabled by default
 
+if(NOT WIN32)
+    option (WITH_GHELP "Enable build rules for gnome help document format" ON)
+    option (WITH_HTML "Enable build rules for html document format" ON)
+    option (WITH_PDF "Enable build rules for pdf document format" ON)
+    option (WITH_EPUB "Enable build rules for epub document format" ON)
+    option (WITH_CHM "Enable build rules for chm document format" OFF)
+else()
+    option (WITH_GHELP "Enable build rules for gnome help document format" OFF)
+    option (WITH_HTML "Enable build rules for html document format" OFF)
+    option (WITH_PDF "Enable build rules for pdf document format" OFF)
+    option (WITH_EPUB "Enable build rules for epub document format" OFF)
+    option (WITH_CHM "Enable build rules for chm document format" ON)
+endif()
 option (WITH_MOBI "Enable build rules for Mobipocket document format" OFF)
 
 # ############################################################
@@ -49,6 +68,10 @@ set(extended_extension "otf" CACHE STRING "Extended fonts extension")
 set(JAPANESE_MINCHO_TTF "ume-tmo3.ttf" CACHE STRING "Mincho TrueType font used for Japanese pdf")
 set(JAPANESE_GOTHIC_TTF "ume-tmo3.ttf" CACHE STRING "Gothic TrueType font used for Japanese pdf")
 set(japanese_fontdir "${CMAKE_SOURCE_DIR}/fonts/truetype" CACHE STRING "Directory to search for Japanese fonts")
+
+# Buildtime destination directories for our generated documentation
+set(DATADIR_BUILD "${CMAKE_BINARY_DIR}/share")
+set(DOCDIR_BUILD  "${DATADIR_BUILD}/doc/${PACKAGE}")
 
 # ############################################################
 # Find the documentation dependencies
@@ -68,21 +91,22 @@ if(NOT XMLLINT)
 endif(NOT XMLLINT)
 
 # Check for optional fop
-set (PDF YES)
-find_program(FOP fop)
-if(NOT FOP)
-    message(WARNING "Can't find fop. You will not be able to generate PDF files.")
-    set (PDF NO)
-endif(NOT FOP)
+if(WITH_PDF)
+    find_program(FOP fop)
+    if(NOT FOP)
+        message(WARNING "Can't find fop. You will not be able to generate PDF files.")
+        set (WITH_PDF OFF)
+    endif(NOT FOP)
+endif()
 
-set(MOBI NO)
 if(WITH_MOBI)
     find_program(EBOOK_CONVERT ebook-convert)
-    if (EBOOK_CONVERT)
-        set(MOBI YES)
-    else()
+    if (NOT EBOOK_CONVERT)
+        set(WITH_MOBI OFF)
         message(SEND_ERROR "Couldn't find ebook-convert required for mobi file format support. Please install the Calibre package: https://www.calibre-ebook.com/")
     endif()
+    # Mobi is based on epub so enable epub if mobi is requested
+    set(WITH_EPUB ON)
 else()
     message(STATUS "Mobi file format support is disabled.  Specify -DWITH_MOBY=ON if you want to enable it.")
 endif()
@@ -97,33 +121,43 @@ endif()
 set (FOP_XCONF_DFLT "${CMAKE_SOURCE_DIR}/fop.xconf.in")
 set (FOP_XCONF "${FOP_XCONF_DFLT}")
 
-#
-# ac_cv_gnc_windows="no"
-# case $host_os in
-#   mingw*)
-#   ac_cv_gnc_windows="yes"
-#   AC_PATH_PROG([HHC], hhc.exe, [hhc_not_found], [/c/Program Files (x86)/Html Help Workshop:/c/Program Files/Html Help Workshop])
-#   if test ! -x "${HHC}"; then
-#      AC_MSG_ERROR([Html Help Workshop Not Found])
-#   fi
-#   AM_EXTRA_RECURSIVE_TARGETS([chm install-chm])
-#   ;;
-#   *)
-#   ;;
-# esac
-# AM_CONDITIONAL([GNC_WINDOWS], [test x${ac_cv_gnc_windows} = "xyes"])
+# Find the htmlhelp compiler for chm output
+if(WITH_CHM)
+    if(WIN32)
+        find_program(HHC hhc.exe
+            PATHS "c:/Program Files (x86)/Html Help Workshop" "c:/Program Files/Html Help Workshop")
+        if(NOT HHC)
+            message(SEND_ERROR "Html Help Workshop not found")
+        endif()
+    else(WIN32)
+        find_program(HHC chmcmd)
+        if(NOT HHC)
+            set(WITH_CHM OFF)
+            message(WARNING "Free Pascal's chmcmd not found. Chm related targets will be disabled.")
+        endif()
+    endif(WIN32)
+endif(WITH_CHM)
 
 # The global targets. Their dependencies will be filled in by subsequent commands in
 # the respective subdirectories.
-add_custom_target(html)
 add_custom_target(check)
-add_custom_target(xml)
-if (PDF)
+if (WITH_HTML)
+    add_custom_target(html)
+endif()
+if (WITH_GHELP)
+    add_custom_target(ghelp)
+endif()
+if (WITH_PDF)
     add_custom_target(pdf)
 endif()
-add_custom_target(epub)
-if (MOBI)
+if (WITH_EPUB)
+    add_custom_target(epub)
+endif()
+if (WITH_MOBI)
     add_custom_target(mobi)
+endif()
+if (WITH_CHM)
+    add_custom_target(chm)
 endif()
 
 
@@ -196,3 +230,12 @@ add_custom_target(distcheck DEPENDS dist
         )
 
 ############################# END MAKE DIST #################
+
+# uninstall target
+configure_file(
+        "${CMAKE_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+        @ONLY)
+
+add_custom_target(uninstall
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)

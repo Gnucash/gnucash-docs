@@ -1,27 +1,36 @@
 set (docname "gnucash-guide")
 
-add_custom_target(${docname}-html)
-add_dependencies(html ${docname}-html)
-
 add_custom_target(${docname}-check)
 add_dependencies(check ${docname}-check)
 
-add_custom_target(${docname}-xml
-    DEPENDS ${docname}-check
-)
-add_dependencies(xml ${docname}-xml)
+if (WITH_HTML)
+    add_custom_target(${docname}-html)
+    add_dependencies(html ${docname}-html)
+endif()
 
-if (PDF)
+if (WITH_GHELP)
+    add_custom_target(${docname}-ghelp)
+    add_dependencies(ghelp ${docname}-ghelp)
+endif()
+
+if (WITH_PDF)
     add_custom_target(${docname}-pdf)
     add_dependencies(pdf ${docname}-pdf)
 endif()
 
-add_custom_target(${docname}-epub)
-add_dependencies(epub ${docname}-epub)
+if (WITH_EPUB)
+    add_custom_target(${docname}-epub)
+    add_dependencies(epub ${docname}-epub)
+endif()
 
-if (MOBI)
+if (WITH_MOBI)
     add_custom_target(${docname}-mobi)
     add_dependencies(mobi ${docname}-mobi)
+endif()
+
+if (WITH_CHM)
+    add_custom_target(${docname}-chm)
+    add_dependencies(chm ${docname}-chm)
 endif()
 
 add_subdirectory(C)

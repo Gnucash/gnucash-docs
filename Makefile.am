@@ -12,13 +12,17 @@ EXTRA_DIST = COPYING-DOCS \
 	     xsl \
 	     HACKING \
 	     README \
-	     cmake/dist.cmake \
-	     cmake/epub.cmake \
-	     cmake/gnc_doc_targets.cmake \
-	     cmake/MakeDistCheck.cmake \
-	     cmake/MakeDist.cmake \
-	     cmake/pdf.cmake \
-	     cmake/xmldocs.cmake \
+	     cmake/AddChmTarget.cmake \
+	     cmake/AddEpubTarget.cmake
+	     cmake/AddGHelpTarget.cmake
+	     cmake/AddGncDocTargets.cmake
+	     cmake/AddHtmlTarget.cmake
+	     cmake/AddPdfTarget.cmake
+	     cmake/cmake_uninstall.cmake.in
+	     cmake/DistCommon.cmake
+	     cmake/MakeChm.cmake
+	     cmake/MakeDistCheck.cmake
+	     cmake/MakeDist.cmake
 	     fonts/gothic.xml \
 	     fonts/mincho.xml \
 	     fonts/truetype/ume-tgo4.ttf \
