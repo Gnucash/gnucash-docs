@@ -6,13 +6,13 @@ project (gnucash-docs)
 
 # Version number of gnucash
 set (GNUCASH_MAJOR_VERSION 3)
-set (GNUCASH_MINOR_VERSION 6)
+set (GNUCASH_MINOR_VERSION 7)
 set (VERSION "${GNUCASH_MAJOR_VERSION}.${GNUCASH_MINOR_VERSION}")
 set (GNUCASH_LATEST_STABLE_SERIES 3.x)
 
 set (PACKAGE gnucash-docs)
 set (PACKAGE_NAME GnuCash Docs)
-set (PACKAGE_VERSION 3.6)
+set (PACKAGE_VERSION 3.7)
 set (PACKAGE_BUGREPORT "https://bugs.gnucash.org/describecomponents.cgi?product=Documentation")
 set (PACKAGE_TARNAME ${PACKAGE})
 set (PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}")
