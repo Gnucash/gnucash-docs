@@ -6,7 +6,7 @@ EXTRA_DIST = COPYING-DOCS \
 	     xmldocs.make \
 	     omf.make \
 	     pdf.make \
-         chm.make \
+	     chm.make \
 	     docbook \
 	     stylesheet \
 	     xsl \
