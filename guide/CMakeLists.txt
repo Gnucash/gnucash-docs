@@ -40,7 +40,10 @@ add_subdirectory(ja)
 add_subdirectory(pt)
 add_subdirectory(ru)
 
-set(autotoolsfiles
-    Makefile.am
-    Makefile.in)
+if(AUTOTOOLS_IN_DIST)
+    set(autotoolsfiles Makefile.am)
+    if(NOT AUTOGEN)
+        list(APPEND autotoolsfiles Makefile.in)
+    endif()
+endif()
 add_to_dist(CMakeLists.txt ${autotoolsfiles})

@@ -42,6 +42,7 @@ function(run_dist_check PACKAGE_PREFIX EXT)
     execute_process_and_check_result(
             COMMAND ${CMAKE_COMMAND} -G Ninja
               -D CMAKE_INSTALL_PREFIX=../${INSTALL_DIR}
+              -D AUTOTOOLS_IN_DIST=${AUTOTOOLS_IN_DIST}
               ../${PACKAGE_PREFIX}
             WORKING_DIRECTORY ${BUILD_DIR}
             ERROR_MSG "CMake configure command failed."
@@ -79,4 +80,56 @@ function(run_dist_check PACKAGE_PREFIX EXT)
 
 endfunction()
 
+function(run_autotools_dist_check PACKAGE_PREFIX)
+    # We assume that the RUN_DIST_CHECK() function has been run so that we can
+    # use the untarred distribution created by that step.
+    set(BUILD_DIR ${PACKAGE_PREFIX})
+    set(INSTALL_DIR "_cmake_install_autotools")
+    file(REMOVE_RECURSE ${BUILD_DIR}/${INSTALL_DIR})
+    file(MAKE_DIRECTORY ${BUILD_DIR}/${INSTALL_DIR})
+
+    message("Running autotools configure")
+    message("CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
+    execute_process_and_check_result(
+        COMMAND ${CMAKE_COMMAND} -E env ./configure --prefix=${CMAKE_CURRENT_SOURCE_DIR}/${INSTALL_DIR}
+        WORKING_DIRECTORY ${BUILD_DIR}
+        ERROR_MSG "Autotools 'configure' step failed."
+    )
+
+    message("Running autotools make")
+    execute_process_and_check_result(
+        COMMAND ${CMAKE_COMMAND} -E env make -j 4
+        WORKING_DIRECTORY ${BUILD_DIR}
+        ERROR_MSG "Autotools 'make' step failed."
+    )
+
+    message("Running autotools make check")
+    execute_process_and_check_result(
+        COMMAND ${CMAKE_COMMAND} -E env make check
+        WORKING_DIRECTORY ${BUILD_DIR}
+        ERROR_MSG "Autotools 'make check' step failed."
+    )
+
+    message("Running autotools make install")
+    execute_process_and_check_result(
+        COMMAND ${CMAKE_COMMAND} -E env make install
+        WORKING_DIRECTORY ${BUILD_DIR}
+        ERROR_MSG "Autotools 'make install' step failed."
+    )
+
+    message("Running autotools make uninstall")
+    execute_process_and_check_result(
+        COMMAND ${CMAKE_COMMAND} -E env make uninstall
+        WORKING_DIRECTORY ${BUILD_DIR}
+        ERROR_MSG "Autotools 'make uninstall' step failed."
+    )
+
+    message("Autotools distcheck complete.")
+
+endfunction()
+
 run_dist_check(${PACKAGE_PREFIX} .gz)
+
+if(AUTOTOOLS_IN_DIST)
+  run_autotools_dist_check(${PACKAGE_PREFIX})
+endif()
