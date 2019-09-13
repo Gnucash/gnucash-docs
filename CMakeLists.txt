@@ -2,21 +2,17 @@
 
 cmake_minimum_required (VERSION 3.5)
 
-project (gnucash-docs)
+# This sets a number of environment variables we can use later on
+# The names of these variables start with PROJECT_ and gnucash-docs_VERSION
+project (gnucash-docs
+    VERSION 3.7
+    LANGUAGES NONE)
 
-# Version number of gnucash
-set (GNUCASH_MAJOR_VERSION 3)
-set (GNUCASH_MINOR_VERSION 7)
-set (VERSION "${GNUCASH_MAJOR_VERSION}.${GNUCASH_MINOR_VERSION}")
-set (GNUCASH_LATEST_STABLE_SERIES 3.x)
-
-set (PACKAGE gnucash-docs)
 set (PACKAGE_NAME GnuCash Docs)
-set (PACKAGE_VERSION 3.7)
 set (PACKAGE_BUGREPORT "https://bugs.gnucash.org/describecomponents.cgi?product=Documentation")
-set (PACKAGE_TARNAME ${PACKAGE})
-set (PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}")
+set (PACKAGE_STRING "${PACKAGE_NAME} ${gnucash-docs_VERSION}")
 set (PACKAGE_URL "https://www.gnucash.org/")
+set (PACKAGE_PREFIX "${PROJECT_NAME}-${gnucash-docs_VERSION}")
 
 # Extra cmake macros
 set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
@@ -235,7 +231,6 @@ add_to_dist(
 
 ############################ BEGIN MAKE DIST #################
 
-set(PACKAGE_PREFIX "${PACKAGE}-${PACKAGE_VERSION}")
 set(DIST_FILE "${PACKAGE_PREFIX}.tar")
 
 add_custom_command(OUTPUT ${DIST_FILE}.gz ${DIST_FILE}.bz2
