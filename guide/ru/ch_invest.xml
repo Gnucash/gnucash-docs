@@ -377,9 +377,10 @@
         account.
       </para>
 
-      <para>Security prices are kept in a separate area of <application>&app;
-        </application> (the Price Database - <menuchoice><guimenu>Tools
-        </guimenu><guimenuitem>Price Editor</guimenuitem></menuchoice>). This
+      <para>Security prices are kept in a separate area of
+        <application>&app;</application> (the Price Database -
+        <menuchoice><guimenu>Tools</guimenu><guimenuitem>Price Editor</guimenuitem>
+        </menuchoice>). This
         contains prices for individual securities (not security accounts). All
         prices for an individual security are in a single currency. If a
         security is traded in multiple currencies, then a separate security and
@@ -1473,14 +1474,12 @@ Income
     </sect2>
 
     <sect2 id="invest-stockprice-report">
-      <title>Selecting <quote>Price Source</quote> in Stock Value Reports</title>
+      <title>The <quote>Price Source</quote> in Reports</title>
 
-      <para>Most <application>&app;</application> Asset reports have options to set/modify a number of parameters for the report.  The
-       Options windows is displayed by selecting the report tab then clicking on either the <guibutton>Options</guibutton>
+      <para>Most <application>&app;</application> reports have options to set/modify a number of parameters for the report.  The
+       Options dialog box is displayed by selecting the report tab then clicking on either the <guibutton>Options</guibutton>
        icon in the <emphasis>Menubar</emphasis> or selecting <menuchoice><guimenu>Edit</guimenu><guimenuitem>Report Options</guimenuitem></menuchoice>.
-       The <guilabel>General</guilabel> tab in the
-       resulting window contains various parameters for the report.  One of these is <quote>Price Source</quote> which of offers
-       three alternatives to determine stock prices in reports:</para>
+       <guilabel>Price Source</guilabel> determines how accounts denominated in commodities different from the report currency are converted to the report currency. Depending on the report the selector may appear in either the <guilabel>General</guilabel>, the <guilabel>Commodities</guilabel>, or the <guilabel>Display</guilabel> tab of the <guilabel>Report Options</guilabel> dialog box.
        <note>
          <para>In the example below, the report is a customization of
          the <emphasis role="strong">Average Balance</emphasis> report
@@ -1494,37 +1493,42 @@ Income
           </imageobject>
 
           <textobject>
-            <phrase>Determining Stock Price Source in Reports</phrase>
+            <phrase>Determining Stock Price/Currency Exchange Rate Source in Reports</phrase>
           </textobject>
 
-          <caption><para>Determining the value of a stock commodity in a
-          report by setting the Price Source option.</para></caption>
+          <caption><para>Determining the value of a stock commodity or
+          a currency other than the report currency in a report by
+          setting the Price Source option.</para></caption>
         </mediaobject>
       </screenshot>
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Weighted Average</guilabel> - gives you a graph of
-          the weighted price of all <emphasis>transactions</emphasis>. It will
-          <emphasis>not</emphasis> take into account prices defined in the
-          price editor.</para>
+          <para><guilabel>Weighted Average</guilabel>: Calculates the price by summing the absolute value of the amount and the absolute value of every split in every account denominated in the commodity, excluding those splits with a zero amount, and dividing the sum of values by the sum of amounts to obtain a price. For example, if you had a buy transaction for 200 shares of XYZ for a total of 2000 and a sell of 100 for 1300 the weighted average would be 3300/300 or 11/share.
+          </para>
+          <note><para>Gain/Loss splits have an amount of 0 and are <emphasis>not</emphasis> included in this calculation.</para></note>
+        </listitem>
+        <listitem>
+          <para><guilabel>Average Cost</guilabel>: Calculates the price by summing the amounts and values of every split in every account denominated in the commodity, including the zero amount splits. In the example above, with an additional split (either part of the sale transaction or in a separate transaction) booking the gain at 0 shares and a 300 gain, the average cost is 1000/100 (2000 original cost - 1300 proceeds from the sale + 300 gain)/(200 - 100) shares or 10/share.
+          </para>
+          
+          <note><para>Gain/Loss splits <emphasis>are</emphasis> included in this calculation.
+          </para></note>
+          <note><para>This is the <emphasis>only</emphasis> <guilabel>Price Source</guilabel> that will balance the <guilabel>Trial Balance Report</guilabel> and in order for it to balance you <emphasis>must</emphasis> correctly book your gains and losses.
+          </para></note>
+        </listitem>
+        <listitem>
+          <para><guilabel>Most Recent</guilabel>: Uses the latest price from the price database.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Most recent</guilabel> - displays the changing value
-          of your stocks based solely on <emphasis>the most recent</emphasis>
-          price available from the price editor. The price figuring in your
-          stock transactions is <emphasis>not</emphasis> considered.</para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Nearest in time</guilabel> - the graph is
-          exclusively based on the prices available from the price editor. The
-          value of your stock at each step and point in time is calculated
-          based on the nearest available price in the price editor.</para>
+          <para><guilabel>Nearest in time</guilabel>: Uses the price nearest in time to the report date&mdash;the datum date for time series reports like <guilabel>Assets Over Time</guilabel>&mdash;from the price database.
+          </para>
+          <note><para>The nearest date isn&rsquo;t necessarily before the date in question.
+          </para></note>
         </listitem>
       </itemizedlist>
-
+      </para>
       <screenshot id="invest-stockvalue-report">
         <mediaobject>
           <imageobject>
@@ -1580,8 +1584,8 @@ Income
           zero-share, zero-price split for account <emphasis>Assets:Stock:SYMBOL
           </emphasis> to the transaction in the following schemes, you *must*
           <keycap>Tab</keycap> out of that split. If you use the
-          <keycap function="enter">Enter</keycap> key, <application>&app;
-          </application> will convert the split into shares of the commodity.
+          <keycap function="enter">Enter</keycap> key,
+          <application>&app;</application> will convert the split into shares of the commodity.
         </para>
       </note>
 
@@ -2231,7 +2235,7 @@ Income
         </para>
 
         <table>
-          <title>Selling Shares Split Scheme, Sale Transaction</title>
+          <title>Selling Shares Split Scheme, Sale Transaction, Gross Pricing</title>
 
           <?dbfo table-width="70%" ?>
 
@@ -2278,7 +2282,7 @@ Income
         </table>
 
         <table>
-          <title>Selling Shares Split Scheme, Gain Transaction</title>
+          <title>Selling Shares Split Scheme, Gain Transaction, Gross Pricing</title>
 
           <?dbfo table-width="70%" ?>
 
@@ -2354,7 +2358,7 @@ Income
         </para>
 
         <table>
-          <title>Selling Shares Split Scheme, Sale Transaction</title>
+          <title>Selling Shares Split Scheme, Sale Transaction, Net Pricing</title>
 
           <?dbfo table-width="70%" ?>
 
@@ -2393,7 +2397,7 @@ Income
         </table>
 
         <table>
-          <title>Selling Shares Split Scheme, Gain Transaction</title>
+          <title>Selling Shares Split Scheme, Gain Transaction, Net Pricing</title>
 
           <?dbfo table-width="70%" ?>
 
@@ -2516,8 +2520,8 @@ Income
         </para>
 
         <para>
-          If you are not familiar with the difference between <application>&app;
-          </application> transactions and splits, please see
+          If you are not familiar with the difference between
+          <application>&app;</application> transactions and splits, please see
           <xref linkend="txns-registers-txntypes" />.
         </para>
 
@@ -2677,8 +2681,8 @@ url="https://www.gnucash.org/docs/v&series-stable;/C/gnucash-help/tool-lots.html
         <para>
           The capital gain/loss transaction(s) created by scrubbing uses an
           automatically created generic <emphasis>Orphaned Gains-CCC</emphasis>
-          account (where CCC is the security currency) because <application>
-          &app;</application> doesn't know which capital gain or loss account
+          account (where CCC is the security currency) because
+          <application>&app;</application> doesn't know which capital gain or loss account
           should be used. After scrubbing, the user should edit the <emphasis>
           Orphaned Gains-CCC</emphasis> transaction split to re-assign the
           income account to a more meaningful income (or expense) gain or loss
