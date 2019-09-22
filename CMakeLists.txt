@@ -2,21 +2,17 @@
 
 cmake_minimum_required (VERSION 3.5)
 
-project (gnucash-docs)
+# This sets a number of environment variables we can use later on
+# The names of these variables start with PROJECT_ and gnucash-docs_VERSION
+project (gnucash-docs
+    VERSION 3.7
+    LANGUAGES NONE)
 
-# Version number of gnucash
-set (GNUCASH_MAJOR_VERSION 3)
-set (GNUCASH_MINOR_VERSION 7)
-set (VERSION "${GNUCASH_MAJOR_VERSION}.${GNUCASH_MINOR_VERSION}")
-set (GNUCASH_LATEST_STABLE_SERIES 3.x)
-
-set (PACKAGE gnucash-docs)
 set (PACKAGE_NAME GnuCash Docs)
-set (PACKAGE_VERSION 3.7)
 set (PACKAGE_BUGREPORT "https://bugs.gnucash.org/describecomponents.cgi?product=Documentation")
-set (PACKAGE_TARNAME ${PACKAGE})
-set (PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}")
+set (PACKAGE_STRING "${PACKAGE_NAME} ${gnucash-docs_VERSION}")
 set (PACKAGE_URL "https://www.gnucash.org/")
+set (PACKAGE_PREFIX "${PROJECT_NAME}-${gnucash-docs_VERSION}")
 
 # Extra cmake macros
 set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
@@ -55,6 +51,10 @@ else()
 endif()
 option (WITH_MOBI "Enable build rules for Mobipocket document format" OFF)
 
+# If AUTOTOOLS_IN_DIST is OFF, then 'dist' wont run autogen.sh, and 'distcheck'
+# won't run the autotools distcheck. Note that various Makefile.am files are still
+# included in the dist when this is OFF. I'll fix that at some point.
+option (AUTOTOOLS_IN_DIST "Add autotools support to distribution tarballs." ON)
 # ############################################################
 # Following parameters can equally be set using -D switches on the CMake command line.
 # Set font dirs and font for Russian pdf documents
@@ -89,6 +89,20 @@ find_program(XMLLINT xmllint)
 if(NOT XMLLINT)
     message(SEND_ERROR "Can't find xmllint, perhaps you should install the xsltproc or libxslt package ?")
 endif(NOT XMLLINT)
+
+# Find a proper bash executable, only used in case of distcheck with autotools
+set(GNC_SHELL $ENV{GNC_SHELL})
+if (GNC_SHELL) # Replacing this with if ($ENV{GNC_SHELL}) doesn't work.
+  # Allow shell override by setting the GNC_SHELL environment variable
+  set(SHELL ${GNC_SHELL})
+else()
+  find_package(UnixCommands)
+  if (BASH)
+    set(SHELL ${BASH})
+  else()
+    message(SEND_ERROR "Can't find a suitable bash executable. Please set GNC_SHELL.")
+  endif()
+endif()
 
 # Check for optional fop
 if(WITH_PDF)
@@ -164,27 +178,40 @@ endif()
 add_subdirectory (guide)
 add_subdirectory (help)
 
-set(autotoolsfiles
-    configure.ac
-    configure
-    config.guess
-    config.sub
-    COPYING
-    INSTALL
-    Makefile.am
-    Makefile.in
-    aclocal.m4
-    gnucash-docs.spec.in
-    install-sh
-    ltmain.sh
-    missing
-    chm.make
-    epub.make
-    mobi.make
-    omf.make
-    pdf.make
-    xmldocs.make)
-add_to_dist(${autotoolsfiles})
+if(AUTOTOOLS_IN_DIST)
+    set(autotoolsfiles
+        configure.ac
+        configure
+        config.guess
+        config.sub
+        COPYING
+        INSTALL
+        Makefile.am
+        aclocal.m4
+        gnucash-docs.spec.in
+        install-sh
+        ltmain.sh
+        missing
+        chm.make
+        epub.make
+        mobi.make
+        omf.make
+        pdf.make
+        xmldocs.make)
+
+    # If autogen.sh is not in the source tree, we assume the source is extracted
+    # from a dist tarball. In that case the Makefile.in files are already present
+    # and we can include the directly instead of generating them from autogen.sh
+    find_file(AUTOGEN autogen.sh
+        HINTS "${CMAKE_SOURCE_DIR}"
+        NO_DEFAULT_PATH)
+    if(NOT AUTOGEN)
+        list(APPEND autotoolsfiles Makefile.in)
+        message(STATUS "autogen.sh not in source tree. Assuming Makefile.in files are present instead")
+    endif()
+
+    add_to_dist(${autotoolsfiles})
+endif()
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
@@ -204,7 +231,6 @@ add_to_dist(
 
 ############################ BEGIN MAKE DIST #################
 
-set(PACKAGE_PREFIX "${PACKAGE}-${PACKAGE_VERSION}")
 set(DIST_FILE "${PACKAGE_PREFIX}.tar")
 
 add_custom_command(OUTPUT ${DIST_FILE}.gz ${DIST_FILE}.bz2
@@ -214,6 +240,8 @@ add_custom_command(OUTPUT ${DIST_FILE}.gz ${DIST_FILE}.bz2
            -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
            -D BUILD_SOURCE_DIR=${CMAKE_BINARY_DIR}
            "-Ddist_files=\"${dist_files}\""
+           -D AUTOGEN=${AUTOGEN}
+           -D SHELL=${SHELL}
            -P ${CMAKE_SOURCE_DIR}/cmake/MakeDist.cmake
 
         DEPENDS
@@ -226,6 +254,9 @@ add_custom_target(distcheck DEPENDS dist
         COMMAND ${CMAKE_COMMAND}
             -D CMAKE_MODULE_PATH=${CMAKE_SOURCE_DIR}/cmake
             -D PACKAGE_PREFIX=${PACKAGE_PREFIX}
+            -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
+            -D AUTOTOOLS_IN_DIST=${AUTOTOOLS_IN_DIST}
+            -D SHELL=${SHELL}
             -P ${CMAKE_SOURCE_DIR}/cmake/MakeDistCheck.cmake
         )
 

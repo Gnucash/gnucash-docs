@@ -52,6 +52,7 @@ xml_files = $(entities) $(docname).xml $(top_srcdir)/docbook/gnc-docbookx.dtd
 gnomehelp_DATA =  $(xml_files)
 gnomehelpfiguresdir = $(gnomehelpdir)/$(figdir)
 gnomehelpfigures_DATA = $(shell ls ${srcdir}/${figdir}/*.png)
+gnomehelpfigures_DATA += $(shell ls ${srcdir}/${figdir}/*.svg)
 
 uninstall-hook:
 	rmdir --ignore-fail-on-non-empty "$(DESTDIR)$(gnomehelpfiguresdir)"
