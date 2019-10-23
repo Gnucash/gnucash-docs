@@ -49,8 +49,8 @@ Updated:
 			<title>The format of the import file</title>
 
 			<para>
-				The import file should contain rows of invoice entry data, each row marked by an invoice ID. The file should be
-				sorted on invoice ID. Each row contains header and entry fields, but <application>&app;</application> takes the
+				The import file should contain rows of invoice entry data.
+				Any row contains both header and entry fields, but <application>&app;</application> takes the
 				invoice header data from the first row of an invoice ID. For informational purposes, 
 				the header data may be repeated for each subsequent row of the same invoice.
 			</para>
@@ -67,7 +67,8 @@ Updated:
 			<itemizedlist>
 				<listitem>
 					<para><emphasis><prompt>id</prompt></emphasis> -
-						The invoice ID. Mandatory. Any row without an invoice ID will be ignored. If the invoice ID already exists,
+						The invoice ID. If the invoice ID is blank, <application>&app;</application> replaces it with the
+						invoice ID from the previous row. If the invoice ID already exists,
 						<application>&app;</application> will add the entries to the existing invoice (unless it is already posted).
 					</para>
 				</listitem>
@@ -226,7 +227,7 @@ Updated:
 
 	 	 	<para>
 				Example content for one customer invoice, with one entry, including tax and discount.
-				Using comma fields separator, decimal point and dd/mm/yyyy date format. 
+				Using comma field separator, decimal point and dd/mm/yyyy date format. 
 				The the value of the description field contains the separator character.
 			</para>
 		
@@ -435,7 +436,9 @@ Updated:
 				<itemizedlist>
 					<listitem>
 						<para>
-							The field <prompt>ID</prompt> is blank. Every row should have an invoice ID.
+							The field <prompt>ID</prompt> is blank. <application>&app;</application>  replaces a blank invoice ID
+							with the invoice ID from the previous row. But the first row of the import file should always have
+							an invoice ID.
 						</para>
 					</listitem>
 					<listitem>
