@@ -14,21 +14,21 @@
 -->
   <appendix id="appendixd">
     <title>Auxiliary File Formats</title>
-    <para>These are the formats of some auxiliary files used by <application>&app;</application>.</para>
+    <para>These are the formats of some auxiliary files used by &app;.</para>
     <sect1 id="check_format_info">
       <title>Check Format Files (<filename>*.chk</filename>)</title>
 
       <sect2 id="check_format_overview">
         <title>Overview</title>
-        <para>The check format file is used to tell <application>&app;</application> how to print a check or checks onto a page of paper.  This file first describes the overall layout of a page (number of checks, orientation, etc) and then describes the layout of the specific items on a single check.  The file is organized as a typical Key/Value file used by many Linux applications.  Keys/values pairs are grouped into sections that begin with the group name enclosed in square brackets.</para>
-        <para><application>&app;</application> looks for check format files in two different locations when you bring up the check printing dialog.  The first location is typically <filename class="directory">/usr/share/gnucash/checks</filename>, where check files distributed with the application can be found.  The second location is the user private <filename class="directory">~/.gnucash/checks</filename> directory.  Users may add check formats at any time (even while <application>&app;</application> is running) simply by dropping a new <filename>*.chk</filename> file in this directory.  The next time the check printing dialog is opened the new check format will appear in the list of available check formats.</para>
+        <para>The check format file is used to tell &app; how to print a check or checks onto a page of paper.  This file first describes the overall layout of a page (number of checks, orientation, etc) and then describes the layout of the specific items on a single check.  The file is organized as a typical Key/Value file used by many Linux applications.  Keys/values pairs are grouped into sections that begin with the group name enclosed in square brackets.</para>
+        <para>&app; looks for check format files in two different locations when you bring up the check printing dialog.  The first location is typically <filename class="directory">/usr/share/gnucash/checks</filename>, where check files distributed with the application can be found.  The second location is the user private <filename class="directory">~/.gnucash/checks</filename> directory.  Users may add check formats at any time (even while &app; is running) simply by dropping a new <filename>*.chk</filename> file in this directory.  The next time the check printing dialog is opened the new check format will appear in the list of available check formats.</para>
         <note>
-          <para>Printing functions differently depending on the version of GTK that is installed on your system.  When <application>&app;</application> is using a version of GTK prior to 2.10 all offsets are measured from the lower left corner of the page or check.  When using GTK 2.10 or later, all offsets are measured from the upper left corner of the page or check.</para>
+          <para>Printing functions differently depending on the version of GTK that is installed on your system.  When &app; is using a version of GTK prior to 2.10 all offsets are measured from the lower left corner of the page or check.  When using GTK 2.10 or later, all offsets are measured from the upper left corner of the page or check.</para>
         </note>
       </sect2>
       <sect2>
         <title>Example file</title>
-        <para>A typical <application>&app;</application> check file is presented below.  The contents of this file will be described in the next sections.</para>
+        <para>A typical &app; check file is presented below.  The contents of this file will be described in the next sections.</para>
 
         <programlisting>
 [Top]
@@ -82,7 +82,7 @@ Coords_5 = 50.0;212.0
                   <entry>Guid</entry>
                   <entry>string</entry>
                   <entry>mandatory</entry>
-                  <entry>The guid is used to uniquely identify a check format to <application>&app;</application>.  It must be unique across the entire set of application supplied and user supplied check formats.  If you copy an application check file as the basis of your own check format, you must change this value.  The <emphasis>uuidgen</emphasis> program may be used to generate these identifiers.</entry>
+                  <entry>The guid is used to uniquely identify a check format to &app;.  It must be unique across the entire set of application supplied and user supplied check formats.  If you copy an application check file as the basis of your own check format, you must change this value.  The <emphasis>uuidgen</emphasis> program may be used to generate these identifiers.</entry>
                 </row>
                 <row>
                   <entry>Title</entry>
@@ -94,7 +94,7 @@ Coords_5 = 50.0;212.0
                   <entry>Font</entry>
                   <entry>string</entry>
                   <entry>optional</entry>
-                  <entry>If supplied, this is the default font used to print all text items on this check.  This field can contain any string that is acceptable by gtk as a font specifier.  If this field is omitted, the default font is the font specified in the <application>&app;</application> preferences dialog.  A typical string would be <quote>sans 12</quote>.</entry>
+                  <entry>If supplied, this is the default font used to print all text items on this check.  This field can contain any string that is acceptable by gtk as a font specifier.  If this field is omitted, the default font is the font specified in the &app; preferences dialog.  A typical string would be <quote>sans 12</quote>.</entry>
                 </row>
                 <row>
                   <entry>Blocking_Chars</entry>
@@ -124,13 +124,13 @@ Coords_5 = 50.0;212.0
                   <entry>Show_Grid</entry>
                   <entry>boolean</entry>
                   <entry>optional</entry>
-                  <entry>If this value is set to <emphasis>true</emphasis> then <application>&app;</application> will draw a grid on the page, starting at the origin with the lines spaced every 50 points. This can be helpful when creating a check format file.</entry>
+                  <entry>If this value is set to <emphasis>true</emphasis> then &app; will draw a grid on the page, starting at the origin with the lines spaced every 50 points. This can be helpful when creating a check format file.</entry>
                 </row>
                 <row>
                   <entry>Show_Boxes</entry>
                   <entry>boolean</entry>
                   <entry>optional</entry>
-                  <entry>If this value is set to <emphasis>true</emphasis> then for each item where the width and height have been specified, <application>&app;</application> will draw a box showing location and maximum size of that item . This can be helpful when creating a check format file.</entry>
+                  <entry>If this value is set to <emphasis>true</emphasis> then for each item where the width and height have been specified, &app; will draw a box showing location and maximum size of that item . This can be helpful when creating a check format file.</entry>
                 </row>
               </tbody>
             </tgroup>
@@ -139,7 +139,7 @@ Coords_5 = 50.0;212.0
         </sect3>
         <sect3>
           <title>Check Positions Group</title>
-          <para>This group of items specifies how multiple checks are laid out on the same sheet of paper, and gives names to each of these check locations so that a user can specify which check location that <application>&app;</application> should print.  This entire group of key/value pairs is optional, and should be omitted if the format file only specifies a single check per page of paper.</para>
+          <para>This group of items specifies how multiple checks are laid out on the same sheet of paper, and gives names to each of these check locations so that a user can specify which check location that &app; should print.  This entire group of key/value pairs is optional, and should be omitted if the format file only specifies a single check per page of paper.</para>
           <table id="check_table_positions">
             <title>Multiple Checks Per Page Fields</title>
             <tgroup cols="4">
@@ -171,7 +171,7 @@ Coords_5 = 50.0;212.0
         <sect3>
           <title>Check Items Group</title>
           <para>This section specifies the individual items that are printed on the check.  There is no limit to the number of items that may be present in this section, and any given type of item can be repeated multiple times.  This allows for the printing of checks that have a side stub, or for the one-per-page business checks that have both the check and multiple check stubs on the same page.  For example, to print the payee name on a business check and on both stubs, simply specify three payee items with differing print coordinates.</para>
-          <para>Each key names in this section explicitly includes the item number to which it applies.  E.G. The key named <guilabel>Type_1</guilabel> applies to the first item to be printed, and the key <guilabel>Coords_3</guilabel> applies to the third item to be printed.  Item numbers start at one and increase sequentially.  Any gap in the numbering sequence is interpreted by <application>&app;</application> as the end of the item list.  Items are printed in the order of their item numbers, not in the order in which they appear in the file.</para>
+          <para>Each key names in this section explicitly includes the item number to which it applies.  E.G. The key named <guilabel>Type_1</guilabel> applies to the first item to be printed, and the key <guilabel>Coords_3</guilabel> applies to the third item to be printed.  Item numbers start at one and increase sequentially.  Any gap in the numbering sequence is interpreted by &app; as the end of the item list.  Items are printed in the order of their item numbers, not in the order in which they appear in the file.</para>
           <para>Each item specified must include a type declaration.  The rest of the parameters for that item depend upon the particular type of that item.  See <xref linkend="check_table_types"></xref> for a list of valid item types and their required parameters.</para>
           <table id="check_table_items">
             <title>Individual Check Item Fields</title>
@@ -201,7 +201,7 @@ Coords_5 = 50.0;212.0
                   <entry>Font_<emphasis>n</emphasis></entry>
                   <entry>string</entry>
                   <entry>optional</entry>
-                  <entry>If supplied, this is the font used to print this specific text item.  This field can contain any string that is acceptable by gtk as a font specifier.  If this field is omitted, the default font is the font specified in the <emphasis>Top</emphasis> section of the check description file, or if that was omitted the font specified in the <application>&app;</application> preferences dialog.  This field is only recognized when using gtk version 2.10 or later.</entry>
+                  <entry>If supplied, this is the font used to print this specific text item.  This field can contain any string that is acceptable by gtk as a font specifier.  If this field is omitted, the default font is the font specified in the <emphasis>Top</emphasis> section of the check description file, or if that was omitted the font specified in the &app; preferences dialog.  This field is only recognized when using gtk version 2.10 or later.</entry>
                 </row>
                 <row>
                   <entry>Align_<emphasis>n</emphasis></entry>
@@ -219,7 +219,7 @@ Coords_5 = 50.0;212.0
                   <entry>Filename_<emphasis>n</emphasis></entry>
                   <entry>string</entry>
                   <entry>optional</entry>
-                  <entry>This field is only used when the item type is <emphasis>PICTURE</emphasis>. It specifies the filename of the image that should be printed on the check.  The string may specify either an absolute path name or as a relative path name.  If a relative path name is specified, <application>&app;</application> first looks in in the application check format folder (typically <filename class="directory">/usr/share/gnucash/checks</filename>) for the image file, and if it isn&rsquo;t found there then it looks in the user private <filename class="directory">~/.gnucash/checks</filename> directory for the image.  This field is only recognized when using gtk version 2.10 or later.</entry>
+                  <entry>This field is only used when the item type is <emphasis>PICTURE</emphasis>. It specifies the filename of the image that should be printed on the check.  The string may specify either an absolute path name or as a relative path name.  If a relative path name is specified, &app; first looks in in the application check format folder (typically <filename class="directory">/usr/share/gnucash/checks</filename>) for the image file, and if it isn&rsquo;t found there then it looks in the user private <filename class="directory">~/.gnucash/checks</filename> directory for the image.  This field is only recognized when using gtk version 2.10 or later.</entry>
                 </row>
                 <row>
                   <entry>Blocking_Chars_<emphasis>n</emphasis></entry>
@@ -258,7 +258,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print the check payee name at the specified coordinates.</entry>
+                  <entry>This type value tells &app; to print the check payee name at the specified coordinates.</entry>
                 </row>
                 <row>
                   <entry>DATE</entry>
@@ -270,7 +270,7 @@ Blocking_Chars
 DateFormat
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print the check date at the specified coordinates.</entry>
+                  <entry>This type value tells &app; to print the check date at the specified coordinates.</entry>
                 </row>
                 <row>
                   <entry>NOTES</entry>
@@ -281,7 +281,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print the transaction notes field at the specified coordinates.</entry>
+                  <entry>This type value tells &app; to print the transaction notes field at the specified coordinates.</entry>
                 </row>
                 <row>
                   <entry>CHECK_NUMBER</entry>
@@ -292,7 +292,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application>
+                  <entry>This type value tells &app;
                     to print the check number at the specified coordinates. The
                     check number reflects the book option selection under
                     <menuchoice><guimenu>File</guimenu><guimenuitem>Properties
@@ -300,7 +300,7 @@ Blocking_Chars
                     number or anchor-split action - see <ulink type="help"
                     url="ghelp:gnucash-help?num-action-book-option">Use Split
                     Action Field for Number</ulink> in the Book Options section
-                    of the <application>&app;</application> Help Manual).
+                    of the &app; Help Manual).
                   </entry>
                 </row>
                 <row>
@@ -312,7 +312,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print the split memo field at the specified coordinates.</entry>
+                  <entry>This type value tells &app; to print the split memo field at the specified coordinates.</entry>
                 </row>
                 <row>
                   <entry>ACTION</entry>
@@ -323,7 +323,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application>
+                  <entry>This type value tells &app;
                     to print the split action field at the specified coordinates.
                     However, the printed field reflects the book option selection
                     under <menuchoice><guimenu>File</guimenu><guimenuitem>
@@ -331,7 +331,7 @@ Blocking_Chars
                     (transaction number or anchor-split action - see <ulink
                     type="help" url="ghelp:gnucash-help?num-action-book-option">
                     Use Split Action Field for Number</ulink> in the Book
-                    Options section of the <application>&app;</application> Help
+                    Options section of the &app; Help
                     Manual). If number source for the book is specified as
                     anchor-split action, this field will instead print the
                     transaction number field.
@@ -346,7 +346,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print the check amount in words at the specified coordinates.  The amount will appear similar to the string "One thousand, two hundred thirty four and 56/100".</entry>
+                  <entry>This type value tells &app; to print the check amount in words at the specified coordinates.  The amount will appear similar to the string "One thousand, two hundred thirty four and 56/100".</entry>
                 </row>
                 <row>
                   <entry>AMOUNT_NUMBER</entry>
@@ -357,7 +357,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print the check amount in numbers at the specified coordinates.  The amount will appear similar to the number "$1,234.56".</entry>
+                  <entry>This type value tells &app; to print the check amount in numbers at the specified coordinates.  The amount will appear similar to the number "$1,234.56".</entry>
                 </row>
                 <row>
                   <entry>ADDRESS</entry>
@@ -368,7 +368,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print the address at the specified coordinates.</entry>
+                  <entry>This type value tells &app; to print the address at the specified coordinates.</entry>
                 </row>
                 <row>
                   <entry>SPLITS_ACCOUNT</entry>
@@ -379,7 +379,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print the account names for each split entry stating at the specified coordinates. See the note on splits printing.</entry>
+                  <entry>This type value tells &app; to print the account names for each split entry stating at the specified coordinates. See the note on splits printing.</entry>
                 </row>
                 <row>
                   <entry>SPLITS_AMOUNT</entry>
@@ -390,7 +390,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print the amount for each split entry stating at the specified coordinates.  Amounts are printed with currency symbols. See the note on splits printing.</entry>
+                  <entry>This type value tells &app; to print the amount for each split entry stating at the specified coordinates.  Amounts are printed with currency symbols. See the note on splits printing.</entry>
                 </row>
                 <row>
                   <entry>SPLITS_MEMO</entry>
@@ -401,7 +401,7 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print the memo text for each split entry stating at the specified coordinates. See the note on splits printing.</entry>
+                  <entry>This type value tells &app; to print the memo text for each split entry stating at the specified coordinates. See the note on splits printing.</entry>
                 </row>
                 <row>
                   <entry>TEXT</entry>
@@ -412,13 +412,13 @@ Align
 Blocking_Chars
                     </literallayout>
                   </entry>
-                  <entry>This type value tells <application>&app;</application> to print an arbitrary string at the specified coordinates. The string to be printed is specified with the <emphasis>Text_n</emphasis> key.</entry>
+                  <entry>This type value tells &app; to print an arbitrary string at the specified coordinates. The string to be printed is specified with the <emphasis>Text_n</emphasis> key.</entry>
                 </row>
                 <row>
                   <entry>PICTURE</entry>
                   <entry>Coords, Filename</entry>
                   <entry>(none)</entry>
-                  <entry>This type value tells <application>&app;</application> to print an image at the specified coordinates. The image to be printed is specified with the <emphasis>Filename_n</emphasis> key.  This type is only recognized when using gtk version 2.10 or later.</entry>
+                  <entry>This type value tells &app; to print an image at the specified coordinates. The image to be printed is specified with the <emphasis>Filename_n</emphasis> key.  This type is only recognized when using gtk version 2.10 or later.</entry>
                 </row>
               </tbody>
             </tgroup>

@@ -3,348 +3,954 @@
 
 <!-- (Do not remove this comment block.)
 
-Version: 2.4.0
-Last modified: 2013-11-21
+Version: 3.4.0
+Last modified: 2019-01-13
 
 Maintainers:
 
 Author:
-  Mike Evans <mikee@saxicola.co.uk>
+	Mike Evans <mikee@saxicola.co.uk>
+Updated:
+	Rob Laan <rob.laan@chello.nl>
 
-    Translators:
-    (translators put your name and email here)
+		Translators:
+		(translators put your name and email here)
 -->
 
 <chapter id="ch_import_bus_data">
-  <title>Importing Business Data</title>
+	<title>Importing Business Data</title>
 
+	<sect1 id="busnss-imp-bills-invoices">
+		<title>Importing Bills and Invoices</title>
 
-  <sect1 id="import-invoices">
-    <title>Import Bills or Invoices</title>
-    <para>This functionality is only available by default for versions greater than 2.6</para>
-   <para>For 2.4.13 the Customers and Vendors importer is an optional module and needs to enabled by editing the file <filename>$HOME/.gnucash/config.user</filename>,
-    adding the line:</para>
-    <para><code>(gnc:module-load "gnucash/plugins/bi_import" 0)</code></para>
-    <para>On Linux systems this file is found at <filename>$HOME/.gnucash/config.user</filename>
-      and on Mac OSX it is <filename>~/Library/Application Support/Gnucash/config.user</filename>.
-      If the file doesn&rsquo;t already exist you will have to create it.
-      After restarting <application>&app;</application>, the item will appear at the bottom
-    of the business menu.</para>
+		<sect2 id="busnss-imp-inv-general">
+			<title>General</title>
+	
+			<para>
+				This functionality creates invoices or bills from a csv import file containing rows of invoice entry data.
+				The import file may contain rows for new and/or existing invoices. If an invoice already exists,
+				&app; adds the imported entries to the invoice (unless the invoice is already posted).
+				If the import file contains posting data
+				for an invoice, then &app; will also attempt to post the invoice.
+				If any row of an invoice contains an error,  &app; will ignore all rows of the same invoice.
+			</para>
+			<para>
+				The field separator in the csv file must be either a comma or a semicolon; field values may be enclosed in double quotes.
+			</para>
+			
+			<para>
+				For the sake of readability, in this chapter the term <quote>invoice</quote> by itself is used
+				to refer to both customer invoices and vendor bills.
+			</para>
+			
+		</sect2>
 
+		<sect2 id="busnss-imp-inv-file-format">
+			<title>The format of the import file</title>
 
-    <para>In order for the importer to work the data must be in a fixed field
-      length, comma separated line format. A example <application>Python</application> script to convert
-      a downloaded order is shown below.
-    </para>
+			<para>
+				The import file should contain rows of invoice entry data, each row marked by an invoice ID. The file should be
+				sorted on invoice ID. Each row contains header and entry fields, but &app; takes the
+				invoice header data from the first row of an invoice ID. For informational purposes, 
+				the header data may be repeated for each subsequent row of the same invoice.
+			</para>
+			<para>
+				There is no information in the file to indicate whether it concerns customer invoice or vendor bill data.
+				Instead, a user option in the import dialog makes that distinction.
+			</para>
+			<para>
+				Each row should contain the fields listed below, in the same sequence, separated by a comma or a semicolon.
+				The fields are listed here by their technical name, which &app;
+				uses in the preview of the import data.
+			</para>
+	
+			<itemizedlist>
+				<listitem>
+					<para><emphasis><prompt>id</prompt></emphasis> -
+						The invoice ID. Mandatory. Any row without an invoice ID will be ignored. If the invoice ID already exists,
+						&app; will add the entries to the existing invoice (unless it is already posted).
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>date_opened</prompt></emphasis> -
+						 Use the same date format as defined in Preferences. Defaulted to today's date if left blank,
+						 or if the date provided is not valid.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>owner_id</prompt></emphasis> -
+						Customer or vendor number. Mandatory in the first data row of an invoice. If not provided, all rows of the same
+						invoice will be ignored.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>billingid</prompt></emphasis> -
+						Billing ID. Optional
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>notes</prompt></emphasis> -
+						Invoice notes. Optional.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>date</prompt></emphasis> -
+						The date of the entry. Defaulted to date opened if left blank,
+						or if the date provided is not valid.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>desc</prompt></emphasis> -
+						Description. Optional
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>action</prompt></emphasis> -
+						Action. Optional
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>account</prompt></emphasis> -
+						Account for the entry. Mandatory in each row.
+						If not provided or invalid, all rows of the same invoice will be ignored.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>quantity</prompt></emphasis> -
+						Quantity. Defaulted to 1 if left blank.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>price</prompt></emphasis> -
+						Price. Mandatory for each row.
+						If not provided, all rows of the same invoice will be ignored.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>disc_type</prompt></emphasis> -
+						Type of discount. Optional. Only relevant for invoices, not for bills.
+						Use <quote>%</quote> or blank for percentage value, anything else for monetary value.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>disc_how</prompt></emphasis> -
+						Discount how. Optional. Only relevant for invoices, not for bills.
+						Use <quote>&gt;</quote> for discount applied after tax,
+						<quote>=</quote> for discount and tax applied before tax,
+						and <quote>&lt;</quote>, blank or anything else for discount applied before tax.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>discount</prompt></emphasis> -
+						Amount or percentage of discount. Optional. Only relevant for invoices, not for bills
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>taxable</prompt></emphasis> -
+						Is this entry taxable? Optional.
+						Use <quote>Y</quote> or <quote>X</quote> for yes, <quote>N</quote> or blank for no.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>taxincluded</prompt></emphasis> -
+						Is tax included in the item price? Optional.
+						Use <quote>Y</quote> or <quote>X</quote> for yes, <quote>N</quote> or blank for no.
+					</para>
+				</listitem>
+					<listitem>
+					<para><emphasis><prompt>tax_table</prompt></emphasis> -
+						Tax table. Optional. If the tax table provided does not exist, it will be blank in the invoice.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>date_posted</prompt></emphasis> -
+						Date posted. Optional. Use the same date format as defined in Preferences.
+						If you provide a date posted for the first row of an invoice, &app; 
+						will attempt to also post the invoice (as opposed to only saving or updating it).
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>due_date</prompt></emphasis> -
+						Due date. Optional. Use the same date format as defined in Preferences.
+						Defaulted to date posted, if left blank.
+						Only relevant in the first row of an invoice, if the invoice is posted.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>account_posted</prompt></emphasis> -
+						Post to account, for vendor or customer posting.
+						Only mandatory in the first row of an invoice, if the invoice is posted.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>memo_posted </prompt></emphasis> -
+						Memo. Optional. Only relevant in the first row of an invoice, if the invoice is posted.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>accu_splits</prompt></emphasis> -
+						Accumulate splits? Optional. Use <quote>Y</quote> or <quote>X</quote> for yes, <quote>N</quote> or blank for no.
+						Only relevant in the first row of an invoice, if the invoice is posted.
+						If you use a spreadsheet program to create the import file, it is advised not to use blank for no, 
+						because a final column with only blanks may not be recognized
+						as relevant data when the spreadsheet program creates the csv file.
+					</para>
+				</listitem>
+			</itemizedlist>
 
-    <para>
-      <programlisting language="python" linenumbering="unnumbered">
-import sys
-import csv
+			<note id="busnss-imp-inv-file-format-note">
+				<title>Note on double quotes</title>
+				<para>
+					If you use the field separator character within a field, the field value should be enclosed in double quotes.
+					Only for the fields description (desc) and notes, can you also include a double quote within a quoted field value,
+					by doubling the double quote. E.g. <literal>"This field value uses the separator, and a ""quoted"" word"</literal>,
+					would be imported as <literal>This field value uses the separator, and a "quoted" word</literal>.
+				</para>
+			</note>
+			
+			<para>
+				Example content for two bills; one of 2 entries, and one of 3 entries.
+				The first is saved and posted, the second only saved.
+				Using comma field separator, decimal point and dd/mm/yyyy date format.
+			</para>
+		
+	 		<para>
+				<programlisting>
+1204;15/12/2018;2001;PO 210220;Special delivery;16/12/2018;Pride and Prejudice;pc;Expenses:Books;1;30.00;;;;X;;A1;17/12/2018;17/1/2019;Liabilities:Accounts Payable;;X
+1204;15/12/2018;2001;PO 210220;Special delivery;16/12/2018;Electronic principles;pc;Expenses:Books;1;50.00;;;;X;;A1;17/12/2018;17/1/2019;Liabilities:Accounts Payable;;X
+1205;15/12/2018;2044;PO 21099;;16/12/2018;Ultimate Guide;pc;Expenses:Books;1;10.01;;;;;;;;;;;
+1205;15/12/2018;2044;PO 21099;;16/12/2018;Dinner &amp; drinks;pc;Expenses:Dining;1;10.01;;;;;;;;;;;
+1205;15/12/2018;2044;PO 21099;;16/12/2018;UG course;pc;Expenses:Education;1;10.01;;;;;;;;;;;
+				</programlisting>
+			</para>
 
-VENDOR_ID="000013"
-INFILE=sys.argv[1]
-INV_ID=sys.argv[2]
-try:
-  ACCOUNT=sys.argv[3]
-except:
-  ACCOUNT="Expenses:Materials General"
+	 	 	<para>
+				Example content for one customer invoice, with one entry, including tax and discount.
+				Using comma fields separator, decimal point and dd/mm/yyyy date format. 
+				The the value of the description field contains the separator character.
+			</para>
+		
+	 		<para>
+				<programlisting>
+20221;16/12/2018;1001;Order 3378;Discount as agreed;4/12/2018;"Accounting part 1, 2";ea;Income:Other Income;1;769.95;%;=;10;X;N;A1;16/12/2018;16/01/2019;Assets:Accounts Receivable;Posted by import;X
+				</programlisting>
+			</para>
 
-Reader = csv.reader(open(INFILE), delimiter=',')
+		</sect2>
+	
+		<sect2 id="busnss-imp-inv-import-data">
+			<title>Import your data</title>
 
-# Need to ignore 1st and last rows
+			<para>
+				To import your invoice data, navigate to
+				<menuchoice><guimenu>File</guimenu>
+				<guimenuitem>Import</guimenuitem>
+				<guimenuitem>Import Bills  &amp; Invoices&hellip;</guimenuitem></menuchoice> to open a new import dialog,
+				and provide the necessary information.
+			</para>
+			<itemizedlist>
+					<listitem>
+						<para><guilabel>1. Choose the file to import</guilabel> -
+							Select your import file, or manually type the path and file name.
+						</para>
+					</listitem>
+					<listitem>
+						<para><guilabel>2. Select import type</guilabel> -
+							Select the import type, either <guilabel>Bill</guilabel> or <guilabel>Invoice</guilabel>.
+						</para>
+					</listitem>
+					<listitem>
+						<para><guilabel>3. Select import options</guilabel> -
+							Select your csv format.
+							Use the <guilabel>with quotes</guilabel> options if your file contains fields enclosed in double quotes.
+							These options also match fields not enclosed in quotes; 
+							except for the fields for description and notes, fields should not contain the quote character itself.
+							See <xref linkend="busnss-imp-inv-file-format-note" /> above.
+							Use one of the other options if your file does not have fields enclosed in quotes; any quote characters
+							in the file will be imported as is.
+						</para>
+					</listitem>
+					<listitem>
+						<para><guilabel>4. Preview</guilabel> -
+							Once you have selected your import file and csv format,
+							&app; shows you a preview of the data.
+							You can verify if your data is listed in the correct columns. If you do not see any rows in the preview,
+							then &app; was not able to match your import data rows to the selected csv format.
+							See <xref linkend="busnss-imp-inv-errors" /> below.
+						</para>
+					</listitem>
+					<listitem>
+						<para><guilabel>5. Afterwards</guilabel> -
+							You can choose if &app; should open tabs for the invoices after the import.
+							Either for all invoices, or for the invoices that are saved but not posted, or for none of the invoices.
+							Opening tabs slows down the import process considerably.
+						</para>
+					</listitem>
+					<listitem>
+						<para><emphasis>Start the import</emphasis> -
+							If you are satisfied with your selections, hit the <guibutton>OK</guibutton> button to start the import.
+						</para>
+					</listitem>
+				</itemizedlist>
+			
+				<para>
+					If your data file contains invoice IDs that already exist, then &app; will ask you
+					(once per import session) to confirm that you want to update existing invoices.
+					If not confirmed, all rows for existing invoices will be ignored.
+				</para>
+	
+				<note>
+					<para>
+						Internally, &app; uses so called regular expressions to match the import rows
+						to the data fields. The import option <guilabel>Custom regular expression</guilabel> offers the option to use your own
+						regular expression for this matching process. Obviously, this option requires that you are well versed in regular expressions.
+						When you choose the option <guilabel>Custom regular expression</guilabel>, &app; opens a window
+						in which you can edit the &app; regular expression, or replace it with your own. 
+						Your regular expression should contain a named subpattern for each of the fields of the csv file
+						(using the technical names). A custom regular expression could be useful if the rows of your source data file contain 
+						all required fields, but in a different order or format. E.g. if the format of your source data file
+						starts with customer number, followed by invoice ID, followed by the due date, and uses | as separator,
+						your regular expression would start with something like this:
+					</para>
+				
+					<para>
+						<programlisting>
+	^(?&lt;owner_id&gt;[^|]*)\|(?&lt;id&gt;[^|]*)\|(?&lt;due_date&gt;[^|]*)
+						</programlisting>
+					</para>
 
-for row in Reader:
-  if row[0].isdigit(): # We only use numbered lines
-    outline=(INV_ID + ",," + VENDOR_ID + ",,,," + row[1] + " &gt; " + row[4] + ",ea," +
-      ACCOUNT + "," + row[2] + "," + row[5].replace("GBP", "") + ",,,,no,,,,,,,")
-  print outline
-      </programlisting>
-    </para>
+					<para>
+						With a custom regular expression, &app; could import your source data files,
+						without the need to convert them to the &app; import format.
+					</para>		
+				</note>
 
-    <para>Example of a downloaded vendor order from <emphasis>Rapid Electronics</emphasis> (UK).
-      <programlisting language="python" linenumbering="unnumbered">
-line number,product code,quantity,availability,product description,unit price,discounts,line total,delivery,sub total,vat,grand total
-1,47-3524,100,100 Available,BC848C SOT-23 NPN TRANSISTOR (INF) (RC),GBP0.03,GBP0.00,GBP0.03
-2,47-3278,30,30 Available,L78L05ACZ 0.1A +5V VOLTAGE REG (ST) (RC),GBP0.18,GBP0.00,GBP0.18
-3,22-0120,1,1 Available,Tube 34 14pin DIL socket, narrow7.62mm, without central support,GBP1.05,GBP0.00,GBP1.05
-4,22-0127,1,0 Available&lt;br /&gt;1 on Back Order,Tube 17 28pin DIL socket, wide15.24mm, without central support,GBP1.22,GBP0.00,GBP1.22
-5,62-0368,1,1 Available,820R CR25 0.25W CF Resistor Pk 100,GBP0.50,GBP0.00,GBP0.50
-6,47-3130,100,100 Available,1N4001 1A 50V SILICON RECTIFIER DIODE RC,GBP0.01,GBP0.00,GBP0.01
-7,17-0310,1,1 Available,PROFESSIONAL MINATURE PROBE HOOK RED RC,GBP0.90,GBP0.00,GBP0.90
-8,17-0312,1,1 Available,PROFESSIONAL MINATURE PROBE HOOK BLACKRC,GBP0.90,GBP0.00,GBP0.90
-9,34-0655,1,1 Available,PROTOBLOC 2 BREADBOARD,GBP4.39,GBP0.00,GBP4.39
-10,18-0200,1,1 Available,PP3 9V ALKALINE BATTERY "Not For Retail Sale",GBP1.37,GBP0.00,GBP1.37
-,,,,,,,,GBP4.95,GBP24.93,GBP4.35,GBP29.28
-      </programlisting>
-    </para>
+			</sect2>
 
-    <para>A similar file after processing with the <application>Python</application> script.</para>
+		<sect2 id="busnss-imp-inv-feedback">
+			<title>Feedback and statistics</title>
+		
+			<para>
+				&app; executes the import process in three steps:
+			</para>
+			
+			<itemizedlist>
+				<listitem>
+					<para><emphasis><prompt>Import</prompt></emphasis> -
+						Imports the data file and attempts to match each row to the data fields.
+					</para>
+				</listitem>
+				<listitem>				
+					<para><emphasis><prompt>Validation and adjustment</prompt></emphasis> -
+						Validates the data fields and replaces data with defaults if applicable.
+					</para>
+				</listitem>
+				<listitem>				
+					<para><emphasis><prompt>Processing</prompt></emphasis> -
+						Handles the currency related validations, and creates, updates and posts the invoices.
+					</para>
+				</listitem>
+			</itemizedlist>
 
-    <para>
-        <programlisting language="python">
-MEC-0071,,000013,,,,34-0655 &gt; PROTOBLOC 2 BREADBOARD,ea,Expenses:Materials General,1,4.39,,,,no,,,,,,,
-MEC-0071,,000013,,,,18-0105 &gt; PP3 / PP6 BATTERY CLIP 150MM (RC),ea,Expenses:Materials General,10,0.06,,,,no,,,,,,,
-MEC-0071,,000013,,,,62-0370 &gt; 1k CR25 0.25W CF Resistor Pk 100,ea,Expenses:Materials General,1,0.50,,,,no,,,,,,,
-MEC-0071,,000013,,,,62-0354 &gt; 220R CR25 0.25W CF Resistor Pk 100,ea,Expenses:Materials General,1,0.50,,,,no,,,,,,,
-MEC-0071,,000013,,,,34-5548 &gt; PLAIN DOCUMENT WALLET ASSORTED PK 50 RE,ea,Expenses:Materials General,1,6.95,,,,no,,,,,,,
-MEC-0071,,000013,,,,62-0386 &gt; 4k7 CR25 0.25W CF Resistor Pk 100,ea,Expenses:Materials General,1,0.50,,,,no,,,,,,,
-MEC-0071,,000013,,,,34-0860 &gt; COPPER CLAD SRBP SS 100 X 160 (RC),ea,Expenses:Materials General,5,0.50,,,,no,,,,,,,
-MEC-0071,,000013,,,,18-0163 &gt; PP3 BATTERY HOLDER WITH FLYING LEADS RC,ea,Expenses:Materials General,5,0.23,,,,no,,,,,,,
-MEC-0071,,000013,,,,73-4290 &gt; ATMEGA8-16PU 8-BIT MICRO 8K DIL-28 (RC),ea,Expenses:Materials General,3,1.99,,,,no,,,,,,,
-MEC-0071,,000013,,,,81-0014 &gt; BC108 NPN GP TRANSISTOR RC,ea,Expenses:Materials General,20,0.16,,,,no,,,,,,,
-MEC-0071,,000013,,,,DELIVERY,ea,Expenses:Postage,1,4.95,,,,no,,,,,,,
-MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
-        </programlisting>
-    </para>
+			<para>
+				After all steps have finished,  &app; issues information about the result of the process.
+				The initial dialog shows the informational or error messages from the validation and processing steps.
+				The second dialog shows the statistics of the process:
+			</para>
+		
+			<itemizedlist>
+			<listitem>
+				<para>
+					Import - rows ignored: the number of rows that could not be matched to the data fields.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Import - rows imported: the number of rows that were successfully matched to the data fields.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Processing and validation - rows fixed: the number of rows for which a default value was used for a field.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Processing and validation - rows ignored: the number of rows for that were not processed because of a validation error.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Processing and validation - invoices created: the number of invoices created.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Processing and validation - invoices updated: the number of invoices that were updated.
+				</para>
+			</listitem>
+			</itemizedlist>
+		
+			<para>
+				If there were unmatched rows in the import step, a final dialog shows the actual rows that could not be matched.
+			</para>
+		
+		</sect2>
 
-    <para>
-      As can be seen there are some fields that are absent and some that
-      are not required for import. The first line is not required and the last
-      line is superfluous as <application>&app;</application> will total the order for us. All that is
-      required is to take what we want and produce an output file with the
-      correct format to import into <application>&app;</application>. In this case we join the part
-      number and description fields and these become description in <application>&app;</application>
-      invoice/bill. We need the qty and part price fields. Contrary to the
-      header line <acronym>VAT</acronym> is not included by line and is always zero, the <acronym>VAT</acronym> is
-      calculated on the last line as <acronym>VAT</acronym> on the order total.
-      <note>
-        <para>This will cause problems later.</para>
-      </note>
-      In this example I have assigned the
-      <emphasis>Expenses:Materials General</emphasis> account to be the target account. This can be
-      changed after import in the usual way, along with any other data. If there
-      is no such account as <emphasis>Expenses:Materials General</emphasis> then that field will be
-      left blank on import and will have to be set manually. Lines beginning
-      with a <quote>#</quote> are regarded as comment lines and ignored.
-    </para>
+		<sect2 id="busnss-imp-inv-errors">
+			<title>What could go wrong?</title>
+			
+			<sect3 id ="busnss-imp-inv-err-import">
+				<title>Errors in the import step</title>
+				
+				<para>
+					If the statistics show unmatched rows under <quote>Import - rows ignored</quote>, then there is some issue
+					with the format of your import file. Verify that you use and select the correct separator.
+					Verify that your data rows have exactly 21 separator characters (1 for each field, except for the last).
+					Verify whether you use the separator character within a data field; if so, enclose the field in double quotes.
+				</para>
+				<para>
+					If you use one of the <guilabel>with quotes</guilabel> import options, verify if you use the double quote character
+					in any of the data field values; if within the description or notes fields, 
+					make sure that the field value is quoted, and precede each double quote within the field with an extra
+					double quote; if within any other field, remove the double quote character.
+				</para>
+			</sect3>
+			
+			<sect3 id ="busnss-imp-inv-err-validation">
+				<title>Errors in the validation step</title>
+				
+				<para>
+					The following errors can occur in the validation step. Any error in a data row will cause all rows of the same
+					invoice to be ignored.
+				</para>
+				
+				<note>
+					<para>
+						In versions 3.4 and earlier, an error in a data row would cause just that row to be ignored,
+						as opposed all rows of the same invoice.
+					</para>
+				</note>
+				
+				<itemizedlist>
+					<listitem>
+						<para>
+							The field <prompt>ID</prompt> is blank. Every row should have an invoice ID.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							The field <prompt>owner_id</prompt> is blank. Every first row of an invoice should have an owner_id.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							The customer or vendor number in field <prompt>owner_id</prompt> does not exist.
+							The owner_id in the first row of an invoice should be an existing customer (for invoices) or vendor (for bills).
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							The date in field <prompt>date_posted</prompt> is not a valid date. If you provide a value for date_posted in the first
+							row of an invoice, it should be a valid date. Did you use the date format as set in Preferences?
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							The account in the field <prompt>account_posted</prompt> does not exist. If you provide a value for the field <prompt>date_posted</prompt>
+							in the first row of an invoice, the field <prompt>account_posted</prompt> should be an existing account.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							The account in the field <prompt>account_posted</prompt> is not of type Accounts Receivable (for invoices)
+							or Accounts Payable (for bills). If you provide a value for the field <prompt>date_posted</prompt>
+							in the first row of an invoice, the field <prompt>account_posted</prompt> should be an account of the correct type.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							The field <prompt>price</prompt> is blank. Every row should have a value for the field <prompt>price</prompt>.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							The account in the field <prompt>account</prompt> does not exist. Every row should have an existing account in the field <prompt>account</prompt>.
+						</para>
+					</listitem>
+				</itemizedlist>
+				
+				<para>
+					Any error in the validation step is listed after the overall import process completes. Correct your data file accordingly.
+				</para>
+				
+			</sect3>
+			
+			<sect3 id ="busnss-imp-inv-err-processing">
+				<title>Errors in the processing step</title>
+				
+				<para>
+					The following errors can occur in the processing step.
+				</para>
 
-    <para>The script is called with the following command:</para>
-      <para> <command>python importer.py <replaceable>file_to_import</replaceable>,
-      <replaceable>invoice_id</replaceable> &gt; <replaceable>file_to_save_as.csv</replaceable></command>
-      </para>
-    <para>This short script can easily be
-      changed to suit any downloaded format. The only restriction is that the
-      final number of field is fixed, at least at the moment. The importer will
-      ignore lines with the wrong number of fields. (This may be fixed in future
-      version). Vendor ID is simply the ID assigned to the specific vendor, or
-      client. The row[N] items refer to the position in the line where the
-      correct data lies. Note that the first field is row[0] NOT row[1].
-    </para>
+				<itemizedlist>
+					<listitem>
+						<para>
+							The invoice cannot be updated because it is already posted.	All rows of the same invoice will be ignored.
+							If you want to update the existing invoice, unpost it first in &app;.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							The currency of the invoice differs from the currency of the account posted
+							(<quote>Invoice x NOT posted because currencies don't match</quote>).
+							&app;
+							determines the currency of the invoice either from the customer or vendor master data (for a new invoice)
+							or from the invoice itself (for an existing invoice). The currency of the invoice must agree with
+							the currency of the post to account in the field <prompt>account_posted</prompt>. &app; creates the
+							invoice but cannot post it. Manually correct the invoice in &app;.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							The invoice requires currency conversion.
+							(<quote>Invoice x NOT posted because it requires currency conversion</quote>).
+							The invoice contains entries on accounts with different currencies,
+							or the currency of the entries differs from the currency of the post to account. For such an invoice,
+							&app; needs exchange rates to translate the currency amounts. 
+							&app; creates the invoice but cannot post it. Post the invoice manually
+							in &app;, and provide the requested exchange rates.
+						</para>
+					</listitem>
+				</itemizedlist>
 
-    <para>Once you have converted the file navigate to <menuchoice><guimenu>Business</guimenu>
-      <guimenuitem>Invoice &amp; Bill Import</guimenuitem></menuchoice> to open a new import window.
-      Select the file you have just created, select <guilabel>Bill</guilabel>
-      or <guilabel>Invoice</guilabel> and <guilabel>Comma separated</guilabel> format. At this
-      point the data should show up in the preview window. Check that the field
-      data are in the correct columns before selecting <guibutton>OK</guibutton>. Once imported the
-      invoice can be opened for editing and posting in the usual way.
-    </para>
+			</sect3>
+			
+		</sect2>
 
-    <para>A note on <acronym>VAT</acronym>, or any purchase tax. As previously mentioned <emphasis>Rapid
-      Electronics</emphasis> calculate the <acronym>VAT</acronym> on the bill total not line by line. <application>&app;</application>
-      calculated the <acronym>VAT</acronym> per line then totals the <acronym>VAT</acronym>. This can lead to
-      inaccuracies in the <acronym>VAT</acronym> of the region of a few pennies and is enough to
-      cause problems when reconciling the purchase with your bank or credit card
-      account used to make the purchase. As to how you overcome that, for the
-      moment, is a problem for you to use whatever method suits your conscience
-      or accountant best. Personally I add the <acronym>VAT</acronym> as a separate line along with
-      delivery charges manually. So some work is left to the user but the tedium
-      of entering each item eliminated.
-    </para>
+		<sect2 id="busnss-imp-inv-not-supported">
+			<title>Not supported invoice functionality</title>
+			
+			<para>
+				Currently the invoice import function does not support (at least) the following:
+			</para>
+			
+		 <itemizedlist>
+			<listitem>
+				<para>
+					Import of billing terms and job.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Import of customer and job in default chargeback project for bills.
+				</para>
+			</listitem>
 
-    <para>Future: Currently the import format is quite strict and many users
-      may have problems with the conversion process. Adding a template for every
-      possible vendor <acronym>CSV</acronym> format would be mammoth and likely impossible task
-      notwithstanding the fact the vendors are likely to change the format
-      without informing the <application>&app;</application> team. Future import enhancements will be
-      based on user feedback and hopefully the process can be made simpler or
-      more flexible. Note that often <quote>simple</quote> is incompatible with
-      <quote>flexible</quote>.
-    </para>
+			<listitem>
+				<para>
+					Application of billing terms from customer or vendor master data.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Automatic numbering of invoices.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Credit notes.
+				</para>
+			</listitem>
+		 </itemizedlist>	
+			
+		</sect2>
+		
+  </sect1>
+  
+  <sect1 id="busnss-imp-customer-vendor">
+  	<title>Importing Customers and Vendors</title>
 
-    <note>
-    <para>If <application>Python</application> (other languages are avaialble) is not your thing then
-      post a request to <ulink url="https://lists.gnucash.org/mailman/listinfo/gnucash-user"><citetitle>&app; user list</citetitle></ulink>,
-      with an example of your downloaded <acronym>CSV</acronym>, and someone may write you a <application>Python</application> script to do the
-      translation.
-    </para>
-    </note>
+		<sect2 id="busnss-imp-cv-general">
+			<title>General</title>
+	
+			<para>
+				This functionality creates and updates customers and vendors from a csv import file containing
+				rows of vendor/customer master data.
+				The import file may contain rows for new and/or existing customers/vendors. If a customer/vendor already exists,
+				&app; updates the existing customer/vendor.
+			</para>
+			
+		</sect2>
+			
+		<sect2 id="busnss-imp-cv-file-format">
+			<title>The format of the import file</title>
 
-    <sect2 id="python-author-notes">
-      <title>Notes for <application>Python</application> authors</title>
+			<para>
+				The import file should contain rows of customer/vendor data, one row for each customer/vendor.
+				The customer/vendor is identified by the customer/vendor number in the field <prompt>id</prompt> of the data rows.
+				If the field is blank, &app; will use the next number from the relevant counter 
+				(set in the <guilabel>Counters</guilabel> tab under
+				<menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice>).
+			</para>
+			
+			<para>
+				There is no data in the file to indicate whether it concerns customer or vendor master data.
+				Instead, a user option in the import dialog makes that distinction.
+			</para>
+			
+			<para>
+				Each row should contain the fields listed below, in the same sequence, separated by a comma or a semicolon.
+				The fields are listed here by their technical name, which &app;
+				uses in the preview of the import data.
+			</para>
 
-      <para>In order for the import to succeed the number of fields must be
-        adhered to, so the trailing commas are important.
-      </para>
+			<itemizedlist>
+				<listitem>
+					<para><emphasis><prompt>id</prompt></emphasis> -
+						The customer/vendor number. If it is for an existing customer/vendor, &app; will
+						update the customer/vendor. 
+						Note that in &app; e.g. '000010' is a different customer number than '10'.
+						If the id field is empty,
+						&app; will use the next number from the relevant counter.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>company</prompt></emphasis> -
+						 The company name. If it is left blank, it is defaulted to the value of field <prompt>name</prompt>.
+						 If that is also blank, then the row is ignored.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>name</prompt></emphasis> -
+						Billing address - Name. Optional.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>addr1</prompt></emphasis> -
+						Billing address - Address line 1. At least one of the four address lines of the billing address
+						must be filled. If not, then the row is ignored.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>addr2</prompt></emphasis> -
+						Billing address - Address line 2.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>addr3</prompt></emphasis> -
+						Billing address - Address line 3.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>addr4</prompt></emphasis> -
+						Billing address - Address line 4.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>phone</prompt></emphasis> -
+						Billing address - Phone. Optional
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>fax</prompt></emphasis> -
+						Billing address - Fax. Optional
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>email</prompt></emphasis> -
+						Billing address - Email. Optional
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>notes</prompt></emphasis> -
+						Notes. Optional
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>shipname</prompt></emphasis> -
+						Shipping information - Name. Optional. Not relevant for vendors.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>shipaddr1</prompt></emphasis> -
+						Shipping information - Address line 1. Optional. Not relevant for vendors.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>shipaddr2</prompt></emphasis> -
+						Shipping information - Address line 2. Optional. Not relevant for vendors.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>shipaddr3</prompt></emphasis> -
+						Shipping information - Address line 3. Optional. Not relevant for vendors.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>shipaddr4</prompt></emphasis> -
+						Shipping information - Address line 4. Optional. Not relevant for vendors.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>shipphone</prompt></emphasis> -
+						Shipping information - Phone. Optional. Not relevant for vendors.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>shipfax</prompt></emphasis> -
+						Shipping information - Fax. Optional. Not relevant for vendors.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis><prompt>shipmail</prompt></emphasis> -
+						Shipping information - Email. Optional. Not relevant for vendors.
+					</para>
+				</listitem>
+			</itemizedlist>
 
-      <para>A complete list of the required fields is:</para>
+			<para>
+				Example content for a customer with a separate shipping address. Using a semicolon for separator.
+			</para>
+		
+			<para>
+				<code>2201;All Star Company;All Star Company;Union Avenue 776;San Juan;CA;;0482938838;;contact@allstar.com;Last contacted on 4/4/2018.;All Star Company; John Alderman, Office 456;Union Avenue 777;San Juan;CA;78998766;;alderman@allstar.com</code>
+			</para>
+		
+			<para>
+				Example content for a vendor; no ID given, so &app; will take the next number from the counter.
+				Using a comma for separator.
+			</para>
+		
+			<para>
+				<code>,Johnson Supplies,Johnson Supplies,Electric Park 56,Plains,VA,,0482986538,,jack@johnson.com,Discount negotiated,,,,,,,,</code>
+			</para>
 
-      <para>id, date_opened, owner_id, billingid, notes, date, desc, action,
-        account, quantity, price, disc_type, disc_how, discount, taxable,
-        taxincluded, tax_table, date_posted, due_date, account_posted,
-        memo_posted, accu_splits,
-      </para>
-      <note>
-        <para>Mind the trailing comma.</para>
-      </note>
-    </sect2>
+			<para>
+				All fields by technical name in the required sequence.
+			</para>
+			
+			<para>
+				<code>id,  company,  name,  addr1,  addr2,  addr3,  addr4,  phone,  fax,  email,  notes,  shipname,  shipaddr1,  shipaddr2,  shipaddr3, shipaddr4, shiphone, shipfax, shipmail</code>
+			</para>
+		
+		</sect2>
 
-    <sect2 id="python-import-fields">
-      <title>A brief description of each field</title>
+		<sect2 id="busnss-imp-cv-import-data">
+			<title>Import your data</title>
 
-      <itemizedlist>
-        <listitem>
-          <para><emphasis>id</emphasis> -
-            The invoice number. All lines must
-            contain this or the line will be rejected.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>date_opened</emphasis> -
-             Use the same date format as setup in Preferences. Today's date is inserted if this is blank.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>owner_id</emphasis> -
-            ID number of the vendor or customer. All lines must
-            contain this or the line will be rejected.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>billingid</emphasis> -
-            Billing ID.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>notes</emphasis> -
-            Invoice notes.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>date</emphasis> -
-            The date of the item line. Can be left blank for todays
-            date.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>desc</emphasis> -
-            Description as per normal invoice or bill.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>action</emphasis> -
-            For bills usually <quote>ea</quote>.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>account</emphasis> -
-            Account to which the item is attributed.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>quantity</emphasis> -
-            Quantity of each item. Must contain a value or the line
-            will be rejected.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>price</emphasis> -
-            Price of each item. Must contain a value or the line will be
-            rejected.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>disc_type</emphasis> -
-            Type of discount, either <quote>%</quote> or <quote>TODO</quote>, only applies to
-            invoices. Some experimentation may be required here as may be currency
-            dependent.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>disc_how</emphasis> -
-            Only applies to invoices.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>discount</emphasis> -
-            Amount of discount to be applied. only applies to
-            invoices.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>taxable</emphasis> -
-            Will tax be applied to the item? <quote>yes</quote> or blank.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>taxincluded</emphasis> -
-            Is tax included in the item price? <quote>yes</quote> or blank.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>tax_table</emphasis> -
-            Tax table to apply to item.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>date_posted</emphasis> -
-            If posted, what date. Normally left blank for manual
-            posting after editing the invoice.  Use the same date format as setup in Preferences.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>due_date</emphasis> -
-            Date payment is due.   Use the same date format as setup in Preferences.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>account_posted</emphasis> -
-            Posted to what account.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>memo_posted </emphasis> -
-            If posted insert memo here.
-          </para>
-        </listitem>
-        <listitem>
-          <para><emphasis>accu_splits</emphasis> -
-            Accumulate splits? <quote>yes</quote> or blank.
-          </para>
-        </listitem>
-      </itemizedlist>
-    </sect2>
+			<para>
+				To import your customer or vendor data, navigate to
+				<menuchoice><guimenu>File</guimenu>
+				<guimenuitem>Import</guimenuitem>
+				<guimenuitem>Import Customes  &amp; Vendors&hellip;</guimenuitem></menuchoice> to open a new import dialog,
+				and provide the necessary information.
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para><guilabel>1. Choose the file to import</guilabel> -
+						Select your import file, or manually type the path and file name.
+					</para>
+				</listitem>
+				<listitem>
+					<para><guilabel>2. Select import type</guilabel> -
+						Select the import type, either <guilabel>Customer</guilabel> or <guilabel>Vendor</guilabel>.
+					</para>
+				</listitem>
+				<listitem>
+					<para><guilabel>3. Select import options</guilabel> -
+						Select your csv format. 
+						Use the <guilabel>with quotes</guilabel> options if your file contains fields enclosed in double quotes.
+						These options also match fields not enclosed in double quotes,
+						but fields should not contain the double quote character itself.
+						Use one of the other options if your file does not have fields enclosed in quotes; any double quote characters
+						in the file will then be imported as is.
+					</para>
+				</listitem>
+				<listitem>
+					<para><guilabel>4. Preview</guilabel> -
+						Once you have selected your import file and csv format,
+						&app; shows you a preview of the data.
+						You can verify if your data is listed in the correct columns. If you do not see any rows in the preview,
+						then &app; was not able to match your import data rows to the selected csv format.
+						See <xref linkend="busnss-imp-cv-errors" /> below.
+					</para>
+				</listitem>
+				<listitem>
+					<para><emphasis>Start the import</emphasis> -
+						If you are satisfied with your selections, hit the <guibutton>OK</guibutton> button to start the import.
+					</para>
+				</listitem>
+			</itemizedlist>
+			
+			<note>
+				<para>
+					Internally, &app; uses so called regular expressions to match the import rows
+					to the data fields. The import option <guilabel>Custom regular expression</guilabel> offers the option to use your own
+					regular expression for this matching process. Obviously, this option requires that you are well versed in regular expressions.
+					When you choose the option <guilabel>Custom regular expression</guilabel>, &app; opens a window
+					in which you can edit the &app; regular expression, or replace it with your own. 
+					Your regular expression should contain a named subpattern for each of the fields of the csv file
+					(using the technical names). A custom regular expression could be useful if the rows of your source data file contain 
+					all necessary fields, but in a different order or format. E.g. if the format of your source data file
+					starts with customer number, followed by company name, name, and one address field, and that is all you want to import,
+					then your custom regular expression would be something like this (using comma as a separator):
+				</para>
+			
+				<para>
+					<programlisting>
+^(?&lt;company&gt;[^,]*),(?&lt;id&gt;[^,]*),(?&lt;name&gt;[^,]*),(?&lt;addr1&gt;[^,]*),(?&lt;addr2&gt;[^,]*),(?&lt;addr3&gt;[^,]*)$
+					</programlisting>
+				</para>
+
+				<para>
+					With a custom regular expression, &app; could import your source data files,
+					without the need to convert them to the &app; import format.
+				</para>		
+			</note>
+			
+		</sect2>
+
+		<sect2 id="busnss-imp-cv-feedback">
+			<title>Feedback and statistics</title>
+		
+			<para>
+				&app; executes the import process in three steps:
+			</para>
+			
+			<itemizedlist>
+				<listitem>
+					<para><emphasis><prompt>Import</prompt></emphasis> -
+						Imports the data file and attempts to match each row to the data fields.
+					</para>
+				</listitem>
+				<listitem>				
+					<para><emphasis><prompt>Validation and adjustment</prompt></emphasis> -
+						Validates the data fields and replaces data with defaults if applicable.
+					</para>
+				</listitem>
+				<listitem>				
+					<para><emphasis><prompt>Processing</prompt></emphasis> -
+						Creates or updates the vendor or customer master data.
+					</para>
+				</listitem>
+			</itemizedlist>
+
+			<para>
+				After all steps have finished,  &app; issues information about the result of the process.
+				The initial dialog shows the statistics of the process:
+			</para>
+		
+			<itemizedlist>
+			<listitem>
+				<para>
+					Import results - lines ignored: the number of rows that could not be matched to the data fields.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Import results - lines imported: the number of rows that were successfully matched to the data fields.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Import results - customers/vendors fixed: the number of rows for which a default value was used for a field.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Import results - customers/vendors ignored: the number of rows for that were not processed because of a validation error.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Import results - customers/vendors created: the number of customers/vendors created.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Import results - customers/vendors updated: the number of customers/vendors that were updated.
+				</para>
+			</listitem>
+			</itemizedlist>
+		
+			<para>
+				If there were unmatched rows in the import step, a final dialog shows the actual rows that could not be matched.
+			</para>
+		
+		</sect2>
+
+		<sect2 id="busnss-imp-cv-errors">
+			<title>What could go wrong?</title>
+			
+			<sect3 id ="busnss-imp-cv-err-import">
+				<title>Errors in the import step</title>
+				
+				<para>
+					If the statistics show unmatched rows under <quote>Import results - lines ignored</quote>, then there is some issue
+					with the format of your import file. Verify that you use and select the correct separator.
+					Verify that your data rows have exactly 18 separator characters (1 for each field, except for the last).
+					Verify whether you use the separator character within a data field; if so, enclose the field in double quotes.
+				</para>
+				<para>
+					If you use one of the <guilabel>with quotes</guilabel> import options, verify if you use the double quote character
+					in any of the data field values. If so, remove them; importing double quotes as is, is not supported when using the
+					<guilabel>with quotes</guilabel> import options.
+				</para>
+			</sect3>
+			
+			<sect3 id ="busnss-imp-cv-err-validation">
+				<title>Errors in the validation step</title>
+				
+				<para>
+					If the statistics show rows under <quote>Import results - customers/vendors ignored</quote>, then data rows were 
+					ignored because of one of the errors below:
+				</para>
+								
+				<itemizedlist>
+					<listitem>
+						<para>
+							The field <prompt>company</prompt> and the field <prompt>name</prompt> are both blank.
+							The field <prompt>company</prompt> is mandatory; if it is blank, then it is defaulted to the value of the 
+							field <prompt>name</prompt>, but if both are blank, then the data row cannot be processed.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							The fields <prompt>addr1</prompt>, <prompt>addr2</prompt>, <prompt>addr3</prompt> and <prompt>addr4</prompt>
+							are all blank. At least one of these fields must have a value, otherwise the data row cannot be processed.
+						</para>
+					</listitem>
+				</itemizedlist>
+				
+			</sect3>
+						
+		</sect2>
+		
+		<sect2 id="busnss-imp-cv-not-supported">
+			<title>Not supported customer/vendor functionality</title>
+			
+			<para>
+				Currently the customer/vendor import function does not support (at least) the following:
+			</para>
+			
+		 <itemizedlist>
+			<listitem>
+				<para>
+					Import of any of the fields in the customer tab for billing information:
+					currency, terms, discount, credit limit, tax included and tax table.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Import of any of the fields in the vendor tab for payment information:
+					currency, terms, tax included and tax table.
+				</para>
+			</listitem>
+		 </itemizedlist>	
+			
+		</sect2>
 
   </sect1>
-
-<sect1 id="import-customers-vendors">
-  <title>Importing Customers and Vendors</title>
-  <para>This functionality is only available in the 2.6 versions of GnuCash and is only loaded by default for versions greater than 2.6.</para>
-   <para>For versions lower than 2.6 the Customers and Vendors importer is an optional module and needs to
-    enabled by editing the file <filename>$HOME/.gnucash/config.user</filename>,
-    adding the line:</para>
-    <para><code>(gnc:module-load "gnucash/plugins/customer_import" 0)
-    </code></para>
-    <para>On Linux systems this file is found at <filename>$HOME/.gnucash/config.user</filename>
-      and on Mac OSX it is <filename>~/Library/Application Support/Gnucash/config.user</filename>.
-      If the file doesn&rsquo;t already exist you will have to create it.
-      After restarting <application>&app;</application> the item will appear at the bottom
-    of the business menu.</para>
-    <para>In order for the importer to work each line in the input file must have the following structure.
-    </para>
-    <para><code>
-    id,  company,  name,  addr1,  addr2,  addr3,  addr4,  phone,  fax,  email,  notes,  shipname,  shipaddr1,  shipaddr2,  shipaddr3, shipaddr4, shiphone, shipfax, shipmail
-    </code> </para>
-
-    <para>
-    Fields can be separated with commas or semicolons and each field can be in quotes.  These options are selectable in the import dialog. Vendors don&rsquo;t have shipping information so even though the fields have to exist, leave them empty.
-    The id field is optional and if it is empty a new id will be chosen. If the id field has a value this will UPDATE any vendor/customer with the same id.  This may not be what you want.  Note that in your input file the data must be a single line for each customer/vendor.
-    </para>
-    <para>
-      The importer does not currently import billing information for customers or vendors, these will have to be edited individually after importing.
-  </para>
-  </sect1>
-
 
 </chapter>
