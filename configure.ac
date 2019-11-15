@@ -54,6 +54,19 @@ if test -z "$XMLLINT"; then
   AC_MSG_ERROR([xmllint not found, perhaps you should install the xmllint or libxslt package ?])
 fi
 
+dnl Same for xmlformat
+dnl currently only for perl version, improve for ruby version
+AC_PATH_PROG(XMLFORMAT, xmlformat.pl, [""])
+if test -z "$XMLFORMAT"; then
+  AC_MSG_ERROR([xmlformat.pl - required for 'make format' - not found, perhaps you should install the xmlformat package ?])
+fi
+
+dnl and it's dependency perl
+AC_PATH_PROG(PERL, perl, [""])
+if test -z "$PERL"; then
+  AC_MSG_ERROR([perl - required by xmlformat - not found, perhaps you should install the perl package ?])
+fi
+
 dnl
 dnl Check for optional fop
 dnl

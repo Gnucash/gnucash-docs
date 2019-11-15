@@ -33,6 +33,7 @@
 # install them in a subdir with the docname and copy the stylesheet png's in.
 # Dec 2002 Chris Lyttle
 # Oct 2012 Geert Janssens - Simplified xml doc installation and distribution
+# Nov 2019 Frank H. Ellenberger: add target format
 
 
 # ************* Begin of section some packagers may need to modify  **************
@@ -153,3 +154,15 @@ uninstall-html:
 
 check:
 	xmllint --postvalid --xinclude --noout --path ${top_srcdir}/docbook ${srcdir}/${docname}.xml
+
+# Todo: After testing replace the redirect '> xmlformat/$$basefile' by '--in-place --backup "~"'
+# Note: Clean required?
+
+.PHONY: format
+format:
+	$(mkdir_p) "xmlformat";
+	for file in ${srcdir}/*.xml; do \
+	    basefile=`basename $$file`; \
+	   ${XMLFORMAT} --config-file $(top_srcdir)/xmlformat.conf ${srcdir}/$$basefile > xmlformat/$$basefile; \
+	done
+
