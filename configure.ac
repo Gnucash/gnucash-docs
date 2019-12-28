@@ -2,7 +2,7 @@
 # copyright (c) 2003-2016 GnuCash Development Team
 
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([gnucash-docs], [3.7], [https://bugs.gnucash.org/describecomponents.cgi?product=Documentation], , [https://www.gnucash.org/])
+AC_INIT([gnucash-docs], [3.8], [https://bugs.gnucash.org/describecomponents.cgi?product=Documentation], , [https://www.gnucash.org/])
 AC_CANONICAL_HOST
 
 dnl ==========================================================================
