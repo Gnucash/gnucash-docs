@@ -171,7 +171,11 @@ if (WITH_MOBI)
     add_custom_target(mobi)
 endif()
 if (WITH_CHM)
-    add_custom_target(chm)
+    if(WIN32)
+        add_custom_target(chm ALL)
+    else()
+        add_custom_target(chm)
+    endif()
 endif()
 
 
