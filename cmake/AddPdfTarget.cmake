@@ -8,7 +8,7 @@ function (add_pdf_target docname lang entities figures)
 
     # Determine paper format depending on language (which maps to the document's directory name)
     # * for language "C" (fallback language) determine paper format based on current locale
-    # * for other languages, the will be set to letter. All others use A4.
+    # * all others use A4.
     set (XSLTFLAGS_FO "--stringparam paper.type A4")
     if (lang STREQUAL "C")
         # For the fallback language determine paper format depending on locale
