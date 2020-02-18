@@ -5,7 +5,7 @@
       (Do not remove this comment block.)
   Version: 1.0.0
   Last modified: Sep 19th 2015
-  Maintainers: 
+  Maintainers:
                Chris Good <chris.good@ozemail.com.au>
   Author:
   		Chris Good <chris.good@ozemail.com.au>
@@ -15,14 +15,14 @@
 -->
 
 <chapter id="chapter_bus_setup">
-    <title>Business  Setup</title>
-  
+    <title>Business Setup</title>
+
     <para>To set up &app; to handle accounts receivable or accounts payable
       for a company, these preliminary steps must be done.
       <itemizedlist>
         <listitem><para>Build an appropriate Account Hierarchy.</para></listitem>
-        <listitem><para>Set up Tax Tables.</para></listitem>
-        <listitem><para>Register the company in &app;.</para></listitem>
+        <listitem><para>Set up Sales Tax Tables.</para></listitem>
+        <listitem><para>Enter the company information in &app;.</para></listitem>
         <listitem><para>Set Business Preferences.</para></listitem>
         <listitem><para>Set up Billing Terms.</para></listitem>
       </itemizedlist>
@@ -40,22 +40,24 @@
       Accounts.</para>
 
       <para>The prebuilt Business Account hierarchy will not meet your needs
-      exactly. You will need make adjustments for the hierarchy to function
-      well with your particular situation. It should be close enough that it
+      exactly. You will need make adjustments to the hierarchy so that it will
+      meet your particular needs. It should be close enough, however, that it
       is recommended you begin with it.</para>
 
       <para>To use &app;&rsquo;s integrated accounts
-        receivable system, you must first set up an account (usually a
-        sub-account under Assets) defined with account type
-        <emphasis>A/Receivable</emphasis>. It is within this account that the
-        integrated A/R system will place transactions.
+        receivable system, you must first set up a special account (usually a
+        sub-account under Assets) to hold transactions for receivables. This account
+        must be defined with account type <emphasis>A/Receivable</emphasis>.
+        &app; will use this account to place transactions
+        related to the integrated accounts receivable system.
       </para>
 
       <para>To use &app;&rsquo;s integrated accounts
         payable system, you must first set up an account (usually a
-        sub-account under Liabilities) defined with account type
-        <emphasis>A/Payable</emphasis>. It is within this account that the
-        integrated A/P system will place transactions.
+        sub-account under Liabilities) to hold transactions for payables.
+        This account must be defined with account type <emphasis>A/Payable</emphasis>.
+        &app; will use this account to place transactions
+        related to the integrated accounts payable system.
       </para>
 
       <literallayout>
@@ -82,43 +84,41 @@ Basic A/R and A/P Account Hierarchy:
           customer. &app; keeps track of customers internally and provides
           per-customer reports based on the internal tracking. The same applies to A/P and vendors.
         </para>
-        
+      </note>
+      <note>
         <para>
-          If you deal with customers in more than one currency you will need a separate 
-          <emphasis>Accounts Receivable</emphasis> account for each currency.
+          If you deal with customers in more than one currency you will need a separate
+          <guilabel>Accounts Receivable</guilabel> account <emphasis>for each currency</emphasis>.
         </para>
 
         <para>
-          If you deal with vendors in more than one currency you will need a separate 
-          <emphasis>Accounts Payable</emphasis> account for each currency.
+          If you deal with vendors in more than one currency you will need a separate
+          <guilabel>Accounts Payable</guilabel> account <emphasis>for each currency</emphasis>.
         </para>
-        
+      </note>
+      <note>
         <para>Transactions involving an Accounts Receivable or Accounts Payable account should not be
-          added, changed or deleted in any way other than by using
-          <itemizedlist>
-            <listitem><para>post/unpost bill/invoice/voucher or</para></listitem>
-	    <listitem><para>process payment</para></listitem>
-	  </itemizedlist>
-	</para>
-        
+          added, changed or deleted in any way other than by using Post/Unpost 
+          Bill/Invoice/Voucher or Process Payment!
+        </para>
       </note>
     </sect1>
-     
-    <sect1 id="bus-setuptaxtables">
-      <title>Tax Tables</title>
 
-      <para>Tax Tables can used to determine the tax for customer invoices (or vendor bills).
+    <sect1 id="bus-setuptaxtables">
+      <title>Setting up Sales Tax Tables</title>
+
+      <para>Sales Tax Tables can used to determine the tax for customer invoices (or vendor bills).
       </para>
-        
-      <para> A tax table can be assigned to an invoice line or bill line.</para>
-      
+
+      <para> A tax table entry can be assigned to an invoice line or bill line.</para>
+
       <para>Set up distinct tax tables for customers and vendors.</para>
 
-      <para> The default invoice line tax table can be assigned to each customer and the default bill 
-        line tax table can be assigned to each vendor.
+      <para>The default invoice tax table entry can be assigned to each customer and the default bill
+        tax table entry can be assigned to each vendor.
       </para>
 
-      <para>The default tax table for new customers or new vendors can  be specified in the <emphasis>Book Options </emphasis>
+      <para>The default tax table entry for new customers or new vendors can be specified in the <emphasis>Book Options</emphasis>
         window which can be accessed by
         <menuchoice><guimenu>File</guimenu>
           <guisubmenu>Properties</guisubmenu>
@@ -126,12 +126,12 @@ Basic A/R and A/P Account Hierarchy:
         </menuchoice>
       </para>
 
-      <para>Tax Tables are maintained using the <emphasis>Sales Tax Table</emphasis> editor which is accessed via menu 
+      <para>Sales Tax Tables are maintained using the <emphasis>Sales Tax Table</emphasis> editor which is accessed via menu
         <menuchoice><guimenu>Business</guimenu><guimenuitem>Sales Tax Table</guimenuitem></menuchoice>.
       </para>
-      
-      <figure pgwide="1">
-        <title>Tax Tables</title>
+
+      <figure>
+        <title>Sales Tax Tables Editor</title>
         <screenshot id="bus-taxmain">
           <mediaobject>
             <imageobject role="html">
@@ -146,44 +146,35 @@ Basic A/R and A/P Account Hierarchy:
             <textobject>
               <phrase>Sales Tax Tables Editor</phrase>
             </textobject>
-
           </mediaobject>
         </screenshot>
       </figure>
-      
-      <figure pgwide="1">
-        <title>New Sales Tax Table</title>
+
+      <figure>
+        <title>New Sales Tax Table Entry</title>
         <screenshot id="bus-taxnew">
           <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/bus_tax_new.png" format="PNG"
-                         srccredit="Chris Good" />
-            </imageobject>
-            <imageobject role="fo">
+            <imageobject>
               <imagedata fileref="figures/bus_tax_new.png" format="PNG"
                          srccredit="Chris Good" />
             </imageobject>
 
             <textobject>
-              <phrase>New Sales Tax Table</phrase>
+              <phrase>New Sales Tax Table Entry</phrase>
             </textobject>
-
           </mediaobject>
         </screenshot>
       </figure>
-      
+
       <itemizedlist>
         <listitem>
           <para><guilabel>Name</guilabel> This is the tax table name.</para>
         </listitem>
         <listitem>
-          <para><guilabel>Type</guilabel> Either <guilabel>Percent %</guilabel>
- or <guilabel>Value $
-</guilabel>.</para>
+          <para><guilabel>Type</guilabel> Either <guilabel>Percent %</guilabel> or <guilabel>Value $</guilabel>.</para>
         </listitem>
         <listitem>
-          <para><guilabel>Value
-</guilabel>This is the percentage or value depending on <guilabel>Type</guilabel>.</para>
+          <para><guilabel>Value</guilabel> This is the percentage or value depending on <guilabel>Type</guilabel>.</para>
         </listitem>
         <listitem>
           <para><guilabel>Account</guilabel> This is the account to which tax will be posted.
@@ -195,42 +186,165 @@ Basic A/R and A/P Account Hierarchy:
           <para>If you set up Tax on Purchases and Tax on Sales as subaccounts of Liabilities:Tax then the net tax will be rolled up
             and can be seen in the  &app; Accounts tab.
           </para>
-          <para><emphasis>If unsure about tax law requirements, get professional advise. </emphasis></para>
+          <para><emphasis>If unsure about tax law requirements, get professional advice. </emphasis></para>
         </listitem>
       </itemizedlist>
-    </sect1>
-    
-    <sect1 id="bus-setupcname">
-      <title>Company Registration</title>
 
-      <para>After you have built the account structure and defined your tax tables, register the &app;
-      file as belonging to your company. To register your company, select the <guilabel>Business</guilabel> tab
-      in the <guilabel>Book Options</guilabel> window accessible by selecting 
+      <para>The following charts illustrate sample tax tables and
+      may be used as starting points to determine the setup
+      appropriate for a particular jurisdiction.</para>
+
+      <table frame='all' id="bus-tax-tbl-eu">
+        <title>Sample Tax Table Entries for EU country (e.g. 21% / 6%
+        / 0% Belgium, 20% / 5% / 0% UK etc.)  (2017)</title>
+        <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+          <thead>
+            <row>
+              <entry>Tax Table</entry>
+              <entry>Tax Table Entries [Asset/Liability]</entry>
+              <entry>Percentage or Amount</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Standard VAT Sales</entry>
+              <entry>VAT:Sales:Standard [L]</entry>
+              <entry>21%</entry>
+            </row>
+            <row>
+              <entry>Reduced VAT Sales</entry>
+              <entry>VAT:Sales:Reduced [L]</entry>
+              <entry>6%</entry>
+            </row>
+            <row>
+              <entry>Zero-Rated VAT Sales</entry>
+              <entry>VAT:Sales:Zero [L]</entry>
+              <entry>0%</entry>
+            </row>
+            <row>
+              <entry morerows='1'>EC Sales</entry>
+              <entry>VAT:Sales:EC [L]</entry>
+              <entry>21%</entry>
+            </row>
+            <row>
+              <entry>VAT:Sales:Reverse EC [L]</entry>
+              <entry>-21%</entry>
+            </row>
+            <row>
+              <entry>Standard VAT Purchases</entry>
+              <entry>VAT:Purchases:Standard [A]</entry>
+              <entry>21%</entry>
+            </row>
+            <row>
+              <entry>Reduced VAT Purchases</entry>
+              <entry>VAT:Purchases:Reduced [A]</entry>
+              <entry>6%</entry>
+            </row>
+            <row>
+              <entry>Zero-Rated VAT Purchases</entry>
+              <entry>VAT:Purchases:Zero [A]</entry>
+              <entry>0%</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <table frame='all' id="bus-tax-tbl-au">
+        <title>Sample Tax Table Entries for Australia (2017)
+        </title>
+        <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+          <thead>
+            <row>
+              <entry>Tax Table</entry>
+              <entry>Tax Table Entries [Asset/Liability]</entry>
+              <entry>Percentage or Amount</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>Standard GST Sales</entry>
+              <entry>GST:Sales:Standard [L]</entry>
+              <entry>10%</entry>
+            </row>
+            <row>
+              <entry>GST-free Sales</entry>
+              <entry>GST:Sales:Zero [L]</entry>
+              <entry>0%</entry>
+            </row>
+            <row>
+              <entry>Standard GST Purchases</entry>
+              <entry>GST:Purchases:Standard [A]</entry>
+              <entry>10%</entry>
+            </row>
+            <row>
+              <entry>GST-free Purchases</entry>
+              <entry>GST:Purchases:Zero [A]</entry>
+              <entry>0%</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <table frame='all' id="bus-tax-tbl-us">
+        <title>Sample Tax Table Entries for Cook County, Illinois (2017)</title>
+        <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+          <thead>
+            <row>
+              <entry>Tax Table</entry>
+              <entry>Tax Table Entries [Asset/Liability]</entry>
+              <entry>Percentage or Amount</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry morerows='3'>Chicago Sales Taxes</entry>
+              <entry>Taxes:Sales:State [L]</entry>
+              <entry>6.25%</entry>
+            </row>
+            <row>
+              <entry>Taxes:Sales:City [L]</entry>
+              <entry>1.25%</entry>
+            </row>
+            <row>
+              <entry>Taxes:Sales:County [L]</entry>
+              <entry>1.75%</entry>
+            </row>
+            <row>
+              <entry>Taxes:Sales:Region [L]</entry>
+              <entry>1%</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+    </sect1>
+
+    <sect1 id="bus-setupcname">
+      <title>Enter Company Information</title>
+
+      <para>After you have built the account structure and defined your tax tables, designate your
+      company in the &app; file. To do this, select the <guilabel>Business</guilabel> tab
+      in the <guilabel>Book Options</guilabel> window, which can be accessed from 
       <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem>
       </menuchoice>.
       </para>
-      
-      <figure pgwide="1">
-        <title>Company Registration</title>
+
+      <figure>
+        <title>Entering Company Information</title>
         <screenshot id="bus-co-reg">
           <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/bus_co_reg.png" format="PNG"
-                         srccredit="Chris Good" width="510px" />
-            </imageobject>
-            <imageobject role="fo">
+           <imageobject>
               <imagedata fileref="figures/bus_co_reg.png" format="PNG"
                         srccredit="Chris Good" />
             </imageobject>
 
             <textobject>
-              <phrase>Company Registration</phrase>
+              <phrase>Company Information</phrase>
             </textobject>
-
           </mediaobject>
         </screenshot>
       </figure>
-      
+
       <para>Here you can:</para>
 
       <itemizedlist>
@@ -250,44 +364,44 @@ Basic A/R and A/P Account Hierarchy:
           customers and vendors.</para>
         </listitem>
       </itemizedlist>
-      
+
     </sect1>
-    
+
     <sect1 id="bus_setup_pref">
-      <title>Business Preferences</title>
+      <title>Setting Business Preferences</title>
       <para>Set options on the Business tab of the &app; preferences, which is
         accessed via <menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice>
     (<menuchoice><guimenu>GnuCash</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice> on MacOS).
         See Help manual chapter 10.3.3 Business Book Options Tab.
       </para>
-          
-    </sect1>
-    
-    <sect1 id="bus-setupterms">
-      <title>Billing Terms</title>
 
-      <para>Billing Terms can be used to determine the payment due date  and be a
+    </sect1>
+
+    <sect1 id="bus-setupterms">
+      <title>Setting Billing Terms</title>
+
+      <para>Billing Terms can be used to determine the payment due date and be a
         guide for determining discount for early payment of invoices (or vendor bills).
       </para>
 
         <note>
-        <para>As of &app; 2.6.7, Billing Terms are only 
+        <para>As of &app; 2.6.7, Billing Terms are only
           partially supported. Date due is calculated using the Billing Terms
           but discount amount is not.
         </para>
         <para>
-          Discount for early invoice payment is not implemented. There are 2 ways this may be done, although neither is recommended, and 
-          professional advise should be used to confirm that regulations are being complied with:
+          Discount for early invoice payment is not implemented. There are 2 ways this may be done, although neither is recommended, and
+          professional advice should be used to confirm that regulations are being complied with:
           <itemizedlist>
             <listitem>
               <para>After creating and posting a payment which pays the invoice in full, manually edit the payment transaction (usually strongly discouraged)
-                and split the payment to reduce it by the amount of the discount and a create a compensating split in an income (discount) account.
+                and split the payment to reduce it by the amount of the discount and create a compensating split in an income (discount) account.
               </para>
             </listitem>
-            
+
             <listitem>
-              <para>Alternatively, after creating and posting a payment for the discounted amount, create a credit note for the discount using a specific negative 
-                sales income (discount) account for the transfer account. 
+              <para>Alternatively, after creating and posting a payment for the discounted amount, create a credit note for the discount using a specific negative
+                sales income (discount) account for the transfer account.
               </para>
             </listitem>
             </itemizedlist>
@@ -298,20 +412,16 @@ Basic A/R and A/P Account Hierarchy:
         Invoice billing terms will default from the customer billing terms.
         Bill billing terms will default from the vendor billing terms.
       </para>
-  
-      <para>Billing Terms are maintained using the Billing Terms Editor which is accessed via menu 
+
+      <para>Billing Terms are maintained using the Billing Terms Editor which is accessed via menu
         <menuchoice><guimenu>Business</guimenu><guimenuitem>Billing Terms Editor</guimenuitem></menuchoice>.
       </para>
-      
-      <figure pgwide="1">
+
+      <figure>
         <title>Billing Terms Editor</title>
         <screenshot id="bus-termsmain">
           <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/bus_terms_main.png" format="PNG"
-                         srccredit="Chris Good" width="510px" />
-            </imageobject>
-            <imageobject role="fo">
+            <imageobject>
               <imagedata fileref="figures/bus_terms_main.png" format="PNG"
                         srccredit="Chris Good" />
             </imageobject>
@@ -319,20 +429,15 @@ Basic A/R and A/P Account Hierarchy:
             <textobject>
               <phrase>Billing Terms Editor</phrase>
             </textobject>
-
           </mediaobject>
         </screenshot>
       </figure>
-      
-      <figure pgwide="1">
+
+      <figure>
         <title>New Billing Term</title>
         <screenshot id="bus-termsnew">
           <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/bus_terms_new.png" format="PNG"
-                         srccredit="Chris Good" />
-            </imageobject>
-            <imageobject role="fo">
+            <imageobject>
               <imagedata fileref="figures/bus_terms_new.png" format="PNG"
                          srccredit="Chris Good" />
             </imageobject>
@@ -340,15 +445,15 @@ Basic A/R and A/P Account Hierarchy:
             <textobject>
               <phrase>New Billing Term</phrase>
             </textobject>
-
           </mediaobject>
         </screenshot>
       </figure>
-      
+
       <itemizedlist>
         <listitem>
           <para><guilabel>Name</guilabel> The internal name of the billing term. For some examples of billing term names and descriptions see
-             <ulink url="http://wiki.gnucash.org/wiki/Terms" />.
+             <ulink url="&url-wiki-pmt-term;" />.
+             <!-- Translators, add a reference to a list of terms common in your language -->
           </para>
         </listitem>
         <listitem>
@@ -394,8 +499,8 @@ Basic A/R and A/P Account Hierarchy:
               </itemizedlist>
             </listitem>
           </itemizedlist>
-        </listitem>  
+        </listitem>
       </itemizedlist>
     </sect1>
-  
+
 </chapter>
