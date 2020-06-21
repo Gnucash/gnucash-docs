@@ -56,21 +56,15 @@ fi
 
 dnl Same for xmlformat
 dnl currently only for perl version, improve for ruby version
-AC_PATH_PROG(XMLFORMAT, xmlformat.pl, [""])
+AC_PATH_PROGS(XMLFORMAT, [xmlformat.pl xmlformat.rb], [""])
 if test -z "$XMLFORMAT"; then
-  AC_MSG_ERROR([xmlformat.pl - required for 'make format' - not found, perhaps you should install the xmlformat package ?])
-fi
-
-dnl and it's dependency perl
-AC_PATH_PROG(PERL, perl, [""])
-if test -z "$PERL"; then
-  AC_MSG_ERROR([perl - required by xmlformat - not found, perhaps you should install the perl package ?])
+  AC_MSG_WARN([xmlformat (.pl or .rb) - required for 'make format' - not found, perhaps you should install the xmlformat package or download it from http://www.kitebird.com/software/xmlformat?])
 fi
 
 dnl
 dnl Check for optional fop
 dnl
-AC_PATH_PROG(FOP, fop)
+AC_PATH_PROG(FOP, fop, [""])
 fop_version=0
 if test -z "$FOP"; then
   AC_MSG_WARN([fop not found. You will not be able to generate PDF files.])
