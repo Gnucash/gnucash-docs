@@ -403,9 +403,8 @@
       to create a set of &app; accounts. It will
       appear if you choose <guibutton>Create a new set of accounts</guibutton>
       in the <guilabel>Welcome to &appname;!</guilabel> menu, or when you select
-      <menuchoice><guimenu>File</guimenu><guimenuitem>New</guimenuitem></menuchoice>.</para>
-      <para>This assistant will create a new blank &app; file and
-      guide you through the creation of a <emphasis>Chart of Accounts</emphasis>. There are several
+      <menuchoice><guimenu>File</guimenu><guimenuitem>New</guimenuitem></menuchoice>. You may also use it to add a section of accounts to an existing book from the <guilabel>Accounts</guilabel> page by selecting <guimenu>Action</guimenu>&gt;<guimenuitem>New Account Hierarchy...</guimenuitem>.</para>
+      <para>This assistant will guide you through the creation of a <emphasis>Chart of Accounts</emphasis>. There are several
       steps in the assistant, which are outlined below.</para>
 
       <orderedlist>
@@ -413,76 +412,30 @@
               <para>The first screen briefly describes what this assistant does. </para>
           </listitem>
           <listitem>
-              <para><guilabel>New Book Options</guilabel> allows you to set different attributes
-              for your file that affect the file as a whole. This screen has four tabs:
+              <para><guilabel>New Book Options</guilabel> Appears only when creating a new book. Here you set various book attributes. This page has four tabs:
               Accounts, Budgeting, Business, and Counters. These items are explained elsewhere in
-              the Guide, and can be changed at a later point.</para>
+              the Guide, and can be changed at any time from <guimenu>File</guimenu>&gt;<guimenuitem>Properties</guimenuitem>.</para>
           </listitem>
           <listitem>
-              <para><guilabel>Choose Currency</guilabel> sets the default currency for new accounts.
-              This is based on the computer locale settings, and can be modified later in the
-              <guilabel>Accounts</guilabel> tab under <guilabel>Preferences</guilabel>
-              (see <xref linkend="configuring-preferences-accounts"/>).</para>
+              <para><guilabel>Choose Currency</guilabel> sets the hidden root account currency and the default currency for new accounts. The offered default is  based on the computer locale settings. Choose this carefully: Not only does it set the default currency for creating new accounts, it is the "Home" currency for the book and becomes the default currency for all stock pricing and foriegn currency exchange rates. While it can be changed by rerunning the <guilabel>New Account Hierarchy Setup</guilabel> Assistant from the <guimenu>Action</guimenu> menu, doing so after you've created transactions is risky.</para>
           </listitem>
           <listitem>
-              <para><guilabel>Choose accounts to create</guilabel> allows you to create
-              an initial set of accounts. These can be edited as needed afterward.
-              The screen is divided into three parts.</para>
+            <para><guilabel>Choose accounts to create</guilabel> provides a variety of accounting categories that may be added to the book. There are two main panels: On the left the list of categories with a selection check box next to each one and on the right the accounts that will be added by the highlighted category.</para>
+            <para> Above the <guilabel>Categories</guilabel> list you'll find two list-buttons, one for language code and the other for country code. The initial selection is again based on your computer's locale settings. You may select any language and country combination that suits your needs.</para>
+            <note>The <guilabel>New Account Hierarchy Setup</guilabel> Assistant can't process selections from more than one locale at a time, so if you need to select segments from multiple locales&mdash;perhaps because the categories for your primary locale are intended to extend those of another country&mdash;you'll need to run the assistant more than once from the <guimenu>Action</guimenu> menu.</note>
+          </listitem>
+          <listitem>
+              <para><guilabel>Setup selected accounts</guilabel> presents  the accounts from the categories you selected on <guilabel>Choose accounts to create</guilabel> in a non-collapsible tree view with four or five columns depending on whether or not you're creating a new book:
               <itemizedlist>
-                  <listitem>
-                      <para>The left upper portion has a list of
-                          <guilabel>Categories</guilabel> for commonly used hierarchies of
-                          accounts. Select from this list the types of accounts you wish to
-                          use. You can select as many of the categories of accounts as you
-                          wish.</para>
-                  </listitem>
-                  <listitem>
-                      <para>The left lower section has a <guilabel>Category
-                          Description</guilabel> that displays a detailed description of the
-                          category currently highlighted.</para>
-                  </listitem>
-                  <listitem>
-                      <para>The right side has a list of the <guilabel>Accounts</guilabel>
-                      that will be created from a selected category. Note that the accounts
-                      listed here are <emphasis>only</emphasis> the selected category; your
-                      final data file will include <emphasis>all</emphasis> of the accounts
-                      for all of the selected Categories.</para>
-                  </listitem>
-              </itemizedlist>
+                <listitem><guilabel>Account Name</guilabel>. This is editable, just click in it or select the row and press <keycap>Enter</keycap>.</listitem>
+                <listitem><guilabel>Type</guilabel> Not editable. This is the type of the account.</listitem>
+                <listitem><guilabel>Placeholder</guilabel> accounts (accounts that are intended only to collect sub-accounts and not to have transactions themselves). You may change this by checking to make an account a placeholder or unchecking to make it a regular account.</listitem>
+                <listitem><guilabel>Opening Balances</guilabel>can accept a value for new non-placeholder accounts that are not of type <emphasis>Equity</emphasis>, as existing accounts already have balances, placeholder accounts can't have transactions, and Equity can't have an opening balance.<note><guilabel>Opening Balance</guilabel>entry isn't obvious until you click in it. You must move out of the entry by clicking somewhere or by pressing <keycap>Tab</keycap> or <keycap>Enter</keycap> before clicking <guilabel>Next</guilabel> or your entry will be discarded.</note></listitem>
+                <listitem><guilabel>Use Existing</guilabel> appears only when you've started the <guilabel>New Account Hierarchy Setup</guilabel> Assistant from the <guimenu>Action</guimenu> menu. It indicates whether an account already exists. It's not editable. </listitem>
+              </itemizedlist></para>
           </listitem>
           <listitem>
-              <para><guilabel>Setup selected accounts</guilabel> lists all the accounts you
-              selected on <guilabel>Choose accounts to create</guilabel>, and allows you to
-              enter opening balances and to designate <emphasis>Placeholder</emphasis> accounts.</para>
-              <note>
-                  <para>Equity accounts do not have opening balances, so the
-                      opening balance value for this kind of account
-                      is locked and set to zero.</para>
-              </note>
-              <note id="placeholder-acct">
-                  <para><emphasis>Placeholder</emphasis> accounts are used to create a hierarchy of accounts and
-                  normally do not have transactions or opening balances.</para>
-              </note>
-              <itemizedlist>
-                  <listitem>
-                      <para>The left side of the screen has a list of <guilabel>Account
-                      Names</guilabel>. Select an account by "clicking" once in the
-                      <guilabel>Account Names</guilabel> column with the account highlighted. This will open
-                      the account name for changes.</para>
-                  </listitem>
-                  <listitem>
-                      <para>The right side of the screen has a check-box to make an
-                      account a <guilabel>Placeholder</guilabel> and a box to add the
-                      <guilabel>Opening Balance</guilabel> for the selected account. Again
-                      a single click in the <guilabel>Opening Balance</guilabel> or
-                      <guilabel>Placeholder</guilabel> column will
-                      open the field for changes.</para>
-                  </listitem>
-              </itemizedlist>
-          </listitem>
-          <listitem>
-              <para><guilabel>Finish account setup</guilabel> is the last screen and
-              gives you a final option to cancel the process.</para>
+              <para><guilabel>Finish account setup</guilabel> is the last screen and gives you a final option to cancel the process, back up to change something, or apply to confirm your choices. If you're creating a new book, gnucash will present a dialog to select a backend and either a file to save it or database server, database name, and credentials to create a MySQL or Postgresql database if GnuCash was built with those features and you have the necesaary dependencies installed.</para>
               <warning>
                   <para>If you choose to cancel, any selections you have made up to
                   this point will be lost.</para>
