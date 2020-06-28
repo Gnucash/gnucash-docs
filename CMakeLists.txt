@@ -185,17 +185,8 @@ add_subdirectory (help)
 if(AUTOTOOLS_IN_DIST)
     set(autotoolsfiles
         configure.ac
-        configure
-        config.guess
-        config.sub
-        COPYING
-        INSTALL
         Makefile.am
-        aclocal.m4
         gnucash-docs.spec.in
-        install-sh
-        ltmain.sh
-        missing
         chm.make
         epub.make
         mobi.make
@@ -203,15 +194,11 @@ if(AUTOTOOLS_IN_DIST)
         pdf.make
         xmldocs.make)
 
-    # If autogen.sh is not in the source tree, we assume the source is extracted
-    # from a dist tarball. In that case the Makefile.in files are already present
-    # and we can include the directly instead of generating them from autogen.sh
-    find_file(AUTOGEN autogen.sh
+      find_file(AUTOGEN autogen.sh
         HINTS "${CMAKE_SOURCE_DIR}"
         NO_DEFAULT_PATH)
-    if(NOT AUTOGEN)
-        list(APPEND autotoolsfiles Makefile.in)
-        message(STATUS "autogen.sh not in source tree. Assuming Makefile.in files are present instead")
+      if(NOT AUTOGEN)
+        message(FATAL_ERROR "No autogen.sh in sources. Either you're trying to make a distribution tarball from something other than a repository clone or your clone is defective. You can continue if you insist by passing -DAUTOTOOLS_IN_DIST=NO to cmake.")
     endif()
 
     add_to_dist(${autotoolsfiles})
