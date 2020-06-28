@@ -44,7 +44,7 @@ function (add_mobi_target docname lang)
         DEPENDS "${epubfile}")
 
     add_custom_target("${lang}-${docname}-mobi"
-        DEPENDS "${epubfile}")
+        DEPENDS "${mobifile}")
 
     add_dependencies(${docname}-mobi "${lang}-${docname}-mobi")
 
