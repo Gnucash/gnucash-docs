@@ -5,7 +5,7 @@ cmake_minimum_required (VERSION 3.5)
 # This sets a number of environment variables we can use later on
 # The names of these variables start with PROJECT_ and gnucash-docs_VERSION
 project (gnucash-docs
-    VERSION 4.0
+    VERSION 4.900
     LANGUAGES NONE)
 
 set (PACKAGE_NAME GnuCash Docs)
