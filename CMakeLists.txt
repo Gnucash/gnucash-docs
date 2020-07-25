@@ -4,9 +4,11 @@ cmake_minimum_required (VERSION 3.5)
 
 # This sets a number of environment variables we can use later on
 # The names of these variables start with PROJECT_ and gnucash-docs_VERSION
+# We don't actually use C, but GNUInstallDirs doesn't work if we don't
+# specify a language.
 project (gnucash-docs
     VERSION 4.0
-    LANGUAGES NONE)
+    LANGUAGES C)
 
 set (PACKAGE_NAME GnuCash Docs)
 set (PACKAGE_BUGREPORT "https://bugs.gnucash.org/describecomponents.cgi?product=Documentation")
