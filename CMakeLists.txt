@@ -124,7 +124,7 @@ if(WITH_MOBI)
     # Mobi is based on epub so enable epub if mobi is requested
     set(WITH_EPUB ON)
 else()
-    message(STATUS "Mobi file format support is disabled.  Specify -DWITH_MOBY=ON if you want to enable it.")
+    message(STATUS "Mobi file format support is disabled.  Specify -DWITH_MOBI=ON if you want to enable it.")
 endif()
 
 # To find our figures in the source directory each run of fop
