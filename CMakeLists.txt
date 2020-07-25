@@ -194,13 +194,15 @@ if(AUTOTOOLS_IN_DIST)
         pdf.make
         xmldocs.make)
 
-      find_file(AUTOGEN autogen.sh
-        HINTS "${CMAKE_SOURCE_DIR}"
-        NO_DEFAULT_PATH)
-      if(NOT AUTOGEN)
-        message(FATAL_ERROR "No autogen.sh in sources. Either you're trying to make a distribution tarball from something other than a repository clone or your clone is defective. You can continue if you insist by passing -DAUTOTOOLS_IN_DIST=NO to cmake.")
-    endif()
-
+      if (AUTOTOOLS_IN_DIST AND NOT AUTOTOOLS_IN_DIST STREQUAL "RUN")
+        find_file(AUTOGEN autogen.sh
+          HINTS "${CMAKE_SOURCE_DIR}"
+          NO_DEFAULT_PATH)
+        if(NOT AUTOGEN)
+          message(FATAL_ERROR "No autogen.sh in sources. Either you're trying to make a distribution tarball from something other than a repository clone or your clone is defective. You can continue if you insist by passing -DAUTOTOOLS_IN_DIST=NO to cmake.")
+        endif()
+        set(AUTOTOOLS_IN_DIST "RUN")
+      endif()
     add_to_dist(${autotoolsfiles})
 endif()
 

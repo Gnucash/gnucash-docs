@@ -69,13 +69,6 @@ function(run_dist_check PACKAGE_PREFIX EXT)
             ERROR_MSG "Ninja check failed."
     )
 
-    # Run ninja dist
-    execute_process_and_check_result(
-            COMMAND ${CMAKE_COMMAND} -E env ${NINJA_COMMAND} dist
-            WORKING_DIRECTORY ${BUILD_DIR}
-            ERROR_MSG "Ninja dist failed."
-    )
-
     message("distcheck complete.")
 
 endfunction()
