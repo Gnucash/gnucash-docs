@@ -4,9 +4,11 @@ cmake_minimum_required (VERSION 3.5)
 
 # This sets a number of environment variables we can use later on
 # The names of these variables start with PROJECT_ and gnucash-docs_VERSION
+# We don't actually use C, but GNUInstallDirs doesn't work if we don't
+# specify a language.
 project (gnucash-docs
     VERSION 4.900
-    LANGUAGES NONE)
+    LANGUAGES C)
 
 set (PACKAGE_NAME GnuCash Docs)
 set (PACKAGE_BUGREPORT "https://bugs.gnucash.org/describecomponents.cgi?product=Documentation")
@@ -122,7 +124,7 @@ if(WITH_MOBI)
     # Mobi is based on epub so enable epub if mobi is requested
     set(WITH_EPUB ON)
 else()
-    message(STATUS "Mobi file format support is disabled.  Specify -DWITH_MOBY=ON if you want to enable it.")
+    message(STATUS "Mobi file format support is disabled.  Specify -DWITH_MOBI=ON if you want to enable it.")
 endif()
 
 # To find our figures in the source directory each run of fop
@@ -194,13 +196,6 @@ if(AUTOTOOLS_IN_DIST)
         pdf.make
         xmldocs.make)
 
-      find_file(AUTOGEN autogen.sh
-        HINTS "${CMAKE_SOURCE_DIR}"
-        NO_DEFAULT_PATH)
-      if(NOT AUTOGEN)
-        message(FATAL_ERROR "No autogen.sh in sources. Either you're trying to make a distribution tarball from something other than a repository clone or your clone is defective. You can continue if you insist by passing -DAUTOTOOLS_IN_DIST=NO to cmake.")
-    endif()
-
     add_to_dist(${autotoolsfiles})
 endif()
 
@@ -231,7 +226,7 @@ add_custom_command(OUTPUT ${DIST_FILE}.gz ${DIST_FILE}.bz2
            -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
            -D BUILD_SOURCE_DIR=${CMAKE_BINARY_DIR}
            "-Ddist_files=\"${dist_files}\""
-           -D AUTOGEN=${AUTOGEN}
+           -D AUTOTOOLS_IN_DIST=${AUTOTOOLS_IN_DIST}
            -D SHELL=${SHELL}
            -P ${CMAKE_SOURCE_DIR}/cmake/MakeDist.cmake
 
