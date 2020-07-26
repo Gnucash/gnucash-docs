@@ -42,10 +42,6 @@ function (add_gnc_doc_targets docname entities)
         set(autotoolsfiles
             Makefile.am
             ${docname}-${lang}.omf)
-
-        if(NOT AUTOGEN)
-            list(APPEND autotoolsfiles Makefile.in)
-        endif()
     endif()
 
     file(GLOB_RECURSE figures_dist

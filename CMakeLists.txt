@@ -196,15 +196,6 @@ if(AUTOTOOLS_IN_DIST)
         pdf.make
         xmldocs.make)
 
-      if (AUTOTOOLS_IN_DIST AND NOT AUTOTOOLS_IN_DIST STREQUAL "RUN")
-        find_file(AUTOGEN autogen.sh
-          HINTS "${CMAKE_SOURCE_DIR}"
-          NO_DEFAULT_PATH)
-        if(NOT AUTOGEN)
-          message(FATAL_ERROR "No autogen.sh in sources. Either you're trying to make a distribution tarball from something other than a repository clone or your clone is defective. You can continue if you insist by passing -DAUTOTOOLS_IN_DIST=NO to cmake.")
-        endif()
-        set(AUTOTOOLS_IN_DIST "RUN")
-      endif()
     add_to_dist(${autotoolsfiles})
 endif()
 
@@ -235,7 +226,7 @@ add_custom_command(OUTPUT ${DIST_FILE}.gz ${DIST_FILE}.bz2
            -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
            -D BUILD_SOURCE_DIR=${CMAKE_BINARY_DIR}
            "-Ddist_files=\"${dist_files}\""
-           -D AUTOGEN=${AUTOGEN}
+           -D AUTOTOOLS_IN_DIST=${AUTOTOOLS_IN_DIST}
            -D SHELL=${SHELL}
            -P ${CMAKE_SOURCE_DIR}/cmake/MakeDist.cmake
 
