@@ -38,6 +38,7 @@ add_subdirectory(de)
 add_subdirectory(it)
 add_subdirectory(ja)
 add_subdirectory(pt)
+add_subdirectory(ru)
 
 if(AUTOTOOLS_IN_DIST)
     set(autotoolsfiles Makefile.am)

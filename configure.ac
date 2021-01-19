@@ -78,11 +78,13 @@ EXTENDED_SERIF=opentype/freefont/FreeSerif
 EXTENDED_MONO=opentype/freefont/FreeMono
 extended_fontdir=$ac_abs_top_srcdir/fonts
 extended_extension=otf
+BASEDIR_RU=$ac_abs_top_srcdir/guide/ru
 AC_SUBST(EXTENDED_SANS)
 AC_SUBST(EXTENDED_SERIF)
 AC_SUBST(EXTENDED_MONO)
 AC_SUBST(extended_fontdir)
 AC_SUBST(extended_extension)
+AC_SUBST(BASEDIR_RU)
 
 dnl
 dnl Check Japanese TrueType fonts for PDF
@@ -206,8 +208,10 @@ guide/de/Makefile
 guide/it/Makefile
 guide/ja/Makefile
 guide/pt/Makefile
+guide/ru/Makefile
 Makefile])
 
 AC_CONFIG_FILES([guide/ja/fop.xconf])
+AC_CONFIG_FILES([guide/ru/fop.xconf])
 
 AC_OUTPUT
