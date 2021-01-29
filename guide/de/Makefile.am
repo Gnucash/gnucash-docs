@@ -23,6 +23,7 @@ entities = \
  ch_oth_assets.xml \
  ch_oview.xml \
  ch_python_bindings.xml \
+ ch_reports.xml \
  ch_txns.xml \
  appendixa.xml \
  appendixb.xml \
