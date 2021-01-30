@@ -1,0 +1,1155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
+
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers:
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
+  Originally designed by Carol Champagne.
+  Translators:
+               (translators put your name and email here)
+-->
+<chapter id="chapter_loans">
+  <title>Кредиты</title>
+
+  <para>This chapter explains how to manage your loans with &app;.</para>
+
+  <sect1 id="loans_concepts1">
+    <title>Basic Concepts</title>
+
+    <para>A loan is defined as a financial transaction in which someone pays
+    for the use of someone else&rsquo;s money. There are many familiar examples of
+    loans: credits cards, auto loans, house mortgages, or a business
+    loan.</para>
+
+    <sect2 id="loans_conceptsterms2">
+      <title>Terminology</title>
+
+      <para>Before discussing tracking loan in &app; specifically, it will
+      be helpful to present a glossary of terminology. The terms presented
+      below represent some of the basic concepts found concerning loans. It is
+      a good idea to become familiar with these terms, or at least, refer back
+      to this list if you encounter an unfamiliar word in the later
+      sections.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><emphasis>Amortization</emphasis> - the repayment plan which
+          will insure that a loan is eventually paid off, typically utilizing
+          equal valued monthly payments. These payments are usually split into
+          principal and interest, where the amount of principal per payment
+          increases (and interest decreases) as the amortization period
+          elapses.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Borrower</emphasis> - the person or company that
+          receives the money from a loan.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Default</emphasis> - when a borrower fails to repay
+          a loan according to the terms agreed upon with the lender.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Deferment</emphasis> - a temporary delay in the
+          repayment of a loan.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Delinquency</emphasis> - is the term that refers to
+          late payments.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Disbursement</emphasis> - amount of the loan paid to
+          the borrower. Some loans have multiple disbursements, meaning the
+          borrower does not receive the full amount of the loan at one
+          time.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Interest</emphasis> - the expense charged by the
+          lender to the borrower for the use of the money loaned. This is
+          typically expressed in terms of a yearly percentage charged on the
+          principal borrowed, known as the <emphasis>Annual Percentage
+          Rate</emphasis> or APR.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Lender</emphasis> - the company or person who lends
+          money to a borrower.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Loan Fee</emphasis> - a processing fee removed from
+          the principal at the time the borrower receives a loan.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Principal</emphasis> - the original amount of the
+          loan, or the amount of the original loan that is still owed. When
+          you make a monthly payment on a loan, part of the money pays the
+          interest, and part pays the principal.</para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Promissory Note</emphasis> - the legal agreement
+          between the borrower and lender concerning the loan.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="loans_accounts1">
+    <title>Setting Up Accounts</title>
+
+    <para>When a borrower obtains a loan, it is usually with the intention to
+    make a purchase of something of value. In fact, most loans require the
+    borrower to buy some predetermined asset, such as a house. This asset is
+    insurance against the borrower defaulting on the loan. There are, of
+    course, examples of loans which do not necessarily have an associated high
+    value asset, such as educational loans.</para>
+
+    <para>For the account structure presented here, we will assume the loan
+    was used to purchase a compensating asset.</para>
+
+    <para>A loan is a liability, the interest you accrue on the loan is an
+    on-going expense, and any administrative fees you may have to pay would be
+    another expense. The thing purchased with the money from a loan is an
+    asset. With these parameters, we can now present a basic loan account
+    structure:</para>
+
+    <literallayout>
+Basic Loan Account Structure
+
+-Asset
+    -Current Assets
+        -Savings Account
+    -Fixed Assets
+        -Asset Purchased
+-Liability
+   -Loans
+       -Mortgage Loan
+-Expenses
+   -Interest
+       -Mortgage Interest
+   -Mortgage Adm Fees
+  </literallayout>
+
+    <para>&app; has a number of predefined loan account hierarchies
+    available, including Car Loans and Home Mortgage Loans. To access these
+    predefined account structures, click on
+    <menuchoice>
+        <guimenu>Actions</guimenu>
+        <guimenuitem>New Account Hierarchy...</guimenuitem>
+      </menuchoice> and select the loan types in which you are interested.</para>
+  </sect1>
+
+  <sect1 id="loans_calcs1">
+    <title>Calculations</title>
+
+    <para>Determining loan amortization schedules, periodic payment amounts,
+    total payment value, or interest rates can be somewhat complex. To help
+    facilitate these kinds of calculations, &app; has a built-in
+    <guilabel>Loan Repayment Calculator</guilabel>. To access the calculator, go to <menuchoice>
+        <guimenu>Tools</guimenu>
+
+        <guimenuitem>Loan Repayment Calculator</guimenuitem>
+      </menuchoice>.</para>
+
+    <screenshot id="loans_fcalc">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/loans_fcalc.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Loan Repayment Calculator</phrase>
+        </textobject>
+
+        <caption><para>The &app; <guilabel>Loan Repayment Calculator</guilabel>.</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>The <guilabel>Loan Repayment Calculator</guilabel> can be used to calculate any one of the
+    parameters: <guilabel>Payment Periods</guilabel>, <guilabel>Interest
+    Rate</guilabel>, <guilabel>Present Value</guilabel>, <guilabel>Periodic
+    Payment</guilabel>, or <guilabel>Future Value</guilabel> given that the
+    other 4 have been defined. You will also need to specify the compounding
+    and payment methods.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis>Payment Periods</emphasis> - the number of payment
+        periods.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>Interest Rate</emphasis> - the nominal interest rate
+        of the loan, ie: the yearly interest rate.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>Present Value</emphasis> - the present value of the
+        loan, ie: current amount owed on the loan.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>Periodic Payment</emphasis> - the amount to pay per
+        period.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>Future Value</emphasis> - the future value of the
+        loan, ie: the amount owed after all payment periods are over.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>Compounding</emphasis> - two interest compounding
+        methods exist, discrete or continuous. For discrete compounding select
+        the compounding frequency from the popup menu with a range from yearly
+        to daily.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>Payments</emphasis> - the popup menu allows you to
+        select the payment frequency with a range from yearly to daily. You
+        can also select whether your payments occur at the beginning or end of
+        the period. Payments made at the beginning of the payment period have
+        interest applied to the payment as well as any previous money paid or
+        money still owed.</para>
+      </listitem>
+    </itemizedlist>
+
+    <sect2 id="loans_calcsexample1_2">
+      <title>Example: Monthly Payments</title>
+
+      <para>What is your monthly payment on a $100000 30 year loan at a fixed
+      rate of 4% compounded monthly?</para>
+
+      <para>This scenario is shown in the example image above. To perform this
+      calculation, set Payment Periods to 360 (12 months x 30 years), Interest
+      Rate to 4, Present Value to 100000, leave Periodic Payment empty and set
+      Future Value to 0 (you do not want to owe anything at the end of the
+      loan). Compounding is Monthly, Payments are Monthly, assume End of
+      Period Payments, and Discrete Compounding. Now, click on the
+      <guibutton>Calculate</guibutton> button next to the Periodic Payment
+      area. You should see $-477.42.</para>
+
+      <para>Answer: You must make monthly payments of 477.42.</para>
+    </sect2>
+
+    <sect2 id="loans_calcsexample2_2">
+      <title>Example: Length of Loan</title>
+
+      <para>How long will you be paying back a $20000 loan at 10% fixed rate
+      interest compounded monthly if you pay $500 per month?</para>
+
+      <para>To perform this calculation, leave <guilabel>Payment Periods</guilabel> empty, set
+      <guilabel>Interest Rate</guilabel> to <emphasis>10</emphasis>, <guilabel>Present Value</guilabel>
+      to <emphasis>20000</emphasis>, <guilabel>Periodic Payment</guilabel> is <emphasis>-500</emphasis>,
+      and <guilabel>Future Value</guilabel> is <emphasis>0</emphasis> (you do not want to owe anything
+      at the end of the loan). <guilabel>Compounding</guilabel> is <emphasis>Monthly</emphasis>,
+      <guilabel>Payments</guilabel> are <emphasis>Monthly</emphasis>, assume <guilabel>End</guilabel>
+      of <guilabel>Period</guilabel> payments, and <guilabel>Discrete</guilabel> <guilabel>Compounding</guilabel>.
+      Now, click on the <guibutton>Calculate</guibutton>. You should see 49 in the
+      <guilabel>Payment Periods</guilabel> field.</para>
+
+      <para>Answer: You will pay off the loan in 4 years and 1 month (49 months).</para>
+    </sect2>
+
+    <sect2 id="loans_calcsdetails2">
+      <title>Advanced: Calculation Details</title>
+
+      <para>In order to discuss the mathematical formulas used by the
+      <guilabel>Loan Repayment Calculator</guilabel>, we first must define some
+      variables.
+<literallayout>
+ n  == number of payment periods
+ %i  == nominal interest rate, NAR, charged
+ PV  == Present Value
+ PMT == Periodic Payment
+ FV  == Future Value
+ CF == Compounding Frequency per year
+ PF == Payment Frequency per year
+
+Normal values for CF and PF are:
+   1   == annual
+   2   == semi-annual
+   3   == tri-annual
+   4   == quaterly
+   6   == bi-monthly
+   12  == monthly
+   24  == semi-monthly
+   26  == bi-weekly
+   52  == weekly
+   360 == daily
+   365 == daily
+</literallayout>
+      </para>
+
+      <sect3 id="loans_calcsdetails_i2">
+        <title>Converting between nominal and effective interest rate</title>
+
+        <para>When a solution for n, PV, PMT or FV is required, the nominal
+        interest rate (i) must first be converted to the effective
+        interest rate per payment period (ieff). This rate,
+        ieff, is then used to compute the selected variable. When a solution
+        for i is required, the computation produces the effective interest
+        rate (ieff). Thus, we need functions which convert from i to ieff, and
+        from ieff to i.</para>
+
+        <literallayout>
+To convert from i to ieff, the following expressions are used:
+Discrete Interest:     <emphasis>ieff = (1 + i/CF)^(CF/PF) - 1</emphasis>
+Continuous Interest: <emphasis>ieff = e^(i/PF) - 1 = exp(i/PF) - 1</emphasis>
+
+To convert from ieff to i, the following expressions are used:
+Discrete Interst:      <emphasis>i = CF*[(1+ieff)^(PF/CF) - 1]</emphasis>
+Continuous Interest: <emphasis>i = ln[(1+ieff)^PF]</emphasis>
+</literallayout>
+
+        <note>
+          <para>In the equations below for the financial transaction,
+          all interest rates are the effective interest rate, <quote>ieff</quote>. For the
+          sake of brevity, the symbol will be shortened to just <quote>i</quote>.</para>
+        </note>
+      </sect3>
+
+      <sect3 id="loans_calcsdetails_basic2">
+        <title>The basic financial equation</title>
+
+        <para>One equation fundamentally links all the 5 variables. This is
+        known as the fundamental financial equation:</para>
+
+        <literallayout>
+<emphasis>PV*(1 + i)^n + PMT*(1 + iX)*[(1+i)^n - 1]/i + FV = 0</emphasis>
+
+  Where: X = 0 for end of period payments, and
+         X = 1 for beginning of period payments
+</literallayout>
+
+        <para>From this equation, functions which solve for the individual
+        variables can be derived. For a detailed explanation of the derivation
+        of this equation, see the comments in the file src/calculation/fin.c
+        from the &app; source code. The A, B, and C variables are defined
+        first, to make the later equations simpler to read.</para>
+
+        <literallayout>
+<emphasis>A = (1 + i)^n - 1</emphasis>
+<emphasis>B = (1 + iX)/i</emphasis>
+<emphasis>C = PMT*B</emphasis>
+
+<emphasis>n = ln[(C - FV)/(C + PV)]/ln((1 + i)</emphasis>
+<emphasis>PV = -[FV + A*C]/(A + 1)</emphasis>
+<emphasis>PMT = -[FV + PV*(A + 1)]/[A*B]</emphasis>
+<emphasis>FV = -[PV + A*(PV + C)] </emphasis>
+
+The solution for interest is broken into two cases.
+The simple case for when  PMT == 0 gives the solution:
+<emphasis>i = [FV/PV]^(1/n) - 1</emphasis>
+
+</literallayout>
+
+        <para>The case where PMT != 0 is fairly complex and will not be
+        presented here. Rather than involving an exactly solvable function,
+        determining the interest rate when PMT !=0 involves an iterative
+        process. Please see the src/calculation/fin.c source file for a
+        detailed explanation.</para>
+      </sect3>
+
+      <sect3 id="loans_calcsdetails_ex2">
+        <title>Example: Monthly Payments</title>
+
+        <para>Let&rsquo;s recalculate <xref linkend="loans_calcsexample1_2"/>,
+        this time using the
+        mathematical formulas rather than the <guilabel>Loan Repayment Calculator</guilabel>. What is
+        your monthly payment on a $100000 30 year loan at a fixed rate of 4%
+        compounded monthly?</para>
+
+        <para>First, let&rsquo;s define the variables: n = (30*12) = 360, PV =
+        100000, PMT = unknown, FV = 0, i = 4%=4/100=0.04, CF = PF = 12, X = 0
+        (end of payment periods).</para>
+
+        <para>The second step is to convert the nominal interest rate (i) to
+        the effective interest rate (ieff). Since the interest rate is
+        compounded monthly, it is discrete, and we use: ieff = (1 +
+        i/CF)^(CF/PF) - 1, which gives ieff = (1 + 0.04/12)^(12/12) - 1, thus
+        ieff = 1/300 = 0.0033333.</para>
+
+        <para>Now we can calculate A and B. A = (1 + i)^n - 1 = (1 +
+        1/300)^360 - 1 = 2.313498. B = (1 + iX)/i = (1 + (1/300)*0)/(1/300) =
+        300.</para>
+
+        <para>With A and B, we can calculate PMT. PMT = -[FV + PV*(A +
+        1)]/[A*B] = -[0 + 100000*(2.313498 + 1)] / [2.313498 * 300] =
+        -331349.8 / 694.0494 = -477.415296 = -477.42.</para>
+
+        <para>Answer: You must make monthly payments of 477.42.</para>
+
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="loans_mortgage1">
+    <title>House Mortgage (How-To)</title>
+
+    <para>A house mortgage can be setup using the account structure present in
+    <xref linkend="loans_accounts1" />.</para>
+
+    <para>As an example, assume you have $60k in you bank account, and you buy
+    a $150k house. The mortgage is charging 6% APR, and has administrative
+    fees (closing costs, etc) of 3%. You decide to put $50k down, and thus
+    will need to borrow $103k, which will give you $100 after the closing
+    costs are paid (3% of $100k).</para>
+
+    <para>Your accounts before borrowing the money:</para>
+
+    <screenshot id="loans_mortgage">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/loans_mortgage1.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Accounts Before Receiving Loan</phrase>
+        </textobject>
+
+        <caption><para>Accounts Before Receiving Loan</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>The purchase of the house is recorded with a split transaction in
+    the <emphasis>Assets:House</emphasis> account, with $50k coming from the bank (IE: your down
+    payment), and $100k coming from the Mortgage. You can place the $3k
+    closing costs in the same split, and we increase the house loan to $103k
+    to include the closing costs as well.</para>
+
+    <para><table>
+        <title>Buying a House Split Transaction</title>
+
+        <tgroup cols="3">
+          <tbody>
+            <row>
+              <entry>Account</entry>
+
+              <entry>Increase</entry>
+
+              <entry>Decrease</entry>
+            </row>
+
+            <row>
+              <entry>Assets:Fixed Assets:House</entry>
+
+              <entry>$150,000</entry>
+
+              <entry></entry>
+            </row>
+
+            <row>
+              <entry>Assets:Current Assets:Bank</entry>
+
+              <entry></entry>
+
+              <entry>$50,000</entry>
+            </row>
+
+            <row>
+              <entry>Liabilities:Loans:Mortgage Loan</entry>
+
+              <entry></entry>
+
+              <entry>$103,000</entry>
+            </row>
+
+            <row>
+              <entry>Expenses:Mortgage Adm Fees</entry>
+
+              <entry>$3000</entry>
+
+              <entry></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table></para>
+
+    <para>The split will look like this in the <emphasis>Assets:Fixed Assets:House</emphasis>
+    Account:</para>
+
+    <screenshot id="loans_mortgage2.png">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/loans_mortgage2.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Mortgage Split Transaction</phrase>
+        </textobject>
+
+        <caption><para>Mortgage Split Transaction</para></caption>
+      </mediaobject>
+    </screenshot>
+
+    <para>Which will give a Chart of Accounts like this:</para>
+
+    <screenshot id="loans_mortgage3">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/loans_mortgage3.png" format="PNG"
+                     srccredit="Bengt Thuree" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Mortgage Accounts</phrase>
+        </textobject>
+
+        <caption><para>Mortgage Account</para></caption>
+      </mediaobject>
+    </screenshot>
+  </sect1>
+
+  <sect1 id="loans_personalLoanToSomeOne">
+    <title>A Personal Loan to a friend (How-To)</title>
+
+    <para>It is not always you are borrowing money from the bank, sometimes
+    you borrow money from your family, or perhaps even lend money to a friend.
+    This How-To chapter will describe one way to handle lending money to a
+    friend.</para>
+
+    <para>We are basing this How-To on the following generic account
+    structure.</para>
+
+    <literallayout>
+-Asset
+   -Bank
+        -Bank Account
+   -Money owed to you
+        -Person
+-Income
+   -Interest Income
+        -Person
+  </literallayout>
+
+    <para>This example will show how to track a personal loan of 2,000 USD
+    (default currency) to your friend Peter</para>
+
+    <sect2 id="loans_personalLoanToSomeOne_loan">
+      <title>Loan Specifications</title>
+
+      <para>Peter wants to borrow $2,000 dollars from you and plans to pay you
+      back monthly for the next 18 months. Since he is your friend, (but not
+      that close) you both agree on a yearly interest rate of 5%.</para>
+
+      <para>In summary we have the below details. Peter&rsquo;s loan details:
+      <itemizedlist>
+          <listitem>
+            <para>Pinciple Amount - $2,000</para>
+          </listitem>
+
+          <listitem>
+            <para>Term - 18 months with 12 payments per year</para>
+          </listitem>
+
+          <listitem>
+            <para>Annual Percentage Rate: 5%</para>
+          </listitem>
+
+          <listitem>
+            <para>Monthly Payment : ??</para>
+          </listitem>
+        </itemizedlist></para>
+
+      <para>So how do you calculate the Monthly Payment?</para>
+
+      <para>You have a number of different options, like paper and pen,
+      Linux Calculator, Open Office&rsquo;s Calc module, but the easiest is to use
+      &app; <guilabel>Loan Repayment Calculator</guilabel>. This tells you that the Monthly Payment
+      should be $115.56.</para>
+
+      <para>But you need to know how much of this is Interest and how much is
+      Principal to be able to do a proper bookkeeping. For this you need a
+      more powerful tool, something like the <application>Calc</application> module in
+      <application>OpenOffice.org</application>, and
+      in particular the <acronym>PMT</acronym> function.</para>
+
+      <screenshot id="loans_OpenOfficePrivateLoanDetails">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/loans_PrivateLoanCalculation.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Calculation of Private Loan details</phrase>
+          </textobject>
+
+          <caption><para>Detailed view over the private loan to
+          Peter</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="loans_personalLoanToSomeOne_accounts">
+      <title>Accounts for the loan</title>
+
+      <para>Let&rsquo;s start with the following accounts (all accounts have the
+      same currency, in this case USD)</para>
+
+      <literallayout>
+Assets:Bank:USD
+Assets:Money owed to you:Peter
+Income:Interest Income:Peter
+Equity:Opening Balances:USD
+  </literallayout>
+    </sect2>
+
+    <sect2 id="loans_personalLoanToSomeOne_InitialSetup">
+      <title>Lending the money</title>
+
+      <para>When you have lent money to your friend, you have in fact moved
+      money from an Asset account (like Bank, Checking or similar) to your
+      Asset account <emphasis>Money owed to you</emphasis>. To record this you enter the
+      following transaction into the <emphasis>Assets:Money owed to you:Friend</emphasis>
+      account.</para>
+
+      <para><table>
+          <title>Personal loan to a Friend</title>
+
+          <tgroup cols="3">
+            <tbody>
+              <row>
+                <entry>Account</entry>
+
+                <entry>Increase</entry>
+
+                <entry>Decrease</entry>
+              </row>
+
+              <row>
+                <entry>Assets:Money owed to you:Friend</entry>
+
+                <entry>$2,000</entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>Assets:Bank:USD</entry>
+
+                <entry></entry>
+
+                <entry>$2,000</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table></para>
+
+      <screenshot id="loans_PrivateLoanInitial">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/loans_PrivateLoanInitial.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Lended money</phrase>
+          </textobject>
+
+          <caption><para>Chart of Accounts after lending
+          money</para></caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="loans_personalLoanToSomeOne_FirstPayment">
+      <title>Receiving first payment</title>
+
+      <para>When the first payment ($115.56) is received, you will need to
+      determine how much is for the principal loan, and how much is for the
+      loan interest.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Outstanding loan amount this period = $2,000</para>
+        </listitem>
+
+        <listitem>
+          <para>Payment per month = $115.56</para>
+        </listitem>
+
+        <listitem>
+          <para>Payment breakdown</para>
+        </listitem>
+
+        <listitem>
+          <para>5%/12 * $2,000 = $8.33 Interest</para>
+        </listitem>
+
+        <listitem>
+          <para>$115.56 - $8.33 = $107.23 Principal</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>This can be translated to the following &app; entry</para>
+
+      <screenshot id="loans_PrivateLoanFirstPayment">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/loans_PrivateLoanFirstPayment.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>First payment</phrase>
+          </textobject>
+
+          <caption><para>Detailed view over first payment</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>The balance on Peter&rsquo;s loan is now $2,000 - $107.23 =
+      $1,892.77</para>
+    </sect2>
+
+    <sect2 id="loans_personalLoanToSomeOne_SecondPayment">
+      <title>Receiving second payment</title>
+
+      <para>When the second payment ($115.56) is received, you will again need
+      to determine how much is for the principal loan, and how much is for the
+      loan interest.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Outstanding loan amount this period = $1,892.77</para>
+        </listitem>
+
+        <listitem>
+          <para>Payment per month = $115.56</para>
+        </listitem>
+
+        <listitem>
+          <para>Payment breakdown</para>
+        </listitem>
+
+        <listitem>
+          <para>5%/12 * $1,892.77 = $7.89 Interest</para>
+        </listitem>
+
+        <listitem>
+          <para>$115.56 - $7.89 = $107.67 Principal</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>This can be translated to the following &app; entry</para>
+
+      <screenshot id="loans_PrivateLoanSecondPayment">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/loans_PrivateLoanSecondPayment.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Second payment</phrase>
+          </textobject>
+
+          <caption><para>Detailed view over the second
+          payment</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>The balance on Peter&rsquo;s loan is now $1,892.77 - $107.67 =
+      $1,785.10</para>
+
+      <para>The Chart of accounts looks now like this</para>
+
+      <screenshot id="loans_PrivateLoanSecondPaymentAccounts">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/loans_PrivateLoanSecondPaymentAccounts.png"
+                       format="PNG" srccredit="Bengt Thuree" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Chart of Accounts after second payment</phrase>
+          </textobject>
+
+          <caption><para>Chart of Accounts after second
+          payment</para></caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>As you can see, the interest varies for every month, as well as
+      the principal amount. So for every payment you receive you need to
+      calculate the proper amounts for your various split entries.</para>
+
+      <para>The interest amount will be less and less for every payment (since
+      it is calculated on a smaller loan amount all the time), until the last
+      payment where it is more or less 0. Please review the Figure of Detailed
+      view over private loan to Peter for more details</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="loans_CarLoan">
+    <title>Automobile Loan (How-To)</title>
+
+    <para>The Automobile Loan, or in common terms, Car Loan, is treated more
+    or less exactly as the House loan. The only difference is different
+    accounts, and different interest rates.</para>
+
+    <para><literallayout>Basic Car Loan Account Structure
+
+-Asset
+    -Current Assets
+        -Savings Account
+    -Fixed Assets
+        -Car
+-Liability
+   -Loans
+       -Car Loan
+-Expenses
+   -Interest
+       -Car Loan Interest
+   -Car Loan Adm Fees</literallayout></para>
+
+    <para>For more information, please check <xref
+    linkend="loans_mortgage1" /></para>
+  </sect1>
+
+  <sect1 id="loans_Reconciling">
+    <title>Reconciling with the Loan Statements (How-To)</title>
+
+    <para>Reconciling a loan statement is no different from reconciling a bank
+    or credit card statement.</para>
+
+    <para>During the period you should have recorded all the various loan
+    related transactions, and every one of them are touching the
+    <guilabel>Liability:Loans:<replaceable>Loan</replaceable></guilabel> account. For instance,
+    paying off a bit of the loan decreases your <emphasis>Bank
+    Account,</emphasis> and increases the <emphasis>Loan account</emphasis>,
+    <emphasis>Loan Interest</emphasis> as well as perhaps <emphasis>Loan
+    administration fee</emphasis>.</para>
+
+    <para>With the loan statement in your hands, open the Loan account, start
+    the reconcile assistant, and tick of all the various transaction you have
+    recorded. When you have finished, the reconciling difference should be 0,
+    and if it is not, then you will have to go through the account and compare
+    it with the loan statement to find the difference. When you have reached a
+    0 in difference, then your loan account is reconciled and you can finish
+    the Reconcile assistant.</para>
+
+    <para>For more information on how to Reconcile, please check <xref
+    linkend="txns-reconcile1" /></para>
+  </sect1>
+
+  <sect1>
+    <title>Selling a house or a car (How-To)</title>
+
+    <para>When you will record the selling of your house in &app; you have
+    some different options. Here we will go through two of them, one in which
+    you only recorded the purchase amount, and now the selling amount. The other
+    where you have followed the ups and downs on the property market and registered
+    various Unrealized gains over the time.</para>
+
+    <para></para>
+
+    <sect2>
+      <title>Simple Transaction</title>
+
+      <para>In this way you only record the proper sale amount.</para>
+
+      <para>Let&rsquo;s work through two samples of selling a house, one with a
+      profit, and one with a loss. If you want to sell a car instead, just
+      substitute the house account with a car account.</para>
+
+      <para><literallayout>
+-Assets
+  -Fixed Assets
+    -House
+  -Current Assets
+    -Saving
+-Income
+  -Capital Gains Long
+    -House
+    </literallayout></para>
+
+      <itemizedlist>
+        <listitem>
+          <para>You bought a house for $300,000 once upon a time, and now managed
+          to sell it for $600,000. How do you record this?</para>
+
+          <para>To record this you need to increase our bank account with the
+          $600k, and decrease some other accounts with $600k. The house
+          account only contains $300k which is what you bought it for, so you
+          move this amount to your bank account. That means you are lacking
+          $300k. This amount you fetch from the <emphasis>Income:Captial Gains Long:House</emphasis>
+          account. The split transaction you enter into your
+          <emphasis>bank</emphasis> account
+          (<emphasis>Assets:Current Assets:Saving</emphasis>)
+          should look like this.</para>
+
+          <para><table>
+              <title>Selling an asset (house) with a profit</title>
+
+              <tgroup cols="3">
+                <tbody>
+                  <row>
+                    <entry>Account</entry>
+
+                    <entry>Increase</entry>
+
+                    <entry>Decrease</entry>
+                  </row>
+
+                  <row>
+                    <entry>Assets:Current Assets:Saving</entry>
+
+                    <entry>$600,000</entry>
+
+                    <entry></entry>
+                  </row>
+
+                  <row>
+                    <entry>Assets:Fixed Assets:House</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+
+                  <row>
+                    <entry>Income:Capital Gains Long:House</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table></para>
+        </listitem>
+
+        <listitem>
+          <para>You bought a house for $300,000 once upon a time, but due to a
+          newly created airport, could only sell it for $230,000. How do you
+          record this?</para>
+
+          <para>To record this you need to increase your bank account with the
+          $230k, and decrease some other accounts with $230k. The house
+          account contains $300k which is more than what you sold it for. So
+          let&rsquo;s move $230k of it to your bank account. After this you have $70k
+          remaining in your house account which needs to be removed. You move it
+          to our <emphasis>Income:Capital Gains Long:House</emphasis> account, which will indicate
+          a loss. The split transaction you enter into your
+          <emphasis>house</emphasis> account
+          (<emphasis>Assets:Fixed Assets:House</emphasis>) should look like this.</para>
+
+          <para><table>
+              <title>Selling an asset (house) with a loss</title>
+
+              <tgroup cols="3">
+                <tbody>
+                  <row>
+                    <entry>Account</entry>
+
+                    <entry>Increase</entry>
+
+                    <entry>Decrease</entry>
+                  </row>
+
+                  <row>
+                    <entry>Assets:Fixed Assets:House</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+
+                  <row>
+                    <entry>Assets:Current Assets:Saving</entry>
+
+                    <entry>$230,000</entry>
+
+                    <entry></entry>
+                  </row>
+
+                  <row>
+                    <entry>Income:Capital Gains Long:House</entry>
+
+                    <entry>$70,000</entry>
+
+                    <entry></entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table></para>
+        </listitem>
+      </itemizedlist>
+
+    </sect2>
+
+    <sect2>
+      <title>A More Complex Transaction</title>
+
+      <para>In this example, we will touch a little on some more complicated
+      accounting principles. For more details on this subject, please check
+      <xref linkend="chapter_capgain"></xref></para>
+
+      <para>Here we will only touch on the case when you have accurately estimated
+      the current value of your house. For the other cases (over-, and
+      under-estimated), please check <xref linkend="chapter_capgain"></xref>.</para>
+
+      <para><literallayout>
+-Assets
+    -Fixed Assets
+        -House
+            -Cost
+            -Unrealized Gain
+    -Current Assets
+        -Saving
+-Income
+    -Realized Gain
+        -House
+    -Unrealized Gain
+        -House
+    </literallayout></para>
+
+          <para>You bought a house for $300,000 once upon a time, and over
+          the years kept a close look on the market and updated your
+          records with the estimated current value of your house. At the time
+          you want to sell it, you have determined that the current market
+          value is $600,000. </para>
+
+          <para>The difference between $600,000 (estimated market value) and
+          $300,000 (purchase value) is the current Unrealized Gain value. Therefore
+          you have a total of $300,000 in your
+          <emphasis>Assets:Fixed Assets:House:Unrealized Gain</emphasis> account</para>
+
+          <para>How do you record this sell transaction?</para>
+
+          <para>To record this you need to increase your bank account with the
+          $600k, and decrease some other accounts with $600k.
+          You must first change from unrealized gain to realized gain
+          for your <emphasis>Income</emphasis> accounts.
+          Lastly you need to transfer the full amounts from the <emphasis>Assets:Fixed Assets:House</emphasis>
+          sub-accounts.</para>
+
+          <para>The transaction you enter into your
+          <emphasis>Income:Realized Gain:House</emphasis> account
+          account should look like this.</para>
+
+          <para><table>
+              <title>Selling an asset (house) with a profit</title>
+
+              <tgroup cols="3">
+                <tbody>
+                  <row>
+                    <entry>Account</entry>
+
+                    <entry>Increase</entry>
+
+                    <entry>Decrease</entry>
+                  </row>
+
+                  <row>
+                    <entry>Income:Realized Gain:House</entry>
+
+                    <entry>$300,000</entry>
+
+                    <entry></entry>
+                  </row>
+
+                  <row>
+                    <entry>Income:Unrealized Gain:House</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+
+                </tbody>
+              </tgroup>
+            </table></para>
+
+          <para>The transaction you enter into your
+          <emphasis>Assets:Current Assets:Saving</emphasis> account
+          should look like this.</para>
+
+          <para><table>
+              <title>Selling an asset (house) with a profit 2</title>
+
+              <tgroup cols="3">
+                <tbody>
+                  <row>
+                    <entry>Account</entry>
+
+                    <entry>Increase</entry>
+
+                    <entry>Decrease</entry>
+                  </row>
+
+                  <row>
+                    <entry>Assets:Current Assets:Saving</entry>
+
+                    <entry>$600,000</entry>
+
+                    <entry></entry>
+                  </row>
+
+                  <row>
+                    <entry>Assets:Fixed Assets:House:Cost</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+
+                  <row>
+                    <entry>Assets:Fixed Assets:House:Unrealized Gain</entry>
+
+                    <entry></entry>
+
+                    <entry>$300,000</entry>
+                  </row>
+
+                </tbody>
+              </tgroup>
+            </table></para>
+            <para>After having recorded these transactions you see that your House
+            Asset have a value of 0, your Savings account have increased with $600,000,
+            and lastly, the <emphasis>Income:Realized Gain</emphasis> have increased to $300,000.</para>
+
+    </sect2>
+
+
+
+  </sect1>
+<!--
+  <sect1 id="loans_missing1">
+    <title>Missing Loan Documentation</title>
+
+    <literallayout>
+ -Entering a Payment Schedule
+     -Monthly Payments (How-To)
+       -See the Mortgage assistant
+        -ARM 10/1 means 10 year fixed interest rate, then changes every year
+        -ARM 10/3 means 10 year fixed interest rate, then changes every third year
+     -Final Payment (How-To)
+       -Same as a normal payment, but you get the figures from the bank
+       -How to fix 10 amortization and then a final bulk payment setup?
+
+ -Putting It All Together
+ </literallayout>
+  </sect1>
+-->
+</chapter>
