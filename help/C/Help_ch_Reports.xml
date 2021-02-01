@@ -1704,41 +1704,51 @@ Income (type INCOME)
   <sect1 id="report-create">
     <title>Creating Reports and Charts</title>
 
-    <note><para>This section may need updating !!!</para></note>
-
      <para>It is possible to write reports if the current ones are not suitable. To do this
        you will need to know Scheme (a LISP-like programming language), and it is an
        excellent idea to have a copy of the &app; source code available.</para>
 
-     <para>The reporting interface is documented in the source code file
-       <filename>src/report/report-system/doc/report-html.txt</filename>.
-       The file <filename>src/report/utility-reports/hello-world.scm</filename>
-       in the &app; source distribution provides a
-       good example of how reports are developed.</para>
+     <itemizedlist>
+       <title>Important files in the source code</title>
+       <listitem><para><ulink url="&url-gh-gc-maint;gnucash/report/doc/report-html.txt">gnucash/report/doc/report-html.txt</ulink>
+         documents the <emphasis>reporting interface</emphasis>.</para></listitem>
+       <listitem><para><ulink url="&url-gh-gc-maint;gnucash/report/reports/example/hello-world.scm">gnucash/report/reports/example/hello-world.scm</ulink>
+         is an example demonstrating different <emphasis>types of options</emphasis>.</para></listitem>
+     </itemizedlist>
 
     <sect2 id="report-api">
-      <title>Accessing the &app; <acronym>API</acronym></title>
+      <title>Accessing the &app; application programming interface (<acronym>API</acronym>)</title>
+
+    <note><para>This section may need updating !!!</para></note>
 
       <para>It is also necessary to access data from the engine to get
         information for your report. This is
         <emphasis>since version 2.1.x</emphasis> performed by a set of
         Scheme wrapper functions that are documented in the file
         <filename>src/engine/swig-engine.c</filename>.
-        <emphasis>Up to version 2.0.5</emphasis> it was
-        <filename>src/g-wrap/gnc.html</filename>. Examine some of the other
-        reports in src/scm/report for an indication of how they are used.</para>
+        <footnote><para>This file does not exist in Version 4.</para></footnote>
+        <footnote><para><emphasis>Up to version 2.0.5</emphasis> it was
+        <filename>src/g-wrap/gnc.html</filename>.</para></footnote>
+        Examine some of the other reports in src/scm/report for an indication of how they are used.</para>
 
       <para>Some users started a table in <ulink url="&url-wiki-api-custom;" />.</para>
 
       <para>Because the above file only contains the syntax of the function
-        you can use the Doxygen source documentation either local after running
-<screen>
-./configure --enable-doxygen --enable-html-docs
-make doc
-</screen> on your sources or online
+        you can use the <application>Doxygen</application> source documentation online
        <ulink url="&url-doc-api-main;" /> or
        <ulink url="&url-doc-api-mast;" />
        to get more information about the functions.
+     </para>
+     <para>After <ulink url="&url-wiki;Building">setting up a build environment</ulink>
+       you can also generate it locally by running
+<screen>
+# make users:
+make doc
+# ninja users:
+ninja doc
+</screen> in your build directory and then open
+       <filename><replaceable>BUILDDIR</replaceable>/libgnucash/doc/html/index.html</filename>
+       with your preferred browser.
      </para>
   </sect2>
 
