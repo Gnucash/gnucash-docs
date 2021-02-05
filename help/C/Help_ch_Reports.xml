@@ -329,8 +329,7 @@
       <title>General Reports</title>
 
       <para>The General Reports include the Account Summary Report, the Future
-        Scheduled Transactions Summary, the Tax Schedule Report and <acronym>
-        TXF</acronym> Export, and the Transaction Report and also the reports in the Sample &amp; Custom menu.</para>
+        Scheduled Transactions Summary, and the Transaction Report and also the reports in the Sample &amp; Custom menu.</para>
 
       <sect3>
         <title>Account Summary</title>
@@ -340,23 +339,6 @@
       <sect3>
         <title>Future Scheduled Transactions Summary</title>
         <para> </para>
-      </sect3>
-
-      <sect3 id="report-taxreport">
-        <title>Tax Schedule Report and <acronym>TXF</acronym> Export</title>
-        <para>The tax schedule report lists all taxable income and deductible expense amounts used in the preparation of US Income Tax returns. The purpose of the report is to provide a complete audit trail for these amounts. The report is intended to be used by a tax payer to manually prepare his or her own tax return, or alternatively, to be provided to a tax preparer for that purpose. The report can also be used to generate an export of all tax related income and expenses to a <acronym>TXF</acronym> (Tax eXchange Format) file (this is in addition to exporting to the <acronym>HTML</acronym> format that all reports allow). The <acronym>TXF</acronym> file can be imported into tax filing programs such as TaxCut or TurboTax. The report should be run, inspected carefully for errors or omissions, and then corrections made to transactions, report settings, currency conversion rates or the account structure as needed. This process should be repeated as often as needed until all the amounts on the report are correct before a final version is used and saved along with the tax returns.</para>
-
-          <para> For accounts specified in the report options (none = all) that are also flagged as <guilabel>Tax-related</guilabel>, all transactions for the time period selected (also in the report options) are included. The report sorts transactions by date within account providing subtotals by account within tax code within Form or Schedule line number. Support is also provided for multiple copies of and for sub-line items for selected Forms/Schedules. Optionally uses special date processing to include federal estimated tax payments after year end.</para>
-
-          <para>All totals are in USD since this is the currency required for filing US Income Tax returns. Non-USD transaction amounts are converted to USD using the transaction conversion rate to USD, if available. If not, a conversion rate from the price database is used (either the date nearest the transaction date or nearest the report date as specified in the report options; if none is available, transaction amounts are converted to zero and the report provides a comment accordingly). A complete audit trail of conversions is provided.</para>
-
-          <note><para>For this to work, the user has to segregate taxable and non taxable
-           income to different accounts, as well as deductible and non deductible expenses.
-           The Income Tax Information dialog is used for this. To access the Income Tax
-           Information dialog go to <menuchoice><guimenu>Edit</guimenu><guimenuitem>Tax Report Options</guimenuitem></menuchoice>. The user
-           also must set the <acronym>TXF</acronym> category of each tax related account. The Income Tax
-           Information dialog is described in the <xref linkend="set-tax-options"></xref> section.</para></note>
-
       </sect3>
 
       <sect3>
@@ -720,7 +702,7 @@
           <para>This is controled by the <emphasis>Detail Level</emphasis><footnoteref linkend='report-fn-v3-dl'/> option on the Display tab.</para>
           <para>In <emphasis>Single</emphasis> line mode, there's only one line per transaction. So you can have
             the account name on one side of the equation and
-            <orderedlist numeration="loweralpha">
+            <orderedlist numeration="loweralpha" spacing="compact">
               <listitem><para>the other <replaceable>account name</replaceable> if there's only one other split in the transaction or</para></listitem>
               <listitem><para><computeroutput>Split</computeroutput> if there are multiple other splits in the transaction. You can't
                 display multiple "other" account names in one line. There's just no room for it.
@@ -1515,7 +1497,6 @@ Income (type INCOME)
          <title>Vendor Report</title>
          <para> </para>
         </sect3>
-
      </sect2>
 
    <sect2 id="report-income">
@@ -1666,7 +1647,36 @@ Income (type INCOME)
       </sect3>
 
     </sect2>
+     <sect2 id="report-regional">
+       <title>Country Specific Reports</title>
+       <highlights><para>Some report are only useful in specific regions. Each tax authority has other requirements.
+         The availability of this reports depend on your <ulink url="&url-wiki-locale;">Locale Settings</ulink>.
+         As there is currently not more than one report per country they are merged into the <xref linkend="report-general"/>.</para></highlights>
 
+      <sect3 id="report-taxreport">
+        <title>US: Tax Schedule Report and <acronym>TXF</acronym> Export</title>
+        <note><para>This report is also visible, if no tax report for your region is available in &app;.</para></note>
+        <para>The tax schedule report lists all taxable income and deductible expense amounts used in the preparation of US Income Tax returns. The purpose of the report is to provide a complete audit trail for these amounts. The report is intended to be used by a tax payer to manually prepare his or her own tax return, or alternatively, to be provided to a tax preparer for that purpose. The report can also be used to generate an export of all tax related income and expenses to a <acronym>TXF</acronym> (Tax eXchange Format) file (this is in addition to exporting to the <acronym>HTML</acronym> format that all reports allow). The <acronym>TXF</acronym> file can be imported into tax filing programs such as TaxCut or TurboTax. The report should be run, inspected carefully for errors or omissions, and then corrections made to transactions, report settings, currency conversion rates or the account structure as needed. This process should be repeated as often as needed until all the amounts on the report are correct before a final version is used and saved along with the tax returns.</para>
+
+          <para>For accounts specified in the report options (none = all) that are also flagged as <guilabel>Tax-related</guilabel>, all transactions for the time period selected (also in the report options) are included. The report sorts transactions by date within account providing subtotals by account within tax code within Form or Schedule line number. Support is also provided for multiple copies of and for sub-line items for selected Forms/Schedules. Optionally uses special date processing to include federal estimated tax payments after year end.</para>
+
+          <para>All totals are in USD since this is the currency required for filing US Income Tax returns. Non-USD transaction amounts are converted to USD using the transaction conversion rate to USD, if available. If not, a conversion rate from the price database is used (either the date nearest the transaction date or nearest the report date as specified in the report options; if none is available, transaction amounts are converted to zero and the report provides a comment accordingly). A complete audit trail of conversions is provided.</para>
+
+          <note><para>For this to work, the user has to segregate taxable and non taxable
+           income to different accounts, as well as deductible and non deductible expenses.
+           The Income Tax Information dialog is used for this. To access the Income Tax
+           Information dialog go to <menuchoice><guimenu>Edit</guimenu><guimenuitem>Tax Report Options</guimenuitem></menuchoice>. The user
+           also must set the <acronym>TXF</acronym> category of each tax related account. The Income Tax
+           Information dialog is described in the <xref linkend="set-tax-options"></xref> section.</para></note>
+      </sect3>
+      <sect3 id="report-taxreport-de">
+        <title>DE: Steuer-Bericht und <acronym>ElStEr</acronym> Export</title>
+        <note><para>This report is only visible, if the language is set to <computeroutput>de | deutsch</computeroutput>.</para></note>
+        <!-- Umsatzsteuer-Voranmeldung …
+             siehe auch erweiterte Version in https://github.com/fellen/gnucash/tree/ESt -->
+      </sect3>
+
+     </sect2>
    </sect1>
 
    <sect1 id="report-print">
