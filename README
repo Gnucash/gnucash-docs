@@ -96,16 +96,7 @@ the figures/ directory directly beneath the HTML directory:
 --------------------------
 
 You can generate the documentation in html, pdf, epub and mobi
-using the autotools based build system that comes with the sources.
-
-For the deprecated autotools system the commands are:
-  cd gnucash-docs
-  ./autogen.sh
-  mkdir build && cd build
-  # If you don't need mobi
-  ../configure
-  # or, if you need mobi
-  ../configure --with-mobi
+using the build system that comes with the sources.
 
 For cmake the commands are
   cd gnucash-docs
@@ -115,6 +106,14 @@ For cmake the commands are
   # or, if you need mobi
   cmake -D WITH_MOBY ..
 
+For the deprecated autotools system the commands are:
+  cd gnucash-docs
+  ./autogen.sh
+  mkdir build && cd build
+  # If you don't need mobi
+  ../configure
+  # or, if you need mobi
+  ../configure --with-mobi
 
 => This will tell you if you are missing some required tools.
 
@@ -137,6 +136,29 @@ To generate the documentation in mobi format, instead run
 
 If you only wish to generate a subset of the documentation, you can. However
 the way to do so depends on the build system:
+
+- CMake
+There are specific targets for each document. The target is of the form
+<language>-gnucash-<doc>-<type>.
+
+For example to only generate the English concepts guide:
+
+  make C-gnucash-guide-html
+  make C-gnucash-guide-pdf
+  make C-gnucash-guide-epub
+  make C-gnucash-guide-mobi
+
+depending on the output format you require.
+
+In addition one could generate these formats for one document in all
+languages at once by omitting the language specifier in the target.
+
+For example:
+
+  make gnucash-help-html
+
+will generate the html version of the help document in all supported
+languages.
 
 - Autotools (deprecated)
 Go into the directory for that subset and run the above make commands
@@ -161,29 +183,6 @@ or
   make mobi
 
 depending on the output format you require.
-
-- CMake
-There are specific targets for each document. The target is of the form
-<language>-gnucash-<doc>-<type>.
-
-For example to only generate the English concepts guide:
-
-  make C-gnucash-guide-html
-  make C-gnucash-guide-pdf
-  make C-gnucash-guide-epub
-  make C-gnucash-guide-mobi
-
-depending on the output format you require.
-
-In addition one could generate these formats for one document in all
-languages at once by omitting the language specifier in the target.
-
-For example:
-
-  make gnucash-help-html
-
-will generate the html version of the help document in all supported
-languages.
 
 * running xmllint
 -----------------
