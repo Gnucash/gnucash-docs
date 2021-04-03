@@ -1,5 +1,6 @@
 set (entities
         Help_ch_Intro.xml
+        Help_ch_GettingHelp.xml
         Help_ch_GettingStarted.xml
         Help_ch_GUIMenus.xml
         Help_ch_Account-Actions.xml
