@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
-
-
- <!--
+<!--
       (Do not remove this comment block.)
   Version: 2.0.0
   Last modified: July 9th 2006
@@ -17,38 +15,52 @@
                (translators put your name and email here)
 -->
 <chapter id="chapter_bus_pay">
- <title>給与支払い</title>
- <para>給与支払いは従業員への支払額、給与総額、有給休暇、および控除額に関する財務的な記録です。
-本章では&app;を使用して給与支払いをどのように追跡するかについて説明します。</para>
- <sect1 id="bus-pay-concepts1">
- <title>基本概念</title>
+  <title>給与支払い</title>
+
   <para>給与支払いは従業員への支払額、給与総額、有給休暇、および控除額に関する財務的な記録です。
-基本的に従業員へのお金の支払いや福利厚生の提供に関係するすべてのことです。
-給与支払いには多くの異なる勘定科目、人々、機関が関係するので、給与支払いは会計処理においてより複雑な仕事の一つです。</para>
-  <para>給与支払いは通常費用として計上します。
-会計士によっては、給与支払い費用を短期負債勘定科目として<quote>保存</quote>することがあります。
-従業員への支払いと異なる時間に支払われることがある所得税などに、短期負債勘定科目は役に立ちます。
-従業員には隔週で給与を支払うかもしれません。一方、税金は四半期に1回に支払います。
-本章では給与支払いをすぐに費用計上し、一方で負債勘定科目に税金を保存する方法について説明します。</para>
-  <note>
-  <para>&app;には統合給与システムはありません。
-&app;で給与支払い経費を追跡している間、&app;の外で税金と控除額の計算をしなければいけません。</para>
-  </note>
+    本章では&app;を使用して給与支払いをどのように追跡するかについて説明します。
+  </para>
+
+  <sect1 id="bus-pay-concepts1">
+    <title>基本概念</title>
+
+    <para>給与支払いは従業員への支払額、給与総額、有給休暇、および控除額に関する財務的な記録です。
+      基本的に従業員へのお金の支払いや福利厚生の提供に関係するすべてのことです。
+      給与支払いには多くの異なる勘定科目、人々、機関が関係するので、給与支払いは会計処理においてより複雑な仕事の一つです。
+    </para>
+
+    <para>給与支払いは通常費用として計上します。
+      会計士によっては、給与支払い費用を短期負債勘定科目として<quote>保存</quote>することがあります。
+      従業員への支払いと異なる時間に支払われることがある所得税などに、短期負債勘定科目は役に立ちます。
+      従業員には隔週で給与を支払うかもしれません。一方、税金は四半期に1回に支払います。
+      本章では給与支払いをすぐに費用計上し、一方で負債勘定科目に税金を保存する方法について説明します。
+    </para>
+
+    <note>
+      <para>&app;には統合給与システムはありません。
+        &app;で給与支払い経費を追跡している間、&app;の外で税金と控除額の計算をしなければいけません。
+      </para>
+    </note>
   </sect1>
 
- <sect1 id="bus-pay-acct1">
- <title>勘定科目のセットアップ</title>
+  <sect1 id="bus-pay-acct1">
+    <title>勘定科目のセットアップ</title>
 
-  <para>勘定科目をセットアップする時は、現地の税法を考慮に入れなければいけません。
-給与税は世界中で多くの異なった方法で扱われているので、本節で説明するのは非常に単純な構造です。
-ここからは、自身の特定の給与控除設定に合わせなければいけません。</para>
-  <para>2種類の税金を支払わなければいけないと仮定します。Tax1とTax2はそれぞれ、従業員負担と企業負担の要素です。</para>
-  <para>従業員の給与およびこれら2種類の税金が費用勘定科目になります。
-租税債務は負債勘定科目になります。
-租税債務勘定科目は、すべての従業員が預けている税金を累積するところです。
-後で適切な政府系機関に税金を支払います。</para>
-  <para>
-  <literallayout>
+    <para>勘定科目をセットアップする時は、現地の税法を考慮に入れなければいけません。
+      給与税は世界中で多くの異なった方法で扱われているので、本節で説明するのは非常に単純な構造です。
+      ここからは、自身の特定の給与控除設定に合わせなければいけません。
+    </para>
+
+    <para>2種類の税金を支払わなければいけないと仮定します。Tax1とTax2はそれぞれ、従業員負担と企業負担の要素です。
+    </para>
+
+    <para>従業員の給与およびこれら2種類の税金が費用勘定科目になります。
+      租税債務は負債勘定科目になります。
+      租税債務勘定科目は、すべての従業員が預けている税金を累積するところです。
+      後で適切な政府系機関に税金を支払います。
+    </para>
+
+    <para><literallayout>
 単純な給与支払い配置
 
 -資産
@@ -60,285 +72,528 @@
    -給与
    -Tax1
    -Tax2
-</literallayout> <note>
-  <para>一人一人の給与を追跡するために従業員ごとに子勘定科目を作成する誘惑に抵抗してください。
-各従業員のために子勘定科目を作成すると、管理できないほど大きな勘定科目リストになります。
-従業員が出入りした数年後の勘定科目構造を想像してください。
-ただ一つの勘定科目 (例えば、<emphasis>費用:給与</emphasis>勘定科目)
-の中に従業員の給与をすべて記録して、従業員情報単位で参照する帳票を使用する方がはるかに簡単です。</para>
-  </note>
-  </para>
-
+</literallayout>
+      <note>
+        <para>一人一人の給与を追跡するために従業員ごとに子勘定科目を作成する誘惑に抵抗してください。
+          各従業員のために子勘定科目を作成すると、管理できないほど大きな勘定科目リストになります。
+          従業員が出入りした数年後の勘定科目構造を想像してください。
+          ただ一つの勘定科目 (例えば、<emphasis>費用:給与</emphasis>勘定科目)
+          の中に従業員の給与をすべて記録して、従業員情報単位で参照する帳票を使用する方がはるかに簡単です。
+        </para>
+      </note>
+    </para>
   </sect1>
 
- <sect1 id="bus-pay-protocol1">
- <title>プロトコル</title>
-  <para>&app;には統合給与システムはありません。
-&app;で給与支払い費用を追跡することができますが、給与支払いプロトコルを開発して、&app;の外
-(例えばスプレッドシート) で計算を実行する必要があります。
-本節では、そのようなプロトコルの一つを示します。
-モデルとして次の例のプロトコルを使用します。</para>
+  <sect1 id="bus-pay-protocol1">
+    <title>プロトコル</title>
 
-  <sect2 id="bus-pay-protocolone2">
-  <title>ステップ 1: 控除リスト</title>
-  <para>給与支払いプロトコルの第1ステップは、各従業員に対しすべての税金と控除のリストを作成することです。
-各項目には各金額を計算するための定義と計算式を含まなければいけません。
-一度プロトコルを確立すると、給与支払いの法律または税率変更があるときだけ変更する必要があります。</para>
+    <para>&app;には統合給与システムはありません。
+      &app;で給与支払い費用を追跡することができますが、給与支払いプロトコルを開発して、&app;の外
+      (例えばスプレッドシート) で計算を実行する必要があります。
+      本節では、そのようなプロトコルの一つを示します。
+      モデルとして次の例のプロトコルを使用します。
+    </para>
 
- <para>この例のシナリオでは、控除リストは次のようになります。</para>
-  <itemizedlist spacing="compact">
-  <listitem>
-  <para><emphasis>E_GROSS_SALARY</emphasis> - 従業員税込給与額</para>
-  </listitem>
-  <listitem>
-  <para><emphasis>E_TAX1</emphasis> - Tax1への従業員負担 (E_GROSS_SALARYのXパーセント)</para>
-  </listitem>
-  <listitem>
-  <para><emphasis>E_TAX2</emphasis> - Tax2への従業員負担 (E_GROSS_SALARYのXパーセント)</para>
-  </listitem>
-  <listitem>
-  <para><emphasis>C_TAX1</emphasis> - Tax1への企業負担 (E_GROSS_SALARYのXパーセント)</para>
-  </listitem>
-  <listitem>
-  <para><emphasis>C_TAX2</emphasis> - Tax2への企業負担 (E_GROSS_SALARYのXパーセント)</para>
-  </listitem>
-  </itemizedlist>
-  <note>
-  <para>従業員の手取り給与 (E_NET_SALARY) は、E_GROSS_SALARY - E_TAX1 - E_TAX2
-で定義されます。既に存在する項目で構成されるので、このリストに入れる必要はありません。</para>
-  </note>
-  <para>各控除を計算するための実際の計算式をこのリストに配置します。
-これらの計算式はかなり複雑な場合があります。<quote>税法の表のXYZを参照</quote>と単純に書いてある場合もあります。</para>
-  <para>この定義を使用することでいくつかの興味深い金額を計算することができることに注意してください。
-そのような金額の一つとして会社の総コスト E_GROSS_SALARY + C_TAX1 + C_TAX2 があります。</para>
-  </sect2>
+    <sect2 id="bus-pay-protocolone2">
+      <title>ステップ 1: 控除リスト</title>
 
-  <sect2 id="bus-pay-protocoltwo2">
-  <title>ステップ 2: 取引マップの作成</title>
-  <para>&app;で給与支払いを記録する時は、単一のスプリット取引で処理します。
-このスプリット取引を適切な費用と負債勘定科目に配置します。
-後で給与支払いを詳細に調べる必要がある場合、スプリット取引を開いてください。</para>
-  <para>前記の控除リストを利用して従業員スプリット取引マップを作成します。
-リストのそれぞれの項目は&app;勘定科目にマップします。</para>
+      <para>給与支払いプロトコルの第1ステップは、各従業員に対しすべての税金と控除のリストを作成することです。
+        各項目には各金額を計算するための定義と計算式を含まなければいけません。
+        一度プロトコルを確立すると、給与支払いの法律または税率変更があるときだけ変更する必要があります。
+      </para>
 
-  <para>
-  <table>
-  <title>取引マップ</title>
-  <tgroup cols="3">
-  <thead>
-  <row>
-<entry>勘定科目</entry><entry>増加</entry><entry>減少</entry>
-  </row>
-  </thead>
-  <tbody>
-  <row>
-<entry>資産:当座預金</entry><entry></entry><entry>E_NET_SALARY</entry>
-  </row>
-  <row>
-<entry>費用:給与</entry><entry>E_GROSS_SALARY</entry><entry></entry>
-  </row>
-  <row>
-<entry>負債:Tax1</entry><entry></entry><entry>E_TAX1</entry>
-  </row>
-  <row>
-<entry>負債:Tax2</entry><entry></entry><entry>E_TAX2</entry>
-  </row>
-  <row>
-<entry>費用:Tax1</entry><entry>C_TAX1</entry><entry></entry>
-  </row>
-  <row>
-<entry>負債:Tax1</entry><entry></entry><entry>C_TAX1</entry>
-  </row>
-  <row>
-<entry>費用:Tax2</entry><entry>C_TAX2</entry><entry></entry>
-  </row>
-  <row>
-<entry>負債:Tax2</entry><entry></entry><entry>C_TAX2</entry>
-  </row>
-  </tbody>
-  </tgroup>
-  </table>
-  </para>
+      <para>この例のシナリオでは、控除リストは次のようになります。
+      </para>
 
-  <para>C_TAX1およびC_TAX2要素が負債勘定科目と費用勘定科目の両方の項目にあることに注意してください。
-それぞれの税金に関する会社の租税債務は給与支払い時点で費用計上されますが、税金の支払期限までは負債のまま残ります。</para>
-  </sect2>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para><emphasis>E_GROSS_SALARY</emphasis> - 従業員税込給与額
+          </para>
+        </listitem>
 
-  <sect2 id="bus-pay-protocolthree2">
-  <title>ステップ 3: 従業員への給与支払い</title>
-  <para>従業員への給与支払いを行う勘定科目に移動します。例えば<emphasis>資産:当座預金</emphasis>勘定科目です。
-スプリット取引を開いて、この例の取引マップを使用して実際の金額を入力します。
-全社員分これを繰り返します。</para>
-  <tip>
-  <para>多くの従業員がいたら特に本書の手順は退屈です。</para>
-  <para>従業員給与支払いを入力する時に間違いなく使用する&app;ツールは、取引の複製
-(<guibutton>複製</guibutton><emphasis>ツールバー</emphasis>ボタンを使用します) です。
-これによって、すべてのスプリット取引を各従業員に対して入力する手間を節約できるかもしれません。
-まだ各従業員への実際の給与支払金額を一致させるために金額の合計を変更する必要があります。しかし、各従業員に対してスプリット取引を作成する必要はありません。</para>
-  <para>給与支払取引がほとんどの給与支払期間で変更されない場合、現在の給与の間は各従業員の最新の給与支払い取引をコピーする取引複製機能を使用できます。
-絶えずそれを行うなら予定取引機能を読むと、さらに多くの時間を節約できます!</para>
-  </tip>
-  </sect2>
+        <listitem>
+          <para><emphasis>E_TAX1</emphasis> - Tax1への従業員負担 (E_GROSS_SALARYのXパーセント)
+          </para>
+        </listitem>
 
-  <sect2 id="bus-pay-protocolfour2">
-  <title>ステップ 4: 政府への税金支払い</title>
-  <para>最後に行うことは、税金を政府に支払うことです。
-負債勘定科目にはさまざまな政府機関のための税金を収集してきました。この租税債務を支払うために定期的に政府に小切手を送る必要があります。
-それを行うためには、租税債務を支払う (例えば) 当座預金勘定科目に単純な2勘定科目取引を入力します。
-当座預金勘定科目と負債勘定科目の間の取引であり、費用勘定科目は全く関係しません。
-費用勘定科目は租税債務を記録する場合にのみ使用します。</para>
-  </sect2>
+        <listitem>
+          <para><emphasis>E_TAX2</emphasis> - Tax2への従業員負担 (E_GROSS_SALARYのXパーセント)
+          </para>
+        </listitem>
 
+        <listitem>
+          <para><emphasis>C_TAX1</emphasis> - Tax1への企業負担 (E_GROSS_SALARYのXパーセント)
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>C_TAX2</emphasis> - Tax2への企業負担 (E_GROSS_SALARYのXパーセント)
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <note>
+        <para>従業員の手取り給与 (E_NET_SALARY) は、E_GROSS_SALARY - E_TAX1 - E_TAX2
+          で定義されます。既に存在する項目で構成されるので、このリストに入れる必要はありません。
+        </para>
+      </note>
+
+      <para>各控除を計算するための実際の計算式をこのリストに配置します。
+        これらの計算式はかなり複雑な場合があります。<quote>税法の表のXYZを参照</quote>と単純に書いてある場合もあります。
+      </para>
+
+      <para>この定義を使用することでいくつかの興味深い金額を計算することができることに注意してください。
+        そのような金額の一つとして会社の総コスト E_GROSS_SALARY + C_TAX1 +
+        C_TAX2 があります。
+      </para>
+    </sect2>
+
+    <sect2 id="bus-pay-protocoltwo2">
+      <title>ステップ 2: 取引マップの作成</title>
+
+      <para>&app;で給与支払いを記録する時は、単一のスプリット取引で処理します。
+        このスプリット取引を適切な費用と負債勘定科目に配置します。
+        後で給与支払いを詳細に調べる必要がある場合、スプリット取引を開いてください。
+      </para>
+
+      <para>前記の控除リストを利用して従業員スプリット取引マップを作成します。
+        リストのそれぞれの項目は&app;勘定科目にマップします。
+      </para>
+
+      <para><table>
+          <title>取引マップ</title>
+
+          <tgroup cols="3">
+            <thead>
+              <row>
+                <entry>
+                  勘定科目
+                </entry>
+
+                <entry>
+                  増加
+                </entry>
+
+                <entry>
+                  減少
+                </entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>
+                  資産:当座預金
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  E_NET_SALARY
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  費用:給与
+                </entry>
+
+                <entry>
+                  E_GROSS_SALARY
+                </entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>
+                  負債:Tax1
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  E_TAX1
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  負債:Tax2
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  E_TAX2
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  費用:Tax1
+                </entry>
+
+                <entry>
+                  C_TAX1
+                </entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>
+                  負債:Tax1
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  C_TAX1
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  費用:Tax2
+                </entry>
+
+                <entry>
+                  C_TAX2
+                </entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>
+                  負債:Tax2
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  C_TAX2
+                </entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </para>
+
+      <para>C_TAX1およびC_TAX2要素が負債勘定科目と費用勘定科目の両方の項目にあることに注意してください。
+        それぞれの税金に関する会社の租税債務は給与支払い時点で費用計上されますが、税金の支払期限までは負債のまま残ります。
+      </para>
+    </sect2>
+
+    <sect2 id="bus-pay-protocolthree2">
+      <title>ステップ 3: 従業員への給与支払い</title>
+
+      <para>従業員への給与支払いを行う勘定科目に移動します。例えば<emphasis>資産:当座預金</emphasis>勘定科目です。
+        スプリット取引を開いて、この例の取引マップを使用して実際の金額を入力します。
+        全社員分これを繰り返します。
+      </para>
+
+      <tip>
+        <para>多くの従業員がいたら特に本書の手順は退屈です。
+        </para>
+
+        <para>従業員給与支払いを入力する時に間違いなく使用する&app;ツールは、取引の複製
+          (<guibutton>複製</guibutton><emphasis>ツールバー</emphasis>ボタンを使用します)
+          です。
+          これによって、すべてのスプリット取引を各従業員に対して入力する手間を節約できるかもしれません。
+          まだ各従業員への実際の給与支払金額を一致させるために金額の合計を変更する必要があります。しかし、各従業員に対してスプリット取引を作成する必要はありません。
+        </para>
+
+        <para>給与支払取引がほとんどの給与支払期間で変更されない場合、現在の給与の間は各従業員の最新の給与支払い取引をコピーする取引複製機能を使用できます。
+          絶えずそれを行うなら予定取引機能を読むと、さらに多くの時間を節約できます!
+        </para>
+      </tip>
+    </sect2>
+
+    <sect2 id="bus-pay-protocolfour2">
+      <title>ステップ 4: 政府への税金支払い</title>
+
+      <para>最後に行うことは、税金を政府に支払うことです。
+        負債勘定科目にはさまざまな政府機関のための税金を収集してきました。この租税債務を支払うために定期的に政府に小切手を送る必要があります。
+        それを行うためには、租税債務を支払う (例えば)
+        当座預金勘定科目に単純な2勘定科目取引を入力します。
+        当座預金勘定科目と負債勘定科目の間の取引であり、費用勘定科目は全く関係しません。
+        費用勘定科目は租税債務を記録する場合にのみ使用します。
+      </para>
+    </sect2>
   </sect1>
-  
- <sect1 id="bus-pay-example1">
- <title>例</title>
-  <para>前項の勘定科目設定を使用して、例を通して見てみます。
-2人の従業員 (E1とE2) がいて、毎月の税込給与額がそれぞれ1,000ドルであると仮定します。
-Tax1とTax2の従業員負担はそれぞれ10%と5%です。
-従業員税込給与額に対するTax1とTax2の企業負担はそれぞれ15%と10%です。</para>
-  <para>開始時に銀行に50,000ドルあります。給与支払いを行う前の勘定科目階層は次のようになります。</para>
-	<screenshot id="bus-pay-ex1">
-  <mediaobject>
-	    <imageobject> <imagedata fileref="figures/bus_pay_ex1.png"
-srccredit="Patrick Schweiger" format="PNG"/> </imageobject>
-	    <textobject>
-	        <phrase>給与支払いの例1</phrase>
-	    </textobject>
-	    <caption>
-	       <para>給与支払いの初期セットアップ
-	       </para>
-	    </caption>
-          </mediaobject></screenshot>
 
-  <sect2 id="bus-pay-exampleprotocol2">
-  <title>プロトコルの作成</title>
-  <para>従業員1の控除リストは次の通りです。</para>
-   <itemizedlist>
-  <listitem>
-  <para><emphasis>E_GROSS_SALARY</emphasis> - 従業員税込給与額 -
-<emphasis>1,000ドル</emphasis></para>
-  </listitem>
-  <listitem>
-  <para><emphasis>E_TAX1</emphasis> - tax1の従業員負担 -<emphasis>100ドル</emphasis>
-(E_GROSS_SALARYの10パーセント)</para>
-  </listitem>
-  <listitem>
-  <para><emphasis>E_TAX2</emphasis> - tax2の従業員負担 - <emphasis>50ドル</emphasis>
-(E_GROSS_SALARYの5パーセント)</para>
-  </listitem>
-  <listitem>
-  <para><emphasis>C_TAX1</emphasis> - tax1の企業負担 - <emphasis>150ドル</emphasis>
-(E_GROSS_SALARYの15パーセント)</para>
-  </listitem>
-  <listitem>
-  <para><emphasis>C_TAX2</emphasis> - tax2の企業負担 - <emphasis>100ドル</emphasis>
-(E_GROSS_SALARYの10パーセント)</para>
-  </listitem>
-  </itemizedlist>
+  <sect1 id="bus-pay-example1">
+    <title>例</title>
 
-  <para>
-  <table>
-  <title>従業員1の取引マップ</title>
-  <tgroup cols="3">
-  <thead>
-  <row>
-<entry>勘定科目</entry><entry>増加</entry><entry>減少</entry>
-  </row>
-  </thead>
-  <tbody>
-  <row>
-<entry>資産:当座預金</entry><entry></entry><entry>850ドル (E_NET_SALARY)</entry>
-  </row>
-  <row>
-<entry>費用:給与</entry><entry>1,000ドル (E_GROSS_SALARY)</entry><entry></entry>
-  </row>
-  <row>
-<entry>負債:Tax1</entry><entry></entry><entry>100ドル (E_TAX1)</entry>
-  </row>
-  <row>
-<entry>負債:Tax2</entry><entry></entry><entry>50ドル (E_TAX2)</entry>
-  </row>
-  <row>
-<entry>費用:Tax1</entry><entry>150ドル (C_TAX1)</entry><entry></entry>
-  </row>
-  <row>
-<entry>負債:Tax1</entry><entry></entry><entry>150ドル (C_TAX1)</entry>
-  </row>
-  <row>
-<entry>費用:Tax2</entry><entry>100ドル (C_TAX2)</entry><entry></entry>
-  </row>
-  <row>
-<entry>負債:Tax2</entry><entry></entry><entry>100ドル (C_TAX2)</entry>
-  </row>
-  </tbody>
-  </tgroup>
-  </table>
-  </para>
+    <para>前項の勘定科目設定を使用して、例を通して見てみます。 2人の従業員
+      (E1とE2)
+      がいて、毎月の税込給与額がそれぞれ1,000ドルであると仮定します。
+      Tax1とTax2の従業員負担はそれぞれ10%と5%です。
+      従業員税込給与額に対するTax1とTax2の企業負担はそれぞれ15%と10%です。
+    </para>
 
-  </sect2>
+    <para>開始時に銀行に50,000ドルあります。給与支払いを行う前の勘定科目階層は次のようになります。
+    </para>
 
+    <screenshot id="bus-pay-ex1">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/bus_pay_ex1.png"
+srccredit="Patrick Schweiger" format="PNG"/>
+        </imageobject>
 
-  <sect2 id="bus-pay-examplepay2">
-  <title>従業員への給与支払い</title>
+        <textobject>
+          <phrase>給与支払いの例1</phrase>
+        </textobject>
 
-  <para>では、従業員1のために最初のスプリット取引を当座預金勘定科目に入力します。
-スプリット取引は次のようになります。</para>
+        <caption>
+          <para>給与支払いの初期セットアップ
+          </para>
+        </caption>
+      </mediaobject>
+    </screenshot>
 
-	<screenshot id="bus-pay-ex2">
-  <mediaobject>
-	    <imageobject> <imagedata fileref="figures/bus_pay_ex2.png"
-srccredit="Patrick Schweiger" format="PNG"/> </imageobject>
-	    <textobject>
-	        <phrase>給与支払いの例2</phrase>
-	    </textobject>
-	    <caption>
-	       <para>従業員1スプリット取引
-	       </para>
-	    </caption>
-          </mediaobject></screenshot>
+    <sect2 id="bus-pay-exampleprotocol2">
+      <title>プロトコルの作成</title>
 
-  <tip>
-  <para>従業員に給与支払いを行う時、従業員名だけを<guilabel>説明</guilabel>欄に入力します。
-&app;の小切手印刷機能を使用すると決めた場合、自動的に正しい従業員に小切手が作成されます。
-従業員名以外の他の情報を取引に記録したい場合、勘定科目記録簿を2行モードで参照すると使用できる<guilabel>備考</guilabel>欄を使用します。</para>
-  </tip>
-  <para>従業員2のためにこれを繰り返すと、勘定科目階層は次のようになります。</para>
+      <para>従業員1の控除リストは次の通りです。
+      </para>
 
-	<screenshot id="bus-pay-ex3">
-  <mediaobject>
-	    <imageobject> <imagedata fileref="figures/bus_pay_ex3.png"
-srccredit="Patrick Schweiger" format="PNG"/> </imageobject>
-	    <textobject>
-	        <phrase>給与支払いの例3</phrase>
-	    </textobject>
-	    <caption>
-	       <para>給与支払い後の勘定科目階層
-	       </para>
-	    </caption>
-          </mediaobject></screenshot>
-  </sect2>
-  <sect2 id="bus-pay-examplegovt2">
-  <title>政府への支払い</title>
-  <para><emphasis>負債:Tax1</emphasis>と<emphasis>負債:Tax2</emphasis>勘定科目それぞれで、所轄の政府機関にいくら支払わなければいけないかを追跡し続けます。
-これらの機関に支払う時期が来た時、当座預金勘定科目から負債勘定科目まで一つの取引を作成します。
-費用勘定科目は全く関係しません。
-この例ではメイン勘定科目は次のようになります。</para>
+      <itemizedlist>
+        <listitem>
+          <para><emphasis>E_GROSS_SALARY</emphasis> - 従業員税込給与額 - <emphasis>1,000ドル</emphasis>
+          </para>
+        </listitem>
 
-	<screenshot id="bus-pay-ex4">
-  <mediaobject>
-	    <imageobject> <imagedata fileref="figures/bus_pay_ex4.png"
-srccredit="Patrick Schweiger" format="PNG"/> </imageobject>
-	    <textobject>
-	        <phrase>給与支払いの例4</phrase>
-	    </textobject>
-	    <caption>
-	       <para>政府への支払い後の勘定科目
-	       </para>
-	    </caption>
-          </mediaobject></screenshot>
+        <listitem>
+          <para><emphasis>E_TAX1</emphasis> - tax1の従業員負担 -<emphasis>100ドル</emphasis>
+            (E_GROSS_SALARYの10パーセント)
+          </para>
+        </listitem>
 
- </sect2>
- </sect1>
+        <listitem>
+          <para><emphasis>E_TAX2</emphasis> - tax2の従業員負担 - <emphasis>50ドル</emphasis>
+            (E_GROSS_SALARYの5パーセント)
+          </para>
+        </listitem>
 
- </chapter>
+        <listitem>
+          <para><emphasis>C_TAX1</emphasis> - tax1の企業負担 - <emphasis>150ドル</emphasis>
+            (E_GROSS_SALARYの15パーセント)
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>C_TAX2</emphasis> - tax2の企業負担 - <emphasis>100ドル</emphasis>
+            (E_GROSS_SALARYの10パーセント)
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para><table>
+          <title>従業員1の取引マップ</title>
+
+          <tgroup cols="3">
+            <thead>
+              <row>
+                <entry>
+                  勘定科目
+                </entry>
+
+                <entry>
+                  増加
+                </entry>
+
+                <entry>
+                  減少
+                </entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>
+                  資産:当座預金
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  850ドル (E_NET_SALARY)
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  費用:給与
+                </entry>
+
+                <entry>
+                  1,000ドル (E_GROSS_SALARY)
+                </entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>
+                  負債:Tax1
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  100ドル (E_TAX1)
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  負債:Tax2
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  50ドル (E_TAX2)
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  費用:Tax1
+                </entry>
+
+                <entry>
+                  150ドル (C_TAX1)
+                </entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>
+                  負債:Tax1
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  150ドル (C_TAX1)
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  費用:Tax2
+                </entry>
+
+                <entry>
+                  100ドル (C_TAX2)
+                </entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>
+                  負債:Tax2
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  100ドル (C_TAX2)
+                </entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </para>
+    </sect2>
+
+    <sect2 id="bus-pay-examplepay2">
+      <title>従業員への給与支払い</title>
+
+      <para>では、従業員1のために最初のスプリット取引を当座預金勘定科目に入力します。
+        スプリット取引は次のようになります。
+      </para>
+
+      <screenshot id="bus-pay-ex2">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_pay_ex2.png"
+srccredit="Patrick Schweiger" format="PNG"/>
+          </imageobject>
+
+          <textobject>
+            <phrase>給与支払いの例2</phrase>
+          </textobject>
+
+          <caption>
+            <para>従業員1スプリット取引
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <tip>
+        <para>従業員に給与支払いを行う時、従業員名だけを<guilabel>説明</guilabel>欄に入力します。
+          &app;の小切手印刷機能を使用すると決めた場合、自動的に正しい従業員に小切手が作成されます。
+          従業員名以外の他の情報を取引に記録したい場合、勘定科目記録簿を2行モードで参照すると使用できる<guilabel>備考</guilabel>欄を使用します。
+        </para>
+      </tip>
+
+      <para>従業員2のためにこれを繰り返すと、勘定科目階層は次のようになります。
+      </para>
+
+      <screenshot id="bus-pay-ex3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_pay_ex3.png"
+srccredit="Patrick Schweiger" format="PNG"/>
+          </imageobject>
+
+          <textobject>
+            <phrase>給与支払いの例3</phrase>
+          </textobject>
+
+          <caption>
+            <para>給与支払い後の勘定科目階層
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="bus-pay-examplegovt2">
+      <title>政府への支払い</title>
+
+      <para><emphasis>負債:Tax1</emphasis>と<emphasis>負債:Tax2</emphasis>勘定科目それぞれで、所轄の政府機関にいくら支払わなければいけないかを追跡し続けます。
+        これらの機関に支払う時期が来た時、当座預金勘定科目から負債勘定科目まで一つの取引を作成します。
+        費用勘定科目は全く関係しません。
+        この例ではメイン勘定科目は次のようになります。
+      </para>
+
+      <screenshot id="bus-pay-ex4">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_pay_ex4.png"
+srccredit="Patrick Schweiger" format="PNG"/>
+          </imageobject>
+
+          <textobject>
+            <phrase>給与支払いの例4</phrase>
+          </textobject>
+
+          <caption>
+            <para>政府への支払い後の勘定科目
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+  </sect1>
+</chapter>
