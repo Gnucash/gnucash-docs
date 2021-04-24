@@ -16,7 +16,21 @@ xmlformat -f util/xmlformat/xmlformat.conf -i xml-file
 To reformat all files of the english guide:
 for i in guide/C/*.xml; do util/xmlformat/xmlformat.pl -f util/xmlformat/xmlformat.conf -i $i ; done
 
+To reformat all files in both parts:
+for i in guide help; do
+  for j in $i/*; do
+    echo "enter $j";
+    for k in $j/*.xml; do
+      echo $k;
+      util/xmlformat/xmlformat.pl -f util/xmlformat/xmlformat.conf -i $k;
+    done;
+  done;
+done
+
+Notes:
 There is also a {-b|--backup}[ suffix] option, but git reset HEAD is easier.
+
+As comments stay unformated redo xmlformat after you uncommented blocks.
 
 After changes of the docbook version, verify all elements are recognized with
 --show-unconfigured-elements
