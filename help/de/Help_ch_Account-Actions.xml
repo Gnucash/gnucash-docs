@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
-<!--
-      (Do not remove this comment block.)
+<!-- (Do not remove this comment block.)
   Version: 2.0.x
   Last modified: December 7th 2009
        modified: March 28th 2007
@@ -9,69 +8,85 @@
 	   modified: February 28th 2005
 
   Maintainers:
-               Alex Aycinena <alex.aycinena@gmail.com>
-               Chris Lyttle <chris@wilddev.net>
-               Neil Williams <linux@codehelp.co.uk>
+    Alex Aycinena <alex.aycinena@gmail.com>
+    Chris Lyttle <chris@wilddev.net>
+    Neil Williams <linux@codehelp.co.uk>
 
   Author:
-               Chris Lyttle <chris@wilddev.net>
+    Chris Lyttle <chris@wilddev.net>
   Translators:
-               (translators put your name and email here)
+    Christian Wehling <christian.wehling@web.de>
 -->
 <chapter id="setup-accounts"
          xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Setting Up, Editing &amp; Working with Accounts</title>
+  <title>Konten anlegen, anpassen &amp; benutzen</title>
 
-  <para>&untranslated-de;
-  </para>
-
-  <para>This section describes the process of setting up, editing and working with &app; Accounts. In &app;
-    an Account is used as the basic tool to organize the recording of where money comes from and
-    goes to. &app; also extends the concept of real world accounts such as a bank account or loan
-    account to grouping income and expense accounts. This allows you to quickly see where you spent
-    your money and what your major income and expenses are. &app; sets Account Types (as described
-    in the next section) to help in organizing and grouping accounts. Account Types can be used to
-    create a Chart of Accounts.
+  <para>In diesem Abschnitt wird die Vorgehensweise für die Anlage von Konten in &app; beschrieben. Ein
+    Konto dient in &app; als grundlegendes Mittel, um die Aufzeichnung, von wo nach wo Geldflüsse
+    stattfinden, zu organisieren. &app; erweitert dabei den allgemein geläufigen Kontobegriff (z.B.
+    Bankkonto, Kreditkonto) auf gruppierbare Ertrags- und Aufwandskonten. Auf diese Weise können
+    Sie leicht feststellen, wohin Ihr Geld fließt und was Ihre größten Einkünfte und
+    Aufwendungen sind. &app; definiert die im nächsten Abschnitt beschriebenen Kontoarten, um die
+    Systematisierung und Gruppierung der Konten zu unterstützen. Mittels dieser Kontoarten ist es
+    möglich, einen Kontenplan (Kontenhierarchie) zu erstellen.
   </para>
 
   <sect1 id="acct-types">
-    <title>Types of &app; Accounts</title>
+    <title>Arten von &app; Konten</title>
 
-    <para>&app; supports a number of different account types. It is recommended to choose an appropriate
-      account type based on the list of account types described below.
+    <para>&app; unterstützt eine Anzahl verschiedener Kontoarten. Es wird empfohlen, dass Sie aus der
+      folgenden Liste der Kontoarten jeweils die passende Kontoart auswählen.
     </para>
 
     <warning>
-      <para>The Accounts Payable and Accounts Receivable types are used internally by &app;&rsquo;s business
-        features. Transactions involving these accounts should not be added, changed or deleted in
-        any way other than by using
-        <itemizedlist>
+      <para>Die Kontenarten Verbindlichkeiten und Forderungen werden zur Verwaltung offener Rechnungen, auch
+        <quote> offfene Posten</quote> genannt, verwendet. Buchungen, die diese Konten betreffen,
+        sollten ausschließlich durch Verwendung von
+        <itemizedlist spacing="compact">
           <listitem>
-            <para>post/unpost bill/invoice/voucher or
+            <para>einbuchen/ausbuchen von Lieferantenrechnung/Rechnung/Auslagenerstattung oder
             </para>
           </listitem>
 
           <listitem>
-            <para>process payment
+            <para>verarbeiten von Zahlung
             </para>
           </listitem>
         </itemizedlist>
+        hinzugefügt, geändert oder gelöscht werden.
       </para>
     </warning>
 
-    <table frame="topbot" id="TypeAccounts">
-      <title>Types of &app; Accounts.</title>
+    <tip>
+      <para>Bei der Erstellung neuer Konten sind die verfügbaren Möglichkeit für die Kontoart eingeschränkt,
+        je nachdem, welche Kontoart das übergeordnete Konto (Hauptkonto) hat.
+      </para>
+    </tip>
 
-      <tgroup cols="2">
+    <table frame="topbot" id="TypeAccounts">
+      <title>Arten von &app; Konten.</title>
+<!-- FIXME source: insert third column -->
+      <tgroup cols="3">
+        <colspec colname="c1"></colspec>
+
+        <colspec colname="c2"></colspec>
+
+        <colspec colname="c3"></colspec>
+
         <thead>
           <row>
             <entry>
-              <para>Account Type
+              <para>Kontoart
               </para>
             </entry>
 
             <entry>
-              <para>Description
+              <para>Beschreibung
+              </para>
+            </entry>
+
+            <entry>
+              <para>übergeordnetes Konto (Hauptkonto)
               </para>
             </entry>
           </row>
@@ -79,181 +94,216 @@
 
         <tbody>
           <row>
-            <entry>
-              <para>Accounts Payable
+            <entry namest="c1">
+              <para>Offene Verbindlichkeiten
               </para>
             </entry>
 
-            <entry>
-              <para>Accounts Payable are used by businesses to record amounts that must be paid. Example: The business
-                has bought something, but the business has not paid the bill until later.
+            <entry namest="c2">
+              <para>Verbindlichkeitskonten (Kreditoren) erfassen Rechnungen, die ein Unternehmen erhalten hat, aber
+                möglicherweise erst später bezahlen wird.
               </para>
-
-              <note>
-                <para>Previous versions of this help defined A/P and A/R the other way round.
-                </para>
-              </note>
-            </entry>
-          </row>
-
-          <row>
-            <entry>
-              <para>Accounts Receivable
-              </para>
+<!-- FIXME source: use footnote instead of note -->
+<!-- <footnote><para>Previous versions of this help defined A/P and A/R the other way round.</para></footnote> -->
             </entry>
 
-            <entry>
-              <para>Accounts Receivable records amounts for which money has not yet been received. Example: A business
-                has sold something and issued a bill, but the client has not payed until later.
-              </para>
-
-              <note>
-                <para>Previous versions of this help defined A/P and A/R the other way round.
-                </para>
-              </note>
-            </entry>
-          </row>
-
-          <row>
-            <entry>
-              <para>Asset
-              </para>
-            </entry>
-
-            <entry>
-              <para>Asset accounts are used for tracking things that are of value and can be used or sold to pay debts.
-                (Normally a placeholder account)
+            <entry namest="c3" morerows="6">
+              <para>alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten
               </para>
             </entry>
           </row>
 
           <row>
+            <entry namest="c1">
+              <para>Offene Forderungen
+              </para>
+            </entry>
+
             <entry>
+              <para>Forderungskonten (Debitoren) werden von einem Unternehmen verwendet, um Verkaufsvorgänge zu
+                erfassen, für die Sie nicht sofort eine Zahlung erhalten haben.
+              </para>
+<!-- FIXME source: use footnote instead of note -->
+<!-- <footnote>P<para>revious versions of this help defined A/P and A/R the other way round.</para></footnote> -->
+            </entry>
+          </row>
+
+          <row>
+            <entry namest="c1">
+              <para>Aktiva
+              </para>
+            </entry>
+
+            <entry namest="c2">
+              <para>Aktivkonten dienen zur Erfassung von Gegenständen, die einen Wert haben, oder anderem Vermögen und
+                stellen die Vermögenswerte eines Unternehmens auf der linken Seite der Bilanz dar.
+              </para>
+            </entry>
+          </row>
+
+          <row>
+            <entry namest="c1">
               <para>Bank
               </para>
             </entry>
 
-            <entry>
-              <para>The Bank account type denotes savings or checking accounts held at a bank or other financial
-                institution. Some of these accounts may bear interest. This is also the appropriate
-                account type for check (debit) cards, which directly withdraw payments from a
-                checking account.
+            <entry namest="c2">
+              <para>Die Kontoart Bank bezeichnet Spar- oder Girokonten die bei einer Bank oder einem anderen
+                Finanzinstitut geführt werden. Einige dieser Konten können Zinsen tragen. Diese
+                Kontoart eignet sich auch für Debit- und andere Guthaben-Karten wie z.B.
+                Bonus-Meilen, mit denen Zahlungen direkt einem Girokonto belastet werden.
+                <footnote>
+                  <para>Für viele Konten besteht die Möglichkeit, per Online-Banking Aufträge an das Geldinstitute zu
+                    senden sowie Buchungen abzurufen und zu importieren.
+                  </para>
+                </footnote>
               </para>
             </entry>
           </row>
 
           <row>
-            <entry>
-              <para>Cash
+            <entry namest="c1">
+              <para>Bargeld
               </para>
             </entry>
 
-            <entry>
-              <para>The Cash account type is used to denote the cash that you store in your wallet, shoe box, piggyback,
-                or mattress.
-              </para>
-            </entry>
-          </row>
-
-          <row>
-            <entry>
-              <para>Credit Card
-              </para>
-            </entry>
-
-            <entry>
-              <para>The Credit Card account type is used to denote credit card accounts, both for cards that allow
-                floating lines of credit (e.g. VISA, MasterCard, or Discover) and with cards that do
-                not permit continuing balances (e.g. American Express)
+            <entry namest="c2">
+              <para>Die Kontoart Bargeld bezeichnet das Bargeld, welches Sie z.B. in der Brieftasche, einem Schuhkarton,
+                einer Sparbüchse oder unter Ihrer Matraze aufbewahren. Hier kann auch das Bargeld
+                in der Registrierkasse erfasst werden.
               </para>
             </entry>
           </row>
 
           <row>
-            <entry>
-              <para>Currency
+            <entry namest="c1">
+              <para>Kreditkarte
               </para>
             </entry>
 
-            <entry>
-              <para>Currency Accounts were used for trading currencies, but have been replaced by the Currency Transfer
-                pane on the Transfer Funds Window (<xref linkend="trans-win-enter"></xref>).
-              </para>
-            </entry>
-          </row>
-
-          <row>
-            <entry>
-              <para>Equity
-              </para>
-            </entry>
-
-            <entry>
-              <para>Equity accounts are used to store the opening balances when you first start using &app; or start a
-                new accounting period.
+            <entry namest="c2">
+              <para>Die Kontoart Kreditkarte kommt für die Konten zu zum Einsatz die, im Gegensatz zu normalen
+                Bankkonten, häufig im Minus sind. Diese Kontoart kann sowohl für Kreditkarten die
+                eine gleitende Kreditlinie erlauben (z. B. VISA, oder MasterCard) als auch bei
+                Karten, die keine laufenden Guthaben zulassen (z. B. American Express), verwendet
+                werden.
               </para>
             </entry>
           </row>
 
           <row>
-            <entry>
-              <para>Expense
+            <entry namest="c1">
+              <para>Devisenhandel
               </para>
             </entry>
 
-            <entry>
-              <para>Any expense such as food, clothing, taxes, etc. This type is called a category in Quicken.
-              </para>
-            </entry>
-          </row>
-
-          <row>
-            <entry>
-              <para>Income
-              </para>
-            </entry>
-
-            <entry>
-              <para>Any income received from sources such as salary, interest, dividends, etc. This type is called a
-                category in Quicken.
+            <entry namest="c2">
+              <para>Währungskonten wurden für den Handel mit Devisen verwendet, sind aber durch den Bereich
+                "Währungstransfer" im Fenster "Geldtransfer" ersetzt worden
+                (<xref linkend="trans-win-enter"></xref>).
               </para>
             </entry>
           </row>
 
           <row>
-            <entry>
-              <para>Liability
+            <entry namest="c1">
+              <para>Eigenkapital
+              </para>
+            </entry>
+<!-- FIXME source: insert link and <menuchoice> -->
+            <entry namest="c2">
+              <para>Eigenkapitalkonten werden dazu verwendet, die Eröffnungsbestände beim ersten Start von &app; sowie
+                das Ergebnis eines <xref linkend="tool-close-book" /> (
+                <menuchoice>
+                  <guimenu><accel>W</accel>erkzeug</guimenu>
+                  <guimenuitem>Buch<accel>a</accel>bschluss</guimenuitem>
+                </menuchoice>
+                ) am Ende einer Buchungsperiode zu erfassen.
               </para>
             </entry>
 
-            <entry>
-              <para>Liability accounts are used for tracking debts or financial obligations. (Normally a placeholder
-                account)
+            <entry namest="c3">
+              <para>nur Eigenkapitalkonten
               </para>
             </entry>
           </row>
 
           <row>
-            <entry>
-              <para>Mutual Fund
+            <entry namest="c1">
+              <para>Aufwand
+              </para>
+            </entry>
+<!-- FIXME source: insert footnote -->
+            <entry namest="c2">
+              <para>Ausgaben jeder Art, z.B. Lebensmittel, Kleidung, Steuern usw.
+                <footnote id="fn-quick-kat">
+                  <para>Wird in <quote>Quicken</quote> bzw. <quote>Lexware FinanzManager</quote> als
+                    <quote>Kategorie</quote> bezeichnet.
+                  </para>
+                </footnote>
               </para>
             </entry>
 
-            <entry>
-              <para>A professionally managed portfolio of stocks and bonds or other investments divided up into shares.
+            <entry namest="c3" morerows="1">
+              <para>nur Aufwands- und Ertragskonten
               </para>
             </entry>
           </row>
 
           <row>
-            <entry>
-              <para>Stock
+            <entry namest="c1">
+              <para>Erträge
               </para>
             </entry>
 
-            <entry>
-              <para>A share of ownership in a corporation, which entitles its owner to all the risks and rewards that go
-                with it.
+            <entry namest="c2">
+              <para>Einnahmen jeder Art, die Sie z.B. durch Gehaltseinkünfte, Zinsen, Dividenden usw. haben.
+                <footnoteref linkend="fn-quick-kat" />
+<!-- footnoteref funktioniert nicht ?! -->
+              </para>
+            </entry>
+          </row>
+
+          <row>
+            <entry namest="c1">
+              <para>Fremdkapital
+              </para>
+            </entry>
+
+            <entry namest="c2">
+              <para>Fremdkapital bezeichnet Schulden oder Verbindlichkeiten und stellen das auf der rechten Bilanzseite
+                verzeichnete Eigen- und Fremdkapital eines Unternehmens dar.
+              </para>
+            </entry>
+
+            <entry namest="c3" morerows="2">
+              <para>alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten
+              </para>
+            </entry>
+          </row>
+
+          <row>
+            <entry namest="c1">
+              <para>Investmentfonds
+              </para>
+            </entry>
+
+            <entry namest="c2">
+              <para>Ein professionell verwaltetes Portfolio aus Aktien, Anleihen oder anderen Geldanlagen, die sich in
+                Anteile teilen lassen.
+              </para>
+            </entry>
+          </row>
+
+          <row>
+            <entry namest="c1">
+              <para>Aktienkonto
+              </para>
+            </entry>
+
+            <entry namest="c2">
+              <para>Aktien oder Anteile an einer Gesellschaft, die den Eigentümer an all ihren Gewinnen und Risiken
+                beteiligen.
               </para>
             </entry>
           </row>
@@ -261,650 +311,739 @@
       </tgroup>
     </table>
 
-    <para>The <emphasis role="bold">New Account Hierarchy Setup</emphasis> assistant described in the first
-      section of this help is a convenient way of setting up a set of accounts to use as a framework
-      of account types.
+    <para>Der Assistent <xref linkend="acct-create" /> bietet eine bequeme Methode, eine Anzahl von Konten zu
+      erstellen, welche ein Grundgerüst aus den verschiedenen Kontoarten bilden.
     </para>
-
-    <para>When new accounts are created the available choices of account types are grayed out according to
-      what type the parent account is. The following list contains the possible choices.
+<!-- 
+    <para>Bei der Erstellung neuer Konten sind die verfügbaren Möglichkeit für die Kontoart eingeschränkt,
+      je nachdem, welche Kontoart das übergeordnete Konto (Hauptkonto) hat. Nachfolgend sind die
+      einzelnen Auswahlmöglichkeiten dargestellt.
     </para>
-
-    <itemizedlist>
+ -->
+<!-- FIXME source: Adapt the order of the entries to the "new account" dialogue -->
+<!--     <itemizedlist spacing="compact">
       <listitem>
-        <para>Accounts Payable: All accounts except Equity, Expense and Income can be child accounts.
+        <para>Bank: Unterkonto können alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Accounts Receivable: All accounts except Equity, Expense and Income can be child accounts.
+        <para>Bargeld: Unterkonto können alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Asset: All accounts except Equity, Expense and Income can be child accounts.
+        <para>Aktiva: Unterkonto können alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Bank: All accounts except Equity, Expense and Income can be child accounts.
+        <para>Kreditkarte: Unterkonto können alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Cash: All accounts except Equity, Expense and Income can be child accounts.
+        <para>Fremdkapital: Unterkonto können alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Credit Card: All accounts except Equity, Expense and Income can be child accounts.
+        <para>Aktienkonto: Unterkonto können alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Currency: All accounts except Equity, Expense and Income can be child accounts.
+        <para>Investmentfonds: Unterkonto können alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten
+          sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Equity: Only Equity accounts can be child accounts.
+        <para>Ertrag: Unterkonto können nur Aufwands- und Ertragskonten sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Expense: Only Expense or Income accounts can be child accounts.
+        <para>Aufwand: Unterkonto können nur Aufwands- und Ertragskonten sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Income: Only Expense or Income accounts can be child accounts.
+        <para>Eigenkapital: Unterkonto können nur Eigenkapitalkonten sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Liability: All accounts except Equity, Expense and Income can be child accounts.
+        <para>Offene Forderungen: Unterkonto können alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten
+          sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Mutual Fund: All accounts except Equity, Expense and Income can be child accounts.
+        <para>Offene Verbindlichkeiten: Unterkonto können alle Konten außer Eigenkapital-, Aufwands- und
+          Ertragskonten sein.
         </para>
       </listitem>
 
       <listitem>
-        <para>Stock: All accounts except Equity, Expense and Income can be child accounts.
+        <para>Devisenhandel: Unterkonto können alle Konten außer Eigenkapital-, Aufwands- und Ertragskonten
+          sein.
         </para>
       </listitem>
     </itemizedlist>
+ -->
   </sect1>
 
   <sect1 id="chart-create">
-    <title>Creating a Chart of Accounts</title>
+    <title>Neue Kontenhierarchie erstellen</title>
 
-    <para>The Chart of Accounts is like a table of contents for your finances. The best way to conceptualize a
-      chart of accounts is as a tree. The main branches represent entire categories or groups, while
-      the leaves of the tree denote individual bank accounts or expense categories. When a summary
-      report is requested, typically only the main branches are shown in the report, rather than the
-      individual accounts. For example, a chart of accounts might look like the following:
+    <para>Der Kontenplan ist das – hierarchisch angeordnete – Inhaltsverzeichnis ihrer Konten. Am besten
+      denkt man sich einen Kontenplan als Baum: Die Äste stehen für ganze Kategorien oder Gruppen,
+      während die Blätter einzelne Bankkonten oder Aufwandsarten bezeichnen. Wenn Sie einen
+      zusammenfassenden Bericht aufrufen, werden typischerweise nur die Hauptäste im Bericht
+      dargestellt und nicht die Einzelkonten. Eine Kontenhierarchie könnte beispielsweise wie folgt
+      aussehen:
     </para>
 
     <xi:include href="Help_chtacctseg.xml" />
 
-    <note id="accts-code">
-      <title>Accounts codes</title>
-
-      <para>Note that accounts not only have names; they may have codes, to order the accounts. When a report is
-        generated, the sort order is determined by the numbering. It&rsquo;s customary to have the
-        leaf accounts end in non-zero digits, while parent nodes have increasing numbers of zeros.
+    <tip id="accts-code">
+      <title>Kontennummer</title>
+<!-- FIXME source: Since it is difficult to visualise factual relationships with alphabetical sorting by account name, it is recommended to use and sort by alphanumeric account numbers. -->
+      <para>Da man mit der alphabetische Sortierung nach Kontonamen sachliche Zusammenhänge nur schwer
+        visualisieren kann, empfiehlt sich die Verwendung und Sortierung von alphanumerischen
+        Kontonummern. Wenn Sie einen Bericht erstellen, wird die Sortierreihenfolge nach der Nummer
+        bestimmt. Es ist üblich, dass die Nummern der <quote>Blatt</quote>-Konten nicht mit Null
+        enden, während die Nummern der höheren Hierarchieebenen jeweils mehr Nullen am Ende haben.
       </para>
-    </note>
+    </tip>
 
     <warning>
-      <para>&app; does not prevent duplicate numbering, although we would encourage you to avoid this. Account
-        codes are treated as numbers in base-36, thus, if you run out of numbers, you can use the
-        letters, a through z.
+      <para>&app; verbietet nicht die doppelte Vergabe von Nummern, jedoch wird empfohlen, dass Sie dies
+        vermeiden. Kontonummern werden als Zahlen im 36er Basissystem behandelt, d.h., Sie können
+        neben Ziffern auch die Buchstaben <quote>a</quote> bis <quote>z</quote> verwenden.
       </para>
     </warning>
+<!-- FIXME Is this section still valid? -->
+<!--        <para>Nachfolgend ist ein Beispiel für eine Kontenübersicht dargestellt. Jedes Konto besitzt eine vorgegebene
+            Kontoart. Dieses Beispiel kombiniert einige typische geschäftliche und private Konten.</para>
+            
+        <xi:include href="Help_chartofaccts.xml" /> -->
   </sect1>
 
   <sect1 id="chart-edit">
-    <title>Editing a Chart of Accounts</title>
+    <title>Kontenhierarchie bearbeiten</title>
 
-    <para>Editing the Chart of Accounts is done within the <guilabel>Parent Account</guilabel> pane of the
-      <guilabel>Edit Account</guilabel> dialog. It is possible to move an account to any part of the
-      Chart of Accounts. It is recommended to keep accounts generally under the related types of
-      accounts as described in <xref linkend="acct-types" />. This helps to preserve the Chart of
-      Accounts structure.
+    <para>Die Kontenhierarchie können Sie mithilfe des Eingabebereichs <guilabel>Hauptkonto</guilabel> im
+      Dialogfenster <guilabel>Konto bearbeiten</guilabel> verändern. Dort ist es möglich, ein
+      Konto an eine beliebige Stelle in der Kontenübersicht zu bewegen. Es wird empfohlen, Konten
+      generell als Unterkonten eines Hauptkontos mit verwandter Kontoart zu führen. Einzelheiten
+      hierzu sind im Abschnitt <xref linkend="acct-types" /> beschrieben. Dies dient dazu, die
+      Struktur der Kontenübersicht konsistent zu halten.
     </para>
 
-    <para>To move the selected account to a different parent account just select the account in the
-      <guilabel>Parent Account</guilabel> pane. If <guilabel>New top level account</guilabel> is
-      selected then the account will be moved to the top level.
+    <para>Um das ausgewählte Konto unter ein bestimmtes Hauptkonto zu verschieben, wählen Sie das
+      gewünschte Hauptkonto im Eingabebereich <guilabel>Hauptkonto</guilabel> aus. Wenn Sie
+      <guilabel>Neues Konto der obersten Ebene</guilabel> auswählen, so wird das Konto auf die
+      oberste Ebene der Kontenübersicht verschoben.
     </para>
   </sect1>
 
   <sect1 id="acct-create">
-    <title>Creating a New Account</title>
+    <title>Neues Konto erstellen</title>
 
-    <para>To create a new account go to
+    <para>Um ein neues Konto anzulegen wählen Sie in der Kontenübersicht in dem Menü
       <menuchoice>
-        <guimenu>Actions</guimenu><guimenuitem>New Account...</guimenuitem>
+        <guimenu>Aktionen</guimenu><guimenuitem>Neues Konto...</guimenuitem>
       </menuchoice>
-      or click the <guibutton>New</guibutton> <emphasis>Toolbar</emphasis> icon in the Account Tree
-      Window. The <guilabel>New Account</guilabel> dialog will be opened.
+      oder klicken auf die Schaltfläche <guibutton>Neu</guibutton> in der
+      <emphasis>Werkzeugleiste</emphasis> und der Dialog <guilabel>Neues Konto</guilabel> wird
+      geöffnet.
     </para>
 
-    <para>The <guilabel>New Account</guilabel> properties dialog consists of two tabs, the
-      <guilabel>General</guilabel> tab and the <guilabel>Opening Balance</guilabel> tab.
+    <para>Das Dialogfenster <guilabel>Neues Konto</guilabel> besitzt zwei Karteiseiten:
+      <guilabel>Allgemein</guilabel> und <guilabel>Anfangsbestand</guilabel>.
     </para>
 
-    <para>Creating a New Account involves planning in advance several details that are used in the
-      <guilabel>New Account</guilabel> dialog.
+    <para>Um ein neues Konto zu erstellen, sollten Sie sich im voraus einige Einzelheiten überlegen, die im
+      Dialogfenster <guilabel>Neues Konto</guilabel> benötigt werden.
     </para>
 
-    <itemizedlist>
+    <itemizedlist spacing="compact">
       <listitem>
-        <para>What type of account is needed.
+        <para>Welche Kontoart wird benötigt?
         </para>
       </listitem>
 
       <listitem>
-        <para>Where it fits in the structure of the Chart of Accounts.
+        <para>Wo lässt sich das Konto in der Kontenhierarchie einordnen?
         </para>
       </listitem>
 
       <listitem>
-        <para>If there is an Opening Balance.
+        <para>Gibt es einen Anfangsbestand?
         </para>
       </listitem>
 
       <listitem>
-        <para>If there is a Commodity (security/currency) needed for the account.
+        <para>Soll das Konto Fremdwährungen oder Wertpapiere aufnehmen?
         </para>
       </listitem>
 
       <listitem>
-        <para>If online updating of the commodity price is needed.
+        <para>Wird eine Online-Aktualisierung des Währungs- oder Aktienkurses gewünscht?
         </para>
       </listitem>
     </itemizedlist>
 
-    <para>These details are described below.
+    <para>Im folgenden werden diese Einzelheiten beschrieben.
     </para>
 
     <sect2 id="gen-info">
-      <title>General Information Tab</title>
+      <title>Allgemeine Information</title>
 
-      <para>The <guilabel>General</guilabel> tab is used to access the basic information about the account. It
-        provides a way of connecting the account to stock information if it is one of the currency,
-        mutual fund or stock account types. It can also be flagged as a
-        <link linkend="accts-placeholder">Placeholder</link> account. It displays if it is flagged
-        as a <guilabel>Tax Related</guilabel> account (which is set through the
+      <para>Die Karteiseite <guilabel>Allgemein</guilabel> dient zur Pflege der grundlegenden Angaben zum Konto.
+        Hier steht auch die Möglichkeit zur Verfügung, das Konto mit einer Börsenkursquelle zu
+        verknüpfen falls es sich um ein Währungs-, Investmentfonds- oder Aktienkonto handelt.
+        Weiterhin kann es als ein <link linkend="accts-placeholder">Platzhalter</link>-Konto
+        markiert werden und zusätzlich wird angezeigt, wenn es als
+        <guilabel>Steuerrelevant</guilabel> gekennzeichnet ist (was in dem
         <menuchoice>
-          <guimenu>Edit</guimenu><guimenuitem>Tax Report Options</guimenuitem>
+          <guimenu>Bearbeiten</guimenu><guimenuitem>Optionen Steuerbericht</guimenuitem>
         </menuchoice>
-        dialog).
+        -Dialog erfolgt).
       </para>
 
-      <para>There are seven fields in the <guilabel>Identification</guilabel> section of this tab.
+      <para>Im oberen Abschnitt <guilabel>Identifizierung</guilabel> dieser Registerkarte stehen sieben
+        Eingabefelder zur Verfügung.
       </para>
 
-      <orderedlist>
+      <orderedlist spacing="compact">
         <listitem>
-          <para><guilabel>Account Name:</guilabel> The name for the account such as First Bank Checking.
+          <para><guilabel>Kontobezeichnung:</guilabel> Geben Sie einen Namen für das Konto ein, z.B. "Mein
+            Girokonto".
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Account Code:</guilabel> The optional number code as described in
-            <xref linkend="accts-code" />.
+          <para><guilabel>Kontonummer:</guilabel> Der optionale Nummernschlüssel wie in
+            <xref linkend="accts-code" /> beschrieben.
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Description:</guilabel> Optional description for the account.
+          <para><guilabel>Beschreibung:</guilabel> Eine zusätzliche Beschreibung des Kontos.
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Security/Currency:</guilabel>
+          <para><guilabel>Wertpapier/Währung:</guilabel>
           </para>
 
           <note>
-            <para>The <guilabel>Type</guilabel> field in the <guilabel>Select Security</guilabel> is determined by the
-              selection of <guilabel>Account Type</guilabel> panel in the <guilabel>New
-              Account</guilabel> screen.
+            <para>Der <guilabel>Typ</guilabel> im Feld des <guilabel>Wertpapier auswählen</guilabel>-Dialogs ist
+              abhängig von der Auswahl im <guilabel>Kontoart</guilabel>-Feld in der <guilabel>Neues
+              Konto</guilabel> Anzeige.
             </para>
           </note>
 
-          <itemizedlist>
+          <itemizedlist spacing="compact">
             <listitem>
-              <para>For accounts other than <emphasis>Stock</emphasis> or <emphasis>Mutual Fund</emphasis> this should
-                be the default currency, USD (US Dollar) or your local currency symbol. If this
-                account is for a foreign currency then use the <guibutton>Select...</guibutton>
-                button to choose a different currency from the currencies pull-down list.
+              <para>Für die meisten Konten wird hier die Standardwährung, d.h. Ihre Landeswährung, z.B. <quote>EUR
+                (Euro)</quote> angezeigt. Falls das Konto für eine Fremdwährung vorgesehen ist,
+                benutzen Sie die <guibutton>Auswählen...</guibutton> Schaltfläche und wählen im
+                folgenden Auswahldialog eine andere Währung.
               </para>
             </listitem>
 
             <listitem>
-              <para>For Accounts containing a <emphasis>Stock</emphasis> and <emphasis>Mutual Fund</emphasis>; first
-                select <guilabel>stock</guilabel> or <guilabel>mutual fund</guilabel> in the
-                <guilabel>Account Type</guilabel> panel, then the <guilabel>Parent
-                Account</guilabel>, then use the <guibutton>Select...</guibutton> button, to choose
-                the <guilabel>Type</guilabel> (usually the exchange the security is traded on) and
-                security from the <guilabel>Select Security</guilabel> window.
+              <para>Für Konten, die <emphasis>Wertpapiere</emphasis> enthalten, wählen Sie zunächst
+                <guilabel>Aktie</guilabel> oder <guilabel>Investmentfonds</guilabel> in dem Feld
+                <guilabel>Kontoart</guilabel> aus, dann das <guilabel>Hauptkonto</guilabel> und im
+                Anschluss benutzen Sie die Schaltfläche <guibutton>Auswählen...</guibutton>, um
+                den <guilabel>Typ</guilabel> auszuwählen (in der Regel den Börsenplatz an dem das
+                Wertpapier gehandelt wird) sowie das Wertpapier im <guilabel>Wertpapier
+                wählen</guilabel>-Dialog.
               </para>
 
-              <para>If the required security/fund is not on the list, and you have the correct <guilabel>Type</guilabel>
-                you will need to create the security/fund. To create a commodity for mutual fund and
-                stock accounts select the <guibutton>New...</guibutton> button in the
-                <guilabel>Select Security</guilabel> screen, to bring up the <guilabel>New
-                Security:</guilabel> screen. The options are described in detail in the Security
-                Editor <xref linkend="tool-security-edit"></xref> section. Fill in a
-                <guilabel>name</guilabel>, <guilabel>symbol</guilabel> and <guilabel>type</guilabel>
-                and <guibutton>Close</guibutton> to create the security. After the security is
-                created select the <guilabel>Type:</guilabel> (usually the exchange the security is
-                traded on) and the name in the <guilabel>Currency/security:</guilabel> drop down
-                list and <guibutton>Close</guibutton> the screen.
+              <para>Wenn das gewünschte Wertpapier nicht in der Liste enthalten ist und Sie den richtigen
+                <guilabel>Typ</guilabel> haben, müssen Sie das Wertpapier anlegen. Um eine
+                Wertpapier für Investmentfonds- und Aktienkonten anzulegen, betätigen Sie die
+                Schaltfläche <guibutton>Neu...</guibutton> in dem Dialog <guilabel>Wertpapier
+                auswählen</guilabel>, um das Fenster <guilabel>Neues Wertpapier</guilabel>
+                aufzurufen. Die Möglichkeiten werden detailiert im
+                <xref linkend="tool-security-edit"></xref> beschrieben. Geben Sie einen
+                <guilabel>Namen</guilabel>, <guilabel>Symbol</guilabel> und <guilabel>Typ</guilabel>
+                ein und betätigen Sie <guibutton>OK</guibutton>, um das Wertpapier zu erstellen.
+                Nachdem das Wertpapier angelegt wurde, wählen Sie den <guilabel>Typ</guilabel>
+                (normalerweise den Börsenplatz, an der das Wertpapier gehandelt wird) und den Namen
+                in der Dropdown-Liste <guilabel>Währung/Wertpapier</guilabel> und
+                <guibutton>Schließen</guibutton> den Dialog.
               </para>
             </listitem>
           </itemizedlist>
         </listitem>
 
         <listitem>
-          <para><guilabel>Smallest Fraction:</guilabel> The smallest fraction that will be tracked.
+          <para><guilabel>Kleinste Stückelung:</guilabel> Die kleinste Teilung, die erfasst werden kann.
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Account Color:</guilabel> The color to assign to the account&rsquo;s register tab. Click
-            on the color button to open the <guilabel>Pick a Color</guilabel> screen. To reset the
-            account color click the <guibutton>Default</guibutton> button.
+          <para><guilabel>Kontofarbe:</guilabel> Die Farbe, die der Registerkarte des Kontos zugewiesen werden soll.
+            Klicken Sie auf die Schaltfläche <guibutton>Farbe</guibutton>, um die Anzeige
+            <guilabel>Farbe auswählen</guilabel> zu öffnen. Wollen Sie die Farbeinstellung für
+            das Kontos zurückzusetzen betätigen Sie die Schaltfläche
+            <guibutton>Voreinstellung</guibutton>.
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Notes:</guilabel> This is a free form text box that can be used for any additional notes
-            about the account.
+          <para><guilabel>Bemerkung:</guilabel> Dies ist ein Freitextfeld, das für zusätzliche Notizen über das
+            Konto verwendet werden kann.
           </para>
         </listitem>
       </orderedlist>
-
-      <para>Below the panes are 3 check-boxes: one to show if the account is <guilabel>Tax Related</guilabel>,
-        one to mark the account as a <guilabel>Placeholder</guilabel>, and one to mark an account
-        <guilabel>Hidden</guilabel>.
+<!-- FIXME source: The dialogue contains two further items "automatische Zinsbuchung" and "Anfangsbestand" -->
+      <para>Unterhalb des Bereichs befinden sich 5 Kontrollkästchen: eines, um anzuzeigen, ob das Konto
+        <guilabel>steuerrelevant</guilabel> ist, eines um das Konto als
+        <guilabel>versteckt</guilabel> zu kennzeichnen. Ein weiteres Kontrollkästchen wenn das
+        Konto als <guilabel>Platzhalter</guilabel> verwendet wird, zusätzlich eine Auswahl, ob für
+        das Konto <guilabel>automatische Zinsbuchungen</guilabel> erfolgen sollen und letztendlich
+        eines, mit der das Konto für die Aufnahme eines <guilabel>Anfangsbestand</guilabel> genutzt
+        wird.
       </para>
 
-      <para>The <guilabel>Tax Related</guilabel> check-box means that an account has been flagged to be included
-        in the Tax Schedule Report. This flag is only displayed on the <guilabel>Edit
-        Account</guilabel> dialog and is set in the <guilabel>Income Tax Information</guilabel>
-        dialog (
+      <para>Das <guilabel>Steuerrelevant</guilabel> Kontrollkästchen bedeutet, dass das Konto ausgewählt
+        wurde, um in einem Steuer-Bericht berücksichtigt zu werden. Dieses Kennzeichen wird hier
+        nur angezeigt und ist im Dialog <guilabel>Optionen Steuerbericht</guilabel> einzustellen (
         <menuchoice>
-          <guimenu>Edit</guimenu><guimenuitem>Tax Report Options</guimenuitem>
+          <guimenu>Bearbeiten</guimenu><guimenuitem>Optionen Steuerbericht</guimenuitem>
         </menuchoice>
-        ). For related reports see the examples like <guilabel>Tax Schedule Report and TXF
-        Export</guilabel> in (<xref linkend="report-regional"/>).
+        ). Der dazu gehörige Bericht ist im Menü
+        <menuchoice>
+          <guimenu>Berichte</guimenu><guimenuitem>Steuer-Bericht &amp; Elster-Export</guimenuitem>
+        </menuchoice>
+        zu finden. Siehe auch <xref linkend="report-regional"/>.
       </para>
 
-      <para>The <guilabel>Placeholder</guilabel> check-box sets an account to read-only status and prevents the
-        addition of transaction data to the account.
+      <para>Das Kontrollkästchen <guilabel>Platzhalter</guilabel> setzt für ein Konto den Status
+        <quote>schreibgeschützt</quote> und verhindert das Hinzufügen von Geschäftsvorgängen zu
+        diesem Konto. So kann zum Einen das Konto zur Gruppierung weiterer untergeorenter Konten
+        genutzt werden und zum Anderen um versehentliche Änderungen an einem
+        <quote>stillgelegten</quote> Konto zu verhindern. Gewöhnlich sollte das Konto dann einen
+        Saldo von 0 aufweisen.
       </para>
+
+      <tip>
+        <para>Enthält ein Konto weitere Unterkonten, dann empfiehlt es sich, dieses als
+          <guilabel>Platzhalter</guilabel> zu kennzeichnen.
+        </para>
+      </tip>
 
       <note id="accts-placeholder">
-        <para>Setting an account to <guilabel>Placeholder</guilabel> will also hide that account in the pop-up
-          account list in a register. Sub-accounts to the placeholder account will still display in
-          the pop-up, however.
+        <para>Wenn Sie ein Konto als <guilabel>Platzhalter</guilabel> deklarieren, wird dieses Konto auch in der
+          Popup Kontoliste eines Registers ausgeblendet. Unterkonten des Platzhalterkontos werden
+          jedoch weiterhin im Popup-Fenster angezeigt.
         </para>
       </note>
 
-      <para>The <guilabel>Hidden</guilabel> check box hides an account (and any sub-accounts) in the account
-        tree. To reset this option, you will first need to open the
+      <para>Das Kontrollkästchen <guilabel>Versteckt</guilabel> blendet ein Konto (und alle Unterkonten) in der
+        Kontenübersicht aus. Um diese Option zurückzusetzen, müssen Sie zunächst den
         <menuchoice>
-          <guimenu>View</guimenu><guimenuitem>Filter By...</guimenuitem>
+          <guimenu>Ansicht</guimenu><guimenuitem>Filtern nach...</guimenuitem>
         </menuchoice>
-        dialog for the account tree and check the <guilabel>Show hidden accounts</guilabel> option.
-        Doing so will allow you to select the account and reopen this dialog.
+        Dialog für den Kontenbaum öffnen und die Option <guilabel>Versteckte Konten
+        anzeigen</guilabel> aktivieren. Auf diese Weise können Sie das Konto auswählen und diesen
+        Dialog erneut öffnen.
       </para>
 
       <note id="accts-hidden">
-        <para>Hidden accounts still appear in the pop-up account list in a register. To remove an account from
-          this pop-up account list as well, check the <guilabel>Placeholder</guilabel> check box.
+        <para>Versteckte Konten erscheinen weiterhin in der Popup-Kontoliste eines Registers. Um ein Konto auch
+          aus dieser Popup-Kontoliste zu entfernen, aktivieren Sie das Kontrollkästchen
+          <guilabel>Platzhalter</guilabel>.
         </para>
       </note>
-
-      <para>Below these checkboxes is a pane that contains a list of <guilabel>Account Types</guilabel>. Select
-        a type from the descriptions in <xref linkend="acct-types" />.
+<!-- FIXME source: new item -->
+      <para>Durch Auswahl des Kontrollkästchens <guilabel>Automatische Zinsbuchungen</guilabel> wird angegeben,
+        dass vor dem Abgleichen eines Kontos mit Haben- oder Sollzinsen nachgefragt wird, ob eine
+        Buchung für die Zinszahlung erstellt wird. Zurzeit ist das nur für Konten der Art
+        <emphasis>Aktiva</emphasis>, <emphasis>Bank</emphasis>,
+        <emphasis>Investmentfonds</emphasis>, <emphasis>offene Forderungen</emphasis>,
+        <emphasis>Fremdkapital</emphasis>, <emphasis>offene Verbindlichkeiten</emphasis> und
+        <emphasis>Kreditkarte</emphasis> möglich.
+      </para>
+<!-- FIXME source: new item -->
+      <para>Wenn dieses Konto die Anfangsbestand-Buchungen enthalten soll, dann ist das Kontrollkästchen
+        <guilabel>Anfangsbestand</guilabel> zu aktivieren. Pro Aktie/Währung kann nur ein Konto die
+        Anfangsbestand-Buchungen enthalten. Nur Konten vom Typ <emphasis>Eigenkapital</emphasis>
+        können die Anfangsbestand-Buchungen enthalten.
       </para>
 
-      <para>The next pane contains an account tree to choose a <guilabel>Parent Account</guilabel>. To create a
-        new account tree select <guilabel>New top level account</guilabel>.
+      <para>Unterhalb dieser Kontrollkästchen befindet sich im linken Bereich, eine Auflistung von
+        <guilabel>Kontoarten</guilabel>. Verwenden Sie eine Kontoart entsprechend den Beschreibungen
+        in <xref linkend="acct-types" />.
+      </para>
+
+      <para>Der rechte Bereich enthält die Auswahl des <guilabel>Hauptkontos</guilabel>. Zum Erstellen eines
+        neuen Kontenbaums, wählen Sie <guilabel>Neues Konto der obersten Ebene</guilabel>.
         <note>
-          <para>The available choices in the <guilabel>Account Type</guilabel> pane depends on the selected account
-            in the <guilabel>Parent Account</guilabel> pane. For example if the <guilabel>Parent
-            Account</guilabel> is <emphasis>Assets</emphasis> you will see only
-            <emphasis>Equity</emphasis> in the <guilabel>Account Type</guilabel> pane. This is to
-            help maintain a proper account structure for the Chart of Accounts.
+          <para>Die verfügbaren Auswahlmöglichkeiten im Bereich <guilabel>Kontoart</guilabel> hängen von dem
+            ausgewählten Konto im Bereich <guilabel>Hauptkonto</guilabel> ab. Wenn zum Beispiel das
+            <guilabel>Hauptkonto</guilabel> vom Typ <emphasis>Aktiva</emphasis> ist, können die
+            Unterkonten im Bereich <guilabel>Kontotyp</guilabel> nicht
+            <emphasis>Eigenkapital</emphasis>, <emphasis>Aufwand</emphasis> oder
+            <emphasis>Ertrag</emphasis> sein. Dies dient dazu, die Struktur der Kontenübersicht
+            konsistent zu halten.
           </para>
         </note>
       </para>
 
       <sect3 id="Online-price-setup">
-        <title>Steps to enable Online price updating</title>
+        <title>Vorgehensweise zur Aktivierung der Online-Preisaktualisierung</title>
 
-        <orderedlist>
+        <orderedlist spacing="compact">
           <listitem>
-            <para>&app; relies on an external tool to retrieve online quotes. This tool is a Perl module named
-              <quote>Finance::Quote</quote> and has to be installed on your computer independently
-              from &app;. The first step in enabling online price updating should thus be to ensure
-              <application>Finance::Quote</application> is properly installed.
+            <para>&app; bedient sich eines externen Tools zum Abrufen von Online-Kursen. Dieses Tool ist ein
+              Perl-Modul namens <quote>Finance::Quote</quote> und muss unabhängig von &app; auf
+              Ihrem Computer installiert werden. Als erster Schritt zur Benutzung der Online-
+              Preisaktualisierung sollte daher sein, sicherzustellen, dass
+              <application>Finance::Quote</application> korrekt installiert ist.
             </para>
 
-            <para>To determine if the Perl module <application>Finance::Quote</application> is already installed on
-              your system, type <quote>perldoc Finance::Quote</quote> in a terminal window and check
-              to see if there is any documentation available. If you see the documentation, then the
-              module is installed, if you do not see the documentation, then it has not been
-              installed.
+            <para>Um festzustellen, ob das Perl-Modul <application>Finance::Quote</application> bereits auf Ihrem
+              System installiert ist, geben Sie <code>perldoc Finance::Quote</code> in ein
+              Terminalfenster ein, um zu prüfen, ob eine Dokumentation vorhanden ist. Wenn die
+              Dokumentation angezeigt wird, dann ist das Modul installiert, ansonsten nicht.
             </para>
 
-            <para>Installing <application>Finance::Quote</application> differs from one operating system to another.
-              For the various supported systems, you can follow these guidelines:
+            <para>Die Installation von <application>Finance::Quote</application> unterscheidet sich von einem
+              Betriebssystem zum anderen. Für die verschiedenen unterstützten Systeme, können Sie
+              die folgenden Anweisungen befolgen:
             </para>
 
-            <itemizedlist>
+            <itemizedlist spacing="compact">
               <listitem>
-                <para><systemitem class="osname">Linux</systemitem>: Most linux distributions (like Fedora, openSuse,
-                  Mandriva, Ubuntu, and so on) have a package in their software repositories for the
-                  <application>Finance::Quote</application> perl module. So in most cases, you can
-                  simply use your preferred package manager (yum, apt, rpm, synaptics, yast,...) to
-                  install the module. The name of the package may vary from one distribution to
-                  another. It&rsquo;s often called something like <quote>perl-Finance-Quote</quote>.
+                <para>&linux;: Die meisten Linux-Distributionen (wie Fedora, openSuse, Mandriva, Ubuntu, und so weiter)
+                  haben in ihren Software- Repositories ein Paket für das Perl-Modul
+                  <application>Finance::Quote</application>. In den meisten Fällen können Sie also
+                  einfach Ihren bevorzugten Paketmanager verwenden (yum, apt, rpm, synaptics,
+                  yast,...) um das Modul zu installieren. Der Name des Pakets kann von einer
+                  Distribution zur anderen variieren. Es heißt oft in etwa wie
+                  <quote>perl-Finance-Quote</quote>.
                 </para>
               </listitem>
 
               <listitem>
-                <para><systemitem class="osname">Windows</systemitem>: <application>Finance::Quote</application> on
-                  Windows requires perl to be installed already. If you haven&rsquo;t done so, you
-                  should first install ActivePerl, or more recently, Strawberry Perl.
+                <para>&win;: <application>Finance::Quote</application> unter Windows erfordert, dass Perl bereits
+                  installiert ist. Wenn das nicht bereits erfolgt ist, sollten Sie zunächst
+                  ActivePerl, oder seit neuestem, Strawberry Perl installieren.
                 </para>
 
-                <para>The Windows installer from the &app; home page comes with a small helper program to install
-                  <application>Finance::Quote</application> for you. You can find it in the Start
-                  Menu under the &app; group and is called <quote>Install Online Price
-                  Retrieval</quote>.
-                </para>
-              </listitem>
-
-              <listitem>
-                <para><systemitem class="osname">MacOS</systemitem>: If you have installed &app; from the installer found
-                  on the &app; home page, <application>Finance::Quote</application> is already
-                  installed for you.
+                <para>Das Windows-Installationsprogramm von der &app; Homepage wird mit einem kleinen Hilfsprogramm
+                  geliefert, das <application>Finance::Quote</application> für Sie installiert. Sie
+                  finden es im Startmenü in der &app; Gruppe und heißt <quote>Online-Preisabfrage
+                  installieren</quote>.
                 </para>
               </listitem>
 
               <listitem>
-                <para>If none of the above applies to your setup, you can try these alternative, more generic
-                  instructions:
+                <para>&mac;: Wenn Sie &app; mit Hilfe des Installationsprogramms auf der &app; Homepage installiert haben,
+                  ist <application>Finance::Quote</application> bereits installiert.
+                </para>
+              </listitem>
+
+              <listitem>
+                <para>Trifft keine der obigen Anleitungen auf Ihre Umgebung zu, so können Sie die folgende alternative,
+                  allgemeinere Anweisungen probiern:
                 </para>
 
-                <orderedlist>
+                <orderedlist spacing="compact">
                   <listitem>
-                    <para>Close any &app; applications you have running.
+                    <para>Schließen Sie alle &app; Anwendungen, die Sie gerade ausführen.
                     </para>
                   </listitem>
 
                   <listitem>
-                    <para>Locate the folder where &app; is installed by searching for <quote>gnc-fq-update</quote> (without
-                      the quotes).
+                    <para>Suchen Sie den Ordner, in dem &app; installiert ist, indem Sie nach <quote>gnc-fq-update</quote>
+                      (ohne die Anführungszeichen) suchen.
                     </para>
                   </listitem>
 
                   <listitem>
-                    <para>Change to that directory, open a root shell and run the command <command>gnc-fq-update</command>.
-                      This will launch a Perl CPAN update session that will go out onto the Internet
-                      and install the <application>Finance::Quote</application> module and its
-                      dependencies on your system. The gnc-fq-update program is interactive,
-                      however, with most systems you should be able to answer <quote>no</quote> to
-                      the first question: <quote>Are you ready for manual configuration?
-                      [yes]</quote> and the update will continue automatically from that point.
+                    <para>Wechseln Sie in dieses Verzeichnis, öffnen Sie eine Root-Shell und führen Sie den Befehl
+                      <code>gnc-fq-update</code> aus. Dadurch wird eine Perl CPAN-Update-Sitzung
+                      gestartet, die ins Internet geht und das Modul
+                      <application>Finance::Quote</application> und seine Abhängigkeiten auf Ihrem
+                      System installiert. Das Programm gnc-fq-update ist interaktiv, bei den meisten
+                      Systemen sollten Sie jedoch die erste Frage mit <quote>Nein</quote>
+                      beantworten können: <quote>Sind Sie bereit für die manuelle Konfiguration?
+                      [ja]</quote> und die Aktualisierung wird automatisch fortgesetzt von diesem
+                      Punkt an.
                     </para>
                   </listitem>
                 </orderedlist>
               </listitem>
             </itemizedlist>
 
-            <para>After installation is complete, you should run the <quote>gnc-fq-check</quote> test program, in the
-              same directory, distributed with &app; to test if
-              <application>Finance::Quote</application> is installed and working properly.
+            <para>Nachdem die Installation abgeschlossen ist, sollten Sie das Testprogramm <code>gnc-fq-check</code>,
+              das mit &app; verteilt wird, im gleichen Verzeichnis ausführen, um zu testen, ob
+              <application>Finance::Quote</application> installiert ist und richtig funktioniert.
             </para>
 
             <note>
-              <para>If you feel uncomfortable about performing any of these steps, please either email the &app;-user
-                mailing list (<email>gnucash-user@gnucash.org</email>) for help or come to the &app;
-                IRC channel on irc.gnome.org. More information is available on the &app; Wiki FAQ
-                for example <ulink url="&url-wiki-faq-quot;" /> You can also leave out this step and
-                manually update your stock prices.
+              <para>Wenn Sie sich bei der Durchführung eines dieser Schritte nicht sicher fühlen, senden Sie bitte
+                ihre Frage entweder per E-Mail an die deutschsprachige &app;-user Mailingliste
+                (<email>gnucash-de@gnucash.org</email>) oder besuchen Sie den &app; IRC-Kanal auf
+                irc.gnome.org. Weitere Informationen finden Sie z.B. in den &app; Wiki FAQ
+                <ulink url="&url-wiki-faq-quot;" />. Sie können diesen Schritt auch weglassen und
+                Ihre Aktienkurse manuell aktualisieren.
               </para>
             </note>
           </listitem>
 
           <listitem>
-            <para>Create the Account for the mutual fund or stock with it listed in the
-              <guilabel>Security/Currency</guilabel> field, as described above.
+            <para>Legen Sie das Konto für den Investmentfonds bzw. die Aktie an und stellen Sie sicher, dass das
+              gewünschte Papier im Feld <guilabel>Wertpapier/Währung</guilabel>, wie oben
+              beschrieben, aufgeführt wird.
             </para>
 
             <tip>
-              <para>When creating these accounts it is a good time to create income accounts to track dividends, capital
-                gains (long and short) and expense account(s) for tracking commissions and losses
-                (if you track losses as expenses).
+              <para>Das Einrichten dieser Konten ist ein guter Zeitpunkt, Einkommenskonten zur Verfolgung von
+                Dividenden, Kapitalgewinne, aus lang- und kurzfristigen Anlagen, sowie
+                Aufwandskonten zur Erfassung von Provisionen und Verlusten (Wenn Sie Verluste als
+                Ausgaben verbuchen) anzulegen.
               </para>
             </tip>
           </listitem>
 
           <listitem>
-            <para>Create the mutual fund or stock with either the <guilabel>Security Editor</guilabel> for existing
-              stock/funds or the <guilabel>New Security/Currency</guilabel> dialog for a new
-              stock/fund.
+            <para>Legen Sie das Wertpapier an. Verwenden Sie entweder den
+              <menuchoice>
+                <guimenu>Werkzeug</guimenu><guimenuitem>Wertpaper-Editor</guimenuitem>
+              </menuchoice>
+              für bestehende Aktien/Fonds oder, wie oben beschrieben, den <guilabel>Neue
+              Wertpapier/Währung</guilabel> Dialog für eine neue Aktie/Fonds.
             </para>
 
-            <para>Select <guilabel>Get Online Quotes</guilabel>, <guilabel>Type of Quote Source</guilabel> and
-              <guilabel>Timezone.</guilabel>
+            <para>Wählen Sie <guilabel>Börsenkurse online abrufen</guilabel>, die <guilabel>Art der
+              Kursabruf-Quelle</guilabel> und die <guilabel>Zeitzone</guilabel>.
             </para>
 
-            <para>Online currency quotes require that the check-box for Online quotes and the timezone be selected in
-              the Security screen and the Security Editor check-box for "get quote" box is checked
-              for those currencies that are to be downloaded.
+            <para>Online-Währungskurse erfordern, dass das Kontrollkästchen für die <guilabel>Art der
+              Kursabruf-Quelle</guilabel> und die <guilabel>Zeitzone</guilabel> im Dialog
+              <guilabel>Währung</guilabel> ausgewählt werden, nachdem das Kontrollkästchen für
+              <guilabel>Börsenkurse online abrufen</guilabel>" im Währungs-Editor für die
+              Währungen, die heruntergeladen werden sollen, aktivert ist.
             </para>
 
-            <itemizedlist>
+            <itemizedlist spacing="compact">
               <listitem>
-                <para><guilabel>Get Online Quotes</guilabel> This check-box is to enable this security/fund to have quotes
-                  downloaded from an online source.
+                <para><guilabel>Börsenkurse online abrufen</guilabel>: Diese Option steht nur dann zur Verfügung, wenn
+                  die Kontoart <emphasis>Devisenhandel</emphasis>,
+                  <emphasis>Investmentfonds</emphasis> oder <emphasis>Aktienkonto</emphasis> ist.
+                  Sie bewirkt, dass für dieses Konto die Kurse von einer Online-Datenquelle
+                  heruntergeladen werden können.
                 </para>
               </listitem>
 
               <listitem>
-                <para><guilabel>Type of Quote Source</guilabel> use the radio buttons to select the type of source for the
-                  Online quotes. <guilabel>Multiple:</guilabel> quote sources like
-                  <quote>Europe</quote> should be used if fail-over to multiple sites are desirable.
-                  <guilabel>Single:</guilabel> selections will only return information from the
-                  specified source.
+                <para><guilabel>Art der Kursabruf-Quelle</guilabel>: Verwenden Sie die Optionsfelder, um die Quelle für
+                  die Online-Kurse auszuwählen. <guilabel>Mehrere Kursquellen</guilabel>:
+                  Kursquellen wie <quote>Europa</quote> sollten verwendet werden, wenn eine
+                  Ausfallsicherung gegenüber mehreren Datenquellen erwünscht ist.
+                  <guilabel>Einzel</guilabel>: Diese Auswahl ruft die Daten nur aus der angegebenen
+                  Quelle ab.
                 </para>
 
-                <para>After selecting the type of source for price quotes, select a quote source from the pull-down menu.
-                  For details on currently supported sources see <xref linkend="fq-sources"></xref>.
+                <para>Nachdem Sie die Art der Quelle für Kursangebote ausgewählt haben, wählen Sie eine Datenquelle aus
+                  dem Pulldown-Menü. Details zu den derzeit unterstützten Datenquellen finden Sie
+                  unter <xref linkend="fq-sources"></xref>.
                 </para>
 
                 <note>
-                  <para>Note that Yahoo will provide price quotes for many mutual funds including Fidelity, T.Rowe Price and
-                    Vanguard, and that the quoted prices at Yahoo should be identical to those that
-                    may be found at the source sites.
+                  <para>Die Kursdatenquelle "Yahoo" liefert dabei auch die Kurse für die übrigen genannten Unternehmen
+                    (z.B. Fidelity Investments, T.Rowe Price und The Vanguard Group) und gibt den
+                    Kurs normalerweise identisch zur Original-Datenquelle an.
                   </para>
                 </note>
 
-                <para>If you are outside the US and use one of the different Yahoo sources or multiple sources containing
-                  Yahoo, you should append the market code for the security such as PA for Paris, BE
-                  for Berlin, etc. Example: 12150.PA (a Peugeot security in the Paris market).
-                  <xref linkend="gnc-tbl-fq-yahoo-exchange-codes"></xref> below lists suffixes for
-                  various markets around the world.
+                <para>Beachten Sie allerdings, dass Sie bei <quote>Yahoo Europe</quote> zusätzlich das
+                  Börsenplatzkürzel des Wertpapiers anfügen sollten, z.B. <quote>PA</quote> für
+                  Paris, <quote>BE</quote> für Berlin usw. Beispiel: 12150.PA (ein Peugeot-Papier
+                  am Pariser Markt). <xref linkend="gnc-tbl-fq-yahoo-exchange-codes"></xref>
+                  enthält eine Liste von Suffixen für verschiedene Märkte auf der ganzen Welt.
                 </para>
 
-                <para>Pseudo-symbols for TIAA-CREF funds are listed in table <xref linkend="PsSymbs-TIAA-CREF"></xref>.
+                <para>Pseudo-Symbole für TIAA-CREF-Fonds sind in der Tabelle <xref linkend="PsSymbs-TIAA-CREF"></xref>
+                  aufgeführt.
                 </para>
               </listitem>
 
               <listitem>
-                <para><guilabel>Timezone for these quotes:</guilabel> Select the timezone for the source of the online
-                  quotes you are receiving. For example, Yahoo normally quotes Eastern timezone, so
-                  choose America/New York if you use that quote source.
+                <para><guilabel>Zeitzone dieser Kurse</guilabel>: Wählen Sie die Zeitzone für die Quelle der von Ihnen
+                  empfangenen Online-Börsenkurse. Beispielsweise verwendet Yahoo gewöhnlich die
+                  US-Eastern-Zeitzone, wählen Sie also <quote>America/New York</quote>, wenn Sie
+                  diese Börsenkursquelle verwenden.
                 </para>
               </listitem>
             </itemizedlist>
           </listitem>
 
           <listitem>
-            <para>Select a commodity to the Price Editor.
+            <para>Fügen Sie ein Wertpapier zum <guilabel>Kurs-Editor</guilabel> hinzu. Einzelheiten werden im
+              Abschnitt <xref linkend="tool-price" /> beschrieben.
             </para>
           </listitem>
 
           <listitem>
-            <para>Select <guibutton>Get Quotes</guibutton> in the Price Editor.
+            <para>Betätigen Sie <guibutton>Kurse abrufen</guibutton> in der <guilabel>Kurs-Datenbank</guilabel>.
             </para>
           </listitem>
 
           <listitem>
-            <para>Check the latest price for the selected security.
+            <para>Prüfen Sie den aktuellen Preis für das ausgewählte Wertpapier.
             </para>
           </listitem>
         </orderedlist>
 
-        <para>If you wish to update price quotes from the command line, you can do so by the following command:
+        <para>Wenn Sie die Kurse per Kommandozeile abrufen wollen, können Sie dazu den folgenden Befehl benutzen:
         </para>
 
-        <para><userinput>gnucash --add-price-quotes &lt;gnucash-file-name&gt;</userinput>
+        <para><code>gnucash --add-price-quotes &lt;gnucash-file-name&gt;</code>
         </para>
 
-        <para>The command <userinput>gnucash --add-price-quotes &lt;gnucash-file-name&gt;</userinput> can be used
-          to fetch the current prices of your stocks. The file specified
-          <quote>&lt;gnucash-file-name&gt;</quote> will depend on the name and location of your data
-          file. This can be determined by the name displayed in the top frame of the &app; window,
-          before the <quote>-</quote>. The file name can also be found under <guimenu>File</guimenu>
-          in the list of recently opened file; the first item, numbered 1, is the name of the
-          currently open file.
+        <para>Der Befehl <code>gnucash --add-price-quotes &lt;gnucash-file-name&gt;</code> kann verwendet werden,
+          um die aktuellen Kurse Ihrer Wertpapiere abzurufen. Die Dateibezeichnung
+          <code>&lt;gnucash-file-name&gt;</code> ist abhängig von dem Namen und dem Speicherort
+          Ihrer Datendatei. Dies lässt sich anhand des Namens feststellen, der im oberen Rahmen des
+          &app; Fensters vor dem <quote>-</quote> angezeigt wird. Der Dateiname ist auch unter
+          <guimenu>Datei</guimenu> in der Liste der zuletzt geöffneten Dateien zu finden; der erste
+          Eintrag mit der Nummer 1 ist der Name der aktuell verwendeten Datei.
         </para>
 
-        <para>This can be automated in Mac OSX by creating a crontab entry. For example, to update your file every
-          Friday evening (18:00) after markets close (modify the time accordingly for your time
-          zone), you could add the following to your personal crontab:
+        <para>Der Kursabruf kann in &mac; automatisiert werden, indem ein crontab-Eintrag erstellt wird. Um Ihre
+          Datei zum Beispiel jeden Freitag Abend (18:00 Uhr) nach Börsenschluss zu aktualisieren
+          (passen Sie die Zeit entsprechend Ihrer Zeitzone an), könnten Sie Folgendes zu Ihrer
+          persönlichen crontab hinzufügen:
         </para>
 
-        <para><userinput>0 18 * * 5 /path/to/gnucash --add-price-quotes /path/to/gnucash-filename &gt; /dev/null
-          2&gt;&amp;1'</userinput>
+        <para><code>0 18 * * 5 /path/to/gnucash --add-price-quotes /path/to/gnucash-filename &gt; /dev/null
+          2&gt;&amp;1</code>
         </para>
 
-        <para>For Linux, which needs dbus, usually started by the desktop manager, to communicate with dconf or
-          gconf:
+        <para>Für &linux;, das dbus verwendet und normalerweise vom Desktop-Manager gestartet wird um mit dconf
+          oder gconf zu kommunizieren, lautet der Befehl:
         </para>
 
-        <para><userinput>0 18 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
-          /path/to/gnucash --add-price-quotes /path/to/gnucash-filename &gt; /dev/null
-          2&gt;&amp;1'</userinput>
+        <para><code>0 18 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT; /path/to/gnucash
+          --add-price-quotes /path/to/gnucash-filename &gt; /dev/null 2&gt;&amp;1'</code>
         </para>
 
-        <para>Remember that Mutual Fund <quote>prices</quote> are really <quote>Net Asset Value</quote> and
-          require several hours after the exchange closes before being available. If NAVs are
-          downloaded before the current days NAVs are determined, yesterday&rsquo;s NAVs are
-          retrieved.
+        <para>Denken Sie daran, dass die <quote>Preise</quote> von Investmentfonds in Wirklichkeit der
+          <quote>Nettoanteilswert</quote> ist. und erst mehrere Stunden nach Börsenschluss
+          verfügbar sind. Wenn die <quote>Preise</quote> aktualisiert werden, bevor die
+          Nettoanteilswerte des aktuellen Tages ermittelt werden, werden Werte von gestern
+          abgerufen.
         </para>
       </sect3>
     </sect2>
 
     <sect2 id="open-balance">
-      <title>Opening Balance tab</title>
+      <title>Anfangsbestand</title>
 
-      <para>The <guilabel>Opening Balance</guilabel> tab is visible only when creating a new account, and is
-        disabled for <guilabel>Stock</guilabel> and<guilabel> Mutual Fund </guilabel>accounts. In
-        the latter case, opening balances must be created by hand. Please see Section 8.5.1 in the
-        <emphasis role="italic">Tutorial and Concepts Guide</emphasis> for instructions if you need
-        to create an opening balance in a <guilabel>Stock</guilabel> or <guilabel>Mutual
-        Fund</guilabel> account. It is used to record the beginning balance for an account. This
-        allows it to be used for two different scenarios. If using &app; for the first time to
-        record transactions, it can be used as a beginning balance. If the accounts in use are
-        closed at the end of a period and new accounts are created, it is used to close and carry
-        balances forward.
+      <para>Die Registerkarte <guilabel>Anfangsbestand</guilabel> ist nur beim Anlegen eines neuen Kontos
+        sichtbar, und ist für Konten vom Typ <emphasis>Aktien</emphasis> und
+        <emphasis>Investmentfonds</emphasis> deaktiviert. Im letzteren Fall müssen die
+        Eröffnungssalden von Hand erstellt werden.
+<!-- FIXME Is there a possibility to refer to a chapter in the "Guide"? -->
+        Bitte lesen Sie im Kapitel <quote>Einführung- Buchungen</quote> im Tutorial &app;
+        <emphasis role="italic">Kurs und Konzepte</emphasis> die Beispiele, wenn Sie einen
+        Eröffnungssaldo in einem <emphasis>Aktienkonto</emphasis> oder
+        <emphasis>Fonds</emphasis>-Konto erstellen möchten. Sie können hier den Eröffnungssaldo
+        für das Konto angeben. Hierfür gibt es zwei verschiedene Anwendungsfälle: Wenn Sie zum
+        ersten Mal Geschäftsvorgänge mit &app; erfassen, ist dies der Anfangsbestand des Kontos.
+        Wenn Sie bereits bestehende Konten zum Ende einer Buchungsperiode abschließen und
+        anschließend Konten neu eröffnen, können Sie hier den Abschlusssaldo in die neue Periode
+        übertragen.
       </para>
 
-      <para>There are three panes in this tab. The top pane contains the <guilabel>Balance
-        Information</guilabel>.
+      <para>Die Karteiseite besitzt drei Bereiche. Der erste Eingabebereich enthält die <guilabel>Saldo-
+        Informationen</guilabel>.
       </para>
 
-      <itemizedlist>
+      <itemizedlist spacing="compact">
         <listitem>
-          <para><guilabel>Balance:</guilabel> The balance to start the account with.
+          <para><guilabel>Saldo</guilabel>: Geben Sie hier den Saldo an, mit dem das Konto eröffnet werden soll.
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Date:</guilabel> The date the opening balance should be recorded.
+          <para><guilabel>Datum</guilabel>: Wählen Sie hier das Datum, zu welchem der Eröffnungssaldo erfasst
+            werden soll.
           </para>
         </listitem>
       </itemizedlist>
 
-      <para>The next pane is the <guilabel>Transfer Type</guilabel> pane.
+      <para>Der nächste Bereich betrifft den <guilabel>Buchung Anfangssaldo</guilabel>.
       </para>
 
-      <itemizedlist>
+      <itemizedlist spacing="compact">
         <listitem>
-          <para><guilabel>Use Opening Balances Equity account:</guilabel> This transfers the opening balance for the
-            account from a standard Equity account called Opening Balances.
+          <para><guilabel>Benutze Eigenkapitalkonto</guilabel>: Hiermit wird der Eröffnungssaldo des Kontos von
+            einem speziellen Eigenkapital-Konto namens <quote>Anfangsbestand</quote> abgebucht.
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Select Transfer Account:</guilabel> This enables the pane below so a different account can
-            be used to transfer the opening balance.
+          <para><guilabel>Herkunftskonto auswählen</guilabel>: Hiermit wird der nächste Eingabebereich
+            freigegeben, mit dem ein anderes Herkunftskonto für die Abbuchung des Eröffnungssaldos
+            angegeben kann.
           </para>
         </listitem>
       </itemizedlist>
 
-      <para>The last pane is the <guilabel>Transfer Account</guilabel> pane. Select the account to use for
-        opening balances from the list of accounts in this pane.
+      <para>Der letzte Eingabebereich betrifft das <guilabel>Herkunftskonto</guilabel>. Wählen Sie das Konto,
+        das für den Anfangsbestand verwendet werden soll, aus dem Kontenbaum aus.
       </para>
     </sect2>
   </sect1>
 
   <sect1 id="acct-edit">
-    <title>Editing an Account</title>
+    <title>Konto bearbeiten</title>
 
-    <para>The <guilabel>Edit Account</guilabel> dialog consists of just the <guilabel>General</guilabel> tab.
-      This tab has the same information that was described in <xref linkend="acct-create"></xref>.
-      To access the <guilabel>Edit Account</guilabel> dialog go to
+    <para>Das Dialogfenster <guilabel>Konto bearbeiten</guilabel> besteht nur aus der Karteiseite
+      <guilabel>Allgemeines</guilabel>. Diese Karteiseite enthält dieselben Informationen wie im
+      zuvor beschriebenen Dialog <xref linkend="acct-create"></xref>. Um das Dialogfenster
+      <guilabel>Konto bearbeiten</guilabel> zu öffnen, wählen Sie
       <menuchoice>
-        <guimenu>Edit</guimenu> <guimenuitem>Edit Account</guimenuitem>
+        <guimenu>Bearbeiten</guimenu> <guimenuitem>Konto bearbeiten</guimenuitem>
       </menuchoice>
-      (menu shortcut
+      (
       <keycombo>
-        <keycap>Ctrl</keycap><keycap>E</keycap>
+        <keycap>Strg</keycap><keycap>E</keycap>
       </keycombo>
-      ) or click the <guibutton>Edit</guibutton> <emphasis>Toolbar</emphasis> icon in the Account
-      Tree Window.
+      ) oder klicken Sie die <guibutton>Bearbeiten</guibutton> Schaltfläche in der
+      <emphasis>Werkzeugleiste</emphasis> des Fensters <quote>Account</quote> an.
     </para>
   </sect1>
 
   <sect1 id="chart-renumber">
-    <title>Renumbering Subaccounts</title>
+    <title>Neunummerierung der Unterkonten</title>
 
-    <para>Use <guilabel>Renumber Subaccounts</guilabel> to rewrite the account codes for all children of the
-      current account. For example, you have the following account structure:
+    <para>Verwenden Sie <guilabel>Unterkonten neu nummerieren...</guilabel>, um die Kontonummern für alle
+      Unterkonten des aktuellen Kontos neu zu schreiben. Sie haben zum Beispiel die folgende
+      Kontostruktur:
     </para>
 
     <table frame="topbot" id="table-renumber1">
-      <title>Starting account numbers.</title>
+      <title>vorhandene Kontonummern</title>
 
       <tgroup cols="2">
         <thead>
           <row>
             <entry>
-              <para>Code
+              <para>Nummer
               </para>
             </entry>
 
@@ -923,7 +1062,7 @@
             </entry>
 
             <entry>
-              <para>Colors
+              <para>Farben
               </para>
             </entry>
           </row>
@@ -935,7 +1074,7 @@
             </entry>
 
             <entry>
-              <para>Red
+              <para>Rot
               </para>
             </entry>
           </row>
@@ -959,7 +1098,7 @@
             </entry>
 
             <entry>
-              <para>Yellow.
+              <para>Gelb
               </para>
             </entry>
           </row>
@@ -971,7 +1110,7 @@
             </entry>
 
             <entry>
-              <para>Blue
+              <para>Blau
               </para>
             </entry>
           </row>
@@ -991,22 +1130,25 @@
       </tgroup>
     </table>
 
-    <para>You now need to add the <quote>Green</quote> account, but you want it to sort between the Yellow and
-      Blue accounts. Instead of having to manually renumber all the accounts starting with Blue, you
-      can use the <guilabel>Renumber subaccount</guilabel> command on the Colors account. In the
-      pop-up dialog the prefix value should default to <quote>10</quote>, the account code for the
-      colors account. If you set an interval value of <quote>5</quote> and click
-      <guilabel>Renumber</guilabel> you will end up with the following account structure:
+    <para>Sie möchten nun das Konto <emphasis>Grün</emphasis> hinzufügen, aber Sie wollen, dass es zwischen
+      den Konten <emphasis>Gelb</emphasis> und <emphasis>Blau</emphasis> einsortiert wird. Anstatt
+      alle Konten manuell, beginnend mit <emphasis>Blau</emphasis>, neu zu nummerieren, können Sie
+      den Befehl <guilabel>Unterkonto neu nummerieren...</guilabel> für das Konto
+      <emphasis>Farben</emphasis> verwenden. In dem Popup-Dialog sollte der Präfix-Wert
+      standardmäßig <quote>10</quote> lauten, entsprechend der Kontonummer für das
+      <emphasis>Farben</emphasis>-Konto. Wenn Sie einen Intervallwert von <quote>5</quote>
+      einstellen und auf <guilabel>Neu nummerieren</guilabel> klicken, erhalten Sie die folgende
+      Kontostruktur:
     </para>
 
     <table frame="topbot" id="table-renumber2">
-      <title>Renumbered account numbers</title>
+      <title>Neu nummerierte Kontonummern</title>
 
       <tgroup cols="2">
         <thead>
           <row>
             <entry>
-              <para>Code
+              <para>Nummer
               </para>
             </entry>
 
@@ -1025,7 +1167,7 @@
             </entry>
 
             <entry>
-              <para>Colors
+              <para>Farben
               </para>
             </entry>
           </row>
@@ -1037,7 +1179,7 @@
             </entry>
 
             <entry>
-              <para>Red
+              <para>Rot
               </para>
             </entry>
           </row>
@@ -1061,7 +1203,7 @@
             </entry>
 
             <entry>
-              <para>Yellow.
+              <para>Gelb
               </para>
             </entry>
           </row>
@@ -1073,7 +1215,7 @@
             </entry>
 
             <entry>
-              <para>Blue
+              <para>Blau
               </para>
             </entry>
           </row>
@@ -1093,18 +1235,18 @@
       </tgroup>
     </table>
 
-    <para>Now you have room in the account code numbering space to add the Green account with an account code
-      to force the proper ordering.
+    <para>Jetzt haben Sie im Nummernband für die Konten Platz, um das Konto <emphasis>Grün</emphasis> mit
+      einer Kontonummer zu versehen und in det richtigen Reihenfolge einzusortiern.
     </para>
 
     <table frame="topbot" id="table-renumber3">
-      <title>Final account numbers.</title>
+      <title>Die endgültigen Kontonummern</title>
 
       <tgroup cols="2">
         <thead>
           <row>
             <entry>
-              <para>Code
+              <para>Nummer
               </para>
             </entry>
 
@@ -1123,7 +1265,7 @@
             </entry>
 
             <entry>
-              <para>Colors
+              <para>Farben
               </para>
             </entry>
           </row>
@@ -1135,7 +1277,7 @@
             </entry>
 
             <entry>
-              <para>Red
+              <para>Rot
               </para>
             </entry>
           </row>
@@ -1159,7 +1301,7 @@
             </entry>
 
             <entry>
-              <para>Yellow.
+              <para>Gelb
               </para>
             </entry>
           </row>
@@ -1171,7 +1313,7 @@
             </entry>
 
             <entry>
-              <para>Green
+              <para>Grün
               </para>
             </entry>
           </row>
@@ -1183,7 +1325,7 @@
             </entry>
 
             <entry>
-              <para>Blue
+              <para>Blau
               </para>
             </entry>
           </row>
@@ -1205,352 +1347,351 @@
   </sect1>
 
   <sect1 id="acct-delete">
-    <title>Deleting an Account</title>
+    <title>Konto löschen</title>
 
-    <para></para>
-
-    <para>Deleting an Account means removing all transaction information and information about this account
-      from the file. This cannot be undone. You will be prompted to verify that you wish to remove
-      the account. If the account still contains transaction information you will be warned that
-      this account contains transactions.
+    <para>Das Löschen eines Kontos bewirkt, dass alle Buchungsinformationen und alle kontenbezogenen
+      Informationen zum Konto aus der Datei gelöscht werden. Diese Aktion kann nicht rückgängig
+      gemacht werden. Sie werden aufgefordert zu bestätigen, dass Sie das Konto tatsächlich
+      entfernen wollen. Wenn das Konto noch Buchungsdaten enthält, erhalten Sie eine Warnung, dass
+      dieses Konto Buchungen enthält.
     </para>
 
-    <para>A side effect of removing an account that contains transactions is that you will end up with
-      unbalanced accounts. This will be indicated in the account by a gray check-box next to the
-      debit and credit amounts. You can automatically repair these unbalanced accounts by using the
+    <para>Ein Seiteneffekt beim Löschen eines Kontos, welches noch Buchungen enthält, besteht darin, dass
+      anschließend bei einigen Konten der Saldo nicht ausgeglichen ist. Dies wird im jeweiligen
+      Konto durch graue Kästchen neben den Soll- und Haben-Spalten gekennzeichnet. Sie können
+      diese unausgeglichenen Konten automatisch korrigieren lassen, indem Sie das Menü
       <menuchoice>
-        <guimenu>Actions</guimenu><guimenuitem>Check &amp; Repair</guimenuitem>
+        <guimenu>Aktionen</guimenu><guimenuitem>Überprüfen</guimenuitem>
       </menuchoice>
-      menu. This will automatically assign the unbalanced amounts to a new account named
-      <emphasis role="bold">Imbalance. </emphasis>
+      verwenden. Dies weist die Fehlbeträge automatisch einem neuen Konto namens
+      <emphasis>Ausgleichskonto</emphasis> zu.
     </para>
   </sect1>
 
   <sect1 id="acct-reconcile">
-    <title>Reconciling an Account to a Statement</title>
+    <title>Konto mit einem Kontoauszug abgleichen</title>
 
-    <para>Reconciliation of Accounts in &app; with statements from a bank or other institution is a way of
-      double checking the accuracy of your (and your banks) transactions and the balance of your
-      accounts. It also is useful to track uncleared checks and other outstanding transactions.
+    <para>Der Abgleich von Konten in &app; mit Kontoauszügen von einer Bank oder einem anderen Institut
+      stellt eine zusätzliche Saldenüberprüfung Ihrer Konten dar. Dies ist auch nützlich, um zu
+      verfolgen, welche Schecks noch nicht eingelöst sind und welche sonstigen Buchungen noch
+      ausstehen.
     </para>
 
-    <para>The reconciling process in &app; involves two dialogs: the <xref linkend="tool-reconcile" /> dialog
-      followed by the <xref linkend="rec-win" /> window. They provide access to various &app;
-      functions to make it easy to enter and update account information during the reconciliation.
+    <para>Der Vorgang zum Abgleichen in &app; umfasst zwei Dialoge: den <xref linkend="tool-reconcile" />
+      Dialog gefolgt von dem <xref linkend="rec-win" /> Fenster. Beide bieten Zugriff auf
+      verschiedene &app; Funktionen, die die Eingabe und Aktualisierung von Kontoinformationen
+      während des Abgleichs erleichtern.
     </para>
 
     <tip>
-      <para>The Reconcile window is accessed from the account tree window or the account register window by
-        going to
+      <para>Das Fenster <guilabel>Abgleichen</guilabel> wird aus der Kontohierarchie oder dem Buchungsfenster
+        aufgerufen, indem Sie im Menü
         <menuchoice>
-          <guimenu>Actions</guimenu><guimenuitem>Reconcile...</guimenuitem>
+          <guimenu>Aktionen</guimenu><guimenuitem>Abgleichen...</guimenuitem>
         </menuchoice>
-        or using the menu shortcut
+        auswählen (
         <keycombo>
-          <keycap>Alt</keycap><keycap>A</keycap>
+          <keycap>Alt</keycap><keycap>K</keycap>
         </keycombo>
-        , <keycap>R</keycap>.
+        , <keycap>A</keycap>) oder Sie verwenden die <guibutton>Abgleichen</guibutton> Schaltfläche
+        in der <emphasis>Werkzeugleiste</emphasis>.
       </para>
     </tip>
 
-    <para>The <emphasis>Summary Bar</emphasis> at the bottom of the Account Register Window indicates the
-      amounts of <guilabel>Present</guilabel> (Balance), <guilabel>Future</guilabel> (Balance),
-      <guilabel>Cleared</guilabel> (Transactions), <guilabel>Reconciled</guilabel> (Transactions)
-      and <guilabel>Projected Minimum</guilabel>. Online account information can be used to mark
-      which transactions the bank has processed by changing the <guilabel>R</guilabel>
-      (reconciliation status) column in the register from <guilabel>n</guilabel> (new) to
-      <guilabel>c</guilabel> (cleared). The bank statement is then used with the
-      <guilabel>Reconcile</guilabel> window to reconcile the account which changes the
-      <guilabel>R</guilabel> field to <guilabel>y</guilabel> (reconciled).
+    <para>Die <emphasis>Zusammenfassungs-Leiste</emphasis> im unteren Bereich des <quote>Kontobuchs</quote>
+      weist den Betrag als <guilabel>aktueller</guilabel> (Saldo) und ein
+      <guilabel>zukünftiger</guilabel> (Saldo), <guilabel>bestätigte</guilabel> (Buchung),
+      <guilabel>abgeglichene</guilabel> (Buchung) sowie ein <guilabel>vorraussichtliches
+      Minimum</guilabel> aus. Es ist möglich, über eine Online-Abfrage der Kontodaten (oder auch
+      manuell) die Kennzeichnung vorzunehmen, welche Buchungen die Bank bereits verarbeitet hat. In
+      diesem Fall wird in der Spalte <guilabel>A</guilabel> (abgeglichen) des Kontobuchs der Eintrag
+      <guilabel>n</guilabel> (neu) zu <guilabel>b</guilabel> (bestätigt). Anschließend wird im
+      Fenster <guilabel>Abgleichen</guilabel> der Kontoauszug verwendet, um das Konto abzugleichen,
+      wodurch sich in Spalte <guilabel>A</guilabel> der Eintrag in <guilabel>j</guilabel>
+      (abgeglichen: ja) ändert.
     </para>
 
     <sect2 id="tool-reconcile">
-      <title>Reconciling Information</title>
-
-      <para>The <guilabel>Reconcile Information</guilabel> dialog is used to indicate the closing
-        <guilabel>Statement Date</guilabel> and the <guilabel>Starting Balance</guilabel> (fixed
-        from last reconciliation) and <guilabel>Ending Balance</guilabel> from the statement. The
-        <guilabel>Include Sub-accounts</guilabel> check-box is used if one or more subaccounts are
-        used to track the account you are reconciling. The <guibutton>Enter Interest
-        Payment</guibutton> button is used to add a transfer to the accounts for an interest
-        payment. If selected a dialog will be displayed to add the <xref linkend="tool-ent-int" />
-        to the account.
+      <title>Informationen zum Kontenabgleich</title>
+<!-- FIXME source: there ist a seconde, additional meaning of the button "Enter Interest charge..." -->
+      <para>Das Dialogfenster <guilabel>Informationen zum Kontenabgleich</guilabel> dient zur Eingabe des
+        <guilabel>Datum des Kontoauszugs</guilabel>, des <guilabel>Anfangssaldo</guilabel> (fixiert
+        vom letzten Abgleich) und des <guilabel>Schlusssaldo</guilabel> auf dem Kontoauszug. Die
+        Option <guilabel>Unterkonten mit einbeziehen</guilabel> wird benötigt, wenn zwei oder mehr
+        Konten verwendet werden, um ein einzelnes Bankkonto abzubilden. Die Schaltfläche
+        <guibutton>Zahlung Habenzins eingeben...</guibutton> (bei Aktivakonten) bzw.
+        <guibutton>Zahlung Sollzins eingeben...</guibutton> (bei Passivkonten) kann benutzt werden,
+        um die Buchung einer Zinszahlung für das Konto hinzuzufügen. Wenn Sie diesen Knopf
+        betätigen, erscheint ein weiteres Dialogfenster, mit dem Sie die
+        <xref linkend="tool-ent-int" /> anlegen können.
       </para>
 
       <note>
-        <para>The <guibutton>Enter Interest Payment</guibutton> button is shown only if you are reconciling an
-          account of <emphasis>Bank</emphasis> type.
+        <para>Die Schaltfläche <guibutton>Zahlung Habenzins eingeben...</guibutton> wird angezeigt, wenn Sie ein
+          Konto vom Typ <emphasis>Bank</emphasis> abgleichen.
+<!-- FIXME source: insert description of the account typ liability -->
+          Wohingegen bei Abgleich eines Kontos vom Typ <emphasis>Fremdkapital</emphasis> die
+          Schaltfläche mit <guibutton>Zahlung Sollzins eingeben...</guibutton> beschriftet wird.
         </para>
       </note>
 
-      <para>When you have entered all relevant data, press <guibutton>Ok</guibutton> to proceed to the
-        <xref linkend="rec-win" /> dialog or <guibutton>Cancel</guibutton> to discard the
-        reconciliation process.
+      <para>Wenn Sie alle relevanten Daten eingegeben haben, drücken Sie <guibutton>Ok</guibutton>, um zum
+        Dialogfenster <xref linkend="rec-win" /> zu gelangen oder <guibutton>Abbrechen</guibutton>,
+        um den Abgleichvorgang zu verwerfen.
       </para>
 
       <sect3 id="tool-ent-int">
-        <title>Interest Payment</title>
+        <title>Zinszahlung</title>
 
-        <para>There are three panes in the <guilabel>Interest Payment</guilabel> dialog. At the bottom is a button
-          called <guibutton>No Auto Interest Payments for this Account</guibutton> which will cancel
-          the dialog. The top pane contains the <guilabel>Payment Information</guilabel>.
+        <para>Wenn Sie eine Zinszahlung für ein Konto erfassen, dann öffnet sich der
+          <xref linkend="trans-win-enter" />. Da Sie eine Zinszahlung erfassen, ist der zuvor im
+          <emphasis>Buchen Dialog</emphasis> beschriebene Abschnitt für die Währungsbuchung nicht
+          relevant.
         </para>
-
-        <itemizedlist>
+<!-- FIXME source: The "No Auto Interest Payments for this Account" button is no longer included in the dialogue -->
+<!--         <para>Das Dialogfenster für die <guilabel>Zinszahlung</guilabel> besitzt drei Bereiche. Der oberste
+          Bereich enthält die <guilabel>Zahlungsinformationen</guilabel>.
+        </para>
+-->
+<!-- Ist dieses Kapitel vergleichbar mit id="trans-win-enter" ? -->
+<!--         <itemizedlist spacing="compact">
           <listitem>
-            <para><guilabel>Amount:</guilabel> Enter the amount of the interest payment.
+            <para><guilabel>Betrag</guilabel>: Geben Sie hier den Betrag für die Zinszahlung ein.
             </para>
           </listitem>
 
           <listitem>
-            <para><guilabel>Date:</guilabel> Select the date for the interest payment.
+            <para><guilabel>Datum</guilabel>: Wählen Sie ein Datum für die Zinszahlung.
             </para>
           </listitem>
 
           <listitem>
-            <para><guilabel>Num:</guilabel> Enter a number for the transaction (optional).
+            <para><guilabel>Nummer</guilabel>: Geben Sie eine Nummer für den Geschäftsvorgang an (optional).
             </para>
           </listitem>
 
           <listitem>
-            <para><guilabel>Description:</guilabel> Enter an informational description for the transaction.
+            <para><guilabel>Beschreibung</guilabel>: Geben Sie eine informative Beschreibung für den
+              Geschäftsvorgang ein.
+            </para>
+          </listitem>
+-->
+<!-- FIXME source: new item "notes" -->
+<!--          <listitem>
+            <para><guilabel>Anmerkung</guilabel>: Geben Sie einen zusätzlichen Hinweis für den Geschäftsvorgang
+              ein.
             </para>
           </listitem>
 
           <listitem>
-            <para><guilabel>Memo:</guilabel> Enter a note about the transaction (optional).
+            <para><guilabel>Buchungstext</guilabel>: Geben Sie hier Bemerkungen zum Geschäftsvorgang ein (optional).
             </para>
           </listitem>
         </itemizedlist>
 
-        <para>The <guilabel>Reconcile Account</guilabel> pane highlights in the tree the account that the interest
-          payment will be transferred to or from.
+        <para>Der mittlere Bereich <guilabel>Konto abgleichen</guilabel> hebt in der Baumstruktur das Konto
+          hervor, das als <quote>Zahlung von</quote>-Konto (bei Aktiva) bzw. <quote>Zahlung
+          an</quote>-Konto (bei Passiva) genutzt wird.
         </para>
 
-        <para>The <guilabel>Payment From</guilabel> pane contains a list of accounts where you can select the
-          source account.
+        <para>Der Bereich <guilabel>Zahlung von/an</guilabel> enthält eine Liste von Konten, in der Sie das
+          Quellkonto auswählen können.
         </para>
-
+-->
         <note>
-          <para>If the payment is for a credit or loan account then usually the payment would be from an
-            <emphasis>Expense</emphasis> account. If the payment is for a checking or savings
-            account then usually this would be from an <emphasis>Income</emphasis> account.
+          <para>Wenn es sich um eine Zinszahlung für ein Kredit- oder Darlehenskonto handelt, erfolgt die Zahlung
+            normalerweise von einem <emphasis>Aufwandskonto</emphasis> (Passiva). Falls es sich um
+            eine Zinszahlung für ein Giro- oder Sparkonto handelt (Aktiva), so erfolgt die Zahlung
+            normalerweise von einem <emphasis>Ertragskonto</emphasis>.
           </para>
         </note>
-
-        <tip>
-          <para>The <guibutton>Show Income/Expense</guibutton> check-box shows or hides the
-            <emphasis>Income</emphasis> and <emphasis>Expense</emphasis> accounts.
+<!--         <tip>
+          <para>Mit der Option <guibutton>Erträge/Aufwendungen anzeigen</guibutton> im unteren Bereich können Sie
+            die <emphasis>Aufwands</emphasis>- und <emphasis>Ertrags</emphasis>-konten ein- oder
+            ausblenden.
           </para>
         </tip>
-
-        <para>Select <guibutton>OK</guibutton> to enter the interest transaction (or <guibutton>Cancel</guibutton>
-          the payment) and return to the initial reconciliation screen.
+-->
+        <para>Wählen Sie <guibutton>OK</guibutton>, um die Zinsbuchung zu erfassen (oder
+          <guibutton>Abbrechen</guibutton> um die Zahlung zu verwerfen) und zum Einstiegsbild des
+          Abgleichs zurückzukehren.
         </para>
       </sect3>
     </sect2>
 
     <sect2 id="rec-win">
-      <title>Reconcile</title>
+      <title>Das Abgleichen-Fenster</title>
 
       <note>
-        <para>For a detailed description of menu items and buttons on the reconcile window, see
+        <para>Eine detaillierte Beschreibung der Menüpunkte und Schaltflächen im Fenster finden Sie unter
           <xref linkend="gui-reconcile" />.
         </para>
       </note>
 
-      <para>The <guilabel>Reconcile</guilabel> dialog is where the actual process of matching your statement to
-        &app; data takes place on a per transaction basis.
+      <para>Im <guilabel>Abgleichen</guilabel>-Fenster findet der eigentliche Vorgang des Abgleichs Ihrer
+        Bankauszüge mit den &app;-Daten für jeden einzelnen Geschäftsvorfall statt.
       </para>
 
-      <para>The <guilabel>Reconcile</guilabel> dialog is composed of a <emphasis>toolbar</emphasis> and three
-        panes; <guilabel>Funds In</guilabel> on the left, <guilabel>Funds out</guilabel> on the
-        right and a balance pane.
+      <para>Das Fenster besteht aus einer <emphasis>Werkzeugleiste</emphasis> und den beiden Listenbereichen
+        <guilabel>Gutschrift</guilabel> auf der linken Seite, <guilabel>Belastung</guilabel> auf der
+        rechten Seite sowie einem Saldobereich im unteren Teil.
       </para>
 
       <note>
-        <para>If you enabled the option <guilabel>Use formal accounting labels</guilabel> in the
-          <guilabel>Accounts</guilabel> section of the &app; preferences, you will see
-          <guilabel>Debits</guilabel> and <guilabel>Credits</guilabel> panes instead of
-          <guilabel>Funds In</guilabel> and <guilabel>Funds Out</guilabel> panes.
+        <para>Wenn Sie die Option <guilabel>Buchungsüberschriften aus Rechnungswesen</guilabel> in dem Abschnitt
+          <guilabel>Konten</guilabel> im &app; Menü
+          <menuchoice>
+            <guimenu>Bearbeiten</guimenu> <guimenuitem>Einstellungen</guimenuitem>
+          </menuchoice>
+          aktiviert haben, werden die beiden Listenbereiche mit <guilabel>Soll</guilabel> und
+          <guilabel>Haben</guilabel> anstelle von <guilabel>Gutschrift</guilabel> und
+          <guilabel>Belastung</guilabel> bezeichnet sein.
         </para>
       </note>
 
-      <para>The <guilabel>Funds In</guilabel> and <guilabel>Funds Out</guilabel> pane shows all unreconciled
-        deposits to the account. Both panes are composed of five columns.
+      <para>Der Bereich <guilabel>Gutschrift</guilabel> und <guilabel>Belastung</guilabel> zeigt alle nicht
+        abgeglichenen Geschäftsvorgänge für das Konto. Beide Listenbereiche bestehen aus fünf
+        Spalten.
       </para>
 
       <tip>
-        <para>To order the listed transactions with a preferred criteria, click on the relevant column header. To
-          reverse the selected order click a second time on the column header.
+        <para>Um die aufgelisteten Buchungen nach einem bevorzugten Kriterium zu ordnen, klicken Sie auf die
+          entsprechende Spaltenüberschrift. Um die gewählte Reihenfolge umzukehren, klicken Sie
+          ein zweites Mal auf die Spaltenüberschrift.
         </para>
       </tip>
 
-      <variablelist>
-        <varlistentry>
-          <term><guilabel>Date</guilabel></term>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para><guilabel>Datum</guilabel>: Das Datum des nicht abgeglichenen Geschäftsvorgangs.
+          </para>
+        </listitem>
 
-          <listitem>
-            <para>The date of the unreconciled transaction.
-            </para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para><guilabel>Nummer</guilabel>: Die Nummer des nicht abgeglichenen Geschäftsvorgangs.
+          </para>
+        </listitem>
 
-        <varlistentry>
-          <term><guilabel>Num</guilabel></term>
+        <listitem>
+          <para><guilabel>Beschreibung</guilabel>: Die Beschreibung des nicht abgeglichenen Geschäftsvorgangs.
+          </para>
+        </listitem>
 
-          <listitem>
-            <para>The number of the unreconciled transaction.
-            </para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para><guilabel>Betrag</guilabel>: Der Betrag des nicht abgeglichenen Geschäftsvorgangs.
+          </para>
+        </listitem>
 
-        <varlistentry>
-          <term><guilabel>Description</guilabel></term>
+        <listitem>
+          <para><guilabel>A</guilabel>: Ein Häkchen zeigt an, ob die Transaktion nach Abschluss abgeglichen wird.
+          </para>
+        </listitem>
+      </itemizedlist>
 
-          <listitem>
-            <para>The Description of the unreconciled transaction.
-            </para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term><guilabel>Amount</guilabel></term>
-
-          <listitem>
-            <para>The Amount of the unreconciled transaction.
-            </para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term><guilabel>R</guilabel></term>
-
-          <listitem>
-            <para>Shows a check if the transaction will be reconciled when done.
-            </para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <para>To mark a transaction as reconciled just click on it and a checkmark will appear on the relevant
-        <guilabel>R</guilabel> column.
+      <para>Um eine Buchung als abgeglichen zu kennzeichnen, markieren Sie diese und klicken in der
+        entsprechenden <guilabel>A</guilabel>-Spalte auf das Kästchen. Ein Häkchen zeigt an, das
+        die Buchung abgeglichen ist.
       </para>
 
       <tip>
-        <para>You can check or uncheck the reconcile status of all transactions in either pane by clicking on a
-          transaction in the required pane then clicking <keycap>Ctrl-A</keycap> followed by
-          <keycap>space</keycap>. This will toggle the reconcile status of all transactions in the
-          pane to either checked or unchecked state. This procedure can be repeated to achieve the
-          desired status for the transactions in the pane.
+        <para>Sie können alle Geschäftsvorgänge gleichzeit in einem der beiden Bereiche auswählen und als
+          abgeglichen kennzeichnen, indem Sie auf eine Buchung im gewünschten Bereich klicken und
+          dann die Tastenkombination <keycap>Strg-A</keycap> gefolgt von <keycap>Leertaste</keycap>
+          betätigen. Dies schaltet den Status des Abgleichs für alle Buchunge im Fensterbereich
+          gleichzeitig entweder auf markiert oder nicht markiert. Dieser Vorgang kann wiederholt
+          werden, um den gewünschten Status für die Geschäftsvorgänge im Fensterbereich zu
+          erreichen.
         </para>
       </tip>
 
       <note>
-        <para>Under each pane a <guilabel>Total</guilabel> for reconciled transactions is shown.
+        <para>Unter jedem Listenbereich wird ein <guilabel>Gesamtbetrag</guilabel> für abgestimmte Buchungen
+          angezeigt.
         </para>
       </note>
 
-      <para>The balance pane shows a summary of the balances used in reconciliation.
+      <para>Der Saldobereich zeigt eine Zusammenfassung der Salden, die für den Abgleich verwendet werden.
       </para>
 
-      <variablelist>
-        <varlistentry>
-          <term><guilabel>Statement Date</guilabel></term>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para><guilabel>Datum des Kontoauszugs</guilabel>: Das Datum auf dem Kontoauszug, das als
+            <xref linkend="tool-reconcile" /> eingetragen wurde.
+          </para>
+        </listitem>
 
-          <listitem>
-            <para>The date on the statement set on the <xref linkend="tool-reconcile" />.
-            </para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para><guilabel>Anfangssaldo</guilabel>: Der Saldo am Ende des letzten Abgleichs.
+          </para>
+        </listitem>
 
-        <varlistentry>
-          <term><guilabel>Starting Balance</guilabel></term>
+        <listitem>
+          <para><guilabel>Schlusssaldo</guilabel>: Der eingegebene Saldo aus dem Kontoauszug.
+          </para>
+        </listitem>
 
-          <listitem>
-            <para>The balance at the end of the last reconciliation.
-            </para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para><guilabel>Abgeglichener Saldo</guilabel>: Der Saldo der als abgeglichen gekennzeichneten Buchungen.
+          </para>
+        </listitem>
 
-        <varlistentry>
-          <term><guilabel>Ending Balance</guilabel></term>
+        <listitem>
+          <para><guilabel>Differenz</guilabel>: Die Differenz zwischen dem <guilabel>Abgeglichenem</guilabel>- und
+            dem <guilabel>Schlusssaldo</guilabel>.
+          </para>
+        </listitem>
+      </itemizedlist>
 
-          <listitem>
-            <para>The balance entered from the statement.
-            </para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term><guilabel>Reconciled Balance</guilabel></term>
-
-          <listitem>
-            <para>The balance of selected transactions.
-            </para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term><guilabel>Difference</guilabel></term>
-
-          <listitem>
-            <para>The difference between the <guilabel>Reconciled</guilabel> and <guilabel>Ending</guilabel> balances.
-            </para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <para>The set of unreconciled transactions in the <guilabel>Funds In</guilabel> and <guilabel>Funds
-        Out</guilabel> panes can be changed by using the menus and <emphasis>Toolbar</emphasis> to
-        access the account and transaction information. You can create a <guibutton>New</guibutton>
-        transaction, <guibutton>Edit</guibutton> a selected transaction, add a
-        <guilabel>Balance</guilabel> transaction (of the same amount as listed under
-        <guilabel>Difference</guilabel> in the balance pane), and delete the selected transaction.
+      <para>Die nicht abgeglichenen Geschäftsvorgänge in den Listenbereichen <guilabel>Gutschrift</guilabel>
+        und <guilabel>Belastung</guilabel> können geändert werden, indem Sie mittels der
+        Menübefehle oder der <emphasis>Werkzeugleiste</emphasis> auf das Konto und die
+        Buchungsinformationen zugreifen. Sie können eine <guibutton>Neue</guibutton> Buchung
+        anlegen, eine ausgewählte Buchung <guibutton>Bearbeiten</guibutton>, eine
+        <guilabel>Saldo</guilabel>-Buchung hinzufügen (mit demselben Betrag, der unter
+        <guilabel>Differenz</guilabel> im Saldobereich aufgeführt ist), und die ausgewählte
+        Buchung löschen.
       </para>
 
       <tip>
-        <para>To modify a listed transaction, double click on it.
+        <para>Um eine aufgelistete Buchung zu ändern, machen Sie einen Doppelklick darauf..
         </para>
       </tip>
 
-      <para>By pressing the <guilabel>Open</guilabel> icon the register of the account to reconcile will be
-        opened.
+      <para>Durch Drücken der Schaltfläche <guilabel>Öffnen</guilabel> wird das entsprechende Kontobuch
+        geöffnet.
       </para>
 
-      <para>If you wish to postpone the reconciliation until later use the
+      <para>Wenn Sie den Abgleich bis zu einem späteren Zeitpunkt unterbechen wollen, wählen Sie im Menü
         <menuchoice>
-          <guimenu>Reconcile</guimenu><guimenuitem>Postpone</guimenuitem>
+          <guimenu>Abgleichen...</guimenu><guimenuitem>Unterbrechen</guimenuitem>
         </menuchoice>
-        menu item (menu shortcut
+        (Tastenürzel
         <keycombo>
-          <keycap>Ctrl</keycap><keycap>P</keycap>
+          <keycap>Strg</keycap><keycap>P</keycap>
         </keycombo>
-        ) or pressing the <guibutton>Postpone</guibutton> icon. If you wish to cancel the
-        reconciliation use the
+        ) oder verwenden die Schaltfläche <guibutton>Unterbrechen</guibutton>. Zum Abbrechen des
+        Abgleichvorgangs verwenden Sie den Menüpunkt
         <menuchoice>
-          <guimenu>Reconcile</guimenu><guimenuitem>Cancel</guimenuitem>
+          <guimenu>Abgleichen...</guimenu><guimenuitem>Abbrechen</guimenuitem>
         </menuchoice>
-        menu item or press the <guibutton>Cancel</guibutton> icon.
+        oder drücken Sie <guibutton>Abbrechen</guibutton>.
       </para>
-
-      <para>All previous commands are also available in the <guilabel>Reconcile</guilabel> dialog menu.
-      </para>
-
-      <para>Select each unreconciled transaction matching a transaction on the statement so a green tick appears
-        in the <guilabel>R</guilabel> column. The <guilabel>Balance</guilabel> pane changes to
-        reflect each selected transaction until the <guilabel>Ending Balance</guilabel>
-        <emphasis>equals</emphasis> the <guilabel>Reconciled Balance</guilabel> and the
-        <guilabel>Difference</guilabel> is <emphasis>zero</emphasis>. Once this is done select the
-        <guibutton>Finish</guibutton> button or
+<!-- FIXME source: delete sentence -->
+      <para>Wählen Sie jeden nicht abgeglichenen Geschäftsvorgang, der sich auf dem Kontoauszug wiederfindet,
+        an, so dass in der Spalte <guilabel>A</guilabel> ein Häkchen erscheint. Die im unteren
+        Fensterbereich ausgewiesenen <guilabel>Salden</guilabel> verändern sich entsprechend den
+        gewählten Geschäftsvorgängen, bis am Ende der <guilabel>Schlusssaldo</guilabel> gleich
+        dem <guilabel>abgeglichenem Saldo</guilabel> ist und die <guilabel>Differenz</guilabel> Null
+        beträgt. Sobald dies erreicht ist, betätigen Sie die Schaltfläche
+        <guibutton>Fertig</guibutton> oder den Befehl
         <menuchoice>
-          <guimenu>Reconcile</guimenu><guimenuitem>Finish</guimenuitem>
+          <guimenu>Abgleichen...</guimenu><guimenuitem>Fertig</guimenuitem>
         </menuchoice>
-        (menu shortcut
+        (Tastenkürzel
         <keycombo>
-          <keycap>Ctrl</keycap><keycap>F</keycap>
+          <keycap>Strg</keycap><keycap>F</keycap>
         </keycombo>
-        ) to finish the reconcile process.
+        ) um den Abgleich zu beenden.
       </para>
     </sect2>
   </sect1>
