@@ -24,213 +24,215 @@ Updated:
 
     <sect2 id="busnss-imp-inv-general">
       <title>Grundsätzliches</title>
- 
-      <para>Diese Funktionalität erzeugt Lieferanten- und Kundenrechnungen aus einer CSV-Importdatei die Zeilen von Rechnungseinträgen enthält.
-        Die Importdatei kann Zeile für neue und oder bestehende Rechnungen enthalten. Falls ein Rechnung bereits existiert,
-        &app; fügt die importierten Einträge zur Rechnung hinzu (es sei denn, die Rechnung ist bereits gebucht).
-        Wenn die Importdatei Buchungsdaten 
-        für eine Rechnung enthält, dann wird &app; auch versuchen, diese Rechnung zu buchen.
-        Falls irgendeine Zeile der Rechnung einen Fehler enthält, wird &app; alle Zeile der gleichen Rechnung ignorieren.
+
+      <para>Diese Funktionalität erzeugt Lieferanten- und Kundenrechnungen aus einer CSV-Importdatei die Zeilen
+        von Rechnungseinträgen enthält. Die Importdatei kann Zeile für neue und oder bestehende
+        Rechnungen enthalten. Falls ein Rechnung bereits existiert, &app; fügt die importierten
+        Einträge zur Rechnung hinzu (es sei denn, die Rechnung ist bereits gebucht). Wenn die
+        Importdatei Buchungsdaten für eine Rechnung enthält, dann wird &app; auch versuchen, diese
+        Rechnung zu buchen. Falls irgendeine Zeile der Rechnung einen Fehler enthält, wird &app;
+        alle Zeile der gleichen Rechnung ignorieren.
       </para>
-       
-      <para>Der Trennzeichen für die Felder in der CSV-Datei muss entweder ein Komma oder Semikolon sein; Feldwerte können in doppelte Hochzeichen eingeschlossen sein.
+
+      <para>Der Trennzeichen für die Felder in der CSV-Datei muss entweder ein Komma oder Semikolon sein;
+        Feldwerte können in doppelte Hochzeichen eingeschlossen sein.
       </para>
-       
-      <para>Aus Gründen der besseren Lesbarkeit wird in diesem Kapitel der Begriff <quote>Rechnung</quote> 
+
+      <para>Aus Gründen der besseren Lesbarkeit wird in diesem Kapitel der Begriff <quote>Rechnung</quote>
         sowohl für Kundenrechnungen wie auch Lieferantenrechnungen verwendet.
       </para>
     </sect2>
 
     <sect2 id="busnss-imp-inv-file-format">
       <title>Aufbau der Importdatei</title>
-  
-      <para>Die Importdatei sollte Zeilen mit Rechnungsdaten enthalten, jede markiert durch eine Rechnungs-Nummer. Die Datei sollte 
-        nach der Rechnungs-Nummer sortiert sein. Jede Zeile enthält Kopf- und Eintragsfelder, aber &app; übernimmt die
-        Rechnungskopfdaten aus der ersten Zeile zu einer Rechnungsnummer. Für Informationszwecke können
-        die Kopfdaten für jede nachfolgende Zeile derselben Rechnung wiederholt werden.
+
+      <para>Die Importdatei sollte Zeilen mit Rechnungsdaten enthalten, jede markiert durch eine
+        Rechnungs-Nummer. Die Datei sollte nach der Rechnungs-Nummer sortiert sein. Jede Zeile
+        enthält Kopf- und Eintragsfelder, aber &app; übernimmt die Rechnungskopfdaten aus der
+        ersten Zeile zu einer Rechnungsnummer. Für Informationszwecke können die Kopfdaten für
+        jede nachfolgende Zeile derselben Rechnung wiederholt werden.
       </para>
-     
-      <para>Die Datei enthält keine Information darüber, ob es Daten zu Kunden- oder Lieferantenrechnungen enthält.
-        Stattdessen erfolgt die Unterscheidung über eine Benutzeroption im Importdialog.
+
+      <para>Die Datei enthält keine Information darüber, ob es Daten zu Kunden- oder Lieferantenrechnungen
+        enthält. Stattdessen erfolgt die Unterscheidung über eine Benutzeroption im Importdialog.
       </para>
-     
-      <para>
-        Jede Zeile sollte die unten aufgeführten Felder in derselben Reihenfolge enthalten, getrennt durch Komma oder Semikolon.
-        Die Felder sind hier mit ihren technischen Namen aufgeführt, welche &app;
-        in der Vorschau der Importdaten verwendet.
+
+      <para>Jede Zeile sollte die unten aufgeführten Felder in derselben Reihenfolge enthalten, getrennt durch
+        Komma oder Semikolon. Die Felder sind hier mit ihren technischen Namen aufgeführt, welche
+        &app; in der Vorschau der Importdaten verwendet.
       </para>
-   
+
       <itemizedlist>
         <listitem>
-          <para><emphasis><prompt>Nummer</prompt></emphasis> -
-            Die Rechnungsnummer. Pflichtfeld. Jede Zeile ohne Rechnungsnummer wird ignoriert. Falls die Rechnungsnummer bereits existiert, 
-            wird &app; die Einträge zur existierenden Rechnung hinzufügen (es sei denn, die Rechnung ist bereits gebucht).
+          <para><emphasis><prompt>Nummer</prompt></emphasis> - Die Rechnungsnummer. Pflichtfeld. Jede Zeile ohne
+            Rechnungsnummer wird ignoriert. Falls die Rechnungsnummer bereits existiert, wird &app;
+            die Einträge zur existierenden Rechnung hinzufügen (es sei denn, die Rechnung ist
+            bereits gebucht).
           </para>
         </listitem>
-         
+
         <listitem>
-          <para><emphasis><prompt>Eröffnungsdatum</prompt></emphasis> -
-            Verwenden Sie das gleiche Datumsformat wie in den Einstellungen definiert. Standardwert ist das Tagesdatum, falls das Feld nur Leerzeichen enthält 
-            oder das angegebene Datum ungültig ist.
+          <para><emphasis><prompt>Eröffnungsdatum</prompt></emphasis> - Verwenden Sie das gleiche Datumsformat wie
+            in den Einstellungen definiert. Standardwert ist das Tagesdatum, falls das Feld nur
+            Leerzeichen enthält oder das angegebene Datum ungültig ist.
           </para>
         </listitem>
-         
+
         <listitem>
-          <para><emphasis><prompt>Mandant-Nr</prompt></emphasis> -
-            Kunden- oder Lieferantennummer. Pflichtfeld in der ersten Datenzeile einer Rechnung. Falls es nicht angegeben ist, werden alle Zeile derselben
-            Rechnung ignoriert.
+          <para><emphasis><prompt>Mandant-Nr</prompt></emphasis> - Kunden- oder Lieferantennummer. Pflichtfeld in
+            der ersten Datenzeile einer Rechnung. Falls es nicht angegeben ist, werden alle Zeile
+            derselben Rechnung ignoriert.
           </para>
         </listitem>
-         
+
         <listitem>
-          <para><emphasis><prompt>Rechnungs-Nr</prompt></emphasis> -
-            Zahlungsnummer. Optional.
+          <para><emphasis><prompt>Rechnungs-Nr</prompt></emphasis> - Zahlungsnummer. Optional.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Bemerkungen</prompt></emphasis> -
-            Rechnungsbemerkungen. Optional.
+          <para><emphasis><prompt>Bemerkungen</prompt></emphasis> - Rechnungsbemerkungen. Optional.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Datum</prompt></emphasis> -
-            Das Datum des Eintrags. Es wird das Tagesdatum verwendet falls das Feld nur Leerzeichen enthält
-            oder das angegebene Datum nicht gültig ist.
+          <para><emphasis><prompt>Datum</prompt></emphasis> - Das Datum des Eintrags. Es wird das Tagesdatum
+            verwendet falls das Feld nur Leerzeichen enthält oder das angegebene Datum nicht
+            gültig ist.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Beschreibung</prompt></emphasis> -
-            Beschreibung. Optional.
+          <para><emphasis><prompt>Beschreibung</prompt></emphasis> - Beschreibung. Optional.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Aktion</prompt></emphasis> -
-            Aktion. Optional.
+          <para><emphasis><prompt>Aktion</prompt></emphasis> - Aktion. Optional.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Konto</prompt></emphasis> -
-            Konto für den Eintrag. Pflichtfeld in jeder Zeile.
+          <para><emphasis><prompt>Konto</prompt></emphasis> - Konto für den Eintrag. Pflichtfeld in jeder Zeile.
             Falls nicht angegeben oder ungültig, werden alle Zeilen derselben Rechnung ignoriert.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Anzahl</prompt></emphasis> -
-            Anzahl. Standardwert ist 1 falls das Feld nur Leerzeichen enthält.
+          <para><emphasis><prompt>Anzahl</prompt></emphasis> - Anzahl. Standardwert ist 1 falls das Feld nur
+            Leerzeichen enthält.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Preis</prompt></emphasis> -
-            Preis. Pflichtfeld in jeder Zeile.
-            Falls nicht angegeben, werden alle Zeilen derselben Rechnung ignoriert.
+          <para><emphasis><prompt>Preis</prompt></emphasis> - Preis. Pflichtfeld in jeder Zeile. Falls nicht
+            angegeben, werden alle Zeilen derselben Rechnung ignoriert.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Rabatt-Art</prompt></emphasis> -
-           Art des Rabattes. Optional. Nur für Kundenrechnungen relevant, nicht für Lieferantenrechnungen.
-           Verwenden Sie<quote>%</quote> oder ein Leerzeichen für Prozentwerte, alles andere für Geldbeträge.
+          <para><emphasis><prompt>Rabatt-Art</prompt></emphasis> - Art des Rabattes. Optional. Nur für
+            Kundenrechnungen relevant, nicht für Lieferantenrechnungen. Verwenden
+            Sie<quote>%</quote> oder ein Leerzeichen für Prozentwerte, alles andere für
+            Geldbeträge.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Rabatt-Berechnung</prompt></emphasis> -
-            Art der Rabatt-Berechnung. Optional. Nur für Kundenrechnungen relevant, nicht für Lieferantenrechnungen.
-            Verwenden Sie <quote>&gt;</quote>, wenn der Rabatt auf den Betrag nach Steuern angewendet wird,
-            <quote>=</quote>, wenn sowohl Rabatt als auch Steuer auf den Vorsteuerwert angewendet wird,
-            und <quote>&lt;</quote>, ein Leerzeichen oder ein anderes Zeichen, wenn der Rabatt auf den Betrag vor Steuern angewendet wird.
+          <para><emphasis><prompt>Rabatt-Berechnung</prompt></emphasis> - Art der Rabatt-Berechnung. Optional. Nur
+            für Kundenrechnungen relevant, nicht für Lieferantenrechnungen. Verwenden Sie
+            <quote>&gt;</quote>, wenn der Rabatt auf den Betrag nach Steuern angewendet wird,
+            <quote>=</quote>, wenn sowohl Rabatt als auch Steuer auf den Vorsteuerwert angewendet
+            wird, und <quote>&lt;</quote>, ein Leerzeichen oder ein anderes Zeichen, wenn der Rabatt
+            auf den Betrag vor Steuern angewendet wird.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Rabatt</prompt></emphasis> -
-            Betrag oder Prozentsatz des Rabattes. Optional. Nur für Kundenrechnungen relevant, nicht für Lieferantenrechnungen.
+          <para><emphasis><prompt>Rabatt</prompt></emphasis> - Betrag oder Prozentsatz des Rabattes. Optional. Nur
+            für Kundenrechnungen relevant, nicht für Lieferantenrechnungen.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Steuerwirksam</prompt></emphasis> -
-            Ist der Eintrag steuerwirksam? Optional.
-            Verwenden Sie <quote>J</quote> oder <quote>X</quote> für Ja, <quote>N</quote> oder ein Leerzeichen für Nein.
+          <para><emphasis><prompt>Steuerwirksam</prompt></emphasis> - Ist der Eintrag steuerwirksam? Optional.
+            Verwenden Sie <quote>J</quote> oder <quote>X</quote> für Ja, <quote>N</quote> oder ein
+            Leerzeichen für Nein.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Inklusive Steuern</prompt></emphasis> -
-            Ist die Steuer im Artikelpreis enthalten? Optional.
-            Verwenden Sie <quote>J</quote> oder <quote>X</quote> für Ja, <quote>N</quote> oder ein Leerzeichen für Nein.
+          <para><emphasis><prompt>Inklusive Steuern</prompt></emphasis> - Ist die Steuer im Artikelpreis enthalten?
+            Optional. Verwenden Sie <quote>J</quote> oder <quote>X</quote> für Ja, <quote>N</quote>
+            oder ein Leerzeichen für Nein.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Steuersatz</prompt></emphasis> -
-            Steuersatz. Optional. Falls der angegebene Steuersatz nicht vorhanden ist, wird es in der Rechnung leer bleiben.
+          <para><emphasis><prompt>Steuersatz</prompt></emphasis> - Steuersatz. Optional. Falls der angegebene
+            Steuersatz nicht vorhanden ist, wird es in der Rechnung leer bleiben.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Buchungsdatum</prompt></emphasis> -
-            Buchungsdatum. Optional. Verwenden Sie das gleiche Datumsformat wie in den Einstellungen definiert. 
-            Falls für die erste Zeile einer Rechnung ein Buchungsdatum angegeben wird, &app; 
-            wird versuchen, auch die Rechnung zu buchen (anstatt sie nur zu speichern oder aktualisieren).
+          <para><emphasis><prompt>Buchungsdatum</prompt></emphasis> - Buchungsdatum. Optional. Verwenden Sie das
+            gleiche Datumsformat wie in den Einstellungen definiert. Falls für die erste Zeile
+            einer Rechnung ein Buchungsdatum angegeben wird, &app; wird versuchen, auch die Rechnung
+            zu buchen (anstatt sie nur zu speichern oder aktualisieren).
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Fälligkeitsdatum</prompt></emphasis> -
-            Fälligkeitsdatum. Optional. Verwenden Sie das gleiche Datumsformat wie in den Einstellungen definiert.
-            Es wird das Tagesdatum verwendet falls das Feld nur Leerzeichen enthält.
-            Nur relevant in der ersten Zeile einer Rechnung, wenn die Rechnung gebucht ist.
+          <para><emphasis><prompt>Fälligkeitsdatum</prompt></emphasis> - Fälligkeitsdatum. Optional. Verwenden Sie
+            das gleiche Datumsformat wie in den Einstellungen definiert. Es wird das Tagesdatum
+            verwendet falls das Feld nur Leerzeichen enthält. Nur relevant in der ersten Zeile
+            einer Rechnung, wenn die Rechnung gebucht ist.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Konto-gebucht</prompt></emphasis> -
-            Konto auf das gebucht wird, für Lieferanten- oder Kundenbuchungen.
-            Nur obligatorisch in der ersten Zeile einer Rechnung, wenn die Rechnung gebucht ist.
+          <para><emphasis><prompt>Konto-gebucht</prompt></emphasis> - Konto auf das gebucht wird, für Lieferanten-
+            oder Kundenbuchungen. Nur obligatorisch in der ersten Zeile einer Rechnung, wenn die
+            Rechnung gebucht ist.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Buchungstext-gebucht</prompt></emphasis> -
-            Buchungstext. Optional. Nur relevant in der ersten Zeile einer Rechnung, wenn die Rechnung gebucht ist.
+          <para><emphasis><prompt>Buchungstext-gebucht</prompt></emphasis> - Buchungstext. Optional. Nur relevant in
+            der ersten Zeile einer Rechnung, wenn die Rechnung gebucht ist.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Kumul-Zeilen</prompt></emphasis> -
-            Buchungsteile kumulieren? Optional. Verwenden Sie <quote>J</quote> oder <quote>X</quote> für Ja, <quote>N</quote> oder Leerzeichen für Nein.
-            Nur relevant in der ersten Zeile einer Rechnung, wenn die Rechnung gebucht ist.
-            Falls Sie ein Tabellenkalkulationsprogramm zur Erstellung der Importdatei verwenden, sollte kein Leerzeichen für Nein verwendet werden 
-            da eine letzte Spalte, die nur Leerzeichen enthält möglicherweise nicht
-            als relevant erkannt wird, wenn die Tabellenkalkulation die CSV-Datei erzeugt.
+          <para><emphasis><prompt>Kumul-Zeilen</prompt></emphasis> - Buchungsteile kumulieren? Optional. Verwenden
+            Sie <quote>J</quote> oder <quote>X</quote> für Ja, <quote>N</quote> oder Leerzeichen
+            für Nein. Nur relevant in der ersten Zeile einer Rechnung, wenn die Rechnung gebucht
+            ist. Falls Sie ein Tabellenkalkulationsprogramm zur Erstellung der Importdatei
+            verwenden, sollte kein Leerzeichen für Nein verwendet werden da eine letzte Spalte, die
+            nur Leerzeichen enthält möglicherweise nicht als relevant erkannt wird, wenn die
+            Tabellenkalkulation die CSV-Datei erzeugt.
           </para>
         </listitem>
       </itemizedlist>
-    
+
       <note id="busnss-imp-inv-file-format-note">
         <title>Anmerkung zu Anführungszeichen</title>
-        
-        <para>Falls Sie das Trennzeichen für Felder innerhalb eines Feldes verwenden, sollte das Feld in Anführungszeichen eingeschlossen werden.
-          Nur für die Felder Beschreibung und Bemerkungen können Sie Anführungszeichen in ein durch Anführungszeichen eigneschlossenes Feld einfügen 
-          in dem Sie das Anführungszeichen verdoppeln. Beispielsweise wird <literal>"Dieses Feld verwendet das Trennzeichen und ein ""Wort"" in Anführungszeichen"</literal>
-          importiert als <literal>Dieses Feld verwendet das Trennzeichen und ein "Wort" in Anführungszeichen</literal>.
+
+        <para>Falls Sie das Trennzeichen für Felder innerhalb eines Feldes verwenden, sollte das Feld in
+          Anführungszeichen eingeschlossen werden. Nur für die Felder Beschreibung und Bemerkungen
+          können Sie Anführungszeichen in ein durch Anführungszeichen eigneschlossenes Feld
+          einfügen in dem Sie das Anführungszeichen verdoppeln. Beispielsweise wird
+          <literal>"Dieses Feld verwendet das Trennzeichen und ein ""Wort"" in
+          Anführungszeichen"</literal> importiert als <literal>Dieses Feld verwendet das
+          Trennzeichen und ein "Wort" in Anführungszeichen</literal>.
         </para>
       </note>
-       
-      <para>
-        Beispielhafter Inhalt für zwei Lieferantenrechnungen, eine mit 2 Einträgen und eine mit 3.
-        Die erste Rechnung ist gespeichert und gebucht, die zweite nur gespeichert.
-        Als Feldtrenner wird das Semikolon verwendet, Dezimalkomma und tt.mm.jjjj als Datumsformat.
+
+      <para>Beispielhafter Inhalt für zwei Lieferantenrechnungen, eine mit 2 Einträgen und eine mit 3. Die
+        erste Rechnung ist gespeichert und gebucht, die zweite nur gespeichert. Als Feldtrenner wird
+        das Semikolon verwendet, Dezimalkomma und tt.mm.jjjj als Datumsformat.
       </para>
-     
+
       <para><programlisting>
     1204;15.12.2018;2001;PO 210220;Kurierdienst;16.12.2018;Stolz und Vorurteil;pc;Aufwendungen:Bildung:Bücher;1;30,00;;;;X;;7;17.12.2018;17.1.2019;Verbindlichkeiten:Verbindlichkeiten aus Lieferung und Leistung;;X
     1204;15.12.2018;2001;PO 210220;Kurierdienst;16.12.2018;Das Kochbuch;pc;Aufwendungen:Bildung:Bücher;1;50,00;;;;X;;7;17.12.2018;17.1.2019;Verbindlichkeiten:Verbindlichkeiten aus Lieferung und Leistung;;X
@@ -239,720 +241,754 @@ Updated:
     1205;15.12.2018;2044;PO 21099;;16.12.2018;Kursgebühr;pc;Aufwendungen:Bildung:Studiengebühren;1;10,01;;;;;;;;;;;
          </programlisting>
       </para>
-    
-      <para>
-        Beispielhafter Inhalt für eine Kundenrechnung mit einem Eintrag mit Steuern und Rabatt.
-        Als Feldtrenner wird das Semikolon verwendet, Dezimalkomma und tt.mm.jjjj als Datumsformat. 
-        Der Wert des Feldes Beschreibung enthält das Feldtrennzeichen.
+
+      <para>Beispielhafter Inhalt für eine Kundenrechnung mit einem Eintrag mit Steuern und Rabatt. Als
+        Feldtrenner wird das Semikolon verwendet, Dezimalkomma und tt.mm.jjjj als Datumsformat. Der
+        Wert des Feldes Beschreibung enthält das Feldtrennzeichen.
       </para>
-      
+
       <para><programlisting>
     20221;16.12.2018;1001;Bestellung 3378;Rabatt wie vereinbart;4.12.2018;"Accounting part 1; 2";ea;Erträge:Sonstiges;1;769,95;%;=;10;X;N;19;16.12.2018;16.01.2019;Aktiva:offene Forderungen;Gebucht beim Import;X
          </programlisting>
       </para>
     </sect2>
- 
+
     <sect2 id="busnss-imp-inv-import-data">
       <title>Importieren der Daten</title>
-  
-        <para>Um die Rechnungsdaten zu importieren, navigieren Sie zu
-          <menuchoice><guimenu>Datei</guimenu>
-          <guimenuitem>Importieren</guimenuitem>
-          <guimenuitem>Rechnungen importieren&hellip;</guimenuitem></menuchoice> um einen neuen Importdialog zu öffnen,
-          und geben Sie die notwendigen Informationen ein.
-        </para>
-       
-        <itemizedlist>
-          <listitem>
-            <para><guilabel>1. Wählen einer Datei, die importiert werden soll</guilabel> -
-              Wählen Sie die Importdatei aus oder geben Sie den Pfad- und Dateinamen manuell ein.
-            </para>
-         </listitem>
-       
-         <listitem>
-           <para><guilabel>2. Wählen Sie die Import-Art</guilabel> -
-             Wählen Sie die Import-Art aus, entweder <guilabel>Lieferantenrechnung</guilabel> oder <guilabel>Rechnung</guilabel>.
-           </para>
-         </listitem>
-       
-         <listitem>
-           <para><guilabel>3. Wählen Sie die Importoptionen</guilabel> -
-             Wählen Sie das CSV-Format aus.
-             Verwenden Sie die <guilabel>mit Anführungszeichen</guilabel>-Optionen, falls Ihre Datei Felder enthält, die in Anführungszeichen eingeschlossen sind.
-             Diese Optionen passen auch auf Felder, die nicht in Anführungszeichen eingeschlossen sind; 
-             mit Ausnahme der Felder für Beschreibung und Notizen sollten Felder nicht das Anführungszeichen selbst enthalten..
-             Siehe <xref linkend="busnss-imp-inv-file-format-note" /> oben.
-             Verwenden Sie eine der anderen Optionen, falls Ihre Datei keine in Anführungszeichen eingeschlossenen Felder enthält; jedes Anführungszeichen 
-             in der Datei wird unverändert importiert.
-          </para>
-       </listitem>
-       
-       <listitem>
-         <para><guilabel>4. Vorschau</guilabel> -
-           Nachdem Sie die Ihre Importdatei und das CSV-Format ausgewählt haben
-           zeigt &app; eine Vorschau der Daten an.
-           Sie können überprüfen, ob Ihre Daten in den richtigen Spalten angezeigt werden. Falls Sie keine Zeilen in der Vorschauf sehen,
-           konnte &app; die importierten Zeilen nicht mit dem gewählten CSV-Format abgleichen.
-           Siehe <xref linkend="busnss-imp-inv-errors" /> unten.
-         </para>
-       </listitem>
-       
-       <listitem>
-         <para><guilabel>5. Danach</guilabel> -
-           Sie können wählen, ob &app; nach dem Import Registerkarten für die Rechnungen öffnen soll.
-           Entweder für alle Rechnungen oder für die Rechnungen, die gespeichert aber nicht gebucht werden, oder für keine der Rechnungen.
-           Das Öffnen von Registerkarten verlangsamt den Importvorgang erheblich.
-         </para>
-       </listitem>
-       
-       <listitem>
-         <para><emphasis>Starten des Imports</emphasis> -
-           Wenn Sie mit Ihrer Auswahl zufrieden sind, klicken Sie auf die Schaltfläche <guibutton>OK</guibutton>, um den Import zu starten.
-         </para>
-       </listitem>
-      </itemizedlist>
-     
-      <para>Wenn Ihre Importdatei Rechnungsnummern enthält, die bereits existieren, wird &app; Sie fragen  
-       (einmal pro Importsitzung), ob Sie die bestehenden Rechnungen aktualisieren möchten.  
-       Wenn Sie das nicht bestätigen, werden alle Zeilen für existierende Rechnungen ignoriert.
+
+      <para>Um die Rechnungsdaten zu importieren, navigieren Sie zu
+        <menuchoice>
+          <guimenu>Datei</guimenu> <guimenuitem>Importieren</guimenuitem> <guimenuitem>Rechnungen
+          importieren&hellip;</guimenuitem>
+        </menuchoice>
+        um einen neuen Importdialog zu öffnen, und geben Sie die notwendigen Informationen ein.
       </para>
-   
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>1. Wählen einer Datei, die importiert werden soll</guilabel> - Wählen Sie die
+            Importdatei aus oder geben Sie den Pfad- und Dateinamen manuell ein.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>2. Wählen Sie die Import-Art</guilabel> - Wählen Sie die Import-Art aus, entweder
+            <guilabel>Lieferantenrechnung</guilabel> oder <guilabel>Rechnung</guilabel>.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>3. Wählen Sie die Importoptionen</guilabel> - Wählen Sie das CSV-Format aus. Verwenden
+            Sie die <guilabel>mit Anführungszeichen</guilabel>-Optionen, falls Ihre Datei Felder
+            enthält, die in Anführungszeichen eingeschlossen sind. Diese Optionen passen auch auf
+            Felder, die nicht in Anführungszeichen eingeschlossen sind; mit Ausnahme der Felder
+            für Beschreibung und Notizen sollten Felder nicht das Anführungszeichen selbst
+            enthalten.. Siehe <xref linkend="busnss-imp-inv-file-format-note" /> oben. Verwenden Sie
+            eine der anderen Optionen, falls Ihre Datei keine in Anführungszeichen eingeschlossenen
+            Felder enthält; jedes Anführungszeichen in der Datei wird unverändert importiert.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>4. Vorschau</guilabel> - Nachdem Sie die Ihre Importdatei und das CSV-Format ausgewählt
+            haben zeigt &app; eine Vorschau der Daten an. Sie können überprüfen, ob Ihre Daten in
+            den richtigen Spalten angezeigt werden. Falls Sie keine Zeilen in der Vorschauf sehen,
+            konnte &app; die importierten Zeilen nicht mit dem gewählten CSV-Format abgleichen.
+            Siehe <xref linkend="busnss-imp-inv-errors" /> unten.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>5. Danach</guilabel> - Sie können wählen, ob &app; nach dem Import Registerkarten für
+            die Rechnungen öffnen soll. Entweder für alle Rechnungen oder für die Rechnungen, die
+            gespeichert aber nicht gebucht werden, oder für keine der Rechnungen. Das Öffnen von
+            Registerkarten verlangsamt den Importvorgang erheblich.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Starten des Imports</emphasis> - Wenn Sie mit Ihrer Auswahl zufrieden sind, klicken Sie
+            auf die Schaltfläche <guibutton>OK</guibutton>, um den Import zu starten.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Wenn Ihre Importdatei Rechnungsnummern enthält, die bereits existieren, wird &app; Sie fragen
+        (einmal pro Importsitzung), ob Sie die bestehenden Rechnungen aktualisieren möchten. Wenn
+        Sie das nicht bestätigen, werden alle Zeilen für existierende Rechnungen ignoriert.
+      </para>
+
       <note>
-        <para>Intern verwendet &app; so genannte reguläre Ausdrücke um die Importzeilen 
-          den Datenfeldern zuzuordnen. Die Importoption <guilabel>Benutzerdefinierter Regulärer Ausdruck</guilabel> bietet die Möglichkeit, eigene
-          Reguläre Ausdrücke für diesen Zuordnungsprozess zu verwenden. Diese Option setzt natürlich voraus, dass Sie sich mit regulären Ausdrücken gut auskennen.
-          Wenn Sie die Option <guilabel>Benutzerdefinierter Regulärer Ausdruck</guilabel> auswählen, öffnet &app; ein Fenster,
-          in dem Sie den &app; Regulären Ausdruck editieren oder durch Ihren eigenen ersetzen können.
-          Ihr regulärer Ausdruck sollte für jedes der Felder der CSV-Datei ein benanntes Untermuster enthalten
-          (unter Verwendung der technischen Namen). Ein benutzerdefinierter regulärer Ausdruck kann nützlich sein, wenn die Zeilen Ihrer Quelldatendatei 
-          alle erforderlichen Felder enthalten, aber in einer anderen Reihenfolge oder einem anderen Format. Wenn z.B. das Format Ihrer Quelldatendatei
-          mit der Kundennummer beginnt, gefolgt von der Rechnungsnummer, gefolgt vom Fälligkeitsdatum, und | als Trennzeichen verwendet,
-          würde Ihr regulärer Ausdruck mit etwas wie diesem beginnen:
+        <para>Intern verwendet &app; so genannte reguläre Ausdrücke um die Importzeilen den Datenfeldern
+          zuzuordnen. Die Importoption <guilabel>Benutzerdefinierter Regulärer Ausdruck</guilabel>
+          bietet die Möglichkeit, eigene Reguläre Ausdrücke für diesen Zuordnungsprozess zu
+          verwenden. Diese Option setzt natürlich voraus, dass Sie sich mit regulären Ausdrücken
+          gut auskennen. Wenn Sie die Option <guilabel>Benutzerdefinierter Regulärer
+          Ausdruck</guilabel> auswählen, öffnet &app; ein Fenster, in dem Sie den &app; Regulären
+          Ausdruck editieren oder durch Ihren eigenen ersetzen können. Ihr regulärer Ausdruck
+          sollte für jedes der Felder der CSV-Datei ein benanntes Untermuster enthalten (unter
+          Verwendung der technischen Namen). Ein benutzerdefinierter regulärer Ausdruck kann
+          nützlich sein, wenn die Zeilen Ihrer Quelldatendatei alle erforderlichen Felder
+          enthalten, aber in einer anderen Reihenfolge oder einem anderen Format. Wenn z.B. das
+          Format Ihrer Quelldatendatei mit der Kundennummer beginnt, gefolgt von der
+          Rechnungsnummer, gefolgt vom Fälligkeitsdatum, und | als Trennzeichen verwendet, würde
+          Ihr regulärer Ausdruck mit etwas wie diesem beginnen:
         </para>
-      
+
         <para><programlisting>
    ^(?&lt;Mandant-Nr&gt;[^|]*)\|(?&lt;Nummer&gt;[^|]*)\|(?&lt;Fälligkeitsdatum&gt;[^|]*)
            </programlisting>
         </para>
-  
-        <para>Mit einem benutzerdefinierten Regulären Ausdruck kann &app; Ihre Quelldatendatei importieren,
-          ohne dass die Notwendigkeit besteht, sie in das &app; Importformat zu konvertieren.
-        </para>  
+
+        <para>Mit einem benutzerdefinierten Regulären Ausdruck kann &app; Ihre Quelldatendatei importieren, ohne
+          dass die Notwendigkeit besteht, sie in das &app; Importformat zu konvertieren.
+        </para>
       </note>
     </sect2>
 
     <sect2 id="busnss-imp-inv-feedback">
       <title>Rückmeldungen und Statistiken</title>
-    
-      <para>
-       &app; führt den Importprozess in drei Schritten durch:
+
+      <para>&app; führt den Importprozess in drei Schritten durch:
       </para>
-     
+
       <itemizedlist>
         <listitem>
-          <para><emphasis><prompt>Importieren</prompt></emphasis> -
-            Importiert die CSV-Datei und versucht, jede Zeile den Datenfeldern zuzuordnen.
+          <para><emphasis><prompt>Importieren</prompt></emphasis> - Importiert die CSV-Datei und versucht, jede
+            Zeile den Datenfeldern zuzuordnen.
           </para>
         </listitem>
-      
-        <listitem>    
-          <para><emphasis><prompt>Validieren and Anpassung</prompt></emphasis> -
-            Validiert die Datenfelder und ersetzt die Daten ggf. durch Standardwerte.
+
+        <listitem>
+          <para><emphasis><prompt>Validieren and Anpassung</prompt></emphasis> - Validiert die Datenfelder und
+            ersetzt die Daten ggf. durch Standardwerte.
           </para>
         </listitem>
-      
-        <listitem>    
-          <para><emphasis><prompt>Verarbeitung</prompt></emphasis> -
-            Erledigt die währungsbezogenen Validierungen und erstellt, aktualisiert und bucht die Rechnungen.
+
+        <listitem>
+          <para><emphasis><prompt>Verarbeitung</prompt></emphasis> - Erledigt die währungsbezogenen Validierungen
+            und erstellt, aktualisiert und bucht die Rechnungen.
           </para>
         </listitem>
       </itemizedlist>
-  
-      <para>Nachdem alle Schritte abgeschlossen sind, gibt &app; Informationen über das Ergebnis des Prozesses aus.
-        Der erste Dialog zeigt die Informations- oder Fehlermeldungen aus den Validierungs- und Verarbeitungsschritten.
-        Der zweite Dialog zeigt die Statistik des Prozesses an:
+
+      <para>Nachdem alle Schritte abgeschlossen sind, gibt &app; Informationen über das Ergebnis des Prozesses
+        aus. Der erste Dialog zeigt die Informations- oder Fehlermeldungen aus den Validierungs- und
+        Verarbeitungsschritten. Der zweite Dialog zeigt die Statistik des Prozesses an:
       </para>
-    
+
       <itemizedlist>
         <listitem>
-          <para>Import - Zeilen ignoriert: Die Anzahl der Zeilen, die nicht mit den Datenfeldern abgeglichen werden konnten.
+          <para>Import - Zeilen ignoriert: Die Anzahl der Zeilen, die nicht mit den Datenfeldern abgeglichen werden
+            konnten.
           </para>
         </listitem>
-    
+
         <listitem>
-          <para>Import - Zeilen importiert: Die Anzahl der Zeilen, die erfolgreich mit den Datenfeldern abgeglichen wurden.
+          <para>Import - Zeilen importiert: Die Anzahl der Zeilen, die erfolgreich mit den Datenfeldern abgeglichen
+            wurden.
           </para>
         </listitem>
-     
+
         <listitem>
-          <para>Validierung &amp; Verarbeitung - Zeilen repariert: Die Anzahl der Zeilen, für die ein Standardwert für ein Feld verwendet wurde.
+          <para>Validierung &amp; Verarbeitung - Zeilen repariert: Die Anzahl der Zeilen, für die ein Standardwert
+            für ein Feld verwendet wurde.
           </para>
         </listitem>
-     
+
         <listitem>
-          <para>Validierung &amp; Verarbeitung - Zeilen ignoriert: Die Anzahl der Zeilen, die aufgrund eines Validierungsfehlers nicht verarbeitet wurden.
+          <para>Validierung &amp; Verarbeitung - Zeilen ignoriert: Die Anzahl der Zeilen, die aufgrund eines
+            Validierungsfehlers nicht verarbeitet wurden.
           </para>
         </listitem>
-     
+
         <listitem>
           <para>Validierung &amp; Verarbeitung - Rechnungen erstellt: Die Anzahl der erstellten Rechnungen.
           </para>
         </listitem>
-     
+
         <listitem>
-          <para>Validierung &amp; Verarbeitung - Rechnungen aktualisiert: Die Anzahl der Rechnungen, die aktualisiert wurden.
+          <para>Validierung &amp; Verarbeitung - Rechnungen aktualisiert: Die Anzahl der Rechnungen, die
+            aktualisiert wurden.
           </para>
         </listitem>
       </itemizedlist>
-    
-      <para>Wenn es im Importschritt nicht übereinstimmende Zeilen gab, zeigt ein abschließender Dialog die tatsächlichen Zeilen an, die nicht zugeordnet werden konnten.
+
+      <para>Wenn es im Importschritt nicht übereinstimmende Zeilen gab, zeigt ein abschließender Dialog die
+        tatsächlichen Zeilen an, die nicht zugeordnet werden konnten.
       </para>
     </sect2>
 
     <sect2 id="busnss-imp-inv-errors">
       <title>Was kann schief gehen?</title>
-     
+
       <sect3 id ="busnss-imp-inv-err-import">
         <title>Fehler im Importschritt</title>
-      
-        <para>Wenn die Statistik unter <quote>Import - Zeilen ignoriert</quote> nicht übereinstimmende Zeilen anzeigt, dann gibt es ein Problem
-          mit dem Format Ihrer Importdatei. Überprüfen Sie, ob Sie das richtige Trennzeichen verwenden und wählen Sie es aus.
-          Stellen Sie sicher, dass Ihre Datenzeilen genau 21 Trennzeichen enthalten (1 für jedes Feld, außer dem letzten).
-          Überprüfen Sie, ob Sie das Trennzeichen innerhalb eines Datenfelds verwenden; wenn ja, schließen Sie das Feld in doppelte Anführungszeichen ein.
+
+        <para>Wenn die Statistik unter <quote>Import - Zeilen ignoriert</quote> nicht übereinstimmende Zeilen
+          anzeigt, dann gibt es ein Problem mit dem Format Ihrer Importdatei. Überprüfen Sie, ob
+          Sie das richtige Trennzeichen verwenden und wählen Sie es aus. Stellen Sie sicher, dass
+          Ihre Datenzeilen genau 21 Trennzeichen enthalten (1 für jedes Feld, außer dem letzten).
+          Überprüfen Sie, ob Sie das Trennzeichen innerhalb eines Datenfelds verwenden; wenn ja,
+          schließen Sie das Feld in doppelte Anführungszeichen ein.
         </para>
-        
-        <para>Wenn Sie eine der Importoptionen <guilabel>mit Anführungszeichen</guilabel> verwenden, prüfen Sie, ob Sie das doppelte Anführungszeichen
-          in einem der Datenfeldwerte verwenden; wenn innerhalb der Felder Beschreibung oder Notizen, 
-          stellen Sie sicher, dass der Feldwert in Anführungszeichen steht, und setzen Sie vor jedes doppelte Anführungszeichen innerhalb des Feldes ein zusätzliches doppeltes Anführungszeichen.
-          Wenn es sich um ein anderes Feld handelt, entfernen Sie das doppelte Anführungszeichen.    
+
+        <para>Wenn Sie eine der Importoptionen <guilabel>mit Anführungszeichen</guilabel> verwenden, prüfen Sie,
+          ob Sie das doppelte Anführungszeichen in einem der Datenfeldwerte verwenden; wenn
+          innerhalb der Felder Beschreibung oder Notizen, stellen Sie sicher, dass der Feldwert in
+          Anführungszeichen steht, und setzen Sie vor jedes doppelte Anführungszeichen innerhalb
+          des Feldes ein zusätzliches doppeltes Anführungszeichen. Wenn es sich um ein anderes
+          Feld handelt, entfernen Sie das doppelte Anführungszeichen.
         </para>
       </sect3>
-     
+
       <sect3 id ="busnss-imp-inv-err-validation">
         <title>Fehler im Validierungsschritt</title>
-      
-        <para>Die folgenden Fehler können im Validierungsschritt auftreten. Jeder Fehler in einer Datenzeile führt dazu, dass alle Zeilen der gleichen
-          Rechnung ignoriert werden.
+
+        <para>Die folgenden Fehler können im Validierungsschritt auftreten. Jeder Fehler in einer Datenzeile
+          führt dazu, dass alle Zeilen der gleichen Rechnung ignoriert werden.
         </para>
-      
+
         <note>
-          <para>In den Versionen 3.4 und früher führte ein Fehler in einer Datenzeile dazu, dass nur diese Zeile ignoriert wurde,
-            im Gegensatz zu allen Zeilen der gleichen Rechnung.
+          <para>In den Versionen 3.4 und früher führte ein Fehler in einer Datenzeile dazu, dass nur diese Zeile
+            ignoriert wurde, im Gegensatz zu allen Zeilen der gleichen Rechnung.
           </para>
         </note>
-      
+
         <itemizedlist>
           <listitem>
             <para>Das Feld <prompt>Nummer</prompt> ist leer. Jede Zeile sollte eine Rechnungsnummer haben.
             </para>
           </listitem>
-       
+
           <listitem>
-            <para>Das Feld <prompt>Mandant-Nr</prompt> ist leer. Jede erste Zeile einer Rechnung sollte eine Mandant-Nr haben.
+            <para>Das Feld <prompt>Mandant-Nr</prompt> ist leer. Jede erste Zeile einer Rechnung sollte eine
+              Mandant-Nr haben.
             </para>
           </listitem>
-       
+
           <listitem>
-            <para>Die Kunden- oder Lieferantennummer im Feld <prompt>Mandant-Nr</prompt> existiert nicht.
-              Die Mandant-Nr in der ersten Zeile einer Rechnung sollte eine existierende Nummer für Kunden (bei Rechnungen) oder Lieferanten (bei Lieferantenrechnungen) sein.
+            <para>Die Kunden- oder Lieferantennummer im Feld <prompt>Mandant-Nr</prompt> existiert nicht. Die
+              Mandant-Nr in der ersten Zeile einer Rechnung sollte eine existierende Nummer für
+              Kunden (bei Rechnungen) oder Lieferanten (bei Lieferantenrechnungen) sein.
             </para>
           </listitem>
-        
+
           <listitem>
-            <para>Das Datum im Feld <prompt>Buchungsdatum</prompt> ist kein gültiges Datum. Wenn Sie einen Wert für das Buchungsdatum in der ersten
-              Zeile einer Rechnung angeben, sollte es ein gültiges Datum sein. Haben Sie das Datumsformat verwendet, das in den Voreinstellungen eingestellt ist?
+            <para>Das Datum im Feld <prompt>Buchungsdatum</prompt> ist kein gültiges Datum. Wenn Sie einen Wert für
+              das Buchungsdatum in der ersten Zeile einer Rechnung angeben, sollte es ein gültiges
+              Datum sein. Haben Sie das Datumsformat verwendet, das in den Voreinstellungen
+              eingestellt ist?
             </para>
           </listitem>
-       
+
           <listitem>
-            <para>Das Konto im Feld <prompt>Konto-gebucht</prompt> existiert nicht. Wenn Sie einen Wert für das Feld <prompt>Buchungsdatum</prompt>
-              in der ersten Zeile einer Rechnung angeben, sollte das Feld <prompt>Konto-gebucht</prompt> ein existierendes Konto sein.
+            <para>Das Konto im Feld <prompt>Konto-gebucht</prompt> existiert nicht. Wenn Sie einen Wert für das Feld
+              <prompt>Buchungsdatum</prompt> in der ersten Zeile einer Rechnung angeben, sollte das
+              Feld <prompt>Konto-gebucht</prompt> ein existierendes Konto sein.
             </para>
           </listitem>
-       
+
           <listitem>
-            <para>Das Konto im Feld <prompt>Konto-gebucht</prompt> ist nicht vom Typ offene Forderungen (für Rechnungen)
-              oder offene Verbindlichkeiten (für Lieferantenrechnungen). Wenn Sie einen Wert im Feld <prompt>Buchungsdatum</prompt>
-              in der ersten Zeile einer Rechnung angeben, sollte das Feld <prompt>Konto-gebucht</prompt> ein Konto des richtigen Typs sein.
+            <para>Das Konto im Feld <prompt>Konto-gebucht</prompt> ist nicht vom Typ offene Forderungen (für
+              Rechnungen) oder offene Verbindlichkeiten (für Lieferantenrechnungen). Wenn Sie einen
+              Wert im Feld <prompt>Buchungsdatum</prompt> in der ersten Zeile einer Rechnung
+              angeben, sollte das Feld <prompt>Konto-gebucht</prompt> ein Konto des richtigen Typs
+              sein.
             </para>
           </listitem>
-       
+
           <listitem>
-            <para>Das Feld <prompt>Preis</prompt> ist leer. Jede Zeile sollte einen Wert für das Feld <prompt>Preis</prompt> enthalten.
+            <para>Das Feld <prompt>Preis</prompt> ist leer. Jede Zeile sollte einen Wert für das Feld
+              <prompt>Preis</prompt> enthalten.
             </para>
           </listitem>
-       
+
           <listitem>
-            <para>Das Konto im Feld <prompt>Konto</prompt> existiert nicht. Jede Zeile sollte ein vorhandenes Konto im Feld <prompt>Konto</prompt> haben.
+            <para>Das Konto im Feld <prompt>Konto</prompt> existiert nicht. Jede Zeile sollte ein vorhandenes Konto im
+              Feld <prompt>Konto</prompt> haben.
             </para>
           </listitem>
         </itemizedlist>
-      
-        <para>Jeder Fehler im Validierungsschritt wird nach Abschluss des gesamten Importvorgangs aufgelistet. Korrigieren Sie Ihre Datendatei entsprechend.
-        </para> 
+
+        <para>Jeder Fehler im Validierungsschritt wird nach Abschluss des gesamten Importvorgangs aufgelistet.
+          Korrigieren Sie Ihre Datendatei entsprechend.
+        </para>
       </sect3>
-     
+
       <sect3 id ="busnss-imp-inv-err-processing">
         <title>Fehler im Verarbeitungsschritt</title>
-      
+
         <para>Die folgenden Fehler können im Verarbeitungsschritt auftreten.
         </para>
-  
+
         <itemizedlist>
           <listitem>
-            <para>Die Lieferantenrechnung kann nicht aktualisiert werden, da sie bereits gebucht ist. Alle Zeilen der gleichen Lieferantenrechnung werden ignoriert.
-              Wenn Sie die bestehende Lieferantenrechnung aktualisieren wollen, buchen Sie sie zuerst in &app; aus.
+            <para>Die Lieferantenrechnung kann nicht aktualisiert werden, da sie bereits gebucht ist. Alle Zeilen der
+              gleichen Lieferantenrechnung werden ignoriert. Wenn Sie die bestehende
+              Lieferantenrechnung aktualisieren wollen, buchen Sie sie zuerst in &app; aus.
             </para>
           </listitem>
-       
+
           <listitem>
             <para>Die Währung der Lieferantenrechnung weicht von der Währung des gebuchten Kontos ab
               (<quote>Rechnung x nicht gebucht, da die Währungen nicht übereinstimmen.</quote>).
-              &app;
-              ermittelt die Währung der Lieferantenrechnung entweder aus den Kunden- oder Lieferantenstammdaten (bei einer neuen Lieferantenrechnung)
-              oder aus der Lieferantenrechnung selbst (bei einer bestehenden Lieferantenrechnung). Die Währung der Lieferantenrechnung muss übereinstimmen mit
-              der Währung der zu kontierenden Buchung im Feld <prompt>Konto-gebucht</prompt> übereinstimmen. &app; erstellt die
-              Lieferantenrechnung, kann sie aber nicht buchen. Korrigieren Sie die Lieferantenrechnung manuell in &app;.
+              &app; ermittelt die Währung der Lieferantenrechnung entweder aus den Kunden- oder
+              Lieferantenstammdaten (bei einer neuen Lieferantenrechnung) oder aus der
+              Lieferantenrechnung selbst (bei einer bestehenden Lieferantenrechnung). Die Währung
+              der Lieferantenrechnung muss übereinstimmen mit der Währung der zu kontierenden
+              Buchung im Feld <prompt>Konto-gebucht</prompt> übereinstimmen. &app; erstellt die
+              Lieferantenrechnung, kann sie aber nicht buchen. Korrigieren Sie die
+              Lieferantenrechnung manuell in &app;.
             </para>
           </listitem>
-       
+
           <listitem>
-            <para>Die Lieferantenrechnung erfordert eine Währungsumrechnung.
-              (<quote>Rechnung x wird nicht gebucht, da sie eine Währungsumrechnung erfordert</quote>).
-              Die Lieferantenrechnung enthält Buchungen auf Konten mit unterschiedlichen Währungen,
-              oder die Währung der Buchungen weicht von der Währung des Buchungskontos ab. Für eine solche Lieferantenrechnung
-              benötigt &app;  Wechselkurse zur Umrechnung der Währungsbeträge. 
-              &app; erstellt die Lieferantenrechnung, kann sie aber nicht buchen. Buchen Sie die Lieferantenrechnung manuell
-              in &app; und geben Sie die gewünschten Wechselkurse an.
+            <para>Die Lieferantenrechnung erfordert eine Währungsumrechnung. (<quote>Rechnung x wird nicht gebucht,
+              da sie eine Währungsumrechnung erfordert</quote>). Die Lieferantenrechnung enthält
+              Buchungen auf Konten mit unterschiedlichen Währungen, oder die Währung der Buchungen
+              weicht von der Währung des Buchungskontos ab. Für eine solche Lieferantenrechnung
+              benötigt &app; Wechselkurse zur Umrechnung der Währungsbeträge. &app; erstellt die
+              Lieferantenrechnung, kann sie aber nicht buchen. Buchen Sie die Lieferantenrechnung
+              manuell in &app; und geben Sie die gewünschten Wechselkurse an.
             </para>
           </listitem>
         </itemizedlist>
-      </sect3>  
+      </sect3>
     </sect2>
 
     <sect2 id="busnss-imp-inv-not-supported">
       <title>Nicht unterstützte Funktionalität für Lieferantenrechnungen</title>
-     
-      <para>
-        Derzeit unterstützt die Importfunktion der Lieferantenrechnung (mindestens) Folgendes nicht:
+
+      <para>Derzeit unterstützt die Importfunktion der Lieferantenrechnung (mindestens) Folgendes nicht:
       </para>
-     
+
       <itemizedlist>
         <listitem>
           <para>Import von Abrechnungsbedingungen und Auftrag.
           </para>
-      </listitem>
-     
-      <listitem>
-        <para>
-          Importieren von Kunden und Aufträgen in Standard-Rückbuchungs-Projekten für Lieferantenrechnungen.
-        </para>
-      </listitem>
-  
-      <listitem>
-        <para>Anwendung von REchnungsbedingungen aus Kunden- oder Lieferantenstammdaten.
-        </para>
-      </listitem>
-     
-      <listitem>
-        <para>Automatische Nummerierung der Lieferantenrechnungen.
-        </para>
-      </listitem>
-     
-      <listitem>
-        <para>Gutschriften.
-        </para>
-      </listitem>
-     </itemizedlist> 
-    </sect2>    
+        </listitem>
+
+        <listitem>
+          <para>Importieren von Kunden und Aufträgen in Standard-Rückbuchungs-Projekten für
+            Lieferantenrechnungen.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Anwendung von Rechnungsbedingungen aus Kunden- oder Lieferantenstammdaten.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Automatische Nummerierung der Lieferantenrechnungen.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Gutschriften.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
   </sect1>
-    
+
   <sect1 id="busnss-imp-customer-vendor">
     <title>Import von Kunden und Lieferanten</title>
 
     <sect2 id="busnss-imp-cv-general">
-       <title>Allgemeines</title>
- 
-       <para>
-         Diese Funktionalität erzeugt und aktualisert Kunden und Lieferanten aus einer CSV-Importdatei, die  
-         Zeilen mit Kunden- und Lieferantenstammdaten enthält.
-         Die Importdatei kann Zeilen für neue und / oder vorhandene Kunden bzw. Lieferanten enthalten. Falls ein Kunde oder Lieferant bereits existiert,
-         aktualisiert &app; die Daten des existierenden Kunden bzw. Lieferant.
-       </para> 
+      <title>Allgemeines</title>
+
+      <para>Diese Funktionalität erzeugt und aktualisert Kunden und Lieferanten aus einer CSV-Importdatei, die
+        Zeilen mit Kunden- und Lieferantenstammdaten enthält. Die Importdatei kann Zeilen für neue
+        und / oder vorhandene Kunden bzw. Lieferanten enthalten. Falls ein Kunde oder Lieferant
+        bereits existiert, aktualisiert &app; die Daten des existierenden Kunden bzw. Lieferant.
+      </para>
     </sect2>
-   
+
     <sect2 id="busnss-imp-cv-file-format">
       <title>Das Format der Import-Datei</title>
 
-      <para>Die Importdatei sollte Zeilen mit Kunden- bzw. Lieferantendaten enthalten, eine Zeile für jeden Kunden bzw. Lieferanten.
-        Der Kunde bzw. Lieferant wird identifiziert durch die Kunden- bzw. Lieferantennummer im Feld <prompt>Nummer</prompt> der Datenzeilen.
-        Wenn das Feld leer ist, verwendet &app; die nächste Zahl des entsprechenden Zählers 
-        (die auf der Registerkarte <guilabel>Nummern-Zähler</guilabel> unter
-        <menuchoice><guimenu>Datei</guimenu><guimenuitem>Eigenschaften</guimenuitem></menuchoice> gesetzt wird).
+      <para>Die Importdatei sollte Zeilen mit Kunden- bzw. Lieferantendaten enthalten, eine Zeile für jeden
+        Kunden bzw. Lieferanten. Der Kunde bzw. Lieferant wird identifiziert durch die Kunden- bzw.
+        Lieferantennummer im Feld <prompt>Nummer</prompt> der Datenzeilen. Wenn das Feld leer ist,
+        verwendet &app; die nächste Zahl des entsprechenden Zählers (die auf der Registerkarte
+        <guilabel>Nummern-Zähler</guilabel> unter
+        <menuchoice>
+          <guimenu>Datei</guimenu><guimenuitem>Eigenschaften</guimenuitem>
+        </menuchoice>
+        gesetzt wird).
       </para>
-   
-      <para>Es gibt keine Daten in der Datei, die anzeigen, ob es sich um Kunden- oder Lieferantenstammdaten handelt.
-        Stattdessen wird diese Unterscheidung durch eine Benutzeroption im Importdialog vorgenommen.
+
+      <para>Es gibt keine Daten in der Datei, die anzeigen, ob es sich um Kunden- oder Lieferantenstammdaten
+        handelt. Stattdessen wird diese Unterscheidung durch eine Benutzeroption im Importdialog
+        vorgenommen.
       </para>
-   
-      <para>Jede Zeile sollte die unten aufgeführten Felder in der gleichen Reihenfolge enthalten, getrennt durch ein Komma oder ein Semikolon.
-        Die Felder sind hier nach ihrem technischen Namen aufgeführt, den &app;
-        in der Vorschau der Importdaten verwendet.
+
+      <para>Jede Zeile sollte die unten aufgeführten Felder in der gleichen Reihenfolge enthalten, getrennt
+        durch ein Komma oder ein Semikolon. Die Felder sind hier nach ihrem technischen Namen
+        aufgeführt, den &app; in der Vorschau der Importdaten verwendet.
       </para>
 
       <itemizedlist>
         <listitem>
-          <para><emphasis><prompt>Nummer</prompt></emphasis> -
-            Die Kunden- bzw. Lieferantennummer. Wenn es sich um einen bestehenden Kunden bzw. Lieferanten handelt, wird &app; 
-            den Kunden bzw. Lieferanten aktualisieren. 
-            Beachten Sie, dass in &app; z.B. '000010' is eine andere Kundennummer als '10'.
-            Wenn das Feld id leer ist,
-            verwendet &app; die nächste Nummer aus dem entsprechenden Zähler.
+          <para><emphasis><prompt>Nummer</prompt></emphasis> - Die Kunden- bzw. Lieferantennummer. Wenn es sich um
+            einen bestehenden Kunden bzw. Lieferanten handelt, wird &app; den Kunden bzw.
+            Lieferanten aktualisieren. Beachten Sie, dass in &app; z.B. '000010' eine andere
+            Kundennummer ist als '10'. Wenn das Feld id leer ist, verwendet &app; die nächste
+            Nummer aus dem entsprechenden Zähler.
           </para>
         </listitem>
-    
+
         <listitem>
-          <para><emphasis><prompt>Firma</prompt></emphasis> -
-            Der Firmenname. Wenn er leer gelassen wird, wird es auf den Wert des Feldes <prompt>Name</prompt> gesetzt.
-            Wenn auch diese leer ist, wird die Zeile ignoriert.
+          <para><emphasis><prompt>Firma</prompt></emphasis> - Der Firmenname. Wenn er leer gelassen wird, wird es
+            auf den Wert des Feldes <prompt>Name</prompt> gesetzt. Wenn auch diese leer ist, wird
+            die Zeile ignoriert.
           </para>
         </listitem>
-    
+
         <listitem>
-          <para><emphasis><prompt>Name</prompt></emphasis> -
-            Rechnungsadresse - Name. Optional.
+          <para><emphasis><prompt>Name</prompt></emphasis> - Rechnungsadresse - Name. Optional.
           </para>
         </listitem>
-      
+
         <listitem>
-          <para><emphasis><prompt>Adresse 1</prompt></emphasis> -
-           Rechnungsadresse - Adresszeile 1. Mindestens eine der vier Adresszeilen der Rechnungsadresse
-           muss gefüllt sein. Wenn nicht, dann wird die Zeile ignoriert.
+          <para><emphasis><prompt>Adresse 1</prompt></emphasis> - Rechnungsadresse - Adresszeile 1. Mindestens eine
+            der vier Adresszeilen der Rechnungsadresse muss gefüllt sein. Wenn nicht, dann wird die
+            Zeile ignoriert.
           </para>
         </listitem>
-      
+
         <listitem>
-          <para><emphasis><prompt>Adresse 2</prompt></emphasis> -
-            Rechnungsadresse - Adresszeile 2.
+          <para><emphasis><prompt>Adresse 2</prompt></emphasis> - Rechnungsadresse - Adresszeile 2.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Adresse 3</prompt></emphasis> -
-            Rechnungsadresse - Adresszeile 3.
+          <para><emphasis><prompt>Adresse 3</prompt></emphasis> - Rechnungsadresse - Adresszeile 3.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Adresse 4</prompt></emphasis> -
-             Rechnungsadresse - Adresszeile 4.
+          <para><emphasis><prompt>Adresse 4</prompt></emphasis> - Rechnungsadresse - Adresszeile 4.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Telefon</prompt></emphasis> -
-             Rechnungsadresse - Telefon. Optional
+          <para><emphasis><prompt>Telefon</prompt></emphasis> - Rechnungsadresse - Telefon. Optional
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Fax</prompt></emphasis> -
-             Rechnungsadresse - Fax. Optional
+          <para><emphasis><prompt>Fax</prompt></emphasis> - Rechnungsadresse - Fax. Optional
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>E-Mail</prompt></emphasis> -
-            Rechnungsadresse - E-Mail. Optional
+          <para><emphasis><prompt>E-Mail</prompt></emphasis> - Rechnungsadresse - E-Mail. Optional
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Bemerkungen</prompt></emphasis> -
-            Bemerkungen. Optional
+          <para><emphasis><prompt>Bemerkungen</prompt></emphasis> - Bemerkungen. Optional
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Liefer-Name</prompt></emphasis> -
-            Versandinformationen - Name. Optional. Nicht relevant für Lieferanten.
+          <para><emphasis><prompt>Liefer-Name</prompt></emphasis> - Versandinformationen - Name. Optional. Nicht
+            relevant für Lieferanten.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Lieferadresse 1</prompt></emphasis> -
-            Versandinformationen - Adresszeile 1. Optional. Nicht relevant für Lieferanten.
+          <para><emphasis><prompt>Lieferadresse 1</prompt></emphasis> - Versandinformationen - Adresszeile 1.
+            Optional. Nicht relevant für Lieferanten.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Lieferadresse 2</prompt></emphasis> -
-            Versandinformationen - Adresszeile 2. Optional. Nicht relevant für Lieferanten.
+          <para><emphasis><prompt>Lieferadresse 2</prompt></emphasis> - Versandinformationen - Adresszeile 2.
+            Optional. Nicht relevant für Lieferanten.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Lieferadresse 3</prompt></emphasis> -
-            Versandinformationen - Adresszeile 3. Optional. Nicht relevant für Lieferanten.
+          <para><emphasis><prompt>Lieferadresse 3</prompt></emphasis> - Versandinformationen - Adresszeile 3.
+            Optional. Nicht relevant für Lieferanten.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Lieferadresse 4</prompt></emphasis> -
-            Versandinformationen - Adresszeile 4. Optional. Nicht relevant für Lieferanten.
+          <para><emphasis><prompt>Lieferadresse 4</prompt></emphasis> - Versandinformationen - Adresszeile 4.
+            Optional. Nicht relevant für Lieferanten.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Liefer-Telefon</prompt></emphasis> -
-            Versandinformationen - Telefon. Optional. Nicht relevant für Lieferanten.
+          <para><emphasis><prompt>Liefer-Telefon</prompt></emphasis> - Versandinformationen - Telefon. Optional.
+            Nicht relevant für Lieferanten.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Liefer-Fax</prompt></emphasis> -
-            Versandinformationen - Fax. Optional. Nicht relevant für Lieferanten.
+          <para><emphasis><prompt>Liefer-Fax</prompt></emphasis> - Versandinformationen - Fax. Optional. Nicht
+            relevant für Lieferanten.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis><prompt>Liefer-E-Mail</prompt></emphasis> -
-            Versandinformationen - E-Mail. Optional. Nicht relevant für Lieferanten.
+          <para><emphasis><prompt>Liefer-E-Mail</prompt></emphasis> - Versandinformationen - E-Mail. Optional. Nicht
+            relevant für Lieferanten.
           </para>
         </listitem>
       </itemizedlist>
-    
-      <para>
-        Beispielinhalt für einen Kunden mit einer separaten Lieferadresse. Verwendung eines Semikolons als Trennzeichen.
+
+      <para>Beispielinhalt für einen Kunden mit einer separaten Lieferadresse. Verwendung eines Semikolons als
+        Trennzeichen.
       </para>
-      
-      <para>
-        <code>2201;Alles Gut AG;Alles Gut AG;Bahnhofstrasse 1;20001 Hamburg;;;040/82938838;;info@allesgut.de;Zuletzt kontaktiert 4.4.2018.;Alles Gut AG; Jan Alterman, Büro 456;Bahnhofstrasse 1;20001 Hamburg;;040/82938838;;alterman@allesgut.de</code>
+
+      <para><code>2201;Alles Gut AG;Alles Gut AG;Bahnhofstrasse 1;20001
+        Hamburg;;;040/82938838;;info@allesgut.de;Zuletzt kontaktiert 4.4.2018.;Alles Gut AG; Jan
+        Alterman, Büro 456;Bahnhofstrasse 1;20001
+        Hamburg;;040/82938838;;alterman@allesgut.de</code>
       </para>
-      
-      <para>
-        Example content for a vendor; no ID given, so &app; will take the next number from the counter.
+
+      <para>Example content for a vendor; no ID given, so &app; will take the next number from the counter.
         Using a comma for separator.
       </para>
-      
-      <para>
-        <code>,John Lieferservice,John Lieferservice,Erden-Park 56,20001 Hamburg,,,040/7276538,,crm@john-lieferservice.de,Rabatt verhandelt,,,,,,,,</code>
+
+      <para><code>,John Lieferservice,John Lieferservice,Erden-Park 56,20001
+        Hamburg,,,040/7276538,,crm@john-lieferservice.de,Rabatt verhandelt,,,,,,,,</code>
       </para>
-    
-      <para>
-        Alle Felder mit ihren technischem Namen in der erforderlichen Reihenfolge.
+
+      <para>Alle Felder mit ihren technischem Namen in der erforderlichen Reihenfolge.
       </para>
-       
-      <para>
-        <code>Nummer,  Firma,  Name,  Adresse 1,  Adresse 2,  Adresse 3,  Adresse 4,  Telefon,  Fax,  E-Mail,  Bemerkungen,  Liefer-Name,  Lieferadresse 1,  Lieferadresse 2,  Lieferadresse 3,  Lieferadresse 4,  Liefer-Telefon,  Liefer-Fax,  Liefer-E-Mail</code>
-      </para> 
+
+      <para><code>Nummer, Firma, Name, Adresse 1, Adresse 2, Adresse 3, Adresse 4, Telefon, Fax, E-Mail,
+        Bemerkungen, Liefer-Name, Lieferadresse 1, Lieferadresse 2, Lieferadresse 3, Lieferadresse
+        4, Liefer-Telefon, Liefer-Fax, Liefer-E-Mail</code>
+      </para>
     </sect2>
-    
+
     <sect2 id="busnss-imp-cv-import-data">
       <title>Import Ihrer Daten</title>
-  
-      <para>
-        Um Ihre Kunden- oder Lieferantendaten zu importieren, navigieren Sie zu
-        <menuchoice><guimenu>Datei</guimenu>
-        <guimenuitem>Import</guimenuitem>
-        <guimenuitem>Kunden und Lieferanten importieren&hellip;</guimenuitem></menuchoice> um einen neuen Importdialog zu öffnen,
-        und geben Sie die erforderlichen Informationen an. 
+
+      <para>Um Ihre Kunden- oder Lieferantendaten zu importieren, navigieren Sie zu
+        <menuchoice>
+          <guimenu>Datei</guimenu> <guimenuitem>Import</guimenuitem> <guimenuitem>Kunden und
+          Lieferanten importieren&hellip;</guimenuitem>
+        </menuchoice>
+        um einen neuen Importdialog zu öffnen, und geben Sie die erforderlichen Informationen an.
       </para>
+
       <itemizedlist>
         <listitem>
-          <para><guilabel>1. Wählen Sie die zu importierende Datei</guilabel> -
-            Wählen Sie Ihre Importdatei aus, oder geben Sie den Pfad und den Dateinamen manuell ein.
+          <para><guilabel>1. Wählen Sie die zu importierende Datei</guilabel> - Wählen Sie Ihre Importdatei aus,
+            oder geben Sie den Pfad und den Dateinamen manuell ein.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><guilabel>2. Wählen Sie die Import-Art</guilabel> -
-            Wählen Sie die Import-Art, entweder <guilabel>Kunde</guilabel> oder <guilabel>Lieferant</guilabel>.
+          <para><guilabel>2. Wählen Sie die Import-Art</guilabel> - Wählen Sie die Import-Art, entweder
+            <guilabel>Kunde</guilabel> oder <guilabel>Lieferant</guilabel>.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><guilabel>3. Wählen Sie die Importoptionen</guilabel> -
-            Wählen Sie Ihr CSV-Format aus. 
-            Verwenden Sie die Optionen <guilabel>mit Anführungszeichen</guilabel>, wenn Ihre Datei in Anführungszeichen eingeschlossene Felder enthält.
-            Diese Optionen passen auch zu Feldern, die nicht in doppelten Anführungszeichen eingeschlossen sind,
-            aber Felder sollten nicht das doppelte Anführungszeichen selbst enthalten.
-            Verwenden Sie eine der anderen Optionen, wenn Ihre Datei keine in Anführungszeichen eingeschlossenen Felder enthält; alle doppelten Anführungszeichen
-            in der Datei werden dann so importiert, wie sie sind.
+          <para><guilabel>3. Wählen Sie die Importoptionen</guilabel> - Wählen Sie Ihr CSV-Format aus. Verwenden
+            Sie die Optionen <guilabel>mit Anführungszeichen</guilabel>, wenn Ihre Datei in
+            Anführungszeichen eingeschlossene Felder enthält. Diese Optionen passen auch zu
+            Feldern, die nicht in doppelten Anführungszeichen eingeschlossen sind, aber Felder
+            sollten nicht das doppelte Anführungszeichen selbst enthalten. Verwenden Sie eine der
+            anderen Optionen, wenn Ihre Datei keine in Anführungszeichen eingeschlossenen Felder
+            enthält; alle doppelten Anführungszeichen in der Datei werden dann so importiert, wie
+            sie sind.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><guilabel>4. Vorschau</guilabel> -
-            Sobald Sie Ihre Importdatei und das CSV-Format ausgewählt haben,
-            zeigt Ihnen &app; eine Vorschau der Daten an.
-            Sie können überprüfen, ob Ihre Daten in den richtigen Spalten aufgelistet sind. Wenn Sie in der Vorschau keine Zeilen sehen,
+          <para><guilabel>4. Vorschau</guilabel> - Sobald Sie Ihre Importdatei und das CSV-Format ausgewählt haben,
+            zeigt Ihnen &app; eine Vorschau der Daten an. Sie können überprüfen, ob Ihre Daten in
+            den richtigen Spalten aufgelistet sind. Wenn Sie in der Vorschau keine Zeilen sehen,
             dann konnte &app; Ihre Importdatenzeilen nicht mit dem gewählten CSV-Format abgleichen.
             Siehe <xref linkend="busnss-imp-cv-errors" /> unten.
           </para>
         </listitem>
-        
+
         <listitem>
-          <para><emphasis>Starten des Imports</emphasis> -
-            Wenn Sie mit Ihrer Auswahl zufrieden sind, klicken Sie auf die Schaltfläche <guibutton>OK</guibutton>, um den Import zu starten.
+          <para><emphasis>Starten des Imports</emphasis> - Wenn Sie mit Ihrer Auswahl zufrieden sind, klicken Sie
+            auf die Schaltfläche <guibutton>OK</guibutton>, um den Import zu starten.
           </para>
         </listitem>
       </itemizedlist>
-     
+
       <note>
-        <para>Intern verwendet &app; so genannte reguläre Ausdrücke, um die Importzeilen
-          mit den Datenfeldern abzugleichen. Die Importoption <guilabel>Benutzerdefinierter Regulärer Ausdruck</guilabel> bietet die Möglichkeit, einen eigenen
-          regulären Ausdruck für diesen Zuordnungsprozess zu verwenden. Diese Option setzt natürlich voraus, dass Sie sich mit regulären Ausdrücken gut auskennen.
-          Wenn Sie die Option <guilabel>Benutzerdefinierter Regulärer Ausdruck</guilabel> wählen, öffnet &app; ein Fenster,
-          in dem Sie den &app; regulären Ausdruck bearbeiten oder durch Ihren eigenen ersetzen können. 
-          Ihr regulärer Ausdruck sollte für jedes der Felder der CSV-Datei ein benanntes Untermuster enthalten
-          (unter Verwendung der technischen Namen). Ein benutzerdefinierter regulärer Ausdruck kann sinnvoll sein, wenn die Zeilen Ihrer Quelldatendatei 
-          alle notwendigen Felder enthalten, aber in einer anderen Reihenfolge oder einem anderen Format. Wenn z. B. das Format Ihrer Quelldatendatei
-          mit der Kundennummer beginnt, gefolgt von Firmenname, Name und einem Adressfeld, und das  alles ist, was Sie importieren wollen,
-          dann würde Ihr benutzerdefinierter regulärer Ausdruck etwa so aussehen (mit einem Komma als Trennzeichen):
+        <para>Intern verwendet &app; so genannte reguläre Ausdrücke, um die Importzeilen mit den Datenfeldern
+          abzugleichen. Die Importoption <guilabel>Benutzerdefinierter Regulärer
+          Ausdruck</guilabel> bietet die Möglichkeit, einen eigenen regulären Ausdruck für diesen
+          Zuordnungsprozess zu verwenden. Diese Option setzt natürlich voraus, dass Sie sich mit
+          regulären Ausdrücken gut auskennen. Wenn Sie die Option <guilabel>Benutzerdefinierter
+          Regulärer Ausdruck</guilabel> wählen, öffnet &app; ein Fenster, in dem Sie den &app;
+          regulären Ausdruck bearbeiten oder durch Ihren eigenen ersetzen können. Ihr regulärer
+          Ausdruck sollte für jedes der Felder der CSV-Datei ein benanntes Untermuster enthalten
+          (unter Verwendung der technischen Namen). Ein benutzerdefinierter regulärer Ausdruck kann
+          sinnvoll sein, wenn die Zeilen Ihrer Quelldatendatei alle notwendigen Felder enthalten,
+          aber in einer anderen Reihenfolge oder einem anderen Format. Wenn z. B. das Format Ihrer
+          Quelldatendatei mit der Kundennummer beginnt, gefolgt von Firmenname, Name und einem
+          Adressfeld, und das alles ist, was Sie importieren wollen, dann würde Ihr
+          benutzerdefinierter regulärer Ausdruck etwa so aussehen (mit einem Komma als
+          Trennzeichen):
         </para>
-       
+
         <para><programlisting>
     ^(?&lt;Firma&gt;[^,]*),(?&lt;Nummer&gt;[^,]*),(?&lt;Name&gt;[^,]*),(?&lt;Adresse 1&gt;[^,]*),(?&lt;Adresse 2&gt;[^,]*),(?&lt;Adresse 3&gt;[^,]*)$
            </programlisting>
         </para>
-    
+
         <para>Mit einem benutzerdefinierten regulären Ausdruck kann &app; Ihre Quelldatendateien importieren,
           ohne dass sie in das &app; Importformat konvertiert werden müssen.
-        </para>  
+        </para>
       </note>
     </sect2>
-    
-      <sect2 id="busnss-imp-cv-feedback">
-       <title>Rückmeldungen und Statistiken</title>
-      
-         <para>
-        &app; führt den Importprozess in drei Schritten durch:
-         </para>
-       
-       <itemizedlist>
-        <listitem>
-           <para><emphasis><prompt>Importieren</prompt></emphasis> -
-          Importiert die CSV-Datei und versucht, jede Zeile den Datenfeldern zuzuordnen.
-           </para>
-        </listitem>
-        
-        <listitem>    
-           <para><emphasis><prompt>Validierung und Anpassung</prompt></emphasis> -
-          Validiert die Datenfelder und ersetzt die Daten ggf. durch Standardwerte.
-           </para>
-        </listitem>
-        
-        <listitem>    
-           <para><emphasis><prompt>Verarbeitung</prompt></emphasis> -
-          Erzeugt oder aktualisiert die Lieferanten- oder Kundenstammdaten.
-           </para>
-        </listitem>
-       </itemizedlist>
-    
-         <para>
-        Nachdem alle Schritte beendet sind, gibt &app; Informationen über das Ergebnis des Prozesses aus.
-        Der Ausgangsdialog zeigt die Statistik des Prozesses an:
-         </para>
-      
-       <itemizedlist>
-       <listitem>
-          <para>Import-Ergebnis - Zeilen wurden ignoriert: Die Anzahl der Zeilen, die nicht mit den Datenfeldern abgeglichen werden konnten.
-          </para>
-       </listitem>
-       
-       <listitem>
-          <para>Import-Ergebnis - Zeilen wurden importiert: die Anzahl der Zeilen, die erfolgreich mit den Datenfeldern abgeglichen wurden.
-          </para>
-       </listitem>
-       <listitem>
-          <para>Import-Ergebnis - Kunden/Lieferanten repariert: Die Anzahl der Zeilen, für die ein Standardwert für ein Feld verwendet wurde.
-          </para>
-       </listitem>
-       
-       <listitem>
-          <para>Import-Ergebnis - Kunden/Lieferanten ignoriert: Die Anzahl der Zeilen, die aufgrund eines Validierungsfehlers nicht verarbeitet wurden.
-          </para>
-       </listitem>
-       
-       <listitem>
-          <para>Import-Ergebnis - Kunden/Lieferanten neu angelegt: Die Anzahl der angelegten Kunden/Lieferanten.
-          </para>
-       </listitem>
-       
-       <listitem>
-          <para>Import-Ergebnis - Kunden/Lieferanten aktualisiert: Die Anzahl der Kunden/Lieferanten, die aktualisiert wurden.
-          </para>
-       </listitem>
-       </itemizedlist>
-      
-         <para>
-        Wenn es im Importschritt nicht übereinstimmende Zeilen gab, zeigt ein abschließender Dialog die tatsächlichen Zeilen an, die nicht zugeordnet werden konnten.
-         </para>
-      
-      </sect2>
-    
-      <sect2 id="busnss-imp-cv-errors">
-       <title>Was kann schief gehen?</title>
-       
-       <sect3 id ="busnss-imp-cv-err-import">
-        <title>Fehler im Importschritt</title>
-        
-          <para>Wenn die Statistik unter <quote>Import-Ergebnis - Zeilen wurden ignoriert</quote> nicht übereinstimmende Zeilen anzeigt, dann gibt es ein Problem
-         mit dem Format Ihrer Importdatei. Überprüfen Sie, ob Sie das richtige Trennzeichen verwenden und wählen Sie es aus.
-         Stellen Sie sicher, dass Ihre Datenzeilen genau 18 Trennzeichen haben (1 für jedes Feld, außer dem letzten).
-         Überprüfen Sie, ob Sie das Trennzeichen innerhalb eines Datenfelds verwenden; wenn ja, schließen Sie das Feld in doppelte Anführungszeichen ein.
-          </para>
-          <para>Wenn Sie eine der Importoptionen <guilabel>mit Anführungszeichen</guilabel> verwenden, überprüfen Sie, ob Sie das doppelte Anführungszeichen
-         in einem der Datenfeldwerte verwenden. Wenn ja, entfernen Sie sie. Der Import von doppelten Anführungszeichen wird nicht unterstützt, wenn Sie die Option
-         <guilabel>mit Anführungszeichen</guilabel> verwenden.
-          </para>
-       </sect3>
-       
-       <sect3 id ="busnss-imp-cv-err-validation">
-        <title>Fehler im Validierungsschritt</title>
-        
-          <para>Wenn die Statistik Zeilen unter <quote>Import-Ergebnis - Kunden/Lieferanten ignoriert</quote> anzeigt, dann wurden Datenzeilen 
-         ignoriert, weil einer der folgenden Fehler vorliegt:
-          </para>
-            
-        <itemizedlist>
-         <listitem>
-            <para>Das Feld <prompt>Firma</prompt> und das Feld <prompt>Name</prompt> sind beide leer.
-           Das Feld <prompt>Firma</prompt> ist obligatorisch; wenn es leer ist, wird es mit dem Wert des Feldes 
-           <prompt>Name</prompt> vorbelegt, aber wenn beide leer sind, kann die Datenzeile nicht verarbeitet werden.
-            </para>
-         </listitem>
-         
-         <listitem>
-            <para>Die Felder <prompt>Adresse 1</prompt>, <prompt>Adresse 2</prompt>, <prompt>Adresse 3</prompt> und <prompt>Adresse 4</prompt>
-           sind alle leer. Mindestens eines dieser Felder muss einen Wert haben, sonst kann die Datenzeile nicht verarbeitet werden.
-            </para>
-         </listitem>
-        </itemizedlist>        
-      </sect3>        
-    </sect2>
-  
-    <sect2 id="busnss-imp-cv-not-supported">
-      <title>Nicht unterstützte Funktionalität bei Kunden- bzw. Lieferanten-Import</title>
-     
-      <para>
-        Derzeit unterstützt die Importfunktion Kunden bzw. Lieferanten (mindestens) Folgendes nicht:
+
+    <sect2 id="busnss-imp-cv-feedback">
+      <title>Rückmeldungen und Statistiken</title>
+
+      <para>&app; führt den Importprozess in drei Schritten durch:
       </para>
-     
+
       <itemizedlist>
         <listitem>
-          <para>Importieren beliebiger Felder auf der Kundenregisterkarte für Rechnungsinformationen:
-            Währung, Bedingungen, Rabatt, Kreditlimit, enthaltene Steuer und Steuertabelle.
+          <para><emphasis><prompt>Importieren</prompt></emphasis> - Importiert die CSV-Datei und versucht, jede
+            Zeile den Datenfeldern zuzuordnen.
           </para>
         </listitem>
-       
+
+        <listitem>
+          <para><emphasis><prompt>Validierung und Anpassung</prompt></emphasis> - Validiert die Datenfelder und
+            ersetzt die Daten ggf. durch Standardwerte.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis><prompt>Verarbeitung</prompt></emphasis> - Erzeugt oder aktualisiert die Lieferanten- oder
+            Kundenstammdaten.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Nachdem alle Schritte beendet sind, gibt &app; Informationen über das Ergebnis des Prozesses aus.
+        Der Ausgangsdialog zeigt die Statistik des Prozesses an:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Import-Ergebnis - Zeilen wurden ignoriert: Die Anzahl der Zeilen, die nicht mit den Datenfeldern
+            abgeglichen werden konnten.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Import-Ergebnis - Zeilen wurden importiert: die Anzahl der Zeilen, die erfolgreich mit den
+            Datenfeldern abgeglichen wurden.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Import-Ergebnis - Kunden/Lieferanten repariert: Die Anzahl der Zeilen, für die ein Standardwert
+            für ein Feld verwendet wurde.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Import-Ergebnis - Kunden/Lieferanten ignoriert: Die Anzahl der Zeilen, die aufgrund eines
+            Validierungsfehlers nicht verarbeitet wurden.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Import-Ergebnis - Kunden/Lieferanten neu angelegt: Die Anzahl der angelegten Kunden/Lieferanten.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Import-Ergebnis - Kunden/Lieferanten aktualisiert: Die Anzahl der Kunden/Lieferanten, die
+            aktualisiert wurden.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Wenn es im Importschritt nicht übereinstimmende Zeilen gab, zeigt ein abschließender Dialog die
+        tatsächlichen Zeilen an, die nicht zugeordnet werden konnten.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-imp-cv-errors">
+      <title>Was kann schief gehen?</title>
+
+      <sect3 id ="busnss-imp-cv-err-import">
+        <title>Fehler im Importschritt</title>
+
+        <para>Wenn die Statistik unter <quote>Import-Ergebnis - Zeilen wurden ignoriert</quote> nicht
+          übereinstimmende Zeilen anzeigt, dann gibt es ein Problem mit dem Format Ihrer
+          Importdatei. Überprüfen Sie, ob Sie das richtige Trennzeichen verwenden und wählen Sie
+          es aus. Stellen Sie sicher, dass Ihre Datenzeilen genau 18 Trennzeichen haben (1 für
+          jedes Feld, außer dem letzten). Überprüfen Sie, ob Sie das Trennzeichen innerhalb eines
+          Datenfelds verwenden; wenn ja, schließen Sie das Feld in doppelte Anführungszeichen ein.
+        </para>
+
+        <para>Wenn Sie eine der Importoptionen <guilabel>mit Anführungszeichen</guilabel> verwenden, überprüfen
+          Sie, ob Sie das doppelte Anführungszeichen in einem der Datenfeldwerte verwenden. Wenn
+          ja, entfernen Sie sie. Der Import von doppelten Anführungszeichen wird nicht
+          unterstützt, wenn Sie die Option <guilabel>mit Anführungszeichen</guilabel> verwenden.
+        </para>
+      </sect3>
+
+      <sect3 id ="busnss-imp-cv-err-validation">
+        <title>Fehler im Validierungsschritt</title>
+
+        <para>Wenn die Statistik Zeilen unter <quote>Import-Ergebnis - Kunden/Lieferanten ignoriert</quote>
+          anzeigt, dann wurden Datenzeilen ignoriert, weil einer der folgenden Fehler vorliegt:
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Das Feld <prompt>Firma</prompt> und das Feld <prompt>Name</prompt> sind beide leer. Das Feld
+              <prompt>Firma</prompt> ist obligatorisch; wenn es leer ist, wird es mit dem Wert des
+              Feldes <prompt>Name</prompt> vorbelegt, aber wenn beide leer sind, kann die Datenzeile
+              nicht verarbeitet werden.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Die Felder <prompt>Adresse 1</prompt>, <prompt>Adresse 2</prompt>, <prompt>Adresse 3</prompt> und
+              <prompt>Adresse 4</prompt> sind alle leer. Mindestens eines dieser Felder muss einen
+              Wert haben, sonst kann die Datenzeile nicht verarbeitet werden.
+            </para>
+          </listitem>
+        </itemizedlist>
+      </sect3>
+    </sect2>
+
+    <sect2 id="busnss-imp-cv-not-supported">
+      <title>Nicht unterstützte Funktionalität bei Kunden- bzw. Lieferanten-Import</title>
+
+      <para>Derzeit unterstützt die Importfunktion Kunden bzw. Lieferanten (mindestens) Folgendes nicht:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Importieren beliebiger Felder auf der Kundenregisterkarte für Rechnungsinformationen: Währung,
+            Bedingungen, Rabatt, Kreditlimit, enthaltene Steuer und Steuertabelle.
+          </para>
+        </listitem>
+
         <listitem>
           <para>Import eines beliebigen Feldes auf der Registerkarte "Lieferant" für Zahlungsinformationen:
             Währung, Bedingungen, enthaltene Steuer und Steuertabelle.
           </para>
         </listitem>
-      </itemizedlist>  
+      </itemizedlist>
     </sect2>
   </sect1>
 </chapter>
