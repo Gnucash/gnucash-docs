@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
-<!--
-      (Do not remove this comment block.)
+<!-- (Do not remove this comment block.)
   Version: 2.0.0
   Last modified: July 9th 2006
-  Maintainers: 
-               Chris Lyttle <chris@wilddev.net>
+  Maintainers:
+    Chris Lyttle <chris@wilddev.net>
   Author:
-  		Jon Lapham <lapham@extracta.com.br>
-  	Updated	Pedro Albuquerque <bengt@thuree.com>
+    Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
   Originally designed by Carol Champagne.
   Translators:
-               (Pedro Albuquerque <palbuquerque73@gmail.com)
+    Pedro Albuquerque <palbuquerque73@gmail.com
 -->
 <chapter id="chapter_loans">
   <title>Empréstimos</title>
@@ -129,8 +128,7 @@
       dinheiro do empréstimo é um ativo. Com estes parâmetros, podemos agora criar uma estrutura
       básica de contas para um empréstimo:
     </para>
-<literallayout>
-Estrutura básica de contas para um empréstimo
+<screen>Estrutura básica de contas para um empréstimo
 
 -Ativo
     -Ativos
@@ -143,8 +141,7 @@ Estrutura básica de contas para um empréstimo
 -Despesas
    -Juros
        -Juros do empréstimo
-   -Taxas administrativas
-  </literallayout>
+   -Taxas administrativas</screen>
     <para>O &app; tem um grande número de árvores de contas predefinidas para empréstimos disponível,
       incluindo crédito automóvel e crédito à habitação. Para aceder a estas árvores
       predefinidas, clique em
@@ -289,7 +286,7 @@ Estrutura básica de contas para um empréstimo
 
       <para>Para podermos discutir as fórmulas matemáticas usadas pela <guilabel>calculadora de amortização
         de empréstimos</guilabel>, primeiro temos de definir algumas variáveis.
-<literallayout>
+<screen>
  n  == número de período de pagamentos
  %i  == taxa de juro nominal aplicada, TAN
  VA  == valor atual
@@ -299,18 +296,18 @@ Estrutura básica de contas para um empréstimo
  FP == frequência de pagamento por ano
 
 Valores normais para FC e FP são:
-   1   == anual
-   2   == semestral
-   3   == quadrimestral
-   4   == trimestral
-   6   == bimensal
-   12  == mensalmente
-   24  == quinzenalmente
-   26  == quinzenal
-   52  == semanalmente
-   360 == diariamente
-   365 == diariamente
-</literallayout>
+   1  == anual
+   2  == semestral
+   3  == quadrimestral
+   4  == trimestral
+   6  == bimensal
+  12  == mensalmente
+  24  == quinzenalmente
+  26  == quinzenal
+  52  == semanalmente
+ 360  == diariamente
+ 365  == diariamente
+</screen>
       </para>
 
       <sect3 id="loans_calcsdetails_i2">
@@ -322,15 +319,13 @@ Valores normais para FC e FP são:
           i, o cálculo produz a taxa de juro efetiva, ief. Logo, precisamos de funções para
           converter i em ief e ief em i.
         </para>
-<literallayout>
-Para converter de i em ieff,são usadas as seguintes expressões:
+<screen>Para converter de i em ieff,são usadas as seguintes expressões:
 Juro discreto:     <emphasis>ief = (1 + i/FC)^(FC/FP) - 1</emphasis>
 Juro contínuo: <emphasis>ief = e^(i/FP) - 1 = exp(i/FP) - 1</emphasis>
 
 Para converter ief em i, São usadas as seguintes expressões:
 Juro discreto:      <emphasis>i = FC*[(1+ief)^(FP/FP) - 1]</emphasis>
-Juro contínuo: <emphasis>i = ln[(1+ief)^FP]</emphasis>
-</literallayout>
+Juro contínuo: <emphasis>i = ln[(1+ief)^FP]</emphasis></screen>
         <note>
           <para>Nas equações abaixo para a transação financeira, todas as taxas de juro são efetivas,
             <quote>ief</quote>.
@@ -344,19 +339,18 @@ Juro contínuo: <emphasis>i = ln[(1+ief)^FP]</emphasis>
         <para>Há uma equação que fundamentalmente, liga as cinco variáveis. É conhecida pela equação
           financeira básica:
         </para>
-<literallayout>
+<screen>
 <emphasis>VA*(1 + ief)^n + PGT*(1 + iefX)*[(1+ief)^n - 1]/ief + VF = 0</emphasis>
 
   Onde: X = 0 para pagamentos no final do período e 
-         X = 1 para pagamentos no início do período
-</literallayout>
+         X = 1 para pagamentos no início do período</screen>
         <para>A partir desta equação, podem ser derivadas funções resolvidas em ordem a cada variável
           individual. Para uma explicação detalhada sobre a derivação desta equação, veja os
           comentários no ficheiro src/calculation/fin.c, no código fonte do &app;. As variáveis
           A, B, e C são definidas primeiro, para tornar as equações posteriores mais simples de
           ler.
         </para>
-<literallayout>
+<screen>
 <emphasis>A = (1 + ief)^n - 1</emphasis>
 <emphasis>B = (1 + iefX)/ief</emphasis>
 <emphasis>C = PGT*B</emphasis>
@@ -369,8 +363,7 @@ Juro contínuo: <emphasis>i = ln[(1+ief)^FP]</emphasis>
 A solução para o juro é dividida em dois casos: 
 O caso mais simples para quando PGT == 0 dá a solução:
 <emphasis>i = [VF/VA]^(1/n) - 1</emphasis>
-
-</literallayout>
+</screen>
         <para>O caso em que PGT != 0 é razoavelmente complexo e não será discutido aqui. Em vez de envolver uma
           função exatamente resolúvel, determinar a taxa de juro quando PMT !=0 envolve um
           processo interativo. Por favor, veja o ficheiro src/calculation/fin.para uma explicação
@@ -575,7 +568,7 @@ O caso mais simples para quando PGT == 0 dá a solução:
 
     <para>Baseamos este Como fazer no seguinte plano de contas:
     </para>
-<literallayout>
+<screen>
 -Ativo
    -Banco 
         -Conta bancária
@@ -583,8 +576,7 @@ O caso mais simples para quando PGT == 0 dá a solução:
         -Pessoa
 -Receita
    -receita de juros
-        -Pessoa
-  </literallayout>
+        -Pessoa</screen>
     <para>Este exemplo mostra-lhe como controlar um empréstimo pessoal de 2.000&euro; ao seu amigo José da
       Esquina.
     </para>
@@ -660,12 +652,11 @@ O caso mais simples para quando PGT == 0 dá a solução:
 
       <para>Vamos começar com as seguintes contas (todas as contas têm a mesma moeda, neste caso, o Euro)
       </para>
-<literallayout>
+<screen>
 Ativos:Banco:Euro
 Ativos:Dinheiro que me devem:José da Esquina
 Receita:Receita de juros:José da Esquina
-Capital próprio:Saldos iniciais:Euro
-  </literallayout>
+Capital próprio:Saldos iniciais:Euro</screen>
     </sect2>
 
     <sect2 id="loans_personalLoanToSomeOne_InitialSetup">
@@ -900,7 +891,7 @@ Capital próprio:Saldos iniciais:Euro
       juro.
     </para>
 
-    <para><literallayout>Estrutura básica de contas para crédito automóvel
+    <para><screen>Estrutura básica de contas para crédito automóvel
 
 -Ativos
     -Ativos atuais
@@ -913,7 +904,7 @@ Capital próprio:Saldos iniciais:Euro
 -Despesas
    -Juros
        -Juros do crédito automóvel
-   -Taxas administrativas do crédito automóvel</literallayout>
+   -Taxas administrativas do crédito automóvel</screen>
     </para>
 
     <para>Para mais informação, por favor veja <xref linkend="loans_mortgage1" />
@@ -967,7 +958,7 @@ Capital próprio:Saldos iniciais:Euro
         vender antes um carro, substitua as contas apropriadas.
       </para>
 
-      <para><literallayout>
+      <para><screen>
 -Ativos
   -Ativos fixos
     -Casa
@@ -975,8 +966,7 @@ Capital próprio:Saldos iniciais:Euro
     -Conta poupança
 -Receita
   -Ganho de capital a longo prazo
-    -Casa
-    </literallayout>
+    -Casa</screen>
       </para>
 
       <itemizedlist>
@@ -1142,7 +1132,7 @@ Capital próprio:Saldos iniciais:Euro
         e subestimada), por favor veja <xref linkend="chapter_capgain"></xref>.
       </para>
 
-      <para><literallayout>
+      <para><screen>
 -Ativos
     -Ativos fixos
         -Casa
@@ -1154,8 +1144,7 @@ Capital próprio:Saldos iniciais:Euro
     -Ganhos realizados
         -Casa
     -Ganhos não realizados
-        -Casa
-    </literallayout>
+        -Casa</screen>
       </para>
 
       <para>Comprou uma casa por 300.000&euro; há anos e manteve sempre um olho no mercado, atualizando os seus
@@ -1300,8 +1289,7 @@ Capital próprio:Saldos iniciais:Euro
 <!--
   <sect1 id="loans_missing1">
     <title>Missing Loan Documentation</title>
-
-    <literallayout>
+<screen>
  -Entering a Payment Schedule
      -Monthly Payments (How-To)
        -See the Mortgage assistant
@@ -1311,8 +1299,7 @@ Capital próprio:Saldos iniciais:Euro
        -Same as a normal payment, but you get the figures from the bank
        -How to fix 10 amortization and then a final bulk payment setup?
 
- -Putting It All Together
- </literallayout>
+ -Putting It All Together</screen>
   </sect1>
 -->
 </chapter>

@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
-<!--
-      (Do not remove this comment block.)
+<!-- (Do not remove this comment block.)
   Version: 2.0.0
   Last modified: July 9th 2006
-  Maintainers: 
-               Chris Lyttle <chris@wilddev.net>
-
+  Maintainers:
+    Chris Lyttle <chris@wilddev.net>
   Author:
-  		Jon Lapham <lapham@extracta.com.br>
+    Jon Lapham <lapham@extracta.com.br>
   	Updated	Bengt Thuree <bengt@thuree.com>
   Originally designed by Carol Champagne.
   Translators:
-               (translators put your name and email here)
+    (translators put your name and email here)
 -->
 <chapter id="chapter_loans">
   <title>ローン</title>
@@ -122,8 +120,7 @@
       ローンからのお金で購入されたものは、資産です。
       これらのパラメータを使用して、基本的なローン勘定科目の構造を示します。
     </para>
-<literallayout>
-基本的なローン勘定科目構造
+<screen>基本的なローン勘定科目構造
 
 -資産
     -流動資産
@@ -136,8 +133,7 @@
 -費用
    -利子
        -担保付きローン利子
-   -担保付きローン管理手数料
-</literallayout>
+   -担保付きローン管理手数料</screen>
     <para>&app;には、自動車のローンや住宅ローンを含む、多くの既定義ローン勘定科目階層が利用可能です。
       これらの既定義勘定科目構造にアクセスするためには、
       <menuchoice>
@@ -262,7 +258,7 @@ srccredit="Bengt Thuree" />
       <title>発展: 計算の詳細</title>
 
       <para>財務計算機で使用される数式を説明するためには、まず、いくつかの変数を定義しなければいけません。
-<literallayout>
+<screen>
  n  == 支払期間の数
  %i  == 表面利率、NAR
  PV  == 現在価値
@@ -272,17 +268,17 @@ srccredit="Bengt Thuree" />
  PF == 1年あたりの支払い頻度
 
 CFとPFの標準の値はそれぞれ次の通りです。
-   1   == 毎年
-   2   == 年2回
-   3   == 年3回
-   4   == 四半期ごと
-   6   == 2カ月ごと
-   12  == 毎月
-   24  == 月2回
-   26  == 隔週
-   52  == 毎週
-   360 == 毎日(360)
-   365 == 毎日(365)</literallayout>
+   1  == 毎年
+   2  == 年2回
+   3  == 年3回
+   4  == 四半期ごと
+    6  == 2カ月ごと
+  12  == 毎月
+  24  == 月2回
+  26  == 隔週
+  52  == 毎週
+ 360  == 毎日(360)
+ 365  == 毎日(365)</screen>
       </para>
 
       <sect3 id="loans_calcsdetails_i2">
@@ -293,14 +289,13 @@ CFとPFの標準の値はそれぞれ次の通りです。
           iを求める時には、計算によって実効利率(ieff)を求めます。
           したがって、iからieffまで変換する機能とieffからiまで計算する機能が必要です。
         </para>
-<literallayout>
-iからieffまで変換するためには次の式を使用します。
-離散的な利率:     <emphasis>ieff = (1 + i/CF)^(CF/PF) - 1</emphasis>
-連続的な利率: <emphasis>ieff = e^(i/PF) - 1 = exp(i/PF) - 1</emphasis>
+<screen>iからieffまで変換するためには次の式を使用します。
+離散的な利率:  <emphasis>ieff = (1 + i/CF)^(CF/PF) - 1</emphasis>
+連続的な利率:  <emphasis>ieff = e^(i/PF) - 1 = exp(i/PF) - 1</emphasis>
 
 ieffからiまで変換するためには次の式を使用します。
-離散的な利率:      <emphasis>i = CF*[(1+ieff)^(PF/CF) - 1]</emphasis>
-連続的な利率: <emphasis>i = ln[(1+ieff)^PF]</emphasis></literallayout>
+離散的な利率:  <emphasis>i = CF*[(1+ieff)^(PF/CF) - 1]</emphasis>
+連続的な利率:  <emphasis>i = ln[(1+ieff)^PF]</emphasis></screen>
         <note>
           <para>以降で説明する、金融取引のための方程式では、すべての利率が実効利率<quote>ieff</quote>です。
             簡潔にするために、文字では単に<quote>i</quote>と表記します。
@@ -314,17 +309,17 @@ ieffからiまで変換するためには次の式を使用します。
         <para>一つの方程式が基本的に5個すべての変数を関連付けます。
           これは基本的な財務方程式として知られています。
         </para>
-<literallayout>
+<screen>
 <emphasis>PV*(1 + i)^n + PMT*(1 + iX)*[(1+i)^n - 1]/i + FV = 0</emphasis>
 ここでXは次を表します。
 
    X = 0 : 支払期間の終了時
-   X = 1 : 支払期間の開始時</literallayout>
+   X = 1 : 支払期間の開始時</screen>
         <para>この方程式からそれぞれの変数を求める関数が導き出されます。
           この式を求める方法の詳細については&app;ソースコードのファイルsrc/calculation/fin.cにあるコメントを参照してください。
           後の方程式を読むのをより簡単にするために、変数A、B、およびCを最初に定義します。
         </para>
-<literallayout>
+<screen>
 <emphasis>A = (1 + i)^n - 1</emphasis>
 <emphasis>B = (1 + iX)/i</emphasis>
 <emphasis>C = PMT*B</emphasis>
@@ -336,7 +331,8 @@ ieffからiまで変換するためには次の式を使用します。
 
 利率のための解は2つの場合に分かれます。
 PMT===0 の場合は簡単で、解は次のようになります。
-<emphasis>i = [FV/PV]^(1/n) - 1</emphasis></literallayout>
+<emphasis>i = [FV/PV]^(1/n) - 1</emphasis>
+</screen>
         <para>PMT!=0の場合は非常に複雑であり、ここで記述することはできません。
           PMT!=0の場合、正確に求めることができる関数があるのではなく、利率を決定するに反復演算が必要となります。
           詳細な説明はsrc/calculation/fin.cソースファイルを参照してください。
@@ -536,7 +532,7 @@ srccredit="Bengt Thuree" />
 
     <para>このHow-Toでは、次の一般的な勘定科目構造に基づいています。
     </para>
-<literallayout>
+<screen>
 -資産
    -銀行
         -普通預金
@@ -544,8 +540,7 @@ srccredit="Bengt Thuree" />
         -人
 -収益
    -利子収益
-        -人
-</literallayout>
+        -人</screen>
     <para>この例では、友人ピーターへの2,000ドル(デフォルトの通貨)の個人貸付を、どのように追跡するかを説明します。
     </para>
 
@@ -619,12 +614,11 @@ format="PNG" srccredit="Bengt Thuree" />
       <para>次の勘定科目で開始します
         (すべての勘定科目が同じ通貨、この場合U.S.ドルとします)。
       </para>
-<literallayout>
+<screen>
 資産:銀行:USD
 資産:貸付:ピーター
 収益:利子収益:ピーター
-純資産:開始残高:USD
-</literallayout>
+純資産:開始残高:USD</screen>
     </sect2>
 
     <sect2 id="loans_personalLoanToSomeOne_InitialSetup">
@@ -863,7 +857,7 @@ srccredit="Bengt Thuree" />
       差異は勘定科目と利子だけです。
     </para>
 
-    <para><literallayout>基本的な自動車ローン勘定科目構造
+    <para><screen>基本的な自動車ローン勘定科目構造
 
 -資産
     -流動資産
@@ -876,7 +870,7 @@ srccredit="Bengt Thuree" />
 -費用
    -利子
        -自動車ローン利子
-   -自動車ローン管理手数料</literallayout>
+   -自動車ローン管理手数料</screen>
     </para>
 
     <para>詳細に関しては<xref linkend="loans_mortgage1" />を参照してください。
@@ -922,7 +916,7 @@ srccredit="Bengt Thuree" />
         自動車を代わりに売却したい場合は、単に住宅勘定科目が自動車勘定科目に変わるだけです。
       </para>
 
-      <para><literallayout>
+      <para><screen>
 -資産
   -固定資産
     -住宅
@@ -930,8 +924,7 @@ srccredit="Bengt Thuree" />
     -普通預金
 -収益
   -長期資本利得
-    -住宅
-</literallayout>
+    -住宅</screen>
       </para>
 
       <itemizedlist>
@@ -1098,7 +1091,7 @@ srccredit="Bengt Thuree" />
         については、<xref linkend="chapter_capgain"></xref>を参照してください。
       </para>
 
-      <para><literallayout>
+      <para><screen>
 -資産
     -固定資産
         -住宅
@@ -1110,8 +1103,7 @@ srccredit="Bengt Thuree" />
     -実現利益
         -住宅
     -未実現利益
-        -住宅
-</literallayout>
+        -住宅</screen>
       </para>
 
       <para>大昔に300,000ドルで家を買いました。そして、長い間、市場を良く見続けており、住宅の推定現在価値の記録を更新していました。
@@ -1250,17 +1242,16 @@ srccredit="Bengt Thuree" />
 
   <sect1 id="loans_missing1">
     <title>未作成のローン文書</title>
-<literallayout>
+<screen>
  -Entering a Payment Schedule
      -Monthly Payments (How-To)
-     ---See the Mortgage assistant
-     ----ARM 10/1 means 10 year fixed interest rate, then changes every year
-     ----ARM 10/3 means 10 year fixed interest rate, then changes every third year
+       -See the Mortgage assistant
+        -ARM 10/1 means 10 year fixed interest rate, then changes every year
+        -ARM 10/3 means 10 year fixed interest rate, then changes every third year
      -Final Payment (How-To)
      ---Same as a normal payment, but you get the figures from the bank
      ---How to fix 10 amortization and then a final bulk payment setup?
 
- -Putting It All Together
-</literallayout>
+ -Putting It All Together</screen>
   </sect1>
 </chapter>
