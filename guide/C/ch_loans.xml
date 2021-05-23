@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
-<!--
-      (Do not remove this comment block.)
+<!-- (Do not remove this comment block.)
   Version: 2.0.0
   Last modified: July 9th 2006
   Maintainers:
-               Chris Lyttle <chris@wilddev.net>
+    Chris Lyttle <chris@wilddev.net>
   Author:
-  		Jon Lapham <lapham@extracta.com.br>
+    Jon Lapham <lapham@extracta.com.br>
   	Updated	Bengt Thuree <bengt@thuree.com>
   Originally designed by Carol Champagne.
   Translators:
-               (translators put your name and email here)
+    (translators put your name and email here)
 -->
 <chapter id="chapter_loans">
   <title>Loans</title>
@@ -126,8 +125,7 @@
       money from a loan is an asset. With these parameters, we can now present a basic loan account
       structure:
     </para>
-<literallayout>
-Basic Loan Account Structure
+<screen>Basic Loan Account Structure
 
 -Asset
     -Current Assets
@@ -140,8 +138,7 @@ Basic Loan Account Structure
 -Expenses
    -Interest
        -Mortgage Interest
-   -Mortgage Adm Fees
-  </literallayout>
+   -Mortgage Adm Fees</screen>
     <para>&app; has a number of predefined loan account hierarchies available, including Car Loans and Home
       Mortgage Loans. To access these predefined account structures, click on
       <menuchoice>
@@ -279,28 +276,27 @@ Basic Loan Account Structure
 
       <para>In order to discuss the mathematical formulas used by the <guilabel>Loan Repayment
         Calculator</guilabel>, we first must define some variables.
-<literallayout>
- n  == number of payment periods
+<screen>
+ n   == number of payment periods
  %i  == nominal interest rate, NAR, charged
  PV  == Present Value
  PMT == Periodic Payment
  FV  == Future Value
- CF == Compounding Frequency per year
- PF == Payment Frequency per year
+ CF  == Compounding Frequency per year
+ PF  == Payment Frequency per year
 
 Normal values for CF and PF are:
-   1   == annual
-   2   == semi-annual
-   3   == tri-annual
-   4   == quaterly
-   6   == bi-monthly
-   12  == monthly
-   24  == semi-monthly
-   26  == bi-weekly
-   52  == weekly
-   360 == daily
-   365 == daily
-</literallayout>
+   1  == annual
+   2  == semi-annual
+   3  == tri-annual
+   4  == quaterly
+   6  == bi-monthly
+  12  == monthly
+  24  == semi-monthly
+  26  == bi-weekly
+  52  == weekly
+ 360  == daily
+ 365  == daily</screen>
       </para>
 
       <sect3 id="loans_calcsdetails_i2">
@@ -312,15 +308,13 @@ Normal values for CF and PF are:
           computation produces the effective interest rate (ieff). Thus, we need functions which
           convert from i to ieff, and from ieff to i.
         </para>
-<literallayout>
-To convert from i to ieff, the following expressions are used:
-Discrete Interest:     <emphasis>ieff = (1 + i/CF)^(CF/PF) - 1</emphasis>
+<screen>To convert from i to ieff, the following expressions are used:
+Discrete Interest:   <emphasis>ieff = (1 + i/CF)^(CF/PF) - 1</emphasis>
 Continuous Interest: <emphasis>ieff = e^(i/PF) - 1 = exp(i/PF) - 1</emphasis>
 
 To convert from ieff to i, the following expressions are used:
-Discrete Interst:      <emphasis>i = CF*[(1+ieff)^(PF/CF) - 1]</emphasis>
-Continuous Interest: <emphasis>i = ln[(1+ieff)^PF]</emphasis>
-</literallayout>
+Discrete Interst:    <emphasis>i = CF*[(1+ieff)^(PF/CF) - 1]</emphasis>
+Continuous Interest: <emphasis>i = ln[(1+ieff)^PF]</emphasis></screen>
         <note>
           <para>In the equations below for the financial transaction, all interest rates are the effective interest
             rate, <quote>ieff</quote>. For the sake of brevity, the symbol will be shortened to just
@@ -335,18 +329,17 @@ Continuous Interest: <emphasis>i = ln[(1+ieff)^PF]</emphasis>
         <para>One equation fundamentally links all the 5 variables. This is known as the fundamental financial
           equation:
         </para>
-<literallayout>
+<screen>
 <emphasis>PV*(1 + i)^n + PMT*(1 + iX)*[(1+i)^n - 1]/i + FV = 0</emphasis>
 
   Where: X = 0 for end of period payments, and
-         X = 1 for beginning of period payments
-</literallayout>
+         X = 1 for beginning of period payments</screen>
         <para>From this equation, functions which solve for the individual variables can be derived. For a
           detailed explanation of the derivation of this equation, see the comments in the file
           src/calculation/fin.c from the &app; source code. The A, B, and C variables are defined
           first, to make the later equations simpler to read.
         </para>
-<literallayout>
+<screen>
 <emphasis>A = (1 + i)^n - 1</emphasis>
 <emphasis>B = (1 + iX)/i</emphasis>
 <emphasis>C = PMT*B</emphasis>
@@ -359,8 +352,7 @@ Continuous Interest: <emphasis>i = ln[(1+ieff)^PF]</emphasis>
 The solution for interest is broken into two cases.
 The simple case for when  PMT == 0 gives the solution:
 <emphasis>i = [FV/PV]^(1/n) - 1</emphasis>
-
-</literallayout>
+</screen>
         <para>The case where PMT != 0 is fairly complex and will not be presented here. Rather than involving an
           exactly solvable function, determining the interest rate when PMT !=0 involves an
           iterative process. Please see the src/calculation/fin.c source file for a detailed
@@ -564,7 +556,7 @@ The simple case for when  PMT == 0 gives the solution:
 
     <para>We are basing this How-To on the following generic account structure.
     </para>
-<literallayout>
+<screen>
 -Asset
    -Bank
         -Bank Account
@@ -572,8 +564,7 @@ The simple case for when  PMT == 0 gives the solution:
         -Person
 -Income
    -Interest Income
-        -Person
-  </literallayout>
+        -Person</screen>
     <para>This example will show how to track a personal loan of 2,000 USD (default currency) to your friend
       Peter
     </para>
@@ -650,12 +641,11 @@ The simple case for when  PMT == 0 gives the solution:
       <para>Let&rsquo;s start with the following accounts (all accounts have the same currency, in this case
         USD)
       </para>
-<literallayout>
+<screen>
 Assets:Bank:USD
 Assets:Money owed to you:Peter
 Income:Interest Income:Peter
-Equity:Opening Balances:USD
-  </literallayout>
+Equity:Opening Balances:USD</screen>
     </sect2>
 
     <sect2 id="loans_personalLoanToSomeOne_InitialSetup">
@@ -889,7 +879,7 @@ Equity:Opening Balances:USD
       loan. The only difference is different accounts, and different interest rates.
     </para>
 
-    <para><literallayout>Basic Car Loan Account Structure
+    <para><screen>Basic Car Loan Account Structure
 
 -Asset
     -Current Assets
@@ -902,7 +892,7 @@ Equity:Opening Balances:USD
 -Expenses
    -Interest
        -Car Loan Interest
-   -Car Loan Adm Fees</literallayout>
+   -Car Loan Adm Fees</screen>
     </para>
 
     <para>For more information, please check <xref
@@ -956,7 +946,7 @@ Equity:Opening Balances:USD
         you want to sell a car instead, just substitute the house account with a car account.
       </para>
 
-      <para><literallayout>
+      <para><screen>
 -Assets
   -Fixed Assets
     -House
@@ -964,8 +954,7 @@ Equity:Opening Balances:USD
     -Saving
 -Income
   -Capital Gains Long
-    -House
-    </literallayout>
+    -House</screen>
       </para>
 
       <itemizedlist>
@@ -1130,7 +1119,7 @@ Equity:Opening Balances:USD
         <xref linkend="chapter_capgain"></xref>.
       </para>
 
-      <para><literallayout>
+      <para><screen>
 -Assets
     -Fixed Assets
         -House
@@ -1142,8 +1131,7 @@ Equity:Opening Balances:USD
     -Realized Gain
         -House
     -Unrealized Gain
-        -House
-    </literallayout>
+        -House</screen>
       </para>
 
       <para>You bought a house for $300,000 once upon a time, and over the years kept a close look on the market
@@ -1288,8 +1276,7 @@ Equity:Opening Balances:USD
 <!--
   <sect1 id="loans_missing1">
     <title>Missing Loan Documentation</title>
-
-    <literallayout>
+<screen>
  -Entering a Payment Schedule
      -Monthly Payments (How-To)
        -See the Mortgage assistant
@@ -1299,8 +1286,7 @@ Equity:Opening Balances:USD
        -Same as a normal payment, but you get the figures from the bank
        -How to fix 10 amortization and then a final bulk payment setup?
 
- -Putting It All Together
- </literallayout>
+ -Putting It All Together</screen>
   </sect1>
 -->
 </chapter>

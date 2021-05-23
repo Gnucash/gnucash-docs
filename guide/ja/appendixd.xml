@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE appendix SYSTEM "gnc-docbookx.dtd">
-<!--
-      (Do not remove this comment block.)
+<!-- (Do not remove this comment block.)
   Version: 2.0.0
   Last modified: March 18th, 2007
-  Maintainers: 
-                Chris Lyttle <chris@wilddev.net>
+  Maintainers:
+    Chris Lyttle <chris@wilddev.net>
   Author:
-                David Hampton <hampton@employees.org>
+    David Hampton <hampton@employees.org>
   Translators:
-               (translators put your name and email here)
+    (translators put your name and email here)
 -->
 <appendix id="appendixd">
   <title>補助ファイル形式</title>
@@ -39,10 +38,15 @@
         dialog. The first location is typically
         <filename class="directory">/usr/share/gnucash/checks</filename>, where check files
         distributed with the application can be found. The second location is the user private
-        <filename class="directory">~/.gnucash/checks</filename> directory. Users may add check
-        formats at any time (even while &app; is running) simply by dropping a new
-        <filename>*.chk</filename> file in this directory. The next time the check printing dialog
-        is opened the new check format will appear in the list of available check formats.
+        <filename class="directory">&dir-data;checks</filename>
+        <footnote id="dir-old-chk">
+          <para>Up to &app; 2.6.21 it was <filename class="directory">&dir-old;checks</filename>
+          </para>
+        </footnote>
+        directory. Users may add check formats at any time (even while &app; is running) simply by
+        dropping a new <filename>*.chk</filename> file in this directory. The next time the check
+        printing dialog is opened the new check format will appear in the list of available check
+        formats.
       </para>
 
       <note>
@@ -60,8 +64,7 @@
       <para>A typical &app; check file is presented below. The contents of this file will be described in the
         next sections.
       </para>
-<programlisting>
-[Top]
+<programlisting language="ini">[Top]
 Guid = 67b144d1-96a5-48d5-9337-0e1083bbf229
 Title = Quicken/QuickBooks (tm) US-Letter
 Rotation = 0.0
@@ -88,8 +91,7 @@ Type_4 = DATE
 Coords_4 = 500.0;67.0
 
 Type_5 = NOTES
-Coords_5 = 50.0;212.0
-        </programlisting>
+Coords_5 = 50.0;212.0</programlisting>
     </sect2>
 
     <sect2>
@@ -551,9 +553,9 @@ Coords_5 = 50.0;212.0
 
                 <entry>
                   If supplied, this is the alignment used to print this specific text item. This
-                  field must contain one of the strings "left", "center" or "right". If this field
-                  is omitted, the text will be left aligned. This field is only recognized when
-                  using gtk version 2.10 or later.
+                  field must contain one of the strings <quote>left</quote>, <quote>center</quote>
+                  or <quote>right</quote>. If this field is omitted, the text will be left aligned.
+                  This field is only recognized when using gtk version 2.10 or later.
                 </entry>
               </row>
 
@@ -595,10 +597,11 @@ Coords_5 = 50.0;212.0
                   string may specify either an absolute path name or as a relative path name. If a
                   relative path name is specified, &app; first looks in in the application check
                   format folder (typically
-                  <filename class="directory">/usr/share/gnucash/checks</filename>) for the image
-                  file, and if it isn&rsquo;t found there then it looks in the user private
-                  <filename class="directory">~/.gnucash/checks</filename> directory for the image.
-                  This field is only recognized when using gtk version 2.10 or later.
+                  <filename class="directory">/usr/share/gnucash/checks</filename> ) for the image
+                  file, and if it is not found there then it looks in the user private
+                  <filename class="directory">&dir-data;checks</filename><footnoteref linkend="dir-old-chk" />
+                  directory for the image. This field is only recognized when using gtk version 2.10
+                  or later.
                 </entry>
               </row>
 
@@ -687,8 +690,7 @@ Coords_5 = 50.0;212.0
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
@@ -710,8 +712,7 @@ Blocking_Chars
 <literallayout>Font
 Align
 Blocking_Chars
-DateFormat
-                    </literallayout>
+DateFormat</literallayout>
                 </entry>
 
                 <entry>
@@ -731,8 +732,7 @@ DateFormat
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
@@ -753,13 +753,20 @@ Blocking_Chars
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
                   This type value tells &app; to print the check number at the specified
-                  coordinates.
+                  coordinates. The check number reflects the book option selection under
+                  <menuchoice>
+                    <guimenu>File</guimenu><guimenuitem>Properties </guimenuitem>
+                  </menuchoice>
+                  for number source (transaction number or anchor-split action - see
+                  <ulink type="help"
+                    url="ghelp:gnucash-help?num-action-book-option">Use
+                  Split Action Field for Number</ulink> in the Book Options section of the &app;
+                  Help Manual).
                 </entry>
               </row>
 
@@ -775,8 +782,7 @@ Blocking_Chars
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
@@ -797,13 +803,21 @@ Blocking_Chars
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
                   This type value tells &app; to print the split action field at the specified
-                  coordinates.
+                  coordinates. However, the printed field reflects the book option selection under
+                  <menuchoice>
+                    <guimenu>File</guimenu><guimenuitem> Properties</guimenuitem>
+                  </menuchoice>
+                  for number source (transaction number or anchor-split action - see
+                  <ulink
+                    type="help" url="ghelp:gnucash-help?num-action-book-option">
+                  Use Split Action Field for Number</ulink> in the Book Options section of the &app;
+                  Help Manual). If number source for the book is specified as anchor-split action,
+                  this field will instead print the transaction number field.
                 </entry>
               </row>
 
@@ -819,8 +833,7 @@ Blocking_Chars
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
@@ -842,8 +855,7 @@ Blocking_Chars
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
@@ -864,8 +876,7 @@ Blocking_Chars
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
@@ -885,8 +896,7 @@ Blocking_Chars
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
@@ -907,8 +917,7 @@ Blocking_Chars
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
@@ -930,8 +939,7 @@ Blocking_Chars
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
@@ -952,8 +960,7 @@ Blocking_Chars
                 <entry>
 <literallayout>Font
 Align
-Blocking_Chars
-                    </literallayout>
+Blocking_Chars</literallayout>
                 </entry>
 
                 <entry>
@@ -988,9 +995,9 @@ Blocking_Chars
 
         <note>
           <para>SPLIT items include all split entries for the transaction except for the split that applies to the
-            current account register. This is usually the last split listed when splits are
-            displayed in the register. The coordinate location defines the lower left location for
-            the split information.
+            current account register (referred to as the anchor-split). This is usually the last
+            split listed when splits are displayed in the register. The coordinate location defines
+            the lower left location for the split information.
           </para>
         </note>
       </sect3>
@@ -1002,16 +1009,16 @@ Blocking_Chars
       <para>Creating your own check format file is a fairly simple task. The easiest way to start is to copy an
         existing check format file from the application directory (typically
         <filename class="directory">/usr/share/gnucash/checks</filename>) to the directory
-        <filename class="directory">~/.gnucash/checks</filename>. Make sure to change the guid so
-        the new file will be accepted by gnucash, and change the title to something descriptive.
-        Then change or add individual item fields as necessary. You can also create a new check file
-        by clicking the <guibutton>Save Format</guibutton> button on the <guilabel>Custom
-        format</guilabel> page of the check printing dialog.
+        <filename class="directory">&dir-data;checks</filename><footnoteref linkend="dir-old-chk" />.
+        Make sure to change the guid so the new file will be accepted by gnucash, and change the
+        title to something descriptive. Then change or add individual item fields as necessary. You
+        can also create a new check file by clicking the <guibutton>Save Format</guibutton> button
+        on the <guilabel>Custom format</guilabel> page of the check printing dialog.
       </para>
 
       <note>
-        <para>Key names are case sensitive. If you&rsquo;re having problems with a check format file, ensure that
-          all key names have capital letters as documented above.
+        <para>Key names are case sensitive. If you are having problems with a check format file, ensure that all
+          key names have capital letters as documented above.
         </para>
       </note>
     </sect2>

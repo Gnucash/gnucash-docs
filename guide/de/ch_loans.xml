@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
-<!--
-      (Do not remove this comment block.)
+<!-- (Do not remove this comment block.)
   Version: 2.0.0 / 2.6 maint
   Last modified: July 9th 2006 (Englisch 2015-09-08)
-  Maintainers: 
-               Chris Lyttle <chris@wilddev.net>
+  Maintainers:
+    Chris Lyttle <chris@wilddev.net>
   Author:
-        Jon Lapham <lapham@extracta.com.br>
-    Updated Bengt Thuree <bengt@thuree.com>
+    Jon Lapham <lapham@extracta.com.br>
+  	Updated	Bengt Thuree <bengt@thuree.com>
   Originally designed by Carol Champagne.
   Translators:
-               Martin Mainka <martin@mainka-it.de>
-               Mechtilde Stehmann<ooo@mechtilde.de>
+    Martin Mainka <martin@mainka-it.de>
+    Mechtilde Stehmann<ooo@mechtilde.de>
 -->
 <chapter id="chapter_loans">
   <title>Darlehen</title>
@@ -67,8 +66,7 @@
         </listitem>
 
         <listitem>
-          <para><emphasis>Säumniszuschlag</emphasis> - ist die vereinbarte Bedingung für verspätete
-            Rückzahlung.
+          <para><emphasis>Säumniszuschlag</emphasis> - ist die vereinbarte Bedingung für verspätete Rückzahlung.
           </para>
         </listitem>
 
@@ -101,8 +99,8 @@
         <listitem>
           <para><emphasis>Darlehensbetrag</emphasis> – Der ursprüngliche Darlehensbetrag oder der Anteil des
             Darlehens, der noch geschuldet wird. Wenn Sie monatliche Raten für das Darlehen
-            bezahlen, ist ein Teil davon für die Zahlung des Zinses und ein Teil ist für die Rückzahlung
-            des Darlehensbetrags.
+            bezahlen, ist ein Teil davon für die Zahlung des Zinses und ein Teil ist für die
+            Rückzahlung des Darlehensbetrags.
           </para>
         </listitem>
 
@@ -134,8 +132,7 @@
       Gegenstand, der mit dem Geld des Darlehens gekauft wird, gehört zu den Aktiva. Mit diesen Parametern
       können wir jetzt die grundlegende Kontohierarchie für Darlehen aufzeigen.
     </para>
-<literallayout>
-Grundlegende Kontostrukturen für Darlehen
+<screen>Grundlegende Kontostrukturen für Darlehen
 
 -Aktiva
     -Umlaufvermögen
@@ -148,8 +145,7 @@ Grundlegende Kontostrukturen für Darlehen
 -Aufwendungen
     -Zinsen
         -Hypothekenzinsen
-    -Hypothekengebühren
-   </literallayout>
+    -Hypothekengebühren</screen>
     <para>&app; besitzt eine Anzahl vordefinierter Kontostrukturen für Darlehen, wie zum Beispiel
       Autodarlehen und sonstige Darlehen. Um diese vorgefertigten Kontostrukturen zu nutzen, klicken
       Sie auf <guimenu>Aktionen</guimenu> <guimenuitem>Kontenhierarchie hinzufügen</guimenuitem>
@@ -291,7 +287,7 @@ Grundlegende Kontostrukturen für Darlehen
       <para>Für die Besprechungen der mathematischen Formeln, die durch den
         <guilabel>Darlehensrechner</guilabel> benutzt werden definieren wir erst die folgenden
         Variablen.
-<literallayout>
+<screen>
  n   == Anzahl der Zahlungsperioden
  %i  == nominaler Zinssatz
  PV  == aktueller Wert
@@ -301,18 +297,17 @@ Grundlegende Kontostrukturen für Darlehen
  PF  == Zahlungsperiode pro Jahr
 
 Normale Werte für CF und PF sind:
-  1   == jährlich
-  2   == halbjährlich
-  3   == dreimal im Jahr
-  4   == vierteljährlich
-  6   == alle zwei Monate
+   1  == jährlich
+   2  == halbjährlich
+   3  == dreimal im Jahr
+   4  == vierteljährlich
+   6  == alle zwei Monate
   12  == monatlich
   24  == halb monatlich
   26  == alle zwei Wochen
   52  == wöchentlich
-  360 == täglich (12 x 30 Tage)
-  365 == täglich
-</literallayout>
+ 360  == täglich (12 x 30 Tage)
+ 365  == täglich</screen>
       </para>
 
       <sect3 id="loans_calcsdetails_i2">
@@ -325,15 +320,13 @@ Normale Werte für CF und PF sind:
           Deshalb benötigen wir Funktionen, die den nominalen Zinssatz in den effektiven Zinssatz,
           und den effektiven Zinssatz in den Nominalzinssatz umrechnen.
         </para>
-<literallayout>
-Zur Umrechnung von i nach ieff werden folgende Formeln genutzt:
+<screen>Zur Umrechnung von i nach ieff werden folgende Formeln genutzt:
 schrittweise Verzinsung:     <emphasis>ieff = (1 + i/CF)^(CF/PF) - 1</emphasis>
 kontinuierliche Verzinsung:  <emphasis>ieff = e^(i/PF) - 1 = exp(i/PF) - 1</emphasis>
 
 Zur Umrechnung von ieff nach i werden folgende Formeln genutzt:
 schrittweise Verzinsung:     <emphasis>i = CF*[(1+ieff)^(PF/CF) - 1]</emphasis>
-kontinuierliche Verzinsung:  <emphasis>i = ln[(1+ieff)^PF]</emphasis>
-        </literallayout>
+kontinuierliche Verzinsung:  <emphasis>i = ln[(1+ieff)^PF]</emphasis></screen>
         <note>
           <para>In den unten stehenden Gleichungen für Geldgeschäfte sind alle Zinssätze die effektiven
             Zinssätze, <quote>ieff</quote>. Aus Gründen der Kürze wird statt <quote>ieff</quote>
@@ -348,18 +341,17 @@ kontinuierliche Verzinsung:  <emphasis>i = ln[(1+ieff)^PF]</emphasis>
         <para>Eine Gleichung verbindet alle fünf genannten Variablen. Diese ist bekannt als die grundlegende
           Finanzgleichung:
         </para>
-<literallayout>
+<screen>
 <emphasis>PV*(1 + i)^n + PMT*(1 + iX)*[(1+i)^n - 1]/i + FV = 0</emphasis>
 
 Dabei ist:  X = 0 für Zahlungen am Ende des Zeitraums und
-            X = 1 für Zahlungen am Anfang des Zeitraums.
-         </literallayout>
+            X = 1 für Zahlungen am Anfang des Zeitraums.</screen>
         <para>Aus dieser Gleichung können Funktionen abgeleitet werden, um einzelne Variablen zu berechnen. Für
           eine ausführliche Beschreibung der Ableitung dieser Gleichungen lesen Sie bitte die
           Kommentare in der Datei src/calculation/fin.c im &app; Quelltext. Die Variablen A, B, und
           C werden zuerst definiert, um die nachfolgenden Gleichungen übersichtlicher zu machen.
         </para>
-<literallayout>
+<screen>
 <emphasis>A = (1 + i)^n - 1</emphasis>
 <emphasis>B = (1 + iX)/i</emphasis>
 <emphasis>C = PMT*B</emphasis>
@@ -372,8 +364,7 @@ Dabei ist:  X = 0 für Zahlungen am Ende des Zeitraums und
 Die Auflösung nach dem Zinssatz wird in zwei Fälle unterteilt.
 Der einfache Fall mit PMT == 0 ergibt die Gleichung:
 <emphasis>i = [FV/PV]^(1/n) - 1</emphasis>
-
-         </literallayout>
+</screen>
         <para>Der Fall, wo PMT != 0 ist ziemlich komplex und wird hier nicht behandelt. Statt eine exakt lösbare
           Funktionen zur Bestimmung des Zinssatzes für den Fall PMT !=0 zu benutzen, wird ein
           interaktiver Prozess verwendet. Bitte lesen Sie die Datei src/calculation/fin.c für eine
@@ -580,7 +571,7 @@ Der einfache Fall mit PMT == 0 ergibt die Gleichung:
 
     <para>Dieses Beispiel basiert auf den folgenden allgemeinen Kontostrukturen.
     </para>
-<literallayout>
+<screen>
 -Aktiva
     -Bank
       -Bankkonto
@@ -588,8 +579,7 @@ Der einfache Fall mit PMT == 0 ergibt die Gleichung:
       -Person
 -Ertrag
     -Zinsertrag
-      -Person
-    </literallayout>
+      -Person</screen>
     <para>Dieses Beispiel zeigt, wie Sie die Entwicklung eines persönlichen Darlehens von 2.000,- € an
       Ihren Freund Peter verfolgen
     </para>
@@ -667,12 +657,11 @@ Der einfache Fall mit PMT == 0 ergibt die Gleichung:
       <para>Wir beginnen mit folgender Kontenhierarchie (alle Konten haben dieselbe Währung, in diesem Fall
         Euro)
       </para>
-<literallayout>
+<screen>
 Aktiva:Bank:EUR
 Aktiva:Ihnen geschuldetes Geld:Peter
 Ertrag: Zinsertrag:Peter
-Vermögen:Anfangskontostand:EUR
-</literallayout>
+Vermögen:Anfangskontostand:EUR</screen>
     </sect2>
 
     <sect2 id="loans_personalLoanToSomeOne_InitialSetup">
@@ -907,7 +896,7 @@ Vermögen:Anfangskontostand:EUR
       andere Kontobezeichnungen und andere Zinskonditionen.
     </para>
 
-    <para><literallayout>Grundlegende Kontostrukturen für Darlehen
+    <para><screen>Grundlegende Kontostrukturen für Darlehen
 
 -Aktiva
     -Umlaufvermögen
@@ -920,7 +909,7 @@ Vermögen:Anfangskontostand:EUR
 -Aufwendungen
     -Zinsen
         -Zinsen Kfz-Darlehen
-    -Gebühren Kfz-Darlehen</literallayout>
+    -Gebühren Kfz-Darlehen</screen>
     </para>
 
     <para>Weitere Informationen finden Sie unter <xref linkend=
@@ -978,7 +967,7 @@ Vermögen:Anfangskontostand:EUR
         durch das Kfz-Konto.
       </para>
 
-      <para><literallayout>
+      <para><screen>
 -Aktiva
     -Anlagevermögen
         -Haus
@@ -986,8 +975,7 @@ Vermögen:Anfangskontostand:EUR
         -Sparkonto
 -Ertrag
     -langfristige Kapitalerträge
-        -Haus
-      </literallayout>
+        -Haus</screen>
       </para>
 
       <itemizedlist>
@@ -1156,7 +1144,7 @@ Vermögen:Anfangskontostand:EUR
         bitte <xref linkend="chapter_capgain"></xref>.
       </para>
 
-      <para><literallayout>
+      <para><screen>
         -Aktiva
             -Anlagevermögen
                 -Haus
@@ -1168,8 +1156,7 @@ Vermögen:Anfangskontostand:EUR
             -realisierter Gewinn
                 -Haus
             -unrealisierter Gewinn
-                -Haus
-        </literallayout>
+                -Haus</screen>
       </para>
 
       <para>Vor einiger Zeit haben Sie ein Haus für 300.000,- € gekauft und während der Jahre haben Sie den
@@ -1307,16 +1294,15 @@ Vermögen:Anfangskontostand:EUR
       </para>
 
       <para>Nach Eingabe dieser Buchung sehen Sie, dass Ihr Hausvermögen jetzt den Wert null hat, der Betrag
-        auf Ihrem Sparkonto wurde um 600.000,- € erhöht und zuletzt hat sich der Betrag
-        unter <emphasis>Ertrag:realisierter Gewinn</emphasis> auf 300.000,- € erhöht.
+        auf Ihrem Sparkonto wurde um 600.000,- € erhöht und zuletzt hat sich der Betrag unter
+        <emphasis>Ertrag:realisierter Gewinn</emphasis> auf 300.000,- € erhöht.
       </para>
     </sect2>
   </sect1>
 <!--
   <sect1 id="loans_missing1">
     <title>Missing Loan Documentation</title>
-
-    <literallayout>
+<screen>
  -Entering a Payment Schedule
      -Monthly Payments (Wie wird es gemacht)
        -See the Mortgage assistant
@@ -1326,8 +1312,7 @@ Vermögen:Anfangskontostand:EUR
        -Same as a normal payment, but you get the figures from the bank
        -How to fix 10 amortization and then a final bulk payment setup?
 
- -Putting It All Together
- </literallayout>
+ -Putting It All Together</screen>
   </sect1>
 -->
 </chapter>
