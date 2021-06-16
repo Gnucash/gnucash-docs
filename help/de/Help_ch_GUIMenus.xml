@@ -42,20 +42,16 @@
         <title>Das &app; Hauptfenster</title><mediaobject>
           <imageobject role="html">
             <imagedata fileref="figures/Main-window-callouts.png" format="PNG"
-                       srccredit="Christian Wehling" width="510" />
+                       srccredit="Frank H. Ellenberger" width="510" />
           </imageobject>
 
           <imageobject role="fo">
             <imagedata fileref="figures/Main-window-callouts.png" format="PNG"
-                       srccredit="Christian Wehling" />
+                       srccredit="Frank H. Ellenberger" />
           </imageobject>
 
-          <textobject>
-            <phrase>Bestandteile des &app; Hauptfensters</phrase>
-          </textobject>
-
           <caption>
-            <para>Die Elemente, in die das Hauptfenster von &app; unterteilt ist.
+            <para>Die Elemente, die zur Bedienung von &app; im Hauptfenster zur Verfügung stehen.
             </para>
           </caption>
         </mediaobject>
@@ -80,7 +76,10 @@
           <term>Menüleiste</term>
 
           <listitem>
-            <para>Enthält die Menüs für das Kontenhierarchie-Fenster.
+            <para>Enthält die Menüs für die Kontenübersicht. Der Umfang der Menueinträge wird dynamisch an den
+              Inhalt des Anzeigebereichs angepasst. Das bedeutet, wenn Sie z.B. ein Kontobuch
+              geöffent haben, dann wird für die Arbeit mit Buchungen ein zusätzliches Menü
+              eingeblendet.
             </para>
           </listitem>
         </varlistentry>
@@ -91,6 +90,17 @@
           <listitem>
             <para>Enthält Schaltflächen (Knöpfe) für den Zugriff auf typische kontextbezogene Funktionen.
             </para>
+
+            <tip>
+              <para>Das gesamte Erscheinungsbild der <ulink url="&url-wiki;CSS">CSS</ulink> -basierten &app;-Oberfläche
+                läßt sich über die Konfiguration von <ulink url="&url-wiki;GTK3">GTK</ulink>
+                gestalten. So läßt sich z.B. die Darstellung der Werkzeugleiste (Größe der
+                Symbole, Abstand, Text unter dem Symbol uvm.) mit Hilfe einer Konfigurationsdatei
+                anpassen. Wenn Sie also das Aussehen von &app; konfigurieren wollen, zeigen Ihnen
+                diese, zuvor genannten englischsprachigen, Seiten im Wiki wie Sie dies
+                bewerkstelligen können.
+              </para>
+            </tip>
           </listitem>
         </varlistentry>
 
@@ -98,25 +108,27 @@
           <term>Registerkartenleiste</term>
 
           <listitem>
-            <para>Enthält die Kontenhierarchie, Kontenbücher sowie die geöffenen Berichte.
+            <para>Enthält, ähnlich in einem <quote>Notizbuch/Aktenordner</quote>, mehrere Registerkarten für die
+              Kontenübersicht, offene Kontobücher, Berichte, uvm.
             </para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>Hauptfenster</term>
+          <term>Anzeigebereich</term>
 
           <listitem>
-            <para>Der Hauptanzeigebereich, mit dem Inhalt der aktuell ausgewählten Registerkarte
+            <para>Der meiste Platz in &app; nimmt der Anzeigebereich ein. Hier wird der Inhalt der aktuell
+              ausgewählten Registerkarte angezeigt
             </para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>Zusammenfassungs-Leiste</term>
+          <term>Zusammenfassungsleiste</term>
 
           <listitem>
-            <para>Enthält eine Kurzzusammenfassung der Finanzdaten.
+            <para>Enthält eine kurze Zusammenfassung Ihrer Finanzdaten.
             </para>
           </listitem>
         </varlistentry>
@@ -137,22 +149,22 @@
         </para>
       </note>
 
-      <para>Die Kontenhierarchie ist mit <guilabel>Konten</guilabel> in der
-        <firstterm>Registerkartenleiste</firstterm> beschriftet, und zeigt alle Ihre Konten und
-        deren Salden, gruppiert gemäß der üblichen Buchhaltungspraxis, an.
+      <para>Die Kontenübersicht ist mit <guilabel>Konten</guilabel> in der
+        <guilabel>Registerkartenleiste</guilabel> beschriftet und zeigt alle Ihre Konten und deren
+        Salden an, gruppiert gemäß der üblichen Buchhaltungspraxis.
       </para>
 
       <tip>
-        <para>Um eine zusätzliche Ansicht der Kontenhierarchie zu öffnen, gehen Sie auf
+        <para>Um eine zusätzliche Ansicht der Kontenübersicht zu öffnen, gehen Sie auf
           <menuchoice>
             <guimenu>Ansicht</guimenu> <guimenuitem>Neue Kontenübersicht</guimenuitem>
           </menuchoice>
-          . Dadurch wird die Kontenhierarchie im bestehenden Fenster geöffnet.
+          . Dadurch wird eine weitere Kontenübersicht im bestehenden Fenster geöffnet.
         </para>
       </tip>
 
       <tip>
-        <para>Um ein neues Fenster mit der Kontenhierarchie zu öffnen, gehen Sie zu
+        <para>Um ein neues Fenster mit der Kontenübersicht zu öffnen, gehen Sie zu
           <menuchoice>
             <guimenu>Fenster</guimenu> <guimenuitem>Neues Fenster mit Seite</guimenuitem>
           </menuchoice>
@@ -163,10 +175,10 @@
   </sect1>
 
   <sect1 id="gui-acct-tree">
-    <title>Kontenhierarchie</title>
+    <title>Kontenübersicht</title>
 
     <figure>
-      <title>Das <emphasis>Kontenhierarchie</emphasis> Fenster.</title><screenshot id="AccTree_Screen">
+      <title>Die Anzeige der <emphasis>Kontenübersicht</emphasis></title><screenshot id="AccTree_Screen">
         <mediaobject>
           <imageobject role="html">
             <imagedata fileref="figures/Help_AccountTree_Screen.png" format="PNG"
@@ -178,29 +190,93 @@
                        srccredit="Christian Wehling" />
           </imageobject>
 
-          <textobject>
-            <phrase>Bildschirm Kontenhierarchie</phrase>
-          </textobject>
-
           <caption>
-            <para>Dies ist die Übersicht mit dem Beispiel einer <guilabel>Kontenstruktur</guilabel>.
+            <para>Dies ist das Beispiel einer <guilabel>Kontenübersicht</guilabel>.
             </para>
           </caption>
         </mediaobject>
       </screenshot>
     </figure>
 
-    <sect2 id="AccTree-menus">
-      <title>Kontenhierarchie - Menüleiste</title>
+    <sect2 id="AccTree-main-bar">
+      <title>Anzeigebereich der Kontenübersicht</title>
 
-      <para>Die <firstterm>Menüleiste</firstterm> für das Fenster Kontenhierarchie enthält die nachfolgenden
+      <para>Die Kontenübersicht zeigt eine Liste Ihrer Konten in einer Baumstruktur an. Dies ermöglicht, dass
+        Sie Ihre Konten nach Kontenarten organisieren können.
+      </para>
+
+      <tip>
+        <para>Die Dreiecksform (oder das Pluszeichen) neben dem Kontonamen dient zum Öffnen und Schließen der
+          Kontenstruktur. Wenn Sie auf das Dreieck (Pluszeichen) klicken, ändert es sich von einem
+          nach rechts zeigenden in ein nach unten zeigendes Zeichen (Minuszeichen), um anzuzeigen,
+          dass der Baum geöffnet ist. Sie sehen dann versetzt unterhalb des Kontonamens entweder
+          eine Liste der Unterkonten oder ein weiteres Dreieck (Pluszeichen) links neben einem
+          Konto. Dieses zeigt eine weitere untere Ebene der Kontenübersicht an.
+        </para>
+      </tip>
+
+      <para>Im Hauptfenster werden außerdem standardmäßig vier Spalten angezeigt:
+        <guilabel>Kontobezeichnung</guilabel>, <guilabel>Kontoart</guilabel>,
+        <guilabel>Beschreibung</guilabel> und <guilabel>Gesamt</guilabel>. Für jedes Konto werden
+        diese Informationen, sofern vorhanden, in der gleichen Zeile des Kontos angezeigt.
+      </para>
+
+      <para>Die Spalten, die für jedes Konto in der Kontenübersicht angezeigt werden, können an Ihre
+        Bedürfnisse angepasst werden.
+      </para>
+
+      <figure pgwide="1">
+        <title>Der Spaltenselektor</title><screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/column-selector-0.png" format="PNG"
+                   srccredit="Frank H. Ellenberger" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Klicken Sie auf den Spaltenselektor, das Pfeilsymbol ganz rechts im Tabellenkopf der
+        Kontenübersicht direkt am Scrollbalken, damit die Dropdown-Liste mit Spaltennamen angezeigt
+        wird.
+      </para>
+
+      <figure pgwide="1">
+        <title>Die Spaltenauswahl im Spaltenselektor</title><screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/column-selector-1.png" format="PNG"
+                   srccredit="Frank H. Ellenberger" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Die Spalte <guilabel>Kontobezeichnung</guilabel> ist immer ausgewählt und kann nicht deaktiviert
+        werden. Die momentan in der <guilabel>Kontenübersicht</guilabel> aktive Spalten werden in
+        der Liste markiert angezeigt. Ein Großteil der Spalten die zur Auswahl stehen wird in
+        <xref linkend="acct-create" /> beschrieben. Klicken Sie auf einen Eintrag, um die Spalte in
+        die <guilabel>Kontenübersicht</guilabel> hinzuzufügen. Klicken Sie erneut auf die
+        Spaltenbeschreibung, um sie auszublenden.
+      </para>
+
+      <para>Die Standardanzeige für die Kontenübersicht ist der Karteikartenmodus. Dies erkennen Sie an dem
+        Reiter auf der linken Seite des Hauptfensters. Wenn Sie Berichte oder weitere
+        Kontenübersicht-Fenster öffnen, erscheinen dort zusätzliche Reiter.
+      </para>
+    </sect2>
+
+    <sect2 id="AccTree-menus">
+      <title>Menüleiste</title>
+
+      <para>Die <guilabel>Menüleiste</guilabel> für die Kontenübersicht enthält die nachfolgend
         aufgeführten Menüpunkte.
       </para>
 
       <sect3 id="AccTree-file-menu">
-        <title>Kontenhierarchie - <guimenu><accel>D</accel>atei</guimenu>-Menü</title>
+        <title>Kontenübersicht - <guimenu><accel>D</accel>atei</guimenu>-Menü</title>
 
-        <para>In der folgenden Tabelle werden die Möglichkeiten im Menü Datei beschrieben.
+        <para>In der folgenden Tabelle werden die Möglichkeiten im Menü <guimenu>Datei</guimenu> beschrieben.
         </para>
 
         <para>Durch Klicken auf den Menüpunkt <guimenu>Datei</guimenu> in der <emphasis>Menüleiste</emphasis>
@@ -209,7 +285,7 @@
         </para>
 
         <table frame="topbot" id="AccTree-FileMenu">
-          <title>Kontenhierarchie - Datei-Menü - Zugriff auf Datei- und Kontenoperation sowie Druckfunktion</title>
+          <title>Kontenübersicht - Datei-Menü - Zugriff auf Datei- und Kontenoperation sowie Druckfunktion</title>
 
           <tgroup align="left" cols="3">
             <colspec colname="c1"></colspec>
@@ -246,7 +322,7 @@
                 </entry>
 
                 <entry nameend="c3" namest="c2">
-                  <para>Erzeugt eine neue Datendatei (beginnt mit neuen Konten und Daten.)
+                  <para>Erzeugt eine neue Datei mit Hilfe des Assistenten <guilabel>Neuen Kontenplan erstellen</guilabel>.
                   </para>
                 </entry>
               </row>
@@ -258,7 +334,7 @@
                       <keycombo>
                         <keycap>Strg</keycap><keycap>O</keycap>
                       </keycombo>
-                      </shortcut> <guimenuitem>Ö<accel>f</accel>fnen...</guimenuitem>
+                      </shortcut> <guimenuitem>Ö<accel>f</accel>fnen&hellip;</guimenuitem>
                     </menuchoice>
                   </para>
                 </entry>
@@ -285,12 +361,13 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>R</accel>echnungen importieren...</guimenuitem>
+                  <para><guimenuitem><accel>R</accel>echnungen importieren&hellip;</guimenuitem>
                   </para>
                 </entry>
 
                 <entry namest="c3">
-                  <para>Öffnet das Fenster <guilabel>Buchungen aus Textdatei importieren</guilabel>.
+                  <para>Mit dem Assistenten <guilabel>Buchungen aus Textdatei importieren</guilabel> können Sie Kunden-
+                    oder Lieferantenrechnungen aus einer CSV-Datei importieren.
                   </para>
                 </entry>
               </row>
@@ -310,7 +387,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>B</accel>uchungen importieren von CSV...</guimenuitem>
+                  <para><guimenuitem><accel>B</accel>uchungen importieren von CSV&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -323,7 +400,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>K<accel>u</accel>rse aus CSV-Datei importieren...</guimenuitem>
+                  <para><guimenuitem>K<accel>u</accel>rse aus CSV-Datei importieren&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -336,7 +413,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>K<accel>u</accel>nden und Lieferanten importieren ...</guimenuitem>
+                  <para><guimenuitem>K<accel>u</accel>nden und Lieferanten importieren &hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -348,7 +425,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>Q</accel>IF-Datei importieren...</guimenuitem>
+                  <para><guimenuitem><accel>Q</accel>IF-Datei importieren&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -360,7 +437,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>Einträge aus <accel>L</accel>ogdatei einspielen...</guimenuitem>
+                  <para><guimenuitem>Einträge aus <accel>L</accel>ogdatei einspielen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -373,7 +450,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>O</accel>FX/QFX importieren...</guimenuitem>
+                  <para><guimenuitem><accel>O</accel>FX/QFX importieren&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -456,19 +533,19 @@
                       <keycombo>
                         <keycap>Umschalt</keycap><keycap>Strg</keycap><keycap>S</keycap>
                       </keycombo>
-                      </shortcut> <guimenuitem>Speichern <accel>u</accel>nter...</guimenuitem>
+                      </shortcut> <guimenuitem>Speichern <accel>u</accel>nter&hellip;</guimenuitem>
                     </menuchoice>
                   </para>
                 </entry>
 
                 <entry nameend="c3" namest="c2">
                   <para>Speichert die aktuell geöffnete Datei unter einem anderen Namen.
+                    <footnote>
+                      <para>Bis zu &app; Version &vers-last-2; sollten Sie aufpassen, dass Sie Ihre Datendatei NICHT in
+                        <filename class="directory">~/.gnucash/books</filename> speichern.
+                      </para>
+                    </footnote>
                   </para>
-
-                  <warning>
-                    <para>Speichern Sie Ihre Datendatei NICHT in <filename class="directory">~/.gnucash/books</filename>.
-                    </para>
-                  </warning>
                 </entry>
               </row>
 
@@ -490,7 +567,13 @@
 
               <row>
                 <entry>
-                  <para><guimenuitem>Drucken...</guimenuitem>
+                  <para><menuchoice>
+                      <shortcut>
+                      <keycombo>
+                        <keycap>Strg</keycap><keycap>P</keycap>
+                      </keycombo>
+                      </shortcut><guimenuitem><accel>D</accel>rucken&hellip;</guimenuitem>
+                    </menuchoice>
                   </para>
                 </entry>
 
@@ -508,7 +591,7 @@
                       <keycombo>
                         <keycap>Umschalt</keycap><keycap>Strg</keycap><keycap>P</keycap>
                       </keycombo>
-                      </shortcut> <guimenuitem>Seite ein<accel>r</accel>ichten...</guimenuitem>
+                      </shortcut> <guimenuitem>Seite ein<accel>r</accel>ichten&hellip;</guimenuitem>
                     </menuchoice>
                   </para>
                 </entry>
@@ -535,7 +618,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guisubmenu>Konten<accel>h</accel>ierarchie nach CSV exportieren...</guisubmenu>
+                  <para><guisubmenu>Konten<accel>h</accel>ierarchie nach CSV exportieren&hellip;</guisubmenu>
                   </para>
                 </entry>
 
@@ -548,7 +631,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guisubmenu><accel>B</accel>uchungen nach CSV exportieren...</guisubmenu>
+                  <para><guisubmenu><accel>B</accel>uchungen nach CSV exportieren&hellip;</guisubmenu>
                   </para>
                 </entry>
 
@@ -560,7 +643,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guisubmenu><accel>A</accel>ktives Kontobuch als CSV-Datei exportieren...</guisubmenu>
+                  <para><guisubmenu><accel>A</accel>ktives Kontobuch als CSV-Datei exportieren&hellip;</guisubmenu>
                   </para>
                 </entry>
 
@@ -640,7 +723,7 @@
                   <para><menuchoice>
                       <shortcut>
                       <keycombo>
-                        <keycap>Strg</keycap><keycap>B</keycap>
+                        <keycap>Strg</keycap><keycap>Q</keycap>
                       </keycombo>
                       </shortcut> <guimenuitem><accel>B</accel>eenden</guimenuitem>
                     </menuchoice>
@@ -658,10 +741,10 @@
       </sect3>
 
       <sect3 id="AccTree-edit-menu">
-        <title>Kontenhierarchie - <guimenu><accel>B</accel>earbeiten</guimenu>-Menü</title>
+        <title>Kontenübersicht - <guimenu><accel>B</accel>earbeiten</guimenu>-Menü</title>
 
         <table frame="topbot" id="AccTree-EditMenu">
-          <title>Kontenhierarchie - Bearbeiten-Menü - Bearbeitungsfunktionen für Dateien und Konten sowie
+          <title>Kontenübersicht - Bearbeiten-Menü - Bearbeitungsfunktionen für Dateien und Konten sowie
             Einstellungen</title>
 
           <tgroup align="left" cols="2">
@@ -788,7 +871,7 @@
 
               <row>
                 <entry>
-                  <para><guimenuitem>Konto<accel>e</accel>igenschaften übernehmen...</guimenuitem>
+                  <para><guimenuitem>Konto<accel>e</accel>igenschaften übernehmen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -807,7 +890,7 @@
 
               <row>
                 <entry>
-                  <para><guimenuitem>Unterkonten neu <accel>n</accel>ummerieren...</guimenuitem>
+                  <para><guimenuitem>Unterkonten neu <accel>n</accel>ummerieren&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -856,7 +939,7 @@
                       <keycombo>
                         <keycap>Strg</keycap><keycap>F</keycap>
                       </keycombo>
-                      </shortcut> <guimenuitem><accel>S</accel>uchen...</guimenuitem>
+                      </shortcut> <guimenuitem><accel>S</accel>uchen&hellip;</guimenuitem>
                     </menuchoice>
                   </para>
                 </entry>
@@ -915,10 +998,10 @@
       </sect3>
 
       <sect3 id="AccTree-view-menu">
-        <title>Kontenhierarchie - <guimenu><accel>A</accel>nsicht</guimenu>-Menü</title>
+        <title>Kontenübersicht - <guimenu><accel>A</accel>nsicht</guimenu>-Menü</title>
 
         <table frame="topbot" id="AccTree-ViewMenu">
-          <title>Kontenhierarchie - Ansicht-Menü - Ändern der Ansicht des Kontenhierarchiefensters.</title>
+          <title>Kontenübersicht - Ansicht-Menü - Ändern der Ansicht der Kontenübersicht.</title>
 
           <tgroup align="left" cols="2">
             <colspec colname="c1"></colspec>
@@ -978,12 +1061,12 @@
 
               <row>
                 <entry>
-                  <para><guimenuitem><accel>F</accel>iltern nach...</guimenuitem>
+                  <para><guimenuitem><accel>F</accel>iltern nach&hellip;</guimenuitem>
                   </para>
                 </entry>
 
                 <entry>
-                  <para>Filter für Konten einstellen, die in der Kontenhierarchie angezeigt werden.
+                  <para>Filter für Konten einstellen, die in der Kontenübersicht angezeigt werden.
                   </para>
                 </entry>
               </row>
@@ -1013,7 +1096,7 @@
                 </entry>
 
                 <entry>
-                  <para>Öffnet eine neue Registerkarte, die die Kontenhierarchie anzeigt.
+                  <para>Öffnet eine neue Registerkarte, die die Kontenübersicht anzeigt.
                   </para>
                 </entry>
               </row>
@@ -1023,10 +1106,10 @@
       </sect3>
 
       <sect3 id="AccTree-actions-menu">
-        <title>Kontenhierarchie - <guimenu>A<accel>k</accel>tionen</guimenu>-Menü</title>
+        <title>Kontenübersicht - <guimenu>A<accel>k</accel>tionen</guimenu>-Menü</title>
 
         <table frame="topbot" id="AccTree-ActionsMenu">
-          <title>Kontenhierarchie - Aktionen-Menü - Anlegen terminierter Buchungen, Überprüfen von Konten,
+          <title>Kontenübersicht - Aktionen-Menü - Anlegen terminierter Buchungen, Überprüfen von Konten,
             Durchführen von Aktienteilungen, Buchen und Abgleichen von Geschäftsvorgängen</title>
 
           <tgroup align="left" cols="3">
@@ -1077,7 +1160,7 @@
                     <para>Die Menüeinträge werden erst nach dem vollständigen Bearbeiten von
                       <menuchoice>
                         <guimenu><accel>W</accel>erkzeug</guimenu><guimenuitem><accel>O</accel>nlinebanking
-                        Einrichtung...</guimenuitem>
+                        Einrichtung&hellip;</guimenuitem>
                       </menuchoice>
                       aktiviert.
                     </para>
@@ -1092,24 +1175,24 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>S</accel>aldenabfrage...</guimenuitem>
+                  <para><guimenuitem><accel>S</accel>aldenabfrage&hellip;</guimenuitem>
                   </para>
                 </entry>
 
                 <entry namest="c3">
-                  <para>Ermittelt den Saldo für das ausgewählte Konto.
+                  <para>Fragt per Onlinebanking den Kontossaldo für das ausgewählte Konto ab.
                   </para>
                 </entry>
               </row>
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>Abfrage Konto<accel>u</accel>msätze...</guimenuitem>
+                  <para><guimenuitem>Abfrage Konto<accel>u</accel>msätze&hellip;</guimenuitem>
                   </para>
                 </entry>
 
                 <entry namest="c3">
-                  <para>Holt die Buchungen für das ausgewählte Konto bei dem Geldinstitut per Online Banking ab.
+                  <para>Holt die Buchungen für das ausgewählte Konto bei dem Geldinstitut per Onlinebanking ab.
                   </para>
                 </entry>
               </row>
@@ -1126,37 +1209,41 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>SEPA <accel>E</accel>inzelüberweisung...</guimenuitem>
+                  <para><guimenuitem>SEPA <accel>E</accel>inzelüberweisung&hellip;</guimenuitem>
                   </para>
                 </entry>
 
                 <entry namest="c3">
-                  <para>Erstellt eine neue internationale europäische (SEPA) Transaktion per Online Banking.
+                  <para>Erstellt eine SEPA Überweisung per Onlinebanking.
                   </para>
                 </entry>
               </row>
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>I</accel>nterne Umbuchung...</guimenuitem>
+                  <para><guimenuitem><accel>I</accel>nterne Umbuchung&hellip;</guimenuitem>
                   </para>
                 </entry>
 
                 <entry namest="c3">
-                  <para>Erstellt eine neue bankinterne Umbuchung per Online Banking.
+                  <para>Erstellt eine bankinterne Umbuchung per Online Banking.
                   </para>
                 </entry>
               </row>
-
+<!-- FIXME source: enable this menuitem in GC again -->
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>SEPA Lastschriftmandat erstellen...</guimenuitem>
+                  <para><guimenuitem>SEPA Lastschriftmandat erstellen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
                 <entry namest="c3">
                   <note>
-                    <para>Mit der Umstellung auf <acronym>SEPA</acronym> ist dieser Menüeintrag verschwunden, ist aber
+                    <para>Mit der Umstellung auf <acronym>SEPA</acronym> ist dieser Menüeintrag verschwunden, ist aber mit
+                      Hilfe von
+                      <package>
+                        AqBanking
+                      </package>
                       weiterhin möglich. Siehe <ulink url="&url-wiki;De/SEPA-Lastschrift"></ulink>.
                     </para>
                   </note>
@@ -1170,8 +1257,8 @@
                 </entry>
 
                 <entry namest="c3">
-                  <para>Öffnet das <guilabel>Onlinebanking Verbindungsfenster</guilabel> zur Anzeige der letzten
-                    Onlineverlaufs.
+                  <para>Öffnet das <guilabel>Onlinebanking Verbindungsfenster</guilabel> mit dem Verlauf der letzten
+                    Sitzung.
                   </para>
                 </entry>
               </row>
@@ -1191,7 +1278,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>Terminierte Buchungen <accel>E</accel>ditor...</guimenuitem>
+                  <para><guimenuitem>Terminierte Buchungen <accel>E</accel>ditor&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1204,7 +1291,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>Seit <accel>l</accel>etztem Aufruf...</guimenuitem>
+                  <para><guimenuitem>Seit <accel>l</accel>etztem Aufruf&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1217,7 +1304,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>H</accel>ypothek &amp; Darlehen Assistent...</guimenuitem>
+                  <para><guimenuitem><accel>H</accel>ypothek &amp; Darlehen Assistent&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1298,7 +1385,7 @@
 
               <row>
                 <entry>
-                  <guimenuitem>Neues <accel>K</accel>onto...</guimenuitem>
+                  <guimenuitem>Neues <accel>K</accel>onto&hellip;</guimenuitem>
                 </entry>
 
                 <entry nameend="c3" namest="c2">
@@ -1309,7 +1396,7 @@
 
               <row>
                 <entry>
-                  <guimenuitem>Konten<accel>h</accel>ierarchie hinzufügen...</guimenuitem>
+                  <guimenuitem>Konten<accel>h</accel>ierarchie hinzufügen&hellip;</guimenuitem>
                 </entry>
 
                 <entry nameend="c3" namest="c2">
@@ -1325,7 +1412,7 @@
                       <keycombo>
                         <keycap>Strg</keycap><keycap>T</keycap>
                       </keycombo>
-                      </shortcut> <guimenuitem><accel>B</accel>uchen...</guimenuitem>
+                      </shortcut> <guimenuitem><accel>B</accel>uchen&hellip;</guimenuitem>
                     </menuchoice>
                   </para>
                 </entry>
@@ -1338,7 +1425,7 @@
 
               <row>
                 <entry>
-                  <para><guimenuitem><accel>A</accel>bgleichen...</guimenuitem>
+                  <para><guimenuitem><accel>A</accel>bgleichen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1351,7 +1438,7 @@
 
               <row>
                 <entry>
-                  <para><guimenuitem><accel>A</accel>utomatisch abgleichen...</guimenuitem>
+                  <para><guimenuitem><accel>A</accel>utomatisch abgleichen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1364,7 +1451,7 @@
 
               <row>
                 <entry>
-                  <para><guimenuitem>A<accel>k</accel>tienteilung...</guimenuitem>
+                  <para><guimenuitem>A<accel>k</accel>tienteilung&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1378,7 +1465,7 @@
 
               <row>
                 <entry>
-                  <para><guimenuitem><accel>P</accel>osten anzeigen...</guimenuitem>
+                  <para><guimenuitem><accel>P</accel>osten anzeigen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1444,7 +1531,7 @@
 
               <row>
                 <entry>
-                  <para><guimenuitem><accel>W</accel>arnungen zurücksetzen...</guimenuitem>
+                  <para><guimenuitem><accel>W</accel>arnungen zurücksetzen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1482,10 +1569,10 @@
       </sect3>
 
       <sect3 id="AccTree-business-menu">
-        <title id="usage">Kontenhierarchie - <guimenu><accel>G</accel>eschäft</guimenu>-Menü</title>
+        <title id="usage">Kontenübersicht - <guimenu><accel>G</accel>eschäft</guimenu>-Menü</title>
 
         <table frame="topbot" id="AccTree-BusinessMenu">
-          <title>Kontenhierarchie - Geschäft-Menü - &app;-Funktionen für Kleinunternehmen</title>
+          <title>Kontenübersicht - Geschäft-Menü - &app;-Funktionen für Kleinunternehmen</title>
 
           <tgroup align="left" cols="3">
             <colspec colname="c1"></colspec>
@@ -1537,7 +1624,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>N</accel>euer Kunde...</guimenuitem>
+                  <para><guimenuitem><accel>N</accel>euer Kunde&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1549,7 +1636,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>K</accel>unde suchen...</guimenuitem>
+                  <para><guimenuitem><accel>K</accel>unde suchen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1561,7 +1648,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>N<accel>e</accel>ue Rechnung...</guimenuitem>
+                  <para><guimenuitem>N<accel>e</accel>ue Rechnung&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1573,7 +1660,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>R</accel>echnung suchen...</guimenuitem>
+                  <para><guimenuitem><accel>R</accel>echnung suchen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1585,7 +1672,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>Ne<accel>u</accel>er Auftrag...</guimenuitem>
+                  <para><guimenuitem>Ne<accel>u</accel>er Auftrag&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1597,7 +1684,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>A</accel>uftrag suchen...</guimenuitem>
+                  <para><guimenuitem><accel>A</accel>uftrag suchen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1609,7 +1696,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>Z</accel>ahlung verarbeiten...</guimenuitem>
+                  <para><guimenuitem><accel>Z</accel>ahlung verarbeiten&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1660,7 +1747,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>N</accel>euer Lieferant...</guimenuitem>
+                  <para><guimenuitem><accel>N</accel>euer Lieferant&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1672,7 +1759,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>L</accel>ieferant suchen...</guimenuitem>
+                  <para><guimenuitem><accel>L</accel>ieferant suchen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1684,7 +1771,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>N<accel>e</accel>ue Lieferantenrechnung...</guimenuitem>
+                  <para><guimenuitem>N<accel>e</accel>ue Lieferantenrechnung&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1696,7 +1783,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>Lieferanten<accel>r</accel>echnung suchen...</guimenuitem>
+                  <para><guimenuitem>Lieferanten<accel>r</accel>echnung suchen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1708,7 +1795,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>Ne<accel>u</accel>er Auftrag...</guimenuitem>
+                  <para><guimenuitem>Ne<accel>u</accel>er Auftrag&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1720,7 +1807,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>A</accel>uftrag suchen...</guimenuitem>
+                  <para><guimenuitem><accel>A</accel>uftrag suchen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1732,7 +1819,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>Z</accel>ahlung verarbeiten...</guimenuitem>
+                  <para><guimenuitem><accel>Z</accel>ahlung verarbeiten&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1783,7 +1870,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>N</accel>euer Mitarbeiter...</guimenuitem>
+                  <para><guimenuitem><accel>N</accel>euer Mitarbeiter&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1796,7 +1883,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>M</accel>itarbeiter suchen...</guimenuitem>
+                  <para><guimenuitem><accel>M</accel>itarbeiter suchen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1808,7 +1895,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem>Neue Auslagen<accel>e</accel>rstattung...</guimenuitem>
+                  <para><guimenuitem>Neue Auslagen<accel>e</accel>rstattung&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1820,7 +1907,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>A</accel>uslagenerstattung suchen...</guimenuitem>
+                  <para><guimenuitem><accel>A</accel>uslagenerstattung suchen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1832,7 +1919,7 @@
 
               <row>
                 <entry namest="c2">
-                  <para><guimenuitem><accel>Z</accel>ahlung verarbeiten...</guimenuitem>
+                  <para><guimenuitem><accel>Z</accel>ahlung verarbeiten&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1857,7 +1944,7 @@
 
               <row>
                 <entry>
-                  <para><guimenuitem>USt.-<accel>S</accel>teuertabelle...</guimenuitem>
+                  <para><guimenuitem>USt.-<accel>S</accel>teuertabelle&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -1884,7 +1971,7 @@
       </sect3>
 
       <sect3 id="AccTree-reports-menu">
-        <title>Kontenhierarchie - <guimenu>Be<accel>r</accel>ichte</guimenu>-Menü</title>
+        <title>Kontenübersicht - <guimenu>Be<accel>r</accel>ichte</guimenu>-Menü</title>
 
         <para>Nachfolgend finden Sie eine Auflistung aller verfügbaren Berichte und Diagramme. Siehe
           <xref linkend="report-classes"></xref> für spezifische Berichtsdetails. Jeder Bericht
@@ -1894,7 +1981,7 @@
         </para>
 
         <table frame="topbot" id="AccTree-ReportsMenu">
-          <title>Kontenhierarchie - Berichte-Menu - Zugriff auf &app; Berichte und Diagramme</title>
+          <title>Kontenübersicht - Berichte-Menu - Zugriff auf &app; Berichte und Diagramme</title>
 <!-- Translators: Attention, the menu items in GnuCash differ in the order between C and de.
                   The actual sequence from the menu "Reports" is shown below. -->
           <tgroup align="left" cols="3">
@@ -2721,10 +2808,10 @@
       </sect3>
 
       <sect3 id="AccTree-tools-menu">
-        <title>Kontenhierarchie - <guimenu><accel>W</accel>erkzeuge</guimenu>-Menü</title>
+        <title>Kontenübersicht - <guimenu><accel>W</accel>erkzeuge</guimenu>-Menü</title>
 
         <table frame="topbot" id="AccTree-ToolsMenu">
-          <title>Kontenhierarchie - Werkzeuge-Menü - Verschiedene Hilfsmittel und Editoren</title>
+          <title>Kontenübersicht - Werkzeuge-Menü - Verschiedene Hilfsmittel und Editoren</title>
 
           <tgroup cols="2">
             <thead>
@@ -2744,14 +2831,14 @@
             <tbody>
               <row>
                 <entry>
-                  <para><guimenuitem><accel>O</accel>nlinebanking Einrichtung...</guimenuitem>
+                  <para><guimenuitem><accel>O</accel>nlinebanking Einrichtung&hellip;</guimenuitem>
                   </para>
                 </entry>
 
                 <entry>
                   <para>Führt die Ersteinrichtung eines Kontos für den Onlinebanking-Zugang (FinTs, OFX DirectConnect,
-                    ...) mittels AqBanking durch, sofern &app; mit der Option WITH_AQBANKING gebaut
-                    wurde. <xref linkend="tools-on-line-banking"></xref>
+                    &hellip;) mittels AqBanking durch, sofern &app; mit der Option WITH_AQBANKING
+                    gebaut wurde. <xref linkend="tools-on-line-banking"></xref>
                   </para>
                 </entry>
               </row>
@@ -2852,10 +2939,10 @@
       </sect3>
 
       <sect3 id="AccTree-windows-menu">
-        <title>Kontenhierarchie - <guimenu><accel>F</accel>enster</guimenu>-Menü</title>
+        <title>Kontenübersicht - <guimenu><accel>F</accel>enster</guimenu>-Menü</title>
 
         <table frame="topbot" id="AccTree-WindowsMenu">
-          <title>Kontenhierarchie - Fenster-Menü</title>
+          <title>Kontenübersicht - Fenster-Menü</title>
 
           <tgroup cols="2">
             <thead>
@@ -2914,10 +3001,10 @@
       </sect3>
 
       <sect3 id="AccTree-help-menu">
-        <title>Kontenhierarchie - <guimenu><accel>H</accel>ilfe</guimenu>-Menü</title>
+        <title>Kontenübersicht - <guimenu><accel>H</accel>ilfe</guimenu>-Menü</title>
 
         <table frame="topbot" id="AccTree-HelpMenu">
-          <title>Kontenhierarchie - Hilfe-Menü - Diese Hilfe sowie das Dokument &app;-Kurs und Konzepte</title>
+          <title>Kontenübersicht - Hilfe-Menü - Diese Hilfe sowie das Dokument &app;-Kurs und Konzepte</title>
 
           <tgroup cols="2">
             <thead>
@@ -2937,7 +3024,7 @@
             <tbody>
               <row>
                 <entry>
-                  <para><guimenuitem>&app;-<accel>K</accel>urs und Konzepte</guimenuitem>
+                  <para><guimenuitem>&appname;-<accel>K</accel>urs und Konzepte</guimenuitem>
                   </para>
                 </entry>
 
@@ -2991,7 +3078,7 @@
     </sect2>
 
     <sect2 id="AccTree-toolbar">
-      <title>Kontenhierarchie - <emphasis>Werkzeugleiste</emphasis>, Symbole/Schaltflächen</title>
+      <title>Werkzeugleiste</title>
 
       <para></para>
 
@@ -3018,7 +3105,7 @@
       </tip>
 
       <table frame="topbot" id="AccTree-ToolBarIcons">
-        <title>Kontenhierarchie - <emphasis>Werkzeugleiste</emphasis></title>
+        <title>Kontenübersicht - <emphasis>Werkzeugleiste</emphasis></title>
 
         <tgroup cols="2">
           <thead>
@@ -3135,60 +3222,14 @@
       </table>
     </sect2>
 
-    <sect2 id="Common-Tab-bar">
-      <title>Registerkartenleiste</title>
-
-      <para>Die <emphasis>Registerkartenleiste</emphasis> enthält, ähnlich in einem <quote>Notizbuch/
-        Aktenordner</quote>, Registerkarten für offene Kontobücher, Berichte und den Kontobaum.
-      </para>
-    </sect2>
-
-    <sect2 id="AccTree-main-bar">
-      <title>Hauptfenster - Kontenhierarchie</title>
-
-      <para>Die Kontenhierarchie zeigt eine Liste Ihrer Konten in einer Baumstruktur an. Dies ermöglicht, dass
-        Sie Ihre Konten nach Kontoart organisieren können.
-      </para>
-
-      <tip>
-        <para>Die Dreiecksform (oder das Pluszeichen) neben dem Kontonamen dient zum Öffnen und Schließen der
-          Kontenstruktur. Wenn Sie auf das Dreieck (Pluszeichen) klicken, ändert es sich von einem
-          nach rechts zeigenden in ein nach unten zeigendes Zeichen (Minuszeichen), um anzuzeigen,
-          dass der Baum geöffnet ist. Sie sehen dann versetzt unterhalb des Kontonamens entweder
-          eine Liste der Unterkonten oder ein weiteres Dreieck (Pluszeichen) links neben einem
-          Konto. Dieses zeigt eine weitere untere Ebene des Kontenhierarchie an.
-        </para>
-      </tip>
-
-      <para>Im Hauptfenster werden außerdem standardmäßig vier Spalten angezeigt:
-        <guilabel>Kontobezeichnung</guilabel>, <guilabel>Kontoart</guilabel>,
-        <guilabel>Beschreibung</guilabel> und <guilabel>Gesamt</guilabel>. Für jedes Konto werden
-        diese Informationen, sofern vorhanden, in der gleichen Zeile des Kontos angezeigt.
-      </para>
-
-      <tip>
-        <para>Die Spalten, die für jedes Konto in der Kontenhierarchie angezeigt werden, können an Ihre
-          Bedürfnisse angepasst werden. Klicken Sie auf das Pfeilsymbol ganz rechts im Fenster
-          Kontenhierarchie um eine Dropdown-Liste mit Spaltenoptionen anzuzeigen. Klicken Sie auf
-          eine Spaltenbeschreibung, um sie zum Fenster "Kontenhierarchie" hinzuzufügen. Klicken Sie
-          erneut auf die Spaltenbeschreibung, um sie auszublenden.
-        </para>
-      </tip>
-
-      <para>Die Standardanzeige für das Kontenhierarchiefenster ist Karteikarten Modus. Dies erkennen Sie an
-        dem Reiter auf der linken Seite des Hauptfensters. Wenn Sie Berichte oder weitere
-        Kontenhierarchie-Fenster öffnen, erscheinen dort zusätzliche Reiter.
-      </para>
-    </sect2>
-
     <sect2 id="Common-summary-bar">
-      <title>Zusammenfassungs-Leiste</title>
+      <title>Zusammenfassungsleiste</title>
 
-      <para>Die <firstterm>Zusammenfassungs-Leiste</firstterm> zeigt auf einen Blick das aktuelle Nettovermögen
+      <para>Die <firstterm>Zusammenfassungsleiste</firstterm> zeigt auf einen Blick das aktuelle Nettovermögen
         und den aktuellen Gewinn an. Normalerweise zeigen Konten den heutigen Saldo, einen Saldo zu
         einem beliebigen zukünftigen Datum, einen Saldo für ausgeglichene Posten und einen
         abgestimmten Saldo an. Aktienkonten hingegen zeigen Aktiensummen und deren Wert. Die
-        <emphasis>Zusammenfassungs-Leiste</emphasis> kann im Menü
+        <emphasis>Zusammenfassungsleiste</emphasis> kann im Menü
         <menuchoice>
           <guimenu>Ansicht</guimenu><guimenuitem>Zusammenfassungsleiste</guimenuitem>
         </menuchoice>
@@ -3211,8 +3252,29 @@
   <sect1 id="gui-acct-reg">
     <title>Kontobuch/ Journal</title>
 
+    <figure>
+      <title>Das <emphasis>Kontobuch</emphasis> Fenster.</title><screenshot id="AccountReg_Screen">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/Help_AccountReg_Screen.png" format="PNG"
+                       srccredit="Christian Wehling" width="510" />
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/Help_AccountReg_Screen.png" format="PNG"
+                       srccredit="Christian Wehling" />
+          </imageobject>
+
+          <caption>
+            <para>Dies ist ein Beispiel für die Registerkarte eines <guilabel>Kontenbuchs</guilabel>.
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
     <sect2 id="account-register">
-      <title>Fenster Kontobuch &amp; Journal</title>
+      <title>Anzeigebereich des Kontobuchs &amp; Journals</title>
 
       <para>Dieses Fenster dient der Eingabe und Bearbeitung Ihrer Kontodaten. Es bietet außerdem Werkzeuge zum
         Planen zukünftiger Geschäftsvorgänge, zum Suchen und Protokollieren von Buchungen und
@@ -3220,7 +3282,7 @@
         werden.
       </para>
 
-      <para>Um die Buchungsansicht für ein Konto zu öffnen, wählen Sie das Konto in der Kontenhierarchie und
+      <para>Um die Buchungsansicht für ein Konto zu öffnen, wählen Sie das Konto in der Kontenübersicht und
         gehen Sie dann zu
         <menuchoice>
           <guimenu>Bearbeiten</guimenu> <guimenuitem>Konto öffnen</guimenuitem>
@@ -3231,40 +3293,15 @@
         </keycombo>
         Schaltfläche . Dies öffnet ein neues Fenster mit dem gewähltem Kontobuch. Das Drücken
         von <guibutton>Öffnen</guibutton> in der <emphasis>Werkzeugleiste</emphasis> im Fenster
-        <emphasis>Kontenhierarchie</emphasis> oder die Schaltfläche <guibutton>Springen</guibutton>
+        <emphasis>Kontenübersicht</emphasis> oder die Schaltfläche <guibutton>Springen</guibutton>
         im Fenster <emphasis>Kontobuch</emphasis> sind weiter Möglichkeiten.
       </para>
-
-      <figure>
-        <title>Das <emphasis>Kontobuch</emphasis> Fenster.</title><screenshot id="AccountReg_Screen">
-          <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/Help_AccountReg_Screen.png" format="PNG"
-                       srccredit="Christian Wehling" width="510" />
-            </imageobject>
-
-            <imageobject role="fo">
-              <imagedata fileref="figures/Help_AccountReg_Screen.png" format="PNG"
-                       srccredit="Christian Wehling" />
-            </imageobject>
-
-            <textobject>
-              <phrase>Ansicht Kontobuch</phrase>
-            </textobject>
-
-            <caption>
-              <para>Dies ist ein Beispiel für die Registerkarte eines <guilabel>Kontenbuchs</guilabel>.
-              </para>
-            </caption>
-          </mediaobject>
-        </screenshot>
-      </figure>
 
       <tip>
         <para>Das Aussehen der Anzeige eines Kontobuchs ist in hohem Maße konfigurierbar. (siehe
           <ulink
-url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns.html#txns-regstyle1">
-          Tutorial und Konzepte, Auswahl eines Registerstils</ulink>).
+url="&url-docs-build-de;guide/chapter_txns.html#txns-regstyle1"> &app; Kurs und
+          Konzepte, Auswahl eines Registerstils</ulink>).
         </para>
       </tip>
 
@@ -3273,10 +3310,28 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
           <xref linkend="ch_Common_Trans_Ops"/>.
         </para>
       </note>
+<!--    </sect2>
+
+    <sect2 id="Trans-display-main">
+      <title>Liste der Buchungen</title> -->
+      <para>In der Liste der Buchungen erscheinen die von Ihnen eingegebenen Buchungen sowie der fortlaufende
+        Saldo. Außerdem steht eine leere Zeile zur Eingabe neuer Buchungen zur Verfügung. Die
+        Spaltentitel können je nach Kontoart des geöffneten Kontos unterschiedlich sein. Allgemein
+        gleichlautende Spalten <guilabel>Datum</guilabel>, <guilabel>Beschreibung</guilabel>,
+        <guilabel>Buchen</guilabel> und <guilabel>Saldo</guilabel>.
+      </para>
+
+      <para>Sie können das Menü <guimenu>Ansicht</guimenu> verwenden, um das Erscheinungsbild der Liste zu
+        verändert. Beispielsweise ist es möglich, die Anzahl der angezeigten Buchungen
+        einzuschränken, eine andere Sortierreihenfolge zu verwenden oder den Anzeigestil zu
+        ändern, um die Buchungen übersichtlicher darzustellen. Darüber hinaus gestattet die
+        Schaltfläche <guibutton>Vollständig</guibutton> einen schnellen Zugriff auf alle
+        Buchungsbestandteile.
+      </para>
     </sect2>
 
     <sect2 id="Trans-menus">
-      <title>Kontobuch - Menüleiste</title>
+      <title>Menüleiste</title>
 
       <para>Die <emphasis>Menüleiste</emphasis> in der Buchungsansicht enthält die nachfolgenden aufgeführten
         Menüpunkte.
@@ -3326,7 +3381,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
                       <keycombo>
                         <keycap>Strg</keycap><keycap>P</keycap>
                       </keycombo>
-                      </shortcut> <guimenuitem>Scheck<accel>s</accel> drucken...</guimenuitem>
+                      </shortcut> <guimenuitem>Scheck<accel>s</accel> drucken&hellip;</guimenuitem>
                     </menuchoice>
                   </para>
                 </entry>
@@ -3389,7 +3444,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
             <tbody>
               <row>
                 <entry>
-                  <para><guimenuitem>Als <accel>Z</accel>ahlung zuweisen...</guimenuitem>
+                  <para><guimenuitem>Als <accel>Z</accel>ahlung zuweisen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -3445,8 +3500,8 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
                 <entry namest="c2" nameend="c3">
                   <para>Optionsfeld zur Auswahl der Buchungsanzeige. Siehe
                     <ulink
-                    url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns.html#txns-regstyle1">
-                    Tutorial und Konzepte, Auswählen eines Registerstils</ulink>.
+                    url="&url-docs-build-de;guide/chapter_txns.html#txns-regstyle1">
+                    &app; Kurs und Konzepte, Auswählen eines Registerstils</ulink>.
                   </para>
                 </entry>
               </row>
@@ -3489,7 +3544,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
 
               <row>
                 <entry>
-                  <para><guimenuitem><accel>S</accel>ortieren nach...</guimenuitem>
+                  <para><guimenuitem><accel>S</accel>ortieren nach&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -3954,7 +4009,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
 
               <row>
                 <entry>
-                  <para><guimenuitem>Wech<accel>s</accel>elkurs bearbeiten...</guimenuitem>
+                  <para><guimenuitem>Wech<accel>s</accel>elkurs bearbeiten&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -3966,7 +4021,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
 
               <row>
                 <entry>
-                  <para><guimenuitem><accel>T</accel>erminiert...</guimenuitem>
+                  <para><guimenuitem><accel>T</accel>erminiert&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -4080,7 +4135,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
     </sect2>
 
     <sect2 id="Trans-toolbar">
-      <title>Kontobuch - <emphasis>Werkzeugleiste</emphasis>, Symbole/Schaltflächen</title>
+      <title>Werkzeugleiste</title>
 
       <para>Das Kontobuch verfügt über eine Reihe von Schaltflächen in der
         <emphasis>Werkzeugleiste</emphasis> um schnell auf einige allgemeine Funktionen zuzugreifen,
@@ -4288,57 +4343,21 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
       </table>
     </sect2>
 
-    <sect2 id="Common-tab-bar">
-      <title>Registerkartenleiste</title>
-
-      <para>Die <emphasis>Registerkartenleiste</emphasis> enthält, ähnlich in einem <quote>Notizbuch/
-        Aktenordner</quote>, Registerkarten für offene Kontobücher, Berichte und den Kontobaum.
-      </para>
-    </sect2>
-
-    <sect2 id="Trans-display-main">
-      <title>Liste der Geschäftsvorgänge</title>
-
-      <para>In der Liste der Geschäftsvorgänge erscheinen die von Ihnen eingegebenen Geschäftsvorgänge sowie
-        der fortlaufende Saldo. Außerdem steht eine leere Zeile zur Eingabe neuer
-        Geschäftsvorgänge zur Verfügung. Die Spaltentitel können je nach Kontoart des
-        geöffneten Kontos unterschiedlich sein. Allgemein gleichlautende Spalten
-        <guilabel>Datum</guilabel>, <guilabel>Beschreibung</guilabel>, <guilabel>Buchen</guilabel>
-        und <guilabel>Saldo</guilabel>.
-      </para>
-
-      <para>Sie können das Menü <guimenu>Ansicht</guimenu> verwenden, um das Erscheinungsbild der Liste zu
-        verändert. Beispielsweise ist es möglich, die Anzahl der angezeigten Geschäftsvorgänge
-        einzuschränken, eine andere Sortierreihenfolge zu verwenden oder den Anzeigestil zu
-        ändern, um Geschäftsvorgänge übersichtlicher darzustellen. Darüber hinaus gestattet die
-        Schaltfläche <guibutton>Vollständig</guibutton> einen schnellen Zugriff auf alle
-        Buchungsbestandteile.
-      </para>
-    </sect2>
-
     <sect2 id="Trans-summary-bar2">
-      <title>Zusammenfassungs-Leiste</title>
+      <title>Zusammenfassungsleiste</title>
 
-      <para>Die <emphasis>Zusammenfassungs-Leiste</emphasis> zeigt verschiedene Salden, die zum aktuell
+      <para>Die <emphasis>Zusammenfassungsleiste</emphasis> zeigt verschiedene Salden, die zum aktuell
         geöffneten Konto gehören, auf einen Blick an. Im Normalfall werden zu einem Konto der
         <guilabel>tagesaktuelle</guilabel> Saldo, ein möglicher <guilabel>zukünftiger</guilabel>
         Saldo, ein Saldo für <guilabel>bestätigte</guilabel> Einträge, ein
         <guilabel>abgeglichener</guilabel> Saldo und ein <guilabel>vorraussichtliches
         Minimum</guilabel> angezeigt. Eine Ausnahme bilden Aktienkonten, hier erscheint stattdessen
         die Summe der Anteile und deren aktueller Wert. Die
-        <emphasis>Zusammenfassungs-Leiste</emphasis> kann im Menü
+        <emphasis>Zusammenfassungsleiste</emphasis> kann im Menü
         <menuchoice>
           <guimenu>Ansicht</guimenu><guimenuitem>Zusammenfassung</guimenuitem>
         </menuchoice>
         ein- und ausgeblendet werden.
-      </para>
-    </sect2>
-
-    <sect2 id="Trans-status-bar">
-      <title>Statusleiste</title>
-
-      <para>Die <emphasis>Statusleiste</emphasis> funktioniert genauso wie in
-        <xref linkend="Common-status-bar" /> beschrieben.
       </para>
     </sect2>
   </sect1>
@@ -4346,10 +4365,31 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
   <sect1 id="gui-report">
     <title>Berichte</title>
 
-    <sect2 id="report-display">
-      <title>Anzeigefenster für Berichte</title>
+    <figure>
+      <title>Das <emphasis>Berichtsfenster</emphasis></title><screenshot id="Report_Screen">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/Help_Report_Screen.png" format="PNG"
+                       srccredit="Christian Wehling" width="510" />
+          </imageobject>
 
-      <para>Dieses Fenster erscheint immer dann, wenn Sie einen Bericht oder ein Diagramm aus dem Menü
+          <imageobject role="fo">
+            <imagedata fileref="figures/Help_Report_Screen.png" format="PNG"
+                       srccredit="Christian Wehling" />
+          </imageobject>
+
+          <caption>
+            <para>Dies ist die Darstellung des Berichts <guilabel>Aufwendungen-Diagramm</guilabel>.
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <sect2 id="report-display">
+      <title>Anzeigebereich für Berichte</title>
+
+      <para>Dieses Ansicht wird immer dann angezeigt, wenn Sie einen Bericht oder ein Diagramm aus dem Menü
         <guimenu>Berichte</guimenu> aufrufen.
       </para>
 
@@ -4365,35 +4405,37 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
           <emphasis>Statusleiste</emphasis> angezeigt, wenn die Anzeige nicht abgeschaltet wurde.
         </para>
       </note>
+<!--     </sect2>
 
-      <figure>
-        <title>Das <emphasis>Berichtsfenster</emphasis></title><screenshot id="Report_Screen">
-          <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/Help_Report_Screen.png" format="PNG"
-                       srccredit="Christian Wehling" width="510" />
-            </imageobject>
+    <sect2 id="report-main">
+      <title>Hauptansicht des Berichts</title> -->
+      <para>In dieser Ansicht wird der von Ihnen gewählte Bericht bzw. das Diagramm angezeigt. Die
+        Eigenschaften dieses Fensters können auf zweierlei Art angepasst werden. Mit der
+        Schaltfläche <guibutton>Optionen</guibutton> in der <emphasis>Werkzeugleiste</emphasis>
+        können Sie bearbeiten, was der Bericht anzeigt und von welchen Konten die Informationen
+        bezogen werden. Durch Auswahl von
+        <menuchoice>
+          <guimenu>Bearbeiten</guimenu> <guimenuitem>Stilvorlagen</guimenuitem>
+        </menuchoice>
+        können Sie die Eigenschaften der <acronym>HTML</acronym>-Seite auswählen, in welcher ihr
+        Bericht angezeigt wird.
+      </para>
 
-            <imageobject role="fo">
-              <imagedata fileref="figures/Help_Report_Screen.png" format="PNG"
-                       srccredit="Christian Wehling" />
-            </imageobject>
+      <para>Der Bericht verhält sich wie ein Webbrowser, wenn er Links zu externen Webseiten enthält. Die
+        Schaltflächen <guibutton>Zurück</guibutton> und <guibutton>Vorwärts</guibutton> der
+        <emphasis>Werkzeugleiste</emphasis> ermöglichen es Ihnen, zwischen Web-Seiten zu
+        navigieren. Wenn Sie bestimmte Hyperlinks im Bericht, welche auf ein Konto verweisen,
+        anklicken, öffnen sich die dazugehörigen Kontendaten im Kontobuch-Fenster.
+      </para>
 
-            <textobject>
-              <phrase>Berichtsanzeige</phrase>
-            </textobject>
-
-            <caption>
-              <para>Dies ist eine Darstellung des <guilabel>Aufwendungen-Diagramms</guilabel>.
-              </para>
-            </caption>
-          </mediaobject>
-        </screenshot>
-      </figure>
+      <para>Mit der Schaltfläche <guibutton>Exportieren</guibutton> in der <emphasis>Werkzeugleiste</emphasis>
+        können Sie den angezeigten Bericht in einer Datei speichern und oder
+        <guibutton>Drucken</guibutton>.
+      </para>
     </sect2>
 
     <sect2 id="Report-menus">
-      <title>Berichte - Menüleiste</title>
+      <title>Menüleiste</title>
 
       <para>Die <emphasis>Menüleiste</emphasis> im Berichtsfenster enthält die nachfolgenden aufgeführten
         Menüpunkte.
@@ -4549,7 +4591,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
       <sect3 id="Report-view-menu">
         <title>Berichte - <guimenu><accel>A</accel>nsicht</guimenu>-Menü</title>
 
-        <para>Mit Ausnahme des Menüpunktes <guimenuitem>Filtern nach...</guimenuitem> entspricht das
+        <para>Mit Ausnahme des Menüpunktes <guimenuitem>Filtern nach&hellip;</guimenuitem> entspricht das
           <guimenu>Ansicht</guimenu>-Menü in der <emphasis>Menüleiste</emphasis> der Beschreibung
           in <xref linkend="AccTree-ViewMenu"/>.
         </para>
@@ -4641,7 +4683,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
                         <keycap>Umschalt</keycap><keycap>Strg</keycap><keycap>Alt</keycap><keycap>S</keycap>
                       </keycombo>
                       </shortcut> <guimenuitem>Berichtskonfiguration speichern
-                      <accel>u</accel>nter...</guimenuitem>
+                      <accel>u</accel>nter&hellip;</guimenuitem>
                     </menuchoice>
                   </para>
                 </entry>
@@ -4687,7 +4729,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
     </sect2>
 
     <sect2 id="Report-tool-bar">
-      <title>Berichte - <emphasis>Werkzeugleiste</emphasis>, Symbole/Schaltflächen</title>
+      <title>Werkzeugleiste</title>
 
       <para>Das Berichtsfenster verfügt über eine Reihe von Schaltflächen in der
         <emphasis>Werkzeugleiste</emphasis> um schnell auf einige allgemeine Funktionen zuzugreifen,
@@ -4848,7 +4890,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
 
             <row>
               <entry>
-                <para><guibutton>Berichtskonfiguration speichern unter...</guibutton>
+                <para><guibutton>Berichtskonfiguration speichern unter&hellip;</guibutton>
                 </para>
               </entry>
 
@@ -4892,65 +4934,32 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
         </tgroup>
       </table>
     </sect2>
-
-    <sect2 id="Report-tab-bar">
-      <title>Registerkartenleiste</title>
-
-      <para>Die <emphasis>Registerkartenleiste</emphasis> enthält, ähnlich in einem <quote>Notizbuch/
-        Aktenordner</quote>, Registerkarten für offene Kontobücher, Berichte und den Kontobaum.
-      </para>
-    </sect2>
-
-    <sect2 id="report-main">
-      <title>Hauptansicht des Berichts</title>
-
-      <para>In dieser Ansicht wird der von Ihnen gewählte Bericht bzw. das Diagramm angezeigt. Die
-        Eigenschaften dieses Fensters können auf zweierlei Art angepasst werden. Mit der
-        Schaltfläche <guibutton>Optionen</guibutton> in der <emphasis>Werkzeugleiste</emphasis>
-        können Sie bearbeiten, was der Bericht anzeigt und von welchen Konten die Informationen
-        bezogen werden. Durch Auswahl von
-        <menuchoice>
-          <guimenu>Bearbeiten</guimenu> <guimenuitem>Stilvorlagen</guimenuitem>
-        </menuchoice>
-        können Sie die Eigenschaften der <acronym>HTML</acronym>-Seite auswählen, in welcher ihr
-        Bericht angezeigt wird.
-      </para>
-
-      <para>Der Bericht verhält sich wie ein Webbrowser, wenn er Links zu externen Webseiten enthält. Die
-        Schaltflächen <guibutton>Zurück</guibutton> und <guibutton>Vorwärts</guibutton> der
-        <emphasis>Werkzeugleiste</emphasis> ermöglichen es Ihnen, zwischen Web-Seiten zu
-        navigieren. Wenn Sie bestimmte Hyperlinks im Bericht, welche auf ein Konto verweisen,
-        anklicken, öffnen sich die dazugehörigen Kontendaten im Kontobuch-Fenster.
-      </para>
-
-      <para>Mit der Schaltfläche <guibutton>Exportieren</guibutton> in der <emphasis>Werkzeugleiste</emphasis>
-        können Sie den angezeigten Bericht in einer Datei speichern und oder
-        <guibutton>Drucken</guibutton>.
-      </para>
-    </sect2>
-
-    <sect2 id="Report-summary-bar">
-      <title>Zusammenfassungs-Leiste</title>
-
-      <para>Die <emphasis>Zusammenfassungs-Leiste</emphasis> wird beim Anzeigen eines Berichtsfensters nicht
-        angezeigt.
-      </para>
-    </sect2>
-
-    <sect2 id="Report-status-bar">
-      <title>Statusleiste</title>
-
-      <para>Die <emphasis>Statusleiste</emphasis> funktioniert genauso wie in
-        <xref linkend="Common-status-bar" /> beschrieben.
-      </para>
-    </sect2>
   </sect1>
 
   <sect1 id="gui-reconcile">
     <title>Abgleichen</title>
 
+    <figure pgwide="1">
+      <title>Der Assistent zum Abgleichen von Buchungen</title><screenshot>
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/Help_Reconcile_Screen.png" format="PNG" srccredit="Christian Wehling" width="510" />
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/Help_Reconcile_Screen.png" format="PNG" srccredit="Christian Wehling" />
+          </imageobject>
+
+          <caption>
+            <para>Die Darstellung des <guilabel>Abgleichen</guilabel>- Dialogs.
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
     <sect2 id="reconcile-display">
-      <title>Ansicht zum Abgleichen von Buchungen</title>
+      <title>Fenster zum Abgleichen von Buchungen</title>
 
       <tip>
         <para>Das Vorgehen beim Abgleichen eines Kontos ist in <xref linkend="acct-reconcile"></xref> ausführlich
@@ -4960,7 +4969,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
 
       <para>Um das Fenster <guilabel>Abgleichen</guilabel> zu öffnen, wählen Sie auf
         <menuchoice>
-          <guimenu>Aktionen</guimenu><guimenuitem>Abgleichen...</guimenuitem>
+          <guimenu>Aktionen</guimenu><guimenuitem>Abgleichen&hellip;</guimenuitem>
         </menuchoice>
         in der <emphasis>Menüleiste</emphasis> oder klicken die Schaltfläche
         <guibutton>Abgleichen</guibutton> aus der <emphasis>Werkzeugleiste</emphasis> eines
@@ -4972,29 +4981,6 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
         öffnet sich ein weiters <guilabel>Abgleichen</guilabel> Fenster, in dem Sie Gutschrift und
         Belastung mit Ihrem Kontoauszug vergleichen können.
       </para>
-<!-- TODO: insert Screenshot -->
-      <figure pgwide="1">
-        <title>Der Assistent zum Abgleichen von Buchungen</title><screenshot>
-          <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/Help_Reconcile_Screen.png" format="PNG" srccredit="Christian Wehling" width="510" />
-            </imageobject>
-
-            <imageobject role="fo">
-              <imagedata fileref="figures/Help_Reconcile_Screen.png" format="PNG" srccredit="Christian Wehling" />
-            </imageobject>
-
-            <textobject>
-              <phrase>Anzeige Abgleichenfenster</phrase>
-            </textobject>
-
-            <caption>
-              <para>Die Darstellung des <guilabel>Abgleichen</guilabel> Dialogs.
-              </para>
-            </caption>
-          </mediaobject>
-        </screenshot>
-      </figure>
 
       <sect3 id="Tools-reconcile-win">
         <title>Abgleichen - Fenster</title>
@@ -5085,7 +5071,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
     </sect2>
 
     <sect2 id="reconcile-menus">
-      <title>Abgleichen - Menüleiste</title>
+      <title>Menüleiste</title>
 
       <para>Die <emphasis>Menüleiste</emphasis> des Abgleichenfensters enthält die nachfolgenden aufgeführten
         Menüpunkte.
@@ -5115,7 +5101,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
             <tbody>
               <row>
                 <entry>
-                  <para><guimenuitem><accel>I</accel>nformationen zum Abgleich...</guimenuitem>
+                  <para><guimenuitem><accel>I</accel>nformationen zum Abgleich&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -5230,7 +5216,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
                       <keycombo>
                         <keycap>Strg</keycap><keycap>T</keycap>
                       </keycombo>
-                      </shortcut> <guimenuitem><accel>B</accel>uchen...</guimenuitem>
+                      </shortcut> <guimenuitem><accel>B</accel>uchen&hellip;</guimenuitem>
                     </menuchoice>
                   </para>
                 </entry>
@@ -5415,7 +5401,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
     </sect2>
 
     <sect2 id="reconcile-toolbar">
-      <title>Abgleichen - <emphasis>Werkzeugleiste</emphasis>, Symbole/Schaltflächen</title>
+      <title>Werkzeugleiste</title>
 
       <para>Das <guilabel>Abgleichen</guilabel>-fenster verfügt über eine Reihe von Schaltflächen in der
         <emphasis>Werkzeugleiste</emphasis> um schnell auf einige allgemeine Funktionen zuzugreifen,
@@ -5581,36 +5567,32 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
   <sect1 id="gui-win-sx">
     <title>Terminierte Buchungen</title>
 
+    <figure pgwide="1">
+      <title>Arbeiten mit terminierten Buchungen</title><screenshot>
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/Help_Scheduled_Transactions.png" format="PNG" srccredit="Christian Wehling" width="510" />
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/Help_Scheduled_Transactions.png" format="PNG" srccredit="Christian Wehling" />
+          </imageobject>
+
+          <caption>
+            <para>Eine Übersicht zur Anwendung von <guilabel>terminierten Buchungen</guilabel>.
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
     <sect2 id="trans-SX-display">
-      <title>Ansicht für Terminierte Buchungen</title>
+      <title>Anzeigebereich für Terminierte Buchungen</title>
 
       <note>
         <para>Die Arbeitsweise mit terminierten Buchungen wird in <xref linkend="trans-sched"></xref> beschrieben.
         </para>
       </note>
-<!-- TODO: insert Screenshot -->
-      <figure pgwide="1">
-        <title>Arbeiten mit terminierten Buchungen</title><screenshot>
-          <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/Help_Scheduled_Transactions.png" format="PNG" srccredit="Christian Wehling" width="510" />
-            </imageobject>
-
-            <imageobject role="fo">
-              <imagedata fileref="figures/Help_Scheduled_Transactions.png" format="PNG" srccredit="Christian Wehling" />
-            </imageobject>
-
-            <textobject>
-              <phrase>Darstellung terminierte Buchungen</phrase>
-            </textobject>
-
-            <caption>
-              <para>Eine Übersicht zur Anwendung von <guilabel>terminierten Buchungen</guilabel>.
-              </para>
-            </caption>
-          </mediaobject>
-        </screenshot>
-      </figure>
 
       <para>Dieses Ansicht wird geöffnet, wenn
         <menuchoice>
@@ -5735,7 +5717,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
     </sect2>
 
     <sect2 id="tools-SX-menus">
-      <title>Terminierte Buchungen - Menüleiste</title>
+      <title>Menüleiste</title>
 
       <para>Die folgende Tabelle beschreibt die Menüpunkte im <guimenu>Terminiert</guimenu>-Menü der
         <emphasis>Menüleiste</emphasis> die zur Arbeit in der Ansicht <guilabel>Terminierte
@@ -5806,7 +5788,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
     </sect2>
 
     <sect2 id="tools-SX-toolbar">
-      <title>Terminierte Buchungen - <emphasis>Werkzeugleiste</emphasis>, Symbole/Schaltflächen</title>
+      <title>Werkzeugleiste</title>
 
       <para>Das Fenster <guilabel>Terminierte Buchungen</guilabel> hat eine <emphasis>Werkzeugleiste</emphasis>
         für den schnellen Zugriff auf einige gängigen Funktionen, die bei der Terminierung
@@ -5911,8 +5893,66 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
   <sect1 id="gui-budget">
     <title>Budget</title>
 
+    <figure pgwide="1">
+      <title>Die Budgetansicht</title><screenshot>
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/Help_Budget_Screen.png" format="PNG" srccredit="Christian Wehling" width="510" />
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/Help_Budget_Screen.png" format="PNG" srccredit="Christian Wehling" />
+          </imageobject>
+
+          <caption>
+            <para>Die Ansicht zur Planung von <guilabel>Budgets</guilabel>.
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <sect2 id="budget-widget">
+      <title>Anzeigebereich für das Budget</title>
+
+      <para>Das Budgetfenster enthält auf der linken Seite eine Liste von Konten und in der rechten
+        Fensterhälfte mehrere Spalten, die die Budgetwerte enthalten. Jede Spalte entspricht einem
+        Budget für die gewählte <emphasis>Periode</emphasis>. Die Anzahl der Perioden für ein
+        Budget kann mit dem <guilabel>Budget Optionen</guilabel>- Dialog angepasst werden.
+      </para>
+
+      <procedure>
+        <title>Einen Budgetwert eingeben</title>
+
+        <step>
+          <para>Markiere das zu budgetierende Konto.
+          </para>
+        </step>
+
+        <step>
+          <para>Wähle den Zeitraum für den das Budget eingetragen werden soll und <emphasis>klicke</emphasis> in
+            die entsprechende Zelle.
+          </para>
+        </step>
+
+        <step>
+          <para>Schreibe das Budget in die Zelle.
+          </para>
+        </step>
+
+        <step>
+          <para>Betätige
+            <keycombo>
+              <keycap>Enter</keycap>
+            </keycombo>
+            um die Eingabe zu beenden.
+          </para>
+        </step>
+      </procedure>
+    </sect2>
+
     <sect2 id="budget-menus">
-      <title>Budget - Menüleiste</title>
+      <title>Menüleiste</title>
 
       <para>Der Menüeintrag
         <menuchoice>
@@ -5922,29 +5962,6 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
         öffnet das Standardbudget oder bietet eine Auswahl an, wenn es mehr als ein Budget gibt. Es
         wird eine neue Registerkarte mit dem angezeigten Budget geöffnet.
       </para>
-<!-- FIXME source: new Screenshot -->
-      <figure pgwide="1">
-        <title>Die Budgetansicht</title><screenshot>
-          <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/Help_Budget_Screen.png" format="PNG" srccredit="Christian Wehling" width="510" />
-            </imageobject>
-
-            <imageobject role="fo">
-              <imagedata fileref="figures/Help_Budget_Screen.png" format="PNG" srccredit="Christian Wehling" />
-            </imageobject>
-
-            <textobject>
-              <phrase>Bildschirm Budget</phrase>
-            </textobject>
-
-            <caption>
-              <para>Ansicht zur Planung von <guilabel>Budgets</guilabel>.
-              </para>
-            </caption>
-          </mediaobject>
-        </screenshot>
-      </figure>
 
       <para>Im Folgenden werden die Menüpunkte beschrieben, die für die Budgetplanung nützlich sind.
       </para>
@@ -5973,7 +5990,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
             <tbody>
               <row>
                 <entry>
-                  <para><guimenuitem>Budget ab<accel>s</accel>chätzen...</guimenuitem>
+                  <para><guimenuitem>Budget ab<accel>s</accel>chätzen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -5986,7 +6003,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
 
               <row>
                 <entry>
-                  <para><guimenuitem><accel>A</accel>lle Perioden...</guimenuitem>
+                  <para><guimenuitem><accel>A</accel>lle Perioden&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -5998,7 +6015,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
 
               <row>
                 <entry>
-                  <para><guimenuitem>Budget <accel>l</accel>öschen...</guimenuitem>
+                  <para><guimenuitem>Budget <accel>l</accel>öschen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -6022,7 +6039,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
 
               <row>
                 <entry>
-                  <para><guimenuitem>Budget <accel>O</accel>ptionen...</guimenuitem>
+                  <para><guimenuitem>Budget <accel>O</accel>ptionen&hellip;</guimenuitem>
                   </para>
                 </entry>
 
@@ -6146,7 +6163,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
     </sect2>
 
     <sect2 id="tools-budget-toolbar">
-      <title>Budget - <emphasis>Werkzeugleiste</emphasis>, Symbole/Schaltflächen</title>
+      <title>Werkzeugleiste</title>
 
       <para>Das Budgetfenster verfügt über eine Reihe von Schaltflächen in der
         <emphasis>Werkzeugleiste</emphasis> die zur Budgetierung gebraucht werden.
@@ -6284,47 +6301,8 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
       </table>
     </sect2>
 
-    <sect2 id="budget-widget">
-      <title>Budget - Hauptansicht</title>
-
-      <para>Das Budgetfenster enthält auf der linken Seite eine Liste von Konten und in der rechten
-        Fensterhälfte mehrere Spalten, die die Budgetwerte enthalten. Jede Spalte entspricht einem
-        Budget für die gewählte <emphasis>Periode</emphasis>. Die Anzahl der Perioden für ein
-        Budget kann mit dem <guilabel>Budget Optionen</guilabel>- Dialog angepasst werden.
-      </para>
-
-      <procedure>
-        <title>Einen Budgetwert eingeben</title>
-
-        <step>
-          <para>Markiere das zu budgetierende Konto.
-          </para>
-        </step>
-
-        <step>
-          <para>Wähle den Zeitraum für den das Budget eingetragen werden soll und <emphasis>klicke</emphasis> in
-            die entsprechende Zelle.
-          </para>
-        </step>
-
-        <step>
-          <para>Schreibe das Budget in die Zelle.
-          </para>
-        </step>
-
-        <step>
-          <para>Betätige
-            <keycombo>
-              <keycap>Enter</keycap>
-            </keycombo>
-            um die Eingabe zu beenden.
-          </para>
-        </step>
-      </procedure>
-    </sect2>
-
     <sect2 id="budget-options">
-      <title>Budget - Optionen</title>
+      <title>Optionen</title>
 
       <table frame="topbot">
         <title>Budget Optionen und Einstellungen</title>
@@ -6415,7 +6393,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
       </para>
 
       <table id="business-customer-overview-toolbar-table">
-        <title>Kunden - <emphasis>Werkzeugleiste</emphasis></title>
+        <title>Werkzeugleiste</title>
 
         <tgroup cols="2">
           <thead>
@@ -6498,7 +6476,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
       </table>
 
       <table id="business-customer-overview-context-table">
-        <title>Kunden - Kontextmenü</title>
+        <title>Kontextmenü</title>
 
         <tgroup cols="2">
           <thead>
@@ -6599,7 +6577,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
       </para>
 
       <table id="business-vendor-overview-toolbar-table">
-        <title>Lieferanten - <emphasis>Werkzeugleiste</emphasis></title>
+        <title>Werkzeugleiste</title>
 
         <tgroup cols="2">
           <thead>
@@ -6682,7 +6660,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
       </table>
 
       <table id="business-vendor-overview-context-table">
-        <title>Lieferanten - Kontextmenü</title>
+        <title>Kontextmenü</title>
 
         <tgroup cols="2">
           <thead>
@@ -6783,7 +6761,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
       </para>
 
       <table id="business-employee-overview-toolbar-table">
-        <title>Mitarbeiter - <emphasis>Werkzeugleiste</emphasis></title>
+        <title>Werkzeugleiste</title>
 
         <tgroup cols="2">
           <thead>
@@ -6854,7 +6832,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
       </table>
 
       <table id="business-employee-overview-context-table">
-        <title>Mitarbeiter - Kontextmenü</title>
+        <title>Kontextmenü</title>
 
         <tgroup cols="2">
           <thead>
@@ -6898,7 +6876,7 @@ url="https://www.gnucash.org/docs/v&series-stable;/de/gnucash-guide/chapter_txns
 
             <row>
               <entry>
-                <para><guimenuitem>Neuer <accel>A</accel>uslagenbeleg...</guimenuitem>
+                <para><guimenuitem>Neuer <accel>A</accel>uslagenbeleg&hellip;</guimenuitem>
                 </para>
               </entry>
 
