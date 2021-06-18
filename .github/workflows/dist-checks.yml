@@ -1,19 +1,15 @@
-name: ci-tests
+name: dist-checks
 on: [push, pull_request]
 jobs:
-  ci_tests_ubuntu-18:
+  ubuntu-18_dist-mini:
     runs-on: ubuntu-18.04
-    name: Ubuntu-18.04 CI Tests
+    name: Ubuntu-18.04 distcheck with minimal requirements
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - run: sudo apt-get update
     - name: Install minimal dependencies
       run: sudo apt-get install -y cmake ninja-build libxml2-utils xsltproc docbook-xsl
-    - name: Install PDF dependencies
-      run: sudo apt-get install -y fop
-    - name: Install additional mobi dependencies
-      run: sudo apt-get install -y calibre
     - run: |
         echo "ROOT_DIR=$GITHUB_WORKSPACE/.." >> $GITHUB_ENV
     - name: Create Directories
@@ -25,45 +21,28 @@ jobs:
       run: |
         cd build
         cmake -G Ninja -DCMAKE_INSTALL_PREFIX=$ROOT_DIR/inst $GITHUB_WORKSPACE -DWITH_MOBI=ON
-    - name: Syntax Check GnuCash-docs
+    - name: Build distribution
       run: |
         cd build
-        ninja
-        ninja check
-    - name: Build HTML
+        ninja dist
+    - name: Check distribution
       run: |
         cd build
-        ninja html
-    - name: Build PDF
-      run: |
-        cd build
-        ninja pdf
-    - name: Build ePub
-      run: |
-        cd build
-        ninja epub
-    - name: Build mobi
-      run: |
-        cd build
-        ninja mobi
+        ninja distcheck
     - uses: actions/upload-artifact@v2
       if: failure()
       with:
         name: TestLog
         path: ${{ github.workspace }}/build/Testing/Temporary/LastTest.log
-  ci_tests_ubuntu-latest:
+  ubuntu-latest_dist-mini:
     runs-on: ubuntu-latest
-    name: ubuntu-latest CI Tests
+    name: Ubuntu-latest distcheck with minimal requirements
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - run: sudo apt-get update
     - name: Install minimal dependencies
       run: sudo apt-get install -y cmake ninja-build libxml2-utils xsltproc docbook-xsl
-    - name: Install PDF dependencies
-      run: sudo apt-get install -y fop
-    - name: Install additional mobi dependencies
-      run: sudo apt-get install -y calibre
     - run: |
         echo "ROOT_DIR=$GITHUB_WORKSPACE/.." >> $GITHUB_ENV
     - name: Create Directories
@@ -75,30 +54,16 @@ jobs:
       run: |
         cd build
         cmake -G Ninja -DCMAKE_INSTALL_PREFIX=$ROOT_DIR/inst $GITHUB_WORKSPACE -DWITH_MOBI=ON
-    - name: Syntax Check GnuCash-docs
+    - name: Build distribution
       run: |
         cd build
-        ninja
-        ninja check
-    - name: Build HTML
+        ninja dist
+    - name: Check distribution
       run: |
         cd build
-        ninja html
-    - name: Build PDF
-      run: |
-        cd build
-        ninja pdf
-    - name: Build ePub
-      run: |
-        cd build
-        ninja epub
-    - name: Build mobi
-      run: |
-        cd build
-        ninja mobi
+        ninja distcheck
     - uses: actions/upload-artifact@v2
       if: failure()
       with:
         name: TestLog
         path: ${{ github.workspace }}/build/Testing/Temporary/LastTest.log
-
