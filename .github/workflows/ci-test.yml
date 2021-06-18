@@ -1,0 +1,104 @@
+name: ci-tests
+on: [push, pull_request]
+jobs:
+  ci_tests_ubuntu-18:
+    runs-on: ubuntu-18.04
+    name: Ubuntu-18.04 CI Tests
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - run: sudo apt-get update
+    - name: Install minimal dependencies
+      run: sudo apt-get install -y cmake ninja-build libxml2-utils xsltproc docbook-xsl
+    - name: Install PDF dependencies
+      run: sudo apt-get install -y fop
+    - name: Install additional mobi dependencies
+      run: sudo apt-get install -y calibre
+    - run: |
+        echo "ROOT_DIR=$GITHUB_WORKSPACE/.." >> $GITHUB_ENV
+    - name: Create Directories
+      run: |
+        pwd
+        mkdir $ROOT_DIR/inst
+        mkdir build
+    - name: Configure GnuCash-docs
+      run: |
+        cd build
+        cmake -G Ninja -DCMAKE_INSTALL_PREFIX=$ROOT_DIR/inst $GITHUB_WORKSPACE -DWITH_MOBI=ON
+    - name: Syntax Check GnuCash-docs
+      run: |
+        cd build
+        ninja
+        ninja check
+    - name: Build HTML
+      run: |
+        cd build
+        ninja html
+    - name: Build PDF
+      run: |
+        cd build
+        ninja pdf
+    - name: Build ePub
+      run: |
+        cd build
+        ninja epub
+    - name: Build mobi
+      run: |
+        cd build
+        ninja mobi
+    - uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: TestLog
+        path: ${{ github.workspace }}/build/Testing/Temporary/LastTest.log
+  ci_tests_ubuntu-latest:
+    runs-on: ubuntu-latest
+    name: ubuntu-latest CI Tests
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - run: sudo apt-get update
+    - name: Install minimal dependencies
+      run: sudo apt-get install -y cmake ninja-build libxml2-utils xsltproc docbook-xsl
+    - name: Install PDF dependencies
+      run: sudo apt-get install -y fop
+    - name: Install additional mobi dependencies
+      run: sudo apt-get install -y calibre
+    - run: |
+        echo "ROOT_DIR=$GITHUB_WORKSPACE/.." >> $GITHUB_ENV
+    - name: Create Directories
+      run: |
+        pwd
+        mkdir $ROOT_DIR/inst
+        mkdir build
+    - name: Configure GnuCash-docs
+      run: |
+        cd build
+        cmake -G Ninja -DCMAKE_INSTALL_PREFIX=$ROOT_DIR/inst $GITHUB_WORKSPACE -DWITH_MOBI=ON
+    - name: Syntax Check GnuCash-docs
+      run: |
+        cd build
+        ninja
+        ninja check
+    - name: Build HTML
+      run: |
+        cd build
+        ninja html
+    - name: Build PDF
+      run: |
+        cd build
+        ninja pdf
+    - name: Build ePub
+      run: |
+        cd build
+        ninja epub
+    - name: Build mobi
+      run: |
+        cd build
+        ninja mobi
+    - uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: TestLog
+        path: ${{ github.workspace }}/build/Testing/Temporary/LastTest.log
+
