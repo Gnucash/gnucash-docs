@@ -18,9 +18,19 @@ Translators:
 <chapter id="ch_Common_Trans_Ops">
   <title>Arbeiten mit Buchungen</title>
 
-  <para>Jede <emphasis>Buchung</emphasis> entspricht einer Geldbewegung von einem Konto auf ein anderes.
-    Jedesmal, wenn Sie Geld einnehmen, ausgeben oder zwischen Konten buchen, entspricht dies einer
-    Buchug. In &app; sind an jeder Buchung mindestens zwei Konten beteiligt.
+  <para>Jede <emphasis>Buchung</emphasis> entspricht im einfachsten Fall einer Geldbewegung von einem Konto
+    auf ein anderes. Jedesmal, wenn Sie Geld einnehmen, ausgeben oder zwischen Konten buchen,
+    entspricht dies einer Buchung. In &app; sind an jeder Buchung mindestens zwei Konten beteiligt.
+  </para>
+
+  <para>Die
+    <ulink url="&url-docs-build-de;guide/basics-accounting1.html#basics-accountingequation2">Bilanzgleichung</ulink>
+    ist das Kernstück der Doppelten Buchführung. Für jede Veränderung im Wert eines Kontos muss
+    es eine ausgleichende Buchung in einem anderen Konto geben. Dieses Konzept ist bekannt als das
+    <emphasis>Prinzip des ausgeglichenen Saldos</emphasis> und ist von fundamentaler Bedeutung für
+    das Verständnis von &app; und anderen Systemen zur Doppelten Buchführung. Wenn Sie mit &app;
+    arbeiten, werden Sie immer mit mindestens 2 Konten zu tun haben, damit die Bilanzgleichung
+    ausgeglichen bleibt.
   </para>
 
   <para>&app; verwendet Konten, um Buchungen zu gruppieren und ihre Aufzeichnung zu organisieren. Die
@@ -62,7 +72,8 @@ Translators:
         <keycombo>
           <keycap>Strg</keycap><keycap>T</keycap>
         </keycombo>
-        </shortcut> <guimenu>Aktionen</guimenu> <guimenuitem>Buchen...</guimenuitem>
+        </shortcut> <guimenu>A<accel>k</accel>tionen</guimenu>
+        <guimenuitem><accel>B</accel>uchen...</guimenuitem>
       </menuchoice>
       sowie durch Verwenden der Schaltfläche <guibutton>Buchen</guibutton> in der
       <emphasis>Werkzeugleiste</emphasis> des Kontobuchs zu erreichen und dient in &app; zwei
@@ -112,7 +123,7 @@ Translators:
           <term><guilabel>Datum</guilabel></term>
 
           <listitem>
-            <para>Das Buchungsdatum, d.h. das Datum an dem Sie die Buchung in ihrem Konotbuch erfassen wollen.
+            <para>Das Buchungsdatum, d.h. das Datum zu dem Sie die Buchung in ihrem Kontobuch erfassen wollen.
             </para>
           </listitem>
         </varlistentry>
@@ -130,7 +141,9 @@ Translators:
           <term><guilabel>Beschreibung</guilabel></term>
 
           <listitem>
-            <para>Eine Beschreibung der Buchung, oft Angaben zum Zahlungspflichtigen oder Zahlungsempfänger.
+            <para>Eine Beschreibung der Buchung, oft Angaben zum Zahlungspflichtigen oder Zahlungsempfänger. Der
+              Inhalt dieses Feldes wird von &app; auch dafür verwendet, um vorhandene Buchungen mit
+              importierten Kontoauszügen abzugleichen.
             </para>
           </listitem>
         </varlistentry>
@@ -183,21 +196,25 @@ Translators:
         <guilabel>Wechselkurs abrufen</guilabel> einen aktuellen Kurs abfragen.
       </para>
 
-      <para>Der Bereich <guilabel>Währungsbuchung</guilabel> ist nur aktiviert, wenn die ausgewählten Konten
-        unterschiedliche Währungen verwenden oder der Dialog <guilabel>Buchen</guilabel> geöffnet
-        wurde, um Kurs- oder Betragsinformationen während der Eingabe einer Buchung im Kontobuch
-        anzugeben.
+      <para>Er ist nur aktiviert, wenn die ausgewählten Konten unterschiedliche Währungen verwenden oder der
+        Dialog <guilabel>Buchen</guilabel> geöffnet wurde, um Kurs- oder Betragsinformationen
+        während der Eingabe einer Buchung im Kontobuch anzugeben.
       </para>
 
-      <para>Der Bereich <guilabel>Währungsbuchung</guilabel> ist als Optionsgruppe mit den beiden
-        Auswahlmöglichkeiten <guilabel>Wechselkurs</guilabel> und <guilabel>Zum Betrag</guilabel>
-        organisiert. Jede besteht aus einem Optionsfeld und einem numerischen Eingabefeld.
+      <para>Der Bereich ist als Optionsgruppe mit den beiden Auswahlmöglichkeiten
+        <guilabel>Wechselkurs</guilabel> und <guilabel>Zum Betrag</guilabel> organisiert. Jede
+        besteht aus einem Optionsfeld und einem numerischen Eingabefeld.
       </para>
 
       <para>Wenn ein entsprechender Kurs in der Kursdatenbank vorhanden ist (siehe
         <xref linkend="invest-stockprice-manual"/>), wird der <guilabel>Wechselkurs</guilabel>
         diesen als Vorgabe verwenden.
       </para>
+
+      <tip>
+        <para>Um Rundungsfehler zu minimieren, sollten Sie, soweit möglich, den Betrag eingeben.
+        </para>
+      </tip>
 
       <itemizedlist spacing="compact">
         <listitem>
@@ -232,9 +249,8 @@ Translators:
       </note>
 
       <note>
-        <para>Die Schaltfläche <guibutton>Wechselkurs abrufen</guibutton> erzeugt oder ersetzt sofort einen Kurs
-          in der <guilabel>Kurs-Datenbank</guilabel>, es sei denn, es wurde ein Wechselkurs für
-          heute manuell eingetragen.
+        <para>Die Schaltfläche <guibutton>Wechselkurs abrufen</guibutton> erzeugt für das aktuelle Datum einen
+          neuen oder ersetzt einen manuell einen Kurs in der <guilabel>Kurs-Datenbank</guilabel>.
         </para>
       </note>
     </sect2>
@@ -309,8 +325,11 @@ Translators:
       <step>
         <para>Bewegen Sie den Cursor mit der <keycap>Tab</keycap>-Taste weiter oder klicken Sie das Feld
           <guilabel>Nr</guilabel> an. Hier können Sie eine Scheck- bzw. Buchungsnummer eingeben.
-          Mit der Taste <keycap>+</keycap> wird automatisch die Nummer der letzten Buchung, der eine
-          Nummer hatte, um eins erhöht und hier eingefügt.
+          <tip>
+            <para>Mit der Taste <keycap>+</keycap> wird automatisch die Nummer der letzten Buchung, die eine Nummer
+              hatte, um eins erhöht und hier eingefügt.
+            </para>
+          </tip>
         </para>
       </step>
 
@@ -2242,8 +2261,8 @@ Translators:
                   </imageobject>
 
                   <caption>
-                    <para>Das Vorschaufenster für den CSV-Import mit Einstellungen zum Importieren der
-                    angezeigten Daten.</para>
+                    <para>Das Vorschaufenster für den CSV-Import mit Einstellungen zum Importieren der angezeigten Daten.
+                    </para>
                   </caption>
                 </mediaobject>
               </screenshot>
@@ -2838,8 +2857,9 @@ Translators:
             </imageobject>
 
             <caption>
-              <para>Dies ist eine Darstellung des Assistenten für die Buchungszuordnung nach dem Öffnen
-              einer Import-Datei.</para>
+              <para>Dies ist eine Darstellung des Assistenten für die Buchungszuordnung nach dem Öffnen einer
+                Import-Datei.
+              </para>
             </caption>
           </mediaobject>
         </screenshot>
@@ -3574,8 +3594,9 @@ Translators:
             </imageobject>
 
             <caption>
-              <para>Das Dialogfenster zeigt vorhandene &app;-Buchungen an, die mit einer importierten
-              Buchung übereinstimmen.</para>
+              <para>Das Dialogfenster zeigt vorhandene &app;-Buchungen an, die mit einer importierten Buchung
+                übereinstimmen.
+              </para>
             </caption>
           </mediaobject>
         </screenshot>
@@ -3745,8 +3766,8 @@ Translators:
             </imageobject>
 
             <caption>
-              <para>Der Import-Zuordnungen Editor, der typische Einträge für den Bayes-Algorithmus
-              zeigt.</para>
+              <para>Der Import-Zuordnungen Editor, der typische Einträge für den Bayes-Algorithmus zeigt.
+              </para>
             </caption>
           </mediaobject>
         </screenshot>
@@ -3933,7 +3954,7 @@ Translators:
         <listitem>
           <para><menuchoice>
               <guimenu><accel>D</accel>atei</guimenu><guisubmenu>E<accel>x</accel>portieren</guisubmenu><guimenuitem><accel>B</accel>uchungen
-              nach CSV exportieren&hellip; </guimenuitem>
+              nach CSV exportieren…</guimenuitem>
             </menuchoice>
           </para>
         </listitem>
@@ -3941,16 +3962,16 @@ Translators:
         <listitem>
           <para><menuchoice>
               <guimenu><accel>D</accel>atei</guimenu><guisubmenu>E<accel>x</accel>portieren</guisubmenu><guimenuitem><accel>A</accel>ktives
-              Kontobuch als CSV-Datei exportieren&hellip; </guimenuitem>
+              Kontobuch als CSV-Datei exportieren…</guimenuitem>
             </menuchoice>
             .
           </para>
         </listitem>
       </itemizedlist>
       Diese Befehle starten den in <xref linkend="export-transactions-wizard" /> dargestellten
-      Assistenten, um den Export einzurichten. Die beiden Menüpunkte unterscheiden sich nur dadurch, dass im Letzteren
-       der Schritt <guilabel>Kontenauswahl </guilabel> im linken Fensterbereich nicht verfügbar
-      ist.
+      Assistenten, um den Export einzurichten. Die beiden Menüpunkte unterscheiden sich nur
+      dadurch, dass im Letzteren der Schritt <guilabel>Kontenauswahl</guilabel> im linken
+      Fensterbereich nicht verfügbar ist.
     </para>
 
     <figure pgwide="1">
@@ -4319,7 +4340,7 @@ Translators:
       </varlistentry>
 
       <varlistentry id="trans-export-now">
-        <term>Datei jetzt exportieren&hellip;</term>
+        <term>Datei jetzt exportieren…</term>
 
         <listitem>
           <para>Der Dateiname und Pfad der zu exportierenden Datei und die Anzahl der zu exportierenden Konten wird
@@ -4375,13 +4396,13 @@ Translators:
       <title></title>
 
       <varlistentry>
-        <term>Saldenabfrage&hellip;</term>
+        <term>Saldenabfrage…</term>
 
         <listitem>
           <para>Mit
             <menuchoice>
               <guimenu>A<accel>k</accel>tion</guimenu><guimenuitem><accel>O</accel>nline
-              Aktion</guimenuitem><guisubmenu><accel>S</accel>aldenabfrage&hellip;</guisubmenu>
+              Aktion</guimenuitem><guisubmenu><accel>S</accel>aldenabfrage…</guisubmenu>
             </menuchoice>
             wird für das ausgewählte Konto eine Onlineverbindung zu dem Geldinstitut aufgebaut und
             der aktuelle Kontosaldo abgefragt. Nach kurzer Zeit wird Ihnen, im sich öffnendem
@@ -4392,14 +4413,13 @@ Translators:
       </varlistentry>
 
       <varlistentry>
-        <term>Abfrage Kontoumsätze&hellip;</term>
+        <term>Abfrage Kontoumsätze…</term>
 
         <listitem>
           <para>Der Menüpunkt
             <menuchoice>
               <guimenu>A<accel>k</accel>tion</guimenu><guimenuitem><accel>O</accel>nline
-              Aktion</guimenuitem><guisubmenu>Abfrage
-              Konto<accel>u</accel>msätze&hellip;</guisubmenu>
+              Aktion</guimenuitem><guisubmenu>Abfrage Konto<accel>u</accel>msätze…</guisubmenu>
             </menuchoice>
             bietet Ihnen die Möglichkeit, die Umsätze des in der Kontenstruktur markierten
             Onlinekontos, oder des geöffenten Kontobuchs, abzurufen und im Anschluss in &app; zu
@@ -4487,14 +4507,13 @@ Translators:
       </varlistentry>
 
       <varlistentry>
-        <term>SEPA Einzelüberweisung&hellip;</term>
+        <term>SEPA Einzelüberweisung…</term>
 
         <listitem>
           <para>Wenn Sie im Menü den Eintrag
             <menuchoice>
               <guimenu>A<accel>k</accel>tion</guimenu><guimenuitem><accel>O</accel>nline
-              Aktion</guimenuitem><guisubmenu>SEPA
-              <accel>E</accel>inzelüberweisung&hellip;</guisubmenu>
+              Aktion</guimenuitem><guisubmenu>SEPA <accel>E</accel>inzelüberweisung…</guisubmenu>
             </menuchoice>
             wählen, öffnet sich der Dialog
             <variablelist spacing="compact">
@@ -4653,13 +4672,13 @@ Translators:
       </varlistentry>
 
       <varlistentry>
-        <term>Interne Umbuchung&hellip;</term>
+        <term>Interne Umbuchung…</term>
 <!-- FIXME: Insert a description for this item. -->
         <listitem>
           <para>Die Funktion
             <menuchoice>
               <guimenu>A<accel>k</accel>tion</guimenu><guimenuitem><accel>O</accel>nline
-              Aktion</guimenuitem><guisubmenu> <accel>I</accel>nterne Umbuchung&hellip;</guisubmenu>
+              Aktion</guimenuitem><guisubmenu> <accel>I</accel>nterne Umbuchung…</guisubmenu>
             </menuchoice>
             kann der Übersetzer nicht ausprobieren, weil das Geldinstitut diesen Geschäftsvorfall
             für seine Konten nicht unterstützen.
