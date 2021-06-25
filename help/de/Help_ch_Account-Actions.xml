@@ -333,8 +333,8 @@
                 Zeitpunkten bebucht: Wenn sie Ihr Buch beginnen, werden hier die Anfangsbestände
                 gegengebucht. (siehe <xref linkend="open-balance" />) Und am Ende einer
                 Buchungsperiode verwendet &app; dieses Konto um den
-                <xref linkend="tool-close-book" /> zu erfassen. Bei einem Haushalt empfiehl es sich,
-                ein(en) Konto/enbaum pro Bewohner anzulegen.
+                <xref linkend="tool-close-book" /> zu erfassen. Bei einem Haushalt empfiehlt es
+                sich, ein(en) Konto/enbaum pro Bewohner anzulegen.
               </para>
             </entry>
 
@@ -364,7 +364,8 @@
                   <accel>E</accel>rtrag</guisubmenu><guimenuitem>Gewi<accel>n</accel>n- und
                   Verlustrechnung</guimenuitem>
                 </menuchoice>
-                gibt Ihnen eine Übersicht zu jedem beliebigen <emphasis>Stichtag</emphasis>
+                gibt Ihnen eine Übersicht für jeden beliebigen <emphasis>Zeitraum</emphasis> wie
+                z.B. das Geschäftsjahr.
               </para>
             </entry>
           </row>
@@ -503,9 +504,9 @@
             </entry>
 
             <entry namest="c3">
-              <para>Sie haben mindestens eine unausgeglichene Buchung eingegeben. Zur Behebung
-                verschieben Sie die enthaltenen Buchungen in die richtigen Konten. Anschließend
-                können sie das Konto löschen.
+              <para>Sie haben mindestens eine unausgeglichene Buchung eingegeben. Zur Behebung verschieben Sie die
+                enthaltenen Buchungen in die richtigen Konten. Anschließend können sie das Konto
+                löschen.
               </para>
             </entry>
 
@@ -520,7 +521,7 @@
   </sect1>
 
   <sect1 id="chart-create">
-    <title>Neue Kontenhierarchie erstellen</title>
+    <title>Erstellen eines Kontenplans</title>
 <!-- FIXME source: New wording and reference added -->
     <para>Der Kontenplan ist das – hierarchisch angeordnete – Inhaltsverzeichnis ihrer Konten. &app; kann
       Sie mit dem Assistenten zur <xref linkend="acct-hierarchy" /> bei der Arbeit unterstützen.
@@ -551,7 +552,7 @@
     <tip>
       <para>&app; verbietet nicht die doppelte Vergabe von Nummern, jedoch wird empfohlen, dass Sie dies
         vermeiden um eine Eindeutigkeit zu erzielen. Es bietet sich an, bei der Festlegung der
-        Kontonummern zunächst die Ziffern zu verwenden. Reichen die nicht aus, können auch Sie die
+        Kontonummern zunächst die Ziffern zu verwenden. Reichen die nicht aus, können Sie auch die
         Buchstaben <quote>a</quote> bis <quote>z</quote> benutzen. &app; kann Sie bei der
         Nummerierung Ihre Konten unterstützen. Verwenden Sie hierfür den Assistenten
         <menuchoice>
@@ -568,10 +569,318 @@
         <xi:include href="Help_chartofaccts.xml" /> -->
   </sect1>
 
-  <sect1 id="chart-edit">
-    <title>Kontenhierarchie bearbeiten</title>
+  <sect1 id="acct-hierarchy">
+    <title>Neuen Kontenplan einrichten</title>
 
-    <para>Die Kontenhierarchie können Sie mithilfe des Eingabebereichs <guilabel>Hauptkonto</guilabel> im
+    <para>Mit Unterstützung dieses Assistenten legen Sie in &app; einen vollständigen Kontenplan für Ihre
+      tägliche Arbeit an. Es wird eine neue, leere &app;-Datei erzeugt und der Assistent
+      <guilabel>Neuen Kontenplan erstellen</guilabel> gestartet.
+    </para>
+
+    <tip>
+      <para>Sie können den Assistenten später erneut ausführen. Hierfür gehen Sie im Menü zu
+        <menuchoice>
+          <shortcut>
+          <keycombo>
+            <keycap>Strg</keycap><keycap>N</keycap>
+          </keycombo>
+          </shortcut> <guimenu><accel>D</accel>atei</guimenu> <guimenuitem><accel>N</accel>eue
+          Datei</guimenuitem>
+        </menuchoice>
+        falls Sie eine neue Datei erstellen wollen. Wenn Sie den Assistenten innerhalb der
+        geöffneten Datei laufen lassen wollen, benutzen Sie stattdessen
+        <menuchoice>
+          <guimenu><accel>A</accel>ktionen</guimenu><guimenuitem>Konten<accel>h</accel>ierachie
+          hinzufügen</guimenuitem>
+        </menuchoice>
+        wenn das Kontenhierarchie- Register angezeigt wird.
+      </para>
+    </tip>
+
+    <figure pgwide="1">
+      <title>Der Assistent <quote>Neuen Kontoplan erstellen</quote></title><screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/Help_AccountTreeCreate.png" format="PNG"
+                   srccredit="Christian Wehling" />
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <variablelist spacing="compact">
+      <title>Dialogführung</title>
+
+      <para>Die Schaltflächen in dem Assistenten werden erst dann sichtbar bzw. aktiviert, wenn Sie die
+        notwendigen Einstellungen in dem Dialogschritt getätigt haben.
+      </para>
+
+      <varlistentry>
+        <term><guibutton>Abbrechen</guibutton></term>
+
+        <listitem>
+          <para>Beendet den Vorgang und bricht die Erstellung einer neuen Kontenstruktur ab.
+          </para>
+
+          <warning>
+            <para>Wenn Sie auf diese Schaltfläche klicken, gehen alle Änderungen, die Sie bis zu diesem Punkt
+              vorgenommen haben, verloren.
+            </para>
+          </warning>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guibutton>Zurück</guibutton></term>
+
+        <listitem>
+          <para>Bringt Sie zur vorherigen Anzeige zurück, so das Sie Ihre Eingaben noch einmal ändern können.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guibutton>Weiter</guibutton></term>
+
+        <listitem>
+          <para>Mit der Taste bestätigen Sie Ihre Eingaben und gehen weiter zum nächsten Bildschirm.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guibutton>Fertigstellen</guibutton></term>
+
+        <listitem>
+          <para>Überspringt den nächsten Schritt <guilabel>Ausgewählte Konten feinabstimmen</guilabel> und bringt
+            Sie direkt zum letzten Schritt des Assistenten.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guibutton>Anwenden</guibutton></term>
+
+        <listitem>
+          <para>Hiermit beenden Sie Ihre Eingaben und die neuen Kontostruktur wird in der &app;-Datei angelegt.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <procedure>
+      <title>Beschreibung der Arbeitsschritte in dem Assistenten</title>
+
+      <step>
+        <variablelist spacing="compact">
+          <varlistentry>
+            <term><guilabel>Neuen Kontenplan erstellen</guilabel></term>
+
+            <listitem>
+              <para>Der Assistent öffnet sich mit einer Übersicht, in der kurz beschrieben wird, bei welchen Aufgaben
+                Sie hier untersützt werden.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </step>
+
+      <step>
+        <para>Im nächsten Bildschirm können Sie die <guilabel>Währung wählen</guilabel>, die Sie als Standard
+          für Ihre Konten verwenden wollen.
+        </para>
+
+        <variablelist spacing="compact">
+          <varlistentry>
+            <term><guilabel>Währung</guilabel></term>
+
+            <listitem>
+              <para>Die Dropdown-Liste ist standardmäßig auf die Währung eingestellt, die in der Registerkarte
+                <xref linkend="prefs-accounts"/> in den <guilabel>&appname; Einstellungen</guilabel>
+                eingestellt ist. Sie erreichen diesen Dialog im Menü
+                <menuchoice>
+                  <guimenu><accel>B</accel>earbeiten</guimenu><guimenuitem><accel>E</accel>instellungen</guimenuitem>
+                </menuchoice>
+                . Wenn Sie stattdessen für Ihre Konten eine andere Standardwährung verwenden
+                wollen, wählen Sie diese aus der Liste aus.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </step>
+
+      <step>
+        <para>Der nächste Schritt wird dafür verwendet, um die <guilabel>zu erstellenden Konten
+          auszuwählen</guilabel>. Sie sehen einen Bildschirm, der in drei Teile unterteilt ist.
+        </para>
+
+        <variablelist spacing="compact">
+          <varlistentry>
+            <term><guilabel>Kategorien</guilabel></term>
+
+            <listitem>
+              <para>Im linken oberen Teil befinden sich zwei Dropdownfelder, mit denen Sie die sprach- und
+                regionsspezifischen Kategorien filtern können. Wählen Sie aus dem Listenfeld
+                unterhalb der Auswahlfelder die Arten von Konten aus, die Sie für Ihre Arbeit in
+                &app; verwenden möchten. Sie können so viele der Kategorien für Ihre Konten
+                auswählen, wie Sie möchten.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guibutton>Alle auswählen</guibutton></term>
+
+            <listitem>
+              <para>Mit der Schaltfläche können Sie alle Kontokategorien auswählen.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guibutton>Keine auswählen</guibutton></term>
+
+            <listitem>
+              <para>Mit dieser Schaltfläche können Sie die Auswahl aller ausgewählten Kategorien aufheben.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Kategorie-Beschreibung</guilabel></term>
+
+            <listitem>
+              <para>Im linken unteren Bereich befindet sich ein Feld, in dem eine detaillierte Beschreibung der aktuell
+                markierten Kategorie angezeigt wird.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Konten in &hellip;</guilabel></term>
+
+            <listitem>
+              <para>Auf der rechten Seite befindet sich eine Liste der Konten, die der links ausgewählten Kategorie
+                entsprechen.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </step>
+
+      <step>
+        <para>Weiter geht es mit dem Schritt <guilabel>Ausgewählte Konten feinabstimmen</guilabel>, bei dem Sie
+          für die einzelnen Konten den Kontonamen anpassen können, einen Anfangsbestand eingeben
+          oder definieren, ob ein Konto als ein Platzhalter fungieren soll.
+        </para>
+
+        <note>
+          <para>Eigenkapitalkonten können keinen Anfangsbestand haben, daher wird die Eingabe für diese Art von
+            Konten unterbunden und von &app; auf <guilabel>Null</guilabel> gesetzt.
+          </para>
+        </note>
+
+        <note id="placeholder-acct">
+          <para><emphasis>Platzhalterkonten</emphasis> werden verwendet, um eine Hierarchie von Konten zu erstellen
+            und haben normalerweise keine Buchungen oder Anfangsbestände.
+          </para>
+        </note>
+
+        <para>Folgen Sie den Anweisungen im Display, um ein Konto auswählen und einen Anfangsbestand einzugeben.
+          Ein einfacher Klick wird verwendet, um ein Konto zu markieren.
+        </para>
+
+        <variablelist spacing="compact">
+          <title>Die Spaltenüberschriften der Tabelle</title>
+
+          <para>Sie können einige Einträge für die Konten ändern, indem Sie mit
+            <keycombo action="click">
+              <mousebutton>Button1</mousebutton>
+            </keycombo>
+            die entsprechende Eintrag in der Spalte auswählen und anschließend mit
+            <keycombo action="click">
+              <mousebutton>Button1</mousebutton>
+            </keycombo>
+            in die Zelle klicken die Sie bearbeiten wollen.
+            <footnote>
+              <para>Die Maustasten werden neutral mit <emphasis>Button1</emphasis> und <emphasis>Button2</emphasis>
+                bezeichnet. Bei vielen Benutzern entspricht <emphasis>Button1</emphasis> der linken
+                und <emphasis>Button2</emphasis> der rechten Maustaste. Dies kann durch den Anwender
+                in den Einstellungen des Betriebssystems den Bedürfnissen angepasst werden.
+              </para>
+            </footnote>
+          </para>
+
+          <varlistentry>
+            <term><guilabel>Kontobezeichnung</guilabel></term>
+
+            <listitem>
+              <para>Die erste Spalte enthält die Bezeichnungen für die Konten. Sie können die Kontobezeichnung
+                entsprechend Ihren Wünschen anpassen.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Kontoart</guilabel></term>
+
+            <listitem>
+              <para>Dies Einträge in dieser Spalte dienen Ihrer Information und können nicht geändert werden.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Platzhalter</guilabel></term>
+
+            <listitem>
+              <para>Die dritte Spalte enthält ein Kontrollkästchen, mit dem Sie angeben können, ob dieses Konto ein
+                Platzhalterkonto sein soll. Somit haben Sie die Möglichkeit, eine hierarchische
+                Strukturierung Ihrer Konten vorzunehmen.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><guilabel>Anfangsbestand</guilabel></term>
+
+            <listitem>
+              <para>In dieses Feld der vierten Spalte können Sie bei Bedarf einen Anfangsbestand eintragen indem Sie
+                diesen in die Zelle eingeben. Weiterhin wird hier von &app; ein Hinweis eingetragen,
+                ob dieses Konto in einer vorhanden Kontostruktur schon existiert und somit nicht neu
+                angelegt wird.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Existierendes verwenden</term>
+
+            <listitem>
+              <para>In der letzten Spalte wird Ihnen zur Information mitgeteilt, ob ein Konto mit diesem Namen in Ihrer
+                Struktur bereits vorhanden ist oder nicht.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </step>
+
+      <step>
+        <para>Der letzte Schritt <guilabel>Konteneinrichtung fertigstellen</guilabel> ist der letzte Bildschirm
+          und gibt Ihnen eine abschließende Übersicht der drei Auswahlmöglichkeiten, um den
+          Assistenten zu beenden.
+        </para>
+      </step>
+    </procedure>
+
+    <para>Sie haben nun eine Struktur der Konten in Ihrer &app; Kontenübersicht.
+    </para>
+  </sect1>
+
+  <sect1 id="chart-edit">
+    <title>Kontenplan bearbeiten</title>
+
+    <para>Den Kontenplan können Sie mithilfe des Eingabebereichs <guilabel>Hauptkonto</guilabel> im
       Dialogfenster <guilabel>Konto bearbeiten</guilabel> verändern. Dort ist es möglich, ein
       Konto an eine beliebige Stelle in der Kontenübersicht zu bewegen. Es wird empfohlen, Konten
       generell als Unterkonten eines Hauptkontos mit verwandter Kontoart zu führen. Einzelheiten
@@ -585,8 +894,7 @@
         Ihren Steuerberater.
       </para>
     </caution>
-<!-- Translators: For your country list search https://github.com/Gnucash/gnucash/tree/maint/data/accounts for the usual language+country codes 
-[hm, irgendwas fehlt da noch, daß die nicht die privaten "common" templates listen] -->
+<!-- Translators: For your country list search https://github.com/Gnucash/gnucash/tree/maint/data/accounts for the usual language+country codes -->
     <tip>
       <para>Für einige Länder wie AT, CH, DE haben Anwender Vorlagen beigesteuert, die Sie im dritten Schritt
         des Assistenten zur <xref linkend="acct-hierarchy" /> auswählen können. Sofern Sie auch
