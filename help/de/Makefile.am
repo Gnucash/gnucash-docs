@@ -17,6 +17,7 @@ entities = \
 	Help_legal.xml \
 	Help_chartofaccts.xml \
 	Help_chtacctseg.xml \
+	Help_para-assist-intro.xml \
 	Help_txf-categories.xml \
 	Help_tips-appendix.xml
 DISTCLEANFILES =  $(docname)-de.omf.out
