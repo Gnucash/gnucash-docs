@@ -1,0 +1,38 @@
+A part of the xmlformat package from http://www.kitebird.com/software/xmlformat
+which is unfortunately not in all important distributions.
+
+Motivation: most xml formatters like xmllint support only block layout. That is
+fine for data files, but Docbook has many elements which look inline nicer.
+
+Requirements: The installed part requires Perl.
+If you prefer Ruby, you can also install xmlformat.rb.
+
+To reformat an existing file run from the top source dir:
+util/xmlformat/xmlformat.pl -f util/xmlformat/xmlformat.conf -i xml-file
+
+If you installed the package xmlformat you can shorten it to:
+xmlformat -f util/xmlformat/xmlformat.conf -i xml-file
+
+To reformat all files of the english guide:
+for i in guide/C/*.xml; do util/xmlformat/xmlformat.pl -f util/xmlformat/xmlformat.conf -i $i ; done
+
+To reformat all files in both parts:
+for i in guide help; do
+  for j in $i/*; do
+    echo "enter $j";
+    for k in $j/*.xml; do
+      echo $k;
+      util/xmlformat/xmlformat.pl -f util/xmlformat/xmlformat.conf -i $k;
+    done;
+  done;
+done
+
+Notes:
+There is also a {-b|--backup}[ suffix] option, but git reset HEAD is easier.
+
+As comments stay unformated redo xmlformat after you uncommented blocks.
+
+After changes of the docbook version, verify all elements are recognized with
+--show-unconfigured-elements
+
+configure.ac and xmldocs.make are fragments from a former approach to define a make target.

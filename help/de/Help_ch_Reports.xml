@@ -1,0 +1,3289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.x
+   Last modified: January 20th 2017
+        modified: December 7th 2009
+        modified: May 13th 2007
+        modified: November 28th 2006
+        modified: August 12th 2006
+  modified: February 28th 2005
+
+  Maintainers:
+               Alex Aycinena <alex.aycinena@gmail.com>
+               Chris Lyttle <chris@wilddev.net>
+               Neil Williams <linux@codehelp.co.uk>
+
+  Author:
+               Chris Lyttle <chris@wilddev.net>
+  Translators:
+               (translators put your name and email here)
+-->
+<chapter id="Reports">
+  <title>Reports And Charts</title>
+
+  <para>&untranslated-de;
+  </para>
+
+  <note>
+    <para>This section is a <quote>work in process</quote>. Some of the material has not been reviewed for
+      V2.0. While it may not be strictly accurate, it is at least a "guide".
+    </para>
+  </note>
+
+  <sect1 id="report-intro">
+    <title>Introduction</title>
+
+    <para>Reports and Charts give &app; the ability to present an overview of financial data in various ways.
+      This can range from a simple summary of account totals to an advanced portfolio view. This
+      section will present an explanation of the main &app; reports and how to adjust them.
+    </para>
+
+    <para>To run a report or chart, click on the
+      <menuchoice>
+        <guimenu>Reports</guimenu>
+      </menuchoice>
+      menu, then either select a report (it will open with standard options), or click on
+      <guibutton> Saved Report Configuration</guibutton> to select a report you have previously
+      configured and saved.
+    </para>
+
+    <para>Once the report has opened, click on the <emphasis>toolbar</emphasis> button
+      <guibutton>Options</guibutton> to configure the report as needed, for example to set the
+      report date or select accounts.
+    </para>
+
+    <tip>
+      <para>If you intend to save a report configuration, you should choose a named report date option such as
+        <emphasis>Today</emphasis> rather than enter a specific date so it is not necessary to enter
+        a specific date again in future reports.
+      </para>
+    </tip>
+
+    <tip>
+      <para>If you often run a report with a date as at the start or end of an accounting period, set the
+        accounting period start and end dates in
+        <menuchoice>
+          <guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu> <guimenuitem>Accounting
+          Period</guimenuitem>
+        </menuchoice>
+        then select appropriate report date options. See <xref linkend="prefs-accounting-period" />.
+      </para>
+    </tip>
+
+    <tip>
+      <para>If you cannot find a specific report to suit your requirements, you may be able to use the
+        <guilabel>Find Transaction</guilabel> assistant (
+        <menuchoice>
+          <guimenu>Edit</guimenu><guimenuitem>Find</guimenuitem>
+        </menuchoice>
+        ) to select a set of transactions, and then report them using
+        <menuchoice>
+          <guimenu>Reports</guimenu> <guimenuitem>Account Report</guimenuitem>
+        </menuchoice>
+        . Further formatting or analysis may be done by copying and pasting the report into a
+        spreadsheet.
+      </para>
+    </tip>
+
+    <para>After you have configured a report, you can save the configuration for future use by clicking either
+      the <guibutton>Save Report Configuration</guibutton> or <guibutton>Save Report Configuration
+      As...</guibutton> button.
+    </para>
+
+    <sect2 id="report-saving">
+      <title>Saving a Report Configuration</title>
+
+      <para>To save a report configuration for future use, while the required report tab is selected, go to the
+        report options, select the <emphasis>General</emphasis> tab and change the <emphasis>Report
+        Name</emphasis> to a meaningful unique name. Do not confuse this with the <emphasis>Report
+        Title</emphasis> which prints at the top of a report.
+      </para>
+
+      <para>Click the <guibutton>Save Report Configuration</guibutton> or <guibutton>Save Report Configuration
+        As...</guibutton> button. This will store your customized report options in a file below
+        your home directory.
+<!-- FIXME by adding the wiki page to the appendix -->
+        The exact location depends on your OS, its version and the &app; version. See
+        <ulink url="&url-wiki;Configuration_Locations#GTK_CONFIG_HOME">wiki:Configuration_Locations#GTK_CONFIG_HOME</ulink>,
+        <ulink url="&url-wiki;Configuration_Locations#GNC_DATA_HOME">GNC_DATA_HOME</ulink> and
+        <ulink url="&url-wiki;Configuration_Locations#In_GNC_DATA_HOME">Files in
+        GNC_DATA_HOME</ulink> Then it is
+        <filename>GNC_DATA_HOME/saved-reports-<replaceable>version</replaceable></filename>.
+      </para>
+
+      <para>The first time you save a report with a name that has not already been saved, you can use either the
+        <guibutton>Save Report Configuration</guibutton> or the <guibutton>Save Report Configuration
+        As...</guibutton> button. You can modify the report name before saving it.
+      </para>
+
+      <para>After a report configuration for a specific name has been saved, the <guibutton>Save Report
+        Configuration</guibutton> button will immediately update the saved report configuration
+        without giving the opportunity to save the configuration with a new name. Use the
+        <guibutton>Save Report Configuration As...</guibutton> button to save the current report
+        configuration with a new name.
+      </para>
+
+      <para>After your customized report has been saved, it is available for use by the
+        <menuchoice>
+          <guimenu>Reports</guimenu><guimenuitem>Saved Report Configurations</guimenuitem>
+        </menuchoice>
+        menu and it will also be listed when starting
+        <menuchoice>
+          <guimenu>Reports</guimenu><guisubmenu>Sample &amp; Custom</guisubmenu><guimenuitem>Custom
+          Multicolumn Report</guimenuitem>
+        </menuchoice>
+        .
+      </para>
+    </sect2>
+
+    <sect2 id="report-working">
+      <title>Working with Saved Report Configurations</title>
+
+      <para>Selecting
+        <menuchoice>
+          <guimenu>Reports</guimenu><guimenuitem>Saved Report Configurations</guimenuitem>
+        </menuchoice>
+        will open a dialog window with the list of the <emphasis>Saved Report
+        Configurations</emphasis> you have previously created. In this context <emphasis>Saved
+        Report Configurations</emphasis> means the set of customized settings for standard reports.
+      </para>
+
+      <para>The <emphasis>Saved Report Configurations</emphasis> window lists each of your previously saved
+        report configurations, and 3 small buttons at the end of each. These buttons perform the
+        following actions
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Load (and run) report configuration. Double clicking a report configuration also performs this
+            action.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Edit report configuration name. This enables a report configuration to be renamed.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Delete report configuration.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="report-config">
+    <title>Configuring Reports and Charts</title>
+
+    <para>&app; reports have many configuration options. First, run the original report itself. Then, access
+      the report options with the <guibutton>Options</guibutton> button on the
+      <emphasis>toolbar</emphasis>.
+    </para>
+
+    <note>
+      <para>Check changed Graphic Engine Options
+      </para>
+    </note>
+
+    <sect2 id="report-opt-btns">
+      <title>Report Options Buttons</title>
+
+      <para>After modifying report options, either
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Click the <guibutton>OK</guibutton> button to apply the changes, regenerate the report and close the
+            options window.
+          </para>
+
+          <para>or
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Click the <guibutton>Apply</guibutton> button to apply the changes, regenerate the report and leave
+            the options window open for possible further changes. In this case, both the
+            <guibutton>Apply</guibutton> and <guibutton>OK</guibutton> buttons will be disabled,
+            indicating changes have been applied, until further changes are made.
+          </para>
+
+          <para>or
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Click the <guibutton>Cancel</guibutton> button to close the options window without applying any
+            unapplied changes.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="report-common">
+      <title id="report-common.title">Common Report Options</title>
+
+      <para>Many reports share similar options. Some common ones include:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Report Name: Set the title of the report. This is also used to print the report for later viewing.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Date Options: Reports typically specify either a single date, or a date range, for the report. Dates
+            can be specified in two ways, either directly (using the date selector), or by selecting
+            a relative date from the menu. Relative dates allow you to specify dates like
+            <guilabel>Beginning of this year</guilabel> or <guilabel>Today</guilabel>.
+          </para>
+
+          <tip>
+            <para>If you often run a report with a date as at the start or end of an accounting period, set the
+              accounting period start and end dates in
+              <menuchoice>
+                <guimenu>Edit</guimenu> <guisubmenu>Preferences</guisubmenu> <guimenuitem>Accounting
+                Period</guimenuitem>
+              </menuchoice>
+              then select appropriate report date options. See
+              <xref linkend="prefs-accounting-period" />.
+            </para>
+          </tip>
+        </listitem>
+
+        <listitem>
+          <para>Step Size: This option is used on bar charts to determine the interval which each bar represents.
+            Typical values are daily, weekly, monthly, and yearly.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Accounts: Select the appropriate accounts for the report. Note that in some reports only certain
+            types of accounts can be selected. For example, an expense piechart only allows expense
+            accounts to be selected.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Show Long Account Names: This option allows displaying either short account names (for example,
+            Power) or long account names (for example, Utilities:Power).
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Include Subaccounts?: Summary reports typically have an include all subaccounts option, which if
+            selected ensures that all subaccounts are included if the parent account is.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Depth: This option allows the selection of how many levels the report displays subaccounts. If the
+            subaccounts go deeper than selected, an overall value for all the subaccounts is
+            calculated and included in a total. To make sure every account selected is individually
+            displayed, select <guibutton>All</guibutton>.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Style Sheet: Select a Style Sheet. Style sheets control how reports are displayed. At the moment,
+            there are four style sheets: <guilabel>Default</guilabel>, <guilabel>Easy</guilabel>,
+            <guilabel>Footer</guilabel> and <guilabel>Technicolor</guilabel>. You can customize each
+            of these from the
+            <menuchoice>
+              <guimenu>Edit</guimenu><guimenuitem>Style Sheets...</guimenuitem>
+            </menuchoice>
+            menu item. This is described in the <xref linkend="change-style"></xref>
+<!--Changing Style Sheets-->
+            section.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Plot Dimensions: There are width and height options for most charts, which specify the displayed
+            dimensions (in pixels).
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Report Currency: Select the report currency. Generally, values will be converted to this currency
+            for display.
+          </para>
+
+          <para>The default Report Currency is defined in
+            <menuchoice>
+              <guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem>
+            </menuchoice>
+            Reports tab. See <xref linkend="prefs-reports" />.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Price Source: Select how stock and currency prices are calculated in this report. Choose between:
+            <itemizedlist>
+              <listitem>
+                <para>Nearest in time (default for most reports): A price retrieved from the prices database on the date
+                  nearest to the date of the report or of the datum for time-series reports.
+                </para>
+              </listitem>
+
+              <listitem>
+                <para>Most recent: The latest price in the price database.
+                </para>
+              </listitem>
+
+              <listitem>
+                <para>Average Cost: The amount-weighted <emphasis>net</emphasis> average of <emphasis>all</emphasis>
+                  splits exchanging the commodity for another <emphasis>regardless of
+                  account</emphasis>. Gain/loss splits are <emphasis>included</emphasis> in the
+                  calculation.
+                </para>
+              </listitem>
+
+              <listitem>
+                <para>Weighted Average: The <emphasis>gross</emphasis> amount-weighted average price of
+                  <emphasis>all</emphasis> splits exchanging the commodity for another
+                  <emphasis>regardless of account</emphasis>. Gain/Loss splits are
+                  <emphasis>not</emphasis> in the calculation.
+                </para>
+              </listitem>
+            </itemizedlist>
+            More information on Average Cost and Weighted Average may be found in the Investments
+            chapter of The Tutorial and Concepts Guide.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Totals: Charts display totals in the chart legend if this option is selected.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Maximum Slices: Controls the maximum number of slices displayed in a piechart - other accounts will
+            be placed in a slice marked Other.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Maximum Bars: Controls the maximum number of bars displayed in a barchart.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Display Columns: Choose columns to show from the register.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="report-classes">
+    <title>Reports Listed By Class</title>
+
+    <para>&app; has classified the main types of reports into major classes. These are all available under the
+      Reports menu.
+    </para>
+
+    <sect2 id="report-general">
+      <title>General Reports</title>
+
+      <para>The General Reports include the Account Summary Report, the Future Scheduled Transactions Summary,
+        and the Transaction Report and also the reports in the Sample &amp; Custom menu.
+      </para>
+
+      <sect3>
+        <title>Account Summary</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Future Scheduled Transactions Summary</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Transaction Report</title>
+
+        <para>This report lists transactions in selected accounts during a specified financial period. Two fields
+          may be optionally used for sorting and totalling.
+        </para>
+
+        <sect4 id="report-txrpt-opts">
+          <title>Report Options</title>
+
+          <figure>
+            <title><emphasis>Transaction Report, Report Options</emphasis></title><screenshot id="Help_TxRptOpt_Screen">
+              <mediaobject>
+                <imageobject role="html">
+                  <imagedata fileref="figures/Help_TxRptOpt_Screen.png" format="PNG"
+                     srccredit="Geert Janssens" width="510px"></imagedata>
+                </imageobject>
+
+                <imageobject role="fo">
+                  <imagedata fileref="figures/Help_TxRptOpt_Screen.png" format="PNG"
+                     srccredit="Geert Janssens"></imagedata>
+                </imageobject>
+
+                <textobject>
+                  <phrase>Transaction Report, Report Options screen</phrase>
+                </textobject>
+
+                <caption>
+                  <para>This is an image of the <emphasis>Transaction Report, Report Options, Display tab.</emphasis>
+                  </para>
+                </caption>
+              </mediaobject>
+            </screenshot>
+          </figure>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis>Accounts tab</emphasis>
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Accounts</guilabel>: Select one or more accounts to be reported.
+                  </para>
+
+                  <para>There are 4 buttons to aid account selection
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Select All
+                          </entry>
+
+                          <entry>
+                            Select all accounts
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Clear All
+                          </entry>
+
+                          <entry>
+                            Clear the selection and unselect all accounts
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Select Children
+                          </entry>
+
+                          <entry>
+                            Select all descendants of selected account
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Select Default
+                          </entry>
+
+                          <entry>
+                            Select the default account selection
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show Hidden Accounts</guilabel>: Show accounts that have been marked hidden.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Filter By</guilabel>: Optionally select accounts to be either included or excluded
+                    depending on Filter type
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show Hidden Accounts</guilabel>: Show accounts that have been marked hidden in the Filter
+                    By list of accounts
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Filter Type</guilabel>: One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            None
+                          </entry>
+
+                          <entry>
+                            Do not do any filtering
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Include Transactions to/from Filter Accounts
+                          </entry>
+
+                          <entry>
+                            Include Transactions to/from Filter Accounts only
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Exclude Transactions to/from Filter Accounts
+                          </entry>
+
+                          <entry>
+                            Exclude Transactions to/from all Filter Accounts
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Reset defaults button</guilabel>: Reset all values to their defaults
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Display tab</emphasis>
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Date</guilabel> refers to the 'posted date' i.e. effective date of a transaction.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Reconciled Date</guilabel> refers to the 'date of reconciliation' of a transaction.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Num</guilabel> is commonly used for check numbers.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Description</guilabel> is a description of the transaction
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Memo</guilabel> is the memo field of a transaction. This can be used as a secondary
+                    description of a transaction.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Notes</guilabel>: Display the notes if the memo is unavailable
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Account Name</guilabel> will print the account name containing the transaction.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Use Full Account Name</guilabel> if the account name is enabled, this option will display
+                    the full account name hierarchy.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Account Code</guilabel> this refers to the 'account code' related to the account.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Detail Level</guilabel>
+                    <footnote id='report-fn-v3-dl'>
+                      <para>Before &app; 3.0 <emphasis>Detail Level</emphasis> was called <emphasis>Style</emphasis> on the
+                        General tab.
+                      </para>
+                    </footnote>
+                    : One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Single
+                          </entry>
+
+                          <entry>
+                            Display 1 line per transaction,
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Multi-Line
+                          </entry>
+
+                          <entry>
+                            Display a transaction header and 1 line per split.
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+
+                  <para>If <emphasis>Detail Level</emphasis> is <emphasis>Multi-Line</emphasis>, check boxes <emphasis>Other
+                    Account Name</emphasis> and <emphasis>Use Full Other Account Name</emphasis> are
+                    automatically deselected and disabled, and the <emphasis>Transfer</emphasis>
+                    column is not reported.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Other Account Name</guilabel>: For multi-split transactions, this parameter should be
+                    unticked. See below for more details.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Use Full Other Account Name</guilabel> will enable display of full corresponding account
+                    name.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Other Account Code</guilabel> will enable display of corresponding account code.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Shares</guilabel>: Display number of shares
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Price</guilabel>: Display share prices
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Amount</guilabel>: One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            None
+                          </entry>
+
+                          <entry>
+                            Do not display Amount
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Single
+                          </entry>
+
+                          <entry>
+                            Single column display
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Double
+                          </entry>
+
+                          <entry>
+                            Two column display
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Subtotal Table</guilabel> will add a summary table for the various subtotals generated in
+                    the report. It lists the same subtotals generated in tabular form.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Running Balance</guilabel> refers to the running balance of the account holding the
+                    transaction.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Totals</guilabel> will add a 'Grand Total' line adding all transactions in the report.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Sign Reverses</guilabel>: One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Global Preference
+                          </entry>
+
+                          <entry>
+                            Use reversing option specified in global preference.
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            None
+                          </entry>
+
+                          <entry>
+                            Do not display signs reversed
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Credit Accounts
+                          </entry>
+
+                          <entry>
+                            Reverse amount display for Liability, Payable, Equity, Credit Card and
+                            Income accounts
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Income and Expense
+                          </entry>
+
+                          <entry>
+                            Reverse amount display for Income and Expense accounts
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Reset defaults button</guilabel> Reset all values to their defaults
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Filter tab</emphasis>
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Account Name Filter</guilabel> will include only selected accounts containing the
+                    substring. Alternatively, if the next option is checked, the account name filter
+                    will be matched according to full POSIX regular expressions.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Use regular expressions for account name filter</guilabel> toggles regular expressions for
+                    account name filter.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Transaction Filter</guilabel> will include only transactions which contain this substring
+                    in the description, notes, or memo. Alternatively if the next option is checked,
+                    the filter will be matched using full POSIX regular expressions.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Use regular expressions for transaction filter</guilabel> toggles regular expressions for
+                    the transaction filter.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Reconcile Status</guilabel>
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            All
+                          </entry>
+
+                          <entry>
+                            Show all transactions
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Unreconciled
+                          </entry>
+
+                          <entry>
+                            Unreconciled only
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Cleared
+                          </entry>
+
+                          <entry>
+                            Cleared only
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Reconciled
+                          </entry>
+
+                          <entry>
+                            Reconciled only
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Void Transactions</guilabel>: One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Non-void only
+                          </entry>
+
+                          <entry>
+                            Show only non-voided transactions
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Void only
+                          </entry>
+
+                          <entry>
+                            Show only voided transactions
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Both
+                          </entry>
+
+                          <entry>
+                            Show both and include voided transactions in totals
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Closing transactions</guilabel>: One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Excluding closing transactions
+                          </entry>
+
+                          <entry>
+                            Show only regular transactions
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Show both closing and regular transactions
+                          </entry>
+
+                          <entry>
+                            Show both regular and closing transactions
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Show closing transactions only
+                          </entry>
+
+                          <entry>
+                            Show closing transactions only
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Reset defaults button</guilabel>: Reset all values to their defaults
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>General tab</emphasis>
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Report name</guilabel>: Enter a descriptive name for this report
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Stylesheet</guilabel>: Select Default, Easy, Footer or Technicolor
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Start Date</guilabel>: Enter or select a specific Start Date
+                  </para>
+
+                  <para>or select one of the following named start date options which will be used to determine the start
+                    date each time the report is run
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Today
+                          </entry>
+
+                          <entry>
+                            The current date
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Start of this month
+                          </entry>
+
+                          <entry>
+                            First day of the current month
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Start of previous month
+                          </entry>
+
+                          <entry>
+                            First day of the previous month
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Start of current quarter
+                          </entry>
+
+                          <entry>
+                            First day of the current quarterly accounting period
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Start of previous quarter
+                          </entry>
+
+                          <entry>
+                            First day of the previous quarterly accounting period
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Start of this year
+                          </entry>
+
+                          <entry>
+                            First day of the current calendar year
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Start of previous year
+                          </entry>
+
+                          <entry>
+                            First day of the previous calendar year
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Start of accounting period
+                          </entry>
+
+                          <entry>
+                            First day of the accounting period as defined in the global preferences
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>End Date</guilabel>: Enter or select a specific End Date,
+                  </para>
+
+                  <para>or select one of the following named end date options which will be used to determine the end date
+                    each time the report is run
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Today
+                          </entry>
+
+                          <entry>
+                            The current date
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            End of this month
+                          </entry>
+
+                          <entry>
+                            Last day of the current month
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            End of previous month
+                          </entry>
+
+                          <entry>
+                            Last day of the previous month
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            End of current quarter
+                          </entry>
+
+                          <entry>
+                            Last day of the current quarterly accounting period
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            End of previous quarter
+                          </entry>
+
+                          <entry>
+                            Last day of the previous quarterly accounting period
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            End of this year
+                          </entry>
+
+                          <entry>
+                            Last day of the current calendar year
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            End of previous year
+                          </entry>
+
+                          <entry>
+                            Last day of the previous calendar year
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            End of accounting period
+                          </entry>
+
+                          <entry>
+                            Last day of the accounting period as defined in the global preferences
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Detail Level</guilabel><footnoteref linkend='report-fn-v3-dl'/>: One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Single
+                          </entry>
+
+                          <entry>
+                            Display 1 line
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Multi-Line
+                          </entry>
+
+                          <entry>
+                            Display N lines
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Common Currency</guilabel>: Convert all transactions into a common currency
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Report's currency</guilabel>: Select the currency to display values
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show original currency amount</guilabel> Also show original currency amounts
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Table for Exporting</guilabel>: Formats the table for cut &amp; paste exporting with extra
+                    cells
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Add options summary</guilabel>: Adds an informative text describing options that were
+                    changed by user. This is mainly useful for troubleshooting reports.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Reset defaults button</guilabel>: Reset all values to their defaults
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Sorting tab</emphasis>
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Primary Key</guilabel>: Primary Sort Key. One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            None
+                          </entry>
+
+                          <entry>
+                            Do not sort
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Account Name
+                          </entry>
+
+                          <entry>
+                            Sort and subtotal by account name
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Account Code
+                          </entry>
+
+                          <entry>
+                            Sort and subtotal by account code
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Date
+                          </entry>
+
+                          <entry>
+                            Sort by date
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Reconciled Date
+                          </entry>
+
+                          <entry>
+                            Sort by the reconciled date
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Reconciled Status
+                          </entry>
+
+                          <entry>
+                            Sort by the reconciled status
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Register Order
+                          </entry>
+
+                          <entry>
+                            Sort as within the register
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Other Account Name
+                          </entry>
+
+                          <entry>
+                            Sort by account transferred from/to's name
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Other Account Code
+                          </entry>
+
+                          <entry>
+                            Sort by account transferred from/to's code
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Amount
+                          </entry>
+
+                          <entry>
+                            Sort by amount
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Description
+                          </entry>
+
+                          <entry>
+                            Sort by description
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Number
+                          </entry>
+
+                          <entry>
+                            Sort by check/transaction number
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Memo
+                          </entry>
+
+                          <entry>
+                            Sort by memo
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Primary Subtotal</guilabel>: Subtotal according to the primary key
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Primary Subtotal for Date Key</guilabel>: Do a date subtotal. Only configurable if primary
+                    key is date or reconciled date. One of None, weekly, monthly, quarterly or
+                    yearly
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Primary Sort Order</guilabel>: One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Ascending
+                          </entry>
+
+                          <entry>
+                            Smallest to largest, earliest to latest
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Descending
+                          </entry>
+
+                          <entry>
+                            Largest to smallest, latest to earliest
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Secondary Key</guilabel>: Secondary Sort Key. Same options as Primary Key
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Secondary Subtotal</guilabel>: Subtotal according to the secondary key
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Secondary Subtotal for Date Key</guilabel>: Do a date subtotal. Only configurable if
+                    primary key is date or reconciled date. One of None, weekly, monthly, quarterly
+                    or yearly
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Secondary Sort Order</guilabel>: One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Ascending
+                          </entry>
+
+                          <entry>
+                            Smallest to largest, earliest to latest
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Descending
+                          </entry>
+
+                          <entry>
+                            Largest to smallest, latest to earliest
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show Full Account Name</guilabel>: Show the full account name for subtotals and subtitles
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show Account Code</guilabel>: Show the account code for subtotals and subtitles
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show Account Description</guilabel>: Show the account description for subtitles
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show Informal Debit/Credit Headers</guilabel>: Show informal names for debit/credit in the
+                    subtitles. This requires that subtotal is enabled, and the primary or sortkey is
+                    account or account code.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Add indenting columns</guilabel>: Add columns to align transactions within the same
+                    grouping together, and can be useful to highlight groups.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show subtotals only (hide transactional data)</guilabel>: Will hide transactions. This may
+                    be useful for reports whereby only subtotals are required.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Reset defaults button</guilabel>: Reset all values to their defaults
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </sect4>
+
+        <sect4 id="report-txrpt-splits">
+          <title>Displaying Split Account Details</title>
+
+          <para>This is controled by the <emphasis>Detail Level</emphasis><footnoteref linkend='report-fn-v3-dl'/>
+            option on the Display tab.
+          </para>
+
+          <para>In <emphasis>Single</emphasis> line mode, there's only one line per transaction. So you can have the
+            account name on one side of the equation and
+            <orderedlist numeration="loweralpha" spacing="compact">
+              <listitem>
+                <para>the other <replaceable>account name</replaceable> if there's only one other split in the transaction
+                  or
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><computeroutput>Split</computeroutput> if there are multiple other splits in the transaction. You
+                  can't display multiple "other" account names in one line. There's just no room for
+                  it.
+                </para>
+              </listitem>
+            </orderedlist>
+          </para>
+
+          <para>In the case of <emphasis>Multi-Line</emphasis> mode, this report uses a completely different
+            concept. For each transaction, every split (both the split in this account and the
+            split(s) in the other account(s) !) is printed on a separate line. And every split
+            really means every split: both the split which belongs in the account being reported and
+            the split(s) in the other account(s) that balance the transaction. So even the most
+            basic transaction, with only two splits (this account and other account) will print two
+            lines in multiline mode.
+          </para>
+
+          <para>For a simple transaction like this
+          </para>
+
+          <informaltable>
+            <tgroup cols="4">
+              <tbody>
+                <row>
+                  <entry>
+                    <emphasis>Description</emphasis>
+                  </entry>
+
+                  <entry>
+                    <emphasis>Account</emphasis>
+                  </entry>
+
+                  <entry>
+                    <emphasis>Debit</emphasis>
+                  </entry>
+
+                  <entry>
+                    <emphasis>Credit</emphasis>
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Cheques Received
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry></entry>
+
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Multiple Payers
+                  </entry>
+
+                  <entry>
+                    Income Account
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    £30.00
+                  </entry>
+                </row>
+
+                <row>
+                  <entry></entry>
+
+                  <entry>
+                    Bank Account
+                  </entry>
+
+                  <entry>
+                    £30.00
+                  </entry>
+
+                  <entry></entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </informaltable>
+
+          <para>then on a Transaction Report for the bank account the details appear pretty much as above.
+          </para>
+
+          <para>For clarity of the accounts, you might enter transactions with multiple splits referring to the same
+            account. For example, the above transaction might well be entered like this
+          </para>
+
+          <informaltable>
+            <tgroup cols="4">
+              <tbody>
+                <row>
+                  <entry>
+                    <emphasis>Description</emphasis>
+                  </entry>
+
+                  <entry>
+                    <emphasis>Account</emphasis>
+                  </entry>
+
+                  <entry>
+                    <emphasis>Debit</emphasis>
+                  </entry>
+
+                  <entry>
+                    <emphasis>Credit</emphasis>
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Cheques Received
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry></entry>
+
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>
+                    First Payer
+                  </entry>
+
+                  <entry>
+                    Income Account
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    £10.00
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Second Payer
+                  </entry>
+
+                  <entry>
+                    Income Account
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    £20.00
+                  </entry>
+                </row>
+
+                <row>
+                  <entry></entry>
+
+                  <entry>
+                    Bank Account
+                  </entry>
+
+                  <entry>
+                    £30.00
+                  </entry>
+
+                  <entry></entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </informaltable>
+
+          <para>When this transaction is printed on the bank account's Transaction Report in
+            <emphasis>Single</emphasis> line mode, then under <emphasis>other account</emphasis> it
+            simply prints the word <emphasis>split</emphasis> instead of the account name.
+          </para>
+
+          <para>To display the additional split detail, you need to set <emphasis>Single/Multi-Line</emphasis> to
+            <emphasis>Multi-Line</emphasis> and then tick <emphasis>Display</emphasis> ->
+            <emphasis>Account Name</emphasis>. Do <emphasis>not</emphasis> tick
+            <emphasis>Display</emphasis>-><emphasis>Other Account Name</emphasis>.
+          </para>
+
+          <para>You can choose whether or not to turn off the full account name using <emphasis>Display</emphasis>
+            -> <emphasis>Use Full Account Name.</emphasis>
+          </para>
+
+          <para><emphasis>Use Full Other Account Name</emphasis> has no effect in <emphasis>Multi-Line</emphasis>
+            mode.
+          </para>
+        </sect4>
+      </sect3>
+    </sect2>
+
+    <sect2 id="report-assets">
+      <title>Assets &amp; Liabilities</title>
+
+      <para>The Assets &amp; Liabilities reports includes the Balance Sheet report, Investment reports and the
+        Net Worth report.
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Advanced Portfolio:
+          </para>
+
+          <para>Columns
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Account</guilabel>: Stock Account
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Symbol</guilabel>: Ticker Symbol/Abbreviation as defined in the Security Editor. A report
+                option can suppress this column.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Listing</guilabel>: Type as defined in the Security Editor. A report option can suppress
+                this column.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Shares</guilabel>: Number of shares (quantity). A report option sets how many decimal
+                places to show. A report option can suppress this column.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Price</guilabel>: Unit market price as at report date. A report option can suppress this
+                column.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Basis</guilabel>: Cost of all shares acquired by any means, including brokerage fees if
+                the option to include them is checked. Report option <emphasis>Basis calculation
+                method</emphasis> can be set to Average, LIFO or FIFO.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Value</guilabel>: Number of shares * Unit market price as at report date
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Money In</guilabel>: Sum of the cost of stock purchased, excluding stock acquired as part
+                of a Dividend Reinvestment Plan. I.e. External money used to purchase shares.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Money Out</guilabel>: Money from selling shares or a spin off transaction.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Realized Gain</guilabel>: Money received for selling shares minus basis for shares sold,
+                minus brokerage fees for the sale if the option to include them in basis is checked.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Unrealized Gain</guilabel>: Value less Basis for unsold shares
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Total Gain</guilabel>: Realized Gain + Unrealized Gain
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Rate of Gain</guilabel>: Total Gain / Money In * 100 (from &app; 2.6.1 onwards)
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Income</guilabel>: Total of all income transactions associated with a stock account.
+              </para>
+
+              <note>
+                <para>To include income from dividends which are not reinvested (if there is no split to the stock account
+                  in the income transaction, the report has no way of associating the income with a
+                  particular stock) :
+                </para>
+
+                <para>Ensure there is a dummy transaction split to the stock account with quantity 0, price 1 and value 0
+                  in the dividend transaction. Enter the dummy stock split with no values in the
+                  dividend account and it will create the transaction with price 1 even though you
+                  cannot see the Price column in that register.
+                </para>
+
+                <para>In GnuCash 2.6.6, this report was modified to simplify the recording of dividend and interest
+                  payments. With this change it may not be necessary to include the dummy stock
+                  split in the transaction. The report will find income (and expense) transactions
+                  that are in the parent account of the stock account being reported on. This is
+                  done by looking in the parent account for transactions that have exactly two
+                  splits (not counting trading account splits) where the other split is to an income
+                  or expense account with the same name as the stock's account.
+                </para>
+
+                <para>For example given an account structure like
+<screen>Assets (type ASSET)
+  Broker (type ASSET)
+    Widget Stock (type STOCK)
+Income (type INCOME)
+  Dividends (type INCOME)
+    Widget Stock (type INCOME)</screen>
+                </para>
+
+                <para>A transaction that debits the "Assets:Broker" account and credits the "Income:Dividends:Widget
+                  Stock" account will count as income even though it doesn't have a split with
+                  account "Assets:Broker:Widget Stock".
+                </para>
+
+                <para>This only works if the parent account ("Assets:Broker" in this case) is a Bank or Asset account and
+                  the Income/Expense account has the same name as the stock account. It won't double
+                  count transactions that have a dummy split since they won't have exactly two split
+                  transactions.
+                </para>
+
+                <para>It will not work if the income or expense account split is to a subaccount of the account with the
+                  same name as the stock account i.e. "Income:Dividends:Widget Stock:Franked"
+                </para>
+              </note>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Brokerage Fees</guilabel>: Brokerage Fees
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Total Return</guilabel>: Total Gain + Income
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Rate of Return</guilabel>: Total Return / Money In * 100
+              </para>
+            </listitem>
+          </itemizedlist>
+
+          <para>Common report options are described in <xref linkend="report-config"/>
+          </para>
+
+          <para>Report Specific Options
+          </para>
+
+          <itemizedlist>
+<!-- list of Tabs -->
+            <listitem>
+              <para>Accounts Tab
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Include accounts with no shares</guilabel>: Unchecked (default) or checked.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+<!-- end of Accounts Tab -->
+            <listitem>
+              <para>Display Tab
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Show ticker symbols</guilabel>: Checked (default) or unchecked. If unchecked, Symbol
+                    column will be omitted.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show listings</guilabel>: Checked (default) or unchecked. If unchecked, Listing column
+                    (source of shares price quotes) will be omitted.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show number of shares</guilabel>: Checked (default) or unchecked. If unchecked, Shares
+                    column will be omitted.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Share decimal places</guilabel>: The number of decimal places to show in the number of
+                    shares. Default is 2.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show prices</guilabel>: Checked (default) or unchecked. If unchecked, Price column will be
+                    omitted.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+<!-- end of Display Tab -->
+            <listitem>
+              <para>General Tab
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Price Source</guilabel>: Nearest in time (default) or Most Recent.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Basis calculation method</guilabel>: Average (default), FIFO or LIFO.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Set preference for price list data</guilabel>: Checked (default): Use price list data. If
+                    there is no relevant price list data, transaction prices will be used and there
+                    will be a warning. Unchecked: Get prices from stock transactions.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>How to report brokerage fees</guilabel>: Include in basis (default), Include in gain or
+                    Ignore.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Asset Barchart:
+          </para>
+
+          <para>The Asset Barchart report displays bars that present the value of all assets in a &app; file over
+            time. By default, the report shows all accounts in <emphasis>Accounts
+            Receivable</emphasis>, <emphasis>Current Assets</emphasis>, <emphasis>Fixed
+            Assets</emphasis>, <emphasis>Investments</emphasis> and Special Accounts (if they exist)
+            and it displays monthly bars for the current financial period. This report provides a
+            graphic view of the assets in the file over time.
+          </para>
+
+          <tip>
+            <para>Like all the generic reports, the user can assign a title and save the report with it's selected
+              options for re-use later.
+            </para>
+          </tip>
+
+          <para>The display is in the form of either a stacked barchart or simple barchart with an option to display
+            a table of the values.
+          </para>
+
+          <para>This report calculates and displays a default of 8 bars or up to 24 separate asset accounts value at
+            the end of the day on several dates through a specified time period. The report
+            automatically selects the most significant accounts to display with all other selected
+            accounts summed as <emphasis>Other</emphasis>.
+          </para>
+
+          <para>The report exploits the outline structure of the chart of accounts to allow the user to select top
+            level accounts and sub-accounts down to a user-selectable depth. Selected sub-accounts
+            below the selected depth are automatically <emphasis>summed up</emphasis> into the next
+            level when it is also selected. The default number of sub-account levels is 2, giving a
+            summary view. Increasing the number of sub-levels increases the detail available to
+            display. It is possible to un-select a higher level account and leave sub-accounts
+            selected to force greater detail to appear in the report.
+          </para>
+
+          <para>By default the report includes all <emphasis>asset</emphasis> accounts and sub-accounts, as well as
+            <emphasis>Imbalance</emphasis> and <emphasis>Orphan</emphasis> Special accounts in
+            whatever currencies or commodities may be present. The report's base currency is the
+            default currency of the &app; file but if the file has data for multiple currencies,
+            then it can be changed to another currency.
+          </para>
+
+          <para>Since each account may be individually selected, the report can be designed to focus on a small
+            subset of data such as current assets or investments.
+          </para>
+
+          <para>The overall interval of the report defaults to start at the start of the current accounting period
+            and to end at the end of the current accounting period. Numerous other starting choices
+            and ending choices are available.
+          </para>
+
+          <para>The first bar shows the selected values at the end of the day on the first date chosen. There are a
+            number of choices for step size from <emphasis>day</emphasis> to
+            <emphasis>year</emphasis> with the default being <emphasis>month</emphasis>. Note that
+            if any step date would fall on the 29th, 30th or 31st in a month that does not have such
+            a date the next interval will be 31 days later. For that step only the date will
+            <emphasis>slip</emphasis> up to 3 days into the following month. This is true for
+            releases at least through 2.4.13. Bug 639049 is open in Bugzilla to modify this
+            behavior.
+          </para>
+
+          <para>Currently, there is no option to start the report on the last day of any period. There is also no
+            option to show <emphasis>beginning</emphasis> balances or <emphasis>end of previous
+            step</emphasis> balances. This makes it difficult to correlate this report to business
+            quarterly reports, for example.
+          </para>
+
+          <para>The Net Worth linechart report, Liability barchart report and Net Worth barchart report are similar
+            except for the graphic type and default account groups selected.
+          </para>
+
+          <para>Other features are customizable in a manner similar to other standard reports.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Asset Piechart:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Average Balance:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Balance Sheet: This report summarizes assets, liabilities, and equity. When properly maintained,
+            assets should equal the sum of liabilities and equity. If that is not the case, there is
+            some kind of internal imbalance in the accounts.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Balance Sheet using eguile-gnc:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>General Journal:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>General Ledger:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Investment Portfolio: This report summarizes the value of the stocks in the current portfolio.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Liability Barchart:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Liability Piechart:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Net Worth Barchart: Net worth is the difference between the value of assets or liabilities.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Net Worth Linechart: Net worth plotted over time. Net worth is the difference between the value of
+            assets or liabilities.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Price Scatterplot:
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="report-biz">
+      <title>Business Reports</title>
+
+      <para>The Business Reports includes Customer and Vendor Reports and Printable Invoices as well as Aging
+        reports.
+      </para>
+
+      <sect3>
+        <title>Customer Report</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Customer Summary</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Easy Invoice</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Employee Report</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Fancy Invoice</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Job Report</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Payable Aging</title>
+
+        <para>This report provides a listing of vendors and their aged outstanding balances. Vendors may be
+          included if they have posted business transactions (e.g. invoices) for the selected
+          accounts payable account. It shows their current balance, and how much they have due from
+          invoices over time periods 0-30 days, 31-60 days, 61-90 days, and over 90 days. The report
+          also contains links to each vendor and to their current vendor report.
+        </para>
+
+        <para>Optionally, vendor address details may be also shown.
+        </para>
+
+        <tip>
+          <para>To export vendor address details, say in order to do a mail merge, select the optional vendor
+            address details in the report options display tab, apply the options to regenerate the
+            report, then copy and paste the report into a spreadsheet. Alternatively, the report can
+            be exported to a .html file, then read into a spreadsheet.
+          </para>
+        </tip>
+
+        <sect4 id="report-pay-aging-opts">
+          <title>Report Options</title>
+
+          <note>
+            <para>See <link linkend='report-common' endterm="report-common.title"/> in the <emphasis>Configuring
+              Reports and Charts</emphasis> section of this help manual for more details of the
+              common options.
+            </para>
+          </note>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis>General tab</emphasis>
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Report name</guilabel>: Enter a descriptive name for this report - see
+                    <link linkend='report-common' endterm="report-common.title"/>.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Stylesheet</guilabel>: Select a style sheet for this report - see
+                    <link linkend='report-common' endterm="report-common.title"/>.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>To</guilabel>: Select a date to report on or a named date. Transactions up to and
+                    including the selected date will be used to calculate the outstanding aged
+                    balances. See <link linkend='report-common' endterm="report-common.title"/>.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Report's currency</guilabel>: Select the currency to display the values in - see
+                    <link linkend='report-common' endterm="report-common.title"/>
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Price Source</guilabel>: Select the source of price information used for currency
+                    conversion if needed. One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Average Cost
+                          </entry>
+
+                          <entry>
+                            The volume-weighted net average price of all exchanges.
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Weighted Average (default)
+                          </entry>
+
+                          <entry>
+                            The volume-weighted gross average price of all exchanges up to the date
+                            of the report
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Most recent
+                          </entry>
+
+                          <entry>
+                            The most recent recorded price
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Nearest in time
+                          </entry>
+
+                          <entry>
+                            The price recorded nearest in time to the report date
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show Multi-currency Totals</guilabel>: If not selected, all totals are shown in the report
+                    currency.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Sort By</guilabel>: Sort companies by one of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Name (default)
+                          </entry>
+
+                          <entry>
+                            Company name
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Total Owed
+                          </entry>
+
+                          <entry>
+                            Total amount owed to company
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Bracket Total Owed
+                          </entry>
+
+                          <entry>
+                            Amount owed in oldest bracket. If same, use next oldest
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Sort Order</guilabel>: One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Ascending (default)
+                          </entry>
+
+                          <entry>
+                            0 … 999,999.99, A … Z
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Descending
+                          </entry>
+
+                          <entry>
+                            999,999.99 … 0, Z … A
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show zero balance items</guilabel>: Show companies even if they have a zero outstanding
+                    balance.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Due or Post Date</guilabel>: Leading date. Which date to use to determine aging. One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Due Date (default)
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Post Date
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Payable Account</guilabel>: The accounts payable account used to select vendors to be
+                    reported. Vendors are included if they have a posted business transaction
+                    (usually an invoice) on or before the report date and also meet the
+                    <emphasis>Show zero balance items</emphasis> criteria.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Display tab</emphasis>
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Address Name</guilabel>: Display vendor address name. This, and other fields, may be
+                    useful if copying this report to a spreadsheet for use in a mail merge.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Address 1</guilabel>: Display address line 1.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Address 2</guilabel>: Display address line 2.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Address 3</guilabel>: Display address line 3.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Address 4</guilabel>: Display address line 4.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Phone</guilabel>: Display address phone number.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Fax</guilabel>: Display address fax number.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Email</guilabel>: Display email address.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Active</guilabel>: Display vendor active status.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </sect4>
+      </sect3>
+
+      <sect3>
+        <title>Printable Invoice</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Receivable Aging</title>
+
+        <para>This report provides a listing of customers and their aged outstanding balances. Customers may be
+          included if they have posted business transactions (e.g. invoices) for the selected
+          accounts receivable account. It shows their current balance, and how much they have
+          outstanding from invoices over time periods 0-30 days, 31-60 days, 61-90 days, and over 90
+          days. The report also contains links to each customer and to their current customer
+          report.
+        </para>
+
+        <para>Optionally, customer address details may be also shown.
+        </para>
+
+        <tip>
+          <para>To export customer address details, say in order to do a mail merge, select the optional customer
+            address details in the report options display tab, apply the options to regenerate the
+            report, then copy and paste the report into a spreadsheet. Alternatively, the report can
+            be exported to a .html file, then read into a spreadsheet.
+          </para>
+        </tip>
+
+        <sect4 id="report-rec-aging-opts">
+          <title>Report Options</title>
+
+          <note>
+            <para>See <link linkend='report-common' endterm="report-common.title"/> in the <emphasis>Configuring
+              Reports and Charts</emphasis> section of this help manual for more details of the
+              common options.
+            </para>
+          </note>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis>General tab</emphasis>
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Report name</guilabel>: Enter a descriptive name for this report - see
+                    <link linkend='report-common' endterm="report-common.title"/>.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Stylesheet</guilabel>: Select a style sheet for this report - see
+                    <link linkend='report-common' endterm="report-common.title"/>.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>To</guilabel>: Select a date to report on or a named date. Transactions up to and
+                    including the selected date will be used to calculate the outstanding aged
+                    balances. See <link linkend='report-common' endterm="report-common.title"/>.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Report's currency</guilabel>: Select the currency to display the values in - see
+                    <link linkend='report-common' endterm="report-common.title"/>.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Price Source</guilabel>: Select the source of price information used for commodity
+                    conversion if needed. One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Average Cost
+                          </entry>
+
+                          <entry>
+                            The volume-weighted net average price of all exchanges
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Weighted Average (default)
+                          </entry>
+
+                          <entry>
+                            The volume-weighted gross average price of all exchanges
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Most recent
+                          </entry>
+
+                          <entry>
+                            The most recent recorded price
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Nearest in time
+                          </entry>
+
+                          <entry>
+                            The price recorded nearest in time to the report date
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show Multi-currency Totals</guilabel>: If not selected, all totals are shown in the report
+                    currency.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Sort By</guilabel>: Sort companies by one of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Name (default)
+                          </entry>
+
+                          <entry>
+                            Company name
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Total Owed
+                          </entry>
+
+                          <entry>
+                            Total amount owed by company
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Bracket Total Owed
+                          </entry>
+
+                          <entry>
+                            Amount owed in oldest bracket. If same, use next oldest
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Sort Order</guilabel>: One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Ascending (default)
+                          </entry>
+
+                          <entry>
+                            0 … 999,999.99, A … Z
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Descending
+                          </entry>
+
+                          <entry>
+                            999,999.99 … 0, Z … A
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Show zero balance items</guilabel>: Show companies even if they have a zero outstanding
+                    balance.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Due or Post Date</guilabel>: Leading date. Which date to use to determine aging. One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Due Date (default)
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Post Date
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Receivables Account</guilabel>: The accounts receivable account used to select customers
+                    to be reported. Customers are included if they have a posted business
+                    transaction (usually an invoice) on or before the report date and also meet the
+                    <emphasis>Show zero balance items</emphasis> criteria.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Display tab</emphasis>
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Address Source</guilabel>: Which customer address fields to display. One of
+                  </para>
+
+                  <informaltable>
+                    <tgroup cols="2">
+                      <tbody>
+                        <row>
+                          <entry>
+                            Billing (default)
+                          </entry>
+
+                          <entry>
+                            Address fields from billing address.
+                          </entry>
+                        </row>
+
+                        <row>
+                          <entry>
+                            Shipping
+                          </entry>
+
+                          <entry>
+                            Address fields from shipping address.
+                          </entry>
+                        </row>
+                      </tbody>
+                    </tgroup>
+                  </informaltable>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Address Name</guilabel>: Display customer address name. This, and other fields, may be
+                    useful if copying this report to a spreadsheet for use in a mail merge.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Address 1</guilabel>: Display address line 1.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Address 2</guilabel>: Display address line 2.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Address 3</guilabel>: Display address line 3.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Address 4</guilabel>: Display address line 4.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Phone</guilabel>: Display address phone number.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Fax</guilabel>: Display address fax number.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Email</guilabel>: Display email address.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Active</guilabel>: Display vendor active status.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </sect4>
+      </sect3>
+
+      <sect3>
+        <title>Tax Invoice</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Vendor Report</title>
+
+        <para></para>
+      </sect3>
+    </sect2>
+
+    <sect2 id="report-income">
+      <title>Income &amp; Expense</title>
+
+      <para>The Income &amp; Expense reports includes the Cash Flow and Income Statement reports.
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Cash Flow:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Equity Statement:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Expense Barchart:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Expense Piechart:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Expense vs Day of Week:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Income &amp; Expense Chart:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Income Barchart:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Income Piechart:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Income Statement: This report summarizes sources of income and expenditure. (This report was called
+            Profit &amp; Loss in gnucash-1.8.)
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Income vs Day of Week:
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Profit &amp; Loss: This is the same report as the Income Statement but with a different title.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Trial Balance: This report summarizes sources of income and expenditure.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="report-sample">
+      <title>Sample &amp; Custom</title>
+
+      <sect3>
+        <title>Welcome Sample Report</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Custom Multicolumn Report</title>
+
+        <para>This report is used to place multiple reports into a single report window to examine a set of
+          financial information at a glance.
+        </para>
+      </sect3>
+
+      <sect3>
+        <title>Sample Report with Examples</title>
+
+        <para></para>
+      </sect3>
+    </sect2>
+
+    <sect2 id="report-budget">
+      <title>Budget</title>
+
+      <sect3>
+        <title>Budget Balance Sheet</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Budget Barchart</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Budget Flow</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Budget Income Statement</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Budget Profit &amp; Loss</title>
+
+        <para></para>
+      </sect3>
+
+      <sect3>
+        <title>Budget Report</title>
+
+        <para>This report is used to compare budgeted and real amounts for selected accounts. It allows you to
+          review how well you follow the budget.
+        </para>
+
+        <para>The report is generated as a table in which each row represents an account and each set of columns
+          shows the <emphasis>budgeted amount</emphasis>, the <emphasis>real amount</emphasis>, and
+          the <emphasis>difference</emphasis> between them for each report period.
+        </para>
+
+        <para>Each entry in the <emphasis>real amount</emphasis> column is the sum of all the splits in the row's
+          account over the column's period. For example, if the report is set up for monthly
+          periods, the column is for May, and the row is for Expenses:Groceries, then the value will
+          be the sum of all Expenses:Groceries splits for that May.
+        </para>
+
+        <para>The report supports selecting a range of periods instead all of them. Periods that are out of range
+          can be included in the report as the consolidated columns around the selected range. This
+          allows you to focus on particular periods, for example the current one, and is especially
+          useful for budgets with many periods. For example, if you have a 12 period budget you can
+          make a 3 column report with the format "(all periods before columns set) (current period
+          columns set) (all periods after columns set)" that is easily fits on the screen and allows
+          you to match values with account names.
+        </para>
+
+        <para><emphasis>Budget report options</emphasis>
+        </para>
+
+        <para><note>
+            <para>Here we describe only options that are specific for the Budget Report. You can find information
+              about standard parameters in <xref linkend="report-config"/>.
+            </para>
+          </note>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis>Show budget</emphasis> - include the budgeted values for the period
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Show actual</emphasis> - include the real values for the period
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Show difference</emphasis> - include the difference between budgeted and real values for
+                the period. Enabling this option does not force including budgeted and actual values
+                in the report
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Show Column with totals</emphasis> - Adds a final column set containing budgeted, real
+                value, and difference columns summing those values across all periods of the report.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Rollup budget amounts to parent</emphasis> - not used in the report, can be deleted or
+                should be fixed
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Include accounts with zero total balances and budget values</emphasis> - enables display
+                of accounts with no budget or splits in any period.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Budget</emphasis> - Select the budget to use for report generation
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Report for range of budget periods</emphasis> - Enables reporting on a subset of the
+                budget by selecting a beginning and an ending period.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Range start</emphasis> - a combobox with a list of options to select the start period:
+                <orderedlist>
+                  <listitem>
+                    <para><emphasis>First</emphasis> - select first budget period
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para><emphasis>Previous</emphasis> - select previous period.
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para><emphasis>Current</emphasis> - select current period.
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para><emphasis>Next</emphasis> - select next period.
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para><emphasis>Last</emphasis> - select last budget period
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para><emphasis>Manual</emphasis> - enables spinbox where you can select exact period
+                    </para>
+                  </listitem>
+                </orderedlist>
+              </para>
+
+              <note>
+                <para>The <emphasis>current</emphasis>, <emphasis>previous</emphasis>, and <emphasis>next</emphasis>
+                  options select the period based on the date on which the report is run, with
+                  <emphasis>current</emphasis> being the period in which the date falls,
+                  <emphasis>previous</emphasis> being the one before that, and
+                  <emphasis>next</emphasis> the period after. If the current date falls outside the
+                  date range covered by the budget, the <emphasis>first</emphasis> or
+                  <emphasis>last</emphasis> period will be used as appropriate.
+                </para>
+              </note>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Exact start period</emphasis> - options for select exact start period, enabled only if the
+                range start option is set to <emphasis>Manual</emphasis>
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Range end</emphasis> - a combobox with a list of options to select the end period. Values
+                are the same as in <emphasis>Range start</emphasis> options
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Exact end period</emphasis> - the same as <emphasis>Exact start period</emphasis> but for
+                the end of range
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Include collapsed periods before selected</emphasis> - if on, then includes in the report
+                all budget periods, that are before selected period range, as a single consolidated
+                column set
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis>Include collapsed periods after selected</emphasis> - if on, then includes in the report
+                all budget periods, that are after selected period range, as a single consolidated
+                column set.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+      </sect3>
+    </sect2>
+
+    <sect2 id="report-regional">
+      <title>Country Specific Reports</title>
+
+      <highlights>
+        <para>Some report are only useful in specific regions. Each tax authority has other requirements. The
+          availability of this reports depend on your <ulink url="&url-wiki-locale;">Locale
+          Settings</ulink>. As there is currently not more than one report per country they are
+          merged into the <xref linkend="report-general"/>.
+        </para>
+      </highlights>
+
+      <important>
+        <para>To get useful data, the user has to segregate <emphasis>taxable</emphasis> and <emphasis>non
+          taxable</emphasis> income into different accounts, as well as
+          <emphasis>deductible</emphasis> and <emphasis>non deductible</emphasis> expenses. The user
+          must also set the <guilabel>TXF category</guilabel> of each tax related account. This can
+          be done by the <guimenuitem>Income Tax Information</guimenuitem> dialog, reachable by
+          <menuchoice>
+            <guimenu><accel>E</accel>dit</guimenu><guimenuitem>Ta<accel>x</accel> Report
+            Options</guimenuitem>
+          </menuchoice>
+          . Its usage is explained in <xref linkend="set-tax-options"></xref>.
+        </para>
+      </important>
+
+      <sect3 id="report-taxreport">
+        <title>US: Tax Schedule Report and <acronym>TXF</acronym> Export</title>
+
+        <note>
+          <para>This report is also visible, if no tax report for your region is available in &app;.
+          </para>
+        </note>
+
+        <para>The tax schedule report lists all taxable income and deductible expense amounts used in the
+          preparation of US Income Tax returns. The purpose of the report is to provide a complete
+          audit trail for these amounts. The report is intended to be used by a tax payer to
+          manually prepare his or her own tax return, or alternatively, to be provided to a tax
+          preparer for that purpose. The report can also be used to generate an export of all tax
+          related income and expenses to a <acronym>TXF</acronym> (Tax eXchange Format) file (this
+          is in addition to exporting to the <acronym>HTML</acronym> format that all reports allow).
+          The <acronym>TXF</acronym> file can be imported into tax filing programs such as TaxCut or
+          TurboTax. The report should be run, inspected carefully for errors or omissions, and then
+          corrections made to transactions, report settings, currency conversion rates or the
+          account structure as needed. This process should be repeated as often as needed until all
+          the amounts on the report are correct before a final version is used and saved along with
+          the tax returns.
+        </para>
+
+        <para>For accounts specified in the report options (none = all) that are also flagged as
+          <guilabel>Tax-related</guilabel>, all transactions for the time period selected (also in
+          the report options) are included. The report sorts transactions by date within account
+          providing subtotals by account within tax code within Form or Schedule line number.
+          Support is also provided for multiple copies of and for sub-line items for selected
+          Forms/Schedules. Optionally uses special date processing to include federal estimated tax
+          payments after year end.
+        </para>
+
+        <para>All totals are in USD since this is the currency required for filing US Income Tax returns. Non-USD
+          transaction amounts are converted to USD using the transaction conversion rate to USD, if
+          available. If not, a conversion rate from the price database is used (either the date
+          nearest the transaction date or nearest the report date as specified in the report
+          options; if none is available, transaction amounts are converted to zero and the report
+          provides a comment accordingly). A complete audit trail of conversions is provided.
+        </para>
+      </sect3>
+
+      <sect3 id="report-taxreport-de">
+        <title>DE: Steuer-Bericht und <acronym>ElStEr</acronym> Export</title>
+
+        <note>
+          <para>This report is only visible, if the language is set to <computeroutput>de |
+            deutsch</computeroutput>.
+          </para>
+        </note>
+<!-- Umsatzsteuer-Voranmeldung …
+             siehe auch erweiterte Version in https://github.com/fellen/gnucash/tree/ESt -->
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="report-print">
+    <title>Printing or Exporting Reports and Charts</title>
+
+    <note>
+      <para>Verify !!! How customize printing with Gnome?
+      </para>
+    </note>
+
+    <para>&app; is able to print reports and to export the reports to <acronym>HTML</acronym> (web) pages. The
+      Print &app; Document dialog is accessed from the <guibutton>Print</guibutton> button on the
+      <emphasis>toolbar</emphasis> or go to
+      <menuchoice>
+        <guimenu>File</guimenu><guimenuitem>Print</guimenuitem>
+      </menuchoice>
+      in the menu. To Export a report to a web page (<acronym>HTML</acronym>) select the
+      <guibutton>Export</guibutton> button on the <emphasis>Toolbar</emphasis> and type in a file
+      name.
+    </para>
+
+    <para>Most reports, being presented in HTML, can also be copied and pasted into a spreadsheet.
+    </para>
+
+    <para>The Print &app; Document dialog is used to select which Printer to send the print job to or to print
+      to a File. It also contains a Preview button to view the document before printing. Press Print
+      to send the job to the selected printer or <guibutton>Cancel</guibutton> to dismiss the Print
+      dialog.
+    </para>
+
+    <para>Printing from an open register prints the Account Report, which is also called the Register Report.
+      This lists transactions in the account with a total. Other reports print as viewed in the
+      Report screen.
+    </para>
+  </sect1>
+
+  <sect1 id="report-create">
+    <title>Creating or Modifying Reports and Charts</title>
+
+    <para>It is possible to modify existing or write own reports, if the available ones are not suitable. To
+      do this you will need to know <application>Guile</application>, GNOME's implementation of
+      <emphasis>Scheme</emphasis>, which again is a <acronym>LISP</acronym>-like programming
+      language, and it is an excellent idea to have a copy of the &app; source code available.
+    </para>
+
+    <itemizedlist>
+      <title>Introductory files in the source code</title>
+
+      <listitem>
+        <para><ulink url="&url-gh-gc-maint;gnucash/report/doc/report-html.txt">gnucash/report/doc/report-html.txt</ulink>
+          documents the <emphasis>reporting interface</emphasis>.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="&url-gh-gc-maint;gnucash/report/reports/example/hello-world.scm">gnucash/report/reports/example/hello-world.scm</ulink>
+          is an example demonstrating different <emphasis>types of options</emphasis>.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <sect2 id="report-api">
+      <title>Accessing the &app; Application Programming Interface (<acronym>API</acronym>)</title>
+
+      <para>To get informations from your &app; book for your report it is also necessary to access data from
+        the &app; engine. This binding is generated by <application>Swig</application> and based on
+        a set of Scheme wrapper functions in
+        <ulink url="&url-gh-gc-maint;bindings/guile"><filename class='directory'>bindings/guile</filename></ulink>.
+        <footnote>
+          <para><emphasis>Up to version 2.0.5</emphasis> <application>G-Wrap</application> was used and the file was
+            <filename>src/g-wrap/gnc.html</filename>.
+          </para>
+        </footnote>
+      </para>
+
+      <tip>
+        <para>Examine some of the other reports in
+          <ulink url="&url-gh-gc-maint;gnucash/report/"><filename class='directory'>gnucash/report/</filename></ulink>
+          for an indication of how they are used.
+        </para>
+
+        <para>Some users started a table in <ulink url="&url-wiki-api-custom;" />.
+        </para>
+      </tip>
+
+      <para>Because the above file only contains the syntax of the function you can use the nightly
+        <application>Doxygen</application> generated <acronym>API</acronym> documentation online for
+        the <ulink url="&url-doc-api-main;">bugfix branch</ulink> or
+        <ulink url="&url-doc-api-mast;">feature branch</ulink> to get more information about the
+        functions.
+      </para>
+
+      <para>After <ulink url="&url-wiki;Building">setting up a build environment</ulink> you can also generate
+        it locally by running
+<screen>
+# make users:
+make doc
+# ninja users:
+ninja doc
+</screen>
+        in your build directory and then open
+        <filename><replaceable>BUILDDIR</replaceable>/libgnucash/doc/html/index.html</filename> with
+        your preferred browser.
+      </para>
+    </sect2>
+
+    <sect2 id="report-render">
+      <title>Report Rendering</title>
+
+      <para>At present, reports are produced by calling a <acronym>HTML</acronym>-generation API, which outputs
+        a dialect of <acronym>HTML</acronym> and rendering this with a <acronym>HTML</acronym>
+        widget. This has limitations, particularly when trying to align objects precisely, as might
+        be necessary for printing onto pre-printed invoices for example.
+      </para>
+
+      <para>See also <xref linkend="report-print"/>.
+      </para>
+    </sect2>
+  </sect1>
+</chapter>

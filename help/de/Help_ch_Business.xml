@@ -1,0 +1,2440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.0
+  Last modified: July 9th 2006
+  Maintainers:
+               Chris Lyttle <chris@wilddev.net>
+  Author:
+  		Jon Lapham <lapham@extracta.com.br>
+	updated Patrick Schweiger <pks@spiffykitty.com>
+  Originally designed by Carol Champagne.
+  Translators:
+               (translators put your name and email here)
+-->
+<chapter id="chapter_busnss">
+  <title>Business Features</title>
+
+  <para>&untranslated-de;
+  </para>
+
+  <para>The accounting needs of a business are quite different from that of a person. Businesses have
+    customers that owe money, vendors which are owed money, employee payroll, more complex tax laws,
+    etc. &app; offers business oriented features to facilitate these needs.
+  </para>
+
+  <para>Accounts Receivable (A/R) are used by businesses to record sales for which they are not immediately
+    paid. Accounts Payable (A/P) record bills that they have received, but might not pay until
+    later. These types of accounts are used primarily when you have a lot of bills and receipts
+    flowing in and out, and do not want to lose track of them just because you do not pay or get
+    paid right away. For most home users, A/R and A/P are too complicated to be worth the effort.
+  </para>
+
+  <para>Accounts Receivable (or A/R) refers to products or services provided by your company for which
+    payment has not yet been received. This is represented on the balance sheet as an asset, because
+    the expectation is that you will receive payment soon.
+  </para>
+
+  <para>Accounts Payable (or A/P) refers to products or services bought by your company for which payment
+    has not yet been sent. This is represented on the balance sheet as a liability because you will
+    have to pay for them.
+  </para>
+
+  <sect1 id="busnss-ar-setup1">
+    <title>Initial Setup</title>
+
+    <para>To set up &app; to handle accounts receivable and accounts payable for a company the following
+      preliminary steps must be done.
+    </para>
+
+    <sect2 id="busnss-setupacct2">
+      <title>Account Setup</title>
+
+      <para>There are many different ways to set up a business account hierarchy. You can start with the
+        Business Accounts setup which is available from the New Account Hierarchy assistant, or you
+        could build one manually. To access the prebuilt Business Accounts, start &app; and click on
+        <menuchoice>
+          <guimenu>File</guimenu><guimenuitem>New File</guimenuitem>
+        </menuchoice>
+        and proceed until you see the list of available accounts, select <emphasis>Business
+        Accounts</emphasis>.
+      </para>
+
+      <note>
+        <para>The prebuilt Business Account hierarchy will not meet your needs exactly. You will need to make
+          adjustments for the hierarchy to function well with your particular situation. It should
+          be close enough that it is recommended you begin with it.
+        </para>
+      </note>
+<!--
+      <para>To use &app;&rsquo;s integrated accounts
+      payable system, you must first setup an account of the <emphasis>A/Payable</emphasis>
+      type. The <emphasis>A/Payable</emphasis> account is usually a sub-account
+      under Liabilities. It is within this account that the integrated A/P system
+      places transactions.
+      <screen>Basic A/P Account Hierarchy:
+
+-Assets
+  -Bank
+-Liabilities
+  -Accounts Payable
+-Expenses
+  -AP Expenses</screen>
+</para>
+
+     <para>You need to add additional asset accounts and real expense accounts to make
+     this hierarchy useful.  The important aspects of this hierarchy are that you need
+     an expense account and an Accounts Payable account, with account type set to
+     <emphasis>A/Payable</emphasis>.</para>
+-->
+    </sect2>
+
+    <sect2 id="busnss-ar-setuptaxtables">
+      <title>Tax Tables</title>
+
+      <para>Tax Tables can used to determine the tax for customer invoices (or vendor bills).
+      </para>
+
+      <para>A tax table can be assigned to an invoice line or bill line.
+      </para>
+
+      <para>The default invoice line tax table can be assigned to each customer and the default bill line tax
+        table can be assigned to each vendor.
+      </para>
+
+      <para>The default tax table for new customers or new vendors can be specified in the <emphasis>Book
+        Options </emphasis> window which can be accessed by
+        <menuchoice>
+          <guimenu>File</guimenu> <guisubmenu>Properties</guisubmenu>
+          <guimenuitem>Business</guimenuitem>
+        </menuchoice>
+        tab.
+      </para>
+
+      <para>Tax Tables are maintained using the <emphasis>Sales Tax Table</emphasis> editor which is accessed
+        via menu
+        <menuchoice>
+          <guimenu>Business</guimenu><guimenuitem>Sales Tax Table</guimenuitem>
+        </menuchoice>
+        . The following fields should be entered:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Name</guilabel> This is the tax table name.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Type</guilabel> Either <guilabel>Percent %</guilabel> or <guilabel>Value $</guilabel>.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Value</guilabel>This is the percentage or value depending on <guilabel>Type</guilabel>.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Account</guilabel> This is the account to which tax will be posted. For tax collected from
+            customers, this should probably be a Liability account as it must be payed to the
+            government. For tax paid to vendors, if tax laws allow tax paid to vendors to offset tax
+            collected from customers, this should probably also be a Liability account (even though
+            it will usually have a debit balance) so that the net tax owed to the government can be
+            easily observed.
+          </para>
+
+          <para>If you set up Tax on Purchases and Tax on Sales as subaccounts of Liabilities:Tax then the net tax
+            will be rolled up and can be seen in the &app; Accounts tab.
+          </para>
+
+          <para><emphasis>If unsure about tax law requirements, get professional advice. </emphasis>
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="busnss-setupcname">
+      <title>Company Registration</title>
+
+      <para>After you have built the account structure and defined your tax tables, register the &app; file as
+        belonging to your company by filling in the data requested in the
+        <xref linkend="business-book-options" /> accessible from the
+        <menuchoice>
+          <guimenu>File</guimenu><guimenuitem>Properties</guimenuitem>
+        </menuchoice>
+        menu item.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-setup-cntrs">
+      <title>Counters</title>
+
+      <para>Define the format and last used numbers of codes such as customer, invoice, vendor, bill, employee,
+        expense voucher, job number and order. See <xref linkend="counters-book-options" />.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss_setup_pref">
+      <title>Business Preferences</title>
+
+      <para>Set options on the Business tab of the &app; preferences, which is accessed via
+        <menuchoice>
+          <guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem>
+        </menuchoice>
+        (
+        <menuchoice>
+          <guimenu>GnuCash</guimenu><guimenuitem>Preferences</guimenuitem>
+        </menuchoice>
+        on &mac;). See <xref linkend="prefs-biz" />.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-ar-setupterms">
+      <title>Billing Terms</title>
+
+      <para>Billing Terms can be used to determine the payment due date and be a guide for determining discount
+        for early payment of invoices (or vendor bills).
+      </para>
+
+      <note>
+        <para>As of &app; 2.6.7, Billing terms are only partially supported. Date due is calculated but discount
+          amount is not.
+        </para>
+
+        <para>Discount for early invoice payment is not implemented. There are 2 ways this may be done, although
+          neither is recommended, and professional advice should be used to confirm that regulations
+          are being complied with:
+          <itemizedlist>
+            <listitem>
+              <para>After creating and posting a payment which pays the invoice in full, manually edit the payment
+                transaction (usually strongly discouraged) and split the payment to reduce it by the
+                amount of the discount and a create a compensating split in an income (discount)
+                account.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>Alternatively, after creating and posting a payment for the discounted amount, create a credit note
+                for the discount using a specific negative sales income (discount) account for the
+                transfer account.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+      </note>
+
+      <para>You can specify the billing terms on each invoice/bill. Invoice billing terms will default from the
+        customer billing terms. Bill billing terms will default from the vendor billing terms.
+      </para>
+
+      <para>Billing Terms are maintained using the Billing Terms Editor which is accessed via menu
+        <menuchoice>
+          <guimenu>Business</guimenu><guimenuitem>Billing Terms Editor</guimenuitem>
+        </menuchoice>
+        . The following fields should be entered:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Name</guilabel> The internal name of the billing term. For some examples of billing term
+            names and descriptions see <ulink url="&url-wiki-pmt-term;" />
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Description</guilabel> The description of the billing term, printed on invoices
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>There are 2 types of billing terms, with different information to be entered
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Type Days
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Due Days</guilabel> The invoice or bill is due to be paid within this number of days after
+                    the post date
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Discount Days</guilabel> The number of days after the post date during which a discount
+                    will be applied for early payment
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Discount %</guilabel> The percentage discount applied for early payment
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>Type Proximo
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Due Day</guilabel> The day of the month bills are due
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Discount Day</guilabel> The last day of the month for the early payment discount
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Discount %</guilabel> The discount percentage applied if paid early
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Cutoff Day</guilabel> The cutoff day for applying bills to the next month. After the
+                    cutoff, bills are applied to the following month. Negative values count
+                    backwards from the end of the month.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="busnss-ar-components1">
+    <title>Accounts Receivable</title>
+
+    <para>&app; has an integrated accounts receivable system.
+    </para>
+
+    <para>To use &app;&rsquo;s integrated accounts receivable system, you must first set up <emphasis>Accounts
+      Receivable</emphasis> accounts of type <emphasis>A/Receivable</emphasis> under
+      <emphasis>Assets</emphasis> to accrue income you're owed. It is within this account that the
+      integrated A/R system will place transactions, debiting it when you post bills and crediting
+      it when you receive payments.
+<screen>Basic A/R Account Hierarchy:
+
+-Assets
+  -Accounts Receivable
+  -Checking
+-Income
+  -Sales
+-Liabilities
+  -Tax
+    -Tax on Purchases
+    -Tax on Sales</screen>
+    </para>
+
+    <important>
+      <para>If you deal with customers in more than one currency you will need a separate <emphasis>Accounts
+        Receivable</emphasis> account for each currency:
+<screen>-Assets
+  -Accounts Receivable
+    -CHF
+    -EUR
+    :</screen>
+      </para>
+    </important>
+
+    <note>
+      <para>You need to add additional asset, expense, and income accounts to this hierarchy for it to be
+        useful. The important aspects of this hierarchy are the use of an income account and the
+        <emphasis>Accounts Receivable</emphasis> asset account, with account type set to
+        <emphasis>A/Receivable</emphasis>.
+      </para>
+    </note>
+
+    <para>The transactions generated by the A/R system are recorded within the <emphasis>Accounts
+      Receivable</emphasis> account. You generally do not work directly with this account. You
+      generally work with the four integrated &app; A/R application components available through the
+      <menuchoice>
+        <guimenu>Business</guimenu> <guisubmenu>Customer</guisubmenu>
+      </menuchoice>
+      sub-menu. These four components are:
+    </para>
+
+    <variablelist>
+      <varlistentry>
+        <term><xref linkend="busnss-ar-customers1" /></term>
+
+        <listitem>
+          <para>People or companies to whom you sell products or services on credit.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="busnss-ar-invoices1" /></term>
+
+        <listitem>
+          <para>The physical invoice you send to a customer to request payment. This invoice contains an itemized
+            list of things you sold.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="busnss-ar-jobs1" /></term>
+
+        <listitem>
+          <para>Is where you register Customer Jobs. Jobs are a mechanism by which you can group multiple invoices
+            to a particular customer.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="busnss-ar-payment1" /></term>
+
+        <listitem>
+          <para>Used to register payments you received from a customer.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The following sections introduce the individual components in more detail.
+    </para>
+  </sect1>
+
+  <sect1 id="busnss-ar-customers1">
+    <title>Customers</title>
+
+    <para>Customers are people or companies to whom you sell goods or services. They must be registered within
+      the A/R system.
+    </para>
+
+    <sect2 id="busnss-ar-custnew2">
+      <title>New</title>
+
+      <para>To register a new customer, enter the menu
+        <menuchoice>
+          <guimenu>Business</guimenu><guisubmenu>Customer</guisubmenu> <guimenuitem>New
+          Customer</guimenuitem>
+        </menuchoice>
+        . Fill in customer information, such as Company Name, Address, Phone, Fax, etc. Below is a
+        list of the other options:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Identification - Customer Number</guilabel> - can be any number by which you would like to
+            refer to this customer. You may leave it blank and a number will be chosen
+            automatically. See <xref linkend="counters-book-options" /> for more info.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Identification - Active</guilabel> - differentiates active customers from inactive ones.
+            This is useful when you have many past customers, and you want to see only those marked
+            active.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Address - Name</guilabel> - is the contact name of the person to receive the
+            invoices.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Notes</guilabel> - records any additional comments about the customer.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Currency</guilabel> - specifies the billing currency for this
+            customer. It will default to the default currency set in
+            <guilabel>Preferences</guilabel>
+          </para>
+
+          <note>
+            <para>All invoices will be denominated in this currency and &app; will require an Accounts Receivable
+              account in this currency.
+            </para>
+          </note>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Terms</guilabel> - specifies the default billing terms for this
+            customer. Billing terms must be preregistered using
+            <menuchoice>
+              <guimenu>Business</guimenu> <guimenuitem>Billing Terms Editor</guimenuitem>
+            </menuchoice>
+            .
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Discount</guilabel> - gives the customer a default percentage based
+            discount at the time of invoice creation. Enter a value from 0 to 100. You can override
+            the default discount when you create an invoice.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Credit Limit</guilabel> - stores the maximum credit you are willing
+            to extend to the customer. This field is for your reference purposes only. &app; does
+            not use the value.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Tax Included</guilabel> - this specifies whether nor not tax is
+            included in invoice amounts by default. You can choose <guilabel>Yes</guilabel>,
+            <guilabel>No</guilabel>, or <guilabel>Use Global</guilabel>.
+            <itemizedlist>
+              <listitem>
+                <para><guilabel>Yes</guilabel> means that the tax is already included in amounts on invoices.
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>No</guilabel> means tax is not included.
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Use Global</guilabel> means to use the setting made in the global preferences accessible
+                  through
+                  <menuchoice>
+                    <guimenu>Edit</guimenu> <guimenuitem>Preferences</guimenuitem>
+                  </menuchoice>
+                  (
+                  <menuchoice>
+                    <guimenu>Gnucash</guimenu><guimenuitem>Preferences</guimenuitem>
+                  </menuchoice>
+                  on &mac;).
+                </para>
+              </listitem>
+            </itemizedlist>
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Tax Table</guilabel> - specifies a default tax table to apply to
+            invoice line items. Tax tables must be registered from the
+            <menuchoice>
+              <guimenu>Business</guimenu> <guimenuitem>Tax Table Editor</guimenuitem>
+            </menuchoice>
+            menu item.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Shipping Address</guilabel> - records the customer&rsquo;s shipping address if it is
+            different from the billing address. The shipping address is for your reference. &app;
+            does not use the value.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="busnss-ar-custfind2">
+      <title>Find and Edit</title>
+
+      <para>To search for an existing customer, use the
+        <menuchoice>
+          <guimenu>Business</guimenu><guisubmenu>Customer</guisubmenu> <guimenuitem>Find
+          Customer</guimenuitem>
+        </menuchoice>
+        window. You select a customer to <guilabel>View/Edit</guilabel> from the results of the
+        search. This window is also used to look up customers when creating invoices and processing
+        payments.
+      </para>
+
+      <para>If many customers match the search criteria you provide, the search can be refined by running an
+        additional search within the current results. The current result set is searched when the
+        <guilabel>Refine Current Search</guilabel> radio button is selected. In fact, &app; selects
+        this option for you after you run the initial search.
+      </para>
+
+      <para>If the customer you are searching for does not match the supplied search criteria, change the search
+        criteria, click the <guilabel>New Search</guilabel> radio button and then the
+        <guilabel>Find</guilabel> button. The relevant step is the <guilabel>New Search</guilabel>
+        selection. If the customer is not in the result of the original search, and you only search
+        within this set, the customer cannot be found, regardless of new search criteria.
+      </para>
+
+      <note>
+        <para>To return a list of all registered active customers, set the search criterion to <guilabel>matches
+          regex</guilabel>, and place a single dot "." in the text field area. Make sure
+          <guilabel>Search only active data</guilabel> is checked, then click
+          <guibutton>Find</guibutton>. The regular expression "." means to match anything.
+        </para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="busnss-ar-invoices1">
+    <title>Invoices</title>
+
+    <para>An invoice is the paperwork you send to a customer to request payment for products or services
+      rendered. &app; can generate and track invoices.
+    </para>
+
+    <para>A credit note is the paperwork you send to a customer to correct products or services rendered that
+      were incorrectly invoiced. &app; can generate and track credit notes via the same menu entries
+      as invoices.
+    </para>
+
+    <note>
+      <para>This section applies to both invoices and credit notes. In order to avoid repeating everything twice
+        and to keep the text easier to read it will refer only to invoices. You can apply it equally
+        to credit notes. Only where the behaviour of credit notes differs from invoices this will be
+        explicitly mentioned. Credit notes were introduced starting with &app; stable release 2.6.0.
+      </para>
+    </note>
+
+    <sect2 id="busnss-ar-invoicenew2">
+      <title>New</title>
+
+      <para>To send an invoice to a customer you must first create a new invoice. To create an invoice use
+        <menuchoice>
+          <guimenu>Business</guimenu> <guisubmenu>Customer</guisubmenu><guimenuitem>New
+          Invoice</guimenuitem>
+        </menuchoice>
+        . The New Invoice window must be filled in appropriately:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Invoice Information - Type</guilabel>: the type of customer document to create - either an
+            invoice or a credit note.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Invoice Information - Invoice ID</guilabel> (optional): the formated identification number
+            of this invoice. This is your internal number for this invoice. If you leave it blank,
+            an invoice number will be generated automatically. See
+            <xref linkend="counters-book-options" /> for more info.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Invoice Information - Date Opened</guilabel>: the date this invoice was created.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Customer</guilabel>: the customer who is to receive this invoice. If
+            you remember the <emphasis>company name</emphasis> you entered in the <guilabel>New
+            Customer</guilabel> window for this customer, start to type it in this field and &app;
+            will try auto complete it for you. Else, press the <guibutton>Select...</guibutton>
+            button to access the <guilabel>Find Customer</guilabel> window described in
+            <xref linkend="busnss-ar-custfind2" />. Highlight the customer you are looking for with
+            a click in the search results, then press the <guibutton>Select</guibutton> button.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Job</guilabel> (optional): associates the new invoice with a
+            customer job (see <xref linkend="busnss-ar-jobs1" />). If you remember the <emphasis>job
+            name</emphasis> you entered in the <guilabel>New Job</guilabel> window for this job,
+            start to type it in this field and &app; will try auto complete it for you. Else, press
+            the <guibutton>Select...</guibutton> button to access the <guilabel>Find Job</guilabel>
+            window. This window is the same to the one described in
+            <xref linkend="busnss-ar-custfind2" />. Highlight the job you are looking for with a
+            click in the search results, then press the <guibutton>Select</guibutton> button.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Billing ID</guilabel>: this is the customer&rsquo;s PO Number or
+            other <quote>customer reference number</quote>. You should use it to identify your
+            invoices to this customer (and job, if you have one).
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Terms</guilabel>: the payback terms agreement for this invoice. A
+            list of registered terms is available within the pop up menu. If you specified a default
+            value for the selected customer, this field is initialized with the default.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Notes</guilabel>: Here you can enter internal notes.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>When you click the <guibutton>OK</guibutton> button, the <guilabel>Edit Invoice</guilabel> window
+        opens.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-ar-invoiceedit2">
+      <title>Edit</title>
+
+      <para>From the Edit Invoice window you can enter an itemized list of goods and services you sold on this
+        invoice in a manner similar to how the account register works. For credit notes you enter an
+        itemized list of goods and services you refunded instead.
+        <note>
+          <para>Saved column layout works a bit differently in invoices from the account registers: Layouts are not
+            saved for each invoice; instead a layout can be saved as a default for invoices to
+            override the calculated widths using the <guimenu>View</guimenu>&gt;<guimenuitem>Use as
+            Default Layout for Customer Documents</guimenuitem> and the calculated widths restored
+            as the default with <guimenu>View</guimenu>&gt;<guimenuitem>Reset Default Layout for
+            Customer Documents</guimenuitem>.
+          </para>
+        </note>
+      </para>
+
+      <para>There are 15 columns in the <guilabel>Invoice Entries</guilabel> area:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Date</guilabel> - The date this item was sold.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Invoiced?</guilabel> - <guilabel>X</guilabel> means the item is attached to this invoice,
+            an empty box means the item is not attached to this invoice. The item is attached for
+            you when you proceed to the next line item.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Description</guilabel> (optional) - is what the item or service is called.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Action</guilabel> (optional) - is a user defined field. You can place Cost Center
+            information here, or use one of the 3 predefined actions, Hours, Material, or Project.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Income Account</guilabel> - selects which income account is credited with this income.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Quantity</guilabel> - tracks how many of the items you sold.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Unit Price</guilabel> - is the unit price of the item.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Discount Type</guilabel> - is the type of discount:
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>$</guilabel> means <guilabel>Discount</guilabel> is a monetary value
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>%</guilabel> means <guilabel>Discount</guilabel> is a percentage.
+              </para>
+            </listitem>
+          </itemizedlist>
+
+          <para>You can click the field to toggle between the discount types.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Discount How</guilabel> - the discount can be computed as follows:
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>&gt;</guilabel> means the discount applies after tax.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>&lt;</guilabel> means the discount applies before tax.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>=</guilabel> means both discount and tax are applied to the pretax value.
+              </para>
+            </listitem>
+          </itemizedlist>
+
+          <para>You can click the field to change the setting.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Discount</guilabel> (optional) - is the total discount, in monetary units or percentage,
+            depending on <guilabel>Discount Type</guilabel>. You can leave it blank for no discount.
+            Any default discount you specified for the customer will be automatically entered for
+            each new item.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Taxable?</guilabel> - is this item taxable? <guilabel>X</guilabel> means yes, a blank
+            field means no. You can click the field to toggle the setting.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Tax Included?</guilabel> - has the tax already been included in the unit price?
+            <guilabel>X</guilabel> means yes, a blank field means no. For example, if there is 1
+            item of $100 with a tax of 5% then:
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para>If Tax Included is empty, then subtotal = $100 and tax = $5.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>If Tax included is set (<guilabel>X</guilabel>), then subtotal = $95.23 and tax = $4.77. The
+                computation is: Subtotal = Total / (1+taxrate) and Tax = Total - Subtotal = Total -
+                (Total / (1+taxrate)).
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Tax Table</guilabel> (optional) - this is a pop up menu of all the available tax tables.
+            If you make the item taxable, then this table is used to compute the amount of tax. The
+            tax table determines tax percentages and the accounts to which tax is charged.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Subtotal</guilabel> (uneditable) - is the computed subtotal for this item (less tax).
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Tax</guilabel> (uneditable) - is the computed tax for this item.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>When you have finished entering all the items, you can <guilabel>Post</guilabel> and print the
+        invoice.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-ar-invoicepost2">
+      <title>Post</title>
+
+      <para>When you finish editing an invoice and are ready to print, you must <guilabel>Post</guilabel> the
+        invoice. The invoice does not have to be posted immediately. In fact, you should only post
+        an invoice when you are ready to print it. Posting an invoice places the transactions in an
+        accounts receivable account.
+      </para>
+
+      <para>The <guilabel>Post Invoice</guilabel> window appears and asks you to enter the following
+        information:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Post Date</guilabel> - specifies the date for the transactions entered into the accounts
+            receivable account. By default this is the invoice&rsquo;s <guilabel>Date
+            Opened</guilabel> (see <xref linkend="busnss-ar-invoicenew2"/> for information about
+            that date).
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Due Date</guilabel> - is the date on which payment for the invoice is expected.
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para>If you specified payment terms when you created the invoice, the date is calculated according to
+                selected terms, and the entry field is insensitive.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>If you did not specify payment terms, enter the expected payment due date here.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Description</guilabel> - is an arbitrary description. When invoice transactions are placed
+            in the accounts receivable account, this description is entered in the memo field of
+            those transactions.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Post To Account</guilabel> - selects the accounts receivable account in which invoice
+            transactions are posted. You can select the account from a list of existing A/Receivable
+            accounts.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Accumulate Splits</guilabel> - determines if invoice items which transfer to the same
+            account are combined into a single split for that account or entered individually. For
+            the sample invoice which sold Nails and a Hammer, the setting affects post results as
+            follows:
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Checked (splits are accumulated) - a single transfer of $575.00 from the
+                <emphasis>Income:Sales</emphasis> account is recorded.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>Not checked - the transaction created in the A/Receivable account, shows two transfers from
+                <emphasis>Income:Sales</emphasis> account $100.00 and $475.00. The memo fields in
+                the splits indicate the sale of Nails and the Hammer (the item descriptions entered
+                on the invoice) respectively.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="busnss-ar-invoicefind2">
+      <title>Find</title>
+
+      <para>To find an existing invoice, use the
+        <menuchoice>
+          <guimenu>Business</guimenu> <guisubmenu>Customer</guisubmenu><guimenuitem>Find
+          Invoice</guimenuitem>
+        </menuchoice>
+        menu item. From the results of the search, you can select an invoice to edit or view.
+      </para>
+
+      <note>
+        <para>Before you can edit a posted invoice, you will need to <guilabel>Unpost</guilabel> it.
+        </para>
+      </note>
+
+      <para>One of the design goals in &app;&rsquo;s Account Receivable system was to allow different processes
+        to get to the same state, so you can reach an invoice from different directions based on the
+        way you think about the problem:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>You can search for the customer first, then list their invoices.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>You can search for invoices by number or by company name.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>You can list invoices associated with a customer job.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="busnss-ar-invoiceprint2">
+      <title>Print</title>
+
+      <para>After you post an invoice, you should print it and send it to your customer. To print an invoice use
+        <menuchoice>
+          <guimenu>File</guimenu> <guimenuitem>Print Invoice</guimenuitem>
+        </menuchoice>
+        menu item.
+      </para>
+
+      <tip>
+        <para>You can modify the appearance of the invoice, IE: add a company logo, etc. To do so, see the
+          <xref
+        linkend="busnss-ar-invoicechange" />.
+        </para>
+      </tip>
+
+      <para>Invoices can also be printed from the main window by selecting
+        <menuchoice>
+          <guimenu>Reports</guimenu><guisubmenu>Business Reports</guisubmenu> <guimenuitem>Printable
+          Invoice</guimenuitem>
+        </menuchoice>
+        from the main menu. The resulting report window states that no valid invoice is selected. To
+        select the invoice to print:
+      </para>
+
+      <orderedlist>
+        <listitem>
+          <para>Use the <guibutton>Options</guibutton> <emphasis>Toolbar</emphasis> button or select
+            <menuchoice>
+              <guimenu>Edit</guimenu><guimenuitem>Report Options</guimenuitem>
+            </menuchoice>
+            from the main menu.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Select the <guilabel>General</guilabel> tab of the report options dialog.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Click the <guibutton>Select</guibutton> button next to the <guilabel>Invoice Number</guilabel>
+            field.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Search for the invoice as usual.
+          </para>
+        </listitem>
+      </orderedlist>
+
+      <para>You can also print invoices from within the Process Payment dialog. See the
+        <xref linkend="busnss-ar-payment1" /> for instructions on how to do so.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-ar-invoicestarting2">
+      <title>Assign Starting Invoice Number</title>
+
+      <para>By default, &app; starts with invoice number 1 and increments from there. You can manually type an
+        invoice number into the text box each time you create an invoice, but this gets tiring and
+        sooner or later leads to duplicate numbers.
+      </para>
+
+      <para>You can change the starting invoice number if it is important you. Use
+        <menuchoice>
+          <guimenu>File</guimenu><guimenuitem>Properties</guimenuitem>
+        </menuchoice>
+        , access the <guilabel>Counters</guilabel> tab, change the <guilabel>Invoice
+        number</guilabel> value to be one less than your desired starting invoice number and click
+        the <guibutton>OK</guibutton> button or the <guibutton>Apply</guibutton> button.
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="busnss-ar-jobs1">
+    <title>Customer Jobs</title>
+
+    <para>Customer Jobs are used to group multiple invoices and credit notes to the same customer. Use of the
+      Customer Jobs feature is optional. The feature is useful when you have multiple
+      <guilabel>jobs</guilabel> for the same customer, and would like to view all the invoices and
+      credit notes related to a single job.
+    </para>
+
+    <para>To use customer jobs, you must create them using the
+      <menuchoice>
+        <guimenu>Business</guimenu><guisubmenu>Customer</guisubmenu> <guimenuitem>New
+        Job</guimenuitem>
+      </menuchoice>
+      menu item. You will see the <guilabel>New Job</guilabel> window. The editable fields are:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Job Info - Job Number</guilabel> (optional) - enter the number for this job. If left
+          blank, a number will be chosen for you. See <xref linkend="counters-book-options" /> for
+          more info.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Job Info - Job Name</guilabel> - the name you want to assign to the new job.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Owner Info - Customer</guilabel> - the customer for whom the job is created. If you
+          remember the <emphasis>company name</emphasis> you entered in the <guilabel>New
+          Customer</guilabel> window for this customer, start to type it in this field and &app;
+          will try auto complete it for you. Else, press the <guibutton>Select...</guibutton> button
+          to access the <guilabel>Find Customer</guilabel> window described in
+          <xref linkend="busnss-ar-custfind2" />. Highlight the customer you are looking for with a
+          click in the search results, then press the <guibutton>Select</guibutton> button.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Owner Info - Billing ID</guilabel> - the customer&rsquo;s reference to this job (e.g.
+          their PO Number). This is the "Billing Identification" that they require to correlated
+          your invoices with their order. The Billing ID you enter is used to set the billing id for
+          new invoices associated with this job.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Job Active</guilabel> - toggles this job being active or not. This is useful when you have
+          many inactive jobs, since it is easier to search only among jobs that are marked active.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>To edit an existing customer job, use the
+      <menuchoice>
+        <guimenu>Business</guimenu><guisubmenu>Customer</guisubmenu> <guimenuitem>Find
+        Job</guimenuitem>
+      </menuchoice>
+      menu item. Select the desired job in the search results, and click the <guilabel>View/Edit
+      Job</guilabel> button.
+    </para>
+
+    <para>To select from the invoices and credit notes associated with a given job, use
+      <menuchoice>
+        <guimenu>Business</guimenu><guisubmenu>Customer</guisubmenu><guimenuitem>Find
+        Job</guimenuitem>
+      </menuchoice>
+      menu item. Select the desired job in the search results and click the <guilabel>View
+      Invoices</guilabel> button. A window listing invoices and credit notes associated with this
+      job appears. Select an invoice or credit note and click the <guilabel>View Invoice</guilabel>
+      button to open an invoice editor in the main application window.
+    </para>
+  </sect1>
+
+  <sect1 id="busnss-ar-payment1">
+    <title>Process Invoice Payment</title>
+
+    <para>Eventually, you will receive payment from your customers for outstanding invoices. To register these
+      payments, use the Process Payment application found in
+      <menuchoice>
+        <guimenu>Business</guimenu> <guisubmenu>Customer</guisubmenu><guimenuitem>Process
+        Payment</guimenuitem>
+      </menuchoice>
+      .
+    </para>
+
+    <tip>
+      <para>There is an alternative way of assigning a payment to (one or more) invoices where the payment
+        transaction already exists, say in the case where transactions have been imported from a
+        bank. There is no way to assign a payment to an invoice during the import process, so this
+        must be done after transactions have been imported.
+      </para>
+
+      <para>This can best be done starting from the asset account register holding the imported payment
+        transaction (like your bank account). In that account, select the payment, right-click
+        (control-click for &mac;) and choose <guilabel>Assign as payment...</guilabel>. The
+        payment window will pop-up, partly filled in with the information from the transaction. Fill
+        in the missing information like the proper customer and invoice to complete the payment.
+      </para>
+
+      <para>One caveat: the logic behind <guilabel>Assign as payment...</guilabel>won't properly detect credit
+        note reimbursements and will wrongfully interpret such a transaction as a vendor bill.
+      </para>
+    </tip>
+
+    <para>The Process Payment application consists of:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Payment Information - Customer</guilabel> - the customer who paid you. If you remember the
+          <emphasis>company name</emphasis> you entered in the <guilabel>New Customer</guilabel>
+          window for this customer, start to type it in this field and &app; will try auto complete
+          it for you. Else, press the <guibutton>Select...</guibutton> button to access the
+          <guilabel>Find Customer</guilabel> window described in
+          <xref linkend="busnss-ar-custfind2" />. Highlight the customer you are looking for with a
+          click in the search results, then press the <guibutton>Select</guibutton> button.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Invoice</guilabel> - the invoice for which payment was received. If
+          you remember the <emphasis>invoice ID</emphasis>, start to type it in this field and &app;
+          will try auto complete it for you. Else, press the <guibutton>Select...</guibutton> button
+          to access the <guilabel>Find Invoice</guilabel> window described in
+          <xref linkend="busnss-ar-invoicefind2" />. Highlight the invoice you are looking for with
+          a click in the search results, then press the <guibutton>Select</guibutton> button.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Date</guilabel> - the date you you received payment.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Amount</guilabel> - the amount of money received.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Num</guilabel> - the check number.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Memo</guilabel> - any comments about this payment.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Post To</guilabel> - the A/Receivable account to which to post this transaction.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Transfer Account</guilabel> - the account where the money will be deposited (a checking
+          account for example).
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <sect2 id="busnss-ar-overpay2">
+      <title>Over Payments or Pre-Payments</title>
+
+      <para>If a customer overpays an invoice or pays for goods or services before they have been invoiced,
+        Process Payment for the total amount received. &app; will then keep track of the
+        over-payment (or pre-payment) in the A/R account and you can use the residual when paying
+        the next invoice.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-ar-partpay2">
+      <title>Partial Payments</title>
+
+      <para>Partial payments are possible too. Select the invoice to pay. &app; will automatically suggest that
+        invoice's remaining balance as payment amount. Simply adjust that amount to what you want to
+        pay.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-ar-baddebt">
+      <title>Writing Off a Bad Debt</title>
+
+      <note>
+        <para>Please check with your accountant to ensure the following is acceptable in your region.
+        </para>
+      </note>
+
+      <para>The usual way to do this is to process a payment for the invoice to a <emphasis>BadDebt</emphasis>
+        account. Such an account would be an expense account. However, in &app;, you can't process a
+        payment for an invoice directly to an expense account, so it takes two steps:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Pay the invoice to an asset or liability account, such as your checking account.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Change the asset or liability account, in the <emphasis> non</emphasis> Accounts Receivable split of
+            the payment transaction, to the BadDebt expense account.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Specifically
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Remove all transactions from the A/R account related to the invoice, except for the invoice's
+            transaction itself. This includes any payment transactions, and transactions between
+            your BadDebt and A/R account.
+          </para>
+
+          <para>In case the payment has associated lot link transactions
+            <link linkend="busnss-ar-baddeb-lot">(1)</link>, remove those as well.
+          </para>
+
+          <para>If all is well, your <guilabel>Process Payment</guilabel> window for this customer should list the
+            invoice the customer won't pay, and no prepayments.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Pay your invoice to an arbitrary asset or liability account. It can be your checking account. We
+            will fix that in the next step.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Open the account register for your A/R account. For this invoice there should now be one payment
+            transaction. If you are using &app; 2.6.0 - 2.6.4 there will also be one lot link
+            transaction <link linkend="busnss-ar-baddeb-lot">(1)</link>.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Select the payment transaction and change the transfer account to your <emphasis>BadDebt</emphasis>
+            account. Make sure to leave the transaction (eg by clicking on another transaction) to
+            save the changes.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>If all is well, your <guilabel>Process Payment</guilabel> window should still be clean: no
+        pre-payments, and the bad debt invoice gone.
+      </para>
+
+      <note id="busnss-ar-baddeb-lot">
+        <para>(1): &app; versions 2.6.0 to 2.6.4 created lot link transactions which show in the A/R account
+          register. This came with its own set of subtle issues. It is recommended to upgrade to the
+          latest (or at least 2.6.6) version, which fixes a lot of small problems. Version 2.6.5 had
+          a flaw in the logic cleaning up the lot links. Once upgraded, please run
+          <menuchoice>
+            <guimenu> Actions</guimenu><guimenuitem>Check &amp; Repair</guimenuitem>
+          </menuchoice>
+          on your A/R and A/P accounts to clean up most of the lot link legacy. Don't forget to make
+          a backup first just in case.
+        </para>
+
+        <para>Lots are used internally for relating payments to invoices. Lots themselves are invisible in the
+          account registers. To see them you need to open the lot viewer, which can be found in
+          <menuchoice>
+            <guimenu>Actions</guimenu><guimenuitem>View lots </guimenuitem>
+          </menuchoice>
+          while in any A/R or A/P account register. Select a lot to see the <emphasis>Splits in
+          lot</emphasis>.
+        </para>
+
+        <para><emphasis>Lot links</emphasis> are <emphasis>transactions</emphasis> which you can see in your A/R
+          and A/P accounts. They are unusual in the sense that all their splits are in one account
+          (A/R or A/P). Each split in a lot link transaction is <emphasis>linked</emphasis> (hence
+          the name) to an invoice or payment transaction by means of a lot.
+        </para>
+      </note>
+
+      <para>See <ulink url="&url-wiki-bus-feat;"  /> for more information.
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="busnss-ar-invoicechange">
+    <title>Changing the Invoice Appearance</title>
+
+    <para>The default Invoice style, as shown in <xref
+    linkend="busnss-ar-invoiceprint2" />, is fairly
+      barren. The default invoice style leaves the top part of the form blank, so you can print on
+      company letterhead paper. There are some things you can do to change invoice appearance.
+    </para>
+
+    <para>Use
+      <menuchoice>
+        <guimenu>File</guimenu><guimenuitem>Properties</guimenuitem>
+      </menuchoice>
+      to enter your Company information in the <guilabel>Business</guilabel> tab of the
+      <guilabel>Book Options</guilabel> window. Some of the entered information is printed on the
+      right side of invoices.
+    </para>
+
+    <para>To add a customized background, heading banner or logo to invoices, modify the invoice style sheets.
+      To do this, go to
+      <menuchoice>
+        <guimenu>Edit</guimenu> <guimenuitem>Style Sheets</guimenuitem>
+      </menuchoice>
+      and select the <guibutton>New</guibutton> button in the <guilabel>Select HTML Style
+      Sheet</guilabel> window that will appear.
+    </para>
+
+    <para>Give a <guilabel>Name</guilabel> to the new style sheet (e.g. <guilabel>Custom Invoice</guilabel>)
+      and select the <guilabel>Fancy</guilabel> <guilabel>Template</guilabel>. When you click the
+      <guibutton>OK</guibutton> button, the <guilabel>HTML Style Sheet Properties</guilabel> window
+      is displayed. This window presents you five sections listed in the left pane:
+      <guilabel>Colors</guilabel>, <guilabel>Fonts</guilabel>, <guilabel>General</guilabel>,
+      <guilabel>Images</guilabel>, and <guilabel>Tables</guilabel>. The <guilabel>Colors</guilabel>
+      section allows you to change the colors of various items of the invoice. The
+      <guilabel>Fonts</guilabel> section lets you set font type and dimensions. The
+      <guilabel>General</guilabel> section allows you to set the <guilabel>Preparer</guilabel> and
+      <guilabel>Prepared for</guilabel> information, and to <guilabel>Enable Links</guilabel>. The
+      <guilabel>Images</guilabel> section allows you to import graphics into the style sheet. The
+      <guilabel>Tables</guilabel> section allows you to adjust the spacing around the tables which
+      make up the invoice.
+    </para>
+
+    <para>To include a company logo, banner heading and background image, use your favorite graphics
+      application such as <application>The Gimp</application> or <application>OpenOffice
+      Draw</application> to save the images in either <acronym>GIF</acronym> or
+      <acronym>PNG</acronym> format. Then import them into the style sheet using the
+      <guilabel>Images</guilabel> section described above.
+    </para>
+
+    <note>
+      <para>The images are placed in the invoice as follows. The <guilabel>Background Tile</guilabel> is tiled
+        to become the background image, the <guilabel>Heading Banner</guilabel> goes above the
+        invoice text, and the <guilabel>Logo</guilabel> is placed in the upper left corner of the
+        invoice to the left of the Heading Banner. You will probably have to try a few different
+        sized images until you get the invoices to print nicely. Some sizing suggestions are that
+        the Logo should be 1 square cm (~0.5 inch), and the Heading Banner should be 15 cm (~6
+        inches) wide and 1 cm (~0.5 inch) tall.
+      </para>
+    </note>
+
+    <para>With the style sheet configured, when you print the invoice, you select the style sheet to use from
+      the <guimenu>Options</guimenu> menu.
+    </para>
+  </sect1>
+<!-- start of A/P -->
+  <sect1 id="busnss-ap-components1">
+    <title>Accounts Payable</title>
+
+    <para>&app; has an integrated accounts payable system. As with <emphasis>Accounts Receivable</emphasis>
+      you must have an <emphasis>Accounts Payable</emphasis> account set up under
+      <emphasis>Liabilities</emphasis> for each currency in which you will issue invoices. The
+      <emphasis>Accounts Payable</emphasis> accounts accrue the amounts you owe to others, so bills
+      credit these accounts and payments and credit memos debit these accounts. Generally you do not
+      directly work with this account but use the four integrated &app; A/P application components.
+      The A/P components are available from the
+      <menuchoice>
+        <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu>
+      </menuchoice>
+      sub-menu.
+    </para>
+
+    <para>These A/P components are:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Vendors</guilabel> are people or companies from which you buy products or services on
+          credit.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Bills</guilabel> represent the physical bills vendors send to request payment from you. A
+          bill contains an itemized list of things you purchased.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Jobs</guilabel> (optional) is where you register Vendor Jobs. Jobs are a mechanism by
+          which you can group multiple bills from a particular vendor.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Process Payments</guilabel> is where you register payments to a vendor to whom you owe
+          money.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>The following sections introduce the individual Accounts Payable application components.
+    </para>
+  </sect1>
+
+  <sect1 id="busnss-ap-vendors1">
+    <title>Vendors</title>
+
+    <para>A vendor is a company or person from whom you purchase goods or services. Vendors must be registered
+      within the A/P system.
+    </para>
+
+    <sect2 id="busnss-ap-vendornew2">
+      <title>New</title>
+
+      <para>To register a new vendor, select the
+        <menuchoice>
+          <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu> <guimenuitem>New
+          Vendor</guimenuitem>
+        </menuchoice>
+        menu item. Fill in general information about the vendor, such as Company Name, Address,
+        Phone, Fax, etc. Below is a list of the other options:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Identification - Vendor Number</guilabel> - can be any number by which you would like to
+            refer to this vendor. You may leave it blank and a number will be chosen automatically.
+            See <xref linkend="counters-book-options" /> for more info
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Identification - Active</guilabel> - differentiates active vendors from inactive ones.
+            This is useful when you have many past vendors, and you want to see only those marked
+            active.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Payment Address - Name</guilabel> - is the contact name of the person to receive payments
+            you make.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Notes</guilabel> - records any additional comments about the vendor. Use it to track names
+            of contact people within the vendor&rsquo;s company, for example.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Payment Information - Currency</guilabel> - specifies the payment currency for this
+            vendor. It will default to the default currency set in <guilabel>Preferences</guilabel>
+          </para>
+
+          <note>
+            <para>All Bills and Credit Notes will be denominated in this currency and &app; will require an Accounts
+              Payable account in this currency.
+            </para>
+          </note>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Payment Information - Terms</guilabel> - specifies the default payment terms for this
+            vendor. Payment terms must be preregistered using
+            <menuchoice>
+              <guimenu>Business</guimenu><guimenuitem>Billing Terms</guimenuitem>
+            </menuchoice>
+            .
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Payment Information - Tax Included</guilabel> - specifies if tax is included in bills from
+            this vendor. You can choose <guilabel>Yes</guilabel>, <guilabel>No</guilabel>, or
+            <guilabel>Use Global</guilabel>.
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Yes</guilabel> means that tax is already included in amounts on bills.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>No</guilabel> means tax is not included.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Use Global</guilabel> means to use the setting made in the global preferences accessible
+                through
+                <menuchoice>
+                  <guimenu>Edit</guimenu> <guimenuitem>Preferences</guimenuitem>
+                </menuchoice>
+                (
+                <menuchoice>
+                  <guimenu>Gnucash</guimenu><guimenuitem>Preferences</guimenuitem>
+                </menuchoice>
+                on &mac;).
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Payment Information - Tax Table</guilabel> - specifies a default tax table to apply to
+            bills from this vendor. Tax tables must be registered using the
+            <menuchoice>
+              <guimenu>Business</guimenu><guimenuitem>Tax Table</guimenuitem>
+            </menuchoice>
+            menu item.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="busnss-ap-vendorfind2">
+      <title>Find and Edit</title>
+
+      <para>To search for an existing vendor, use the
+        <menuchoice>
+          <guimenu>Business</guimenu> <guisubmenu>Vendor</guisubmenu><guimenuitem>Find
+          Vendor</guimenuitem>
+        </menuchoice>
+        window. You select a vendor to <guibutton>View/Edit</guibutton> from the results of the
+        search. This window is also used to look up a vendor when entering bills and processing
+        payments.
+      </para>
+
+      <para>If many vendors match the search criteria you provide, the search can be refined by running an
+        additional search within the current results. The current result set is searched when the
+        <guilabel>Refine Current Search</guilabel> radio button is selected. In fact, &app; selects
+        this option for you after you run the initial search.
+      </para>
+
+      <para>If the vendor you are searching for does not match the supplied search criteria, change the search
+        criteria, click the <guilabel>New Search</guilabel> radio button and then the
+        <guibutton>Find</guibutton> button. The relevant step is the <guilabel>New Search</guilabel>
+        selection. If the vendor is not in the result of the original search, and you only search
+        within this set, the vendor cannot be found, regardless of new search criteria.
+      </para>
+
+      <tip>
+        <para>To return a list of all registered active vendors, set the search criterion to <guilabel>matches
+          regex</guilabel>, and place a single dot <quote>.</quote> in the text field area. Make
+          sure <guilabel>Search only active data</guilabel> is checked, then click
+          <guibutton>Find</guibutton>. The regular expression <quote>.</quote> means to match
+          anything.
+        </para>
+      </tip>
+    </sect2>
+  </sect1>
+
+  <sect1 id="busnss-ap-bills1">
+    <title>Bills</title>
+
+    <para>A bill is a request for payment you receive from a vendor. &app; can track bills.
+    </para>
+
+    <para>A credit note is the document you receive from a vendor to correct products or services rendered
+      that you were incorrectly charged for on a bill. &app; can generate and track credit notes via
+      the same menu entries as bills.
+    </para>
+
+    <note>
+      <para>This section applies to both bills and credit notes. In order to avoid repeating everything twice
+        and to keep the text easier to read it will refer only to bills. You can apply it equally to
+        credit notes. Only where the behaviour of credit notes differs from bills this will be
+        explicitly mentioned.
+      </para>
+    </note>
+
+    <sect2 id="busnss-ap-billnew2">
+      <title>New</title>
+
+      <para>When you receive a bill from a vendor and want to enter it into &app;, you must create a new bill.
+        To create a new bill use the
+        <menuchoice>
+          <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New
+          Bill</guimenuitem>
+        </menuchoice>
+        menu item, and fill in the resulting window appropriately.
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Bill Information - Type</guilabel> - the type of vendor document to create - either a bill
+            or a credit note.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Bill Information - Bill ID</guilabel> (optional) - the identification number of the
+            invoice as emitted by the vendor (IE: the vendor&rsquo;s internal number for this
+            invoice).
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Bill Information - Date Opened</guilabel> - the date the Invoice was emitted by the
+            vendor.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Vendor</guilabel> - the issuing vendor. If you remember the
+            <emphasis>company name</emphasis> you entered in the <guilabel>New Vendor</guilabel>
+            window for this vendor, start to type it in this field and &app; will try auto complete
+            it for you. Else, press the <guibutton>Select...</guibutton> button to access the
+            <guilabel>Find Vendor</guilabel> window described in
+            <xref linkend="busnss-ap-vendorfind2" />. Highlight the vendor you are looking for with
+            a click in the search results, then press the <guibutton>Select</guibutton> button.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Job</guilabel> (optional) - associates a vendor job (see
+            <xref linkend="busnss-ap-jobs1" />) with this bill. If you remember the <emphasis>job
+            name</emphasis> you entered in the <guilabel>New Job</guilabel> window for this job,
+            start to type it in this field and &app; will try auto complete it for you. Else, press
+            the <guibutton>Select...</guibutton> button to access the <guilabel>Find Job</guilabel>
+            window. This window is very similar to the one described in
+            <xref linkend="busnss-ap-vendorfind2" />. Highlight the job you are looking for with a
+            click in the search results, then press the <guibutton>Select</guibutton> button.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Billing ID</guilabel> (optional) - the vendor&rsquo;s ID for the
+            bill (e.g.: their invoice #).
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing Information - Terms</guilabel> - the pay back terms agreement for this bill. A
+            list of registered terms is available within the pop up menu. If you specified a default
+            value for the selected vendor, this field is initialized with the default.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Default Chargeback Project - Customer</guilabel> (optional) - the customer to associate
+            with this bill. This is used to charge your customer later.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Default Chargeback Project - Job</guilabel> (optional) - the customer job to associate
+            with this bill.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>When you click the <guibutton>OK</guibutton> the <guilabel>Edit Bill</guilabel> window opens.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-ap-billedit2">
+      <title>Edit</title>
+
+      <para>From the Edit Bill window you can enter an itemized list of goods and services you purchased, in a
+        manner similar to how the account register works. For credit notes you enter an itemized
+        list of goods and services the vendor refunded instead.
+        <note>
+          <para>Saved column layout works a bit differently in invoices from the account registers: Layouts are not
+            saved for each invoice; instead a layout can be saved as a default for invoices to
+            override the calculated widths using the <guimenu>View</guimenu>&gt;<guimenuitem>Use as
+            Default Layout for Vendor Documents</guimenuitem> and the calculated widths restored as
+            the default with <guimenu>View</guimenu>&gt;<guimenuitem>Reset Default Layout for Vendor
+            Documents</guimenuitem>.
+          </para>
+        </note>
+      </para>
+
+      <para>There are 12 columns in the Invoice Entries area:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Date</guilabel> - The date this item was sold.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Invoiced?</guilabel> - <guilabel>X</guilabel> means the item is attached to this invoice,
+            an empty box means the item is not attached to this invoice. If the box is empty you can
+            attach the item to the invoice by first selecting the item row and then clicking in this
+            box.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Description</guilabel> (optional) - is what the item or service is called.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Action</guilabel> (optional) - is a user defined field. You can place Cost Center
+            information here, or use one of the 3 predefined actions, Hours, Material, or Project.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Expense Account</guilabel> - selects the expense account to charge for this item.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Quantity</guilabel> - tracks how many of the items you bought.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Unit Price</guilabel> - is the unit price of the item.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Taxable?</guilabel> - is this item taxable? <guilabel>X</guilabel> means yes, a blank
+            field means no. You can click the field to toggle the setting.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Tax Included?</guilabel> - has the tax already been included in the unit price?
+            <guilabel>X</guilabel> means yes, a blank field means no.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Tax Table</guilabel> (optional) - this is a pop up menu of all the available tax tables.
+            If the item is taxable and tax has not been included in the unit price, then this tax
+            table is used to compute the amount of tax.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Subtotal</guilabel> (uneditable) - computed subtotal for this item (less tax)
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billable</guilabel> - is this item billable to the chargeback customer/job?
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>When you have finished entering all the items, <guilabel>Post</guilabel> the bill.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-ap-billpost2">
+      <title>Post</title>
+
+      <para>When you finish editing a bill, you should <guilabel>Post</guilabel> the bill. You do not have to
+        post the bill, you can close it and return to it later. You have to post the bill
+        eventually. Posting a bill places its transactions into an accounts payable account. The
+        Post Bill window appears and asks you to enter information:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Post Date</guilabel> - specifies the date for the transactions entered into the accounts
+            payable account.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Due Date</guilabel> - is the date on which payment for the bill is expected.
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para>If you specified payment terms when you created the bill, the date is calculated according to
+                selected terms, and the entry field is insensitive.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>If you did not specify payment terms, enter the expected payment due date here.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Description</guilabel> - is an arbitrary description. When bill transactions are placed in
+            the accounts payable account, this description is entered in the memo field of those
+            transactions.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Post To Account</guilabel> - selects the accounts payable account in which bill
+            transactions are posted. You can select the account from a list of existing A/Payable
+            accounts.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Accumulate Splits</guilabel> - determines if bill items which transfer to the same account
+            are combined into a single split for that account or entered individually. For the
+            sample bill for Letterhead and Envelopes, the setting affects post results as follows:
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Checked (splits are accumulated) - a single transfer of $100.00 to the <emphasis>Expenses:Office
+                Supplies</emphasis> account is recorded.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>Not checked - the transaction created in the A/Payable account, shows two transfers to
+                <emphasis>Expenses:Office Supplies</emphasis> account $75.00 and $25.00. The memo
+                fields in the splits indicate the purchase of Letterhead and Envelopes (the item
+                descriptions entered on the bill) respectively.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="busnss-ap-billfind2">
+      <title>Find</title>
+
+      <para>To find an existing bill, use the
+        <menuchoice>
+          <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>Find
+          Bill</guimenuitem>
+        </menuchoice>
+        menu item. From the results of the search, you can select a bill to edit, or view.
+      </para>
+
+      <note>
+        <para>Before you can edit a posted bill, you will need to <guilabel>Unpost</guilabel> it.
+        </para>
+      </note>
+
+      <note>
+        <para>There are other ways to access an existing bill. These are similar to accessing invoices for your
+          customers. See <xref linkend="busnss-ar-invoicefind2" /> for more information.
+        </para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="busnss-ap-jobs1">
+    <title>Vendor Jobs</title>
+
+    <para>Vendor Jobs are used to group multiple bills and credit notes from a single vendor. Use of the
+      vendor jobs feature is optional. The feature is useful when you have multiple
+      <guilabel>jobs</guilabel> for the same vendor, and would like to view all the bills and credit
+      notes for a single job.
+    </para>
+
+    <para>To use vendor jobs, you must create them using the
+      <menuchoice>
+        <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>New Job</guimenuitem>
+      </menuchoice>
+      menu item. You will see the <guilabel>New Job</guilabel> window. The editable fields are:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Job Info - Job Number</guilabel> (optional) - enter the number for this job. If left
+          blank, a number will be chosen for you.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Job Info - Job Name</guilabel> - the name you want to assign to the new job.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Owner Info - Vendor</guilabel> - the vendor for whom the job is created.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Owner Info - Billing ID</guilabel> - the vendor&rsquo;s reference to this job (e.g. their
+          PO Number).
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Job Active</guilabel> - toggles this job being active or not. This is useful when you have
+          many inactive jobs, since it is easier to search only among jobs that are marked active.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>To edit an existing vendor job, use the
+      <menuchoice>
+        <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu> <guimenuitem>Find
+        Job</guimenuitem>
+      </menuchoice>
+      menu item. Select the desired job in the search results, and click the <guilabel>View/Edit
+      Job</guilabel> button.
+    </para>
+
+    <para>To select from the bills and credit notes associated with a given job, use the
+      <menuchoice>
+        <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu> <guimenuitem>Find
+        Job</guimenuitem>
+      </menuchoice>
+      menu item. Select the desired job in the search results and click the <guilabel>View
+      Invoices</guilabel> button. A window listing bills and credit notes associated with this job
+      appears. Select a bill or credit note and click the <guilabel>View Invoice</guilabel> button
+      to open a bill editor in the main application window.
+    </para>
+  </sect1>
+
+  <sect1 id="busnss-ap-payment1">
+    <title>Process Bill Payment</title>
+
+    <para>Eventually, you need to pay your bills. To do so, use the Process Payment application found in
+      <menuchoice>
+        <guimenu>Business</guimenu><guisubmenu>Vendor</guisubmenu><guimenuitem>Process
+        Payment</guimenuitem>
+      </menuchoice>
+      .
+    </para>
+
+    <tip>
+      <para>There is an alternative way of assigning a payment to (one or more) bills where the payment
+        transaction already exists, say in the case where transactions are imported from a bank.
+      </para>
+
+      <para>This can best be done starting from the asset account register holding the imported payment
+        transaction (like your bank account). In that account, select the payment, right-click
+        (control-click for &mac;) and choose <guilabel>Assign as payment...</guilabel>. The
+        payment window will pop-up, partly filled in with the information from the transaction. Fill
+        in the missing information like the proper vendor and bill to complete the payment.
+      </para>
+
+      <para>One caveat: the logic behind <guilabel>Assign as payment...</guilabel>won't properly detect credit
+        note reimbursements and will wrongfully interpret such a transaction as a customer invoice.
+      </para>
+    </tip>
+
+    <para>The Process Payment application consists of:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>Payment Information - Vendor</guilabel> - the vendor you wish to pay. If you remember the
+          <emphasis>company name</emphasis> you entered in the <guilabel>New Vendor</guilabel>
+          window for this vendor, start to type it in this field and &app; will try auto complete it
+          for you. Else, press the <guibutton>Select...</guibutton> button to access the
+          <guilabel>Find Vendor</guilabel> window described in
+          <xref linkend="busnss-ap-vendorfind2" />. Highlight the vendor you are looking for with a
+          click in the search results, then press the <guibutton>Select</guibutton> button.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Bill</guilabel> - the bill you wish to pay. If you remember the
+          <emphasis>bill ID</emphasis>, start to type it in this field and &app; will try auto
+          complete it for you. Else, press the <guibutton>Select...</guibutton> button to access the
+          <guilabel>Find Bill</guilabel> window described in <xref linkend="busnss-ap-billfind2" />.
+          Highlight the bill you are looking for with a click in the search results, then press the
+          <guibutton>Select</guibutton> button in the search window.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Date</guilabel> - the date you wish to make the payment, normally
+          the current date.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Amount</guilabel> - the amount of money to transfer in this payment.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Num</guilabel> - the check number.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Payment Information - Memo</guilabel> - any comments about this payment.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Post To</guilabel> - the A/Payable account to post this transaction.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Transfer Account</guilabel> - the account from which money for the payments comes from,
+          such as a checking account.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <sect2 id="busnss-ap-overpay2">
+      <title>Over Payments or Pre-Payments</title>
+
+      <para>If you wish to overpay an invoice or pay for goods or services before they have been invoiced,
+        Process Payment for the total amount payed. &app; will then keep track of the over-payment
+        (or pre-payment) in the A/P account and you can use the residual in the future.
+      </para>
+    </sect2>
+
+    <sect2 id="busnss-ap-partpay2">
+      <title>Partial Payments</title>
+
+      <para>You may wish to partially pay a bill. Select the bill to pay. &app; will automatically suggest that
+        bill's remaining balance as payment amount. Simply adjust that amount to what you want to
+        pay.
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="busnss-emply">
+    <title>Employees</title>
+
+    <para>&app; can help your company by tracking employees. You can register a
+      <xref linkend="busnss-emplynew" />, <xref linkend="busnss-emplyedit" /> existing employees,
+      create <xref linkend="busnss-emply-newvchr" /> and <xref linkend="busnss-emply-editvchr" />.
+    </para>
+
+    <para>Expense vouchers are used to reimburse employees for authorized expenses (f.e. travel, parking, food
+      etc...). Employee credit notes are the opposite of expense vouchers.
+    </para>
+
+    <sect2 id="busnss-emplynew">
+      <title>New Employee</title>
+
+      <para>To register a new employee, select the
+        <menuchoice>
+          <guimenu>Business</guimenu><guisubmenu>Employee</guisubmenu> <guimenuitem>New
+          Employee</guimenuitem>
+        </menuchoice>
+        menu item. The <guilabel>New Employee</guilabel> window will open with two tabs:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><xref linkend="mply-tab1" />
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><xref linkend="mply-tab2" />
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <itemizedlist id="mply-tab1">
+        <title>Employee tab</title>
+
+        <listitem>
+          <para><guilabel>Identification - Employee Number</guilabel> - can be any number by which you would like to
+            refer to this employee. You may leave it blank and a number will be chosen
+            automatically. See <xref linkend="counters-book-options" /> for more info.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Identification - Username</guilabel> (Mandatory) - a unique username to identify the
+            employee.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Identification - Active</guilabel> (Optional) - differentiates active employees from
+            inactive ones. This is useful when you have many past employees, and you want to see
+            only those marked <guilabel>Active</guilabel>.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Payment Address - Name</guilabel> (Mandatory) - the full name of the employee.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Payment Address - Address</guilabel> (Mandatory) - the address of the employee.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Payment Address - Phone, Fax, Email</guilabel> (Optional)- other optional contact
+            information for the employee.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Interface - Language</guilabel> (Optional) -
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Payment Information - Terms</guilabel> (Optional) - specifies the default payment terms
+            for this employee. Payment terms must be preregistered using
+            <menuchoice>
+              <guimenu>Business</guimenu><guimenuitem>Billing Terms</guimenuitem>
+            </menuchoice>
+            .
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing - Default Hours per Day</guilabel> (Optional) -
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing - Default Rate</guilabel> (Optional) -
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing - Currency</guilabel> - specifies the billing currency for this employee. It will
+            default to the default currency set in <guilabel>Preferences</guilabel>
+          </para>
+
+          <note>
+            <para>All expense vouchers and credit notes for this employee will be denominated in this currency and
+              &app; will require an Accounts Payable account in this currency.
+            </para>
+          </note>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing - Credit Account</guilabel> (Optional) -
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <itemizedlist id="mply-tab2">
+        <title>Access Control tab</title>
+
+        <listitem>
+          <para>Access Control List
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="busnss-emplyedit">
+      <title>Find and Edit</title>
+
+      <para>To search for an existing employee, use the
+        <menuchoice>
+          <guimenu>Business</guimenu> <guisubmenu>Employee</guisubmenu><guimenuitem>Find
+          Employee...</guimenuitem>
+        </menuchoice>
+        menu. You select an employee to <guibutton>View/Edit</guibutton> from the results of the
+        search. This window is also used to look up an employee when entering voucher and processing
+        payments.
+      </para>
+
+      <para>If many employees match the search criteria you provide, the search can be refined by running an
+        additional search within the current results. The current result set is searched when the
+        <guilabel>Refine Current Search</guilabel> radio button is selected. In fact, &app; selects
+        this option for you after you run the initial search.
+      </para>
+
+      <note>
+        <para>If the employee you are searching for does not match the supplied search criteria, change the search
+          criteria, click the <guilabel>New Search</guilabel> radio button and then the
+          <guibutton>Find</guibutton> button. The relevant step is the <guilabel>New
+          Search</guilabel> selection. If the employee is not in the result of the original search,
+          and you only search within this set, the employee cannot be found, regardless of new
+          search criteria.
+        </para>
+      </note>
+
+      <tip>
+        <para>To return a list of all registered active employees, set the search criterion to <guilabel>matches
+          regex</guilabel>, and place a single dot <quote>.</quote> in the text field area. Make
+          sure <guilabel>Search only active data</guilabel> is checked, then click
+          <guibutton>Find</guibutton>. The regular expression <quote>.</quote> means to match
+          anything.
+        </para>
+      </tip>
+    </sect2>
+
+    <sect2 id="busnss-emply-newvchr">
+      <title>New Expense Voucher/Credit Note</title>
+
+      <para>To register a new expense voucher/ Credit Note, select the
+        <menuchoice>
+          <guimenu>Business</guimenu><guisubmenu>Employee</guisubmenu> <guimenuitem>New Expense
+          Voucher...</guimenuitem>
+        </menuchoice>
+        menu item. The <guilabel>New Expense Voucher</guilabel> window will open. You can enter the
+        following data:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Voucher information - Type</guilabel> (Optional) - select if you are entering a Voucher or
+            a credit note.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Voucher information - Voucher ID</guilabel> (Optional) - can be any number by which you
+            would like to refer to this voucher. You may leave it blank and a number will be chosen
+            automatically. See <xref linkend="counters-book-options" /> for more info.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Voucher information - Date opened</guilabel> - the date of the voucher. Click on the
+            button on the right of the date to open a calendar.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing information - Employee</guilabel> (Mandatory) - the employee to which the voucher
+            refers.
+          </para>
+
+          <tip>
+            <para>The field supports auto-completion so if you start typing &app; will try to complete the text
+              automatically using existing employees name. You can also press the button
+              <guibutton>Select...</guibutton> to open the <link linkend="busnss-emplyedit">Find
+              Employee</link> window.
+            </para>
+          </tip>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing information - Billing ID</guilabel> (Optional) - the identification number of the
+            document (f.e. the bill number for a dinner).
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billing information - Terms</guilabel> (Optional) - the pay back terms agreement for this
+            bill. A list of registered terms is available within the pop up menu.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Default chargeback project - Customer</guilabel> (Optional) - the Customer to which the
+            voucher refers.
+          </para>
+
+          <tip>
+            <para>The field supports auto-completion so if you start typing &app; will try to complete the text
+              automatically using an existing Customer name. You can also press the button
+              <guibutton>Select...</guibutton> to open the <link linkend="busnss-ar-custfind2">Find
+              Customer</link> window.
+            </para>
+          </tip>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Default chargeback project - Job</guilabel> (Optional) - the Customer Job to which the
+            voucher refers.
+          </para>
+
+          <note>
+            <para>you can type in this field only if there are one or more jobs registered in &app; belonging to the
+              selected Customer.
+            </para>
+          </note>
+
+          <tip>
+            <para>The field supports auto-completion so if you start typing &app; will try to complete the text
+              automatically using an existing Customer name. You can also press the button
+              <guibutton>Select...</guibutton> to open the <link linkend="busnss-ar-custfind2">Find
+              Customer</link> window.
+            </para>
+          </tip>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Notes</guilabel> - records any additional comments about the voucher/credit note.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="busnss-emply-editvchr">
+      <title>Find Expense Voucher/Credit Note</title>
+
+      <para>To search for an existing Expense Voucher, use the
+        <menuchoice>
+          <guimenu>Business</guimenu> <guisubmenu>Employee</guisubmenu><guimenuitem>Find Expense
+          Voucher...</guimenuitem>
+        </menuchoice>
+        menu item. You select an Expense Voucher to <guibutton>View/Edit</guibutton> from the
+        results of the search. This window is also used to look up an expense voucher when entering
+        vouchers and processing payments.
+      </para>
+
+      <para>If many expense vouchers match the search criteria you provide, the search can be refined by running
+        an additional search within the current results. The current result set is searched when the
+        <guilabel>Refine Current Search</guilabel> radio button is selected. In fact, &app; selects
+        this option for you after you run the initial search.
+      </para>
+
+      <note>
+        <para>If the expense voucher you are searching for does not match the supplied search criteria, change the
+          search criteria, click the <guilabel>New Search</guilabel> radio button and then the
+          <guibutton>Find</guibutton> button. The relevant step is the <guilabel>New
+          Search</guilabel> selection. If the expense voucher is not in the result of the original
+          search, and you only search within this set, the voucher cannot be found, regardless of
+          new search criteria.
+        </para>
+      </note>
+
+      <tip>
+        <para>To return a list of all expense vouchers, set the search criterion to <guilabel>matches
+          regex</guilabel>, and place a single dot <quote>.</quote> in the text field area. Make
+          sure <guilabel>Search only active data</guilabel> is checked, then click
+          <guibutton>Find</guibutton>. The regular expression <quote>.</quote> means to match
+          anything.
+        </para>
+      </tip>
+    </sect2>
+
+    <sect2 id="busnss-emply-editvchr2">
+      <title>Edit</title>
+
+      <para>From the Edit Expense Voucher window you can enter an itemized list of goods and services the
+        employee bought or performed for the job, in a manner similar to how the account register
+        works. For credit notes you enter an itemized list of goods and services charged back to the
+        employee instead.
+        <note>
+          <para>Saved column layout works a bit differently in invoices from the account registers: Layouts are not
+            saved for each invoice; instead a layout can be saved as a default for invoices to
+            override the calculated widths using the <guimenu>View</guimenu>&gt;<guimenuitem>Use as
+            Default Layout for Employee Documents</guimenuitem> and the calculated widths restored
+            as the default with <guimenu>View</guimenu>&gt;<guimenuitem>Reset Default Layout for
+            Employee Documents</guimenuitem>.
+          </para>
+        </note>
+      </para>
+
+      <para>There are 10 columns in the Entries area:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Date</guilabel> - The date this item was sold.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Invoiced?</guilabel> - <guilabel>X</guilabel> means the item is attached to this invoice,
+            an empty box means the item is not attached to this invoice. If the box is empty you can
+            attach the item to the invoice by first selecting the item row and then clicking in this
+            box.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Description</guilabel> (optional) - is what the item or service is called.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Action</guilabel> (optional) - is a user defined field. You can place Cost Center
+            information here, or use one of the 3 predefined actions, Hours, Material, or Project.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Expense Account</guilabel> - selects the expense account to charge for this item.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Quantity</guilabel> - tracks how many of the items you bought.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Unit Price</guilabel> - is the unit price of the item.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Subtotal</guilabel> (uneditable) - computed subtotal for this item (less tax)
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Billable</guilabel> - is this item billable to the chargeback customer/job?
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Payment</guilabel> - How the employee was reimbursed. You might enter a check or petty
+            cash voucher number here.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>When you have finished entering all the items, <guilabel>Post</guilabel> the voucher.
+      </para>
+    </sect2>
+  </sect1>
+</chapter>

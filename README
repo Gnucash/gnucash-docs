@@ -18,17 +18,17 @@ see below under Other Formats.
 
 Requirements
 ############
-* autotools
+* cmake with
+** ninja or
+** make
+or
+* autotools (deprecated)
 
 * libxml2
 * libxslt [Debian packed the required xsltproc in a separate package, 
            which depends on libxslt]
 * docbook-xsl
 * yelp (for viewing)
-
-Only Gnome <=2 based desktops:
-* rarian or
-  scrollkeeper >=0.3.4 (its ancestor)
 
 Optional:
 * gnome-doc-utils (contains xml2po for the use of po editors like in the italian translation)
@@ -98,14 +98,24 @@ the figures/ directory directly beneath the HTML directory:
 --------------------------
 
 You can generate the documentation in html, pdf, epub and mobi
-using the autotools based build system that comes with the sources.
+using the build system that comes with the sources.
 
+For cmake the commands are
+  cd gnucash-docs
+  mkdir build && cd build
+  # If you don't need mobi
+  cmake …
+  # or, if you need mobi
+  cmake -DWITH_MOBI=ON …
+
+For the deprecated autotools system the commands are:
   cd gnucash-docs
   ./autogen.sh
+  mkdir build && cd build
   # If you don't need mobi
-  ./configure
+  ../configure
   # or, if you need mobi
-  ./configure --with-mobi
+  ../configure --with-mobi
 
 => This will tell you if you are missing some required tools.
 
@@ -126,8 +136,34 @@ To generate the documentation in mobi format, instead run
   make mobi
   (Note: mobi is generated from epub, so this generates epub files as well.)
 
-If you only wish to generate a subset of the documentation, you can
-go into the directory for that subset and run the above make commands
+If you only wish to generate a subset of the documentation, you can. However
+the way to do so depends on the build system:
+
+- CMake
+There are specific targets for each document. The target is of the form
+<language>-gnucash-<doc>-<type>.
+
+For example to only generate the English concepts guide:
+
+  make C-gnucash-guide-html
+  make C-gnucash-guide-pdf
+  make C-gnucash-guide-epub
+  make C-gnucash-guide-mobi
+
+depending on the output format you require.
+
+In addition one could generate these formats for one document in all
+languages at once by omitting the language specifier in the target.
+
+For example:
+
+  make gnucash-help-html
+
+will generate the html version of the help document in all supported
+languages.
+
+- Autotools (deprecated)
+Go into the directory for that subset and run the above make commands
 from there. For example to only generate the English concepts guide:
 
   cd guide/C
@@ -149,6 +185,15 @@ or
   make mobi
 
 depending on the output format you require.
+
+* running xmllint
+-----------------
+You can also run xmllint on all documents or a specific document with the command
+
+  make check # for toplevel check or (autotools only) per document check in
+             # the respective subdirectories
+  make de-gnucash-help-check # for a cmake check for one specific document
+                             # in this example - the German help guide
 
 * XML/XSL-based tools:
 ----------------------
@@ -203,7 +248,7 @@ So here is the link for branch stable:
 https://github.com/Gnucash/gnucash-docs/pull/new/maint.
 
 - With any problems you have, you can contact us in the following ways:
- 
+
 * quick questions via IRC
 ** en: irc://irc.gnome.org/gnucash 
 : see http://wiki.gnucash.org/wiki/IRC

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
-
-
-
 <!-- (Do not remove this comment block.)
 
 Version: 2.4.0
@@ -19,31 +16,34 @@ Author:
 -->
 <chapter id="ch_python_bindigs">
   <title>Python拡張</title>
-  <para>
-    &app;には歴史があり、財務データを扱うためにはウィンドウを開いて、操作し、保存し、閉じる必要があるという意味では伝統的なアプリケーションです。
-ウィンドウ、メニュー、およびツールバーで行えることには本質的に限界があります。
+
+  <para>&app;には歴史があり、財務データを扱うためにはウィンドウを開いて、操作し、保存し、閉じる必要があるという意味では伝統的なアプリケーションです。
+    ウィンドウ、メニュー、およびツールバーで行えることには本質的に限界があります。
   </para>
-  <para>
-    もう少し柔軟性が必要な場合があるかもしれません。
-例えば、組み込み帳票が提供する情報と少し異なっているだけの帳票が必要な場合、または頻繁に行う作業を自動化したい場合などです。
-そのようなカスタム操作は、スクリプト言語を書く理想的な候補です。
+
+  <para>もう少し柔軟性が必要な場合があるかもしれません。
+    例えば、組み込み帳票が提供する情報と少し異なっているだけの帳票が必要な場合、または頻繁に行う作業を自動化したい場合などです。
+    そのようなカスタム操作は、スクリプト言語を書く理想的な候補です。
   </para>
-  <para>
-    &app;バージョン2.4
-からは財務データを操作するために<application>Python</application>スクリプトを書くことができるようになりました。
+
+  <para>&app;バージョン2.4
+    からは財務データを操作するために<application>Python</application>スクリプトを書くことができるようになりました。
   </para>
+
   <note>
     <para><application>Python</application>拡張はソースコードでのオプション機能です。
-<application>Python</application>スクリプトを有効にするためには、<application>Python</application>拡張を有効にして&app;をコンパイルしなければいけません。そうでない場合は動作しません。
-現在のところこのオプションはデフォルトで無効です。必要な場合は&app;を自力でコンパイルしなければいけないかもしれません。
+      <application>Python</application>スクリプトを有効にするためには、<application>Python</application>拡張を有効にして&app;をコンパイルしなければいけません。そうでない場合は動作しません。
+      現在のところこのオプションはデフォルトで無効です。必要な場合は&app;を自力でコンパイルしなければいけないかもしれません。
     </para>
   </note>
+
   <para><application>Python</application>拡張を使用するためには二つの準備ができていなければいけません。
-本章ではどのように使用するかについて説明します。
+    本章ではどのように使用するかについて説明します。
   </para>
+
   <note>
     <para>本章ではどのように<application>Python</application>スクリプトを書くかに関しては説明しません。
-代わりに開発者向け文書を参照してください。
+      代わりに開発者向け文書を参照してください。
     </para>
   </note>
 
@@ -51,11 +51,10 @@ Author:
     <title>得意先請求書または仕入先請求書のインポート</title>
 
     <para>インポートを動作させるには、データが固定フィールド、コンマ区切りのデータでなければいけません。
-ダウンロードした注文を変換する<application>Python</application>スクリプト例を次に示します。
+      ダウンロードした注文を変換する<application>Python</application>スクリプト例を次に示します。
     </para>
 
-    <para>
-      <programlisting language="python" linenumbering="unnumbered">
+    <para><programlisting language="python" linenumbering="unnumbered">
 import sys
 import csv
 
@@ -80,7 +79,8 @@ for row in Reader:
     </para>
 
     <para><emphasis>Rapid Electronics</emphasis> (UK)
-からダウンロードした仕入先注文の例は次のようになります。<programlisting language="python" linenumbering="unnumbered">
+      からダウンロードした仕入先注文の例は次のようになります。
+<programlisting language="python" linenumbering="unnumbered">
 line number,product code,quantity,availability,product description,unit price,discounts,line total,delivery,sub total,vat,grand total
 1,47-3524,100,100 Available,BC848C SOT-23 NPN TRANSISTOR (INF) (RC),GBP0.03,GBP0.00,GBP0.03
 2,47-3278,30,30 Available,L78L05ACZ 0.1A +5V VOLTAGE REG (ST) (RC),GBP0.18,GBP0.00,GBP0.18
@@ -96,10 +96,10 @@ line number,product code,quantity,availability,product description,unit price,di
       </programlisting>
     </para>
 
-    <para><application>Python</application>スクリプトで処理した後の同じファイルは次のようになります。</para>
+    <para><application>Python</application>スクリプトで処理した後の同じファイルは次のようになります。
+    </para>
 
-    <para>
-        <programlisting language="python">
+    <para><programlisting language="python">
 MEC-0071,,000013,,,,34-0655 &gt; PROTOBLOC 2 BREADBOARD,ea,Expenses:Materials General,1,4.39,,,,no,,,,,,,,
 MEC-0071,,000013,,,,18-0105 &gt; PP3 / PP6 BATTERY CLIP 150MM (RC),ea,Expenses:Materials General,10,0.06,,,,no,,,,,,,,
 MEC-0071,,000013,,,,62-0370 &gt; 1k CR25 0.25W CF Resistor Pk 100,ea,Expenses:Materials General,1,0.50,,,,no,,,,,,,,
@@ -115,65 +115,74 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,,
         </programlisting>
     </para>
 
-    <para>
-      見て分かる通りいくつかのフィールドは空白で、いくつかのフィールドはインポートには必要ありません。
-最初の行は不要です。また、&app;が注文金額を合計するので最後の行も余計です。
-必要なのは、欲しい項目を選択して&app;にインポートできる正しい形式で出力ファイルを生成することです。
-この場合、パーツ番号と説明文列を連結して&app;得意先請求書/仕入先請求書の説明欄に入力します。
-また、数量と単価の列も必要です。
-反対に<acronym>VAT</acronym>(付加価値税)列は含まれず、常に0になっています。<acronym>VAT</acronym>は最後の行で注文の合計金額に対して計算しています。
-<note>
-        <para>これは後々問題の原因となります。</para>
+    <para>見て分かる通りいくつかのフィールドは空白で、いくつかのフィールドはインポートには必要ありません。
+      最初の行は不要です。また、&app;が注文金額を合計するので最後の行も余計です。
+      必要なのは、欲しい項目を選択して&app;にインポートできる正しい形式で出力ファイルを生成することです。
+      この場合、パーツ番号と説明文列を連結して&app;得意先請求書/仕入先請求書の説明欄に入力します。
+      また、数量と単価の列も必要です。
+      反対に<acronym>VAT</acronym>(付加価値税)列は含まれず、常に0になっています。<acronym>VAT</acronym>は最後の行で注文の合計金額に対して計算しています。
+      <note>
+        <para>これは後々問題の原因となります。
+        </para>
       </note>
-この例では、資金移動勘定科目として<emphasis>費用:一般部材</emphasis>勘定科目を割り当てています。
-勘定科目や他のデータはインポート後に通常の方法で変更することができます。
-<emphasis>費用:一般部材</emphasis>勘定科目が無い場合は、フィールドを空にしておき、インポート時に手動で設定します。
-<quote>#</quote>で始まる行はコメントとして無視されます。
+      この例では、資金移動勘定科目として<emphasis>費用:一般部材</emphasis>勘定科目を割り当てています。
+      勘定科目や他のデータはインポート後に通常の方法で変更することができます。
+      <emphasis>費用:一般部材</emphasis>勘定科目が無い場合は、フィールドを空にしておき、インポート時に手動で設定します。
+      <quote>#</quote>で始まる行はコメントとして無視されます。
     </para>
 
-    <para>スクリプトは次のコマンドで呼び出します。</para>
-      <para> <command>python importer.py <replaceable>file_to_import</replaceable>,
-<replaceable>invoice_id</replaceable> &gt;
-<replaceable>file_to_save_as.csv</replaceable></command>
-      </para>
+    <para>スクリプトは次のコマンドで呼び出します。
+    </para>
+
+    <para><command>python importer.py <replaceable>file_to_import</replaceable>,
+      <replaceable>invoice_id</replaceable> &gt;
+      <replaceable>file_to_save_as.csv</replaceable></command>
+    </para>
+
     <para>この短いスクリプトはダウンロード形式に合わせて容易に変更できます。
-今のところ残っている唯一の制限はフィールド数が固定ということです。
-インポートツールはフィールド数に誤りがある行を無視します。
-(将来のバージョンでは修正されます)
-VENDOR_IDは仕入先を特定するために割り当てるIDです。
-raw[N] 項は行内のデータがあるフィールド位置を表します。
-最初のフィールドがraw[1]ではなくraw[0]であることに注意が必要です。
+      今のところ残っている唯一の制限はフィールド数が固定ということです。
+      インポートツールはフィールド数に誤りがある行を無視します。
+      (将来のバージョンでは修正されます)
+      VENDOR_IDは仕入先を特定するために割り当てるIDです。 raw[N]
+      項は行内のデータがあるフィールド位置を表します。
+      最初のフィールドがraw[1]ではなくraw[0]であることに注意が必要です。
     </para>
 
-    <para>ファイルの変換が完了したら、<menuchoice><guimenu>ビジネス</guimenu>
-<guimenuitem>得意先請求書&amp;仕入先請求書のインポート</guimenuitem></menuchoice>を選択し、新規インポートウィンドウを開きます。
-作成したファイルを選択し、<guilabel>仕入先請求書</guilabel>または<guilabel>得意先請求書</guilabel>を選択します。そして<guilabel>コンマ(,)区切り</guilabel>形式を選択します。
-この時点でデータを確認するウィンドウが表示されます。
-<guibutton>OK</guibutton>を選択する前に、正しい列にフィールドデータがあることを確認します。
-いったんインポートしたら、請求書は通常通編集し、記帳することができます。
+    <para>ファイルの変換が完了したら、
+      <menuchoice>
+        <guimenu>ビジネス</guimenu>
+        <guimenuitem>得意先請求書&amp;仕入先請求書のインポート</guimenuitem>
+      </menuchoice>
+      を選択し、新規インポートウィンドウを開きます。
+      作成したファイルを選択し、<guilabel>仕入先請求書</guilabel>または<guilabel>得意先請求書</guilabel>を選択します。そして<guilabel>コンマ(,)区切り</guilabel>形式を選択します。
+      この時点でデータを確認するウィンドウが表示されます。
+      <guibutton>OK</guibutton>を選択する前に、正しい列にフィールドデータがあることを確認します。
+      いったんインポートしたら、請求書は通常通編集し、記帳することができます。
     </para>
 
-    <para><acronym>VAT</acronym>(付加価値税)、その他の購入時にかかる税金 (日本の場合は消費税) に関して注意が必要です。
-前に説明した<emphasis>Rapid
-Electronics</emphasis>は仕入先請求書総額に対して<acronym>VAT</acronym>を計算しています。
-一方、&app;では、行の合計ごとに<acronym>VAT</acronym>を計算し、<acronym>VAT</acronym>の金額を合計しています。
-これにより、<acronym>VAT</acronym>の金額に数セントの不整合が生じ、購入に使用した銀行またはクレジットカード勘定科目を照合する時に問題が発生する場合があります。
-差し当たり、それをどう克服するかについては、個人の良心と会計方法に依存します。
-<acronym>VAT</acronym>を別の行に、配送料と併せて手動で入力する人もいます。
-利用者にとっていくつかの作業が残りますが、すべての行を入力するつまらない作業は省くことができます。
+    <para><acronym>VAT</acronym>(付加価値税)、その他の購入時にかかる税金
+      (日本の場合は消費税) に関して注意が必要です。
+      前に説明した<emphasis>Rapid
+      Electronics</emphasis>は仕入先請求書総額に対して<acronym>VAT</acronym>を計算しています。
+      一方、&app;では、行の合計ごとに<acronym>VAT</acronym>を計算し、<acronym>VAT</acronym>の金額を合計しています。
+      これにより、<acronym>VAT</acronym>の金額に数セントの不整合が生じ、購入に使用した銀行またはクレジットカード勘定科目を照合する時に問題が発生する場合があります。
+      差し当たり、それをどう克服するかについては、個人の良心と会計方法に依存します。
+      <acronym>VAT</acronym>を別の行に、配送料と併せて手動で入力する人もいます。
+      利用者にとっていくつかの作業が残りますが、すべての行を入力するつまらない作業は省くことができます。
     </para>
 
     <para>今後の課題:
-現在、インポート形式は非常に制限されており、多くの利用者にとって変換方法に課題があります。
-すべての業者の<acronym>CSV</acronym>形式に関するテンプレートを加えることは大きすぎて不可能な作業です。また、業者は&app;チームに連絡しないで形式を変更します。
-今後のインポート機能拡張は利用者からのフィードバックに基づきます。うまくいけば、処理をより簡単であるか、または、より柔軟にすることができます。
-しばしば、<quote>簡単</quote>と<quote>柔軟</quote>は両立しないことに注意します。
+      現在、インポート形式は非常に制限されており、多くの利用者にとって変換方法に課題があります。
+      すべての業者の<acronym>CSV</acronym>形式に関するテンプレートを加えることは大きすぎて不可能な作業です。また、業者は&app;チームに連絡しないで形式を変更します。
+      今後のインポート機能拡張は利用者からのフィードバックに基づきます。うまくいけば、処理をより簡単であるか、または、より柔軟にすることができます。
+      しばしば、<quote>簡単</quote>と<quote>柔軟</quote>は両立しないことに注意します。
     </para>
 
     <note>
-    <para><application>Python</application> (または他の利用可能な言語) が分からない場合、<ulink
+      <para><application>Python</application> (または他の利用可能な言語)
+        が分からない場合、<ulink
 url="&url-mail-li;gnucash-user"><citetitle>&appname;利用者メーリングリスト</citetitle></ulink>にダウンロードした<acronym>CSV</acronym>の例と併せて要望を投稿してください。誰かが変換用の<application>Python</application>スクリプトを書いてくれるかもしれません。
-    </para>
+      </para>
     </note>
 
     <sect2 id="python-author-notes">
@@ -182,14 +191,17 @@ url="&url-mail-li;gnucash-user"><citetitle>&appname;利用者メーリングリ�
       <para>インポートを成功させるには、フィールド数を守らなければいけません。よって行末にあるコンマの数も重要です。
       </para>
 
-      <para>必須フィールドの全リストは次の通りです。</para>
-
-      <para>id, date_opened, owner_id, billingid, notes, date, desc, action, account,
-quantity, price, disc_type, disc_how, discount, taxable, taxincluded,
-tax_table, date_posted, due_date, account_posted, memo_posted, accu_splits,
+      <para>必須フィールドの全リストは次の通りです。
       </para>
+
+      <para>id, date_opened, owner_id, billingid, notes, date, desc, action, account, quantity, price,
+        disc_type, disc_how, discount, taxable, taxincluded, tax_table, date_posted, due_date,
+        account_posted, memo_posted, accu_splits,
+      </para>
+
       <note>
-        <para>行末のコンマに注意してください。</para>
+        <para>行末のコンマに注意してください。
+        </para>
       </note>
     </sect2>
 
@@ -199,105 +211,126 @@ tax_table, date_posted, due_date, account_posted, memo_posted, accu_splits,
       <itemizedlist>
         <listitem>
           <para><emphasis>id</emphasis> - 得意先/仕入先請求書番号です。
-すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
+            すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>date_opened</emphasis> - 空欄の場合、今日の日付が使用されます。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>owner_id</emphasis> - 得意先または仕入先のID番号です。
-すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
+            すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>billingid</emphasis> - 請求IDです。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>notes</emphasis> - 請求書の備考です。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>date</emphasis> - 項目行の日付です。
-空欄の場合、今日の日付が使用されます。
+            空欄の場合、今日の日付が使用されます。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>desc</emphasis> - 通常の得意先/仕入先請求書の説明です。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>action</emphasis> - 仕入先請求書では、通常<quote>ea</quote>にします。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>account</emphasis> - 商品の資金移動勘定科目です。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>quantity</emphasis> - 商品の数量です。
-すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
+            すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>price</emphasis> - 商品の単価です。
-すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
+            すべての行がこれを含まなければいけません。さもなければ、行は拒絶されます。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>disc_type</emphasis> -
-値引のタイプです。<quote>%</quote>または<quote>TODO</quote>で指定します。得意先請求書にのみ当てはまります。
-実験では、通貨によってはこのフィールドが必要になります。
+            値引のタイプです。<quote>%</quote>または<quote>TODO</quote>で指定します。得意先請求書にのみ当てはまります。
+            実験では、通貨によってはこのフィールドが必要になります。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>disc_how</emphasis> - 得意先請求書にのみ適用されます。
           </para>
         </listitem>
+
         <listitem>
-          <para><emphasis>discount</emphasis> - 適用する割引の量です。得意先請求書にのみ適用されます。
+          <para><emphasis>discount</emphasis> -
+            適用する割引の量です。得意先請求書にのみ適用されます。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>taxable</emphasis> -
-商品に税金を適用するかどうかを指定します。<quote>y</quote>または空欄にします。
+            商品に税金を適用するかどうかを指定します。<quote>y</quote>または空欄にします。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>taxincluded</emphasis> -
-商品価格に税金が含まれているかどうかを指定します。<quote>y</quote>または空欄にします。
+            商品価格に税金が含まれているかどうかを指定します。<quote>y</quote>または空欄にします。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>tax_table</emphasis> - 商品に適用する税額表を指定します。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>date_posted</emphasis> - 記帳する場合、記帳日を指定します。
-通常は空欄のままにし、請求書を編集した後に手動で記帳します。
+            通常は空欄のままにし、請求書を編集した後に手動で記帳します。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>due_date</emphasis> - 支払期日を指定します。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>account_posted</emphasis> - 記帳先勘定科目を指定します。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>memo_posted</emphasis> - 記帳する場合には、説明を指定します。
           </para>
         </listitem>
+
         <listitem>
           <para><emphasis>accu_splits</emphasis> -
-スプリットを累計するかどうかを指定します。<quote>y</quote>または空欄にします。
+            スプリットを累計するかどうかを指定します。<quote>y</quote>または空欄にします。
           </para>
         </listitem>
       </itemizedlist>
     </sect2>
-
   </sect1>
 </chapter>
