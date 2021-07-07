@@ -233,7 +233,7 @@
     <sect2 id="loans_calcsexample1_2">
       <title>Example: Monthly Payments</title>
 
-      <para>What is your monthly payment on a $100000 30 year loan at a fixed rate of 4% compounded monthly?
+      <para>What is your monthly payment on a $100,000 30 year loan at a fixed rate of 4% compounded monthly?
       </para>
 
       <para>This scenario is shown in the example image above. To perform this calculation, set Payment Periods
@@ -251,7 +251,7 @@
     <sect2 id="loans_calcsexample2_2">
       <title>Example: Length of Loan</title>
 
-      <para>How long will you be paying back a $20000 loan at 10% fixed rate interest compounded monthly if you
+      <para>How long will you be paying back a $20,000 loan at 10% fixed rate interest compounded monthly if you
         pay $500 per month?
       </para>
 
@@ -336,7 +336,7 @@ Continuous Interest: <emphasis>i = ln[(1+ieff)^PF]</emphasis></screen>
          X = 1 for beginning of period payments</screen>
         <para>From this equation, functions which solve for the individual variables can be derived. For a
           detailed explanation of the derivation of this equation, see the comments in the file
-          src/calculation/fin.c from the &app; source code. The A, B, and C variables are defined
+          <filename>src/calculation/fin.c</filename> from the &app; source code. The A, B, and C variables are defined
           first, to make the later equations simpler to read.
         </para>
 <screen>
@@ -355,7 +355,7 @@ The simple case for when  PMT == 0 gives the solution:
 </screen>
         <para>The case where PMT != 0 is fairly complex and will not be presented here. Rather than involving an
           exactly solvable function, determining the interest rate when PMT !=0 involves an
-          iterative process. Please see the src/calculation/fin.c source file for a detailed
+          iterative process. Please see the <filename>src/calculation/fin.c</filename> source file for a detailed
           explanation.
         </para>
       </sect3>
@@ -399,10 +399,10 @@ The simple case for when  PMT == 0 gives the solution:
       <xref linkend="loans_accounts1" />.
     </para>
 
-    <para>As an example, assume you have $60k in you bank account, and you buy a $150k house. The mortgage is
+    <para>As an example, assume you have $60,000 in you bank account, and you buy a $150,000 house. The mortgage is
       charging 6% APR, and has administrative fees (closing costs, etc) of 3%. You decide to put
-      $50k down, and thus will need to borrow $103k, which will give you $100 after the closing
-      costs are paid (3% of $100k).
+      $50,000 down, and thus will need to borrow $103,000, which will give you $100 after the closing
+      costs are paid (3% of $100,000).
     </para>
 
     <para>Your accounts before borrowing the money:
@@ -427,8 +427,8 @@ The simple case for when  PMT == 0 gives the solution:
     </screenshot>
 
     <para>The purchase of the house is recorded with a split transaction in the
-      <emphasis>Assets:House</emphasis> account, with $50k coming from the bank (IE: your down
-      payment), and $100k coming from the Mortgage. You can place the $3k closing costs in the same
+      <emphasis>Assets:Fixed Assets:House</emphasis> account, with $50,000 coming from the bank (IE: your down
+      payment), and $100,000 coming from the Mortgage. You can place the $3,000 closing costs in the same
       split, and we increase the house loan to $103k to include the closing costs as well.
     </para>
 
@@ -566,7 +566,7 @@ The simple case for when  PMT == 0 gives the solution:
    -Interest Income
         -Person</screen>
     <para>This example will show how to track a personal loan of 2,000 USD (default currency) to your friend
-      Peter
+      Peter.
     </para>
 
     <sect2 id="loans_personalLoanToSomeOne_loan">
@@ -604,7 +604,7 @@ The simple case for when  PMT == 0 gives the solution:
       <para>So how do you calculate the Monthly Payment?
       </para>
 
-      <para>You have a number of different options, like paper and pen, &lin; Calculator, Open Office&rsquo;s
+      <para>You have a number of different options, like paper and pen, &lin; Calculator, <application>OpenOffice.org</application>
         Calc module, but the easiest is to use &app; <link linkend="loans_calcs1"><guilabel>Loan
         Repayment Calculator</guilabel></link>. This tells you that the Monthly Payment should be
         $115.56.
@@ -627,9 +627,8 @@ The simple case for when  PMT == 0 gives the solution:
             <phrase>Calculation of Private Loan details</phrase>
           </textobject>
 
-          <caption>
-            <para>Detailed view over the private loan to Peter
-            </para>
+          <caption id="loans_OpenOfficePrivateLoanDetails.caption">
+            Detailed view over the private loan to Peter
           </caption>
         </mediaobject>
       </screenshot>
@@ -639,7 +638,7 @@ The simple case for when  PMT == 0 gives the solution:
       <title>Accounts for the loan</title>
 
       <para>Let&rsquo;s start with the following accounts (all accounts have the same currency, in this case
-        USD)
+        USD.)
       </para>
 <screen>
 Assets:Bank:USD
@@ -654,11 +653,11 @@ Equity:Opening Balances:USD</screen>
       <para>When you have lent money to your friend, you have in fact moved money from an Asset account (like
         Bank, Checking or similar) to your Asset account <emphasis>Money owed to you</emphasis>. To
         record this you enter the following transaction into the <emphasis>Assets:Money owed to
-        you:Friend</emphasis> account.
+        you:Peter</emphasis> account.
       </para>
 
       <para><table>
-          <title>Personal loan to a Friend</title>
+          <title>Personal loan to Peter</title>
 
           <tgroup cols="3">
             <tbody>
@@ -678,7 +677,7 @@ Equity:Opening Balances:USD</screen>
 
               <row>
                 <entry>
-                  Assets:Money owed to you:Friend
+                  Assets:Money owed to you:Peter
                 </entry>
 
                 <entry>
@@ -816,10 +815,10 @@ Equity:Opening Balances:USD</screen>
         </listitem>
       </itemizedlist>
 
-      <para>This can be translated to the following &app; entry
+      <para>This can be translated to the following &app; entry.
       </para>
 
-      <screenshot id="loans_PrivateLoanSecondPayment">
+      <screenshot id="loans_PrivateLoanSecondPayment" xreflabel="Detailed view over the second payment">
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/loans_PrivateLoanSecondPayment.png"
@@ -840,7 +839,7 @@ Equity:Opening Balances:USD</screen>
       <para>The balance on Peter&rsquo;s loan is now $1,892.77 - $107.67 = $1,785.10
       </para>
 
-      <para>The Chart of accounts looks now like this
+      <para>The Chart of accounts looks now like this:
       </para>
 
       <screenshot id="loans_PrivateLoanSecondPaymentAccounts">
@@ -855,8 +854,7 @@ Equity:Opening Balances:USD</screen>
           </textobject>
 
           <caption>
-            <para>Chart of Accounts after second payment
-            </para>
+            Chart of Accounts after second payment
           </caption>
         </mediaobject>
       </screenshot>
@@ -867,7 +865,7 @@ Equity:Opening Balances:USD</screen>
 
       <para>The interest amount will be less and less for every payment (since it is calculated on a smaller
         loan amount all the time), until the last payment where it is more or less 0. Please review
-        the Figure of Detailed view over private loan to Peter for more details
+        <link linkend="loans_OpenOfficePrivateLoanDetails" endterm="loans_OpenOfficePrivateLoanDetails.caption" /> for more details
       </para>
     </sect2>
   </sect1>
