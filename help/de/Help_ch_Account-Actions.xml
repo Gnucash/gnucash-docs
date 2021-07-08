@@ -604,6 +604,7 @@
             <imagedata fileref="figures/Help_AccountTreeCreate.png" format="PNG"
                    srccredit="Christian Wehling" width="510px" />
           </imageobject>
+
           <imageobject role="fo">
             <imagedata fileref="figures/Help_AccountTreeCreate.png" format="PNG"
                    srccredit="Christian Wehling" />
@@ -2157,7 +2158,7 @@ and update the appendix. -->
       verschiedene &app; Funktionen, die die Eingabe und Aktualisierung von Kontoinformationen
       während des Abgleichs erleichtern.
     </para>
-<!-- FIXME source: new description -->
+<!-- FIXME source: (Bug 797950) new description -->
     <note>
       <para>Wenn Sie ein Konto vom Typ <guilabel>Kreditkarte</guilabel> anhand einer Kreditkartenabrechnung
         abgleichen, haben Sie die Möglichkeit, mit Hilfe des sich automatisch öffnenden
@@ -2467,6 +2468,524 @@ and update the appendix. -->
         </menuchoice>
         um den Abgleich zu beenden.
       </para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="acct-import">
+    <title>Importieren von Konten</title>
+
+    <para>Dieser Assistent wird Sie dabei unterstützen, Konten aus einer CSV-Datei zu importieren. Die Datei
+      muss im dem gleichen Format vorliegen wie das, welches von GnuCash beim CSV Export erstellt
+      wird, da es sich um ein festes Format handelt. Falls ein Konto mit der
+      <guilabel>vollständigen Kontobezeichnung</guilabel> bisher nicht existiert, wird es erstellt,
+      sofern die Währung oder das Wertpapier, in dem es notiert wird, bereits im Programm oder
+      Ihrer &app;-Datei definiert ist.
+      <itemizedlist spacing="compact">
+        <para>Falls das Konto bereits existiert, werden diese vier Felder aktualisiert:
+        </para>
+
+        <listitem>
+          <para>Kontonummer
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Beschreibung
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Bemerkungen
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Farbe
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+    <figure pgwide="1">
+      <title>Assistent für den Import von Konten im CSV-Format</title><screenshot id="import-accounts-wizard">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/Help_Import_Acct_CSV.png" format="PNG" srccredit="Christian Wehling" width="510px" />
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/Help_Import_Acct_CSV.png" format="PNG" srccredit="Christian Wehling" />
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>In jedem Fenster kommen diese Navigationsschaltflächen zur Anwendung:
+    </para>
+
+    <variablelist spacing="compact">
+      <title>Dialogführung</title>
+
+      <varlistentry>
+        <term><guilabel>Abbrechen</guilabel></term>
+
+        <listitem>
+          <para>Beendet den Assistenten, ohne die Kontenhierarchie zu importieren.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guilabel>Zurück</guilabel></term>
+
+        <listitem>
+          <para>Geht zum vorherigen Schritt.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guilabel>Weiter</guilabel></term>
+
+        <listitem>
+          <para>Geht zum nächsten Schritt.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <note>
+      <para>Die vorgenannten Schaltflächen werden erst dann aktiv, wenn die Navigation zum Zielschritt vom
+        aktuellen Schritt aus gültig ist. D.h. solange noch nicht alle notwendigen Angaben gemacht
+        sind, ist <guilabel>Weiter</guilabel> deaktiviert.
+      </para>
+    </note>
+
+    <procedure>
+      <title>Schritte des Importprozesses</title>
+
+      <para>Im linken Fensterbereich ist der Fortschritt des Importvorgangs aufgelistet. Erläuternder Text und
+        die Bedienelemente zum Durchführen des jeweiligen Schritts werden im rechten Fensterbereich
+        angezeigt. Die Funktion der Steuerelemente für jeden Schritt werden nachstehend
+        beschrieben, und sind in den erläuternden Informationen in den Fenstern erklärt. Die
+        Arbeitsschritte in dem CSV Importprozess sind folgende:
+      </para>
+
+      <step>
+        <title><guilabel>Konten-Import-Assistent</guilabel></title>
+
+        <para>Übersichtsseite mit einer kurzen Erklärung hinsichtlich der Anforderungen an die zu importierende
+          CSV-Datei.
+        </para>
+      </step>
+
+      <step>
+        <title><guilabel>Wählen Sie die zu importierende Datei</guilabel></title>
+
+        <para>Navigieren Sie zu der Datei die Sie importieren möchten und wählen Sie diese aus.
+        </para>
+      </step>
+
+      <step>
+        <title><guilabel>Kontenimport-Vorschau der ersten 10 Zeilen</guilabel></title>
+
+        <para>Das Fenster <guilabel>Kontenimport-Vorschau</guilabel> steuert die Einstelloptionen für den Import
+          von CSV-Dateien und bietet eine Vorschau der zu importierenden Konten.
+        </para>
+
+        <figure pgwide="1">
+          <title>Der CSV Import Vorschau Bereich</title><screenshot id="Import_Acct_CSV_Preview">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata  fileref="figures/Help_Import_Acct_CSV_Preview.png" format="PNG" srccredit="Christian Wehling" width="515px" />
+              </imageobject>
+
+              <imageobject role="fo">
+                <imagedata  fileref="figures/Help_Import_Acct_CSV_Preview.png" format="PNG" srccredit="Christian Wehling" />
+              </imageobject>
+
+              <caption>
+                <para>Das Vorschaufenster für den CSV-Import mit Einstellungen zum Importieren der angezeigten Konten.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <substeps>
+          <step>
+            <title><guilabel>Anzahl der Kopfzeilen</guilabel></title>
+
+            <para>Dieses Feld definiert die Anzahl der Überschriftzeilen in der Datei, also ab welcher Zeile die zu
+              importierenden Konteninformationen beginnen. In der Vorschau werden, entsprechend
+              Ihrer Eingabe, die Zeilen farbig hinterlegt, die Sie als Überschrift gekennzeichnet
+              haben und somit nicht importiert werden.
+            </para>
+          </step>
+
+          <step>
+            <title><guilabel>Wählen Sie das Trennzeichen</guilabel></title>
+
+            <para>Mit diesen Optionsfeldern können Sie auswählen, mit welchem Spaltentrenner Ihre Daten separiert
+              sind:
+            </para>
+
+            <substeps>
+              <step>
+                <title><guilabel>Komma (,)</guilabel></title>
+
+                <para>Dies ist das Standard-Trennzeichen und sollte im deutschen Sprachraum nicht als Spaltentrennzeichen
+                  verwendet werden.
+                </para>
+              </step>
+
+              <step>
+                <title><guilabel>Semikolon (;)</guilabel></title>
+
+                <para>Verwenden Sie ein Semikolon, um die Spalten zu trennen.
+                </para>
+              </step>
+
+              <step>
+                <title><guilabel>Doppelpunkt (:)</guilabel></title>
+
+                <para>Verwenden Sie einen Doppelpunkt, als Spaltentrennzeichen.
+                </para>
+              </step>
+
+              <step>
+                <title><guilabel>Benutzerdefinierter regulärer Ausdruck</guilabel></title>
+
+                <para>Mit Auswahl dieser Option öffnet sich ein kleines Eingabefenster in dem Sie einen <quote>regulären
+                  Ausdruck</quote>, auch als <quote>RegEx</quote> bekannt, eingeben können.
+                </para>
+              </step>
+            </substeps>
+          </step>
+
+          <step>
+            <title><guilabel>Vorschau</guilabel></title>
+
+            <para>In dem großen mittleren Bereich wird eine Vorschau auf die ersten 10 Zeilen der zuvor ausgewählten
+              Importdatei angezeigt. Hier können Sie gut überprüfen, ob Sie die richtige Datei
+              ausgewählt haben und Sie das richtige Spaltentrennzeichen gewählt haben.
+            </para>
+
+            <tip>
+              <para>Wenn in der <guilabel>Vorschau</guilabel> keine Daten angezeigt werden oder die Darstellung nicht
+                Ihren Vorstellungen entspricht, dann probieren Sie einfach andere
+                <guilabel>Trennzeichen</guilabel> aus.
+              </para>
+            </tip>
+          </step>
+
+          <step>
+            <title>Die Spaltenüberschriften in der CSV-Datei müssen für einen erfolgreichen Import der
+              Kontenhierarchie die folgenden sein:</title>
+
+            <orderedlist spacing="compact">
+              <listitem>
+                <para><guilabel>Kontoart</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Volle Kontobezeichnung</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Kontobezeichnung</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Kontonummer</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Beschreibung</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Kontofarbe</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Bemerkungen</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Symbol</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Namensraum</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Versteckt</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Steuerrelevante Information</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Platzhalter</guilabel>
+                </para>
+              </listitem>
+            </orderedlist>
+          </step>
+        </substeps>
+      </step>
+
+      <step>
+        <title><guilabel>Konten jetzt importieren</guilabel></title>
+
+        <para>Der Dateiname und Pfad der zu importierenden Datei wird angezeigt. Um die Kontenstruktur jetzt
+          endgültig zu importieren betätigen Sie die <guibutton>Anwenden</guibutton>
+          Schaltfläche.
+        </para>
+      </step>
+
+      <step>
+        <title><guilabel>Importübersicht</guilabel></title>
+
+        <para>Zeigt eine Meldung an, wenn die Konten erfolgreich importiert wurde, oder eine Fehlermeldung mit
+          Hinweisen was nicht geklappt hat.
+        </para>
+      </step>
+    </procedure>
+  </sect1>
+
+  <sect1 id="acct-export">
+    <title>Exportieren von Konten</title>
+
+    <itemizedlist spacing="compact">
+      <para>Wenn Sie den Bedarf haben, Ihre &app;-Konten zu exportieren, so haben Sie hierzu die Auswahl
+        zwischen zwei unterschiedlichen Exportformaten:
+      </para>
+
+      <listitem>
+        <para>XML- Format oder auch Datenbankformate. Welche Datenbank-Schnittstelle zur Verfügung steht, hängt
+          von den bei Ihnen installierten Systemen ab. &app; unterstützt z.B. SQLite3, mysql oder
+          postgres.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>CSV- Format für Textdateien
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>&app; wird bei beiden Verfahren jeweils die vollständige Kontenstruktur ohne Buchungsdaten und
+      Kontenstände in eine Datei schreiben.
+    </para>
+<!-- FIXME: What are the two different exports useful for? -->
+    <sect2 id="acct-export-xml">
+      <title>Konten exportieren</title>
+
+      <para>Wenn Sie Ihre Kontenhierarchie direkt in eine neue &app;-Datei exportieren wollen, so steht Ihnen
+        diese Möglichkeit zur Verfügung.
+      </para>
+
+      <para>Mit dem Menüpunkt
+        <menuchoice>
+          <guimenu><accel>D</accel>atei</guimenu><guisubmenu>E<accel>x</accel>portieren</guisubmenu><guimenuitem><accel>K</accel>onten
+          exportieren</guimenuitem>
+        </menuchoice>
+        können Sie Ihre vollständige &app;-Kontenhierarchie in eine <acronym>XML</acronym>- oder
+        <acronym>SQLite3</acronym>- Datei exportieren. Es werden weder Buchungsdaten noch Beträge
+        ausgegeben. Mit dieser Funktion haben Sie die Möglichkeit z.B. am Ende eines Jahres einen
+        Buchabschluss vorzunehmen und mit einer leeren &app;-Datei in das neue Jahr zu starten. Die
+        exportierte Datei kann über
+        <menuchoice>
+          <guimenu><accel>D</accel>atei</guimenu><guimenuitem>Ö<accel>f</accel>fnen</guimenuitem>
+        </menuchoice>
+        einfach geöffnet werden. Sie müssen dann noch für alle Konten manuell die
+        Anfangsbestände eintragen.
+      </para>
+
+      <para>Der sich öffnende Dialog ist selbsterklärend. Sie haben im oberen Bereich ein Auswahlfeld für das
+        Ausgabeformat der Exportdatei im <guilabel>XML</guilabel> oder
+        <guilabel>SQLite3</guilabel>-Format. Darunter wird ein Dateiauswahldialog, zur Angabe eines
+        Dateinamens und eines Pfades zu dem Verzeichnis/Ordner, in dem die Datei gespeichert werden
+        soll, angezeigt. Mit betätigen der Schaltfläche <guilabel>Speichern unter…</guilabel>
+        wird die Datei geschrieben. Sie haben hierbei keinen weiteren Einfluss auf das Ergebnis der
+        Exportdatei.
+      </para>
+    </sect2>
+
+    <sect2 id="acct-export-csv">
+      <title>Kontenhierarchie als CSV exportieren</title>
+
+      <para>&app; ermöglicht den Export Ihrer Kontenhierarchie im <acronym>CSV</acronym>-Format, wobei Sie das
+        Spaltentrennzeichen an Ihre Bedürfnisse anpassen können.
+      </para>
+
+      <para>Hierzu wählen Sie im Menü
+        <menuchoice>
+          <guimenu><accel>D</accel>atei</guimenu><guisubmenu>E<accel>x</accel>portieren</guisubmenu><guimenuitem>Konten<accel>h</accel>ierarchie
+          nach CSV exportieren…</guimenuitem>
+        </menuchoice>
+        und es öffnet sich ein Dialog für die <guilabel>Export-Einstellungen</guilabel>.
+      </para>
+
+      <figure pgwide="1">
+        <title>Assistent für den Export der Kontenhierarchie im CSV-Format</title><screenshot id="export-accounts-wizard">
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/Help_Export_Acct_CSV.png" format="PNG" srccredit="Christian Wehling" width="850px" />
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="figures/Help_Export_Acct_CSV.png" format="PNG" srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>In jedem Fenster kommen diese Navigationsschaltflächen zur Anwendung:
+      </para>
+
+      <variablelist spacing="compact">
+        <title>Dialogführung</title>
+
+        <varlistentry>
+          <term><guilabel>Abbrechen</guilabel></term>
+
+          <listitem>
+            <para>Beendet den Assistenten, ohne die Kontenhierarchie zu exportieren.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Zurück</guilabel></term>
+
+          <listitem>
+            <para>Geht zum vorherigen Schritt.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Weiter</guilabel></term>
+
+          <listitem>
+            <para>Geht zum nächsten Schritt.
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <note>
+        <para>Die vorgenannten Schaltflächen werden erst dann aktiv, wenn die Navigation zum Zielschritt vom
+          aktuellen Schritt aus gültig ist.
+        </para>
+      </note>
+
+      <procedure>
+        <title>Schritte des Exportdialogs</title>
+
+        <step>
+          <title><guilabel>Export-Einstellungen</guilabel></title>
+
+          <para>In diesem Schritt können Sie verschiedene Vorgaben für die Formatierung der zu exportierenden
+            Konten machen.
+          </para>
+
+          <substeps>
+            <step>
+              <title><guilabel>Optionen</guilabel></title>
+
+              <para>Dieses Kontrollkästchen kann zusätzlich zu dem <guilabel>Trennzeichen</guilabel> verwendet werden:
+              </para>
+
+              <substeps>
+                <step>
+                  <title><guilabel>Anführungszeichen verwenden</guilabel></title>
+
+                  <para>Umgibt jedes Datenfeld mit Anführungszeichen.
+                  </para>
+                </step>
+              </substeps>
+            </step>
+
+            <step>
+              <title><guilabel>Trennzeichen</guilabel></title>
+
+              <para>Diese Optionsfelder erlauben die Auswahl eines alternativen Spaltentrenners:
+              </para>
+
+              <substeps>
+                <step>
+                  <title><guilabel>Komma (,)</guilabel></title>
+
+                  <para>Dies ist das Standard-Trennzeichen.
+                  </para>
+                </step>
+
+                <step>
+                  <title><guilabel>Doppelpunkt (:)</guilabel></title>
+
+                  <para>Verwenden Sie einen Doppelpunkt, als Spaltentrennzeichen.
+                  </para>
+                </step>
+
+                <step>
+                  <title><guilabel>Semikolon (;)</guilabel></title>
+
+                  <para>Verwenden Sie ein Semikolon, um die Spalten zu trennen.
+                  </para>
+                </step>
+
+                <step>
+                  <title><guilabel>Benutzerdefiniert</guilabel></title>
+
+                  <para>Verwenden Sie beliebige Zeichen zur Trennung der Spalten, indem Sie diese in das Textfeld eingeben.
+                  </para>
+                </step>
+              </substeps>
+            </step>
+          </substeps>
+        </step>
+
+        <step>
+          <title><guilabel>Wählen Sie einen Dateinamen für den Export</guilabel></title>
+
+          <para>Es wird ein Dateiauswahldialog, zur Angabe eines Dateinamens und eines Pfades zu dem
+            Verzeichnis/Ordner, in dem die Datei gespeichert werden soll, angezeigt.
+          </para>
+        </step>
+
+        <step>
+          <title><guilabel>Datei jetzt exportieren…</guilabel></title>
+
+          <para>Der Dateiname und Pfad der zu exportierenden Datei und die Anzahl der zu exportierenden Konten wird
+            angezeigt. Um den Export fortzusetzen betätigen Sie die <guibutton>Anwenden</guibutton>
+            Schaltfläche.
+          </para>
+        </step>
+
+        <step>
+          <title><guilabel>Exportzusammenfassung</guilabel></title>
+
+          <para>Zeigt eine Meldung an, wenn die Datei erfolgreich exportiert wurde, oder eine Fehlermeldung mit
+            Hinweisen warum er gescheitert ist.
+          </para>
+        </step>
+      </procedure>
     </sect2>
   </sect1>
 </chapter>
