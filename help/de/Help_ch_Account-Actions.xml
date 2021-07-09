@@ -1222,8 +1222,8 @@
         </note>
       </para>
 
-      <sect3 id="Online-price-setup">
-        <title>Vorgehensweise zur Aktivierung der Online-Preisaktualisierung</title>
+      <sect3 id="accts-Online-price">
+        <title>Benutzen der Online-Kursaktualisierung</title>
 
         <orderedlist spacing="compact">
           <listitem>
@@ -1231,137 +1231,12 @@
               Perl-Modul namens &app-fq; und muss unabhängig von &app; auf Ihrem Computer
               installiert werden.
             </para>
-<!-- FIXME source: replace the link to the new place, show below -->
+
             <tip>
-              <para>Die Installation wird in den
-                <ulink url="&url-docs-build-de;guide/invest-stockprice1.html#invest-stockprice-auto2">&app;
-                Tutorial und Konzepte</ulink> beschrieben.
+              <para>Die Installation wird unter <xref linkend="Online-price-setup"/> beschrieben.
               </para>
             </tip>
-<!-- FIXME source: Find a proper place, e.g. "Customizing GnuCash". The installation of F::Q is also described in the guide. -->
-<!-- 
-            <para>&app; bedient sich eines externen Tools zum Abrufen von Online-Kursen. Dieses Tool ist ein
-              Perl-Modul namens &app-fq; und muss unabhängig von &app; auf Ihrem Computer
-              installiert werden.
-              Als erster Schritt zur Benutzung der Online-
-              Preisaktualisierung sollte daher sein, sicherzustellen, dass sowohl <application>Perl</application> als auch
-              &app-fq; korrekt installiert sind. 
-            </para>
-            <para> Um zu prüfen ob die technischen Vorraussetzungen zur Verwendung
-              von &app-fq; gegeben sind, öffnen Sie hierzu bitte ein Terminalfenster und geben den
-              Befehl <prompt>></prompt> <userinput>perl - -version</userinput> ein. Im Ausgabefenster
-              sollte jetzt ein Hinweis auf die installierte <application>Perl</application>- Version
-              erscheinen. Ist dies erfolgreich verlaufen sollten Sie herausfinden, ob das Perl-Modul &app-fq; bereits auf Ihrem
-              System installiert ist, geben Sie <command>perldoc Finance::Quote</command> in ein
-              Terminalfenster ein, um zu prüfen, ob eine Dokumentation vorhanden ist. Wenn die
-              Dokumentation angezeigt wird, dann ist das Modul installiert, ansonsten nicht.
-              
-            </para>
-
-            <para>Die Installation von &app-fq; unterscheidet sich von einem
-              Betriebssystem zum anderen. Für die verschiedenen unterstützten Systeme, können Sie
-              die folgenden Anweisungen befolgen:
-            </para>
-            <variablelist spacing="compact">
-              <varlistentry>
-                <term>&lin;</term>
-
-                <listitem>
-                  <para>Die meisten &lin;-Distributionen (wie Fedora, openSuse, Mandriva, Ubuntu, und so weiter) haben in
-                    ihren Software-Repositorien ein Paket für das Perl-Modul
-                    &app-fq;. Die Aktualität ihrer Distribution können Sie unter <ulink url="https://repology.org/project/perl:finance-quote/versions"><citetitle>&app-fq;- Versionen</citetitle></ulink> nachlesen. In den meisten Fällen können Sie
-                    also einfach Ihren bevorzugten Paketmanager verwenden, um das Modul zu
-                    installieren. Der Name des Pakets kann von einer Distribution zur anderen
-                    variieren. Es heißt oft in etwa wie <command>perl-Finance-Quote</command>.
-                  </para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term>&win;</term>
-
-                <listitem>
-                  <para>&app-fq; unter &win; erfordert, dass Perl bereits installiert
-                    ist. Wenn das nicht bereits erfolgt ist, können Sie z.B. Strawberry Perl
-                    installieren.
-                    <footnote>
-                      <para>Bis &app; Version 2.4 wurde stattdessen ActivePerl verwendet. Falls dies noch bei Ihnen installiert
-                        ist, sollten sie es ersetzen.
-                      </para>
-                    </footnote>
-                  </para>
-
-                  <para>Das &win;-Installationsprogramm von der <ulink url="&url-www;download.phtm">&app; Homepage</ulink>
-                    wird mit einem kleinen Hilfsprogramm geliefert, das
-                    &app-fq; für Sie installiert. Sie finden es im
-                    Startmenü in der &app; Gruppe und heißt <quote>Online-Preisabfrage
-                    installieren</quote>.
-                  </para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term>&mac;</term>
-
-                <listitem>
-                  <para>Wenn Sie &app; mit Hilfe des Installationsprogramms auf der &app; Homepage installiert haben, ist
-                    &app-fq; bereits installiert.
-                  </para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term></term>
-
-                <listitem>
-                  <para>Trifft keine der obigen Anleitungen auf Ihre Umgebung zu, so können Sie die folgende alternative,
-                    allgemeinere Anweisungen probiern:
-                  </para>
-
-                  <orderedlist spacing="compact">
-                    <listitem>
-                      <para>Schließen Sie alle &app;-Anwendungen, die Sie gerade ausführen.
-                      </para>
-                    </listitem>
-
-                    <listitem>
-                      <para>Lokalisieren Sie den Ordner, in dem &app; installiert ist, indem Sie nach
-                        <command>gnc-fq-update</command> suchen.
-                      </para>
-                    </listitem>
-
-                    <listitem>
-                      <para>Wechseln Sie in dieses Verzeichnis, öffnen Sie eine Root-Shell und führen Sie den Befehl
-                        <command>gnc-fq-update</command> aus. Dadurch wird eine Perl
-                        CPAN-Update-Sitzung gestartet, die ins Internet geht und das Modul
-                        &app-fq; und seine Abhängigkeiten auf
-                        Ihrem System installiert. Das Programm
-                        <command>gnc-fq-update</command> ist interaktiv, bei den meisten
-                        Systemen sollten Sie jedoch die erste Frage mit <userinput>Ja</userinput>
-                        beantworten können: <quote>Möchten Sie so viel wie möglich automatisch konfigurieren? [ja]</quote> und die Aktualisierung wird von diesem Punkt an
-                        selbstständig ablaufen.
-                      </para>
-                    </listitem>
-                  </orderedlist>
-                </listitem>
-              </varlistentry>
-            </variablelist>
-
-            <para>Nachdem die Installation abgeschlossen ist, sollten Sie das Testprogramm
-              <command>gnc-fq-check</command>, das mit &app; verteilt wird, im gleichen Verzeichnis
-              ausführen, um zu testen, ob &app-fq; installiert ist
-              und richtig funktioniert.
-            </para>
-
-            <note>
-              <para>Wenn Sie sich bei der Durchführung eines dieser Schritte nicht sicher fühlen, senden Sie bitte
-                ihre Frage entweder per E-Mail an die deutschsprachige &app;-user Mailingliste
-                (<email>gnucash-de@gnucash.org</email>) oder besuchen Sie den &app; IRC-Kanal auf
-                irc.gnome.org. Weitere Informationen finden Sie z.B. in den &app; Wiki FAQ
-                <ulink url="&url-wiki-faq-quot;" />. Sie können diesen Schritt auch weglassen und
-                Ihre Aktienkurse manuell aktualisieren.
-              </para>
-            </note> -->
+<!-- FIXME source: moved to "Customizing". -->
           </listitem>
 
           <listitem>
@@ -1528,47 +1403,7 @@ and update the appendix. -->
             </para>
           </listitem>
         </orderedlist>
-<!-- FIXME source: Move to the new place, e.g. "Customizing GnuCash". -->
-<!--           <para>Wenn Sie die Kurse per Kommandozeile abrufen wollen, können Sie dazu den Befehl
-          <command>gnucash-cli - -quotes get
-          <replaceable><optional>/pfad/zur/</optional>gnucash-datei</replaceable></command> benutzen
-          und die Kurs werden direkt in ihre &app;-Datendatei geschreiben.
-          <footnote>
-            <para>In &app; Versionen vor 4.0 wurde für die Aktualisierung der Wertpapiere das Kommando
-              <command>gnucash - -add-price-quotes
-              <replaceable><optional>/pfad/zur/</optional>gnucash-datei</replaceable></command>
-              verwendet.
-            </para>
-          </footnote>
-        </para>
 
-        <para>Die Dateibezeichnung <command><replaceable>gnucash-datei</replaceable></command> ist abhängig von
-          dem Namen und dem Speicherort Ihrer Datendatei. Dies lässt sich anhand des Namens
-          feststellen, der im oberen Rahmen des &app; Fensters vor dem <quote>-</quote> angezeigt
-          wird. Der Dateiname ist auch unter <guimenu>Datei</guimenu> in der Liste der zuletzt
-          geöffneten Dateien zu finden; der erste Eintrag mit der Nummer 1 ist der Name der aktuell
-          verwendeten Datei.
-        </para>
-
-        <para>Der Kursabruf kann in &mac; automatisiert werden, indem ein crontab-Eintrag erstellt wird. Um Ihre
-          Datei zum Beispiel jeden Freitag Abend (18:00 Uhr) nach Börsenschluss zu aktualisieren
-          (passen Sie die Zeit entsprechend Ihrer Zeitzone an), könnten Sie Folgendes zu Ihrer
-          persönlichen crontab hinzufügen:
-        </para>
-
-        <para><code language="cron">0 18 * * 5 <optional>/pfad/zu/</optional>gnucash-cli - -quotes get
-          <optional>/pfad/zur/</optional>gnucash-datei &gt; /dev/null 2&gt;&amp;1</code>
-        </para>
-
-        <para>Damit der Kursabruf unter &lin; auch ohne Desktop-Manager, z.B. bei einem Fernzugriff per ssh,
-          funktioniert, muss sichergestellt sein, dass dbus gestartet ist. Das Gleiche trifft auf
-          den per Cron gesteuerten Kursabruf zu. Der Eintrag in der crontab laut dann:
-        </para>
-
-        <para><code language="cron">0 18 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
-          <optional>/pfad/zu/</optional>gnucash-cli - -quotes get
-          <optional>/pfad/zur/</optional>gnucash-datei &gt; /dev/null 2&gt;&amp;1'</code>
-        </para> -->
         <para>Denken Sie daran, dass die <quote>Kurse</quote> von Investmentfonds in Wirklichkeit der
           <quote>Nettoanteilswert</quote> ist. und erst mehrere Stunden nach Börsenschluss
           verfügbar sind. Wenn die <quote>Kurse</quote> aktualisiert werden, bevor die
