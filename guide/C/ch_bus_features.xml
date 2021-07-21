@@ -23,57 +23,55 @@
       laws, etc. &app; offers business oriented features to facilitate these needs.
     </para>
 
-    <para><emphasis>Accounts Receivable</emphasis> (A/R) are used by businesses to record sales for which they
-      are not immediately paid. This is represented on the balance sheet as an asset, because the
-      expectation is that you will receive payment soon.
-    </para>
+    <sect2 id="bus-terminology">
+        <title>Terminology</title>
+        <para>It is important to understand some technical terms. The technical terms used in this chapter are shown below. </para>
 
-    <para><emphasis>Accounts Payable</emphasis> (A/P) record bills that businesses have received, but may not
-      pay until later. This is represented on the balance sheet as a liability because you will have
-      to pay for them.
-    </para>
+        <variablelist>
+            <varlistentry>
+                <!-- 
+                    TODO: Create a xsl stylesheet to parse a sequence of term tags.
+                    <term>Accounts Receivable</term><term>A/Receivable</term><term><acronym>A/R</acronym></term>
+                 -->
+                <term>Accounts Receivable (A/Receivable, <acronym>A/R</acronym>)</term>
+                <listitem><para>They are used by businesses to record sales for which they
+                    are not immediately paid. This is represented on the balance sheet as an asset, because the
+                    expectation is that you will receive payment soon.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <!-- <term>Accounts Payable</term><term>A/Payable</term><term><acronym>A/P</acronym></term>  -->
+                <term>Accounts Payable (A/Payable, <acronym>A/P</acronym>)</term>                    
+                <listitem><para>They record bills that businesses have received, but may not
+                    pay until later. This is represented on the balance sheet as a liability because you will have
+                    to pay for them.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
 
-    <para>A/R and A/P accounts are used primarily when you have a lot of bills and receipts flowing in and
-      out, and do not want to lose track of them just because you do not pay or get paid right away.
-      For most home users, A/R and A/P are too complicated to be worthwhile.
-    </para>
-  </sect1>
+        <para>A/R and A/P accounts are used primarily when you have a lot of bills and receipts flowing in and
+             out, and do not want to lose track of them just because you do not pay or get paid right away.
+             For most home users, A/R and A/P are too complicated to be worthwhile.
+         </para>
+    </sect2>
+    </sect1>
 
-  <sect1 id="bus_setup">
+    <sect1 id="bus_setup">
     <title>Business Setup</title>
 
     <para>To set up &app; to handle accounts receivable or accounts payable for a company, these preliminary
-      steps must be done.
-      <itemizedlist>
-        <listitem>
-          <para>Build an appropriate Account Hierarchy.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Set up Sales Tax Tables.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Enter the company information in &app;.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Set Business Preferences.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Set up Billing Terms.
-          </para>
-        </listitem>
-      </itemizedlist>
-    </para>
+      steps must be done.</para>
+      
+    <procedure>
+    <step><simpara><xref linkend="bus-setupacct" endterm="bus-setupacct.title" /></simpara></step>
+    <step><simpara><xref linkend="bus-setuptaxtables" endterm="bus-setuptaxtables.title" /></simpara></step>        
+    <step><simpara><xref linkend="bus-setupcname" endterm="bus-setupcname.title" /></simpara></step>  
+    <step><simpara><xref linkend="bus_setup_pref" endterm="bus_setup_pref.title" /></simpara></step>
+    <step><simpara><xref linkend="bus-setupterms" endterm="bus-setupterms.title" /></simpara></step>
+    </procedure>
 
     <sect2 id="bus-setupacct">
-      <title>Account Setup</title>
+      <title id="bus-setupacct.title">Setup Account Herarchy</title>
 
       <para>There are many different ways to set up a business account hierarchy. You can start with the
         Business Accounts setup which is available from the New Account Hierarchy assistant, or you
@@ -100,9 +98,9 @@
         defined with account type <emphasis>A/Payable</emphasis>. &app; will use this account to
         place transactions related to the integrated accounts payable system.
       </para>
-<screen>Basic A/R and A/P Account Hierarchy:
 
--Assets
+    <bridgehead>Basic A/R and A/P Account Hierarchy</bridgehead>
+<screen>-Assets
    -Accounts Receivable
    -Checking
 -Expenses
@@ -143,7 +141,7 @@
     </sect2>
 
     <sect2 id="bus-setuptaxtables">
-      <title>Setting up Sales Tax Tables</title>
+      <title id="bus-setuptaxtables.title">Setup Sales Tax Tables</title>
 
       <para>Sales Tax Tables can used to determine the tax for customer invoices (or vendor bills).
       </para>
@@ -158,20 +156,18 @@
         entry can be assigned to each vendor.
       </para>
 
-      <para>The default tax table entry for new customers or new vendors can be specified in the <emphasis>Book
-        Options</emphasis> window which can be accessed by
+      <para>The default tax table entry for new customers or new vendors can be specified in the <guilabel>Book Options</guilabel>
+        window which can be accessed by
         <menuchoice>
-          <guimenu>File</guimenu> <guisubmenu>Properties</guisubmenu> <guimenuitem>Business
-          tab.</guimenuitem>
-        </menuchoice>
+          <guimenu>File</guimenu><guimenuitem>Properties</guimenuitem><guimenuitem>Business</guimenuitem></menuchoice> tab.
+        
       </para>
 
-      <para>Sales Tax Tables are maintained using the <emphasis>Sales Tax Table</emphasis> editor which is
+      <para>Sales Tax Tables are maintained using the <guimenu>Sales Tax Table</guimenu> editor which is
         accessed via menu
         <menuchoice>
           <guimenu>Business</guimenu><guimenuitem>Sales Tax Table</guimenuitem>
-        </menuchoice>
-        .
+        </menuchoice>.
       </para>
 
       <figure>
@@ -227,7 +223,7 @@
 
         <listitem>
           <para><guilabel>Account</guilabel> This is the account to which tax will be posted. For tax collected from
-            customers, this should probably be a Liability account as it must be payed to the
+            customers, this should probably be a Liability account as it must be paid to the
             government. For tax paid to vendors, if tax laws allow tax paid to vendors to offset tax
             collected from customers, this should probably also be a Liability account (even though
             it will usually have a debit balance) so that the net tax owed to the government can be
@@ -248,7 +244,7 @@
       </para>
 
       <table frame='all' id="bus-tax-tbl-eu">
-        <title>Sample Tax Table Entries for EU country (e.g. 21% / 6% / 0% Belgium, 20% / 5% / 0% UK etc.) (2017)</title>
+        <title>Sample Tax Table Entries for EU country (For example, 21% / 6% / 0% Belgium, 20% / 5% / 0% UK etc.) (2017)</title>
 
         <tgroup cols='3' align='left' colsep='1' rowsep='1'>
           <thead>
@@ -529,15 +525,14 @@
     </sect2>
 
     <sect2 id="bus-setupcname">
-      <title>Enter Company Information</title>
+      <title id="bus-setupcname.title">Enter Company Information</title>
 
       <para>After you have built the account structure and defined your tax tables, designate your company in
         the &app; file. To do this, select the <guilabel>Business</guilabel> tab in the
         <guilabel>Book Options</guilabel> window, which can be accessed from
         <menuchoice>
           <guimenu>File</guimenu><guimenuitem>Properties</guimenuitem>
-        </menuchoice>
-        .
+        </menuchoice>.
       </para>
 
       <figure>
@@ -555,7 +550,7 @@
         </screenshot>
       </figure>
 
-      <para>Here you can:
+      <para>Perform the following procedure in order to complete it.
       </para>
 
       <itemizedlist>
@@ -578,7 +573,7 @@
     </sect2>
 
     <sect2 id="bus_setup_pref">
-      <title>Setting Business Preferences</title>
+      <title id="bus_setup_pref.title">Setup Business Preferences</title>
 
       <para>Set options on the Business tab of the &app; preferences, which is accessed via
         <menuchoice>
@@ -593,7 +588,7 @@
     </sect2>
 
     <sect2 id="bus-setupterms">
-      <title>Setting Billing Terms</title>
+      <title id="bus-setupterms.title">Setup Billing Terms</title>
 
       <para>Billing Terms can be used to determine the payment due date and be a guide for determining discount
         for early payment of invoices (or vendor bills).
@@ -1051,7 +1046,7 @@
         </figure>
 
         <note>
-          <para>You can modify the appearance of the invoice, IE: add a company logo, etc. To do so, see the
+          <para>You can modify the appearance of the invoice, That is add a company logo, etc. To do so, see the
             <xref
                         linkend="bus-ar-invoicechange" />.
           </para>
@@ -1781,8 +1776,8 @@
             ) to select the transactions, and then report on them using
             <menuchoice>
               <guimenu>Reports</guimenu><guimenuitem>Account Report </guimenuitem>
-            </menuchoice>
-            . Further formatting or analysis may be done by copying and pasting the report into a
+            </menuchoice>.
+            Further formatting or analysis may be done by copying and pasting the report into a
             spreadsheet. See <ulink type="help" url="ghelp:gnucash-help?tool-find-txn">Find
             Transaction</ulink> in the &app; Help Manual.
           </para>
@@ -2036,12 +2031,12 @@
       <title>Business Payroll Example</title>
 
       <para>Using the account setup seen previously, let&rsquo;s go through an example. Assume that there are 2
-        employees (E1 and E2) who each earn $1000 per month gross salary. The employee contribution
+        employees (E1 and E2) who each earn $1,000 per month gross salary. The employee contribution
         to Tax1 and Tax2 are 10% and 5% respectively. The company contribution to Tax1 and Tax2 are
         15% and 10% each on top of the employee&rsquo;s gross salary.
       </para>
 
-      <para>Starting with $50k in the bank, and before doing any payroll, the account hierarchy looks like this:
+      <para>Starting with $50,000k in the bank, and before doing any payroll, the account hierarchy looks like this:
       </para>
 
       <figure>
