@@ -16,10 +16,10 @@ function (add_epub_target docname lang entities figures)
                             --stringparam base.dir OEBPS/
                             --stringparam epub.metainf.dir META-INF/
                             --stringparam epub.oebps.dir OEBPS/
-                            --stringparam fop1.extensions 1
-                            "${CMAKE_SOURCE_DIR}/xsl/1.79.2/epub/docbook.xsl"
+                            "${CMAKE_SOURCE_DIR}/xsl/gnucash/gnc-custom-epub.xsl"
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
-        COMMAND cmake -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/figures" "${EPUB_TMPDIR}/OEBPS/figures"
+        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/figures" "${EPUB_TMPDIR}/OEBPS/figures"
+        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/stylesheet" "${EPUB_TMPDIR}/OEBPS/stylesheet"
         COMMAND cd "${EPUB_TMPDIR}" && zip -X -r "${BUILD_DIR}/${epubfile}" mimetype META-INF OEBPS
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd" ${figures})
 
