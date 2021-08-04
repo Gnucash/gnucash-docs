@@ -1089,7 +1089,7 @@ Income
         </para>
 
         <para>Now for the transaction, on the first (transaction) line, enter the <guilabel>Date</guilabel> of the
-          purchase (for example, Jan. 3 2005) and <guilabel>Description</guilabel> (for example, Initial IBM
+          purchase (for example, Jan. 3, 2005) and <guilabel>Description</guilabel> (for example, Initial IBM
           Purchase). On the first split line, enter <userinput>50</userinput> in <guilabel>Shares</guilabel>, delete
           <guilabel>Price</guilabel> (leave it empty so it will be calculated), and enter <userinput>5000</userinput> in
           <guilabel>Buy</guilabel>. You do not need to fill in the <guilabel>Price</guilabel>
@@ -1136,7 +1136,7 @@ Income
         </para>
 
         <para>Now for the transaction, on the first (transaction) line, enter the <guilabel>Date</guilabel> of the
-          purchase (for example, Jan. 3 2005) and <guilabel>Description</guilabel> (for example, Initial IBM
+          purchase (for example, Jan. 3, 2005) and <guilabel>Description</guilabel> (for example, Initial IBM
           Purchase). On the first split line, optionally enter more details in <guilabel>Memo
           </guilabel>, then <userinput>50</userinput> in <guilabel>Shares</guilabel>, delete anything in
           <guilabel>Price</guilabel> (so it will be calculated by dividing <guilabel>Buy</guilabel>
@@ -1397,32 +1397,28 @@ Income
           <title>Installing &app-fq; on &lin;</title>
           <step><simpara>Close &app;.</simpara></step>
           <step><simpara>Run the command <command>which gnc-fq-update</command> to check <filename>gnc-fq-update</filename> program is in your PATH environment
-            variable.
+            variable.<footnote><simpara>If you&rsquo;ve installed &app; packages provided by your distribution, <filename>gnc-fq-update</filename> must be on your PATH.</simpara></footnote>
           </simpara>
-            <substeps><step  id="gnc-fq-update-not-found">
+            <substeps><step id="gnc-fq-update-not-found">
                 <simpara>If <filename>gnc-fq-update</filename> is not in your PATH, search the folder where &app; is 
-                installed.<footnote><simpara>If you&rsquo;ve installed &app; packages provided by your distribution, <filename>gnc-fq-update</filename> must be on your PATH.</simpara></footnote></simpara>
+                installed.</simpara>
                 </step>
             </substeps>
           </step>
-          <step><simpara>Open a root shell by using <command>su -</command> or <command>sudo su -</command>. It depends on your distribution.</simpara></step>
-          <step><simpara>Run the command <command>gnc-fq-update</command>. If <filename>gnc-fq-update</filename> is not in your PATH, specify full path of <filename>gnc-fq-update</filename>
-            instead which is found by <xref linkend="gnc-fq-update-not-found" />.
-            </simpara>
+          <step><simpara>Run the command <command>sudo gnc-fq-update</command> or <command>su -c gnc-fq-update</command> in order to run it with root privilege.
+            It depends on your distribution.
+          If <filename>gnc-fq-update</filename> is not in your PATH, specify full path of <filename>gnc-fq-update</filename>
+            instead, which is found by <xref linkend="gnc-fq-update-not-found" />.</simpara>
             <para>
               This will launch a <application>Perl</application> <acronym><ulink url="https://www.cpan.org/">CPAN</ulink></acronym><footnote>
                 <simpara>See <ulink url="https://www.cpan.org/misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink> for details.</simpara></footnote>
-              update session that will go out
-              onto the internet and install the &app-fq; module on your
-              system. The <filename>gnc-fq-update program</filename> is interactive, however, with most systems you should be
-              able to answer the first question <computeroutput>Are you ready for manual
-              configuration? [yes]</computeroutput> with <userinput>no</userinput>. Then the update will continue automatically from that point.
-            </para>
-            <para>After installation is complete, you should run the <quote><filename>gnc-fq-dump</filename></quote> test program, in the
-              same directory, distributed with &app; to test if
-              &app-fq; is installed and working properly.
-            </para>
+              module internally. When you launch the CPAN module for the first time, you must setup and configure it. However, on the most systems if you accept the default settings
+              or answer the first question <computeroutput>Are you ready for manual
+              configuration? [yes]</computeroutput> with <userinput>no</userinput>, you will be able to install &app-fq; successfully. 
+              </para>
           </step>
+          
+          <step><simpara>Run <command>gnc-fq-dump</command> to check &app-fq; works properly.</simpara></step>
         </procedure>
 
         <note>
