@@ -1379,6 +1379,7 @@ Income
 
         <procedure>
           <title>Installing &app-fq; on &mac;</title>
+          <step><simpara>Close &app;.</simpara></step>
           <step><simpara>Install Xcode if it is not installed.</simpara>
               <simpara>XCode is an optional item from your &mac; distribution DVD.</simpara>
           </step>
@@ -1394,14 +1395,26 @@ Income
 
         <procedure>
           <title>Installing &app-fq; on &lin;</title>
-          <step><simpara>Close any running &app; instances.</simpara></step>
-          <step><simpara>Locate the folder where &app; is installed by searching for <filename>gnc-fq-update</filename>.</simpara></step>
-          <step><simpara>Change to that directory, open a root shell.</simpara></step>
-          <step><simpara>Run the command <command>./gnc-fq-update</command>.</simpara>
+          <step><simpara>Close &app;.</simpara></step>
+          <step><simpara>Run the command <command>which gnc-fq-update</command> to check <filename>gnc-fq-update</filename> program is in your PATH environment
+            variable.
+          </simpara>
+            <substeps><step  id="gnc-fq-update-not-found">
+                <simpara>If <filename>gnc-fq-update</filename> is not in your PATH, search the folder where &app; is 
+                installed.<footnote><simpara>If you&rsquo;ve installed &app; packages provided by your distribution, <filename>gnc-fq-update</filename> must be on your PATH.</simpara></footnote></simpara>
+                </step>
+            </substeps>
+          </step>
+          <step><simpara>Open a root shell by using <command>su -</command> or <command>sudo su -</command>. It depends on your distribution.</simpara></step>
+          <step><simpara>Run the command <command>gnc-fq-update</command>. If <filename>gnc-fq-update</filename> is not in your PATH, specify full path of <filename>gnc-fq-update</filename>
+            instead which is found by <xref linkend="gnc-fq-update-not-found" />.
+            </simpara>
             <para>
-              This will launch a <application>Perl</application> CPAN update session that will go out
+              This will launch a <application>Perl</application> <acronym><ulink url="https://www.cpan.org/">CPAN</ulink></acronym><footnote>
+                <simpara>See <ulink url="https://www.cpan.org/misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink> for details.</simpara></footnote>
+              update session that will go out
               onto the internet and install the &app-fq; module on your
-              system. The gnc-fq-update program is interactive, however, with most systems you should be
+              system. The <filename>gnc-fq-update program</filename> is interactive, however, with most systems you should be
               able to answer the first question <computeroutput>Are you ready for manual
               configuration? [yes]</computeroutput> with <userinput>no</userinput>. Then the update will continue automatically from that point.
             </para>
