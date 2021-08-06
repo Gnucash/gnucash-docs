@@ -1,6 +1,7 @@
 set (entities
         fdl-appendix.xml
         legal.xml
+        legal-disclaimer.xml
         ch_oview.xml
         ch_basics.xml
         ch_accts.xml
