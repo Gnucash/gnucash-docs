@@ -20,6 +20,7 @@ set (entities
         gnc-glossary.xml
         fdl-appendix.xml
         legal.xml
+        legal-disclaimer.xml
         appendixa.xml
         appendixb.xml
         appendixc.xml
