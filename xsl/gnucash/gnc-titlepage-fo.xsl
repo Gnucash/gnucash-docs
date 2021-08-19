@@ -9,7 +9,7 @@
 
 
   
-  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="title"/>
+  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/title"/>
 
 
   <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/edition"/>

@@ -5,7 +5,7 @@
 
 <xsl:template name="book.titlepage.recto">
   <!--  Use book/title for translation. -->
-  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="title"/>
+  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/title"/>
 
   <xsl:choose>
     <xsl:when test="bookinfo/subtitle">
