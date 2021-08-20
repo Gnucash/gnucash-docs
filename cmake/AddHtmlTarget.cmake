@@ -23,7 +23,7 @@ function (add_html_target docname lang entities figures)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
         COMMAND  ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_HTML}
                              -o "${BUILD_DIR}/"
-                             "${CMAKE_SOURCE_DIR}/xsl/gnucash/gnc-custom-html.xsl"
+                             "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-html.xsl"
                              "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")

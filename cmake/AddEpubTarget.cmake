@@ -16,7 +16,7 @@ function (add_epub_target docname lang entities figures)
                             --stringparam base.dir OEBPS/
                             --stringparam epub.metainf.dir META-INF/
                             --stringparam epub.oebps.dir OEBPS/
-                            "${CMAKE_SOURCE_DIR}/xsl/gnucash/gnc-custom-epub.xsl"
+                            "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-epub.xsl"
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
         COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/figures" "${EPUB_TMPDIR}/OEBPS/figures"
         COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/stylesheet" "${EPUB_TMPDIR}/OEBPS/stylesheet"

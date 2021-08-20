@@ -12,7 +12,7 @@ function (add_pdf_target docname lang entities figures)
         COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_FO}
 							--stringparam gnc.lang ${lang}
                             -o "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
-                            "${CMAKE_SOURCE_DIR}/xsl/gnucash/gnc-custom-fo.xsl"
+                            "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-fo.xsl"
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
 
