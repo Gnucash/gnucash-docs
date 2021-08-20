@@ -13,12 +13,13 @@ entities = \
 	Help_ch_Tools_Assistants.xml \
 	Help_ch_Reports.xml \
 	Help_ch_Customize.xml \
-	Help_fdl-appendix.xml \
-	Help_legal.xml \
 	Help_chartofaccts.xml \
 	Help_chtacctseg.xml \
 	Help_txf-categories.xml \
-	Help_tips-appendix.xml
+	Help_tips-appendix.xml \
+	legal.xml \
+	legal-disclaimer.xml \
+	fdl-appendix.xml
 DISTCLEANFILES =  $(docname)-de.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
 XSLTFLAGS_FO= --stringparam paper.type A4

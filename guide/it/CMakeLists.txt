@@ -24,7 +24,11 @@ set (COMPONENTS
         ${top_srcdir}/guide/C/appendixa.xml
         ${top_srcdir}/guide/C/appendixb.xml
         ${top_srcdir}/guide/C/appendixc.xml
-        ${top_srcdir}/guide/C/appendixd.xml)
+        ${top_srcdir}/guide/C/appendixd.xml
+        legal.xml
+        legal-disclaimer.xml
+        fdl-appendix.xml
+        )
 
 #gnucash-guide.xml: ${COMPONENTS} ${srcdir}/it.po
 #        xml2po -e -p ${srcdir}/it.po -o $@ ${top_srcdir}/guide/C/gnucash-guide.xml
@@ -34,5 +38,8 @@ add_gnc_doc_targets(${docname} "")
 
 set(extra_dist
     COME-TRADURRE
+    legal.xml
+    legal-disclaimer.xml
+    fdl-appendix.xml
     it.po)
 add_to_dist(${extra_dist})
