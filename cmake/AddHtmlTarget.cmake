@@ -11,7 +11,6 @@
 function (add_html_target docname lang entities figures)
 
     set(styledir "${CMAKE_SOURCE_DIR}/stylesheet")
-    file(GLOB styleicons "${CMAKE_SOURCE_DIR}/stylesheet/*.png")
 
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}/${docname}")
     file(MAKE_DIRECTORY "${BUILD_DIR}")
@@ -24,9 +23,7 @@ function (add_html_target docname lang entities figures)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
         COMMAND  ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_HTML}
                              -o "${BUILD_DIR}/"
-                             --param use.id.as.filename "1"
-                             --stringparam chunker.output.encoding UTF-8
-                             "${CMAKE_SOURCE_DIR}/xsl/general-customization.xsl"
+                             "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-html.xsl"
                              "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
@@ -43,9 +40,9 @@ function (add_html_target docname lang entities figures)
     file(MAKE_DIRECTORY "${BUILD_DIR}/stylesheet")
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/styletrigger"
-        COMMAND  ${CMAKE_COMMAND} -E copy ${styleicons} "${BUILD_DIR}/stylesheet"
+        COMMAND  ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/stylesheet" "${BUILD_DIR}/stylesheet"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/styletrigger"
-        DEPENDS ${styleicons})
+        DEPENDS "${CMAKE_SOURCE_DIR}/stylesheet")
 
     add_custom_target("${lang}-${docname}-html"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"

@@ -16,11 +16,11 @@ execute_process(
     # FIXME Reusing ${XSLTPROCFLAGS} fails as xsltproc gets this as one single parameter instead of 3...
     COMMAND ${XSLTPROC} --path "${SRC_DIR}/docbook" --xinclude
                         --stringparam htmlhelp.chm ${chmfile}
-                        "${SRC_DIR}/xsl/1.79.2/htmlhelp/htmlhelp.xsl"
+                        "${SRC_DIR}/xsl/gnucash/gnc-custom-chm.xsl"
                         "${CURRENT_SRC_DIR}/${docname}.xml"
-    WORKING_DIRECTORY "${htmlhelpdir}")
-
-file(COPY "${CURRENT_SRC_DIR}/figures" DESTINATION "${htmlhelpdir}")
+    WORKING_DIRECTORY "${htmlhelpdir}"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CURRENT_SRC_DIR}/figures" "${htmlhelpdir}/figures"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${SRC_DIR}/stylesheet" "${htmlhelpdir}/stylesheet")
 
 set(count 0)
 set(HPP "")
@@ -66,4 +66,4 @@ execute_process(
     ERROR_QUIET
 )
 
-file(COPY "${htmlhelpdir}/${docname}.chm" DESTINATION "${BUILD_DIR}")
+execute_process(COMMAND ${CMAKE_COMMAND} -E copy "${htmlhelpdir}/${docname}.chm" "${BUILD_DIR}")
