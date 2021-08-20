@@ -202,7 +202,7 @@ endif()
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-    cmake/* fonts/* stylesheet/* xsl/*)
+    cmake/* fonts/* stylesheet/* xsl/* docbook/*)
 add_to_dist(${extrafiles})
 
 configure_file(COPYING ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING COPYONLY)
@@ -217,7 +217,6 @@ add_to_dist(
     HACKING
     NEWS
     README
-    docbook/gnc-docbookx.dtd
     fop.xconf.in)
 
 ############################ BEGIN MAKE DIST #################
