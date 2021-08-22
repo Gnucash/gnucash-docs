@@ -26,7 +26,6 @@ entities = \
  ch_reports.xml \
  ch_txns.xml \
  appendixa.xml \
- appendixb.xml \
  appendixd.xml \
  appendixe.xml \
  fdl-appendix.xml \

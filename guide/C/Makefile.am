@@ -33,7 +33,6 @@ entities = \
 	ch_import_business_data.xml \
 	gnc-glossary.xml \
 	appendixa.xml \
-	appendixb.xml \
 	appendixd.xml
 DISTCLEANFILES =  $(docname)-C.omf.out
 CLEANFILES =  $(DISTCLEANFILES)

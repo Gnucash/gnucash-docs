@@ -21,7 +21,6 @@ set (entities
         fdl-appendix.xml
         legal.xml
         appendixa.xml
-        appendixb.xml
         appendixd.xml)
 
 set (FOP_XCONF "${CMAKE_CURRENT_SOURCE_DIR}/fop.xconf.in")

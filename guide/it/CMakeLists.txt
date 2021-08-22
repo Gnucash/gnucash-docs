@@ -22,7 +22,6 @@ set (COMPONENTS
         ${top_srcdir}/guide/C/ch_import_business_data.xml
         ${top_srcdir}/guide/C/gnc-glossary.xml
         ${top_srcdir}/guide/C/appendixa.xml
-        ${top_srcdir}/guide/C/appendixb.xml
         ${top_srcdir}/guide/C/appendixd.xml)
 
 #gnucash-guide.xml: ${COMPONENTS} ${srcdir}/it.po

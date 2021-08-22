@@ -23,7 +23,6 @@ set (entities
         ch_import_business_data.xml
         gnc-glossary.xml
         appendixa.xml
-        appendixb.xml
         appendixd.xml)
 
 add_gnc_doc_targets(${docname} "${entities}")

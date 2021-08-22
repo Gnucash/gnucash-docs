@@ -32,7 +32,6 @@ entities = \
 	ch_python_bindings.xml \
 	ch_import_business_data.xml \
 	appendixa.xml \
-	appendixb.xml \
 	appendixd.xml
 DISTCLEANFILES =  $(docname)-C.omf.out
 CLEANFILES =  $(DISTCLEANFILES)
