@@ -24,7 +24,6 @@ set (entities
         gnc-glossary.xml
         appendixa.xml
         appendixb.xml
-        appendixc.xml
         appendixd.xml)
 
 add_gnc_doc_targets(${docname} "${entities}")

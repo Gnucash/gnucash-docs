@@ -25,7 +25,6 @@ entities = \
 	ch_python_bindings.xml \
 	appendixa.xml \
 	appendixb.xml \
-	appendixc.xml \
 	appendixd.xml
 DISTCLEANFILES =  $(docname)-ja.omf.out mincho.xml gothic.xml $(fopconfig)
 CLEANFILES =  $(DISTCLEANFILES)

@@ -27,7 +27,6 @@ entities = \
     legal.xml \
     appendixa.xml \
     appendixb.xml \
-    appendixc.xml \
     appendixd.xml
 DISTCLEANFILES = $(docname)-ru.omf.out
 CLEANFILES = $(DISTCLEANFILES)

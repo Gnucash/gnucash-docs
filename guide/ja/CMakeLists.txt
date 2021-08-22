@@ -20,7 +20,6 @@ set (entities
         ch_python_bindings.xml
         appendixa.xml
         appendixb.xml
-        appendixc.xml
         appendixd.xml)
 
 set (FOP_XCONF "${CMAKE_CURRENT_SOURCE_DIR}/fop.xconf.in")

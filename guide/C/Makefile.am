@@ -34,7 +34,6 @@ entities = \
 	gnc-glossary.xml \
 	appendixa.xml \
 	appendixb.xml \
-	appendixc.xml \
 	appendixd.xml
 DISTCLEANFILES =  $(docname)-C.omf.out
 CLEANFILES =  $(DISTCLEANFILES)

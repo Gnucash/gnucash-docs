@@ -23,7 +23,6 @@ set (entities
         ch_txns.xml
         appendixa.xml
         appendixb.xml
-        appendixc.xml
         appendixd.xml
         appendixe.xml
         fdl-appendix.xml
