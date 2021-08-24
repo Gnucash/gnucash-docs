@@ -202,7 +202,7 @@ endif()
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-    cmake/* fonts/* stylesheet/* xsl/*)
+    cmake/* fonts/* xsl/*)
 add_to_dist(${extrafiles})
 
 add_to_dist(

@@ -1,6 +1,7 @@
 set (entities
         fdl-appendix.xml
         legal.xml
+        legal-disclaimer.xml
         ch_oview.xml
         ch_basics.xml
         ch_accts.xml
@@ -28,7 +29,7 @@ set (FOP_XCONF "${CMAKE_CURRENT_SOURCE_DIR}/fop.xconf.in")
 # When autotools gets dropped this line can be removed
 # and CMAKE_CURRENT_SOURCE_DIR can be used directly in
 # fop.xconf.in
-set(BASEDIR_JA "${CMAKE_CURRENT_SOURCE_DIR}")
+set(BASEDIR_JA "${CMAKE_CURRENT_BINARY_DIR}")
 
 add_gnc_doc_targets(${docname} "${entities}")
 
