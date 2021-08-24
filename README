@@ -2,8 +2,8 @@
               GnuCash Docs README file
 ------------------------------------------------------------
 
-This is the user documentation (docs) module for GnuCash. Written in DocBook
- they can be accessed under
+This is the user documentation (docs) module for GnuCash. Written in
+DocBook v4.5 (not 5.x series) they can be accessed under
 * directly without any conversion:
 ** Linux: from Yelp (the Gnome help browser)
 
@@ -28,6 +28,7 @@ or
 * libxslt [Debian packed the required xsltproc in a separate package, 
            which depends on libxslt]
 * docbook-xsl
+* docbook-dtds
 * yelp (for viewing)
 
 Optional:
@@ -37,25 +38,27 @@ Additional Requirements for Generating Mobipocket:
 
 * Calibre (https://www.calibre-ebook.com/)
 
-Additional Requirements for Generating chm:
+Additional Requirements for Generating chm on Windows:
 
-* Mingw (http://www.mingw.org)
+* MSYS2 (https://www.msys2.org/)
+** MinGW32 or MinGW64
+** cmake on MinGW32 or MinGW64 (not cmake for MSYS2)
+** libxsl on MinGW32 or MinGW64 (not libxsl for MSYS2)
+** docbook-xsl on MinGW32 or MinGW64 (not docbook-xsl for MSYS2)
 * Html Help Workshop (https://www.microsoft.com/en-us/download/details.aspx?id=21138 for Win XP - 8)
+
+They are installed by windows bootstrap scripts for GnuCash. See
+  https://github.com/Gnucash/gnucash-on-windows/
+for details.
 
 Additonal Requirements for Generating PDF:
 
 * Apache fop  >= 0.95
 
-For the Japanese PDF, Japanese fonts are included. If you want to use
-other Japanese fonts you can use the with-japanese-fonts-dir,
---with-japanese-mincho-ttf, and --with-japanese-gothic-ttf configure
-options to select them. fop's TTFReader can't, as of version 1.1
-anyway, handle OpenType fonts.
-
 ** FontBox
- from the Apache PDFBox [https://pdfbox.apache.org/download.cgi]
- can handle OpenType fonts, which are as default used for the russian PDF.
- Some distributions call it [lib]fontbox[-java].
+  from the Apache PDFBox [https://pdfbox.apache.org/download.cgi]
+  can handle OpenType fonts, which are as default used for the russian PDF.
+  Some distributions call it [lib]fontbox[-java].
 
 Notes
 #####
@@ -70,31 +73,23 @@ See also:
 * http://wiki.gnucash.org/wiki/Documentation_Update_Instructions
 * http://wiki.gnucash.org/wiki/Translation
 
-This release of the docs module only uses the docbook-xsl stylesheets
-to convert the docs to html. There are docbook stylesheets in
-gnucash-docs/xsl/1.79.2/epub, ../fo, ../html, ../xhtml, and ../xhtml-1_1.
-These docbook stylesheets are used and provided so that installing them
-separately isn't necessary. You still need, however, a working docbook-xsl
-setup to build and install these docs.
-
 Other Formats
 #############
 
 GnuCash-docs is written using docbook-xml. This allows it to be
 outputted to alternative formats using external tools.
 
-DocBook comes in two flavours - xml and sgml. GnuCash uses the xml flavour.
+The documentation source can be converted into HTML, PDF, EPUB, or MOBI
+format using such tools as xsltproc and fop.
 
-The documentation source comes with built-in commands to generate html, pdf
-or epub output. For other formats, you will need to use external tools.
 
 Note: if you use external tools to render HTML, remember to bring the images
-from figures/ along with the final HTML. The browser will expect to find
-the figures/ directory directly beneath the HTML directory:
-~/gnucash-docs/html/
-~/gnucash-docs/html/figures/
+from figures and icons along with the final HTML. The browser will expect to find
+the figures and images directory directly beneath the HTML directory as follows:
+/path_to/gnucash-docs/html/
+/path_to/gnucash-docs/html/figures/
+/path_to/gnucash-docs/html/images/
 
-* html, pdf, epub and mobi
 --------------------------
 
 You can generate the documentation in html, pdf, epub and mobi
@@ -104,9 +99,9 @@ For cmake the commands are
   cd gnucash-docs
   mkdir build && cd build
   # If you don't need mobi
-  cmake …
+  cmake [options…]
   # or, if you need mobi
-  cmake -DWITH_MOBI=ON …
+  cmake -DWITH_MOBI=ON [options…]
 
 For the deprecated autotools system the commands are:
   cd gnucash-docs
@@ -245,7 +240,7 @@ choose a component.
 - Feel free to append your fixes and improvements also there or open a pull
 request. Only docs about future features should go in branch master.
 So here is the link for branch stable:
-https://github.com/Gnucash/gnucash-docs/pull/new/maint.
+https://github.com/Gnucash/gnucash-docs/.
 
 - With any problems you have, you can contact us in the following ways:
 
@@ -275,4 +270,3 @@ your GnuCash Documentation Team
 Original Author: 
 Chris Lyttle
 <chris@wilddev.net>
-
