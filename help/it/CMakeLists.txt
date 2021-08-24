@@ -15,7 +15,10 @@ set (COMPONENTS
         ${top_srcdir}/help/C/Help_legal.xml
         ${top_srcdir}/help/C/Help_txf-categories.xml
         ${top_srcdir}/help/C/Help_fdl-appendix.xml
-        ${top_srcdir}/help/C/Help_tips-appendix.xml)
+        ${top_srcdir}/help/C/Help_tips-appendix.xml
+        legal.xml
+        fdl-appendix.xml
+        )
 
 #gnucash-help.xml: ${COMPONENTS} ${srcdir}/it.po
 #	xml2po -e -p ${srcdir}/it.po -o $@ ${top_srcdir}/help/C/gnucash-help.xml
@@ -27,5 +30,7 @@ add_gnc_doc_targets(${docname} "")
 
 set(extra_dist
     COME-TRADURRE
-    it.po)
+    it.po
+    legal.xml
+    fdl-appendix.xml)
 add_to_dist(${extra_dist})

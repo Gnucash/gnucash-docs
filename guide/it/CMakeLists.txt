@@ -32,5 +32,7 @@ add_gnc_doc_targets(${docname} "")
 
 set(extra_dist
     COME-TRADURRE
+    legal.xml
+    fdl-appendix.xml
     it.po)
 add_to_dist(${extra_dist})

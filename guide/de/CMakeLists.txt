@@ -25,6 +25,8 @@ set (entities
         appendixd.xml
         appendixe.xml
         fdl-appendix.xml
+        fdl-unofficial-de.xml
+        legal.xml
         glossary.xml)
 
 add_gnc_doc_targets(${docname} "${entities}")

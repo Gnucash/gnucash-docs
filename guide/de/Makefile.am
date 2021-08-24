@@ -29,6 +29,7 @@ entities = \
  appendixd.xml \
  appendixe.xml \
  fdl-appendix.xml \
+ fdl-unofficial-de.xml \
  glossary.xml
 DISTCLEANFILES =  $(docname)-de.omf.out
 CLEANFILES =  $(DISTCLEANFILES)

@@ -11,9 +11,9 @@ set (entities
         Help_ch_Customize.xml
         Help_chtacctseg.xml
         Help_chartofaccts.xml
-        Help_legal.xml
         Help_txf-categories.xml
-        Help_fdl-appendix.xml
+        fdl-appendix.xml
+        legal.xml
         Help_tips-appendix.xml)
 
 add_gnc_doc_targets(${docname} "${entities}")
