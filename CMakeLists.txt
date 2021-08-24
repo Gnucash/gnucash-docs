@@ -202,7 +202,7 @@ endif()
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-    cmake/* fonts/* stylesheet/* xsl/* docbook/*)
+    cmake/* fonts/* xsl/* docbook/*)
 add_to_dist(${extrafiles})
 
 configure_file(COPYING ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING COPYONLY)
@@ -212,6 +212,7 @@ install(FILES COPYING COPYING-DOCS DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJEC
 add_to_dist(
     AUTHORS
     CMakeLists.txt
+    COPYING
     COPYING-DOCS
     ChangeLog
     HACKING

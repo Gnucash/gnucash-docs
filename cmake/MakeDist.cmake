@@ -90,7 +90,7 @@ function(make_dist PACKAGE_PREFIX GNUCASH_SOURCE_DIR BUILD_SOURCE_DIR)
 
         # -- Autogen.sh creates some files as symbolic links that we turn into real files here.
         if(NOT WIN32) # No symbolic links on Windows
-            set(LINKS config.guess config.sub COPYING INSTALL install-sh ltmain.sh missing)
+            set(LINKS config.guess config.sub INSTALL install-sh ltmain.sh missing)
             foreach(link ${LINKS})
                 get_filename_component(realpath ${PACKAGE_PREFIX}/${link} REALPATH)
                 file(REMOVE ${PACKAGE_PREFIX}/${link})

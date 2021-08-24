@@ -1,14 +1,14 @@
 SUBDIRS = help \
 	  guide
 
-EXTRA_DIST = COPYING-DOCS \
+EXTRA_DIST = COPYING \
+	     COPYING-DOCS \
 	     CMakeLists.txt \
 	     xmldocs.make \
 	     omf.make \
 	     pdf.make \
 	     chm.make \
 	     docbook \
-	     stylesheet \
 	     xsl \
 	     HACKING \
 	     README \
