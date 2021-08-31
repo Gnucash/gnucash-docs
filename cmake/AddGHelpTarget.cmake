@@ -2,7 +2,7 @@
 # Functions to install the docbook xml sources for use with gnome help
 #
 # FUNCTION:
-#   add_html_target
+#   add_ghelp_target
 # ARGUMENTS:
 # - docname: The basename of the main xml file. Will be used to locate
 #            this primary xml file and for various output files/directories.
@@ -15,45 +15,68 @@
 
 function (add_ghelp_target docname lang entities figures dtd_files)
 
-    set(BUILD_DIR "${DATADIR_BUILD}/gnome/help/${docname}/${lang}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
+    # Setup base directory
+    set(fmt "ghelp")
 
+    set(BUILD_DIR "${DATADIR_BUILD}/gnome/help/${docname}/${lang}")
+
+    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
+    file(MAKE_DIRECTORY "${BUILD_DIR}/images")
+
+
+    # GnuCash-specific xsl files
+    file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
+
+    # The cmake version of Ubuntu 18.04LTS is 3.10.
+    # We can't use list(TRANSFORM <list> <ACTION> [<SELECTOR>] [OUTPUT_VARIABLE <output variable>])
+
+    # Creating *full path* XML filenames for sources.
     set(source_files "")
     foreach(xml_file ${entities} ${docname}.xml)
         list(APPEND source_files "${CMAKE_CURRENT_SOURCE_DIR}/${xml_file}")
     endforeach()
-    list(APPEND source_files "${dtd_files}")
 
-    set(dest_files "")
-    foreach(xml_file ${entities} ${docname}.xml gnc-docbookx.dtd)
-        list(APPEND dest_files "${BUILD_DIR}/${xml_file}")
-    endforeach()
-
+    # Copy source XML files for this document
     add_custom_command(
-        OUTPUT ${dest_files}
-        COMMAND ${CMAKE_COMMAND} -E copy ${source_files} "${BUILD_DIR}"
-        DEPENDS ${entities} "${docname}.xml" "${dtd_files}"
-        WORKING_DIRECTORY "${BUILD_DIR}")
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        COMMAND ${CMAKE_COMMAND} -E copy ${entities} "${docname}.xml" "${BUILD_DIR}"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        DEPENDS ${entities} "${docname}.xml"
+        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+
+    # Copy DTD files for this document
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
+        COMMAND ${CMAKE_COMMAND} -E copy "${dtd_files}" "${BUILD_DIR}"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
+        DEPENDS "${dtd_files}")
+
 
     # Copy figures for this document
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
         DEPENDS ${figures})
 
-    add_custom_target("${lang}-${docname}-ghelp"
-        DEPENDS ${dest_files}
-                "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger")
 
-    add_dependencies(${docname}-ghelp "${lang}-${docname}-ghelp")
+    # Copy GnuCash-Specific icons
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*" "${BUILD_DIR}/images"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        DEPENDS "${gnucash_icon_files}")
 
-    install(FILES ${source_files}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}"
-        COMPONENT "ghelp")
-    install(FILES ${figures}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}/figures"
-        COMPONENT "ghelp")
+    add_custom_target("${lang}-${docname}-${fmt}"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
+
+    add_dependencies(${docname}-${fmt} "${lang}-${docname}-${fmt}")
+
+
+    install(DIRECTORY "${BUILD_DIR}"
+        DESTINATION "share/gnome/help/${docname}")
+
 endfunction()

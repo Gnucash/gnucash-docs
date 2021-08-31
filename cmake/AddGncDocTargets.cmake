@@ -14,9 +14,10 @@ function (add_gnc_doc_targets docname entities)
 
     get_filename_component(lang ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
-    # Selected PNG files only because SVG figures aren't used in guide and help now.
-    # If you'd like to add other formats, add here.
-    file(GLOB figures "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.png")
+    # Both PNG and SVG are used as figures. Some files are installed
+    # but may not be used.
+    file(GLOB figures "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.png"
+                      "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.svg")
 
     file(GLOB dtd_files "${CMAKE_SOURCE_DIR}/docbook/*.dtd")
 

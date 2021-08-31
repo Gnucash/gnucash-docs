@@ -1,5 +1,6 @@
 # CMakeLists.txt for GnuCash Documenation
 
+# The cmake version of Ubuntu 18.04LTS is 3.10.
 cmake_minimum_required (VERSION 3.5)
 
 # This sets a number of environment variables we can use later on
@@ -8,7 +9,7 @@ cmake_minimum_required (VERSION 3.5)
 # specify a language.
 project (gnucash-docs
     VERSION 4.6
-    LANGUAGES C)
+    LANGUAGES NONE)
 
 set (PACKAGE_NAME GnuCash Docs)
 set (PACKAGE_BUGREPORT "https://bugs.gnucash.org/describecomponents.cgi?product=Documentation")
@@ -25,7 +26,6 @@ include (AddHtmlTarget)
 include (AddPdfTarget)
 include (AddGncDocTargets)
 include (DistCommon)
-include (GNUInstallDirs)
 
 # Clear cache variables that will be filled later during the cmake run
 unset(dist_files CACHE)
@@ -162,7 +162,7 @@ if (WITH_HTML)
     add_custom_target(html)
 endif()
 if (WITH_GHELP)
-    add_custom_target(ghelp)
+    add_custom_target(ghelp ALL)
 endif()
 if (WITH_PDF)
     add_custom_target(pdf)

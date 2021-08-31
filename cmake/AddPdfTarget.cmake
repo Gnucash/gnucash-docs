@@ -12,40 +12,86 @@
 #             It does NOT contain "${docname}.xml".
 # - figures: A list of FULL PATH image files.
 # - dtd_files: A list of FULL PATH DTD files.
+#
+#   Note: The figures and icons should be placed at ${CMAKE_CURRENT_BINARY_DIR}, not ${BUILD_DIR} for FOP.
+#
 function (add_pdf_target docname lang entities figures dtd_files)
 
+    # Prepare variables and directories for build
+    set(fmt "pdf")
     set(fofile "${docname}.fo")
-    set(pdffile "${docname}.pdf")
+    set(outfile "${docname}.${fmt}")
 
-    set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}")
+    set(BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/${fmt}")
+    set(OUTPUT_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}")
+
+    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
+    file(MAKE_DIRECTORY "${BUILD_DIR}/images/callouts")
+    file(MAKE_DIRECTORY "${OUTPUT_DIR}")
+
+    configure_file("${FOP_XCONF}" "${BUILD_DIR}/fop.xconf")
+
+    # GnuCash-specific xsl files
+    file(GLOB xsl_files "${CMAKE_SOURCE_DIR}/xsl/*.xsl")
+    file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
 
+    # Convert FO file to PDF file
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
-        COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_FO}
-                            --stringparam gnc.lang ${lang}
-                            -o "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
-                            "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-fo.xsl"
-                            "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
-        DEPENDS ${entities} "${docname}.xml" ${dtd_files})
-
-    configure_file("${FOP_XCONF}" "${CMAKE_CURRENT_BINARY_DIR}/fop.xconf")
-
-    add_custom_command(
-        OUTPUT "${BUILD_DIR}/${pdffile}"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/xsl/images" "${CMAKE_CURRENT_BINARY_DIR}/images"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/figures" "${CMAKE_CURRENT_BINARY_DIR}/figures"
+        OUTPUT "${OUTPUT_DIR}/${outfile}"
         COMMAND ${FOP} ${FOPFLAGS}
                         -l ${lang}
-                        -c "${CMAKE_CURRENT_BINARY_DIR}/fop.xconf"
-                        -fo "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
-                        -pdf "${BUILD_DIR}/${pdffile}"
-        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fofile}" ${figures})
+                        -c "${BUILD_DIR}/fop.xconf"
+                        -fo "${BUILD_DIR}/${fofile}"
+                        -pdf "${OUTPUT_DIR}/${outfile}"
+        DEPENDS "${BUILD_DIR}/${fofile}"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+                "${BUILD_DIR}/fop.xconf")
 
-    add_custom_target("${lang}-${docname}-pdf"
-        DEPENDS "${BUILD_DIR}/${pdffile}")
+    # Convert xml files to FO file
+    add_custom_command(
+        OUTPUT "${BUILD_DIR}/${fofile}"
+        COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_FO}
+                            --stringparam gnc.lang ${lang}
+                            -o "${BUILD_DIR}/${fofile}"
+                            "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-fo.xsl"
+                            "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
+        DEPENDS ${entities} "${docname}.xml" "${dtd_files}" "${xsl_files}")
 
-    add_dependencies(${docname}-pdf "${lang}-${docname}-pdf")
+    # Copy figures for this document
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+        DEPENDS ${figures})
+
+    # Copy XSL Stylesheet icons
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+        # SVG admonition icons are used in PDF.
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/*.svg" "${BUILD_DIR}/images"
+        # SVG callout icons are used in PDF.
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/callouts/*.svg"  "${BUILD_DIR}/images/callouts"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger")
+
+    # Copy GnuCash-Specific icons
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*" "${BUILD_DIR}/images"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+                "${gnucash_icon_files}")
+
+    # TARGET dependencies
+    add_custom_target("${lang}-${docname}-${fmt}"
+        DEPENDS "${OUTPUT_DIR}/${outfile}")
+
+    add_dependencies(${docname}-${fmt} "${lang}-${docname}-${fmt}")
+
+    install(FILES
+            "${OUTPUT_DIR}/${outfile}"
+        DESTINATION "share/doc/${lang}"
+        OPTIONAL)
 
 endfunction()
