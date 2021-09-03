@@ -18,7 +18,7 @@ function (add_ghelp_target docname lang entities figures dtd_files)
     # Setup base directory
     set(fmt "ghelp")
 
-    set(BUILD_DIR "${DATADIR_BUILD}/gnome/help/${docname}/${lang}")
+    set(BUILD_DIR "${CMAKE_BINARY_DIR}/share/gnome/help/${docname}/${lang}")
 
     file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
     file(MAKE_DIRECTORY "${BUILD_DIR}/images")
@@ -47,7 +47,7 @@ function (add_ghelp_target docname lang entities figures dtd_files)
     # Copy DTD files for this document
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
-        COMMAND ${CMAKE_COMMAND} -E copy "${dtd_files}" "${BUILD_DIR}"
+        COMMAND ${CMAKE_COMMAND} -E copy ${dtd_files} "${BUILD_DIR}"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
         DEPENDS "${dtd_files}")
 

@@ -71,10 +71,6 @@ set(JAPANESE_MINCHO_TTF "ume-tmo3.ttf" CACHE STRING "Mincho TrueType font used f
 set(JAPANESE_GOTHIC_TTF "ume-tmo3.ttf" CACHE STRING "Gothic TrueType font used for Japanese pdf")
 set(japanese_fontdir "${CMAKE_SOURCE_DIR}/fonts/truetype" CACHE STRING "Directory to search for Japanese fonts")
 
-# Buildtime destination directories for our generated documentation
-set(DATADIR_BUILD "${CMAKE_BINARY_DIR}/share")
-set(DOCDIR_BUILD  "${DATADIR_BUILD}/doc/${PACKAGE}")
-
 # ############################################################
 # Find the documentation dependencies
 
@@ -205,9 +201,9 @@ file(GLOB_RECURSE extrafiles
     cmake/* fonts/* xsl/* docbook/*)
 add_to_dist(${extrafiles})
 
-configure_file(COPYING ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING COPYONLY)
-configure_file(COPYING-DOCS ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING-DOCS COPYONLY)
-install(FILES COPYING COPYING-DOCS DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
+configure_file(COPYING ${CMAKE_BINARY_DIR}/share/doc/${PROJECT_NAME}/COPYING COPYONLY)
+configure_file(COPYING-DOCS ${CMAKE_BINARY_DIR}/share/doc/${PROJECT_NAME}/COPYING-DOCS COPYONLY)
+install(FILES COPYING COPYING-DOCS DESTINATION share/doc/${PROJECT_NAME})
 
 add_to_dist(
     AUTHORS

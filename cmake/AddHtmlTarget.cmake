@@ -20,7 +20,7 @@ function (add_html_target docname lang entities figures dtd_files)
     set(fmt "html")
 
     # We don't need to make work directory, we can output HTML files directly.
-    set(OUTPUT_DIR "${DOCDIR_BUILD}/${lang}/${docname}")
+    set(OUTPUT_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}/${docname}")
 
     file(MAKE_DIRECTORY "${OUTPUT_DIR}/figures")
     file(MAKE_DIRECTORY "${OUTPUT_DIR}/images/callouts")

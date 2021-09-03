@@ -84,7 +84,7 @@ endfunction()
 #
 function (add_mobi_target docname lang)
 
-    set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
+    set(BUILD_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}")
     file(MAKE_DIRECTORY "${BUILD_DIR}")
 
     set(epubfile "${BUILD_DIR}/${docname}.epub")
