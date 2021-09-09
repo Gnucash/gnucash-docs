@@ -22,8 +22,6 @@ set (entities
         ch_python_bindings.xml
         ch_import_business_data.xml
         appendixa.xml
-        appendixb.xml
-        appendixc.xml
         appendixd.xml)
 
 add_gnc_doc_targets(${docname} "${entities}")
