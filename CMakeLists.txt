@@ -205,6 +205,10 @@ file(GLOB_RECURSE extrafiles
     cmake/* fonts/* stylesheet/* xsl/*)
 add_to_dist(${extrafiles})
 
+configure_file(COPYING ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING COPYONLY)
+configure_file(COPYING-DOCS ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING-DOCS COPYONLY)
+install(FILES COPYING COPYING-DOCS DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
+
 add_to_dist(
     AUTHORS
     CMakeLists.txt
