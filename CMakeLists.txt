@@ -53,10 +53,6 @@ else()
 endif()
 option (WITH_MOBI "Enable build rules for Mobipocket document format" OFF)
 
-# If AUTOTOOLS_IN_DIST is OFF, then 'dist' wont run autogen.sh, and 'distcheck'
-# won't run the autotools distcheck. Note that various Makefile.am files are still
-# included in the dist when this is OFF. I'll fix that at some point.
-option (AUTOTOOLS_IN_DIST "Add autotools support to distribution tarballs." ON)
 # ############################################################
 # Following parameters can equally be set using -D switches on the CMake command line.
 # Set font dirs and font for Russian pdf documents
@@ -185,21 +181,6 @@ endif()
 add_subdirectory (guide)
 add_subdirectory (help)
 
-if(AUTOTOOLS_IN_DIST)
-    set(autotoolsfiles
-        configure.ac
-        Makefile.am
-        gnucash-docs.spec.in
-        chm.make
-        epub.make
-        mobi.make
-        omf.make
-        pdf.make
-        xmldocs.make)
-
-    add_to_dist(${autotoolsfiles})
-endif()
-
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     cmake/* fonts/* stylesheet/* xsl/* docbook/*)
@@ -231,7 +212,6 @@ add_custom_command(OUTPUT ${DIST_FILE}.gz ${DIST_FILE}.bz2
            -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
            -D BUILD_SOURCE_DIR=${CMAKE_BINARY_DIR}
            "-Ddist_files=\"${dist_files}\""
-           -D AUTOTOOLS_IN_DIST=${AUTOTOOLS_IN_DIST}
            -D SHELL=${SHELL}
            -P ${CMAKE_SOURCE_DIR}/cmake/MakeDist.cmake
 
@@ -246,7 +226,6 @@ add_custom_target(distcheck DEPENDS dist
             -D CMAKE_MODULE_PATH=${CMAKE_SOURCE_DIR}/cmake
             -D PACKAGE_PREFIX=${PACKAGE_PREFIX}
             -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
-            -D AUTOTOOLS_IN_DIST=${AUTOTOOLS_IN_DIST}
             -D SHELL=${SHELL}
             -P ${CMAKE_SOURCE_DIR}/cmake/MakeDistCheck.cmake
         )
