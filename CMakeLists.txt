@@ -183,7 +183,7 @@ endif()
 
 
 add_subdirectory (guide)
-add_subdirectory (help)
+add_subdirectory (manual)
 
 if(AUTOTOOLS_IN_DIST)
     set(autotoolsfiles
