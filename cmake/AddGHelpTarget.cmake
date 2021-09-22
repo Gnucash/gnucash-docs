@@ -17,6 +17,7 @@ function (add_ghelp_target docname lang entities figures dtd_files)
 
     # Setup base directory
     set(fmt "ghelp")
+    set(outfile "index.docbook")
 
     set(BUILD_DIR "${CMAKE_BINARY_DIR}/share/help/${lang}/${docname}")
 
@@ -33,6 +34,12 @@ function (add_ghelp_target docname lang entities figures dtd_files)
         list(APPEND source_files "${CMAKE_CURRENT_SOURCE_DIR}/${xml_file}")
     endforeach()
 
+    # Make symlink from index.docbook to ${outfile}
+    add_custom_command(
+        OUTPUT "${BUILD_DIR}/${outfile}"
+        COMMAND ${CMAKE_COMMAND} -E create_symlink "${docname}.xml" "${outfile}"
+        WORKING_DIRECTORY "${BUILD_DIR}"
+        DEPENDS "${BUILD_DIR}/${docname}.xml")
 
     # Copy source XML files for this document
     add_custom_command(
@@ -77,7 +84,7 @@ function (add_ghelp_target docname lang entities figures dtd_files)
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     add_custom_target("${lang}-${docname}-${fmt}"
-        DEPENDS "${BUILD_DIR}/${docname}.xml"
+        DEPENDS "${BUILD_DIR}/${outfile}"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
