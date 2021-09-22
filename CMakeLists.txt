@@ -208,7 +208,6 @@ add_custom_command(OUTPUT ${DIST_FILE}.gz ${DIST_FILE}.bz2
            -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
            -D BUILD_SOURCE_DIR=${CMAKE_BINARY_DIR}
            "-Ddist_files=\"${dist_files}\""
-           -D AUTOTOOLS_IN_DIST=${AUTOTOOLS_IN_DIST}
            -D SHELL=${SHELL}
            -P ${CMAKE_SOURCE_DIR}/cmake/MakeDist.cmake
 
@@ -223,7 +222,6 @@ add_custom_target(distcheck DEPENDS dist
             -D CMAKE_MODULE_PATH=${CMAKE_SOURCE_DIR}/cmake
             -D PACKAGE_PREFIX=${PACKAGE_PREFIX}
             -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
-            -D AUTOTOOLS_IN_DIST=${AUTOTOOLS_IN_DIST}
             -D SHELL=${SHELL}
             -P ${CMAKE_SOURCE_DIR}/cmake/MakeDistCheck.cmake
         )
