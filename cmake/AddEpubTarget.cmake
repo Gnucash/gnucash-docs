@@ -32,10 +32,6 @@ function (add_epub_target docname lang entities figures dtd_files)
     set(BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/${fmt}")
     set(OUTPUT_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}")
 
-    file(MAKE_DIRECTORY "${BUILD_DIR}/OEBPS/figures")
-    file(MAKE_DIRECTORY "${BUILD_DIR}/OEBPS/images/callouts")
-    file(MAKE_DIRECTORY "${OUTPUT_DIR}")
-
 
     # GnuCash-specific xsl files
     file(GLOB xsl_files "${CMAKE_SOURCE_DIR}/xsl/*.xsl")
@@ -64,7 +60,16 @@ function (add_epub_target docname lang entities figures dtd_files)
         COMMAND zip -X -r "${OUTPUT_DIR}/${outfile}" mimetype META-INF OEBPS
         DEPENDS ${entities} "${docname}.xml" "${figures}" "${dtd_files}"
                 "${xsl_files}" "${gnucash_icon_files}"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
         WORKING_DIRECTORY "${BUILD_DIR}")
+
+    # Prepare ${BUILD_DIR}
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/OEBPS/figures"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/OEBPS/images/callouts"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
 
     add_custom_target("${lang}-${docname}-${fmt}"
         DEPENDS "${OUTPUT_DIR}/${outfile}")
@@ -76,6 +81,12 @@ function (add_epub_target docname lang entities figures dtd_files)
             "${OUTPUT_DIR}/${outfile}"
         DESTINATION "share/doc/${lang}"
         OPTIONAL)
+
+    # Cleaning
+    add_custom_target("${lang}-${docname}-${fmt}-clean"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf "${BUILD_DIR}")
+
+    add_dependencies(clean-extra "${lang}-${docname}-${fmt}-clean")
 
 endfunction()
 

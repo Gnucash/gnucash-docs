@@ -28,6 +28,7 @@ function (add_gnc_doc_targets docname entities)
             COMMAND  ${XMLLINT} --postvalid
                                 --xinclude
                                 --noout
+                                --nonet
                                 --path ${CMAKE_SOURCE_DIR}/docbook
                                 ${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml
             DEPENDS ${entities} "${docname}.xml" "${dtd_files}")

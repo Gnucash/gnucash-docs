@@ -25,10 +25,6 @@ function (add_pdf_target docname lang entities figures dtd_files)
     set(BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/${fmt}")
     set(OUTPUT_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}")
 
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
-    file(MAKE_DIRECTORY "${BUILD_DIR}/images/callouts")
-    file(MAKE_DIRECTORY "${OUTPUT_DIR}")
-
     configure_file("${FOP_XCONF}" "${BUILD_DIR}/fop.xconf")
 
     # GnuCash-specific xsl files
@@ -64,7 +60,8 @@ function (add_pdf_target docname lang entities figures dtd_files)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
-        DEPENDS ${figures})
+        DEPENDS ${figures}
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Copy XSL Stylesheet icons
     add_custom_command(
@@ -73,7 +70,8 @@ function (add_pdf_target docname lang entities figures dtd_files)
         COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/*.svg" "${BUILD_DIR}/images"
         # SVG callout icons are used in PDF.
         COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/callouts/*.svg"  "${BUILD_DIR}/images/callouts"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger")
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Copy GnuCash-Specific icons
     add_custom_command(
@@ -82,6 +80,13 @@ function (add_pdf_target docname lang entities figures dtd_files)
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
                 "${gnucash_icon_files}")
+
+    # Prepare ${BUILD_DIR}
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images/callouts"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # TARGET dependencies
     add_custom_target("${lang}-${docname}-${fmt}"
@@ -93,5 +98,14 @@ function (add_pdf_target docname lang entities figures dtd_files)
             "${OUTPUT_DIR}/${outfile}"
         DESTINATION "share/doc/${lang}"
         OPTIONAL)
+
+    # Cleaning
+    # Don't remove "fop.xconf".
+    add_custom_target("${lang}-${docname}-${fmt}-clean"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf "${BUILD_DIR}/figures"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf "${BUILD_DIR}/images"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf "${BUILD_DIR}/${fofile}")
+
+    add_dependencies(clean-extra "${lang}-${docname}-${fmt}-clean")
 
 endfunction()

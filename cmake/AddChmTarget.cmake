@@ -22,10 +22,6 @@ function (add_chm_target docname lang entities figures dtd_files)
     set(BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/${fmt}")
     set(OUTPUT_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}")
 
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
-    file(MAKE_DIRECTORY "${BUILD_DIR}/images/callouts")
-    file(MAKE_DIRECTORY "${OUTPUT_DIR}")
-
     # GnuCash-specific xsl files
     file(GLOB xsl_files "${CMAKE_SOURCE_DIR}/xsl/*.xsl")
     file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
@@ -62,7 +58,8 @@ function (add_chm_target docname lang entities figures dtd_files)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
-        DEPENDS ${figures})
+        DEPENDS ${figures}
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Copy XSL Stylesheet icons
     add_custom_command(
@@ -71,7 +68,8 @@ function (add_chm_target docname lang entities figures dtd_files)
         COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/*.png" "${BUILD_DIR}/images"
         # PNG callout icons are used in chm.
         COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/callouts/*.png"  "${BUILD_DIR}/images/callouts"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger")
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Copy GnuCash-Specific icons
     add_custom_command(
@@ -81,6 +79,13 @@ function (add_chm_target docname lang entities figures dtd_files)
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
                 "${gnucash_icon_files}")
+
+    # Prepare ${BUILD_DIR}
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images/callouts"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
 
     # TARGET dependencies
@@ -92,5 +97,12 @@ function (add_chm_target docname lang entities figures dtd_files)
     install(FILES
             "${OUTPUT_DIR}/${outfile}"
         DESTINATION "share/doc/${lang}")
+
+
+    # Cleaning
+    add_custom_target("${lang}-${docname}-${fmt}-clean"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf "${BUILD_DIR}")
+
+    add_dependencies(clean-extra "${lang}-${docname}-${fmt}-clean")
 
 endfunction()

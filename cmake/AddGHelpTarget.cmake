@@ -18,38 +18,37 @@ function (add_ghelp_target docname lang entities figures dtd_files)
     # Setup base directory
     set(fmt "ghelp")
 
-    set(BUILD_DIR "${CMAKE_BINARY_DIR}/share/gnome/help/${docname}/${lang}")
-
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
-    file(MAKE_DIRECTORY "${BUILD_DIR}/images")
-
+    set(BUILD_DIR "${CMAKE_BINARY_DIR}/share/help/${lang}/${docname}")
 
     # GnuCash-specific xsl files
     file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
     # The cmake version of Ubuntu 18.04LTS is 3.10.
-    # We can't use list(TRANSFORM <list> <ACTION> [<SELECTOR>] [OUTPUT_VARIABLE <output variable>])
-
+    # Can be replace with list(TRANSFORM <list> <ACTION> [<SELECTOR>] [OUTPUT_VARIABLE <output variable>])
+    # once we can adopt cmake 3.12.
+    #
     # Creating *full path* XML filenames for sources.
     set(source_files "")
     foreach(xml_file ${entities} ${docname}.xml)
         list(APPEND source_files "${CMAKE_CURRENT_SOURCE_DIR}/${xml_file}")
     endforeach()
 
+
     # Copy source XML files for this document
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        OUTPUT "${BUILD_DIR}/${docname}.xml"
         COMMAND ${CMAKE_COMMAND} -E copy ${entities} "${docname}.xml" "${BUILD_DIR}"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
         DEPENDS ${entities} "${docname}.xml"
-        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Copy DTD files for this document
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${dtd_files} "${BUILD_DIR}"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
-        DEPENDS "${dtd_files}")
+        DEPENDS "${dtd_files}"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
 
     # Copy figures for this document
@@ -57,7 +56,8 @@ function (add_ghelp_target docname lang entities figures dtd_files)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
-        DEPENDS ${figures})
+        DEPENDS ${figures}
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
 
     # Copy GnuCash-Specific icons
@@ -65,10 +65,19 @@ function (add_ghelp_target docname lang entities figures dtd_files)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
         COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*" "${BUILD_DIR}/images"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
-        DEPENDS "${gnucash_icon_files}")
+        DEPENDS "${gnucash_icon_files}"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
+
+    # Prepare ${BUILD_DIR}
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images/callouts"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     add_custom_target("${lang}-${docname}-${fmt}"
-        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        DEPENDS "${BUILD_DIR}/${docname}.xml"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
@@ -77,6 +86,12 @@ function (add_ghelp_target docname lang entities figures dtd_files)
 
 
     install(DIRECTORY "${BUILD_DIR}"
-        DESTINATION "share/gnome/help/${docname}")
+        DESTINATION "share/help/${lang}")
+
+    # Cleaning
+    add_custom_target("${lang}-${docname}-${fmt}-clean"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf "${BUILD_DIR}")
+
+    add_dependencies(clean-extra "${lang}-${docname}-${fmt}-clean")
 
 endfunction()
