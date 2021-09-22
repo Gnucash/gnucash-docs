@@ -54,12 +54,6 @@ function (add_gnc_doc_targets docname entities)
       add_mobi_target(${docname} ${lang})
     endif()
 
-    if(AUTOTOOLS_IN_DIST)
-        set(autotoolsfiles
-            Makefile.am
-            ${docname}-${lang}.omf)
-    endif()
-
     file(GLOB_RECURSE figures_dist
         RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
         figures/*.png figures/*.svg)
@@ -68,7 +62,6 @@ function (add_gnc_doc_targets docname entities)
         CMakeLists.txt
         ${docname}.xml
         ${entities}
-        ${autotoolsfiles}
         ${figures_dist})
 
 endfunction()
