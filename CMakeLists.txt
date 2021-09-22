@@ -179,7 +179,7 @@ endif()
 
 
 add_subdirectory (guide)
-add_subdirectory (help)
+add_subdirectory (manual)
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
