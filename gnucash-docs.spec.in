@@ -8,11 +8,9 @@ License:        GNU Free Documentation License 1.1 or later
 Group:          Office/Finance
 URL:            https://www.gnucash.org
 Source:         https://sourceforge.net/projects/gnucash/files/gnucash%20(stable)/%{version}/gnucash-docs-%{version}.tar.gz
-BuildRequires:  fdupes
-BuildRequires:  sgml-skel
-BuildRequires:  xsltproc
+BuildRequires:  cmake
 BuildArch:      noarch
-Recommends:     %{_bindir}/gnome-help
+Recommends:     %{_bindir}/yelp
 
 %description
 GnuCash is a personal finance manager. A check-book like
@@ -26,24 +24,42 @@ This is the documentation module for GnuCash.
 %setup -q
 
 %build
-%configure
-make %{?_smp_mflags}
+%cmake
+%cmake_build
 
 %install
-%make_install
-%find_lang gnucash-guide %{?no_lang_C}
-%find_lang gnucash-help %{?no_lang_C}
-%fdupes %{buildroot}%{_datadir}
+%cmake_install
 
-%files -f gnucash-guide.lang -f gnucash-help.lang
-%license COPYING
-%doc AUTHORS COPYING-DOCS HACKING NEWS README
-# Own dirs so we do not have to depend on libgnome
-%dir %{_datadir}/gnome
-%dir %{_datadir}/gnome/help
-%dir %{_datadir}/gnome/help/gnucash-guide
-%doc %{_datadir}/gnome/help/gnucash-guide/C/
-%dir %{_datadir}/gnome/help/gnucash-help
-%doc %{_datadir}/gnome/help/gnucash-help/C/
+%files
+%license COPYING-DOCS
+%doc COPYING COPYING-DOCS AUTHORS HACKING NEWS README
+%dir %{_datadir}/help
+
+%dir %{_datadir}/help/C/gnucash-guide
+%doc %{_datadir}/help/C/gnucash-guide/*
+%dir %{_datadir}/help/C/gnucash-help
+%doc %{_datadir}/help/C/gnucash-help/*
+
+%dir %{_datadir}/help/de/gnucash-guide
+%doc %{_datadir}/help/de/gnucash-guide/*
+%dir %{_datadir}/help/de/gnucash-help
+%doc %{_datadir}/help/de/gnucash-help/*
+
+%dir %{_datadir}/help/it/gnucash-guide
+%doc %{_datadir}/help/it/gnucash-guide/*
+%dir %{_datadir}/help/it/gnucash-help
+%doc %{_datadir}/help/it/gnucash-help/*
+
+%dir %{_datadir}/help/ja/gnucash-guide
+%doc %{_datadir}/help/ja/gnucash-guide/*
+
+%dir %{_datadir}/help/pt/gnucash-guide
+%doc %{_datadir}/help/pt/gnucash-guide/*
+%dir %{_datadir}/help/pt/gnucash-help
+%doc %{_datadir}/help/pt/gnucash-help/*
+
+%dir %{_datadir}/help/ru/gnucash-guide
+%doc %{_datadir}/help/ru/gnucash-guide/*
+
 
 %changelog
