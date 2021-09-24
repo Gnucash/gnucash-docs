@@ -10,7 +10,7 @@
 -->
 <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl" />
 
-<!-- PDF parameters for GnuCash docs. -->
+<!-- FO parameters for GnuCash docs. -->
 <xsl:param name="fop1.extensions">1</xsl:param>
 <xsl:param name="variablelist.as.blocks">1</xsl:param>
 <xsl:param name="header.column.widths">1 4 1</xsl:param>
@@ -37,8 +37,16 @@ book      toc,title,figure,table,example,equation
 <xsl:include href="gnc-custom-common.xsl" />
 
 
-<!--  GnuCash PDF specific customization files. -->
+<!--  GnuCash FO specific customization. -->
 <!-- Bold variablelist/varlistentry/term -->
 <xsl:include href="variablelist-fo.xsl"/>
+
+
+<!-- Set list spacing compact -->
+<xsl:attribute-set name="list.item.spacing">
+  <xsl:attribute name="space-before.optimum">0em</xsl:attribute>
+  <xsl:attribute name="space-before.minimum">0em</xsl:attribute>
+  <xsl:attribute name="space-before.maximum">0.2em</xsl:attribute>
+</xsl:attribute-set>
 
 </xsl:stylesheet>
