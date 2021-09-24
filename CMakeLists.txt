@@ -190,6 +190,8 @@ configure_file(COPYING ${CMAKE_BINARY_DIR}/share/doc/${PROJECT_NAME}/COPYING COP
 configure_file(COPYING-DOCS ${CMAKE_BINARY_DIR}/share/doc/${PROJECT_NAME}/COPYING-DOCS COPYONLY)
 install(FILES COPYING COPYING-DOCS DESTINATION share/doc/${PROJECT_NAME})
 
+configure_file(gnucash-docs.spec.in ${CMAKE_SOURCE_DIR}/gnucash-docs.spec @ONLY)
+
 add_to_dist(
     AUTHORS
     CMakeLists.txt
@@ -199,7 +201,9 @@ add_to_dist(
     HACKING
     NEWS
     README
-    fop.xconf.in)
+    fop.xconf.in
+    gnucash-docs.spec.in
+    gnucash-docs.spec)
 
 ############################ BEGIN MAKE DIST #################
 
