@@ -18,7 +18,13 @@ function (add_ghelp_target docname lang entities figures)
     foreach(xml_file ${entities} ${docname}.xml)
         list(APPEND source_files "${CMAKE_CURRENT_SOURCE_DIR}/${xml_file}")
     endforeach()
-    list(APPEND source_files "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
+
+    set(dtd_files "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd"
+                  "${CMAKE_SOURCE_DIR}/docbook/gnc-locale-C.dtd"
+                  "${CMAKE_SOURCE_DIR}/docbook/gnc-locale-${lang}.dtd")
+    list(REMOVE_DUPLICATES dtd_files)
+    list(APPEND source_files ${dtd_files})
+
 
     set(dest_files "")
     foreach(xml_file ${entities} ${docname}.xml gnc-docbookx.dtd)
@@ -28,7 +34,7 @@ function (add_ghelp_target docname lang entities figures)
     add_custom_command(
         OUTPUT ${dest_files}
         COMMAND ${CMAKE_COMMAND} -E copy ${source_files} "${BUILD_DIR}"
-        DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd"
+        DEPENDS ${entities} "${docname}.xml" ${dtd_files}
         WORKING_DIRECTORY "${BUILD_DIR}")
 
     # Copy figures for this document
