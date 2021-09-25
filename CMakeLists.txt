@@ -7,7 +7,7 @@ cmake_minimum_required (VERSION 3.5)
 # We don't actually use C, but GNUInstallDirs doesn't work if we don't
 # specify a language.
 project (gnucash-docs
-    VERSION 4.6
+    VERSION 4.7
     LANGUAGES C)
 
 set (PACKAGE_NAME GnuCash Docs)
@@ -212,6 +212,7 @@ install(FILES COPYING COPYING-DOCS DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJEC
 add_to_dist(
     AUTHORS
     CMakeLists.txt
+    COPYING
     COPYING-DOCS
     ChangeLog
     HACKING
