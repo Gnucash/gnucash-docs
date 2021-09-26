@@ -121,13 +121,13 @@ endif()
 
 # To find our figures in the source directory each run of fop
 # will be passed a fop.xconf file to set a base-dir.
-# The default fop.xconf file below does just that.
-# Every document/language can define its own FOP_XCONF
+# The default fop.xconf.in file below does just that.
+# Every document/language can override its own FOP_XCONF
 # to point at a document/language specific fop.xconf
 # instead for additional fop configuration as needed.
-# For example the Japanese document will use it to embed Japanese fonts
-set (FOP_XCONF_DFLT "${CMAKE_SOURCE_DIR}/fop.xconf.in")
-set (FOP_XCONF "${FOP_XCONF_DFLT}")
+# For example the Japanese document will use it to embed Japanese fonts.
+# See guide/ja/fop.xconf.in and guide/ja/CMakeLists.txt.
+set (FOP_XCONF "${CMAKE_SOURCE_DIR}/fop.xconf.in")
 
 # Find the htmlhelp compiler for chm output
 if(WITH_CHM)
