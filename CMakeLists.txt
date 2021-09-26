@@ -196,7 +196,6 @@ add_to_dist(
     COPYING
     COPYING-DOCS
     ChangeLog
-    HACKING
     NEWS
     README
     fop.xconf.in)
