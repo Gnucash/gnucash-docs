@@ -11,8 +11,10 @@ set (entities
         Help_ch_Customize.xml
         Help_fdl-appendix.xml
         Help_legal.xml
+        para-assist-buttons.xml
         Help_chartofaccts.xml
         Help_chtacctseg.xml
+        Help_para-assist-intro.xml
         Help_txf-categories.xml
         Help_tips-appendix.xml)
 

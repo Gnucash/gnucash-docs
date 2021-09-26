@@ -32,8 +32,8 @@ own entity definitions to use across all of our DocBook pages. -->
   
   1. a) Publication - should only be changed by the release manager!
 -->
-<!ENTITY manrevision "4.6">
-<!ENTITY date "27 June 2021">
+<!ENTITY manrevision "4.7">
+<!ENTITY date "26 September 2021">
 <!ENTITY vers-unstable "">
 <!ENTITY vers-stable "4.6">
 <!ENTITY series-unstable "master">
@@ -48,7 +48,14 @@ own entity definitions to use across all of our DocBook pages. -->
 -->
 <!ENTITY appname "GnuCash">  <!-- This should be used, where no further markup is desired, e.g. in GUI elements, URLs -->
 <!ENTITY app "<application>GnuCash</application>">  <!-- This should be used in normal text -->
+<!ENTITY app-aqb "<application>AqBanking</application>">
+<!ENTITY app-aoo "<application>Apache OpenOffice</application>">
 <!ENTITY app-fq "<application>Finance::Quote</application>">
+<!ENTITY app-lo "<application>LibreOffice</application>">
+<!ENTITY app-perl "<application>Perl</application>">
+<!ENTITY app-py "<application>Python</application>">
+<!ENTITY app-perl "<application>Perl</application>">
+<!ENTITY app-gfa "<application>Gnucash for Android</application>">
 
   <!-- Operating Systems (3 letters), Bundles: -->
 <!ENTITY lin "<systemitem class='osname'>Linux</systemitem>">
@@ -61,15 +68,20 @@ own entity definitions to use across all of our DocBook pages. -->
   Last version of branch n -->
 <!ENTITY vers-last-2 "2.6.21">
 <!-- 
-  3. Some common directories - change rarely.
+  3. Some common files and directories - change rarely.
   FIXME: OS independed?
 -->
 <!ENTITY dir-conf "~/.conf/gnucash/">
 <!ENTITY dir-data "~/.local/share/gnucash/">
 <!ENTITY dir-old "~/.gnucash/">  <!-- Up to 2.6.21 common for conf & data -->
+<!ENTITY file-finc "libgnucash/app-utils/calculation/fin.c">
 
 <!-- 
-  4. Some common URLs - should be changed on demand.
+  4. Other formatting instructions -->
+<!ENTITY img-w "850px">  <!-- The maximum width of the graphic elements. -->
+
+<!-- 
+  5. Some common URLs - should be changed on demand.
   
   Translators can add localized instances by adding -<lang>,
   An example is url-wiki-ml-de for the german wiki page about mailing lists.
@@ -77,7 +89,15 @@ own entity definitions to use across all of our DocBook pages. -->
   a) Own URLs:
 -->
 <!ENTITY url-www "https://www.gnucash.org/">
+
+<!ENTITY url-bug-wiki "https://wiki.gnucash.org/wiki/Bugzilla">  <!-- The wiki page explaining the usage of bugzilla -->
+<!ENTITY url-bug-start "https://bugs.gnucash.org/">
+<!ENTITY url-bug-search "https://bugs.gnucash.org/query.cgi">
+<!ENTITY url-bug-browse "https://bugs.gnucash.org/describecomponents.cgi">
+
 <!ENTITY url-docs "https://www.gnucash.org/docs/">
+<!ENTITY url-doc-api-main "https://code.gnucash.org/docs/MAINT/">
+<!ENTITY url-doc-api-mast "https://code.gnucash.org/docs/MASTER/">
 <!-- Fixme: a dirty hack to reference the other document
             Replace them after olink setup
      append {guide|help}/<html-page>                      -->
@@ -87,21 +107,18 @@ own entity definitions to use across all of our DocBook pages. -->
 <!ENTITY url-docs-build-ja "https://code.gnucash.org/docs/ja/gnucash-">
 <!ENTITY url-docs-build-pt "https://code.gnucash.org/docs/pt/gnucash-">
 <!ENTITY url-docs-build-ru "https://code.gnucash.org/docs/ru/gnucash-">
-<!ENTITY url-doc-api-main "https://code.gnucash.org/docs/MAINT/">
-<!ENTITY url-doc-api-mast "https://code.gnucash.org/docs/MASTER/">
 
-<!ENTITY url-bug-wiki "https://wiki.gnucash.org/wiki/Bugzilla">  <!-- The wiki page explaining the usage of bugzilla -->
-<!ENTITY url-bug-start "https://bugs.gnucash.org/">
-<!ENTITY url-bug-search "https://bugs.gnucash.org/query.cgi">
-<!ENTITY url-bug-browse "https://bugs.gnucash.org/describecomponents.cgi">
 <!ENTITY url-irc "irc://irc.gnome.org/gnucash">
 <!ENTITY url-logs-irc "https://lists.gnucash.org/logs/">  <!-- for IRC. If someone needs build logs, scan https://code.gnucash.org/builds/ -->
+
 <!ENTITY url-mail-ar "https://lists.gnucash.org/pipermail/">  <!-- Append <list>/<Year>-<Monthname>/<Number>.html -->
 <!ENTITY url-mail-li "https://lists.gnucash.org/mailman/listinfo/">  <!-- Append the desired list -->
 <!ENTITY url-mail-nabble "http://gnucash.1415818.n4.nabble.com/GnuCash-f1415818.subapps.html">
 <!ENTITY url-mail-gmane "nntp://news.gmane.org/gmane.comp.gnome.apps.gnucash.user">
+
 <!ENTITY url-src "https://github.com/Gnucash/gnucash/">
 <!ENTITY url-src-maint "https://github.com/Gnucash/gnucash/tree/maint/"> <!-- Append the desired topic -->
+
 <!ENTITY url-wiki "https://wiki.gnucash.org/wiki/">  <!-- You could append the desired topic, but better create a separate entity. -->
 <!ENTITY url-wiki-de "https://wiki.gnucash.org/wiki/De/">  <!-- German root -->
 <!ENTITY url-wiki-api-custom "https://wiki.gnucash.org/wiki/Custom_Reports#The_GnuCash_API">
@@ -119,11 +136,13 @@ own entity definitions to use across all of our DocBook pages. -->
 <!ENTITY url-wiki-pmt-term "https://wiki.gnucash.org/wiki/Payment_Terms">
 <!ENTITY url-wiki-ofx "https://wiki.gnucash.org/wiki/Setting_up_OFXDirectConnect">
 <!ENTITY url-wiki-ofx-banks "https://wiki.gnucash.org/wiki/OFX_Direct_Connect_Bank_Settings">
+<!ENTITY url-wiki-OQ "https://wiki.gnucash.org/wiki/Online_Quotes">
 <!ENTITY url-wiki-qif "https://wiki.gnucash.org/wiki/Quicken_Migration">
 <!ENTITY url-wiki-xslt "https://wiki.gnucash.org/wiki/De/export_to_excel_xls_transform">
   <!-- wiki Special: translation is done by mediawiki: -->
 <!ENTITY url-wiki-category "https://wiki.gnucash.org/wiki/Special:Categories">
 <!ENTITY url-wiki-search "https://wiki.gnucash.org/wiki/Special:Search">
+
 <!-- b) Third party URLs: -->
 <!ENTITY url-av "https://www.alphavantage.co/"> <!-- A F::Q source, which requires registration -->
 <!ENTITY url-gh "https://github.com/"> <!-- we want to reference our libs, too.  -->
@@ -140,41 +159,12 @@ own entity definitions to use across all of our DocBook pages. -->
 <!ENTITY url-wp-ru "https://ru.wikipedia.org/wiki/">  <!-- Append the desired topic -->
 <!ENTITY url-yh-fin "https://finance.yahoo.com/">  <!-- Append the desired topic -->
 <!ENTITY url-yh-hlp "https://help.yahoo.com/">  <!-- Append the desired topic -->
+
 <!-- c) URLs of Authors -->
 <!ENTITY url-selinger "https://www.mathstat.dal.ca/~selinger/">
 <!ENTITY tit-sel-tut "Tutorial on multiple currency accounting">
 <!ENTITY tit-sel-gnc "Multiple currency accounting in GnuCash">
 
-<!--
-  Translators:
-    If you can only offer a partial translation, that is fine.
-    Just inform the reader and potential successors about the state by inserting
-    the (localized) "&untranslated-<lang>;" entity and commenting off the still untranslated part.
-    You should localize the &untranslated-<lang>; text, e.g. name the user group of your language.
-    <lang> should be replaced by your language.
-    The &untranslated; entity below serves as a sample text in English.
--->
-<!ENTITY untranslated 'Dear Reader, we are really sorry, but nobody offered a translation
-  for the following parts. If you would like to help us, follow the instructions at <ulink
-    url="https://wiki.gnucash.org/wiki/Translation#Translating_the_GnuCash_Guide_and_Help">
-  <citetitle>Gnucash wiki: How to translate the GnuCash guide and/or help files</citetitle></ulink>.
-  Questions can be discussed at the gnucash-XX@gnucash.org mailing list.'>
-
-<!ENTITY untranslated-de 'Geehrte Leser, leider hat bisher niemand eine Übersetzung
-  der folgenden Teile erstellt. Falls Sie uns dabei helfen möchten, folgen Sie
-  bitte der Anleitung in <ulink
-    url="https://wiki.gnucash.org/wiki/Translation#Translating_the_GnuCash_Guide_and_Help">
-    <citetitle>Gnucash wiki: How to translate the GnuCash guide and/or help files</citetitle></ulink>.
-  Fragen können auf der deutschsprachigen Mailingliste gnucash-de@gnucash.org diskutiert werden.'>
-
-<!ENTITY untranslated-pt 'Caro leitor, lamentamos, ainda ninguém ofereceu uma tradução
-  para as secções seguintes. Se quiser ajudar, siga as instruções na <ulink
-  url="https://wiki.gnucash.org/wiki/Translation#Translating_the_GnuCash_Guide_and_Help">
-  <citetitle>Wiki do Gnucash: como traduzir o guia e/ou os ficheiros de ajuda do GnuCash</citetitle></ulink>.
-  Questões podem ser discutidas na lista gnucash-user@gnucash.org o gnucash-br@gnucash.org.'>
-
-<!ENTITY untranslated-ru 'Дорогой пользователь, нам очень жаль, но никто не перевел до сих пор
-  следующие части документации. Если вы хотите помочь нам, следуйте инструкциям на
-  <ulink url="https://wiki.gnucash.org/wiki/Translation#Translating_the_GnuCash_Guide_and_Help">
-  <citetitle>Gnucash wiki: How to translate the GnuCash guide and/or help files</citetitle></ulink>.
-  Свои вопросы вы можете задать в списке рассылки gnucash-user@gnucash.org.'>
+<!-- 
+  5. Other formatting instructions -->
+<!ENTITY img-w "850px">  <!-- The maximum width of the graphic elements. -->

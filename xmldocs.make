@@ -48,7 +48,7 @@ otherdocdir = $(docdir)/$(lang)
 
 # ************** Rules to install xml files for gnome-help ***********************
 
-xml_files = $(entities) $(docname).xml $(top_srcdir)/docbook/gnc-docbookx.dtd
+xml_files = $(entities) $(docname).xml $(top_srcdir)/docbook/*.dtd
 gnomehelp_DATA =  $(xml_files)
 gnomehelpfiguresdir = $(gnomehelpdir)/$(figdir)
 gnomehelpfigures_DATA = $(shell ls ${srcdir}/${figdir}/*.png)

@@ -1,0 +1,43 @@
+This directory contains GnuCash specific DTD files.
+
+1. Files
+(1) gnc-docbookx.dtd
+ GnuCash common language neutral DTD file. Version information, URLs, application names, and so on.
+ 
+(2) gnc-locale-C.dtd
+The original English entities are defined in this file. For example,
+<!ENTITY % gm.file "<guimenu>File</guimenu>">
+<!ENTITY gm.file "%gm.file">
+.
+
+The differences among general entities, parameter entities (%), and 
+external entities are described in 
+https://www.w3.org/TR/REC-xml/#sec-physical-struct.
+
+(3) gnc-locale-${LANG}.dtd
+The translated entities should be defined in UTF-8 in this file. For German example,
+filename is gnc-locale-de.dtd. A translated entity for %gm.file; is:
+<!ENTITY % gm.file "<guimenu>Datei</guimenu>">
+.
+
+You must only translate parameter entities. They are with % in ENTITY definitions.
+If you don't translate some parameter entities, English entities are used instead.
+
+2. Usage
+Specify gnc-locale-${LANG}.dtd file in DOCTYPE declarations for each docbook xml file.
+For Japanese example, you have to use
+<!DOCTYPE book SYSTEM "gnc-locale-ja.dtd">
+.
+
+The Import order is as follows:
+gnc-locale-${LANG}.dtd --> gnc-locale-C.dtd --> gnc-docbookx.dtd --> PUBLIC docbook 4.5 docbookx.dtd
+
+Extensible Markup Language (XML) 1.0 (Fifth Edition)
+   4.2 Entity Declarations
+   https://www.w3.org/TR/REC-xml/#sec-entity-decl
+says
+'''
+    The Name identifies the entity in an entity reference or, in the case of an unparsed entity, in the value of 
+    an ENTITY or ENTITIES attribute. If the same entity is declared more than once, the first declaration encountered 
+    is binding; at user option, an XML processor may issue a warning if entities are declared multiple times.
+"""

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
-<!-- (Do not remove this comm  Version: 2.0.x
-  Last modified: December 7th 2009
+<!DOCTYPE chapter SYSTEM "gnc-locale-de.dtd">
+<!-- (Do not remove this comment block.)
+  Version: 4.6
+  Last modified: September 2021
+       modified: December 7th 2009
        modified: March 28th 2007
        modified: August 12th 2006
-	   modified: February 28th 2005
+       modified: February 28th 2005
   Maintainers:
     Alex Aycinena <alex.aycinena@gmail.com>
     Chris Lyttle <chris@wilddev.net>
@@ -600,9 +602,12 @@
     <figure pgwide="1">
       <title>Der Assistent <quote>Neuen Kontoplan erstellen</quote></title><screenshot>
         <mediaobject>
-          <imageobject>
-            <imagedata fileref="figures/Help_AccountTreeCreate.png" format="PNG"
-                   srccredit="Christian Wehling" />
+          <imageobject role="html">
+            <imagedata fileref="figures/AccountTreeCreate.png" srccredit="Christian Wehling" width="&img-w;" />
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/AccountTreeCreate.png" srccredit="Christian Wehling" />
           </imageobject>
         </mediaobject>
       </screenshot>
@@ -616,7 +621,7 @@
       </para>
 
       <varlistentry>
-        <term><guibutton>Abbrechen</guibutton></term>
+        <term><guibutton><accel>A</accel>bbrechen</guibutton></term>
 
         <listitem>
           <para>Beendet den Vorgang und bricht die Erstellung einer neuen Kontenstruktur ab.
@@ -631,7 +636,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><guibutton>Zurück</guibutton></term>
+        <term><guibutton><accel>Z</accel>urück</guibutton></term>
 
         <listitem>
           <para>Bringt Sie zur vorherigen Anzeige zurück, so das Sie Ihre Eingaben noch einmal ändern können.
@@ -640,7 +645,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><guibutton>Weiter</guibutton></term>
+        <term><guibutton><accel>W</accel>eiter</guibutton></term>
 
         <listitem>
           <para>Mit der Taste bestätigen Sie Ihre Eingaben und gehen weiter zum nächsten Bildschirm.
@@ -649,7 +654,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><guibutton>Fertigstellen</guibutton></term>
+        <term><guibutton><accel>F</accel>ertigstellen</guibutton></term>
 
         <listitem>
           <para>Überspringt den nächsten Schritt <guilabel>Ausgewählte Konten feinabstimmen</guilabel> und bringt
@@ -659,7 +664,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><guibutton>Anwenden</guibutton></term>
+        <term><guibutton>An<accel>w</accel>enden</guibutton></term>
 
         <listitem>
           <para>Hiermit beenden Sie Ihre Eingaben und die neuen Kontostruktur wird in der &app;-Datei angelegt.
@@ -672,117 +677,129 @@
       <title>Beschreibung der Arbeitsschritte in dem Assistenten</title>
 
       <step>
-        <variablelist spacing="compact">
-          <varlistentry>
-            <term><guilabel>Neuen Kontenplan erstellen</guilabel></term>
+        <title><guilabel>Neuen Kontenplan erstellen</guilabel></title>
 
-            <listitem>
-              <para>Der Assistent öffnet sich mit einer Übersicht, in der kurz beschrieben wird, bei welchen Aufgaben
-                Sie hier untersützt werden.
-              </para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
+        <para>Der Assistent startet mit einer kurzen Einführungsseite.
+        </para>
       </step>
 
       <step>
-        <para>Im nächsten Bildschirm können Sie die <guilabel>Währung wählen</guilabel>, die Sie als Standard
-          für Ihre Konten verwenden wollen.
+        <title><guilabel>Buch-Optionen für neues Buch</guilabel></title>
+
+        <para><note>
+            <para>Dieser Dialogschritt wird <emphasis>nicht</emphasis> angezeigt, wenn Sie den Assistenten in der
+              Kontenansicht einer bestehen &app;-Datei mit dem Menüpunkt
+              <menuchoice>
+                <guimenu><accel>A</accel>ktionen</guimenu><guimenuitem>Konten<accel>h</accel>ierachie
+                hinzufügen</guimenuitem>
+              </menuchoice>
+              starten.
+            </para>
+          </note>
+          In diesem Schritt können Sie generelle Einstellungen für die &app;-Datei vornehmen, die
+          in der Datei gespeichert werden und somit für alle Benutzer gelten. Der Dialog wird
+          ausführlich in <xref linkend="book-options" /> beschrieben.
         </para>
-
-        <variablelist spacing="compact">
-          <varlistentry>
-            <term><guilabel>Währung</guilabel></term>
-
-            <listitem>
-              <para>Die Dropdown-Liste ist standardmäßig auf die Währung eingestellt, die in der Registerkarte
-                <xref linkend="prefs-accounts"/> in den <guilabel>&appname; Einstellungen</guilabel>
-                eingestellt ist. Sie erreichen diesen Dialog im Menü
-                <menuchoice>
-                  <guimenu><accel>B</accel>earbeiten</guimenu><guimenuitem><accel>E</accel>instellungen</guimenuitem>
-                </menuchoice>
-                . Wenn Sie stattdessen für Ihre Konten eine andere Standardwährung verwenden
-                wollen, wählen Sie diese aus der Liste aus.
-              </para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
       </step>
 
       <step>
-        <para>Der nächste Schritt wird dafür verwendet, um die <guilabel>zu erstellenden Konten
-          auszuwählen</guilabel>. Sie sehen einen Bildschirm, der in drei Teile unterteilt ist.
+        <title><guilabel>Währung wählen</guilabel></title>
+
+        <para>Im nächsten Bildschirm können Sie die Währung auswählen, die Sie als Vorgabe für die
+          buchspezifische Basiswährung verwenden wollen.
         </para>
 
-        <variablelist spacing="compact">
-          <varlistentry>
-            <term><guilabel>Kategorien</guilabel></term>
-
-            <listitem>
-              <para>Im linken oberen Teil befinden sich zwei Dropdownfelder, mit denen Sie die sprach- und
-                regionsspezifischen Kategorien filtern können. Wählen Sie aus dem Listenfeld
-                unterhalb der Auswahlfelder die Arten von Konten aus, die Sie für Ihre Arbeit in
-                &app; verwenden möchten. Sie können so viele der Kategorien für Ihre Konten
-                auswählen, wie Sie möchten.
-              </para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term><guibutton>Alle auswählen</guibutton></term>
-
-            <listitem>
-              <para>Mit der Schaltfläche können Sie alle Kontokategorien auswählen.
-              </para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term><guibutton>Keine auswählen</guibutton></term>
-
-            <listitem>
-              <para>Mit dieser Schaltfläche können Sie die Auswahl aller ausgewählten Kategorien aufheben.
-              </para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term><guilabel>Kategorie-Beschreibung</guilabel></term>
-
-            <listitem>
-              <para>Im linken unteren Bereich befindet sich ein Feld, in dem eine detaillierte Beschreibung der aktuell
-                markierten Kategorie angezeigt wird.
-              </para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term><guilabel>Konten in …</guilabel></term>
-
-            <listitem>
-              <para>Auf der rechten Seite befindet sich eine Liste der Konten, die der links ausgewählten Kategorie
-                entsprechen.
-              </para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
+        <para>Die Dropdown-Liste ist standardmäßig auf die Währung eingestellt, die in der Registerkarte
+          <xref linkend="prefs-accounts"/> in den <guilabel>&appname; Einstellungen</guilabel>
+          eingestellt ist. Sie erreichen diesen Dialog im Menü
+          <menuchoice>
+            <guimenu><accel>B</accel>earbeiten</guimenu><guimenuitem><accel>E</accel>instellungen</guimenuitem>
+          </menuchoice>
+          . Wenn Sie stattdessen für Ihre Konten eine andere Standardwährung verwenden wollen,
+          wählen Sie diese aus der Liste aus.
+        </para>
       </step>
 
       <step>
-        <para>Weiter geht es mit dem Schritt <guilabel>Ausgewählte Konten feinabstimmen</guilabel>, bei dem Sie
-          für die einzelnen Konten den Kontonamen anpassen können, einen Anfangsbestand eingeben
-          oder definieren, ob ein Konto als ein Platzhalter fungieren soll.
+        <title><guilabel>zu erstellende Konten auszuwählen</guilabel></title>
+
+        <para>Dieser Schritt wird dafür verwendet, um die Kontenstruktur zu erstellen. Sie sehen einen
+          Bildschirm, der in drei Teile unterteilt ist.
         </para>
 
-        <note>
-          <para>Eigenkapitalkonten können keinen Anfangsbestand haben, daher wird die Eingabe für diese Art von
-            Konten unterbunden und von &app; auf <guilabel>Null</guilabel> gesetzt.
+        <substeps>
+          <step>
+            <title><guilabel>Kategorien</guilabel></title>
+
+            <para>Im linken oberen Teil befinden sich zwei Dropdownfelder, mit denen Sie die sprach- und
+              regionsspezifischen Kategorien filtern können. Wählen Sie aus dem Listenfeld
+              unterhalb der Auswahlfelder die Arten von Konten aus, die Sie für Ihre Arbeit in
+              &app; verwenden möchten. So können Sie viele der Kategorien aus einem Gebietsschema
+              für Ihre Konten auswählen. Wollen Sie Konten aus verschiedenen Gebietsschemen
+              mischen, müssen Sie den Assistenten für jedes Schema einmal durchlaufen.
+            </para>
+          </step>
+
+          <step>
+            <title><guibutton>Alle auswählen</guibutton></title>
+
+            <para>Mit der Schaltfläche können Sie alle Kontokategorien auswählen.
+            </para>
+          </step>
+
+          <step>
+            <title><guibutton>Keine auswählen</guibutton></title>
+
+            <para>Mit dieser Schaltfläche können Sie die Auswahl aller ausgewählten Kategorien aufheben.
+            </para>
+          </step>
+
+          <step>
+            <title><guilabel>Kategorie-Beschreibung</guilabel></title>
+
+            <para>Im linken unteren Bereich befindet sich ein Feld, in dem eine detaillierte Beschreibung der aktuell
+              markierten Kategorie angezeigt wird. Hier haben die Ersteller der regionsspezifischen
+              Module z.T. ausführliche Hinweise zu den einzelnen Modulen geben.
+            </para>
+          </step>
+
+          <step>
+            <title><guilabel>Konten in …</guilabel></title>
+
+            <para>Auf der rechten Seite befindet sich eine Vorschau der Konten, die der links hervorgehobenen
+              Kategorie entsprechen.
+            </para>
+          </step>
+        </substeps>
+
+        <tip>
+          <para>In diesem Arbeitsschritt bietet der Assistent Ihnen eine Abkürzung an. Die Schaltfläche
+            <guibutton><accel>F</accel>ertigstellen</guibutton> bringt Sie direkt zum letzten
+            Schritt.
+          </para>
+        </tip>
+      </step>
+
+      <step>
+        <title><guilabel>Ausgewählte Konten feinabstimmen</guilabel></title>
+
+        <para>Weiter geht es mit dem Schritt, bei dem Sie für jedes einzelne Konto bei Bedarf den Kontonamen
+          anpassen können, einen Anfangsbestand eingeben oder definieren, ob ein Konto als ein
+          Platzhalter fungieren soll.
+        </para>
+
+        <note id="placeholder-acct">
+          <para><emphasis>Platzhalterkonten</emphasis> bilden eine Art Gruppenüberschrift und werden verwendet, um
+            eine Hierarchie von Konten zu erstellen. Das Kontobuch der so markierte Konten ist
+            schreibgeschützt.
           </para>
         </note>
 
-        <note id="placeholder-acct">
-          <para><emphasis>Platzhalterkonten</emphasis> werden verwendet, um eine Hierarchie von Konten zu erstellen
-            und haben normalerweise keine Buchungen oder Anfangsbestände.
+        <note>
+          <para>Da das Anfangsbestandkonto ein Eigenkapital-Konto ist, wird die Eingabe für diese Art von Konten
+            unterbunden und von &app; auf <guilabel>Null</guilabel> gesetzt. Der Anfangsbestand wird
+            als eine normale Buchung in das Kontobuch eingetragen und kann von Ihnen später
+            ergänzt, korrigiert oder gelöscht werden.
           </para>
         </note>
 
@@ -793,22 +810,8 @@
         <variablelist spacing="compact">
           <title>Die Spaltenüberschriften der Tabelle</title>
 
-          <para>Sie können einige Einträge für die Konten ändern, indem Sie mit
-            <keycombo action="click">
-              <mousebutton>Button1</mousebutton>
-            </keycombo>
-            die entsprechende Eintrag in der Spalte auswählen und anschließend mit
-            <keycombo action="click">
-              <mousebutton>Button1</mousebutton>
-            </keycombo>
-            in die Zelle klicken die Sie bearbeiten wollen.
-            <footnote>
-              <para>Die Maustasten werden neutral mit <emphasis>Button1</emphasis> und <emphasis>Button2</emphasis>
-                bezeichnet. Bei vielen Benutzern entspricht <emphasis>Button1</emphasis> der linken
-                und <emphasis>Button2</emphasis> der rechten Maustaste. Dies kann durch den Anwender
-                in den Einstellungen des Betriebssystems den Bedürfnissen angepasst werden.
-              </para>
-            </footnote>
+          <para>Sie können einige Einträge für die Konten ändern, indem Sie den entsprechenden Eintrag in der
+            Spalte auswählen und anschließend in die Zelle klicken die Sie bearbeiten wollen.
           </para>
 
           <varlistentry>
@@ -825,7 +828,7 @@
             <term><guilabel>Kontoart</guilabel></term>
 
             <listitem>
-              <para>Dies Einträge in dieser Spalte dienen Ihrer Information und können nicht geändert werden.
+              <para>Die Einträge in dieser Spalte dienen Ihrer Information und können nicht geändert werden.
               </para>
             </listitem>
           </varlistentry>
@@ -1217,6 +1220,10 @@
           </para>
         </note>
       </para>
+<!-- FIXME: this is to be inserted after the move to a new chapter
+      <sect3 id="accts-Online-price">
+        <title>Benutzen der Online-Kursaktualisierung</title>
+ -->
 
       <sect3 id="Online-price-setup">
         <title>Vorgehensweise zur Aktivierung der Online-Preisaktualisierung</title>
@@ -1224,142 +1231,18 @@
         <orderedlist spacing="compact">
           <listitem>
             <para>&app; bedient sich eines externen Tools zum Abrufen von Online-Kursen. Dieses Tool ist ein
-              Perl-Modul namens &app-fq; und muss unabhängig von &app; auf Ihrem Computer
+              &app-perl;-Modul namens &app-fq; und muss zusätzlich zu &app; auf Ihrem Computer
               installiert werden.
             </para>
-<!-- FIXME source: replace the link to the new place, show below -->
+
             <tip>
-              <para>Die Installation wird in den
-                <ulink url="&url-docs-build-de;guide/invest-stockprice1.html#invest-stockprice-auto2">&app;
-                Tutorial und Konzepte</ulink> beschrieben.
+              <para>Die Installation wird in
+<!-- <xref linkend="suggest-online-price" /> -->
+                detailiert beschrieben.
               </para>
             </tip>
-<!-- FIXME source: Find a proper place, e.g. "Customizing GnuCash". The installation of F::Q is also described in the guide. -->
-<!-- 
-            <para>&app; bedient sich eines externen Tools zum Abrufen von Online-Kursen. Dieses Tool ist ein
-              Perl-Modul namens &app-fq; und muss unabhängig von &app; auf Ihrem Computer
-              installiert werden.
-              Als erster Schritt zur Benutzung der Online-
-              Preisaktualisierung sollte daher sein, sicherzustellen, dass sowohl <application>Perl</application> als auch
-              &app-fq; korrekt installiert sind. 
-            </para>
-            <para> Um zu prüfen ob die technischen Vorraussetzungen zur Verwendung
-              von &app-fq; gegeben sind, öffnen Sie hierzu bitte ein Terminalfenster und geben den
-              Befehl <prompt>></prompt> <userinput>perl - -version</userinput> ein. Im Ausgabefenster
-              sollte jetzt ein Hinweis auf die installierte <application>Perl</application>- Version
-              erscheinen. Ist dies erfolgreich verlaufen sollten Sie herausfinden, ob das Perl-Modul &app-fq; bereits auf Ihrem
-              System installiert ist, geben Sie <command>perldoc Finance::Quote</command> in ein
-              Terminalfenster ein, um zu prüfen, ob eine Dokumentation vorhanden ist. Wenn die
-              Dokumentation angezeigt wird, dann ist das Modul installiert, ansonsten nicht.
-              
-            </para>
-
-            <para>Die Installation von &app-fq; unterscheidet sich von einem
-              Betriebssystem zum anderen. Für die verschiedenen unterstützten Systeme, können Sie
-              die folgenden Anweisungen befolgen:
-            </para>
-            <variablelist spacing="compact">
-              <varlistentry>
-                <term>&lin;</term>
-
-                <listitem>
-                  <para>Die meisten &lin;-Distributionen (wie Fedora, openSuse, Mandriva, Ubuntu, und so weiter) haben in
-                    ihren Software-Repositorien ein Paket für das Perl-Modul
-                    &app-fq;. Die Aktualität ihrer Distribution können Sie unter <ulink url="https://repology.org/project/perl:finance-quote/versions"><citetitle>&app-fq;- Versionen</citetitle></ulink> nachlesen. In den meisten Fällen können Sie
-                    also einfach Ihren bevorzugten Paketmanager verwenden, um das Modul zu
-                    installieren. Der Name des Pakets kann von einer Distribution zur anderen
-                    variieren. Es heißt oft in etwa wie <command>perl-Finance-Quote</command>.
-                  </para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term>&win;</term>
-
-                <listitem>
-                  <para>&app-fq; unter &win; erfordert, dass Perl bereits installiert
-                    ist. Wenn das nicht bereits erfolgt ist, können Sie z.B. Strawberry Perl
-                    installieren.
-                    <footnote>
-                      <para>Bis &app; Version 2.4 wurde stattdessen ActivePerl verwendet. Falls dies noch bei Ihnen installiert
-                        ist, sollten sie es ersetzen.
-                      </para>
-                    </footnote>
-                  </para>
-
-                  <para>Das &win;-Installationsprogramm von der <ulink url="&url-www;download.phtm">&app; Homepage</ulink>
-                    wird mit einem kleinen Hilfsprogramm geliefert, das
-                    &app-fq; für Sie installiert. Sie finden es im
-                    Startmenü in der &app; Gruppe und heißt <quote>Online-Preisabfrage
-                    installieren</quote>.
-                  </para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term>&mac;</term>
-
-                <listitem>
-                  <para>Wenn Sie &app; mit Hilfe des Installationsprogramms auf der &app; Homepage installiert haben, ist
-                    &app-fq; bereits installiert.
-                  </para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term></term>
-
-                <listitem>
-                  <para>Trifft keine der obigen Anleitungen auf Ihre Umgebung zu, so können Sie die folgende alternative,
-                    allgemeinere Anweisungen probiern:
-                  </para>
-
-                  <orderedlist spacing="compact">
-                    <listitem>
-                      <para>Schließen Sie alle &app;-Anwendungen, die Sie gerade ausführen.
-                      </para>
-                    </listitem>
-
-                    <listitem>
-                      <para>Lokalisieren Sie den Ordner, in dem &app; installiert ist, indem Sie nach
-                        <command>gnc-fq-update</command> suchen.
-                      </para>
-                    </listitem>
-
-                    <listitem>
-                      <para>Wechseln Sie in dieses Verzeichnis, öffnen Sie eine Root-Shell und führen Sie den Befehl
-                        <command>gnc-fq-update</command> aus. Dadurch wird eine Perl
-                        CPAN-Update-Sitzung gestartet, die ins Internet geht und das Modul
-                        &app-fq; und seine Abhängigkeiten auf
-                        Ihrem System installiert. Das Programm
-                        <command>gnc-fq-update</command> ist interaktiv, bei den meisten
-                        Systemen sollten Sie jedoch die erste Frage mit <userinput>Ja</userinput>
-                        beantworten können: <quote>Möchten Sie so viel wie möglich automatisch konfigurieren? [ja]</quote> und die Aktualisierung wird von diesem Punkt an
-                        selbstständig ablaufen.
-                      </para>
-                    </listitem>
-                  </orderedlist>
-                </listitem>
-              </varlistentry>
-            </variablelist>
-
-            <para>Nachdem die Installation abgeschlossen ist, sollten Sie das Testprogramm
-              <command>gnc-fq-check</command>, das mit &app; verteilt wird, im gleichen Verzeichnis
-              ausführen, um zu testen, ob &app-fq; installiert ist
-              und richtig funktioniert.
-            </para>
-
-            <note>
-              <para>Wenn Sie sich bei der Durchführung eines dieser Schritte nicht sicher fühlen, senden Sie bitte
-                ihre Frage entweder per E-Mail an die deutschsprachige &app;-user Mailingliste
-                (<email>gnucash-de@gnucash.org</email>) oder besuchen Sie den &app; IRC-Kanal auf
-                irc.gnome.org. Weitere Informationen finden Sie z.B. in den &app; Wiki FAQ
-                <ulink url="&url-wiki-faq-quot;" />. Sie können diesen Schritt auch weglassen und
-                Ihre Aktienkurse manuell aktualisieren.
-              </para>
-            </note> -->
           </listitem>
-
+<!-- FIXME source: Delete some sections referring to F::Q -->
           <listitem>
             <para>Legen Sie das Konto für den Investmentfonds bzw. die Aktie an und stellen Sie sicher, dass das
               gewünschte Papier im Feld <guilabel>Wertpapier/Währung</guilabel>, wie oben
@@ -1524,47 +1407,7 @@ and update the appendix. -->
             </para>
           </listitem>
         </orderedlist>
-<!-- FIXME source: Move to the new place, e.g. "Customizing GnuCash". -->
-<!--           <para>Wenn Sie die Kurse per Kommandozeile abrufen wollen, können Sie dazu den Befehl
-          <command>gnucash-cli - -quotes get
-          <replaceable><optional>/pfad/zur/</optional>gnucash-datei</replaceable></command> benutzen
-          und die Kurs werden direkt in ihre &app;-Datendatei geschreiben.
-          <footnote>
-            <para>In &app; Versionen vor 4.0 wurde für die Aktualisierung der Wertpapiere das Kommando
-              <command>gnucash - -add-price-quotes
-              <replaceable><optional>/pfad/zur/</optional>gnucash-datei</replaceable></command>
-              verwendet.
-            </para>
-          </footnote>
-        </para>
-
-        <para>Die Dateibezeichnung <command><replaceable>gnucash-datei</replaceable></command> ist abhängig von
-          dem Namen und dem Speicherort Ihrer Datendatei. Dies lässt sich anhand des Namens
-          feststellen, der im oberen Rahmen des &app; Fensters vor dem <quote>-</quote> angezeigt
-          wird. Der Dateiname ist auch unter <guimenu>Datei</guimenu> in der Liste der zuletzt
-          geöffneten Dateien zu finden; der erste Eintrag mit der Nummer 1 ist der Name der aktuell
-          verwendeten Datei.
-        </para>
-
-        <para>Der Kursabruf kann in &mac; automatisiert werden, indem ein crontab-Eintrag erstellt wird. Um Ihre
-          Datei zum Beispiel jeden Freitag Abend (18:00 Uhr) nach Börsenschluss zu aktualisieren
-          (passen Sie die Zeit entsprechend Ihrer Zeitzone an), könnten Sie Folgendes zu Ihrer
-          persönlichen crontab hinzufügen:
-        </para>
-
-        <para><code language="cron">0 18 * * 5 <optional>/pfad/zu/</optional>gnucash-cli - -quotes get
-          <optional>/pfad/zur/</optional>gnucash-datei &gt; /dev/null 2&gt;&amp;1</code>
-        </para>
-
-        <para>Damit der Kursabruf unter &lin; auch ohne Desktop-Manager, z.B. bei einem Fernzugriff per ssh,
-          funktioniert, muss sichergestellt sein, dass dbus gestartet ist. Das Gleiche trifft auf
-          den per Cron gesteuerten Kursabruf zu. Der Eintrag in der crontab laut dann:
-        </para>
-
-        <para><code language="cron">0 18 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
-          <optional>/pfad/zu/</optional>gnucash-cli - -quotes get
-          <optional>/pfad/zur/</optional>gnucash-datei &gt; /dev/null 2&gt;&amp;1'</code>
-        </para> -->
+<!-- FIXME source: Delete some sections referring to F::Q -->
         <para>Denken Sie daran, dass die <quote>Kurse</quote> von Investmentfonds in Wirklichkeit der
           <quote>Nettoanteilswert</quote> ist. und erst mehrere Stunden nach Börsenschluss
           verfügbar sind. Wenn die <quote>Kurse</quote> aktualisiert werden, bevor die
@@ -2153,7 +1996,7 @@ and update the appendix. -->
       verschiedene &app; Funktionen, die die Eingabe und Aktualisierung von Kontoinformationen
       während des Abgleichs erleichtern.
     </para>
-<!-- FIXME source: new description -->
+<!-- FIXME source: (Bug 797950) new description -->
     <note>
       <para>Wenn Sie ein Konto vom Typ <guilabel>Kreditkarte</guilabel> anhand einer Kreditkartenabrechnung
         abgleichen, haben Sie die Möglichkeit, mit Hilfe des sich automatisch öffnenden
@@ -2463,6 +2306,557 @@ and update the appendix. -->
         </menuchoice>
         um den Abgleich zu beenden.
       </para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="acct-import">
+    <title>Importieren von Konten</title>
+
+    <para>Dieser Assistent wird Sie dabei unterstützen, Konten aus einer CSV-Datei zu importieren. Die Datei
+      muss im dem gleichen Format vorliegen wie das, welches von GnuCash beim CSV Export erstellt
+      wird, da es sich um ein festes Format handelt. Falls ein Konto mit der
+      <guilabel>vollständigen Kontobezeichnung</guilabel> bisher nicht existiert, wird es erstellt,
+      sofern die Währung oder das Wertpapier, in dem es notiert wird, bereits im Programm oder
+      Ihrer &app;-Datei definiert ist.
+      <note>
+        <para>Eine weitere Möglichkeit, Konten zu importieren, bietet der Assistent für das
+          <xref linkend="trans-import-qif" />. Im Zuge diese Importvorgangs werden ebenfalls Konten
+          in Ihre &app;-Datendatei importiert.
+        </para>
+      </note>
+
+      <itemizedlist spacing="compact">
+        <para>Falls das Konto bereits existiert, werden diese vier Felder aktualisiert:
+        </para>
+
+        <listitem>
+          <para>Kontonummer
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Beschreibung
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Bemerkungen
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Farbe
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+    <figure pgwide="1">
+      <title>Assistent für den Import von Konten im CSV-Format</title><screenshot id="accounts-import-csv-wizard">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/AccountTree_Import_CSV.png" srccredit="Christian Wehling" width="&img-w;" />
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/AccountTree_Import_CSV.png" srccredit="Christian Wehling" />
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <xi:include href="Help_para-assist-intro.xml"/>
+
+    <procedure>
+      <title>Schritte des CSV-Importprozesses</title>
+
+      <para>Die Funktion der Steuerelemente jedes Schritts sind nachstehend beschrieben. Sie werden aber auch
+        als Tooltip im Assistenten angezeigt.
+      </para>
+
+      <step>
+        <title><guilabel>Konten-Import-Assistent</guilabel></title>
+
+        <para>Übersichtsseite mit einer kurzen Erklärung hinsichtlich der Anforderungen an die zu importierende
+          CSV-Datei.
+        </para>
+      </step>
+
+      <step>
+        <title><guilabel>Wählen Sie die zu importierende Datei</guilabel></title>
+
+        <para>Navigieren Sie zu der Datei die Sie importieren möchten und wählen Sie diese aus.
+        </para>
+      </step>
+
+      <step>
+        <title><guilabel>Kontenimport-Vorschau der ersten 10 Zeilen</guilabel></title>
+
+        <para>Das Fenster <guilabel>Kontenimport-Vorschau</guilabel> steuert die Einstelloptionen für den Import
+          von CSV-Dateien und bietet eine Vorschau der zu importierenden Konten.
+        </para>
+
+        <figure pgwide="1">
+          <title>Der CSV Import Vorschau Bereich</title><screenshot id="accounts-import-csv-preview">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata  fileref="figures/AccountTree_Import_CSV_Preview.png" srccredit="Christian Wehling" width="&img-w;" />
+              </imageobject>
+
+              <imageobject role="fo">
+                <imagedata  fileref="figures/AccountTree_Import_CSV_Preview.png" srccredit="Christian Wehling" />
+              </imageobject>
+
+              <caption>
+                <para>Das Vorschaufenster für den CSV-Import mit Einstellungen zum Importieren der angezeigten Konten.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <substeps>
+          <step>
+            <title><guilabel>Anzahl der Kopfzeilen</guilabel></title>
+
+            <para>Dieses Feld definiert die Anzahl der Überschriftzeilen in der Datei. In der Vorschau werden,
+              entsprechend Ihrer Eingabe, die Zeilen farbig hinterlegt, die Sie als Überschrift
+              gekennzeichnet haben und somit nicht importiert werden.
+            </para>
+          </step>
+
+          <step>
+            <title><guilabel>Wählen Sie das Trennzeichen</guilabel></title>
+
+            <para>Mit diesen Optionsfeldern können Sie auswählen, mit welchem Spaltentrenner Ihre Daten separiert
+              sind:
+            </para>
+
+            <substeps>
+              <step>
+                <title><guilabel>Komma (,)</guilabel></title>
+
+                <para>Das <keycap>,</keycap> sollte im deutschen Sprachraum nicht als Spaltentrennzeichen verwendet
+                  werden, es sei denn, der Punkt dient als Dezimaltrennzeichen in der Datei.
+                </para>
+              </step>
+
+              <step>
+                <title><guilabel>Semikolon (;)</guilabel></title>
+
+                <para>Wählen Sie ein <keycap>;</keycap> um die Spalten zu trennen, wenn das Komma als Dezimaltrennzeichen
+                  verwendet wird.
+                </para>
+              </step>
+
+              <step>
+                <title><guilabel>Doppelpunkt (:)</guilabel></title>
+
+                <para>Verwenden Sie einen <keycap>:</keycap> als Spaltentrennzeichen. Wird gerne von GNU-Programmen
+                  verwendet.
+                </para>
+              </step>
+
+              <step>
+                <title><guilabel>Benutzerdefinierter regulärer Ausdruck</guilabel></title>
+
+                <para>Mit Auswahl dieser Option öffnet sich ein kleines Eingabefenster in dem Sie einen <quote>regulären
+                  Ausdruck</quote>
+                  <footnote>
+                    <para>Für weitere Informationen können Sie den Artikel
+                      <ulink url="https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck">Regulärer
+                      Ausdruck</ulink> im Wikipedia lesen.
+                    </para>
+                  </footnote>
+                  , auch als <foreignphrase><abbrev>RegEx</abbrev></foreignphrase> bekannt, eingeben
+                  können.
+                </para>
+              </step>
+            </substeps>
+          </step>
+
+          <step>
+            <title><guilabel>Vorschau</guilabel></title>
+
+            <para>In dem großen mittleren Bereich wird eine Vorschau auf die ersten 10 Zeilen der zuvor ausgewählten
+              Importdatei angezeigt. Hier können Sie gut überprüfen, ob Sie die richtige Datei
+              ausgewählt und das richtige Spaltentrennzeichen gewählt haben.
+            </para>
+
+            <tip>
+              <para>Wenn in der <guilabel>Vorschau</guilabel> keine Daten angezeigt werden oder die Darstellung nicht
+                Ihren Vorstellungen entspricht, dann probieren Sie einfach andere
+                <guilabel>Trennzeichen</guilabel> aus.
+              </para>
+            </tip>
+          </step>
+
+          <step>
+            <title><guilabel>Spaltenüberschriften</guilabel></title>
+
+            <para>Der Aufbau der zu importierenden Datei ist seitens &app; vorgeschrieben und kann nicht konfiguriert
+              werden. Aus dem Grund müssen, für einen erfolgreichen Import der Kontenstruktur, die
+              Inhalte in den einzelnen Spalten der CSV-Datei der Reihenfolge wie nachfolgend
+              aufgelistet entsprechen. Die Bedeutung der einzelnen Felder ist ausführlich in
+              <xref linkend="gen-info"/> erklärt.
+            </para>
+
+            <orderedlist spacing="compact">
+              <listitem>
+                <para><guilabel>Kontoart</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Volle Kontobezeichnung</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Kontobezeichnung</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Kontonummer</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Beschreibung</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Kontofarbe</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Bemerkungen</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Symbol</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Namensraum</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Versteckt</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Steuerrelevante Information</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Platzhalter</guilabel>
+                </para>
+              </listitem>
+            </orderedlist>
+          </step>
+        </substeps>
+      </step>
+
+      <step>
+        <title><guilabel>Konten jetzt importieren</guilabel></title>
+
+        <para>Der Dateiname und Pfad der zu importierenden Datei wird angezeigt. Um die Kontenstruktur jetzt
+          endgültig zu importieren betätigen Sie die <guibutton>Anwenden</guibutton>
+          Schaltfläche.
+        </para>
+
+        <para>Nach einer kurzen Zeit, in der die Daten verarbeitet werden, öffnet sich der Dialog
+          <guilabel>Buch-Optionen für neues Buch</guilabel>. Sie können jetzt einige Einstellungen
+          für das Buch vornehmen, siehe <xref linkend="book-options" />. Wenn Sie das nicht wollen
+          und stattdessen auf <guibutton>Abbrechen</guibutton> drücken, werden die Konten trotzdem
+          importiert.
+        </para>
+      </step>
+
+      <step>
+        <title><guilabel>Importübersicht</guilabel></title>
+
+        <para>Zeigt eine Zusammenfassung des Importvorgangs an. Diese besteht aus der Angabe, wieviele Konten
+          erfolgreich hinzugefügt und aktualisiert wurden, sowie ob Fehler aufgetreten sind
+          inklusive einer Auflistung der fehlerhaften Stellen mit Angabe der Zeilennummer in der
+          CSV-Datei.
+        </para>
+      </step>
+    </procedure>
+  </sect1>
+
+  <sect1 id="acct-export">
+    <title>Exportieren von Konten</title>
+
+    <itemizedlist spacing="compact">
+      <para>Wenn Sie den Bedarf haben, Ihre &app;-Konten zu exportieren, so haben Sie hierzu die Auswahl
+        zwischen zwei unterschiedlichen Exportformaten:
+      </para>
+
+      <listitem>
+        <para>XML-Format oder auch Datenbankformate. Welche Datenbank-Schnittstelle zur Verfügung steht, hängt
+          von den bei Ihnen installierten Systemen ab. &app; unterstützt z.B.
+          <acronym>SQLite3</acronym>, <acronym>mysql</acronym> und <acronym>postgres</acronym>.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>CSV-Format als gängiges Austausch-Format für Tabellen.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>&app; wird bei beiden Verfahren jeweils die vollständige Kontenstruktur ohne weiter Inhalte, wie
+      z.B. Buchungsdaten und Kontenstände oder auch Kunden, Lieferanten, Budgets sowie terminierte
+      Buchungen, exportieren.
+    </para>
+
+    <sect2 id="acct-export-xml">
+      <title>Konten in ein neues &appname;-Buch exportieren</title>
+
+      <para>Mit dem Menüpunkt
+        <menuchoice>
+          <guimenu><accel>D</accel>atei</guimenu><guisubmenu>E<accel>x</accel>portieren</guisubmenu><guimenuitem><accel>K</accel>onten
+          exportieren</guimenuitem>
+        </menuchoice>
+        können Sie Ihre vollständige &app;-Kontenhierarchie in eine <acronym>XML</acronym>- oder
+        <acronym>SQLite3</acronym>-Datei oder auch in eine Datenbank exportieren. Mit dieser
+        Funktion haben Sie die Möglichkeit z.B. am Ende eines Jahres einen Buchabschluss
+        vorzunehmen und mit einer leeren &app;-Datei in das neue Jahr zu starten.
+      </para>
+
+      <para>Es wird der übliche Datei-Speichern-Dialog geöffnet, der im oberen Bereich ein Auswahlfeld für die
+        Datenausgabe im <guilabel>XML</guilabel> oder <guilabel>SQLite3</guilabel>-Format anbietet. Haben
+        Sie bereits konfigurierte Datenbank-Systeme installiert, so werden diese ebenfalls hier zur
+        Auswahl angeboten.
+      </para>
+
+      <table id="Account-Export-Dialog">
+        <title>Dialog zum Exportieren von Konten</title>
+
+        <tgroup align="left" cols="2">
+        <colspec colwidth="0.5*"/>
+        <colspec colwidth="0.5*"/>
+
+          <tbody>
+            <row valign="top">
+               <entry> 
+                <para><figure>
+                    <title>Exportieren in Datei</title><screenshot>
+                      <mediaobject>
+                        <imageobject>
+                          <imagedata fileref="figures/AccountTree_Export_file.png" 
+                         srccredit="Frank H. Ellenberger" width="100%"></imagedata>
+                        </imageobject>
+                      </mediaobject>
+                    </screenshot>
+                  </figure>
+                </para>
+              </entry>
+
+              <entry>
+                <para><figure>
+                    <title>Exportieren in Datenbank</title><screenshot>
+                      <mediaobject>
+                        <imageobject>
+                          <imagedata fileref="figures/AccountTree_Export_dbms.png" 
+                         srccredit="Frank H. Ellenberger" width="100%"></imagedata>
+                        </imageobject>
+                      </mediaobject>
+                    </screenshot>
+                  </figure>
+                </para>
+              </entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <variablelist spacing="compact">
+        <varlistentry>
+          <term><guilabel>XML</guilabel></term>
+
+          <term><guilabel>SQLite3</guilabel></term>
+
+          <listitem>
+            <para>In dem Dateiauswahldialog können Sie Angaben zu dem Dateinamen und zu dem Verzeichnis/Ordner, in
+              dem die Datei gespeichert werden soll, machen. Mit Betätigen der Schaltfläche
+              <guilabel>Speichern unter…</guilabel> wird die Datei geschrieben. Sie haben hierbei
+              keinen weiteren Einfluss auf das Ergebnis der Exportdatei.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>mysql</guilabel></term>
+
+          <term><guilabel>postgres</guilabel></term>
+
+          <listitem>
+            <para>Die Ansicht des Dialogs ändert sich und es werden Eingabefelder für die Informationen zur
+              Datenbankverbindung abgefragt. Wenn Sie Ihre &app;-Daten in einem Datenbanksystem
+              speichern möchten, so benötigen Sie schreibenden Zugriff auf eine vorhandene
+              Datenbank oder die Berechtigung eine neue Datenbank anzulegen.
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Die exportierte Datei kann über
+        <menuchoice>
+          <guimenu><accel>D</accel>atei</guimenu><guimenuitem>Ö<accel>f</accel>fnen</guimenuitem>
+        </menuchoice>
+        in &app; geöffnet werden. Sie müssen dann noch für alle Konten manuell die
+        Anfangsbestände eintragen.
+        <tip>
+          <para>Öffnen sie hierfür z.B. eine 2. Instanz von &app;, um die Schlussbilanz der alten Datei als
+            Anfangsbestand in die neue Datei zu übertragen.
+          </para>
+        </tip>
+      </para>
+    </sect2>
+
+    <sect2 id="acct-export-csv">
+      <title>Konten als CSV exportieren</title>
+
+      <para>&app; ermöglicht den Export Ihrer Kontenhierarchie im <acronym>CSV</acronym>-Format, wobei Sie das
+        Spaltentrennzeichen an Ihre Bedürfnisse anpassen können. Dies kann sinnvoll sein, um in
+        einer anderen Anwendung, wie z.B. dem leider nicht mehr gepflegten &app-gfa;, dieselbe
+        Kontenstruktur zur Verfügung zu haben.
+      </para>
+
+      <para>Hierzu wählen Sie im Menü
+        <menuchoice>
+          <guimenu><accel>D</accel>atei</guimenu><guisubmenu>E<accel>x</accel>portieren</guisubmenu><guimenuitem>Konten<accel>h</accel>ierarchie
+          nach CSV exportieren…</guimenuitem>
+        </menuchoice>
+        und es öffnet sich ein Dialog für die <guilabel>Export-Einstellungen</guilabel>.
+      </para>
+
+      <figure pgwide="1">
+        <title>Assistent für den Export der Kontenhierarchie im CSV-Format</title><screenshot id="accounts-export-wizard">
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/AccountTree_Export_CSV.png" srccredit="Christian Wehling" width="&img-w;" />
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="figures/AccountTree_Export_CSV.png" srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <xi:include href="Help_para-assist-intro.xml"/>
+
+      <procedure>
+        <title>Schritte des Exportdialogs</title>
+
+        <para>Die Funktion der Steuerelemente jedes Schritts sind nachstehend beschrieben bzw. werden als Tooltip
+          in dem Assistenten angezeigt.
+        </para>
+
+        <step>
+          <title><guilabel>Export-Einstellungen</guilabel></title>
+
+          <para>In diesem Schritt können Sie verschiedene Vorgaben für die Formatierung der zu exportierenden
+            Konten machen.
+          </para>
+
+          <substeps>
+            <step>
+              <title><guilabel>Optionen</guilabel></title>
+
+              <para>Dieses Kontrollkästchen kann zusätzlich zu dem <guilabel>Trennzeichen</guilabel> verwendet werden:
+              </para>
+
+              <substeps>
+                <step>
+                  <title><guilabel>Anführungszeichen verwenden</guilabel></title>
+
+                  <para>Umgibt jedes Datenfeld mit Anführungszeichen.
+                  </para>
+                </step>
+              </substeps>
+            </step>
+
+            <step>
+              <title><guilabel>Trennzeichen</guilabel></title>
+
+              <para>Mit diesen Optionsfeldern können Sie auswählen, mit welchem Spaltentrenner Ihre Daten separiert
+                sind:
+              </para>
+
+              <substeps>
+                <step>
+                  <title><guilabel>Komma (,)</guilabel></title>
+
+                  <para>Das <keycap>,</keycap> sollte im deutschen Sprachraum nicht als Spaltentrennzeichen verwendet
+                    werden, es sei denn, der Punkt dient als Dezimaltrennzeichen in der Datei.
+                  </para>
+                </step>
+
+                <step>
+                  <title><guilabel>Semikolon (;)</guilabel></title>
+
+                  <para>Wählen Sie ein <keycap>;</keycap> um die Spalten zu trennen, wenn das Komma als Dezimaltrennzeichen
+                    verwendet wird.
+                  </para>
+                </step>
+
+                <step>
+                  <title><guilabel>Doppelpunkt (:)</guilabel></title>
+
+                  <para>Verwenden Sie einen <keycap>:</keycap> als Spaltentrennzeichen. Wird gerne von GNU-Programmen
+                    verwendet.
+                  </para>
+                </step>
+
+                <step>
+                  <title><guilabel>Benutzerdefiniert</guilabel></title>
+
+                  <para>Verwenden Sie beliebige Zeichen zur Trennung der Spalten, indem Sie diese in das Textfeld eingeben.
+                  </para>
+                </step>
+              </substeps>
+            </step>
+          </substeps>
+        </step>
+
+        <step>
+          <title><guilabel>Wählen Sie einen Dateinamen für den Export</guilabel></title>
+
+          <para>Es wird ein Dateiauswahldialog, zur Angabe eines Dateinamens und eines Pfades zu dem
+            Verzeichnis/Ordner, in dem die Datei gespeichert werden soll, angezeigt.
+          </para>
+        </step>
+
+        <step>
+          <title><guilabel>Datei jetzt exportieren…</guilabel></title>
+
+          <para>Der Dateiname und Pfad der zu exportierenden Datei und die Anzahl der zu exportierenden Konten wird
+            angezeigt. Um den Export fortzusetzen betätigen Sie die <guibutton>Anwenden</guibutton>
+            Schaltfläche.
+          </para>
+        </step>
+
+        <step>
+          <title><guilabel>Exportzusammenfassung</guilabel></title>
+
+          <para>Zeigt eine Meldung an, wenn die Datei erfolgreich exportiert wurde, oder eine Fehlermeldung mit
+            Hinweisen warum er gescheitert ist.
+          </para>
+        </step>
+      </procedure>
     </sect2>
   </sect1>
 </chapter>

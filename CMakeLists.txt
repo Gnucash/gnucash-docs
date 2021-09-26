@@ -202,18 +202,22 @@ endif()
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-    cmake/* fonts/* stylesheet/* xsl/*)
+    cmake/* fonts/* stylesheet/* xsl/* docbook/*)
 add_to_dist(${extrafiles})
+
+configure_file(COPYING ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING COPYONLY)
+configure_file(COPYING-DOCS ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING-DOCS COPYONLY)
+install(FILES COPYING COPYING-DOCS DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
 
 add_to_dist(
     AUTHORS
     CMakeLists.txt
+    COPYING
     COPYING-DOCS
     ChangeLog
     HACKING
     NEWS
     README
-    docbook/gnc-docbookx.dtd
     fop.xconf.in)
 
 ############################ BEGIN MAKE DIST #################

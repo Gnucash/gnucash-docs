@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
+<!DOCTYPE chapter SYSTEM "gnc-locale-C.dtd">
 <!-- (Do not remove this comment block.)
   Version: 2.0.0
   Last modified: July 9th 2006
@@ -27,7 +27,7 @@
     </para>
 
     <para>Certain resellable assets can change value over time, such as stocks, bonds, houses, or cars. Some
-      assets (eg: a stock) could increase in value, some (eg: a car) could decrease in value. It is
+      assets could increase in value, some could decrease in value. It is
       important to be able to track some of these time-dependent asset valuations, this chapter will
       show you how.
     </para>
@@ -38,7 +38,7 @@
       taxation.
     </para>
 
-    <para>Consumable and disposable items (eg: food, gas for your car, or printer paper) are obviously not
+    <para>Consumable and disposable items (for example, food, gas for your car, or printer paper) are obviously not
       involved. Thus, even though the new clothes you recently bought will certainly depreciate, you
       would not want to track this depreciation since you have no intention of reselling the clothes
       and there is no tax implications to the depreciation on clothing. So, for this example, the
@@ -110,9 +110,19 @@
   <sect1 id="capgain_accounts1">
     <title>Account Setup</title>
 
+    <important>
+      <para>
+        In the next few sections, unrealized gain accounts are created, and the estimated unrealized gain transactions 
+        are recorded there in order for users to understand unrealized gain easily. However, it is not necessary
+        to record unrealized gains unless large corporations like which adopt IFRS in actual accounting.
+        The small enterprise users, who are using &app;, should not record unrealized gains. Record into &app; 
+        only when realized gains are fixed.
+      </para>
+    </important>
+
     <para>As with most accounting practices, there are a number of different ways to setup capital gains
       accounts. We will present here a general method which should be flexible enough to handle most
-      situations. The first account you will need is an <emphasis>Asset Cost</emphasis> account
+      situations. The first account you will need is an asset <emphasis>Cost</emphasis> account
       (&app; account type <guilabel>Asset</guilabel>), which is simply a place where you record the
       original purchase of the asset. Usually this purchase is accomplished by a transaction from
       your bank account.
@@ -129,21 +139,21 @@
     <para>Below is a generic account hierarchy for tracking the appreciation of 2 assets,
       <emphasis>ITEM1</emphasis> and <emphasis>ITEM2</emphasis>. The <emphasis>Assets:Fixed
       Assets:ITEM1:Cost</emphasis> accounts are balanced by the <emphasis>Assets:Current
-      Assets:Savings Account</emphasis> account, the <emphasis>Assets:Fixed Assets:ITEM1:Unrealized
+      Assets:Savings</emphasis> account, the <emphasis>Assets:Fixed Assets:ITEM1:Unrealized
       Gains</emphasis> accounts are balanced by the <emphasis>Income:Unrealized Gains</emphasis>
       account (similar for <emphasis>ITEM2</emphasis>).
     </para>
 <screen>
 -Assets
     -Current Assets
-        -Savings Account
+        -Savings
     -Fixed Assets
         -ITEM1
             -Cost
-            -Unrealized Gain
+            -Unrealized Gains
         -ITEM2
             -Cost
-            -Unrealized Gain
+            -Unrealized Gains
 -Income
     -Realized Gains
     -Unrealized Gains</screen>
@@ -158,8 +168,8 @@
 
     <para>Start with an account hierarchy similar to that shown in <xref
     linkend="capgain_accounts1" />,
-      but replace <quote>ITEM1</quote> with <quote>Degas</quote> and you can remove the
-      <quote>ITEM2</quote> accounts. We will assume that the Degas painting had an initial value of
+      but replace <emphasis>ITEM1</emphasis> with <emphasis>Degas</emphasis> and remove the
+      <emphasis>ITEM2</emphasis> accounts. We will assume that the Degas painting had an initial value of
       one hundred thousand dollars. Begin by giving your self $100,000 in the bank and then
       transferring that from your bank account to your <emphasis>Assets:Fixed
       Assets:Degas:Cost</emphasis> account (the asset purchase transaction). You should now have a
@@ -189,9 +199,8 @@
 
       <para>A month later, you have reason to suspect that the value of your painting has increased by $10,000
         (an unrealized gain). In order to record this you transfer $10,000 from your
-        <emphasis>Accrued Gains</emphasis> income account (<emphasis>Income:Unrealized
-        Gains</emphasis>) to your asset Unrealized Gains account (<emphasis>Assets:Fixed
-        Assets:Degas:Unrealized Gain</emphasis>). Your main window will resemble this:
+        <emphasis>Income:Unrealized Gains</emphasis> account to your <emphasis>Assets:Fixed Assets:Degas:Unrealized Gains</emphasis> account.
+         Your main window will resemble this:
       </para>
 
       <screenshot id="capgain_app2main">
@@ -228,7 +237,7 @@
 
       <orderedlist>
         <listitem>
-          <para><emphasis>Accurate estimation</emphasis> of unrealized gain.
+          <para><emphasis>Accurate estimation</emphasis> of unrealized gains.
           </para>
 
           <para>Your optimistic estimate of the painting&rsquo;s value was correct. First you must record that the
@@ -240,16 +249,16 @@
           <para>Secondly, you must credit your bank account with the selling price of the painting. This money comes
             directly from your <emphasis>Assets:Fixed Assets:Degas</emphasis> sub-accounts. Transfer
             the full <emphasis>Assets:Fixed Assets:Degas:Cost</emphasis> value into
-            <emphasis>Assets:Current Assets:Savings Account</emphasis>, and the full
-            <emphasis>Assets:Fixed Assets:Degas:Unrealized Gain</emphasis> into
-            <emphasis>Assets:Current Assets:Savings Account</emphasis>.
+            <emphasis>Assets:Current Assets:Savings</emphasis>, and the full
+            <emphasis>Assets:Fixed Assets:Degas:Unrealized Gains</emphasis> into
+            <emphasis>Assets:Current Assets:Savings</emphasis>.
           </para>
 
           <para>These transactions should now appear as follows:
           </para>
 
           <para><table>
-              <title>Turning an Accrued Gain into a Realized Gain - Accurate Estimation</title>
+              <title>Turning an Unrealized Gain into a Realized Gain - Accurate Estimation</title>
 
               <tgroup cols="4">
                 <tbody>
@@ -295,7 +304,7 @@
                     </entry>
 
                     <entry>
-                      Assets:Current Assets:Savings Account
+                      Assets:Current Assets:Savings
                     </entry>
 
                     <entry>
@@ -313,7 +322,7 @@
                     </entry>
 
                     <entry>
-                      Assets:Current Assets:Savings Account
+                      Assets:Current Assets:Savings
                     </entry>
 
                     <entry>
@@ -329,8 +338,8 @@
             </table>
           </para>
 
-          <para>This leaves the <emphasis>Assets:Current Assets:Savings Account</emphasis> account with a total of
-            $130000 and <emphasis>Income:Realized Gains</emphasis> with a total of $30000.
+          <para>This leaves the <emphasis>Assets:Current Assets:Savings</emphasis> account with a total of
+            $130,000 and <emphasis>Income:Realized Gains</emphasis> with a total of $30,000.
           </para>
 
           <screenshot id="capgain_app3main">
@@ -345,7 +354,7 @@
               </textobject>
 
               <caption>
-                <para>Chart of Accounts after realized gain
+                <para>Chart of Accounts after realized gains
                 </para>
               </caption>
             </mediaobject>
@@ -353,13 +362,129 @@
         </listitem>
 
         <listitem>
-          <para><emphasis>Over estimation</emphasis> of unrealized gain.
+          <para><emphasis>Over estimation</emphasis> of unrealized gains.
           </para>
 
-          <para>You were over-optimistic about the value of the painting. Instead of the $130000 you thought the
-            painting was worth you are only offered $120000. But you still decide to sell, because
-            you value $120000 more than you value the painting. The numbers change a little bit, but
+          <para>You were over-optimistic about the value of the painting. Instead of the $130,000 you thought the
+            painting was worth you are only offered $120,000. But you still decide to sell, because
+            you value $120,000 more than you value the painting. The numbers change a little bit, but
             not too dramatically.
+          </para>
+
+          <para>The transactions should now appear as follows (observe the last transaction which balances the
+            <emphasis>Unrealized Gains</emphasis> account):
+          </para>
+
+          <para><table>
+              <title>Turning an Unrealized Gain into a Realized Gain - Over estimation</title>
+
+              <tgroup cols="4">
+                <tbody>
+                  <row>
+                    <entry>
+                      <emphasis>Account</emphasis>
+                    </entry>
+
+                    <entry>
+                      <emphasis>Transfer to</emphasis>
+                    </entry>
+
+                    <entry>
+                      <emphasis>Transaction Amount</emphasis>
+                    </entry>
+
+                    <entry>
+                      <emphasis>Account Total</emphasis>
+                    </entry>
+                  </row>
+
+                  <row>
+                    <entry>
+                      Income:Unrealized Gains
+                    </entry>
+
+                    <entry>
+                      Income:Realized Gains
+                    </entry>
+
+                    <entry>
+                      $20,000
+                    </entry>
+
+                    <entry>
+                      $10,000
+                    </entry>
+                  </row>
+
+                  <row>
+                    <entry>
+                      Assets:Fixed Assets:Degas:Cost
+                    </entry>
+
+                    <entry>
+                      Assets:Current Assets:Savings
+                    </entry>
+
+                    <entry>
+                      $100,000
+                    </entry>
+
+                    <entry>
+                      $0
+                    </entry>
+                  </row>
+
+                  <row>
+                    <entry>
+                      Assets:Fixed Assets:Degas:Unrealized Gains
+                    </entry>
+
+                    <entry>
+                      Assets:Current Assets:Savings
+                    </entry>
+
+                    <entry>
+                      $20,000
+                    </entry>
+
+                    <entry>
+                      $10,000
+                    </entry>
+                  </row>
+
+                  <row>
+                    <entry>
+                      Assets:Fixed Assets:Degas:Unrealized Gains
+                    </entry>
+
+                    <entry>
+                      Income:Unrealized Gains
+                    </entry>
+
+                    <entry>
+                      $10,000
+                    </entry>
+
+                    <entry>
+                      $0
+                    </entry>
+                  </row>
+                </tbody>
+              </tgroup>
+            </table>
+          </para>
+
+          <para>This leaves the <emphasis>Assets:Current Assets:Savings</emphasis> account with a total of
+            $120,000 and <emphasis>Income:Realized Gains</emphasis> with a total of $20,000.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis>Under estimation</emphasis> of unrealized gains.
+          </para>
+
+          <para>You manage to sell your painting for more than you thought in your wildest dreams ($150,000). The
+            extra value is, again, recorded as a gain, that is an income.
           </para>
 
           <para>The transactions should now appear as follows (observe the last transaction which balances the
@@ -367,123 +492,7 @@
           </para>
 
           <para><table>
-              <title>Turning an Accrued Gain into a Realized Gain - Underestimation</title>
-
-              <tgroup cols="4">
-                <tbody>
-                  <row>
-                    <entry>
-                      <emphasis>Account</emphasis>
-                    </entry>
-
-                    <entry>
-                      <emphasis>Transfer to</emphasis>
-                    </entry>
-
-                    <entry>
-                      <emphasis>Transaction Amount</emphasis>
-                    </entry>
-
-                    <entry>
-                      <emphasis>Account Total</emphasis>
-                    </entry>
-                  </row>
-
-                  <row>
-                    <entry>
-                      Income:Unrealized Gains
-                    </entry>
-
-                    <entry>
-                      Income:Realized Gains
-                    </entry>
-
-                    <entry>
-                      $20,000
-                    </entry>
-
-                    <entry>
-                      $10,000
-                    </entry>
-                  </row>
-
-                  <row>
-                    <entry>
-                      Assets:Fixed Assets:Degas:Cost
-                    </entry>
-
-                    <entry>
-                      Assets:Current Assets:Savings Account
-                    </entry>
-
-                    <entry>
-                      $100,000
-                    </entry>
-
-                    <entry>
-                      $0
-                    </entry>
-                  </row>
-
-                  <row>
-                    <entry>
-                      Assets:Fixed Assets:Degas:Unrealized Gains
-                    </entry>
-
-                    <entry>
-                      Assets:Current Assets:Savings Account
-                    </entry>
-
-                    <entry>
-                      $20,000
-                    </entry>
-
-                    <entry>
-                      $10,000
-                    </entry>
-                  </row>
-
-                  <row>
-                    <entry>
-                      Assets:Fixed Assets:Degas:Unrealized Gains
-                    </entry>
-
-                    <entry>
-                      Income:Unrealized Gains
-                    </entry>
-
-                    <entry>
-                      $10,000
-                    </entry>
-
-                    <entry>
-                      $0
-                    </entry>
-                  </row>
-                </tbody>
-              </tgroup>
-            </table>
-          </para>
-
-          <para>This leaves the <emphasis>Assets:Current Assets:Savings Account</emphasis> account with a total of
-            $120000 and <emphasis>Income:Realized Gains</emphasis> with a total of $20000.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis>Under estimation</emphasis> of unrealized gain.
-          </para>
-
-          <para>You manage to sell your painting for more than you thought in your wildest dreams ($150,000). The
-            extra value is, again, recorded as a gain, i.e. an income.
-          </para>
-
-          <para>The transactions should now appear as follows (observe the last transaction which balances the
-            Unrealized Gains accounts):
-          </para>
-
-          <para><table>
-              <title>Turning an Accrued Gain into a Realized Gain - Overestimation</title>
+              <title>Turning an Unrealized Gain into a Realized Gain - Under estimation</title>
 
               <tgroup cols="4">
                 <tbody>
@@ -529,7 +538,7 @@
                     </entry>
 
                     <entry>
-                      Assets:Current Assets:Savings Account
+                      Assets:Current Assets:Savings
                     </entry>
 
                     <entry>
@@ -547,7 +556,7 @@
                     </entry>
 
                     <entry>
-                      Assets:Current Assets:Savings Account
+                      Assets:Current Assets:Savings
                     </entry>
 
                     <entry>
@@ -581,7 +590,7 @@
             </table>
           </para>
 
-          <para>This leaves the <emphasis>Assets:Current Assets:Savings Account</emphasis> account with a total of
+          <para>This leaves the <emphasis>Assets:Current Assets:Savings</emphasis> account with a total of
             $150,000 and <emphasis>Income:Realized Gains</emphasis> with a total of $50,000.
           </para>
         </listitem>
