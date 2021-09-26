@@ -8,7 +8,7 @@ cmake_minimum_required (VERSION 3.5)
 # specify a language.
 project (gnucash-docs
     VERSION 4.7
-    LANGUAGES C)
+    LANGUAGES NONE)
 
 set (PACKAGE_NAME GnuCash Docs)
 set (PACKAGE_BUGREPORT "https://bugs.gnucash.org/describecomponents.cgi?product=Documentation")
@@ -25,7 +25,6 @@ include (AddHtmlTarget)
 include (AddPdfTarget)
 include (AddGncDocTargets)
 include (DistCommon)
-include (GNUInstallDirs)
 
 # Clear cache variables that will be filled later during the cmake run
 unset(dist_files CACHE)
@@ -66,10 +65,6 @@ set(extended_extension "otf" CACHE STRING "Extended fonts extension")
 set(JAPANESE_MINCHO_TTF "ume-tmo3.ttf" CACHE STRING "Mincho TrueType font used for Japanese pdf")
 set(JAPANESE_GOTHIC_TTF "ume-tmo3.ttf" CACHE STRING "Gothic TrueType font used for Japanese pdf")
 set(japanese_fontdir "${CMAKE_SOURCE_DIR}/fonts/truetype" CACHE STRING "Directory to search for Japanese fonts")
-
-# Buildtime destination directories for our generated documentation
-set(DATADIR_BUILD "${CMAKE_BINARY_DIR}/share")
-set(DOCDIR_BUILD  "${DATADIR_BUILD}/doc/${PACKAGE}")
 
 # ############################################################
 # Find the documentation dependencies
@@ -158,7 +153,7 @@ if (WITH_HTML)
     add_custom_target(html)
 endif()
 if (WITH_GHELP)
-    add_custom_target(ghelp)
+    add_custom_target(ghelp ALL)
 endif()
 if (WITH_PDF)
     add_custom_target(pdf)
@@ -183,12 +178,10 @@ add_subdirectory (help)
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-    cmake/* fonts/* stylesheet/* xsl/* docbook/*)
+    cmake/* fonts/* xsl/* docbook/*)
 add_to_dist(${extrafiles})
 
-configure_file(COPYING ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING COPYONLY)
-configure_file(COPYING-DOCS ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING-DOCS COPYONLY)
-install(FILES COPYING COPYING-DOCS DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
+install(FILES COPYING COPYING-DOCS DESTINATION share/doc/${PROJECT_NAME})
 
 add_to_dist(
     AUTHORS
