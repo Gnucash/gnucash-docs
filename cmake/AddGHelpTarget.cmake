@@ -1,38 +1,42 @@
 #
 # Functions to install the docbook xml sources for use with gnome help
 #
-# Paremeters:
-# - docname: basename of the main xml file. Will be used to locate
-#            this primary xml file and for various output files/directories
-# - lang: language of the current document
-# - entities: list of all xml files this document is composed of
-# - figdir: name of the directory holding the images
+# FUNCTION:
+#   add_ghelp_target
+# ARGUMENTS:
+# - docname: The basename of the main xml file. Will be used to locate
+#            this primary xml file and for various output files/directories.
+#            Either "gnucash-guide" or "gnucash-help" now.
+# - lang: The language of the current document, such as "C", "de" and so on.
+# - entities: A list of all xml files this document is composed of. ONLY filename, WITHOUT path.
+#             It does NOT contain "${docname}.xml".
+# - figures: A list of FULL PATH image files.
+# - dtd_files: A list of FULL PATH DTD files.
+#
+function (add_ghelp_target docname lang entities figures dtd_files)
 
-function (add_ghelp_target docname lang entities figures)
+    # Setup variables.
+    set(fmt "ghelp")
+    set(outfile "${docname}.xml")
 
-    set(BUILD_DIR "${DATADIR_BUILD}/gnome/help/${docname}/${lang}")
+    set(BUILD_DIR "${CMAKE_BINARY_DIR}/share/gnome/help/${docname}/${lang}")
+
+    # Prepare Directory
     file(MAKE_DIRECTORY "${BUILD_DIR}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
+    file(MAKE_DIRECTORY "${BUILD_DIR}/images")
+
+    # GnuCash-specific xsl files
+    file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
     set(source_files "")
     foreach(xml_file ${entities} ${docname}.xml)
         list(APPEND source_files "${CMAKE_CURRENT_SOURCE_DIR}/${xml_file}")
     endforeach()
-
-    set(dtd_files "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd"
-                  "${CMAKE_SOURCE_DIR}/docbook/gnc-locale-C.dtd"
-                  "${CMAKE_SOURCE_DIR}/docbook/gnc-locale-${lang}.dtd")
-    list(REMOVE_DUPLICATES dtd_files)
     list(APPEND source_files ${dtd_files})
 
-
-    set(dest_files "")
-    foreach(xml_file ${entities} ${docname}.xml gnc-docbookx.dtd)
-        list(APPEND dest_files "${BUILD_DIR}/${xml_file}")
-    endforeach()
-
+    # Copy source XML files and DTD files for this document
     add_custom_command(
-        OUTPUT ${dest_files}
+        OUTPUT ${outfile}
         COMMAND ${CMAKE_COMMAND} -E copy ${source_files} "${BUILD_DIR}"
         DEPENDS ${entities} "${docname}.xml" ${dtd_files}
         WORKING_DIRECTORY "${BUILD_DIR}")
@@ -45,16 +49,25 @@ function (add_ghelp_target docname lang entities figures)
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
         DEPENDS ${figures})
 
+    # Copy GnuCash-Specific icons
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*" "${BUILD_DIR}/images"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        DEPENDS "${gnucash_icon_files}")
+
+
     add_custom_target("${lang}-${docname}-ghelp"
-        DEPENDS ${dest_files}
-                "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger")
+        DEPENDS ${outfile}
+                "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
 
     add_dependencies(${docname}-ghelp "${lang}-${docname}-ghelp")
 
     install(FILES ${source_files}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}"
-        COMPONENT "ghelp")
+        DESTINATION "share/gnome/help/${docname}/${lang}")
     install(FILES ${figures}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}/figures"
-        COMPONENT "ghelp")
+        DESTINATION "share/gnome/help/${docname}/${lang}/figures")
+    install(FILES ${gnucash_icon_files}
+        DESTINATION "share/gnome/help/${docname}/${lang}/images")
 endfunction()
