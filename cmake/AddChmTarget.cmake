@@ -26,11 +26,6 @@ function (add_chm_target docname lang entities figures dtd_files)
     file(GLOB xsl_files "${CMAKE_SOURCE_DIR}/xsl/*.xsl")
     file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
-    set(chmfile "${docname}.chm")
-    set(mapfile "${docname}.hhmap")
-
-    set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
-
     # Prepare ${BUILD_DIR}
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
@@ -38,33 +33,47 @@ function (add_chm_target docname lang entities figures dtd_files)
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images/callouts"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
-
-    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/htmlhelp")
+    # Create CHM file from hhp (the output of xsltproc)
     add_custom_command(
-        OUTPUT "${BUILD_DIR}/${chmfile}" "${BUILD_DIR}/${mapfile}"
-        COMMAND ${CMAKE_COMMAND} -v
-           -D docname=${docname}
-           -D SRC_DIR=${CMAKE_SOURCE_DIR}
-           -D CURRENT_SRC_DIR=${CMAKE_CURRENT_SOURCE_DIR}
-           -D CURRENT_BIN_DIR=${CMAKE_CURRENT_BINARY_DIR}
-           -D BUILD_DIR=${BUILD_DIR}
-           -D XSLTPROC=${XSLTPROC}
-           "-DXSLTPROCFLAGS=\"${XSLTPROCFLAGS}\""
-           "-Dentities=\"${entities}\""
-           -D HHC=${HHC}
-           -P ${CMAKE_SOURCE_DIR}/cmake/MakeChm.cmake
-        DEPENDS ${entities} "${docname}.xml" ${dtd_files} ${xsl_files} ${figures}
-                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
-        WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/htmlhelp")
+        OUTPUT "${OUTPUT_DIR}/${outfile}"
+        # A workaround because ${HHC} always returns FALSE.
+        COMMAND COMMAND ${HHC} htmlhelp.hhp || cd .
+        COMMAND cp "${outfile}" "${OUTPUT_DIR}/${outfile}"
+        WORKING_DIRECTORY "${BUILD_DIR}"
+        DEPENDS "${BUILD_DIR}/htmlhelp.hhp"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger")
+
+
+    # Create HTML files for CHM with xsltproc
+    #  "${BUILD_DIR}/htmlhelp.hhp" and "${BUILD_DIR}/toc.hhc" are also cleated.
+    add_custom_command(
+        OUTPUT "${BUILD_DIR}/htmlhelp.hhp"
+        COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_CHM}
+                -o "${BUILD_DIR}/"
+                --path "${CMAKE_SOURCE_DIR}/docbook"
+                --stringparam htmlhelp.chm ${outfile}
+                --stringparam gnc.lang ${lang}
+                "${CMAKE_SOURCE_DIR}/xsl/1.79.2/htmlhelp/htmlhelp.xsl"
+                "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
+        DEPENDS ${entities} "${docname}.xml" ${dtd_files} ${xsl_files})
+
+    # Copy figures for this document
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/stylesheet "${BUILD_DIR}/stylesheet"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+        DEPENDS ${figures}
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
 
     add_custom_target("${lang}-${docname}-chm"
-        DEPENDS "${BUILD_DIR}/${chmfile}" "${BUILD_DIR}/${mapfile}")
+        DEPENDS "${OUTPUT_DIR}/${outfile}")
 
     add_dependencies(${docname}-chm "${lang}-${docname}-chm")
 
     install(FILES
             "${BUILD_DIR}/${chmfile}"
-            "${BUILD_DIR}/${mapfile}"
         DESTINATION "${CMAKE_INSTALL_DOCDIR}/${lang}"
         COMPONENT "chm")
 
