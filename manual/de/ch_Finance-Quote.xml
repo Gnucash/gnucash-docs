@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
+<!-- (Do not remove this comment block.)
+Version: 1.0.0
+Last modified: August 08th 2021
+
+Maintainers:
+  xxx
+Author:
+  TANIGUCHI Yasuaki <yasuakit@gmail.com>
+  Christian Wehling <christian.wehling@web.de>
+Translators:
+  Christian Wehling <christian.wehling@web.de>
+-->
+<chapter id="finance-quote"
+         xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Die Online-Kursaktualisierung</title>
+
+  <para>Wenn Sie mehr als ein paar Devisen und Wertpapiere besitzen, werden Sie es bald leid sein, die Kurse
+    ständig per Hand aktualisieren zu müssen. &app; bietet Ihnen die Möglichkeit, automatisch den
+    aktuellsten Kurs für Ihre Devisen und Wertpapiere über das Internet herunterzuladen. Hierfür
+    wird das &app-perl;-Modul &app-fq; verwendet.
+  </para>
+
+  <sect1 id="finance-quote-install">
+    <title>Installieren von &app-fq;</title>
+
+    <para>Um festzustellen, ob das &app-perl;-Modul &app-fq; bereits auf Ihrem System installiert ist, geben
+      Sie <command>perldoc Finance::Quote</command> in einem Terminalfenster ein. Wird Ihnen jetzt
+      eine Dokumentation angezeigt, dann ist &app-fq; installiert und Sie können, wie in
+      <xref linkend="finance-quote-scheduler" /> beschrieben, den automatisierten Kursabruf
+      konfigurieren. Wenn nicht, dann müssen Sie sich mit diesem Kapitel weiter beschäftigen.
+    </para>
+
+    <itemizedlist>
+      <title>Die Vorraussetzungen für eine Online-Kursaktualisierung mit &app-fq; sind</title>
+
+      <listitem>
+        <para>ein &app-perl; Interpreter,
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>das &app-perl;-Module &app-fq; selber und
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>alle Abhängigkeiten, die für das Modul &app-fq; erforderlich sind.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <note>
+      <para>Wenn Sie sich bei der Durchführung mit den nachfolgend beschriebenen Schritte nicht sicher fühlen,
+        senden Sie bitte ihre Frage entweder per E-Mail an die deutschsprachige &app;-user
+        Mailingliste (<email>gnucash-de@gnucash.org</email>) oder besuchen Sie den &app; IRC-Kanal
+        auf irc.gnome.org. Weitere Informationen finden Sie auch im &app; Wiki unter
+        <ulink url="&url-wiki-de;Aktienhandel">Aktienhandel</ulink>. Sie können diesen Schritt auch
+        weglassen und Ihre Aktienkurse manuell aktualisieren.
+      </para>
+    </note>
+
+    <para>Die Installation von &app-perl; liegt nicht im Fokus dieser Anleitung. Eine ausführliche
+      Beschreibung ist im englischsprachigen &app; Wiki unter
+      <ulink url="&url-wiki-OQ;#Perl">Perl</ulink> zu finden.
+    </para>
+
+    <para>Die Installation von &app-fq; unterscheidet sich von einem Betriebssystem zum anderen. Für die
+      verschiedenen unterstützten Systeme, können Sie die folgenden Anweisungen befolgen:
+    </para>
+
+    <procedure>
+      <title>Installieren von &app-fq; unter &lin;</title>
+
+      <step>
+        <simpara>Beenden Sie &app;.
+        </simpara>
+      </step>
+
+      <step>
+        <simpara>Führen Sie den Befehl <command>gnc-fq-check</command> aus, um zu überprüfen, ob das Programm
+          bereits in einem Verzeichnis liegt, welches in der Umgebungsvariable PATH eingetragen ist.<footnote>
+            <simpara>Wenn Sie die von Ihrer Distribution bereitgestellten &app; Pakete installiert haben, sollte
+              <filename>gnc-fq-check</filename> bereits in Ihrem PATH sein. Die Aktualität ihrer
+              Distribution können Sie unter
+              <ulink url="&url-repo;perl:finance-quote/versions"><citetitle>&app-fq;-
+              Versionen</citetitle></ulink> nachlesen.
+            </simpara>
+          </footnote>
+        </simpara>
+
+        <substeps>
+          <step>
+            <simpara>Wenn <filename>gnc-fq-check</filename> nicht in Ihrem PATH ist, suchen Sie den Ordner, in dem &app;
+              installiert ist und wechseln in dieses Verzeichnis.
+            </simpara>
+          </step>
+
+          <step>
+            <simpara>Es bietet sich an, das aktuelle Verzeichnis in der PATH-Umgebungsvariable aufzunehmen. Hierzu
+              informieren Sie sich bitte in den Unterlagen zu Ihrer Distribution.
+            </simpara>
+          </step>
+        </substeps>
+      </step>
+
+      <step>
+        <simpara>Als nächstes aktualisieren Sie mit <command>sudo gnc-fq-update</command> oder <command>su -c
+          gnc-fq-update</command> mit Root-Rechten &app-fq;. Die richtige Syntax ist von der
+          jeweiligen Distribution abhängig.
+        </simpara>
+
+        <para>Dadurch wird ein internes &app-perl;
+          <acronym><ulink url="&url-cpan;">CPAN</ulink></acronym><footnote>
+            <simpara>Siehe <ulink url="&url-cpan;misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink>
+              für weitere Informationen.
+            </simpara>
+          </footnote>Modul gestartet um die Installation vorzunehmen. Wenn Sie das CPAN zum ersten Mal starten, müssen
+          Sie es einrichten und konfigurieren. Auf den meisten Systemen können Sie jedoch die
+          Standardeinstellungen akzeptieren und die erste Frage <computeroutput>Are you ready for
+          manual configuration? [yes]</computeroutput> mit <userinput>no</userinput> beantworten
+          damit &app-fq; erfolgreich installiert wird.
+        </para>
+      </step>
+
+      <step>
+        <simpara>Führen Sie <command>gnc-fq-check</command> aus, um zu prüfen, ob &app-fq; richtig installiert ist.
+          Wenn dies so ist, dann werden die Versionsnummer sowie die von &app-fq; verwendbaren
+          Quellen für eine Kursabfrage aufgelistet. Bei Problemen mit der Installation von &app-fq;
+          wird eventuell eine Lösung vorgeschlagen.
+        </simpara>
+      </step>
+    </procedure>
+
+    <procedure>
+      <title>Installieren von &app-fq; in &mac;</title>
+
+      <step>
+        <simpara>Beenden Sie &app;.
+        </simpara>
+      </step>
+
+      <step>
+        <simpara>Installieren Sie XCode, falls noch nicht geschehen.
+        </simpara>
+
+        <simpara>XCode ist ein optionales Element auf Ihrer &mac; Distributions-DVD.
+        </simpara>
+      </step>
+
+      <step>
+        <simpara>Führen Sie die Anwendung <emphasis>Update Finance Quote</emphasis> im &app; dmg aus.
+        </simpara>
+
+        <para>Sie können es von der dmg ausführen oder in denselben Ordner kopieren, in den Sie &app; kopiert
+          haben. Es öffnet sich ein Terminalfenster und führt ein Skript für Sie aus, das Ihnen
+          eine Reihe von Fragen stellt. Akzeptieren Sie bei jeder Frage die Vorgabe, es sei denn,
+          Sie wissen, was Sie tun.
+        </para>
+      </step>
+    </procedure>
+
+    <procedure>
+      <title>Installieren von &app-fq; unter &win;</title>
+
+      <step>
+        <simpara>Beenden Sie &app;.
+        </simpara>
+      </step>
+
+      <step>
+        <simpara>Führen Sie<menuchoice>
+            <guimenu>Start</guimenu> <guisubmenu>&app;</guisubmenu> <guimenuitem>Online-Preisabfrage
+            installieren</guimenuitem>
+          </menuchoice>aus.
+        </simpara>
+
+        <para>Das &win;-Installationsprogramm von der <ulink url="&url-www;download.phtml">&app; Homepage</ulink>
+          wird zusätzlich mit einem kleinen Hilfsprogramm geliefert, das &app-fq; für Sie
+          installiert.
+        </para>
+      </step>
+    </procedure>
+  </sect1>
+
+  <sect1 id="finance-quote-scheduler">
+    <title>Automatisierte Abfrage von Online-Kursen</title>
+
+    <para>Mit dem Kommando <command>gnucash-cli --quotes get
+      <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename></command><footnote>
+        <simpara>Der Befehl für den Online-Kursabruf wurde ab &app; 4.0 geändert. Der alte Befehl <command>gnucash
+          --add-price-quotes
+          <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename></command> ist
+          immer noch verfügbar, aber er ist veraltet und wird in einer zukünftigen Version
+          entfernt werden. Wenn Sie ein Upgrade von &app; 3.11 oder einer früheren Version
+          durchgeführt haben, wird empfohlen, den neuen Befehl <command>gnucash-cli</command> zu
+          verwenden.
+        </simpara>
+      </footnote>können Sie die aktuellen Kurse Ihrer Devisen und Wertpapiere abrufen und direkt in ihre
+      &app;-Datendatei schreiben.
+    </para>
+
+    <para>Die angegebene Datei <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename> ist
+      abhängig von dem Namen und dem Speicherort Ihrer Datendatei. Dies lässt sich anhand des
+      Namens feststellen, der im oberen Rahmen des &app; Fensters vor dem <quote>-</quote> angezeigt
+      wird.<tip>
+        <para>Der Dateiname ist auch in der Liste der zuletzt geöffneten Dateien im
+          <guimenu>Datei</guimenu>-Menü zu finden. Wenn Sie den Mauszeiger über dem Menüeintrag
+          mit der Nummer 1 in der Liste der zuletzt geöffneten Dateien platzieren, wird in der
+          <guilabel>Statusleiste</guilabel> die vollständige Dateibezeichnung angezeigt.
+        </para>
+      </tip>
+    </para>
+
+    <para>Sie müssen den Befehl <command>gnucash-cli</command> bei einem Scheduler (Zeitplaner) eintragen, um
+      die Onlinekurse automatisch und regelmäßig zu erhalten. Die Methode hängt von Ihrem
+      Betriebssystem ab. Nehmen wir zum Beispiel an Sie möchten Ihre Datei jeden Freitag um 16:00
+      Uhr aktualisieren. (Passen Sie die Zeit an den Börsenschluss an.)
+    </para>
+
+    <procedure>
+      <title>Automatisierter Kursabruf unter &lin; und &mac;</title>
+
+      <para>Eintragen des Befehls zum Kursabruf per <command>gnucash-cli</command> mittels
+        <application>cron</application>.
+      </para>
+
+      <step>
+        <simpara>Führen Sie das Kommando <command>crontab -e</command> aus.
+        </simpara>
+      </step>
+
+      <step>
+        <para>Fügen Sie die folgende Zeile in Ihre crontab ein:<informalexample>
+<screen>0 16 * * 5 gnucash-cli --quotes get <replaceable>${HOME}/gnucash-filename</replaceable> &gt; /dev/null 2&gt;&amp;1</screen>
+          </informalexample><warning>
+            <para>Läuft auf Ihrem Rechner zu dem Zeitpunkt des Kursabrufs keine X-Session, so müssen Sie den Aufruf
+              stattdessen wie folgt ausführen:<screen>0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT; gnucash-cli --quotes get <replaceable>${HOME}/gnucash-filename</replaceable> &gt; /dev/null 2&gt;&amp;1</screen>
+            </para>
+          </warning>
+        </para>
+      </step>
+    </procedure>
+
+    <procedure>
+      <title>Automatisierter Kursabruf unter &win;</title>
+
+      <para>Anlegen des Kursabrufs per <command>gnucash-cli</command> mit der Aufgabenplanung.
+      </para>
+
+      <step>
+        <simpara>Wählen Sie<menuchoice>
+            <guimenu>Start</guimenu><guisubmenu>Systemsteuerung</guisubmenu><guimenuitem>Aufgabenplanung</guimenuitem>
+          </menuchoice>.
+        </simpara>
+      </step>
+
+      <step>
+        <simpara>Klicken Sie auf <guimenuitem>Aufgabe erstellen</guimenuitem>.
+        </simpara>
+      </step>
+
+      <step>
+        <simpara>Geben Sie die entsprechenden Angaben im Fenster <guilabel>Aufgabe erstellen</guilabel> ein.
+        </simpara>
+      </step>
+    </procedure>
+
+    <para>Weitere Informationen finden Sie im Wiki unter
+      <ulink url="&url-wiki-de;Aktienhandel#Automatisierter_Kursabruf_mittels_cron">Automatisierter
+      Kursabruf mittels cron</ulink> und auf
+      <ulink url="&url-wiki-OQ;#Updating_enabled_Quotes_from_outside_GnuCash">Online Quotes Page on
+      GnuCash Wiki</ulink>.
+    </para>
+  </sect1>
+</chapter>

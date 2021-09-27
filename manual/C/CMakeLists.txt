@@ -9,6 +9,7 @@ set (entities
         Help_ch_Tools_Assistants.xml
         Help_ch_Reports.xml
         Help_ch_Customize.xml
+        ch_Finance-Quote.xml
         Help_chtacctseg.xml
         Help_chartofaccts.xml
         Help_legal.xml

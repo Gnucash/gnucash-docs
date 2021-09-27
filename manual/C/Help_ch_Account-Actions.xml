@@ -38,8 +38,7 @@
     <warning>
       <para>The Accounts Payable and Accounts Receivable types are used internally by &app;&rsquo;s business
         features. Transactions involving these accounts should not be added, changed or deleted in
-        any way other than by using
-        <itemizedlist>
+        any way other than by using<itemizedlist>
           <listitem>
             <para>post/unpost bill/invoice/voucher or
             </para>
@@ -329,8 +328,7 @@
       chart of accounts is as a tree. The main branches represent entire categories or groups, while
       the leaves of the tree denote individual bank accounts or expense categories. When a summary
       report is requested, typically only the main branches are shown in the report, rather than the
-      individual accounts. For example, a chart of accounts might look like the following:
-      <xi:include href="Help_chtacctseg.xml"/>
+      individual accounts. For example, a chart of accounts might look like the following:<xi:include href="Help_chtacctseg.xml"/>
     </para>
 
     <note id="accts-code">
@@ -369,11 +367,9 @@
   <sect1 id="acct-create">
     <title>Creating a New Account</title>
 
-    <para>To create a new account go to
-      <menuchoice>
+    <para>To create a new account go to<menuchoice>
         <guimenu>Actions</guimenu><guimenuitem>New Account...</guimenuitem>
-      </menuchoice>
-      or click the <guibutton>New</guibutton> <emphasis>Toolbar</emphasis> icon in the Account Tree
+      </menuchoice>or click the <guibutton>New</guibutton> <emphasis>Toolbar</emphasis> icon in the Account Tree
       Window. The <guilabel>New Account</guilabel> dialog will be opened.
     </para>
 
@@ -422,11 +418,9 @@
         provides a way of connecting the account to stock information if it is one of the currency,
         mutual fund or stock account types. It can also be flagged as a
         <link linkend="accts-placeholder">Placeholder</link> account. It displays if it is flagged
-        as a <guilabel>Tax Related</guilabel> account (which is set through the
-        <menuchoice>
+        as a <guilabel>Tax Related</guilabel> account (which is set through the<menuchoice>
           <guimenu>Edit</guimenu><guimenuitem>Tax Report Options</guimenuitem>
-        </menuchoice>
-        dialog).
+        </menuchoice>dialog).
       </para>
 
       <para>There are seven fields in the <guilabel>Identification</guilabel> section of this tab.
@@ -521,12 +515,10 @@
       <para>The <guilabel>Tax Related</guilabel> check-box means that an account has been flagged to be included
         in the Tax Schedule Report. This flag is only displayed on the <guilabel>Edit
         Account</guilabel> dialog and is set in the <guilabel>Income Tax Information</guilabel>
-        dialog (
-        <menuchoice>
+        dialog (<menuchoice>
           <guimenu>Edit</guimenu><guimenuitem>Tax Report Options</guimenuitem>
-        </menuchoice>
-        ). For related reports see the examples like <guilabel>Tax Schedule Report and TXF
-        Export</guilabel> in (<xref linkend="report-regional"/>).
+        </menuchoice>). For related reports see the examples like <guilabel>Tax Schedule Report and TXF Export</guilabel>
+        in (<xref linkend="report-regional"/>).
       </para>
 
       <para>The <guilabel>Placeholder</guilabel> check-box sets an account to read-only status and prevents the
@@ -541,12 +533,10 @@
       </note>
 
       <para>The <guilabel>Hidden</guilabel> check box hides an account (and any sub-accounts) in the account
-        tree. To reset this option, you will first need to open the
-        <menuchoice>
+        tree. To reset this option, you will first need to open the<menuchoice>
           <guimenu>View</guimenu><guimenuitem>Filter By...</guimenuitem>
-        </menuchoice>
-        dialog for the account tree and check the <guilabel>Show hidden accounts</guilabel> option.
-        Doing so will allow you to select the account and reopen this dialog.
+        </menuchoice>dialog for the account tree and check the <guilabel>Show hidden accounts</guilabel> option. Doing so
+        will allow you to select the account and reopen this dialog.
       </para>
 
       <note id="accts-hidden">
@@ -560,8 +550,7 @@
       </para>
 
       <para>The next pane contains an account tree to choose a <guilabel>Parent Account</guilabel>. To create a
-        new account tree select <guilabel>New top level account</guilabel>.
-        <note>
+        new account tree select <guilabel>New top level account</guilabel>.<note>
           <para>The available choices in the <guilabel>Account Type</guilabel> pane depends on the selected account
             in the <guilabel>Parent Account</guilabel> pane. For example if the <guilabel>Parent
             Account</guilabel> is <emphasis>Assets</emphasis> you will see only
@@ -570,235 +559,118 @@
           </para>
         </note>
       </para>
+    </sect2>
 
-      <sect3 id="Online-price-setup">
-        <title>Steps to enable Online price updating</title>
+    <sect2 id="accts-online-quotes">
+      <title>Steps to enable Online Quotes updating</title>
 
-        <orderedlist>
-          <listitem>
-            <para>&app; relies on an external tool to retrieve online quotes. This tool is a Perl module named
-              &app-fq; and has to be installed on your computer independently
-              from &app;. The first step in enabling online price updating should thus be to ensure
-              &app-fq; is properly installed.
+      <orderedlist>
+        <listitem>
+          <para>&app; uses an external tool to retrieve online courses. This tool is a Perl module called &app-fq;
+            and must be installed independently of &app; on your computer.
+          </para>
+
+          <tip>
+            <para>The installation of &app-fq; is described under <xref linkend="finance-quote-install" />.
             </para>
+          </tip>
+        </listitem>
 
-            <para>To determine if the Perl module &app-fq; is already installed on
-              your system, type <quote>perldoc Finance::Quote</quote> in a terminal window and check
-              to see if there is any documentation available. If you see the documentation, then the
-              module is installed, if you do not see the documentation, then it has not been
-              installed.
+        <listitem>
+          <para>Create the Account for the mutual fund or stock with it listed in the
+            <guilabel>Security/Currency</guilabel> field, as described above.
+          </para>
+
+          <tip>
+            <para>When creating these accounts it is a good time to create income accounts to track dividends, capital
+              gains (long and short) and expense account(s) for tracking commissions and losses (if
+              you track losses as expenses).
             </para>
+          </tip>
+        </listitem>
 
-            <para>Installing &app-fq; differs from one operating system to another.
-              For the various supported systems, you can follow these guidelines:
-            </para>
+        <listitem>
+          <para>Create the mutual fund or stock with either the <guilabel>Security Editor</guilabel> for existing
+            stock/funds or the <guilabel>New Security/Currency</guilabel> dialog for a new
+            stock/fund.
+          </para>
 
-            <itemizedlist>
-              <listitem>
-                <para>&lin;: Most &lin; distributions (like Fedora, openSuse,
-                  Mandriva, Ubuntu, and so on) have a package in their software repositories for the
-                  &app-fq; perl module. So in most cases, you can
-                  simply use your preferred package manager (yum, apt, rpm, synaptics, yast,...) to
-                  install the module. The name of the package may vary from one distribution to
-                  another. It&rsquo;s often called something like <quote>perl-Finance-Quote</quote>.
-                </para>
-              </listitem>
+          <para>Select <guilabel>Get Online Quotes</guilabel>, <guilabel>Type of Quote Source</guilabel> and
+            <guilabel>Timezone.</guilabel>
+          </para>
 
-              <listitem>
-                <para>&win;: &app-fq; on
-                  &win; requires perl to be installed already. If you haven&rsquo;t done so, you
-                  should first install ActivePerl, or more recently, Strawberry Perl.
-                </para>
+          <para>Online currency quotes require that the check-box for Online quotes and the timezone be selected in
+            the Security screen and the Security Editor check-box for "get quote" box is checked for
+            those currencies that are to be downloaded.
+          </para>
 
-                <para>The &win; installer from the &app; home page comes with a small helper program to install
-                  &app-fq; for you. You can find it in the Start
-                  Menu under the &app; group and is called <quote>Install Online Price
-                  Retrieval</quote>.
-                </para>
-              </listitem>
-
-              <listitem>
-                <para>&mac;: If you have installed &app; from the installer found
-                  on the &app; home page, &app-fq; is already
-                  installed for you.
-                </para>
-              </listitem>
-
-              <listitem>
-                <para>If none of the above applies to your setup, you can try these alternative, more generic
-                  instructions:
-                </para>
-
-                <orderedlist>
-                  <listitem>
-                    <para>Close any &app; applications you have running.
-                    </para>
-                  </listitem>
-
-                  <listitem>
-                    <para>Locate the folder where &app; is installed by searching for <quote>gnc-fq-update</quote> (without
-                      the quotes).
-                    </para>
-                  </listitem>
-
-                  <listitem>
-                    <para>Change to that directory, open a root shell and run the command <command>gnc-fq-update</command>.
-                      This will launch a Perl CPAN update session that will go out onto the Internet
-                      and install the &app-fq; module and its
-                      dependencies on your system. The gnc-fq-update program is interactive,
-                      however, with most systems you should be able to answer <quote>no</quote> to
-                      the first question: <quote>Are you ready for manual configuration?
-                      [yes]</quote> and the update will continue automatically from that point.
-                    </para>
-                  </listitem>
-                </orderedlist>
-              </listitem>
-            </itemizedlist>
-
-            <para>After installation is complete, you should run the <quote>gnc-fq-check</quote> test program, in the
-              same directory, distributed with &app; to test if
-              &app-fq; is installed and working properly.
-            </para>
-
-            <note>
-              <para>If you feel uncomfortable about performing any of these steps, please either email the &app;-user
-                mailing list (<email>gnucash-user@gnucash.org</email>) for help or come to the &app;
-                IRC channel on irc.gnome.org. More information is available on the &app; Wiki FAQ
-                for example <ulink url="&url-wiki-faq-quot;" /> You can also leave out this step and
-                manually update your stock prices.
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Get Online Quotes</guilabel> This check-box is to enable this security/fund to have quotes
+                downloaded from an online source.
               </para>
-            </note>
-          </listitem>
+            </listitem>
 
-          <listitem>
-            <para>Create the Account for the mutual fund or stock with it listed in the
-              <guilabel>Security/Currency</guilabel> field, as described above.
-            </para>
-
-            <tip>
-              <para>When creating these accounts it is a good time to create income accounts to track dividends, capital
-                gains (long and short) and expense account(s) for tracking commissions and losses
-                (if you track losses as expenses).
+            <listitem>
+              <para><guilabel>Type of Quote Source</guilabel> use the radio buttons to select the type of source for the
+                Online quotes. <guilabel>Multiple:</guilabel> quote sources like
+                <quote>Europe</quote> should be used if fail-over to multiple sites are desirable.
+                <guilabel>Single:</guilabel> selections will only return information from the
+                specified source.
               </para>
-            </tip>
-          </listitem>
 
-          <listitem>
-            <para>Create the mutual fund or stock with either the <guilabel>Security Editor</guilabel> for existing
-              stock/funds or the <guilabel>New Security/Currency</guilabel> dialog for a new
-              stock/fund.
-            </para>
+              <para>After selecting the type of source for price quotes, select a quote source from the pull-down menu.
+                For details on currently supported sources see <xref linkend="fq-sources"></xref>.
+              </para>
 
-            <para>Select <guilabel>Get Online Quotes</guilabel>, <guilabel>Type of Quote Source</guilabel> and
-              <guilabel>Timezone.</guilabel>
-            </para>
-
-            <para>Online currency quotes require that the check-box for Online quotes and the timezone be selected in
-              the Security screen and the Security Editor check-box for "get quote" box is checked
-              for those currencies that are to be downloaded.
-            </para>
-
-            <itemizedlist>
-              <listitem>
-                <para><guilabel>Get Online Quotes</guilabel> This check-box is to enable this security/fund to have quotes
-                  downloaded from an online source.
+              <note>
+                <para>Note that Yahoo will provide price quotes for many mutual funds including Fidelity, T.Rowe Price and
+                  Vanguard, and that the quoted prices at Yahoo should be identical to those that
+                  may be found at the source sites.
                 </para>
-              </listitem>
+              </note>
 
-              <listitem>
-                <para><guilabel>Type of Quote Source</guilabel> use the radio buttons to select the type of source for the
-                  Online quotes. <guilabel>Multiple:</guilabel> quote sources like
-                  <quote>Europe</quote> should be used if fail-over to multiple sites are desirable.
-                  <guilabel>Single:</guilabel> selections will only return information from the
-                  specified source.
-                </para>
+              <para>If you are outside the US and use one of the different Yahoo sources or multiple sources containing
+                Yahoo, you should append the market code for the security such as PA for Paris, BE
+                for Berlin, etc. Example: 12150.PA (a Peugeot security in the Paris market).
+                <xref linkend="gnc-tbl-fq-yahoo-exchange-codes"></xref> below lists suffixes for
+                various markets around the world.
+              </para>
 
-                <para>After selecting the type of source for price quotes, select a quote source from the pull-down menu.
-                  For details on currently supported sources see <xref linkend="fq-sources"></xref>.
-                </para>
+              <para>Pseudo-symbols for TIAA-CREF funds are listed in table <xref linkend="PsSymbs-TIAA-CREF"></xref>.
+              </para>
+            </listitem>
 
-                <note>
-                  <para>Note that Yahoo will provide price quotes for many mutual funds including Fidelity, T.Rowe Price and
-                    Vanguard, and that the quoted prices at Yahoo should be identical to those that
-                    may be found at the source sites.
-                  </para>
-                </note>
+            <listitem>
+              <para><guilabel>Timezone for these quotes:</guilabel> Select the timezone for the source of the online
+                quotes you are receiving. For example, Yahoo normally quotes Eastern timezone, so
+                choose America/New York if you use that quote source.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
 
-                <para>If you are outside the US and use one of the different Yahoo sources or multiple sources containing
-                  Yahoo, you should append the market code for the security such as PA for Paris, BE
-                  for Berlin, etc. Example: 12150.PA (a Peugeot security in the Paris market).
-                  <xref linkend="gnc-tbl-fq-yahoo-exchange-codes"></xref> below lists suffixes for
-                  various markets around the world.
-                </para>
+        <listitem>
+          <para>Select a commodity to the Price Editor.
+          </para>
+        </listitem>
 
-                <para>Pseudo-symbols for TIAA-CREF funds are listed in table <xref linkend="PsSymbs-TIAA-CREF"></xref>.
-                </para>
-              </listitem>
+        <listitem>
+          <para>Select <guibutton>Get Quotes</guibutton> in the Price Editor.
+          </para>
+        </listitem>
 
-              <listitem>
-                <para><guilabel>Timezone for these quotes:</guilabel> Select the timezone for the source of the online
-                  quotes you are receiving. For example, Yahoo normally quotes Eastern timezone, so
-                  choose America/New York if you use that quote source.
-                </para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
+        <listitem>
+          <para>Check the latest price for the selected security.
+          </para>
+        </listitem>
+      </orderedlist>
 
-          <listitem>
-            <para>Select a commodity to the Price Editor.
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>Select <guibutton>Get Quotes</guibutton> in the Price Editor.
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>Check the latest price for the selected security.
-            </para>
-          </listitem>
-        </orderedlist>
-
-        <para>If you wish to update price quotes from the command line, you can do so by the following command:
-        </para>
-
-        <para><userinput>gnucash --add-price-quotes &lt;gnucash-file-name&gt;</userinput>
-        </para>
-
-        <para>The command <userinput>gnucash --add-price-quotes &lt;gnucash-file-name&gt;</userinput> can be used
-          to fetch the current prices of your stocks. The file specified
-          <quote>&lt;gnucash-file-name&gt;</quote> will depend on the name and location of your data
-          file. This can be determined by the name displayed in the top frame of the &app; window,
-          before the <quote>-</quote>. The file name can also be found under <guimenu>File</guimenu>
-          in the list of recently opened file; the first item, numbered 1, is the name of the
-          currently open file.
-        </para>
-
-        <para>This can be automated in &mac; by creating a crontab entry. For example, to update your file every
-          Friday evening (18:00) after markets close (modify the time accordingly for your time
-          zone), you could add the following to your personal crontab:
-        </para>
-
-        <para><userinput>0 18 * * 5 /path/to/gnucash --add-price-quotes /path/to/gnucash-filename &gt; /dev/null
-          2&gt;&amp;1'</userinput>
-        </para>
-
-        <para>For &lin;, which needs dbus, usually started by the desktop manager, to communicate with dconf or
-          gconf:
-        </para>
-
-        <para><userinput>0 18 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
-          /path/to/gnucash --add-price-quotes /path/to/gnucash-filename &gt; /dev/null
-          2&gt;&amp;1'</userinput>
-        </para>
-
-        <para>Remember that Mutual Fund <quote>prices</quote> are really <quote>Net Asset Value</quote> and
-          require several hours after the exchange closes before being available. If NAVs are
-          downloaded before the current days NAVs are determined, yesterday&rsquo;s NAVs are
-          retrieved.
-        </para>
-      </sect3>
+      <para>Remember that Mutual Fund <quote>prices</quote> are really <quote>Net Asset Value</quote> and
+        require several hours after the exchange closes before being available. If NAVs are
+        downloaded before the current days NAVs are determined, yesterday&rsquo;s NAVs are
+        retrieved.
+      </para>
     </sect2>
 
     <sect2 id="open-balance">
@@ -860,15 +732,13 @@
 
     <para>The <guilabel>Edit Account</guilabel> dialog consists of just the <guilabel>General</guilabel> tab.
       This tab has the same information that was described in <xref linkend="acct-create"></xref>.
-      To access the <guilabel>Edit Account</guilabel> dialog go to
-      <menuchoice>
+      To access the <guilabel>Edit Account</guilabel> dialog go to<menuchoice>
         <shortcut>
         <keycombo>
           <keycap>Ctrl</keycap><keycap>E</keycap>
         </keycombo>
         </shortcut> <guimenu>Edit</guimenu><guimenuitem>Edit Account</guimenuitem>
-      </menuchoice>
-      or click the <guibutton>Edit</guibutton> <emphasis>Toolbar</emphasis> icon in the Account Tree
+      </menuchoice>or click the <guibutton>Edit</guibutton> <emphasis>Toolbar</emphasis> icon in the Account Tree
       Window.
     </para>
   </sect1>
@@ -1200,11 +1070,9 @@
 
     <para>A side effect of removing an account that contains transactions is that you will end up with
       unbalanced accounts. This will be indicated in the account by a gray check-box next to the
-      debit and credit amounts. You can automatically repair these unbalanced accounts by using the
-      <menuchoice>
+      debit and credit amounts. You can automatically repair these unbalanced accounts by using the<menuchoice>
         <guimenu>Actions</guimenu><guimenuitem>Check &amp; Repair</guimenuitem>
-      </menuchoice>
-      menu. This will automatically assign the unbalanced amounts to a new account named
+      </menuchoice>menu. This will automatically assign the unbalanced amounts to a new account named
       <emphasis role="bold">Imbalance. </emphasis>
     </para>
   </sect1>
@@ -1224,28 +1092,23 @@
 
     <tip>
       <para>The Reconcile window is accessed from the account tree window or the account register window by
-        selecting
-        <menuchoice>
+        selecting<menuchoice>
           <guimenu><accel>A</accel>ctions</guimenu><guimenuitem><accel>R</accel>econcile…</guimenuitem>
-        </menuchoice>
-        .
+        </menuchoice>.
       </para>
     </tip>
 
     <note>
-      <para>If you are reconciling an Liability Account of type <guilabel>credit card</guilabel> using a credit card statement
-        you have the option of using 
-        the <guilabel>Transfer Funds</guilabel> dialogue that opens automatically and enter a credit card payment.
-        You can change this behaviour in the <guilabel>&appname; Preferences</guilabel> from the
-        menu
-        <menuchoice>
+      <para>If you are reconciling an Liability Account of type <guilabel>credit card</guilabel> using a credit
+        card statement you have the option of using the <guilabel>Transfer Funds</guilabel> dialogue
+        that opens automatically and enter a credit card payment. You can change this behaviour in
+        the <guilabel>&appname; Preferences</guilabel> from the menu<menuchoice>
           <guimenu><accel>E</accel>dit</guimenu><guimenuitem>Pr<accel>e</accel>ferences</guimenuitem>
-        </menuchoice>
-        in the <guilabel>Register</guilabel> tab by activating the checkbox
-        <guilabel>Automatic credit card payment</guilabel>. (see <xref linkend="prefs-reg" />)
+        </menuchoice>in the <guilabel>Register</guilabel> tab by activating the checkbox <guilabel>Automatic credit card
+        payment</guilabel>. (see <xref linkend="prefs-reg" />)
       </para>
     </note>
-    
+
     <para>The <emphasis>Summary Bar</emphasis> at the bottom of the Account Register Window indicates the
       amounts of <guilabel>Present</guilabel> (Balance), <guilabel>Future</guilabel> (Balance),
       <guilabel>Cleared</guilabel> (Transactions), <guilabel>Reconciled</guilabel> (Transactions)
@@ -1511,20 +1374,16 @@
         opened.
       </para>
 
-      <para>If you wish to postpone the reconciliation until later use the
-        <menuchoice>
+      <para>If you wish to postpone the reconciliation until later use the<menuchoice>
           <shortcut>
           <keycombo>
             <keycap>Ctrl</keycap><keycap>P</keycap>
           </keycombo>
           </shortcut> <guimenu><accel>R</accel>econcile</guimenu><guimenuitem>Postpone</guimenuitem>
-        </menuchoice>
-        menu item or pressing the <guibutton>Postpone</guibutton> icon. If you wish to cancel the
-        reconciliation use the
-        <menuchoice>
+        </menuchoice>menu item or pressing the <guibutton>Postpone</guibutton> icon. If you wish to cancel the
+        reconciliation use the<menuchoice>
           <guimenu><accel>R</accel>econcile</guimenu><guimenuitem>Cancel</guimenuitem>
-        </menuchoice>
-        menu item or press the <guibutton>Cancel</guibutton> icon.
+        </menuchoice>menu item or press the <guibutton>Cancel</guibutton> icon.
       </para>
 
       <para>All previous commands are also available in the <guilabel>Reconcile</guilabel> dialog menu.
@@ -1535,15 +1394,13 @@
         reflect each selected transaction until the <guilabel>Ending Balance</guilabel>
         <emphasis>equals</emphasis> the <guilabel>Reconciled Balance</guilabel> and the
         <guilabel>Difference</guilabel> is <emphasis>zero</emphasis>. Once this is done select the
-        <guibutton>Finish</guibutton> button or
-        <menuchoice>
+        <guibutton>Finish</guibutton> button or<menuchoice>
           <shortcut>
           <keycombo>
             <keycap>Ctrl</keycap><keycap>W</keycap>
           </keycombo>
           </shortcut> <guimenu><accel>R</accel>econcile</guimenu><guimenuitem>Finish</guimenuitem>
-        </menuchoice>
-        to finish the reconcile process.
+        </menuchoice>to finish the reconcile process.
       </para>
     </sect2>
   </sect1>
