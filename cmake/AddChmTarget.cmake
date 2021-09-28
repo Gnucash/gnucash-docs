@@ -31,6 +31,7 @@ function (add_chm_target docname lang entities figures dtd_files)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images/callouts"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${OUTPUT_DIR}"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Create CHM file from hhp (the output of xsltproc)
@@ -42,7 +43,6 @@ function (add_chm_target docname lang entities figures dtd_files)
         WORKING_DIRECTORY "${BUILD_DIR}"
         DEPENDS "${BUILD_DIR}/htmlhelp.hhp"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
-                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
 
 
@@ -52,7 +52,6 @@ function (add_chm_target docname lang entities figures dtd_files)
         OUTPUT "${BUILD_DIR}/htmlhelp.hhp"
         COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_CHM}
                 -o "${BUILD_DIR}/"
-                --path "${CMAKE_SOURCE_DIR}/docbook"
                 --stringparam htmlhelp.chm ${outfile}
                 --stringparam gnc.lang ${lang}
                 "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-${fmt}.xsl"
@@ -88,14 +87,14 @@ function (add_chm_target docname lang entities figures dtd_files)
 
 
 
-    add_custom_target("${lang}-${docname}-chm"
+    add_custom_target("${lang}-${docname}-${fmt}"
         DEPENDS "${OUTPUT_DIR}/${outfile}")
 
-    add_dependencies(${docname}-chm "${lang}-${docname}-chm")
+    add_dependencies(${docname}-${fmt} "${lang}-${docname}-${fmt}")
 
-    install(FILES
-            "${BUILD_DIR}/${chmfile}"
-        DESTINATION "${CMAKE_INSTALL_DOCDIR}/${lang}"
-        COMPONENT "chm")
+    install(FILES "${OUTPUT_DIR}/${outfile}"
+        DESTINATION "share/doc/${lang}"
+        OPTIONAL
+        COMPONENT "${fmt}")
 
 endfunction()

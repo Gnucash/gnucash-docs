@@ -29,16 +29,16 @@ function (add_pdf_target docname lang entities figures dtd_files)
     file(GLOB xsl_files "${CMAKE_SOURCE_DIR}/xsl/*.xsl")
     file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
-    set(pdffile "${docname}.pdf")
-
 
     # Prepare ${BUILD_DIR}
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images/callouts"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${OUTPUT_DIR}"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
+    # Create FO file.
     add_custom_command(
         OUTPUT "${BUILD_DIR}/${fofile}"
         COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_FO}
@@ -49,13 +49,14 @@ function (add_pdf_target docname lang entities figures dtd_files)
         DEPENDS ${entities} "${docname}.xml" ${dtd_files} ${xsl_files}
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
+    # Create PDF file.
     add_custom_command(
-        OUTPUT "${BUILD_DIR}/${pdffile}"
+        OUTPUT "${OUTPUT_DIR}/${outfile}"
         COMMAND ${FOP} ${FOPFLAGS}
                         -l ${lang}
                         -c "${BUILD_DIR}/fop.xconf"
                         -fo "${BUILD_DIR}/${fofile}"
-                        -pdf "${BUILD_DIR}/${pdffile}"
+                        -pdf "${OUTPUT_DIR}/${outfile}"
         DEPENDS "${BUILD_DIR}/${fofile}" ${figures}
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
@@ -86,10 +87,14 @@ function (add_pdf_target docname lang entities figures dtd_files)
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
                 "${gnucash_icon_files}")
 
+    add_custom_target("${lang}-${docname}-${fmt}"
+        DEPENDS "${OUTPUT_DIR}/${outfile}")
 
-    add_custom_target("${lang}-${docname}-pdf"
-        DEPENDS "${BUILD_DIR}/${pdffile}")
+    add_dependencies(${docname}-${fmt} "${lang}-${docname}-${fmt}")
 
-    add_dependencies(${docname}-pdf "${lang}-${docname}-pdf")
+    install(FILES "${OUTPUT_DIR}/${outfile}"
+        DESTINATION "share/doc/${lang}"
+        OPTIONAL
+        COMPONENT "${fmt}")
 
 endfunction()

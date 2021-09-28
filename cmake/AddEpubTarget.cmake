@@ -36,15 +36,13 @@ function (add_epub_target docname lang entities figures dtd_files)
     file(GLOB xsl_files "${CMAKE_SOURCE_DIR}/xsl/*.xsl")
     file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
-    set(epubfile "${docname}.epub")
-    set(EPUB_TMPDIR "${BUILD_DIR}")
-
 
     # Prepare ${BUILD_DIR}
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/OEBPS/figures"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/OEBPS/images/callouts"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${OUTPUT_DIR}"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Copy figures for this document
@@ -73,49 +71,60 @@ function (add_epub_target docname lang entities figures dtd_files)
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
                 "${gnucash_icon_files}")
 
-
+    # Create EPUB file.
     add_custom_command(
-        OUTPUT "${BUILD_DIR}/${epubfile}"
-        COMMAND echo "application/epub+zip" > "${EPUB_TMPDIR}/mimetype"
+        OUTPUT "${OUTPUT_DIR}/${outfile}"
+        COMMAND echo "application/epub+zip" > "${BUILD_DIR}/mimetype"
         COMMAND ${XSLTPROC} ${XSLTPROCFLAGS}
-                            -o "${EPUB_TMPDIR}/"
+                            -o "${BUILD_DIR}/"
                             --stringparam base.dir OEBPS/
                             --stringparam epub.metainf.dir META-INF/
                             --stringparam epub.oebps.dir OEBPS/
                             --stringparam fop1.extensions 1
                             "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-${fmt}.xsl"
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
-        COMMAND cd "${EPUB_TMPDIR}" && zip -X -r "${BUILD_DIR}/${epubfile}" mimetype META-INF OEBPS
+        COMMAND cd "${BUILD_DIR}" && zip -X -r "${OUTPUT_DIR}/${outfile}" mimetype META-INF OEBPS
         DEPENDS ${entities} "${docname}.xml" ${dtd_files} ${xsl_files} ${figures}
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
-                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
 
-    add_custom_target("${lang}-${docname}-epub"
-        DEPENDS "${BUILD_DIR}/${epubfile}")
+    add_custom_target("${lang}-${docname}-${fmt}"
+        DEPENDS "${OUTPUT_DIR}/${outfile}")
 
-    add_dependencies(${docname}-epub "${lang}-${docname}-epub")
+    add_dependencies(${docname}-${fmt} "${lang}-${docname}-${fmt}")
+
+    install(FILES "${OUTPUT_DIR}/${outfile}"
+        DESTINATION "share/doc/${lang}"
+        OPTIONAL
+        COMPONENT "${fmt}")
 
 endfunction()
 
 function (add_mobi_target docname lang)
 
-    set(fmt "epub")
-    set(BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/${fmt}")
-    set(OUTPUT_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}")
+    set(fmt "mobi")
+    set(BUILD_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}")
+    set(OUTPUT_DIR "${BUILD_DIR}")
 
-    set(epubfile "${BUILD_DIR}/${docname}.epub")
-    set(mobifile "${BUILD_DIR}/${docname}.mobi")
+    set(outfile "${docname}.${fmt}")
+    set(epubfile "${docname}.epub")
 
     add_custom_command(
-        OUTPUT "${mobifile}"
-        COMMAND ${EBOOK_CONVERT} "${epubfile}" "${mobifile}"
-        DEPENDS "${epubfile}"  "${lang}-${docname}-epub")
+        OUTPUT "${OUTPUT_DIR}/${outfile}"
+        COMMAND ${EBOOK_CONVERT} "${OUTPUT_DIR}/${epubfile}" "${OUTPUT_DIR}/${outfile}"
+        DEPENDS "${OUTPUT_DIR}/${epubfile}"
+                "${lang}-${docname}-${fmt}")
 
-    add_custom_target("${lang}-${docname}-mobi"
-        DEPENDS "${mobifile}")
+    add_custom_target("${lang}-${docname}-${fmt}"
+        DEPENDS "${OUTPUT_DIR}/${outfile}")
 
-    add_dependencies(${docname}-mobi "${lang}-${docname}-mobi")
+    add_dependencies(${lang}-${docname}-${fmt} "${lang}-${docname}-epub")
+    add_dependencies(${docname}-${fmt} "${lang}-${docname}-${fmt}")
+
+    install(FILES "${OUTPUT_DIR}/${outfile}"
+        DESTINATION "share/doc/${lang}"
+        OPTIONAL
+        COMPONENT "${fmt}")
 
 endfunction()

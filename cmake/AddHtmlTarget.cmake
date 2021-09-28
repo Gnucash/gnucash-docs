@@ -31,10 +31,10 @@ function (add_html_target docname lang entities figures dtd_files)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images/callouts"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${OUTPUT_DIR}"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Convert xml to html with xsltproc
-    # xsltproc --xinclude -o outputdir/ /usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl filename.xml
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xsltproc-trigger"
         COMMAND  ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_HTML}
@@ -79,9 +79,11 @@ function (add_html_target docname lang entities figures dtd_files)
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
 
-    add_dependencies(${docname}-html "${lang}-${docname}-html")
+    add_dependencies(${docname}-${fmt} "${lang}-${docname}-${fmt}")
 
-    install(DIRECTORY ${BUILD_DIR}
-      DESTINATION "${CMAKE_INSTALL_DOCDIR}/${lang}"
-      )
+    install(DIRECTORY ${OUTPUT_DIR}
+        DESTINATION "share/doc/${lang}"
+        OPTIONAL
+        COMPONENT "${fmt}")
+
 endfunction()

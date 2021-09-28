@@ -4,11 +4,9 @@ cmake_minimum_required (VERSION 3.5)
 
 # This sets a number of environment variables we can use later on
 # The names of these variables start with PROJECT_ and gnucash-docs_VERSION
-# We don't actually use C, but GNUInstallDirs doesn't work if we don't
-# specify a language.
 project (gnucash-docs
     VERSION 4.8
-    LANGUAGES C)
+    LANGUAGES NONE)
 
 set (PACKAGE_NAME GnuCash Docs)
 set (PACKAGE_BUGREPORT "https://bugs.gnucash.org/describecomponents.cgi?product=Documentation")
@@ -25,7 +23,6 @@ include (AddHtmlTarget)
 include (AddPdfTarget)
 include (AddGncDocTargets)
 include (DistCommon)
-include (GNUInstallDirs)
 
 # Clear cache variables that will be filled later during the cmake run
 unset(dist_files CACHE)
@@ -67,10 +64,6 @@ set(JAPANESE_MINCHO_TTF "ume-tmo3.ttf" CACHE STRING "Mincho TrueType font used f
 set(JAPANESE_GOTHIC_TTF "ume-tmo3.ttf" CACHE STRING "Gothic TrueType font used for Japanese pdf")
 set(japanese_fontdir "${CMAKE_SOURCE_DIR}/fonts/truetype" CACHE STRING "Directory to search for Japanese fonts")
 
-# Buildtime destination directories for our generated documentation
-set(DATADIR_BUILD "${CMAKE_BINARY_DIR}/share")
-set(DOCDIR_BUILD  "${DATADIR_BUILD}/doc/${PACKAGE}")
-
 # ############################################################
 # Find the documentation dependencies
 
@@ -80,27 +73,13 @@ find_program(XSLTPROC xsltproc)
 if(NOT XSLTPROC)
     message(SEND_ERROR "Can't find xsltproc, perhaps you should install the xsltproc or libxslt package ?")
 endif(NOT XSLTPROC)
-SET (XSLTPROCFLAGS --path "${CMAKE_SOURCE_DIR}/docbook" --xinclude "$ENV{XSLTPROCFLAGS}")
+SET (XSLTPROCFLAGS --path "${CMAKE_SOURCE_DIR}/docbook" --xinclude "$ENV{XSLTPROCFLAGS}" --nonet)
 
 # Same for xmllint
 find_program(XMLLINT xmllint)
 if(NOT XMLLINT)
     message(SEND_ERROR "Can't find xmllint, perhaps you should install the xsltproc or libxslt package ?")
 endif(NOT XMLLINT)
-
-# Find a proper bash executable, only used in case of distcheck with autotools
-set(GNC_SHELL $ENV{GNC_SHELL})
-if (GNC_SHELL) # Replacing this with if ($ENV{GNC_SHELL}) doesn't work.
-  # Allow shell override by setting the GNC_SHELL environment variable
-  set(SHELL ${GNC_SHELL})
-else()
-  find_package(UnixCommands)
-  if (BASH)
-    set(SHELL ${BASH})
-  else()
-    message(SEND_ERROR "Can't find a suitable bash executable. Please set GNC_SHELL.")
-  endif()
-endif()
 
 # Check for optional fop
 if(WITH_PDF)
@@ -127,12 +106,11 @@ endif()
 # To find our figures in the source directory each run of fop
 # will be passed a fop.xconf file to set a base-dir.
 # The default fop.xconf file below does just that.
-# Every document/language can define its own FOP_XCONF
+# Every document/language can overwrite its own FOP_XCONF
 # to point at a document/language specific fop.xconf
 # instead for additional fop configuration as needed.
-# For example the Japanese document will use it to embed Japanese fonts
-set (FOP_XCONF_DFLT "${CMAKE_SOURCE_DIR}/fop.xconf.in")
-set (FOP_XCONF "${FOP_XCONF_DFLT}")
+# For example the Japanese document will use it to embed Japanese fonts.
+set (FOP_XCONF "${CMAKE_SOURCE_DIR}/fop.xconf.in")
 
 # Find the htmlhelp compiler for chm output
 if(WITH_CHM)
@@ -158,7 +136,7 @@ if (WITH_HTML)
     add_custom_target(html)
 endif()
 if (WITH_GHELP)
-    add_custom_target(ghelp)
+    add_custom_target(ghelp ALL)
 endif()
 if (WITH_PDF)
     add_custom_target(pdf)
@@ -183,12 +161,10 @@ add_subdirectory (manual)
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-    cmake/* fonts/* stylesheet/* xsl/* docbook/*)
+    cmake/* fonts/* xsl/* docbook/*)
 add_to_dist(${extrafiles})
 
-configure_file(COPYING ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING COPYONLY)
-configure_file(COPYING-DOCS ${DATADIR_BUILD}/${PROJECT_NAME}/COPYING-DOCS COPYONLY)
-install(FILES COPYING COPYING-DOCS DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
+install(FILES COPYING COPYING-DOCS DESTINATION "share/doc/${PROJECT_NAME}")
 
 add_to_dist(
     AUTHORS

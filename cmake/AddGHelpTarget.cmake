@@ -40,6 +40,7 @@ function (add_ghelp_target docname lang entities figures dtd_files)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${OUTPUT_DIR}"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Copy DTD files for this document
@@ -65,28 +66,26 @@ function (add_ghelp_target docname lang entities figures dtd_files)
         COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*" "${BUILD_DIR}/images"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
         DEPENDS "${gnucash_icon_files}"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger")
+
+    # Copy XML files
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        COMMAND ${CMAKE_COMMAND} -E copy ${source_files} "${BUILD_DIR}"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        DEPENDS ${entities} "${docname}.xml" ${dtd_files}
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
-
-    add_custom_command(
-        OUTPUT ${dest_files}
-        COMMAND ${CMAKE_COMMAND} -E copy ${source_files} "${BUILD_DIR}"
-        DEPENDS ${entities} "${docname}.xml" ${dtd_files}
-                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
-        WORKING_DIRECTORY "${BUILD_DIR}")
-
-    add_custom_target("${lang}-${docname}-ghelp"
-        DEPENDS ${dest_files}
+    add_custom_target("${lang}-${docname}-${fmt}"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger")
 
-    add_dependencies(${docname}-ghelp "${lang}-${docname}-ghelp")
+    add_dependencies(${docname}-${fmt} "${lang}-${docname}-${fmt}")
 
-    install(FILES ${source_files}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}"
-        COMPONENT "ghelp")
-    install(FILES ${figures}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/gnome/help/${docname}/${lang}/figures"
-        COMPONENT "ghelp")
+    install(DIRECTORY ${OUTPUT_DIR}
+        DESTINATION "share/doc/${lang}"
+        COMPONENT "${fmt}")
+
 endfunction()
