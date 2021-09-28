@@ -37,9 +37,8 @@ function (add_epub_target docname lang entities figures dtd_files)
     file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
     set(epubfile "${docname}.epub")
-    set(EPUB_TMPDIR "${CMAKE_CURRENT_BINARY_DIR}/epub")
+    set(EPUB_TMPDIR "${BUILD_DIR}")
 
-    set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
 
     # Prepare ${BUILD_DIR}
     add_custom_command(
@@ -48,11 +47,35 @@ function (add_epub_target docname lang entities figures dtd_files)
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/OEBPS/images/callouts"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
+    # Copy figures for this document
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/OEBPS/figures"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+        DEPENDS ${figures}
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
+    # Copy XSL Stylesheet icons
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+        # PNG admonition icons are used in EPUB.
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/*.png" "${BUILD_DIR}/OEBPS/images"
+        # SVG callout icons are used in EPUB.
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/callouts/*.svg" "${BUILD_DIR}/OEBPS/images/callouts"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
+    # Copy GnuCash-Specific icons
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*" "${BUILD_DIR}/OEBPS/images"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+                "${gnucash_icon_files}")
+
 
     add_custom_command(
         OUTPUT "${BUILD_DIR}/${epubfile}"
-        COMMAND rm -fr "${EPUB_TMPDIR}"
-        COMMAND mkdir "${EPUB_TMPDIR}"
         COMMAND echo "application/epub+zip" > "${EPUB_TMPDIR}/mimetype"
         COMMAND ${XSLTPROC} ${XSLTPROCFLAGS}
                             -o "${EPUB_TMPDIR}/"
@@ -62,10 +85,12 @@ function (add_epub_target docname lang entities figures dtd_files)
                             --stringparam fop1.extensions 1
                             "${CMAKE_SOURCE_DIR}/xsl/1.79.2/epub/docbook.xsl"
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
-        COMMAND cmake -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/figures" "${EPUB_TMPDIR}/OEBPS/figures"
         COMMAND cd "${EPUB_TMPDIR}" && zip -X -r "${BUILD_DIR}/${epubfile}" mimetype META-INF OEBPS
         DEPENDS ${entities} "${docname}.xml" ${dtd_files} ${xsl_files} ${figures}
-                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
 
     add_custom_target("${lang}-${docname}-epub"
         DEPENDS "${BUILD_DIR}/${epubfile}")
@@ -76,7 +101,9 @@ endfunction()
 
 function (add_mobi_target docname lang)
 
-    set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
+    set(fmt "epub")
+    set(BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/${fmt}")
+    set(OUTPUT_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}")
 
     set(epubfile "${BUILD_DIR}/${docname}.epub")
     set(mobifile "${BUILD_DIR}/${docname}.mobi")

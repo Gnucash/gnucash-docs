@@ -25,19 +25,10 @@ function (add_ghelp_target docname lang entities figures dtd_files)
     # GnuCash-specific xsl files
     file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
-    set(BUILD_DIR "${DATADIR_BUILD}/gnome/help/${docname}/${lang}")
-
     set(source_files "")
     foreach(xml_file ${entities} ${docname}.xml)
         list(APPEND source_files "${CMAKE_CURRENT_SOURCE_DIR}/${xml_file}")
     endforeach()
-
-    set(dtd_files "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd"
-                  "${CMAKE_SOURCE_DIR}/docbook/gnc-locale-C.dtd"
-                  "${CMAKE_SOURCE_DIR}/docbook/gnc-locale-${lang}.dtd")
-    list(REMOVE_DUPLICATES dtd_files)
-    list(APPEND source_files ${dtd_files})
-
 
     set(dest_files "")
     foreach(xml_file ${entities} ${docname}.xml)
@@ -48,8 +39,33 @@ function (add_ghelp_target docname lang entities figures dtd_files)
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images/callouts"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
+    # Copy DTD files for this document
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
+        COMMAND ${CMAKE_COMMAND} -E copy ${dtd_files} "${BUILD_DIR}"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
+        DEPENDS "${dtd_files}"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
+    # Copy figures for this document
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+        DEPENDS ${figures}
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
+
+    # Copy GnuCash-Specific icons
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*" "${BUILD_DIR}/images"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        DEPENDS "${gnucash_icon_files}"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
 
     add_custom_command(
@@ -59,18 +75,11 @@ function (add_ghelp_target docname lang entities figures dtd_files)
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
         WORKING_DIRECTORY "${BUILD_DIR}")
 
-    # Copy figures for this document
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
-    add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
-        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
-        DEPENDS ${figures}
-                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
-
     add_custom_target("${lang}-${docname}-ghelp"
         DEPENDS ${dest_files}
-                "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger")
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger")
 
     add_dependencies(${docname}-ghelp "${lang}-${docname}-ghelp")
 

@@ -41,7 +41,9 @@ function (add_chm_target docname lang entities figures dtd_files)
         COMMAND cp "${outfile}" "${OUTPUT_DIR}/${outfile}"
         WORKING_DIRECTORY "${BUILD_DIR}"
         DEPENDS "${BUILD_DIR}/htmlhelp.hhp"
-                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger")
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
 
 
     # Create HTML files for CHM with xsltproc
@@ -61,10 +63,29 @@ function (add_chm_target docname lang entities figures dtd_files)
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/stylesheet "${BUILD_DIR}/stylesheet"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
         DEPENDS ${figures}
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
+    # Copy XSL Stylesheet icons
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+        # PNG admonition icons are used in chm.
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/*.png" "${BUILD_DIR}/images"
+        # PNG callout icons are used in chm.
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/callouts/*.png"  "${BUILD_DIR}/images/callouts"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
+    # Copy GnuCash-Specific icons
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        # PNG icons are used in chm. SVG is not supported.
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*.png" "${BUILD_DIR}/images"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+                "${gnucash_icon_files}")
+
 
 
     add_custom_target("${lang}-${docname}-chm"

@@ -26,9 +26,6 @@ function (add_html_target docname lang entities figures dtd_files)
     file(GLOB xsl_files "${CMAKE_SOURCE_DIR}/xsl/*.xsl")
     file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
-    set(styledir "${CMAKE_SOURCE_DIR}/stylesheet")
-    file(GLOB styleicons "${CMAKE_SOURCE_DIR}/stylesheet/*.png")
-
     # Prepare ${BUILD_DIR}
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
@@ -39,37 +36,48 @@ function (add_html_target docname lang entities figures dtd_files)
     # Convert xml to html with xsltproc
     # xsltproc --xinclude -o outputdir/ /usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl filename.xml
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xsltproc-trigger"
         COMMAND  ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_HTML}
                              -o "${BUILD_DIR}/"
                              --param use.id.as.filename "1"
                              --stringparam chunker.output.encoding UTF-8
                              "${CMAKE_SOURCE_DIR}/xsl/general-customization.xsl"
                              "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xsltproc-trigger"
         DEPENDS ${entities} "${docname}.xml" ${dtd_files} ${xsl_files}
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Copy figures for this document
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
-        DEPENDS ${figures})
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+        DEPENDS ${figures}
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
-    # Copy style icons for this document (warning, info,...)
-    file(MAKE_DIRECTORY "${BUILD_DIR}/stylesheet")
+    # Copy XSL Stylesheet icons
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/styletrigger"
-        COMMAND  ${CMAKE_COMMAND} -E copy ${styleicons} "${BUILD_DIR}/stylesheet/"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/styletrigger"
-        DEPENDS ${styleicons})
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+        # PNG admonition icons are used in html.
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/*.png" "${BUILD_DIR}/images"
+        # SVG callout icons are used in html.
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/callouts/*.svg" "${BUILD_DIR}/images/callouts"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
-    add_custom_target("${lang}-${docname}-html"
-        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
-                "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
-                "${CMAKE_CURRENT_BINARY_DIR}/styletrigger")
+    # Copy GnuCash-Specific icons
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*" "${BUILD_DIR}/images"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
+                "${gnucash_icon_files}")
+
+    # TARGET dependencies
+    add_custom_target("${lang}-${docname}-${fmt}"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xsltproc-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger")
 
     add_dependencies(${docname}-html "${lang}-${docname}-html")
 

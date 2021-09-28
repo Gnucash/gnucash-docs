@@ -12,9 +12,6 @@
 <!-- Should graphics be included in admonitions? 0 or 1 -->
 <xsl:param name="admon.graphics" select="1"/>
 
-<!-- Specifies the default path for admonition graphics -->
-<xsl:param name="admon.graphics.path">./stylesheet/</xsl:param>
-
 <!-- Specifies the default graphic file if none is given. -->
 <xsl:param name="graphic.default.extension" select="'png'" doc:type="string"/>
 
