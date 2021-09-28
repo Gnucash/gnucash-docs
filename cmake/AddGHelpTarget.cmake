@@ -25,16 +25,6 @@ function (add_ghelp_target docname lang entities figures dtd_files)
     # GnuCash-specific xsl files
     file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
-    set(source_files "")
-    foreach(xml_file ${entities} ${docname}.xml)
-        list(APPEND source_files "${CMAKE_CURRENT_SOURCE_DIR}/${xml_file}")
-    endforeach()
-
-    set(dest_files "")
-    foreach(xml_file ${entities} ${docname}.xml)
-        list(APPEND dest_files "${BUILD_DIR}/${xml_file}")
-    endforeach()
-
     # Prepare ${BUILD_DIR}
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
@@ -71,8 +61,9 @@ function (add_ghelp_target docname lang entities figures dtd_files)
     # Copy XML files
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
-        COMMAND ${CMAKE_COMMAND} -E copy ${source_files} "${BUILD_DIR}"
+        COMMAND ${CMAKE_COMMAND} -E copy ${entities} ${docname}.xml "${BUILD_DIR}"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         DEPENDS ${entities} "${docname}.xml" ${dtd_files}
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
