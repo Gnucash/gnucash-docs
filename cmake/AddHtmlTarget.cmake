@@ -41,7 +41,7 @@ function (add_html_target docname lang entities figures dtd_files)
                              -o "${BUILD_DIR}/"
                              --param use.id.as.filename "1"
                              --stringparam chunker.output.encoding UTF-8
-                             "${CMAKE_SOURCE_DIR}/xsl/general-customization.xsl"
+                             "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-${fmt}.xsl"
                              "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xsltproc-trigger"
         DEPENDS ${entities} "${docname}.xml" ${dtd_files} ${xsl_files}

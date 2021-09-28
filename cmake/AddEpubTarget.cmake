@@ -83,7 +83,7 @@ function (add_epub_target docname lang entities figures dtd_files)
                             --stringparam epub.metainf.dir META-INF/
                             --stringparam epub.oebps.dir OEBPS/
                             --stringparam fop1.extensions 1
-                            "${CMAKE_SOURCE_DIR}/xsl/1.79.2/epub/docbook.xsl"
+                            "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-${fmt}.xsl"
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
         COMMAND cd "${EPUB_TMPDIR}" && zip -X -r "${BUILD_DIR}/${epubfile}" mimetype META-INF OEBPS
         DEPENDS ${entities} "${docname}.xml" ${dtd_files} ${xsl_files} ${figures}
