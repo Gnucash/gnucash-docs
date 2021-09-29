@@ -43,7 +43,7 @@ function (add_pdf_target docname lang entities figures dtd_files)
         OUTPUT "${BUILD_DIR}/${fofile}"
         COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_FO}
                             -o "${BUILD_DIR}/${fofile}"
-                            --stringparam fop1.extensions 1
+                            --stringparam gnc.lang ${lang}
                             "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-${fmt}.xsl"
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
         DEPENDS ${entities} "${docname}.xml" ${dtd_files} ${xsl_files}

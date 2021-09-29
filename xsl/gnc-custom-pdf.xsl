@@ -20,6 +20,16 @@
 book      toc,title,figure,table,example,equation
 </xsl:param>
 
+<!-- Use A4 paper except lang equals C
+  TODO: Move paper size settings to CMake option for GB and other countries.
+ -->
+<xsl:param name="paper.type">
+  <xsl:choose>
+    <xsl:when test="$gnc.lang = 'C'">USletter</xsl:when>
+    <xsl:otherwise>A4</xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
+
 
 <!-- Change titlepage -->
 <xsl:include href="titlepage-pdf.xsl" />
