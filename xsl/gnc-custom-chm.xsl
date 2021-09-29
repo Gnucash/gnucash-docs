@@ -20,6 +20,26 @@
 book      nop
 </xsl:param>
 
+<!-- language specific character code for traditional Windows codepages
+     ja: Shift_JIS
+     ru: KOI8-R
+-->
+<xsl:param name="htmlhelp.encoding">
+  <xsl:choose>
+    <xsl:when test="$gnc.lang = 'ja'">Shift_JIS</xsl:when>
+    <xsl:when test="$gnc.lang = 'ru'">KOI8-R</xsl:when>
+    <xsl:otherwise>ISO-8859-1</xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
+
+<xsl:param name="chunker.output.encoding">
+  <xsl:choose>
+    <xsl:when test="$gnc.lang = 'ja'">Shift_JIS</xsl:when>
+    <xsl:when test="$gnc.lang = 'ru'">KOI8-R</xsl:when>
+    <xsl:otherwise>ISO-8859-1</xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
+
 <!-- GnuCash HTML titlepage can't be applied for chm.
 <xsl:include href="titlepage-html.xsl" />
  -->
