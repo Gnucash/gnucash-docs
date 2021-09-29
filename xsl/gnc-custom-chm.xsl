@@ -9,7 +9,18 @@
 -->
 <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/htmlhelp/htmlhelp.xsl" />
 
+
+<!-- parameters for GnuCash docs. -->
+<xsl:param name="admon.graphics.extension">.png</xsl:param>
+<xsl:param name="callout.graphics.extension">.png</xsl:param>
+
+<xsl:param name="htmlhelp.default.topic">ch01.html</xsl:param>
+
+<xsl:param name="generate.toc">
+book      nop
+</xsl:param>
+
+
 <!--  GnuCash common customization for HTML, PDF and so on. -->
 <xsl:include href="gnc-custom-common.xsl" />
-
 </xsl:stylesheet>
