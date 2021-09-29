@@ -25,6 +25,12 @@ part      toc,title
 <xsl:param name="chunk.section.depth">0</xsl:param>
 
 
+<!-- Change titlepage -->
+<xsl:include href="titlepage-html.xsl" />
+
+<!-- Bold variablelist/varlistentry/term -->
+<xsl:include href="variablelist-html.xsl"/>
+
 <!--  GnuCash common customization for HTML, PDF and so on. -->
 <xsl:include href="gnc-custom-common.xsl" />
 </xsl:stylesheet>

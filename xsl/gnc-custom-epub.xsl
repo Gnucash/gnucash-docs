@@ -9,6 +9,13 @@
 -->
 <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/epub/docbook.xsl" />
 
+
+<!-- Change titlepage -->
+<xsl:include href="titlepage-html.xsl" />
+
+<!-- Bold variablelist/varlistentry/term -->
+<xsl:include href="variablelist-html.xsl"/>
+
 <!--  GnuCash common customization for HTML, PDF and so on. -->
 <xsl:include href="gnc-custom-common.xsl" />
 </xsl:stylesheet>

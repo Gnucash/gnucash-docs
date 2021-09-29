@@ -21,6 +21,12 @@ book      toc,title,figure,table,example,equation
 </xsl:param>
 
 
+<!-- Change titlepage -->
+<xsl:include href="titlepage-pdf.xsl" />
+
+<!-- Bold variablelist/varlistentry/term -->
+<xsl:include href="variablelist-pdf.xsl"/>
+
 <!--  GnuCash common customization for HTML, PDF and so on. -->
 <xsl:include href="gnc-custom-common.xsl" />
 </xsl:stylesheet>
