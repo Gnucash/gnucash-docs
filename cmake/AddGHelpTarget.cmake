@@ -67,8 +67,16 @@ function (add_ghelp_target docname lang entities figures dtd_files)
         DEPENDS ${entities} "${docname}.xml" ${dtd_files}
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
+    # Make symlink from "${docname}.xml" to ${outfile}
+    add_custom_command(
+        OUTPUT "${BUILD_DIR}/${outfile}"
+        COMMAND ${CMAKE_COMMAND} -E create_symlink "${docname}.xml" "${outfile}"
+        WORKING_DIRECTORY "${BUILD_DIR}"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger")
+
+
     add_custom_target("${lang}-${docname}-${fmt}"
-        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        DEPENDS "${BUILD_DIR}/${outfile}"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-dtd-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger")
