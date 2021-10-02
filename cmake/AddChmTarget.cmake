@@ -97,4 +97,10 @@ function (add_chm_target docname lang entities figures dtd_files)
         OPTIONAL
         COMPONENT "${fmt}")
 
+    # Cleaning
+    add_custom_target("${lang}-${docname}-${fmt}-clean"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf "${BUILD_DIR}")
+
+    add_dependencies(clean-extra "${lang}-${docname}-${fmt}-clean")
+
 endfunction()

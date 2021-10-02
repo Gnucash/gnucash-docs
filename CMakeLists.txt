@@ -155,6 +155,10 @@ if (WITH_CHM)
     endif()
 endif()
 
+# make clean or ninja clean don't remove
+# some files generated while building.
+# This target is for removing such files.
+add_custom_target(clean-extra)
 
 add_subdirectory (guide)
 add_subdirectory (manual)

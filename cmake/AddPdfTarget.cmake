@@ -97,4 +97,12 @@ function (add_pdf_target docname lang entities figures dtd_files)
         OPTIONAL
         COMPONENT "${fmt}")
 
+    # Cleaning
+    # Don't remove "fop.xconf".
+    add_custom_target("${lang}-${docname}-${fmt}-clean"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf "${BUILD_DIR}/figures"
+        COMMAND ${CMAKE_COMMAND} -E rm -rf "${BUILD_DIR}/images")
+
+    add_dependencies(clean-extra "${lang}-${docname}-${fmt}-clean")
+
 endfunction()
