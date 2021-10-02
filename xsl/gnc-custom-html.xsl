@@ -24,6 +24,11 @@ part      toc,title
 <!-- Create HTML file per chapter. Set 0 makes translation easy. Default is 1.-->
 <xsl:param name="chunk.section.depth">0</xsl:param>
 
+<!-- Use CSS for HTML -->
+<xsl:param name="make.clean.html">1</xsl:param>
+<xsl:param name="docbook.css.link">0</xsl:param>
+<xsl:param name="custom.css.source">gnucash-docs.css.xml</xsl:param>
+<xsl:param name="make.valid.html">1</xsl:param>
 
 <!-- Change titlepage -->
 <xsl:include href="titlepage-html.xsl" />

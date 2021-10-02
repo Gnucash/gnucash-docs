@@ -19,36 +19,62 @@ function (add_html_target docname lang entities figures dtd_files)
     set(fmt "html")
 
     # We don't need to make work directory, we can output HTML files directly.
-    set(BUILD_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}/${docname}")
-    set(OUTPUT_DIR "${BUILD_DIR}")
+    set(BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/${fmt}")
+    set(OUTPUT_DIR "${CMAKE_BINARY_DIR}/share/doc/${lang}/${docname}")
 
     # GnuCash-specific xsl files
     file(GLOB xsl_files "${CMAKE_SOURCE_DIR}/xsl/*.xsl")
     file(GLOB gnucash_icon_files "${CMAKE_SOURCE_DIR}/xsl/icons/*")
 
+    # CSS file wrapped by XML for GnuCash, only one file can be specified now.
+    set(css_file "gnucash-docs.css")
+
     # Prepare ${BUILD_DIR}
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/images/callouts"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${OUTPUT_DIR}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${OUTPUT_DIR}/figures"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${OUTPUT_DIR}/images/callouts"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
+
+    # Copy XML files to ${BUILD_DIR}
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        COMMAND ${CMAKE_COMMAND} -E copy ${entities} ${docname}.xml "${BUILD_DIR}"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        DEPENDS ${entities} "${docname}.xml"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+
+
+    # Copy CSS file to ${BUILD_DIR}
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-css-trigger"
+        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/xsl/${css_file}" "${BUILD_DIR}/${css_file}.xml"
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-css-trigger"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
+                "${CMAKE_SOURCE_DIR}/xsl/${css_file}")
 
     # Convert xml to html with xsltproc
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xsltproc-trigger"
         COMMAND  ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_HTML}
-                             -o "${BUILD_DIR}/"
+                             -o "${OUTPUT_DIR}/"
                              "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-${fmt}.xsl"
-                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
+                             "${BUILD_DIR}/${docname}.xml"
+                # docbook.css is a template file, so it is unnecessary.                 
+        COMMAND ${CMAKE_COMMAND} -E remove -f "${OUTPUT_DIR}/docbook.css"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xsltproc-trigger"
-        DEPENDS ${entities} "${docname}.xml" ${dtd_files} ${xsl_files}
-                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
+        DEPENDS ${dtd_files} ${xsl_files}
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xml-trigger"
+                "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-css-trigger")
 
     # Copy figures for this document
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
-        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
+        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${OUTPUT_DIR}/figures"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-fig-trigger"
         DEPENDS ${figures}
                 "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
@@ -57,16 +83,16 @@ function (add_html_target docname lang entities figures dtd_files)
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
         # PNG admonition icons are used in html.
-        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/*.png" "${BUILD_DIR}/images"
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/*.png" "${OUTPUT_DIR}/images"
         # SVG callout icons are used in html.
-        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/callouts/*.svg" "${BUILD_DIR}/images/callouts"
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/images/callouts/*.svg" "${OUTPUT_DIR}/images/callouts"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-preparedir-trigger")
 
     # Copy GnuCash-Specific icons
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
-        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*" "${BUILD_DIR}/images"
+        COMMAND cp -f "${CMAKE_SOURCE_DIR}/xsl/icons/*" "${OUTPUT_DIR}/images"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-gnucashicon-trigger"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fmt}-xslticon-trigger"
                 "${gnucash_icon_files}")
