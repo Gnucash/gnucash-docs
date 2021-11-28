@@ -33,8 +33,8 @@ unset(dist_files CACHE)
 # ############################################################
 # These options are settable from the CMake command line. For example,
 # to enable mobi, put -D WITH_MOBI=ON on the command line.
-# To mimic the autotools' behaviour the targets enabled by default
-# are different for Windows vs the other supported platforms.
+# The targets enabled by default are different for Windows vs.
+# the other supported platforms.
 # On windows only chm is enabled by default
 # On any other platform chm and mobi are disabled by default
 
@@ -87,20 +87,6 @@ find_program(XMLLINT xmllint)
 if(NOT XMLLINT)
     message(SEND_ERROR "Can't find xmllint, perhaps you should install the xsltproc or libxslt package ?")
 endif(NOT XMLLINT)
-
-# Find a proper bash executable, only used in case of distcheck with autotools
-set(GNC_SHELL $ENV{GNC_SHELL})
-if (GNC_SHELL) # Replacing this with if ($ENV{GNC_SHELL}) doesn't work.
-  # Allow shell override by setting the GNC_SHELL environment variable
-  set(SHELL ${GNC_SHELL})
-else()
-  find_package(UnixCommands)
-  if (BASH)
-    set(SHELL ${BASH})
-  else()
-    message(SEND_ERROR "Can't find a suitable bash executable. Please set GNC_SHELL.")
-  endif()
-endif()
 
 # Check for optional fop
 if(WITH_PDF)
