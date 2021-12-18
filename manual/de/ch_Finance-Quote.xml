@@ -14,7 +14,7 @@ Translators:
 -->
 <chapter id="finance-quote"
          xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Die Online-Kursaktualisierung</title>
+  <title>Die Online-Kursaktualisierung einrichten</title>
 
   <para>Wenn Sie mehr als ein paar Devisen und Wertpapiere besitzen, werden Sie es bald leid sein, die Kurse
     ständig per Hand aktualisieren zu müssen. &app; bietet Ihnen die Möglichkeit, automatisch den
@@ -27,9 +27,16 @@ Translators:
 
     <para>Um festzustellen, ob das &app-perl;-Modul &app-fq; bereits auf Ihrem System installiert ist, geben
       Sie <command>perldoc Finance::Quote</command> in einem Terminalfenster ein. Wird Ihnen jetzt
-      eine Dokumentation angezeigt, dann ist &app-fq; installiert und Sie können, wie in
+      eine Dokumentation in dieser Form
+<screen>NAME
+    Finance::Quote - Get stock and mutual fund quotes from various exchanges
+
+SYNOPSIS
+       [...]
+</screen>
+      angezeigt, dann ist &app-fq; installiert und Sie können, wie in
       <xref linkend="finance-quote-scheduler" /> beschrieben, den automatisierten Kursabruf
-      konfigurieren. Wenn nicht, dann müssen Sie sich mit diesem Kapitel weiter beschäftigen.
+      konfigurieren. Wenn nicht, dann gibt Ihnen dieser Abschnitt eine Anleitung zur Installation.
     </para>
 
     <itemizedlist>
@@ -80,7 +87,8 @@ Translators:
 
       <step>
         <simpara>Führen Sie den Befehl <command>gnc-fq-check</command> aus, um zu überprüfen, ob das Programm
-          bereits in einem Verzeichnis liegt, welches in der Umgebungsvariable PATH eingetragen ist.<footnote>
+          bereits in einem Verzeichnis liegt, welches in der Umgebungsvariable PATH eingetragen ist.
+          <footnote>
             <simpara>Wenn Sie die von Ihrer Distribution bereitgestellten &app; Pakete installiert haben, sollte
               <filename>gnc-fq-check</filename> bereits in Ihrem PATH sein. Die Aktualität ihrer
               Distribution können Sie unter
@@ -90,19 +98,15 @@ Translators:
           </footnote>
         </simpara>
 
-        <substeps>
-          <step>
-            <simpara>Wenn <filename>gnc-fq-check</filename> nicht in Ihrem PATH ist, suchen Sie den Ordner, in dem &app;
-              installiert ist und wechseln in dieses Verzeichnis.
-            </simpara>
-          </step>
-
-          <step>
-            <simpara>Es bietet sich an, das aktuelle Verzeichnis in der PATH-Umgebungsvariable aufzunehmen. Hierzu
-              informieren Sie sich bitte in den Unterlagen zu Ihrer Distribution.
-            </simpara>
-          </step>
-        </substeps>
+        <tip>
+          <simpara>Wenn <command>gnc-fq-check</command> nicht in Ihrem PATH ist, vielleicht weil Sie die Anwendung
+            selbst gebaut und dabei ungewöhnliche Pfade verwendet haben, suchen Sie den Ordner in
+            dem &app; installiert ist, z.B. mit dem Befehl <command>which gnc-fq-check</command>,
+            und wechseln in dieses Verzeichnis. Es bietet sich an, das aktuelle Verzeichnis in der
+            PATH-Umgebungsvariable aufzunehmen. Hierzu informieren Sie sich bitte in den Unterlagen
+            zu Ihrer Distribution.
+          </simpara>
+        </tip>
       </step>
 
       <step>
@@ -111,15 +115,16 @@ Translators:
           jeweiligen Distribution abhängig.
         </simpara>
 
-        <para>Dadurch wird ein internes &app-perl;
-          <acronym><ulink url="&url-cpan;">CPAN</ulink></acronym><footnote>
-            <simpara>Siehe <ulink url="&url-cpan;misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink>
-              für weitere Informationen.
+        <para>Dadurch wird ein internes &app-perl; <acronym><ulink url="&url-cpan;">CPAN</ulink></acronym>
+          <footnote>
+            <simpara>Siehe <ulink url="&url-cpan;misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink> für weitere
+              Informationen.
             </simpara>
-          </footnote>Modul gestartet um die Installation vorzunehmen. Wenn Sie das CPAN zum ersten Mal starten, müssen
-          Sie es einrichten und konfigurieren. Auf den meisten Systemen können Sie jedoch die
-          Standardeinstellungen akzeptieren und die erste Frage <computeroutput>Are you ready for
-          manual configuration? [yes]</computeroutput> mit <userinput>no</userinput> beantworten
+          </footnote>
+          Modul gestartet um die Installation vorzunehmen. Wenn Sie das CPAN zum ersten Mal starten,
+          müssen Sie es einrichten und konfigurieren. Auf den meisten Systemen können Sie jedoch
+          die Standardeinstellungen akzeptieren und die erste Frage <computeroutput>Are you ready
+          for manual configuration? [yes]</computeroutput> mit <userinput>no</userinput> beantworten
           damit &app-fq; erfolgreich installiert wird.
         </para>
       </step>
@@ -170,16 +175,13 @@ Translators:
       </step>
 
       <step>
-        <simpara>Führen Sie<menuchoice>
+        <simpara>Führen Sie
+          <menuchoice>
             <guimenu>Start</guimenu> <guisubmenu>&app;</guisubmenu> <guimenuitem>Online-Preisabfrage
             installieren</guimenuitem>
-          </menuchoice>aus.
+          </menuchoice>
+          aus. Dies ist ein kleines Hilfsprogramm, das &app-fq; für Sie installiert.
         </simpara>
-
-        <para>Das &win;-Installationsprogramm von der <ulink url="&url-www;download.phtml">&app; Homepage</ulink>
-          wird zusätzlich mit einem kleinen Hilfsprogramm geliefert, das &app-fq; für Sie
-          installiert.
-        </para>
       </step>
     </procedure>
   </sect1>
@@ -188,7 +190,8 @@ Translators:
     <title>Automatisierte Abfrage von Online-Kursen</title>
 
     <para>Mit dem Kommando <command>gnucash-cli --quotes get
-      <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename></command><footnote>
+      <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename></command>
+      <footnote>
         <simpara>Der Befehl für den Online-Kursabruf wurde ab &app; 4.0 geändert. Der alte Befehl <command>gnucash
           --add-price-quotes
           <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename></command> ist
@@ -197,14 +200,16 @@ Translators:
           durchgeführt haben, wird empfohlen, den neuen Befehl <command>gnucash-cli</command> zu
           verwenden.
         </simpara>
-      </footnote>können Sie die aktuellen Kurse Ihrer Devisen und Wertpapiere abrufen und direkt in ihre
+      </footnote>
+      können Sie die aktuellen Kurse Ihrer Devisen und Wertpapiere abrufen und direkt in ihre
       &app;-Datendatei schreiben.
     </para>
 
     <para>Die angegebene Datei <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename> ist
       abhängig von dem Namen und dem Speicherort Ihrer Datendatei. Dies lässt sich anhand des
       Namens feststellen, der im oberen Rahmen des &app; Fensters vor dem <quote>-</quote> angezeigt
-      wird.<tip>
+      wird.
+      <tip>
         <para>Der Dateiname ist auch in der Liste der zuletzt geöffneten Dateien im
           <guimenu>Datei</guimenu>-Menü zu finden. Wenn Sie den Mauszeiger über dem Menüeintrag
           mit der Nummer 1 in der Liste der zuletzt geöffneten Dateien platzieren, wird in der
@@ -232,11 +237,18 @@ Translators:
       </step>
 
       <step>
-        <para>Fügen Sie die folgende Zeile in Ihre crontab ein:<informalexample>
+        <para>Fügen Sie die folgende Zeile in Ihre crontab ein:
+          <informalexample>
 <screen>0 16 * * 5 gnucash-cli --quotes get <replaceable>${HOME}/gnucash-filename</replaceable> &gt; /dev/null 2&gt;&amp;1</screen>
-          </informalexample><warning>
-            <para>Läuft auf Ihrem Rechner zu dem Zeitpunkt des Kursabrufs keine X-Session, so müssen Sie den Aufruf
-              stattdessen wie folgt ausführen:<screen>0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT; gnucash-cli --quotes get <replaceable>${HOME}/gnucash-filename</replaceable> &gt; /dev/null 2&gt;&amp;1</screen>
+          </informalexample>
+          <warning>
+            <para>Läuft auf Ihrem Rechner zu dem Zeitpunkt des Kursabrufs keine graphische Benutzeroberfläche, die
+              bereits den dbus gestartet hat, so müssen Sie den Eintrag stattdessen wie folgt
+              vornehmen:
+<screen>0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
+gnucash-cli --quotes get <replaceable>${HOME}/gnucash-filename</replaceable> &gt; /dev/null 2&gt;&amp;1</screen>
+              (Die Zeilenumbrüche nicht in die crontab übernehmen, die wurden hier nur zum Zwecke
+              der Lesbarkeit eingefügt.)
             </para>
           </warning>
         </para>
@@ -250,9 +262,11 @@ Translators:
       </para>
 
       <step>
-        <simpara>Wählen Sie<menuchoice>
+        <simpara>Wählen Sie
+          <menuchoice>
             <guimenu>Start</guimenu><guisubmenu>Systemsteuerung</guisubmenu><guimenuitem>Aufgabenplanung</guimenuitem>
-          </menuchoice>.
+          </menuchoice>
+          .
         </simpara>
       </step>
 

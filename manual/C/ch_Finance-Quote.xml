@@ -14,7 +14,7 @@ Translators:
 -->
 <chapter id="finance-quote"
          xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>The Online Quote update</title>
+  <title>Setting up the Online Quote update</title>
 
   <para>If you have more than a couple of commodities, you will tire of having to update their quotes
     constantly. &app; has the ability to automatically download the most recent quote for your
@@ -27,10 +27,16 @@ Translators:
 
     <para>To determine if the &app-perl; module &app-fq; is already installed on your system, type
       <command>perldoc Finance::Quote</command> in a terminal window and check to see if there is
-      any documentation available. If you are now shown documentation, then &app-fq; is already
-      installed and you can configure periodical quotes update as described in
-      <xref linkend="finance-quote-scheduler" />. If no documentation is displayed, you will have to
-      continue with this chapter.
+      any documentation
+<screen>NAME
+    Finance::Quote - Get stock and mutual fund quotes from various exchanges
+
+SYNOPSIS
+       [...]
+</screen>
+      available. If you are now shown documentation, then &app-fq; is already installed and you can
+      configure periodical quotes update as described in <xref linkend="finance-quote-scheduler" />.
+      If no documentation is displayed, you will have to continue with this chapter.
     </para>
 
     <itemizedlist>
@@ -79,7 +85,8 @@ Translators:
 
       <step>
         <simpara>Run the <command>gnc-fq-check</command> command to verify that the program is already in a directory
-          that is entered in the PATH environment variable.<footnote>
+          that is entered in the PATH environment variable.
+          <footnote>
             <simpara>If you&rsquo;ve installed &app; packages provided by your distribution,
               <filename>gnc-fq-check</filename> must be on your PATH. The currentness of your
               distribution can be checked under
@@ -89,19 +96,14 @@ Translators:
           </footnote>
         </simpara>
 
-        <substeps>
-          <step>
-            <simpara>If <filename>gnc-fq-check</filename> is not in your PATH, search the folder where &app; is installed
-              and change to that directory.
-            </simpara>
-          </step>
-
-          <step>
-            <simpara>It is a good idea to include the current directory in the PATH environment variable. Please refer to
-              the documentation for your distribution for more information.
-            </simpara>
-          </step>
-        </substeps>
+        <tip>
+          <simpara>If <filename>gnc-fq-check</filename> is not in your PATH, perhaps because you built the application
+            yourself using unusual paths, search the folder where &app; is installed, e.g. with the
+            command <command>which gnc-fq-check</command>, and change to that directory. It is a
+            good idea to include the current directory in the PATH environment variable. Please
+            refer to the documentation for your distribution for more information.
+          </simpara>
+        </tip>
       </step>
 
       <step>
@@ -109,14 +111,16 @@ Translators:
           with root privileges &app-fq; It depends on your distribution.
         </simpara>
 
-        <para>This will launch a &app-perl; <acronym><ulink url="&url-cpan;">CPAN</ulink></acronym><footnote>
-            <simpara>See <ulink url="&url-cpan;misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink> for
-              details.
+        <para>This will launch a &app-perl; <acronym><ulink url="&url-cpan;">CPAN</ulink></acronym>
+          <footnote>
+            <simpara>See <ulink url="&url-cpan;misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink> for details.
             </simpara>
-          </footnote>module internally. When you launch the CPAN module for the first time, you must setup and configure
-          it. However, on the most systems if you accept the default settings or answer the first
-          question <computeroutput>Are you ready for manual configuration? [yes]</computeroutput>
-          with <userinput>no</userinput>, you will be able to install &app-fq; successfully.
+          </footnote>
+          module internally. When you launch the CPAN module for the first time, you must setup and
+          configure it. However, on the most systems if you accept the default settings or answer
+          the first question <computeroutput>Are you ready for manual configuration?
+          [yes]</computeroutput> with <userinput>no</userinput>, you will be able to install
+          &app-fq; successfully.
         </para>
       </step>
 
@@ -165,15 +169,13 @@ Translators:
       </step>
 
       <step>
-        <simpara>Run<menuchoice>
+        <simpara>Run
+          <menuchoice>
             <guimenu>Start</guimenu> <guisubmenu>&app;</guisubmenu> <guimenuitem>Install Online
             Price Retrieval</guimenuitem>
-          </menuchoice>.
+          </menuchoice>
+          . This is a small utility that installs &app-fq; for you.
         </simpara>
-
-        <para>The &win; installer from the <ulink url="&url-www;download.phtml">&app; homepage</ulink>. also comes
-          with a small utility that installs &app-fq; for you.
-        </para>
       </step>
     </procedure>
   </sect1>
@@ -182,7 +184,8 @@ Translators:
     <title>Configuring for Getting Online Quotes Periodically</title>
 
     <para>The command <command>gnucash-cli --quotes get
-      <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename></command><footnote>
+      <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename></command>
+      <footnote>
         <simpara>The Online Quotes Retrieval command has been changed from &app; 4.0. The old command
           <command>gnucash --add-price-quotes
           <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename></command> is
@@ -190,13 +193,15 @@ Translators:
           upgraded from &app; 3.11 or previous version, it is recommended to use the new command
           <command>gnucash-cli</command>.
         </simpara>
-      </footnote>can be used to fetch the current quotes of your stocks and write them directly into your &app;-data
-      file.
+      </footnote>
+      can be used to fetch the current quotes of your stocks and write them directly into your
+      &app;-data file.
     </para>
 
     <para>The file specified <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename> will
       depend on the name and location of your data file. This can be determined by the name
-      displayed in the top frame of the &app; window, before the <quote>-</quote>.<tip>
+      displayed in the top frame of the &app; window, before the <quote>-</quote>.
+      <tip>
         <para>The file name can also be found under <guimenu>File</guimenu> in the recently opened file list. If
           you place the mouse over the menu item with the number 1 in the list of recently opened
           files, the complete file name is displayed in the <guilabel>status bar</guilabel>.
@@ -221,11 +226,17 @@ Translators:
       </step>
 
       <step>
-        <para>Add the following line to your crontab:<informalexample>
+        <para>Add the following line to your crontab:
+          <informalexample>
 <screen>0 16 * * 5 gnucash-cli --quotes get <replaceable>${HOME}/gnucash-filename</replaceable> &gt; /dev/null 2&gt;&amp;1</screen>
-          </informalexample><warning>
-            <para>If there is no X session running on your computer at the time of the quote request, you must do the
-              call as follows instead:<screen>0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT; gnucash-cli --quotes get <replaceable>${HOME}/gnucash-filename</replaceable> &gt; /dev/null 2&gt;&amp;1</screen>
+          </informalexample>
+          <warning>
+            <para>If there is no graphic session that has already started the dbus, running on your computer at the
+              time of the quote request, you must do the entry as follows instead:
+<screen>0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
+gnucash-cli --quotes get <replaceable>${HOME}/gnucash-filename</replaceable> &gt; /dev/null 2&gt;&amp;1</screen>
+              (Do not copy the line breaks into the crontab, they were inserted here only for the
+              purpose of readability).
             </para>
           </warning>
         </para>
@@ -239,10 +250,12 @@ Translators:
       </para>
 
       <step>
-        <simpara>Select<menuchoice>
+        <simpara>Select
+          <menuchoice>
             <guimenu>Start</guimenu><guisubmenu>Windows Administrative
             Tools</guisubmenu><guimenuitem>Task Scheduler</guimenuitem>
-          </menuchoice>.
+          </menuchoice>
+          .
         </simpara>
       </step>
 
