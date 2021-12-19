@@ -10,7 +10,8 @@ DocBook v4.5 (not 5.x series) they can be accessed under
 * after conversion:
 ** MacOs: html
 ** Windows: chm
-** mobile devices: mobi, epub
+** mobiles: mobi
+** eBook readers: epub
 ** paper: pdf
 
 If you wish to obtain a copy of the documentation in one of the latter formats,
@@ -21,8 +22,6 @@ Requirements
 * cmake with
 ** ninja or
 ** make
-or
-* autotools (deprecated)
 
 * libxml2
 * libxslt [Debian packed the required xsltproc in a separate package, 
@@ -31,7 +30,7 @@ or
 * docbook-dtds
 * yelp (for viewing)
 
-Optional:
+Optional for ranslators:
 * gnome-doc-utils (contains xml2po for the use of po editors like in the italian translation)
 
 Additional Requirements for Generating Mobipocket:
@@ -71,7 +70,6 @@ can help. PLEASE let us know via IRC or the gnucash-devel mailing list what
 you can work on or help with.
 
 See also:
-* HACKING 
 * http://wiki.gnucash.org/wiki/Documentation_Update_Instructions
 * http://wiki.gnucash.org/wiki/Translation
 
@@ -104,17 +102,6 @@ For cmake the commands are
   cmake [options…]
   # or, if you need mobi
   cmake -DWITH_MOBI=ON [options…]
-
-For the deprecated autotools system the commands are:
-  cd gnucash-docs
-  ./autogen.sh
-  mkdir build && cd build
-  # If you don't need mobi
-  ../configure
-  # or, if you need mobi
-  ../configure --with-mobi
-
-=> This will tell you if you are missing some required tools.
 
 To generate the documentation in html format, run
 
@@ -159,36 +146,13 @@ For example:
 will generate the html version of the help document in all supported
 languages.
 
-- Autotools (deprecated)
-Go into the directory for that subset and run the above make commands
-from there. For example to only generate the English concepts guide:
-
-  cd guide/C
-  make html
-
-or
-
-  cd guide/C
-  make pdf
-
-or
-
-  cd guide/C
-  make epub
-
-or
-
-  cd guide/C
-  make mobi
-
 depending on the output format you require.
 
-* running xmllint
+* Running syntax checks by xmllint
 -----------------
 You can also run xmllint on all documents or a specific document with the command
 
-  make check # for toplevel check or (autotools only) per document check in
-             # the respective subdirectories
+  make check # for toplevel check
   make de-gnucash-help-check # for a cmake check for one specific document
                              # in this example - the German help guide
 

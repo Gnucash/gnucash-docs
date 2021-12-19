@@ -1,4 +1,4 @@
-set (docname "gnucash-guide")
+set (docname "gnucash-help")
 
 add_custom_target(${docname}-check)
 add_dependencies(check ${docname}-check)
@@ -36,7 +36,6 @@ endif()
 add_subdirectory(C)
 add_subdirectory(de)
 add_subdirectory(it)
-add_subdirectory(ja)
 add_subdirectory(pt)
 
 add_to_dist(CMakeLists.txt)

@@ -22,11 +22,6 @@ set (entities
         appendixd.xml)
 
 set (FOP_XCONF "${CMAKE_CURRENT_SOURCE_DIR}/fop.xconf.in")
-# Compatibility hack for autotools
-# When autotools gets dropped this line can be removed
-# and CMAKE_CURRENT_SOURCE_DIR can be used directly in
-# fop.xconf.in
-set(BASEDIR_JA "${CMAKE_CURRENT_SOURCE_DIR}")
 
 add_gnc_doc_targets(${docname} "${entities}")
 

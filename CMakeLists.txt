@@ -33,8 +33,8 @@ unset(dist_files CACHE)
 # ############################################################
 # These options are settable from the CMake command line. For example,
 # to enable mobi, put -D WITH_MOBI=ON on the command line.
-# To mimic the autotools' behaviour the targets enabled by default
-# are different for Windows vs the other supported platforms.
+# The targets enabled by default are different for Windows vs.
+# the other supported platforms.
 # On windows only chm is enabled by default
 # On any other platform chm and mobi are disabled by default
 
@@ -53,10 +53,6 @@ else()
 endif()
 option (WITH_MOBI "Enable build rules for Mobipocket document format" OFF)
 
-# If AUTOTOOLS_IN_DIST is OFF, then 'dist' wont run autogen.sh, and 'distcheck'
-# won't run the autotools distcheck. Note that various Makefile.am files are still
-# included in the dist when this is OFF. I'll fix that at some point.
-option (AUTOTOOLS_IN_DIST "Add autotools support to distribution tarballs." ON)
 # ############################################################
 # Following parameters can equally be set using -D switches on the CMake command line.
 # Set font dirs and font for Russian pdf documents
@@ -91,20 +87,6 @@ find_program(XMLLINT xmllint)
 if(NOT XMLLINT)
     message(SEND_ERROR "Can't find xmllint, perhaps you should install the xsltproc or libxslt package ?")
 endif(NOT XMLLINT)
-
-# Find a proper bash executable, only used in case of distcheck with autotools
-set(GNC_SHELL $ENV{GNC_SHELL})
-if (GNC_SHELL) # Replacing this with if ($ENV{GNC_SHELL}) doesn't work.
-  # Allow shell override by setting the GNC_SHELL environment variable
-  set(SHELL ${GNC_SHELL})
-else()
-  find_package(UnixCommands)
-  if (BASH)
-    set(SHELL ${BASH})
-  else()
-    message(SEND_ERROR "Can't find a suitable bash executable. Please set GNC_SHELL.")
-  endif()
-endif()
 
 # Check for optional fop
 if(WITH_PDF)
@@ -162,7 +144,7 @@ if (WITH_HTML)
     add_custom_target(html)
 endif()
 if (WITH_GHELP)
-    add_custom_target(ghelp)
+    add_custom_target(ghelp ALL)
 endif()
 if (WITH_PDF)
     add_custom_target(pdf)
@@ -183,22 +165,7 @@ endif()
 
 
 add_subdirectory (guide)
-add_subdirectory (help)
-
-if(AUTOTOOLS_IN_DIST)
-    set(autotoolsfiles
-        configure.ac
-        Makefile.am
-        gnucash-docs.spec.in
-        chm.make
-        epub.make
-        mobi.make
-        omf.make
-        pdf.make
-        xmldocs.make)
-
-    add_to_dist(${autotoolsfiles})
-endif()
+add_subdirectory (manual)
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
@@ -215,7 +182,6 @@ add_to_dist(
     COPYING
     COPYING-DOCS
     ChangeLog
-    HACKING
     NEWS
     README
     fop.xconf.in)
@@ -231,7 +197,6 @@ add_custom_command(OUTPUT ${DIST_FILE}.gz ${DIST_FILE}.bz2
            -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
            -D BUILD_SOURCE_DIR=${CMAKE_BINARY_DIR}
            "-Ddist_files=\"${dist_files}\""
-           -D AUTOTOOLS_IN_DIST=${AUTOTOOLS_IN_DIST}
            -D SHELL=${SHELL}
            -P ${CMAKE_SOURCE_DIR}/cmake/MakeDist.cmake
 
@@ -246,7 +211,6 @@ add_custom_target(distcheck DEPENDS dist
             -D CMAKE_MODULE_PATH=${CMAKE_SOURCE_DIR}/cmake
             -D PACKAGE_PREFIX=${PACKAGE_PREFIX}
             -D GNUCASH_SOURCE_DIR=${CMAKE_SOURCE_DIR}
-            -D AUTOTOOLS_IN_DIST=${AUTOTOOLS_IN_DIST}
             -D SHELL=${SHELL}
             -P ${CMAKE_SOURCE_DIR}/cmake/MakeDistCheck.cmake
         )
