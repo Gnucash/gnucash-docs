@@ -11,33 +11,27 @@ Author:
   Mike Evans <mikee@saxicola.co.uk>
 
     Translators:
-    (translators put your name and email here)
+    (Pedro Albuquerque <pmra@protonmail.com>)
 -->
 <chapter id="ch_import_bus_data">
-  <title>Importing Business Data</title>
+  <title>Importar dados da empresa</title>
 
   <sect1 id="import-invoices">
-    <title>Import Bills or Invoices</title>
+    <title>Importar facturas</title>
 
-    <para>This functionality is only available by default for versions greater than 2.6
+    <para>Esta funcionalidade só está disponível para versões posteriores à 2.6
     </para>
 
-    <para>For 2.4.13 the Customers and Vendors importer is an optional module and needs to enabled by editing
-      the file <filename>$HOME/.gnucash/config.user</filename>, adding the line:
+    <para>Para a 2.4.13 o importador de clientes e fornecedores é um módulo opcional e tem de ser activado editando o ficheiro <filename>$HOME/.gnucash/config.user</filename>, adicionando a linha:
     </para>
 
     <para><code>(gnc:module-load "gnucash/plugins/bi_import" 0)</code>
     </para>
 
-    <para>On &lin; systems this file is found at <filename>$HOME/.gnucash/config.user</filename> and on
-      &mac; it is <filename>~/Library/Application Support/Gnucash/config.user</filename>. If the file
-      doesn&rsquo;t already exist you will have to create it. After restarting &app;, the item will
-      appear at the bottom of the business menu.
+    <para>Em sistemas &lin;, este ficheiro encontra-se em <filename>$HOME/.gnucash/config.user</filename> e em&mac; em <filename>~/Library/Application Support/Gnucash/config.user</filename>. Se o ficheiro ainda não existir, terá de o criar. Após reiniciar o &app;, o item aparecerá ao fundo do menu <guimenu>Negócios</guimenu>.
     </para>
 
-    <para>In order for the importer to work the data must be in a fixed field length, comma separated line
-      format. A example <application>Python</application> script to convert a downloaded order is
-      shown below.
+    <para>Para que o importador funcione, os dados devem estar numa linha com um comprimento de campo fixo separados por vírgulas. Abaixo é mostrado um exemplo de programa <aplication>Python</aplication> para converter uma ordem transferida.
     </para>
 
     <para><programlisting language="python" linenumbering="unnumbered">
@@ -50,7 +44,7 @@ INV_ID=sys.argv[2]
 try:
   ACCOUNT=sys.argv[3]
 except:
-  ACCOUNT="Expenses:Materials General"
+  ACCOUNT="Despesas:Materiais Geral"
 
 Reader = csv.reader(open(INFILE), delimiter=',')
 
@@ -64,7 +58,7 @@ for row in Reader:
       </programlisting>
     </para>
 
-    <para>Example of a downloaded vendor order from <emphasis>Rapid Electronics</emphasis> (UK).
+    <para>Exemplo de uma encomenda de fornecedor de <emphasis>Rapid Electronics</emphasis> (UK).
 <programlisting language="python" linenumbering="unnumbered">
 line number,product code,quantity,availability,product description,unit price,discounts,line total,delivery,sub total,vat,grand total
 1,47-3524,100,100 Available,BC848C SOT-23 NPN TRANSISTOR (INF) (RC),GBP0.03,GBP0.00,GBP0.03
@@ -81,7 +75,7 @@ line number,product code,quantity,availability,product description,unit price,di
       </programlisting>
     </para>
 
-    <para>A similar file after processing with the <application>Python</application> script.
+    <para>Um ficheiro similar após processamento com o programa <application>Python</application>.
     </para>
 
     <para><programlisting language="python">
@@ -100,50 +94,31 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
         </programlisting>
     </para>
 
-    <para>As can be seen there are some fields that are absent and some that are not required for import. The
-      first line is not required and the last line is superfluous as &app; will total the order for
-      us. All that is required is to take what we want and produce an output file with the correct
-      format to import into &app;. In this case we join the part number and description fields and
-      these become description in &app; invoice/bill. We need the qty and part price fields.
-      Contrary to the header line <acronym>VAT</acronym> is not included by line and is always zero,
-      the <acronym>VAT</acronym> is calculated on the last line as <acronym>VAT</acronym> on the
-      order total.
+    <para>Como se pode ver, há campos ausentes e alguns que não são necessários à importação. A primeira linha não é necessária e a última é supérflua, o &app; totaliza a ordem. Só é necessário obter o que desejamos e produzir um ficheiro em formato correcto para importar para o &app;. Caso em que juntamos o número da peça e a descrição, convertendo-os em descrição da factura para o &app;. Precisamos da quantidade e preço. Contrariamente à linha de cabeçalho, em que o <acronym>IVA</acronym> não está incluído por linha e é sempre zero, o <acronym>IVA</acronym> é calculado na última linha como <acronym>IVA</acronym> do total da encomenda.
       <note>
-        <para>This will cause problems later.
+        <para>Isto causará problemas mais tarde.
         </para>
       </note>
-      In this example I have assigned the <emphasis>Expenses:Materials General</emphasis> account to
-      be the target account. This can be changed after import in the usual way, along with any other
-      data. If there is no such account as <emphasis>Expenses:Materials General</emphasis> then that
-      field will be left blank on import and will have to be set manually. Lines beginning with a
-      <quote>#</quote> are regarded as comment lines and ignored.
+      Neste exemplo atribuiu-se a conta <emphasis>Despesas:Materiais Gerais</emphasis> como conta-alvo. Esta pode ser alterada após a importação, da forma habitual, juntamente com qualquer outra conta de dados. Se não existir tal conta <emphasis>Despesas:Materiais Gerais</emphasis>, esse campo será deixado em branco na importação e terá de ser definido manualmente. As linhas que começam com um <quote>#</quote> são consideradas como linhas de comentário e ignoradas.
     </para>
 
-    <para>The script is called with the following command:
+    <para>O programa inicia-se com o seguinte comando:
     </para>
 
-    <para><command>python importer.py <replaceable>file_to_import</replaceable>,
-      <replaceable>invoice_id</replaceable> &gt;
-      <replaceable>file_to_save_as.csv</replaceable></command>
+    <para><command>python importer.py <replaceable>ficheiro_a_importar</replaceable>,
+      <replaceable>id_factura</replaceable> &gt;
+      <replaceable>ficheiro_a_gravar.csv</replaceable></command>
     </para>
 
-    <para>This short script can easily be changed to suit any downloaded format. The only restriction is that
-      the final number of field is fixed, at least at the moment. The importer will ignore lines
-      with the wrong number of fields. (This may be fixed in future version). Vendor ID is simply
-      the ID assigned to the specific vendor, or client. The row[N] items refer to the position in
-      the line where the correct data lies. Note that the first field is row[0] NOT row[1].
+    <para>Este pequeno programa pode ser facilmente alterado para se adequar a qualquer formato transferido. A única restrição é que o número final do campo é fixo, pelo menos de momento. O importador ignora as linhas com o número errado de campos. Isto será corrigido na versão futura. A ID do fornecedor é simplesmente a identificação atribuída ao fornecedor, ou cliente específico. Os itens da linha[N] referem-se à posição na linha onde se encontram os dados correctos. Note-se que o primeiro campo é a linha[0] NÃO a linha[1].
     </para>
 
-    <para>Once you have converted the file navigate to
+    <para>Uma vez convertido o ficheiro, navegue até
       <menuchoice>
-        <guimenu>Business</guimenu> <guimenuitem>Invoice &amp; Bill Import</guimenuitem>
+        <guimenu>Negócios</guimenu> <guimenuitem>Importação de facturas</guimenuitem>
       </menuchoice>
-      to open a new import window. Select the file you have just created, select
-      <guilabel>Bill</guilabel> or <guilabel>Invoice</guilabel> and <guilabel>Comma
-      separated</guilabel> format. At this point the data should show up in the preview window.
-      Check that the field data are in the correct columns before selecting
-      <guibutton>OK</guibutton>. Once imported the invoice can be opened for editing and posting in
-      the usual way.
+      para abrir uma nova janela de importação. Seleccione o ficheiro que acabou de criar, seleccione
+      <guilabel>Pagamento</guilabel> ou <guilabel>Factura</guilabel> e formato <guilabel>Separado por vírgulas</guilabel>. Nesta altura, os dados devem aparecer na janela de antevisão. Verifique se os dados do campo estão nas colunas correctas antes de clicar em <guibutton>Aceitar</guibutton>. Uma vez importada, a factura pode ser aberta para edição e emissão da forma habitual.
     </para>
 
     <para>A note on <acronym>VAT</acronym>, or any purchase tax. As previously mentioned <emphasis>Rapid
@@ -167,7 +142,7 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
     </para>
 
     <note>
-      <para>If <application>Python</application> (other languages are avaialble) is not your thing then post a
+      <para>Se o <application>Python</application> não lhe agrada(other languages are avaialble) is not your thing then post a
         request to <ulink url="&url-mail-li;gnucash-user"><citetitle>&appname; user
         list</citetitle></ulink>, with an example of your downloaded <acronym>CSV</acronym>, and
         someone may write you a <application>Python</application> script to do the translation.
@@ -355,8 +330,7 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
       line for each customer/vendor.
     </para>
 
-    <para>The importer does not currently import billing information for customers or vendors, these will have
-      to be edited individually after importing.
+    <para>O importador não importa actualmente informações de facturação para clientes ou vendedores, estes terão de ser editados individualmente após a importação.
     </para>
   </sect1>
 </chapter>
