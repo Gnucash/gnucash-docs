@@ -189,26 +189,27 @@ SYNOPSIS
   <sect1 id="finance-quote-scheduler">
     <title>Automatisierte Abfrage von Online-Kursen</title>
 
-    <para>Mit dem Kommando <command>gnucash-cli --quotes get
-      <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename></command>
+    <para>Mit dem Kommando <command>gnucash-cli --quotes get &user-datafile;</command>
       <footnote>
         <simpara>Der Befehl für den Online-Kursabruf wurde ab &app; 4.0 geändert. Der alte Befehl <command>gnucash
-          --add-price-quotes
-          <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename></command> ist
-          immer noch verfügbar, aber er ist veraltet und wird in einer zukünftigen Version
-          entfernt werden. Wenn Sie ein Upgrade von &app; 3.11 oder einer früheren Version
-          durchgeführt haben, wird empfohlen, den neuen Befehl <command>gnucash-cli</command> zu
-          verwenden.
+          --add-price-quotes &user-datafile;</command> ist immer noch verfügbar, aber er ist
+          veraltet und wird in einer zukünftigen Version entfernt werden. Wenn Sie ein Upgrade von
+          &app; 3.11 oder einer früheren Version durchgeführt haben, wird empfohlen, den neuen
+          Befehl <command>gnucash-cli</command> zu verwenden.
         </simpara>
       </footnote>
       können Sie die aktuellen Kurse Ihrer Devisen und Wertpapiere abrufen und direkt in ihre
-      &app;-Datendatei schreiben.
+      &app;-Datendatei schreiben ohne die Benutzeroberfläche zu starten. Somit ist eine automatische,
+      regelmäßige Aktualisierung der Kursdatenbank möglich.
+      <warning>
+        <para>Beachten Sie bitte, dass die Datendatei nicht gleichzeitig in einer anderen Instanz von &app; geöffnet sein darf!
+        </para>
+      </warning>
     </para>
 
-    <para>Die angegebene Datei <filename><replaceable>${HOME}/gnucash-filename</replaceable></filename> ist
-      abhängig von dem Namen und dem Speicherort Ihrer Datendatei. Dies lässt sich anhand des
-      Namens feststellen, der im oberen Rahmen des &app; Fensters vor dem <quote>-</quote> angezeigt
-      wird.
+    <para>Die angegebene Datei &user-datafile; ist abhängig von dem Namen und dem Speicherort Ihrer
+      Datendatei. Dies lässt sich anhand des Namens feststellen, der im oberen Rahmen des &app;
+      Fensters vor dem <quote>-</quote> angezeigt wird.
       <tip>
         <para>Der Dateiname ist auch in der Liste der zuletzt geöffneten Dateien im
           <guimenu>Datei</guimenu>-Menü zu finden. Wenn Sie den Mauszeiger über dem Menüeintrag
@@ -220,72 +221,83 @@ SYNOPSIS
 
     <para>Sie müssen den Befehl <command>gnucash-cli</command> bei einem Scheduler (Zeitplaner) eintragen, um
       die Onlinekurse automatisch und regelmäßig zu erhalten. Die Methode hängt von Ihrem
-      Betriebssystem ab. Nehmen wir zum Beispiel an Sie möchten Ihre Datei jeden Freitag um 16:00
-      Uhr aktualisieren. (Passen Sie die Zeit an den Börsenschluss an.)
+      Betriebssystem ab.
     </para>
 
-    <procedure>
-      <title>Automatisierter Kursabruf unter &lin; und &mac;</title>
+    <example>
+      <title>Automatischer Kursabruf jeden Freitag um 16:00 Uhr</title>
 
-      <para>Eintragen des Befehls zum Kursabruf per <command>gnucash-cli</command> mittels
-        <application>cron</application>.
-      </para>
+      <procedure>
+        <title>Unter &lin; und &mac;</title>
 
-      <step>
-        <simpara>Führen Sie das Kommando <command>crontab -e</command> aus.
-        </simpara>
-      </step>
-
-      <step>
-        <para>Fügen Sie die folgende Zeile in Ihre crontab ein:
-          <informalexample>
-<screen>0 16 * * 5 gnucash-cli --quotes get <replaceable>${HOME}/gnucash-filename</replaceable> &gt; /dev/null 2&gt;&amp;1</screen>
-          </informalexample>
-          <warning>
-            <para>Läuft auf Ihrem Rechner zu dem Zeitpunkt des Kursabrufs keine graphische Benutzeroberfläche, die
-              bereits den dbus gestartet hat, so müssen Sie den Eintrag stattdessen wie folgt
-              vornehmen:
-<screen>0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
-gnucash-cli --quotes get <replaceable>${HOME}/gnucash-filename</replaceable> &gt; /dev/null 2&gt;&amp;1</screen>
-              (Die Zeilenumbrüche nicht in die crontab übernehmen, die wurden hier nur zum Zwecke
-              der Lesbarkeit eingefügt.)
-            </para>
-          </warning>
+        <para>Eintragen des Befehls zum Kursabruf per <command>gnucash-cli</command> mittels
+          <application>cron</application>.
         </para>
-      </step>
-    </procedure>
 
-    <procedure>
-      <title>Automatisierter Kursabruf unter &win;</title>
+        <step>
+          <simpara>Führen Sie das Kommando <command>crontab -e</command> aus.
+          </simpara>
+        </step>
 
-      <para>Anlegen des Kursabrufs per <command>gnucash-cli</command> mit der Aufgabenplanung.
+        <step>
+          <para>Fügen Sie die folgende Zeile in Ihre crontab ein:
+            <informalexample>
+<screen>0 16 * * 5 gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
+            </informalexample>
+
+            <warning>
+              <para>Läuft auf Ihrem Rechner zu dem Zeitpunkt des Kursabrufs keine graphische Benutzeroberfläche, die
+                bereits den dbus gestartet hat, so müssen Sie den Eintrag stattdessen wie folgt
+                vornehmen:
+                <informalexample>
+<screen>0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
+gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
+                </informalexample>
+                (Die Zeilenumbrüche nicht in die crontab übernehmen, die wurden hier nur zum
+                Zwecke der Lesbarkeit eingefügt.)
+              </para>
+            </warning>
+          </para>
+        </step>
+      </procedure>
+
+      <procedure>
+        <title>Unter &win;</title>
+
+        <para>Anlegen des Kursabrufs per <command>gnucash-cli</command> mit der Aufgabenplanung.
+        </para>
+
+        <step>
+          <simpara>Wählen Sie
+            <menuchoice>
+              <guimenu>Start</guimenu><guisubmenu>Systemsteuerung</guisubmenu><guimenuitem>Aufgabenplanung</guimenuitem>
+            </menuchoice>
+            .
+          </simpara>
+        </step>
+
+        <step>
+          <simpara>Klicken Sie auf <guimenuitem>Aufgabe erstellen</guimenuitem>.
+          </simpara>
+        </step>
+
+        <step>
+          <simpara>Geben Sie die entsprechenden Angaben im Fenster <guilabel>Aufgabe erstellen</guilabel> ein.
+          </simpara>
+        </step>
+      </procedure>
+
+      <para>Passen Sie die Zeit an den Börsenschluss an und bedenken Sie, dass bei
+        <emphasis>Fondskursen</emphasis> das Netto-Anlagevermögen (NAV) deutlich nach
+        Börsenschluss ermittlet wird. Eine Beschreibung zu den Typen finden Sie unter
+        <xref linkend="tool-price" />.
+<!-- FIXME: adjust the link to a proper ID -->
       </para>
+    </example>
 
-      <step>
-        <simpara>Wählen Sie
-          <menuchoice>
-            <guimenu>Start</guimenu><guisubmenu>Systemsteuerung</guisubmenu><guimenuitem>Aufgabenplanung</guimenuitem>
-          </menuchoice>
-          .
-        </simpara>
-      </step>
-
-      <step>
-        <simpara>Klicken Sie auf <guimenuitem>Aufgabe erstellen</guimenuitem>.
-        </simpara>
-      </step>
-
-      <step>
-        <simpara>Geben Sie die entsprechenden Angaben im Fenster <guilabel>Aufgabe erstellen</guilabel> ein.
-        </simpara>
-      </step>
-    </procedure>
-
-    <para>Weitere Informationen finden Sie im Wiki unter
-      <ulink url="&url-wiki-de;Aktienhandel#Automatisierter_Kursabruf_mittels_cron">Automatisierter
-      Kursabruf mittels cron</ulink> und auf
+    <para>Einige Benutzer haben im englischsprachigen Wiki Ergänzungen und ihre Erfahrungen auf der
       <ulink url="&url-wiki-OQ;#Updating_enabled_Quotes_from_outside_GnuCash">Online Quotes Page on
-      GnuCash Wiki</ulink>.
+      GnuCash Wiki</ulink> zusammengestellt.
     </para>
   </sect1>
 </chapter>
