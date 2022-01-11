@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
+<!DOCTYPE chapter SYSTEM "gnc-gui-C.dtd">
 <!-- (Do not remove this comment block.)
 Version: 1.0.0
 Last modified: August 08th 2021
@@ -14,13 +14,114 @@ Translators:
 -->
 <chapter id="finance-quote"
          xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Setting up the Online Quote update</title>
+  <title>Setting up the Quote update</title>
 
   <para>If you have more than a couple of commodities, you will tire of having to update their quotes
     constantly. &app; has the ability to automatically download the most recent quote for your
     commodities using the Internet. This is accomplished through the &app-perl; module &app-fq;,
     which must be installed in order to activate this feature.
   </para>
+
+  <itemizedlist>
+    <title>Prerequisites for an Online Quote update with &app-fq; are</title>
+
+    <listitem>
+      <para>the &app-perl; language interpreter and
+      </para>
+    </listitem>
+
+    <listitem>
+      <para>the &app-perl;-module &app-fq; with any dependencies.
+      </para>
+    </listitem>
+  </itemizedlist>
+
+  <note>
+    <para>If you get stuck while performing the steps described here, you can reach many helpful users on the
+      channels mentioned under <xref linkend="more_help" />.
+    </para>
+  </note>
+
+  <para>You can also leave out this step and manually update your stock quotes.
+  </para>
+
+  <sect1 id="finance-quote-perl-install">
+    <title>Installing &app-perl;</title>
+
+    <para>The installation of &app-perl; is essentially dependent on the operating system used. The effort for
+      installation is low and is described in this section.
+    </para>
+
+    <para>To check if &app-perl; is already installed on your system, call the command
+      <informalexample>
+<screen>perl -v</screen>
+      </informalexample>
+      in the terminal. If you are shown the version number of the &app-perl; interpreter, then
+      continue with <xref linkend="finance-quote-install" />.
+    </para>
+
+    <procedure>
+      <title>On &lin;</title>
+
+      <step>
+        <para>On most systems &app-perl; is probably already installed. If with the previous command does not show
+          a version, then the easiest way is to use your system&rsquo;s package manager for installation.
+        </para>
+      </step>
+
+      <step>
+        <para>When using the &app; &flatpak; package, &app-perl; and &app-fq; are already functionally installed.
+        </para>
+      </step>
+    </procedure>
+
+    <procedure>
+      <title>On &mac;</title>
+
+      <step>
+        <para>&app-perl; is normally already set up under &mac;.
+        </para>
+      </step>
+    </procedure>
+
+    <procedure>
+      <title>On &win;</title>
+
+      <step>
+        <para>Under &win; run the program
+          <menuchoice>
+            <guimenu>Start</guimenu> <guisubmenu>&appname;</guisubmenu> <guimenuitem>Install Online
+            Price Retrieval</guimenuitem>
+          </menuchoice>
+          to run. This will install <ulink url="&url-wp-en;Strawberry_Perl">Strawberry Perl</ulink>.
+          <footnote>
+            <para>&app; Version 2.2.6 and befor require <ulink url="&url-wp-en;ActivePerl">ActivePerl</ulink>. in
+              version 5.8.
+            </para>
+          </footnote>
+
+          <footnote>
+            <para>&app; Version 2.4 and befor require <ulink url="&url-wp-en;ActivePerl">ActivePerl</ulink> Version
+              5.16.3 and later.
+            </para>
+          </footnote>
+        </para>
+      </step>
+
+      <step>
+        <para>For execution you need <emphasis>Administrator privilegies</emphasis>, which are requested in the
+          dialog. The installation can take more then 15 minutes.
+        </para>
+      </step>
+
+      <step>
+        <para>If during the installation the error message <computeroutput>No such file or directory
+          </computeroutput> or <computeroutput>permission denied</computeroutput> are displayed,
+          then it may help to disable the antivirus software temporarily.
+        </para>
+      </step>
+    </procedure>
+  </sect1>
 
   <sect1 id="finance-quote-install">
     <title>Installing &app-fq;</title>
@@ -39,45 +140,12 @@ SYNOPSIS
       If no documentation is displayed, you will have to continue with this chapter.
     </para>
 
-    <itemizedlist>
-      <title>Prerequisites for an Online Quote update with &app-fq;</title>
-
-      <listitem>
-        <para>the &app-perl; language interpreter,
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>the &app-perl;-module &app-fq; and
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>any dependencies required by the &app-fq; module.
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <note>
-      <para>If you feel uncomfortable about performing any of these steps, please either email the &app;-user
-        mailing list (<email>gnucash-user@gnucash.org</email>) for help or come to the
-        <ulink url="&url-irc;">#&appname; IRC channel</ulink>.
-        You can also find more information in the &app; wiki at
-        <ulink url="&url-wiki-OQ;">Online Quotes</ulink>. You can also leave out this step and
-        manually update your stock quotes.
-      </para>
-    </note>
-
-    <para>The installation of &app-perl; is not the focus of this manual. A detailed description can be found
-      in the &app; Wiki at <ulink url="&url-wiki-OQ;#Perl">Perl</ulink>.
-    </para>
-
     <para>The process of installing &app-fq; depends on the system. For the different supported systems, you
       can follow the instructions below:
     </para>
 
     <procedure>
-      <title>Installing &app-fq; on &lin;</title>
+      <title>On &lin;</title>
 
       <step>
         <simpara>Close &app;.
@@ -135,7 +203,7 @@ SYNOPSIS
     </procedure>
 
     <procedure>
-      <title>Installing &app-fq; on &mac;</title>
+      <title>On &mac;</title>
 
       <step>
         <simpara>Close &app;.
@@ -162,7 +230,7 @@ SYNOPSIS
     </procedure>
 
     <procedure>
-      <title>Installing &app-fq; on &win;</title>
+      <title>On &win;</title>
 
       <step>
         <simpara>Close &app;.
@@ -172,7 +240,7 @@ SYNOPSIS
       <step>
         <simpara>Run
           <menuchoice>
-            <guimenu>Start</guimenu> <guisubmenu>&app;</guisubmenu> <guimenuitem>Install Online
+            <guimenu>Start</guimenu> <guisubmenu>&appname;</guisubmenu> <guimenuitem>Install Online
             Price Retrieval</guimenuitem>
           </menuchoice>
           . This is a small utility that installs &app-fq; for you.
@@ -182,7 +250,7 @@ SYNOPSIS
   </sect1>
 
   <sect1 id="finance-quote-scheduler">
-    <title>Configuring for Getting Online Quotes Periodically</title>
+    <title>Configuring for Getting Quotes Periodically</title>
 
     <para>The command <command>gnucash-cli --quotes get &user-datafile;</command>
       <footnote>
@@ -194,8 +262,8 @@ SYNOPSIS
         </simpara>
       </footnote>
       can be used to fetch the current quotes of your stocks and write them directly into your
-      &app;-data file without starting the GUI. Thus an automatic, regular updating of the
-      price database is possible.
+      &app;-data file without starting the GUI. Thus an automatic, regular updating of the price
+      database is possible.
       <warning>
         <para>Please note that the data file should not be open in another instance of &app; at the same time!
         </para>
@@ -282,7 +350,7 @@ gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
       <para>Adjust the time to the close of the stock exchange and consider <emphasis>fund quotes</emphasis>,
         that the net asset value (NAV) is determined well after the markets closed. The types have
         their description in <xref linkend="tool-price" />.
-<!-- FIXME: aadjust the link to a proper ID -->
+<!-- FIXME: adjust the link to a proper ID -->
       </para>
     </example>
 
