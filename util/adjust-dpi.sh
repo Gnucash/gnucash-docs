@@ -4,7 +4,7 @@ ls *.png > list
 
 for figure in $(cat list);
 do
-  # get width in pixels of the figure
+  # get width in pixels of the figure              1 inch = 2,54 centimeters
   width=$(identify -format "%w" "$figure")
   if [ "$width" -lt 496 ]; then
     # width is less than 90x14cm/2,54
@@ -22,19 +22,20 @@ do
     fi
   fi
   # convert dpi from pixelsperinch to pixelspercentimeter
-  #  Note: bc truncates to scale decimals so use awk to round to 1 decimals
-  dpi_cm=$(echo "scale=8; $dpi/2.54" | bc | awk '{ printf("%.1f",$1); }')
+  #  Note: bc truncates to scale decimals so use awk to round to 2 decimals
+  dpi_cm=$(echo "scale=8; $dpi/2.54" | bc | awk '{ printf("%.2f",$1); }')
   # get the existing dpi from figure as XX PixelsPerCentimeter
   existing_dpi=$(identify -format "%x" "$figure")
   # some vers of identify suffix the returned dpi with " PixelsPerCentimeter"
   #  and/or do not round the return value of identify -format "%x"
-  existing_dpi=$( echo "$existing_dpi" | awk '{ printf("%.1f",$1); }')
+  existing_dpi=$( echo "$existing_dpi" | awk '{ printf("%.2f",$1); }')
   # set the future dpi figure to XX.XX (PixelsPerCentimeter)
   future_dpi="$dpi_cm"
-  # apply new dpi only if it's changed from the existing
-  if [ "$existing_dpi" != "$future_dpi" ]; then
+  # apply new dpi only if it's changed from the existing by more than 0.02
+  abs_diffx100=$( echo "scale=4; ($existing_dpi - $future_dpi) * 100" | bc | tr -d - | awk '{ printf("%.0f",$1); }')
+  if [ "$abs_diffx100" -gt 2 ]; then	# really .02
     convert -units PixelsPerInch -density "$dpi" "$figure" "$figure"
-    echo "File $figure converted from $existing_dpi to $dpi dpi"
+    echo "File $figure PixelsPerCentimeter converted from $existing_dpi to $future_dpi (dpi=$dpi)"
   fi
 done
 rm list
