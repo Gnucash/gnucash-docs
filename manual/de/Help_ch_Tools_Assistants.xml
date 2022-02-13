@@ -5190,121 +5190,491 @@
   </sect1>
 
   <sect1 id="tool-security-edit">
-    <title>Security Editor</title>
+    <title>Wertpapier-Editor</title>
 
-    <para>The Security Editor is used to create and edit commodities that are used by mutual fund and stock
-      type accounts. It also shows the details of National Currencies that are used by &app;.
+    <abstract>
+      <para>Der Wertpapier-Editor wird zum Anlegen und Bearbeiten von allen Handelsgütern genutzt, die keine
+        ISO-Währungen sind. Darunter fallen z.B.:
+        <itemizedlist>
+          <listitem>
+            <para>Aktien und andere Wertpapiere,
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Inventar und ähnliches, 
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Stundensätze für Dienstleistungen oder auch den Preis für einen Liter Diesel. 
+            </para>
+          </listitem>
+        </itemizedlist>
+        Er zeigt auch die Definitionen der Währungen, die in &app; verfügbar sind.
+      </para>
+    </abstract>  
+      
+    <para>  
+      Aufgerufen wird der <guilabel>Wertpapier Editor</guilabel> mit dem
+      gleichnamigen Menüpunkt &mc.to.sec;.
     </para>
 
-    <para>To show the details for National Currencies click the <guilabel>Show National Currencies</guilabel>
-      check-box at the bottom of the screen.
+    <figure pgwide="1">
+      <title>Der Wertpapier-Editor</title><screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/Tools_SecurityEditor.png" 
+                         srccredit="Christian Wehling"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>Der Editor enthält einen großen tabellarischem Bereich, in dem für jede einzelne Währung oder
+      Wertpapier die verwendeten Details aufgelistet werden. Sie können die Anzeige mit weiteren
+      Spalten erweitern, indem Sie ganz rechts in der Überschriftenzeile auf das kleine Dreieck
+      klicken und die gewünschte Information aus der Liste auswählen.
     </para>
 
-    <para>Each entry in the editor shows the details used by the security/currency:
+    <para>Die Bedeutung der einzelnen Spalten wird im <xref linkend="tool-commodity" /> beschrieben,
+      wohingegen zwei zusätzliche Spalten von &app; an Hand Ihrer Eingaben automatisch ausgefüllt
+      werden.
     </para>
 
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Type:</emphasis> Categories for organizing securities. &app; has the following
-          built in:
-          <itemizedlist>
-            <listitem>
-              <para><guilabel>CURRENCY</guilabel> or <guilabel>ISO4317</guilabel>: These are used for national
-                currencies and are not editable with the <guilabel>Security Editor</guilabel>.
+    <glosslist>
+      <glossentry id="tool-ge-PrintName">
+        <glossterm>Gedruckter Name</glossterm>
+        <glossdef>
+          <para>Der <guilabel>Gedruckte Name</guilabel> ist eine Kombination aus dem <guilabel>Symbol</guilabel> und
+            dem <guilabel>Namen</guilabel>.
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry id="tool-ge-UniqueName">
+        <glossterm>Eindeutiger Name</glossterm>
+        <glossdef>
+          <para>Der <guilabel>Eindeutige Name</guilabel> setzt sich aus dem <guilabel>Namensraum</guilabel> (Typ)
+            und dem <guilabel>Symbol</guilabel> zusammen.
+          </para>
+        </glossdef>
+      </glossentry>
+    </glosslist>
+
+    <para>Im unteren Bereich des Wertpapier-Editors befinden sich Steuerelemente, deren Funktionsweise
+      nachfolgend beschrieben ist:
+    </para>
+
+    <glosslist>
+      <glossentry>
+        <glossterm>Nationale Währungen anzeigen</glossterm>
+
+        <glossdef>
+          <para>Mit Aktivieren dieses Kontrollkästchens werden die Währungseinträge zu Ihrer Information
+            eingeblendet.
+            <note>
+              <para>Die nationalen Währungen sind gemäß ISO 4217 bezeichnet, und können nur eingeschränkt
+                bearbeitet werden.
+              </para>          
+            </note>
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Hinzufügen</glossterm>
+
+        <glossdef>
+          <para>Öffnet den Dialog <guilabel>Neues Wertpapier</guilabel> in dem Sie ein neues Wertpapier (Aktie oder
+            Investmentfonds) anlegen können.
+            <note>
+              <para>Eine neue Währung kann nicht hinzugefügt werden, da diese fest in &app; eingetragen sind.
               </para>
-            </listitem>
+            </note>
+          </para>
+        </glossdef>
+      </glossentry>
 
-            <listitem>
-              <para><guilabel>FUND</guilabel>: Ordinarily used for open-ended mutual funds, i.e., those that one
-                purchases from and sells to only the issuing company and that are priced daily at
-                their net asset value.
+      <glossentry>
+        <glossterm>Entfernen</glossterm>
+
+        <glossdef>
+          <para>Hiermit löschen Sie das markierte Wertpapier aus der &app;-Datendatei.
+            <note>
+              <para>Wenn schon Kurse für das Wertpapier im <xref linkend="tool-price" /> enthalten sind oder das
+                Wertpapier in einen Konto verwendet wird, dann werden Sie mit einem Warnhinweis
+                darauf aufmerksam gemacht und müssen diese Einträge händisch entfernen.
               </para>
-            </listitem>
+            </note>
 
-            <listitem>
-              <para><guilabel>AMEX</guilabel>, <guilabel>ASX</guilabel>, <guilabel>EUREX</guilabel>,
-                <guilabel>NASDAQ</guilabel>, and <guilabel>NYSE</guilabel>: These represent a few of
-                the exchanges on which stocks, closed-end mutual funds, and exchange-traded funds
-                are traded.
+            <note>
+              <para>Eine Währung kann aus der Auflistung nicht gelöscht werden.
               </para>
-            </listitem>
+            </note>
+          </para>
+        </glossdef>
+      </glossentry>
 
-            <listitem>
-              <para><guilabel>Template</guilabel>: This is a reserved word. It will not normally appear in the
-                <guilabel>Security Editor</guilabel> unless you type it in, and if you do it will
-                cause problems. Don&apos;t use it.
-              </para>
-            </listitem>
-          </itemizedlist>
-        </para>
+      <glossentry>
+        <glossterm>Bearbeiten</glossterm>
 
-        <para>If your investment doesn&apos;t fit into one of these categories, for example if you trade stocks on
-          the DAX or LSE, you can easily create your own type simply by typing it into the field.
-          The type of security has no meaning to Gnucash (except <guilabel>Template</guilabel>,
-          don&apos;t use that!), it&apos;s there only to make it easier for you to find the security
-          from the selection lists.
-        </para>
-      </listitem>
+        <glossdef>
+          <para>Möchten Sie ein Wertpapier oder eine Währung bearbeiten, markieren Sie es in der Liste, und die
+            Daten werden in dem Dialog <guilabel>Wertpapier bearbeiten</guilabel> bzw.
+            <guilabel>Währung bearbeiten</guilabel> zur Änderungen angeboten.
+          </para>
+        </glossdef>
+      </glossentry>
 
-      <listitem>
-        <para><emphasis role="bold">Symbol:</emphasis> Indicates the symbol or abbreviation for the commodity.
-          This is usually the ticker symbol (for stocks) or other unique abbreviation for the
-          commodity. If the commodity is traded on any public exchange, it is important to use the
-          same identifier used on that exchange. For national currencies the symbol is the ISO-4217
-          currency code.
-        </para>
-      </listitem>
+      <glossentry>
+        <glossterm>Schließen</glossterm>
 
-      <listitem>
-        <para><emphasis role="bold">Name:</emphasis> The full name of the commodity is a recognizable name such as
-          <emphasis>US Dollars</emphasis> or <emphasis>IBM Common Stock</emphasis>.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">Code:</emphasis> This is any numeric or alphanumeric code that is used to
-          identify the commodity. The <acronym>ISIN</acronym> code is an international unique identifying numeric
-          string that is associated with every stock, bond or mutual fund, and most kinds of traded options,
-          futures and commodities. There are also regional valid codes available like <acronym>CUSIP</acronym> in
-          the North America, <acronym>WKN</acronym> in DE, … This code is not required.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">Fraction:</emphasis> This is the smallest traded unit of the commodity,
-          expressed as a fraction of a single nominal unit. This unit is used by &app; accounts as
-          the default fraction for trades in the commodity.
-        </para>
-      </listitem>
-    </itemizedlist>
+        <glossdef>
+          <para>Beendet den Wertpapier-Editor.
+          </para>
+        </glossdef>
+      </glossentry>
+    </glosslist>
 
     <sect2 id="tool-commodity">
-      <title>Adding or Editing a Commodity</title>
+      <title>Wertpapier anlegen oder bearbeiten</title>
 
-      <para>To add a new commodity (stock, or mutual fund), click on <guilabel>Add</guilabel>, and enter the
-        details of the commodity into the <emphasis role="bold">New Security</emphasis> dialog box.
-        To edit an existing commodity, select the commodity from the Commodities list, click the
-        <guibutton>Edit</guibutton> button, and edit the <emphasis role="bold">Edit
-        Security</emphasis> dialog box. To remove a commodity, select the commodity and click the
-        <guibutton>Remove</guibutton> button.
+      <para>Der Wertpapier-Editor stellt ein weiteres Dialogfenster zu Verfügung in dem Sie Wertpapiere neu
+        anlegen oder auch bearbeiten können. Mit dem selben Dialog können Sie ebenfalls Währungen
+        bearbeiten. Nachfolgend wird Ihnen die Möglichkeiten beschrieben, die der Editor Ihnen
+        bietet.
       </para>
 
-      <para>The fields in the New/Edit Security screens are the same as defined for the Security Editor
-        <xref linkend="tool-security-edit"></xref>. Below these fields are the options for Online
-        Quotes.
-      </para>
+      <table id="Tools-SecurityEditor-Dialog">
+        <title>Wertpapier/ Währung anlegen oder bearbeiten</title>
+
+        <tgroup align="left" cols="2">
+          <colspec colwidth="0.5*"/>
+
+          <colspec colwidth="0.5*"/>
+
+          <tbody>
+            <row valign="top">
+              <entry valign="bottom">
+                <para><figure>
+                    <title>Wertpapier anlegen oder bearbeiten</title><screenshot>
+                      <mediaobject>
+                        <imageobject>
+                          <imagedata fileref="figures/Tools_SecurityEditor_add.png" 
+                         srccredit="Christian Wehling" width="100%"></imagedata>
+                        </imageobject>
+                      </mediaobject>
+                    </screenshot>
+                  </figure>
+                </para>
+              </entry>
+
+              <entry valign="bottom">
+                <para><figure>
+                    <title>Währung bearbeiten</title><screenshot>
+                      <mediaobject>
+                        <imageobject>
+                          <imagedata fileref="figures/Tools_SecurityEditor_edit.png" 
+                         srccredit="Christian Wehling" width="100%"></imagedata>
+                        </imageobject>
+                      </mediaobject>
+                    </screenshot>
+                  </figure>
+                </para>
+              </entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <variablelist>
+        <varlistentry>
+          <term>Wertpapierinformationen</term>
+
+          <listitem>
+            <note>
+              <para>Bei den fest vorgegeben Währungen können Sie <emphasis>nur</emphasis> das
+                <guilabel>Anzeigesymbol</guilabel> und die <guilabel>Börsenkursquelle</guilabel> anpassen.
+              </para>
+            </note>
+
+            <glosslist>
+              <glossentry id="tool-ge-FullName">
+                <glossterm>Voller Name</glossterm>
+                <glossdef>
+                  <para>Der vollständige Name des Wertpapiers sollte ein für Sie verständlicher Name, wie z.B.
+                    <emphasis>US-Dollars</emphasis> oder <emphasis>Amazon Stammaktien</emphasis>,
+                    sein.
+                  </para>
+                </glossdef>
+              </glossentry>
+
+              <glossentry id="tool-ge-Symbol">
+                <glossterm>Symbol/Abkürzung</glossterm>
+                <glossdef>
+                  <para>Geben Sie das Symbol oder die Abkürzung für das Wertpapier an. Dies ist in der Regel das
+                    Tickersymbol (bei Aktien) oder eine andere eindeutige Abkürzung. Wenn das
+                    Wertpapier an einer Börse gehandelt wird, ist es wichtig, dieselbe Kennung zu
+                    verwenden, die auch an dieser Börse verwendet wird. Für nationale Währungen
+                    entspricht das Symbol dem <ulink url="&url-wp-de;ISO_4217">ISO 4217</ulink>
+                    Währungscode.
+                  </para>
+                </glossdef>
+              </glossentry>
+
+              <glossentry id="tool-ge-DisplaySymbol">
+                <glossterm>Anzeigesymbol</glossterm>
+                <glossdef>
+                  <para>Wenn Sie hier keinen Eintrag vornehmen, wird das zuvor eingetragene Symbol bzw. die Abkürzung als
+                    Anzeigesymbol genutzt. Bei einer Währung ist hier das Währungssymbol eingestellt.
+                  </para>
+                </glossdef>
+              </glossentry>
+
+              <glossentry id="tool-ge-Namespace">
+                <glossterm>Typ</glossterm>
+                <glossdef>
+                  <para>wird auch <guilabel>Namensraum</guilabel> genannt und kennzeichnet Kategorien zur Organisation Ihrer
+                    Handelsgüter. Die Angabe hat für &app; keine Bedeutung, sie dient nur dazu,
+                    Ihnen das Auffinden des Handelsgutes in den Auswahllisten zu erleichtern.
+                  </para>
+
+                  <para>Da &app; Ihnen hier keine Vorgaben macht, können Sie die Typen selber eintragen, denkbar wären z.B.
+                    diese Einträge:
+                  </para>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para>Handelsplatz für Wertpapiere wie z.B. DAX, EUREX usw.
+                      </para>
+                    </listitem>
+                    
+                    <listitem>
+                      <para>Crypto-Währung
+                      </para>
+                    </listitem>
+                    
+                    <listitem>
+                      <para>Inventar
+                      </para>
+                    </listitem>
+
+                    <listitem>
+                      <para>Dienstleistungen, z.B. mit unterschiedlichen Stundensätzen
+                      </para>
+                    </listitem>
+
+                    <listitem>
+                      <para>Benzinpreise für einen <quote>Spritrechner</quote> 
+                      </para>
+                    </listitem>
+                  </itemizedlist>
+
+                  <para>
+                    <caution>
+                      <para>Da das Wort <emphasis>Template</emphasis> in &app; ein reserviertes Wort ist,
+                        darf es von Ihnen <emphasis>nicht</emphasis> verwendet werden!
+                      </para>
+                    </caution>
+                  </para>
+                </glossdef>
+              </glossentry>
+
+              <glossentry id="tool-ge-ISIN-CUSIP">
+                <glossterm>ISIN, WKN oder anderer Code</glossterm>
+                <glossdef>
+                  <para>Dies ist ein numerischer oder alphanumerischer Code, der verwendet wird, um das Wertpapier zu
+                    identifizieren. Der
+                    <ulink url="&url-wp-de;Internationale_Wertpapierkennnummer"><acronym>ISIN</acronym></ulink>-Code
+                    ist eine internationale eindeutige numerische Zeichenfolge, die mit jeder Aktie,
+                    Anleihe oder jedem Investmentfonds und den meisten Arten von gehandelten
+                    Optionen, Futures und Rohstoffen verbunden ist. In Deutschland ist die
+                    <ulink url="&url-wp-de;Wertpapierkennnummer"><acronym>WKN</acronym></ulink>
+                    gebräuchlich, es existieren auch weitere, regional gültige Codes wie z.B. die des
+                    <ulink url="&url-wp-de;Committee_on_Uniform_Security_Identification_Procedures">
+                    <acronym>CUSIP</acronym></ulink> in Nord Amerika. Die Angabe des Code ist nicht
+                    erforderlich, kann aber beispielsweise nützlich sein um sich hierin gleich auch die ISIN zu merken,
+                    z.B. falls Sie später die Quelle für den Kursabruf wechseln.
+                  </para>
+                </glossdef>
+              </glossentry>
+
+              <glossentry id="tool-ge-Fraction">
+                <glossterm>Handelbare Stückelung</glossterm>
+                <glossdef>
+                  <para>Dies ist die kleinste gehandelte Einheit des Wertpapiers, ausgedrückt als Bruchteil einer einzelnen
+                    Nominaleinheit. Diese Einheit wird von &app;-Konten als Standardstückelung für
+                    den Handel mit dem Wertpapier verwendet.
+                  </para>
+                </glossdef>
+              </glossentry>
+            </glosslist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Börsenkursquelle</term>
+
+          <listitem>
+            <glosslist>
+              <glossentry id="tool-ge-GetOnlineQuotes">
+                <glossterm>Börsenkurse online abrufen</glossterm>
+                <glossdef>
+                  <para>Das Aktivieren dieses Kontrollkästchens ermöglicht, den Abruf der Kurse von Währung oder
+                    Wertpapier von einer Online-Datenquelle.
+                    <note>
+                      <para>Wenn Sie den Kursabruf für eine Währung wünschen, dann müssen Sie nur noch die richtige
+                        <guilabel>Zeitzone</guilabel> einstellen.
+                      </para>
+                    </note>
+
+                    <note>
+                      <para>Wenn die Schaltfläche nicht angeklickt werden kann, dann ist das Paket &app-fq; nicht
+                        oder nicht richtig installiert. Lesen Sie in diesem Fall die Installationanleitung unter
+                        <xref linkend="finance-quote" />.
+                      </para>
+                    </note>
+                  </para>
+                </glossdef>
+              </glossentry>
+
+              <glossentry id="tool-ge-TypeQuoteSource">
+                <glossterm>Art der Kursabruf-Quelle</glossterm>
+                <glossdef>
+                  <para>Verwenden Sie die Optionsfelder, um die Quelle für die Online-Kurse auszuwählen.
+                    <variablelist>
+                      <varlistentry>
+                        <term><guilabel>Einzel</guilabel></term>
+
+                        <listitem>
+                          <para>Diese Auswahl ruft die Daten nur aus der angegebenen Quelle ab.
+                          </para>
+                        </listitem>
+                      </varlistentry>
+
+                      <varlistentry>
+                        <term><guilabel>Mehrere Kursquellen</guilabel></term>
+
+                        <listitem>
+                          <para>Kursquellen wie <quote>Europa</quote> sollten verwendet werden, wenn eine Ausfallsicherung
+                            gegenüber mehreren Datenquellen erwünscht ist.
+                          </para>
+
+                          <caution>
+                            <para>Die Option <guilabel>Mehrere Kursquellen</guilabel> ist nur sinnvoll, wenn alle ausgewählten
+                              Quellen das gleiche Symbol für Ihre Wertpapier verwenden.
+                            </para>
+                          </caution>
+                        </listitem>
+                      </varlistentry>
+
+                      <varlistentry>
+                        <term><guilabel>unbekannt</guilabel></term>
+<!-- Maintainers: To add, modify, remove sources
+edit https://github.com/Gnucash/gnucash/blob/maint/libgnucash/engine/gnc-commodity.c
+and update the appendix. -->
+                        <listitem>
+                          <para>&app; hat hier kein Hintergrundwissen über die Quelle. Das kann zwei verschiedene Gründe haben.
+                            Sie versuchen eine Quelle zu verwenden, die
+                            <itemizedlist>
+                              <listitem>
+                                <para>es <emphasis>nicht (mehr)</emphasis> in &app-fq; gibt oder
+                                </para>
+                              </listitem>
+
+                              <listitem>
+                                <para>neu in &app-fq; ist, aber <emphasis>noch nicht</emphasis> in &app; eingepflegt wurde.
+                                </para>
+                              </listitem>
+                            </itemizedlist>
+                          </para>
+                        </listitem>
+                      </varlistentry>
+                    </variablelist>
+                  </para>
+
+                  <para>Nachdem Sie die Art der Quelle für Kursangebote ausgewählt haben, wählen Sie eine Datenquelle aus
+                    dem Pulldown-Menü. Die zur Verfügung stehenden Datenquellen sind abhängig von
+                    der installierten Version von &app-fq; und werden Ihnen bei Verwendung des
+                    Befehls <command>gnc-fq-check</command> angezeigt. Details zu den derzeit
+                    unterstützten Datenquellen finden Sie unter <xref linkend="fq-sources"></xref>.
+                    <note>
+<!-- Is this note still valid? -->
+                      <para>Die Kursdatenquelle <quote>Yahoo as JSON</quote> liefert dabei auch die Kurse für die übrigen genannten
+                        Unternehmen (z.B. Fidelity Investments und T.Rowe Price).
+                      </para>
+                    </note>
+                  </para>
+
+                  <para>Beachten Sie allerdings, dass Sie bei Verwendung von <quote>Yahoo as JSON</quote> zusätzlich das
+                    Börsenplatzkürzel des Wertpapiers anfügen sollten, z.B. <quote>PA</quote>
+                    für Paris, <quote>BE</quote> für Berlin usw. Beispiel: 12150.PA (ein
+                    Peugeot-Papier am Pariser Markt). 
+                    <xref linkend="gnc-tbl-fq-yahoo-exchange-codes"></xref> enthält eine Liste von
+                    Suffixen für verschiedene Märkte auf der ganzen Welt.
+                    <tip>
+                      <para>Da einige Symbole eine spezielle Schreibweise erfordern, schauen Sie sich auch die Beispiele unter
+                        <ulink url="&url-wiki;Online_Quotes#Setting_up_online_quotes_in_GnuCash" /> an.
+                      </para>
+                    </tip>
+                  </para>
+
+                  <para>Pseudo-Symbole für den amerikanischen Lehrer-Pensionsfond TIAA-CREF-Fonds sind in der Tabelle
+                    <xref linkend="PsSymbs-TIAA-CREF"></xref> aufgeführt.
+                  </para>
+                </glossdef>
+              </glossentry>
+
+              <glossentry id="tool-ge-TimeZone">
+                <glossterm>Zeitzone dieser Kurse</glossterm>
+                <glossdef>
+                  <para>Wählen Sie die Zeitzone für die Quelle der von Ihnen empfangenen Online-Börsenkurse.
+                    Beispielsweise verwendet Yahoo gewöhnlich die US-Eastern-Zeitzone, wählen Sie
+                    also <quote>America/New York</quote>, wenn Sie diese Börsenkursquelle
+                    verwenden.
+                  </para>
+                </glossdef>
+              </glossentry>
+            </glosslist>
+
+            <tip>
+              <para>Denken Sie daran, dass die <quote>Kurse</quote> von Investmentfonds in Wirklichkeit
+                <quote>Nettoinventarwerte</quote><footnote><para>auch Nettovermögenswert, engl. Net Asset
+                Value (NAV), siehe <ulink url="&url-wp-de;NAV" /></para></footnote>  sind, und erst mehrere
+                Stunden nach Börsenschluss verfügbar sind. Wenn die <quote>Kurse</quote> aktualisiert
+                werden, bevor die Nettoinventarwerte des aktuellen Tages durch die Fopnfsgesellschaft
+                ermittelt wurden, werden die Werte vom vorherigen Handelstag abgerufen.
+              </para>
+
+              <para>Wenn sie den Zeitpunkt der Wertermittlung genau wissen wollen, informieren sie sich
+                bei der ausgebenden Fonds-Gesellschaft.
+              </para>
+            </tip>
+
+            <note>
+              <para>Die Kursdatenquelle <quote>Yahoo as JSON</quote> gibt den Kurs normalerweise zeitverzögert
+                zur Original-Datenquelle an. Wie groß die zeitliche Abweichung ist, können Sie in der Tabelle
+                <xref linkend="gnc-tbl-fq-yahoo-exchange-codes" /> nachlesen.
+              </para>
+            </note>
+          </listitem>
+        </varlistentry>
+      </variablelist>
     </sect2>
 
     <sect2 id="invest-stockprice-online3">
-      <title>Configuring Securities/Currencies for On-Line Retrieval of Prices</title>
-
-      <para>To support on-line quotations for a particular stock or mutual fund account, you must first enable
-        on-line price quoting and select a price source in the Security Editor. Online currency
-        quotes require only that the check-box for Online quotes and the timezone be selected, and
-        that the <quote>Get Quotes</quote> box be checked in the Security Editor.
+      <title>Konfigurieren von Wertpapieren/Währungen für den Online-Abruf von Kursen</title>
+<!-- FIXME remove this chapter -->
+<!-- 
+      <para>Um Online-Kurse für eine bestimmte Aktie oder ein Investmentfonds-Konto zu nutzen, müssen Sie
+        zunächst <guilabel>Börsenkurse online abrufen</guilabel> aktivieren und eine Kursquelle im
+        Wertpapier-Editor auswählen. Für die Online-Aktualisierung von Währungskursen müssen nur
+        die Zeitzone ausgewählt werden und das Kästchen <guilabel>Börsenkurse online
+        abrufen</guilabel> im Wertpapier-Editor aktiviert sein.
       </para>
-
-      <para>Detailed instructions are in the section on Creating New Accounts.
+ -->
+      <para>Detaillierte Anweisungen finden Sie im Abschnitt "Neue Konten erstellen":
         <xref linkend="accts-online-quotes"></xref>
       </para>
     </sect2>
