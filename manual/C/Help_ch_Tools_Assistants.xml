@@ -64,14 +64,28 @@
       </para>
 
       <para>
-        Exactly which transactions are searched depends on where you invoke the tool from. If you start from
-        the main accounts hierarchy page, all transactions will be searched. If you start from an
-        individual account register, only transactions in that account will be searched. And if you
-        filter the transactions in a register using
-        <menuchoice>
-          <guimenuitem>View </guimenuitem><guimenuitem> Filter By... </guimenuitem>
-        </menuchoice>
-        , then only transactions in that account and shown by the filter will be searched.
+        Search results differ depending on the tab from which you open
+        it. Aside from the transaction fields Description, Number,
+        Notes, and Date Posted, all of the searchable fields are part
+        of individual splits, and splits are associated with a single
+        account. When you open the <guilabel>Find
+        Transactions</guilabel> dialog from an account register tab
+        only the splits associated with that register will be
+        searched. There is one exception, the <guilabel>All
+        Accounts</guilabel> item, see the footnote about it in table
+        <xref linkend="tool-find-bttns"/> below. For the transactions
+        fields only transactions linked to a split in that register
+        are inspecected and for the rest only the split attached to
+        that account is, with one exception, <guilabel>All
+        Accounts</guilabel>. If you filter the transactions in a
+        register using <menuchoice> <guimenuitem>View
+        </guimenuitem><guimenuitem> Filter By... </guimenuitem>
+        </menuchoice> , then only transactions in that account and
+        shown by the filter will be searched. If you start from the
+        Accounts page or a <link linkend="general-journal">General
+        Journal</link> register then all splits in all applicable
+        transactions (in the latter case those included in the
+        register) are inspected.
       </para>
 
       <note>
@@ -1161,10 +1175,21 @@
               <entry morerows="1" valign="middle">
                 <para>Account
                   <footnote>
-                    <para>The <guilabel>Account</guilabel> option performs a search where the accounts selected in the
-                      <guilabel>Choose Accounts</guilabel> dialog will both be searched individually
-                      for results. This means that a match in any of the selected accounts will
-                      either be displayed (matches any account) or discarded (matches no account).
+                    <para>When the <guilabel>Find
+                    Transactions</guilabel> dialog is started from the
+                    <guilabel>Accounts</guilabel> tab or a
+                    <guilabel>General Journal</guilabel> register the
+                    <guilabel>Account</guilabel> option performs a
+                    search where the accounts selected in the
+                    <guilabel>Choose Accounts</guilabel> dialog will
+                    both be searched individually for results. This
+                    means that a match in any of the selected accounts
+                    will either be displayed (matches any account) or
+                    discarded (matches no account). If the
+                    <guilabel>FindTransactions</guilabel> dialog is
+                    started in a regular account register and the
+                    current account is selected return all of the
+                    transactions or if it is not, no transactions.
                     </para>
                   </footnote>
                 </para>
@@ -1213,9 +1238,25 @@
               <entry>
                 <para>All Accounts
                   <footnote>
-                    <para>The <guilabel>All Accounts</guilabel> option performs a search where accounts selected in the
-                      <guilabel>Choose Accounts</guilabel> dialog will only return results that
-                      match in both accounts.
+                    <para>The <guilabel>All Accounts</guilabel> option
+                    performs a search where accounts selected in the
+                    <guilabel>Choose Accounts</guilabel> dialog will
+                    return transactions containing at least one split
+                    in every one of the accounts chosen. When run from
+                    a regular account register this is the only
+                    criterion that will inspect splits from other
+                    accounts so if you start the <guilabel>Find
+                    Transactions</guilabel> dialog from your
+                    Assets:Current Assets:Checking register and want
+                    to find all of the transactions in that account
+                    with a split in Expenses:Groceries, this is the
+                    criterion to use. Keep in mind, though, that it's
+                    an "and" search: If you also include Expenses:Misc
+                    it will find <emphasis role="italic">only</emphasis>
+                    those transactions with a split in each of the
+                    two, <emphasis role="italic">not</emphasis>
+                    transactions with a single split in either of
+                    them.
                     </para>
                   </footnote>
                 </para>
