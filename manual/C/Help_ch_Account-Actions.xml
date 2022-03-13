@@ -327,7 +327,7 @@
             <entry namest="c3">
               <para>Equity Accounts represents your net economic value. This type of account is only posted at two
                 times: When you start your book, the opening balances are offset here. (see
-                <xref linkend="open-balance" />). And at the end of an posting period, &app; uses
+                <xref linkend="acct-open-balance" />). And at the end of an posting period, &app; uses
                 this account to make the <xref linkend="tool-close-book" /> to record. For a
                 household, it is recommended to create one account/tree per resident.
               </para>
@@ -531,7 +531,7 @@
         it is recommended to use and sort by alphanumeric account numbers. When a report is
         generated, the sort order is determined by the numbering. It&rsquo;s customary to have the
         leaf accounts end in non-zero digits, while parent nodes have increasing numbers of zeros
-        and are marked as <xref linkend="accts-placeholder" />.
+        and are marked as <xref linkend="acct-placeholder" />.
       </para>
     </tip>
 
@@ -891,17 +891,34 @@
     </tip>
   </sect1>
 
-  <sect1 id="acct-create">
-    <title>Creating a New Account</title>
+  <sect1 id="acct-create-or-edit">
+    <title>Creating or editing an Account</title>
+
+    <para>Once you have created a chart of accounts for your accounts, over time you will find that you need
+      to expand it or adjust details. This section describes how to create a new account or edit the
+      properties for an existing account.
+    </para>
 
     <para>To create a new account go to<menuchoice>
-        <guimenu>Actions</guimenu><guimenuitem>New Account...</guimenuitem>
+        <guimenu><accel>A</accel>ctions</guimenu><guimenuitem>New Account...</guimenuitem>
       </menuchoice>or click the <guibutton>New</guibutton> <emphasis>Toolbar</emphasis> icon in the Account Tree
       Window. The <guilabel>New Account</guilabel> dialog will be opened.
     </para>
 
-    <para>The <guilabel>New Account</guilabel> properties dialog consists of two tabs, the
-      <guilabel>General</guilabel> tab and the <guilabel>Opening Balance</guilabel> tab.
+    <para>If you want to edit an existing account instead, select<menuchoice>
+        <shortcut>
+        <keycombo>
+          <keycap>Ctrl</keycap><keycap>E</keycap>
+        </keycombo>
+        </shortcut> <guimenu><accel>E</accel>dit</guimenu> <guimenuitem>Edit
+        <accel>A</accel>ccount</guimenuitem>
+      </menuchoice>or click the <guibutton>Edit</guibutton> button in the <emphasis>Toolbar</emphasis> in the
+      <quote>Account Tree</quote> window, which opens the <guilabel>Edit Account</guilabel>
+      dialogue.
+    </para>
+
+    <para>Since there is little difference between the possibilities of the two dialogues, they are described
+      together below.
     </para>
 
     <para>Creating a New Account involves planning in advance several details that are used in the
@@ -910,364 +927,406 @@
 
     <itemizedlist>
       <listitem>
-        <para>What type of account is needed.
+        <para>What type of account is needed?
         </para>
       </listitem>
 
       <listitem>
-        <para>Where it fits in the structure of the Chart of Accounts.
+        <para>Where it fits in the structure of the Chart of Accounts?
         </para>
       </listitem>
 
       <listitem>
-        <para>If there is an Opening Balance.
+        <para>If there is an Opening Balance or should this account contain opening balance transactions?
         </para>
       </listitem>
 
       <listitem>
-        <para>If there is a Commodity (security/currency) needed for the account.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>If online updating of the commodity price is needed.
+        <para>If there is a Commodity (security/currency) needed for the account. Then you need per currency
+          perhaps also an additional account for the transaction of the opening balance.
         </para>
       </listitem>
     </itemizedlist>
 
-    <para>These details are described below.
-    </para>
-
-    <sect2 id="gen-info">
+    <sect2 id="acct-gen-info">
       <title>General Information Tab</title>
 
       <para>The <guilabel>General</guilabel> tab is used to access the basic information about the account. It
         provides a way of connecting the account to stock information if it is one of the currency,
         mutual fund or stock account types. It can also be flagged as a
-        <link linkend="accts-placeholder">Placeholder</link> account. It displays if it is flagged
-        as a <guilabel>Tax Related</guilabel> account (which is set through the<menuchoice>
-          <guimenu>Edit</guimenu><guimenuitem>Tax Report Options</guimenuitem>
+        <link linkend="acct-placeholder">Placeholder</link> account. It displays if it is flagged as
+        a <guilabel>Tax Related</guilabel> account (which is set through the<menuchoice>
+          <guimenu><accel>E</accel>dit</guimenu><guimenuitem>Ta<accel>x</accel> Report
+          Options</guimenuitem>
         </menuchoice>dialog).
       </para>
+
+      <figure pgwide="1">
+        <title>Create or edit new account, General Information Tab</title><screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/AcctCreate_General.png" 
+                         srccredit="Christian Wehling"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
 
       <para>There are seven fields in the <guilabel>Identification</guilabel> section of this tab.
       </para>
 
-      <orderedlist>
-        <listitem>
-          <para><guilabel>Account Name:</guilabel> The name for the account such as First Bank Checking.
-          </para>
-        </listitem>
+      <variablelist>
+        <varlistentry>
+          <term><guilabel>Account Name</guilabel></term>
 
-        <listitem>
-          <para><guilabel>Account Code:</guilabel> The optional number code as described in
-            <xref linkend="accts-code" />.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Description:</guilabel> Optional description for the account.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Security/Currency:</guilabel>
-          </para>
-
-          <note>
-            <para>The <guilabel>Type</guilabel> field in the <guilabel>Select Security</guilabel> is determined by the
-              selection of <guilabel>Account Type</guilabel> panel in the <guilabel>New
-              Account</guilabel> screen.
+          <listitem>
+            <para>The name for the account such as First Bank Checking.
             </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Account Code</guilabel></term>
+
+          <listitem>
+            <para>The optional number code as described in <xref linkend="accts-code" />.
+            </para>
+
+            <note>
+              <para>Similar to the account number, the type, which is internally called namespace, offers a possibility
+                to sort one's investments objectively. investments objectively. Basically, it is
+                advisable to group them according to risk. For example, the first level can be the
+                type of the security and as optional 2nd level the nominal currency.<screen>:
+|
++--Bond
+|   |--CHF
+|   |--EUR
++--Share
+|   |--CAD
+|   |--CHF
+|   |--EUR
+|
+:</screen>
+              </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Description</guilabel></term>
+
+          <listitem>
+            <para>Optional description for the account.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Security/Currency</guilabel></term>
+
+          <listitem>
+            <para>This field displays the currency used in this account as information. For accounts other than
+              <emphasis>Stock</emphasis> or <emphasis>Mutual Fund</emphasis> this should be the
+              default currency, USD (US Dollar) or your local currency symbol. You have this in the
+              third step <emphasis>Select currency</emphasis> of the wizard.
+              <xref linkend="acct-hierarchy" />. If instead <guilabel>Stock</guilabel> or
+              <guilabel>Mutual Fund</guilabel> are managed in the account, then the assigned
+              security is displayed here.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Select…</term>
+
+          <listitem>
+            <para>If you click this button, another dialog opens where you can select a currency or a security for this account.
+              <note>
+        <para>For Accounts containing a <guilabel>Stock</guilabel> or <guilabel>Mutual funds</guilabel> 
+          with the opening dialog <guilabel>Select Security</guilabel> a new security can 
+          also be created. The options are described in detail in the Security Editor <xref linkend="tool-security-edit" />
+        </para>
           </note>
+            </para>
+          </listitem>
+        </varlistentry>
 
-          <itemizedlist>
-            <listitem>
-              <para>For accounts other than <emphasis>Stock</emphasis> or <emphasis>Mutual Fund</emphasis> this should
-                be the default currency, USD (US Dollar) or your local currency symbol. If this
-                account is for a foreign currency then use the <guibutton>Select...</guibutton>
-                button to choose a different currency from the currencies pull-down list.
+        <varlistentry>
+          <term><guilabel>Smallest Fraction</guilabel></term>
+
+          <listitem>
+            <para>The smallest division that can be traded/transferred. For shares, these are usually whole pieces,
+              but for currencies and funds often hundredths or thousandths.
+            </para>
+
+            <tip>
+              <para>Based on &app;s internal representation as rational numbers -to minimize rounding errors-. and
+                today's 64-bit processor architecture, a maximum of 9 decimal places is supported.
+                If your new cryptocurrency ZZZ now has 12 decimal places, it is recommended to
+                record it in thousandths for correct representation and denote it with mZZZ.
               </para>
-            </listitem>
+            </tip>
+          </listitem>
+        </varlistentry>
 
-            <listitem>
-              <para>For Accounts containing a <emphasis>Stock</emphasis> and <emphasis>Mutual Fund</emphasis>; first
-                select <guilabel>stock</guilabel> or <guilabel>mutual fund</guilabel> in the
-                <guilabel>Account Type</guilabel> panel, then the <guilabel>Parent
-                Account</guilabel>, then use the <guibutton>Select...</guibutton> button, to choose
-                the <guilabel>Type</guilabel> (usually the exchange the security is traded on) and
-                security from the <guilabel>Select Security</guilabel> window.
+        <varlistentry>
+          <term><guilabel>Account Color</guilabel></term>
+
+          <listitem>
+            <para>The color to assign to the account&rsquo;s register tab. Click on the color button to open the
+              <guilabel>Pick a Color</guilabel> screen. To reset the account color click the
+              <guibutton>Default</guibutton> button.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Notes</guilabel></term>
+
+          <listitem>
+            <para>This is a free form text box that can be used for any additional notes about the account.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Tax related</guilabel></term>
+
+          <listitem>
+            <para><guilabel>Tax related</guilabel> means that an account has been flagged to be included in the Tax
+              Schedule Report. This flag is only displayed on the <guilabel>Edit Account</guilabel>
+              dialog and is set in the <guilabel>Income Tax Information</guilabel> dialog (<menuchoice>
+                <guimenu><accel>E</accel>dit</guimenu><guimenuitem>Ta<accel>x</accel> Report
+                Options</guimenuitem>
+              </menuchoice>). For related reports see the examples like<menuchoice>
+                <guimenu><accel>R</accel>eports</guimenu><guimenuitem><accel>T</accel>ax Report
+                &amp; XML Export</guimenuitem>
+              </menuchoice>in (<xref linkend="report-regional"/>).
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Hidden</guilabel></term>
+
+          <listitem>
+            <para>This check box hides an account (and all sub-accounts) in the account overview. To reset this
+              option, you will first need to open the<menuchoice>
+                <guimenu><accel>V</accel>iew</guimenu><guimenuitem><accel>F</accel>ilter
+                By…</guimenuitem>
+              </menuchoice>dialog for the account tree and check the <guilabel>Show hidden accounts</guilabel> option. Doing so
+              will allow you to select the account and reopen this dialog.<note id="accts-hidden">
+                <para>Hidden accounts still appear in the pop-up account list in a register. To remove an account from
+                  this pop-up account list as well, check the <guilabel>Placeholder</guilabel> check
+                  box.
+                </para>
+              </note>
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="acct-placeholder" xreflabel="Placeholder">
+          <term><guilabel>Placeholder</guilabel></term>
+
+          <listitem>
+            <para>This setting sets the status for an account to <quote>write-protected</quote> for an account and
+              prevents business transactions from being added to this account. On the one hand, the
+              account can be used to group further subordinate accounts and on the other hand
+              accounts and on the other hand to prevent accidental changes to a
+              <quote>suspended</quote> account. Usually the account should then have a balance of 0.<tip>
+                <para>If an account contains further subaccounts, then it is recommended to mark this as a
+                  <guilabel>Placeholder</guilabel>. This has the advantage that when the account
+                  selection list when entering transactions, and the list becomes significantly
+                  shorter.
+                </para>
+              </tip><note>
+                <para>If you declare an account as <guilabel>Placeholder</guilabel>, this account will also be hidden in
+                  the Popup account list of a tab. Subaccounts of the placeholder account, however
+                  will still be displayed in the popup window.
+                </para>
+              </note>
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Auto interest transfer</guilabel></term>
+
+          <listitem>
+            <para>By selecting the <guilabel>Auto interest transfer</guilabel> check box, it is specified, that before
+              balancing an account with credit or debit interest, the system will ask if a transfer
+              is created for the interest payment. Currently, this is only possible for accounts of
+              type <emphasis>Asset</emphasis>, <emphasis>Bank</emphasis>, <emphasis>Mutual
+              fond</emphasis>, <emphasis>Accounts Receivables</emphasis>,
+              <emphasis>Liability</emphasis>, <emphasis>Accounts Payables</emphasis> and
+              <emphasis>Credit Card</emphasis>.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Opening balance</guilabel></term>
+
+          <listitem>
+            <para>If this account should contain the opening balance entries, then the check box <guilabel>Opening
+              balance</guilabel> must be selected. Only one account per security/currency can
+              contain the opening balance transactions. Only accounts of the type
+              <emphasis>Equity</emphasis> can record the transactions of the opening balance.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Account Types</guilabel></term>
+
+          <listitem>
+            <para>Use an account type for your new account according to the descriptions in
+              <xref linkend="acct-types" />.
+            </para>
+
+            <tip>
+              <para>Setting up accounts for securities/currencies is a good time to set up income accounts to tracking
+                dividends, capital gains from long and short term investments, and expense accounts
+                to record commissions and losses (if you record losses as expenses).
               </para>
+            </tip>
+          </listitem>
+        </varlistentry>
 
-              <para>If the required security/fund is not on the list, and you have the correct <guilabel>Type</guilabel>
-                you will need to create the security/fund. To create a commodity for mutual fund and
-                stock accounts select the <guibutton>New...</guibutton> button in the
-                <guilabel>Select Security</guilabel> screen, to bring up the <guilabel>New
-                Security:</guilabel> screen. The options are described in detail in the Security
-                Editor <xref linkend="tool-security-edit"></xref> section. Fill in a
-                <guilabel>name</guilabel>, <guilabel>symbol</guilabel> and <guilabel>type</guilabel>
-                and <guibutton>Close</guibutton> to create the security. After the security is
-                created select the <guilabel>Type:</guilabel> (usually the exchange the security is
-                traded on) and the name in the <guilabel>Currency/security:</guilabel> drop down
-                list and <guibutton>Close</guibutton> the screen.
-              </para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
+        <varlistentry>
+          <term><guilabel>Parent Account</guilabel></term>
 
-        <listitem>
-          <para><guilabel>Smallest Fraction:</guilabel> The smallest fraction that will be tracked.
-          </para>
-        </listitem>
+          <listitem>
+            <para>In this pane you set the <emphasis>Parent Account</emphasis> for the new account.<note>
+                <para>The available choices in the <guilabel>Account Type</guilabel> pane depends on the selected account
+                  in the <guilabel>Parent Account</guilabel> pane. For example if the
+                  <guilabel>Parent Account</guilabel> is <emphasis>Assets</emphasis> you will see
+                  only <emphasis>Equity</emphasis> in the <guilabel>Account Type</guilabel> pane,
+                  see <xref linkend="acct-types" />). This is to help maintain a proper account
+                  structure for the Chart of Accounts.
+                </para>
+              </note>To create a new account tree select <guilabel>New top level account</guilabel>.
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </sect2>
 
-        <listitem>
-          <para><guilabel>Account Color:</guilabel> The color to assign to the account&rsquo;s register tab. Click
-            on the color button to open the <guilabel>Pick a Color</guilabel> screen. To reset the
-            account color click the <guibutton>Default</guibutton> button.
-          </para>
-        </listitem>
+    <sect2 id="acct-open-balance">
+      <title>Opening Balance tab</title>
 
-        <listitem>
-          <para><guilabel>Notes:</guilabel> This is a free form text box that can be used for any additional notes
-            about the account.
-          </para>
-        </listitem>
-      </orderedlist>
-
-      <para>Below the panes are 3 check-boxes: one to show if the account is <guilabel>Tax Related</guilabel>,
-        one to mark the account as a <guilabel>Placeholder</guilabel>, and one to mark an account
-        <guilabel>Hidden</guilabel>.
+      <para>The <guilabel>Opening Balance</guilabel> tab is visible only when creating a new account, and is
+        disabled for <guilabel>Stock</guilabel> and <guilabel>Mutual Fund</guilabel> accounts. It is
+        used to record the beginning balance for an account. This allows it to be used for two
+        different scenarios. If using &app; for the first time to record transactions, it can be
+        used as a beginning balance. If the accounts in use are closed at the end of a period and
+        new accounts are created, it is used to close and carry balances forward.
       </para>
 
-      <para>The <guilabel>Tax Related</guilabel> check-box means that an account has been flagged to be included
-        in the Tax Schedule Report. This flag is only displayed on the <guilabel>Edit
-        Account</guilabel> dialog and is set in the <guilabel>Income Tax Information</guilabel>
-        dialog (<menuchoice>
-          <guimenu>Edit</guimenu><guimenuitem>Tax Report Options</guimenuitem>
-        </menuchoice>). For related reports see the examples like <guilabel>Tax Schedule Report and TXF Export</guilabel>
-        in (<xref linkend="report-regional"/>).
-      </para>
-
-      <para>The <guilabel>Placeholder</guilabel> check-box sets an account to read-only status and prevents the
-        addition of transaction data to the account.
-      </para>
-
-      <note id="accts-placeholder">
-        <para>Setting an account to <guilabel>Placeholder</guilabel> will also hide that account in the pop-up
-          account list in a register. Sub-accounts to the placeholder account will still display in
-          the pop-up, however.
+      <note>
+        <para>If you want to <emphasis>edit</emphasis> the properties for an account that is in the last level of the
+          hierarchy and there are already transactions in the account, then the
+          tab <guilabel>Opening Balance</guilabel> <emphasis>not</emphasis> is displayed.
         </para>
       </note>
 
-      <para>The <guilabel>Hidden</guilabel> check box hides an account (and any sub-accounts) in the account
-        tree. To reset this option, you will first need to open the<menuchoice>
-          <guimenu>View</guimenu><guimenuitem>Filter By...</guimenuitem>
-        </menuchoice>dialog for the account tree and check the <guilabel>Show hidden accounts</guilabel> option. Doing so
-        will allow you to select the account and reopen this dialog.
-      </para>
-
-      <note id="accts-hidden">
-        <para>Hidden accounts still appear in the pop-up account list in a register. To remove an account from
-          this pop-up account list as well, check the <guilabel>Placeholder</guilabel> check box.
+      <note>
+        <para>The opening balance and the transfer account you enter here will be entered in the newly created account
+          as a <emphasis>normal</emphasis> transaction in the account book. This transaction
+          you can, within the legal framework, also correct and add forgotten ones.
         </para>
       </note>
 
-      <para>Below these checkboxes is a pane that contains a list of <guilabel>Account Types</guilabel>. Select
-        a type from the descriptions in <xref linkend="acct-types" />.
+      <figure pgwide="1">
+        <title>Create new account, Opening Balance Tab</title><screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/AcctCreate_OpenBal.png" 
+                         srccredit="Christian Wehling"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>If you are using your &app;-file continuously over a long period of time, you can use
+        the <xref linkend="tool-close-book" /> (<menuchoice>
+          <guimenu><accel>T</accel>ool</guimenu><guimenuitem><accel>C</accel>lose Book</guimenuitem>
+        </menuchoice>) automatically calculate the opening balance. Here, the closing balance of the previous
+        Period is the opening balance of the new period.
       </para>
 
-      <para>The next pane contains an account tree to choose a <guilabel>Parent Account</guilabel>. To create a
-        new account tree select <guilabel>New top level account</guilabel>.<note>
-          <para>The available choices in the <guilabel>Account Type</guilabel> pane depends on the selected account
-            in the <guilabel>Parent Account</guilabel> pane. For example if the <guilabel>Parent
-            Account</guilabel> is <emphasis>Assets</emphasis> you will see only
-            <emphasis>Equity</emphasis> in the <guilabel>Account Type</guilabel> pane. This is to
-            help maintain a proper account structure for the Chart of Accounts.
-          </para>
-        </note>
+      <para>In the latter case, opening balances must be created by hand. Please see
+        <ulink url="&url-docs-build-de;guide/invest-buy-stock1.html">&app; Tutorial and Concepts
+        Guide</ulink> for instructions if you need to create an opening balance in a
+        <guilabel>Stock</guilabel> or <guilabel>Mutual Fund</guilabel> account.
       </para>
+
+      <variablelist>
+        <title>Balance Information</title>
+
+        <varlistentry>
+          <term><guilabel>Balance</guilabel></term>
+
+          <listitem>
+            <para>The balance to start the account with.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Date</guilabel></term>
+
+          <listitem>
+            <para>The date the opening balance should be recorded.
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <title>Initial Balance Transfer</title>
+
+        <varlistentry>
+          <term><guilabel>Use equity Opening Balances account</guilabel></term>
+
+          <listitem>
+            <para>This transfers the opening balance for the account from a standard <emphasis>Equity</emphasis> account called 
+              <quote>Opening Balances</quote>.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Select Transfer Account</guilabel></term>
+
+          <listitem>
+            <para>If you would like to use a different <guilabel>Transfer Account</guilabel> for recording the
+              <quote>Opening Balance</quote>, you can use this option item. This enables the pane
+              below and you can select the account to use for opening balances from the list of
+              accounts.
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
     </sect2>
 
     <sect2 id="accts-online-quotes">
+<!-- FIXME: move this section to section "tool-security-editor" -->
       <title>Steps to enable Online Quotes updating</title>
 
       <orderedlist>
         <listitem>
-          <para>&app; uses an external tool to retrieve online courses. This tool is a Perl module called &app-fq;
-            and must be installed independently of &app; on your computer.
+          <para>&app; uses an external tool to retrieve online courses. This tool is a &app-perl; module called
+            &app-fq; and must be installed independently of &app; on your computer.
           </para>
 
           <tip>
-            <para>The installation of &app-fq; is described under <xref linkend="finance-quote-install" />.
+            <para>The installation of &app-fq; is described under <xref linkend="finance-quote" />.
             </para>
           </tip>
-        </listitem>
-
-        <listitem>
-          <para>Create the Account for the mutual fund or stock with it listed in the
-            <guilabel>Security/Currency</guilabel> field, as described above.
-          </para>
-
-          <tip>
-            <para>When creating these accounts it is a good time to create income accounts to track dividends, capital
-              gains (long and short) and expense account(s) for tracking commissions and losses (if
-              you track losses as expenses).
-            </para>
-          </tip>
-        </listitem>
-
-        <listitem>
-          <para>Create the mutual fund or stock with either the <guilabel>Security Editor</guilabel> for existing
-            stock/funds or the <guilabel>New Security/Currency</guilabel> dialog for a new
-            stock/fund.
-          </para>
-
-          <para>Select <guilabel>Get Online Quotes</guilabel>, <guilabel>Type of Quote Source</guilabel> and
-            <guilabel>Timezone.</guilabel>
-          </para>
-
-          <para>Online currency quotes require that the check-box for Online quotes and the timezone be selected in
-            the Security screen and the Security Editor check-box for "get quote" box is checked for
-            those currencies that are to be downloaded.
-          </para>
-
-          <itemizedlist>
-            <listitem>
-              <para><guilabel>Get Online Quotes</guilabel> This check-box is to enable this security/fund to have quotes
-                downloaded from an online source.
-              </para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>Type of Quote Source</guilabel> use the radio buttons to select the type of source for the
-                Online quotes. <guilabel>Multiple:</guilabel> quote sources like
-                <quote>Europe</quote> should be used if fail-over to multiple sites are desirable.
-                <guilabel>Single:</guilabel> selections will only return information from the
-                specified source.
-              </para>
-
-              <para>After selecting the type of source for price quotes, select a quote source from the pull-down menu.
-                For details on currently supported sources see <xref linkend="fq-sources"></xref>.
-              </para>
-
-              <note>
-                <para>Note that Yahoo will provide price quotes for many mutual funds including Fidelity, T.Rowe Price and
-                  Vanguard, and that the quoted prices at Yahoo should be identical to those that
-                  may be found at the source sites.
-                </para>
-              </note>
-
-              <para>If you are outside the US and use one of the different Yahoo sources or multiple sources containing
-                Yahoo, you should append the market code for the security such as PA for Paris, BE
-                for Berlin, etc. Example: 12150.PA (a Peugeot security in the Paris market).
-                <xref linkend="gnc-tbl-fq-yahoo-exchange-codes"></xref> below lists suffixes for
-                various markets around the world.
-              </para>
-
-              <para>Pseudo-symbols for TIAA-CREF funds are listed in table <xref linkend="PsSymbs-TIAA-CREF"></xref>.
-              </para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>Timezone for these quotes:</guilabel> Select the timezone for the source of the online
-                quotes you are receiving. For example, Yahoo normally quotes Eastern timezone, so
-                choose America/New York if you use that quote source.
-              </para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-
-        <listitem>
-          <para>Select a commodity to the Price Editor.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Select <guibutton>Get Quotes</guibutton> in the Price Editor.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Check the latest price for the selected security.
-          </para>
         </listitem>
       </orderedlist>
-
-      <para>Remember that Mutual Fund <quote>prices</quote> are really <quote>Net Asset Value</quote> and
-        require several hours after the exchange closes before being available. If NAVs are
-        downloaded before the current days NAVs are determined, yesterday&rsquo;s NAVs are
-        retrieved.
-      </para>
     </sect2>
-
-    <sect2 id="open-balance">
-      <title>Opening Balance tab</title>
-
-      <para>The <guilabel>Opening Balance</guilabel> tab is visible only when creating a new account, and is
-        disabled for <guilabel>Stock</guilabel> and <guilabel>Mutual Fund</guilabel> accounts. In
-        the latter case, opening balances must be created by hand. Please see Section 8.5.1 in the
-        <emphasis role="italic">Tutorial and Concepts Guide</emphasis> for instructions if you need
-        to create an opening balance in a <guilabel>Stock</guilabel> or <guilabel>Mutual
-        Fund</guilabel> account. It is used to record the beginning balance for an account. This
-        allows it to be used for two different scenarios. If using &app; for the first time to
-        record transactions, it can be used as a beginning balance. If the accounts in use are
-        closed at the end of a period and new accounts are created, it is used to close and carry
-        balances forward.
-      </para>
-
-      <para>There are three panes in this tab. The top pane contains the <guilabel>Balance
-        Information</guilabel>.
-      </para>
-
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Balance:</guilabel> The balance to start the account with.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Date:</guilabel> The date the opening balance should be recorded.
-          </para>
-        </listitem>
-      </itemizedlist>
-
-      <para>The next pane is the <guilabel>Transfer Type</guilabel> pane.
-      </para>
-
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Use Opening Balances Equity account:</guilabel> This transfers the opening balance for the
-            account from a standard Equity account called Opening Balances.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Select Transfer Account:</guilabel> This enables the pane below so a different account can
-            be used to transfer the opening balance.
-          </para>
-        </listitem>
-      </itemizedlist>
-
-      <para>The last pane is the <guilabel>Transfer Account</guilabel> pane. Select the account to use for
-        opening balances from the list of accounts in this pane.
-      </para>
-    </sect2>
-  </sect1>
-
-  <sect1 id="acct-edit">
-    <title>Editing an Account</title>
-
-    <para>The <guilabel>Edit Account</guilabel> dialog consists of just the <guilabel>General</guilabel> tab.
-      This tab has the same information that was described in <xref linkend="acct-create"></xref>.
-      To access the <guilabel>Edit Account</guilabel> dialog go to<menuchoice>
-        <shortcut>
-        <keycombo>
-          <keycap>Ctrl</keycap><keycap>E</keycap>
-        </keycombo>
-        </shortcut> <guimenu>Edit</guimenu><guimenuitem>Edit Account</guimenuitem>
-      </menuchoice>or click the <guibutton>Edit</guibutton> <emphasis>Toolbar</emphasis> icon in the Account Tree
-      Window.
-    </para>
   </sect1>
 
   <sect1 id="chart-renumber">
