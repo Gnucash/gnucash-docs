@@ -29,35 +29,45 @@
   </para>
 
   <sect1 id="acct-types">
-    <title>Types of &app; Accounts</title>
+    <title>Types of &appname; Accounts</title>
 
     <para>&app; supports a number of different account types. It is recommended to choose an appropriate
       account type based on the list of account types described below.
     </para>
 
-    <warning>
-      <para>The Accounts Payable and Accounts Receivable types are used internally by &app;&rsquo;s business
-        features. Transactions involving these accounts should not be added, changed or deleted in
-        any way other than by using<itemizedlist>
-          <listitem>
-            <para>post/unpost bill/invoice/voucher or
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>process payment
-            </para>
-          </listitem>
-        </itemizedlist>
+    <tip>
+      <para>When creating new accounts, the available options for the account type are limited, depending on the
+        account type of the parent (main) account.
       </para>
-    </warning>
+    </tip>
+
+    <para>Besides the basic account types described in the
+      <ulink url="&url-docs-build-C;guide/accts-types1.html">&app; tutorial and concepts</ulink>,
+      &app; also offers a few special account types. These are characterised in particular by
+      adapted proposal lists -interest or dividend payment- in the action field and adapted actions.
+      payment of dividends - in the action field and adjusted actions - e.g. there is no share
+      division.
+    </para>
 
     <table frame="topbot" id="TypeAccounts">
-      <title>Types of &app; Accounts.</title>
+      <title>Types of &appname; Accounts</title>
 
-      <tgroup cols="2">
+      <tgroup align="left" cols="4">
+        <colspec colname="c1"></colspec>
+
+        <colspec colname="c2"></colspec>
+
+        <colspec colname="c3"></colspec>
+
+        <colspec colname="c4"></colspec>
+
         <thead>
           <row>
+            <entry>
+              <para>Basic Accounting Types
+              </para>
+            </entry>
+
             <entry>
               <para>Account Type
               </para>
@@ -67,84 +77,215 @@
               <para>Description
               </para>
             </entry>
+
+            <entry>
+              <para>Parent account
+              </para>
+            </entry>
           </row>
         </thead>
 
-        <tbody>
-          <row>
-            <entry>
-              <para>Accounts Payable
+        <tbody valign="top">
+          <row rowsep="1">
+            <entry namest="c1" nameend="c2">
+              <para>Asset accounts
               </para>
             </entry>
 
-            <entry>
-              <para>Accounts Payable are used by businesses to record amounts that must be paid. Example: The business
-                has bought something, but the business has not paid the bill until later.
-              </para>
-            </entry>
-          </row>
-
-          <row>
-            <entry>
-              <para>Accounts Receivable
-              </para>
-            </entry>
-
-            <entry>
-              <para>Accounts Receivable records amounts for which money has not yet been received. Example: A business
-                has sold something and issued a bill, but the client has not payed until later.
+            <entry namest="c3" nameend="c4">
+              <para>The evaluation<menuchoice>
+                  <guimenu><accel>R</accel>eport</guimenu><guisubmenu><accel>A</accel>ssets &amp;
+                  Liabilities</guisubmenu><guimenuitem>Ba<accel>l</accel>ance Sheet</guimenuitem>
+                </menuchoice>gives you an overview on any <emphasis>reporting date</emphasis>.
               </para>
             </entry>
           </row>
 
-          <row>
-            <entry>
+          <row rowsep="1">
+            <entry namest="c1" morerows="8">
+              <para>Active
+              </para>
+            </entry>
+
+            <entry namest="c2" nameend="c3">
+              <para>Assets denotes the use of funds and is on the left-hand side of the balance sheet. At the next level
+                of the account structure, it is useful to distinguish between current and fixed
+                assets. This can help you to recognise liquidity bottlenecks early on.
+              </para>
+            </entry>
+
+            <entry namest="c4" morerows="12">
+              <para>All accounts except Equity, Expense and Income
+              </para>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry namest="c2">
               <para>Asset
               </para>
             </entry>
 
-            <entry>
+            <entry namest="c3">
               <para>Asset accounts are used for tracking things that are of value and can be used or sold to pay debts.
-                (Normally a placeholder account)
+              </para>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry namest="c2" nameend="c3">
+              <para>(Current assets, short-term)
               </para>
             </entry>
           </row>
 
           <row>
-            <entry>
-              <para>Bank
-              </para>
-            </entry>
-
-            <entry>
-              <para>The Bank account type denotes savings or checking accounts held at a bank or other financial
-                institution. Some of these accounts may bear interest. This is also the appropriate
-                account type for check (debit) cards, which directly withdraw payments from a
-                checking account.
-              </para>
-            </entry>
-          </row>
-
-          <row>
-            <entry>
+            <entry namest="c2">
               <para>Cash
               </para>
             </entry>
 
-            <entry>
+            <entry namest="c3">
               <para>The Cash account type is used to denote the cash that you store in your wallet, shoe box, piggyback,
-                or mattress.
+                or mattress. In the case of business use, this can also mean the cash register.
               </para>
             </entry>
           </row>
 
           <row>
-            <entry>
+            <entry namest="c2">
+              <para>Bank
+              </para>
+            </entry>
+
+            <entry namest="c3">
+              <para>The Bank account type denotes savings or checking accounts held at a bank or other financial
+                institution. Some of these accounts may bear interest. This is also the appropriate
+                account type for check (debit) cards, which directly withdraw payments from a
+                checking account.<footnote>
+                  <para>For some of these accounts, it is possible to send orders to the financial institution via online
+                    banking and to retrieve and import bookings. (see
+                    <xref linkend="trans-online" />)
+                  </para>
+                </footnote>
+              </para>
+            </entry>
+          </row>
+
+          <row>
+            <entry namest="c2" rowsep="1">
+              <para>Accounts Receivable<footnote id="fn-receivables-kat">
+                  <para><warning>
+                      <para>The Accounts Payable and Accounts Receivable types are used internally by &app;&rsquo;s business
+                        features. Transactions involving these accounts should not be added, changed
+                        or deleted in any way other than by using<itemizedlist spacing="compact">
+                          <listitem>
+                            <para>post/unpost bill/invoice/voucher or
+                            </para>
+                          </listitem>
+
+                          <listitem>
+                            <para>process payment
+                            </para>
+                          </listitem>
+                        </itemizedlist>
+                      </para>
+                    </warning><tip>
+                      <para>Create only one account per required currency. The different customers or suppliers are
+                        automatically by &app; keeps them apart.
+                      </para>
+                    </tip>
+                  </para>
+                </footnote>
+              </para>
+            </entry>
+
+            <entry namest="c3">
+              <para>This is typically a business use only account in which you place outstanding debts owed to you. It
+                is considered an asset because you should be able to count on these funds arriving.<footnote>
+                  <para>Previous versions of this help defined A/P and A/R the other way round.
+                  </para>
+                </footnote>
+              </para>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry namest="c2" nameend="c3">
+              <para>(Fixed assets; long-term)
+              </para>
+            </entry>
+          </row>
+
+          <row>
+            <entry namest="c2">
+              <para>Stock
+              </para>
+            </entry>
+
+            <entry namest="c3">
+              <para>A share of ownership in a corporation, which entitles its owner to all the risks and rewards that go
+                with it.<footnote>
+                  <para><ulink url="&url-wp-en;Share_(finance)"/>
+                  </para>
+                </footnote><footnote>
+                  <para><tip>
+                      <para>As long as cryptocurrencies are not supported by &app; as currencies, it is recommended that they be
+                        also be invested as shares.
+                      </para>
+                    </tip>
+                  </para>
+                </footnote>
+              </para>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry namest="c2">
+              <para>Mutual fund
+              </para>
+            </entry>
+
+            <entry namest="c3">
+              <para>A professionally managed portfolio of stocks and bonds or other investments divided up into shares.
+              </para>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry namest="c1" morerows="4">
+              <para>Liabilities
+              </para>
+            </entry>
+
+            <entry namest="c2" nameend="c3">
+              <para>The second balance sheet account is Liabilities, refers to what you owe, money you have borrowed and
+                are obligated to pay back some day. These represent the rights of your lenders to
+                obtain repayment from you.
+              </para>
+            </entry>
+          </row>
+
+          <row>
+            <entry namest="c2">
+              <para>Liability
+              </para>
+            </entry>
+
+            <entry namest="c3">
+              <para>Liability accounts are used for tracking debts or financial obligations. (Normally a placeholder
+                account)
+              </para>
+            </entry>
+          </row>
+
+          <row>
+            <entry namest="c2">
               <para>Credit Card
               </para>
             </entry>
 
-            <entry>
+            <entry namest="c3">
               <para>The Credit Card account type is used to denote credit card accounts, both for cards that allow
                 floating lines of credit (e.g. VISA, MasterCard, or Discover) and with cards that do
                 not permit continuing balances (e.g. American Express)
@@ -153,90 +294,98 @@
           </row>
 
           <row>
-            <entry>
-              <para>Currency
+            <entry namest="c2">
+              <para>Accounts Payable <footnoteref linkend="fn-receivables-kat" />
               </para>
             </entry>
 
-            <entry>
-              <para>Currency Accounts were used for trading currencies, but have been replaced by the Currency Transfer
-                pane on the Transfer Funds Window (<xref linkend="trans-win-enter"></xref>).
+            <entry namest="c3">
+              <para>Accounts Payable are used by businesses to record amounts that must be paid.<footnote>
+                  <para>Previous versions of this help defined A/P and A/R the other way round.
+                  </para>
+                </footnote>
               </para>
             </entry>
           </row>
 
-          <row>
-            <entry>
+          <row rowsep="1">
+            <entry namest="c2">
               <para>Equity
+                <footnote id="fn-equity-kat">
+                  <para><caution>
+                      <para><computeroutput>Equity</computeroutput> and its temporary variants.
+                        <computeroutput>Income</computeroutput> and
+                        <computeroutput>Expense</computeroutput> should always be kept in the local
+                        currency when official accounts are kept.
+                      </para>
+                    </caution>
+                  </para>
+                </footnote>
               </para>
             </entry>
 
-            <entry>
-              <para>Equity accounts are used to store the opening balances when you first start using &app; or start a
-                new accounting period.
+            <entry namest="c3">
+              <para>Equity Accounts represents your net economic value. This type of account is only posted at two
+                times: When you start your book, the opening balances are offset here. (see
+                <xref linkend="open-balance" />). And at the end of an posting period, &app; uses
+                this account to make the <xref linkend="tool-close-book" /> to record. For a
+                household, it is recommended to create one account/tree per resident.
+              </para>
+            </entry>
+
+            <entry namest="c4">
+              <para>Only Equity accounts
+              </para>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry namest="c1" nameend="c2">
+              <para>Profit &amp; Loss<footnote id="fn-quick-kat">
+                  <para>Often referred to as a <quote>Category</quote> in <application>Quicken</application> or
+                    <application>Lexware FinanzManager</application> and other programmes that are
+                    not based on double-entry bookkeeping.
+                  </para>
+                </footnote>
+              </para>
+            </entry>
+
+            <entry namest="c3" nameend="c4">
+              <para>If required, at the next account level you can insert the distinction between taxable/tax-free, or
+                tax deductible or not. The evaluation<menuchoice>
+                  <guimenu><accel>R</accel>eports</guimenu><guisubmenu><accel>I</accel>ncome &amp;
+                  Expense</guisubmenu><guimenuitem>P<accel>r</accel>ofit &amp; Loss</guimenuitem>
+                </menuchoice>gives you an overview for any <emphasis>period</emphasis> such as e.g. the business year.
               </para>
             </entry>
           </row>
 
           <row>
-            <entry>
-              <para>Expense
+            <entry namest="c1">
+              <para>Income <footnoteref linkend="fn-equity-kat" />
               </para>
             </entry>
 
-            <entry>
-              <para>Any expense such as food, clothing, taxes, etc. This type is called a category in Quicken.
-              </para>
-            </entry>
-          </row>
-
-          <row>
-            <entry>
-              <para>Income
+            <entry namest="c3">
+              <para>Any income received from sources such as salary, interest, dividends, etc.
+                <footnoteref linkend="fn-quick-kat" />
               </para>
             </entry>
 
-            <entry>
-              <para>Any income received from sources such as salary, interest, dividends, etc. This type is called a
-                category in Quicken.
+            <entry namest="c4" morerows="1">
+              <para>Only Expense or Income accounts
               </para>
             </entry>
           </row>
 
-          <row>
-            <entry>
-              <para>Liability
+          <row rowsep="1">
+            <entry namest="c1">
+              <para>Expense <footnoteref linkend="fn-equity-kat" />
               </para>
             </entry>
 
-            <entry>
-              <para>Liability accounts are used for tracking debts or financial obligations. (Normally a placeholder
-                account)
-              </para>
-            </entry>
-          </row>
-
-          <row>
-            <entry>
-              <para>Mutual Fund
-              </para>
-            </entry>
-
-            <entry>
-              <para>A professionally managed portfolio of stocks and bonds or other investments divided up into shares.
-              </para>
-            </entry>
-          </row>
-
-          <row>
-            <entry>
-              <para>Stock
-              </para>
-            </entry>
-
-            <entry>
-              <para>A share of ownership in a corporation, which entitles its owner to all the risks and rewards that go
-                with it.
+            <entry namest="c3">
+              <para>Any expense such as food, clothing, taxes, etc. <footnoteref linkend="fn-quick-kat" />
               </para>
             </entry>
           </row>
@@ -244,81 +393,118 @@
       </tgroup>
     </table>
 
-    <para>The <emphasis role="bold">New Account Hierarchy Setup</emphasis> assistant described in the first
-      section of this help is a convenient way of setting up a set of accounts to use as a framework
-      of account types.
+    <para>The wizard <xref linkend="chart-create" /> offers a convenient method to configure a usable basic
+      framework for configuring your account tree.
     </para>
 
-    <para>When new accounts are created the available choices of account types are grayed out according to
-      what type the parent account is. The following list contains the possible choices.
-    </para>
+    <note>
+      <para>In certain situations, &app; automatically creates some special other accounts. Below you will find
+        a short list of why these accounts are suddenly included in your account structure and how
+        to deal with them.
+      </para>
+    </note>
 
-    <itemizedlist>
-      <listitem>
-        <para>Accounts Payable: All accounts except Equity, Expense and Income can be child accounts.
-        </para>
-      </listitem>
+    <table frame="topbot">
+      <title>Types of &appname;&rsquo;s internal accounts</title>
 
-      <listitem>
-        <para>Accounts Receivable: All accounts except Equity, Expense and Income can be child accounts.
-        </para>
-      </listitem>
+      <tgroup align="left" cols="4">
+        <colspec colname="c1"></colspec>
 
-      <listitem>
-        <para>Asset: All accounts except Equity, Expense and Income can be child accounts.
-        </para>
-      </listitem>
+        <colspec colname="c2"></colspec>
 
-      <listitem>
-        <para>Bank: All accounts except Equity, Expense and Income can be child accounts.
-        </para>
-      </listitem>
+        <colspec colname="c3"></colspec>
 
-      <listitem>
-        <para>Cash: All accounts except Equity, Expense and Income can be child accounts.
-        </para>
-      </listitem>
+        <colspec colname="c4"></colspec>
 
-      <listitem>
-        <para>Credit Card: All accounts except Equity, Expense and Income can be child accounts.
-        </para>
-      </listitem>
+        <thead>
+          <row>
+            <entry>
+              <para>Status
+              </para>
+            </entry>
 
-      <listitem>
-        <para>Currency: All accounts except Equity, Expense and Income can be child accounts.
-        </para>
-      </listitem>
+            <entry>
+              <para>Account type/ Account name
+              </para>
+            </entry>
 
-      <listitem>
-        <para>Equity: Only Equity accounts can be child accounts.
-        </para>
-      </listitem>
+            <entry>
+              <para>Description
+              </para>
+            </entry>
 
-      <listitem>
-        <para>Expense: Only Expense or Income accounts can be child accounts.
-        </para>
-      </listitem>
+            <entry>
+              <para>Parent account
+              </para>
+            </entry>
+          </row>
+        </thead>
 
-      <listitem>
-        <para>Income: Only Expense or Income accounts can be child accounts.
-        </para>
-      </listitem>
+        <tbody>
+          <row rowsep="1">
+            <entry namest="c1" nameend="c2">
+              <para>internal accounts
+              </para>
+            </entry>
 
-      <listitem>
-        <para>Liability: All accounts except Equity, Expense and Income can be child accounts.
-        </para>
-      </listitem>
+            <entry namest="c3" nameend="c4">
+              <para>Internal accounts are not created by the user, but by &app; if required.
+              </para>
+            </entry>
+          </row>
 
-      <listitem>
-        <para>Mutual Fund: All accounts except Equity, Expense and Income can be child accounts.
-        </para>
-      </listitem>
+          <row rowsep="1">
+            <entry namest="c1">
+              <para>regular operation
+              </para>
+            </entry>
 
-      <listitem>
-        <para>Stock: All accounts except Equity, Expense and Income can be child accounts.
-        </para>
-      </listitem>
-    </itemizedlist>
+            <entry namest="c2">
+              <para>Trading
+              </para>
+            </entry>
+
+            <entry namest="c3">
+              <para>Multiple currency transactions have splits in “Trading” accounts to make the transaction balance
+                in each currency as well as in total value. As soon as you make the first purchase,
+                such as exchanging your home currency into that of the holiday destination, an
+                account is created for both currencies, if it does not already exist. The details
+                are described in <ulink url="&tit-sel-tut;"></ulink> and
+                <ulink url="&tit-sel-gnc;"></ulink>.
+              </para>
+            </entry>
+
+            <entry namest="c4">
+              <para>Trading accounts only
+              </para>
+            </entry>
+          </row>
+
+          <row rowsep="1">
+            <entry namest="c1">
+              <para>Error case
+              </para>
+            </entry>
+
+            <entry namest="c2">
+              <para>Orphan-<replaceable>XXX</replaceable>, Imbalance-<replaceable>XXX</replaceable>
+              </para>
+            </entry>
+
+            <entry namest="c3">
+              <para>You have entered at least one unbalanced transaction. To correct this, move the contained
+                transactions to the correct accounts. You can then delete the account.
+              </para>
+            </entry>
+
+            <entry namest="c4">
+              <para>Only assets and liabilities accounts
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
   </sect1>
 
   <sect1 id="chart-create">
