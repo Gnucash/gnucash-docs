@@ -2256,4 +2256,272 @@
       </para>
     </sect2>
   </sect1>
+
+  <sect1 id="acct-import">
+    <title>Importing accounts</title>
+
+    <para>This wizard will help you import accounts from a CSV file. The file must be in the same format as
+      the one created by GnuCash during the CSV export as it is a fixed format. If an account is
+      created with the <guilabel>full account name</guilabel> does not exist before, it will be
+      created, provided that the currency or security in which it will be quoted is already defined
+      in the program or in your your &app; file is defined.<note>
+        <para>Another way to import accounts is provided by the wizard for the
+          <xref linkend="trans-import-qif" />. In the course of this import process, accounts are
+          also imported into your &app; data file.
+        </para>
+      </note><itemizedlist>
+        <para>If the account already exists, these four fields will be updated:
+        </para>
+
+        <listitem>
+          <para>Code
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Description
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Notes
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Color
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+    <figure pgwide="1">
+      <title>Wizard for importing accounts in CSV format</title><screenshot id="accounts-import-csv-wizard">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/AccountTree_Import_CSV.png" srccredit="Christian Wehling" width="&img-w;" />
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/AccountTree_Import_CSV.png" srccredit="Christian Wehling" />
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <xi:include href="Help_para-assist-intro.xml"/>
+
+    <procedure>
+      <title>Steps of the CSV import process</title>
+
+      <para>The function of the controls of each step are described below. They are also displayed as a tooltip
+        in the wizard.
+      </para>
+
+      <step>
+        <title><guilabel>Import Account Assistant</guilabel></title>
+
+        <para>Overview page with a short explanation regarding the requirements for the imported CSV file.
+        </para>
+      </step>
+
+      <step>
+        <title><guilabel>Choose File to Import</guilabel></title>
+
+        <para>Navigate to the file you want to import and select it.
+        </para>
+      </step>
+
+      <step>
+        <title><guilabel>Import Account Preview, first 10 rows only</guilabel></title>
+
+        <para>The <guilabel>Import Account Preview</guilabel> window controls the setting options for importing of
+          CSV files and provides a preview of the accounts to be imported.
+        </para>
+
+        <figure pgwide="1">
+          <title>The CSV Import Preview Area</title><screenshot id="accounts-import-csv-preview">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata  fileref="figures/AccountTree_Import_CSV_Preview.png" srccredit="Christian Wehling" width="&img-w;" />
+              </imageobject>
+
+              <imageobject role="fo">
+                <imagedata  fileref="figures/AccountTree_Import_CSV_Preview.png" srccredit="Christian Wehling" />
+              </imageobject>
+
+              <caption>
+                <para>The CSV import preview window with settings for importing the displayed accounts.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <substeps>
+          <step>
+            <title><guilabel>Number of rows of the header</guilabel></title>
+
+            <para>This field defines the number of header lines in the file. In the preview, according to your input,
+              the lines that you have marked as headers and therefore will not be imported.
+            </para>
+          </step>
+
+          <step>
+            <title><guilabel>Select Separator Type</guilabel></title>
+
+            <para>With these radio buttons you can choose with which column separator your data is separated are:
+            </para>
+
+            <substeps>
+              <step>
+                <title><guilabel>Comma Separated (,)</guilabel></title>
+
+                <para>The <keycap>,</keycap> should not be used as a column separator in the German language area unless
+                  the dot is used as a decimal separator in the file.
+                </para>
+              </step>
+
+              <step>
+                <title><guilabel>Semicolon Separated (;)</guilabel></title>
+
+                <para>Select a <keycap>;</keycap> to separate the columns when the comma is used as decimal separator.
+                </para>
+              </step>
+
+              <step>
+                <title><guilabel>Colon Separated (:)</guilabel></title>
+
+                <para>Use a <keycap>:</keycap> as column separator. Popularly used by GNU programs.
+                </para>
+              </step>
+
+              <step>
+                <title><guilabel>Custom regular Expression</guilabel></title>
+
+                <para>Selecting this option opens a small input window in which you can enter a <quote>regular
+                  expression</quote><footnote>
+                    <para>For more information, you can read the article <ulink url="&url-wp-en;Regular_expression">Regular
+                      expression</ulink> in Wikipedia.
+                    </para>
+                  </footnote>also known as <foreignphrase><abbrev>RegEx</abbrev></foreignphrase>.
+                </para>
+              </step>
+            </substeps>
+          </step>
+
+          <step>
+            <title><guilabel>Preview</guilabel></title>
+
+            <para>In the large central area a preview of the first 10 lines of the previously selected import file is
+              displayed. Here you can easily check whether you have selected the correct file and
+              the correct column separator.
+            </para>
+
+            <tip>
+              <para>If no data is displayed in the <guilabel>Preview</guilabel> or the display does not matches your
+                expectations, then simply try different <guilabel>Separator Type</guilabel>.
+              </para>
+            </tip>
+          </step>
+
+          <step>
+            <title><guilabel>Column headers</guilabel></title>
+
+            <para>The structure of the file to be imported is prescribed by &app; and cannot be configured. For this
+              reason, for a successful import of the account structure, the contents in the
+              individual columns of the CSV file must correspond to the sequence as listed below.
+              The meaning of each field is described in detail in <xref linkend="acct-gen-info"/>.
+            </para>
+
+            <orderedlist spacing="compact">
+              <listitem>
+                <para><guilabel>Type</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Account Full Name</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Account Name</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Account Code</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Description</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Account Color</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Notes</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Symbol</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Namespace</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Hidden</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Tax Info</guilabel>
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Placeholder</guilabel>
+                </para>
+              </listitem>
+            </orderedlist>
+          </step>
+        </substeps>
+      </step>
+
+      <step>
+        <title><guilabel>Import Accounts Now</guilabel></title>
+
+        <para>The filename and path of the file to be imported is displayed. To import the account structure now
+          finally press the <guibutton>Apply</guibutton> button.
+        </para>
+
+        <para>After a short time, during which the data is processed, the dialog opens <guilabel>Book options for
+          new book</guilabel>. You can now make some settings for the book, see
+          <xref linkend="book-options" />. If you do not want this at this time and press
+          <guibutton>Cancel</guibutton> instead, the accounts will be imported anyway.
+        </para>
+      </step>
+
+      <step>
+        <title><guilabel>Import Summary</guilabel></title>
+
+        <para>Displays a summary of the import process. This consists of an indication of how many accounts have
+          been successfully added and updated, and whether any errors occurred including a list of
+          the erroneous positions with the row number in the CSV file.
+        </para>
+      </step>
+    </procedure>
+  </sect1>
+
 </chapter>

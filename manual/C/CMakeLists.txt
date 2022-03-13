@@ -13,6 +13,8 @@ set (entities
         Help_chtacctseg.xml
         Help_chartofaccts.xml
         Help_legal.xml
+        para-assist-buttons.xml
+        Help_chartofaccts.xml
         Help_txf-categories.xml
         Help_fdl-appendix.xml
         Help_tips-appendix.xml)
