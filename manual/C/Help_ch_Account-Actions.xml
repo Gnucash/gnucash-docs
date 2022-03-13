@@ -2523,5 +2523,255 @@
       </step>
     </procedure>
   </sect1>
+ 
+  <sect1 id="acct-export">
+    <title>Exporting accounts</title>
 
+    <itemizedlist>
+      <para>If you have the need to export your &app; accounts, you have the choice between two different export
+        formats:
+      </para>
+
+      <listitem>
+        <para>XML format or also database formats. Which database interface is available depends on the systems
+          you have installed. &app; supports e.g. <acronym>SQLite3</acronym>,
+          <acronym>mysql</acronym> and <acronym>postgres</acronym>.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>CSV format as a common exchange format for tables.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>With both methods, the complete account structure is saved without any further content, such as e.g.
+      posting data and account balances or also customers, suppliers, budgets as well as scheduled
+      transactions.
+    </para>
+
+    <sect2 id="acct-export-xml">
+      <title>Export accounts to a new &appname; book</title>
+
+      <para>With the menu item<menuchoice>
+          <guimenu><accel>F</accel>ile</guimenu><guisubmenu><accel>E</accel>xport</guisubmenu><guimenuitem>Export<accel>A</accel>ccounts
+          </guimenuitem>
+        </menuchoice>you can export your complete &app;-account hierarchy into an <acronym>XML</acronym>- or
+        <acronym>SQLite3</acronym>-file or also into a database. With this function you have the
+        possibility e.g. at the end of a year to make a book closing and start the new year with an
+        empty &app; file.
+      </para>
+
+      <para>The usual file save dialog opens, with a selection field in the upper area for the data output in
+        <guilabel>XML</guilabel> or <guilabel>SQLite3</guilabel> format. If you have already
+        installed configured database systems, they will also be also offered here for selection.
+      </para>
+
+      <table id="Account-Export-Dialog">
+        <title>Dialog for exporting accounts</title>
+
+        <tgroup align="left" cols="2">
+          <colspec colwidth="0.5*"/>
+
+          <colspec colwidth="0.5*"/>
+
+          <tbody>
+            <row valign="top">
+              <entry>
+                <para><figure>
+                    <title>Export to file</title><screenshot>
+                      <mediaobject>
+                        <imageobject>
+                          <imagedata fileref="figures/AccountTree_Export_file.png" 
+                         srccredit="Frank H. Ellenberger" width="100%"></imagedata>
+                        </imageobject>
+                      </mediaobject>
+                    </screenshot>
+                  </figure>
+                </para>
+              </entry>
+
+              <entry>
+                <para><figure>
+                    <title>Export to database</title><screenshot>
+                      <mediaobject>
+                        <imageobject>
+                          <imagedata fileref="figures/AccountTree_Export_dbms.png" 
+                         srccredit="Frank H. Ellenberger" width="100%"></imagedata>
+                        </imageobject>
+                      </mediaobject>
+                    </screenshot>
+                  </figure>
+                </para>
+              </entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <variablelist>
+        <varlistentry>
+          <term><guilabel>XML</guilabel></term>
+
+          <term><guilabel>SQLite3</guilabel></term>
+
+          <listitem>
+            <para>In the file selection dialog you can enter the file name and the directory/folder where the file is
+              to be saved. By pressing the button <guilabel>Save as…</guilabel> the file is
+              written. You have here no further control over the result of the export file.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>mysql</guilabel></term>
+
+          <term><guilabel>postgres</guilabel></term>
+
+          <listitem>
+            <para>The view of the dialog changes and input fields for the information about the database connection
+              are requested. If you want to store your &app;-data in a database system, you need
+              write access to an existing database or the authorization to create a new database.
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>The exported file can be opened via<menuchoice>
+          <guimenu><accel>F</accel>ile</guimenu><guimenuitem><accel>O</accel>pen</guimenuitem>
+        </menuchoice>in &app;. You must then manually enter the opening opening balances for all accounts.<tip>
+          <para>Open for this e.g. a 2nd instance of &app;, in order to transfer the closing balance of the old file
+            as the opening balance in the new file.
+          </para>
+        </tip>
+      </para>
+    </sect2>
+
+    <sect2 id="acct-export-csv">
+      <title>Export accounts as CSV</title>
+
+      <para>&app; allows you to export your account hierarchy in <acronym>CSV</acronym> format, where you can
+        customize the column delimiter to suit your needs. This can be useful to be able to use the
+        same application, e.g. the unfortunately no longer maintained &app-gfa;, to have the same
+        account structure in another application.
+      </para>
+
+      <para>To do this, select in the menu<menuchoice>
+          <guimenu><accel>F</accel>ile</guimenu><guisubmenu><accel>E</accel>xport</guisubmenu><guimenuitem>Account
+          T<accel>r</accel>ee to CSV…</guimenuitem>
+        </menuchoice>and a dialog for the <guilabel>Export settings</guilabel> will open.
+      </para>
+
+      <figure pgwide="1">
+        <title>Wizard for exporting the account hierarchy in CSV format</title><screenshot id="accounts-export-wizard">
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/AccountTree_Export_CSV.png" srccredit="Christian Wehling" width="&img-w;" />
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="figures/AccountTree_Export_CSV.png" srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <xi:include href="Help_para-assist-intro.xml"/>
+
+      <procedure>
+        <title>Steps of the export dialog</title>
+
+        <para>The function of the controls of each step are described below or are displayed as tooltip in the
+          wizard.
+        </para>
+
+        <step>
+          <title><guilabel>Choose Export Settings</guilabel></title>
+
+          <para>In this step you can set various preferences for the formatting of the accounts to be exported.
+          </para>
+
+          <substeps>
+            <step>
+              <title><guilabel>Options</guilabel></title>
+
+              <para>This checkbox can be used in addition to the <guilabel>separator</guilabel>:
+              </para>
+
+              <substeps>
+                <step>
+                  <title><guilabel>Use quotes</guilabel></title>
+
+                  <para>Encloses each data field with quotes.
+                  </para>
+                </step>
+              </substeps>
+            </step>
+
+            <step>
+              <title><guilabel>Separators</guilabel></title>
+
+              <para>With these radio buttons you can choose with which column separator your data are separated:
+              </para>
+
+              <substeps>
+                <step>
+                  <title><guilabel>Comma (,)</guilabel></title>
+
+                  <para>The <keycap>,</keycap> should not be used as a column separator in the German language area unless
+                    the dot is used as a decimal separator in the file.
+                  </para>
+                </step>
+
+                <step>
+                  <title><guilabel>Colon (;)</guilabel></title>
+
+                  <para>Select a <keycap>;</keycap> to separate the columns when the comma is used as decimal separator.
+                  </para>
+                </step>
+
+                <step>
+                  <title><guilabel>Semicolon (:)</guilabel></title>
+
+                  <para>Use a <keycap>:</keycap> as column separator. Popularly used by GNU programs.
+                  </para>
+                </step>
+
+                <step>
+                  <title><guilabel>Custom</guilabel></title>
+
+                  <para>Use any characters to separate the columns by typing them into the text box.
+                  </para>
+                </step>
+              </substeps>
+            </step>
+          </substeps>
+        </step>
+
+        <step>
+          <title><guilabel>Choose File Name for Export</guilabel></title>
+
+          <para>A file selection dialog is displayed for specifying a file name and a path to the directory/folder
+            where the file is to be saved.
+          </para>
+        </step>
+
+        <step>
+          <title><guilabel>Export Now…</guilabel></title>
+
+          <para>The filename and path of the file to be exported and the number of accounts to be exported are
+            displayed. To continue the export press the <guibutton>Apply</guibutton> button.
+          </para>
+        </step>
+
+        <step>
+          <title><guilabel>Export summary</guilabel></title>
+
+          <para>Displays a message when the file has been exported successfully, or an error message with hints why
+            it failed.
+          </para>
+        </step>
+      </procedure>
+    </sect2>
+  </sect1>
 </chapter>
