@@ -1975,14 +1975,6 @@
       functions to make it easy to enter and update account information during the reconciliation.
     </para>
 
-    <tip>
-      <para>The Reconcile window is accessed from the account tree window or the account register window by
-        selecting<menuchoice>
-          <guimenu><accel>A</accel>ctions</guimenu><guimenuitem><accel>R</accel>econcile…</guimenuitem>
-        </menuchoice>.
-      </para>
-    </tip>
-
     <note>
       <para>If you are reconciling an Liability Account of type <guilabel>credit card</guilabel> using a credit
         card statement you have the option of using the <guilabel>Transfer Funds</guilabel> dialogue
@@ -1993,6 +1985,15 @@
         payment</guilabel>. (see <xref linkend="prefs-reg" />)
       </para>
     </note>
+
+    <tip>
+      <para>The <guilabel>Reconcile</guilabel> window is accessed from the account tree window or the account register window by
+        selecting<menuchoice>
+          <guimenu><accel>A</accel>ctions</guimenu><guimenuitem><accel>R</accel>econcile…</guimenuitem>
+        </menuchoice> or you use the <guibutton>Reconcile</guibutton> button in the
+        <guilabel>Toolbar</guilabel>..
+      </para>
+    </tip>
 
     <para>The <emphasis>Summary Bar</emphasis> at the bottom of the Account Register Window indicates the
       amounts of <guilabel>Present</guilabel> (Balance), <guilabel>Future</guilabel> (Balance),
@@ -2013,14 +2014,17 @@
         from last reconciliation) and <guilabel>Ending Balance</guilabel> from the statement. The
         <guilabel>Include Sub-accounts</guilabel> check-box is used if one or more subaccounts are
         used to track the account you are reconciling. The <guibutton>Enter Interest
-        Payment</guibutton> button is used to add a transfer to the accounts for an interest
-        payment. If selected a dialog will be displayed to add the <xref linkend="tool-ent-int" />
-        to the account.
+        Payment…</guibutton> button (for Active accounts) or <guibutton>Enter Interest
+        charge…</guibutton> button (for liabilities accounts) is used to add a transfer to the
+        accounts for an interest payment. If selected a dialog will be displayed to add the
+        <xref linkend="tool-ent-int" /> to the account.
       </para>
 
       <note>
-        <para>The <guibutton>Enter Interest Payment</guibutton> button is shown only if you are reconciling an
-          account of <emphasis>Bank</emphasis> type.
+        <para>The <guibutton>Enter Interest Payment…</guibutton> button is shown only if you are reconciling an
+          account of <emphasis>Bank</emphasis> type. Whereas when matching an account of type
+          <emphasis>Liability</emphasis> the button is labeled <guibutton>Enter Interest
+          Charge…</guibutton>.
         </para>
       </note>
 
@@ -2032,44 +2036,9 @@
       <sect3 id="tool-ent-int">
         <title>Interest Payment</title>
 
-        <para>There are three panes in the <guilabel>Interest Payment</guilabel> dialog. At the bottom is a button
-          called <guibutton>No Auto Interest Payments for this Account</guibutton> which will cancel
-          the dialog. The top pane contains the <guilabel>Payment Information</guilabel>.
-        </para>
-
-        <itemizedlist>
-          <listitem>
-            <para><guilabel>Amount:</guilabel> Enter the amount of the interest payment.
-            </para>
-          </listitem>
-
-          <listitem>
-            <para><guilabel>Date:</guilabel> Select the date for the interest payment.
-            </para>
-          </listitem>
-
-          <listitem>
-            <para><guilabel>Num:</guilabel> Enter a number for the transaction (optional).
-            </para>
-          </listitem>
-
-          <listitem>
-            <para><guilabel>Description:</guilabel> Enter an informational description for the transaction.
-            </para>
-          </listitem>
-
-          <listitem>
-            <para><guilabel>Memo:</guilabel> Enter a note about the transaction (optional).
-            </para>
-          </listitem>
-        </itemizedlist>
-
-        <para>The <guilabel>Reconcile Account</guilabel> pane highlights in the tree the account that the interest
-          payment will be transferred to or from.
-        </para>
-
-        <para>The <guilabel>Payment From</guilabel> pane contains a list of accounts where you can select the
-          source account.
+        <para>You can make an interest payment for an account with the <xref linkend="trans-win-enter" />. Since
+          you are entering an interest payment, the section previously described in the
+          <emphasis>Transfer Dialog</emphasis> is not relevant for the currency posting.
         </para>
 
         <note>
@@ -2079,11 +2048,9 @@
           </para>
         </note>
 
-        <tip>
           <para>The <guibutton>Show Income/Expense</guibutton> check-box shows or hides the
             <emphasis>Income</emphasis> and <emphasis>Expense</emphasis> accounts.
           </para>
-        </tip>
 
         <para>Select <guibutton>OK</guibutton> to enter the interest transaction (or <guibutton>Cancel</guibutton>
           the payment) and return to the initial reconciliation screen.
@@ -2111,8 +2078,10 @@
 
       <note>
         <para>If you enabled the option <guilabel>Use formal accounting labels</guilabel> in the
-          <guilabel>Accounts</guilabel> section of the &app; preferences, you will see
-          <guilabel>Debits</guilabel> and <guilabel>Credits</guilabel> panes instead of
+          <guilabel>Accounts</guilabel> section of the &app; preferences<menuchoice>
+            <guimenu><accel>E</accel>dit</guimenu>
+            <guimenuitem><accel>P</accel>references</guimenuitem>
+          </menuchoice>, you will see <guilabel>Debits</guilabel> and <guilabel>Credits</guilabel> panes instead of
           <guilabel>Funds In</guilabel> and <guilabel>Funds Out</guilabel> panes.
         </para>
       </note>
@@ -2180,10 +2149,11 @@
 
       <tip>
         <para>You can check or uncheck the reconcile status of all transactions in either pane by clicking on a
-          transaction in the required pane then clicking <keycap>Ctrl-A</keycap> followed by
-          <keycap>space</keycap>. This will toggle the reconcile status of all transactions in the
-          pane to either checked or unchecked state. This procedure can be repeated to achieve the
-          desired status for the transactions in the pane.
+          transaction in the required pane then clicking<keycombo action='simul'>
+            <keycap>Ctrl</keycap><keycap>A</keycap><keycap>Space</keycap>
+          </keycombo>. This will toggle the reconcile status of all transactions in the pane to either checked or
+          unchecked state. This procedure can be repeated to achieve the desired status for the
+          transactions in the pane.
         </para>
       </tip>
 
@@ -2269,9 +2239,6 @@
         reconciliation use the<menuchoice>
           <guimenu><accel>R</accel>econcile</guimenu><guimenuitem>Cancel</guimenuitem>
         </menuchoice>menu item or press the <guibutton>Cancel</guibutton> icon.
-      </para>
-
-      <para>All previous commands are also available in the <guilabel>Reconcile</guilabel> dialog menu.
       </para>
 
       <para>Select each unreconciled transaction matching a transaction on the statement so a green tick appears
