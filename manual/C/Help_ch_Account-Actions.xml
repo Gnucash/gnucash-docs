@@ -1748,21 +1748,218 @@
   <sect1 id="acct-delete">
     <title>Deleting an Account</title>
 
-    <para></para>
-
     <para>Deleting an Account means removing all transaction information and information about this account
       from the file. This cannot be undone. You will be prompted to verify that you wish to remove
-      the account. If the account still contains transaction information you will be warned that
-      this account contains transactions.
+      the account.
     </para>
 
-    <para>A side effect of removing an account that contains transactions is that you will end up with
-      unbalanced accounts. This will be indicated in the account by a gray check-box next to the
-      debit and credit amounts. You can automatically repair these unbalanced accounts by using the<menuchoice>
-        <guimenu>Actions</guimenu><guimenuitem>Check &amp; Repair</guimenuitem>
-      </menuchoice>menu. This will automatically assign the unbalanced amounts to a new account named
-      <emphasis role="bold">Imbalance. </emphasis>
+    <para>If you want to delete an account, you can do it with<menuchoice>
+        <shortcut> <keycap>Del</keycap> </shortcut> <guimenu><accel>E</accel>dit</guimenu>
+        <guimenuitem><accel>D</accel>elete Account…</guimenuitem>
+      </menuchoice>or press the button <guibutton>Delete</guibutton> in the <guilabel>Toolbar</guilabel> of the window
+      <quote>Account</quote>.
     </para>
+
+    <tip>
+      <para>It is recommended that you save the &app;-file before deleting an account. If you have accidentally
+        deleted an account, you can use the<menuchoice>
+          <guimenu><accel>F</accel>ile</guimenu> <guimenuitem>Re<accel>v</accel>ert</guimenuitem>
+        </menuchoice>command to get out of the threat. &app; then offers you in a dialog whether you want to discard the
+        changes and reload the file.
+      </para>
+    </tip>
+
+    <para>If you remove an account that does not contain any sub-accounts or transactions, the deletion will
+      be executed immediately. But if you want to delete an account that contains <emphasis>several</emphasis>.
+      sub-accounts, then you will be alerted with a warning message.
+    </para>
+
+    <figure>
+      <title>Warning message when deleting accounts including sub-accounts</title><screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/chart_acct_delete_msg.png" 
+                         srccredit="Christian Wehling"></imagedata>
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>If instead the account contains a sub-account or transaction information then the dialog
+      <guilabel>Delete account</guilabel> will open.  This dialog contains three areas with
+      options that will assist you in the procedure for deleting the data.
+    </para>
+
+    <table id="Account-Delete-Dialog">
+      <title>Der <quote>Konto löschen</quote> Dialog</title>
+
+      <tgroup align="left" cols="3">
+        <colspec colwidth="0.33*"/>
+
+        <colspec colwidth="0.33*"/>
+
+        <colspec colwidth="0.33*"/>
+
+        <tbody>
+          <row valign="bottom">
+            <entry>
+              <para><figure>
+                  <title>Sub-accounts</title><screenshot>
+                    <mediaobject>
+                      <imageobject>
+                        <imagedata fileref="figures/chart_acct_delete_01.png" 
+                         srccredit="Christian Wehling" width="100%"></imagedata>
+                      </imageobject>
+                    </mediaobject>
+                  </screenshot>
+                </figure>
+              </para>
+            </entry>
+
+            <entry>
+              <para><figure>
+                  <title>Transactions</title><screenshot>
+                    <mediaobject>
+                      <imageobject>
+                        <imagedata fileref="figures/chart_acct_delete_02.png" 
+                         srccredit="Christian Wehling" width="100%"></imagedata>
+                      </imageobject>
+                    </mediaobject>
+                  </screenshot>
+                </figure>
+              </para>
+            </entry>
+
+            <entry>
+              <para><figure>
+                  <title>Sub-account Transactions</title><screenshot>
+                    <mediaobject>
+                      <imageobject>
+                        <imagedata fileref="figures/chart_acct_delete_03.png" 
+                         srccredit="Christian Wehling" width="100%"></imagedata>
+                      </imageobject>
+                    </mediaobject>
+                  </screenshot>
+                </figure>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+    <variablelist>
+      <varlistentry>
+        <term><guilabel>Sub-accounts</guilabel></term>
+
+        <listitem>
+          <para>A sub-account is associated with the selected account.
+          </para>
+
+          <variablelist>
+            <varlistentry>
+              <term><guilabel>Delete the subaccount</guilabel></term>
+
+              <listitem>
+                <para>If you select this entry and the sub-account still contains transactions, the third entry
+                  <guilabel>Sub-account Transactions</guilabel> will be active in the dialog. Thus
+                  you have the possibility to move the transactions of the sub-account before the
+                  the sub-account is removed.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>Move to</guilabel></term>
+
+              <listitem>
+                <para>In the selection box you can define to which account the subaccounts should be assigned. Only
+                  accounts of the <emphasis>same</emphasis> account type are available.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guilabel>Transactions</guilabel></term>
+
+        <listitem>
+          <para>The account to be deleted still contains transactions.
+          </para>
+
+          <variablelist>
+            <varlistentry>
+              <term><guilabel>Delete all transactions</guilabel></term>
+
+              <listitem>
+                <para>All transactions will be deleted.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>Move to</guilabel></term>
+
+              <listitem>
+                <para>In the selection box it is possible to define to which account the transactions will be moved. The
+                  transactions can only be moved to the <emphasis>Orphan</emphasis> account with the
+                  same currency or in accounts with the same account type.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><guilabel>Sub-account Transactions</guilabel></term>
+
+        <listitem>
+          <para>The subaccount you want to delete still contains transactions.
+          </para>
+
+          <variablelist>
+            <varlistentry>
+              <term><guilabel>Delete all transactions</guilabel></term>
+
+              <listitem>
+                <para>All transactions in the sub-account will be deleted.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><guilabel>Move to</guilabel></term>
+
+              <listitem>
+                <para>In the selection box it is possible to define to which account the transactions will be moved.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <tip>
+      <para>If the account to be deleted contains several sub-accounts, you will be notified by a message and
+        you will be asked to delete this account structure manually.
+      </para>
+    </tip>
+
+    <note>
+      <para>A side effect of removing an account that contains transactions is that you will end up with
+        unbalanced accounts. This will be indicated in the account by a gray check-box next to the
+        debit and credit amounts. You can automatically repair these unbalanced accounts by using
+        the<menuchoice>
+          <guimenu><accel>A</accel>ctions</guimenu><guimenuitem><accel>C</accel>heck &amp;
+          Repair</guimenuitem>
+        </menuchoice>menu. This will automatically assign the unbalanced amounts to a new account named
+        <emphasis>Imbalance</emphasis>.
+      </para>
+    </note>
   </sect1>
 
   <sect1 id="acct-reconcile">
