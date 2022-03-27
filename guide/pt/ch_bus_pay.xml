@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-locale-pt.dtd">
 <!-- (Do not remove this comment block.)
   Version: 2.0.0
@@ -11,171 +11,140 @@
     Patrick Schweiger <pks@spiffykitty.com>
   Originally designed by Carol Champagne.
   Translators:
-    (translators put your name and email here)
+    (Pedro Albuquerque <pmra@protonmail.com>)
 -->
 <chapter id="chapter_bus_pay">
-  <title>Payroll</title>
+  <title>Folha de salários</title>
 
-  <para>&untranslated-pt;
-  </para>
-  <para>Payroll is a financial record of wages, net pay, paid vacations, and deductions for an employee.
-    This chapter demonstrates how to track payroll using &app;
+  <para>Uma folha de salários é um registo financeiro de salários, remuneração líquida, férias pagas e deduções para cada empregado. Este capítulo demonstra como acompanhar a folha de salários utilizando o &app;
   </para>
 
   <sect1 id="bus-pay-concepts1">
-    <title>Basic Concepts</title>
+    <title>Conceitos básicos</title>
 
-    <para>Payroll is a financial record of wages, net pay, paid vacations, and deductions for an employee.
-      Basically, anything that relates to giving money or benefits to an employee. Payroll is one of
-      the more complex tasks in accounting, because there are many different accounts, people, and
-      agencies involved in paying salaries.
+    <para>Uma folha de salários é um registo financeiro de salários, remuneração líquida, férias pagas e deduções para cada empregado. Basicamente, qualquer coisa que se relacione com dar dinheiro ou benefícios a um empregado. A Folha de salários é uma das tarefas mais complexas em contabilidade, porque existem muitas contas diferentes, pessoas, e agências envolvidas no pagamento de salários.
     </para>
 
-    <para>Payroll is typically accounted for as an expense. Sometimes accountants <quote>store</quote> some
-      payroll expenses in a short term liability account. This is useful for things such as payroll
-      taxes, which may be paid at a different time than the employee. The employee might get paid
-      biweekly, while taxes are paid quarterly. This chapter presents a methodology which expenses
-      payroll immediately for salaries, but stores taxes in liability accounts.
+    <para>A Folha de salários é normalmente contabilizada como uma despesa. Por vezes os contabilistas <quote> armazenam</quote> algumas despesas salariais numa conta de passivo a curto prazo. Isto é útil para coisas como impostos sobre salários, que podem ser pagos num momento diferente do salário do empregado. Por exemplo, o empregado pode ser pago quinzenalmente, enquanto os impostos são pagos trimestralmente. Este capítulo apresenta uma metodologia que considera o salário como despesa imediata, mas armazena os impostos em contas de passivo.
     </para>
 
     <note>
-      <para>&app; does not have an integrated payroll system. While you can track payroll expenses in &app;, the
-        calculation of taxes and deductions has to be done outside of &app;.
+      <para>O &app; não tem um sistema integrado de folhas de pagamento. Mesmo podendo acompanhar as despesas com a folha de salário no &app; o cálculo de impostos e deduções tem de ser feito fora do &app;.
       </para>
     </note>
   </sect1>
 
   <sect1 id="bus-pay-acct1">
-    <title>Account Setup</title>
+    <title>Hierarquia de contas</title>
 
-    <para>Local tax law must be considered when setting up accounts. Because there are many different ways
-      payroll taxes are handled throughout the world, this section presents a very simple structure.
-      From this, you should be able to adapt your particular payroll deductions setup.
+    <para>A legislação fiscal local deve ser considerada aquando da criação de contas. Porque existem muitas maneiras diferentes de tratar os impostos sobre os salários em todo o mundo, esta secção apresenta uma estrutura muito simples. A partir daqui, deverá ser capaz de adaptar a sua configuração específica de deduções da folha de pagamento.
     </para>
 
-    <para>Assume that you must pay 2 taxes, Tax1 and Tax2 and that each has an employee contributed and an
-      employer contributed component.
+    <para>Assuma que deve pagar dois impostos, Imp1 e Imp2 e que cada um tem uma contribuição do empregado e uma contribuição do empregador.
     </para>
 
-    <para>The employee&rsquo;s salary and these two taxes are expense accounts. The tax components are
-      liability accounts. The tax liability accounts are where you accumulate the taxes withheld for
-      all of your employees. The taxes are later paid to the appropriate government agency.
+    <para>O salário do empregado e estes dois impostos são contas de despesas. As componentes fiscais são
+      contas de passivo. As contas de passivo fiscal são onde se acumulam os impostos retidos para todos os seus empregados. Os impostos são posteriormente pagos à agência governamental apropriada.
     </para>
 
-    <para><screen>Simple Payroll Account Layout:
+    <para><screen>Estrutura simples de contas de folha de salários:
 
--Assets
-   -Checking
--Liabilities
-   -Tax1  (short term <quote>storage</quote> account)
-   -Tax2  (short term <quote>storage</quote> account)
--Expenses
-   -Salaries
-   -Tax1
-   -Tax2</screen>
+-Activo
+   -Conta à ordem
+-Passivo
+   -Imp1  (conta de <quote>armazenamento</quote> a curto prazo)
+   -Imp2  (conta de <quote>armazenamento</quote> a curto prazo)
+-Despesas
+   -Salários
+   -Imp1
+   -Imp2</screen>
       <note>
-        <para>Resist the temptation to create per-employee sub-accounts to track individual salaries. Creating a
-          sub-account for each employee leads to unmanageably large lists of accounts. Imagine the
-          account structure after a few years of employees coming and going. It is much simpler to
-          keep all of your employees&rsquo; payroll records within a single account
-          (<emphasis>Expenses:Salaries</emphasis> for example) and use reports to view per-employee
-          information.
+        <para>Resista à tentação de criar sub-contas por empregado para acompanhar os salários individuais. Criar uma sub-conta para cada empregado levaria a listas de contas enormes e incontroláveis. Imagine a estrutura da conta após alguns anos de entrada e saída de empregados. É muito mais simples manter todos os registos de salários dos seus empregados dentro de uma única conta (<emphasis>Despesas:Salários</emphasis> por exemplo) e utilizar relatórios para ver a informação por empregado.
         </para>
       </note>
     </para>
   </sect1>
 
   <sect1 id="bus-pay-protocol1">
-    <title>Protocol</title>
+    <title>Protocolo</title>
 
-    <para>&app; does not have an integrated payroll system. &app; can track your payroll expenses, but you
-      need to develop a payroll protocol and perform the calculations outside of &app;, in a
-      spreadsheet for example. In this section, one such protocol is presented. You can use the
-      sample protocol as a model.
+    <para>O &app; não tem um sistema integrado de folhas de pagamento. Mesmo podendo acompanhar as despesas com a folha de salário no &app; há necessidade de desenvolver um protocolo de folha de salários e realizar os cálculos fora do &app; numa folha de cálculo, por exemplo. Nesta secção, é apresentado um protocolo deste tipo. Pode utilizar o exemplo como modelo.
     </para>
 
     <sect2 id="bus-pay-protocolone2">
-      <title>Step 1: Deductions list</title>
+      <title>Passo 1: lista de deduções</title>
 
-      <para>The first step to the payroll protocol is to create a list of all the possible taxes and deductions
-        for each employee. Each entry should include definitions and formulas for calculating each
-        value. Once the protocol is established it needs to be changed only when payroll laws or tax
-        rates change.
+      <para>O primeiro passo para o protocolo da folha de pagamento é criar uma lista de todos os impostos e deduções possíveis para cada empregado. Cada entrada deve incluir definições e fórmulas de cálculo para cada valor. Uma vez estabelecido o protocolo, este só precisa de ser alterado quando as leis sobre salários ou impostos forem alteradas.
       </para>
 
-      <para>In the proposed scenario, such a list would look like this:
+      <para>No cenário proposto, tal lista seria assim:
       </para>
 
       <itemizedlist spacing="compact">
         <listitem>
-          <para><emphasis>E_GROSS_SALARY</emphasis> - Employee gross salary
+          <para><emphasis>E_SALÁRIO_BRUTO</emphasis> - salário bruto do empregado
           </para>
         </listitem>
 
         <listitem>
-          <para><emphasis>E_TAX1</emphasis> - Employee contribution to tax1 (X% of E_GROSS_SALARY)
+          <para><emphasis>E_IMP1</emphasis> - Contribuição do empregado para IMP1 (x% de E_SALÁRIO_BRUTO)
           </para>
         </listitem>
 
         <listitem>
-          <para><emphasis>E_TAX2</emphasis> - Employee contribution to tax2 (X% of E_GROSS_SALARY)
+          <para><emphasis>E_IMP2</emphasis> - Contribuição do empregado para IMP2 (x% de E_SALÁRIO_BRUTO)
           </para>
         </listitem>
 
         <listitem>
-          <para><emphasis>C_TAX1</emphasis> - Company contribution to tax1 (X% of E_GROSS_SALARY)
+          <para><emphasis>C_IMP1</emphasis> - Contribuição da companhia para IMP1 (x% de E_SALÁRIO_BRUTO)
           </para>
         </listitem>
 
         <listitem>
-          <para><emphasis>C_TAX2</emphasis> - Company contribution to tax2 (X% of E_GROSS_SALARY)
+          <para><emphasis>C_IMP2</emphasis> - Contribuição da companhia para IMP2 (x% de E_SALÁRIO_BRUTO)
           </para>
         </listitem>
       </itemizedlist>
 
       <note>
-        <para>The employee&rsquo;s net salary (E_NET_SALARY) is defined as E_GROSS_SALARY - E_TAX1 - E_TAX2 and
-          need not be placed in this list since it is composed of items that already exist.
+        <para>O salário líquido do empregado (E_SALÁRIO_LÍQUIDO) é definido como E_SALÁRIO_BRUTO - E_IMP1 - E_IMP2 e não precisa de constar nesta lista por ser composto por itens que já lá existem.
         </para>
       </note>
 
-      <para>Place the actual formulas for calculating each deduction in this list. Sometimes these formulas are
-        quite complex, and sometimes they simply say "look it up in table XYZ of the tax codes".
+      <para>Coloque as fórmulas reais para o cálculo de cada dedução nesta lista. Por vezes, estas fórmulas são
+        bastante complexas, por vezes dizem simplesmente "procurar na tabela XYZ dos códigos fiscais".
       </para>
 
-      <para>Notice that you can calculate some interesting values using the above definitions. One such value is
-        the total cost to the company: E_GROSS_SALARY + C_TAX1 + C_TAX2.
+      <para>Note que pode calcular alguns valores interessantes utilizando as definições acima. Um desses valores é o custo total para a empresa: E_SALÁRIO_BRUTO + C_IMP1 + C_IMP2.
       </para>
     </sect2>
 
     <sect2 id="bus-pay-protocoltwo2">
-      <title>Step 2: Create the Transaction Map</title>
+      <title>Passo 2: criar o mapa de transacções</title>
 
-      <para>When you record payroll in &app;, do so with a single split transaction. This split transaction
-        populates the appropriate expense and liability accounts. If you need to look at the payroll
-        details at a later time, open the split transaction.
+      <para>Quando regista a folha de pagamentos no &app;, faça-o como uma única transacção com parcelas. Esta transacção fraccionada povoa as contas de despesas e passivo apropriadas. Se precisar de consultar a folha de pagamentos mais tarde, basta abrir a transacção com parcelas.
       </para>
 
-      <para>With the deductions list from above, an employee split transaction map can be generated. Each of the
-        items in the list is mapped to a &app; account.
+      <para>Com a lista de deduções acima, pode ser gerado um mapa de transacções com parcelas por empregado. Cada um dos itens da lista são mapeados para uma conta do &app;.
       </para>
 
       <para><table>
-          <title>Transaction Map</title>
+          <title>Mapa de transacções</title>
 
           <tgroup cols="3">
             <thead>
               <row>
                 <entry>
-                  Account
+                  Conta
                 </entry>
 
                 <entry>
-                  Increase
+                  Acréscimo
                 </entry>
 
                 <entry>
-                  Decrease
+                  Decréscimo
                 </entry>
               </row>
             </thead>
@@ -183,59 +152,23 @@
             <tbody>
               <row>
                 <entry>
-                  Assets:Checking
+                  Activos:Conta à ordem
                 </entry>
 
                 <entry></entry>
 
                 <entry>
-                  E_NET_SALARY
+                  E_SALÁRIO_LÍQUIDO
                 </entry>
               </row>
 
               <row>
                 <entry>
-                  Expenses:Salaries
+                  Despesas:Salários
                 </entry>
 
                 <entry>
-                  E_GROSS_SALARY
-                </entry>
-
-                <entry></entry>
-              </row>
-
-              <row>
-                <entry>
-                  Liabilities:Tax1
-                </entry>
-
-                <entry></entry>
-
-                <entry>
-                  E_TAX1
-                </entry>
-              </row>
-
-              <row>
-                <entry>
-                  Liabilities:Tax2
-                </entry>
-
-                <entry></entry>
-
-                <entry>
-                  E_TAX2
-                </entry>
-              </row>
-
-              <row>
-                <entry>
-                  Expenses:Tax1
-                </entry>
-
-                <entry>
-                  C_TAX1
+                  E_SALÁRIO_BRUTO
                 </entry>
 
                 <entry></entry>
@@ -243,23 +176,35 @@
 
               <row>
                 <entry>
-                  Liabilities:Tax1
+                  Passivo:Imposto1
                 </entry>
 
                 <entry></entry>
 
                 <entry>
-                  C_TAX1
+                  E_IMP1
                 </entry>
               </row>
 
               <row>
                 <entry>
-                  Expenses:Tax2
+                  Passivo:Imposto2
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  E_IMP2
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  Despesas:Imposto1
                 </entry>
 
                 <entry>
-                  C_TAX2
+                  C_IMP1
                 </entry>
 
                 <entry></entry>
@@ -267,13 +212,37 @@
 
               <row>
                 <entry>
-                  Liabilities:Tax2
+                  Passivo:Imposto1
                 </entry>
 
                 <entry></entry>
 
                 <entry>
-                  C_TAX2
+                  C_IMP1
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  Despesas:Imposto2
+                </entry>
+
+                <entry>
+                  C_IMP2
+                </entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>
+                  Passivo:Imposto2
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  C_IMP2
                 </entry>
               </row>
             </tbody>
@@ -281,135 +250,115 @@
         </table>
       </para>
 
-      <para>Note that the C_TAX1 and C_TAX2 components have entries in the both the liability and expense
-        accounts. The company component of each tax is expensed at the time of payroll, but remains
-        a liability until taxes are due.
+      <para>Note-se que os componentes C_IMP1 e C_IMP2 têm entradas tanto no passivo como na despesa. A componente da companhia em cada imposto é gasta no momento da folha de salários, mas permanece
+        no passivo até que os impostos sejam devidos.
       </para>
     </sect2>
 
     <sect2 id="bus-pay-protocolthree2">
-      <title>Step 3: Pay the Employee</title>
+      <title>Passo 3: pagar ao empregado</title>
 
-      <para>Go to the account from which the employee will be paid, for example your
-        <emphasis>Assets:Checking</emphasis> account. Open a split transaction and enter the real
-        values using the Transaction Map above as a guide. Repeat this for all employees.
+      <para>Vá à conta a partir da qual o empregado será pago, por exemplo, <emphasis>Activos:Conta à ordem</emphasis>. Abra uma transacção com parcelas e insira os valores reais, utilizando o mapa de transacções acima como guia. Repita isto para todos os funcionários.
       </para>
 
       <tip>
-        <para>This manual process is tedious, especially if you have a large number of employees.
+        <para>Este processo manual é aborrecido, especialmente se tiver um grande número de empregados.
         </para>
 
-        <para>One &app; tool you certainly want use when entering employee payroll is duplicate transaction (use
-          the <guibutton>Duplicate</guibutton> <emphasis>Toolbar</emphasis> button). This saves you
-          from having to enter all the transaction splits for each employee. You still need to
-          change the amounts of money to match each employee&rsquo;s real payroll values, but you
-          will not have to build the split for each employee.
+        <para>Uma ferramenta do &app; que certamente quer utilizar ao entrar na folha de salários dos empregados é uma transacção duplicada (utilizar <guibutton>Duplicar</guibutton> na <emphasis>barra de ferramentas</emphasis>). Isto poupa o trabalho de ter de inserir todas as parcelas da transacção para cada empregado. Ainda precisa de alterar as quantias em dinheiro para corresponderem aos valores reais dos salários de cada empregado, mas não terá de construir a divisão para cada empregado.
         </para>
 
-        <para>If payroll transactions do not change significantly every pay period, you can also use the duplicate
-          transaction feature to duplicate each employee&rsquo;s most recent payroll transaction for
-          the current pay period. If you find you are doing so all the time, read about the Schedule
-          Transactions feature and save even more time!
+        <para>Se as transacções da folha de salários não mudarem significativamente a cada período de pagamento, também pode utilizar a duplicação para a mais recente transacção de folha de salários para cada empregado e para o período de pagamento actual. Se o fizer a toda a hora, consulte as transacções agendadas e poupe ainda mais tempo!
         </para>
       </tip>
     </sect2>
 
     <sect2 id="bus-pay-protocolfour2">
-      <title>Step 4: Pay the Government</title>
+      <title>Passo 4: pagar ao Estado</title>
 
-      <para>The final thing to do is to pay the taxes to the government. The liability accounts have been
-        collecting the taxes for various government agencies, and periodically you need to send a
-        check to the government to pay this charge. To do so, you simply enter a 2 account
-        transaction in (for example) your checking account to pay off the tax liability. The
-        transaction is between the checking account and the liability account, no expense account is
-        involved. The expense accounts are charged at the time the tax liability is recorded.
+      <para>A última coisa a fazer é pagar os impostos ao Estado. As contas de passivo têm vindo a recolher os impostos de várias agências governamentais e, periodicamente, é necessário enviar um pagamento ao estado. Para o fazer, basta inserir uma transacção de duas contas, por exemplo, na conta à ordem para pagar a dívida fiscal. A transacção é entre a conta à ordem e a conta do passivo, nenhuma conta de despesas é envolvida. As contas de despesas são debitadas no momento em que a obrigação fiscal é registada.
       </para>
     </sect2>
   </sect1>
 
   <sect1 id="bus-pay-example1">
-    <title>Example</title>
+    <title>Exemplo</title>
 
-    <para>Using the account setup seen previously, let&rsquo;s go through an example. Assume that there are 2
-      employees (E1 and E2) which each earn $1000 per month gross salary. The employee contribution
-      to Tax1 and Tax2 are 10% and 5% respectively. The company contribution to Tax1 and Tax2 are
-      15% and 10% each on top of the employees gross salary.
+    <para>Usando a configuração de contas vista anteriormente, vamos dar um exemplo. Assumindo que tem dois
+      empregados (E1 e E2) que ganham cada um 1000 € por mês de salário bruto. A contribuição do empregado para Imposto1 e Imposto2 é de 10% e 5% respectivamente. A contribuição da empresa para Imposto1 e Imposto2 é de
+      15% e 10% além do salário bruto dos empregados.
     </para>
 
-    <para>Staring with $50k in the bank, and before doing any payroll, the account hierarchy looks like this:
+    <para>Começando com 50.000 € no banco e antes de fazer qualquer pagamento, a hierarquia de contas é semelhante à seguinte:
     </para>
 
     <screenshot id="bus-pay-ex1">
       <mediaobject>
         <imageobject>
           <imagedata fileref="figures/bus_pay_ex1.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
+	      srccredit="Pedro Albuquerque" width="510px" format="PNG"/>
         </imageobject>
 
         <textobject>
-          <phrase>Payroll Example 1</phrase>
+          <phrase>Folha de salários exemplo 1</phrase>
         </textobject>
 
         <caption>
-          <para>Payroll Initial Setup
+          <para>Configuração inicial da folha de salários
           </para>
         </caption>
       </mediaobject>
     </screenshot>
 
     <sect2 id="bus-pay-exampleprotocol2">
-      <title>Build Protocol</title>
+      <title>Protocolo de construção</title>
 
-      <para>The deductions list for employee 1:
+      <para>A lista de deduções para o empregado 1 é:
       </para>
 
       <itemizedlist>
         <listitem>
-          <para><emphasis>E_GROSS_SALARY</emphasis> - Employee gross salary - <emphasis>$1000</emphasis>
+          <para><emphasis>E_SALÁRIO_BRUTO</emphasis> - salário bruto do empregado - <emphasis>1000 €</emphasis>
           </para>
         </listitem>
 
         <listitem>
-          <para><emphasis>E_TAX1</emphasis> - Employee contribution to tax1 - <emphasis>$100</emphasis> (10% of
-            E_GROSS_SALARY)
+          <para><emphasis>E_IMP1</emphasis> - Contribuição do empregado para Imposto1 - <emphasis>100 €</emphasis> (10% do E_SALÁRIO_BRUTO)
           </para>
         </listitem>
 
         <listitem>
-          <para><emphasis>E_TAX2</emphasis> - Employee contribution to tax2 - <emphasis>$50</emphasis> (5% of
-            E_GROSS_SALARY)
+          <para><emphasis>E_IMP2</emphasis> - Contribuição do empregado para Imposto2 - <emphasis>50 €</emphasis> (5% do E_SALÁRIO_BRUTO)
           </para>
         </listitem>
 
         <listitem>
-          <para><emphasis>C_TAX1</emphasis> - Company contribution to tax1 - <emphasis>$150</emphasis> (15% of
-            E_GROSS_SALARY)
+          <para><emphasis>C_IMP1</emphasis> - Contribuição da companhia para Imposto1 - <emphasis>150 €</emphasis> (15% do E_SALÁRIO_BRUTO)
           </para>
         </listitem>
 
         <listitem>
-          <para><emphasis>C_TAX2</emphasis> - Company contribution to tax2 - <emphasis>$100</emphasis> (10% of
-            E_GROSS_SALARY)
+          <para><emphasis>C_IMP2</emphasis> - Contribuição da companhia para Imposto2 - <emphasis>100 €</emphasis> (10% do E_SALÁRIO_BRUTO)
           </para>
         </listitem>
       </itemizedlist>
 
       <para><table>
-          <title>Transaction Map for Employee 1</title>
+          <title>Mapa de transacções para o empregado 1</title>
 
           <tgroup cols="3">
             <thead>
               <row>
                 <entry>
-                  Account
+                  Conta
                 </entry>
 
                 <entry>
-                  Increase
+                  Acréscimo
                 </entry>
 
                 <entry>
-                  Decrease
+                  Decréscimo
                 </entry>
               </row>
             </thead>
@@ -417,59 +366,23 @@
             <tbody>
               <row>
                 <entry>
-                  Assets:Checking
+                  Activos:Conta à ordem
                 </entry>
 
                 <entry></entry>
 
                 <entry>
-                  $850 (E_NET_SALARY)
+                  850 € (E_SALÁRIO LÍQUIDO)
                 </entry>
               </row>
 
               <row>
                 <entry>
-                  Expenses:Salaries
+                  Despesas:Salários
                 </entry>
 
                 <entry>
-                  $1000 (E_GROSS_SALARY)
-                </entry>
-
-                <entry></entry>
-              </row>
-
-              <row>
-                <entry>
-                  Liabilities:Tax1
-                </entry>
-
-                <entry></entry>
-
-                <entry>
-                  $100 (E_TAX1)
-                </entry>
-              </row>
-
-              <row>
-                <entry>
-                  Liabilities:Tax2
-                </entry>
-
-                <entry></entry>
-
-                <entry>
-                  $50 (E_TAX2)
-                </entry>
-              </row>
-
-              <row>
-                <entry>
-                  Expenses:Tax1
-                </entry>
-
-                <entry>
-                  $150 (C_TAX1)
+                  1000 € (E_SALÁRIO_BRUTO)
                 </entry>
 
                 <entry></entry>
@@ -477,23 +390,35 @@
 
               <row>
                 <entry>
-                  Liabilities:Tax1
+                  Passivo:Imposto1
                 </entry>
 
                 <entry></entry>
 
                 <entry>
-                  $150 (C_TAX1)
+                  100 € (E_IMP1)
                 </entry>
               </row>
 
               <row>
                 <entry>
-                  Expenses:Tax2
+                  Passivo:Imposto2
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  50 € (E_IMP2)
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  Despesas:Imposto1
                 </entry>
 
                 <entry>
-                  $100 (C_TAX2)
+                  150 € (C_IMP1)
                 </entry>
 
                 <entry></entry>
@@ -501,13 +426,37 @@
 
               <row>
                 <entry>
-                  Liabilities:Tax2
+                  Passivo:Imposto1
                 </entry>
 
                 <entry></entry>
 
                 <entry>
-                  $100 (C_TAX2)
+                  150 € (C_IMP1)
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  Despesas:Imposto2
+                </entry>
+
+                <entry>
+                  100 € (C_IMP2)
+                </entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>
+                  Passivo:Imposto2
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  100 € (C_IMP2)
                 </entry>
               </row>
             </tbody>
@@ -517,55 +466,50 @@
     </sect2>
 
     <sect2 id="bus-pay-examplepay2">
-      <title>Pay an Employee</title>
+      <title>Pagar a um empregado</title>
 
-      <para>Now, enter the first split transaction for employee 1 in the checking account. The split transaction
-        looks like this:
+      <para>Agora, insira a primeira transacção com parcelas para o empregado 1 na conta corrente. A transacção deverá ser assim:
       </para>
 
       <screenshot id="bus-pay-ex2">
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/bus_pay_ex2.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
+	      srccredit="Pedro Albuquerque" width="510px" format="PNG"/>
           </imageobject>
 
           <textobject>
-            <phrase>Payroll Example 2</phrase>
+            <phrase>Folha de salários exemplo 2</phrase>
           </textobject>
 
           <caption>
-            <para>Employee 1 Split Transaction
+            <para>Transacção com parcelas do empregado 1
             </para>
           </caption>
         </mediaobject>
       </screenshot>
 
       <tip>
-        <para>When paying employees, enter only the employee name in the Description area. If you decide to use
-          &app;&rsquo;s check printing capabilities, the check is automatically made out to the
-          correct employee. If you want to record other information in the transaction besides the
-          employee name, use the Notes area, available when viewing the Register in double-line
-          mode.
+        <para>Ao pagar aos empregados, insira apenas o nome do empregado na área de <guilabel>Descrição</guilabel>. Se decidir utilizar as capacidades do &app;para imprimir cheques, o cheque é automaticamente emitido para o empregado correcto. Se desejar registar outras informações na transacção para além do nome do empregado, utilize a área de <guilabel>Notas</guilabel>, disponível no diário de linha dupla.
         </para>
       </tip>
 
-      <para>Repeat this for the second employee, which leaves the account hierarchy looking like this:
+      <para>Repita isto para o segundo empregado, que deixa a hierarquia de contas com este aspecto:
       </para>
 
       <screenshot id="bus-pay-ex3">
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/bus_pay_ex3.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
+	      srccredit="Pedro Albuquerque" width="510px" format="PNG"/>
           </imageobject>
 
           <textobject>
-            <phrase>Payroll Example 3</phrase>
+            <phrase>Folha de salários exemplo 3</phrase>
           </textobject>
 
           <caption>
-            <para>Account Tree After Salaries Paid
+            <para>Contas depois de pagos os salários
             </para>
           </caption>
         </mediaobject>
@@ -573,28 +517,24 @@
     </sect2>
 
     <sect2 id="bus-pay-examplegovt2">
-      <title>Pay the Government</title>
+      <title>Pagar ao Estado</title>
 
-      <para>The <emphasis>Liabilities:Tax1</emphasis> and <emphasis>Liabilities:Tax2</emphasis> accounts
-        continue to track how much you must pay to the government agencies responsible for each.
-        When it is time to pay these agencies, make a transaction from the checking account to the
-        liability accounts. No expense accounts are involved. The main account will then appear like
-        this for this example:
+      <para>As contas <emphasis>Impostos1</emphasis> e <emphasis>Passivos:Impostos2</emphasis>         continuam a acompanhar quanto deve pagar às agências governamentais responsáveis por cada um dos impostos. Quando chegar a altura de pagar a estas agências, faça uma transacção da conta à ordem para a conta de passivo. Não estão envolvidas contas de despesas. A conta principal aparecerá então como isto para este exemplo:
       </para>
 
       <screenshot id="bus-pay-ex4">
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/bus_pay_ex4.png" 
-	      srccredit="Patrick Schweiger" format="PNG"/>
+	      srccredit="Pedro Albuquerque" width="510px" format="PNG"/>
           </imageobject>
 
           <textobject>
-            <phrase>Payroll Example 4</phrase>
+            <phrase>Folha de salários exemplo 4</phrase>
           </textobject>
 
           <caption>
-            <para>Accounts After Paying Government
+            <para>Contas após pagar ao Estado
             </para>
           </caption>
         </mediaobject>

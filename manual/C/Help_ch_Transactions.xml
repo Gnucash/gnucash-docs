@@ -395,7 +395,7 @@ Translators:
       doing just that.
     </para>
 
-    <para>Select a transaction in the <guilabel>Register</guilabel> and right-click it to present the
+    <para>Select a transaction in the <guilabel>Register</guilabel> and <mousebutton>Button2</mousebutton> click it to present the
       <guimenu>Context Menu</guimenu> and select <guimenuitem>Update Association for
       Transaction</guimenuitem>. You will be presented with the <guilabel>Change a Transaction
       Association</guilabel> dialog.
@@ -874,6 +874,9 @@ Translators:
 
         <listitem>
           <para>Cleared. Status may be assigned either manually or by an import process.
+            Indicates the transaction is included in the bank's record of the account
+            transactions but has not yet been reconciled to a bank statement
+            in &app;.
           </para>
         </listitem>
       </varlistentry>
@@ -1326,8 +1329,8 @@ Translators:
     <sect2 id="trans-import-prefs">
       <title>Import Preference</title>
 
-      <para>User preferences set in the <link linkend="prefs-online">Online Banking tab</link> of the user
-        preferences accessed by
+      <para>User preferences set in the <link linkend="prefs-import">Import tab</link> or the
+        <link linkend="prefs-online">Online Banking tab</link> of the user preferences accessed by
         <menuchoice>
           <guimenu>Edit</guimenu><guisubmenu>Preferences</guisubmenu>
         </menuchoice>
@@ -2095,457 +2098,517 @@ Translators:
     <sect2 id="trans-import-matcher">
       <title>Generic Transaction Import Matcher</title>
 
-      <figure id="fig-fil-imp-match" pgwide="1">
-        <title>The Generic Transaction Import Matcher Window</title><screenshot id="ImportMatcherScreenShot">
-          <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/Help_Import_Transaction_matcher_1.png" format="PNG" srccredit="David Cousens" width="510"></imagedata>
-            </imageobject>
+      <sect3>
+        <title>Introduction</title>
+        <figure id="fig-fil-imp-match" pgwide="1">
+          <title>The Generic Transaction Import Matcher Window</title><screenshot id="ImportMatcherScreenShot">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata fileref="figures/Help_Import_Transaction_matcher_1.png" format="PNG" srccredit="David Cousens" width="510"></imagedata>
+              </imageobject>
 
-            <imageobject role="fo">
-              <imagedata fileref="figures/Help_Import_Transaction_matcher_1.png" format="PNG" srccredit="David Cousens"></imagedata>
-            </imageobject>
+              <imageobject role="fo">
+                <imagedata fileref="figures/Help_Import_Transaction_matcher_1.png" format="PNG" srccredit="David Cousens"></imagedata>
+              </imageobject>
 
-            <caption>
-              This is an image of the import transaction matcher window after opening a file to
-              import.
-            </caption>
-          </mediaobject>
-        </screenshot>
-      </figure>
+              <caption>
+                This is an image of the import transaction matcher window after opening a file to
+                import.
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
 
-      <para>The Import Matcher checks whether an imported transaction matches an existing transaction already
-        recorded in <application>&appname;</application> within a predefined time window (~+_42
-        days) for the account into which the transactions are being imported. A match probablity is
-        calculated based on the Date, Amount, Transaction ID's(if present), Check numbers (if
-        present) and the Description and split Memo fields. Exact matches will generate a high match
-        probability and flag a transaction as matching an existing transaction and therefore not to
-        be imported. If there is a lower quality match to an existing transaction, the imported
-        transaction may be flagged for updating of non-matching information in the
-        <application>&appname;</application> record of the matching transaction. These decisions can
-        be overridden by the user.
-      </para>
-
-      <para>If no matching transaction can be identified the transaction will be flagged for import. The matcher
-        will attempt to assign a transfer account based on matches between tokenized information for
-        previously imported transactions stored in lists associated with the transfer accounts which
-        were assigned to them on import.
-        <itemizedlist>
-          <listitem>
-            <para>If a good match is obtained, the transfer account is assigned and the transaction is flagged as
-              ready to import.
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>If a transfer account cannot be assigned, the transaction will be flagged for import and manual
-              assignment of the transfer account by the user. By default, if no transfer account is
-              assigned, transactions will be assigned to an Imbalance account on import. This is to
-              indicate that they need an appropriate account assigned to them.
-            </para>
-          </listitem>
-        </itemizedlist>
-      </para>
-
-      <para>The generic import transaction matcher is invoked when transaction data is imported using any of the
-        following import formats:
-        <itemizedlist spacing="compact">
-          <listitem>
-            <para>QIF;
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>OFX/QXF;
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>CSV;
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>MT940;
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>MT942;
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>DTAUS.
-            </para>
-          </listitem>
-        </itemizedlist>
-      </para>
-
-      <para>This window has the following
-        <itemizedlist>
-          <title>Controls:</title>
-
-          <listitem>
-            <para><emphasis role="bold"><guilabel>List of downloaded transactions</guilabel></emphasis>: Table
-              containing information from the imported transactions.
-            </para>
-          </listitem>
-
-          <listitem>
-            <para><emphasis role="bold"><guibutton>Show the Source Account column</guibutton></emphasis>: Checkbox to
-              displays the account into which the transactions are being imported. This is the
-              second column labelled Account in the screenshot;
-            </para>
-          </listitem>
-
-          <listitem>
-            <para><emphasis role="bold"><guibutton>Help</guibutton></emphasis>: Display a popup help window;
-            </para>
-          </listitem>
-
-          <listitem>
-            <para><emphasis role="bold"><guibutton>Cancel</guibutton></emphasis>: Close this window without importing
-              transaction data;
-            </para>
-          </listitem>
-
-          <listitem>
-            <para><emphasis role="bold"><guibutton>OK</guibutton></emphasis>: Close this window importing transaction
-              data;
-            </para>
-          </listitem>
-        </itemizedlist>
-      </para>
-
-      <para>The <guilabel>List of downloaded transactions</guilabel> has the following columns which display the
-        following information for each of the downloaded transactions:
-      </para>
-
-      <itemizedlist>
-        <title id="trans-match-col">Columns in <quote>List of Downloaded Transactions</quote></title>
-
-        <listitem>
-          <para><emphasis role="bold"><guilabel>Date</guilabel></emphasis> - The date supplied with the downloaded
-            transaction;
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold"><guilabel>Account</guilabel></emphasis> - The import or base account to which
-            the transactions will be imported (optional see above);
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold"><guilabel>Amount</guilabel></emphasis> - The amount of the transaction (split
-            to the import or base account);
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold"><guilabel>Description</guilabel></emphasis> - The description of the
-            transaction;
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold"><guilabel>Memo</guilabel></emphasis> - The memo for the split to the import or
-            base account of the transaction;
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold"><guilabel>A</guilabel></emphasis> - Checkbox which indicates that the
-            transaction is to be imported as a new transaction;
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold"><guilabel>U+C</guilabel></emphasis> - Checkbox which indicates that the
-            transaction matches an existing transaction but has some differences and the existing
-            transaction will be updated with the different information
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold"><guilabel>C</guilabel></emphasis> - Checkbox which indicates that the
-            transaction matches an existing transaction and will not be imported;
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold"><guilabel>Info</guilabel></emphasis> - For transactions which have been
-            matched to an existing transaction displays a bar indicating the quality of the match
-            and text indicating whether the transaction is to be imported.
-          </para>
-        </listitem>
-      </itemizedlist>
-
-      <para>In addition to the checkboxes, the import status of each transaction is indicated by the background
-        color of the transaction row. The checkbox state, background colors and their meaning are
-        described in <xref linkend="match_status"/>.
-      </para>
-
-      <table id="match_status" frame="all">
-        <title>Import Status of Transactions</title>
-
-        <tgroup cols="3" rowsep="1">
-          <colspec colwidth="1*+ 1cm" align="center" colsep="1" />
-
-          <colspec colwidth="15*" align="left" colsep="1" />
-
-          <colspec colwidth="26*" align="left" colsep="1" />
-
-          <thead>
-            <row rowsep="1">
-              <entry>
-                Checked Box
-              </entry>
-
-              <entry>
-                Background
-              </entry>
-
-              <entry>
-                Meaning
-              </entry>
-            </row>
-          </thead>
-
-          <tbody>
-            <row>
-              <entry morerows='1' valign='middle'>
-                <emphasis role="strong">A</emphasis>
-              </entry>
-
-              <entry>
-<?dbhtml bgcolor="#FFD700"?>
-<?dbfo bgcolor="#FFD700"?>
-                Gold
-              </entry>
-
-              <entry>
-<?dbhtml bgcolor="#FFD700"?>
-<?dbfo bgcolor="#FFD700"?>
-                No matches, flagged for input and no transfer account matched &ndash; Import as a
-                new transaction. Intervention required to select a transfer account.
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-<?dbhtml bgcolor="#CFFFCB"?>
-<?dbfo bgcolor="#CFFFCB"?>
-                DarkSeaGreen1
-              </entry>
-
-              <entry>
-<?dbhtml bgcolor="#CFFFCB"?>
-<?dbfo bgcolor="#CFFFCB"?>
-                No matches detected, flagged for input and a transfer account is matched &ndash;
-                Import as a new transaction. Reconciliation status will be set as cleared (c) on
-                import. Intervention is not required.
-              </entry>
-            </row>
-
-            <row>
-              <entry  valign='middle'>
-                <emphasis role="strong">U+C</emphasis>
-              </entry>
-
-              <entry>
-<?dbhtml bgcolor="#CFFFCB"?>
-<?dbfo bgcolor="#CFFFCB"?>
-                DarkSeaGreen1
-              </entry>
-
-              <entry>
-<?dbhtml bgcolor="#CFFFCB"?>
-<?dbfo bgcolor="#CFFFCB"?>
-                Matches an existing transaction but not exactly on date and/or amount &ndash;
-                Intervention not required, import and update. Reconciliation status will be set as
-                cleared (c) on import.
-              </entry>
-            </row>
-
-            <row>
-              <entry  valign='middle'>
-                <emphasis role="strong">C</emphasis>
-              </entry>
-
-              <entry>
-<?dbhtml bgcolor="#CFFFCB"?>
-<?dbfo bgcolor="#CFFFCB"?>
-                DarkSeaGreen1
-              </entry>
-
-              <entry>
-<?dbhtml bgcolor="#CFFFCB"?>
-<?dbfo bgcolor="#CFFFCB"?>
-                Matches an existing transaction: &ndash; Not to be imported. The existing
-                transaction reconciliation status will be as cleared (c) on import. Intervention is
-                not required
-              </entry>
-            </row>
-
-            <row>
-              <entry></entry>
-
-              <entry>
-<?dbhtml bgcolor="#FF4040"?>
-<?dbfo bgcolor="#FF4040"?>
-                Brown1
-              </entry>
-
-              <entry>
-<?dbhtml bgcolor="#FF4040"?>
-<?dbfo bgcolor="#FF4040"?>
-                Transaction has poor matches and no action was set: &ndash; Not to be imported.
-                Intervention required.
-              </entry>
-            </row>
-
-            <row>
-              <entry></entry>
-
-              <entry>
-<?dbhtml bgcolor="#6495ED"?>
-<?dbfo bgcolor="#6495ED"?>
-                Cornflower Blue
-              </entry>
-
-              <entry>
-<?dbhtml bgcolor="#6495ED"?>
-<?dbfo bgcolor="#6495ED"?>
-                Row is selected
-              </entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table>
-
-      <note>
-        <para>The colors illustrated here are the defaults for <application>&appname;</application> specified in
-          <ulink url="https://github.com/Gnucash/gnucash/blob/maint/gnucash/gnucash-fallback-310.css">gnucash-fallback-310.css</ulink>.
-          You may experience different colors if the gtk-3.0 CSS files have been modified
+        <para>The Import Matcher checks whether an imported transaction matches an existing transaction already
+          recorded in <application>&appname;</application> within a predefined time window (~+_42
+          days) for the account into which the transactions are being imported. A match probablity is
+          calculated based on the Date, Amount, Transaction ID's (if present), Check numbers (if
+          present) and the Description and split Memo fields. Exact matches will generate a high match
+          probability and flag a transaction as matching an existing transaction and therefore not to
+          be imported. If there is a lower quality match to an existing transaction, the imported
+          transaction may be flagged for updating of non-matching information in the
+          <application>&appname;</application> record of the matching transaction. These decisions can
+          be overridden by the user.
         </para>
-      </note>
 
-      <para>You may always intervene manually to
-        <itemizedlist>
-          <listitem>
-            <para>change the import action by selecting another checkbox (or none) and/or
-            </para>
-          </listitem>
+        <para>If no matching transaction can be identified the transaction will be flagged for import. The matcher
+          will attempt to assign a transfer account based on matches between tokenized information for
+          previously imported transactions stored in lists associated with the transfer accounts which
+          were assigned to them on import.
+          <itemizedlist>
+            <listitem>
+              <para>If a good match is obtained, the transfer account is assigned and the transaction is flagged as
+                ready to import.
+              </para>
+            </listitem>
 
-          <listitem>
-            <para>manually assign a different transfer account
-            </para>
-          </listitem>
-        </itemizedlist>
-        after reviewing the matched transactions and accounts and the automatically selected
-        actions.
-      </para>
-
-      <para>Multi row selection is enabled for the list of downloaded transactions. The following operations can
-        be performed on the list of downloaded transactions:
-      </para>
-
-      <itemizedlist>
-        <listitem>
-          <para><emphasis role="bold">Click <mousebutton>Button1</mousebutton> on a row</emphasis>: Select this row
-            (row is displayed with a blue background);
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold">Double-click <mousebutton>Button1</mousebutton> on a row</emphasis>: If the
-            transactions is flagged for import (see below) this will open an account selection
-            dialog to select a destination/transfer account to be used in the second split of the
-            imported transaction. You may create a new account if necessary in this dialog using the
-            <emphasis role="bold"><guibutton>New Account</guibutton></emphasis> buttonIf the
-            transaction is flagged as matching an existing transaction either for import or
-            updating, the match picker dialog is opened to allow the matched transactions to be
-            examined and a correct match selected;
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold">
-            <keycombo action="simul">
-              <keycap>Ctrl</keycap><mousebutton>Button1</mousebutton>
-            </keycombo>
-            on a row</emphasis>: Add the row to a selection of rows (displayed with a blue
-            background) to which a single destination/transfer account may be applied;
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold">
-            <keycombo action="simul">
-              <keycap>Shift</keycap><mousebutton>Button1</mousebutton>
-            </keycombo>
-            on a row</emphasis>: Select all rows between the last selected row and this row and add
-            them to the current selection of rows;
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold">Click <mousebutton>Button2</mousebutton> in the window</emphasis>: Display a
-            popup menu which when clicked in turn opens a dialog to select a single
-            destination/transfer account which will be applied to all rows currently selected.
-          </para>
-        </listitem>
-      </itemizedlist>
-
-      <important>
-        <para>It is important to assign a transfer account to each transaction prior to import of the
-          transactions. Otherwise the tokenized information from the imported transaction will not
-          be appended to the list of tokens for an assigned account for use in future matching of
-          transactions to transfer accounts.
+            <listitem>
+              <para>If a transfer account cannot be assigned, the transaction will be flagged for import and manual
+                assignment of the transfer account by the user. By default, if no transfer account is
+                assigned, transactions will be assigned to an Imbalance account on import. This is to
+                indicate that they need an appropriate account assigned to them.
+              </para>
+            </listitem>
+          </itemizedlist>
         </para>
-      </important>
+      </sect3>
 
-      <note>
-        <para>Note that "reconciled" in this context does not mean the same as "reconciled" in the process of
-          reconciling an account to an external statement. The reconciliation status of an imported
-          transaction is set to cleared (c) on import of a new transaction
+      <sect3>
+          <title>Import Formats</title>
+        <para>The generic import transaction matcher is invoked when transaction data is imported using any of the
+          following import formats:
+          <itemizedlist spacing="compact">
+            <listitem>
+              <para>QIF;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>OFX/QXF;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>CSV;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>MT940;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>MT942;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>DTAUS.
+              </para>
+            </listitem>
+          </itemizedlist>
         </para>
-      </note>
+      </sect3>
 
-      <para>Where a row has been matched to an existing transaction or is to update an existing transaction it
-        will have a DarkSeaGreen background. <emphasis role="bold">Double-clicking
-        <mousebutton>Button1</mousebutton></emphasis> on the row will bring up the Match Picker
-        dialog which displays detail of the imported. If you, feel the wrong transfer account has
-        been assigned or the matcher has not produced a valid result, you may change the checkbox
-        selection if you disagree with the matcher decisions and you may reassign an assigned
-        transfer account (see below).
-      </para>
+      <sect3>
+        <title>Controls</title>
+        <sect4>
+          <title>List of Controls</title>
 
-      <para><emphasis role="bold">Double-clicking <mousebutton>Button1</mousebutton></emphasis> on a row marked
-        as New with a <phrase>DarkSeaGreen1</phrase> background and a transfer account assigned to
-        it will bring up the account selection dialog to allow you to choose a different transfer
-        account for the second split.
-      </para>
+          <para>This window has the following
+            <itemizedlist>
+              <title>Controls:</title>
 
-      <para><emphasis role="bold">Double-clicking <mousebutton>Button1</mousebutton></emphasis> on a row marked
-        New with no transfer account matched with a <phrase>Gold</phrase> background will also bring
-        up the account selection dialog to allow you to assign a suitable transfer account to the
-        transaction.
-      </para>
+              <listitem>
+                <para><emphasis role="bold"><guilabel>List of downloaded transactions</guilabel></emphasis>: Table
+                  containing information from the imported transactions.
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><emphasis role="bold"><guibutton>Show Account column</guibutton></emphasis>: Checkbox to
+                  display the account into which the transactions are being imported. This is the
+                  second column labelled <guilabel>Account</guilabel> in the screenshot;
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><emphasis role="bold"><guibutton>Show Memo column</guibutton></emphasis>: Checkbox to
+                display the <guilabel>Memo</guilabel> from the imported transactions after the column
+                labelled <guilabel>Description</guilabel>;
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><emphasis role="bold"><guibutton>Show matched information</guibutton></emphasis>: Checkbox to
+                  display the matched transaction which has been already imported or entered into
+                  <application>&appname;</application>.  If there is one, this will be a line with a white
+                  background (by default) after the imported transaction. This is either the manually selected match
+                  if one has been selected or the best possible match otherwise;
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><emphasis role="bold"><guibutton>Append</guibutton></emphasis>: Checkbox to indicate
+                  that when updating and clearing a matched transaction, the imported <guilabel>Description</guilabel>
+                  and <guilabel>Notes</guilabel> are to be appended to the matched transaction
+                  <guilabel>Description</guilabel> and <guilabel>Notes</guilabel> respectively, rather than
+                  overwriting them. When the <emphasis role="bold"> <guibutton>OK</guibutton></emphasis>
+                  button is clicked, the state of the checkbox is saved so the next import for that account
+                  will automatically default it to the saved state;
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><emphasis role="bold"><guibutton>Reconcile after match</guibutton></emphasis>: Checkbox to
+                  automatically start the reconciliation process after transactions have been matched and imported;
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><emphasis role="bold"><guibutton>Help</guibutton></emphasis>: Display a popup help window;
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><emphasis role="bold"><guibutton>Cancel</guibutton></emphasis>: Close this window without importing
+                  transaction data;
+                </para>
+              </listitem>
+
+              <listitem>
+                <para><emphasis role="bold"><guibutton>OK</guibutton></emphasis>: Close this window importing transaction
+                  data;
+                </para>
+              </listitem>
+            </itemizedlist>
+          </para>
+        </sect4>
+
+        <sect4 id="trans-match-col">
+          <title>List of downloaded transactions</title>
+          <para>The <guilabel>List of downloaded transactions</guilabel> has the following columns which display the
+            following information for each of the downloaded transactions:
+          </para>
+
+          <itemizedlist>
+            <title >Columns in <quote>List of Downloaded Transactions</quote></title>
+
+            <listitem>
+              <para><emphasis role="bold"><guilabel>Date</guilabel></emphasis> - The date supplied with the downloaded
+                transaction;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold"><guilabel>Account</guilabel></emphasis> - The import or base account to which
+                the transactions will be imported (optional see above);
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold"><guilabel>Amount</guilabel></emphasis> - The amount of the transaction (split
+                to the import or base account);
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold"><guilabel>Description</guilabel></emphasis> - The description of the
+                transaction;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold"><guilabel>Memo</guilabel></emphasis> - The memo for the split to the import or
+                base account of the transaction (optional see above);
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold"><guilabel>A</guilabel></emphasis> - Add - Checkbox which indicates that the
+                transaction is to be imported as a new transaction;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold"><guilabel>U+C</guilabel></emphasis> - Update and Clear - Checkbox which indicates that the
+                transaction matches an existing transaction but has some differences and the existing
+                transaction will be updated with the different information;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold"><guilabel>C</guilabel></emphasis> - Clear - Checkbox which indicates that the
+                transaction matches an existing transaction and will not be imported;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold"><guilabel>Info</guilabel></emphasis> - For transactions which have been
+                matched to an existing transaction, this column displays a bar indicating the quality of the match;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold"><guilabel>Additional Comments</guilabel></emphasis> - Shows what is to happen to the
+                transaction and the transfer account if known;
+              </para>
+            </listitem>
+          </itemizedlist>
+        </sect4>
+
+        <sect4>
+          <title>Import Status</title>
+          <para>In addition to the checkboxes, the import status of each transaction is indicated by the background
+            color of the transaction row. The checkbox state, background colors and their meaning are
+            described in <xref linkend="match_status"/>.
+          </para>
+
+          <table id="match_status" frame="all">
+            <title>Import Status of Transactions</title>
+
+            <tgroup cols="3" rowsep="1">
+              <colspec colwidth="1*+ 1cm" align="center" colsep="1" />
+
+              <colspec colwidth="15*" align="left" colsep="1" />
+
+              <colspec colwidth="26*" align="left" colsep="1" />
+
+              <thead>
+                <row rowsep="1">
+                  <entry>
+                    Checked Box
+                  </entry>
+
+                  <entry>
+                    Background
+                  </entry>
+
+                  <entry>
+                    Meaning
+                  </entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry morerows='1' valign='middle'>
+                    <emphasis role="strong">A</emphasis>
+                  </entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#FFD700"?>
+    <?dbfo bgcolor="#FFD700"?>
+                    Gold
+                  </entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#FFD700"?>
+    <?dbfo bgcolor="#FFD700"?>
+                    No matches, flagged for input and no transfer account matched &ndash; Import as a
+                    new transaction. Intervention required to select a transfer account.
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+    <?dbhtml bgcolor="#CFFFCB"?>
+    <?dbfo bgcolor="#CFFFCB"?>
+                    DarkSeaGreen1
+                  </entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#CFFFCB"?>
+    <?dbfo bgcolor="#CFFFCB"?>
+                    No matches detected, flagged for input and a transfer account is matched &ndash;
+                    Import as a new transaction. Reconciliation status will be set as cleared (c) on
+                    import. Intervention is not required.
+                  </entry>
+                </row>
+
+                <row>
+                  <entry  valign='middle'>
+                    <emphasis role="strong">U+C</emphasis>
+                  </entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#CFFFCB"?>
+    <?dbfo bgcolor="#CFFFCB"?>
+                    DarkSeaGreen1
+                  </entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#CFFFCB"?>
+    <?dbfo bgcolor="#CFFFCB"?>
+                    Matches an existing transaction but not exactly on date and/or amount &ndash;
+                    Intervention not required, import and update. Reconciliation status will be set as
+                    cleared (c) on import.
+                  </entry>
+                </row>
+
+                <row>
+                  <entry  valign='middle'>
+                    <emphasis role="strong">C</emphasis>
+                  </entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#CFFFCB"?>
+    <?dbfo bgcolor="#CFFFCB"?>
+                    DarkSeaGreen1
+                  </entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#CFFFCB"?>
+    <?dbfo bgcolor="#CFFFCB"?>
+                    Matches an existing transaction: &ndash; Not to be imported. The existing
+                    transaction reconciliation status will be as cleared (c) on import. Intervention is
+                    not required
+                  </entry>
+                </row>
+
+                <row>
+                  <entry></entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#FF4040"?>
+    <?dbfo bgcolor="#FF4040"?>
+                    Brown1
+                  </entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#FF4040"?>
+    <?dbfo bgcolor="#FF4040"?>
+                    Transaction has poor matches and no action was set: &ndash; Not to be imported.
+                    Intervention required.
+                  </entry>
+                </row>
+
+                <row>
+                  <entry></entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#6495ED"?>
+    <?dbfo bgcolor="#6495ED"?>
+                    Cornflower Blue
+                  </entry>
+
+                  <entry>
+    <?dbhtml bgcolor="#6495ED"?>
+    <?dbfo bgcolor="#6495ED"?>
+                    Row is selected
+                  </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+
+          <note>
+            <para>The colors illustrated here are the defaults for <application>&appname;</application> specified in
+              <ulink url="https://github.com/Gnucash/gnucash/blob/maint/gnucash/gnucash-fallback-310.css">gnucash-fallback-310.css</ulink>.
+              You may experience different colors if the gtk-3.0 CSS files have been modified
+            </para>
+          </note>
+
+          <para>You may always intervene manually to
+            <itemizedlist>
+              <listitem>
+                <para>change the import action by selecting another checkbox (or none) and/or
+                </para>
+              </listitem>
+
+              <listitem>
+                <para>manually assign a different transfer account
+                </para>
+              </listitem>
+            </itemizedlist>
+            after reviewing the matched transactions and accounts and the automatically selected
+            actions.
+          </para>
+
+          <para>Multi row selection is enabled for the list of downloaded transactions. The following operations can
+            be performed on the list of downloaded transactions:
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">Click <mousebutton>Button1</mousebutton>
+                (see <link linkend="Help-Mouse-Buttons">Mouse Buttons</link>) on a row</emphasis>:
+                Select this row (row is displayed with a blue background);
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">Double-click <mousebutton>Button1</mousebutton> on a row</emphasis>: If the
+                transactions is flagged for import (see below) this will open an account selection
+                dialog to select a destination/transfer account to be used in the second split of the
+                imported transaction. You may create a new account if necessary in this dialog using the
+                <emphasis role="bold"><guibutton>New Account</guibutton></emphasis> button. If the
+                transaction is flagged as matching an existing transaction either for import or
+                updating, the match picker dialog is opened to allow the matched transactions to be
+                examined and a correct match selected;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">
+                <keycombo action="simul">
+                  <keycap>Ctrl</keycap><mousebutton>Button1</mousebutton>
+                </keycombo>
+                on a row</emphasis>: Add the row to a selection of rows (displayed with a blue
+                background) to which a single destination/transfer account may be applied;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">
+                <keycombo action="simul">
+                  <keycap>Shift</keycap><mousebutton>Button1</mousebutton>
+                </keycombo>
+                on a row</emphasis>: Select all rows between the last selected row and this row and add
+                them to the current selection of rows;
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">Click <mousebutton>Button2</mousebutton> in the window</emphasis>: Display a
+                popup menu which when clicked in turn opens a dialog to select a single
+                destination/transfer account which will be applied to all rows currently selected.
+              </para>
+            </listitem>
+          </itemizedlist>
+
+          <important>
+            <para>It is important to assign a transfer account to each transaction prior to import of the
+              transactions. Otherwise the tokenized information from the imported transaction will not
+              be appended to the list of tokens for an assigned account for use in future matching of
+              transactions to transfer accounts.
+            </para>
+          </important>
+
+          <note>
+            <para>Note that "reconciled" in this context does not mean the same as "reconciled" in the process of
+              reconciling an account to an external statement. The reconciliation status of an imported
+              transaction is set to cleared (c) on import of a new transaction.
+              See <link linkend="trans-stts">Setting the reconcile status (R field) of a transaction</link>
+              for details of the values of reconciliation status.
+            </para>
+          </note>
+
+          <para>Where a row has been matched to an existing transaction or is to update an existing transaction it
+            will have a DarkSeaGreen background. <emphasis role="bold">Double-clicking
+            <mousebutton>Button1</mousebutton></emphasis> on the row will bring up the Match Picker
+            dialog which displays detail of the imported. If you, feel the wrong transfer account has
+            been assigned or the matcher has not produced a valid result, you may change the checkbox
+            selection if you disagree with the matcher decisions and you may reassign an assigned
+            transfer account (see below).
+          </para>
+
+          <para><emphasis role="bold">Double-clicking <mousebutton>Button1</mousebutton></emphasis> on a row marked
+            as New with a <phrase>DarkSeaGreen1</phrase> background and a transfer account assigned to
+            it will bring up the account selection dialog to allow you to choose a different transfer
+            account for the second split.
+          </para>
+
+          <para><emphasis role="bold">Double-clicking <mousebutton>Button1</mousebutton></emphasis> on a row marked
+            New with no transfer account matched with a <phrase>Gold</phrase> background will also bring
+            up the account selection dialog to allow you to assign a suitable transfer account to the
+            transaction.
+          </para>
+        </sect4>
+      </sect3>
 
       <sect3>
         <title>Assign a Destination Account to a Single Transaction</title>
 
-        <para>The currently selected row is selected by <mousebutton>left</mousebutton> clicking it. It is
+        <para>Select the required row by clicking <mousebutton>Button1</mousebutton> on it. It is
           displayed with a <phrase>
 <?dbhtml bgcolor="#6495ED"?>
 <?dbfo bgcolor="#6495ED"?>
           Cornflower Blue</phrase> background color.
         </para>
 
-        <para>Double <mousebutton>left</mousebutton> clicking on a row will select it and open an Account
+        <para>Double clicking <mousebutton>Button1</mousebutton> on a row will select it and open an Account
           Selection dialog to allow you to assign a transfer account. Select the desired transfer
           account in the dialog and click
           <emphasis role="bold"><guibutton>OK</guibutton></emphasis>. The dialog has a
@@ -2558,8 +2621,8 @@ Translators:
           column.
         </para>
 
-        <para>or alternatively, <mousebutton>left</mousebutton> click on a row to select it followed by a
-          <mousebutton>right</mousebutton> click to bring up a popup menu then select
+        <para>or alternatively, <mousebutton>Button1</mousebutton> click on a row to select it followed by a
+          <mousebutton>Button2</mousebutton> click to bring up a popup menu then select
           <guimenuitem>Assign a transfer account</guimenuitem> to display the <guilabel>Account
           Selection</guilabel> dialog, select the destination account and click the
           <emphasis role="bold"><guibutton>OK</guibutton></emphasis> button.
