@@ -4,7 +4,7 @@ function (add_gnc_doc_targets docname entities)
 
     file(GLOB_RECURSE figures
         "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.png"
-        "${CMAKE_CURRENT_SOURCE_DIR}/figures/figures/*.svg")
+        "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.svg")
 
     if(entities)
         # Add a target to run xml lint checks on this document's source xml files
