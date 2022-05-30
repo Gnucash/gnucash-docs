@@ -25,6 +25,7 @@ function (add_pdf_target docname lang entities figures)
                             -o "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
                             --stringparam fop1.extensions 1
                             --stringparam variablelist.as.blocks 1
+                            --stringparam glosslist.as.blocks 1
                             "${CMAKE_SOURCE_DIR}/xsl/1.79.2/fo/docbook.xsl"
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
