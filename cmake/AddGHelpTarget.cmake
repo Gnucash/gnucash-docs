@@ -20,6 +20,7 @@ function (add_ghelp_target docname lang entities figures)
     endforeach()
 
     set(dtd_files "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd"
+                  "${CMAKE_SOURCE_DIR}/docbook/gnc-gui-struct.dtd"
                   "${CMAKE_SOURCE_DIR}/docbook/gnc-locale-C.dtd"
                   "${CMAKE_SOURCE_DIR}/docbook/gnc-locale-${lang}.dtd")
     list(REMOVE_DUPLICATES dtd_files)
