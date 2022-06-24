@@ -32,12 +32,19 @@ own entity definitions to use across all of our DocBook pages. -->
   
   1. a) Publication - should only be changed by the release manager!
 -->
-<!ENTITY manrevision "4.10">
-<!ENTITY date "27 March 2022">
-<!ENTITY vers-unstable "">
-<!ENTITY vers-stable "4.10">
-<!ENTITY series-unstable "master">
 <!ENTITY series-stable "4">
+<!ENTITY vers-stable "&series-stable;.10">
+<!ENTITY series-unstable "master">
+<!ENTITY vers-unstable "">
+
+<!ENTITY manrevision "&vers-stable;">
+<!ENTITY date "27 March 2022">
+<!-- Fixme: a dirty hack to reference the other document
+            Replace them after olink setup               -->
+<!ENTITY url-docs-top "https://www.gnucash.org/docs/">  <!-- also used for API -->
+<!ENTITY url-docs-draft "https://code.gnucash.org/docs/">  <!-- used while developing -->
+<!ENTITY url-docs-release "&url-docs-top;v&series-stable;/">  <!-- used on release -->
+<!ENTITY url-docs "&url-docs-draft;">
 
 <!--
   1. b) Publication - Translators can add transliterations
@@ -47,14 +54,13 @@ own entity definitions to use across all of our DocBook pages. -->
     and replace "&app;" by "&app-<lang>;" and "&appname;" by "&appname-<lang>;" in your translation.
 -->
 <!ENTITY appname "GnuCash">  <!-- This should be used, where no further markup is desired, e.g. in GUI elements, URLs -->
-<!ENTITY app "<application>GnuCash</application>">  <!-- This should be used in normal text -->
+<!ENTITY app "<application>&appname;</application>">  <!-- This should be used in normal text -->
 <!ENTITY app-aqb "<application>AqBanking</application>">
 <!ENTITY app-aoo "<application>Apache OpenOffice</application>">
 <!ENTITY app-fq "<application>Finance::Quote</application>">
 <!ENTITY app-lo "<application>LibreOffice</application>">
 <!ENTITY app-perl "<application>Perl</application>">
 <!ENTITY app-py "<application>Python</application>">
-<!ENTITY app-perl "<application>Perl</application>">
 <!ENTITY app-gfa "<application>Gnucash for Android</application>">
 
   <!-- Operating Systems (3 letters), Bundles: -->
@@ -96,18 +102,17 @@ own entity definitions to use across all of our DocBook pages. -->
 <!ENTITY url-bug-search "https://bugs.gnucash.org/query.cgi">
 <!ENTITY url-bug-browse "https://bugs.gnucash.org/describecomponents.cgi">
 
-<!ENTITY url-docs "https://www.gnucash.org/docs/">
-<!ENTITY url-doc-api-main "https://code.gnucash.org/docs/MAINT/">
-<!ENTITY url-doc-api-mast "https://code.gnucash.org/docs/MASTER/">
+<!ENTITY url-doc-api-main "&url-docs-top;MAINT/">
+<!ENTITY url-doc-api-mast "&url-docs-top;MASTER/">
 <!-- Fixme: a dirty hack to reference the other document
             Replace them after olink setup
      append {guide|help}/<html-page>                      -->
-<!ENTITY url-docs-build-C "https://code.gnucash.org/docs/C/gnucash-">
-<!ENTITY url-docs-build-de "https://code.gnucash.org/docs/de/gnucash-">
-<!ENTITY url-docs-build-it "https://code.gnucash.org/docs/it/gnucash-">
-<!ENTITY url-docs-build-ja "https://code.gnucash.org/docs/ja/gnucash-">
-<!ENTITY url-docs-build-pt "https://code.gnucash.org/docs/pt/gnucash-">
-<!ENTITY url-docs-build-ru "https://code.gnucash.org/docs/ru/gnucash-">
+<!ENTITY url-docs-C "&url-docs;C/gnucash-">
+<!ENTITY url-docs-de "&url-docs;de/gnucash-">
+<!ENTITY url-docs-it "&url-docs;it/gnucash-">
+<!ENTITY url-docs-ja "&url-docs;ja/gnucash-">
+<!ENTITY url-docs-pt "&url-docs;pt/gnucash-">
+<!ENTITY url-docs-ru "&url-docs;ru/gnucash-">
 
 <!ENTITY url-irc "irc://irc.gnome.org/gnucash">
 <!ENTITY url-logs-irc "https://lists.gnucash.org/logs/">  <!-- for IRC. If someone needs build logs, scan https://code.gnucash.org/builds/ -->
