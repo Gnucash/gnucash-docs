@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter SYSTEM "gnc-docbookx.dtd">
+<!DOCTYPE chapter SYSTEM "gnc-gui-de.dtd">
 <!-- (Do not remove this comment block.)
 Version: 1.0.0
 Last modified: August 08th 2021
@@ -14,13 +14,118 @@ Translators:
 -->
 <chapter id="finance-quote"
          xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Die Online-Kursaktualisierung einrichten</title>
+  <title>Einrichtung der Kursaktualisierung</title>
 
-  <para>Wenn Sie mehr als ein paar Devisen und Wertpapiere besitzen, werden Sie es bald leid sein, die Kurse
-    ständig per Hand aktualisieren zu müssen. &app; bietet Ihnen die Möglichkeit, automatisch den
-    aktuellsten Kurs für Ihre Devisen und Wertpapiere über das Internet herunterzuladen. Hierfür
-    wird das &app-perl;-Modul &app-fq; verwendet.
+  <para>Wenn Sie mehr als ein paar Devisen und Wertpapiere besitzen, werden Sie es vielleicht bald leid
+    sein, die Kurse ständig per Hand aktualisieren zu müssen. &app; bietet Ihnen die Möglichkeit,
+    automatisch den aktuellsten Kurs für Ihre Devisen und Wertpapiere über das Internet
+    herunterzuladen. Hierfür wird das &app-perl;-Modul &app-fq; verwendet.
   </para>
+
+  <itemizedlist>
+    <title>Die Vorraussetzungen für eine Online-Kursabfrage mit &app-fq; sind</title>
+
+    <listitem>
+      <para>ein &app-perl; Interpreter und
+      </para>
+    </listitem>
+
+    <listitem>
+      <para>das &app-perl;-Module &app-fq; mit allen Abhängigkeiten.
+      </para>
+    </listitem>
+  </itemizedlist>
+
+  <note>
+    <para>Wenn Sie bei der Durchführung der hier beschriebenen Schritte nicht mehr weiterwissen, 
+      können Sie auf den unter <xref linkend="more_help" /> genannten Kanäle viele hilfsbereiten
+      Anwender erreichen.
+    </para>
+  </note>
+
+  <para>Sie können diesen Schritt auch weglassen und Ihre Aktienkurse weiterhin manuell aktualisieren.
+  </para>
+
+  <sect1 id="finance-quote-perl-install">
+    <title>Installieren von &app-perl;</title>
+
+    <para>Die Installation von &app-perl; ist im wesentlichen von dem verwendeten Betriebssystem abhängig.
+      Der Aufwand zur Installation ist gering und wird in diesem Abschnitt beschrieben.
+    </para>
+
+    <para>Um zu überprüfen ob auf Ihrem System &app-perl; schon bereits installiert ist, rufen Sie den Befehl
+      <informalexample>
+<screen>perl -v</screen>
+      </informalexample>
+      im Terminal auf. Wird Ihnen die Versionsnummer des &app-perl;-Interpreters angezeigt, dann
+      machen Sie mit <xref linkend="finance-quote-install" /> weiter.
+    </para>
+
+    <procedure>
+      <title>Unter &lin;</title>
+
+      <step>
+        <para>Bei den meisten Systemen ist &app-perl; wahrscheinlich bereits installiert. Wird mit dem vorherigen
+          Befehl keine Version angezeigt wird, dann verwenden Sie am einfachsten die Paketverwaltung
+          Ihres Systems zur Installation.
+        </para>
+      </step>
+
+      <step>
+        <para>Verwenden Sie das &app; &flatpak; Paket sind &app-perl; und &app-fq; bereits funktionsfähig
+          installiert.
+        </para>
+      </step>
+    </procedure>
+
+    <procedure>
+      <title>Unter &mac;</title>
+
+      <step>
+        <para>&app-perl; ist unter &mac; normalerweise schon eingerichtet.
+        </para>
+      </step>
+    </procedure>
+
+    <procedure>
+      <title>Unter &win;</title>
+
+      <step>
+        <para>Unter &win; führen Sie das Programm
+          <menuchoice>
+            <guimenu>Start</guimenu> <guisubmenu>&appname;</guisubmenu>
+            <guimenuitem>Online-Preisabfrage installieren</guimenuitem>
+          </menuchoice>
+          aus. Dies wird <ulink url="&url-wp-en;Strawberry_Perl">Strawberry Perl</ulink>
+          installieren.
+          <footnote>
+            <para>&app; Version 2.2.6 und früher benötigen <ulink url="&url-wp-en;ActivePerl">ActivePerl</ulink> in
+              Version 5.8.
+            </para>
+          </footnote>
+
+          <footnote>
+            <para>&app; Version 2.4 und früher benötigen <ulink url="&url-wp-en;ActivePerl">ActivePerl</ulink> ab
+              Version 5.16.3.
+            </para>
+          </footnote>
+        </para>
+      </step>
+
+      <step>
+        <para>Zu Ausführung beötigen Sie <emphasis>Administratorenrechte</emphasis>, die im Dialog abgefragt
+          werden. Die Installation kann mehr als 15 Minuten dauern.
+        </para>
+      </step>
+
+      <step>
+        <para>Werden während der Installation die Fehlermeldung <computeroutput>No such file or directory
+          </computeroutput> oder <computeroutput>permission denied</computeroutput> angezeigt, dann
+          kann es helfen das Antivirenprogramm vorübergehend zu deaktiviern.
+        </para>
+      </step>
+    </procedure>
+  </sect1>
 
   <sect1 id="finance-quote-install">
     <title>Installieren von &app-fq;</title>
@@ -39,47 +144,12 @@ SYNOPSIS
       konfigurieren. Wenn nicht, dann gibt Ihnen dieser Abschnitt eine Anleitung zur Installation.
     </para>
 
-    <itemizedlist>
-      <title>Die Vorraussetzungen für eine Online-Kursaktualisierung mit &app-fq; sind</title>
-
-      <listitem>
-        <para>ein &app-perl; Interpreter,
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>das &app-perl;-Module &app-fq; selber und
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>alle Abhängigkeiten, die für das Modul &app-fq; erforderlich sind.
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <note>
-      <para>Wenn Sie sich bei der Durchführung mit den nachfolgend beschriebenen Schritte nicht sicher fühlen,
-        senden Sie bitte ihre Frage entweder per E-Mail an die deutschsprachige &app;-user
-        Mailingliste (<email>gnucash-de@gnucash.org</email>) oder besuchen Sie den 
-        <ulink url="&url-irc;">#&appname; IRC-Kanal</ulink>.
-        Weitere Informationen finden Sie auch im &app; Wiki unter
-        <ulink url="&url-wiki-de;Aktienhandel">Aktienhandel</ulink>. Sie können diesen Schritt auch
-        weglassen und Ihre Aktienkurse manuell aktualisieren.
-      </para>
-    </note>
-
-    <para>Die Installation von &app-perl; liegt nicht im Fokus dieser Anleitung. Eine ausführliche
-      Beschreibung ist im englischsprachigen &app; Wiki unter
-      <ulink url="&url-wiki-OQ;#Perl">Perl</ulink> zu finden.
-    </para>
-
     <para>Die Installation von &app-fq; unterscheidet sich von einem Betriebssystem zum anderen. Für die
       verschiedenen unterstützten Systeme, können Sie die folgenden Anweisungen befolgen:
     </para>
 
     <procedure>
-      <title>Installieren von &app-fq; unter &lin;</title>
+      <title>Unter &lin;</title>
 
       <step>
         <simpara>Beenden Sie &app;.
@@ -124,8 +194,8 @@ SYNOPSIS
           </footnote>
           Modul gestartet um die Installation vorzunehmen. Wenn Sie das CPAN zum ersten Mal starten,
           müssen Sie es einrichten und konfigurieren. Auf den meisten Systemen können Sie jedoch
-          die Standardeinstellungen akzeptieren und die erste Frage <computeroutput>Are you ready
-          for manual configuration? [yes]</computeroutput> mit <userinput>no</userinput> beantworten
+          die Standardvorgaben akzeptieren und die erste Frage <computeroutput>Are you ready for
+          manual configuration? [yes]</computeroutput> mit <userinput>no</userinput> beantworten
           damit &app-fq; erfolgreich installiert wird.
         </para>
       </step>
@@ -140,7 +210,7 @@ SYNOPSIS
     </procedure>
 
     <procedure>
-      <title>Installieren von &app-fq; in &mac;</title>
+      <title>Unter &mac;</title>
 
       <step>
         <simpara>Beenden Sie &app;.
@@ -168,7 +238,7 @@ SYNOPSIS
     </procedure>
 
     <procedure>
-      <title>Installieren von &app-fq; unter &win;</title>
+      <title>Unter &win;</title>
 
       <step>
         <simpara>Beenden Sie &app;.
@@ -178,8 +248,8 @@ SYNOPSIS
       <step>
         <simpara>Führen Sie
           <menuchoice>
-            <guimenu>Start</guimenu> <guisubmenu>&app;</guisubmenu> <guimenuitem>Online-Preisabfrage
-            installieren</guimenuitem>
+            <guimenu>Start</guimenu> <guisubmenu>&appname;</guisubmenu>
+            <guimenuitem>Online-Preisabfrage installieren</guimenuitem>
           </menuchoice>
           aus. Dies ist ein kleines Hilfsprogramm, das &app-fq; für Sie installiert.
         </simpara>
@@ -188,7 +258,7 @@ SYNOPSIS
   </sect1>
 
   <sect1 id="finance-quote-scheduler">
-    <title>Automatisierte Abfrage von Online-Kursen</title>
+    <title>Automatisierte Abfrage von Kursen</title>
 
     <para>Mit dem Kommando <command>gnucash-cli --quotes get &user-datafile;</command>
       <footnote>
@@ -200,10 +270,11 @@ SYNOPSIS
         </simpara>
       </footnote>
       können Sie die aktuellen Kurse Ihrer Devisen und Wertpapiere abrufen und direkt in ihre
-      &app;-Datendatei schreiben ohne die Benutzeroberfläche zu starten. Somit ist eine automatische,
-      regelmäßige Aktualisierung der Kursdatenbank möglich.
+      &app;-Datendatei schreiben ohne die Benutzeroberfläche zu starten. Somit ist eine
+      automatische, regelmäßige Aktualisierung der Kursdatenbank möglich.
       <warning>
-        <para>Beachten Sie bitte, dass die Datendatei nicht gleichzeitig in einer anderen Instanz von &app; geöffnet sein darf!
+        <para>Beachten Sie bitte, dass die Datendatei nicht gleichzeitig in einer anderen Instanz von &app;
+          geöffnet sein darf!
         </para>
       </warning>
     </para>
@@ -296,9 +367,11 @@ gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
       </para>
     </example>
 
-    <para>Einige Benutzer haben im englischsprachigen Wiki Ergänzungen und ihre Erfahrungen auf der
+    <para>Einige Benutzer haben im &app; Wiki unter
+      <ulink url="&url-wiki-de;Aktienhandel">Aktienhandel</ulink> und ausführlicher im
+      englischsprachigen Wiki
       <ulink url="&url-wiki-OQ;#Updating_enabled_Quotes_from_outside_GnuCash">Online Quotes Page on
-      GnuCash Wiki</ulink> zusammengestellt.
+      GnuCash Wiki</ulink> ihre Erfahrungen und weiter Ergänzungen zusammengestellt.
     </para>
   </sect1>
 </chapter>

@@ -4,7 +4,7 @@ function (add_gnc_doc_targets docname entities)
 
     file(GLOB_RECURSE figures
         "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.png"
-        "${CMAKE_CURRENT_SOURCE_DIR}/figures/figures/*.svg")
+        "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.svg")
 
     if(entities)
         # Add a target to run xml lint checks on this document's source xml files
@@ -14,6 +14,12 @@ function (add_gnc_doc_targets docname entities)
                                 --noout
                                 --path ${CMAKE_SOURCE_DIR}/docbook
                                 ${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml
+            COMMAND  ${CMAKE_COMMAND}
+                -D XMLLINT=${XMLLINT}
+                -D GNC_SOURCE_DIR=${CMAKE_SOURCE_DIR}
+                -D GNC_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
+                -D docname=${docname}
+                -P ${CMAKE_SOURCE_DIR}/cmake/CheckFigures.cmake
             DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
         add_dependencies(${docname}-check "${lang}-${docname}-check")
     endif()
