@@ -7,7 +7,7 @@ cmake_minimum_required (VERSION 3.10)
 # We don't actually use C, but GNUInstallDirs doesn't work if we don't
 # specify a language.
 project (gnucash-docs
-    VERSION 4.10.1
+    VERSION 4.11
     LANGUAGES C)
 
 set (PACKAGE_NAME GnuCash Docs)
