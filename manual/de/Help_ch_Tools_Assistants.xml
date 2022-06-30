@@ -5005,17 +5005,47 @@
   <sect1 id="tool-price">
     <title>Kurs-Datenbank</title>
 
+    <abstract>
+      <para>Die Kurs-Datenbank listet die Preise eines Handelsguts zu verschiedenen Zeitpunken und ggf. auf
+        verschiedenen Märkten in Bezug zu einem anderen Handelsgut auf. Neue
+        Preise können hinzugefügt oder gelöscht, bestehende Preise bearbeitet und aus
+        einer Auswahl von verschiedenen Quellen im World-Wide-Web abgerufen werden, wenn das
+        Handelsgut hierfür richtig konfiguriert ist.
+      </para>
+    </abstract>
+
     <para>Mit dem Menüpunkt &mc.to.price; haben Sie die Möglichkeit die Kurse für Ihre Devisen, Aktien
       und Investmentfonds zu verwalten.
     </para>
 
+    <glosslist>
+      <glossentry>
+        <glossterm>Handelsgut</glossterm>
+        <glossdef>
+          <para>Steht in &app; für alles, was zählt: Währungen, Wertpapiere (d.h. immaterielle Werte wie
+            Aktien oder Investmentfondsanteile und Anleihen), oder Sachwerte wie Lastwagen und Computer.
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Wechselkurs</glossterm>
+        <glossdef>
+          <para>Wird für den Vergleich zwischen zwei Währungen verwendet.
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Preis</glossterm>
+        <glossdef>
+          <para>Kommt zwischen einer Nicht-Währung und einer Währung zur Anwendung.
+          </para>
+        </glossdef>
+      </glossentry>    
+    </glosslist>
     <note>
-      <para>&app; verwendet den Begriff <emphasis>Handelsgut</emphasis> für alles, was zählt: Währungen,
-        Wertpapiere (d.h. immaterielle Werte wie Aktien oder Investmentfondsanteile und Anleihen),
-        oder Sachwerte wie Lastwagen und Computer. Bei der Bewertung eines Handelsguts in Bezug auf
-        ein anderes wird der Begriff <emphasis>Wechselkurs</emphasis> zwischen zwei Währungen und
-        <emphasis>Preis</emphasis> zwischen einer Nicht-Währung und einer Währung benutzt. Im
-        weiteren Verlauf dieses Abschnitts verwenden wir den Begriff <quote>Preis</quote> sowohl
+      <para>Im weiteren Verlauf dieses Abschnitts verwenden wir den Begriff <quote>Preis</quote> sowohl
         für den Preis als auch den Wechselkurs und <quote>Handelsgut</quote> für jede Art von
         Ware, außer wenn das Währungsverhalten unterschiedlich ist.
       </para>
@@ -5023,12 +5053,6 @@
 
     <sect2 id="tool-price-db">
       <title>Benutzen der Kurs-Datenbank</title>
-
-      <para>Die Kurs-Datenbank listet den Preis eines Handelsguts in Bezug zu einem anderen Handelsgut auf. Neue
-        Preise können hinzugefügt oder gelöscht, bestehende Preise bearbeitet und Preise aus
-        einer Auswahl von verschiedenen Quellen im World-Wide-Web abgerufen werden, wenn das
-        Handelsgut hierfür richtig konfiguriert ist.
-      </para>
 
       <figure pgwide="1">
         <title>Die Kurs-Datenbank</title><screenshot>
@@ -5044,7 +5068,8 @@
         </screenshot>
       </figure>
 
-      <para>Jedes Handelsgutpaar kann <emphasis>einen</emphasis> Preis pro Tag haben. Ein bestehender Preis wird
+      <para>Jedes Handelsgutpaar kann <emphasis>nur einen</emphasis> Preis pro Tag haben. Daher eignet sich &app;
+        nicht sonderlich für Intra-Day-Trading. Ein bestehender Preis wird
         durch einen neueren Preis überschrieben wenn der neuere Preis die gleiche oder eine höher
         priorisierte Quelle hat. Die Beschreibung der möglichen
         <xref linkend="tool-ge-PriceSource" /> der Preise werden nachfolgend beschrieben.
@@ -5091,8 +5116,8 @@
             <glossterm>Kurse abrufen</glossterm>
             <glossdef>
               <para>Wenn &app-fq; installiert und eine Online-Quelle für die Börsenkurse ausgewählt ist, werden mit
-                betätigen dieser Schaltfläche für die konfigurierten Währungen und
-                Aktien/Investmentfonds die Kurse online abgerufen und eingetragen.
+                Betätigen dieser Schaltfläche für die konfigurierten Währungen und
+                Aktien/Investmentfonds die Kurse online abgerufen und eingetragen. (Siehe <xref linkend="tool-ge-GetOnlineQuotes" />) 
 <!-- FIXME insert <xref linkend="tool-ge-GetOnlineQuotes" /> to the new "Security Editor/Get Online Quotes" -->
               </para>
             </glossdef>
@@ -5101,7 +5126,7 @@
           <glossentry>
             <glossterm>Schließen</glossterm>
             <glossdef>
-              <para>Beendet die Kurs-Datenbank und schließt den Dialog.
+              <para>Schließt das Fenster der Kursdatenbank.
               </para>
             </glossdef>
           </glossentry>
@@ -5127,18 +5152,13 @@
         </screenshot>
       </figure>
 
-      <note>
-        <para>Manuell im <guilabel>Kurs Editor</guilabel> eingetragene Preise werden gegenüber den mittels
-          &app-fq; abgerufenen Preisen bevorzugt. &app-fq; wird daher diese Preise nicht aktualisieren.
-        </para>
-      </note>
-
       <para>Die <guilabel>Kurs-Datenbank</guilabel> zeigt die vorhandenen Preise wie folgt an:
         <glosslist>
           <glossentry>
             <glossterm>Namensraum</glossterm>
             <glossdef>
-              <para>Sind Kategorien zur Organisation Ihrer Wertpapiere.
+              <para>Sind Kategorien zur Organisation Ihrer Wertpapiere. Weitere Beschreibungen stehen
+                unter <xref linkend="tool-ge-Namespace" />
 <!-- FIXME: weitere Beschreibungen stehen unter <xref linkend="tool-ge-Namespace" /> im SecurityEditor. -->
               </para>
             </glossdef>
@@ -5181,6 +5201,11 @@
                     <glossterm>user:price-editor</glossterm>
                     <glossdef>
                       <para>Manuell im Preiseditor eingetragene Preise.
+                        <note>
+                          <para>Manuell im <guilabel>Kurs-Editor</guilabel> eingetragene Preise werden gegenüber den mittels
+                            &app-fq; abgerufenen Preisen bevorzugt. &app-fq; wird daher diese Preise nicht aktualisieren.
+                          </para>
+                        </note>
                       </para>
                     </glossdef>
                   </glossentry>
@@ -5238,7 +5263,7 @@
           </glossentry>
 
           <glossentry>
-            <glossterm>Typ (Kontoart)</glossterm>
+            <glossterm>Typ (Kursart)</glossterm>
             <glossdef>
               <para>Es werden verschiedene Arten für Kursnotierungen verwendet:
                 <glosslist>
@@ -5259,7 +5284,7 @@
                   </glossentry>
 
                   <glossentry>
-                    <glossterm>Last (Vortag)</glossterm>
+                    <glossterm>Last (Zuletzt)</glossterm>
                     <glossdef>
                       <para>Gibt den Kurs an, zu dem der letzte Handel mit dieser Aktie/Wertpapier vollzogen wurde. Dieser Preis
                         wird meistens in den Medien genannt.
@@ -5272,7 +5297,8 @@
                     <glossdef>
                       <para>Werden in der Regel für Investmentfonds verwendet. Sie werden auf der Grundlage des Nettowerts des
                         Fondsvermögens jeden Tag um den Zeitpunkt des Marktschlusses berechnet und
-                        gelten bis zur nächsten Neuberechnung.
+                        gelten bis zur nächsten Neuberechnung. Informieren Sie sich bei der Fondsgesellschaft
+                        nach dem Zeitpunkt der Kursermittlung.
                       </para>
                     </glossdef>
                   </glossentry>
