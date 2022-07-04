@@ -5483,7 +5483,7 @@
 
     <abstract>
       <para>Der Wertpapier-Editor wird zum Anlegen und Bearbeiten von allen Handelsgütern genutzt, die keine
-        ISO-Währungen sind. Darunter fallen z.B.:
+        Währungen gemäß <ulink url="&url-wp-de;ISO_4217">ISO 4217</ulink> sind. Darunter fallen z.B.:
         <itemizedlist>
           <listitem>
             <para>Aktien und andere Wertpapiere,
@@ -5500,7 +5500,7 @@
             </para>
           </listitem>
         </itemizedlist>
-        Er zeigt auch die Definitionen der Währungen, die in &app; verfügbar sind.
+        Er zeigt auch die Definitionen der ISO-Währungen, die in &app; verfügbar sind.
       </para>
     </abstract>  
       
@@ -5531,8 +5531,7 @@
     </para>
 
     <para>Die Bedeutung der einzelnen Spalten wird im <xref linkend="tool-commodity" /> beschrieben,
-      wohingegen zwei zusätzliche Spalten von &app; an Hand Ihrer Eingaben automatisch ausgefüllt
-      werden.
+      wobei zwei Spalten von &app; an Hand Ihrer Eingaben automatisch ausgefüllt werden.
     </para>
 
     <glosslist>
@@ -5548,7 +5547,7 @@
       <glossentry id="tool-ge-UniqueName">
         <glossterm>Eindeutiger Name</glossterm>
         <glossdef>
-          <para>Der <guilabel>Eindeutige Name</guilabel> setzt sich aus dem <guilabel>Namensraum</guilabel> (Typ)
+          <para>Der <guilabel>Eindeutige Name</guilabel> setzt sich aus dem <guilabel>Namensraum</guilabel>
             und dem <guilabel>Symbol</guilabel> zusammen.
           </para>
         </glossdef>
@@ -5564,13 +5563,25 @@
         <glossterm>Nationale Währungen anzeigen</glossterm>
 
         <glossdef>
-          <para>Mit Aktivieren dieses Kontrollkästchens werden die Währungseinträge zu Ihrer Information
+          <para>Mit Aktivieren dieses Kontrollkästchens werden die ISO-Währungen zu Ihrer Information
             eingeblendet.
             <note>
-              <para>Die nationalen Währungen sind gemäß ISO 4217 bezeichnet, und können nur eingeschränkt
-                bearbeitet werden.
-              </para>          
-            </note>
+              <para>
+                Da diese fest in &app; eingetragen sind, können diese Einträge weder
+                <itemizedlist>
+                  <listitem>
+                    <para>hinzugefügt noch
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para>gelöscht
+                    </para>
+                  </listitem>
+                </itemizedlist>
+                werden.
+              </para>
+            </note>            
           </para>
         </glossdef>
       </glossentry>
@@ -5579,12 +5590,9 @@
         <glossterm>Hinzufügen</glossterm>
 
         <glossdef>
-          <para>Öffnet den Dialog <guilabel>Neues Wertpapier</guilabel> in dem Sie ein neues Wertpapier (Aktie oder
-            Investmentfonds) anlegen können.
-            <note>
-              <para>Eine neue Währung kann nicht hinzugefügt werden, da diese fest in &app; eingetragen sind.
-              </para>
-            </note>
+          <para>Öffnet den Dialog <guilabel>Neues Wertpapier</guilabel> in dem Sie ein neues Wertpapier (Aktie,
+            Investmentfonds, Anleihe, Option usw.) anlegen können. Dies erfolgt mit dem selben Dialog
+            in dem Sie auch ein <xref linkend="tools-commodity-add" /> können.
           </para>
         </glossdef>
       </glossentry>
@@ -5597,12 +5605,7 @@
             <note>
               <para>Wenn schon Kurse für das Wertpapier im <xref linkend="tool-price" /> enthalten sind oder das
                 Wertpapier in einen Konto verwendet wird, dann werden Sie mit einem Warnhinweis
-                darauf aufmerksam gemacht und müssen diese Einträge händisch entfernen.
-              </para>
-            </note>
-
-            <note>
-              <para>Eine Währung kann aus der Auflistung nicht gelöscht werden.
+                darauf aufmerksam gemacht und müssen diese Einträge zuvor händisch entfernen.
               </para>
             </note>
           </para>
@@ -5614,8 +5617,8 @@
 
         <glossdef>
           <para>Möchten Sie ein Wertpapier oder eine Währung bearbeiten, markieren Sie es in der Liste, und die
-            Daten werden in dem Dialog <guilabel>Wertpapier bearbeiten</guilabel> bzw.
-            <guilabel>Währung bearbeiten</guilabel> zur Änderungen angeboten.
+            Daten werden in dem Dialog <xref linkend="tools-commodity-add" /> bzw.
+            <xref linkend="tools-commodity-currency-edit" /> zur Änderungen angeboten.
           </para>
         </glossdef>
       </glossentry>
@@ -5633,72 +5636,54 @@
     <sect2 id="tool-commodity">
       <title>Wertpapier anlegen oder bearbeiten</title>
 
-      <para>Der Wertpapier-Editor stellt ein weiteres Dialogfenster zu Verfügung in dem Sie Wertpapiere neu
-        anlegen oder auch bearbeiten können. Mit dem selben Dialog können Sie ebenfalls Währungen
-        bearbeiten. Nachfolgend wird Ihnen die Möglichkeiten beschrieben, die der Editor Ihnen
-        bietet.
-      </para>
-<!--
-      <table id="Tools-SecurityEditor-Dialog">
-        <title>Wertpapier/ Währung anlegen oder bearbeiten</title>
+      <abstract>
+        <para>Der Wertpapier-Editor stellt ein weiteres Dialogfenster zu Verfügung in dem Sie Wertpapiere neu
+          anlegen und Vorhandene auch bearbeiten können. Mit dem selben Dialog können Sie ebenfalls die ISO-Währungen
+          bearbeiten. Nachfolgend werden Ihnen die Möglichkeiten beschrieben, die der Editor Ihnen
+          bietet.
+        </para>
+      </abstract>
+      
+      <sect3 id="tools-commodity-add">
+        <title>Wertpapier bearbeiten</title>
 
-        <tgroup align="left" cols="2">
-          <colspec colwidth="0.5*"/>
+        <abstract>
+          <para>Dieser Dialog untertützt Sie dabei ein neues Handelsgut anzulegen
+            oder ein bestehendes Handelsgut zu bearbeiten.
+          </para>
+        </abstract>
 
-          <colspec colwidth="0.5*"/>
-
-          <tbody>
-            <row valign="top">
-              <entry valign="bottom"> -->
-                <para><figure>
-                    <title>Wertpapier anlegen oder bearbeiten</title><screenshot>
-                      <mediaobject>
-                        <imageobject>
-                          <imagedata fileref="figures/Tools_SecurityEditor_add.png" 
-                            srccredit="Christian Wehling"/>
-                        </imageobject>
-                      </mediaobject>
-                    </screenshot>
-                  </figure>
-                </para><!--
-              </entry>
-
-              <entry valign="bottom"> -->
-                <para><figure>
-                    <title>Währung bearbeiten</title><screenshot>
-                      <mediaobject>
-                        <imageobject>
-                          <imagedata fileref="figures/Tools_SecurityEditor_edit.png" 
-                            srccredit="Christian Wehling"/>
-                        </imageobject>
-                      </mediaobject>
-                    </screenshot>
-                  </figure>
-                </para><!--
-              </entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table> -->
+        <figure>
+          <title>Wertpapier anlegen oder bearbeiten</title><screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Tools_SecurityEditor_add.png" 
+                         srccredit="Christian Wehling"/>
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
 
       <variablelist>
         <varlistentry>
           <term>Wertpapierinformationen</term>
 
           <listitem>
-            <note>
-              <para>Bei den fest vorgegeben Währungen können Sie <emphasis>nur</emphasis> das
-                <guilabel>Anzeigesymbol</guilabel> und die <guilabel>Börsenkursquelle</guilabel> anpassen.
-              </para>
-            </note>
-
             <glosslist>
               <glossentry id="tool-ge-FullName">
                 <glossterm>Voller Name</glossterm>
                 <glossdef>
-                  <para>Der vollständige Name des Wertpapiers sollte ein für Sie verständlicher Name, wie z.B.
-                    <emphasis>US-Dollars</emphasis> oder <emphasis>Amazon Stammaktien</emphasis>,
-                    sein.
+                  <para>Der vollständige Name sollte eine für Sie verständliche Beschreibung, wie z.B.
+                    <emphasis>US-Dollars</emphasis> oder <emphasis>Amazon Stammaktien</emphasis>
+                    bei Wertpaieren oder bei Anleihen z.B. <emphasis>Emitent, x %, Endfälligkeitsdatum</emphasis> sein.
+                    <tip>
+                      <para>Bei Anleihen empfiehlt es sich, die regelmäßigen Zinszahlungen und die Endfälligkeit gleich als
+                        <xref linkend="trans-sched" /> anzulegen. Das hilft den Überblick bei seiner Liquidität zu behalten.
+                      </para>
+                      <para>Zu den Ausschüttungen von Aktien und Fonds kann man das auch, allerdings muss man für die Höhe
+                        eine Variable verwenden, da sie jetzt noch nicht bekannt ist.
+                      </para>
+                    </tip>
                   </para>
                 </glossdef>
               </glossentry>
@@ -5710,8 +5695,13 @@
                     Tickersymbol (bei Aktien) oder eine andere eindeutige Abkürzung. Wenn das
                     Wertpapier an einer Börse gehandelt wird, ist es wichtig, dieselbe Kennung zu
                     verwenden, die auch an dieser Börse verwendet wird. Für nationale Währungen
-                    entspricht das Symbol dem <ulink url="&url-wp-de;ISO_4217">ISO 4217</ulink>
-                    Währungscode.
+                    entspricht das Symbol der ISO 4217.
+                    <tip>
+                      <para>Wenn Sie Ihre Kursdaten mit &app-fq; abrufen möchten, ist es wichtig ist, dass das
+                        Symbol mit dem in der zugeordneten Kursquelle übereinstimmt.
+                        Beachten Sie auch die Hinweise zu dem <xref linkend="tool-ge-TypeQuoteSource" />.
+                      </para>
+                    </tip>
                   </para>
                 </glossdef>
               </glossentry>
@@ -5719,22 +5709,44 @@
               <glossentry id="tool-ge-DisplaySymbol">
                 <glossterm>Anzeigesymbol</glossterm>
                 <glossdef>
-                  <para>Wenn Sie hier keinen Eintrag vornehmen, wird das zuvor eingetragene Symbol bzw. die Abkürzung als
-                    Anzeigesymbol genutzt. Bei einer Währung ist hier das Währungssymbol eingestellt.
+                  <para>Wenn Sie hier keinen Eintrag vornehmen, wird das zuvor eingetragene Symbol bzw. die Abkürzung
+                    auch als Anzeigesymbol genutzt. Bei einer Währung ist hier das Währungssymbol eingestellt.
                   </para>
                 </glossdef>
               </glossentry>
 
               <glossentry id="tool-ge-Namespace">
-                <glossterm>Typ</glossterm>
+                <glossterm>Namensraum</glossterm>
                 <glossdef>
-                  <para>wird auch <guilabel>Namensraum</guilabel> genannt und kennzeichnet Kategorien zur Organisation Ihrer
-                    Handelsgüter. Die Angabe hat für &app; keine Bedeutung, sie dient nur dazu,
-                    Ihnen das Auffinden des Handelsgutes in den Auswahllisten zu erleichtern.
+                  <para>Kennzeichnet Kategorien zur Strukturierung Ihrer Handelsgüter. Die Angabe hat für &app;
+                    keine Bedeutung, sie dient nur dazu, Ihnen das Auffinden des Handelsgutes in den
+                    Auswahllisten zu erleichtern.
+                    <note>
+                      <para>Ähnlich einer Kontonummer bietet der Namensraum eine Möglichkeit,
+                        seine Investments sachlich zu sortieren. Grundsätzlich bietet es sich an, sie nach
+                        Risiko zu gruppieren. Zum Beispiel kann als erste Ebene der Typ des Wertpapiers
+                        angegeben werden und als optionale 2. Ebene die Nominalwährung.
+<screen>:
+|
++--Anleihe
+|   |--CHF
+|   |--EUR
++--Aktie
+|   |--CHF
+|   |--EUR
+|   |--GBP
+|
+:</screen>
+                      </para>
+                    </note>
                   </para>
 
-                  <para>Da &app; Ihnen hier keine Vorgaben macht, können Sie die Typen selber eintragen, denkbar wären z.B.
-                    diese Einträge:
+                  <para>Obwohl &app; Ihnen hier keine Vorgaben mehr macht<footnote>
+                      <para>Bis GnuCash 4.9 gab es eine Vorschlagsliste die sehr nordamerikanisch geprägt war und
+                        für Benutzer in anderen Teilen der Welt wenig Sinn machte.
+                      </para>
+                    </footnote>, können in dem Auswahlfeld noch Einträge aus vorherigen Eingaben enthalten sein.
+                    Sie können die Liste selber mit weiteren Typen ergänzen, denkbar wäre z.B. diese Gruppierung:
                   </para>
 
                   <itemizedlist>
@@ -5766,7 +5778,7 @@
 
                   <para>
                     <caution>
-                      <para>Da das Wort <emphasis>Template</emphasis> in &app; ein reserviertes Wort ist,
+                      <para>Da das Wort <computeroutput>template</computeroutput> in &app; ein reserviertes Wort ist,
                         darf es von Ihnen <emphasis>nicht</emphasis> verwendet werden!
                       </para>
                     </caution>
@@ -5774,21 +5786,21 @@
                 </glossdef>
               </glossentry>
 
-              <glossentry id="tool-ge-ISIN-CUSIP">
+              <glossentry id="tool-ge-ISIN">
                 <glossterm>ISIN, WKN oder anderer Code</glossterm>
                 <glossdef>
                   <para>Dies ist ein numerischer oder alphanumerischer Code, der verwendet wird, um das Wertpapier zu
-                    identifizieren. Der
-                    <ulink url="&url-wp-de;Internationale_Wertpapierkennnummer"><acronym>ISIN</acronym></ulink>-Code
+                    identifizieren. Die
+                    <ulink url="&url-wp-de;Internationale_Wertpapierkennnummer"><acronym>ISIN</acronym></ulink>
                     ist eine internationale eindeutige numerische Zeichenfolge, die mit jeder Aktie,
                     Anleihe oder jedem Investmentfonds und den meisten Arten von gehandelten
-                    Optionen, Futures und Rohstoffen verbunden ist. In Deutschland ist die
+                    Optionen, Futures und Rohstoffen verbunden ist. In Deutschland ist auch noch die
                     <ulink url="&url-wp-de;Wertpapierkennnummer"><acronym>WKN</acronym></ulink>
-                    gebräuchlich, es existieren auch weitere, regional gültige Codes wie z.B. die des
-                    <ulink url="&url-wp-de;Committee_on_Uniform_Security_Identification_Procedures">
-                    <acronym>CUSIP</acronym></ulink> in Nord Amerika. Die Angabe des Code ist nicht
-                    erforderlich, kann aber beispielsweise nützlich sein um sich hierin gleich auch die ISIN zu merken,
-                    z.B. falls Sie später die Quelle für den Kursabruf wechseln.
+                    gebräuchlich.
+                  </para>
+
+                  <para>Die Angabe des Code ist nicht erforderlich, kann aber beispielsweise nützlich sein um sich
+                    hierin gleich auch die ISIN zu merken, z.B. falls Sie später die Quelle für den Kursabruf wechseln.
                   </para>
                 </glossdef>
               </glossentry>
@@ -5798,7 +5810,8 @@
                 <glossdef>
                   <para>Dies ist die kleinste gehandelte Einheit des Wertpapiers, ausgedrückt als Bruchteil einer einzelnen
                     Nominaleinheit. Diese Einheit wird von &app;-Konten als Standardstückelung für
-                    den Handel mit dem Wertpapier verwendet.
+                    den Handel mit dem Wertpapier, beispielsweise bei offenen Fonds, aus denen Depot- oder Verwaltungs-Gebühren
+                    durch Verkäufe in Hundertstel oder Tausendstel beglichen werden, verwendet.
                   </para>
                 </glossdef>
               </glossentry>
@@ -5816,12 +5829,6 @@
                 <glossdef>
                   <para>Das Aktivieren dieses Kontrollkästchens ermöglicht, den Abruf der Kurse von Währung oder
                     Wertpapier von einer Online-Datenquelle.
-                    <note>
-                      <para>Wenn Sie den Kursabruf für eine Währung wünschen, dann müssen Sie nur noch die richtige
-                        <guilabel>Zeitzone</guilabel> einstellen.
-                      </para>
-                    </note>
-
                     <note>
                       <para>Wenn die Schaltfläche nicht angeklickt werden kann, dann ist das Paket &app-fq; nicht
                         oder nicht richtig installiert. Lesen Sie in diesem Fall die Installationanleitung unter
@@ -5899,28 +5906,34 @@ and update the appendix. -->
                       </para>
                     </note>
                   </para>
-
+<!-- Translators: You can add a sentence about your secondary regional exchanges from table
+"gnc-tbl-fq-yahoo-exchange-codes"in tips_appendix.xml -->
                   <para>Beachten Sie allerdings, dass Sie bei Verwendung von <quote>Yahoo as JSON</quote> zusätzlich das
-                    Börsenplatzkürzel des Wertpapiers anfügen sollten, z.B. <quote>PA</quote>
-                    für Paris, <quote>BE</quote> für Berlin usw. Beispiel: 12150.PA (ein
-                    Peugeot-Papier am Pariser Markt). 
+                    Börsenplatzkürzel des Wertpapiers anfügen sollten, z.B. <quote>F</quote> für Frankfurt,
+                    <quote>SW</quote> für Swiss oder <quote>VI</quote> für Vienna, usw. Als Beispiele sind
+                    hier VOW.F, NESN.SW und VOE.VI genannt. <quote>DE</quote> steht hier für
+                    <emphasis>Deutsche Börse XETRA</emphasis>.
                     <xref linkend="gnc-tbl-fq-yahoo-exchange-codes"></xref> enthält eine Liste von
                     Suffixen für verschiedene Märkte auf der ganzen Welt.
+<!-- Translators: Some fund companies create their own pseudo-symbols that differ from the regional codes, such as
+the TIAA-CREF fund as a regional fund. You are free to add corresponding tables from your language area in the
+tips_appendix.xml and to adapt the text here. -->
+                    <footnote>
+                      <para>Pseudo-Symbole für den amerikanischen Lehrer-Pensionsfond TIAA-CREF-Fonds sind in der Tabelle
+                        <xref linkend="PsSymbs-TIAA-CREF"></xref> aufgeführt.
+                      </para>
+                    </footnote>
                     <tip>
                       <para>Da einige Symbole eine spezielle Schreibweise erfordern, schauen Sie sich auch die Beispiele unter
                         <ulink url="&url-wiki;Online_Quotes#Setting_up_online_quotes_in_GnuCash" /> an.
                       </para>
                     </tip>
                   </para>
-
-                  <para>Pseudo-Symbole für den amerikanischen Lehrer-Pensionsfond TIAA-CREF-Fonds sind in der Tabelle
-                    <xref linkend="PsSymbs-TIAA-CREF"></xref> aufgeführt.
-                  </para>
                 </glossdef>
               </glossentry>
 
               <glossentry id="tool-ge-TimeZone">
-                <glossterm>Zeitzone dieser Kurse</glossterm>
+                <glossterm>Zeitzone</glossterm>
                 <glossdef>
                   <para>Wählen Sie die Zeitzone für die Quelle der von Ihnen empfangenen Online-Börsenkurse.
                     Beispielsweise verwendet Yahoo gewöhnlich die US-Eastern-Zeitzone, wählen Sie
@@ -5954,6 +5967,45 @@ and update the appendix. -->
           </listitem>
         </varlistentry>
       </variablelist>
+      </sect3>
+      
+      <sect3 id="tools-commodity-currency-edit">
+        <title>ISO-Währung bearbeiten</title>
+
+        <abstract>
+          <para>Mit Hilfe dieses Dialoges haben Sie die Möglichkeit ISO-Währung zu bearbeiten.
+            Allerdings sind die meisten Eigenschaften von der ISO definiert sind, können nicht verändert werden.
+          </para>
+        </abstract>
+
+        <figure>
+          <title>Währung bearbeiten</title><screenshot>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/Tools_SecurityEditor_edit.png" 
+                           srccredit="Christian Wehling"/>
+                </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>Bei den fest vorgegeben ISO-Währungen besteht <emphasis>nur</emphasis> die Möglichkeit,
+          <itemizedlist>
+            <listitem>
+              <para>das <xref linkend="tool-ge-DisplaySymbol" />,</para>
+            </listitem>
+            
+            <listitem>
+              <para>die <xref linkend="tool-ge-TypeQuoteSource" /> und</para>
+            </listitem>
+            
+            <listitem>
+              <para>die <xref linkend="tool-ge-TimeZone" /></para>
+            </listitem>
+          </itemizedlist>
+          anzupassen.
+        </para>
+      </sect3>
     </sect2>
   </sect1>
 
