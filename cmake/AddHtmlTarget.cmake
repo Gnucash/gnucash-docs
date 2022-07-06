@@ -54,7 +54,8 @@ function (add_html_target docname lang entities figures)
 
     add_dependencies(${docname}-html "${lang}-${docname}-html")
 
-    install(DIRECTORY ${BUILD_DIR}
-      DESTINATION "${CMAKE_INSTALL_DOCDIR}/${lang}"
-      )
+    if(WITH_HTML_INSTALL)
+        install(DIRECTORY ${BUILD_DIR}
+          DESTINATION "${CMAKE_INSTALL_DOCDIR}/${lang}")
+    endif()
 endfunction()
