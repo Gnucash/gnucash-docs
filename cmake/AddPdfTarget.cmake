@@ -4,7 +4,6 @@ function (add_pdf_target docname lang entities figures)
     set(pdffile "${docname}.pdf")
 
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}")
 
     # Determine paper format depending on language (which maps to the document's directory name)
     # * for language "C" (fallback language) determine paper format based on current locale
@@ -21,6 +20,7 @@ function (add_pdf_target docname lang entities figures)
 
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"
         COMMAND ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_FO}
                             -o "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
                             --stringparam fop1.extensions 1

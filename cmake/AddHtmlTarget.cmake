@@ -12,16 +12,16 @@ function (add_html_target docname lang entities figures)
 
     set(styledir "${CMAKE_SOURCE_DIR}/stylesheet")
     file(GLOB styleicons "${CMAKE_SOURCE_DIR}/stylesheet/*.png")
-
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}/${docname}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
-    file(MAKE_DIRECTORY "${BUILD_DIR}/stylesheet")
+
 
     # Convert xml to html with xsltproc
     # xsltproc --xinclude -o outputdir/ /usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl filename.xml
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
+      OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
+      COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"
+      COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
+      COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/stylesheet"
         COMMAND  ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_HTML}
                              -o "${BUILD_DIR}/"
                              --param use.id.as.filename "1"
@@ -32,7 +32,6 @@ function (add_html_target docname lang entities figures)
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
 
     # Copy figures for this document
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
@@ -40,7 +39,6 @@ function (add_html_target docname lang entities figures)
         DEPENDS ${figures})
 
     # Copy style icons for this document (warning, info,...)
-    file(MAKE_DIRECTORY "${BUILD_DIR}/stylesheet")
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/styletrigger"
         COMMAND  ${CMAKE_COMMAND} -E copy ${styleicons} "${BUILD_DIR}/stylesheet"
@@ -55,7 +53,7 @@ function (add_html_target docname lang entities figures)
     add_dependencies(${docname}-html "${lang}-${docname}-html")
 
     if(WITH_HTML_INSTALL)
-        install(DIRECTORY ${BUILD_DIR}
+        install(TARGET "${lang}-${docname}-html"
           DESTINATION "${CMAKE_INSTALL_DOCDIR}/${lang}")
     endif()
 endfunction()
