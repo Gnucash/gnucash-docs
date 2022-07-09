@@ -36,14 +36,14 @@ function (add_html_target docname lang entities figures)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
-        DEPENDS ${figures})
+        DEPENDS ${figures} "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger")
 
     # Copy style icons for this document (warning, info,...)
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/styletrigger"
         COMMAND  ${CMAKE_COMMAND} -E copy ${styleicons} "${BUILD_DIR}/stylesheet"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/styletrigger"
-        DEPENDS ${styleicons})
+        DEPENDS ${styleicons} "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger")
 
     add_custom_target("${lang}-${docname}-html"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
