@@ -33,7 +33,8 @@ function (add_ghelp_target docname lang entities figures)
     add_custom_command(
       OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger"
       COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"
-      COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures")
+      COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
+      COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger")
 
 
     add_custom_command(
@@ -47,7 +48,7 @@ function (add_ghelp_target docname lang entities figures)
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
-        DEPENDS ${figures})
+        DEPENDS ${figures} "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger")
 
     add_custom_target("${lang}-${docname}-ghelp"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger"
