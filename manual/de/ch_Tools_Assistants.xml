@@ -6089,101 +6089,190 @@ tips_appendix.xml and to adapt the text here. -->
   </sect1>
 
   <sect1 id="tool-calc">
-    <title>Loan Repayment Calculator</title>
+    <title>Darlehensrechner</title>
 
-    <para>The <guilabel>Loan Repayment Calculator</guilabel> is used to calculate compound interest. It
-      provides a way of entering four of the five parameters of a compound interest calculation and
-      then calculating the remaining figure.
+    <abstract>
+      <para>Der <guilabel>Darlehensrechner</guilabel> dient der unverbindlichen Berechnung eines
+        Rückzahlungsplans. Er bietet die Möglichkeit, vier von fünf Parameter einer Zinseszinsberechnung
+        anzugeben und den verbleibenden Parameter zu berechnen. Damit ist er eine gute Vorbereitung
+        für den <xref linkend="trans-sched-loans" />, der aus diesen und weiteren Angaben geplante
+        Buchungen erstellt.
+      </para>
+    </abstract>
+
+    <formalpara>
+      <title>Aufruf des Assistentens</title>
+
+      <para>Gestartet wird der Rechner im Menü unter &mc.to.loan;.
+      </para>
+    </formalpara>
+
+    <figure pgwide="1">
+      <title>Der Darlehensrechner</title><screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/Tools_LoanCalculator.png" srccredit="Christian Wehling" />
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>Der Rechner ist in zwei Bereiche unterteilt, der eine dient zur <guilabel>Berechnung</guilabel> der
+      Darlehenswerte und der andere der Angabe von <guilabel>Konditione</guilabel>.
     </para>
 
-    <para>The calculator is split into two panes. The left pane has five fields with a
-      <guilabel>Calculate</guilabel> button and a <guibutton>Clear</guibutton> button. The
-      <guibutton>Calculate</guibutton> button is used to select the figure to calculate. The
-      <guibutton>Clear</guibutton> button is used to clear any amount in the field.
+    <para>Der linke Bereich enthält fünf Eingabefelder mit jeweils einem <xref linkend="ge-tool-calc-clear" />-Knopf.
     </para>
 
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Payment Periods:</emphasis> This field is used to select the number of
-          payments you wish to use in the calculation.
-        </para>
-      </listitem>
+    <glosslist>
+      <title>Berechnung</title>
 
-      <listitem>
-        <para><emphasis role="bold">Interest Rate:</emphasis> This field is used for the interest rate percentage.
-        </para>
-      </listitem>
+      <glossentry>
+        <glossterm>Zahlungsintervalle</glossterm>
+        <glossdef>
+          <para>Dieses Feld enthält die Anzahl der Raten.
+          </para>
+        </glossdef>
+      </glossentry>
 
-      <listitem>
-        <para><emphasis role="bold">Present Value:</emphasis> This field usually contains the amount you have
-          borrowed. It is the base amount you wish to compound.
-        </para>
-      </listitem>
+      <glossentry>
+        <glossterm>Zinssatz</glossterm>
+        <glossdef>
+          <para>Dieses Feld wird für den Zinssatz des Darlehens in Prozent verwendet.
+          </para>
+        </glossdef>
+      </glossentry>
 
-      <listitem>
-        <para><emphasis role="bold">Periodic Payment:</emphasis> This field contains the amount that is the
-          payment for the period selected (IE monthly, weekly, etc). If it is for repaying a loan it
-          should be a negative number.
-        </para>
-      </listitem>
+      <glossentry>
+        <glossterm>Aktueller Wert</glossterm>
+        <glossdef>
+          <para>Dieses Feld enthält in der Regel den Betrag, den Sie geliehen haben. Es ist der Basisbetrag, den
+            Sie aufzinsen wollen. Man kann ihn auch verwenden, um zu sehen, was von einer Einlage bei negativen
+            Zinsen nach x Jahren noch übrig bleibt.
+          </para>
+        </glossdef>
+      </glossentry>
 
-      <listitem>
-        <para><emphasis role="bold">Future Value:</emphasis> This field contains the final value at the end of the
-          periods above. If we are repaying a loan in full it would be <emphasis>0</emphasis>.
-        </para>
-      </listitem>
-    </itemizedlist>
+      <glossentry>
+        <glossterm>Periodische Zahlung</glossterm>
+        <glossdef>
+          <para>Dieses Feld enthält den Betrag, der die Zahlung für den gewählten Zeitraum (z.B. monatlich,
+            wöchentlich usw.) ausweist. Wenn es sich um die Rückzahlung eines Kredits handelt, so
+            sollte es eine negative Zahl sein.
+          </para>
+        </glossdef>
+      </glossentry>
 
-    <para>The right pane contains buttons to select what sort of payments and compounding is used for the left
-      pane calculations.
+      <glossentry>
+        <glossterm>Zukünftiger Wert</glossterm>
+        <glossdef>
+          <para>Dieses Feld enthält den Betrag am Ende der oben genannten Zahlungsintervalle. Bei der
+            vollständigen Rückzahlung eines Kredits sollte er <emphasis>0</emphasis> lauten.
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry id="ge-tool-calc-clear">
+        <glossterm>Zurücksetzen</glossterm>
+        <glossdef>
+          <para>Der Knopf löscht den Wert in dem zugehörigen Eingabefeld.
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Genauigkeit</glossterm>
+        <glossdef>
+          <para>Die Anzahl der Dezimalstellen für den aufgezinsten Zahlungsbetrag.
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Berechnen</glossterm>
+        <glossdef>
+          <para>Die Schaltfläche zur Berechnung des fünften Wertes wird erst dann aktiviert, wenn Sie in einem
+            Feld die Eingabe zurückgesetzt haben. Ansonsten gibt es nichts zu berechnen.
+          </para>
+        </glossdef>
+      </glossentry>
+    </glosslist>
+
+    <para>Im rechten Bereich sind Steuerelemente enthalten, mit denen Sie angeben können, welche Vorgaben
+      für die Verzinsung und den Zahlungszeitpunkt für die Berechnungen im linken Bereich gelten.
     </para>
 
-    <itemizedlist>
-      <listitem>
-        <para><guibutton>Compounding:</guibutton> This button allows you to select the interval used if the
-          <guilabel>Discrete Compounding</guilabel> button is selected.
-        </para>
-      </listitem>
+    <glosslist>
+      <title>Konditionen</title>
 
-      <listitem>
-        <para><guibutton>Payments:</guibutton> This button allows you to select the interval used for the Payment
-          Periods field.
-        </para>
-      </listitem>
+      <glossentry>
+        <glossterm>Aufzinsung</glossterm>
+        <glossdef>
+          <para>In diesem Bereich stellen Sie Vorgaben für die [Zinses]Zins-Berechnung und die Häufigkeit ein.
+            <variablelist>
+              <varlistentry>
+                <term>Typ</term>
 
-      <listitem>
-        <para><guibutton>End of Period Payments:</guibutton> Use this button if the payment is at the end of the
-          period.
-        </para>
-      </listitem>
+                <listitem>
+                  <para>Wählen Sie als Zinstyp eine <guilabel>Schrittweise</guilabel> oder eine
+                    <guilabel>Kontinuierliche</guilabel> Verzinsung.
+                  </para>
+                </listitem>
+              </varlistentry>
 
-      <listitem>
-        <para><guibutton>Beginning of Period Payments:</guibutton> Use this button if the payment is at the
-          beginning of the period.
-        </para>
-      </listitem>
+              <varlistentry>
+                <term>Häufigkeit</term>
 
-      <listitem>
-        <para><guibutton>Discrete Compounding:</guibutton> This button is used where interest is charged at a
-          discrete interval defined by the <guibutton>Compounding</guibutton> button above.
-        </para>
-      </listitem>
+                <listitem>
+                  <para>Wenn Sie eine <guilabel>Schrittweise</guilabel> Zinszahlung wünschen, dann können Sie den
+                    Zahlungszeitpunkt einstellen.
+                  </para>
+                </listitem>
+              </varlistentry>
+            </variablelist>
+          </para>
+        </glossdef>
+      </glossentry>
 
-      <listitem>
-        <para><guibutton>Continuous Compounding:</guibutton> This button is used when the interest is charged
-          continuously.
-        </para>
-      </listitem>
+      <glossentry>
+        <glossterm>Periode</glossterm>
+        <glossdef>
+          <para>Wählen Sie den Zahlungszeitpunkt und die Häufigkeit für die Zahlungen.
+            <variablelist>
+              <varlistentry>
+                <term>Zahlungszeitpunkt</term>
 
-      <listitem>
-        <para><guibutton>Payment Total:</guibutton> This field shows the total amount paid.
-        </para>
-      </listitem>
-    </itemizedlist>
+                <listitem>
+                  <para>Legen Sie fest, ob die Zahlung zum <guilabel>Anfang</guilabel> oder zum <guilabel>Ende</guilabel>
+                    einer Periode erfolgt.
+                  </para>
+                </listitem>
+              </varlistentry>
 
-    <para>Examples of using the <guilabel>Loan Repayment Calculator</guilabel> are given in the Tutorial and
-      Concepts Guide. <ulink url="&url-docs-C;guide/loans_calcs1.html"> &app; Tutorial and
-      Concepts Guide&rsquo;s Chapter on Loans</ulink>
+              <varlistentry>
+                <term>Häufigkeit</term>
+                <listitem>
+                  <para>Wählen Sie das Zahlungsintervall aus der Liste aus.
+                  </para>
+                </listitem>
+              </varlistentry>
+            </variablelist>
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Zahlungsbetrag</glossterm>
+        <glossdef>
+          <para>In diesem Feld wird der gezahlte Gesamtbetrag angezeigt.
+          </para>
+        </glossdef>
+      </glossentry>
+    </glosslist>
+
+    <para>Beispiele für die Verwendung des <guilabel>Darlehensrechners</guilabel> finden Sie im
+      <ulink url="&url-docs-de;guide/loans_calcs1.html">&app; Kurs und Konzepte, Kapitel
+      Berechnungen</ulink>
     </para>
   </sect1>
 
