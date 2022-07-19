@@ -4192,136 +4192,212 @@
   </sect1>
 
   <sect1 id="trans-sched-slr">
-    <title>Since Last Run Assistant</title>
+    <title>Der <quote>Seit letztem Aufruf</quote> Dialog</title>
 
-    <para>The <guilabel>Since Last Run</guilabel> assistant is run automatically when &app; is started. It is
-      used to enter into the register any transactions that are due to be automatically entered (see
-      <xref linkend="trans-sched"></xref>). The run on &app; start can be altered in the
-      <link linkend="prefs-sched">Scheduled Transactions</link> tab of the <guilabel>&appname;
-      Preferences</guilabel>. To run the <guilabel>Since Last Run</guilabel> assistant manually, go
-      to
-      <menuchoice>
-        <guilabel>Actions</guilabel><guisubmenu>Scheduled Transactions</guisubmenu>
-        <guimenuitem>Since Last Run...</guimenuitem>
-      </menuchoice>
-    </para>
-
-    <para>In the <guilabel>Since Last Run</guilabel> assistant window you can see three columns:
-    </para>
-
-    <variablelist termlength="8">
-      <varlistentry>
-        <term><guilabel>Transaction</guilabel></term>
-
-        <listitem>
-          <para>The name assigned in the <guilabel>Scheduled Transaction Editor</guilabel> that identifies the
-            scheduled transaction.
-          </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><guilabel>State</guilabel></term>
-
-        <listitem>
-          <para>The <guilabel>state</guilabel> column of the scheduled transaction can be one of the following:
-          </para>
-
-          <tip>
-            <para>Click on the <guilabel>state</guilabel> field in the row of a transaction to change its state (this
-              option is available only if the <guilabel>state</guilabel> field is not
-              <emphasis>empty</emphasis>)
+    <abstract>
+      <para>Falls Sie mit <xref linkend="trans-sched" /> arbeiten, kann mit Hilfe des <guilabel>Seit
+        letztem Aufruf</guilabel> Dialogs geprüft werden, ob seit der letzten &app;-Sitzung mindestens
+        eine davon zur Ausführung ansteht. Er dient der Kontrolle von geplanten Buchungen vor der Eintragung in
+        die Konten.
+      </para>
+    </abstract>
+    <para>Der Dialog kann auf zwei verschiedene Arten gestartet werden:
+      <variablelist>
+        <varlistentry>
+          <term>manuell</term>
+          <listitem>
+            <para>Im Menü unter &mc.ac.scd.slr;. Dies kann dann hilfreich sein, wenn Sie im <xref linkend="sched-editor" />
+              etwas Neues ausprobiert haben oder zum Neustart nach einem versehentlichen Abbruch.
             </para>
-          </tip>
+          </listitem>
+        </varlistentry>
 
-          <variablelist termlength="8">
-            <varlistentry>
-              <term><guilabel>Ignored</guilabel></term>
+        <varlistentry>
+          <term>automatisch</term>
+          <listitem>
+            <para>Durch Aktivierung in den <guilabel>&appname; Eigenschaften</guilabel> auf
+              dem Reiter <xref linkend="prefs-sched" /> wird der Dialog selbsttätig während
+              des &app;-Starts ausgeführt.
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </para>      
+
+    <figure pgwide="1">
+      <title>Der <quote>Seit letztem Aufruf</quote> Dialog</title><screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/Tools_SinceLastRun.png" srccredit="Christian Wehling" />
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>Die anstehenden Buchungen werden Ihnen in einer tabellarischen Form zur weiteren Bearbeitung
+      aufgelistet.
+    </para>
+
+    <glosslist>
+      <title>Beschreibung der Spalten des <quote>Seit letztem Aufruf</quote> Dialogs</title>
+      <glossentry>
+        <glossterm>Buchung</glossterm>
+
+        <glossdef>
+          <para>Der Name der geplanten Buchung, der in dem <xref linkend="sched-editor" /> zur
+            Identifizierung der eingetragen wurde.
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Status</glossterm>
+
+        <glossdef>
+          <variablelist>
+          <title>Aktionen für die geplante Buchung:</title>
+            <tip>
+              <para>Klicken Sie auf das Feld <guilabel>Status</guilabel> in der Zeile einer Buchung, um ihren Status
+                zu ändern. Diese Option ist nur verfügbar, wenn das Feld für den
+                <guilabel>Status</guilabel> nicht <emphasis>leer</emphasis> ist.
+              </para>
+            </tip>
+
+           <varlistentry>
+              <term>Ignoriert</term>
 
               <listitem>
-                <para>If a scheduled transaction is being displayed, either to be created or as a reminder, the user can
-                  set the status to <guilabel>Ignored</guilabel> to skip this event. The scheduled
-                  transaction will not be entered in the register and the next reminder for this
-                  scheduled transaction will be the next occurrence. For instance, if you have a
-                  scheduled transaction set up with a reminder to transfer $500 at the end of the
-                  month to your <emphasis>savings</emphasis> account but you bought yourself a
-                  computer this month and don&rsquo;t have the money for this month&rsquo;s transfer
-                  then you would set the status to <guilabel>Ignored</guilabel>.
+                <para>Wenn eine Buchung angezeigt wird, die entweder erstellt werden soll oder als Erinnerung
+                  dient, kann der Benutzer den Status auf <guilabel>Ignoriert</guilabel> setzen, um
+                  dieses Ereignis zu überspringen. Die Buchung wird <emphasis>nicht</emphasis> in das
+                  Konto eingetragen und die nächste Erinnerung für diese Buchung ist das nächste geplante Vorkommnis.
+                </para>
+
+                <para>Wenn Sie zum Beispiel eine geplante Buchung mit einer Erinnerung zur Überweisung von 500 Euro am
+                  Ende des Monats auf Ihr <emphasis>Sparkonto</emphasis> eingerichtet haben, aber
+                  Sie haben sich in diesem Monat bereits einen Computer gekauft und somit das Geld
+                  für die Überweisung nicht über, dann würden Sie den Status auf
+                  <guilabel>Ignoriert</guilabel> setzen.
                 </para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
-              <term><guilabel>Postponed</guilabel></term>
+              <term>Zurückgestellt</term>
 
               <listitem>
-                <para>If a scheduled transaction has been listed with a status <guilabel>To-create</guilabel> but you want
-                  to hold it and not have it entered to your register yet, then you can set it to
-                  <guilabel>Postponed</guilabel>. When at some later time you change it back to
-                  <guilabel>To-create</guilabel> it will be created with the original posted-date.
-                  If you want to change that you must edit the transaction after it's created.
+                <para>Wenn eine geplante Buchung mit dem Status <guilabel>Zu Erstellen</guilabel> aufgelistet wird, Sie
+                  diese aber zurückhalten und noch nicht in Ihr Konto eintragen wollen, dann
+                  können Sie den <guilabel>Status</guilabel> auf
+                  <guilabel>Zurückgestellt</guilabel> setzen. Wenn Sie ihn zu einem späteren
+                  Zeitpunkt wieder auf <guilabel>Zu Erstellen</guilabel> ändern, wird die
+                  Buchung mit dem ursprünglichen Buchungsdatum angelegt. Möchten Sie stattdessen
+                  ein anderes Datum verwenden, müssen Sie die Buchung nach ihrer Erstellung manuell
+                  bearbeiten.
+                </para>
+
+                <para>Wenn Sie z.B. für eine geplante Buchung den exakten Betrag erst noch überprüfen wollen, bietet es
+                  sich an, mit dem Kennzeichen <guilabel>Zurückgestellt</guilabel> die Ausführung dieser Buchung
+                  aufzuschieben und zu einem späteren Zeitpunkt auszuführen.                  
                 </para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
-              <term><guilabel>Reminder</guilabel></term>
+              <term>Erinnerung</term>
 
               <listitem>
-                <para>You are <emphasis>n</emphasis> days from the scheduled transaction due date. The number of days
-                  <emphasis>n</emphasis> to remind in advance, is set either in the
-                  <guilabel>&appname; Preferences</guilabel> <link linkend="prefs-sched">Scheduled
-                  Transactions</link> tab or in the <guilabel>Overview</guilabel> tab of the
-                  <link linkend="sched-editor">Scheduled Transaction Editor</link>.
+                <para>Es verbleiben noch <emphasis>n</emphasis> Tage, bevor die Buchung fällig wird. Die Anzahl
+                  der Tage <emphasis>n</emphasis> an die im Voraus erinnert werden soll, wird
+                  entweder in den <guilabel>&appname; Einstellungen</guilabel> unter
+                  <xref linkend="prefs-sched" /> oder auf der Registerkarte
+                  <guilabel>Übersicht</guilabel> in dem <xref linkend="sched-editor" />
+                  angegeben.
                 </para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
-              <term><guilabel>To-create</guilabel></term>
+              <term>Zu Erstellen</term>
 
               <listitem>
-                <para>This scheduled transaction will be automatically created when you press <guibutton>OK</guibutton>.
+                <para>Diese Buchung wird automatisch erstellt, wenn Sie <guibutton>OK</guibutton> drücken.
                 </para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
-              <term><emphasis>Empty</emphasis></term>
+              <term>Leer</term>
 
               <listitem>
-                <para>An empty field means that no operations are pending for the scheduled transaction.
+                <para>Wird eine Buchung aufgelistet, für die kein Ausführungsdatum angezeigt wird, bedeutet das,
+                  dass eine Buchung im <xref linkend="sched-editor" /> geplant ist, allerdings momentan
+                  keine Vorgänge zur Ausführung anstehen.
                 </para>
               </listitem>
             </varlistentry>
           </variablelist>
-        </listitem>
-      </varlistentry>
-    </variablelist>
+        </glossdef>
+      </glossentry>
 
-    <para>At the bottom of the window there are two buttons:
-    </para>
+      <glossentry>
+        <glossterm>Wert</glossterm>
 
-    <itemizedlist>
-      <listitem>
-        <para>The <guibutton>Cancel</guibutton> button is used to exit the <guilabel>Since Last Run</guilabel>
-          window without creating the transactions scheduled to be entered.
-        </para>
-      </listitem>
+        <glossdef>
+          <para>Ist für die Eintragung in das Konto noch die Angabe des Buchungswerts notwendig, so wird das mit
+            dem Hinweis <emphasis>(Wert benötigt)</emphasis> angezeigt. Dies kann z.B. bei einer
+            Buchung zwischen zwei Konten mit unterschiedlichen Währungen auf Grund von Kursschwankungen notwendig sein.
+          </para>
 
-      <listitem>
-        <para>The <guibutton>Ok</guibutton> button closes the <guilabel>Since Last Run</guilabel> window and
-          applies the pending operations.
-        </para>
-      </listitem>
-    </itemizedlist>
+          <para>Sie können mit einem Doppelklick auf den Hinweistext ein Eingabefeld öffnen und einen Wert für
+            die Buchung eintragen. Das passiert ebenfalls, wenn Sie mit <guilabel>OK</guilabel> die
+            Buchung in ein Konto übernehmen wollen.
+          </para>
+        </glossdef>
+      </glossentry>
+    </glosslist>
 
-    <para>At the bottom right of the <guilabel>Since Last Run</guilabel> window there is also an option that
-      allows to <guilabel>Review created transactions</guilabel>. If this option is enabled when
-      there are one or more transactions <guilabel>To-create</guilabel>, pressing
-      <guibutton>OK</guibutton> will open a register window in which are shown the details of the
-      scheduled transactions splits entered automatically by &app;.
-    </para>
+    <glosslist>
+      <title>Steuerelemente des <quote>Seit letztem Aufruf</quote> Dialogs</title>
+      <glossentry>
+        <glossterm>Erzeugte Buchungen durchsehen</glossterm>
+
+        <glossdef>
+          <para>Wenn diese Option aktiviert ist, während eine oder mehrere Buchungen <guilabel>Zu
+            erstellen</guilabel> sind, wird durch Drücken von <guibutton>OK</guibutton> ein neues
+            Registerfenster geöffnet, in dem die Details der automatisch von &app; erstellten
+            Buchungsteile angezeigt und von Ihnen bearbeitet werden können.
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Hilfe</glossterm>
+
+        <glossdef>
+          <para>Öffnet diese Seite im Hilfe-Fenster.
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Abbrechen</glossterm>
+
+        <glossdef>
+          <para>Beendet den Dialog ohne Änderungen an Ihren Daten vorzunehmen.
+          </para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>Ok</glossterm>
+
+        <glossdef>
+          <para>Die Schaltfläche schließt den Dialog und führt die anstehenden Vorgänge aus.
+          </para>
+        </glossdef>
+      </glossentry>
+    </glosslist>
   </sect1>
 
   <sect1 id="trans-sched-loans">
