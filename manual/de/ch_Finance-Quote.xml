@@ -14,13 +14,15 @@ Translators:
 -->
 <chapter id="finance-quote"
          xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Einrichtung der Kursaktualisierung</title>
+  <title>Einrichten der Kursabfrage</title>
 
-  <para>Wenn Sie mehr als ein paar Devisen und Wertpapiere besitzen, werden Sie es vielleicht bald leid
-    sein, die Kurse ständig per Hand aktualisieren zu müssen. &app; bietet Ihnen die Möglichkeit,
-    automatisch den aktuellsten Kurs für Ihre Devisen und Wertpapiere über das Internet
-    herunterzuladen. Hierfür wird das &app-perl;-Modul &app-fq; verwendet.
-  </para>
+  <abstract>
+    <para>Wenn Sie mehr als ein paar Devisen und Wertpapiere besitzen, werden Sie es vielleicht bald leid
+      sein, die Kurse ständig per Hand aktualisieren zu müssen. &app; bietet Ihnen die Möglichkeit,
+      automatisch den aktuellsten Kurs für Ihre Devisen und Wertpapiere über das Internet
+      herunterzuladen. Hierfür wird das &app-perl;-Modul &app-fq; verwendet.
+    </para>
+  </abstract>
 
   <itemizedlist>
     <title>Die Vorraussetzungen für eine Online-Kursabfrage mit &app-fq; sind</title>
@@ -49,16 +51,19 @@ Translators:
   <sect1 id="finance-quote-perl-install">
     <title>Installieren von &app-perl;</title>
 
-    <para>Die Installation von &app-perl; ist im wesentlichen von dem verwendeten Betriebssystem abhängig.
-      Der Aufwand zur Installation ist gering und wird in diesem Abschnitt beschrieben.
-    </para>
+    <abstract>
+      <para>Abhängig von dem verwendeten Betriebssystem ist der Aufwand für die Installation von &app-perl;
+        schnell erledigt und wird in diesem Abschnitt beschrieben.
+      </para>
+    </abstract>
 
-    <para>Um zu überprüfen ob auf Ihrem System &app-perl; schon bereits installiert ist, rufen Sie den Befehl
-      <informalexample>
-<screen>perl -v</screen>
-      </informalexample>
-      im Terminal auf. Wird Ihnen die Versionsnummer des &app-perl;-Interpreters angezeigt, dann
-      machen Sie mit <xref linkend="finance-quote-install" /> weiter.
+    <para>Um zu überprüfen ob auf Ihrem System &app-perl; bereits installiert ist, rufen Sie den Befehl
+      <userinput>perl -v</userinput> im Terminal auf.
+<screen language="console">$ perl -v
+This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-thread-multi
+</screen>
+      Wird Ihnen die Versionsnummer des &app-perl;-Interpreters angezeigt, dann überspringen Sie
+      die nächsten Angaben und fahren Sie stattdessen mit <xref linkend="finance-quote-install" /> fort.
     </para>
 
     <procedure>
@@ -120,15 +125,26 @@ Translators:
         </para>
       </step>
     </procedure>
+
+    <tip>
+      <para>Es empfiehlt sich anschließend, das Verzeichnis in dem &app; installiert ist, unter &win;
+        z.B. <userinput>c:\Programme<replaceable> (x86)</replaceable>\gnucash\bin</userinput>, zu Ihrer
+        <envar>PATH</envar>-Umgebungsvariable hinzuzufügen. Auf diese Weise ist es für einfacher, bei Bedarf die
+        <xref linkend="finance-quote-helper" /> zu nutzen. Hierzu informieren Sie sich bitte in
+        den Unterlagen zu Ihrem Betriebssystem.
+      </para>
+    </tip>
   </sect1>
 
   <sect1 id="finance-quote-install">
     <title>Installieren von &app-fq;</title>
 
-    <para>Um festzustellen, ob das &app-perl;-Modul &app-fq; bereits auf Ihrem System installiert ist, geben
-      Sie <command>perldoc Finance::Quote</command> in einem Terminalfenster ein. Wird Ihnen jetzt
+    <para>Um festzustellen, ob das &app-perl;-Modul &app-fq; bereits auf Ihrem System verfügbar ist, geben
+      Sie <userinput>perldoc Finance::Quote</userinput> in einem Terminalfenster ein. Wird Ihnen jetzt
       eine Dokumentation in dieser Form
-<screen>NAME
+<screen language="console">
+$ perldoc Finance::Quote
+NAME
     Finance::Quote - Get stock and mutual fund quotes from various exchanges
 
 SYNOPSIS
@@ -152,33 +168,23 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Führen Sie den Befehl <command>gnc-fq-check</command> aus, um zu überprüfen, ob das Programm
-          bereits in einem Verzeichnis liegt, welches in der Umgebungsvariable PATH eingetragen ist.
+        <simpara>Führen Sie den Befehl <userinput>gnc-fq-check</userinput> aus, um zu überprüfen, ob das Programm
+          bereits in einem Verzeichnis liegt, welches in der Umgebungsvariable <envar>PATH</envar> eingetragen ist.
           <footnote>
             <simpara>Wenn Sie die von Ihrer Distribution bereitgestellten &app; Pakete installiert haben, sollte
-              <filename>gnc-fq-check</filename> bereits in Ihrem PATH sein. Die Aktualität ihrer
+              <filename>gnc-fq-check</filename> bereits in Ihrem <envar>PATH</envar> sein. Die Aktualität ihrer
               Distribution können Sie unter
               <ulink url="&url-repo;perl:finance-quote/versions"><citetitle>&app-fq;-
               Versionen</citetitle></ulink> nachlesen.
             </simpara>
           </footnote>
         </simpara>
-
-        <tip>
-          <simpara>Wenn <command>gnc-fq-check</command> nicht in Ihrem PATH ist, vielleicht weil Sie die Anwendung
-            selbst gebaut und dabei ungewöhnliche Pfade verwendet haben, suchen Sie den Ordner in
-            dem &app; installiert ist, z.B. mit dem Befehl <command>which gnc-fq-check</command>,
-            und wechseln in dieses Verzeichnis. Es bietet sich an, das aktuelle Verzeichnis in der
-            PATH-Umgebungsvariable aufzunehmen. Hierzu informieren Sie sich bitte in den Unterlagen
-            zu Ihrer Distribution.
-          </simpara>
-        </tip>
       </step>
 
       <step>
-        <simpara>Als nächstes aktualisieren Sie mit <command>sudo gnc-fq-update</command> oder <command>su -c
-          gnc-fq-update</command> mit Root-Rechten &app-fq;. Die richtige Syntax ist von der
-          jeweiligen Distribution abhängig.
+        <simpara>Als nächstes aktualisieren Sie mit <userinput>sudo gnc-fq-update</userinput> oder
+          <userinput>su -c gnc-fq-update</userinput> mit Root-Rechten &app-fq;. Die richtige Syntax
+          ist von der jeweiligen Distribution abhängig.
         </simpara>
 
         <para>Dadurch wird ein internes &app-perl; <acronym><ulink url="&url-cpan;">CPAN</ulink></acronym>
@@ -188,15 +194,15 @@ SYNOPSIS
             </simpara>
           </footnote>
           Modul gestartet um die Installation vorzunehmen. Wenn Sie das CPAN zum ersten Mal starten,
-          müssen Sie es einrichten und konfigurieren. Auf den meisten Systemen können Sie jedoch
+          müssen Sie es konfigurieren, wobei Sie auf den meisten Systemen jedoch
           die Standardvorgaben akzeptieren und die erste Frage <computeroutput>Are you ready for
-          manual configuration? [yes]</computeroutput> mit <userinput>no</userinput> beantworten
+          manual configuration? [yes]</computeroutput> mit <userinput>no</userinput> beantworten können,
           damit &app-fq; erfolgreich installiert wird.
         </para>
       </step>
 
       <step>
-        <simpara>Führen Sie <command>gnc-fq-check</command> aus, um zu prüfen, ob &app-fq; richtig installiert ist.
+        <simpara>Führen Sie <userinput>gnc-fq-check</userinput> aus, um zu prüfen, ob &app-fq; richtig installiert ist.
           Wenn dies so ist, dann werden die Versionsnummer sowie die von &app-fq; verwendbaren
           Quellen für eine Kursabfrage aufgelistet. Bei Problemen mit der Installation von &app-fq;
           wird eventuell eine Lösung vorgeschlagen.
@@ -213,10 +219,12 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Installieren Sie XCode, falls noch nicht geschehen.
-        </simpara>
-
-        <simpara>XCode ist ein optionales Element auf Ihrer &mac; Distributions-DVD.
+        <simpara>Installieren Sie &app-xcode;
+          <footnote>
+            <para>&app-xcode; ist ein optionales Element auf Ihrer &mac; Distributions-DVD, aber auch unter
+              <ulink url="&url-ap-dev;xcode/" /> ist das Werkzeug erhältlich.
+            </para>
+          </footnote>, falls noch nicht geschehen.
         </simpara>
       </step>
 
@@ -246,6 +254,205 @@ SYNOPSIS
         </simpara>
       </step>
     </procedure>
+  </sect1>
+
+  <sect1 id="finance-quote-helper">
+    <title>Hilfsprogramme zur Symbolsuche und Aktualisierung</title>
+
+    <abstract>
+      <para>&app; stellt mehrere Hilfsprogramme zur Verfügung, die Sie bei der täglichen
+        Arbeit mit &app-fq; unterstützen. So gibt es ein Skript, mit dem Sie Ihre Symbole
+        für die Wertpapiere überprüfen können. Weitere Skripte führen die erstmalige
+        Installation durch oder halten &app-fq; auf einem aktuellen Stand.
+        Diese Programme haben Namen, die mit gnc-fq-* beginnen, und sind in der
+        Programmiersprache &app-perl; geschrieben.
+      </para>
+    </abstract>
+
+    <procedure>
+      <title>&app-perl; Skripts unter &win; ausführen</title>
+
+      <step>
+        <simpara>Öffnen Sie ein <application>CMD</application>- oder <application>Powershell
+          </application>-Fenster: Klicken Sie auf <guimenu>Start</guimenu>
+          und geben Sie entweder <userinput>cmd</userinput> oder <userinput>powershell</userinput>
+          ein und wählen Sie den entsprechenden Menüpunkt. Das muss nicht als Administrator ausgeführt werden.
+        </simpara>
+      </step>
+
+      <step>
+        <simpara>Wechseln Sie zu dem Laufwerk, das die &app; Programmdateien enthält —normalerweise das
+          Laufwerk C— wenn dies nicht bereits das aktuelle Laufwerk ist.
+        </simpara>
+      </step>
+
+      <step>
+        <simpara>Da, wie zuvor empfohlen, das &app;-Verzeichnis in die <envar>PATH</envar>
+          Umgebungsvariable eingetragen wurde, müssen Sie jetzt nur noch jedem gnc-fq-xxx
+          &app-perl; Skriptbefehl <quote>Perl</quote> und ein Leerzeichen voranstellen,
+          z.B. <userinput>perl gnc-fq-check</userinput>.
+          Andernfalls müssen Sie den Befehl in der Form <userinput>perl c:\Programme
+          <replaceable> (x86)</replaceable>\gnucash\bin\gnc-fq-check</userinput> ausführen.
+        </simpara>
+      </step>
+    </procedure>
+
+    <sect2 id="gnc-fq-check">
+      <title>gnc-fq-check</title>
+
+      <abstract>
+        <para>Dieses Programm liefert die Versionsnummer des derzeit installierten &app-fq; Moduls
+          sowie eine Liste der über &app-fq; verfügbaren Quellen. Es informiert Sie auch, wenn es ein Problem
+          mit Ihrer Installation gibt und schlägt eventuell eine Lösung vor. 
+        </para>
+      </abstract>
+
+      <formalpara>
+        <title>Beispiel mit defekten Abhängigkeit zu weiteren Softwarepaketen</title>
+
+        <para>
+<screen language="console">
+$ gnc-fq-check 
+Can't locate Mozilla/CA.pm in @INC (you may need to install the Mozilla::CA module) (@INC contains:
+/usr/lib/perl5/site_perl/5.30.1/x86_64-linux-thread-multi /usr/lib/perl5/site_perl/5.30.1
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi /usr/lib/perl5/vendor_perl/5.30.1
+/usr/lib/perl5/5.30.1/x86_64-linux-thread-multi /usr/lib/perl5/5.30.1 /usr/lib/perl5/site_perl)
+at /usr/lib/perl5/vendor_perl/5.30.1/Finance/Quote/Tiaacref.pm line 33.
+Compilation failed in require at (eval 303) line 1.
+BEGIN failed--compilation aborted at (eval 303) line 1.
+ at /usr/local/bin/gnc-fq-check line 91.
+("1.47" "adig" "aex" "aiahk" "alphavantage" "amfiindia" "asegr" "asia" "asx" "australia" "bamosz"
+"bet" "bmonesbittburns" "bourso" "brasil" "bse" "bsero" "canada" "canadamutual" "citywire" "cominvest"
+"cse" "deka" "dutch" "dwsfunds" "europe" "fetch_live_currencies" "fidelity" "fidelity_direct"
+"fidelityfixed" "financecanada" "finanzpartner" "finland" "fool" "france" "ftfunds" "ftportfolios"
+"ftportfolios_direct" "fundlibrary" "goldmoney" "greece" "hex" "hu" "hufund" "hungary" "hustock"
+"indiamutual" "known_currencies" "lerevenu" "maninv" "morningstar" "morningstarjp" "mstaruk" "nasdaq"
+"nyse" "nz" "nzx" "platinum" "romania" "seb_funds" "sixfunds" "sixshares" "stockhousecanada_fund"
+"tdefunds" "tdwaterhouse" "tiaacref" "tnetuk" "troweprice" "troweprice_direct" "trustnet" "tsp" "tsx"
+"uk_unit_trusts" "ukfunds" "unionfunds" "usa" "usfedbonds" "vanguard" "vwd" "yahoo" "yahoo_asia"
+"yahoo_australia" "yahoo_brasil" "yahoo_europe" "yahoo_json" "yahoo_nz" "yahoo_yql" "za" "za_unittrusts")
+</screen>
+        </para>
+      </formalpara>
+
+      <para>Der erste Teil ist die Fehlermeldung über ein fehlendes &app-perl;-Modul Mozilla/CA.pm. Am Ende in
+        Klammern steht die normale Ausgabe der aktuell installierten &app-fq;-Version<footnote>
+        <para>Die neueste &app-fq; Version ist &app-fq-vers;.</para>
+        </footnote>
+        und eine Liste der verfügbaren Kursdaten-Quellen.
+      </para>
+
+      <tip>
+        <para>Wenn ein Fehler angezeigt wird, lesen Sie den nächsten Abschnitt <xref linkend="gnc-fq-update" />.
+          Ansonsten fahren Sie mit <xref linkend="gnc-fq-dump" /> fort.
+        </para>
+      </tip>
+    </sect2>
+
+    <sect2 id="gnc-fq-update">
+      <title>gnc-fq-update</title>
+
+      <abstract>
+        <para>Dieses Programm installiert oder aktualisiert das &app-fq; Softwaremodul und löst bei Bedarf
+          die Abhängigkeiten zu weiteren Softwarepaketen auf.
+          <note>
+            <para>Windows-Benutzer sind im Allgemeinen besser beraten, wenn sie das Update-Tool
+              &mc.start.win-install-fq; ausführen.
+            </para>
+          </note>
+
+        </para>
+      </abstract>
+
+      <note>
+        <para>Dieses Programm erfordert für eine Installation unter &lin; oder &mac; Superuser-
+          oder Administratorrechte, aber nicht in &win;.
+        </para>
+      </note>
+    </sect2>
+
+    <sect2 id="gnc-fq-dump">
+      <title>gnc-fq-dump</title>
+<!-- Todo: insert link to wiki and/or guide -->
+      <abstract>
+        <para>Dieses Programm liefert Kursdaten für eine Quelle und eine Liste von Symbolen in einem Format,
+          das für Menschen leicht zu lesen ist. Es ist nützlich, um zu überprüfen, ob eine bestimmte
+          Online-Kursquelle erreichbar ist und funktioniert.
+        </para>
+      </abstract>
+      
+      <para>Mit Hilfe diesen Befehls können Sie überprüfen, ob das <xref linkend="tool-ge-Symbol" />,
+        welches Sie für Ihr Wertpapier zum Online-Kursabruf verwenden möchten, bei der
+        gewünschten <xref linkend="tool-ge-TypeQuoteSource" /> funktioniert.
+      </para>
+      
+      <tip>
+        <para>Mit <userinput>gnc-fq-dump</userinput> können Sie Symbole schneller als aus &app; heraus
+          überprüfen, wenn während des Abrufs mit &app; ein Fehler auftritt, weil sich die Ausgabe
+          des Skripts besser zur Analyse eignet und nicht jedesmal alle funktionierenden Symbole
+          ebenfalls mit abgerufen werden, falls man <xref linkend="tool-ge-pricedb-getQuotes" />
+          in der <xref linkend="tool-price" /> verwendet.
+        </para>
+      </tip>
+
+      <itemizedlist>
+        <listitem>
+          <para>Um ausführliche Inforamtionen zu einem Wertpapier zu erhalten, führen Sie in
+            der Befehlszeile einen Befehl in dieser Form aus:
+            <cmdsynopsis>
+              <command>gnc-fq-dump</command>
+              <arg choice="opt">-v</arg>
+              <arg choice="plain"><replaceable>Quelle</replaceable></arg>
+              <arg choice="plain" rep="repeat"><replaceable>Symbol</replaceable></arg>
+            </cmdsynopsis>
+            zum Beispiel <command>gnc-fq-dump -v yahoo_json IBM</command>.
+          </para>
+        </listitem>
+        
+        <listitem>
+          <para>Zum Abrufen eines Wechselkurses führen Sie folgenden Befehl aus:
+            <command>gnc-fq-dump <optional>-v</optional> currency USD EUR</command>
+            <footnote>
+              <para>Seit &app-fq; 1.41 ist die Standardquelle für Währungen <quote>Alpha Vantage</quote>.
+                Lesen Sie auch die Hinweise zu <xref linkend="gnc-tbl-fq-currency-source" />.
+              </para>
+            </footnote>
+            <footnote>
+              <para>Die alten Yahoo-Währungen sind immer noch verfügbar als
+                <command>gnc-fq-dump yahoo_json USDEUR=X</command>.
+              </para>
+            </footnote>
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Um zu testen, ob &app-fq; für Währungen innerhalb von &app; funktioniert,
+        <orderedlist numeration="arabic">
+          <listitem>
+            <para>nehmen Sie eine Buchung zwischen dem gewünschtem Handelsgut und der Buchwährung,</para>
+          </listitem>
+          <listitem>
+            <para>machen einen Rechtsklick darauf, und dann</para>
+          </listitem>
+          <listitem>
+            <para>wählen Sie im Kontextmenü die Option &gmi.ac.ed-ex;.</para>
+          </listitem>
+        </orderedlist>
+        Der <xref linkend="trans-win-enter" /> wird angezeigt. Klicken Sie auf die Schaltfläche
+        <guilabel>Wechselkurs abrufen</guilabel>, und wenn alles gut läuft, wird der aktuelle
+         Kurs in das Feld für den Wechselkurs eingetragen.
+      </para>
+    </sect2>
+
+    <sect2 id="gnc-fq-helper">
+      <title>gnc-fq-helper</title>
+
+      <para>Dies ist ein Skript, das &app; zum Abrufen von Kursen verwendet und musss nicht
+        vom Benutzer bedient werden. Sollte der Abruf eines Kurses in &app; zu einem
+        Fehlverhalten führen, kann mit diesem Skript eine Diagnose durchgeführt werden und
+        hilft Entwicklern bei der Entscheidung, ob der Fehler in &app; oder &app-fq; liegt.
+      </para>
+    </sect2>
   </sect1>
 
   <sect1 id="finance-quote-scheduler">
