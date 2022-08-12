@@ -1,59 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter SYSTEM "gnc-gui-de.dtd">
-<!-- (Do not remove this comment block.)
-  Version: 4.9
-  Last modified: Juli 2022 
-       modified: April 15th 2007
-       modified: August 12th 2006
-       modified: February 28th 2005
+<!DOCTYPE chapter SYSTEM "gnc-gui-C.dtd">
+<!--
+      (Do not remove this comment block.)
+  Version: 2.0.x
+   Last modified: April 15th 2007
+        modified: August 12th 2006
+	modified: February 28th 2005
+
   Maintainers:
-    Chris Lyttle <chris@wilddev.net>
-    Neil Williams <linux@codehelp.co.uk>
+               Chris Lyttle <chris@wilddev.net>
+               Neil Williams <linux@codehelp.co.uk>
+
   Author:
-    Chris Lyttle <chris@wilddev.net>
+               Chris Lyttle <chris@wilddev.net>
   Translators:
-    Christian Wehling <christian.wehling@web.de>
+               (translators put your name and email here)
 -->
 <chapter id="ch_AccRegTools">
-  <title>Assistenten und ähnliche Werkzeuge</title>
+  <title>Tools &amp; Assistants</title>
 
   <abstract>
-    <para>&app; enthält eine Reihe von Werkzeuge, um zeitaufwendige oder komplexere Vorgänge zu vereinfachen.
-      Wenn das aktuelle Fenster das Standardmenü beinhaltet, kann, sofern es keinen passenderen Kontext gibt, über das Menü &gm.tool;
-      darauf zugegriffen werden. Weitere Assistenten sind auch im Menü &gm.act; enthalten. 
-    </para>
-  </abstract>
-
-  <important>
-    <para>
-      Einige dieser Werkzeuge können aus den folgenden Gründen deaktiviert sein:
-      <itemizedlist>
+    <para>&app; offers many specialized <guimenu>Tools</guimenu>. These tools enable access to the enhanced
+      functionality of &app;. They are accessed via the <guimenu>Tools</guimenu> menu from any
+      window that displays the &app; standard menu. Some of these tools may be deactivated for
+      several reasons:
+      <itemizedlist spacing="compact">
         <listitem>
-          <para>Die Werkzeuge sind nicht für das aktuelle Fenster geeignet.
+          <para>the tools is not appropriate for the current window,
           </para>
         </listitem>
 
         <listitem>
-          <para>&app; kann die erforderliche Software, z.B. &app-fq; für den Abruf von Online-Kursen, nicht auf Ihrem System finden.
+          <para>the required software is not found on your system,
           </para>
         </listitem>
 
         <listitem>
-          <para>Der Paketbetreuer hat sie während des Erstellungsprozesses deaktiviert, z,B. &app-aqb; für das Online-Banking.
+          <para>the package maintainer disabled it in the build process.
           </para>
         </listitem>
       </itemizedlist>
-      </para>
-    </important>
-
+    </para>
+  </abstract>
 
   <sect1 id="tool-find">
     <title>Find</title>
 
-    <para>&untranslated-de;
-    </para>
-
-    <para>The &app; <emphasis>Find</emphasis> assistant can be used to <link linkend="tool-find-txn">find
+    <para>The &app; <emphasis>Find</emphasis> dialog can be used to <link linkend="tool-find-txn">find
       transactions</link> or to perform <link linkend="tool-find-bsnss">business related</link>
       research on your data file.
     </para>
@@ -62,22 +55,37 @@
       <title>Find Transaction</title>
 
       <para><guilabel>Find Transaction</guilabel> is used to search for transactions in &app; and display the
-        results in a register window. To open the <guilabel>Find Transaction</guilabel> dialog in
-        <guilabel>Split Search</guilabel> mode, you can type the keyboard shortcut
+        results in a <link linkend="general-journal">General Journal</link> type tab. To open the <guilabel>Find Transaction</guilabel> dialog in
+        you can type the keyboard shortcut
         <keycombo>
-          <keycap>Ctrl</keycap><keycap>f</keycap>
+          <keycap>Ctrl</keycap><keycap>F</keycap>
         </keycombo>
-        .
+        or from the main menu use<menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice>. 
       </para>
 
-      <para>Exactly which transactions are searched depends on where you invoke the tool from. If you start from
-        the main accounts hierarchy page, all transactions will be searched. If you start from an
-        individual account register, only transactions in that account will be searched. And if you
-        filter the transactions in a register using
-        <menuchoice>
-          <guimenuitem>View </guimenuitem><guimenuitem> Filter By... </guimenuitem>
-        </menuchoice>
-        , then only transactions in that account and shown by the filter will be searched.
+      <para>
+        Search results differ depending on the tab from which you open
+        it. Aside from the transaction fields Description, Number,
+        Notes, and Date Posted, all of the searchable fields are part
+        of individual splits, and splits are associated with a single
+        account. When you open the <guilabel>Find
+        Transactions</guilabel> dialog from an account register tab
+        only the splits associated with that register will be
+        searched. There is one exception, the <guilabel>All
+        Accounts</guilabel> item, see the footnote about it in table
+        <xref linkend="tool-find-bttns"/> below. For the transactions
+        fields only transactions linked to a split in that register
+        are inspecected and for the rest only the split attached to
+        that account is, with one exception, <guilabel>All
+        Accounts</guilabel>. If you filter the transactions in a
+        register using <menuchoice> <guimenuitem>View
+        </guimenuitem><guimenuitem> Filter By... </guimenuitem>
+        </menuchoice> , then only transactions in that account and
+        shown by the filter will be searched. If you start from the
+        Accounts page or a <link linkend="general-journal">General
+        Journal</link> register then all splits in all applicable
+        transactions (in the latter case those included in the
+        register) are inspected.
       </para>
 
       <note>
@@ -170,7 +178,7 @@
         </para>
       </note>
 
-      <para>When search criteria are selected, you can press the <guibutton>Find</guibutton> button. You will be
+      <para>Once you've set the search criteria, you can press the <guibutton>Find</guibutton> button. You will be
         presented with the search results in a new register tab. A report of the search results may
         created and printed using
         <menuchoice>
@@ -241,7 +249,7 @@
               <entry morerows="2" valign="middle">
                 <para>Description
                   <footnote id="DMN">
-                    <para>The Description, Memo, Number are common to all lines in a transaction.
+                    <para>The Description, Number, Notes, and Date Posted fields belong to the transaction, all other searchable fields are part of individual splits.
                     </para>
                   </footnote>
                 </para>
@@ -301,7 +309,113 @@
 
             <row>
               <entry morerows="2" valign="middle">
-                <para>Memo<footnoteref linkend="DMN"/>
+                <para>Notes<footnoteref linkend="DMN"/>
+                </para>
+              </entry>
+
+              <entry>
+                <para>contains
+                </para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para>Criteria entry field
+                </para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para>Is entry Case Insensitive?
+                </para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para>Remove row
+                </para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para></para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para></para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para></para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>matches regex<footnoteref linkend="rgx"/>
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>does not match regex<footnoteref linkend="rgx"/>
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry morerows="2" valign="middle">
+                <para>Memo
+                </para>
+              </entry>
+
+              <entry>
+                <para>contains
+                </para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para>Criteria entry field
+                </para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para>Is entry Case Insensitive?
+                </para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para>Remove row
+                </para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para></para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para></para>
+              </entry>
+
+              <entry morerows="2" valign="middle">
+                <para></para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>matches regex<footnoteref linkend="rgx"/>
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>does not match regex<footnoteref linkend="rgx"/>
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry morerows="2" valign="middle">
+                <para>Description, Notes, or Memo<footnote><para>Searches for a term in the transaction's Description and Notes fields and the Split's Memo field.</para></footnote>
                 </para>
               </entry>
 
@@ -459,61 +573,81 @@
             </row>
 
             <row>
-              <entry morerows="2" valign="middle">
-                <para>Notes
+              <entry morerows="5" valign="middle">
+                <para>Reconciled Date
                 </para>
               </entry>
 
               <entry>
-                <para>contains
+                <para>is before
                 </para>
               </entry>
 
-              <entry morerows="2" valign="middle">
-                <para>Criteria entry field
+              <entry morerows="5" valign="middle">
+                <para>Date selection field
                 </para>
               </entry>
 
-              <entry morerows="2" valign="middle">
-                <para>Is entry Case Insensitive?
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
+              <entry morerows="5" valign="middle">
                 <para>Remove row
                 </para>
               </entry>
 
-              <entry morerows="2" valign="middle">
+              <entry morerows="5" valign="middle">
                 <para></para>
               </entry>
 
-              <entry morerows="2" valign="middle">
+              <entry morerows="5" valign="middle">
                 <para></para>
               </entry>
 
-              <entry morerows="2" valign="middle">
+              <entry morerows="5" valign="middle">
+                <para></para>
+              </entry>
+
+              <entry morerows="5" valign="middle">
                 <para></para>
               </entry>
             </row>
 
             <row>
               <entry>
-                <para>matches regex<footnoteref linkend="rgx"/>
+                <para>is before or on
                 </para>
               </entry>
             </row>
 
             <row>
               <entry>
-                <para>does not match regex<footnoteref linkend="rgx"/>
+                <para>is on
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>is not on
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>is after
+                </para>
+              </entry>
+            </row>
+
+            <row>
+              <entry>
+                <para>is on or after
                 </para>
               </entry>
             </row>
 
             <row>
               <entry morerows="5" valign="middle">
-                <para>Date Posted
+                <para>Date Posted<footnoteref linkend="DMN"/>
                 </para>
               </entry>
 
@@ -957,47 +1091,83 @@
             </row>
 
             <row>
-              <entry morerows="1" valign="middle">
-                <para>Balanced
+              <entry>
+                <para>Closing Entries
+                <footnote>
+                  <para>The Closing Entries selection will find transactions whose split is marked as a closing entry by <menuchoice><guimenu>Tools</guimenu><guimenuitem>Close Book</guimenuitem></menuchoice>.
+                  </para>
+                </footnote>
                 </para>
               </entry>
 
               <entry>
-                <para>is
+                <para>Check for true
                 </para>
               </entry>
 
-              <entry morerows="1" valign="middle">
-                <para>set true
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
+              <entry>
                 <para>Remove row
                 </para>
               </entry>
 
-              <entry morerows="1" valign="middle">
+              <entry>
                 <para></para>
               </entry>
 
-              <entry morerows="1" valign="middle">
+              <entry>
                 <para></para>
               </entry>
 
-              <entry morerows="1" valign="middle">
+              <entry>
                 <para></para>
               </entry>
 
-              <entry morerows="1" valign="middle">
+              <entry>
+                <para></para>
+              </entry>
+
+              <entry>
                 <para></para>
               </entry>
             </row>
 
             <row>
               <entry>
-                <para>is not
+                <para>Balanced
+                <footnote>
+                  <para>Balanced finds transactions that are or are not balanced. Since &app; nearly always succeeds in balancing transactions this will almost always return all possible transactions. However it is possible to create a transaction containing multiple commodities that cannot be balanced and unchecking the box will find those transactions.</para>
+                </footnote>
                 </para>
+              </entry>
+
+              <entry>
+                <para>Check for true
+                </para>
+              </entry>
+
+              <entry>
+                <para>Remove row
+                </para>
+              </entry>
+
+              <entry >
+                <para> </para>
+              </entry>
+
+              <entry>
+                <para></para>
+              </entry>
+
+              <entry>
+                <para></para>
+              </entry>
+
+              <entry>
+                <para></para>
+              </entry>
+
+              <entry>
+                <para></para>
               </entry>
             </row>
 
@@ -1005,10 +1175,21 @@
               <entry morerows="1" valign="middle">
                 <para>Account
                   <footnote>
-                    <para>The <guilabel>Account</guilabel> option performs a search where the accounts selected in the
-                      <guilabel>Choose Accounts</guilabel> dialog will both be searched individually
-                      for results. This means that a match in any of the selected accounts will
-                      either be displayed (matches any account) or discarded (matches no account).
+                    <para>When the <guilabel>Find
+                    Transactions</guilabel> dialog is started from the
+                    <guilabel>Accounts</guilabel> tab or a
+                    <guilabel>General Journal</guilabel> register the
+                    <guilabel>Account</guilabel> option performs a
+                    search where the accounts selected in the
+                    <guilabel>Choose Accounts</guilabel> dialog will
+                    both be searched individually for results. This
+                    means that a match in any of the selected accounts
+                    will either be displayed (matches any account) or
+                    discarded (matches no account). If the
+                    <guilabel>FindTransactions</guilabel> dialog is
+                    started in a regular account register and the
+                    current account is selected return all of the
+                    transactions or if it is not, no transactions.
                     </para>
                   </footnote>
                 </para>
@@ -1057,9 +1238,25 @@
               <entry>
                 <para>All Accounts
                   <footnote>
-                    <para>The <guilabel>All Accounts</guilabel> option performs a search where accounts selected in the
-                      <guilabel>Choose Accounts</guilabel> dialog will only return results that
-                      match in both accounts.
+                    <para>The <guilabel>All Accounts</guilabel> option
+                    performs a search where accounts selected in the
+                    <guilabel>Choose Accounts</guilabel> dialog will
+                    return transactions containing at least one split
+                    in every one of the accounts chosen. When run from
+                    a regular account register this is the only
+                    criterion that will inspect splits from other
+                    accounts so if you start the <guilabel>Find
+                    Transactions</guilabel> dialog from your
+                    Assets:Current Assets:Checking register and want
+                    to find all of the transactions in that account
+                    with a split in Expenses:Groceries, this is the
+                    criterion to use. Keep in mind, though, that it's
+                    an "and" search: If you also include Expenses:Misc
+                    it will find <emphasis role="italic">only</emphasis>
+                    those transactions with a split in each of the
+                    two, <emphasis role="italic">not</emphasis>
+                    transactions with a single split in either of
+                    them.
                     </para>
                   </footnote>
                 </para>
@@ -5003,945 +5200,308 @@
   </sect1>
 
   <sect1 id="tool-price">
-    <title>Kurs-Datenbank</title>
-
-    <para>Mit dem Menüpunkt &mc.to.price; haben Sie die Möglichkeit die Kurse für Ihre Devisen, Aktien
-      und Investmentfonds zu verwalten.
-    </para>
+    <title>Price Editor</title>
 
     <note>
-      <para>&app; verwendet den Begriff <emphasis>Handelsgut</emphasis> für alles, was zählt: Währungen,
-        Wertpapiere (d.h. immaterielle Werte wie Aktien oder Investmentfondsanteile und Anleihen),
-        oder Sachwerte wie Lastwagen und Computer. Bei der Bewertung eines Handelsguts in Bezug auf
-        ein anderes wird der Begriff <emphasis>Wechselkurs</emphasis> zwischen zwei Währungen und
-        <emphasis>Preis</emphasis> zwischen einer Nicht-Währung und einer Währung benutzt. Im
-        weiteren Verlauf dieses Abschnitts verwenden wir den Begriff <quote>Preis</quote> sowohl
-        für den Preis als auch den Wechselkurs und <quote>Handelsgut</quote> für jede Art von
-        Ware, außer wenn das Währungsverhalten unterschiedlich ist.
+      <para>&app; uses the term <emphasis
+     role="Italic">commodity</emphasis> to mean anything that it
+        counts: Currencies, securities (i.e intangible assets like stock or mutual fund shares and
+        bonds), or tangible assets like trucks and computers. When valuing one commodity in terms of
+        another it uses the term <emphasis role="Italic">Exchange Rate</emphasis> between two
+        currencies and <emphasis
+     role="Italic">Price</emphasis> between a non-currency
+        commodity and a currency commodity. For the rest of this section we'll use "price" to mean
+        both price and exchange rate and "commodity" to mean any sort of commodity except where
+        currency behavior is different.
       </para>
     </note>
 
-    <sect2 id="tool-price-db">
-      <title>Benutzen der Kurs-Datenbank</title>
+    <para>The Price Editor is used to list and edit the price of one commodity in another commodity. New
+      prices can be added, existing prices can be edited, and prices can be retrieved from a variety
+      of sources on the World-Wide Web when the commodity is properly configured.
+    </para>
 
-      <para>Die Kurs-Datenbank listet den Preis eines Handelsguts in Bezug zu einem anderen Handelsgut auf. Neue
-        Preise können hinzugefügt oder gelöscht, bestehende Preise bearbeitet und Preise aus
-        einer Auswahl von verschiedenen Quellen im World-Wide-Web abgerufen werden, wenn das
-        Handelsgut hierfür richtig konfiguriert ist.
-      </para>
+    <para>Each commodity pair can have one price per day. An existing price will be overwritten by a newer one
+      if the newer one has the same or a more preferred source. The order of source preference (1 is
+      most preferred) is:
+      <orderedlist>
+        <listitem>
+          <para>user:price-editor: Prices created manually in the Price Editor
+          </para>
+        </listitem>
 
-      <figure pgwide="1">
-        <title>Die Kurs-Datenbank</title><screenshot>
-          <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/Tools_PriceDatabase.png" srccredit="Christian Wehling" width="&img-w;" />
-            </imageobject>
+        <listitem>
+          <para>Finance::Quote: Online quotes
+          </para>
+        </listitem>
 
-            <imageobject role="fo">
-              <imagedata fileref="figures/Tools_PriceDatabase.png" srccredit="Christian Wehling" />
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
+        <listitem>
+          <para>user:price: Prices entered explicitly in the <guilabel>Exchange Rate</guilabel>entry of the
+            <guilabel>Transfer Funds</guilabel> dialog box or in the <guilabel>Price</guilabel>
+            column of a register for an account of types STOCK or MUTUAL
+          </para>
+        </listitem>
 
-      <para>Jedes Handelsgutpaar kann <emphasis>einen</emphasis> Preis pro Tag haben. Ein bestehender Preis wird
-        durch einen neueren Preis überschrieben wenn der neuere Preis die gleiche oder eine höher
-        priorisierte Quelle hat. Die Beschreibung der möglichen
-        <xref linkend="tool-ge-PriceSource" /> der Preise werden nachfolgend beschrieben.
-      </para>
+        <listitem>
+          <para>user:xfer-dialog: Prices calculated from an entry in the <guilabel>To Amount</guilabel> entry of the
+            <guilabel>Transfer Funds</guilabel> dialog box.
+          </para>
+        </listitem>
 
-      <para>Die Steuerelemente in dem Dialog bieten die nachfolgenden Funktionen
-        <glosslist>
-          <glossentry>
-            <glossterm>Hinzufügen</glossterm>
-            <glossdef>
-              <para>Ermöglicht das manuelle Eintragen eines Kurses. Das Vorgehen hierbei wird in
-                <xref linkend="invest-stockprice-manual" /> beschrieben.
-              </para>
-            </glossdef>
-          </glossentry>
+        <listitem>
+          <para>user:split-register: Prices calculated from the <guilabel>Shares</guilabel> and
+            <guilabel>Debit</guilabel> or <guilabel>Credit</guilabel> columns of a register for an
+            account of types STOCK or MUTUAL
+          </para>
+        </listitem>
 
-          <glossentry>
-            <glossterm>Entfernen</glossterm>
-            <glossdef>
-              <para>Löscht den markierten Kurswert aus der Datenbank.
-              </para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>Bearbeiten</glossterm>
-            <glossdef>
-              <para>Bietet die Möglichkeit einen markierten Kurs zu bearbeiten, siehe
-                <xref linkend="invest-stockprice-manual" />
-              </para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>Alte Entfernen</glossterm>
-            <glossdef>
-              <para>Ermöglicht in einem weiteren Dialog das <xref linkend="invest-stockprice-delete" /> an Hand einer
-                Datumsauswahl.
-              </para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>Kurse abrufen</glossterm>
-            <glossdef>
-              <para>Wenn &app-fq; installiert und eine Online-Quelle für die Börsenkurse ausgewählt ist, werden mit
-                betätigen dieser Schaltfläche für die konfigurierten Währungen und
-                Aktien/Investmentfonds die Kurse online abgerufen und eingetragen.
-<!-- FIXME insert <xref linkend="tool-ge-GetOnlineQuotes" /> to the new "Security Editor/Get Online Quotes" -->
-              </para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>Schließen</glossterm>
-            <glossdef>
-              <para>Beendet die Kurs-Datenbank und schließt den Dialog.
-              </para>
-            </glossdef>
-          </glossentry>
-        </glosslist>
-      </para>
-    </sect2>
-
-    <sect2 id="invest-stockprice-manual">
-      <title>Hinzufügen oder Bearbeiten von Kurswerten</title>
-
-      <para>Nachdem Sie in der Kurs-Datenbank entweder die Schaltfläche <guibutton>Hinzufügen</guibutton> oder
-        <guibutton>Bearbeiten</guibutton> betätigt haben wird Ihnen dieser Dialog angezeigt.
-      </para>
-
-      <figure pgwide="1">
-        <title>Der Kurs-Editor</title><screenshot>
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="figures/Tools_PriceEditor_add.png"
-                         srccredit="Christian Wehling" />
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
+        <listitem>
+          <para>user:stock-split: Prices entered in the <guilabel>Stock Split Assistant</guilabel>
+          </para>
+        </listitem>
+      </orderedlist>
 
       <note>
-        <para>Manuell im <guilabel>Kurs Editor</guilabel> eingetragene Preise werden gegenüber den mittels
-          &app-fq; abgerufenen Preisen bevorzugt. &app-fq; wird daher diese Preise nicht aktualisieren.
+        <para>Prices created manually in the <guilabel>Price Editor</guilabel> are preferred over prices retrieved
+          via Finance::Quote so Finance::Quote will fail to update such manually-created prices.
         </para>
       </note>
+    </para>
 
-      <para>Die <guilabel>Kurs-Datenbank</guilabel> zeigt die vorhandenen Preise wie folgt an:
-        <glosslist>
-          <glossentry>
-            <glossterm>Namensraum</glossterm>
-            <glossdef>
-              <para>Sind Kategorien zur Organisation Ihrer Wertpapiere.
-<!-- FIXME: weitere Beschreibungen stehen unter <xref linkend="tool-ge-Namespace" /> im SecurityEditor. -->
+    <para>The <guilabel>Price Editor</guilabel> displays existing prices as follows:
+      <itemizedlist>
+        <listitem>
+          <para><emphasis role="bold">Security: </emphasis>The Security/commodity being priced. The display is
+            sorted by the <guilabel>Namespace</guilabel> that the individual securities are listed
+            on. The list is expanded by clicking on the <guilabel>caret</guilabel> on the left of
+            the name.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold">Currency: </emphasis>The currency the price is recorded in.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold">Date: </emphasis>The date the price was recorded.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold">Source: </emphasis>The source of the commodities price quote, listed above.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><emphasis role="bold">Type: </emphasis>There are several different types of stock price quotes.
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">Bid: </emphasis>Indicates what a specialist dealer is prepared to pay for a
+                stock.
               </para>
-            </glossdef>
-          </glossentry>
+            </listitem>
 
-          <glossentry>
-            <glossterm>Wertpapier</glossterm>
-            <glossdef>
-              <para>Das zu bepreisende Wertpapier/die zu bepreisende Währung. Die Anzeige ist nach dem
-                <guilabel>Namensraum</guilabel> sortiert, in dem die einzelnen Wertpapiere gelistet
-                sind. Die Liste wird durch einen Klick auf das <guilabel>Dreieck</guilabel> links
-                neben dem Namen erweitert.
+            <listitem>
+              <para><emphasis role="bold">Ask: </emphasis>Indicates at what price the dealers are prepared to sell a
+                stock.
               </para>
-            </glossdef>
-          </glossentry>
+            </listitem>
 
-          <glossentry>
-            <glossterm>Währung</glossterm>
-            <glossdef>
-              <para>Die Währung, in der der Preis erfasst wird.
+            <listitem>
+              <para><emphasis role="bold">Last: </emphasis>Indicate the price at which the last trade in that
+                stock/security occurred at. This is the price most commonly quoted in the media.
               </para>
-            </glossdef>
-          </glossentry>
+            </listitem>
 
-          <glossentry>
-            <glossterm>Datum</glossterm>
-            <glossdef>
-              <para>Das Datum, an dem der Preis erfasst wurde.
+            <listitem>
+              <para><emphasis role="bold">Net Asset Value: </emphasis>Are typically used for mutual funds. They are
+                calculated on the net value of the fund&rsquo;s assets each day around the time of
+                the market close and are in effect until the next recalculation.
               </para>
-            </glossdef>
-          </glossentry>
+            </listitem>
 
-          <glossentry id="tool-ge-PriceSource">
-            <glossterm>Quellen</glossterm>
-            <glossdef>
-              <para>Die Quelle der Kursnotierung der oben aufgeführten Handelsgüter; der erste Eintrag ist die am
-                meisten bevorzugte Quelle:
-                <glosslist>
-                  <glossentry>
-                    <glossterm>user:price-editor</glossterm>
-                    <glossdef>
-                      <para>Manuell im Preiseditor eingetragene Preise.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>Finance::Quote</glossterm>
-                    <glossdef>
-                      <para>Preise mit Hilfe von &app-fq; online abgerufen.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>user:price</glossterm>
-                    <glossdef>
-                      <para>Preise, die explizit als <guilabel>Wechselkurs</guilabel> im Dialog <guilabel>Buchen</guilabel>
-                        (<xref linkend="trans-win-price" />) oder in der Spalte
-                        <guilabel>Preis</guilabel> eines Registers für ein Konto des Typs
-                        Aktienkonto oder Investmentfonds eingetragen wurden.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>user:xfer-dialog</glossterm>
-                    <glossdef>
-                      <para>Preise, die aus dem Eintrag im <guilabel>Zum Betrag</guilabel>-Feld des Dialogs
-                        <guilabel>Buchen</guilabel> (<xref linkend="trans-win-price" />) errechnet
-                        wurden.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>user:split-register</glossterm>
-                    <glossdef>
-                      <para>Preise, die aus den Spalten <guilabel>Anteile</guilabel> und <guilabel>Kauf</guilabel> oder
-                        <guilabel>Verkauf</guilabel> (bei informellen Bezeichnungen) eines Registers
-                        für ein Konto des Typs Aktienkontos oder Investmentfonds berechnet wurden.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>user:stock-split</glossterm>
-                    <glossdef>
-                      <para>Preise, die in dem <guilabel>Aktienteilungs-Assistent</guilabel> (<xref linkend="stock-split" />)
-                        eingegeben wurden.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-                </glosslist>
+            <listitem>
+              <para><emphasis role="bold">Unknown: </emphasis>Use this if the type of price quoted is not known.
               </para>
-            </glossdef>
-          </glossentry>
+            </listitem>
+          </itemizedlist>
+        </listitem>
 
-          <glossentry>
-            <glossterm>Typ (Kontoart)</glossterm>
-            <glossdef>
-              <para>Es werden verschiedene Arten für Kursnotierungen verwendet:
-                <glosslist>
-                  <glossentry>
-                    <glossterm>Bid (Geldkurs)</glossterm>
-                    <glossdef>
-                      <para>Gibt an, was ein Fachhändler für eine Aktie zu zahlen bereit ist.
-                      </para>
-                    </glossdef>
-                  </glossentry>
+        <listitem>
+          <para><emphasis role="bold">Price: </emphasis>The actual price of the commodity.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
 
-                  <glossentry>
-                    <glossterm>Ask (Briefkurs)</glossterm>
-                    <glossdef>
-                      <para>Gibt an, zu welchem Preis der Händler bereit sind, eine Aktie zu verkaufen.
-                      </para>
-                    </glossdef>
-                  </glossentry>
+    <sect2 id="tool-price-manual">
+      <title>Adding a stock price manually</title>
 
-                  <glossentry>
-                    <glossterm>Last (Vortag)</glossterm>
-                    <glossdef>
-                      <para>Gibt den Kurs an, zu dem der letzte Handel mit dieser Aktie/Wertpapier vollzogen wurde. Dieser Preis
-                        wird meistens in den Medien genannt.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>Net Asset Value (Nettoanteilswert)</glossterm>
-                    <glossdef>
-                      <para>Werden in der Regel für Investmentfonds verwendet. Sie werden auf der Grundlage des Nettowerts des
-                        Fondsvermögens jeden Tag um den Zeitpunkt des Marktschlusses berechnet und
-                        gelten bis zur nächsten Neuberechnung.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>Unknown (Unbekannt)</glossterm>
-                    <glossdef>
-                      <para>Zeigt an, das die Art des angegebenen Preises nicht bekannt ist.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-                </glosslist>
-              </para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>Preis</glossterm>
-            <glossdef>
-              <para>Der tatsächliche Preis des Handelsgutes.
-              </para>
-            </glossdef>
-          </glossentry>
-        </glosslist>
+      <para>To add a new price, click on <guilabel>Add</guilabel>, and enter the details of the security and
+        price into the dialog box. To edit an existing price, select the price in the price list,
+        click the <guibutton>Edit</guibutton> button, and edit the figures.
       </para>
+
+      <para>To remove just one price, select the price and click the <guibutton>Remove</guibutton> button. If
+        you want to remove all prices older than a certain date, click on the <guilabel>Remove
+        Old</guilabel> button and enter the details in the dialog box.
+      </para>
+
+      <para>A pop-up will display with the message <emphasis role="bold">"Delete all stock prices based upon the
+        criteria below:".</emphasis> Enter the date of the last price you wish to delete.
+      </para>
+
+      <para>Two check-boxes are below the date field;
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Delete manually entered prices</guilabel> - If checked, delete manually entered stock
+            prices dated earlier than the specified date. Otherwise only stock prices added by
+            <application>Finance::Quote</application> will be deleted.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Delete last price for a stock</guilabel> - If checked, delete all prices before the
+            specified date. Otherwise the last stock price dated before the date will be kept and
+            all earlier quotes deleted.
+          </para>
+        </listitem>
+      </itemizedlist>
     </sect2>
 
-    <sect2 id="invest-stockprice-delete">
-      <title>Entfernen von alten Kurswerten</title>
+    <sect2 id="tool-price-online1">
+      <title>Configuring for use of the <guibutton>Get Quotes</guibutton> button</title>
 
-      <para>Um nur einen Preis zu entfernen, markieren Sie den Preis und klicken Sie auf die Schaltfläche
-        <guibutton>Entfernen</guibutton>. Wenn Sie alle Preise, die älter als ein bestimmtes Datum
-        sind, entfernen möchten, klicken Sie auf die Schaltfläche <guibutton>Alte
-        entfernen</guibutton> und geben Sie die Details in das Dialogfenster ein.
+      <para>To support on-line quotations for a particular stock or mutual fund account, you must first enable
+        on-line price quoting and select a price source in the Security. This is described in detail
+        in <xref linkend="tool-price-online3"></xref>. Once on-line quotes are enabled, and
+        <application>Finance::Quote</application> is installed, you can update prices for your
+        stocks and mutual funds manually by clicking the <guibutton>Get Quotes</guibutton> button.
       </para>
-
-      <figure pgwide="1">
-        <title>Löschen von Kurswerten</title><screenshot>
-          <mediaobject>
-            <imageobject role="html">
-              <imagedata fileref="figures/Tools_PriceEditor_del.png" srccredit="Christian Wehling" width="&img-w;" />
-            </imageobject>
-
-            <imageobject role="fo">
-              <imagedata fileref="figures/Tools_PriceEditor_del.png" srccredit="Christian Wehling" />
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
-
-      <para>Mit Hilfe dieses Dialogs können Sie die zu löschenden Kurse an Hand einer Datumsangabe auswählen.
-        Zusätzlich können Sie eine Regel auswählen, die festlegt welcher letzte verfügbare Kurs
-        behalten werden soll.
-      </para>
-
-      <glosslist>
-        <glossentry>
-          <glossterm>Kursdaten nach folgenden Kriterien löschen</glossterm>
-          <glossdef>
-            <para><glosslist>
-                <glossentry>
-                  <glossterm>Online geholte Kurse einschließen</glossterm>
-                  <glossdef>
-                    <para>Mit dieser Auswahl werden die Aktienkurse, die von &app-fq; hinzugefügt wurden, gelöscht.
-                    </para>
-                  </glossdef>
-                </glossentry>
-
-                <glossentry>
-                  <glossterm>Manuell eingegebene Kurswerte einschließen</glossterm>
-                  <glossdef>
-                    <para>Wenn markiert, werden manuell eingegebene Aktienkurse gelöscht, die vor dem angegebenen Datum
-                      liegen.
-                    </para>
-                  </glossdef>
-                </glossentry>
-
-                <glossentry>
-                  <glossterm>Automatisch erzeugte</glossterm>
-                  <glossdef>
-                    <para>&app; legt automatisch einen Kurs an, der zeitlich zu der Buchung passt die mehr als eine Währung
-                      betrifft. Wenn Sie dieses Kontrollkästchen aktivieren, werden diese Einträge
-                      ebenfalls gelöscht.
-                      <warning>
-                        <para>Bitte seien Sie mit der Verwendung dieser Möglichkeit vorsichtig, da z.B. die Kontenübersicht und
-                          auch Berichte unzuverlässig werden können.
-                        </para>
-                      </warning>
-                    </para>
-                  </glossdef>
-                </glossentry>
-              </glosslist>
-            </para>
-          </glossdef>
-        </glossentry>
-
-        <glossentry>
-          <glossterm>Vor dem Datum</glossterm>
-          <glossdef>
-            <para>Wählen Sie ein Datum bis zu die Kurswerte gelöscht werden sollen.
-            </para>
-          </glossdef>
-        </glossentry>
-
-        <glossentry>
-          <glossterm>Von diesen Devisen/Wertpapieren</glossterm>
-          <glossdef>
-            <para>Markieren sie die Devisen und Wertpapiere aus, für die Sie die alten Kurse entfernen möchten. Die
-              Auflistung unterstützt eine Mehrfachauswahl.
-            </para>
-          </glossdef>
-        </glossentry>
-
-        <glossentry>
-          <glossterm>Den letzten verfügbaren Kurs mit folgender Regel behalten</glossterm>
-          <glossdef>
-            <para><glosslist>
-                <glossentry>
-                  <glossterm>Keine</glossterm>
-                  <glossdef>
-                    <para>Mit dieser Auswahl werden alle Kurse der markierten Wertpapiere vor dem eingestellten Datum
-                      gelöscht.
-                    </para>
-                  </glossdef>
-                </glossentry>
-
-                <glossentry>
-                  <glossterm>Letzter der Woche</glossterm>
-                  <glossdef>
-                    <para>Sofern vorhanden, wird der letzte Kurs aus jeder Woche bis zum Datum behalten.
-                    </para>
-                  </glossdef>
-                </glossentry>
-
-                <glossentry>
-                  <glossterm>Letzter des Monats</glossterm>
-                  <glossdef>
-                    <para>Behalte den letzten Preis jedes Monats vor dem Datum.
-                    </para>
-                  </glossdef>
-                </glossentry>
-
-                <glossentry>
-                  <glossterm>Letzter des Quartals</glossterm>
-                  <glossdef>
-                    <para>Behält den letzten Preis des Quartals, wobei das Quartal von dem Enddatum der verwendeten
-                      Buchführungsperiode abhängt.
-                    </para>
-                  </glossdef>
-                </glossentry>
-
-                <glossentry>
-                  <glossterm>Letzter der Periode</glossterm>
-                  <glossdef>
-                    <para>Sofern vorhanden, wird der letzte Preis jeder Buchführungsperiode vor dem Datum behalten, wobei Sie
-                      die <xref linkend="prefs-accounting-period" /> in den &app;-Einstellungen
-                      festlegen können.
-                    </para>
-                  </glossdef>
-                </glossentry>
-
-                <glossentry>
-                  <glossterm>Skaliert</glossterm>
-                  <glossdef>
-                    <para>Mit dieser Auswahl werden mehrere Regeln gleichzeitig angewendet. Kurse die, im Bezug auf das
-                      gewählte Datum, älter als ein Jahr sind werden mit der Regel <quote>Letzter
-                      des Monats</quote> behandelt. Die Kurse, die zwischen 6 und 12 Monate alt sind
-                      werden entsprechend der Regel <quote>Letzter der Woche</quote> gelöscht.
-                    </para>
-                  </glossdef>
-                </glossentry>
-              </glosslist>
-            </para>
-          </glossdef>
-        </glossentry>
-      </glosslist>
     </sect2>
   </sect1>
 
   <sect1 id="tool-security-edit">
-    <title>Wertpapier-Editor</title>
+    <title>Security Editor</title>
 
-    <abstract>
-      <para>Der Wertpapier-Editor wird zum Anlegen und Bearbeiten von allen Handelsgütern genutzt, die keine
-        ISO-Währungen sind. Darunter fallen z.B.:
-        <itemizedlist>
-          <listitem>
-            <para>Aktien und andere Wertpapiere,
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>Inventar und ähnliches, 
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>Stundensätze für Dienstleistungen oder auch den Preis für einen Liter Diesel. 
-            </para>
-          </listitem>
-        </itemizedlist>
-        Er zeigt auch die Definitionen der Währungen, die in &app; verfügbar sind.
-      </para>
-    </abstract>  
-      
-    <para>  
-      Aufgerufen wird der <guilabel>Wertpapier Editor</guilabel> mit dem
-      gleichnamigen Menüpunkt &mc.to.sec;.
+    <para>The Security Editor is used to create and edit commodities that are used by mutual fund and stock
+      type accounts. It also shows the details of National Currencies that are used by &app;.
     </para>
 
-    <figure pgwide="1">
-      <title>Der Wertpapier-Editor</title><screenshot>
-        <mediaobject>
-          <imageobject role="html">
-            <imagedata fileref="figures/Tools_SecurityEditor.png" 
-                         srccredit="Christian Wehling" width="&img-w;"/>
-          </imageobject>
-          <imageobject role="fo">
-            <imagedata fileref="figures/Tools_SecurityEditor.png" 
-                         srccredit="Christian Wehling"/>
-          </imageobject>
-        </mediaobject>
-      </screenshot>
-    </figure>
-
-    <para>Der Editor enthält einen großen tabellarischem Bereich, in dem für jede einzelne Währung oder
-      Wertpapier die verwendeten Details aufgelistet werden. Sie können die Anzeige mit weiteren
-      Spalten erweitern, indem Sie ganz rechts in der Überschriftenzeile auf das kleine Dreieck
-      klicken und die gewünschte Information aus der Liste auswählen.
+    <para>To show the details for National Currencies click the <guilabel>Show National Currencies</guilabel>
+      check-box at the bottom of the screen.
     </para>
 
-    <para>Die Bedeutung der einzelnen Spalten wird im <xref linkend="tool-commodity" /> beschrieben,
-      wohingegen zwei zusätzliche Spalten von &app; an Hand Ihrer Eingaben automatisch ausgefüllt
-      werden.
+    <para>Each entry in the editor shows the details used by the security/currency:
     </para>
 
-    <glosslist>
-      <glossentry id="tool-ge-PrintName">
-        <glossterm>Gedruckter Name</glossterm>
-        <glossdef>
-          <para>Der <guilabel>Gedruckte Name</guilabel> ist eine Kombination aus dem <guilabel>Symbol</guilabel> und
-            dem <guilabel>Namen</guilabel>.
-          </para>
-        </glossdef>
-      </glossentry>
-
-      <glossentry id="tool-ge-UniqueName">
-        <glossterm>Eindeutiger Name</glossterm>
-        <glossdef>
-          <para>Der <guilabel>Eindeutige Name</guilabel> setzt sich aus dem <guilabel>Namensraum</guilabel> (Typ)
-            und dem <guilabel>Symbol</guilabel> zusammen.
-          </para>
-        </glossdef>
-      </glossentry>
-    </glosslist>
-
-    <para>Im unteren Bereich des Wertpapier-Editors befinden sich Steuerelemente, deren Funktionsweise
-      nachfolgend beschrieben ist:
-    </para>
-
-    <glosslist>
-      <glossentry>
-        <glossterm>Nationale Währungen anzeigen</glossterm>
-
-        <glossdef>
-          <para>Mit Aktivieren dieses Kontrollkästchens werden die Währungseinträge zu Ihrer Information
-            eingeblendet.
-            <note>
-              <para>Die nationalen Währungen sind gemäß ISO 4217 bezeichnet, und können nur eingeschränkt
-                bearbeitet werden.
-              </para>          
-            </note>
-          </para>
-        </glossdef>
-      </glossentry>
-
-      <glossentry>
-        <glossterm>Hinzufügen</glossterm>
-
-        <glossdef>
-          <para>Öffnet den Dialog <guilabel>Neues Wertpapier</guilabel> in dem Sie ein neues Wertpapier (Aktie oder
-            Investmentfonds) anlegen können.
-            <note>
-              <para>Eine neue Währung kann nicht hinzugefügt werden, da diese fest in &app; eingetragen sind.
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Type:</emphasis> Categories for organizing securities. &app; has the following
+          built in:
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>CURRENCY</guilabel> or <guilabel>ISO4317</guilabel>: These are used for national
+                currencies and are not editable with the <guilabel>Security Editor</guilabel>.
               </para>
-            </note>
-          </para>
-        </glossdef>
-      </glossentry>
+            </listitem>
 
-      <glossentry>
-        <glossterm>Entfernen</glossterm>
-
-        <glossdef>
-          <para>Hiermit löschen Sie das markierte Wertpapier aus der &app;-Datendatei.
-            <note>
-              <para>Wenn schon Kurse für das Wertpapier im <xref linkend="tool-price" /> enthalten sind oder das
-                Wertpapier in einen Konto verwendet wird, dann werden Sie mit einem Warnhinweis
-                darauf aufmerksam gemacht und müssen diese Einträge händisch entfernen.
+            <listitem>
+              <para><guilabel>FUND</guilabel>: Ordinarily used for open-ended mutual funds, i.e., those that one
+                purchases from and sells to only the issuing company and that are priced daily at
+                their net asset value.
               </para>
-            </note>
+            </listitem>
 
-            <note>
-              <para>Eine Währung kann aus der Auflistung nicht gelöscht werden.
+            <listitem>
+              <para><guilabel>AMEX</guilabel>, <guilabel>ASX</guilabel>, <guilabel>EUREX</guilabel>,
+                <guilabel>NASDAQ</guilabel>, and <guilabel>NYSE</guilabel>: These represent a few of
+                the exchanges on which stocks, closed-end mutual funds, and exchange-traded funds
+                are traded.
               </para>
-            </note>
-          </para>
-        </glossdef>
-      </glossentry>
+            </listitem>
 
-      <glossentry>
-        <glossterm>Bearbeiten</glossterm>
+            <listitem>
+              <para><guilabel>Template</guilabel>: This is a reserved word. It will not normally appear in the
+                <guilabel>Security Editor</guilabel> unless you type it in, and if you do it will
+                cause problems. Don&apos;t use it.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
 
-        <glossdef>
-          <para>Möchten Sie ein Wertpapier oder eine Währung bearbeiten, markieren Sie es in der Liste, und die
-            Daten werden in dem Dialog <guilabel>Wertpapier bearbeiten</guilabel> bzw.
-            <guilabel>Währung bearbeiten</guilabel> zur Änderungen angeboten.
-          </para>
-        </glossdef>
-      </glossentry>
+        <para>If your investment doesn&apos;t fit into one of these categories, for example if you trade stocks on
+          the DAX or LSE, you can easily create your own type simply by typing it into the field.
+          The type of security has no meaning to Gnucash (except <guilabel>Template</guilabel>,
+          don&apos;t use that!), it&apos;s there only to make it easier for you to find the security
+          from the selection lists.
+        </para>
+      </listitem>
 
-      <glossentry>
-        <glossterm>Schließen</glossterm>
+      <listitem>
+        <para><emphasis role="bold">Symbol:</emphasis> Indicates the symbol or abbreviation for the commodity.
+          This is usually the ticker symbol (for stocks) or other unique abbreviation for the
+          commodity. If the commodity is traded on any public exchange, it is important to use the
+          same identifier used on that exchange. For national currencies the symbol is the ISO-4217
+          currency code.
+        </para>
+      </listitem>
 
-        <glossdef>
-          <para>Beendet den Wertpapier-Editor.
-          </para>
-        </glossdef>
-      </glossentry>
-    </glosslist>
+      <listitem>
+        <para><emphasis role="bold">Name:</emphasis> The full name of the commodity is a recognizable name such as
+          <emphasis>US Dollars</emphasis> or <emphasis>IBM Common Stock</emphasis>.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Code:</emphasis> This is any numeric or alphanumeric code that is used to
+          identify the commodity. The <acronym>ISIN</acronym> code is an international unique identifying numeric
+          string that is associated with every stock, bond or mutual fund, and most kinds of traded options,
+          futures and commodities. There are also regional valid codes available like <acronym>CUSIP</acronym> in
+          the North America, <acronym>WKN</acronym> in DE, … This code is not required.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Fraction:</emphasis> This is the smallest traded unit of the commodity,
+          expressed as a fraction of a single nominal unit. This unit is used by &app; accounts as
+          the default fraction for trades in the commodity.
+        </para>
+      </listitem>
+    </itemizedlist>
 
     <sect2 id="tool-commodity">
-      <title>Wertpapier anlegen oder bearbeiten</title>
+      <title>Adding or Editing a Commodity</title>
 
-      <para>Der Wertpapier-Editor stellt ein weiteres Dialogfenster zu Verfügung in dem Sie Wertpapiere neu
-        anlegen oder auch bearbeiten können. Mit dem selben Dialog können Sie ebenfalls Währungen
-        bearbeiten. Nachfolgend wird Ihnen die Möglichkeiten beschrieben, die der Editor Ihnen
-        bietet.
+      <para>To add a new commodity (stock, or mutual fund), click on <guilabel>Add</guilabel>, and enter the
+        details of the commodity into the <emphasis role="bold">New Security</emphasis> dialog box.
+        To edit an existing commodity, select the commodity from the Commodities list, click the
+        <guibutton>Edit</guibutton> button, and edit the <emphasis role="bold">Edit
+        Security</emphasis> dialog box. To remove a commodity, select the commodity and click the
+        <guibutton>Remove</guibutton> button.
       </para>
-<!--
-      <table id="Tools-SecurityEditor-Dialog">
-        <title>Wertpapier/ Währung anlegen oder bearbeiten</title>
 
-        <tgroup align="left" cols="2">
-          <colspec colwidth="0.5*"/>
-
-          <colspec colwidth="0.5*"/>
-
-          <tbody>
-            <row valign="top">
-              <entry valign="bottom"> -->
-                <para><figure>
-                    <title>Wertpapier anlegen oder bearbeiten</title><screenshot>
-                      <mediaobject>
-                        <imageobject>
-                          <imagedata fileref="figures/Tools_SecurityEditor_add.png" 
-                            srccredit="Christian Wehling"/>
-                        </imageobject>
-                      </mediaobject>
-                    </screenshot>
-                  </figure>
-                </para><!--
-              </entry>
-
-              <entry valign="bottom"> -->
-                <para><figure>
-                    <title>Währung bearbeiten</title><screenshot>
-                      <mediaobject>
-                        <imageobject>
-                          <imagedata fileref="figures/Tools_SecurityEditor_edit.png" 
-                            srccredit="Christian Wehling"/>
-                        </imageobject>
-                      </mediaobject>
-                    </screenshot>
-                  </figure>
-                </para><!--
-              </entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table> -->
-
-      <variablelist>
-        <varlistentry>
-          <term>Wertpapierinformationen</term>
-
-          <listitem>
-            <note>
-              <para>Bei den fest vorgegeben Währungen können Sie <emphasis>nur</emphasis> das
-                <guilabel>Anzeigesymbol</guilabel> und die <guilabel>Börsenkursquelle</guilabel> anpassen.
-              </para>
-            </note>
-
-            <glosslist>
-              <glossentry id="tool-ge-FullName">
-                <glossterm>Voller Name</glossterm>
-                <glossdef>
-                  <para>Der vollständige Name des Wertpapiers sollte ein für Sie verständlicher Name, wie z.B.
-                    <emphasis>US-Dollars</emphasis> oder <emphasis>Amazon Stammaktien</emphasis>,
-                    sein.
-                  </para>
-                </glossdef>
-              </glossentry>
-
-              <glossentry id="tool-ge-Symbol">
-                <glossterm>Symbol/Abkürzung</glossterm>
-                <glossdef>
-                  <para>Geben Sie das Symbol oder die Abkürzung für das Wertpapier an. Dies ist in der Regel das
-                    Tickersymbol (bei Aktien) oder eine andere eindeutige Abkürzung. Wenn das
-                    Wertpapier an einer Börse gehandelt wird, ist es wichtig, dieselbe Kennung zu
-                    verwenden, die auch an dieser Börse verwendet wird. Für nationale Währungen
-                    entspricht das Symbol dem <ulink url="&url-wp-de;ISO_4217">ISO 4217</ulink>
-                    Währungscode.
-                  </para>
-                </glossdef>
-              </glossentry>
-
-              <glossentry id="tool-ge-DisplaySymbol">
-                <glossterm>Anzeigesymbol</glossterm>
-                <glossdef>
-                  <para>Wenn Sie hier keinen Eintrag vornehmen, wird das zuvor eingetragene Symbol bzw. die Abkürzung als
-                    Anzeigesymbol genutzt. Bei einer Währung ist hier das Währungssymbol eingestellt.
-                  </para>
-                </glossdef>
-              </glossentry>
-
-              <glossentry id="tool-ge-Namespace">
-                <glossterm>Typ</glossterm>
-                <glossdef>
-                  <para>wird auch <guilabel>Namensraum</guilabel> genannt und kennzeichnet Kategorien zur Organisation Ihrer
-                    Handelsgüter. Die Angabe hat für &app; keine Bedeutung, sie dient nur dazu,
-                    Ihnen das Auffinden des Handelsgutes in den Auswahllisten zu erleichtern.
-                  </para>
-
-                  <para>Da &app; Ihnen hier keine Vorgaben macht, können Sie die Typen selber eintragen, denkbar wären z.B.
-                    diese Einträge:
-                  </para>
-
-                  <itemizedlist>
-                    <listitem>
-                      <para>Handelsplatz für Wertpapiere wie z.B. DAX, EUREX usw.
-                      </para>
-                    </listitem>
-                    
-                    <listitem>
-                      <para>Crypto-Währung
-                      </para>
-                    </listitem>
-                    
-                    <listitem>
-                      <para>Inventar
-                      </para>
-                    </listitem>
-
-                    <listitem>
-                      <para>Dienstleistungen, z.B. mit unterschiedlichen Stundensätzen
-                      </para>
-                    </listitem>
-
-                    <listitem>
-                      <para>Benzinpreise für einen <quote>Spritrechner</quote> 
-                      </para>
-                    </listitem>
-                  </itemizedlist>
-
-                  <para>
-                    <caution>
-                      <para>Da das Wort <emphasis>Template</emphasis> in &app; ein reserviertes Wort ist,
-                        darf es von Ihnen <emphasis>nicht</emphasis> verwendet werden!
-                      </para>
-                    </caution>
-                  </para>
-                </glossdef>
-              </glossentry>
-
-              <glossentry id="tool-ge-ISIN-CUSIP">
-                <glossterm>ISIN, WKN oder anderer Code</glossterm>
-                <glossdef>
-                  <para>Dies ist ein numerischer oder alphanumerischer Code, der verwendet wird, um das Wertpapier zu
-                    identifizieren. Der
-                    <ulink url="&url-wp-de;Internationale_Wertpapierkennnummer"><acronym>ISIN</acronym></ulink>-Code
-                    ist eine internationale eindeutige numerische Zeichenfolge, die mit jeder Aktie,
-                    Anleihe oder jedem Investmentfonds und den meisten Arten von gehandelten
-                    Optionen, Futures und Rohstoffen verbunden ist. In Deutschland ist die
-                    <ulink url="&url-wp-de;Wertpapierkennnummer"><acronym>WKN</acronym></ulink>
-                    gebräuchlich, es existieren auch weitere, regional gültige Codes wie z.B. die des
-                    <ulink url="&url-wp-de;Committee_on_Uniform_Security_Identification_Procedures">
-                    <acronym>CUSIP</acronym></ulink> in Nord Amerika. Die Angabe des Code ist nicht
-                    erforderlich, kann aber beispielsweise nützlich sein um sich hierin gleich auch die ISIN zu merken,
-                    z.B. falls Sie später die Quelle für den Kursabruf wechseln.
-                  </para>
-                </glossdef>
-              </glossentry>
-
-              <glossentry id="tool-ge-Fraction">
-                <glossterm>Handelbare Stückelung</glossterm>
-                <glossdef>
-                  <para>Dies ist die kleinste gehandelte Einheit des Wertpapiers, ausgedrückt als Bruchteil einer einzelnen
-                    Nominaleinheit. Diese Einheit wird von &app;-Konten als Standardstückelung für
-                    den Handel mit dem Wertpapier verwendet.
-                  </para>
-                </glossdef>
-              </glossentry>
-            </glosslist>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>Börsenkursquelle</term>
-
-          <listitem>
-            <glosslist>
-              <glossentry id="tool-ge-GetOnlineQuotes">
-                <glossterm>Börsenkurse online abrufen</glossterm>
-                <glossdef>
-                  <para>Das Aktivieren dieses Kontrollkästchens ermöglicht, den Abruf der Kurse von Währung oder
-                    Wertpapier von einer Online-Datenquelle.
-                    <note>
-                      <para>Wenn Sie den Kursabruf für eine Währung wünschen, dann müssen Sie nur noch die richtige
-                        <guilabel>Zeitzone</guilabel> einstellen.
-                      </para>
-                    </note>
-
-                    <note>
-                      <para>Wenn die Schaltfläche nicht angeklickt werden kann, dann ist das Paket &app-fq; nicht
-                        oder nicht richtig installiert. Lesen Sie in diesem Fall die Installationanleitung unter
-                        <xref linkend="finance-quote" />.
-                      </para>
-                    </note>
-                  </para>
-                </glossdef>
-              </glossentry>
-
-              <glossentry id="tool-ge-TypeQuoteSource">
-                <glossterm>Art der Kursabruf-Quelle</glossterm>
-                <glossdef>
-                  <para>Verwenden Sie die Optionsfelder, um die Quelle für die Online-Kurse auszuwählen.
-                    <variablelist>
-                      <varlistentry>
-                        <term><guilabel>Einzel</guilabel></term>
-
-                        <listitem>
-                          <para>Diese Auswahl ruft die Daten nur aus der angegebenen Quelle ab.
-                          </para>
-                        </listitem>
-                      </varlistentry>
-
-                      <varlistentry>
-                        <term><guilabel>Mehrere Kursquellen</guilabel></term>
-
-                        <listitem>
-                          <para>Kursquellen wie <quote>Europa</quote> sollten verwendet werden, wenn eine Ausfallsicherung
-                            gegenüber mehreren Datenquellen erwünscht ist.
-                          </para>
-
-                          <caution>
-                            <para>Die Option <guilabel>Mehrere Kursquellen</guilabel> ist nur sinnvoll, wenn alle ausgewählten
-                              Quellen das gleiche Symbol für Ihre Wertpapier verwenden.
-                            </para>
-                          </caution>
-                        </listitem>
-                      </varlistentry>
-
-                      <varlistentry>
-                        <term><guilabel>unbekannt</guilabel></term>
-<!-- Maintainers: To add, modify, remove sources
-edit https://github.com/Gnucash/gnucash/blob/maint/libgnucash/engine/gnc-commodity.c
-and update the appendix. -->
-                        <listitem>
-                          <para>&app; hat hier kein Hintergrundwissen über die Quelle. Das kann zwei verschiedene Gründe haben.
-                            Sie versuchen eine Quelle zu verwenden, die
-                            <itemizedlist>
-                              <listitem>
-                                <para>es <emphasis>nicht (mehr)</emphasis> in &app-fq; gibt oder
-                                </para>
-                              </listitem>
-
-                              <listitem>
-                                <para>neu in &app-fq; ist, aber <emphasis>noch nicht</emphasis> in &app; eingepflegt wurde.
-                                </para>
-                              </listitem>
-                            </itemizedlist>
-                          </para>
-                        </listitem>
-                      </varlistentry>
-                    </variablelist>
-                  </para>
-
-                  <para>Nachdem Sie die Art der Quelle für Kursangebote ausgewählt haben, wählen Sie eine Datenquelle aus
-                    dem Pulldown-Menü. Die zur Verfügung stehenden Datenquellen sind abhängig von
-                    der installierten Version von &app-fq; und werden Ihnen bei Verwendung des
-                    Befehls <command>gnc-fq-check</command> angezeigt. Details zu den derzeit
-                    unterstützten Datenquellen finden Sie unter <xref linkend="fq-sources"></xref>.
-                    <note>
-<!-- Is this note still valid? -->
-                      <para>Die Kursdatenquelle <quote>Yahoo as JSON</quote> liefert dabei auch die Kurse für die übrigen genannten
-                        Unternehmen (z.B. Fidelity Investments und T.Rowe Price).
-                      </para>
-                    </note>
-                  </para>
-
-                  <para>Beachten Sie allerdings, dass Sie bei Verwendung von <quote>Yahoo as JSON</quote> zusätzlich das
-                    Börsenplatzkürzel des Wertpapiers anfügen sollten, z.B. <quote>PA</quote>
-                    für Paris, <quote>BE</quote> für Berlin usw. Beispiel: 12150.PA (ein
-                    Peugeot-Papier am Pariser Markt). 
-                    <xref linkend="gnc-tbl-fq-yahoo-exchange-codes"></xref> enthält eine Liste von
-                    Suffixen für verschiedene Märkte auf der ganzen Welt.
-                    <tip>
-                      <para>Da einige Symbole eine spezielle Schreibweise erfordern, schauen Sie sich auch die Beispiele unter
-                        <ulink url="&url-wiki;Online_Quotes#Setting_up_online_quotes_in_GnuCash" /> an.
-                      </para>
-                    </tip>
-                  </para>
-
-                  <para>Pseudo-Symbole für den amerikanischen Lehrer-Pensionsfond TIAA-CREF-Fonds sind in der Tabelle
-                    <xref linkend="PsSymbs-TIAA-CREF"></xref> aufgeführt.
-                  </para>
-                </glossdef>
-              </glossentry>
-
-              <glossentry id="tool-ge-TimeZone">
-                <glossterm>Zeitzone dieser Kurse</glossterm>
-                <glossdef>
-                  <para>Wählen Sie die Zeitzone für die Quelle der von Ihnen empfangenen Online-Börsenkurse.
-                    Beispielsweise verwendet Yahoo gewöhnlich die US-Eastern-Zeitzone, wählen Sie
-                    also <quote>America/New York</quote>, wenn Sie diese Börsenkursquelle
-                    verwenden.
-                  </para>
-                </glossdef>
-              </glossentry>
-            </glosslist>
-
-            <tip>
-              <para>Denken Sie daran, dass die <quote>Kurse</quote> von Investmentfonds in Wirklichkeit
-                <quote>Nettoinventarwerte</quote><footnote><para>auch Nettovermögenswert, engl. Net Asset
-                Value (NAV), siehe <ulink url="&url-wp-de;NAV" /></para></footnote>  sind, und erst mehrere
-                Stunden nach Börsenschluss verfügbar sind. Wenn die <quote>Kurse</quote> aktualisiert
-                werden, bevor die Nettoinventarwerte des aktuellen Tages durch die Fopnfsgesellschaft
-                ermittelt wurden, werden die Werte vom vorherigen Handelstag abgerufen.
-              </para>
-
-              <para>Wenn sie den Zeitpunkt der Wertermittlung genau wissen wollen, informieren sie sich
-                bei der ausgebenden Fonds-Gesellschaft.
-              </para>
-            </tip>
-
-            <note>
-              <para>Die Kursdatenquelle <quote>Yahoo as JSON</quote> gibt den Kurs normalerweise zeitverzögert
-                zur Original-Datenquelle an. Wie groß die zeitliche Abweichung ist, können Sie in der Tabelle
-                <xref linkend="gnc-tbl-fq-yahoo-exchange-codes" /> nachlesen.
-              </para>
-            </note>
-          </listitem>
-        </varlistentry>
-      </variablelist>
+      <para>The fields in the New/Edit Security screens are the same as defined for the Security Editor
+        <xref linkend="tool-security-edit"></xref>. Below these fields are the options for Online
+        Quotes.
+      </para>
     </sect2>
 
-    <sect2 id="invest-stockprice-online3">
-      <title>Konfigurieren von Wertpapieren/Währungen für den Online-Abruf von Kursen</title>
-<!-- FIXME remove this chapter -->
-<!-- 
-      <para>Um Online-Kurse für eine bestimmte Aktie oder ein Investmentfonds-Konto zu nutzen, müssen Sie
-        zunächst <guilabel>Börsenkurse online abrufen</guilabel> aktivieren und eine Kursquelle im
-        Wertpapier-Editor auswählen. Für die Online-Aktualisierung von Währungskursen müssen nur
-        die Zeitzone ausgewählt werden und das Kästchen <guilabel>Börsenkurse online
-        abrufen</guilabel> im Wertpapier-Editor aktiviert sein.
+    <sect2 id="tool-price-online3">
+      <title>Configuring Securities/Currencies for On-Line Retrieval of Prices</title>
+
+      <para>To support on-line quotations for a particular stock or mutual fund account, you must first enable
+        on-line price quoting and select a price source in the Security Editor. Online currency
+        quotes require only that the check-box for Online quotes and the timezone be selected, and
+        that the <quote>Get Quotes</quote> box be checked in the Security Editor.
       </para>
- -->
-      <para>Detaillierte Anweisungen finden Sie im Abschnitt "Neue Konten erstellen":
+
+      <para>Detailed instructions are in the section on Creating New Accounts.
         <xref linkend="accts-online-quotes"></xref>
       </para>
     </sect2>
@@ -6047,170 +5607,98 @@ and update the appendix. -->
   </sect1>
 
   <sect1 id="tool-close-book">
-    <title>Buchabschluss</title>
+    <title>Close Book</title>
 
-    <abstract>
-      <para>Der Dialog <guilabel>Buch abschließen</guilabel>, welcher über den Menüeintrag &mc.to.cls-bok;
-        geöffnet wird, dient zum <quote>Abschließen der Bücher</quote>, einem Vorgang in der
-        Buchhaltung, bei dem die Salden der Ertrags- und Aufwandskonten zurückgesetzt werden.
-        Bei diesem Vorgang werden die Salden der Ertragskonten und der Aufwandskonto in ein Konto
-        vom Typ Eigenkapital übertragen.
-      </para>
-
-      <para>In der betrieblichen Praxis erfolgt zuvor eine Gruppierung in den GuV-Konten nach
-        <ulink url="&url-laws-de;hgb/__275.html">§275 HGB</ulink>.
-        Siehe auch <ulink url="&url-wp-de;Gewinn-_und_Verlustrechnung">Gewinn- und Verlustrechnung</ulink>
-      </para>
-    </abstract>
-
-    <note>
-      <para>Beachten Sie, dass der Abschluss der Bücher in &app; nicht für alle Anwender notwendig ist. Sie
-        <emphasis>müssen nicht</emphasis> Ihre Einnahmen- und Ausgabenkonten am Ende jeder
-        Finanzperiode ausgleichen, können es natürlich bei Bedarf tun.
-      </para>
-    </note>
-
-    <para>Abhängig von der Verwendung von &app; (Privat oder Geschäftlich) gibt es zwei mögliche Szenarien,
-      wie Sie einen <quote>Buchabschluß</quote> durchführen können:
+    <para>The <guilabel>Close Book</guilabel> dialog box is used for &ldquo;closing the books,&rdquo;--an
+      accounting process that resets the balances of the income and expense accounts. In this
+      process, income account balances are transferred into an income equity account, while expense
+      account balances are transferred into an expense equity account. You must specify both these
+      accounts, which may be the same. You must also specify the date for the closing transfer.
     </para>
 
-    <variablelist>
-      <varlistentry>
-        <term>geschäftliche Nutzung</term>
-
-        <listitem>
-          <para>Man möchte die Zahlen, welche man extern, z.B. den Finanz-, Zoll- und sonstigen Behörden, berufständischen
-            Organisationen wie IHK, Geldgebern/Anteilseignern (Gewinnverwendung) und den Kreditgebern
-            (Sicherheit)) gemeldet hat, auch im Buch dokumentieren. Dann ist die Abschluß-Funktion
-            der richtige Ansatz.
-          </para>
-
-          <para>Als Nebeneffekt können Sie direkt im Kontenplan die Einnahmen und Ausgaben des aktuellen
-            Zeitraums sehen.
-          </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>private Nutzung</term>
-
-        <listitem>
-          <para>&app;s integrierte Berichte beinhalten geeignete Konzepte wie einbehaltene Gewinne zwischen zwei
-            verschiedenen Finanzperioden. Durch Auswahl des Berichtszeitraums kann man sich auch
-            ohne Buchabschluß die Zahlen jedes Zeitraums, oder auch mehrere Zeiträume,
-            nebeneinander anzeigen lassen.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-
-<!-- FIXME source: Join warning & note to important. -->
-    <important>
-      <para>Ohne angepaßte Konfiguration, wie im Tip zum Abschlußdatum erläutert, verringert der
-        Abschluss der Bücher den Nutzen der Standardberichte, weil einige Berichte derzeit keine
-        abschließenden Buchungen verstehen. Aus ihrer Sicht sieht es also so aus, als ob die
-        Nettoeinnahmen oder -ausgaben in jedem Konto für frühere Buchungsperioden einfach
-        null waren.
-      </para>
-    </important>
-
     <sect2 id="tool-close-book-anatomy">
-      <title>Beschreibung des Dialogs</title>
+      <title>Dialog Box Details</title>
 
-      <figure pgwide="1">
-        <title>Der Dialog <quote>Buch abschließen</quote></title><screenshot>
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="figures/Tools_CloseBook.png" 
-                         srccredit="Christian Wehling" />
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
-
-      <para>Der Dialog besteht aus den folgenden Komponenten:
+      <para>The dialog box has the following parts:
       </para>
 
-      <glosslist>
-        <glossentry>
-          <glossterm>Abschlussdatum</glossterm>
-          <glossdef>
-            <para>Geben Sie das Datum für die Abschlussbuchung an. Sie können ein Datum eingeben oder eines aus dem
-              Kalender auswählen.
-              <tip>
-                <para>Falls möglich, wählen Sie einen Tag, an dem es keine anderen wertverändernden Buchungen gibt,
-                  also etwa Silvester oder Neujahr. Für die Verwendung von <quote>normalen</quote>
-                  Berichten müssen Sie dieses Datum dann ausschließen.
-                </para>
-              </tip>
-            </para>
-          </glossdef>
-        </glossentry>
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Closing Date:</guilabel> Specify the date for the closing transfer. You can type in a date
+            or choose one from the drop-down.
+          </para>
+        </listitem>
 
-        <glossentry>
-          <glossterm>Erträge gesamt</glossterm>
-          <glossdef>
-            <para>Wählen Sie das Konto vom Typ <emphasis>Eigenkapital</emphasis> aus, auf das der Gesamtsaldo aller Ertragskonten übertragen werden soll.
-              Optional können Sie über die Schaltfläche <guibutton>Neu…</guibutton> ein neues
-              Konto anlegen.
-            </para>
-          </glossdef>
-        </glossentry>
+        <listitem>
+          <para><guilabel>Income Total:</guilabel> Specify the account into which the total balance of all income
+            accounts will be transferred. Optionally you can create a new account to receive the
+            transfer using the <guibutton> New</guibutton> button.
+          </para>
+        </listitem>
 
-        <glossentry>
-          <glossterm>Aufwendungen gesamt</glossterm>
-          <glossdef>
-            <para>Geben Sie das Eigenkapitalkonto an, auf das der Gesamtsaldo aller Aufwandskonten übertragen wird. Auch hier
-              können Sie optional ein neues Konto mit Hilfe der Schaltfläche
-              <guibutton>Neu…</guibutton> anlegen.
-              <tip>
-                <para>Die Konten für <guilabel>Ertrag</guilabel> und <guilabel>Aufwand</guilabel> können auch identisch
-                  sein, etwa <userinput>Eigenkapital:<replaceable>Jahresabschluß</replaceable></userinput>.
-                </para>
-              </tip>
-            </para>
-          </glossdef>
-        </glossentry>
+        <listitem>
+          <para><guilabel>Expense Total:</guilabel> Specify the account into which the total balance of all expense
+            accounts will be transferred. Again, you can optionally create a new account to receive
+            the transfer using the <guibutton>New</guibutton> button.
+          </para>
+        </listitem>
 
-        <glossentry>
-          <glossterm>Beschreibung</glossterm>
-          <glossdef>
-            <para>Geben Sie die Beschreibung an, die in die Abschlussbuchung eingetragen wird, z.B.
-              <userinput>Jahresabschluß <replaceable>JJ</replaceable></userinput>
-              oder <userinput>Monatabschluß <replaceable>JJ-MM</replaceable></userinput>.
-            </para>
-          </glossdef>
-        </glossentry>
-      </glosslist>
+        <listitem>
+          <para><guilabel>Description:</guilabel> Specify the description that will be entered in the closing entry.
+          </para>
+        </listitem>
+      </itemizedlist>
     </sect2>
 
     <sect2 id="tool-close-book-workings">
-      <title>Funktionsweise</title>
+      <title>How It Works</title>
 
-      <para>&app; schließt die Bücher ab, indem er je Währung eine Buchung für Ertragskonten und eine für
-        Aufwandskonten anlegt. Die Buchungen verwenden alle das vom Benutzer ausgewählte Datum, und
-        jede Buchung kann eine beliebige Anzahl von Buchungsteilen enthalten. Jeder Buchungsteil
-        verschiebt den Saldo aus einem Ertrags- oder Aufwandskonto. Der letzte Buchungsteil in jeder
-        Abschlussbuchung verschiebt den gesamten Soll-/Habensaldo auf das angegebene
-        Eigenkapitalkonto.
+      <para>&app; closes books by creating one transaction per currency for income accounts, and one transaction
+        per currency for expense accounts. The transactions all use the date selected by the user,
+        and each transaction may contain any number of splits. Each split moves the balance out of
+        one income or expense account. The last split in each closing transaction moves the total
+        offsetting debit/credit balance into the specified equity account.
       </para>
 
-      <para>Für jede Buchung wird die Beschreibung genutzt, die der Benutzer im Eingabefeld
-        <guilabel>Beschreibung</guilabel> angegeben hat.
+      <para>Each transaction will use the description provided by the user in the
+        <guilabel>Description:</guilabel> entry.
       </para>
 
-      <para>Die Tatsache, dass &app; nur Buchungen verwendet, um die Bücher zu schließen, macht es sehr
-        einfach, einen Buchabschluss rückgängig zu machen: Löschen Sie einfach die
-        abschließenden Buchungen.
+      <para>The fact that &app; just uses transactions to close the books makes it very simple to undo a book
+        closing: just delete the closing transactions.
       </para>
-
-      <note>
-        <para>Das Buchabschluss-Werkzeug löscht keine Konten oder Buchungen, erstellt keine neuen Dateien und
-          verbirgt keine Konten.
-        </para>
-      </note>
     </sect2>
-<!-- FIXME source: remove the next three chapter. The content is integrated into the previous sections. -->
+
+    <sect2 id="tool-close-book-not">
+      <title>What It Doesn&rsquo;t Do</title>
+
+      <para>The book closing tool does not delete any accounts or transactions; create any new files; or hide
+        any accounts.
+      </para>
+    </sect2>
+
+    <sect2 id="tool-close-book-need">
+      <title>Necessity</title>
+
+      <para>Note that closing the books in &app; is unnecessary. You do not need to zero out your income and
+        expense accounts at the end of each financial period. &app;&rsquo;s built-in reports
+        automatically handle concepts like retained earnings between two different financial
+        periods.
+      </para>
+
+      <para>In fact, closing the books reduces the usefulness of the standard reports because the reports
+        don&rsquo;t currently understand closing transactions. So from their point of view it simply
+        looks like the net income or expense in each account for a given period was simply zero.
+      </para>
+    </sect2>
+
+    <sect2 id="tool-close-book-conclusion">
+      <title>Conclusion</title>
+
+      <para>If you close your books, be prepared to see inaccuracies in the standard reports. On the other hand,
+        you will see current-period income and expense figures in the chart of accounts.
+      </para>
+    </sect2>
   </sect1>
 
   <sect1 id="tool-lots">
@@ -6254,13 +5742,19 @@ and update the appendix. -->
         <title>Lots in Account window for Security Capital Gains</title><screenshot id="tool-lotsInAcctStk">
           <mediaobject>
             <imageobject role="html">
-              <imagedata fileref="figures/Help_Tool_LotsStk.png"
-              srccredit="Chris Good" width="&img-w;"/>
+              <imagedata fileref="figures/Tool_LotsStk.png"
+              srccredit="Chris Good" width="510px"/>
             </imageobject>
+
             <imageobject role="fo">
-              <imagedata fileref="figures/Help_Tool_LotsStk.png"
+              <imagedata fileref="figures/Tool_LotsStk.png"
                          srccredit="Chris Good"/>
             </imageobject>
+
+            <textobject>
+              <phrase>Example of Lots in Account window for a security account </phrase>
+            </textobject>
+
             <caption>
               <para>An image of the <emphasis>Lots in Account </emphasis> window for a security account.
               </para>
@@ -6296,7 +5790,7 @@ and update the appendix. -->
 
         <para><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="figures/Help_Tool_Lots_h_double_arrow.png"
+              <imagedata fileref="figures/Tool_Lots_h_double_arrow.png"
                 width="48px" />
             </imageobject>
 
@@ -6307,7 +5801,7 @@ and update the appendix. -->
 
           <inlinemediaobject>
             <imageobject>
-              <imagedata fileref="figures/Help_Tool_Lots_v_double_arrow.png"
+              <imagedata fileref="figures/Tool_Lots_v_double_arrow.png"
                 width="48px" />
             </imageobject>
           </inlinemediaobject>
@@ -6322,8 +5816,8 @@ and update the appendix. -->
         <itemizedlist>
           <listitem>
             <para><guilabel>Title:</guilabel> Shows the title for the highlighted (selected) lot in the <guilabel>Lots
-              in This Account</guilabel>panel. When a new lot is created by clicking the
-              <guilabel>New Lot</guilabel>button, it has a default title of <emphasis>Lot n
+              in This Account</guilabel> panel. When a new lot is created by clicking the
+              <guilabel>New Lot</guilabel> button, it has a default title of <emphasis>Lot n
               </emphasis> where n is a number starting at 0 (for each security account) and
               incrementing by 1. Deleting a lot does not reset the next number to be used, but the
               title can be changed as required.
@@ -6527,7 +6021,7 @@ and update the appendix. -->
 
           <listitem>
             <para><guilabel>&lt;&lt;:</guilabel> Unlinks a split from a lot. The split moves from the
-              <guilabel>Splits in lot</guilabel>panel to the <guilabel>Splits free</guilabel>
+              <guilabel>Splits in lot</guilabel> panel to the <guilabel>Splits free</guilabel>
               panel. This button is not enabled until a split in the <guilabel>Splits in
               lot</guilabel> panel is highlighted. When the last split is unlinked from a lot, the
               lot is automatically deleted if there is no capital gain/loss transaction.
@@ -6629,7 +6123,8 @@ and update the appendix. -->
         </itemizedlist>
 
         <para>See Tutorial and Concepts Guide,
-          <ulink url="&url-docs-C;guide/invest-sell1.html#invest-sellLots">Automatic
+          <ulink
+url="&url-docs-C;guide/invest-sell1.html#invest-sellLots"> Automatic
           Calculation of Capital Gain or Loss Using Lots</ulink> for more details.
         </para>
       </sect3>
@@ -6691,13 +6186,20 @@ and update the appendix. -->
           <title>Lots in Account window for business features</title><screenshot id="tool-lotsInAcctBus">
             <mediaobject>
               <imageobject role="html">
-                <imagedata fileref="figures/Help_Tool_LotsBus.png"
-                  srccredit="Chris Good" width="&img-w;"/>
+                <imagedata fileref="figures/Tool_LotsBus.png"
+                srccredit="Chris Good" width="510px"/>
               </imageobject>
+
               <imageobject role="fo">
-                <imagedata fileref="figures/Help_Tool_LotsBus.png"
-                           srccredit="Chris Good" />
+                <imagedata fileref="figures/Tool_LotsBus.png"
+                           srccredit="Chris Good"/>
               </imageobject>
+
+              <textobject>
+                <phrase>Example of Lots in Account window for an Accounts Receivable account
+                </phrase>
+              </textobject>
+
               <caption>
                 <para>An image of the <guilabel>Lots in Account</guilabel> window for an Accounts Receivable account.
                 </para>

@@ -11,8 +11,6 @@
 function (add_ghelp_target docname lang entities figures)
 
     set(BUILD_DIR "${DATADIR_BUILD}/gnome/help/${docname}/${lang}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
 
     set(source_files "")
     foreach(xml_file ${entities} ${docname}.xml)
@@ -33,21 +31,28 @@ function (add_ghelp_target docname lang entities figures)
     endforeach()
 
     add_custom_command(
+      OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger"
+      COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"
+      COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
+      COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger")
+
+
+    add_custom_command(
         OUTPUT ${dest_files}
         COMMAND ${CMAKE_COMMAND} -E copy ${source_files} "${BUILD_DIR}"
         DEPENDS ${entities} "${docname}.xml" ${dtd_files}
         WORKING_DIRECTORY "${BUILD_DIR}")
 
     # Copy figures for this document
-    file(MAKE_DIRECTORY "${BUILD_DIR}/figures")
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
-        DEPENDS ${figures})
+        DEPENDS ${figures} "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger")
 
     add_custom_target("${lang}-${docname}-ghelp"
-        DEPENDS ${dest_files}
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger"
+                 ${dest_files}
                 "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger")
 
     add_dependencies(${docname}-ghelp "${lang}-${docname}-ghelp")

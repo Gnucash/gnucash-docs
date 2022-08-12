@@ -4,7 +4,6 @@ function (add_epub_target docname lang entities figures)
     set(EPUB_TMPDIR "${CMAKE_CURRENT_BINARY_DIR}/epub")
 
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
-    file(MAKE_DIRECTORY "${BUILD_DIR}")
 
     add_custom_command(
         OUTPUT "${BUILD_DIR}/${epubfile}"
@@ -20,6 +19,7 @@ function (add_epub_target docname lang entities figures)
                             "${CMAKE_SOURCE_DIR}/xsl/1.79.2/epub/docbook.xsl"
                             "${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml"
         COMMAND cmake -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/figures" "${EPUB_TMPDIR}/OEBPS/figures"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"
         COMMAND cd "${EPUB_TMPDIR}" && zip -X -r "${BUILD_DIR}/${epubfile}" mimetype META-INF OEBPS
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd" ${figures})
 

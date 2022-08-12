@@ -53,6 +53,13 @@ else()
 endif()
 option (WITH_MOBI "Enable build rules for Mobipocket document format" OFF)
 
+if(APPLE)
+    option (WITH_HTML_INSTALL "Enable install rules for html document format" ON)
+else()
+    option (WITH_HTML_INSTALL "Enable install rules for html document format" OFF)
+endif()
+
+
 # ############################################################
 # Following parameters can equally be set using -D switches on the CMake command line.
 # Set font dirs and font for Russian pdf documents
@@ -144,7 +151,11 @@ if (WITH_HTML)
     add_custom_target(html)
 endif()
 if (WITH_GHELP)
+  if (UNIX AND NOT APPLE)
     add_custom_target(ghelp ALL)
+  else(UNIX AND NOT APPLE)
+    add_custom_target(ghelp)
+  endif()
 endif()
 if (WITH_PDF)
     add_custom_target(pdf)
