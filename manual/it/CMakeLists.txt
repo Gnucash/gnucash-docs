@@ -1,27 +1,25 @@
-set (COMPONENTS
-        ${top_srcdir}/help/C/gnucash-help.xml
-        ${top_srcdir}/help/C/ch_Intro.xml
-        ${top_srcdir}/help/C/ch_GettingHelp.xml
-        ${top_srcdir}/help/C/ch_GettingStarted.xml
-        ${top_srcdir}/help/C/ch_GUIMenus.xml
-        ${top_srcdir}/help/C/ch_Account-Actions.xml
-        ${top_srcdir}/help/C/ch_Transactions.xml
-        ${top_srcdir}/help/C/ch_Business.xml
-        ${top_srcdir}/help/C/ch_Tools_Assistants.xml
-        ${top_srcdir}/help/C/ch_Reports.xml
-        ${top_srcdir}/help/C/ch_Customize.xml
-        ${top_srcdir}/help/C/chtacctseg.xml
-        ${top_srcdir}/help/C/chartofaccts.xml
-        ${top_srcdir}/help/C/legal.xml
-        ${top_srcdir}/help/C/txf-categories.xml
-        ${top_srcdir}/help/C/fdl-appendix.xml
-        ${top_srcdir}/help/C/tips-appendix.xml)
+set (entities
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Intro.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_GettingHelp.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_GettingStarted.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_GUIMenus.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Account-Actions.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Transactions.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Business.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Tools_Assistants.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Reports.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Customize.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/chtacctseg.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/chartofaccts.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/legal.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/txf-categories.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/fdl-appendix.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/tips-appendix.xml
+)
 
-#gnucash-help.xml: ${COMPONENTS} ${srcdir}/it.po
-#	xml2po -e -p ${srcdir}/it.po -o $@ ${top_srcdir}/help/C/gnucash-help.xml
+#gnucash-help.xml: ${CMAKE_SOURCE_DIR}/manual/C/gnucash-help.xml ${entities} ${srcdir}/it.po
+#	xml2po -e -p ${srcdir}/it.po -o $@ ${CMAKE_SOURCE_DIR}/manual/C/gnucash-help.xml
 #	if test "${srcdir}" != "${builddir}"; then mv $@ ${srcdir}; fi
-
-#EXTRA_DIST += it.po
 
 add_gnc_doc_targets(${docname} "")
 
