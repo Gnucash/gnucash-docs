@@ -2,23 +2,21 @@ function (add_gnc_doc_targets docname entities figures)
 
     get_filename_component(lang ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
-    if(entities)
-        # Add a target to run xml lint checks on this document's source xml files
-        add_custom_target("${lang}-${docname}-check"
-            COMMAND  ${XMLLINT} --postvalid
-                                --xinclude
-                                --noout
-                                --path ${CMAKE_SOURCE_DIR}/docbook
-                                ${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml
-            COMMAND  ${CMAKE_COMMAND}
-                -D XMLLINT=${XMLLINT}
-                -D GNC_SOURCE_DIR=${CMAKE_SOURCE_DIR}
-                -D GNC_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
-                -D docname=${docname}
-                -P ${CMAKE_SOURCE_DIR}/cmake/CheckFigures.cmake
-            DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
-        add_dependencies(${docname}-check "${lang}-${docname}-check")
-    endif()
+    # Add a target to run xml lint checks on this document's source xml files
+    add_custom_target("${lang}-${docname}-check"
+        COMMAND  ${XMLLINT} --postvalid
+                            --xinclude
+                            --noout
+                            --path ${CMAKE_SOURCE_DIR}/docbook
+                            ${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml
+        COMMAND  ${CMAKE_COMMAND}
+            -D XMLLINT=${XMLLINT}
+            -D GNC_SOURCE_DIR=${CMAKE_SOURCE_DIR}
+            -D GNC_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
+            -D docname=${docname}
+            -P ${CMAKE_SOURCE_DIR}/cmake/CheckFigures.cmake
+        DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
+    add_dependencies(${docname}-check "${lang}-${docname}-check")
 
     # Add targets for each document format that is enabled
     if (WITH_CHM)
