@@ -8,7 +8,7 @@
 # - entities: list of all xml files this document is composed of
 # - figdir: name of the directory holding the images
 
-function (add_ghelp_target docname lang entities figures)
+function (add_xdghelp_target docname lang entities figures)
 
     set(BUILD_DIR "${DATADIR_BUILD}/help/${lang}/${docname}")
 
@@ -31,10 +31,10 @@ function (add_ghelp_target docname lang entities figures)
     endforeach()
 
     add_custom_command(
-      OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger"
+      OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger"
       COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"
       COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
-      COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger")
+      COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger")
 
 
     add_custom_command(
@@ -45,22 +45,22 @@ function (add_ghelp_target docname lang entities figures)
 
     # Copy figures for this document
     add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/xdghelp_figtrigger"
         COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
-        DEPENDS ${figures} "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger")
+        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/xdghelp_figtrigger"
+        DEPENDS ${figures} "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger")
 
-    add_custom_target("${lang}-${docname}-ghelp"
-        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger"
+    add_custom_target("${lang}-${docname}-xdghelp"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger"
                  ${dest_files}
-                "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger")
+                "${CMAKE_CURRENT_BINARY_DIR}/xdghelp_figtrigger")
 
-    add_dependencies(${docname}-ghelp "${lang}-${docname}-ghelp")
+    add_dependencies(${docname}-xdghelp "${lang}-${docname}-xdghelp")
 
     install(FILES ${source_files}
         DESTINATION "${CMAKE_INSTALL_DATADIR}/help/${lang}/${docname}"
-        COMPONENT "ghelp")
+        COMPONENT "xdghelp")
     install(FILES ${figures}
         DESTINATION "${CMAKE_INSTALL_DATADIR}/help/${lang}/${docname}/figures"
-        COMPONENT "ghelp")
+        COMPONENT "xdghelp")
 endfunction()

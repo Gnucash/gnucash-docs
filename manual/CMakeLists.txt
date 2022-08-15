@@ -8,9 +8,9 @@ if (WITH_HTML)
     add_dependencies(html ${docname}-html)
 endif()
 
-if (WITH_GHELP)
-    add_custom_target(${docname}-ghelp)
-    add_dependencies(ghelp ${docname}-ghelp)
+if (WITH_XDGHELP)
+    add_custom_target(${docname}-xdghelp)
+    add_dependencies(xdghelp ${docname}-xdghelp)
 endif()
 
 if (WITH_PDF)
