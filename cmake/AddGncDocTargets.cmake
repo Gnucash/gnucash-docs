@@ -14,6 +14,7 @@ function (add_gnc_doc_targets docname entities figures)
             -D GNC_SOURCE_DIR=${CMAKE_SOURCE_DIR}
             -D GNC_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
             -D docname=${docname}
+            -D cmake_fig_list="${figures}"
             -P ${CMAKE_SOURCE_DIR}/cmake/CheckFigures.cmake
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
     add_dependencies(${docname}-check "${lang}-${docname}-check")
