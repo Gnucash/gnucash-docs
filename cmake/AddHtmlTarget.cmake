@@ -32,11 +32,23 @@ function (add_html_target docname lang entities figures)
         DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
 
     # Copy figures for this document
-    add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
-        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
-        DEPENDS ${figures} "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger")
+    set(source_figures "")
+    foreach(figure ${figures})
+        list(APPEND source_figures "${CMAKE_CURRENT_SOURCE_DIR}/${figure}")
+    endforeach()
+
+    set(dest_figures "")
+    foreach(figure ${figures})
+        list(APPEND dest_figures "${BUILD_DIR}/${figure}")
+    endforeach()
+
+    if(dest_figures)
+        add_custom_command(
+            OUTPUT ${dest_figures}
+            COMMAND ${CMAKE_COMMAND} -E copy ${source_figures} "${BUILD_DIR}/figures"
+            COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
+            DEPENDS ${source_figures} "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger")
+    endif()
 
     # Copy style icons for this document (warning, info,...)
     add_custom_command(
@@ -47,7 +59,7 @@ function (add_html_target docname lang entities figures)
 
     add_custom_target("${lang}-${docname}-html"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
-                "${CMAKE_CURRENT_BINARY_DIR}/html_figtrigger"
+                ${dest_figures}
                 "${CMAKE_CURRENT_BINARY_DIR}/styletrigger")
 
     add_dependencies(${docname}-html "${lang}-${docname}-html")

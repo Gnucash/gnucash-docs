@@ -17,11 +17,30 @@ set (entities
     ${CMAKE_SOURCE_DIR}/manual/C/tips-appendix.xml
 )
 
+set (figures
+    figures/AccountReg_Screen.png
+    figures/AccountTree_Screen.png
+    figures/Main-window-callouts.png
+    figures/Pref_AccntPeriod.png
+    figures/Pref_Accnts.png
+    figures/Pref_Business.png
+    figures/Pref_DateTime.png
+    figures/Pref_General.png
+    figures/Pref_OnlineBanking.png
+    figures/Pref_Printing.png
+    figures/Pref_Register.png
+    figures/Pref_RegisterDefaults.png
+    figures/Pref_Reports.png
+    figures/Pref_Sched.png
+    figures/Pref_Windows.png
+    figures/Report_Screen.png
+)
+
 #gnucash-help.xml: ${CMAKE_SOURCE_DIR}/manual/C/gnucash-help.xml ${entities} ${srcdir}/it.po
 #	xml2po -e -p ${srcdir}/it.po -o $@ ${CMAKE_SOURCE_DIR}/manual/C/gnucash-help.xml
 #	if test "${srcdir}" != "${builddir}"; then mv $@ ${srcdir}; fi
 
-add_gnc_doc_targets(${docname} "")
+add_gnc_doc_targets(${docname} "" "${figures}")
 
 set(extra_dist
     COME-TRADURRE

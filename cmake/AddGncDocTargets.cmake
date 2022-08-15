@@ -1,10 +1,6 @@
-function (add_gnc_doc_targets docname entities)
+function (add_gnc_doc_targets docname entities figures)
 
     get_filename_component(lang ${CMAKE_CURRENT_SOURCE_DIR} NAME)
-
-    file(GLOB_RECURSE figures
-        "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.png"
-        "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.svg")
 
     if(entities)
         # Add a target to run xml lint checks on this document's source xml files
@@ -44,14 +40,10 @@ function (add_gnc_doc_targets docname entities)
       add_mobi_target(${docname} ${lang})
     endif()
 
-    file(GLOB_RECURSE figures_dist
-        RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-        figures/*.png figures/*.svg)
-
     add_to_dist(
         CMakeLists.txt
         ${docname}.xml
         ${entities}
-        ${figures_dist})
+        ${figures})
 
 endfunction()
