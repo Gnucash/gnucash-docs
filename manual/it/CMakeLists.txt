@@ -1,29 +1,46 @@
-set (COMPONENTS
-        ${top_srcdir}/help/C/gnucash-help.xml
-        ${top_srcdir}/help/C/ch_Intro.xml
-        ${top_srcdir}/help/C/ch_GettingHelp.xml
-        ${top_srcdir}/help/C/ch_GettingStarted.xml
-        ${top_srcdir}/help/C/ch_GUIMenus.xml
-        ${top_srcdir}/help/C/ch_Account-Actions.xml
-        ${top_srcdir}/help/C/ch_Transactions.xml
-        ${top_srcdir}/help/C/ch_Business.xml
-        ${top_srcdir}/help/C/ch_Tools_Assistants.xml
-        ${top_srcdir}/help/C/ch_Reports.xml
-        ${top_srcdir}/help/C/ch_Customize.xml
-        ${top_srcdir}/help/C/chtacctseg.xml
-        ${top_srcdir}/help/C/chartofaccts.xml
-        ${top_srcdir}/help/C/legal.xml
-        ${top_srcdir}/help/C/txf-categories.xml
-        ${top_srcdir}/help/C/fdl-appendix.xml
-        ${top_srcdir}/help/C/tips-appendix.xml)
+set (entities
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Intro.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_GettingHelp.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_GettingStarted.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_GUIMenus.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Account-Actions.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Transactions.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Business.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Tools_Assistants.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Reports.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Customize.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/chtacctseg.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/chartofaccts.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/legal.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/txf-categories.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/fdl-appendix.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/tips-appendix.xml
+)
 
-#gnucash-help.xml: ${COMPONENTS} ${srcdir}/it.po
-#	xml2po -e -p ${srcdir}/it.po -o $@ ${top_srcdir}/help/C/gnucash-help.xml
+set (figures
+    figures/AccountReg_Screen.png
+    figures/AccountTree_Screen.png
+    figures/Main-window-callouts.png
+    figures/Pref_AccntPeriod.png
+    figures/Pref_Accnts.png
+    figures/Pref_Business.png
+    figures/Pref_DateTime.png
+    figures/Pref_General.png
+    figures/Pref_OnlineBanking.png
+    figures/Pref_Printing.png
+    figures/Pref_Register.png
+    figures/Pref_RegisterDefaults.png
+    figures/Pref_Reports.png
+    figures/Pref_Sched.png
+    figures/Pref_Windows.png
+    figures/Report_Screen.png
+)
+
+#gnucash-help.xml: ${CMAKE_SOURCE_DIR}/manual/C/gnucash-help.xml ${entities} ${srcdir}/it.po
+#	xml2po -e -p ${srcdir}/it.po -o $@ ${CMAKE_SOURCE_DIR}/manual/C/gnucash-help.xml
 #	if test "${srcdir}" != "${builddir}"; then mv $@ ${srcdir}; fi
 
-#EXTRA_DIST += it.po
-
-add_gnc_doc_targets(${docname} "")
+add_gnc_doc_targets(${docname} "" "${figures}")
 
 set(extra_dist
     COME-TRADURRE

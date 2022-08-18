@@ -24,7 +24,6 @@ function (add_ghelp_target docname lang entities figures)
     list(REMOVE_DUPLICATES dtd_files)
     list(APPEND source_files ${dtd_files})
 
-
     set(dest_files "")
     foreach(xml_file ${entities} ${docname}.xml gnc-docbookx.dtd)
         list(APPEND dest_files "${BUILD_DIR}/${xml_file}")
@@ -44,16 +43,27 @@ function (add_ghelp_target docname lang entities figures)
         WORKING_DIRECTORY "${BUILD_DIR}")
 
     # Copy figures for this document
-    add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
-        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
-        DEPENDS ${figures} "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger")
+    set(source_figures "")
+    foreach(figure ${figures})
+        list(APPEND source_figures "${CMAKE_CURRENT_SOURCE_DIR}/${figure}")
+    endforeach()
+
+    set(dest_figures "")
+    foreach(figure ${figures})
+        list(APPEND dest_figures "${BUILD_DIR}/${figure}")
+    endforeach()
+
+    if(dest_figures)
+        add_custom_command(
+            OUTPUT ${dest_figures}
+            COMMAND ${CMAKE_COMMAND} -E copy ${source_figures} "${BUILD_DIR}/figures"
+            COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
+            DEPENDS ${source_figures} "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger")
+    endif()
 
     add_custom_target("${lang}-${docname}-ghelp"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger"
-                 ${dest_files}
-                "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger")
+                 ${dest_files} ${dest_figures})
 
     add_dependencies(${docname}-ghelp "${lang}-${docname}-ghelp")
 

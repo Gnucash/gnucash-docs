@@ -1,28 +1,23 @@
-function (add_gnc_doc_targets docname entities)
+function (add_gnc_doc_targets docname entities figures)
 
     get_filename_component(lang ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
-    file(GLOB_RECURSE figures
-        "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.png"
-        "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.svg")
-
-    if(entities)
-        # Add a target to run xml lint checks on this document's source xml files
-        add_custom_target("${lang}-${docname}-check"
-            COMMAND  ${XMLLINT} --postvalid
-                                --xinclude
-                                --noout
-                                --path ${CMAKE_SOURCE_DIR}/docbook
-                                ${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml
-            COMMAND  ${CMAKE_COMMAND}
-                -D XMLLINT=${XMLLINT}
-                -D GNC_SOURCE_DIR=${CMAKE_SOURCE_DIR}
-                -D GNC_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
-                -D docname=${docname}
-                -P ${CMAKE_SOURCE_DIR}/cmake/CheckFigures.cmake
-            DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
-        add_dependencies(${docname}-check "${lang}-${docname}-check")
-    endif()
+    # Add a target to run xml lint checks on this document's source xml files
+    add_custom_target("${lang}-${docname}-check"
+        COMMAND  ${XMLLINT} --postvalid
+                            --xinclude
+                            --noout
+                            --path ${CMAKE_SOURCE_DIR}/docbook
+                            ${CMAKE_CURRENT_SOURCE_DIR}/${docname}.xml
+        COMMAND  ${CMAKE_COMMAND}
+            -D XMLLINT=${XMLLINT}
+            -D GNC_SOURCE_DIR=${CMAKE_SOURCE_DIR}
+            -D GNC_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
+            -D docname=${docname}
+            -D cmake_fig_list="${figures}"
+            -P ${CMAKE_SOURCE_DIR}/cmake/CheckFigures.cmake
+        DEPENDS ${entities} "${docname}.xml" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
+    add_dependencies(${docname}-check "${lang}-${docname}-check")
 
     # Add targets for each document format that is enabled
     if (WITH_CHM)
@@ -44,14 +39,10 @@ function (add_gnc_doc_targets docname entities)
       add_mobi_target(${docname} ${lang})
     endif()
 
-    file(GLOB_RECURSE figures_dist
-        RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-        figures/*.png figures/*.svg)
-
     add_to_dist(
         CMakeLists.txt
         ${docname}.xml
         ${entities}
-        ${figures_dist})
+        ${figures})
 
 endfunction()
