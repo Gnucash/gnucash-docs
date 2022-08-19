@@ -57,7 +57,6 @@ function (add_ghelp_target docname lang entities figures)
         add_custom_command(
             OUTPUT ${dest_figures}
             COMMAND ${CMAKE_COMMAND} -E copy ${source_figures} "${BUILD_DIR}/figures"
-            COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/ghelp_figtrigger"
             DEPENDS ${source_figures} "${CMAKE_CURRENT_BINARY_DIR}/ghelptrigger")
     endif()
 
