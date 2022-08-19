@@ -36,8 +36,8 @@ set (figures
     figures/Report_Screen.png
 )
 
-#gnucash-help.xml: ${CMAKE_SOURCE_DIR}/manual/C/gnucash-help.xml ${entities} ${srcdir}/it.po
-#	xml2po -e -p ${srcdir}/it.po -o $@ ${CMAKE_SOURCE_DIR}/manual/C/gnucash-help.xml
+#index.docbook: ${CMAKE_SOURCE_DIR}/manual/C/index.docbook ${entities} ${srcdir}/it.po
+#	xml2po -e -p ${srcdir}/it.po -o $@ ${CMAKE_SOURCE_DIR}/manual/C/index.docbook
 #	if test "${srcdir}" != "${builddir}"; then mv $@ ${srcdir}; fi
 
 add_gnc_doc_targets(${docname} "" "${figures}")

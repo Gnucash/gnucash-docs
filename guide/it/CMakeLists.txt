@@ -180,8 +180,8 @@ set (figures
     figures/txns_sxn_ledger4.png
 )
 
-#gnucash-guide.xml: ${CMAKE_SOURCE_DIR}/guide/C/gnucash-guide.xml ${entities} ${srcdir}/it.po
-#        xml2po -e -p ${srcdir}/it.po -o $@ ${CMAKE_SOURCE_DIR}/guide/C/gnucash-guide.xml
+#index.docbook: ${CMAKE_SOURCE_DIR}/guide/C/index.docbook ${entities} ${srcdir}/it.po
+#        xml2po -e -p ${srcdir}/it.po -o $@ ${CMAKE_SOURCE_DIR}/guide/C/index.docbook
 #        if test "${srcdir}" != "${builddir}"; then mv $@ ${srcdir}; fi
 
 add_gnc_doc_targets(${docname} "" "${figures}")
