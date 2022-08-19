@@ -24,7 +24,6 @@ function (add_xdghelp_target docname lang entities figures)
     list(REMOVE_DUPLICATES dtd_files)
     list(APPEND source_files ${dtd_files})
 
-
     set(dest_files "")
     foreach(xml_file ${entities} index.docbook gnc-docbookx.dtd)
         list(APPEND dest_files "${BUILD_DIR}/${xml_file}")
@@ -44,16 +43,25 @@ function (add_xdghelp_target docname lang entities figures)
         WORKING_DIRECTORY "${BUILD_DIR}")
 
     # Copy figures for this document
-    add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/xdghelp_figtrigger"
-        COMMAND ${CMAKE_COMMAND} -E copy ${figures} "${BUILD_DIR}/figures"
-        COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/xdghelp_figtrigger"
-        DEPENDS ${figures} "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger")
+    set(source_figures "")
+    foreach(figure ${figures})
+        list(APPEND source_figures "${CMAKE_CURRENT_SOURCE_DIR}/${figure}")
+    endforeach()
+
+    set(dest_figures "")
+    foreach(figure ${figures})
+        list(APPEND dest_figures "${BUILD_DIR}/${figure}")
+    endforeach()
+
+    if(dest_figures)
+        add_custom_command(
+            OUTPUT ${dest_figures}
+            COMMAND ${CMAKE_COMMAND} -E copy ${source_figures} "${BUILD_DIR}/figures"
+        DEPENDS ${source_figures} "${CMAKE_CURRENT_BINARY_DIR}/xdgghelptrigger")
 
     add_custom_target("${lang}-${docname}-xdghelp"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger"
-                 ${dest_files}
-                "${CMAKE_CURRENT_BINARY_DIR}/xdghelp_figtrigger")
+                 ${dest_files} ${dest_figures})
 
     add_dependencies(${docname}-xdghelp "${lang}-${docname}-xdghelp")
 

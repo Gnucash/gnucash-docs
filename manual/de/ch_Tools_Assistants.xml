@@ -5082,32 +5082,39 @@
     <title>Kurs-Datenbank</title>
 
     <abstract>
-      <para>Die Kurs-Datenbank listet die Preise eines Handelsguts zu verschiedenen Zeitpunken und ggf. auf
-        verschiedenen Märkten in Bezug zu einem anderen Handelsgut auf. Neue
-        Preise können hinzugefügt oder gelöscht, bestehende Preise bearbeitet und aus
-        einer Auswahl von verschiedenen Quellen im World-Wide-Web abgerufen werden, wenn das
+      <para>Die Kurs-Datenbank listet die Kurse Ihrer Handelsgüter zu verschiedenen Zeitpunkten und ggf. auf
+        verschiedenen Märkten in Bezug zu Ihrer Buchwährung auf. Neue
+        Kurse können hinzugefügt oder gelöscht, bestehende Kurse bearbeitet und aus
+        einer Auswahl von verschiedenen Quellen im Internet abgerufen werden, wenn das
         Handelsgut hierfür richtig konfiguriert ist.
+      </para>
+      
+      <para>Auch die Kurse, die Sie mittels &mc.fi.imp.pri-csv; nach &app; importiert haben,
+        werden hier aufgeführt.
       </para>
     </abstract>
 
-    <para>Mit dem Menüpunkt &mc.to.price; haben Sie die Möglichkeit die Kurse für Ihre Devisen, Aktien
-      und Investmentfonds zu verwalten.
-    </para>
+    <formalpara>
+      <title>Aufruf des Assistenten</title>
+        <para>Mit dem Menüpunkt &mc.to.price; wird er in einem separaten Fenster gestartet.
+        </para>
+    </formalpara>
 
     <glosslist>
+      <title>Begriffe</title>
       <glossentry>
         <glossterm>Handelsgut</glossterm>
         <glossdef>
-          <para>Steht in &app; für alles, was zählt: Währungen, Wertpapiere (d.h. immaterielle Werte wie
+          <para>Steht in &app; für alles, was zählt: Währungen, Wertpapiere (d.h. Werte wie
             Aktien oder Investmentfondsanteile und Anleihen), oder Sachwerte wie Lastwagen und Computer.
           </para>
         </glossdef>
       </glossentry>
 
-      <glossentry>
-        <glossterm>Wechselkurs</glossterm>
+      <glossentry id="tool-price-ge-quote">
+        <glossterm>Kurs</glossterm>
         <glossdef>
-          <para>Wird für den Vergleich zwischen zwei Währungen verwendet.
+          <para>Angebotenes Verhältnis zum Tausch zweier Handelsgüter zu einem bestimmten Zeitpunkt.
           </para>
         </glossdef>
       </glossentry>
@@ -5115,13 +5122,19 @@
       <glossentry>
         <glossterm>Preis</glossterm>
         <glossdef>
-          <para>Kommt zwischen einer Nicht-Währung und einer Währung zur Anwendung.
+          <para>In einem Kauf oder Verkauf realisierter Kurs, welcher also in einer Buchung verwendet wird.
+            <note>
+              <para>In der Umgangssprache und einigen &app;-Dialogen wird der Begriff weiter gefaßt, also
+                auch dort verwendet, wo es sich strenggenommen um einen  <xref linkend="tool-price-ge-quote" /> handelt.
+              </para>
+            </note>
           </para>
         </glossdef>
       </glossentry>    
     </glosslist>
+
     <note>
-      <para>Im weiteren Verlauf dieses Abschnitts verwenden wir den Begriff <quote>Preis</quote> sowohl
+      <para>Im weiteren Verlauf dieses Abschnitts verwenden wir den Begriff <quote>Kurs</quote> sowohl
         für den Preis als auch den Wechselkurs und <quote>Handelsgut</quote> für jede Art von
         Ware, außer wenn das Währungsverhalten unterschiedlich ist.
       </para>
@@ -5140,111 +5153,45 @@
             <imageobject role="fo">
               <imagedata fileref="figures/Tools_PriceDatabase.png" srccredit="Christian Wehling" />
             </imageobject>
+            <caption><simpara>In diesem Bild sind alle verfügbaren Spalten eingeblendet.</simpara></caption>
           </mediaobject>
         </screenshot>
       </figure>
 
-      <para>Jedes Handelsgutpaar kann <emphasis>nur einen</emphasis> Preis pro Tag haben. Daher eignet sich &app;
-        nicht sonderlich für Intra-Day-Trading. Ein bestehender Preis wird
-        durch einen neueren Preis überschrieben, wenn der neuere Preis die gleiche oder eine höher
-        priorisierte Quelle hat. Die Beschreibung der möglichen
-        <xref linkend="tool-ge-PriceSource" /> der Preise werden nachfolgend beschrieben.
+      <para>Damit die <guilabel>Kurs-Datenbank</guilabel> nicht unnötig groß wird, kann jedes Handelsgut
+        in &app; <emphasis>nur einen</emphasis> Kurs pro Tag haben. Daher eignet sich &app;
+        nicht sonderlich für Intra-Day-Trading. Ein bestehender Kurs wird nur dann
+        durch einen neueren Kurs überschrieben, wenn der neuere Kurs die gleiche oder eine höher
+        priorisierte Quelle hat.
+        Ungeachtet davon können an einem Tag beliebig viele Buchungen auch unterschiedliche Preise speichern.
       </para>
 
-      <para>Die Steuerelemente in dem Dialog bieten die nachfolgenden Funktionen
+      <formalpara id="tool-price-db-gl-rows">
+        <title>Zeilen der Kurs-Datenbank</title>
+
+        <para>Den größten Teil des Editors nimmt ein tabellarischer Bereich ein, in welchem Ihre
+          Handelsgüter, nach <xref linkend="tool-ge-Namespace" /> gruppiert, aufgelistet sind. Die Zeilen
+          der Tabelle enthalten die Einträge, die Sie bei der Eingabe von Buchungen angeben,
+          automatisch berechnet oder per Import erfasst wurden. Auch die Daten einer Kursabfrage
+          mit &app-fq; werden hier angezeigt. 
+        </para>
+      </formalpara>
+
+      <formalpara id="tool-price-db-gl-column">
+        <title>Spalten der Kurs-Datenbank</title>
+
+        <para>Nachfolgend werden die einzelnen Spalten der <guilabel>Kurs-Datenbank</guilabel>
+          beschrieben.
+          &tip-col-sel;
+        </para>
+      </formalpara>
+
         <glosslist>
-          <glossentry>
-            <glossterm>Hinzufügen</glossterm>
-            <glossdef>
-              <para>Ermöglicht das manuelle Eintragen eines Kurses. Das Vorgehen hierbei wird in
-                <xref linkend="tool-price-manual" /> beschrieben.
-              </para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>Entfernen</glossterm>
-            <glossdef>
-              <para>Löscht den markierten Kurswert aus der Datenbank.
-              </para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>Bearbeiten</glossterm>
-            <glossdef>
-              <para>Bietet die Möglichkeit einen markierten Kurs zu bearbeiten, siehe
-                <xref linkend="tool-price-manual" />
-              </para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>Alte Entfernen</glossterm>
-            <glossdef>
-              <para>Ermöglicht in einem weiteren Dialog das <xref linkend="tool-price-delete" /> an Hand einer
-                Datumsauswahl.
-              </para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>Kurse abrufen</glossterm>
-            <glossdef>
-              <para>Wenn &app-fq; installiert und eine Online-Quelle für die Börsenkurse ausgewählt ist, werden mit
-                Betätigen dieser Schaltfläche für die konfigurierten Währungen und
-                Aktien/Investmentfonds die Kurse online abgerufen und eingetragen. (Siehe <xref linkend="tool-ge-GetOnlineQuotes" />) 
-<!-- FIXME insert <xref linkend="tool-ge-GetOnlineQuotes" /> to the new "Security Editor/Get Online Quotes" -->
-              </para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>Schließen</glossterm>
-            <glossdef>
-              <para>Schließt das Fenster der Kursdatenbank.
-              </para>
-            </glossdef>
-          </glossentry>
-        </glosslist>
-      </para>
-    </sect2>
-
-    <sect2 id="tool-price-manual">
-      <title>Hinzufügen oder Bearbeiten von Kurswerten</title>
-
-      <para>Nachdem Sie in der Kurs-Datenbank entweder die Schaltfläche <guibutton>Hinzufügen</guibutton> oder
-        <guibutton>Bearbeiten</guibutton> betätigt haben wird Ihnen dieser Dialog angezeigt.
-      </para>
-
-      <figure pgwide="1">
-        <title>Der Kurs-Editor</title><screenshot>
-          <mediaobject>
-            <imageobject>
-              <imagedata fileref="figures/Tools_PriceEditor_add.png"
-                         srccredit="Christian Wehling" />
-            </imageobject>
-          </mediaobject>
-        </screenshot>
-      </figure>
-
-      <para>Die <guilabel>Kurs-Datenbank</guilabel> zeigt die vorhandenen Preise wie folgt an:
-        <glosslist>
-          <glossentry>
-            <glossterm>Namensraum</glossterm>
-            <glossdef>
-              <para>Sind Kategorien zur Organisation Ihrer Wertpapiere. Weitere Beschreibungen stehen
-                unter <xref linkend="tool-ge-Namespace" />
-<!-- FIXME: weitere Beschreibungen stehen unter <xref linkend="tool-ge-Namespace" /> im SecurityEditor. -->
-              </para>
-            </glossdef>
-          </glossentry>
-
           <glossentry>
             <glossterm>Wertpapier</glossterm>
             <glossdef>
-              <para>Das zu bepreisende Wertpapier/die zu bepreisende Währung. Die Anzeige ist nach dem
-                <guilabel>Namensraum</guilabel> sortiert, in dem die einzelnen Wertpapiere gelistet
+              <para>Das zu bepreisende Wertpapier oder die Währung. Die Anzeige ist nach dem
+                Namensraum sortiert, in dem die einzelnen Wertpapiere gelistet
                 sind. Die Liste wird durch einen Klick auf das <guilabel>Dreieck</guilabel> links
                 neben dem Namen erweitert.
               </para>
@@ -5254,7 +5201,7 @@
           <glossentry>
             <glossterm>Währung</glossterm>
             <glossdef>
-              <para>Die Währung, in der der Preis erfasst wird.
+              <para>Die Währung, in welcher der Preis erfasst wird.
               </para>
             </glossdef>
           </glossentry>
@@ -5262,7 +5209,7 @@
           <glossentry>
             <glossterm>Datum</glossterm>
             <glossdef>
-              <para>Das Datum, an dem der Preis erfasst wurde.
+              <para>Das Datum, zu dem der Preis erfasst wurde.
               </para>
             </glossdef>
           </glossentry>
@@ -5270,16 +5217,16 @@
           <glossentry id="tool-ge-PriceSource">
             <glossterm>Quellen</glossterm>
             <glossdef>
-              <para>Die Quelle der Kursnotierung der oben aufgeführten Handelsgüter; der erste Eintrag ist die am
-                meisten bevorzugte Quelle:
+              <para>Die Quelle der Kursnotierung der oben aufgeführten Handelsgüter (wird durch &app; ermittelt).
+                Der erste Eintrag ist die am meisten bevorzugte Quelle:
                 <glosslist>
                   <glossentry>
-                    <glossterm>user:price-editor</glossterm>
+                  <glossterm>user:price-editor</glossterm>
                     <glossdef>
-                      <para>Manuell im Preiseditor eingetragene Preise.
+                      <para>Manuell im Kurs-Editor eingetragene Kurse.
                         <note>
-                          <para>Manuell im <guilabel>Kurs-Editor</guilabel> eingetragene Preise werden gegenüber den mittels
-                            &app-fq; abgerufenen Preisen bevorzugt. &app-fq; wird daher diese Preise nicht aktualisieren.
+                          <para>Manuell eingetragene Kurse werden gegenüber den mittels &app-fq; 
+                            abgerufenen Kursen bevorzugt. &app-fq; wird daher diese Kurse nicht aktualisieren.
                           </para>
                         </note>
                       </para>
@@ -5289,7 +5236,7 @@
                   <glossentry>
                     <glossterm>Finance::Quote</glossterm>
                     <glossdef>
-                      <para>Preise mit Hilfe von &app-fq; online abgerufen.
+                      <para>Kurse mit Hilfe von &app-fq; online abgerufen.
                       </para>
                     </glossdef>
                   </glossentry>
@@ -5300,7 +5247,9 @@
                       <para>Preise, die explizit als <guilabel>Wechselkurs</guilabel> im Dialog <guilabel>Buchen</guilabel>
                         (<xref linkend="trans-win-price" />) oder in der Spalte
                         <guilabel>Preis</guilabel> eines Registers für ein Konto des Typs
-                        Aktienkonto oder Investmentfonds eingetragen wurden.
+                        Aktienkonto oder Investmentfonds eingetragen wurden. Mit diesem Eintrag werden auch die Kurse
+                        gekennzeichnet, die mit dem <guilabel>Kurs-Import-Assistent</guilabel> erfasst wurden.
+                        (&mc.fi.imp.pri-csv;)
                       </para>
                     </glossdef>
                   </glossentry>
@@ -5341,52 +5290,8 @@
           <glossentry>
             <glossterm>Typ (Kursart)</glossterm>
             <glossdef>
-              <para>Es werden verschiedene Arten für Kursnotierungen verwendet:
-                <glosslist>
-                  <glossentry>
-                    <glossterm>Bid (Geldkurs)</glossterm>
-                    <glossdef>
-                      <para>Gibt an, was ein Fachhändler für eine Aktie zu zahlen bereit ist.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>Ask (Briefkurs)</glossterm>
-                    <glossdef>
-                      <para>Gibt an, zu welchem Preis der Händler bereit sind, eine Aktie zu verkaufen.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>Last (Zuletzt)</glossterm>
-                    <glossdef>
-                      <para>Gibt den Kurs an, zu dem der letzte Handel mit dieser Aktie/Wertpapier vollzogen wurde. Dieser Preis
-                        wird meistens in den Medien genannt.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>Net Asset Value (Nettoanteilswert)</glossterm>
-                    <glossdef>
-                      <para>Werden in der Regel für Investmentfonds verwendet. Sie werden auf der Grundlage des Nettowerts des
-                        Fondsvermögens jeden Tag um den Zeitpunkt des Marktschlusses berechnet und
-                        gelten bis zur nächsten Neuberechnung. Informieren Sie sich bei der Fondsgesellschaft
-                        nach dem Zeitpunkt der Kursermittlung.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-
-                  <glossentry>
-                    <glossterm>Unknown (Unbekannt)</glossterm>
-                    <glossdef>
-                      <para>Zeigt an, das die Art des angegebenen Preises nicht bekannt ist.
-                      </para>
-                    </glossdef>
-                  </glossentry>
-                </glosslist>
+              <para>Die Art, die für Kursnotierungen Ihrer Wertpapiere genutzt werden. Die einzelnen
+                Begriffe werden nachfolgend unter <xref linkend="tool-price-db-gl-typ" /> erläutert.
               </para>
             </glossdef>
           </glossentry>
@@ -5399,16 +5304,221 @@
             </glossdef>
           </glossentry>
         </glosslist>
+
+      <formalpara id="tool-price-db-buttons">
+        <title>Schaltflächen der Kurs-Datenbank</title>
+
+        <para>Die Steuerelemente in dem Dialog bieten, oft erst nach Auswahl eines Eintrags in der Tabelle,
+          die nachfolgenden Funktionen, wobei der Doppelklick auf eine Zeile den markierten Eintrag
+          direkt zur Bearbeitung öffnet.
+        </para>
+      </formalpara>
+
+        <glosslist>
+          <glossentry>
+            <glossterm>Hinzufügen</glossterm>
+            <glossdef>
+              <para>Ermöglicht das manuelle Eintragen eines Kurses. Das Vorgehen hierbei wird in
+                <xref linkend="tool-price-manual" /> beschrieben.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Entfernen</glossterm>
+            <glossdef>
+              <para>Löscht markierte Kurswerte aus der Datenbank, eine Mehrfachauswahl ist möglich.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Bearbeiten</glossterm>
+            <glossdef>
+              <para>Bietet die Möglichkeit einen markierten Kurs zu bearbeiten, siehe
+                <xref linkend="tool-price-manual" />
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Alte Entfernen</glossterm>
+            <glossdef>
+              <para>Ermöglicht in einem weiteren Dialog das <xref linkend="tool-price-delete" /> an Hand einer
+                Datumsauswahl.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Kurse abrufen</glossterm>
+            <glossdef>
+              <para>Ist &app-fq; installiert und eine Online-Quelle für die Kurse ausgewählt, werden mit
+                Betätigen dieser Schaltfläche für konfigurierte Währungen und
+                Wertpapiere die Kurse online abgerufen und eingetragen. Wie Sie Ihre Kurs für den Kursabruf
+                konfigurieren können Sie unter <xref linkend="tool-ge-GetOnlineQuotes" /> nachlesen.
+                Ist die Schaltfläche nicht aktiv, dann können Sie &app-fq; mit Hilfe der Beschreibung
+                auf <xref linkend="finance-quote" /> installieren.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Schließen</glossterm>
+            <glossdef>
+              <para>Schließt das Fenster der Kursdatenbank.
+              </para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+    </sect2>
+
+    <sect2 id="tool-price-manual">
+      <title>Hinzufügen oder Bearbeiten von Kursen</title>
+
+      <para>Nachdem Sie in der Kurs-Datenbank entweder die Schaltfläche <guibutton>Hinzufügen</guibutton> oder
+        <guibutton>Bearbeiten</guibutton> betätigt haben, oder nach einem Doppelklick auf einen Kurseintrag,
+          wird Ihnen dieser Dialog angezeigt.
+      </para>
+
+      <figure pgwide="1">
+        <title>Der Kurs-Editor</title><screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Tools_PriceEditor_add.png"
+                         srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Der <guilabel>Kurs-Editor</guilabel> bietet Ihnen die Möglichkeit, den Kurs eines Wertpapiers
+        oder einer Währung zu erfassen oder zu modifizieren. Die Bedeutung der einzelnen Felder ist unter
+        <xref linkend="tool-price-db-gl-column" /> beschrieben.
+      </para>
+
+      <formalpara id="tool-price-db-gl-typ">
+        <title>Typ (Kursart)</title>
+
+        <para>Nachfolgend eine kurze Beschreibung der möglichen Kursarten die in &app; genutzt werden.
+        </para>
+      </formalpara>
+
+        <glosslist>
+          <glossentry>
+            <glossterm>Bid (Geldkurs)</glossterm>
+            <glossdef>
+              <para>Gibt an, was ein Fachhändler für ein Wertpapier zu zahlen bereit ist, also wenn Sie verkaufen.
+                Der Geldkurs ist in der Regel niedriger als der Briefkurs.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Ask (Briefkurs)</glossterm>
+            <glossdef>
+              <para>Gibt an, zu welchem Kurs der Händler bereit ist, ein Wertpapier zu verkaufen.
+                Sie tatigen also einen Kauf.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Last (Zuletzt)</glossterm>
+            <glossdef>
+              <para>Bezeichnet den Kurs, zu dem der letzte Handel dieses Wertpapier vollzogen wurde.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Net Asset Value (Nettoanteilswert)</glossterm>
+            <glossdef>
+              <para>Werden in der Regel für Investmentfonds verwendet und ist zugleich der Rücknahme-Preis.
+                Beim Kauf wird zusätzlich ein Ausgabeaufschlag/Agio erhoben. Sie werden auf der Grundlage
+                des Nettowerts des Fondsvermögens jeden Tag um den Zeitpunkt des Marktschlusses berechnet
+                und gelten bis zur nächsten Neuberechnung. Informieren Sie sich bei der Fondsgesellschaft
+                nach dem Zeitpunkt der Kursermittlung.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>transaction (Buchung)</glossterm>
+            <glossdef>
+              <para>Ist der Preis, der bei der Eingabe einer Buchung verwendet wurde.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Unknown (Unbekannt)</glossterm>
+            <glossdef>
+              <para>Zeigt an, das die Art des eingetragenen Kurses nicht bekannt ist. Dieser fehlerhafte Typ
+                könnte möglicherweise bei einem Import entstanden sein, z.B. weil die Angabe in einer anderen Sprache war.
+              </para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+
+      <para>Der Vollständigkeit halber sind hier noch einige weitere Kursarten genannt, welche zwar
+        durch &app-fq; ermittelt, jedoch in &app; nicht weiter verwendet werden, da diese in
+        erster Linie der <ulink url="&url-wp-de;Technische_Analyse">Chart-Analyse</ulink> dienen
+        und damit den Rahmen von GnuCash sprengen.
+        <footnote>
+          <para>Den vollständigen Umfang, der von &app-fq; bereitgestellten Informationen, können Sie in
+          mit dem Kommando <userinput>man &app-fq;</userinput> unter dem Abschnitt 
+          <computeroutput>LABELS</computeroutput> der Dokumentation in einem Terminal nachlesen.
+          </para>
+        </footnote>
+      <glosslist>
+        <glossentry>
+          <glossterm>Open (Eröffnungskurs)</glossterm>
+          <glossdef>
+            <para>Ist der Kurs, zu dem der erste Handel eines Börsentages erfolgt.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Close (Schlusskurs)</glossterm>
+          <glossdef>
+            <para>Bezeichnet den letzten festgestellten Kurs an einem Börsentag. Dieser Preis wird meistens in den Medien genannt.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Low (Tiefstkurs)</glossterm>
+          <glossdef>
+            <para>Bezeichnet den tiefsten Kurs eines Wertpapiers in einem Zeitraum.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>High (Höchstkurs)</glossterm>
+          <glossdef>
+            <para>Bezeichnet den höchsten Kurs eines Wertpapiers in einem Zeitraum.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
       </para>
     </sect2>
 
     <sect2 id="tool-price-delete">
       <title>Entfernen von alten Kurswerten</title>
 
-      <para>Um nur einen Preis zu entfernen, markieren Sie den Preis und klicken Sie auf die Schaltfläche
-        <guibutton>Entfernen</guibutton>. Wenn Sie alle Preise, die älter als ein bestimmtes Datum
-        sind, entfernen möchten, klicken Sie auf die Schaltfläche <guibutton>Alte
-        entfernen</guibutton> und geben Sie die Details in das Dialogfenster ein.
+      <para>Wenn Sie über einen langen Zeitraum die Kurs Ihrer Wertpapiere eingetragen haben, dann kann
+        es sinnvoll sein, alte Kurse zu löschen. Dadurch kann die Zeit für das Laden der &app;-Daten
+        reduziert werden.
+      </para>
+      
+      <para>Um nur einen Kurs zu entfernen, markieren Sie den Eintrag und klicken Sie auf die Schaltfläche
+        <guibutton>Entfernen</guibutton>. Möchten Sie alle Kurse, die älter als ein bestimmtes Datum
+        sind, entfernen, so betätigen Sie die Schaltfläche <guibutton>Alte
+        entfernen</guibutton> und geben die Details in das Dialogfenster ein.
       </para>
 
       <figure pgwide="1">
@@ -5438,7 +5548,7 @@
                 <glossentry>
                   <glossterm>Online geholte Kurse einschließen</glossterm>
                   <glossdef>
-                    <para>Mit dieser Auswahl werden die Aktienkurse, die von &app-fq; hinzugefügt wurden, gelöscht.
+                    <para>Mit dieser Auswahl werden die Aktienkurse, die mittels &app-fq; hinzugefügt wurden, gelöscht.
                     </para>
                   </glossdef>
                 </glossentry>
@@ -5455,12 +5565,14 @@
                 <glossentry>
                   <glossterm>Automatisch erzeugte</glossterm>
                   <glossdef>
-                    <para>&app; legt automatisch einen Kurs an, der zeitlich zu der Buchung passt die mehr als eine Währung
+                    <para>&app; legt automatisch einen Kurs an, der zeitlich zu der Buchung passt, welche mehr als eine Währung
                       betrifft. Wenn Sie dieses Kontrollkästchen aktivieren, werden diese Einträge
                       ebenfalls gelöscht.
                       <warning>
-                        <para>Bitte seien Sie mit der Verwendung dieser Möglichkeit vorsichtig, da z.B. die Kontenübersicht und
-                          auch Berichte unzuverlässig werden können.
+                        <para>Bitte seien Sie mit der Verwendung dieser Möglichkeit vorsichtig. Wird z.B. der Kurs
+                          eines möglichen Berichtstags gelöscht, so wird stattdessen ein anderer Kurs genommen,
+                          wodurch das Ergebnis ungenau wird. Beachten Sie hierbei Ihre Einstellung der
+                          <xref linkend="prefs-accounting-period" />.
                         </para>
                       </warning>
                     </para>
@@ -5482,7 +5594,7 @@
         <glossentry>
           <glossterm>Von diesen Devisen/Wertpapieren</glossterm>
           <glossdef>
-            <para>Markieren sie die Devisen und Wertpapiere aus, für die Sie die alten Kurse entfernen möchten. Die
+            <para>Markieren sie die Devisen und Wertpapiere, für die Sie die alten Kurse entfernen möchten. Die
               Auflistung unterstützt eine Mehrfachauswahl.
             </para>
           </glossdef>
