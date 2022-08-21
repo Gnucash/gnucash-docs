@@ -1,4 +1,4 @@
-set (docname "gnucash-help")
+set (docname "gnucash-manual")
 
 add_custom_target(${docname}-check)
 add_dependencies(check ${docname}-check)
