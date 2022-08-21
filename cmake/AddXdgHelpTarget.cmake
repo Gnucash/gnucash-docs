@@ -57,7 +57,7 @@ function (add_xdghelp_target docname lang entities figures)
         add_custom_command(
             OUTPUT ${dest_figures}
             COMMAND ${CMAKE_COMMAND} -E copy ${source_figures} "${BUILD_DIR}/figures"
-            DEPENDS ${source_figures} "${CMAKE_CURRENT_BINARY_DIR}/xdgghelptrigger")
+            DEPENDS ${source_figures} "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger")
     endif()
 
     add_custom_target("${lang}-${docname}-xdghelp"
