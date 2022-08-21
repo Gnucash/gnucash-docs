@@ -1,10 +1,11 @@
-function (add_gnc_doc_targets docname entities figures)
+function (add_gnc_doc_targets targetbase entities figures)
 
+    set(docname "gnucash-${targetbase}")
     get_filename_component(lang ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
     if(entities)
         # Add a target to run xml lint checks on this document's source xml files
-        add_custom_target("${lang}-${docname}-check"
+        add_custom_target("${lang}-${targetbase}-check"
             COMMAND  ${XMLLINT} --postvalid
                                 --xinclude
                                 --noout
@@ -18,27 +19,27 @@ function (add_gnc_doc_targets docname entities figures)
                 -D cmake_fig_list="${figures}"
                 -P ${CMAKE_SOURCE_DIR}/cmake/CheckFigures.cmake
             DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
-        add_dependencies(${docname}-check "${lang}-${docname}-check")
+        add_dependencies(${targetbase}-check "${lang}-${targetbase}-check")
     endif()
 
     # Add targets for each document format that is enabled
     if (WITH_CHM)
-      add_chm_target(${docname} ${lang} "${entities}" "${figures}")
+      add_chm_target(${targetbase} ${lang} "${entities}" "${figures}")
     endif()
     if (WITH_XDGHELP)
-      add_xdghelp_target(${docname} ${lang} "${entities}" "${figures}")
+      add_xdghelp_target(${targetbase} ${lang} "${entities}" "${figures}")
     endif()
     if (WITH_HTML)
-      add_html_target(${docname} ${lang} "${entities}" "${figures}")
+      add_html_target(${targetbase} ${lang} "${entities}" "${figures}")
     endif()
     if (WITH_PDF)
-      add_pdf_target(${docname} ${lang} "${entities}" "${figures}")
+      add_pdf_target(${targetbase} ${lang} "${entities}" "${figures}")
     endif()
     if (WITH_EPUB)
-      add_epub_target(${docname} ${lang} "${entities}" "${figures}")
+      add_epub_target(${targetbase} ${lang} "${entities}" "${figures}")
     endif()
     if (WITH_MOBI)
-      add_mobi_target(${docname} ${lang})
+      add_mobi_target(${targetbase} ${lang})
     endif()
 
     add_to_dist(

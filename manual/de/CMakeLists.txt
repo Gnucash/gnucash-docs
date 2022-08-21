@@ -97,4 +97,4 @@ set (figures
         figures/window-main-empty.png
 )
 
-add_gnc_doc_targets(${docname} "${entities}" "${figures}")
+add_gnc_doc_targets(${targetbase} "${entities}" "${figures}")

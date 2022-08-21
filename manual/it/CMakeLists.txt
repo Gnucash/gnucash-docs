@@ -40,7 +40,7 @@ set (figures
 #	xml2po -e -p ${srcdir}/it.po -o $@ ${CMAKE_SOURCE_DIR}/manual/C/index.docbook
 #	if test "${srcdir}" != "${builddir}"; then mv $@ ${srcdir}; fi
 
-add_gnc_doc_targets(${docname} "" "${figures}")
+add_gnc_doc_targets(${targetbase} "" "${figures}")
 
 set(extra_dist
     COME-TRADURRE

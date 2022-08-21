@@ -37,4 +37,4 @@ set (figures
         figures/icons/split_transaction.png
 )
 
-add_gnc_doc_targets(${docname} "${entities}" "${figures}")
+add_gnc_doc_targets(${targetbase} "${entities}" "${figures}")

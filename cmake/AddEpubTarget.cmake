@@ -1,5 +1,6 @@
-function (add_epub_target docname lang entities figures)
+function (add_epub_target targetbase lang entities figures)
 
+    set(docname "gnucash-${targetbase}")
     set(epubfile "${docname}.epub")
     set(EPUB_TMPDIR "${CMAKE_CURRENT_BINARY_DIR}/epub")
 
@@ -23,15 +24,16 @@ function (add_epub_target docname lang entities figures)
         COMMAND cd "${EPUB_TMPDIR}" && zip -X -r "${BUILD_DIR}/${epubfile}" mimetype META-INF OEBPS
         DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd" ${figures})
 
-    add_custom_target("${lang}-${docname}-epub"
+    add_custom_target("${lang}-${targetbase}-epub"
         DEPENDS "${BUILD_DIR}/${epubfile}")
 
-    add_dependencies(${docname}-epub "${lang}-${docname}-epub")
+    add_dependencies(${targetbase}-epub "${lang}-${targetbase}-epub")
 
 endfunction()
 
-function (add_mobi_target docname lang)
+function (add_mobi_target targetbase lang)
 
+    set(docname "gnucash-${targetbase}")
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
     file(MAKE_DIRECTORY "${BUILD_DIR}")
 
@@ -43,9 +45,9 @@ function (add_mobi_target docname lang)
         COMMAND ${EBOOK_CONVERT} "${epubfile}" "${mobifile}"
         DEPENDS "${epubfile}")
 
-    add_custom_target("${lang}-${docname}-mobi"
+    add_custom_target("${lang}-${targetbase}-mobi"
         DEPENDS "${mobifile}")
 
-    add_dependencies(${docname}-mobi "${lang}-${docname}-mobi")
+    add_dependencies(${targetbase}-mobi "${lang}-${targetbase}-mobi")
 
 endfunction()

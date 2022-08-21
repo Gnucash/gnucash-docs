@@ -201,7 +201,7 @@ set (figures
 
 set (FOP_XCONF "${CMAKE_CURRENT_SOURCE_DIR}/fop.xconf.in")
 
-add_gnc_doc_targets(${docname} "${entities}" "${figures}")
+add_gnc_doc_targets(${targetbase} "${entities}" "${figures}")
 
 set(extra_dist
     fop.xconf.in)

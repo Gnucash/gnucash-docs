@@ -1,5 +1,6 @@
-function (add_chm_target docname lang entities figures)
+function (add_chm_target targetbase lang entities figures)
 
+    set(docname "gnucash-${targetbase}")
     set(chmfile "${docname}.chm")
     set(mapfile "${docname}.hhmap")
 
@@ -23,10 +24,10 @@ function (add_chm_target docname lang entities figures)
         DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd" ${figures}
         WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/htmlhelp")
 
-    add_custom_target("${lang}-${docname}-chm"
+    add_custom_target("${lang}-${targetbase}-chm"
         DEPENDS "${BUILD_DIR}/${chmfile}" "${BUILD_DIR}/${mapfile}")
 
-    add_dependencies(${docname}-chm "${lang}-${docname}-chm")
+    add_dependencies(${targetbase}-chm "${lang}-${targetbase}-chm")
 
     install(FILES
             "${BUILD_DIR}/${chmfile}"
