@@ -2,10 +2,6 @@ function (add_gnc_doc_targets docname entities figures)
 
     get_filename_component(lang ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
-    file(GLOB_RECURSE figures
-        "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.png"
-        "${CMAKE_CURRENT_SOURCE_DIR}/figures/*.svg")
-
     if(entities)
         # Add a target to run xml lint checks on this document's source xml files
         add_custom_target("${lang}-${docname}-check"
