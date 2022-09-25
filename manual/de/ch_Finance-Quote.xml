@@ -45,7 +45,7 @@ Translators:
     </para>
   </note>
 
-  <para>Sie können diesen Schritt auch weglassen und Ihre Aktienkurse weiterhin manuell aktualisieren.
+  <para>Sie können diesen Schritt auch weglassen und Ihre Kurse weiterhin manuell aktualisieren.
   </para>
 
   <sect1 id="finance-quote-perl-install">
@@ -59,9 +59,12 @@ Translators:
 
     <para>Um zu überprüfen ob auf Ihrem System &app-perl; bereits installiert ist, rufen Sie den Befehl
       <userinput>perl -v</userinput> im Terminal auf.
+<!-- Fixme: https://bugs.gnucash.org/show_bug.cgi?id=798618 -->
+    <informalexample><?dbfo pgwide="1"?>
 <screen language="console">$ perl -v
 This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-thread-multi
 </screen>
+    </informalexample>
       Wird Ihnen die Versionsnummer des &app-perl;-Interpreters angezeigt, dann überspringen Sie
       die nächsten Angaben und fahren Sie stattdessen mit <xref linkend="finance-quote-install" /> fort.
     </para>
@@ -128,8 +131,8 @@ This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-th
 
     <tip>
       <para>Es empfiehlt sich anschließend, das Verzeichnis in dem &app; installiert ist, unter &win;
-        z.B. <userinput>c:\Programme<replaceable> (x86)</replaceable>\gnucash\bin</userinput>, zu Ihrer
-        <envar>PATH</envar>-Umgebungsvariable hinzuzufügen. Auf diese Weise ist es für einfacher, bei Bedarf die
+        z.B. <userinput><replaceable>C:\Programme (x86)\gnucash\bin</replaceable></userinput>, zu Ihrer
+        <envar>PATH</envar>-Umgebungsvariable hinzuzufügen. Auf diese Weise ist es für Sie einfacher, bei Bedarf die
         <xref linkend="finance-quote-helper" /> zu nutzen. Hierzu informieren Sie sich bitte in
         den Unterlagen zu Ihrem Betriebssystem.
       </para>
@@ -142,6 +145,8 @@ This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-th
     <para>Um festzustellen, ob das &app-perl;-Modul &app-fq; bereits auf Ihrem System verfügbar ist, geben
       Sie <userinput>perldoc Finance::Quote</userinput> in einem Terminalfenster ein. Wird Ihnen jetzt
       eine Dokumentation in dieser Form
+<!-- Fixme: https://bugs.gnucash.org/show_bug.cgi?id=798618 -->
+    <informalexample><?dbfo pgwide="1"?>
 <screen language="console">
 $ perldoc Finance::Quote
 NAME
@@ -150,6 +155,7 @@ NAME
 SYNOPSIS
        [...]
 </screen>
+    </informalexample>
       angezeigt, dann ist &app-fq; installiert und Sie können, wie in
       <xref linkend="finance-quote-scheduler" /> beschrieben, den automatisierten Kursabruf
       konfigurieren. Wenn nicht, dann gibt Ihnen dieser Abschnitt eine Anleitung zur Installation.
@@ -184,21 +190,9 @@ SYNOPSIS
       <step>
         <simpara>Als nächstes aktualisieren Sie mit <userinput>sudo gnc-fq-update</userinput> oder
           <userinput>su -c gnc-fq-update</userinput> mit Root-Rechten &app-fq;. Die richtige Syntax
-          ist von der jeweiligen Distribution abhängig.
+          ist von der jeweiligen Distribution abhängig. Weitere Informationen finden Sie im nächsten
+          Kapitel unter <xref linkend="gnc-fq-update" />.
         </simpara>
-
-        <para>Dadurch wird ein internes &app-perl; <acronym><ulink url="&url-cpan;">CPAN</ulink></acronym>
-          <footnote>
-            <simpara>Siehe <ulink url="&url-cpan;misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink> für weitere
-              Informationen.
-            </simpara>
-          </footnote>
-          Modul gestartet um die Installation vorzunehmen. Wenn Sie das CPAN zum ersten Mal starten,
-          müssen Sie es konfigurieren, wobei Sie auf den meisten Systemen jedoch
-          die Standardvorgaben akzeptieren und die erste Frage <computeroutput>Are you ready for
-          manual configuration? [yes]</computeroutput> mit <userinput>no</userinput> beantworten können,
-          damit &app-fq; erfolgreich installiert wird.
-        </para>
       </step>
 
       <step>
@@ -221,10 +215,13 @@ SYNOPSIS
       <step>
         <simpara>Installieren Sie &app-xcode;
           <footnote>
-            <para>&app-xcode; ist ein optionales Element auf Ihrer &mac; Distributions-DVD, aber auch unter
-              <ulink url="&url-ap-dev;xcode/" /> ist das Werkzeug erhältlich.
+            <para>Sie können &app-xcode; aus dem App Store installieren oder Sie installieren die
+              viel kleineren Xcode-Befehlszeilentools, indem Sie <userinput>
+              sudo xcode-select --install</userinput> in einer Terminal.app Eingabeaufforderung
+              ausführen.
             </para>
-          </footnote>, falls noch nicht geschehen.
+          </footnote>, falls noch nicht geschehen. Es enthält Entwicklungswerkzeuge, die von CPAN
+          benötigt werden, um die benötigten &app-fq; Module zu bauen und zu testen.
         </simpara>
       </step>
 
@@ -260,12 +257,11 @@ SYNOPSIS
     <title>Hilfsprogramme zur Symbolsuche und Aktualisierung</title>
 
     <abstract>
-      <para>&app; stellt mehrere Hilfsprogramme zur Verfügung, die Sie bei der täglichen
-        Arbeit mit &app-fq; unterstützen. So gibt es ein Skript, mit dem Sie Ihre Symbole
-        für die Wertpapiere überprüfen können. Weitere Skripte führen die erstmalige
-        Installation durch oder halten &app-fq; auf einem aktuellen Stand.
-        Diese Programme haben Namen, die mit gnc-fq-* beginnen, und sind in der
-        Programmiersprache &app-perl; geschrieben.
+      <para>&app; bietet Hilfsprogramme, die Sie bei der Auswahl der
+        richtigen Symbole und der Verifikation für die gewünschte Online-
+        Kursquelle unterstützen. Ein weiteres Skript führt die erstmalige
+        Installation durch oder bringt &app-fq; auf den aktuellen Stand.
+        Und letztendlich stehen auch Tools zur Fehleranalyse bereit.
       </para>
     </abstract>
 
@@ -281,18 +277,13 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Wechseln Sie zu dem Laufwerk, das die &app; Programmdateien enthält —normalerweise das
-          Laufwerk C— wenn dies nicht bereits das aktuelle Laufwerk ist.
-        </simpara>
-      </step>
-
-      <step>
         <simpara>Da, wie zuvor empfohlen, das &app;-Verzeichnis in die <envar>PATH</envar>
           Umgebungsvariable eingetragen wurde, müssen Sie jetzt nur noch jedem gnc-fq-xxx
           &app-perl; Skriptbefehl <quote>Perl</quote> und ein Leerzeichen voranstellen,
           z.B. <userinput>perl gnc-fq-check</userinput>.
-          Andernfalls müssen Sie den Befehl in der Form <userinput>perl c:\Programme
-          <replaceable> (x86)</replaceable>\gnucash\bin\gnc-fq-check</userinput> ausführen.
+          Andernfalls müssen Sie den Befehl in der Form <userinput><replaceable>
+          C:\strawberry-perl\bin\</replaceable>perl.exe <replaceable>C:\Programme (x86)\gnucash\bin\
+          </replaceable>gnc-fq-check</userinput> ausführen.
         </simpara>
       </step>
     </procedure>
@@ -307,33 +298,33 @@ SYNOPSIS
         </para>
       </abstract>
 
-      <formalpara>
-        <title>Beispiel mit defekten Abhängigkeit zu weiteren Softwarepaketen</title>
-
-        <para>
+<!-- Fixme: https://bugs.gnucash.org/show_bug.cgi?id=798618 -->
+      <informalexample><?dbfo pgwide="1"?>
 <screen language="console">
-$ gnc-fq-check 
-Can't locate Mozilla/CA.pm in @INC (you may need to install the Mozilla::CA module) (@INC contains:
-/usr/lib/perl5/site_perl/5.30.1/x86_64-linux-thread-multi /usr/lib/perl5/site_perl/5.30.1
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi /usr/lib/perl5/vendor_perl/5.30.1
-/usr/lib/perl5/5.30.1/x86_64-linux-thread-multi /usr/lib/perl5/5.30.1 /usr/lib/perl5/site_perl)
+$ gnc-fq-check
+Can't locate Mozilla/CA.pm in @INC (you may need to install the Mozilla::CA module)
+(@INC contains: /usr/lib/perl5/site_perl/5.30.1/x86_64-linux-thread-multi /usr/
+lib/perl5/site_perl/5.30.1 /usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi
+/usr/lib/perl5/vendor_perl/5.30.1 /usr/lib/perl5/5.30.1/x86_64-linux-thread-multi
+/usr/lib/perl5/5.30.1 /usr/lib/perl5/site_perl)
 at /usr/lib/perl5/vendor_perl/5.30.1/Finance/Quote/Tiaacref.pm line 33.
 Compilation failed in require at (eval 303) line 1.
 BEGIN failed--compilation aborted at (eval 303) line 1.
  at /usr/local/bin/gnc-fq-check line 91.
-("1.47" "adig" "aex" "aiahk" "alphavantage" "amfiindia" "asegr" "asia" "asx" "australia" "bamosz"
-"bet" "bmonesbittburns" "bourso" "brasil" "bse" "bsero" "canada" "canadamutual" "citywire" "cominvest"
-"cse" "deka" "dutch" "dwsfunds" "europe" "fetch_live_currencies" "fidelity" "fidelity_direct"
-"fidelityfixed" "financecanada" "finanzpartner" "finland" "fool" "france" "ftfunds" "ftportfolios"
-"ftportfolios_direct" "fundlibrary" "goldmoney" "greece" "hex" "hu" "hufund" "hungary" "hustock"
-"indiamutual" "known_currencies" "lerevenu" "maninv" "morningstar" "morningstarjp" "mstaruk" "nasdaq"
-"nyse" "nz" "nzx" "platinum" "romania" "seb_funds" "sixfunds" "sixshares" "stockhousecanada_fund"
-"tdefunds" "tdwaterhouse" "tiaacref" "tnetuk" "troweprice" "troweprice_direct" "trustnet" "tsp" "tsx"
-"uk_unit_trusts" "ukfunds" "unionfunds" "usa" "usfedbonds" "vanguard" "vwd" "yahoo" "yahoo_asia"
-"yahoo_australia" "yahoo_brasil" "yahoo_europe" "yahoo_json" "yahoo_nz" "yahoo_yql" "za" "za_unittrusts")
+("1.47" "adig" "aex" "aiahk" "alphavantage" "amfiindia" "asegr" "asia" "asx"
+"australia" "bamosz" "bet" "bmonesbittburns" "bourso" "brasil" "bse" "bsero" "canada"
+"canadamutual" "citywire" "cominvest" "cse" "deka" "dutch" "dwsfunds" "europe"
+"fetch_live_currencies" "fidelity" "fidelity_direct" "fidelityfixed" "financecanada"
+"finanzpartner" "finland" "fool" "france" "ftfunds" "ftportfolios" "ftportfolios_direct"
+"fundlibrary" "goldmoney" "greece" "hex" "hu" "hufund" "hungary" "hustock" "indiamutual"
+"known_currencies" "lerevenu" "maninv" "morningstar" "morningstarjp" "mstaruk" "nasdaq"
+"nyse" "nz" "nzx" "platinum" "romania" "seb_funds" "sixfunds" "sixshares"
+"stockhousecanada_fund" "tdefunds" "tdwaterhouse" "tiaacref" "tnetuk" "troweprice"
+"troweprice_direct" "trustnet" "tsp" "tsx" "uk_unit_trusts" "ukfunds" "unionfunds"
+"usa" "usfedbonds" "vanguard" "vwd" "yahoo" "yahoo_asia" "yahoo_australia"
+"yahoo_brasil" "yahoo_europe" "yahoo_json" "yahoo_nz" "yahoo_yql" "za" "za_unittrusts")
 </screen>
-        </para>
-      </formalpara>
+      </informalexample>
 
       <para>Der erste Teil ist die Fehlermeldung über ein fehlendes &app-perl;-Modul Mozilla/CA.pm. Am Ende in
         Klammern steht die normale Ausgabe der aktuell installierten &app-fq;-Version<footnote>
@@ -360,7 +351,6 @@ BEGIN failed--compilation aborted at (eval 303) line 1.
               &mc.start.win-install-fq; ausführen.
             </para>
           </note>
-
         </para>
       </abstract>
 
@@ -369,6 +359,20 @@ BEGIN failed--compilation aborted at (eval 303) line 1.
           oder Administratorrechte, aber nicht in &win;.
         </para>
       </note>
+
+      <para><userinput>gnc-fq-update</userinput> startet &app-perl;s Standardmodul
+        <acronym><ulink url="&url-cpan;">CPAN</ulink></acronym>
+        <footnote>
+          <simpara>Siehe <ulink url="&url-cpan;misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink> für weitere
+            Informationen.
+          </simpara>
+        </footnote>
+        um die Installation vorzunehmen. Wenn Sie CPAN zum ersten Mal verwenden,
+        müssen Sie es konfigurieren, wobei Sie auf den meisten Systemen jedoch
+        die Standardvorgaben akzeptieren und die erste Frage <computeroutput>Are you ready for
+        manual configuration? [yes]</computeroutput> mit <userinput>no</userinput> beantworten können,
+        damit &app-fq; erfolgreich installiert wird.
+      </para>
     </sect2>
 
     <sect2 id="gnc-fq-dump">
@@ -387,11 +391,10 @@ BEGIN failed--compilation aborted at (eval 303) line 1.
       </para>
       
       <tip>
-        <para>Mit <userinput>gnc-fq-dump</userinput> können Sie Symbole schneller als aus &app; heraus
-          überprüfen, wenn während des Abrufs mit &app; ein Fehler auftritt, weil sich die Ausgabe
-          des Skripts besser zur Analyse eignet und nicht jedesmal alle funktionierenden Symbole
-          ebenfalls mit abgerufen werden, falls man <xref linkend="tool-ge-pricedb-getQuotes" />
-          in der <xref linkend="tool-price" /> verwendet.
+        <para>Mit <userinput>gnc-fq-dump</userinput> können Sie Symbole schneller als aus
+          &app; heraus überprüfen, wenn während des Abrufs mit &app; ein Fehler auftritt.
+          Dies kann Sie davor bewahren, &app; mit aktiviertem Debug-Logging laufen zu
+          lassen, während Sie ein nicht funktionierendes Symbol überprüfen.
         </para>
       </tip>
 
@@ -447,10 +450,11 @@ BEGIN failed--compilation aborted at (eval 303) line 1.
     <sect2 id="gnc-fq-helper">
       <title>gnc-fq-helper</title>
 
-      <para>Dies ist ein Skript, das &app; zum Abrufen von Kursen verwendet und musss nicht
-        vom Benutzer bedient werden. Sollte der Abruf eines Kurses in &app; zu einem
-        Fehlverhalten führen, kann mit diesem Skript eine Diagnose durchgeführt werden und
-        hilft Entwicklern bei der Entscheidung, ob der Fehler in &app; oder &app-fq; liegt.
+      <para>Dies ist ein Skript, das &app; zum Abrufen von Kursen verwendet und musss
+        normalerweise vom Benutzer nicht verwendet werden. Sollte der Abruf eines
+        Kurses in &app; zu einem Fehlverhalten führen, kann mit diesem Skript eine
+        Diagnose durchgeführt werden und hilft Entwicklern bei der Entscheidung,
+        ob der Fehler in &app; oder &app-fq; liegt.
       </para>
     </sect2>
   </sect1>

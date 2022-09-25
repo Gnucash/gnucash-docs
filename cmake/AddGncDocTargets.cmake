@@ -2,22 +2,24 @@ function (add_gnc_doc_targets docname entities figures)
 
     get_filename_component(lang ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
-    # Add a target to run xml lint checks on this document's source xml files
-    add_custom_target("${lang}-${docname}-check"
-        COMMAND  ${XMLLINT} --postvalid
-                            --xinclude
-                            --noout
-                            --path ${CMAKE_SOURCE_DIR}/docbook
-                            ${CMAKE_CURRENT_SOURCE_DIR}/index.docbook
-        COMMAND  ${CMAKE_COMMAND}
-            -D XMLLINT=${XMLLINT}
-            -D GNC_SOURCE_DIR=${CMAKE_SOURCE_DIR}
-            -D GNC_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
-            -D docname=${docname}
-            -D cmake_fig_list="${figures}"
-            -P ${CMAKE_SOURCE_DIR}/cmake/CheckFigures.cmake
-        DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
-    add_dependencies(${docname}-check "${lang}-${docname}-check")
+    if(entities)
+        # Add a target to run xml lint checks on this document's source xml files
+        add_custom_target("${lang}-${docname}-check"
+            COMMAND  ${XMLLINT} --postvalid
+                                --xinclude
+                                --noout
+                                --path ${CMAKE_SOURCE_DIR}/docbook
+                                ${CMAKE_CURRENT_SOURCE_DIR}/index.docbook
+            COMMAND  ${CMAKE_COMMAND}
+                -D XMLLINT=${XMLLINT}
+                -D GNC_SOURCE_DIR=${CMAKE_SOURCE_DIR}
+                -D GNC_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
+                -D docname=${docname}
+                -D cmake_fig_list="${figures}"
+                -P ${CMAKE_SOURCE_DIR}/cmake/CheckFigures.cmake
+            DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
+        add_dependencies(${docname}-check "${lang}-${docname}-check")
+    endif()
 
     # Add targets for each document format that is enabled
     if (WITH_CHM)
