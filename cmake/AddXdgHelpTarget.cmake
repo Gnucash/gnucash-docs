@@ -39,7 +39,7 @@ function (add_xdghelp_target docname lang entities figures)
     add_custom_command(
         OUTPUT ${dest_files}
         COMMAND ${CMAKE_COMMAND} -E copy ${source_files} "${BUILD_DIR}"
-        DEPENDS ${entities} "index.docbook" ${dtd_files}
+        DEPENDS ${entities} "index.docbook" ${dtd_files} "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger")
         WORKING_DIRECTORY "${BUILD_DIR}")
 
     # Copy figures for this document
