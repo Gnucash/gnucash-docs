@@ -474,11 +474,12 @@ BEGIN failed--compilation aborted at (eval 303) line 1.
       können Sie die aktuellen Kurse Ihrer Devisen und Wertpapiere abrufen und direkt in ihre
       &app;-Datendatei schreiben ohne die Benutzeroberfläche zu starten. Somit ist eine
       automatische, regelmäßige Aktualisierung der Kursdatenbank möglich.
-      <warning>
-        <para>Beachten Sie bitte, dass die Datendatei nicht gleichzeitig in einer anderen Instanz von &app;
-          geöffnet sein darf!
+      <note>
+        <para>Der Befehl schlägt fehl, wenn kein exclusiver Zugriff auf die Datendatei
+          möglich ist, z.B. weil die Datendatei in einer anderen &app; Instanz geöffnet
+          ist oder die letzte Sitzung für die Datei abgestürzt ist.
         </para>
-      </warning>
+      </note>
     </para>
 
     <para>Die angegebene Datei &user-datafile; ist abhängig von dem Namen und dem Speicherort Ihrer
@@ -519,7 +520,7 @@ BEGIN failed--compilation aborted at (eval 303) line 1.
 <screen>0 16 * * 5 gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
             </informalexample>
 
-            <warning>
+            <important>
               <para>Läuft auf Ihrem Rechner zu dem Zeitpunkt des Kursabrufs keine graphische Benutzeroberfläche, die
                 bereits den dbus gestartet hat, so müssen Sie den Eintrag stattdessen wie folgt
                 vornehmen:
@@ -530,7 +531,7 @@ gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
                 (Die Zeilenumbrüche nicht in die crontab übernehmen, die wurden hier nur zum
                 Zwecke der Lesbarkeit eingefügt.)
               </para>
-            </warning>
+            </important>
           </para>
         </step>
       </procedure>
