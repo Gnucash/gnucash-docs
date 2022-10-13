@@ -5,22 +5,23 @@ set (entities
         ch_basics.xml
         ch_accts.xml
         ch_txns.xml
+        ch_importing.xml
+        ch_configuring.xml
         ch_cbook.xml
         ch_cc.xml
+        ch_expenses.xml
         ch_loans.xml
         ch_invest.xml
+        ch_reports.xml
         ch_capgain.xml
         ch_currency.xml
         ch_dep.xml
-        ch_bus_intro.xml
-        ch_bus_setup.xml
-        ch_bus_ar.xml
-        ch_bus_ap.xml
-        ch_bus_pay.xml
+        ch_bus_features.xml
         ch_budgets.xml
         ch_oth_assets.xml
         ch_python_bindings.xml
-#        ch_import_business_data.xml
+        ch_import_business_data.xml
+        gnc-glossary.xml
         appendixa.xml
         appendixd.xml)
 
@@ -39,8 +40,8 @@ set (figures
         figures/basics_NewAccountHierarchySetup_Accounts.png
         figures/basics_NewAccountHierarchySetup_Finish.png
         figures/basics_NewAccountHierarchySetup_Setup.png
-        figures/basics_NewAccountHierarchySetup_book_options.png
         figures/basics_NewAccountHierarchySetup_currency.png
+        figures/basics_NewBookOpts.png
         figures/basics_SaveSQL.png
         figures/basics_SaveXML.png
         figures/basics_TipOfDay.png
@@ -59,7 +60,6 @@ set (figures
         figures/bus_ar_invoiceedit.png
         figures/bus_ar_invoicenew.png
         figures/bus_ar_invoicepost.png
-        figures/bus_ar_invoicepost_menu.png
         figures/bus_ar_invoiceprint.png
         figures/bus_ar_jobnew.png
         figures/bus_ar_payment.png
@@ -102,9 +102,6 @@ set (figures
         figures/cc_refund.png
         figures/currency_AfterGetOnlineQuotes.png
         figures/currency_BeforeGetOnlineQuotes.png
-        figures/currency_PutTogether_AfterMoney.png
-        figures/currency_PutTogether_AfterStocks.png
-        figures/currency_PutTogether_AussieHouse.png
         figures/currency_addcurr.png
         figures/currency_main1.png
         figures/currency_main2.png
@@ -118,11 +115,34 @@ set (figures
         figures/currency_purchase_MoveMoney.png
         figures/currency_purchase_SetExchangeRate.png
         figures/currency_purchase_ToAmount.png
+        figures/currency_trading_Price_Database_initial.png
+        figures/currency_trading_acct_setup.png
+        figures/currency_trading_acct_setup_2.png
+        figures/currency_trading_accts_after_tfr.png
+        figures/currency_trading_accts_after_trf_back.png
+        figures/currency_trading_balance_sheet.png
+        figures/currency_trading_prices_after_trf_back.png
+        figures/currency_trading_transfer_funds.png
+        figures/currency_trading_transfer_trans1.png
+        figures/currency_trading_transfer_trans2.png
+        figures/currency_trading_trf_back.png
         figures/dep_assetmain.png
         figures/dep_assetreg.png
         figures/dep_example.png
+        figures/invest2Lots0RegB4Scrub.png
+        figures/invest2Lots1B4Scrub.png
+        figures/invest2Lots2LotsAftScrubAcct.png
+        figures/invest2Lots3RegAftScrubAcct.png
+        figures/investLots2_BeforeScrub1Lot.png
+        figures/investLots0_RegB4Scrub.png
+        figures/investLots1_BeforeCreateLot.png
+        figures/investLots2_RegAfterScrub1Lot.png
+        figures/investLotsSplitLot0.png
+        figures/investLotsSplitLot1.png
+        figures/investLotsSplitReg.png
         figures/invest_AccountsPredef.png
         figures/invest_SetupPortfolio2.png
+        figures/invest_SetupPortfolio3.png
         figures/invest_dividendcash.png
         figures/invest_dividendreinvest1.png
         figures/invest_int1.png
@@ -135,11 +155,13 @@ set (figures
         figures/invest_newsecurity.png
         figures/invest_peditor.png
         figures/invest_peditor2.png
+        figures/invest_ret_of_cap.png
         figures/invest_selectsecurity.png
         figures/invest_sellstock.png
         figures/invest_sellstock2.png
-        figures/invest_sellstockLoss.png
-        figures/invest_sellstockLoss2.png
+        figures/invest_sellstockManProfCombNet.png
+        figures/invest_sellstockManProfSep.png
+        figures/invest_sellstockManProfSepNet.png
         figures/invest_setup_current.png
         figures/invest_setup_portfolio1.png
         figures/invest_simplesplit1.png
@@ -190,4 +212,4 @@ set (figures
         figures/txns_sxn_ledger4.png
 )
 
-add_gnc_doc_targets(${targetbase} "${entities}" "${figures}")
+add_gnc_doc_targets(${lang} "${entities}" "${figures}")

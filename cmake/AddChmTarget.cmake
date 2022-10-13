@@ -27,7 +27,7 @@ function (add_chm_target targetbase lang entities figures)
     add_custom_target("${lang}-${targetbase}-chm"
         DEPENDS "${BUILD_DIR}/${chmfile}" "${BUILD_DIR}/${mapfile}")
 
-    add_dependencies(${targetbase}-chm "${lang}-${targetbase}-chm")
+    add_dependencies(${lang}-chm "${lang}-${targetbase}-chm")
 
     install(FILES
             "${BUILD_DIR}/${chmfile}"

@@ -1,7 +1,7 @@
-function (add_gnc_doc_targets targetbase entities figures)
+function (add_gnc_doc_targets lang entities figures)
 
+    get_filename_component(targetbase ${CMAKE_CURRENT_SOURCE_DIR} NAME)
     set(docname "gnucash-${targetbase}")
-    get_filename_component(lang ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
     if(entities)
         # Add a target to run xml lint checks on this document's source xml files
@@ -19,7 +19,7 @@ function (add_gnc_doc_targets targetbase entities figures)
                 -D cmake_fig_list="${figures}"
                 -P ${CMAKE_SOURCE_DIR}/cmake/CheckFigures.cmake
             DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
-        add_dependencies(${targetbase}-check "${lang}-${targetbase}-check")
+        add_dependencies(${lang}-check "${lang}-${targetbase}-check")
     endif()
 
     # Add targets for each document format that is enabled

@@ -27,7 +27,7 @@ function (add_epub_target targetbase lang entities figures)
     add_custom_target("${lang}-${targetbase}-epub"
         DEPENDS "${BUILD_DIR}/${epubfile}")
 
-    add_dependencies(${targetbase}-epub "${lang}-${targetbase}-epub")
+    add_dependencies(${lang}-epub "${lang}-${targetbase}-epub")
 
 endfunction()
 
@@ -48,6 +48,6 @@ function (add_mobi_target targetbase lang)
     add_custom_target("${lang}-${targetbase}-mobi"
         DEPENDS "${mobifile}")
 
-    add_dependencies(${targetbase}-mobi "${lang}-${targetbase}-mobi")
+    add_dependencies(${lang}-mobi "${lang}-${targetbase}-mobi")
 
 endfunction()

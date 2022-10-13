@@ -63,7 +63,7 @@ function (add_html_target targetbase lang entities figures)
                 ${dest_figures}
                 "${CMAKE_CURRENT_BINARY_DIR}/styletrigger")
 
-    add_dependencies(${targetbase}-html "${lang}-${targetbase}-html")
+    add_dependencies(${lang}-html "${lang}-${targetbase}-html")
 
     if(WITH_HTML_INSTALL)
         install(DIRECTORY ${BUILD_DIR}

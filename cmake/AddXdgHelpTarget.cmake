@@ -65,7 +65,7 @@ function (add_xdghelp_target targetbase lang entities figures)
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger"
                  ${dest_files} ${dest_figures})
 
-    add_dependencies(${targetbase}-xdghelp "${lang}-${targetbase}-xdghelp")
+    add_dependencies(${lang}-xdghelp "${lang}-${targetbase}-xdghelp")
 
     install(FILES ${source_files}
         DESTINATION "${CMAKE_INSTALL_DATADIR}/help/${lang}/${docname}"

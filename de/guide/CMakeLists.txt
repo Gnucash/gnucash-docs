@@ -190,4 +190,4 @@ set (figures
 
 )
 
-add_gnc_doc_targets(${targetbase} "${entities}" "${figures}")
+add_gnc_doc_targets(${lang} "${entities}" "${figures}")

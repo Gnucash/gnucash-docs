@@ -45,6 +45,6 @@ function (add_pdf_target targetbase lang entities figures)
     add_custom_target("${lang}-${targetbase}-pdf"
         DEPENDS "${BUILD_DIR}/${pdffile}")
 
-    add_dependencies(${targetbase}-pdf "${lang}-${targetbase}-pdf")
+    add_dependencies(${lang}-pdf "${lang}-${targetbase}-pdf")
 
 endfunction()
