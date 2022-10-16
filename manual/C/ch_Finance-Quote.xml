@@ -130,7 +130,7 @@ This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-th
       <para>Afterwards it&rsquo;s a good idea to include the folder where &app; is installed,
         under &win; e.g. <userinput><replaceable>C:\Program Files (x86)\gnucash\bin</replaceable></userinput>,
         to your <envar>PATH</envar> environment variable.
-        This way it&rsquo;s easier for you to use some <xref linkend="finance-quote-helper" /> when needed.
+        This way it&rsquo;s easier for you to use some <xref linkend="fq-command-line" /> when needed.
         Please refer to the documentation for your operating system for more information.
       </para>
     </tip>
@@ -154,7 +154,7 @@ SYNOPSIS
 </screen>
     </informalexample>
       available. If you are now shown documentation, then &app-fq; is already installed and you can
-      configure periodical quotes update as described in <xref linkend="finance-quote-scheduler" />.
+      configure periodical quotes update as described in <xref linkend="fq-auto-quote" />.
       If no documentation is displayed, you will have to continue with this chapter.
     </para>
 
@@ -171,11 +171,11 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Run the <userinput>gnc-fq-check</userinput> command to verify that the program is already in a directory
+        <simpara>Run the <userinput>gnucash-cli --quotes info</userinput> command to verify that the program is already in a directory
           that is entered in the <envar>PATH</envar> environment variable.
           <footnote>
             <simpara>If you&rsquo;ve installed &app; packages provided by your distribution,
-              <filename>gnc-fq-check</filename> must be on your <envar>PATH</envar>. The currentness of your
+              <filename>gnucash-cli</filename> must be on your <envar>PATH</envar>. The currentness of your
               distribution can be checked under
               <ulink url="&url-repo;perl:finance-quote/versions"><citetitle>&app-fq;-
               versions</citetitle></ulink>.
@@ -185,15 +185,12 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Next, update with <userinput>sudo gnc-fq-update</userinput>
-          or <userinput>su -c gnc-fq-update</userinput> with root privileges
-          &app-fq;. It depends on your distribution. For more information,
-          see the next chapter at <xref linkend="gnc-fq-update" />.
+        <simpara>Next, update &app-fq; with <userinput>sudo gnc-fq-update</userinput>.
         </simpara>
       </step>
 
       <step>
-        <simpara>Run <userinput>gnc-fq-dump</userinput> to check &app-fq; works properly. This program returns the
+        <simpara>Run <userinput>gnucash-cli --quotes info</userinput> to check &app-fq; works properly. This command returns the
           version number of &app-fq; module currently installed as well as a list of sources
           available via the &app-fq; module. It will also inform you if there is a problem with your
           installation or if it is missing, and may suggest a fix.
@@ -203,7 +200,7 @@ SYNOPSIS
 
     <procedure>
       <title>On &mac;</title>
-
+      <note><para>You must be logged in with a user id that can administer the mac to use this procedure.</para></note>
       <step>
         <simpara>Close &app;.
         </simpara>
@@ -223,13 +220,15 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Run the <emphasis>Update Finance Quote</emphasis> app in the &app; dmg.
+        <simpara>Open a Finder window, select <guimenu>Applications</guimenu> from the sidebar, double-click <guimenu>Utilities</guimenu> in the file area, then double-click on <guimenu>Terminal</guimenu> to open <application>Terminal</application></simpara>
+      </step>
+      <step>
+        <simpara>In the Terminal window enter <userinput>sudo /Applications/Gnucash.app/Contents/Resources/bin/gnc-fq-update</userinput>. That script asks lots of questions. Accept the default for each.
         </simpara>
-
-        <para>You can run it from the dmg or copy it to the same folder to which you copied &app;. It will open a
-          Terminal window and run a script for you which will ask lots of questions. Accept the
-          default for each unless you know what you&rsquo;re doing.
-        </para>
+      </step>
+      <step>
+        <simpara>Type <userinput>exit</userinput> or <keycombo action='simul'><keycap>Control</keycap><keycap>D</keycap></keycombo> to terminate the shell followed by <keycombo action='simul'><keycap>Command</keycap><keycap>Q</keycap></keycombo> to quit <application>Terminal</application>.
+        </simpara>
       </step>
     </procedure>
 
@@ -248,239 +247,92 @@ SYNOPSIS
     </procedure>
   </sect1>
 
-  <sect1 id="finance-quote-helper">
-    <title>Helper Scripts for Update and Diagnostics</title>
+  <sect1 id="fq-command-line">
+    <title>Using &app-cli; for Testing and Automation.</title>
 
     <abstract>
-      <para>&app; provides several utilities that will help you select the
-        correct symbols and verification for the desired online
-        quote source. Another script performs the first-time
-        installation or keeps &app-fq; up to date.
-        And finally, tools for error analysis are also available.
+      <para>&app; provides a commandline facility &app-cli; that one can use in a terminal session to check the version and supported source modules, to display the quotes or exchange rates for selected securities or currencies, or to update all of the prices in a book without launching the GUI.
       </para>
     </abstract>
-
-    <procedure>
-      <title>Running &app-perl; Scripts Under &win;</title>
-
-      <step>
-        <simpara>Open a <application>CMD</application> or <application>Powershell</application>
-          window: Click <guimenu>Start</guimenu> and type either
-          <userinput>cmd</userinput> or <userinput>powershell</userinput>
-          then select the resulting menu item. You don't need to run as administrator.
-        </simpara>
-      </step>
-
-      <step>
-        <simpara>Since, as previously recommended, the GnuCash directory was entered in the <envar>PATH</envar>
-          envinronment variable, prefix any gnc-fq-xxx &app-perl; script command with
-          <quote>Perl</quote> and a space, e.g. <userinput>perl gnc-fq-check</userinput>.
-          Otherwise you have to execute the command e.g. <userinput><replaceable>
-          C:\strawberry-perl\bin\</replaceable>perl.exe <replaceable>C:\Program Files (x86)\gnucash\bin\
-          </replaceable>gnc-fq-check</userinput>.
-        </simpara>
-      </step>
-    </procedure>
-
-    <sect2 id="gnc-fq-check">
-      <title>gnc-fq-check</title>
-
-      <abstract>
-        <para>This program returns the version number of &app-fq; module currently installed as well
-          as a list of sources available via &app-fq;. It will also inform you if there is a problem
-          with your installation and may suggest a fix. 
-        </para>
-      </abstract>
-
-<!-- Fixme: https://bugs.gnucash.org/show_bug.cgi?id=798618 -->
+    <sect2 id="fq-check-version">
+      <title>Displaying the Finance::Quote Version and Supported Sources</title>
+      <para><command>gnucash-cli --quotes info</command> produces the following output:</para>
+      <!-- Fixme: https://bugs.gnucash.org/show_bug.cgi?id=798618 -->
       <informalexample><?dbfo pgwide="1"?>
-<screen language="console">
-$ gnc-fq-check
-Can't locate Mozilla/CA.pm in @INC (you may need to install the Mozilla::CA module)
-(@INC contains: /usr/lib/perl5/site_perl/5.30.1/x86_64-linux-thread-multi /usr/
-lib/perl5/site_perl/5.30.1 /usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi
-/usr/lib/perl5/vendor_perl/5.30.1 /usr/lib/perl5/5.30.1/x86_64-linux-thread-multi
-/usr/lib/perl5/5.30.1 /usr/lib/perl5/site_perl)
-at /usr/lib/perl5/vendor_perl/5.30.1/Finance/Quote/Tiaacref.pm line 33.
-Compilation failed in require at (eval 303) line 1.
-BEGIN failed--compilation aborted at (eval 303) line 1.
- at /usr/local/bin/gnc-fq-check line 91.
-("1.47" "adig" "aex" "aiahk" "alphavantage" "amfiindia" "asegr" "asia" "asx"
-"australia" "bamosz" "bet" "bmonesbittburns" "bourso" "brasil" "bse" "bsero" "canada"
-"canadamutual" "citywire" "cominvest" "cse" "deka" "dutch" "dwsfunds" "europe"
-"fetch_live_currencies" "fidelity" "fidelity_direct" "fidelityfixed" "financecanada"
-"finanzpartner" "finland" "fool" "france" "ftfunds" "ftportfolios" "ftportfolios_direct"
-"fundlibrary" "goldmoney" "greece" "hex" "hu" "hufund" "hungary" "hustock" "indiamutual"
-"known_currencies" "lerevenu" "maninv" "morningstar" "morningstarjp" "mstaruk" "nasdaq"
-"nyse" "nz" "nzx" "platinum" "romania" "seb_funds" "sixfunds" "sixshares"
-"stockhousecanada_fund" "tdefunds" "tdwaterhouse" "tiaacref" "tnetuk" "troweprice"
-"troweprice_direct" "trustnet" "tsp" "tsx" "uk_unit_trusts" "ukfunds" "unionfunds"
-"usa" "usfedbonds" "vanguard" "vwd" "yahoo" "yahoo_asia" "yahoo_australia"
-"yahoo_brasil" "yahoo_europe" "yahoo_json" "yahoo_nz" "yahoo_yql" "za" "za_unittrusts")
-</screen>
-      </informalexample>
-
-      <para>The first part is the error message about a missing &app-perl;-modul Mozilla/CA.pm. At the end in
-        parentheses is the normal output of the currently installed &app-fq; version<footnote>
-        <para>The most recent &app-fq; version is &app-fq-vers;.</para>
-        </footnote>
-        and a list of available sources.
-      </para>
-
-      <tip>
-        <para>If an error is displayed, see the next section <xref linkend="gnc-fq-update" />.
-          Otherwise, continue with <xref linkend="gnc-fq-dump" />.
-        </para>
-      </tip>
+      <screen language="console">
+  $ gnucash-cli --quotes info
+  Found Finance::Quote version 1.52.
+  Finance::Quote sources: tsp greece troweprice_direct bseindia nzx dutch
+  bloomberg nseindia nyse tesouro_direto canadamutual mstaruk onvista
+  indiamutual europe nasdaq ukfunds aufunds hufund asx yahoo_json hungary
+  oslobors canada known_currencies cse fetch_live_currencies morningstarjp
+  bet australia troweprice goldmoney india iexcloud tmx fidelity usa
+  usfedbonds fool ftfunds aex unionfunds tiaacref morningstarch fondsweb
+  comdirect fundata seb_funds asegr deka finanzpartner alphavantage dwsfunds
+  bamosz morningstarau fundlibrary za hustock romania fidelity_direct
+  tradeville six amfiindia bourso hu bse
+      </screen></informalexample>
+      <para>If there's a problem with your installation it will tell you about it. For example in this case we're missing the Perl modules Finance::Quote and JSON::Parse:</para>
+      <informalexample><?dbfo pgwide="1"?>
+      <screen language="console">
+  $ gnucash-cli --quotes info
+  Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
+      </screen></informalexample>
     </sect2>
 
-    <sect2 id="gnc-fq-update">
-      <title>gnc-fq-update</title>
-
-      <abstract>
-        <para>This program installs or updates the &app-fq; software module along with its dependencies.
-          <note>
-            <para>Windows users are generally better off using the update-tool &mc.start.win-install-fq;.
-            </para>
-          </note>
-        </para>
-      </abstract>
-
-      <note>
-        <para>This program needs superuser or administrative privileges to succeed in &lin; or &mac; but not in &win;.
-        </para>
-      </note>
-
-      <para><userinput>gnc-fq-update</userinput> will launch a &app-perl;
-        <acronym><ulink url="&url-cpan;">CPAN</ulink></acronym>
-        <footnote>
-          <simpara>See <ulink url="&url-cpan;misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink> for details.
-          </simpara>
-        </footnote>
-        module internally. When you launch the CPAN module for the first time, you must setup and
-        configure it. However, on the most systems if you accept the default settings or answer
-        the first question <computeroutput>Are you ready for manual configuration?
-        [yes]</computeroutput> with <userinput>no</userinput>, you will be able to install
-        &app-fq; successfully.
-      </para>
-    </sect2>
-
-    <sect2 id="gnc-fq-dump">
-      <title>gnc-fq-dump</title>
-<!-- Todo: insert link to wiki and/or guide -->
-      <abstract>
-        <para>This program returns quote data for a source and a list of symbols in a
-          format which is easy to read for humans. It is useful for checking that a
-          given online quote source is up and functional. 
-        </para>
-      </abstract>
-
-      <para>You can use this command to verify that the symbol <!-- <xref linkend="tool-ge-symbol" /> -->,
-        which you want to use for your security for online quote retrieval, works for the
-        desired qoute source. <!-- <xref linkend="tool-ge-TypeQuoteSource" /> -->.
-      </para>
-      
-      <tip>
-        <para>With <userinput>gnc-fq-dump</userinput> you can check symbols faster than from &app;
-          if an error occurs during the retrieval with &app;. This might save you from running
-          &app; with debug logging enabled while checking a nonworking symbol.
-        </para>
-      </tip>
-
+    <sect2 id="fq-print-quotes">
+      <title>Displaying Quotes in a Terminal Window</title>
+      <para>To display a quote for one or more stocks or the exchange rate for one or more currencies you can use <userinput>gnucash-cli --quotes dump</userinput> as follows. It offers two output forms for non-currency securities and one for currency exchange rates.
       <itemizedlist>
-        <listitem>
-          <para>To get verbose information about a security, run a command from the
-            command line of the form:
-            <cmdsynopsis>
-              <command>gnc-fq-dump</command>
-              <arg choice="opt">-v</arg>
-              <arg choice="plain"><replaceable>Source</replaceable></arg>
-              <arg choice="plain" rep="repeat"><replaceable>Symbol</replaceable></arg>
-            </cmdsynopsis>
-            e.g. <command>gnc-fq-dump -v yahoo_json IBM</command>.
-          </para>
-        </listitem>
-        
-        <listitem>
-          <para>To retrieve currency exchange rate run the following command:
-            <command>gnc-fq-dump <optional>-v</optional> currency USD EUR</command>
-            <footnote>
-              <para>Since &app-fq; 1.41 the default source for currencies is
-                hardcoded to be <quote>Alpha Vantage</quote>. Also read the
-                notes on <xref linkend="gnc-tbl-fq-currency-source" />.
-              </para>
-            </footnote>
-            <footnote>
-              <para>The old yahoo currencies are still available as
-                <command>gnc-fq-dump yahoo_json USDEUR=X</command>.
-              </para>
-            </footnote>
-          </para>
-        </listitem>
+        <listitem><para>Currencies use the source <userinput>currency</userinput> and require at least two ISO-4217 currency codes; the exchange rates are denominated in the first code. For example:
+      <informalexample><?dbfo pgwide="1"?>
+      <screen language="console">
+        $ gnucash-cli --quotes dump currency USD GBP EUR
+        1 GBP = 1.11917349089527 USD
+
+        1 EUR = 0.9717 USD
+      </screen></informalexample></para></listitem>
+      <listitem><para>Stocks</para><itemizedlist>
+      <listitem><para>A short form displaying only the fields that GnuCash uses along with comments indicating whether the fields are optional or required; you can use this to determine if GnuCash will be able to use the quote to update your book's price database.
+      <informalexample><?dbfo pgwide="1"?>
+      <screen language="console">
+        $ gnucash-cli --quotes dump yahoo_json AAPL
+        Finance::Quote fields GnuCash uses:
+            symbol: AAPL            &lt;=== required
+              date: 10/14/2022      &lt;=== recommended
+          currency: USD             &lt;=== required
+              last: 138.38          &lt;=\
+               nav:                 &lt;=== one of these
+             price:                 &lt;=/
+      </screen></informalexample></para></listitem>
+      <listitem><para>With the <userinput>-v</userinput> option a possibly longer output showing all of the fields &app-fq; returned. This can be useful to troubleshoot problems with a &app-fq; source module.
+      <informalexample><?dbfo pgwide="1"?>
+      <screen language="console">
+        $ ALPHAVANTAGE_API_KEY=123456789 bin/gnucash-cli -V --quotes dump alphavantage INTC
+        INTC:
+                     method =&gt; alphavantage
+                   p_change =&gt; -1.9304
+                       high =&gt; 26.6300
+                       date =&gt; 10/14/2022
+         currency_set_by_fq =&gt; 1
+                      close =&gt; 26.4200
+                   currency =&gt; USD
+                    isodate =&gt; 2022-10-14
+                        low =&gt; 25.7600
+                    success =&gt; 1
+                        net =&gt; -0.5100
+                       open =&gt; 26.4600
+                     symbol =&gt; INTC
+                     volume =&gt; 48118005
+                       last =&gt; 25.9100
+      </screen></informalexample>
+      Notice that in this case we used alphavantage and provided the <userinput>ALPHAVANTAGE_API_KEY</userinput> on the command line. That's not necessary if the key is already stored in the shell environment or in GnuCash preferences.</para>
+      </listitem></itemizedlist></listitem>
       </itemizedlist>
-
-      <para>To test that &app-fq; is working for currencies within &app;,
-        <orderedlist numeration="arabic">
-          <listitem>
-            <para>find a transaction between the desired commodity and the book currency and</para>
-          </listitem>
-          <listitem>
-            <para>right-click on it, then</para>
-          </listitem>
-          <listitem>
-            <para>select &gmi.ac.ed-ex; in the context menu.</para>
-          </listitem>
-        </orderedlist>
-        The <xref linkend="trans-win-enter" /> will appear. Click the 
-        <guilabel>Fetch Rate</guilabel> button and if everything is
-        behaving itself the current rate will fill in the exchange rate box.
-      </para>
-    </sect2>
-
-    <sect2 id="gnc-fq-helper">
-      <title>gnc-fq-helper</title>
-
-      <para>This is a script that &app; uses to retrieve quotes and not usually
-        useful for the user to run. Should the retrieval of a symbol in &app;
-        result in failures, this script can be used to perform diagnostics
-        and help developers decide if the error is in &app; or &app-fq;.
-      </para>
-    </sect2>
-  </sect1>
-
-  <sect1 id="finance-quote-scheduler">
-    <title>Configuring for Getting Quotes Periodically</title>
-
-    <para>The command <command>gnucash-cli --quotes get &user-datafile;</command>
-      <footnote>
-        <simpara>The Online Quotes Retrieval command has been changed from &app; 4.0. The old command
-          <command>gnucash --add-price-quotes &user-datafile;</command> is still available, but it
-          is deprecated and will be removed in the future release. If you've upgraded from &app;
-          3.11 or previous version, it is recommended to use the new command
-          <command>gnucash-cli</command>.
-        </simpara>
-      </footnote>
-      can be used to fetch the current quotes of your stocks and write them directly into your
-      &app;-data file without starting the GUI. Thus an automatic, regular updating of the price
-      database is possible.
-      <warning>
-        <para>Please note that the data file should not be open in another instance of &app; at the same time!
-        </para>
-      </warning>
-    </para>
-
-    <para>The file specified &user-datafile; will depend on the name and location of your data file. This can
-      be determined by the name displayed in the top frame of the &app; window, before the
-      <quote>-</quote>.
-      <tip>
-        <para>The file name can also be found under <guimenu>File</guimenu> in the recently opened file list. If
-          you place the mouse over the menu item with the number 1 in the list of recently opened
-          files, the complete file name is displayed in the <guilabel>status bar</guilabel>.
-        </para>
-      </tip>
-    </para>
-
-    <para>You have to register the <command>gnucash-cli</command> with a scheduler in order to get Online
+      </para></sect2>
+    <sect2 id="fq-auto-quote">
+      <title>Updating Prices Automatically with &app-cli;</title>
+    <para>You have to register the &app-cli; with a scheduler in order to get Online
       Quotes automatically and periodically. The method depends on your OS.
     </para>
 
@@ -505,7 +357,7 @@ BEGIN failed--compilation aborted at (eval 303) line 1.
             </informalexample>
 
             <warning>
-              <para>If there is no graphic session that has already started the dbus, running on your computer at the
+              <para>On &lin; if there is no graphic session that has already started the dbus, running on your computer at the
                 time of the quote request, you must do the entry as follows instead:
                 <informalexample>
 <screen>0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
@@ -557,5 +409,6 @@ gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
       <ulink url="&url-wiki-OQ;#Updating_enabled_Quotes_from_outside_GnuCash">Online Quotes Page on
       GnuCash Wiki</ulink>.
     </para>
+    </sect2>
   </sect1>
 </chapter>
