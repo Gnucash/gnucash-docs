@@ -1,5 +1,6 @@
-function (add_pdf_target docname lang entities figures)
+function (add_pdf_target targetbase lang entities figures)
 
+    set(docname "gnucash-${targetbase}")
     set(fofile "${docname}.fo")
     set(pdffile "${docname}.pdf")
 
@@ -41,9 +42,9 @@ function (add_pdf_target docname lang entities figures)
                         -pdf "${BUILD_DIR}/${pdffile}"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${fofile}" ${figures})
 
-    add_custom_target("${lang}-${docname}-pdf"
+    add_custom_target("${lang}-${targetbase}-pdf"
         DEPENDS "${BUILD_DIR}/${pdffile}")
 
-    add_dependencies(${docname}-pdf "${lang}-${docname}-pdf")
+    add_dependencies(${lang}-pdf "${lang}-${targetbase}-pdf")
 
 endfunction()

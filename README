@@ -123,38 +123,36 @@ To generate the documentation in mobi format, instead run
 If you only wish to generate a subset of the documentation, you can. However
 the way to do so depends on the build system:
 
-- CMake
 There are specific targets for each document. The target is of the form
-<language>-gnucash-<doc>-<type>.
+<language>-<doc>-<type>.
 
 For example to only generate the English concepts guide:
 
-  make C-gnucash-guide-html
-  make C-gnucash-guide-pdf
-  make C-gnucash-guide-epub
-  make C-gnucash-guide-mobi
+  make C-guide-html
+  make C-guide-pdf
+  make C-guide-epub
+  make C-guide-mobi
 
 depending on the output format you require.
 
-In addition one could generate these formats for one document in all
-languages at once by omitting the language specifier in the target.
+In addition one could generate all documents in these formats for one language
+at once by omitting the document specifier in the target.
 
 For example:
 
-  make gnucash-help-html
+  make C-html
 
-will generate the html version of the help document in all supported
-languages.
-
-depending on the output format you require.
+will generate the html version of all documents in English. At the time of
+writing this, there are two documents in English, namely guide and manual
+so these two will be built.
 
 * Running syntax checks by xmllint
 -----------------
 You can also run xmllint on all documents or a specific document with the command
 
   make check # for toplevel check
-  make de-gnucash-help-check # for a cmake check for one specific document
-                             # in this example - the German help guide
+  make de-manual-check # for a cmake check for one specific document
+                       # in this example - the German help manual
 
 * XML/XSL-based tools:
 ----------------------
@@ -182,14 +180,14 @@ Examples:
 To convert the GnuCash Tutorial and Concepts Guide DocBook XML document 
 to HTML and store the resulting HTML files in a separate directory use:
 
-cd guide/C/
+cd C/guide/
 xmlto -o html-dir html index.docbook
 
 (html-dir/ will be created if it does not already exist.)
 
 To convert the GnuCash Help Manual DocBook XML document to a single 
 HTML file in the current directory use:
-cd help/C/
+cd C/manual/
 xmlto html-nochunks index.docbook
 
 

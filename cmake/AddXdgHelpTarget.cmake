@@ -2,14 +2,15 @@
 # Functions to install the docbook xml sources for use with gnome help
 #
 # Paremeters:
-# - docname: basename of the main xml file. Will be used to locate
-#            this primary xml file and for various output files/directories
+# - targetbase: basename of the target to build. Will also be used
+#               as part of various output files/directories
 # - lang: language of the current document
 # - entities: list of all xml files this document is composed of
 # - figdir: name of the directory holding the images
 
-function (add_xdghelp_target docname lang entities figures)
+function (add_xdghelp_target targetbase lang entities figures)
 
+    set(docname "gnucash-${targetbase}")
     set(BUILD_DIR "${DATADIR_BUILD}/help/${lang}/${docname}")
 
     set(source_files "")
@@ -60,11 +61,11 @@ function (add_xdghelp_target docname lang entities figures)
             DEPENDS ${source_figures} "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger")
     endif()
 
-    add_custom_target("${lang}-${docname}-xdghelp"
+    add_custom_target("${lang}-${targetbase}-xdghelp"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger"
                  ${dest_files} ${dest_figures})
 
-    add_dependencies(${docname}-xdghelp "${lang}-${docname}-xdghelp")
+    add_dependencies(${lang}-xdghelp "${lang}-${targetbase}-xdghelp")
 
     install(FILES ${source_files}
         DESTINATION "${CMAKE_INSTALL_DATADIR}/help/${lang}/${docname}"

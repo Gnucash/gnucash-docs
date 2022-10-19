@@ -2,14 +2,15 @@
 # Functions to generate html documentation
 #
 # Paremeters:
-# - docname: basename of the main xml file. Will be used to locate
-#            this primary xml file and for various output files/directories
+# - targetbase: basename of the target to build. Will also be used
+#               as part of various output files/directories
 # - lang: language of the current document
 # - entities: list of all xml files this document is composed of
 # - figdir: name of the directory holding the images
 
-function (add_html_target docname lang entities figures)
+function (add_html_target targetbase lang entities figures)
 
+    set(docname "gnucash-${targetbase}")
     set(styledir "${CMAKE_SOURCE_DIR}/stylesheet")
     file(GLOB styleicons "${CMAKE_SOURCE_DIR}/stylesheet/*.png")
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}/${docname}")
@@ -57,12 +58,12 @@ function (add_html_target docname lang entities figures)
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/styletrigger"
         DEPENDS ${styleicons} "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger")
 
-    add_custom_target("${lang}-${docname}-html"
+    add_custom_target("${lang}-${targetbase}-html"
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
                 ${dest_figures}
                 "${CMAKE_CURRENT_BINARY_DIR}/styletrigger")
 
-    add_dependencies(${docname}-html "${lang}-${docname}-html")
+    add_dependencies(${lang}-html "${lang}-${targetbase}-html")
 
     if(WITH_HTML_INSTALL)
         install(DIRECTORY ${BUILD_DIR}

@@ -1,0 +1,6 @@
+add_lang_targets("C")
+
+add_subdirectory(guide)
+add_subdirectory(manual)
+
+add_to_dist(CMakeLists.txt)

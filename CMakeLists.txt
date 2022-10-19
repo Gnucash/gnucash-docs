@@ -23,6 +23,7 @@ include (AddEpubTarget)
 include (AddXdgHelpTarget)
 include (AddHtmlTarget)
 include (AddPdfTarget)
+include (AddLangTargets)
 include (AddGncDocTargets)
 include (DistCommon)
 include (GNUInstallDirs)
@@ -175,8 +176,12 @@ if (WITH_CHM)
 endif()
 
 
-add_subdirectory (guide)
-add_subdirectory (manual)
+add_subdirectory (C)
+add_subdirectory (de)
+add_subdirectory (it)
+add_subdirectory (ja)
+add_subdirectory (pt)
+#add_subdirectory (ru)
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
