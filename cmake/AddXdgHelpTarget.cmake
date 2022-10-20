@@ -10,7 +10,16 @@
 
 function (add_xdghelp_target docname lang entities figures)
 
-    set(BUILD_DIR "${DATADIR_BUILD}/help/${lang}/${docname}")
+    set(BUILD_DIR_BASE "${DATADIR_BUILD}/help/${lang}")
+    set(BUILD_DIR "${BUILD_DIR_BASE}/${docname}")
+
+    # Define location where KDE's help system looks for <doc>
+    # when invoked with help:<doc>
+    set(kde_lang ${lang})
+    if (lang STREQUAL "C")
+        set(kde_lang "en")
+    endif()
+    set(BUILD_DIR_KDE_BASE "${DATADIR_BUILD}/doc/HTML")
 
     set(source_files "")
     foreach(xml_file ${entities} index.docbook)
@@ -33,6 +42,10 @@ function (add_xdghelp_target docname lang entities figures)
       OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger"
       COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"
       COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
+
+      # Add links to make our documentation visible for KDE's help system
+      COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR_KDE_BASE}"
+      COMMAND ${CMAKE_COMMAND} -E create_symlink "${BUILD_DIR_BASE}" "${BUILD_DIR_KDE_BASE}/${kde_lang}"
       COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger")
 
 
@@ -66,10 +79,19 @@ function (add_xdghelp_target docname lang entities figures)
 
     add_dependencies(${docname}-xdghelp "${lang}-${docname}-xdghelp")
 
+    set(doc_install_dir_base "${CMAKE_INSTALL_DATADIR}/help/${lang}")
+    set(doc_install_dir "${doc_install_dir_base}/${docname}")
     install(FILES ${source_files}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/help/${lang}/${docname}"
+        DESTINATION "${doc_install_dir}"
         COMPONENT "xdghelp")
     install(FILES ${figures}
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/help/${lang}/${docname}/figures"
+        DESTINATION "${doc_install_dir}/figures"
+        COMPONENT "xdghelp")
+
+    # Add links to make our documentation visible for KDE's help system
+    set(doc_install_dir_kde_base "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/doc/HTML")
+    install(CODE "execute_process (COMMAND ${CMAKE_COMMAND} -E make_directory \"${doc_install_dir_kde_base}\")"
+        COMPONENT "xdghelp")
+    install(CODE "execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink \"../../../${doc_install_dir_base}\" \"${doc_install_dir_kde_base}/${kde_lang}\")"
         COMPONENT "xdghelp")
 endfunction()
