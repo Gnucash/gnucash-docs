@@ -194,7 +194,7 @@
         for early payment of invoices (or vendor bills).
       </para>
 
-      <note>
+      <caution>
         <para>As of &app; 2.6.7, Billing terms are only partially supported. Date due is calculated but discount
           amount is not.
         </para>
@@ -219,7 +219,7 @@
             </listitem>
           </itemizedlist>
         </para>
-      </note>
+      </caution>
 
       <para>You can specify the billing terms on each invoice/bill. Invoice billing terms will default from the
         customer billing terms. Bill billing terms will default from the vendor billing terms.
@@ -318,9 +318,10 @@
       <emphasis>Assets</emphasis> to accrue income you're owed. It is within this account that the
       integrated A/R system will place transactions, debiting it when you post bills and crediting
       it when you receive payments.
-<screen>Basic A/R Account Hierarchy:
-
--Assets
+    </para>
+    <example>
+    <title>Basic A/R Account Hierarchy</title>
+<screen>-Assets
   -Accounts Receivable
   -Checking
 -Income
@@ -329,7 +330,7 @@
   -Tax
     -Tax on Purchases
     -Tax on Sales</screen>
-    </para>
+    </example>
 
     <important>
       <para>If you deal with customers in more than one currency you will need a separate <emphasis>Accounts
@@ -454,11 +455,11 @@
             <guilabel>Preferences</guilabel>
           </para>
 
-          <note>
+          <important>
             <para>All invoices will be denominated in this currency and &app; will require an Accounts Receivable
               account in this currency.
             </para>
-          </note>
+          </important>
         </listitem>
 
         <listitem>
@@ -562,13 +563,13 @@
         within this set, the customer cannot be found, regardless of new search criteria.
       </para>
 
-      <note>
+      <tip>
         <para>To return a list of all registered active customers, set the search criterion to <guilabel>matches
           regex</guilabel>, and place a single dot "." in the text field area. Make sure
           <guilabel>Search only active data</guilabel> is checked, then click
           <guibutton>Find</guibutton>. The regular expression "." means to match anything.
         </para>
-      </note>
+      </tip>
     </sect2>
   </sect1>
 
@@ -677,7 +678,7 @@
       <para>From the Edit Invoice window you can enter an itemized list of goods and services you sold on this
         invoice in a manner similar to how the account register works. For credit notes you enter an
         itemized list of goods and services you refunded instead.
-        <note>
+        <tip>
           <para>Saved column layout works a bit differently in invoices from the account registers: Layouts are not
             saved for each invoice; instead a layout can be saved as a default for invoices to
             override the calculated widths using the <guimenu>View</guimenu>&gt;<guimenuitem>Use as
@@ -685,7 +686,7 @@
             as the default with <guimenu>View</guimenu>&gt;<guimenuitem>Reset Default Layout for
             Customer Documents</guimenuitem>.
           </para>
-        </note>
+        </tip>
       </para>
 
       <para>There are 15 columns in the <guilabel>Invoice Entries</guilabel> area:
@@ -924,10 +925,10 @@
         menu item. From the results of the search, you can select an invoice to edit or view.
       </para>
 
-      <note>
+      <important>
         <para>Before you can edit a posted invoice, you will need to <guilabel>Unpost</guilabel> it.
         </para>
-      </note>
+      </important>
 
       <para>One of the design goals in &app;&rsquo;s Account Receivable system was to allow different processes
         to get to the same state, so you can reach an invoice from different directions based on the
@@ -1216,17 +1217,17 @@
     <sect2 id="busnss-ar-baddebt">
       <title>Writing Off a Bad Debt</title>
 
-      <note>
+      <important>
         <para>Please check with your accountant to ensure the following is acceptable in your region.
         </para>
-      </note>
+      </important>
 
       <para>The usual way to do this is to process a payment for the invoice to a <emphasis>BadDebt</emphasis>
         account. Such an account would be an expense account. However, in &app;, you can't process a
         payment for an invoice directly to an expense account, so it takes two steps:
       </para>
 
-      <itemizedlist>
+      <orderedlist>
         <listitem>
           <para>Pay the invoice to an asset or liability account, such as your checking account.
           </para>
@@ -1237,7 +1238,7 @@
             the payment transaction, to the BadDebt expense account.
           </para>
         </listitem>
-      </itemizedlist>
+      </orderedlist>
 
       <para>Specifically
       </para>
@@ -1249,8 +1250,9 @@
             your BadDebt and A/R account.
           </para>
 
-          <para>In case the payment has associated lot link transactions
-            <link linkend="busnss-ar-baddeb-lot">(1)</link>, remove those as well.
+          <para>In case the payment has associated <emphasis>lot link</emphasis>
+            transactions<link linkend="busnss-ar-baddeb-lot"><superscript>a</superscript></link>,
+             remove those as well.
           </para>
 
           <para>If all is well, your <guilabel>Process Payment</guilabel> window for this customer should list the
@@ -1267,7 +1269,7 @@
         <listitem>
           <para>Open the account register for your A/R account. For this invoice there should now be one payment
             transaction. If you are using &app; 2.6.0 - 2.6.4 there will also be one lot link
-            transaction <link linkend="busnss-ar-baddeb-lot">(1)</link>.
+            transaction<link linkend="busnss-ar-baddeb-lot"><superscript>a</superscript></link>.
           </para>
         </listitem>
 
@@ -1282,34 +1284,63 @@
       <para>If all is well, your <guilabel>Process Payment</guilabel> window should still be clean: no
         pre-payments, and the bad debt invoice gone.
       </para>
-
-      <note id="busnss-ar-baddeb-lot">
-        <para>(1): &app; versions 2.6.0 to 2.6.4 created lot link transactions which show in the A/R account
-          register. This came with its own set of subtle issues. It is recommended to upgrade to the
-          latest (or at least 2.6.6) version, which fixes a lot of small problems. Version 2.6.5 had
-          a flaw in the logic cleaning up the lot links. Once upgraded, please run
+      <!-- Todo: As soon as yelp understads <footnotelink> convert this into a <footnote> and the links above in <footnotelink>s. -->
+      <caution id="busnss-ar-baddeb-lot">
+        <para><superscript>a</superscript> &app; version
+          <variablelist>
+            <varlistentry>
+              <term>2.6.0 to 2.6.4</term>
+              <listitem>
+                <para>created lot link transactions which show in the A/R account register. This came
+                   with its own set of subtle issues.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>2.6.5</term>
+              <listitem>
+                <para>had a flaw in the logic cleaning up the lot links.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </para>
+        <para>
+          It is recommended to upgrade to the latest (or at least 2.6.6) version, which fixes a lot
+          of small problems. Once upgraded, please run
+          <!-- ToDo: Replace the <menuchoice> after the entities are fixed by:  &mc.ac.chk-rep.all; —or at least &mc.ac.chk-rep.acct; 
+          on your A/R and A/P accounts— -->
           <menuchoice>
             <guimenu> Actions</guimenu><guimenuitem>Check &amp; Repair</guimenuitem>
           </menuchoice>
-          on your A/R and A/P accounts to clean up most of the lot link legacy. Don't forget to make
+          to clean up most of the lot link legacy. Don't forget to make
           a backup first just in case.
         </para>
 
-        <para>Lots are used internally for relating payments to invoices. Lots themselves are invisible in the
-          account registers. To see them you need to open the lot viewer, which can be found in
-          <menuchoice>
-            <guimenu>Actions</guimenu><guimenuitem>View lots </guimenuitem>
-          </menuchoice>
-          while in any A/R or A/P account register. Select a lot to see the <emphasis>Splits in
-          lot</emphasis>.
-        </para>
-
-        <para><emphasis>Lot links</emphasis> are <emphasis>transactions</emphasis> which you can see in your A/R
-          and A/P accounts. They are unusual in the sense that all their splits are in one account
-          (A/R or A/P). Each split in a lot link transaction is <emphasis>linked</emphasis> (hence
-          the name) to an invoice or payment transaction by means of a lot.
-        </para>
-      </note>
+        <variablelist>
+          <title>Distinction between <emphasis>Lot</emphasis> and <emphasis>Lot link</emphasis></title>
+          <varlistentry>
+            <term>Lots</term>
+            <listitem>
+              <para>are used internally for relating payments to invoices. Lots themselves are invisible in the
+                account registers. To see them you need to open the lot viewer, which can be found in &mc.ac.vw-lots;
+                while in any A/R or A/P account register. Select a lot to see the <emphasis>Splits in
+                lot</emphasis>.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>Lot links</term>
+            <listitem>
+              <para>are <emphasis>transactions</emphasis> which you can see in your A/R
+                and A/P accounts. They are unusual in the sense that all their splits are in one account
+                (A/R or A/P). Each split in a lot link transaction is <emphasis>linked</emphasis> (hence
+                the name) to an invoice or payment transaction by means of a lot.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </caution>
 
       <para>See <ulink url="&url-wiki-bus-feat;"  /> for more information.
       </para>
