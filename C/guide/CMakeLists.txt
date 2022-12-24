@@ -183,6 +183,7 @@ set (figures
         figures/loans_mortgage2.png
         figures/loans_mortgage3.png
         figures/oview_intro.png
+        figures/Report_Investment_Lots.png
         figures/txns_CashFlow.png
         figures/txns_TransactionRptChecking.png
         figures/txns_TransactionRptExpenses.png

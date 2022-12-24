@@ -47,6 +47,9 @@ set (figures
         figures/Pref_Sched.png
         figures/Pref_Windows.png
         figures/Report_Screen.png
+        figures/Report_Investment_Lots_Bar.png
+        figures/Report_Investment_Lots_StackedBar.png
+        figures/Report_Investment_Lots.png
         figures/Tool_LotsBus.png
         figures/Tool_LotsStk.png
         figures/Tool_Lots_h_double_arrow.png
