@@ -42,6 +42,8 @@ set (figures
         figures/CSV_Import_transactions_Preview.png
         figures/CSV_Transaction_Import_Assistant.png
         figures/Choose_Export_Settings.png
+        figures/GUI_Business_Invoice.png
+        figures/GUI_Business_Overview.png
         figures/Import_Map_Editor.png
         figures/Import_MatchPicker.png
         figures/Import_QIF_Druid.png
