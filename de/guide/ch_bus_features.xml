@@ -1,0 +1,2072 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "gnc-gui-de.dtd">
+<!--
+      (Do not remove this comment block.)
+  Version: 1.0.0
+  Last modified: Sep 19th 2015 (Englisch 20.09.1015)
+  Maintainers: 
+               Chris Good <chris.good@ozemail.com.au>
+  Author:
+        Chris Good <chris.good@ozemail.com.au>
+        updated [FirstName LastName] <name@company.com>
+  Translators:
+               (Mechtilde Stehmann <ooo@mechtilde.de)
+-->
+<chapter id="chapter_bus_features">
+  <title>Geschäftsfunktionen</title>
+
+  <sect1 id="bus-intro">
+    <title>Vorstellung für Geschäftsleute</title>
+
+    <para>Die Anforderungen an eine geschäftliche Buchhaltung unterscheiden sich sehr von der einer
+      persönlichen. Im Wirtschaftsleben gibt es Kunden, die Geld schulden (Debitoren), Lieferanten,
+      denen Geld geschuldet wird (Kreditoren ), Arbeitnehmer Gehaltskosten, kompliziertere
+      Steuergesetze etc. &app; bietet geschäftlich orientierte Eigenschaften, um diese
+      Anforderungen zu unterstützen.
+    </para>
+
+    <para>Im Wirtschaftsleben wird die <emphasis>Debitorenbuchhaltung</emphasis> genutzt, um Verkäufe
+      aufzuzeichnen, die nicht sofort bezahlt werden. Dies wird in der Bilanz als Aktiva
+      dargestellt, weil die Erwartung besteht, dass Sie die Zahlung bald erhalten werden.
+    </para>
+
+    <para>In der <emphasis>Kreditorenbuchhaltung</emphasis> werden die (Eingangs-)Rechnungen aufgezeichnet,
+      die Sie erhalten haben, aber später bezahlt werden dürfen. Dies wird in der Bilanz als
+      Verbindlichkeit dargestellt, weil Sie diese bezahlen müssen.
+    </para>
+
+    <para>Konten für Lieferungen und Leistungen und für Verbindlichkeiten werden in erster Linie dafür
+      genutzt, wenn Sie eine Menge Rechnungen und Lieferscheine haben, die ein- und ausgehen, und
+      Sie nicht den Überblick verlieren wollen, gerade weil Sie nicht rechtzeitig zahlen oder die
+      Rechnungen bezahlt werden. Für die meisten Privatnutzer ist die Debitoren- und
+      Kreditorenbuchhaltung zu schwierig, um der Mühe wert zu sein.
+    </para>
+  </sect1>
+
+  <sect1 id="bus_setup">
+    <title>Einrichtung der geschäftlichen Buchhaltung</title>
+
+    <para>Um &app; so einzurichten, Debitoren- und Kreditorenkonten für Unternehmen zu händeln, müssen
+      diese vorbereitenden Schritte durchgeführt werden.<itemizedlist>
+        <listitem>
+          <para>Erstellen Sie eine sachgemäße Kontenhierarchie.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Richten Sie Steuertabellen ein.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Tragen Sie das Unternehmen in &app; ein.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Setzen Sie die geschäftlichen Eigenschaften.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Richten Sie Zahlungsbedingungen ein.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+    <sect2 id="bus-setupacct">
+      <title>Konteneinrichtung</title>
+
+      <para>Es gibt viele verschiedene Möglichkeiten, eine Geschäftskontenhierarchie einzurichten. Sie können
+        mit der Einrichtung der Geschäftskonten anfangen, die mit dem Neuen Kontenplan erstellen
+        Assistenten zur Verfügung gestellt werden oder einen Kontenplan händisch erstellen. Um auf
+        die vorgefertigten Geschäftskontenpläne zuzugreifen, starten Sie &app; und klicken auf<menuchoice>
+          <guimenu>Datei</guimenu><guimenuitem>Neue Datei </guimenuitem>
+        </menuchoice>und fahren fort, bis Sie eine Liste der verfügbaren Kontenpläne sehen. Dort wählen Sie den
+        gewünschten Kontenrahmen (z.B. SKR03 oder SKR04) aus.
+      </para>
+
+      <para>Die vorgefertigte Geschäftskontenhierarchie wird nicht exakt Ihren Bedürfnissen entsprechen. Sie
+        werden Anpassungen an der Kontenhierarchie durchführen, damit diese Ihre spezielle
+        Situation wiedergibt. Sie sollte aber tauglich genug sein, damit beginnen zu können.
+      </para>
+
+      <para>Um &app;&rsquo;s eingebaute Debitorenbuchhaltung zu nutzen, müssen Sie zunächst ein Konto
+        (üblicherweise als Unterkonto unter Aktiva) mit der Kontenart <emphasis>Offene
+        Forderungen</emphasis> einrichten. Innerhalb dieses Kontos wird die integrierte
+        Debitorenbuchhaltung Geschäftsvorfälle buchen.
+      </para>
+
+      <para>Um &app;&rsquo;s eingebaute Kreditorenbuchhaltung nutzen zu können, müssen Sie dann, ein Konto
+        üblicherweise als Unterkonto unter Passiva mit der Kontoart <emphasis>Offene
+        Verbindlichkeiten</emphasis> einrichten. Innerhalb dieses Kontos wird die integrierte
+        Kreditorenbuchhaltung Geschäftsvorfälle buchen.
+      </para>
+<screen>Basis Kontenhierarchie für Debitoren- und Kreditorenbuchhaltung:
+
+-Aktiva
+   -Forderungskonten
+   -Bankkonten
+-Aufwendungen
+  ...(nach Bedarf)
+-Erträge
+   -Verkäufe
+-Verbindlichkeiten
+  -Verbindlichkeiten aus Lieferungen und Leistungen
+  -Steuern
+      -Steuern auf Ankäufe (Vorsteuer)
+      -Steuern auf Verkäufe (Umsatzsteuer)</screen>
+      <para>Sie müssen zusätzliche Konten dieser Hierarchie hinzufügen, um diese nutzbar zu machen.
+      </para>
+
+      <note>
+        <para>Sie brauchen keine individuellen Konten für Forderungen aus Lieferungen und Leistungen für jeden
+          Kunden anzulegen. &app; behält den einzelnen Kunden intern im Auge und liefert einen
+          Bericht für jeden Kunden auf der Grundlage der internen Verfolgung. Das gleiche gilt für
+          Verbindlichkeiten aus Lieferungen und Leistungen und den Lieferanten.
+        </para>
+
+        <para>Wenn Sie mit den Kunden in mehr als einer Währung zu tun haben, benötigen Sie <emphasis>für jede
+          Währung</emphasis> ein eigenes Konto <guilabel>Offene Forderung</guilabel>.
+        </para>
+
+        <para>Wenn Sie mit den Lieferanten in mehr als einer Währung zu tun haben, benötigen Sie <emphasis>für
+          jede Währung</emphasis> ein eigenes Konto <guilabel>Verbindlichkeiten aus Lieferungen und
+          Leistungen</guilabel>.
+        </para>
+
+        <para>Buchungen, an denen die Konten Offene Forderungen oder Verbindlichkeiten beteiligt sind, sollten
+          nicht in irgendeiner anderen Art und Weise hinzugefügt, geändert oder gelöscht werden
+          als unter Nutzung von:<itemizedlist>
+            <listitem>
+              <para>einbuchen/ausbuchen der Eingangs-/Ausgangsrechnung/Gutschrift oder
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>Zahlungsvorganges
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+      </note>
+    </sect2>
+
+    <sect2 id="bus-setuptaxtables">
+      <title>Steuertabellen</title>
+
+      <para>Steuertabellen können genutzt werden, um die Steuer für die Ausgangsrechnung an den Kunden (oder
+        die Eingangsrechnung des Lieferanten) zu ermitteln.
+      </para>
+
+      <para>Eine Steuertabelle kann der Zeile Ausgangsrechnung oder Eingangsrechnung zugewiesen werden.
+      </para>
+
+      <para>Erstellen Sie eine individuelle Steuertabelle für Kunden und Lieferanten.
+      </para>
+
+      <para>Die Standardausgangsrechnung-Steuertabelle kann jedem Kunden und die
+        Standardeingangsrechnung-Steuertabelle jedem Lieferanten zugewiesen werden.
+      </para>
+
+      <para>Die Standardsteuertabelle für neue Kunden oder neuen Lieferanten kann in dem Fenster
+        <emphasis>Buch-Optionen </emphasis> bestimmt werden, auf das Sie unter<menuchoice>
+          <guimenu>Datei</guimenu> <guisubmenu>Eigenschaften</guisubmenu> <guimenuitem>Reiter
+          Geschäft</guimenuitem>
+        </menuchoice>zugreifen können.
+      </para>
+
+      <para>Steuertabellen werden durch Nutzung des Editors <emphasis>Steuertabellen</emphasis> genutzt, auf den
+        Sie im Menü unter<menuchoice>
+          <guimenu>Geschäft</guimenu><guimenuitem>Steuertabellen </guimenuitem>
+        </menuchoice>zugreifen können.
+      </para>
+
+      <figure pgwide="1">
+        <title>Steuertabellen</title><screenshot id="bus-taxmain">
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/bus_tax_main.png"
+                           srccredit="Mechtilde Stehmann" width="&img-w;" />
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="figures/bus_tax_main.png"
+                          srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Editor Steuertabellen-Editor</phrase>
+            </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <figure pgwide="1">
+        <title>Neue Steuertabellen</title><screenshot id="bus-taxnew">
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/bus_tax_new.png"
+                         srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="figures/bus_tax_new.png"
+                         srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Neue Steuertabellen</phrase>
+            </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Name:</guilabel> Dies ist der Name der Steuertabelle.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Typ:</guilabel> Entweder <guilabel>Prozent %</guilabel> oder <guilabel>Wert €
+            </guilabel>.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Wert: </guilabel>Dies ist der Prozentsatz oder der Wert abhängig vom
+            <guilabel>Typ</guilabel>.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Konto:</guilabel> Dies ist das Konto, auf welches die Steuer gebucht werden wird. Für
+            Steuern, die von Kunden erhoben werden, sollte dies wohl ein Verbindlichkeitskonto sein,
+            weil dies an die Steuerverwaltung bezahlt werden muss. Für Steuer, die an Lieferanten
+            gezahlt werden, sollte dies, wenn die Steuergesetze Vorsteuerabzug ermöglichen, wohl
+            auch ein Verbindlichkeitskonto sein (auch wenn es üblicherweise einen negativen Stand
+            aufweist). So kann der Nettobetrag der Steuer, die der Verwaltung geschuldet wird,
+            einfach festgestellt werden,
+          </para>
+
+          <para>Wenn Sie Umsatzsteuer und Vorsteuer als Unterkonten von Verbindlichkeiten:Steuern einrichten, wird
+            die Nettosteuer ständig berechnet und erscheint im &app; Kontenreiter.
+          </para>
+
+          <para><emphasis>Wenn Sie wegen steuergesetzlicher Anforderungen unsicher sind, holen Sie professionellen
+            Rat ein! </emphasis>
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="bus-setupcname">
+      <title>Unternehmensregistrierung</title>
+
+      <para>Nachdem Sie die Kontenstruktur erstellt und die Steuertabellen eingerichtet haben, registrieren Sie
+        die &app; Datei als zum Unternehmen gehörig. Um Ihr Unternehmen zu registrieren, wählen
+        Sie den Reiter <guilabel>Geschäft</guilabel> in dem Fenster
+        <guilabel>Buch-Optionen</guilabel>, auf das Sie unter<menuchoice>
+          <guimenu>Datei</guimenu><guimenuitem>Eigenschaften</guimenuitem>
+        </menuchoice>zugreifen können.
+      </para>
+
+      <figure pgwide="1">
+        <title>Unternehmensregistrierung</title><screenshot id="bus-co-reg">
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/bus_co_reg.png"
+                         srccredit="Mechtilde Stehmann" width="&img-w;" />
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="figures/bus_co_reg.png"
+                         srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Unternehmensregistrierung</phrase>
+            </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Hier können Sie:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>den Namen Ihres Unternehmens mit den Kontaktinformationen wie Telefon-, Faxnummern, E-Mail Adresse
+            und URL der Webseite eingeben.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>die Identifikationsnummer Ihres Unternehmens (z.b die UStID) im Feld
+            <guilabel>Firmennummer</guilabel> eingeben.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Wählen Sie die Standardsteuertabellen für die üblichen Kunden und Lieferanten aus.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="bus_setup_pref">
+      <title>Einstellungen für das Unternehmen</title>
+
+      <para>Stellen Sie die Optionen im Reiter Geschäft in den &app; Einstellungen ein, auf welche Sie unter<menuchoice>
+          <guimenu>Bearbeiten</guimenu><guimenuitem>Einstellungen</guimenuitem>
+        </menuchoice>(<menuchoice>
+          <guimenu>GnuCash</guimenu><guimenuitem>Einstellungen</guimenuitem>
+        </menuchoice>unter &mac;).<!--
+        See Help manual chapter 10.3.3 Business Book Options Tab.
+        -->
+      </para>
+    </sect2>
+
+    <sect2 id="bus-setupterms">
+      <title>Zahlungsbedingung</title>
+
+      <para>Zahlungsbedingungen können genutzt werden, um das Zahlungsziel festzulegen und um eine Richtschnur
+        für die Festlegung des Skontos bei vorzeitiger Zahlung der Ausgangsrechnung (oder der
+        Eingangsrechnung des Lieferanten) zu sein.
+      </para>
+
+      <note>
+        <para>Seit mindestens &app; Version 2.6.7 werden Zahlungsbedingungen teilweise unterstützt. Das
+          Fälligkeitsdatum wird mit Hilfe der Zahlungsbedingungen berechnet, aber nicht der
+          Skontobetrag.
+        </para>
+
+        <para>Der Skonto für vorzeitige Zahlung ist nicht umgesetzt. Es gibt Wege, wie dies getan werden kann.
+          wenn auch keine davon empfohlen wird und fragen Sie professionelle Berater um Rat, ob
+          diese Bestimmungen mit dem folgenden übereinstimmen:<itemizedlist>
+            <listitem>
+              <para>Nach der Eingabe und der Buchung der Zahlung in voller Höhe wird die Buchung der Zahlung manuell
+                bearbeitet (gewöhnlich dringend abgeraten) und die Zahlung gesplittet, um den
+                Betrag um den Skontobetrag zu reduzieren und eine ausgleichende Splitbuchung auf
+                einem Ertragskonto (Skonto) zu erstellen.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>Alternativ erstellen Sie nach der Eingabe und der Buchung der Zahlung für den Skontobetrag eine
+                Gutschrift und nutzen ein spezielles negatives Ertragskonto aus Verkäufen (Skonto)
+                als Transferkonto.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+      </note>
+
+      <para>Sie können die Zahlungsbedingungen für jede Eingangs-/Ausgangsrechnung bestimmen. Die
+        Zahlungsbedingungen der Ausgangsrechnung werden durch die Kundenzahlungsbedingungen
+        vorgegeben. Die Zahlungsbedingungen der Eingangsrechnung werden durch die
+        Lieferantenzahlungsbedingungen vorgegeben.
+      </para>
+
+      <para>Zahlungsbedingungen werden im Editor für die Zahlungsbedingungen gepflegt, auf den Sie unter<menuchoice>
+          <guimenu>Geschäft</guimenu> <guimenuitem>Zahlungsbedingungen&hellip;</guimenuitem>
+        </menuchoice>zugreifen können.
+      </para>
+
+      <figure pgwide="1">
+        <title>Zahlungsbedingungen-Editor</title><screenshot id="bus-termsmain">
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/bus_terms_main.png"
+                         srccredit="Mechtilde Stehmann" width="&img-w;" />
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="figures/bus_terms_main.png"
+                         srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Zahlungsbedingungen-Editor</phrase>
+            </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <figure pgwide="1">
+        <title>Neue Zahlungsbedingungen</title><screenshot id="bus-termsnew">
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/bus_terms_new.png"
+                         srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <imageobject role="fo">
+              <imagedata fileref="figures/bus_terms_new.png"
+                         srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Neue Zahlungsbedingungen</phrase>
+            </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Name:</guilabel> Der interne Name der Zahlungsbedingung. Für einige (englische) Beispiele
+            der Benennungen und Beschreibungen der Zahlungsbedingungen schauen Sie unter
+            <ulink url="&url-wiki-pmt-term;" />. Einige deutsche Beispiele finden sich in
+            <ulink url="&url-wp-de;Zahlungsbedingung#H%C3%A4ufige_Zahlungsbedingungen"/> und
+            internationale Abkürzungen in
+            <ulink url="&url-wp-de;Zahlungsbedingung#International"/>.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Beschreibung:</guilabel> Die Beschreibung der Zahlungsbedingungen, wie Sie auf den
+            Rechnungen gedruckt wird.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Es gibt zwei Arten von Zahlungsbedingungen, für die verschiedenen Informationen eingegeben werden.
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Art: Tage
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Fälligkeitstage:</guilabel> Die Ausgangs- oder Eingangsrechnung ist zu bezahlen innerhalb
+                    der Anzahl dieser Tage nach dem Zugangsdatum.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Skontotag:</guilabel> Die Anzahl der Tage nach dem Zugangsdatum während derer das Skonto
+                    für die vorzeitige Zahlung angewendet wird.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Skonto %:</guilabel> Der Skonto-Prozentsatz, der für die vorzeitige Zahlung angewendet
+                    wird.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>Type: Im nächsten Monat
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Fälligkeitstag</guilabel> Tag des Monats, an dem die Rechnung fällig wird.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Stichtag Skonto:</guilabel> Der letzte Tag des Monats für den Skonto für die vorzeitige
+                    Zahlung
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Skonto %:</guilabel> Der Skonto-Prozentsatz, der für die vorzeitige Zahlung angewendet
+                    wird.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Stichtag Monatswechsel</guilabel> Der Stichtag Monatswechsel gilt für Eingangsrechnungen.
+                    Nach dem Monatswechsel werden die Rechnungen im folgenden Monat angewandt.
+                    Negative Werte werden vom Ende des Monats rückwärts gezählt.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="bus_ar">
+    <title>Debitorenbuchhaltung</title>
+
+    <para>Die Debitorenbuchhaltung (OP = Offene Posten) bezieht sich auf Lieferungen oder Leistungen, die von
+      Ihrem Unternehmen bereitgestellt, aber bisher noch nicht bezahlt wurden.
+    </para>
+
+    <sect2 id="bus-ar-components1">
+      <title>Systemkomponenten</title>
+
+      <para>&app; hat eine integrierte Debitorenbuchhaltung. Die von der Debitorenbuchhaltung generierten
+        Geschäftsvorfälle werden innerhalb der Forderungskonten aufgezeichnet. Normalerweise
+        werden Sie nicht direkt mit diesen Konten arbeiten. Sie werden normalerweise mit den vier
+        integrierten &app; Debitorenanwendungen arbeiten, die im Menü unter<menuchoice>
+          <guimenu>Geschäft</guimenu><guisubmenu>Kunden</guisubmenu>
+        </menuchoice>zu finden sind. Diese vier Komponenten sind:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Kunden</guilabel> sind Menschen oder Unternehmen, denen Sie Waren oder Dienstleistungen
+            auf Kredit verkaufen.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Rechnungen</guilabel> stellen in diesem Zusammenhang die physikalischen Ausgangsrechnungen
+            dar, die Sie an den Kunden zur Zahlungsanforderung gesandt haben. Diese Ausgangsrechnung
+            enthält eine Aufzählung der Posten, die Sie verkauften.
+          </para>
+
+          <para>Zusätzlich bietet &app; auch Unterstützung für <guilabel>Gutschriften</guilabel>, welche die
+            Umkehrung einer Ausgangsrechnung darstellen. Eine Gutschrift wird normalerweise dem
+            Kunden ausgehändigt, um die Posten zu korrigieren, die falsch berechnet oder
+            zurückgegeben wurden.
+          </para>
+
+          <para>Beide Dokumententypen werden mit dem selben Menüpunkt erstellt.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Unter <guilabel>Aufträge</guilabel> (optional) können Sie Kundenaufträge eintragen. Aufträge
+            sind eine Einrichtung, mit der Sie mehrere Rechnungen für einen bestimmten Kunden
+            zusammenfassen können
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Zahlung verarbeiten&hellip;</guilabel> wird benutzt, um Zahlungen zu verzeichnen, die Sie
+            vom Kunden erhalten haben.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="bus-ar-customers1">
+      <title>Kunden</title>
+
+      <para>Kunden sind Menschen oder Unternehmen, denen Sie Waren oder Dienstleistungen verkaufen. Sie müssen
+        in Ihrer Debitorenbuchhaltung registriert werden..
+      </para>
+
+      <sect3 id="bus-ar-custnew2">
+        <title>Neuer Kunde</title>
+
+        <para>Um einen neuen Kunden einzutragen, öffnen Sie das Menü<menuchoice>
+            <guimenu>Geschäft</guimenu><guisubmenu>Kunden</guisubmenu><guimenuitem>Neuer
+            Kunde&hellip;</guimenuitem>
+          </menuchoice>. Geben Sie die Kundeninformationen ein, wie Name des Unternehmens, Adresse, Telefon-, Faxnummer
+          etc.
+        </para>
+
+        <screenshot id="bus-ar-custnew">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ar_custnew.png"
+                       srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Registrierungsfenster -Neuer Kunde</phrase>
+            </textobject>
+
+            <caption>
+              <para>Registrierungsfenster - Neuer Kunde
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
+
+      <sect3 id="bus-ar-custfind2">
+        <title>Suchen und Bearbeiten</title>
+
+        <para>Um einen existierenden Kunden zu suchen, nutzen Sie das Fenster<menuchoice>
+            <guimenu>Geschäft</guimenu><guisubmenu>Kunden</guisubmenu><guimenuitem>Kunde
+            suchen&hellip;</guimenuitem>
+          </menuchoice>. Sie wählen einen Kunden aus den Ergebnissen der Suche aus mit der Schaltfläche
+          <guilabel>anzeigen/bearbeiten</guilabel>. Dieses Fenster wird auch genutzt, um Kunden zur
+          Erstellung von Ausgangsrechnungen und zur Verarbeitung von Zahlungen nachzuschlagen.
+        </para>
+
+        <screenshot id="bus-ar-custfind">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ar_custfind.png"
+                       srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Fenster: Kunden suchen </phrase>
+            </textobject>
+
+            <caption>
+              <para>Fenster: Kunden suchen
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>Wenn viele Kunden auf die von Ihnen gewählten Suchkriterien passen, kann die Suche durch eine
+          zusätzliche Suche in den aktuellen Suchergebnissen verfeinert werden. Das aktuelle
+          Suchergebnis wird durchsucht, wenn der Radiobutton <guilabel>Verfeinern der aktuellen
+          Suche</guilabel> ausgewählt ist. Tatsächlich wählt &app; diese Option für Sie, nachdem
+          Sie die anfängliche Suche haben laufen lassen.
+        </para>
+
+        <para>Wenn der Kunde, den Sie suchen, nicht den eingegebenen Suchkriterien entspricht, ändern Sie die
+          Suchkriterien durch Klick auf den Radiobutton <guilabel>Neue Suche</guilabel> und dann auf
+          die Schaltfläche <guilabel>Suchen</guilabel>. Der relevante Schritt ist die Auswahl
+          <guilabel>Neue Suche</guilabel>. Wenn der Kunde nicht in dem Ergebnis der Originalsuche
+          enthalten ist und Sie nur in diesem Ergebnis suchen, kann der Kunde unabhängig von den
+          neuen Suchkriterien nicht gefunden werden.
+        </para>
+
+        <note>
+          <para>Um eine Liste aller registrierten aktiven Kunden zu erhalten, setzen Sie als Suchkriterium
+            <guilabel>entspricht regulärem Ausdruck</guilabel> und einen einfachen Punkt
+            <quote>.</quote> in das Textfeld. Stellen Sie sicher, dass der Radiobutton <guilabel>Nur
+            aktive Daten durchsuchen</guilabel> ausgewählt ist. Nun klicken Sie auf
+            <guibutton>Suchen</guibutton>. Der reguläre Ausdruck <quote>.</quote> findet alles.
+          </para>
+        </note>
+      </sect3>
+    </sect2>
+
+    <sect2 id="bus-ar-invoices1">
+      <title>Ausgangsrechnungen</title>
+
+      <para>Eine Ausgangsrechnung ist ein Papier, das Sie an einen Kunden senden, um eine Zahlung für eine
+        Lieferung oder Leistung zu veranlassen. &app; kann Rechnungen generieren und aufzeichnen.
+      </para>
+
+      <para>Eine Gutschrift ist ein Papier, das Sie einem Kunden senden, um eine fehlerhaft generierte Rechnung
+        für Lieferungen und Leistungen zu korrigieren. &app; kann Gutschriften über das gleiche
+        Menü generieren und aufzeichnen wie die Rechnungen.
+      </para>
+
+      <note>
+        <para>Dieser Abschnitt gilt sowohl für Ausgangsrechnungen als auch für Gutschriften. Um zu vermeiden,
+          alles zweimal zu wiederholen und den Text einfacher lesbar zu halten, werden nur
+          Rechnungen behandelt. Sie können ihn auch auf Gutschriften anwenden. Nur dort, wo sich
+          das Verhalten der Gutschriften von dem der Rechnungen unterscheidet, wird dies
+          ausdrücklich erwähnt.
+        </para>
+      </note>
+
+      <sect3 id="bus-ar-invoicenew2">
+        <title>Neue Ausgangsrechnung</title>
+
+        <para>Um eine Ausgangsrechnung an einen Kunden zu senden, müssen Sie zunächst ein neues Dokument
+          erstellen. Um eine Rechnung zu erstellen, nutzen Sie<menuchoice>
+            <guimenu>Geschäft</guimenu><guisubmenu>Kunde</guisubmenu><guimenuitem>Neue
+            Rechnung&hellip;</guimenuitem>
+          </menuchoice>. Das Fenster Neue Rechnung muss entsprechend ausgefüllt werden.
+        </para>
+
+        <screenshot id="bus-ar-invoicenew">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ar_invoicenew.png"
+                       srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Erstellen einer neuen Rechnung</phrase>
+            </textobject>
+
+            <caption>
+              <para>Erstellen einer neuen Rechnung
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>Wenn Sie die Schaltfläche <guibutton>OK</guibutton> klicken, öffnet sich das Fenster
+          <guilabel>Neue Rechnung</guilabel>.
+        </para>
+      </sect3>
+
+      <sect3 id="bus-ar-invoiceedit2">
+        <title>Bearbeiten</title>
+
+        <para>Im Fenster Rechnung bearbeiten können Sie eine aufgeschlüsselte Liste der Waren und Leistungen,
+          die Sie mit dieser Rechnung verkauften, in ähnlicher Weise wie die Kontenregistrierung
+          eingeben. Für die Gutschriften geben Sie stattdessen eine aufgeschlüsselte Liste der
+          Waren und Leistungen ein, die Sie gutgeschrieben haben.
+        </para>
+
+        <screenshot id="bus-ar-invoiceedit">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ar_invoiceedit.png"
+                       srccredit="Mechtilde stehmann" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Rechnung bearbeiten</phrase>
+            </textobject>
+
+            <caption>
+              <para>Rechnung bearbeiten
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>Wenn Sie alle Posten eingegeben haben, können Sie die Rechnung <guilabel>Buchen</guilabel> und
+          drucken.
+        </para>
+      </sect3>
+
+      <sect3 id="bus-ar-invoicepost2">
+        <title>Buchen</title>
+
+        <para>Wenn Sie die Bearbeitung der Rechnung beendet haben und bereit sind, diese zu drucken, müssen Sie
+          die Rechnung <guilabel>Buchen</guilabel>. Die Rechnung muss nicht sofort gebucht werden.
+          In der Tat sollten Sie eine Rechnung nur Buchen, wenn Sie bereit sind, diese zu drucken.
+          Das Buchen einer Rechnung stellt den Geschäftsvorfall in die Debitorenbuchhaltung ein.
+        </para>
+
+        <screenshot id="bus-ar-invoicepost">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ar_invoicepost.png"
+                       srccredit="Mechtilde Stehmann" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Rechnung buchen</phrase>
+            </textobject>
+
+            <caption>
+              <para>Rechnung buchen
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
+
+      <sect3 id="bus-ar-invoicefind2">
+        <title>Suchen</title>
+
+        <para>Um eine existierende Rechnung zu finden, nutzen Sie den Menüeintrag<menuchoice>
+            <guimenu>Geschäft</guimenu><guisubmenu>Kunden</guisubmenu><guimenuitem>Rechnung
+            suchen&hellip;</guimenuitem>
+          </menuchoice>. In den Suchergebnissen können Sie eine Rechnung auswählen, um diese zu betrachten oder zu
+          bearbeiten.
+        </para>
+
+        <note>
+          <para>Bevor Sie eine gebuchte Rechnung bearbeiten können, müssen Sie die <guilabel>Rechnungsbuchung
+            rückgängig</guilabel> machen.
+          </para>
+        </note>
+
+        <para>Ein Gestaltungsziel in &app;&rsquo;s Debitorenbuchhaltung war, verschiedene Wege zum gleichen Ziel
+          zu erlauben. So können Sie eine Ausgangsrechnung auf verschiedenen Wegen erreichen,
+          abhängig davon, wie Sie über das Problem denken:
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Sie können zuerst den Kunden suchen und dann dessen Rechnungen.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Sie können die Rechnungen nach der Nummer oder dem Unternehmensnamen suchen.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Sie können die Rechnungen auflisten, die mit einem Kundenauftrag verbunden sind.
+            </para>
+          </listitem>
+        </itemizedlist>
+      </sect3>
+
+      <sect3 id="bus-ar-invoiceprint2">
+        <title>Drucken</title>
+
+        <para>Nach dem Buchen einer Rechnung sollten Sie diese drucken und an Ihren Kunden senden. Um eine
+          Rechnung zu drucken, Nutzen Sie den Menüeintrag<menuchoice>
+            <guimenu>Datei</guimenu><guimenuitem>Rechnung drucken</guimenuitem>
+          </menuchoice>.
+        </para>
+
+        <screenshot id="bus-ar-invoiceprint">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ar_invoiceprint.png"
+                       srccredit="Mechtilde Stehmann " />
+            </imageobject>
+
+            <textobject>
+              <phrase>Druckausgabe Rechnung</phrase>
+            </textobject>
+
+            <caption>
+              <para>Druckausgabe Rechnung
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <note>
+          <para>Sie können das Erscheinungsbild der Rechnung ändern, z.B. ein Firmenlogo etc. hinzufügen. Wie das
+            geht, steht unter <xref
+        linkend="bus-ar-invoicechange" />.
+          </para>
+        </note>
+
+        <para>Rechnungen können auch vom Hauptfenster aus ausgedruckt werden, indem dort aus dem Hauptmenü<menuchoice>
+            <guimenu>Berichte</guimenu><guisubmenu>Geschäft</guisubmenu><guimenuitem>Druckbare
+            Rechnung&hellip;</guimenuitem>
+          </menuchoice>Hauptmenü ausgewählt wird. Das sich ergebende Berichtsfenster stellt fest, dass keine gültige
+          Rechnung ausgewählt wurde. Um die Rechnung zum Drucken auszuwählen:
+        </para>
+
+        <orderedlist>
+          <listitem>
+            <para>Nutzen Sie die Schaltfläche <guibutton>Optionen</guibutton> in der
+              <emphasis>Werkzeugleiste</emphasis> oder wählen Sie in der Menüleiste<menuchoice>
+                <guimenu>Bearbeiten</guimenu><guimenuitem>Berichtsoptionen </guimenuitem>
+              </menuchoice>aus.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Wählen Sie den Reiter <guilabel>Allgemein</guilabel> im Dialog Druckbare Rechnung.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Klicken Sie die Schaltfläche <guibutton>Auswahl</guibutton> in der Nähe des Feldes
+              <guilabel>Rechnungsnummer</guilabel>.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Suchen Sie wie üblich nach der Rechnung.
+            </para>
+          </listitem>
+        </orderedlist>
+
+        <para>Sie können auch die Rechnung innerhalb des Zahlungsprozessdialogs ausdrucken. Schauen Sie dazu
+          unter <xref linkend="bus-ar-payment1" /> für die Anweisungen, wie dies durchzuführen
+          ist.
+        </para>
+      </sect3>
+
+      <sect3 id="bus-ar-invoicestarting2">
+        <title>Erste Rechnungsnummer zuweisen</title>
+
+        <para>Standardmäßig startet &app; mit der Rechnungsnummer 1 und zählt ab da hoch. Sie können eine
+          Rechnungsnummer jedes Mal händisch in die Textbox eingeben, wenn Sie eine Rechnung
+          erstellen. Aber dies ist ermüdend, und früher oder später führt dies zu doppelten
+          Nummern.
+        </para>
+
+        <para>Sie können die erste Rechnungsnummer ändern, wenn dies für Sie wichtig ist. Nutzen Sie<menuchoice>
+            <guimenu>Datei</guimenu><guimenuitem>Eigenschaften </guimenuitem>
+          </menuchoice>, greifen Sie auf den Reiter <guilabel>Zähler </guilabel> zu, ändern Sie den Wert der
+          <guilabel>Rechnungsnummer</guilabel> dergestalt, dass sie um eins kleiner ist als Ihre
+          erwartete erste Rechnungsnummer, und klicken Sie die Schaltfläche
+          <guibutton>OK</guibutton> oder die Schaltfläche <guibutton>Anwenden</guibutton>.
+        </para>
+      </sect3>
+    </sect2>
+
+    <sect2 id="bus-ar-jobs1">
+      <title>Kundenaufträge</title>
+
+      <para>Kundenaufträge werden genutzt, um viele Rechnungen und Gutschriften für den gleichen Kunden
+        zusammenzufassen. Die Nutzung der Funktion Kundenaufträge ist freiwillig. Die Eigenschaft
+        ist nützlich, wenn Sie viele <guilabel>Aufträge </guilabel> für den gleichen Kunden
+        haben, und wenn Sie alle Rechnungen und Gutschriften zu einer einzelnen Auftrag auf einem
+        Blick sehen wollen.
+      </para>
+
+      <screenshot id="bus-ar-jobnew">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ar_jobnew.png"
+                     srccredit="Mechtilde Stehmann" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Neue Kundenauftrag</phrase>
+          </textobject>
+
+          <caption>
+            <para>Neue Kundenauftrag
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Um Kundenauftrag zu nutzen, müssen Sie diese erstellen, in dem Sie den Menüeintrag<menuchoice>
+          <guimenu>Geschäft</guimenu><guisubmenu>Kunden </guisubmenu><guimenuitem>Neuer
+          Auftrag&hellip;</guimenuitem>
+        </menuchoice>nutzen. Sie werden das Fenster <guilabel>Neuer Auftrag</guilabel> sehen.
+      </para>
+
+      <para>Um eine vorhandene Kundenauftrag zu bearbeiten, nutzen Sie den Menüeintrag<menuchoice>
+          <guimenu>Geschäft</guimenu><guisubmenu>Kunden</guisubmenu><guimenuitem>Suche
+          Auftrag&hellip;</guimenuitem>
+        </menuchoice>. Wählen Sie den erwünschten Auftrag in den Suchergebnissen und klicken Sie auf die Schaltfläche
+        <guilabel>Auftrag ansehen/bearbeiten</guilabel>.
+      </para>
+
+      <para>Zum Auswählen der Rechnungen und Gutschriften, die mit einer Auftrag verbunden sind, nutzen Sie den
+        Menüeintrag<menuchoice>
+          <guimenu>Geschäft</guimenu><guisubmenu>Kunden</guisubmenu><guimenuitem>Auftrag
+          suchen&hellip; </guimenuitem>
+        </menuchoice>. Wählen Sie die gewünschte Auftrag in den Suchergebnissen und klicken Sie die Schaltfläche
+        <guilabel>Rechnungsansicht</guilabel>. Ein Fenster mit einer Liste von Rechnungen und
+        Gutschriften, die mit diesem Auftrag verbunden sind, erscheint. Wählen Sie eine Rechnung
+        oder Gutschrift aus und klicken Sie die Schaltfläche <guilabel>Rechnungsansicht</guilabel>,
+        um das Rechnungsbearbeitungsfenster im Hauptanwendungsfenster zu öffnen.
+      </para>
+    </sect2>
+
+    <sect2 id="bus-ar-payment1">
+      <title>Zahlung verarbeiten</title>
+
+      <para>Möglicherweise werden Sie Zahlung von Ihren Kunden für offene Rechnungen erhalten. Um diese
+        Zahlungen aufzuzeichnen, nutzen Sie die Anwendung Zahlung verarbeiten, zu finden unter<menuchoice>
+          <guimenu>Geschäft</guimenu><guisubmenu>Kunden</guisubmenu><guimenuitem>Zahlung
+          verarbeiten&hellip; </guimenuitem>
+        </menuchoice>.
+      </para>
+
+      <screenshot id="bus-ar-payment">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ar_payment.png"
+                     srccredit="Mechtilde Stehmann" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Zahlung verarbeiten</phrase>
+          </textobject>
+
+          <caption>
+            <para>Zahlung verarbeiten
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+
+    <sect2 id="bus-ar-invoicechange">
+      <title>Änderung des Erscheinungsbildes der Rechnung</title>
+
+      <para>Die Standardausführung der Rechnung - wie in <xref
+    linkend="bus-ar-invoiceprint2" />
+        dargestellt, ist ziemlich öde. Die Standardausführung der Rechnung lässt den oberen Teil
+        des Formulars frei. So können Sie es auf Kopfbögen Ihrer Firma drucken. Sie können
+        einiges machen, um das Erscheinungsbild der Rechnung zu ändern.
+      </para>
+
+      <para>Nutzen Sie<menuchoice>
+          <guimenu>Datei</guimenu><guimenuitem> Eigenschaften</guimenuitem>
+        </menuchoice>, um Ihre Firmenangaben im Register <guilabel>Geschäft</guilabel> des Fensters
+        <guilabel>Buch-Optionen</guilabel> einzugeben. Einige der eingegebenen Informationen werden
+        auf der rechten Seite der Rechnungen gedruckt.
+      </para>
+
+      <para>Um einen individualisierten Hintergrund, ein Kopfbanner oder Logo zu den Rechnungen hinzuzufügen,
+        ändern Sie die Rechnungsstilvorlagen. Um dies zu tun, gehen Sie zu<menuchoice>
+          <guimenu>Bearbeiten</guimenu><guimenuitem>Stilvorlagen</guimenuitem>
+        </menuchoice>und wählen die Schaltfläche <guibutton>Neu</guibutton> im Fenster <guilabel>HTML-Stilvorlage
+        auswählen</guilabel> aus, welches erscheint. Sie werden ein Fenster wie dieses sehen:
+      </para>
+
+      <screenshot id="bus-ar-invoicechange1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ar_invoicechange1.png"
+                     srccredit="Mechtilde Stehmann" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Neue Stilvorlage</phrase>
+          </textobject>
+
+          <caption>
+            <para>Neue Stilvorlage.
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Geben Sie der neuen Stilvorlage einen <guilabel>Name</guilabel>n (z.B.
+        <guilabel>Kundenrechnung</guilabel>) und wählen Sie die <guilabel>Vorlage</guilabel>
+        <guilabel>Elegant</guilabel>. Wenn Sie die Schaltfläche <guibutton>OK</guibutton>
+        Schaltfläche klicken, wird das Fenster <guilabel>Eigenschaften HTML-Stilvorlage</guilabel>
+        angezeigt. Dieses Fenster zeigt Ihnen fünf Abschnitte am linken Rand:
+        <guilabel>Farben</guilabel>, <guilabel>Schriftarten</guilabel>,
+        <guilabel>Allgemein</guilabel>, <guilabel>Bilder</guilabel> und
+        <guilabel>Tabellen</guilabel>. Der Abschnitt <guilabel>Farben</guilabel> erlaubt Ihnen die
+        Farben der verschiedenen Elemente der Rechnung zu ändern. Im Abschnitt
+        <guilabel>Schriftarten</guilabel> können Sie Schriftart und -größe einstellen. Der
+        Abschnitt <guilabel>Allgemein</guilabel> erlaubt Ihnen die
+        <guilabel>Sachbearbeiter</guilabel> und <guilabel>Erstellt für:</guilabel> Information
+        festzulegen und <guilabel>Links aktivieren</guilabel>. Der Abschnitt
+        <guilabel>Bilder</guilabel> erlaubt Ihnen Grafiken in die Stilvorlage zu importieren. Der
+        Abschnitt <guilabel>Tabellen</guilabel> erlaubt es Ihnen den Raum um die Tabelle
+        einzustellen, welche die Rechnung ausmachen.
+      </para>
+
+      <para>Um ein Firmenlogo, ein Kopfbanner und ein Hintergrundbild einzubinden, nutzen Sie Ihr bevorzugtes
+        Grafikprogramm wie <application>The Gimp</application> oder <application>OpenOffice
+        Draw</application>, um die Bilder entweder im <acronym>GIF</acronym>- oder
+        <acronym>PNG</acronym>-Format zu speichern. Dann importieren Sie diese in die Stilvorlage,
+        indem Sie den Abschnitt <guilabel>Bilder</guilabel> wie oben beschrieben nutzen.
+      </para>
+
+      <para>Nachstehend ein Beispiel, das die Importe aller drei Bildarten zeigt.
+      </para>
+
+      <screenshot id="bus-ar-invoicechange2">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/bus_ar_invoicechange2.png"
+                     srccredit="Mechtilde Stehmann" width="&img-w;"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata fileref="figures/bus_ar_invoicechange2.png"
+                     srccredit="Mechtilde Stehmann"/>
+          </imageobject>
+
+          <textobject>
+            <phrase>Beispiel HTML Stilvorlagen</phrase>
+          </textobject>
+
+          <caption>
+            <para>Das <acronym>HTML</acronym> Stilvorlagenfenster mit einem Beispiel Hintergrundkachel, Kopfbanner and
+              Logo.
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <note>
+        <para>Die Bilder werden in der Rechnung wie folgt platziert. Die <guilabel>Hintergrundkachel</guilabel>
+          wird gekachelt, um das Hintergrundbild zu werden. Das <guilabel>Kopfbanner</guilabel> geht
+          über den Rechnungstext und das <guilabel>Logo</guilabel> wird in die obere linke Ecke der
+          Rechnung links vom Kopfbanner untergebracht. Möglicherweise müssen Sie einige Bilder
+          unterschiedlicher Größe ausprobieren, bis Sie die Rechnung schön ausdrucken können.
+          Einige Größenempfehlungen sind, dass das Logo 1 cm² groß und das Kopfbanner 15 cm
+          breit und 1 cm hoch sein sollten.
+        </para>
+      </note>
+
+      <para>Nachdem Sie die Stilvorlage konfiguriert haben, wählen Sie beim Drucken der Rechnung die zu
+        nutzende Stilvorlage im <guimenu>Optionen</guimenu>-Menü. Nachfolgend sehen Sie die sich
+        daraus ergebende Rechnung nach Anwendung der oben dargestellten Stilvorlage.
+      </para>
+
+      <screenshot id="bus-ar-invoicechange3">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ar_invoicechange3.png"
+                     srccredit="Patrick Schweiger" />
+          </imageobject>
+
+          <textobject>
+            <phrase>HTML Stilvorlage Beispiel</phrase>
+          </textobject>
+
+          <caption>
+            <para>Die scheußliche Rechnung, die sich aus den in der Stilvorlage ausgewählten Grafiken ergibt.
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+  </sect1>
+
+  <sect1 id="bus_ap">
+    <title>Kreditorenbuchhaltung</title>
+
+    <para>Die Kreditorenbuchhaltung bezieht sich auf Lieferungen und Leistungen, die ein Unternehmen gekauft
+      hat und nun bezahlen muss.
+    </para>
+
+    <sect2 id="bus-ap-components1">
+      <title>Systemkomponenten</title>
+
+      <para>&app; hat eine integrierte Kreditorenbuchhaltung. Die von der Kreditorenbuchhaltung erzeugten
+        Geschäftsvorfälle werden im Konto Verbindlichkeiten aus Lieferung und Leistung
+        aufgezeichnet. In der Regel arbeiten Sie nicht direkt mit diesem Konto, sondern nutzen die
+        vier integrierten &app; Passiva-Anwendungsbestandteile. Die Passiva-Anwendungsbestandteile
+        sind im Untermenü<menuchoice>
+          <guimenu>Geschäft</guimenu><guisubmenu>Kunden</guisubmenu>
+        </menuchoice>erreichbar. Diese Passiva-Anwendungsbestandteile sind:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Lieferanten</guilabel> sind Personen oder Unternehmen, von denen Sie Produkte oder
+            Leistungen auf Kredit gekauft haben.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Lieferantenrechnungen </guilabel> bilden die materiellen Rechnungen ab, die Lieferanten
+            senden, um von Ihnen Zahlungen zu erhalten. Eine Rechnung enthält eine aufgegliederte
+            Liste der Waren und Leistungen, die Sie gekauft haben.
+          </para>
+
+          <para>Zusätzlich unterstützt &app; auch <guilabel>Gutschriften</guilabel>, welche die Umkehrung der
+            Rechnung bilden. Eine Gutschrift erhält man gewöhnlich vom Lieferanten, um Posten zu
+            korrigieren, die irrtümlich in Rechnung gestellt oder zurückgesandt wurden..
+          </para>
+
+          <para>Beide Dokumentenarten werden mit den gleichen Menüpunkten eingerichtet.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Unter <guilabel>Aufträge</guilabel> (optional) können Sie Lieferantenaufträge eintragen.
+            Aufträge sind eine Einrichtung, mit der Sie mehrere Rechnungen eines einzelnen
+            Lieferanten gruppieren kann.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>Unter <guilabel>Zahlung verarbeiten&hellip;</guilabel> können Sie Zahlungen an einen Lieferanten
+            aufzeichnen, dem Sie Geld schulden.
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Die folgenden Abschnitte führen in die einzelnen Passiva-Anwendungsbestandteile ein.
+      </para>
+    </sect2>
+
+    <sect2 id="bus-ap-vendors1">
+      <title>Lieferanten</title>
+
+      <para>Ein Lieferant ist eine Gesellschaft oder eine Person, von der Sie Waren oder Leistungen beziehen.
+        Lieferanten müssen im Passiva-System registriert sein.
+      </para>
+
+      <sect3 id="bus-ap-vendornew2">
+        <title>Neuer Lieferant</title>
+
+        <para>Um einen neuen Lieferanten zu registrieren, wählen Sie den Menüeintrag<menuchoice>
+            <guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Neuer
+            Lieferant&hellip;</guimenuitem>
+          </menuchoice>. Geben Sie die allgemeinen Informationen über den Lieferanten, wie Firmenname, Adresse, Telefon-
+          und Faxnummer etc. ein. Unten finden Sie eine Liste weiterer Optionen:
+        </para>
+
+        <para>So sieht das Registrierungsfenster für einen neuen Lieferanten aus:
+        </para>
+
+        <screenshot id="bus-ap-vendornew">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ap_vendornew.png" 
+            srccredit="Mechtilde Stehmann"/>
+            </imageobject>
+
+            <textobject>
+              <phrase>Registrierungsfenster - Neuer Lieferant</phrase>
+            </textobject>
+
+            <caption>
+              <para>Registrierungsfenster - Neuer Lieferant
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
+
+      <sect3 id="bus-ap-vendorfind2">
+        <title>Lieferant suchen</title>
+
+        <para>Um einen existierenden Lieferanten zu suchen, nutzen Sie das Fenster<menuchoice>
+            <guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Lieferanten
+            suchen&hellip;</guimenuitem>
+          </menuchoice>. Sie wählen einen Lieferanten mit <guibutton>Lieferant anzeigen/bearbeiten</guibutton> aus den
+          Suchergebnissen aus. Dieses Fenster wird auch benutzt, um einen Lieferanten zu suchen,
+          wenn Rechnungen eingehen und Zahlungen geleistet werden.
+        </para>
+
+        <screenshot id="bus-ar-vendorfind">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ap_vendorfind.png" 
+            srccredit="Mechtilde Stehmann"/>
+            </imageobject>
+
+            <textobject>
+              <phrase>Fenster - Lieferanten suchen</phrase>
+            </textobject>
+
+            <caption>
+              <para>Lieferanten suchen
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>Wenn viele Lieferanten den Suchkriterien entsprechen, kann die gewählte Suche durch eine
+          zusätzliche Suche in den aktuellen Suchergebnissen verfeinert werden. Das aktuelle
+          Ergebnis wird durchsucht, wenn der Radiobutton <guilabel>Verfeinern der aktuellen
+          Suche</guilabel> ausgewählt ist. Tatsächlich wählt &app; diese Option für Sie, nachdem
+          Sie die anfängliche Suche haben laufen lassen.
+        </para>
+
+        <para>Wenn der Lieferant, den Sie suchen, nicht den gewählten Suchkriterien entspricht, können Sie die
+          Suchkriterien durch Klicken des Radiobutton <guilabel>Neue Suche</guilabel> und dann der
+          Schaltfläche <guibutton>Suchen</guibutton> ändern. Der wichtige Schritt ist die Auswahl
+          <guilabel>Neue Suche</guilabel>. Wenn der Lieferant nicht im Ergebnis der ursprünglichen
+          Suche ist und Sie nur in diesem Ergebnissatz suchen, kann der Lieferant trotz neuer
+          Suchkriterien nicht gefunden werden.
+        </para>
+
+        <note>
+          <para>Um eine Liste aller registrierten aktiven Lieferanten zu erhalten, setzen Sie das Suchkriterium auf
+            <guilabel>entspricht regulärem Ausdruck</guilabel> und setzen einen einzelnen Punkt
+            <quote>.</quote> in das Texteingabefeld. Stellen Sie sicher, dass <guilabel>Nur aktive
+            Daten durchsuchen</guilabel> ausgewählt ist. Dann klicken Sie
+            <guibutton>Suchen</guibutton>. Der reguläre Ausdruck <quote>.</quote> findet alles.
+          </para>
+        </note>
+      </sect3>
+    </sect2>
+
+    <sect2 id="bus-ap-bills1">
+      <title>Lieferantenrechnung</title>
+
+      <para>Eine Lieferantenrechnung ist eine Zahlungsaufforderung von einem Lieferanten. &app; kann Rechnungen
+        verfolgen.
+      </para>
+
+      <para>Eine Gutschrift ist ein Dokument, dass Sie vom Lieferanten erhalten, um geleistete Lieferungen oder
+        Leistungen zu berichtigen, die in einer Rechnung falsch berechnet wurden. &app; kann
+        Gutschriften durch dieselben Menüeinträge wie bei Rechnungen erzeugen und verfolgen .
+      </para>
+
+      <note>
+        <para>Dieser Abschnitt trifft sowohl auf Rechnungen als auch auf Gutschriften zu. Um Wiederholungen zu
+          vermeiden und den Text leichter lesbar zu halten, wird er sich nur auf Rechnungen
+          beziehen. Sie können ihn genauso auf Gutschriften anwenden. Nur wo sich das Verhalten der
+          Gutschriften von den Rechnungen unterscheidet, wird dies ausdrücklich angesprochen.
+        </para>
+      </note>
+
+      <sect3 id="bus-ap-billnew2">
+        <title>Neu</title>
+
+        <para>Wenn Sie eine Rechnung von einem Lieferanten erhalten und diese in &app; eingeben wollen, müssen
+          Sie eine neue Rechnung erstellen. Um eine neue Rechnung zu erstellen, nutzen Sie den
+          Menüeintrag<menuchoice>
+            <guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Neue
+            Rechnung</guimenuitem>
+          </menuchoice>, und füllen das erscheinende Fenster entsprechend aus.
+        </para>
+
+        <screenshot id="bus-ap-billnew">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ap_billnew.png" 
+            srccredit="Mechtilde Stehmann"/>
+            </imageobject>
+
+            <textobject>
+              <phrase>Registrierungsfenster: Neue Rechnung</phrase>
+            </textobject>
+
+            <caption>
+              <para>Registrierungsfenster: Neue Rechnung
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>Wenn Sie nun auf <guibutton>OK</guibutton> klicken, öffnet sich <guilabel>Neue Lieferantenrechnung
+          bearbeiten</guilabel>.
+        </para>
+      </sect3>
+
+      <sect3 id="bus-ap-billedit2">
+        <title>Neue Lieferantenrechnung bearbeiten</title>
+
+        <para>Im Fenster Neue Lieferantenrechnung bearbeiten können Sie eine aufgeschlüsselte Liste der Waren
+          und Leistungen, die Sie erworben haben, in ähnlicher Weise wie die Kontenregistrierung
+          eingeben. Für Gutschriften geben Sie stattdessen eine aufgeschlüsselte Liste der Waren
+          und Leistungen ein, die der Lieferant erstattet.
+        </para>
+
+        <screenshot id="bus-ap-billedit">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ap_billedit.png" 
+            srccredit="Mechtilde Stehmann"/>
+            </imageobject>
+
+            <textobject>
+              <phrase>Neue Lieferantenrechnung bearbeiten</phrase>
+            </textobject>
+
+            <caption>
+              <para>Neue Lieferantenrechnung bearbeiten
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <para>Wenn Sie die Eingabe aller Elemente beendet haben, müssen Sie <guilabel> diese Rechnung in Ihre
+          Konten buchen</guilabel>.
+        </para>
+      </sect3>
+
+      <sect3 id="bus-ap-billpost2">
+        <title>Diese Rechnung in Ihre Konten buchen</title>
+
+        <para>Wenn Sie die Eingabe einer Rechnung beendet haben, müssen Sie <guilabel>diese Rechnung in Ihre
+          Konten buchen</guilabel>. Sie müssen nicht sofort die Rechnung in die Konten buchen; Sie
+          können das Fenster schließen und später dahin zurückkehren. In diesem Fall müssen Sie
+          dann noch die Rechnung buchen. Erst das Buchen der Rechnung stellt Ihre
+          Geschäftsvorfälle in ein Verbindlichkeitskonto ein. Das Buchungsfenster erscheint und
+          fordert von Ihnen, Informationen einzugeben:
+        </para>
+
+        <screenshot id="bus-ap-billpost">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_ap_billpost.png" 
+            srccredit="Mechtilde Stehmann"/>
+            </imageobject>
+
+            <textobject>
+              <phrase>Buchungsfenster</phrase>
+            </textobject>
+
+            <caption>
+              <para>Buchungsfenster
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
+
+      <sect3 id="bus-ap-billfind2">
+        <title>Suchen</title>
+
+        <para>Um eine vorhandene Rechnung zu suchen, nutzen Sie den Menüeintrag<menuchoice>
+            <guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu>
+            <guimenuitem>Lieferantenrechnung suchen&hellip;</guimenuitem>
+          </menuchoice>. Von den Suchergebnissen können Sie eine Rechnung zur Bearbeitung oder zur Ansicht auswählen.
+        </para>
+
+        <note>
+          <para>Bevor Sie eine gebuchte Rechnung bearbeiten können, müssen Sie die <guilabel>Rechnungsbuchung
+            rückgängig</guilabel> machen.
+          </para>
+        </note>
+
+        <note>
+          <para>Es gibt andere Wege, auf eine vorhandene Rechnung zuzugreifen. Diese sind ähnlich wie der Zugriff
+            auf Ausgangsrechnungen für Ihre Kunden. Siehe auch
+            <xref linkend="bus-ar-invoicefind2" /> für mehr Informationen.
+          </para>
+        </note>
+      </sect3>
+    </sect2>
+
+    <sect2 id="bus-ap-jobs1">
+      <title>Lieferantenaufträge</title>
+
+      <para>Lieferantenaufträge werden benutzt, um mehrere Rechnungen und Gutschriften von einem einzelnen
+        Lieferanten zusammenzufassen. Die Nutzung dieser Funktion ist freigestellt. Die Funktion ist
+        nützlich, wenn Sie mehrere <guilabel>Aufträge</guilabel> für denselben Lieferanten haben
+        und alle Rechnungen und Gutschriften für einen einzelnen Auftrag anschauen wollen.
+      </para>
+
+      <para>Um Aufträge zu nutzen, müssen Sie diese unter<menuchoice>
+          <guimenu> Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Neuer Auftrag
+          </guimenuitem>
+        </menuchoice>erstellen. Sie werden nun das Fenster <guilabel>Neuer Auftrag</guilabel> sehen.
+      </para>
+
+      <screenshot id="bus-ap-jobnew">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ap_jobnew.png" 
+            srccredit="Mechtilde Stehmann"/>
+          </imageobject>
+
+          <textobject>
+            <phrase>Neuer Lieferantenauftrag</phrase>
+          </textobject>
+
+          <caption>
+            <para>Neuer Lieferantenauftrag
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <para>Um einen vorhandenen Lieferantenauftrag zu bearbeiten, nutzen Sie den Menüeintrag<menuchoice>
+          <guimenu>Geschäft</guimenu><guisubmenu> Lieferant</guisubmenu><guimenuitem>Aufträge
+          suchen</guimenuitem>
+        </menuchoice>. Wählen Sie den gewünschten Auftrag in den Suchergebnissen und klicken Sie die Schaltfläche
+        <guilabel>Auftrag anzeigen/bearbeiten</guilabel>.
+      </para>
+
+      <para>Um eine Auswahl unter den Rechnungen, die mit einem gegebenen Auftrag verbunden sind, zu treffen,
+        nutzen Sie den Menüeintrag<menuchoice>
+          <guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Auftrag
+          suchen</guimenuitem>
+        </menuchoice>. Wählen Sie den gewünschten Auftrag in den Suchergebnissen und klicken Sie die Schaltfläche
+        <guilabel>Rechnungen anzeigen</guilabel>. Ein Fenster erscheint, das die Rechnungen und
+        Gutschriften, die mit diesem Auftrag verbunden sind, auflistet. Wählen Sie eine Rechnung
+        oder Gutschrift und klicken Sie die Schaltfläche <guilabel>Rechnung anzeigen</guilabel>, um
+        den Rechnungseditor im Hauptanwendungsfenster zu öffnen.
+      </para>
+    </sect2>
+
+    <sect2 id="bus-ap-payment1">
+      <title>Zahlung verarbeiten</title>
+
+      <para>Irgendwann müssen Sie Ihre Rechnungen auch bezahlen. Dazu nutzen Sie die Zahlungsanwendung unter<menuchoice>
+          <guimenu>Geschäft</guimenu><guisubmenu>Lieferant</guisubmenu><guimenuitem>Zahlung
+          verarbeiten&hellip;</guimenuitem>
+        </menuchoice>.
+      </para>
+
+      <para>Darunter ist das Fenster &app; Zahlungen verarbeiten.
+      </para>
+
+      <screenshot id="bus-ap-payment">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_ap_payment.png" 
+            srccredit="Mechtilde Stehmann"/>
+          </imageobject>
+
+          <textobject>
+            <phrase>Zahlungen verarbeiten</phrase>
+          </textobject>
+
+          <caption>
+            <para>Zahlungen verarbeiten
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+    </sect2>
+  </sect1>
+
+  <sect1 id="bus_payroll">
+    <title>Lohn- und Gehaltsabrechnung</title>
+
+    <para>&untranslated-de;
+    </para>
+<!-- 
+    <para>Payroll is a financial record of wages, net pay, paid vacations, and deductions for an employee.
+      This chapter demonstrates how to track payroll using &app;
+    </para>
+
+    <sect2 id="bus-pay-concepts">
+      <title>Basic Concepts</title>
+
+      <para>Payroll is a financial record of wages, net pay, paid vacations, and deductions for an employee.
+        Basically, anything that relates to giving money or benefits to an employee. Payroll is one
+        of the more complex tasks in accounting, because there are many different accounts, people,
+        and agencies involved in paying salaries.
+      </para>
+
+      <para>Payroll is typically accounted for as an expense. Sometimes accountants <quote>store</quote> some
+        payroll expenses in a short term liability account. This is useful for things such as
+        payroll taxes, which may be paid at a different time than the employee. The employee might
+        get paid biweekly, while taxes are paid quarterly. This chapter presents a methodology which
+        expenses payroll immediately for salaries, but stores taxes in liability accounts.
+      </para>
+
+      <note>
+        <para>&app; does not have an integrated payroll system. While you can track payroll expenses in &app;, the
+          calculation of taxes and deductions has to be done outside of &app;.
+        </para>
+      </note>
+    </sect2>
+
+    <sect2 id="bus-pay-acct">
+      <title>Account Setup</title>
+
+      <para>Local tax law must be considered when setting up accounts. Because there are many different ways
+        payroll taxes are handled throughout the world, this section presents a very simple
+        structure. From this, you should be able to adapt your particular payroll deductions setup.
+      </para>
+
+      <para>Assume that you must pay 2 taxes, Tax1 and Tax2 and that each has an employee contributed and an
+        employer contributed component.
+      </para>
+
+      <para>The employee&rsquo;s salary and these two taxes are expense accounts. The tax components are
+        liability accounts. The tax liability accounts are where you accumulate the taxes withheld
+        for all of your employees. The taxes are later paid to the appropriate government agency.
+      </para>
+
+      <para><screen>Simple Payroll Account Layout:
+
+-Assets
+   -Checking
+-Liabilities
+   -Tax1  (short term <quote>storage</quote> account)
+   -Tax2  (short term <quote>storage</quote> account)
+-Expenses
+   -Salaries
+   -Tax1
+   -Tax2</screen><note>
+          <para>Resist the temptation to create per-employee sub-accounts to track individual salaries. Creating a
+            sub-account for each employee leads to unmanageably large lists of accounts. Imagine the
+            account structure after a few years of employees coming and going. It is much simpler to
+            keep all of your employees&rsquo; payroll records within a single account
+            (<emphasis>Expenses:Salaries</emphasis> for example) and use reports to view
+            per-employee information.
+          </para>
+        </note>
+      </para>
+    </sect2>
+
+    <sect2 id="bus-pay-protocol">
+      <title>Protocol</title>
+
+      <para>&app; does not have an integrated payroll system. &app; can track your payroll expenses, but you
+        need to develop a payroll protocol and perform the calculations outside of &app;, in a
+        spreadsheet for example. In this section, one such protocol is presented. You can use the
+        sample protocol as a model.
+      </para>
+
+      <sect3 id="bus-pay-protocolone2">
+        <title>Step 1: Deductions list</title>
+
+        <para>The first step to the payroll protocol is to create a list of all the possible taxes and deductions
+          for each employee. Each entry should include definitions and formulas for calculating each
+          value. Once the protocol is established it needs to be changed only when payroll laws or
+          tax rates change.
+        </para>
+
+        <para>In the proposed scenario, such a list would look like this:
+        </para>
+
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para><emphasis>E_GROSS_SALARY</emphasis> - Employee gross salary
+            </para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis>E_TAX1</emphasis> - Employee contribution to tax1 (X% of E_GROSS_SALARY)
+            </para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis>E_TAX2</emphasis> - Employee contribution to tax2 (X% of E_GROSS_SALARY)
+            </para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis>C_TAX1</emphasis> - Company contribution to tax1 (X% of E_GROSS_SALARY)
+            </para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis>C_TAX2</emphasis> - Company contribution to tax2 (X% of E_GROSS_SALARY)
+            </para>
+          </listitem>
+        </itemizedlist>
+
+        <note>
+          <para>The employee&rsquo;s net salary (E_NET_SALARY) is defined as E_GROSS_SALARY - E_TAX1 - E_TAX2 and
+            need not be placed in this list since it is composed of items that already exist.
+          </para>
+        </note>
+
+        <para>Place the actual formulas for calculating each deduction in this list. Sometimes these formulas are
+          quite complex, and sometimes they simply say "look it up in table XYZ of the tax codes".
+        </para>
+
+        <para>Notice that you can calculate some interesting values using the above definitions. One such value is
+          the total cost to the company: E_GROSS_SALARY + C_TAX1 + C_TAX2.
+        </para>
+      </sect3>
+
+      <sect3 id="bus-pay-protocoltwo2">
+        <title>Step 2: Create the Transaction Map</title>
+
+        <para>When you record payroll in &app;, do so with a single split transaction. This split transaction
+          populates the appropriate expense and liability accounts. If you need to look at the
+          payroll details at a later time, open the split transaction.
+        </para>
+
+        <para>With the deductions list from above, an employee split transaction map can be generated. Each of the
+          items in the list is mapped to a &app; account.
+        </para>
+
+        <para><table>
+            <title>Transaction Map</title>
+
+            <tgroup cols="3">
+              <thead>
+                <row>
+                  <entry>
+                    Account
+                  </entry>
+
+                  <entry>
+                    Increase
+                  </entry>
+
+                  <entry>
+                    Decrease
+                  </entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry>
+                    Assets:Checking
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    E_NET_SALARY
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Expenses:Salaries
+                  </entry>
+
+                  <entry>
+                    E_GROSS_SALARY
+                  </entry>
+
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Liabilities:Tax1
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    E_TAX1
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Liabilities:Tax2
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    E_TAX2
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Expenses:Tax1
+                  </entry>
+
+                  <entry>
+                    C_TAX1
+                  </entry>
+
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Liabilities:Tax1
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    C_TAX1
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Expenses:Tax2
+                  </entry>
+
+                  <entry>
+                    C_TAX2
+                  </entry>
+
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Liabilities:Tax2
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    C_TAX2
+                  </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+        </para>
+
+        <para>Note that the C_TAX1 and C_TAX2 components have entries in the both the liability and expense
+          accounts. The company component of each tax is expensed at the time of payroll, but
+          remains a liability until taxes are due.
+        </para>
+      </sect3>
+
+      <sect3 id="bus-pay-protocolthree2">
+        <title>Step 3: Pay the Employee</title>
+
+        <para>Go to the account from which the employee will be paid, for example your
+          <emphasis>Assets:Checking</emphasis> account. Open a split transaction and enter the real
+          values using the Transaction Map above as a guide. Repeat this for all employees.
+        </para>
+
+        <tip>
+          <para>This manual process is tedious, especially if you have a large number of employees.
+          </para>
+
+          <para>One &app; tool you certainly want use when entering employee payroll is duplicate transaction (use
+            the <guibutton>Duplicate</guibutton> <emphasis>Toolbar</emphasis> button). This saves
+            you from having to enter all the transaction splits for each employee. You still need to
+            change the amounts of money to match each employee&rsquo;s real payroll values, but you
+            will not have to build the split for each employee.
+          </para>
+
+          <para>If payroll transactions do not change significantly every pay period, you can also use the duplicate
+            transaction feature to duplicate each employee&rsquo;s most recent payroll transaction
+            for the current pay period. If you find you are doing so all the time, read about the
+            Schedule Transactions feature and save even more time!
+          </para>
+        </tip>
+      </sect3>
+
+      <sect3 id="bus-pay-protocolfour2">
+        <title>Step 4: Pay the Government</title>
+
+        <para>The final thing to do is to pay the taxes to the government. The liability accounts have been
+          collecting the taxes for various government agencies, and periodically you need to send a
+          check to the government to pay this charge. To do so, you simply enter a 2 account
+          transaction in (for example) your checking account to pay off the tax liability. The
+          transaction is between the checking account and the liability account, no expense account
+          is involved. The expense accounts are charged at the time the tax liability is recorded.
+        </para>
+      </sect3>
+    </sect2>
+
+    <sect2 id="bus-pay-example">
+      <title>Example</title>
+
+      <para>Using the account setup seen previously, let&rsquo;s go through an example. Assume that there are 2
+        employees (E1 and E2) which each earn $1000 per month gross salary. The employee
+        contribution to Tax1 and Tax2 are 10% and 5% respectively. The company contribution to Tax1
+        and Tax2 are 15% and 10% each on top of the employees gross salary.
+      </para>
+
+      <para>Staring with $50k in the bank, and before doing any payroll, the account hierarchy looks like this:
+      </para>
+
+      <screenshot id="bus-pay-ex1">
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/bus_pay_ex1.png" 
+          srccredit="Patrick Schweiger"/>
+          </imageobject>
+
+          <textobject>
+            <phrase>Payroll Example 1</phrase>
+          </textobject>
+
+          <caption>
+            <para>Payroll Initial Setup
+            </para>
+          </caption>
+        </mediaobject>
+      </screenshot>
+
+      <sect3 id="bus-pay-exampleprotocol2">
+        <title>Build Protocol</title>
+
+        <para>The deductions list for employee 1:
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para><emphasis>E_GROSS_SALARY</emphasis> - Employee gross salary - <emphasis>$1000</emphasis>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis>E_TAX1</emphasis> - Employee contribution to tax1 - <emphasis>$100</emphasis> (10% of
+              E_GROSS_SALARY)
+            </para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis>E_TAX2</emphasis> - Employee contribution to tax2 - <emphasis>$50</emphasis> (5% of
+              E_GROSS_SALARY)
+            </para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis>C_TAX1</emphasis> - Company contribution to tax1 - <emphasis>$150</emphasis> (15% of
+              E_GROSS_SALARY)
+            </para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis>C_TAX2</emphasis> - Company contribution to tax2 - <emphasis>$100</emphasis> (10% of
+              E_GROSS_SALARY)
+            </para>
+          </listitem>
+        </itemizedlist>
+
+        <para><table>
+            <title>Transaction Map for Employee 1</title>
+
+            <tgroup cols="3">
+              <thead>
+                <row>
+                  <entry>
+                    Account
+                  </entry>
+
+                  <entry>
+                    Increase
+                  </entry>
+
+                  <entry>
+                    Decrease
+                  </entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry>
+                    Assets:Checking
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    $850 (E_NET_SALARY)
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Expenses:Salaries
+                  </entry>
+
+                  <entry>
+                    $1000 (E_GROSS_SALARY)
+                  </entry>
+
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Liabilities:Tax1
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    $100 (E_TAX1)
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Liabilities:Tax2
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    $50 (E_TAX2)
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Expenses:Tax1
+                  </entry>
+
+                  <entry>
+                    $150 (C_TAX1)
+                  </entry>
+
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Liabilities:Tax1
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    $150 (C_TAX1)
+                  </entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Expenses:Tax2
+                  </entry>
+
+                  <entry>
+                    $100 (C_TAX2)
+                  </entry>
+
+                  <entry></entry>
+                </row>
+
+                <row>
+                  <entry>
+                    Liabilities:Tax2
+                  </entry>
+
+                  <entry></entry>
+
+                  <entry>
+                    $100 (C_TAX2)
+                  </entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+        </para>
+      </sect3>
+
+      <sect3 id="bus-pay-examplepay2">
+        <title>Pay an Employee</title>
+
+        <para>Now, enter the first split transaction for employee 1 in the checking account. The split transaction
+          looks like this:
+        </para>
+
+        <screenshot id="bus-pay-ex2">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_pay_ex2.png" 
+          srccredit="Patrick Schweiger"/>
+            </imageobject>
+
+            <textobject>
+              <phrase>Payroll Example 2</phrase>
+            </textobject>
+
+            <caption>
+              <para>Employee 1 Split Transaction
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+
+        <tip>
+          <para>When paying employees, enter only the employee name in the Description area. If you decide to use
+            &app;&rsquo;s check printing capabilities, the check is automatically made out to the
+            correct employee. If you want to record other information in the transaction besides the
+            employee name, use the Notes area, available when viewing the Register in double-line
+            mode.
+          </para>
+        </tip>
+
+        <para>Repeat this for the second employee, which leaves the account hierarchy looking like this:
+        </para>
+
+        <screenshot id="bus-pay-ex3">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_pay_ex3.png" 
+          srccredit="Patrick Schweiger"/>
+            </imageobject>
+
+            <textobject>
+              <phrase>Payroll Example 3</phrase>
+            </textobject>
+
+            <caption>
+              <para>Account Tree After Salaries Paid
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
+
+      <sect3 id="bus-pay-examplegovt2">
+        <title>Pay the Government</title>
+
+        <para>The <emphasis>Liabilities:Tax1</emphasis> and <emphasis>Liabilities:Tax2</emphasis> accounts
+          continue to track how much you must pay to the government agencies responsible for each.
+          When it is time to pay these agencies, make a transaction from the checking account to the
+          liability accounts. No expense accounts are involved. The main account will then appear
+          like this for this example:
+        </para>
+
+        <screenshot id="bus-pay-ex4">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/bus_pay_ex4.png" 
+          srccredit="Patrick Schweiger"/>
+            </imageobject>
+
+            <textobject>
+              <phrase>Payroll Example 4</phrase>
+            </textobject>
+
+            <caption>
+              <para>Accounts After Paying Government
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </sect3>
+    </sect2>
+-->
+  </sect1>
+</chapter>
