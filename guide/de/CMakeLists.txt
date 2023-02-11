@@ -2,11 +2,7 @@ set (entities
         ch_accts.xml
         ch_basics.xml
         ch_budgets.xml
-        ch_bus_ap.xml
-        ch_bus_ar.xml
-        ch_bus_intro.xml
-        ch_bus_pay.xml
-        ch_bus_setup.xml
+        ch_bus_features.xml
         ch_capgain.xml
         ch_cbook.xml
         ch_cc.xml
