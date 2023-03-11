@@ -1290,20 +1290,24 @@ Translators:
         </listitem>
 
         <listitem>
-          <para><emphasis role="bold"><link linkend="trans-import-MT940-MT942-DTAUS">MT940</link></emphasis> SWIFT
-            MT940 Customer End of Day Statement Message;
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold"><link linkend="trans-import-MT940-MT942-DTAUS">MT942</link></emphasis> SWIFT
-            MT942 Customer Intra-day Transaction Report;
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><emphasis role="bold"><link linkend="trans-import-MT940-MT942-DTAUS">DTAUS</link></emphasis>
-            (.DTAUS) Banking data Exchange File;
+          <para><emphasis role="bold"><link linkend="trans-import-aqbanking">Others</link></emphasis> <guilabel>Import with AQBanking</guilabel> supports importing several European and International file formats including:
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">CAMT 052</emphasis>Daily Bank Statements</para>
+            </listitem>
+            <listitem>
+              <para>OLYMPIC Banking System <emphasis role="bold">ERI</emphasis></para>
+            </listitem>
+            <listitem>
+              <para>Spanish <emphasis role="bold">Q45</emphasis></para>
+            </listitem>
+            <listitem>
+              <para><emphasis role="bold">SWIFT MT535, MT940, MT942.</emphasis>Bank Statements</para>
+            </listitem>
+            <listitem>
+              <para>Swiss <emphasis role="bold">YellowNet XML</emphasis></para>
+            </listitem>
+          </itemizedlist>
           </para>
         </listitem>
       </itemizedlist>
@@ -2119,44 +2123,14 @@ Translators:
       </caution>
     </sect2>
 
-    <sect2 id="trans-import-MT940-MT942-DTAUS">
-      <title>Import MT940 and MT942 SWIFT and DTAUS format files</title>
-
-      <para>The SWIFT MT940 format is used for an end of day statement by banks using the SWIFT network for data
-        exchange. MT942 is used for an intra-day statement in the same system. DTAUS is a format
-        used with 9 track magnetic tapes since 1976 and later with other removable media (floppy
-        disks). DTAUS has not been supported by banks since 1 February 2016.
-      </para>
-<!--FIXME replace with link to glossary if and when extended to help -->
-      <para>When you select
-        <emphasis role="bold"><guimenu>File</guimenu>-><guisubmenu>Import</guisubmenu>-></emphasis>
-        <itemizedlist>
-          <listitem>
-            <para><emphasis role="bold"><guimenuitem>Import MT940</guimenuitem></emphasis> or;
-            </para>
-          </listitem>
-
-          <listitem>
-            <para><emphasis role="bold"><guimenuitem>Import MT942</guimenuitem></emphasis> or;
-            </para>
-          </listitem>
-
-          <listitem>
-            <para><emphasis role="bold"><guimenuitem>Import DTAUS</guimenuitem></emphasis>.
-            </para>
-          </listitem>
-        </itemizedlist>
-        from the menu, <application>&appname;</application> opens a file selection dialog. Navigate
-        to the MT940, MT942 or DTAUS format file you wish to import and then click on the
-        <emphasis role="bold"><guibutton>Import</guibutton></emphasis> button. On the first import
-        of data to a given account specification in the import file,
-        <application>&appname;</application> will bring up an account selection dialog to select an
-        appropriate account into which to import the transactions in the file.
-        <application>&appname;</application> will map the account description in the import file
-        onto the selected account and use it for future imports from the same account. The imported
-        transactions will then be displayed in the
-        <link linkend="trans-import-matcher"><emphasis role="bold"><guimenuitem>Generic Import
-        Transaction Matcher</guimenuitem></emphasis></link> for review.
+    <sect2 id="trans-import-aqbanking">
+      <title>Import several file formats with AQBanking</title>
+      <para>If &app; was built with &app-aqb; support and you have &app-aqb; installed on your computer you may use <guilabel>Import using AQBanking</guilabel> to import files in several formats.</para>
+      <para>You will first be presented with a dialog box having two lists. The left one lists importer plugins and the right one lists file format profiles available for that importer. In some cases, for example <guilabel>swift</guilabel>, the profiles include specialized formats for particular bank: Continuing the example the <guilabel>swift</guilabel> importer can import both generic <guilabel>MT940</guilabel> and <guilabel>MT942</guilabel> statements and those specialized for the Netherlands's AMRO Bank.</para>
+      <para>Select an importer and a profile from the lists. &app; will remember your selection for the next time you do an import.</para>
+      <para>Click <guilabel>OK</guilabel> to proceed to the filechooser. Select a file to import and click the <guilabel>Import</guilabel> button to proceed.</para>
+      <para><application>&appname;</application> will process the selected file and map the account description in the import file onto the selected account and use it for future imports from the same account. The imported transactions will then be displayed in the
+        <link linkend="trans-import-matcher"><emphasis role="bold"><guimenuitem>Generic Import Transaction Matcher</guimenuitem></emphasis></link> for review.
       </para>
     </sect2>
 
