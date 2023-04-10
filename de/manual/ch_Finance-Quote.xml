@@ -36,6 +36,11 @@ Translators:
       <para>das &app-perl;-Module &app-fq; mit allen Abhängigkeiten.
       </para>
     </listitem>
+
+    <listitem>
+      <para>das &app-perl;-Module JSON::Parse um die Ausgabe von &app-fq; zu steuern.
+      </para>
+    </listitem>
   </itemizedlist>
 
   <note>
@@ -53,11 +58,11 @@ Translators:
 
     <abstract>
       <para>Abhängig von dem verwendeten Betriebssystem ist der Aufwand für die Installation von &app-perl;
-        schnell erledigt und wird in diesem Abschnitt beschrieben.
+        gering und wird in diesem Abschnitt beschrieben.
       </para>
     </abstract>
 
-    <para>Um zu überprüfen ob auf Ihrem System &app-perl; bereits installiert ist, rufen Sie den Befehl
+    <para>Um zu überprüfen ob &app-perl; bereits auf Ihrem System installiert ist, rufen Sie den Befehl
       <userinput>perl -v</userinput> im Terminal auf.
 <!-- Fixme: https://bugs.gnucash.org/show_bug.cgi?id=798618 -->
       <informalexample>
@@ -118,7 +123,7 @@ This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-th
       </step>
 
       <step>
-        <para>Zu Ausführung beötigen Sie <emphasis>Administratorenrechte</emphasis>, die im Dialog abgefragt
+        <para>Zur Ausführung benötigen Sie <emphasis>Administratorenrechte</emphasis>, die im Dialog abgefragt
           werden. Die Installation kann mehr als 15 Minuten dauern.
         </para>
       </step>
@@ -135,8 +140,8 @@ This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-th
       <para>Es empfiehlt sich anschließend, das Verzeichnis in dem &app; installiert ist, unter &win; z.B.
         <userinput><replaceable>C:\Programme (x86)\gnucash\bin</replaceable></userinput>, zu Ihrer
         <envar>PATH</envar>-Umgebungsvariable hinzuzufügen. Auf diese Weise ist es für Sie
-        einfacher, bei Bedarf die <xref linkend="finance-quote-helper" /> zu nutzen. Hierzu
-        informieren Sie sich bitte in den Unterlagen zu Ihrem Betriebssystem.
+        einfacher, bei Bedarf die <xref linkend="fq-command-line" /> zu nutzen. Hierzu informieren
+        Sie sich bitte in den Unterlagen zu Ihrem Betriebssystem.
       </para>
     </tip>
   </sect1>
@@ -156,12 +161,12 @@ NAME
     Finance::Quote - Get stock and mutual fund quotes from various exchanges
 
 SYNOPSIS
-       [...]
+    [...]
 </screen>
       </informalexample>
       angezeigt, dann ist &app-fq; installiert und Sie können, wie in
-      <xref linkend="finance-quote-scheduler" /> beschrieben, den automatisierten Kursabruf
-      konfigurieren. Wenn nicht, dann gibt Ihnen dieser Abschnitt eine Anleitung zur Installation.
+      <xref linkend="fq-auto-quote" /> beschrieben, den automatisierten Kursabruf konfigurieren.
+      Wenn nicht, dann gibt Ihnen dieser Abschnitt eine Anleitung zur Installation.
     </para>
 
     <para>Die Installation von &app-fq; unterscheidet sich von einem Betriebssystem zum anderen. Für die
@@ -192,24 +197,28 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Als nächstes aktualisieren Sie mit <userinput>sudo gnc-fq-update</userinput> oder <userinput>su -c
-          gnc-fq-update</userinput> mit Root-Rechten &app-fq;. Die richtige Syntax ist von der
-          jeweiligen Distribution abhängig. Weitere Informationen finden Sie im nächsten Kapitel
-          unter <xref linkend="gnc-fq-update" />.
+        <simpara>Als nächstes aktualisieren Sie &app-fq; mit <userinput>sudo gnc-fq-update</userinput>. Die richtige
+          Syntax ist von der jeweiligen Distribution abhängig.
         </simpara>
       </step>
 
       <step>
-        <simpara>Führen Sie <userinput>gnc-fq-check</userinput> aus, um zu prüfen, ob &app-fq; richtig installiert
-          ist. Wenn dies so ist, dann werden die Versionsnummer sowie die von &app-fq; verwendbaren
-          Quellen für eine Kursabfrage aufgelistet. Bei Problemen mit der Installation von &app-fq;
-          wird eventuell eine Lösung vorgeschlagen.
+        <simpara>Führen Sie <userinput>gnucash-cli --quotes info</userinput> aus, um zu prüfen, ob &app-fq; richtig
+          installiert ist. Wenn dies so ist, dann werden die Versionsnummer sowie die von &app-fq;
+          verwendbaren Quellen für eine Kursabfrage aufgelistet. Bei Problemen mit der Installation
+          von &app-fq; wird eventuell eine Lösung vorgeschlagen.
         </simpara>
       </step>
     </procedure>
 
     <procedure>
       <title>Unter &mac;</title>
+
+      <note>
+        <para>Sie müssen mit einer Benutzerkennung angemeldet sein, die den Mac administrieren kann, um dieses
+          Vorgehen anzuwenden.
+        </para>
+      </note>
 
       <step>
         <simpara>Beenden Sie &app;.
@@ -230,14 +239,31 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Führen Sie die Anwendung <emphasis>Update Finance Quote</emphasis> im &app; dmg aus.
+        <simpara>Öffnen Sie ein <application>Finder</application>-Fenster, wählen &gm.macOS.appl; in der
+          <emphasis>Seitenleiste</emphasis>, klicken doppelt auf &gmi.macOS.appl.util; in der
+          <emphasis>Dateifläche</emphasis> und öffnen mit Doppelkick eine
+          <application>Terminal</application>-Anwendung.
         </simpara>
+      </step>
 
-        <para>Sie können es von der dmg ausführen oder in denselben Ordner kopieren, in den Sie &app; kopiert
-          haben. Es öffnet sich ein Terminalfenster und führt ein Skript für Sie aus, das Ihnen
-          eine Reihe von Fragen stellt. Akzeptieren Sie bei jeder Frage die Vorgabe, es sei denn,
-          Sie wissen, was Sie tun.
-        </para>
+      <step>
+        <simpara>In der Termianlanwendung tragen Sie <userinput>sudo
+          /Applications/Gnucash.app/Contents/Resources/bin/gnc-fq-update</userinput> ein. Das Skript
+          stellt viele Fragen, die alle mit den Vorgabewerten beantwortet werden können.
+        </simpara>
+      </step>
+
+      <step>
+        <simpara>Geben Sie <userinput>exit</userinput> ein oder Betätigen Sie
+          <keycombo>
+            &kc.ctrl;<keycap>D</keycap>
+          </keycombo>
+          um die Shell zu beenden, gefolgt von
+          <keycombo>
+            &kc.cmd; <keycap>Q</keycap>
+          </keycombo>
+          damit die Terminalanwendung geschlossen wird.
+        </simpara>
       </step>
     </procedure>
 
@@ -257,338 +283,286 @@ SYNOPSIS
     </procedure>
   </sect1>
 
-  <sect1 id="finance-quote-helper">
-    <title>Hilfsprogramme zur Symbolsuche und Aktualisierung</title>
+  <sect1 id="fq-command-line">
+    <title>Verwendung von &app-cli; für Tests und Automatisierung</title>
 
     <abstract>
-      <para>&app; bietet Hilfsprogramme, die Sie bei der Auswahl der richtigen Symbole und der Verifikation für
-        die gewünschte Online- Kursquelle unterstützen. Ein weiteres Skript führt die erstmalige
-        Installation durch oder bringt &app-fq; auf den aktuellen Stand. Und letztendlich stehen
-        auch Tools zur Fehleranalyse bereit.
+      <para>&app; enthält die Befehlszeilenanwendung &app-cli;, die in einer Terminalsitzung verwendet werden
+        kann, um die Version und die unterstützten Quellmodule zu prüfen, Kurse oder Wechselkurse
+        für ausgewählte Wertpapiere oder Währungen anzuzeigen und alle Kurse in einem Buch zu
+        aktualisieren, ohne die grafische Benutzeroberfläche zu starten.
       </para>
     </abstract>
 
-    <procedure>
-      <title>&app-perl; Skripts unter &win; ausführen</title>
+    <sect2 id="fq-check-version">
+      <title>Anzeige der &app-fq; Version und der unterstützten Quellen</title>
 
-      <step>
-        <simpara>Öffnen Sie ein <application>CMD</application>- oder <application>Powershell </application>-Fenster:
-          Klicken Sie auf &gm.win; und geben Sie entweder <userinput>cmd</userinput> oder
-          <userinput>powershell</userinput> ein und wählen Sie den entsprechenden Menüpunkt. Das
-          muss nicht als Administrator ausgeführt werden.
-        </simpara>
-      </step>
+      <para><userinput>gnucash-cli --quotes info</userinput> erzeugt die folgende Ausgabe:
+      </para>
 
-      <step>
-        <simpara>Da, wie zuvor empfohlen, das &app;-Verzeichnis in die <envar>PATH</envar> Umgebungsvariable
-          eingetragen wurde, müssen Sie jetzt nur noch jedem gnc-fq-xxx &app-perl; Skriptbefehl
-          <quote>Perl</quote> und ein Leerzeichen voranstellen, z.B. <userinput>perl
-          gnc-fq-check</userinput>. Andernfalls müssen Sie den Befehl in der Form
-          <userinput><replaceable> C:\strawberry-perl\bin\</replaceable>perl.exe
-          <replaceable>C:\Programme (x86)\gnucash\bin\ </replaceable>gnc-fq-check</userinput>
-          ausführen.
-        </simpara>
-      </step>
-    </procedure>
-
-    <sect2 id="gnc-fq-check">
-      <title>gnc-fq-check</title>
-
-      <abstract>
-        <para>Dieses Programm liefert die Versionsnummer des derzeit installierten &app-fq; Moduls sowie eine
-          Liste der über &app-fq; verfügbaren Quellen. Es informiert Sie auch, wenn es ein Problem
-          mit Ihrer Installation gibt und schlägt eventuell eine Lösung vor.
-        </para>
-      </abstract>
-<!-- Fixme: https://bugs.gnucash.org/show_bug.cgi?id=798618 -->
       <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
-$ gnc-fq-check
-Can't locate Mozilla/CA.pm in @INC (you may need to install the Mozilla::CA module)
-(@INC contains: /usr/lib/perl5/site_perl/5.30.1/x86_64-linux-thread-multi /usr/
-lib/perl5/site_perl/5.30.1 /usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi
-/usr/lib/perl5/vendor_perl/5.30.1 /usr/lib/perl5/5.30.1/x86_64-linux-thread-multi
-/usr/lib/perl5/5.30.1 /usr/lib/perl5/site_perl)
-at /usr/lib/perl5/vendor_perl/5.30.1/Finance/Quote/Tiaacref.pm line 33.
-Compilation failed in require at (eval 303) line 1.
-BEGIN failed--compilation aborted at (eval 303) line 1.
- at /usr/local/bin/gnc-fq-check line 91.
-("1.47" "adig" "aex" "aiahk" "alphavantage" "amfiindia" "asegr" "asia" "asx"
-"australia" "bamosz" "bet" "bmonesbittburns" "bourso" "brasil" "bse" "bsero" "canada"
-"canadamutual" "citywire" "cominvest" "cse" "deka" "dutch" "dwsfunds" "europe"
-"fetch_live_currencies" "fidelity" "fidelity_direct" "fidelityfixed" "financecanada"
-"finanzpartner" "finland" "fool" "france" "ftfunds" "ftportfolios" "ftportfolios_direct"
-"fundlibrary" "goldmoney" "greece" "hex" "hu" "hufund" "hungary" "hustock" "indiamutual"
-"known_currencies" "lerevenu" "maninv" "morningstar" "morningstarjp" "mstaruk" "nasdaq"
-"nyse" "nz" "nzx" "platinum" "romania" "seb_funds" "sixfunds" "sixshares"
-"stockhousecanada_fund" "tdefunds" "tdwaterhouse" "tiaacref" "tnetuk" "troweprice"
-"troweprice_direct" "trustnet" "tsp" "tsx" "uk_unit_trusts" "ukfunds" "unionfunds"
-"usa" "usfedbonds" "vanguard" "vwd" "yahoo" "yahoo_asia" "yahoo_australia"
-"yahoo_brasil" "yahoo_europe" "yahoo_json" "yahoo_nz" "yahoo_yql" "za" "za_unittrusts")
+$ gnucash-cli --quotes info
+Found Finance::Quote version 1.52.
+Finance::Quote sources:
+aex          alphavantage              amfiindia    asegr        asx
+aufunds      australia    bamosz       bet          bloomberg    bourso
+bse          bseindia     canada       canadamutual              comdirect
+cse          deka         dutch        dwsfunds     europe
+fetch_live_currencies     fidelity     fidelity_direct
+finanzpartner             fondsweb     fool         ftfunds      fundata
+fundlibrary  goldmoney    greece       hu           hufund       hungary
+hustock      iexcloud     india        indiamutual  known_currencies
+morningstarau             morningstarch             morningstarjp
+mstaruk      nasdaq       nseindia     nyse         nzx          onvista
+oslobors     romania      seb_funds    six          tesouro_direto
+tiaacref     tmx          tradeville   troweprice   troweprice_direct
+tsp          ukfunds      unionfunds   usa          usfedbonds   yahoo_json
+za
 </screen>
       </informalexample>
 
-      <para>Der erste Teil ist die Fehlermeldung über ein fehlendes &app-perl;-Modul Mozilla/CA.pm. Am Ende in
-        Klammern steht die normale Ausgabe der aktuell installierten &app-fq;-Version
-        <footnote>
-          <para>Die neueste &app-fq; Version ist &app-fq-vers;.
-          </para>
-        </footnote>
-        und eine Liste der verfügbaren Kursdaten-Quellen.
+      <para>Die neueste &app-fq; Version ist &app-fq-vers;. Entsprechend der Aktualität Ihrer Installation
+        kann sich die hier gemachte Auflistung der Quellenmodule unterscheiden.
       </para>
 
-      <tip>
-        <para>Wenn ein Fehler angezeigt wird, lesen Sie den nächsten Abschnitt <xref linkend="gnc-fq-update" />.
-          Ansonsten fahren Sie mit <xref linkend="gnc-fq-dump" /> fort.
-        </para>
-      </tip>
-    </sect2>
+      <para>Wenn es ein Problem mit Ihrer Installation gibt, werden Sie darauf hingeweisen. In dem nachfolgend
+        aufgeführtem Fall fehlen zum Beispiel die &app-perl;-Module Finance::Quote und JSON::Parse:
+      </para>
 
-    <sect2 id="gnc-fq-update">
-      <title>gnc-fq-update</title>
+      <informalexample>
+<?dbfo pgwide="1"?>
+<screen language="console">
+$ gnucash-cli --quotes info
+Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
+</screen>
+      </informalexample>
 
-      <abstract>
-        <para>Dieses Programm installiert oder aktualisiert das &app-fq; Softwaremodul und löst bei Bedarf die
-          Abhängigkeiten zu weiteren Softwarepaketen auf.
-          <note>
-            <para>Windows-Benutzer sind im Allgemeinen besser beraten, wenn sie das Update-Tool &mc.winOS.inst-fq;
-              ausführen.
-            </para>
-          </note>
-        </para>
-      </abstract>
-
-      <note>
-        <para>Dieses Programm erfordert für eine Installation unter &lin; oder &mac; Superuser- oder
-          Administratorrechte, aber nicht in &win;.
-        </para>
-      </note>
-
-      <para><userinput>gnc-fq-update</userinput> startet &app-perl;s Standardmodul
-        <acronym><ulink url="&url-cpan;">CPAN</ulink></acronym>
-        <footnote>
-          <simpara>Siehe <ulink url="&url-cpan;misc/cpan-faq.html">CPAN Frequently Asked Questions</ulink> für weitere
-            Informationen.
-          </simpara>
-        </footnote>
-        um die Installation vorzunehmen. Wenn Sie CPAN zum ersten Mal verwenden, müssen Sie es
-        konfigurieren, wobei Sie auf den meisten Systemen jedoch die Standardvorgaben akzeptieren
-        und die erste Frage <computeroutput>Are you ready for manual configuration?
-        [yes]</computeroutput> mit <userinput>no</userinput> beantworten können, damit &app-fq;
-        erfolgreich installiert wird.
+      <para>In diesem Fall ist &app-fq; nicht richtig installiert und kann so nicht für den Kursabruf mit &app;
+        genutzt werden. Bitte installieren Sie &app-fq; entsprechend der Anleitung unter
+        <xref linkend="fq-install" />.
       </para>
     </sect2>
 
-    <sect2 id="gnc-fq-dump">
-      <title>gnc-fq-dump</title>
-<!-- Todo: insert link to wiki and/or guide -->
-      <abstract>
-        <para>Dieses Programm liefert Kursdaten für eine Quelle und eine Liste von Symbolen in einem Format, das
-          für Menschen leicht zu lesen ist. Es ist nützlich, um zu überprüfen, ob eine bestimmte
-          Online-Kursquelle erreichbar ist und funktioniert.
-        </para>
-      </abstract>
+    <sect2 id="fq-print-quotes">
+      <title>Anzeige von Kursen in einem Terminalfenster</title>
 
-      <para>Mit Hilfe diesen Befehls können Sie überprüfen, ob das <xref linkend="tool-ge-Symbol" />, welches
-        Sie für Ihr Wertpapier zum Online-Kursabruf verwenden möchten, bei der gewünschten
-        <xref linkend="tool-ge-TypeQuoteSource" /> funktioniert.
-      </para>
+      <para>Um einen Kurs für eine oder mehrere Aktien oder den Wechselkurs für eine oder mehrere Währungen
+        anzuzeigen, können Sie <userinput>gnucash-cli --quotes dump</userinput> wie folgt
+        verwenden. Es bietet eine Ausgabeform für Devisenkurse und zwei für Aktien und
+        Wertpapiere.
+        <variablelist>
+          <varlistentry>
+            <term>Währungen</term>
 
-      <tip>
-        <para>Mit <userinput>gnc-fq-dump</userinput> können Sie Symbole schneller als aus &app; heraus
-          überprüfen, wenn während des Abrufs mit &app; ein Fehler auftritt. Dies kann Sie davor
-          bewahren, &app; mit aktiviertem Debug-Logging laufen zu lassen, während Sie ein nicht
-          funktionierendes Symbol überprüfen.
-        </para>
-      </tip>
-
-      <itemizedlist>
-        <listitem>
-          <para>Um ausführliche Inforamtionen zu einem Wertpapier zu erhalten, führen Sie in der Befehlszeile
-            einen Befehl in dieser Form aus:
-            <cmdsynopsis>
-              <command>gnc-fq-dump</command>
-              <arg choice="opt">
-                -v
-              </arg>
-
-              <arg choice="plain">
-                <replaceable>Quelle</replaceable>
-              </arg>
-
-              <arg choice="plain" rep="repeat">
-                <replaceable>Symbol</replaceable>
-              </arg>
-            </cmdsynopsis>
-            zum Beispiel <command>gnc-fq-dump -v yahoo_json IBM</command>.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Zum Abrufen eines Wechselkurses führen Sie folgenden Befehl aus: <command>gnc-fq-dump
-            <optional>-v</optional> currency USD EUR</command>
-            <footnote>
-              <para>Seit &app-fq; 1.41 ist die Standardquelle für Währungen <quote>Alpha Vantage</quote>. Lesen Sie
-                auch die Hinweise zu <xref linkend="gnc-tbl-fq-currency-source" />.
-              </para>
-            </footnote>
-
-            <footnote>
-              <para>Die alten Yahoo-Währungen sind immer noch verfügbar als <command>gnc-fq-dump yahoo_json
-                USDEUR=X</command>.
-              </para>
-            </footnote>
-          </para>
-        </listitem>
-      </itemizedlist>
-
-      <para>Um zu testen, ob &app-fq; für Währungen innerhalb von &app; funktioniert,
-        <orderedlist numeration="arabic">
-          <listitem>
-            <para>nehmen Sie eine Buchung zwischen dem gewünschtem Handelsgut und der Buchwährung,
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>machen einen Rechtsklick darauf, und dann
-            </para>
-          </listitem>
-
-          <listitem>
-            <para>wählen Sie im Kontextmenü die Option &gmi.ac.ed-ex;.
-            </para>
-          </listitem>
-        </orderedlist>
-        Der <xref linkend="trans-win-enter" /> wird angezeigt. Klicken Sie auf die Schaltfläche
-        <guilabel>Wechselkurs abrufen</guilabel>, und wenn alles gut läuft, wird der aktuelle Kurs
-        in das Feld für den Wechselkurs eingetragen.
-      </para>
-    </sect2>
-
-    <sect2 id="gnc-fq-helper">
-      <title>gnc-fq-helper</title>
-
-      <para>Dies ist ein Skript, das &app; zum Abrufen von Kursen verwendet und musss normalerweise vom Benutzer
-        nicht verwendet werden. Sollte der Abruf eines Kurses in &app; zu einem Fehlverhalten
-        führen, kann mit diesem Skript eine Diagnose durchgeführt werden und hilft Entwicklern bei
-        der Entscheidung, ob der Fehler in &app; oder &app-fq; liegt.
-      </para>
-    </sect2>
-  </sect1>
-
-  <sect1 id="finance-quote-scheduler">
-    <title>Automatisierte Abfrage von Kursen</title>
-
-    <para>Mit dem Kommando <command>gnucash-cli --quotes get &user-datafile;</command>
-      <footnote>
-        <simpara>Der Befehl für den Online-Kursabruf wurde ab &app; 4.0 geändert. Der alte Befehl <command>gnucash
-          --add-price-quotes &user-datafile;</command> ist immer noch verfügbar, aber er ist
-          veraltet und wird in einer zukünftigen Version entfernt werden. Wenn Sie ein Upgrade von
-          &app; 3.11 oder einer früheren Version durchgeführt haben, wird empfohlen, den neuen
-          Befehl <command>gnucash-cli</command> zu verwenden.
-        </simpara>
-      </footnote>
-      können Sie die aktuellen Kurse Ihrer Devisen und Wertpapiere abrufen und direkt in ihre
-      &app;-Datendatei schreiben ohne die Benutzeroberfläche zu starten. Somit ist eine
-      automatische, regelmäßige Aktualisierung der Kursdatenbank möglich.
-      <note>
-        <para>Der Befehl schlägt fehl, wenn kein exclusiver Zugriff auf die Datendatei möglich ist, z.B. weil
-          die Datendatei in einer anderen &app; Instanz geöffnet ist oder die letzte Sitzung für
-          die Datei abgestürzt ist.
-        </para>
-      </note>
-    </para>
-
-    <para>Die angegebene Datei &user-datafile; ist abhängig von dem Namen und dem Speicherort Ihrer
-      Datendatei. Dies lässt sich anhand des Namens feststellen, der im oberen Rahmen des &app;
-      Fensters vor dem <quote>-</quote> angezeigt wird.
-      <tip>
-        <para>Der Dateiname ist auch in der Liste der zuletzt geöffneten Dateien im &gm.file;-Menü zu finden.
-          Wenn Sie den Mauszeiger über dem Menüeintrag mit der Nummer 1 in der Liste der zuletzt
-          geöffneten Dateien platzieren, wird in der <guilabel>Statusleiste</guilabel> die
-          vollständige Dateibezeichnung angezeigt.
-        </para>
-      </tip>
-    </para>
-
-    <para>Sie müssen den Befehl <command>gnucash-cli</command> bei einem Scheduler (Zeitplaner) eintragen, um
-      die Onlinekurse automatisch und regelmäßig zu erhalten. Die Methode hängt von Ihrem
-      Betriebssystem ab.
-    </para>
-
-    <example>
-      <title>Automatischer Kursabruf jeden Freitag um 16:00 Uhr</title>
-
-      <procedure>
-        <title>Unter &lin; und &mac;</title>
-
-        <para>Eintragen des Befehls zum Kursabruf per <command>gnucash-cli</command> mittels
-          <application>cron</application>.
-        </para>
-
-        <step>
-          <simpara>Führen Sie das Kommando <command>crontab -e</command> aus.
-          </simpara>
-        </step>
-
-        <step>
-          <para>Fügen Sie die folgende Zeile in Ihre crontab ein:
-            <informalexample>
-<screen>0 16 * * 5 gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
-            </informalexample>
-
-            <important>
-              <para>Läuft auf Ihrem Rechner zu dem Zeitpunkt des Kursabrufs keine graphische Benutzeroberfläche, die
-                bereits den dbus gestartet hat, so müssen Sie den Eintrag stattdessen wie folgt
-                vornehmen:
+            <listitem>
+              <para>Für den Abruf von Devisenkursen wird die Quelle <userinput>currency</userinput> verwendet, welche
+                mindestens zwei ISO-4217-Währungscodes erfordern; die Wechselkurse werden in der
+                ersten Währung angegeben.
+                <footnote>
+                  <para>Seit &app-fq; 1.41 ist die Standardquelle für Währungen <quote>Alpha Vantage</quote>. Lesen Sie
+                    auch die Hinweise zu <xref linkend="gnc-tbl-fq-currency-source" />.
+                  </para>
+                </footnote>
+                Zum Beispiel:
                 <informalexample>
-<screen>0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
-gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
+<?dbfo pgwide="1"?>
+<screen language="console">
+$ gnucash-cli --quotes dump currency USD GBP EUR
+1 GBP = 1.11917349089527 USD
+
+1 EUR = 0.9717 USD
+</screen>
                 </informalexample>
-                (Die Zeilenumbrüche nicht in die crontab übernehmen, die wurden hier nur zum
-                Zwecke der Lesbarkeit eingefügt.)
               </para>
-            </important>
-          </para>
-        </step>
-      </procedure>
+            </listitem>
+          </varlistentry>
 
-      <procedure>
-        <title>Unter &win;</title>
+          <varlistentry>
+            <term>Wertpapiere</term>
 
-        <para>Anlegen des Kursabrufs per <command>gnucash-cli</command> mit der Aufgabenplanung.
-        </para>
+            <listitem>
+              <itemizedlist>
+                <listitem>
+                  <para>Eine Kurzform, die nur die Felder anzeigt, die &app; benötigt, ergänzt mit Kommentaren, die
+                    angeben, ob die Felder empfohlen oder erforderlich sind; damit können Sie
+                    herausfinden, ob &app; in der Lage sein wird die Kursangaben zu verwenden, um
+                    die Kursdatenbank Ihres Buches zu aktualisieren.
+                    <informalexample>
+<?dbfo pgwide="1"?>
+<screen language="console">
+$ gnucash-cli --quotes dump yahoo_json AAPL
+Finance::Quote fields GnuCash uses:
+    symbol: AAPL            &lt;=== required
+      date: 10/14/2022      &lt;=== recommended
+  currency: USD             &lt;=== required
+      last: 138.38          &lt;=\
+       nav:                 &lt;=== one of these
+     price:                 &lt;=/
+</screen>
+                    </informalexample>
+                  </para>
+                </listitem>
 
-        <step>
-          <simpara>Wählen Sie &mc.winOS.sys.tasks; .
-          </simpara>
-        </step>
+                <listitem>
+                  <para>Mit der Option <userinput>-V</userinput> wird eine möglicherweise längere Ausgabe mit allen
+                    Datenfeldern von &app-fq; zurückgegeben. Dies kann nützlich sein, um Probleme
+                    mit einem &app-fq; Quellmodul zu beheben.
+                    <informalexample>
+<?dbfo pgwide="1"?>
+<screen language="console">
+$ ALPHAVANTAGE_API_KEY=123456789 bin/gnucash-cli -V --quotes dump alphavantage INTC
+INTC:
+             method =&gt; alphavantage
+           p_change =&gt; -1.9304
+               high =&gt; 26.6300
+               date =&gt; 10/14/2022
+ currency_set_by_fq =&gt; 1
+              close =&gt; 26.4200
+           currency =&gt; USD
+            isodate =&gt; 2022-10-14
+                low =&gt; 25.7600
+            success =&gt; 1
+                net =&gt; -0.5100
+               open =&gt; 26.4600
+             symbol =&gt; INTC
+             volume =&gt; 48118005
+               last =&gt; 25.9100
+</screen>
+                    </informalexample>
 
-        <step>
-          <simpara>Klicken Sie auf &gmi.winOS.sys.task;.
-          </simpara>
-        </step>
-
-        <step>
-          <simpara>Geben Sie die entsprechenden Angaben im Fenster <guilabel>Aufgabe erstellen</guilabel> ein.
-          </simpara>
-        </step>
-      </procedure>
-
-      <para>Passen Sie die Zeit an den Börsenschluss an und bedenken Sie, dass bei
-        <emphasis>Fondskursen</emphasis> das Netto-Anlagevermögen (NAV) deutlich nach
-        Börsenschluss ermittlet wird. Eine Beschreibung zu den Typen finden Sie unter
-        <xref linkend="tool-price" />.
-<!-- FIXME: adjust the link to a proper ID -->
+                    <note>
+                      <para>Beachten Sie, dass wir in diesem Fall als Quelle alphavantage verwendet und den
+                        <userinput>ALPHAVANTAGE_API_KEY</userinput> in der Befehlszeile angegeben
+                        haben. Das ist nicht notwendig, wenn der Schlüssel bereits in der
+                        Umgebungsvariable der Shell oder in den &app;-Einstellungen gespeichert ist.
+                      </para>
+                    </note>
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+        </variablelist>
       </para>
-    </example>
+    </sect2>
 
-    <para>Einige Benutzer haben im &app; Wiki unter
-      <ulink url="&url-wiki-de;Aktienhandel">Aktienhandel</ulink> und ausführlicher im
-      englischsprachigen Wiki
-      <ulink url="&url-wiki-OQ;#Updating_enabled_Quotes_from_outside_GnuCash">Online Quotes Page on
-      GnuCash Wiki</ulink> ihre Erfahrungen und weiter Ergänzungen zusammengestellt.
-    </para>
+    <sect2 id="fq-auto-quote">
+      <title>Automatisierte Abfrage von Kursen mit &app-cli;</title>
+
+      <para>Mit dem Kommando <command>gnucash-cli --quotes get &user-datafile;</command>
+        <footnote>
+          <simpara>Der alte Befehl <command>gnucash --add-price-quotes &user-datafile;</command> ist seit &app; 5.0
+            nicht mehr verfügbar!
+          </simpara>
+        </footnote>
+        können Sie die aktuellen Kurse Ihrer Devisen und Wertpapiere abrufen und direkt in ihre
+        &app;-Datendatei schreiben ohne die Benutzeroberfläche zu starten. Somit ist eine
+        automatische, regelmäßige Aktualisierung der Kursdatenbank möglich.
+        <note>
+          <para>Der Befehl schlägt fehl, wenn kein exclusiver Zugriff auf die Datendatei möglich ist, z.B. weil
+            die Datendatei in einer anderen &app; Instanz geöffnet ist oder die letzte Sitzung für
+            die Datei abgestürzt ist.
+          </para>
+        </note>
+      </para>
+
+      <para>Die angegebene Datei &user-datafile; ist abhängig von dem Namen und dem Speicherort Ihrer
+        Datendatei. Dies lässt sich anhand des Namens feststellen, der im oberen Rahmen des &app;
+        Fensters vor dem <quote>-</quote> angezeigt wird.
+        <tip>
+          <para>Der Dateiname ist auch in der Liste der zuletzt geöffneten Dateien im &gm.file;-Menü zu finden.
+            Wenn Sie den Mauszeiger über dem Menüeintrag mit der Nummer 1 in der Liste der zuletzt
+            geöffneten Dateien platzieren, wird in der <guilabel>Statusleiste</guilabel> die
+            vollständige Dateibezeichnung angezeigt.
+          </para>
+        </tip>
+      </para>
+
+      <para>Sie müssen den Befehl &app-cli; bei einem Scheduler (Zeitplaner) eintragen, um die Onlinekurse
+        automatisch und regelmäßig zu erhalten. Die Methode hängt von Ihrem Betriebssystem ab.
+      </para>
+
+      <example>
+        <title>Automatischer Kursabruf jeden Freitag um 16:00 Uhr</title>
+
+        <procedure>
+          <title>Unter &lin; und &mac;</title>
+
+          <para>Eintragen des Befehls zum Kursabruf per <command>gnucash-cli</command> mittels
+            <application>cron</application>.
+          </para>
+
+          <step>
+            <simpara>Führen Sie das Kommando <command>crontab -e</command> aus.
+            </simpara>
+          </step>
+
+          <step>
+            <para>Fügen Sie die folgende Zeile in Ihre crontab ein:
+              <informalexample>
+<?dbfo pgwide="1"?>
+<screen>
+0 16 * * 5 gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1
+</screen>
+              </informalexample>
+
+              <important>
+                <para>Läuft unter &lin; auf Ihrem Rechner zu dem Zeitpunkt des Kursabrufs keine graphische
+                  Benutzeroberfläche, die bereits den dbus gestartet hat, so müssen Sie den
+                  Eintrag stattdessen wie folgt vornehmen:
+                  <informalexample>
+<?dbfo pgwide="1"?>
+<screen>
+0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
+gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1
+</screen>
+                  </informalexample>
+                  (Den Zeilenumbruch nicht in die crontab übernehmen, der wurde hier nur zum
+                  Zwecke der Lesbarkeit eingefügt.)
+                </para>
+              </important>
+            </para>
+          </step>
+        </procedure>
+
+        <procedure>
+          <title>Unter &win;</title>
+
+          <para>Anlegen des Kursabrufs per <command>gnucash-cli</command> mit der Aufgabenplanung.
+          </para>
+
+          <step>
+            <simpara>Wählen Sie &mc.winOS.sys.tasks;.
+            </simpara>
+          </step>
+
+          <step>
+            <simpara>Klicken Sie auf &gmi.winOS.sys.task;.
+            </simpara>
+          </step>
+
+          <step>
+            <simpara>Geben Sie die entsprechenden Angaben im Fenster <guilabel>Aufgabe erstellen</guilabel> ein.
+            </simpara>
+          </step>
+        </procedure>
+
+        <para>Passen Sie die Zeit an den Börsenschluss an und bedenken Sie, dass bei
+          <emphasis>Fondskursen</emphasis> das Netto-Anlagevermögen (NAV) deutlich nach
+          Börsenschluss ermittlet wird. Eine Beschreibung zu den Typen finden Sie unter
+          <xref linkend="tool-price" />.
+<!-- FIXME: adjust the link to a proper ID -->
+        </para>
+      </example>
+
+      <para>Einige Benutzer haben im &app; Wiki unter
+        <ulink url="&url-wiki-de;Aktienhandel">Aktienhandel</ulink> und ausführlicher im
+        englischsprachigen Wiki
+        <ulink url="&url-wiki-OQ;#Updating_enabled_Quotes_from_outside_GnuCash">Online Quotes Page
+        on GnuCash Wiki</ulink> ihre Erfahrungen und weiter Ergänzungen zusammengestellt.
+      </para>
+    </sect2>
   </sect1>
 </chapter>
