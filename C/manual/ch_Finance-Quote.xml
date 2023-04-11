@@ -35,7 +35,9 @@ Translators:
     <listitem>
       <para>the &app-perl;-module &app-fq; with any dependencies
       </para>
+    </listitem>
 
+    <listitem>
       <para>the &app-perl;-module JSON::Parse to manage the output of &app-fq;.
       </para>
     </listitem>
@@ -147,7 +149,6 @@ This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-th
     <para>To determine if the &app-perl; module &app-fq; is already installed on your system, type
       <userinput>perldoc Finance::Quote</userinput> in a terminal window and check to see if there
       is any documentation
-<!-- Fixme: https://bugs.gnucash.org/show_bug.cgi?id=798618 -->
       <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
@@ -156,7 +157,7 @@ NAME
     Finance::Quote - Get stock and mutual fund quotes from various exchanges
 
 SYNOPSIS
-       [...]
+    [...]
 </screen>
       </informalexample>
       available. If you are now shown documentation, then &app-fq; is already installed and you can
@@ -231,9 +232,9 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Open a Finder window, select <guimenu>Applications</guimenu> from the sidebar, double-click
-          <guimenu>Utilities</guimenu> in the file area, then double-click on
-          <guimenu>Terminal</guimenu> to open <application>Terminal</application>
+        <simpara>Open a <application>Finder</application> window, select &gm.macOS.appl; from the sidebar,
+          double-click &gmi.macOS.appl.util; in the file area, then double-click on
+          <guimenu>Terminal</guimenu> to open <application>Terminal</application>.
         </simpara>
       </step>
 
@@ -247,11 +248,11 @@ SYNOPSIS
       <step>
         <simpara>Type <userinput>exit</userinput> or
           <keycombo>
-            <keycap>Control</keycap><keycap>D</keycap>
+            &kc.ctrl;<keycap>D</keycap>
           </keycombo>
           to terminate the shell followed by
           <keycombo>
-            <keycap>Command</keycap><keycap>Q</keycap>
+            &kc.cmd;<keycap>Q</keycap>
           </keycombo>
           to quit <application>Terminal</application>.
         </simpara>
@@ -289,29 +290,33 @@ SYNOPSIS
 
       <para><command>gnucash-cli --quotes info</command> produces the following output:
       </para>
-<!-- Fixme: https://bugs.gnucash.org/show_bug.cgi?id=798618 -->
+
       <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
-  $ gnucash-cli --quotes info
-  Found Finance::Quote version 1.52.
-  Finance::Quote sources:
-  aex          alphavantage              amfiindia    asegr        asx
-  aufunds      australia    bamosz       bet          bloomberg    bourso
-  bse          bseindia     canada       canadamutual              comdirect
-  cse          deka         dutch        dwsfunds     europe
-  fetch_live_currencies     fidelity     fidelity_direct
-  finanzpartner             fondsweb     fool         ftfunds      fundata
-  fundlibrary  goldmoney    greece       hu           hufund       hungary
-  hustock      iexcloud     india        indiamutual  known_currencies
-  morningstarau             morningstarch             morningstarjp
-  mstaruk      nasdaq       nseindia     nyse         nzx          onvista
-  oslobors     romania      seb_funds    six          tesouro_direto
-  tiaacref     tmx          tradeville   troweprice   troweprice_direct
-  tsp          ukfunds      unionfunds   usa          usfedbonds   yahoo_json
-  za
-      </screen>
+$ gnucash-cli --quotes info
+Found Finance::Quote version 1.52.
+Finance::Quote sources:
+aex          alphavantage              amfiindia    asegr        asx
+aufunds      australia    bamosz       bet          bloomberg    bourso
+bse          bseindia     canada       canadamutual              comdirect
+cse          deka         dutch        dwsfunds     europe
+fetch_live_currencies     fidelity     fidelity_direct
+finanzpartner             fondsweb     fool         ftfunds      fundata
+fundlibrary  goldmoney    greece       hu           hufund       hungary
+hustock      iexcloud     india        indiamutual  known_currencies
+morningstarau             morningstarch             morningstarjp
+mstaruk      nasdaq       nseindia     nyse         nzx          onvista
+oslobors     romania      seb_funds    six          tesouro_direto
+tiaacref     tmx          tradeville   troweprice   troweprice_direct
+tsp          ukfunds      unionfunds   usa          usfedbonds   yahoo_json
+za
+</screen>
       </informalexample>
+
+      <para>The latest &app-fq; version is &app-fq-vers;. Depending on the actuality of your installation
+        the list of source modules made here may differ.
+      </para>
 
       <para>If there's a problem with your installation it will tell you about it. For example in this case
         we're missing the Perl modules Finance::Quote and JSON::Parse:
@@ -320,10 +325,15 @@ SYNOPSIS
       <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
-  $ gnucash-cli --quotes info
-  Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
-      </screen>
+$ gnucash-cli --quotes info
+Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
+</screen>
       </informalexample>
+
+      <para>In this case, &app-fq; is not installed correctly and therefore cannot be used for course retrieval with &app;.
+        Please install &app-fq; according to the instructions at
+        <xref linkend="fq-install" />.
+      </para>
     </sect2>
 
     <sect2 id="fq-print-quotes">
@@ -332,87 +342,121 @@ SYNOPSIS
       <para>To display a quote for one or more stocks or the exchange rate for one or more currencies you can
         use <userinput>gnucash-cli --quotes dump</userinput> as follows. It offers two output forms
         for non-currency securities and one for currency exchange rates.
-        <itemizedlist>
-          <listitem>
-            <para>Currencies use the source <userinput>currency</userinput> and require at least two ISO-4217 currency
-              codes; the exchange rates are denominated in the first code. For example:
-              <informalexample>
+        <variablelist>
+          <varlistentry>
+            <term>Currencies</term>
+
+            <listitem>
+              <para>Currencies use the source <userinput>currency</userinput> and require at least two ISO-4217 currency
+                codes; the exchange rates are denominated in the first code. For example:
+                <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
-        $ gnucash-cli --quotes dump currency USD GBP EUR
-        1 GBP = 1.11917349089527 USD
+$ gnucash-cli --quotes dump currency USD GBP EUR
+1 GBP = 1.11917349089527 USD
 
-        1 EUR = 0.9717 USD
-      </screen>
-              </informalexample>
-            </para>
-          </listitem>
+1 EUR = 0.9717 USD
+</screen>
+                </informalexample>
+              </para>
+            </listitem>
+          </varlistentry>
 
-          <listitem>
-            <para>Stocks
-            </para>
+          <varlistentry>
+            <term>Stocks</term>
 
-            <itemizedlist>
-              <listitem>
-                <para>A short form displaying only the fields that GnuCash uses along with comments indicating whether the
-                  fields are optional or required; you can use this to determine if GnuCash will be
-                  able to use the quote to update your book's price database.
-                  <informalexample>
+            <listitem>
+              <itemizedlist>
+                <listitem>
+                  <para>A short form displaying only the fields that &app; uses along with comments indicating whether the
+                    fields are optional or required; you can use this to determine if &app; will be
+                    able to use the quote to update your book's price database.
+                    <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
-        $ gnucash-cli --quotes dump yahoo_json AAPL
-        Finance::Quote fields GnuCash uses:
-            symbol: AAPL            &lt;=== required
-              date: 10/14/2022      &lt;=== recommended
-          currency: USD             &lt;=== required
-              last: 138.38          &lt;=\
-               nav:                 &lt;=== one of these
-             price:                 &lt;=/
-      </screen>
-                  </informalexample>
-                </para>
-              </listitem>
+$ gnucash-cli --quotes dump yahoo_json AAPL
+Finance::Quote fields GnuCash uses:
+    symbol: AAPL            &lt;=== required
+      date: 10/14/2022      &lt;=== recommended
+  currency: USD             &lt;=== required
+      last: 138.38          &lt;=\
+       nav:                 &lt;=== one of these
+     price:                 &lt;=/
+</screen>
+                    </informalexample>
+                  </para>
+                </listitem>
 
-              <listitem>
-                <para>With the <userinput>-v</userinput> option a possibly longer output showing all of the fields
-                  &app-fq; returned. This can be useful to troubleshoot problems with a &app-fq;
-                  source module.
-                  <informalexample>
+                <listitem>
+                  <para>With the <userinput>-V</userinput> option a possibly longer output showing all of the fields
+                    &app-fq; returned. This can be useful to troubleshoot problems with a &app-fq;
+                    source module.
+                    <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
-        $ ALPHAVANTAGE_API_KEY=123456789 bin/gnucash-cli -V --quotes dump alphavantage INTC
-        INTC:
-                     method =&gt; alphavantage
-                   p_change =&gt; -1.9304
-                       high =&gt; 26.6300
-                       date =&gt; 10/14/2022
-         currency_set_by_fq =&gt; 1
-                      close =&gt; 26.4200
-                   currency =&gt; USD
-                    isodate =&gt; 2022-10-14
-                        low =&gt; 25.7600
-                    success =&gt; 1
-                        net =&gt; -0.5100
-                       open =&gt; 26.4600
-                     symbol =&gt; INTC
-                     volume =&gt; 48118005
-                       last =&gt; 25.9100
-      </screen>
-                  </informalexample>
-                  Notice that in this case we used alphavantage and provided the
-                  <userinput>ALPHAVANTAGE_API_KEY</userinput> on the command line. That's not
-                  necessary if the key is already stored in the shell environment or in GnuCash
-                  preferences.
-                </para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
-        </itemizedlist>
+$ ALPHAVANTAGE_API_KEY=123456789 bin/gnucash-cli -V --quotes dump alphavantage INTC
+INTC:
+             method =&gt; alphavantage
+           p_change =&gt; -1.9304
+               high =&gt; 26.6300
+               date =&gt; 10/14/2022
+ currency_set_by_fq =&gt; 1
+              close =&gt; 26.4200
+           currency =&gt; USD
+            isodate =&gt; 2022-10-14
+                low =&gt; 25.7600
+            success =&gt; 1
+                net =&gt; -0.5100
+               open =&gt; 26.4600
+             symbol =&gt; INTC
+             volume =&gt; 48118005
+               last =&gt; 25.9100
+</screen>
+                    </informalexample>
+
+                    <note>
+                      <para>Notice that in this case we used alphavantage and provided the
+                        <userinput>ALPHAVANTAGE_API_KEY</userinput> on the command line. That's not
+                        necessary if the key is already stored in the shell environment or in &app;
+                        preferences.
+                      </para>
+                    </note>
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+        </variablelist>
       </para>
     </sect2>
 
     <sect2 id="fq-auto-quote">
       <title>Updating Prices Automatically with &app-cli;</title>
+
+      <para>With the command <command>gnucash-cli --quotes get &user-datafile;</command>
+        <footnote>
+          <simpara>The old command <command>gnucash --add-price-quotes &user-datafile;</command> is obsolete as of &app; 5.0.
+          </simpara>
+        </footnote>
+        you can receive the current prices of your foreign exchange and securities and write them directly into your
+        &app;-file without starting the user interface. This enables an automatic, regular updating of the prices.
+        <note>
+          <para>The command fails if exclusive access to the data file is not possible, for example,
+            the data file is opened in another &app; instance, or the last session for the file crashed.
+          </para>
+        </note>
+      </para>
+
+      <para>The specified file &user-datafile; depends on the name and location of your
+        data file. This can be determined from the name displayed in the top frame of the &app;
+        window before the <quote>-</quote>.
+        <tip>
+          <para>The file name can also be found in the list of recently opened files in the &gm.file;menu.
+            If you hover the mouse pointer on the menu item numbered 1 in the list of recently opened files,
+            the full file name is displayed in the <guilabel>statusbar</guilabel>.
+          </para>
+        </tip>
+      </para>
 
       <para>You have to register the &app-cli; with a scheduler in order to get Online Quotes automatically and
         periodically. The method depends on your OS.
@@ -435,15 +479,21 @@ SYNOPSIS
           <step>
             <para>Add the following line to your crontab:
               <informalexample>
-<screen>0 16 * * 5 gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
+<?dbfo pgwide="1"?>
+<screen>
+0 16 * * 5 gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1
+</screen>
               </informalexample>
 
               <important>
                 <para>On &lin; if there is no graphic session that has already started the dbus, running on your computer
                   at the time of the quote request, you must do the entry as follows instead:
                   <informalexample>
-<screen>0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
-gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
+<?dbfo pgwide="1"?>
+<screen>
+0 16 * * 5 env `dbus-launch` sh -c 'trap "kill $DBUS_SESSION_BUS_PID" EXIT;
+gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1
+</screen>
                   </informalexample>
                   (Do not copy the line breaks into the crontab, they were inserted here only for
                   the purpose of readability).
@@ -460,17 +510,12 @@ gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1</screen>
           </para>
 
           <step>
-            <simpara>Select
-              <menuchoice>
-                <guimenu>Start</guimenu><guisubmenu>Windows Administrative
-                Tools</guisubmenu><guimenuitem>Task Scheduler</guimenuitem>
-              </menuchoice>
-              .
+            <simpara>Select &mc.winOS.sys.tasks;
             </simpara>
           </step>
 
           <step>
-            <simpara>Select <guimenuitem>Create Task</guimenuitem>.
+            <simpara>Select &gmi.winOS.sys.task;.
             </simpara>
           </step>
 
