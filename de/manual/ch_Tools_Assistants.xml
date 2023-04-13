@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-gui-de.dtd">
 <!-- (Do not remove this comment block.)
-  Version: 4.9
-  Last modified: Juli 2022 
+  Version: 5.3
+  Last modified: Juli 2023 
        modified: April 15th 2007
        modified: August 12th 2006
        modified: February 28th 2005
@@ -49,1074 +49,803 @@
   </important>
 
   <sect1 id="tool-find">
-    <title>Find</title>
+    <title>Suchen &amp; Finden</title>
 
-    <para>&untranslated-de;
-    </para>
-
-    <para>The &app; <emphasis>Find</emphasis> assistant can be used to <link linkend="tool-find-txn">find
-      transactions</link> or to perform <link linkend="tool-find-bsnss">business related</link>
-      research on your data file.
-    </para>
+    <abstract>
+      <para>Der <emphasis>Suchen</emphasis> Dialog in &app; kann sowohl für das
+        <xref linkend="tool-find-txn" />, als auch für das <xref linkend="tool-find-bsnss" /> in
+        Ihrer Datendatei verwendet werden. Dies ist von dem Kontext abhängig, in dem Sie eine Suche
+        beginnen.
+        <tip>
+          <para>Im Dialogtitel und in der ersten Zeile des <guilabel>Suchen</guilabel> Dialogs wird ersichtlich,
+            welche Elemente mit der Suche gefunden werden.
+          </para>
+        </tip>
+      </para>
+    </abstract>
 
     <sect2 id="tool-find-txn">
-      <title>Find Transaction</title>
+      <title>Suchen von Buchungen</title>
 
-      <para><guilabel>Find Transaction</guilabel> is used to search for transactions in &app; and display the
-        results in a register window. To open the <guilabel>Find Transaction</guilabel> dialog in
-        <guilabel>Split Search</guilabel> mode, you can type the keyboard shortcut
-        <keycombo>
-          &kc.ctrl;<keycap>f</keycap>
-        </keycombo>
-        .
+      <para>Die Funktion <guilabel>Buchungen suchen</guilabel> wird verwendet, um nach Buchungen in Ihrem
+        aktuellen &app;-Buch zu suchen und die Ergebnisse in einer Registerkarte vom Typ
+        <xref linkend="general-journal" /> anzuzeigen. Um den Dialog <guilabel>Buchungen
+        suchen</guilabel> zu nutzen, verwenden Sie im Menü den Eintrag &mc.ed.find;.
       </para>
 
-      <para>Exactly which transactions are searched depends on where you invoke the tool from. If you start from
-        the main accounts hierarchy page, all transactions will be searched. If you start from an
-        individual account register, only transactions in that account will be searched. And if you
-        filter the transactions in a register using &mc.vw.f-by; , then only transactions in that
-        account and shown by the filter will be searched.
+      <para>Wenn Sie den Dialog <guilabel>Buchungen suchen</guilabel> in der Registerkarte eines Kontos öffnen,
+        werden nur die zu diesem Konto zugehörigen Buchungsteile durchsucht, es sei denn, Sie
+        wählen als Suchkriterium <guilabel>Alle Konten</guilabel>.
+        <footnote id="fn_tools_all_accounts">
+          <para>Die Auswahl <guilabel>Alle Konten</guilabel> führt eine Suche durch, bei der Buchungen in den
+            Konten, die im Dialog <guilabel>Konten wählen</guilabel> markiert wurden, gefunden
+            werden, die mindestens einen Buchungsteil in jedem der ausgewählten Konten enthalten.
+            Wenn die Suche in einem regulären Kontobuch gestartet wird, ist dies das einzige
+            Kriterium, das Buchungsteile von anderen Konten prüft. Wenn Sie also den Dialog
+            <guilabel>Buchungen suchen</guilabel> z.B. in Aktiva:Umlaufvermögen:Girokonto öffnen
+            und alle Buchungen dieses Kontos mit einem Buchungsteil in Ausgaben:Lebensmittel finden
+            wollen, ist dies als Kriterium zu verwenden. Beachten Sie jedoch, dass es sich um eine
+            <emphasis>UND</emphasis>-Suche handelt: Wenn Sie zusätzlich auch nach
+            Ausgaben:Verschiedenes suchen, erhalten Sie <emphasis>nur</emphasis> die Buchungen mit
+            einem Buchungsteil in jedem der beiden Konten und <emphasis>nicht</emphasis> die
+            Buchungen mit nur einem einzigen Buchungsteil.
+          </para>
+        </footnote>
+        Möchten Sie stattdessen das gesamte &app;-Buch durchsuchen, dann starten Sie die Suche
+        entweder in der <emphasis>Kontenübersicht</emphasis>, oder Sie öffnen das
+        &mc.to.gen-jour;.
       </para>
 
-      <note>
-        <para>The first row of the <guilabel>Find Transaction</guilabel> dialog indicates that you are performing
-          a <guilabel>Split Search</guilabel>.
+      <para>Bei den Buchungsfeldern werden nur die Buchungen berücksichtigt, die mit einem Buchungsteil in
+        diesem Register verknüpft sind, während bei den übrigen Buchungen nur die mit dem Konto
+        verbundenen Buchungsteile durchsucht werden, die diesem Konto zugeordnet sind, außer Sie
+        verwenden die Suchfunktion <guilabel>Alle Konten</guilabel>.
+      </para>
+
+      <para>Wenn Sie zuvor die Buchungen in einem Register mit &mc.vw.f-by; filtern, dann werden in diesem Konto
+        nur die Buchungen durchsucht, die durch den Filter angezeigt werden. Suchen Sie in einem
+        gefiltertem Kontobuch oder einem <xref linkend="general-journal" />, werden alle
+        Buchungsteile in allen zutreffenden Buchungen (im letzteren Fall diejenigen, im dem
+        geöffneten Register) durchsucht.
+      </para>
+
+      <para>Der Dialog <guilabel>Buchungen suchen</guilabel> besteht aus zwei horizontalen Bereichen. Der obere
+        Bereich beschreibt ein oder mehrere <guilabel>Suchkriterien</guilabel> und der untere
+        Bereich ermöglicht die Angabe eines <guilabel>Suchtyp</guilabel>.
+      </para>
+
+      <figure pgwide="1">
+        <title>Der <quote>Buchungen suchen</quote> Dialog</title>
+
+        <screenshot>
+          <screeninfo>
+            1180x383x256
+          </screeninfo>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Tools_Find_txn.png" srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <sect3 id="tool-find-txn-gui-1">
+        <title>Suchkriterien</title>
+
+        <para>Der Bereich <guilabel>Suchkriterum</guilabel> enthält zwei Schaltflächen sowie eine oder mehrere
+          Zeilen zur Angabe von Suchkriterien.
         </para>
-      </note>
 
-      <para>There are two panes in the <guilabel>Find Transaction</guilabel> dialog. The top pane contains the
-        <guilabel>Search Criteria</guilabel> buttons and the bottom pane contains the <guilabel>Type
-        of Search</guilabel> selection.
-      </para>
+        <glosslist>
+          <glossentry>
+            <glossterm>Hinzufügen</glossterm>
+            <glossdef>
+              <para>Mit der Schaltfläche <guibutton>Hinzufügen</guibutton> kann eine weitere Zeile für die Suche mit
+                mehreren Kriterien ergänzt werden. Bevor eine neue Zeile hinzugefügt werden kann,
+                muss das bestehende Suchkriterium vollständig angegeben sein.
+              </para>
+            </glossdef>
+          </glossentry>
 
-      <para>There are two buttons in the top of the <guilabel>Search Criteria</guilabel> pane. The left button
-        allows you to <guibutton>Add</guibutton> another criteria row to search for multiple
-        criteria. The existing criteria row needs to be completed before adding a new row. The right
-        button is used to <guilabel>Search for items where all criteria are met</guilabel> or
-        <guilabel>Search for items where any criteria are met</guilabel>. The <guilabel>all criteria
-        are met</guilabel> search requires all of the criteria rows to have at least one match. The
-        <guilabel>any criteria are met</guilabel> search requires only one of the criteria rows to
-        be matched.
-      </para>
+          <glossentry>
+            <glossterm>Nach Einträgen suchen, für die gilt…</glossterm>
+            <glossdef>
+              <para><glosslist>
+                  <glossentry>
+                    <glossterm>Alle Kriterien werden erfüllt</glossterm>
+                    <glossdef>
+                      <para>Die Auswahl <guibutton>Alle Kriterien werden erfüllt</guibutton> erfordert, dass alle Suchkriterien
+                        mindestens eine Übereinstimmung aufweisen. Das entspricht einer
+                        <emphasis>UND</emphasis>-Verknüpfung der Suchkriterien.
+                      </para>
+                    </glossdef>
+                  </glossentry>
 
-      <para>The criteria row in the <guilabel>Search Criteria</guilabel> pane is used to combine different
-        criteria buttons (see table <xref linkend="tool-find-bttns" /> for a comprehensive list of
-        combinations)
-      </para>
+                  <glossentry>
+                    <glossterm>Irgendeines der Kriterien wird erfüllt</glossterm>
+                    <glossdef>
+                      <para>Die Suche mit <guibutton>Irgendeines der Kriterien wird erfüllt</guibutton> bedeutet, dass nur
+                        eines der Suchkriterien übereinstimmen muss. Dies kommt einer
+                        <emphasis>ODER</emphasis>-Verknüpfung gleich.
+                      </para>
+                    </glossdef>
+                  </glossentry>
+                </glosslist>
+              </para>
+            </glossdef>
+          </glossentry>
 
-      <para>In the <guilabel>Type of Search</guilabel> pane there are five selections. The first option is
-        always enabled, the following three are available when you invoke the &gmi.ed.find; option
-        from a register window or after performing the first <guibutton>Find</guibutton> if the
-        &gmi.ed.find; command was invoked from any other window. The last option is available only
-        for <link linkend="tool-find-bsnss">Business search</link>.
-      </para>
+          <glossentry>
+            <glossterm>Kriterienzeilen</glossterm>
+            <glossdef>
+              <para>Mit einer oder mehreren Kriterienzeile können Sie durch Anwendung verschiedener
+                <emphasis>Suchkriterien</emphasis> die Suche nach Buchungen steuern. Hierbei kann
+                mit der ersten Schaltfläche ausgewählt werden, in welchem Datenfeld innerhalb
+                einer Buchung oder in einem Buchungsteil gesucht werden soll. Die weiteren
+                Suchparameter in der Kriterienzeile sind abhängig von der Einstellung der ersten
+                Schaltfläche. In der Tabelle <xref linkend="tool-find-bttns" /> ist eine umfassende
+                Liste von möglichen Kombinationen dargestellt.
+                <tip>
+                  <para>Am Ende jeder Zeile befindet sich die Schaltfläche <quote>Entfernen</quote>, um dieselbe zu
+                    löschen.
+                  </para>
+                </tip>
+                Die Suchergebnisse hängen von der Registerkarte ab, von der aus Sie die Suche
+                starten und ob das gewählte Datenfeld zur Buchung oder einem Buchungsteil gehört.
+                <itemizedlist>
+                  <para>Diese Felder gehören zur <emphasis>Buchung</emphasis>:
+                  </para>
 
-      <variablelist>
-        <varlistentry>
-          <term><guilabel>New Search</guilabel></term>
+                  <listitem>
+                    <para>Beschreibung
+                    </para>
+                  </listitem>
 
-          <listitem>
-            <para>Perform a new transaction search
-            </para>
-          </listitem>
-        </varlistentry>
+                  <listitem>
+                    <para>Bemerkung
+                    </para>
+                  </listitem>
 
-        <varlistentry>
-          <term><guilabel>Refine current search</guilabel></term>
+                  <listitem>
+                    <para>Nummer
+                    </para>
+                  </listitem>
 
-          <listitem>
-            <para>Search within the results of the previous search
-            </para>
-          </listitem>
-        </varlistentry>
+                  <listitem>
+                    <para>Buchungsdatum
+                    </para>
+                  </listitem>
+                </itemizedlist>
 
-        <varlistentry>
-          <term><guilabel>Add results to current search</guilabel></term>
+                <itemizedlist>
+                  <para>Wohingegen die anderen Felder in den <emphasis>Buchungsteilen</emphasis> enthalten sind und somit
+                    jeweils einem einzigen Konto zugeordnet sind:
+                  </para>
 
-          <listitem>
-            <para>Search based on the first set of criteria or the new criteria
-            </para>
-          </listitem>
-        </varlistentry>
+                  <listitem>
+                    <para>Buchungsnummer
+                    </para>
+                  </listitem>
 
-        <varlistentry>
-          <term><guilabel>Delete results from current search</guilabel></term>
+                  <listitem>
+                    <para>Nummer/Aktion
+                    </para>
+                  </listitem>
 
-          <listitem>
-            <para>Discard any results that match the previous search results
-            </para>
-          </listitem>
-        </varlistentry>
+                  <listitem>
+                    <para>Datum des Abgleichs
+                    </para>
+                  </listitem>
 
-        <varlistentry>
-          <term><guilabel>Search only active data</guilabel></term>
+                  <listitem>
+                    <para>Wert
+                    </para>
+                  </listitem>
 
-          <listitem>
-            <para>Search only if data are marked as active. This selector is greyed out for the <guilabel>Split
-              Search</guilabel> as it is meaningful only for
-              <link linkend="tool-find-bsnss">business related search</link>
-            </para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
+                  <listitem>
+                    <para>Anteile
+                    </para>
+                  </listitem>
 
-      <note>
-        <para>When selecting search criteria keep in mind that criteria are applied to individual splits or fields
-          in transactions, and that the entire transaction is included in the results. There is no
-          visual indication in the results to indicate which split or field met the search criteria.
+                  <listitem>
+                    <para>Wertpapier-/Anteilspreis
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para>Abgleichen
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para>Abschlussbuchungen
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para>Ausgeglichene Buchungen
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para>Konto
+                    </para>
+                  </listitem>
+                </itemizedlist>
+              </para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </sect3>
+
+      <sect3 id="tool-find-txn-gui-2">
+        <title>Suchtypen</title>
+
+        <para>Im Abschnitt <guilabel>Suchtyp</guilabel> gibt es fünf Auswahlmöglichkeiten. Die erste Option ist
+          immer aktiviert, die folgenden drei sind verfügbar, wenn Sie die Option &gmi.ed.find; aus
+          einem Kontobuch heraus starten oder, falls der Befehl &gmi.ed.find; von einem anderen
+          Fenster aus aufgerufen wurde, nach der Ausführung des ersten Suchvorgangs. Die letzte
+          Option ist nur verfügbar für das <xref linkend="tool-find-bsnss" />.
         </para>
-      </note>
 
-      <para>When search criteria are selected, you can press the <guibutton>Find</guibutton> button. You will be
-        presented with the search results in a new register tab. A report of the search results may
-        created and printed using &mc.rep.acct-rep; . The Account Report has limited formatting
-        options but, like all &app; reports, being in html format, can be copied and pasted into a
-        spreadsheet for further formatting. Alternatively, the Account Report can be exported to an
-        html file, and the html file may be opened in a spreadsheet.
-      </para>
+        <glosslist>
+          <glossentry>
+            <glossterm>Neue Suche</glossterm>
+            <glossdef>
+              <para>Eine neue Suche nach Buchungen durchführen.
+              </para>
+            </glossdef>
+          </glossentry>
 
-      <note>
-        <para>Press the <guibutton>Close</guibutton> button to close the <guilabel>Find Transaction</guilabel>
-          dialog.
+          <glossentry>
+            <glossterm>Verfeinern der aktuellen Suche</glossterm>
+            <glossdef>
+              <para>Innerhalb der Ergebnisse der vorherigen Suche mit geänderten Suchkriterien erneut suchen.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Ergebnisse zur aktuellen Suche hinzufügen</glossterm>
+            <glossdef>
+              <para>Die Ergebnisse auf der Grundlage der ersten Suchkriterien oder an Hand von neuen Kriterien
+                ergänzen.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Ergebnisse von der aktuellen Suche löschen</glossterm>
+            <glossdef>
+              <para>Alle Ergebnisse verwerfen, die mit den vorherigen Suchergebnissen übereinstimmen.
+              </para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>Nur aktuelle Daten durchsuchen</glossterm>
+            <glossdef>
+              <para>Wenn aktiviert, wird in den Daten gesucht, die als aktiv gekennzeichnet sind. Ansonsten werden alle
+                Daten durchsucht. Diese Auswahl ist für <guilabel>Buchungen suchen</guilabel>
+                deaktiviert, da sie nur für das <xref linkend="tool-find-bsnss"/> genutzt werden
+                kann.
+              </para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+
+        <note>
+          <para>Bei der Auswahl der Suchkriterien ist zu beachten, dass die Kriterien auf einzelne Buchungsteile
+            oder Felder in den Buchungen angewendet werden und dass die gesamte Buchung in den
+            Ergebnissen enthalten ist. Es gibt keinen visuellen Hinweis in den Ergebnissen, welcher
+            Buchungsteil oder welches Feld die Suchkriterien erfüllt.
+          </para>
+        </note>
+
+        <para>Sobald Sie die Suchkriterien festgelegt haben, können Sie auf die Schaltfläche
+          <guibutton>Suchen</guibutton> klicken. Der Dialog schließt sich und die Suchergebnisse
+          werden in einer neuen Registerkarte angezeigt. Ein Bericht über die Suchergebnisse kann
+          mit &mc.rep.acct-rep; erstellt und gedruckt werden. Der Kontenbericht hat nur begrenzte
+          Formatierungsmöglichkeiten, kann aber wie alle &app;-Berichte, da er im html-Format
+          erstellt wird, kopiert und in eine Tabellenkalkulation eingefügt werden, um ihn weiter zu
+          formatieren. Alternativ kann der Kontenbericht in eine html-Datei exportiert werden und
+          die html-Datei kann in einer Tabellenkalkulation geöffnet werden.
         </para>
-      </note>
-
-      <table frame="topbot" id="tool-find-bttns">
-        <title>Search criteria buttons - Split Search</title>
-
-        <tgroup cols="8" rowsep="1">
-          <thead>
-            <row>
-              <entry>
-                <para>Button 1
-                </para>
-              </entry>
-
-              <entry>
-                <para>Button 2
-                </para>
-              </entry>
-
-              <entry>
-                <para>Button 3
-                </para>
-              </entry>
-
-              <entry>
-                <para>Button 4
-                </para>
-              </entry>
-
-              <entry>
-                <para>Button 5
-                </para>
-              </entry>
-
-              <entry>
-                <para>Button 6
-                </para>
-              </entry>
-
-              <entry>
-                <para>Button 7
-                </para>
-              </entry>
-
-              <entry>
-                <para>Button 8
-                </para>
-              </entry>
-            </row>
-          </thead>
-
-          <tbody>
-            <row>
-              <entry morerows="2" valign="middle">
-                <para>Description
-                  <footnote id="DMN">
-                    <para>The Description, Memo, Number are common to all lines in a transaction.
-                    </para>
-                  </footnote>
-                </para>
-              </entry>
-
-              <entry>
-                <para>contains
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Criteria entry field
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Is entry Case Insensitive?
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>matches regex
-                  <footnote id="rgx">
-                    <para><emphasis>regex</emphasis> means regular expression text search as used in various computer programs
-                      such as <application>Perl</application>
-                    </para>
-                  </footnote>
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>does not match regex<footnoteref linkend="rgx"/>
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="2" valign="middle">
-                <para>Memo<footnoteref linkend="DMN"/>
-                </para>
-              </entry>
-
-              <entry>
-                <para>contains
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Criteria entry field
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Is entry Case Insensitive?
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>matches regex<footnoteref linkend="rgx"/>
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>does not match regex<footnoteref linkend="rgx"/>
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="2" valign="middle">
-                <para>Number<footnoteref linkend="DMN"/>
-                </para>
-              </entry>
-
-              <entry>
-                <para>contains
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Criteria entry field
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Is entry Case Insensitive?
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>matches regex<footnoteref linkend="rgx"/>
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>does not match regex<footnoteref linkend="rgx"/>
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="2" valign="middle">
-                <para>Action
-                </para>
-              </entry>
-
-              <entry>
-                <para>contains
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Criteria entry field
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Is entry Case Insensitive?
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>matches regex<footnoteref linkend="rgx"/>
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>does not match regex<footnoteref linkend="rgx"/>
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="2" valign="middle">
-                <para>Notes
-                </para>
-              </entry>
-
-              <entry>
-                <para>contains
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Criteria entry field
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Is entry Case Insensitive?
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="2" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>matches regex<footnoteref linkend="rgx"/>
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>does not match regex<footnoteref linkend="rgx"/>
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="5" valign="middle">
-                <para>Date Posted
-                </para>
-              </entry>
-
-              <entry>
-                <para>is before
-                </para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para>Date selection field
-                </para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is before or on
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is on
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is not on
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is after
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is on or after
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="17" valign="middle">
-                <para>Value
-                </para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para>has credits or debits
-                </para>
-              </entry>
-
-              <entry>
-                <para>less than
-                </para>
-              </entry>
-
-              <entry morerows="17" valign="middle">
-                <para>Amount entry field
-                </para>
-              </entry>
-
-              <entry morerows="17" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="17" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="17" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="17" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>less than or equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>not equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>greater than
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>greater than or equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="5" valign="middle">
-                <para>has credits
-                </para>
-              </entry>
-
-              <entry>
-                <para>less than
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>less than or equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>not equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>greater than
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>greater than or equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="5" valign="middle">
-                <para>has debits
-                </para>
-              </entry>
-
-              <entry>
-                <para>less than
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>less than or equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>not equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>greater than
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>greater than or equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="5" valign="middle">
-                <para>Shares
-                </para>
-              </entry>
-
-              <entry>
-                <para>is less than
-                </para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para>Amount entry field
-                </para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is less than or equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>equals
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>does not equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is greater than
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is greater than or equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="5" valign="middle">
-                <para>Share Price
-                </para>
-              </entry>
-
-              <entry>
-                <para>is less than
-                </para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para>Amount entry field
-                </para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="5" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is less than or equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>equals
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is not equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is greater than
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is greater than or equal to
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="1" valign="middle">
-                <para>Reconcile
-                  <footnote>
-                    <para>The <guilabel>Reconcile</guilabel> option applies the selected criteria to each line of a
-                      transaction individually. Each transaction line may have only one of the
-                      indicated values, but there is often a mix of values within a complete
-                      transaction, so companion lines may not meet the selected criteria. See
-                      separate note defining status values. For a detailed description of
-                      transaction statuses see <xref linkend="trans-stts" />
-                    </para>
-                  </footnote>
-                </para>
-              </entry>
-
-              <entry>
-                <para>is
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para>Not Cleared
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para>Cleared
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para>Reconciled
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para>Frozen
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para>Voided
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is not
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="1" valign="middle">
-                <para>Balanced
-                </para>
-              </entry>
-
-              <entry>
-                <para>is
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para>set true
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>is not
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry morerows="1" valign="middle">
-                <para>Account
-                  <footnote>
-                    <para>The <guilabel>Account</guilabel> option performs a search where the accounts selected in the
-                      <guilabel>Choose Accounts</guilabel> dialog will both be searched individually
-                      for results. This means that a match in any of the selected accounts will
-                      either be displayed (matches any account) or discarded (matches no account).
-                    </para>
-                  </footnote>
-                </para>
-              </entry>
-
-              <entry>
-                <para>matches any account
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para>Choose Accounts
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para></para>
-              </entry>
-
-              <entry morerows="1" valign="middle">
-                <para></para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>matches no accounts
-                </para>
-              </entry>
-            </row>
-
-            <row>
-              <entry>
-                <para>All Accounts
-                  <footnote>
-                    <para>The <guilabel>All Accounts</guilabel> option performs a search where accounts selected in the
-                      <guilabel>Choose Accounts</guilabel> dialog will only return results that
-                      match in both accounts.
-                    </para>
-                  </footnote>
-                </para>
-              </entry>
-
-              <entry>
-                <para>matches all accounts
-                </para>
-              </entry>
-
-              <entry>
-                <para>Choose Accounts
-                </para>
-              </entry>
-
-              <entry>
-                <para>Remove row
-                </para>
-              </entry>
-
-              <entry>
-                <para></para>
-              </entry>
-
-              <entry>
-                <para></para>
-              </entry>
-
-              <entry>
-                <para></para>
-              </entry>
-
-              <entry>
-                <para></para>
-              </entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table>
+
+        <note>
+          <para>Drücken Sie die Schaltfläche <guibutton>Schließen</guibutton>, um den Dialog zu beenden ohne eine
+            Suche auszuführen.
+          </para>
+        </note>
+      </sect3>
+
+      <sect3 id="tool-find-txn-bttns">
+        <title>Verwendbare Suchkriterien</title>
+
+        <table pgwide="1" frame="topbot" id="tool-find-bttns">
+          <title>Schaltflächen für Suchkriterien - Buchungssteil suchen</title>
+
+          <tgroup cols="4" rowsep="1">
+            <thead>
+              <row>
+                <entry>
+                  <para>Datenfeld
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>Steuerungselement 2
+                    <footnote>
+                      <para>Der Begriff <emphasis>Steuerungselement </emphasis> steht in diesem Dialog stellvertretend für alle
+                        Bedienelemente. Dieses können Auswahlfelder, Eingabefelder,
+                        Kontrollkästchen, Schaltflächen, usw. sein.
+                      </para>
+                    </footnote>
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>Steuerungselement 3
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>Steuerungselement 4
+                  </para>
+                </entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry morerows="3" valign="middle">
+                  <para>Beschreibung
+                    <footnote id="DMN">
+                      <para>Die Felder Beschreibung, Bemerkung, Nummer und Buchungsdatum gehören zur Buchung, alle anderen
+                        durchsuchbaren Felder sind Teil einzelner Buchungsteile.
+                      </para>
+                    </footnote>
+                  </para>
+
+                  <para>Bemerkung<footnoteref linkend="DMN"/>
+                  </para>
+
+                  <para>Buchungstext
+                  </para>
+
+                  <para>Beschreibung, Bemerkung, Buchungstext
+                    <footnote>
+                      <para>Sucht nach einem Begriff in den Feldern Beschreibung und Bemerkung und Buchungstext eines
+                        Buchungsteils.
+                      </para>
+                    </footnote>
+                  </para>
+
+                  <para>Nummer<footnoteref linkend="DMN"/>
+                  </para>
+
+                  <para>Aktion
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>enthält
+                  </para>
+                </entry>
+
+                <entry morerows="3" valign="middle">
+                  <para>Suchkriterium
+                  </para>
+                </entry>
+
+                <entry morerows="3" valign="middle">
+                  <para>Groß-/Kleinschreibung beachten?
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>gleich
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>entspricht regulärem Ausdruck
+                    <footnote id="rgx">
+                      <para>Ein <ulink url="https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck">regulärer Ausdruck</ulink>,
+                        auch als <emphasis>Regex</emphasis> bekannt, bezeichnet eine Textsuche, wie
+                        sie in verschiedenen Anwendungsprogrammen verwendet wird. Unter anderem
+                        bieten die
+                        <ulink url="https://de.wikipedia.org/wiki/Textverarbeitung">Textverarbeitung</ulink>
+                        und die
+                        <ulink url="https://de.wikipedia.org/wiki/Tabellenkalkulation">Tabellenkalkulation</ulink>
+                        des Office-Paketes
+                        <ulink url="https://de.wikipedia.org/wiki/OpenOffice.org">OpenOffice.org</ulink>
+                        die Möglichkeit, mit regulären Ausdrücken im Text zu suchen.
+                      </para>
+                    </footnote>
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>entspricht nicht regulärem Ausdruck<footnoteref linkend="rgx"/>
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry morerows="5" valign="middle">
+                  <para>Datum des Abgleichs
+                  </para>
+
+                  <para>Buchungsdatum<footnoteref linkend="DMN"/>
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>vor
+                  </para>
+                </entry>
+
+                <entry morerows="5" valign="middle">
+                  <para>Datum wählen
+                  </para>
+                </entry>
+
+                <entry morerows="5" valign="middle">
+                  <para></para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>vor oder am
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>am
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>nicht am
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>nach
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>nach oder am
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry morerows="5" valign="middle">
+                  <para>Wert
+                  </para>
+                </entry>
+
+                <entry morerows="5" valign="middle">
+                  <para>hat Haben oder Soll
+                  </para>
+
+                  <para>hat Soll
+                  </para>
+
+                  <para>hat Haben
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>kleiner
+                  </para>
+                </entry>
+
+                <entry morerows="5" valign="middle">
+                  <para>Suchkriterium
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>kleiner oder gleich
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>gleich
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>ungleich
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>größer
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>größer oder gleich
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry morerows="5" valign="middle">
+                  <para>Anteil
+                  </para>
+
+                  <para>Wertpapier-/Anteilspreis
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>kleiner
+                  </para>
+                </entry>
+
+                <entry morerows="5" valign="middle">
+                  <para>Suchkriterium
+                  </para>
+                </entry>
+
+                <entry morerows="5" valign="middle">
+                  <para></para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>kleiner oder gleich
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>gleich
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>ungleich
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>größer
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>größer oder gleich
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry morerows="1" valign="middle">
+                  <para>Abgleichen
+                    <footnote>
+                      <para>Die Option <guilabel>Abgleichen</guilabel> wendet die ausgewählten Kriterien auf jede Zeile einer
+                        Buchung einzeln an. Jede Buchung kann nur einen der angegebenen Werte haben,
+                        aber oft gibt es eine Mischung von Werten innerhalb einer vollständigen
+                        Buchung, so dass Begleitzeilen die ausgewählten Kriterien möglicherweise
+                        nicht erfüllen. Siehe den separaten Hinweis zur Definition von
+                        Statuswerten. Für eine detaillierte Beschreibung der Status von Buchungen
+                        siehe <xref linkend="trans-stts"/>
+                      </para>
+                    </footnote>
+                  </para>
+                </entry>
+
+                <entry valign="middle">
+                  <para>ist
+                  </para>
+                </entry>
+
+                <entry morerows="1" valign="middle">
+                  <para>Unbestätigt
+                  </para>
+
+                  <para>Bestätigt
+                  </para>
+
+                  <para>Abgeglichen
+                  </para>
+
+                  <para>Fixiert
+                  </para>
+
+                  <para>Storniert
+                  </para>
+                </entry>
+
+                <entry morerows="1" valign="middle">
+                  <para></para>
+                </entry>
+              </row>
+
+              <row>
+                <entry valign="middle">
+                  <para>ist nicht
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry morerows="1" valign="middle">
+                  <para>Abschlussbuchung
+                    <footnote>
+                      <para>Diese Auswahl findet Buchungen, deren Buchungsteil durch &mc.to.cls-bok; als Abschlussbuchung
+                        markiert ist.
+                      </para>
+                    </footnote>
+                  </para>
+
+                  <para>Ausgeglichene Buchungen
+                    <footnote>
+                      <para>Diese Auswahl findet Buchungen, die ausgeglichen sind oder nicht ausgeglichen sind. Da es &app; fast
+                        immer gelingt, Buchungen auszugleichen, werden fast immer alle möglichen
+                        Buchungen zurückgegeben. Es ist jedoch möglich, eine Buchung zu erstellen,
+                        die mehrere Handelsgüter enthält, welche nicht ausgeglichen werden
+                        können. Mit deaktivieren des Kästchens werden diese Buchungen gefunden.
+                      </para>
+                    </footnote>
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>Aktiviert
+                  </para>
+                </entry>
+
+                <entry morerows="1" valign="middle">
+                  <para></para>
+                </entry>
+
+                <entry morerows="1" valign="middle">
+                  <para></para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>nicht Aktiviert
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry morerows="1" valign="middle">
+                  <para>Konto
+                    <footnote>
+                      <para>Wenn der Dialog <guilabel>Buchungen Suchen</guilabel> aus einem Registerblatt
+                        <guilabel>Konten</guilabel> oder einem <guilabel>Journal</guilabel>
+                        aufgerufen wird, dann führt die Verwendung von <guilabel>Konto</guilabel>
+                        eine Suche in den Konten durch, die in dem Dialogfeld <guilabel>Konten
+                        wählen</guilabel> markiert sind. Diese bedeutet, dass eine Übereinstimmung
+                        in einem der ausgewählten Konten entweder angezeigt <quote>entspricht
+                        irgendeinem Konto</quote> oder verworfen <quote>entspricht keinem
+                        Konto</quote> wird. Wenn hingegen der Dialog <guilabel>Buchungen
+                        suchen</guilabel> in einem regulären Kontenregister gestartet und das
+                        aktuelle Konto ist ausgewählt, werden alle Buchungen zurückgegeben oder,
+                        falls ein anderes Konto als das aktuelle ausgewählt wird, keine Buchungen.
+                      </para>
+                    </footnote>
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>entspricht irgendeinem Konto
+                  </para>
+                </entry>
+
+                <entry morerows="1" valign="middle">
+                  <para>Konten wählen
+                  </para>
+                </entry>
+
+                <entry morerows="1" valign="middle">
+                  <para></para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>entspricht keinem Konto
+                  </para>
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  <para>Alle Konten <footnoteref linkend="fn_tools_all_accounts"/>
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>entspricht allen Konten
+                  </para>
+                </entry>
+
+                <entry>
+                  <para>Konten wählen
+                  </para>
+                </entry>
+
+                <entry>
+                  <para></para>
+                </entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </sect3>
 
       <sect3 id="tool-find-txn-criteria">
-        <title>Explanations of the Criteria</title>
+        <title>Erläuterungen zum Suchkriterium <quote>Abgleichen</quote></title>
 
-        <para>The <guibutton>Reconcile</guibutton> criterion deserves some more explanation. Think of the selected
-          reconciliation status buttons (<guibutton>Not Cleared</guibutton>,
-          <guibutton>Cleared</guibutton>, and so on) as a single group, joined with a logical
-          &ldquo;or&rdquo;. In other words, the selection &ldquo;<guibutton>is </guibutton>&rdquo;
-          or &ldquo;<guibutton>is not</guibutton>&rdquo; applies to the &ldquo;or&rdquo; of the
-          selected status buttons. The buttons which are left unselected are simply ignored.
-          (It&rsquo;s not the same as saying the reconciliation status <emphasis>must not</emphasis>
-          be one of these.)
+        <para>Das Kriterium <guibutton>Abgleichen</guibutton> verdient eine nähere Erläuterung. Denken Sie sich
+          die ausgewählten Abgleichstatus-Schaltflächen (<guibutton>Unbestätigt</guibutton>,
+          <guibutton>Bestätigt</guibutton>, usw.) als eine einzige Gruppe auf die ein logisches
+          <quote>ODER</quote> angewandt wird. Mit anderen Worten, die Auswahl
+          <quote><guibutton>ist</guibutton></quote> bzw. <quote><guibutton>ist
+          nicht</guibutton></quote> wird mit <quote>ODER</quote> der ausgewählten
+          Status-Schaltflächen verknüpft. Die Schaltflächen, die nicht ausgewählt sind, werden
+          einfach ignoriert. (Es ist nicht dasselbe wie zu sagen, dass der Abgleichstatus
+          <emphasis>nicht</emphasis> einer von diesen sein kann.)
         </para>
 
-        <para>For example: if you select <guibutton>Reconcile</guibutton> <guibutton>is</guibutton>
-          <guibutton>Cleared</guibutton> <guibutton>Reconciled</guibutton>, that means you&rsquo;re
-          saying &ldquo;I want all transactions which contain cleared splits OR reconciled
-          splits&rdquo; (imagine an invisible &ldquo;OR&rdquo; between all the selected status
-          buttons). It&rsquo;s the same as selecting <guibutton>Reconcile</guibutton>
-          <guibutton>is</guibutton> <guibutton>Cleared</guibutton>, then adding another search
-          criterion with the <guibutton>Add</guibutton> button, then on the new line selecting
-          <guibutton>Reconcile</guibutton> <guibutton>is</guibutton>
-          <guibutton>Reconciled</guibutton>, and finally selecting <guilabel>Search for items
-          where</guilabel> <guibutton>any criteria are met</guibutton>. In either case, &app; will
-          show you exactly the same set of transactions.
+        <para>Zum Beispiel: Wenn Sie <guibutton>Abgleichen</guibutton> / <guibutton>ist</guibutton> /
+          <guibutton>Bestätigt</guibutton> / <guibutton>Abgeglichen</guibutton> wählen, bedeutet
+          das soviel, wie <emphasis>Sie möchten alle Buchungen angezeigt bekommen, die bestätigte
+          oder abgegliche Buchungsteile enthalten</emphasis>. (Stellen Sie sich ein unsichtbares
+          <emphasis>ODER</emphasis> zwischen allen ausgewählten Status Schaltflächen vor.) Das ist
+          dasselbe wie die Auswahl von <guibutton>Abgleichen</guibutton> /
+          <guibutton>ist</guibutton> / <guibutton>Bestätigt</guibutton>, dann ein weiteres
+          Suchkriterium mit der Schaltfläche <guibutton>Hinzufügen</guibutton> einfügen, und in
+          der neuen Zeile wählen Sie <guibutton>Abgleichen</guibutton> / <guibutton>ist</guibutton>
+          / <guibutton>Abgeglichen</guibutton> und schließlich die Auswahl von <guilabel>Nach
+          Einträgen suchen, für die gilt</guilabel>, <guibutton>irgendeines der Kriterien wird
+          erfüllt</guibutton>. In beiden Fällen wird &app; genau die gleichen Buchungen anzeigen.
         </para>
       </sect3>
     </sect2>
@@ -6096,8 +5825,8 @@ and update the appendix. -->
                     <para>Nachdem Sie die Art der Quelle für Kursangebote ausgewählt haben, wählen Sie eine Datenquelle aus
                       dem Pulldown-Menü. Die zur Verfügung stehenden Datenquellen sind abhängig
                       von der installierten Version von &app-fq; und werden Ihnen bei Verwendung des
-                      Befehls <userinput>gnucash-cli --quotes info</userinput> angezeigt. Details zu den derzeit
-                      unterstützten Datenquellen finden Sie unter
+                      Befehls <userinput>gnucash-cli --quotes info</userinput> angezeigt. Details zu
+                      den derzeit unterstützten Datenquellen finden Sie unter
                       <xref linkend="fq-sources"></xref>.
                       <note>
 <!-- Is this note still valid? -->
