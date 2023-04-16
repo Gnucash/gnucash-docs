@@ -74,6 +74,8 @@ set (figures
         figures/Tool_Lots_h_double_arrow.png
         figures/Tool_Lots_v_double_arrow.png
         figures/Tools_CloseBook.png
+        figures/Tools_Find_bsnss.png
+        figures/Tools_Find_bsnss_result.png
         figures/Tools_Find_txn.png
         figures/Tools_PriceDatabase.png
         figures/Tools_PriceEditor_add.png
