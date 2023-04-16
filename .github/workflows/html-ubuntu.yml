@@ -1,35 +1,6 @@
 name: html-ubuntu
 on: [push, pull_request]
 jobs:
-  ubuntu-18_html:
-    runs-on: ubuntu-18.04
-    name: make HTML in Ubuntu-18.04
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - run: sudo apt-get update
-    - name: Install minimal dependencies
-      run: sudo apt-get install -y cmake ninja-build libxml2-utils xsltproc docbook-xsl
-    - run: |
-        echo "ROOT_DIR=$GITHUB_WORKSPACE/.." >> $GITHUB_ENV
-    - name: Create Directories
-      run: |
-        pwd
-        mkdir $ROOT_DIR/inst
-        mkdir build
-    - name: Configure GnuCash-docs
-      run: |
-        cd build
-        cmake -G Ninja -DCMAKE_INSTALL_PREFIX=$ROOT_DIR/inst $GITHUB_WORKSPACE -DWITH_MOBI=ON
-    - name: Build HTML
-      run: |
-        cd build
-        ninja html
-    - uses: actions/upload-artifact@v2
-      if: failure()
-      with:
-        name: TestLog
-        path: ${{ github.workspace }}/build/Testing/Temporary/LastTest.log
   ubuntu-latest_dist-mini:
     runs-on: ubuntu-latest
     name: make HTML in Ubuntu-latest
