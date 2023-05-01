@@ -414,7 +414,9 @@
           <title>Report Options</title>
 
           <figure>
-            <title><emphasis>Transaction Report, Report Options</emphasis></title><screenshot id="TxRptOpt_Screen">
+            <title><emphasis>Transaction Report, Report Options</emphasis></title>
+
+            <screenshot id="TxRptOpt_Screen">
               <mediaobject>
                 <imageobject role="html">
                   <imagedata fileref="figures/TxRptOpt_Screen.png"
@@ -2092,8 +2094,12 @@ Income (type INCOME)
 
           <figure id="fig-investlots" pgwide="1">
             <title>The Investment Lots Report</title>
+
             <screenshot id="InvestmentLotsScreenShot">
-              <screeninfo>1720x982</screeninfo>
+              <screeninfo>
+                1720x982
+              </screeninfo>
+
               <mediaobject>
                 <imageobject role="html">
                   <imagedata fileref="figures/Report_Investment_Lots.png"
@@ -2110,17 +2116,17 @@ Income (type INCOME)
 
           <abstract>
             <para>The Investment Lots report shows details about lots in a selected set of accounts of type
-            <emphasis>Stock</emphasis> or <emphasis>Mutual Fund</emphasis>.
-            It includes an optional <link linkend="investment-lots-report-chart">capital gains summary chart</link>
-            and a <link linkend="investment-lots-report-columns">table</link> with columns for
-            <link linkend="investment-lots-report-column-d">dates</link>,
-            <link linkend="investment-lots-report-column-b">purchases</link>,
-            <link linkend="investment-lots-report-column-s">sales</link>,
-            <link linkend="investment-lots-report-column-e">end balances</link>,
-            capital gains (<link linkend="investment-lots-report-column-r">realized</link> and
-            <link linkend="investment-lots-report-column-r">unrealized</link>,
-            short term and long term), and return on investment (ROI). It also performs optional lot
-            <link linkend="investment-lots-report-options-val">validation checks</link>.
+              <emphasis>Stock</emphasis> or <emphasis>Mutual Fund</emphasis>. It includes an
+              optional <link linkend="investment-lots-report-chart">capital gains summary
+              chart</link> and a <link linkend="investment-lots-report-columns">table</link> with
+              columns for <link linkend="investment-lots-report-column-d">dates</link>,
+              <link linkend="investment-lots-report-column-b">purchases</link>,
+              <link linkend="investment-lots-report-column-s">sales</link>,
+              <link linkend="investment-lots-report-column-e">end balances</link>, capital gains
+              (<link linkend="investment-lots-report-column-r">realized</link> and
+              <link linkend="investment-lots-report-column-r">unrealized</link>, short term and long
+              term), and return on investment (ROI). It also performs optional lot
+              <link linkend="investment-lots-report-options-val">validation checks</link>.
             </para>
           </abstract>
 
@@ -2129,29 +2135,31 @@ Income (type INCOME)
               <listitem>
                 <para><xref linkend="tool-lots-cap" />
                 </para>
+
                 <note>
                   <para>Lots can be used for both securities and invoices, but this report applies to securities.
                   </para>
                 </note>
               </listitem>
+
               <listitem>
                 <para>Tutorial and Concepts Guide
                 </para>
+
                 <itemizedlist>
                   <listitem>
-                    <para>
-                      <ulink url="&url-docs-C;guide/invest-sell1.html#invest-sellLots">
-                                Selling Shares with Automatic Calculation of Capital Gain or Loss Using Lots</ulink>
+                    <para><ulink url="&url-docs-C;guide/invest-sell1.html#invest-sellLots"> Selling Shares with Automatic
+                      Calculation of Capital Gain or Loss Using Lots</ulink>
                     </para>
                   </listitem>
+
                   <listitem>
-                    <para>
-                      <ulink url="&url-docs-C;guide/rpt_standardrpts.html#rpt_investlots">
-                                Investment Lots</ulink> report
+                    <para><ulink url="&url-docs-C;guide/rpt_standardrpts.html#rpt_investlots"> Investment Lots</ulink> report
                     </para>
                   </listitem>
                 </itemizedlist>
               </listitem>
+
               <listitem>
                 <para>Wiki: <ulink url="&url-wiki-lots;">Concept of Lots</ulink>
                 </para>
@@ -2164,242 +2172,302 @@ Income (type INCOME)
 
           <para id="investment-lots-report-columns">Table Columns
           </para>
+
           <note>
             <para>Most of the columns can be hidden in the report
-            <link linkend="investment-lots-report-options-columns">Column options</link>.
+              <link linkend="investment-lots-report-options-columns">Column options</link>.
             </para>
           </note>
+
           <note>
             <para>The Amount columns are denominated in each account's commodity. But the Value, Basis, Price, and
-            Gain columns are always denominated in the <guilabel>Report's currency</guilabel>, converted if necessary.
+              Gain columns are always denominated in the <guilabel>Report's currency</guilabel>,
+              converted if necessary.
             </para>
           </note>
+
           <itemizedlist>
             <listitem  id="investment-lots-report-column-title">
               <para><guilabel>Lot Title</guilabel>
               </para>
             </listitem>
+
             <listitem id="investment-lots-report-column-guid">
               <para><guilabel>GUID</guilabel>: The lot's internal, globally unique identifier. This column is hidden by
-              default, as it is probably not useful for most use cases. But it could come in handy for directly querying
-              the &app; back end data store.
+                default, as it is probably not useful for most use cases. But it could come in handy
+                for directly querying the &app; back end data store.
               </para>
             </listitem>
+
             <listitem id="investment-lots-report-column-d">
               <para>Date columns
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-column-opened">
-                  <para><guilabel>Opened</guilabel>: The date on which the lot was opened. In a well-formed lot, this
-                  is the transaction date of the first (and ideally only) purchase split.
+                  <para><guilabel>Opened</guilabel>: The date on which the lot was opened. In a well-formed lot, this is the
+                    transaction date of the first (and ideally only) purchase split.
                   </para>
+
                   <warning>
                     <para>Placing more than one purchase split into a single lot can make ambiguous the holding period,
-                    preventing gains from being accurately grouped by short term and long term.
+                      preventing gains from being accurately grouped by short term and long term.
                     </para>
                   </warning>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-closed">
-                  <para><guilabel>Closed</guilabel>: The date on which the lot was closed, which is the transaction date
-                  of the sale split that reduces the lot balance to zero. If the lot is still open on the report end
-                  date, then <guilabel>Closed</guilabel> is blank.
+                  <para><guilabel>Closed</guilabel>: The date on which the lot was closed, which is the transaction date of
+                    the sale split that reduces the lot balance to zero. If the lot is still open on
+                    the report end date, then <guilabel>Closed</guilabel> is blank.
                   </para>
                 </listitem>
               </itemizedlist>
             </listitem>
+
             <listitem id="investment-lots-report-column-b">
               <para>Bought columns
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-column-ba">
                   <para><guilabel>Bought Amount</guilabel>: The total number of purchased shares.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-bv">
                   <para><guilabel>Bought Value (Basis)</guilabel>: The total purchase value of the
-                  <link linkend="investment-lots-report-column-ba"><guilabel>Bought Amount</guilabel></link>. This is the basis used for computing gains.
+                    <link linkend="investment-lots-report-column-ba"><guilabel>Bought
+                    Amount</guilabel></link>. This is the basis used for computing gains.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-bp">
                   <para><guilabel>Bought Average Price</guilabel>: The average price of each purchased share.
                   </para>
                 </listitem>
               </itemizedlist>
             </listitem>
+
             <listitem id="investment-lots-report-column-s">
               <para>Sold columns
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-column-ss">
                   <para><guilabel>Sold Splits</guilabel>: The total number of sold splits.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-sa">
                   <para><guilabel>Sold Amount</guilabel>: The total number of sold shares.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-sb">
                   <para><guilabel>Sold Basis</guilabel>: The total basis (purchase value) of the
-                  <link linkend="investment-lots-report-column-sa"><guilabel>Sold Amount</guilabel></link>.
+                    <link linkend="investment-lots-report-column-sa"><guilabel>Sold
+                    Amount</guilabel></link>.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-sv">
                   <para><guilabel>Sold Value</guilabel>: The total value (sales proceeds) of the
-                  <link linkend="investment-lots-report-column-sa"><guilabel>Sold Amount</guilabel></link>.
+                    <link linkend="investment-lots-report-column-sa"><guilabel>Sold
+                    Amount</guilabel></link>.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-sp">
                   <para><guilabel>Sold Average Price</guilabel>: The average sale price of each sold share.
                   </para>
                 </listitem>
               </itemizedlist>
+
               <note>
-                <para>The
-                <link linkend="investment-lots-report-column-sa"><guilabel>Sold Amount</guilabel></link>,
-                <link linkend="investment-lots-report-column-sb"><guilabel>Sold Basis</guilabel></link>, and
-                <link linkend="investment-lots-report-column-sv"><guilabel>Sold Value</guilabel></link> columns can be
-                optionally split into short-term and long-term columns (e.g. <guilabel>ST Sold Amount</guilabel> and
-                <guilabel>LT Sold Amount</guilabel> instead of
-                <link linkend="investment-lots-report-column-sa"><guilabel>Sold Amount</guilabel></link>, etc.) via
-                the <link linkend="investment-lots-report-options-columns-gg"><guilabel>Group gains by age (short
-                term and long term)</guilabel></link> Columns option.
+                <para>The <link linkend="investment-lots-report-column-sa"><guilabel>Sold Amount</guilabel></link>,
+                  <link linkend="investment-lots-report-column-sb"><guilabel>Sold
+                  Basis</guilabel></link>, and
+                  <link linkend="investment-lots-report-column-sv"><guilabel>Sold
+                  Value</guilabel></link> columns can be optionally split into short-term and
+                  long-term columns (e.g. <guilabel>ST Sold Amount</guilabel> and <guilabel>LT Sold
+                  Amount</guilabel> instead of
+                  <link linkend="investment-lots-report-column-sa"><guilabel>Sold
+                  Amount</guilabel></link>, etc.) via the
+                  <link linkend="investment-lots-report-options-columns-gg"><guilabel>Group gains by
+                  age (short term and long term)</guilabel></link> Columns option.
                 </para>
               </note>
             </listitem>
+
             <listitem id="investment-lots-report-column-e">
               <para>End columns
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-column-ea">
                   <para><guilabel>End Amount</guilabel>: The number of shares in the lot on the end date.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-eb">
                   <para><guilabel>End Basis</guilabel>: The basis (purchase value) of the
-                  <link linkend="investment-lots-report-column-ea"><guilabel>End Amount</guilabel></link>.
+                    <link linkend="investment-lots-report-column-ea"><guilabel>End
+                    Amount</guilabel></link>.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-ev">
                   <para><guilabel>End Value</guilabel>: The value of the
-                  <link linkend="investment-lots-report-column-ea"><guilabel>End Amount</guilabel></link>, using the
-                  share end price from the <guilabel>Price Source</guilabel> (e.g. the latest price on the end date).
+                    <link linkend="investment-lots-report-column-ea"><guilabel>End
+                    Amount</guilabel></link>, using the share end price from the <guilabel>Price
+                    Source</guilabel> (e.g. the latest price on the end date).
                   </para>
+
                   <note>
-                    <para>The end price used to compute the
-                    <link linkend="investment-lots-report-column-ev"><guilabel>End Value</guilabel></link> is displayed between
-                    the account name and the lot rows.
+                    <para>The end price used to compute the <link linkend="investment-lots-report-column-ev"><guilabel>End
+                      Value</guilabel></link> is displayed between the account name and the lot
+                      rows.
                     </para>
                   </note>
                 </listitem>
               </itemizedlist>
             </listitem>
+
             <listitem id="investment-lots-report-column-r">
               <para>Realized gain columns
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-column-rg">
                   <para><guilabel>Realized Gain</guilabel>: The capital gains (or losses) realized on sold shares.
-                  <link linkend="investment-lots-report-column-sv"><guilabel>Sold Value</guilabel></link> minus
-                  <link linkend="investment-lots-report-column-sb"><guilabel>Sold Basis</guilabel></link>.
+                    <link linkend="investment-lots-report-column-sv"><guilabel>Sold
+                    Value</guilabel></link> minus
+                    <link linkend="investment-lots-report-column-sb"><guilabel>Sold
+                    Basis</guilabel></link>.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-rr">
                   <para><guilabel>Realized ROI</guilabel>: The realized return on investment.
-                  <link linkend="investment-lots-report-column-rg"><guilabel>Realized Gain</guilabel></link> divided by
-                  <link linkend="investment-lots-report-column-sb"><guilabel>Sold Basis</guilabel></link>, as a percentage.
+                    <link linkend="investment-lots-report-column-rg"><guilabel>Realized
+                    Gain</guilabel></link> divided by
+                    <link linkend="investment-lots-report-column-sb"><guilabel>Sold
+                    Basis</guilabel></link>, as a percentage.
                   </para>
                 </listitem>
               </itemizedlist>
             </listitem>
+
             <listitem id="investment-lots-report-column-u">
               <para>Unrealized gain columns
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-column-ug">
-                  <para><guilabel>Unrealized Gain</guilabel>: The capital gains (or losses) that would be realized
-                  if the remaining shares were sold on the end date.
-                  <link linkend="investment-lots-report-column-ev"><guilabel>End Value</guilabel></link> minus
-                  <link linkend="investment-lots-report-column-eb"><guilabel>End Basis</guilabel></link>.
+                  <para><guilabel>Unrealized Gain</guilabel>: The capital gains (or losses) that would be realized if the
+                    remaining shares were sold on the end date.
+                    <link linkend="investment-lots-report-column-ev"><guilabel>End
+                    Value</guilabel></link> minus
+                    <link linkend="investment-lots-report-column-eb"><guilabel>End
+                    Basis</guilabel></link>.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-column-ur">
                   <para><guilabel>Unrealized ROI</guilabel>: The unrealized return on investment.
-                  <link linkend="investment-lots-report-column-ug"><guilabel>Unrealized Gain</guilabel></link> divided by
-                  <link linkend="investment-lots-report-column-eb"><guilabel>End Basis</guilabel></link>, as a percentage.
+                    <link linkend="investment-lots-report-column-ug"><guilabel>Unrealized
+                    Gain</guilabel></link> divided by
+                    <link linkend="investment-lots-report-column-eb"><guilabel>End
+                    Basis</guilabel></link>, as a percentage.
                   </para>
                 </listitem>
               </itemizedlist>
             </listitem>
           </itemizedlist>
+
           <note>
-            <para>The realized and unrealized gain columns can be optionally split into short-term and
-            long-term columns (e.g. <guilabel>ST Realized Gain</guilabel> and <guilabel>LT Realized Gain</guilabel>
-            instead of <link linkend="investment-lots-report-column-rg"><guilabel>Realized Gain</guilabel></link>,
-            etc.) via the <link linkend="investment-lots-report-options-columns-gg"><guilabel>Group gains by age (short
-            term and long term)</guilabel></link> Columns option.
+            <para>The realized and unrealized gain columns can be optionally split into short-term and long-term
+              columns (e.g. <guilabel>ST Realized Gain</guilabel> and <guilabel>LT Realized
+              Gain</guilabel> instead of
+              <link linkend="investment-lots-report-column-rg"><guilabel>Realized
+              Gain</guilabel></link>, etc.) via the
+              <link linkend="investment-lots-report-options-columns-gg"><guilabel>Group gains by age
+              (short term and long term)</guilabel></link> Columns option.
             </para>
           </note>
 
           <para id="investment-lots-report-options">Report Options
           </para>
+
           <itemizedlist>
             <listitem id="investment-lots-report-options-accounts">
               <para>Accounts tab
               </para>
+
               <para>These options control which accounts to include in the report, using a standard account selector.
-              Selected accounts that are not of type <emphasis>Stock</emphasis> or <emphasis>Mutual Fund</emphasis>
-              are ignored.
+                Selected accounts that are not of type <emphasis>Stock</emphasis> or
+                <emphasis>Mutual Fund</emphasis> are ignored.
               </para>
+
               <tip>
                 <para>Select only taxable accounts to scope the report to taxable capital gains.
                 </para>
               </tip>
+
               <para>Additional options:
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-options-accounts-ns">
-                  <para><guilabel>Include accounts with no shares</guilabel>: When disabled, accounts with an
-                  empty balance on the report's end date are ignored. This can be useful when wanting to see
-                  only unrealized gains.
+                  <para><guilabel>Include accounts with no shares</guilabel>: When disabled, accounts with an empty balance
+                    on the report's end date are ignored. This can be useful when wanting to see
+                    only unrealized gains.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-accounts-nl">
-                  <para><guilabel>Include accounts with no lots</guilabel>: If some commodity accounts intentionally do
-                  not use lots, then disabling this option is a convenient way to prevent such accounts from cluttering
-                  the report.
+                  <para><guilabel>Include accounts with no lots</guilabel>: If some commodity accounts intentionally do not
+                    use lots, then disabling this option is a convenient way to prevent such
+                    accounts from cluttering the report.
                   </para>
                 </listitem>
               </itemizedlist>
             </listitem>
+
             <listitem id="investment-lots-report-options-chart">
               <para>Chart tab
               </para>
-              <para>These options control the
-              <link linkend="investment-lots-report-chart"><guilabel>Account Lot Gains</guilabel></link> chart.
+
+              <para>These options control the <link linkend="investment-lots-report-chart"><guilabel>Account Lot
+                Gains</guilabel></link> chart.
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-options-chart-sc">
-                  <para><guilabel>Show Chart</guilabel>: The other
-                  chart options are ignored when this option is disabled.
+                  <para><guilabel>Show Chart</guilabel>: The other chart options are ignored when this option is disabled.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-chart-ct">
                   <para><guilabel>Chart type</guilabel>
                   </para>
+
                   <informaltable>
                     <tgroup cols="1">
                       <tbody>
                         <row>
                           <entry>
-                            <emphasis>Option
-                            </emphasis>
+                            <emphasis>Option </emphasis>
                           </entry>
                         </row>
+
                         <row>
                           <entry>
                             Stacked Bar Chart (default)
                           </entry>
                         </row>
+
                         <row>
                           <entry>
                             Bar Chart
@@ -2408,14 +2476,19 @@ Income (type INCOME)
                       </tbody>
                     </tgroup>
                   </informaltable>
-                  <para>The following chart examples each show the same four accounts that contain a mix of realized
-                  and unrealized gains and losses, both short-term and long-term:
+
+                  <para>The following chart examples each show the same four accounts that contain a mix of realized and
+                    unrealized gains and losses, both short-term and long-term:
                   </para>
 
                   <figure id="fig-investlots-stackedbar" pgwide="1">
                     <title>The Investment Lots Report, Stacked Bar Chart</title>
+
                     <screenshot id="InvestmentLotsStackedBarChart">
-                      <screeninfo>800x630</screeninfo>
+                      <screeninfo>
+                        800x630
+                      </screeninfo>
+
                       <mediaobject>
                         <imageobject>
                           <imagedata fileref="figures/Report_Investment_Lots_StackedBar.png"
@@ -2427,8 +2500,12 @@ Income (type INCOME)
 
                   <figure id="fig-investlots-bar" pgwide="1">
                     <title>The Investment Lots Report, Bar Chart</title>
+
                     <screenshot id="InvestmentLotsBarChart">
-                      <screeninfo>800x667</screeninfo>
+                      <screeninfo>
+                        800x667
+                      </screeninfo>
+
                       <mediaobject>
                         <imageobject>
                           <imagedata fileref="figures/Report_Investment_Lots_Bar.png"
@@ -2437,36 +2514,40 @@ Income (type INCOME)
                       </mediaobject>
                     </screenshot>
                   </figure>
-
                 </listitem>
+
                 <listitem id="investment-lots-report-options-chart-cl">
                   <para><guilabel>Chart location</guilabel>
                   </para>
+
                   <informaltable>
                     <tgroup cols="2">
                       <tbody>
                         <row>
                           <entry>
-                            <emphasis>Option
-                            </emphasis>
+                            <emphasis>Option </emphasis>
                           </entry>
+
                           <entry>
-                            <emphasis>Description
-                            </emphasis>
+                            <emphasis>Description </emphasis>
                           </entry>
                         </row>
+
                         <row>
                           <entry>
                             Top (default)
                           </entry>
+
                           <entry>
                             Display the chart at the top of the report, above the table
                           </entry>
                         </row>
+
                         <row>
                           <entry>
                             Bottom
                           </entry>
+
                           <entry>
                             Display the chart at the bottom of the report, below the table
                           </entry>
@@ -2475,253 +2556,321 @@ Income (type INCOME)
                     </tgroup>
                   </informaltable>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-chart-pwh">
-                  <para><guilabel>Plot width</guilabel> and <guilabel>Plot height</guilabel>: Controls the
-                  chart's dimensions.
+                  <para><guilabel>Plot width</guilabel> and <guilabel>Plot height</guilabel>: Controls the chart's
+                    dimensions.
                   </para>
                 </listitem>
               </itemizedlist>
+
               <note>
                 <para>The chart gain categories are controlled by the Columns tab's
-                <link linkend="investment-lots-report-options-columns-gains">Gains options</link>.
+                  <link linkend="investment-lots-report-options-columns-gains">Gains options</link>.
                 </para>
               </note>
             </listitem>
+
             <listitem id="investment-lots-report-options-columns">
               <para>Columns tab
               </para>
+
               <para>These options control which table columns are visible.
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-options-columns-gd">
                   <para><link linkend="investment-lots-report-column-guid"><guilabel>Show lot guid column</guilabel></link>:
-                  Disabled by default.
+                    Disabled by default.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-columns-d">
                   <para><link linkend="investment-lots-report-column-d"><guilabel>Show date columns</guilabel></link>
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-columns-b">
                   <para><link linkend="investment-lots-report-column-b"><guilabel>Show bought columns</guilabel></link>
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-columns-s">
                   <para><link linkend="investment-lots-report-column-s"><guilabel>Show sold columns</guilabel></link>
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-columns-e">
                   <para><link linkend="investment-lots-report-column-e"><guilabel>Show end columns</guilabel></link>
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-columns-gains">
                   <para>Gains options
                   </para>
+
                   <note>
                     <para>These options impact both the table columns and the chart.
                     </para>
                   </note>
+
                   <itemizedlist>
                     <listitem id="investment-lots-report-options-columns-r">
-                      <para><link linkend="investment-lots-report-column-r"><guilabel>Show realized gain columns</guilabel></link>
+                      <para><link linkend="investment-lots-report-column-r"><guilabel>Show realized gain
+                        columns</guilabel></link>
                       </para>
                     </listitem>
+
                     <listitem id="investment-lots-report-options-columns-u">
-                      <para><link linkend="investment-lots-report-column-u"><guilabel>Show unrealized gain columns</guilabel></link>
+                      <para><link linkend="investment-lots-report-column-u"><guilabel>Show unrealized gain
+                        columns</guilabel></link>
                       </para>
                     </listitem>
+
                     <listitem id="investment-lots-report-options-columns-gg">
-                      <para><guilabel>Group gains by age (short term and long term)</guilabel>: Different governments can have different
-                      rules regarding how long shares must be held to qualify for different tax treatment.
+                      <para><guilabel>Group gains by age (short term and long term)</guilabel>: Different governments can have
+                        different rules regarding how long shares must be held to qualify for
+                        different tax treatment.
                       </para>
+
                       <informaltable>
                         <tgroup cols="2">
                           <tbody>
                             <row>
                               <entry>
-                                <emphasis>Option
-                                </emphasis>
+                                <emphasis>Option </emphasis>
                               </entry>
+
                               <entry>
-                                <emphasis>Description
-                                </emphasis>
+                                <emphasis>Description </emphasis>
                               </entry>
                             </row>
+
                             <row>
                               <entry>
                                 No
                               </entry>
+
                               <entry>
                                 Do not group gains by age
                               </entry>
                             </row>
+
                             <row>
                               <entry>
                                 Gains Only (default)
                               </entry>
+
                               <entry>
                                 Group gains by age
                               </entry>
                             </row>
+
                             <row>
                               <entry>
                                 Gains and Sales
                               </entry>
+
                               <entry>
-                                Also group the <link linkend="investment-lots-report-column-s">Sold columns</link> by age
+                                Also group the <link linkend="investment-lots-report-column-s">Sold
+                                columns</link> by age
                               </entry>
                             </row>
                           </tbody>
                         </tgroup>
                       </informaltable>
                     </listitem>
+
                     <listitem id="investment-lots-report-options-columns-ga">
-                      <para><guilabel>Long term gains age (years)</guilabel>: Shares held longer than this many years count as long
-                      term. This option is ignored when the
-                      <link linkend="investment-lots-report-options-columns-gg"><guilabel>Group gains by age (short term and long term)</guilabel></link>
-                      option is disabled. Default: 1 year.
+                      <para><guilabel>Long term gains age (years)</guilabel>: Shares held longer than this many years count as
+                        long term. This option is ignored when the
+                        <link linkend="investment-lots-report-options-columns-gg"><guilabel>Group
+                        gains by age (short term and long term)</guilabel></link> option is
+                        disabled. Default: 1 year.
                       </para>
                     </listitem>
                   </itemizedlist>
                 </listitem>
               </itemizedlist>
             </listitem>
+
             <listitem id="investment-lots-report-options-display">
               <para>Display tab
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-options-display-an">
-                  <para><guilabel>Show long account names</guilabel>: Controls which name to use for all accounts in the report:
-                  long (fully-qualified) or short.
+                  <para><guilabel>Show long account names</guilabel>: Controls which name to use for all accounts in the
+                    report: long (fully-qualified) or short.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-display-mn">
-                  <para><guilabel>Show mnemonic in amounts</guilabel>: Controls whether the currency mnemonic will be use when
-                  reporting amounts. I.e. "123 RIO" versus just "123". This setting only impacts amounts not values, which are
-                  always displayed in the <guilabel>Report's currency</guilabel>, with its mnemonic.
+                  <para><guilabel>Show mnemonic in amounts</guilabel>: Controls whether the currency mnemonic will be use
+                    when reporting amounts. I.e. "123 RIO" versus just "123". This setting only
+                    impacts amounts not values, which are always displayed in the <guilabel>Report's
+                    currency</guilabel>, with its mnemonic.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-display-cl">
-                  <para><guilabel>Include closed lots</guilabel>: Allows closed lots to be filtered out. This can be useful when
-                  wanting to see only unrealized gains.
+                  <para><guilabel>Include closed lots</guilabel>: Allows closed lots to be filtered out. This can be useful
+                    when wanting to see only unrealized gains.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-display-bz">
-                  <para><guilabel>Show blanks instead of zeros in table cells</guilabel>: This can make the report table look less
-                  cluttered. Does not apply to <guilabel>Account Lots Total</guilabel> and <guilabel>Grand Total</guilabel> rows.
+                  <para><guilabel>Show blanks instead of zeros in table cells</guilabel>: This can make the report table
+                    look less cluttered. Does not apply to <guilabel>Account Lots Total</guilabel>
+                    and <guilabel>Grand Total</guilabel> rows.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-display-sr">
                   <para><guilabel>Show lot split rows</guilabel>: When enabled, rows for each of the bought and sold splits
-                  pertaining to the lot (within the report's date window) will be displayed nested under each lot row.
-                  Disabled by default.
+                    pertaining to the lot (within the report's date window) will be displayed nested
+                    under each lot row. Disabled by default.
                   </para>
                 </listitem>
               </itemizedlist>
             </listitem>
+
             <listitem id="investment-lots-report-options-general">
               <para>General tab
               </para>
+
               <para>See <xref linkend="report-common"/>.
               </para>
+
               <note>
                 <para>The <guilabel>Start date</guilabel> and <guilabel>End date</guilabel> options define the lot's date
-                window. Splits outside of this window are not included in the report. Except that splits from before the
-                <guilabel>Start date</guilabel> are counted only insofar as needed to calculate the
-                <link linkend="investment-lots-report-column-sb"><guilabel>Sold Basis</guilabel></link>,
-                <link linkend="investment-lots-report-column-eb"><guilabel>End Basis</guilabel></link>,
-                and
-                <link linkend="investment-lots-report-column-ea"><guilabel>End Amount</guilabel></link> columns. But these
-                splits are not included in the report's other
-                <link linkend="investment-lots-report-column-b">Bought columns</link> and
-                <link linkend="investment-lots-report-column-s">Sold columns</link>, nor are they shown when the
-                <link linkend="investment-lots-report-options-display-sr"><guilabel>Show lot split rows</guilabel></link>
-                option is enabled.
+                  window. Splits outside of this window are not included in the report. Except that
+                  splits from before the <guilabel>Start date</guilabel> are counted only insofar as
+                  needed to calculate the
+                  <link linkend="investment-lots-report-column-sb"><guilabel>Sold
+                  Basis</guilabel></link>,
+                  <link linkend="investment-lots-report-column-eb"><guilabel>End
+                  Basis</guilabel></link>, and
+                  <link linkend="investment-lots-report-column-ea"><guilabel>End
+                  Amount</guilabel></link> columns. But these splits are not included in the
+                  report's other <link linkend="investment-lots-report-column-b">Bought
+                  columns</link> and <link linkend="investment-lots-report-column-s">Sold
+                  columns</link>, nor are they shown when the
+                  <link linkend="investment-lots-report-options-display-sr"><guilabel>Show lot split
+                  rows</guilabel></link> option is enabled.
                 </para>
               </note>
             </listitem>
+
             <listitem id="investment-lots-report-options-val">
               <para>Validation tab
               </para>
-              <para>These options control how lots and accounts are validated. The report shows optional validation warnings
-              that help identify potential lot problems.
+
+              <para>These options control how lots and accounts are validated. The report shows optional validation
+                warnings that help identify potential lot problems.
               </para>
+
               <itemizedlist>
                 <listitem id="investment-lots-report-options-val-aw">
                   <para><guilabel>Include only accounts with warnings</guilabel>: Enable this option to see only accounts
-                  that have one of more of the enabled warnings. This can be useful for quickly validating that lots are
-                  well-formed, especially in combination with selecting all accounts and all dates. Disabled by default.
+                    that have one of more of the enabled warnings. This can be useful for quickly
+                    validating that lots are well-formed, especially in combination with selecting
+                    all accounts and all dates. Disabled by default.
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-val-mb">
                   <para><guilabel>Warn if a lot has more than one bought split</guilabel>: The Scrub operation only adds one
-                  purchase per lot, but &app; does not stop a user from manually adding multiple purchase splits to the same
-                  lot--even though this is arguably bad practice. Having multiple purchase dates makes the holding period ambiguous.
-                  But if this is desired, consider disabling both this warning and the Columns tab's
-                  <link linkend="investment-lots-report-options-columns-gg"><guilabel>Group gains by age (short term and long term)
-                  </guilabel></link> option.
-                  If the column option is left enabled, then the report will use the date of the last purchase split for
-                  determining the holding period, but continue to use the first purchase date for the lot
-                  <link linkend="investment-lots-report-column-opened"><guilabel>Opened</guilabel></link> column.
+                    purchase per lot, but &app; does not stop a user from manually adding multiple
+                    purchase splits to the same lot--even though this is arguably bad practice.
+                    Having multiple purchase dates makes the holding period ambiguous. But if this
+                    is desired, consider disabling both this warning and the Columns tab's
+                    <link linkend="investment-lots-report-options-columns-gg"><guilabel>Group gains
+                    by age (short term and long term) </guilabel></link> option. If the column
+                    option is left enabled, then the report will use the date of the last purchase
+                    split for determining the holding period, but continue to use the first purchase
+                    date for the lot
+                    <link linkend="investment-lots-report-column-opened"><guilabel>Opened</guilabel></link>
+                    column.
                   </para>
+
                   <note>
-                    <para>The last purchase date is used to calculate the holding period because long term gains often receive favorable
-                    tax treatment, so it is probably worse to misidentify a gain as long-term rather than as short-term. But better
-                    still is to not have more than one purchase per lot, so the holding periods are unambiguous.
+                    <para>The last purchase date is used to calculate the holding period because long term gains often receive
+                      favorable tax treatment, so it is probably worse to misidentify a gain as
+                      long-term rather than as short-term. But better still is to not have more than
+                      one purchase per lot, so the holding periods are unambiguous.
                     </para>
                   </note>
+
                   <para>Example:
                   </para>
-                  <para><computeroutput>Warning: Above lot has 2 bought splits. Consider separating them into their own lots.</computeroutput>
+
+                  <para><computeroutput>Warning: Above lot has 2 bought splits. Consider separating them into their own
+                    lots.</computeroutput>
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-val-nb">
-                  <para><guilabel>Warn if a lot's balance drops below zero</guilabel>: The Scrub operation will not create negative
-                  lot balances. But &app; does not prevent users from manually creating them. When this option is enabled, the report
-                  shows a warning if a lot's balance becomes negative during the report date window.
+                  <para><guilabel>Warn if a lot's balance drops below zero</guilabel>: The Scrub operation will not create
+                    negative lot balances. But &app; does not prevent users from manually creating
+                    them. When this option is enabled, the report shows a warning if a lot's balance
+                    becomes negative during the report date window.
                   </para>
+
                   <para>Example:
                   </para>
-                  <para><computeroutput>Warning: Above lot's balance is negative on 10/29/2022. Consider removing the responsible sale
-                  split from the lot and then scrubbing.</computeroutput>
+
+                  <para><computeroutput>Warning: Above lot's balance is negative on 10/29/2022. Consider removing the
+                    responsible sale split from the lot and then scrubbing.</computeroutput>
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-val-bt">
-                  <para><guilabel>Warn if a lot has a blank title</guilabel>: Disabled by default. Lot titles are optional. Enabling
-                  this warning will flag lots with blank (empty or whitespace) titles.
+                  <para><guilabel>Warn if a lot has a blank title</guilabel>: Disabled by default. Lot titles are optional.
+                    Enabling this warning will flag lots with blank (empty or whitespace) titles.
                   </para>
+
                   <para>Example:
                   </para>
+
                   <para><computeroutput>Warning: Above lot's title is blank.</computeroutput>
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-val-rg">
-                  <para><guilabel>Warn if the "Realized Gain/Loss" split(s) sum does not match the computed gains</guilabel>: The
-                  report recomputes the gain/loss values from each sale, compares them with the sum of the lot's generated
-                  <quote>Realized Gain/Loss</quote> splits and warns if they do not match.
+                  <para><guilabel>Warn if the "Realized Gain/Loss" split(s) sum does not match the computed
+                    gains</guilabel>: The report recomputes the gain/loss values from each sale,
+                    compares them with the sum of the lot's generated <quote>Realized
+                    Gain/Loss</quote> splits and warns if they do not match.
                   </para>
+
                   <para>Example:
                   </para>
-                  <para><computeroutput>Warning: Above lot's computed gain $(1,518.79) is not equal to the "Realized Gain/Loss" split(s)
-                   sum $(1,518.80). Difference: $0.01</computeroutput>
-                   </para>
-                   <para>
-                    <note>
+
+                  <para><computeroutput>Warning: Above lot's computed gain $(1,518.79) is not equal to the "Realized
+                    Gain/Loss" split(s) sum $(1,518.80). Difference: $0.01</computeroutput>
+                  </para>
+
+                  <para><note>
                       <para>If a <quote>Realized Gain/Loss</quote> split is incorrect, it can often be repaired thus:
                       </para>
+
                       <orderedlist >
                         <listitem>
                           <para>Remove the sale split from the lot,
                           </para>
                         </listitem>
+
                         <listitem>
                           <para>Delete the bad <quote>Realized Gain/Loss</quote> split,
                           </para>
                         </listitem>
+
                         <listitem>
                           <para>Add the sale split back to the lot, to recreate the <quote>Realized Gain/Loss</quote> split, and
                           </para>
                         </listitem>
+
                         <listitem>
                           <para><guibutton>Reload</guibutton> this report and verify that the warning is gone.
                           </para>
@@ -2730,43 +2879,51 @@ Income (type INCOME)
                     </note>
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-val-os">
-                  <para><guilabel>Warn if a split is not assigned to a lot</guilabel>: Realized and unrealized gains cannot be
-                  computed for splits that are not in a lot. This warning flags accounts containing unassigned splits.
+                  <para><guilabel>Warn if a split is not assigned to a lot</guilabel>: Realized and unrealized gains cannot
+                    be computed for splits that are not in a lot. This warning flags accounts
+                    containing unassigned splits.
                   </para>
+
                   <informaltable>
                     <tgroup cols="2">
                       <tbody>
                         <row>
                           <entry>
-                            <emphasis>Option
-                            </emphasis>
+                            <emphasis>Option </emphasis>
                           </entry>
+
                           <entry>
-                            <emphasis>Description
-                            </emphasis>
+                            <emphasis>Description </emphasis>
                           </entry>
                         </row>
+
                         <row>
                           <entry>
                             No
                           </entry>
+
                           <entry>
                             Warning disabled
                           </entry>
                         </row>
+
                         <row>
                           <entry>
                             Count (default)
                           </entry>
+
                           <entry>
                             Warning message identifies the number of unassigned splits
                           </entry>
                         </row>
+
                         <row>
                           <entry>
                             List
                           </entry>
+
                           <entry>
                             Unassigned splits are listed after the warning message
                           </entry>
@@ -2774,19 +2931,26 @@ Income (type INCOME)
                       </tbody>
                     </tgroup>
                   </informaltable>
+
                   <para>Example:
                   </para>
-                  <para><computeroutput>Warning: 2 split(s) are not assigned to a lot. Do lots need to be scrubbed?</computeroutput>
+
+                  <para><computeroutput>Warning: 2 split(s) are not assigned to a lot. Do lots need to be
+                    scrubbed?</computeroutput>
                   </para>
                 </listitem>
+
                 <listitem id="investment-lots-report-options-val-ab">
-                  <para><guilabel>Warn if the account balance does not match the computed lots' end balance</guilabel>:
-                  This is often another indication that the account has splits that are not included in a lot.
+                  <para><guilabel>Warn if the account balance does not match the computed lots' end balance</guilabel>: This
+                    is often another indication that the account has splits that are not included in
+                    a lot.
                   </para>
+
                   <para>Example:
                   </para>
+
                   <para><computeroutput>Warning: End amount 236.5 RIO is not equal to actual account balance 234 RIO.
-                  Difference: 2.5 RIO. Do lots need to be scrubbed?</computeroutput>
+                    Difference: 2.5 RIO. Do lots need to be scrubbed?</computeroutput>
                   </para>
                 </listitem>
               </itemizedlist>
@@ -2900,9 +3064,8 @@ Income (type INCOME)
           <title>Report Options</title>
 
           <note>
-            <para>See <xref linkend="report-common"/> in the <emphasis>Configuring
-              Reports and Charts</emphasis> section of this help manual for more details of the
-              common options.
+            <para>See <xref linkend="report-common"/> in the <emphasis>Configuring Reports and Charts</emphasis>
+              section of this help manual for more details of the common options.
             </para>
           </note>
 
@@ -3195,9 +3358,8 @@ Income (type INCOME)
           <title>Report Options</title>
 
           <note>
-            <para>See <xref linkend="report-common"/> in the <emphasis>Configuring
-              Reports and Charts</emphasis> section of this help manual for more details of the
-              common options.
+            <para>See <xref linkend="report-common"/> in the <emphasis>Configuring Reports and Charts</emphasis>
+              section of this help manual for more details of the common options.
             </para>
           </note>
 

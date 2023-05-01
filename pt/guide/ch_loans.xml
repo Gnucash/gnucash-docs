@@ -21,8 +21,8 @@
   <sect1 id="loans_concepts1">
     <title>Conceitos básicos</title>
 
-    <para>Um empréstimo é definido como uma transacção financeira na qual alguém paga pela utilização do
-      dinheiro de outrém. Há muitos exemplos familiares de empréstimos: cartões de crédito,
+    <para>Um empréstimo é definido como uma transacção financeira na qual alguém paga pela utilização
+      do dinheiro de outrém. Há muitos exemplos familiares de empréstimos: cartões de crédito,
       crédito à habitação, crédito automóvel ou uma linha de crédito empresarial.
     </para>
 
@@ -168,12 +168,14 @@
 
     <figure pgwide="1">
       <title>Calculadora de amortização de empréstimos</title>
+
       <screenshot id="loans_fcalc">
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/loans_fcalc.png"
                        srccredit="Pedro Albuquerque" width="&img-w;"/>
           </imageobject>
+
           <caption>
             <para>A <guilabel>calculadora de amortização de empréstimos</guilabel> do &app;.
             </para>
@@ -264,9 +266,9 @@
 
       <para>Para realizar este cálculo, deixe <guilabel>Períodos de pagamento</guilabel> vazio, defina
         <guilabel>Taxa de juro</guilabel> para <emphasis>10</emphasis>, <guilabel>Valor
-        actual</guilabel> para <emphasis>20.000</emphasis>, <guilabel>Pagamento periódico</guilabel>
-        para <emphasis>-500</emphasis>, e <guilabel>Valor futuro</guilabel> para
-        <emphasis>0</emphasis> (não quer ficar a dever nada no final do empréstimo). A
+        actual</guilabel> para <emphasis>20.000</emphasis>, <guilabel>Pagamento
+        periódico</guilabel> para <emphasis>-500</emphasis>, e <guilabel>Valor futuro</guilabel>
+        para <emphasis>0</emphasis> (não quer ficar a dever nada no final do empréstimo). A
         <guilabel>Composição</guilabel> é <emphasis>Mensalmente</emphasis>, os
         <guilabel>Pagamentos</guilabel> são <emphasis>Mensalmente</emphasis>, assuma pagamentos no
         <guilabel>Fim</guilabel> do <guilabel>Período</guilabel> e
@@ -312,9 +314,9 @@ Valores normais para FC e FP são:
         <title>Converter entre taxa de juro nominal e efectiva</title>
 
         <para>Quando é requerida uma solução para n, VA, PGT ou VF, a taxa de juro nominal (i) tem primeiro de
-          ser convertida em taxa de juro efectiva por período de pagamento (ief). Esta taxa, ief, é
-          então usada para calcular a variável seleccionada. Quando é requerida uma solução para
-          i, o cálculo produz a taxa de juro efectiva, ief. Logo, precisamos de funções para
+          ser convertida em taxa de juro efectiva por período de pagamento (ief). Esta taxa, ief,
+          é então usada para calcular a variável seleccionada. Quando é requerida uma solução
+          para i, o cálculo produz a taxa de juro efectiva, ief. Logo, precisamos de funções para
           converter i em ief e ief em i.
         </para>
 <screen>Para converter de i em ieff,são usadas as seguintes expressões:
@@ -364,8 +366,8 @@ O caso mais simples para quando PGT == 0 dá a solução:
 </screen>
         <para>O caso em que PGT != 0 é razoavelmente complexo e não será discutido aqui. Em vez de envolver uma
           função exactamente resolúvel, determinar a taxa de juro quando PMT !=0 envolve um
-          processo interactivo. Por favor, veja o ficheiro src/calculation/fin.para uma explicacção
-          detalhada.
+          processo interactivo. Por favor, veja o ficheiro src/calculation/fin.para uma
+          explicacção detalhada.
         </para>
       </sect3>
 
@@ -374,17 +376,17 @@ O caso mais simples para quando PGT == 0 dá a solução:
 
         <para>Vamos recalcular o <xref linkend="loans_calcsexample1_2"/>, desta vez usando as fórmulas
           matemáticas em vez da <guilabel>calculadora de amortização de empréstimos</guilabel>.
-          Qual é o seu pagamento mensal num empréstimo de 100.000€; a 30 anos, com uma taxa
-          fixa de 4%, composta mensalmente?
+          Qual é o seu pagamento mensal num empréstimo de 100.000€; a 30 anos, com uma taxa fixa
+          de 4%, composta mensalmente?
         </para>
 
         <para>Primeiro vamos definir as variáveis: n = (30*12) = 360, VA =100000, PGT =desconhecido, VF = 0, i =
           4%=4/100=0.04, FC = FP = 12, X = 0 (pagamentos no final do período).
         </para>
 
-        <para>O segundo passo é converter a taxa de juro nominal (i) para taxa de juro efectiva (ief). Uma vez que
-          a taxa é composta mensalmente, discreta, usamos: ief = (1 + i/FC)^(FC/FP) - 1, que dá
-          ief = (1 + 0.04/12)^(12/12) - 1, igual a ief = 1/300 = 0.0033333.
+        <para>O segundo passo é converter a taxa de juro nominal (i) para taxa de juro efectiva (ief). Uma vez
+          que a taxa é composta mensalmente, discreta, usamos: ief = (1 + i/FC)^(FC/FP) - 1, que
+          dá ief = (1 + 0.04/12)^(12/12) - 1, igual a ief = 1/300 = 0.0033333.
         </para>
 
         <para>Agora podemos calcular A e B. A = (1 + ief)^n - 1 = (1 + 1/300)^360 - 1 = 2.313498. B = (1 +
@@ -408,11 +410,10 @@ O caso mais simples para quando PGT == 0 dá a solução:
       <xref linkend="loans_accounts1" />.
     </para>
 
-    <para>Como exemplo, assuma que tem 60.000€; na sua conta poupança e que compra uma casa de
-      150.000€;. A hipoteca cobra-lhe uma taxa anual (TAN) de 6% e tem taxas administrativas
-      (custos de fecho, etc.) de 3%. Decide avançar com 50.000€;. Logo, tem de pedir
-      103.000€; emprestados, que lhe deixa 100.000€; limpos após pagar as taxas
-      administrativas (3% dos 100.000€;).
+    <para>Como exemplo, assuma que tem 60.000€; na sua conta poupança e que compra uma casa de 150.000€;.
+      A hipoteca cobra-lhe uma taxa anual (TAN) de 6% e tem taxas administrativas (custos de fecho,
+      etc.) de 3%. Decide avançar com 50.000€;. Logo, tem de pedir 103.000€; emprestados, que
+      lhe deixa 100.000€; limpos após pagar as taxas administrativas (3% dos 100.000€;).
     </para>
 
     <para>As suas contas antes de receber o empréstimo:
@@ -420,12 +421,14 @@ O caso mais simples para quando PGT == 0 dá a solução:
 
     <figure pgwide="1">
       <title>Contas antes do empréstimo</title>
+
       <screenshot id="loans_mortgage">
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/loans_mortgage1.png"
                        srccredit="Pedro Albuquerque"/>
           </imageobject>
+
           <caption>
             <para>Contas antes de receber o empréstimo
             </para>
@@ -516,12 +519,14 @@ O caso mais simples para quando PGT == 0 dá a solução:
 
     <figure pgwide="1">
       <title>Parcelas da transacção de compra</title>
+
       <screenshot id="loans_mortgage2.png">
         <mediaobject>
           <imageobject>
             <imagedata fileref="figures/loans_mortgage2.png"
                        srccredit="Pedro Albuquerque"/>
           </imageobject>
+
           <caption>
             <para>Parcelas da transacção de compra de habitação
             </para>
@@ -535,6 +540,7 @@ O caso mais simples para quando PGT == 0 dá a solução:
 
     <figure pgwide="1">
       <title>Contas com hipoteca</title>
+
       <screenshot id="loans_mortgage3">
         <mediaobject>
           <imageobject>
@@ -611,13 +617,15 @@ O caso mais simples para quando PGT == 0 dá a solução:
       </para>
 
       <para>Mas precisa de saber quando deste valor é juro e quanto é capital, para poder fazer uma
-        contabilizacção adequada. Para tal, precisa de uma ferramenta mais poderosa, como o módulo
-        <application>Calc</application> do <application>Apache OpenOffice</application>, e em
-        particular, da função <acronym>PGTO</acronym>.
+        contabilizacção adequada. Para tal, precisa de uma ferramenta mais poderosa, como o
+        módulo <application>Calc</application> do <application>Apache OpenOffice</application>, e
+        em particular, da função <acronym>PGTO</acronym>.
       </para>
 
       <figure id="loans_OpenOfficePrivateLoanDetails">
-        <title>Vista detalhada do empréstimo ao José da Esquina (no Apache Open Office)</title><mediaobject>
+        <title>Vista detalhada do empréstimo ao José da Esquina (no Apache Open Office)</title>
+
+        <mediaobject>
           <imageobject>
             <imagedata fileref="figures/loans_PrivateLoanCalculation.png"
                        srccredit="Pedro Albuquerque"/>
@@ -696,12 +704,14 @@ Capital próprio:Saldos iniciais:Euro</screen>
 
       <figure pgwide="1">
         <title>Dinheiro emprestado</title>
+
         <screenshot id="loans_PrivateLoanInitial">
           <mediaobject>
             <imageobject>
               <imagedata fileref="figures/loans_PrivateLoanInitial.png"
                          srccredit="Pedro Albuquerque"/>
             </imageobject>
+
             <caption>
               <para>Árvore de contas após ter emprestado dinheiro
               </para>
@@ -750,16 +760,19 @@ Capital próprio:Saldos iniciais:Euro</screen>
 
       <figure pgwide="1">
         <title>Primeiro pagamento</title>
+
         <screenshot id="loans_PrivateLoanFirstPayment">
           <mediaobject>
             <imageobject role="html">
               <imagedata fileref="figures/loans_PrivateLoanFirstPayment.png"
                          srccredit="Pedro Albuquerque" width="&img-w;"/>
             </imageobject>
+
             <imageobject role="fo">
               <imagedata fileref="figures/loans_PrivateLoanFirstPayment.png"
                          srccredit="Pedro Albuquerque"/>
             </imageobject>
+
             <caption>
               <para>Vista detalhada do primeiro pagamento
               </para>
@@ -775,8 +788,8 @@ Capital próprio:Saldos iniciais:Euro</screen>
     <sect2 id="loans_personalLoanToSomeOne_SecondPayment">
       <title>Receber o segundo pagamento</title>
 
-      <para>Quando o segundo pagamento (115,56€;) for recebido, terá novamente de determinar quanto é juro
-        e quanto é capital.
+      <para>Quando o segundo pagamento (115,56€;) for recebido, terá novamente de determinar quanto é juro e
+        quanto é capital.
       </para>
 
       <itemizedlist>
@@ -811,23 +824,26 @@ Capital próprio:Saldos iniciais:Euro</screen>
 
       <figure pgwide="1">
         <title>Segundo pagamento</title>
+
         <screenshot id="loans_PrivateLoanSecondPayment">
           <mediaobject>
             <imageobject role="html">
               <imagedata fileref="figures/loans_PrivateLoanSecondPayment.png"
                          srccredit="Pedro Albuquerque" width="&img-w;"/>
             </imageobject>
+
             <imageobject role="fo">
               <imagedata fileref="figures/loans_PrivateLoanSecondPayment.png"
                          srccredit="Pedro Albuquerque"/>
             </imageobject>
+
             <caption>
               <para>Vista detalhada do segundo pagamento
               </para>
             </caption>
           </mediaobject>
         </screenshot>
-        </figure>
+      </figure>
 
       <para>O saldo do empréstimo do José é agora de 1.892,77€; - 107,67€; =1.785,10€;
       </para>
@@ -837,6 +853,7 @@ Capital próprio:Saldos iniciais:Euro</screen>
 
       <figure pgwide="1">
         <title>Árvore de contas após o segundo pagamento</title>
+
         <screenshot id="loans_PrivateLoanSecondPaymentAccounts">
           <mediaobject>
             <imageobject>
@@ -889,8 +906,8 @@ Capital próprio:Saldos iniciais:Euro</screen>
   <sect1 id="loans_Reconciling">
     <title>Como fazer - reconciliação com extractos de empréstimos</title>
 
-    <para>Reconciliar um extracto de empréstimo não é diferente da reconciliação com um extracto bancário
-      ou de cartão de crédito.
+    <para>Reconciliar um extracto de empréstimo não é diferente da reconciliação com um extracto
+      bancário ou de cartão de crédito.
     </para>
 
     <para>Durante o período, deve ter registado todas as transacções relacionadas com o empréstimo e cada
@@ -946,8 +963,8 @@ Capital próprio:Saldos iniciais:Euro</screen>
 
       <itemizedlist>
         <listitem>
-          <para>Comprou uma casa por 300.000€; há anos atrás e agora conseguiu vendê-la por 600.000€;.
-            Como é que regista isto?
+          <para>Comprou uma casa por 300.000€; há anos atrás e agora conseguiu vendê-la por 600.000€;. Como
+            é que regista isto?
           </para>
 
           <para>Para registar isto precisa de aumentar a sua conta bancária em 600.000€; e diminuir outra conta
@@ -955,8 +972,8 @@ Capital próprio:Saldos iniciais:Euro</screen>
             que é aquilo porque a comprou, portanto vai mover este montante para a conta bancária.
             Mas ainda lhe faltam 300.000€;. Este montante, vai buscá-lo à conta
             <emphasis>Receita:Ganhos de capital a longo prazo:Casa</emphasis>. A transacção com
-            parcelas a inserir na <emphasis>Activos:Activos actuais:Conta poupança</emphasis> deve ser
-            parecida com isto:
+            parcelas a inserir na <emphasis>Activos:Activos actuais:Conta poupança</emphasis> deve
+            ser parecida com isto:
           </para>
 
           <para><table>
@@ -1103,8 +1120,8 @@ Capital próprio:Saldos iniciais:Euro</screen>
         detalhes sobre este assunto, por favor veja <xref linkend="chapter_capgain"></xref>
       </para>
 
-      <para>Aqui só veremos o caso em estimou precisamente o valor actual da sua casa. Para outros casos, (sobre
-        e subestimada), por favor veja <xref linkend="chapter_capgain"></xref>.
+      <para>Aqui só veremos o caso em estimou precisamente o valor actual da sua casa. Para outros casos,
+        (sobre e subestimada), por favor veja <xref linkend="chapter_capgain"></xref>.
       </para>
 
       <para><screen>
@@ -1127,8 +1144,8 @@ Capital próprio:Saldos iniciais:Euro</screen>
         que o valor actual de mercado é 600.000€;.
       </para>
 
-      <para>A diferença entre os 600.000€; (valor de mercado estimado) e os 300.000€; (valor de compra)
-        é o valor de Ganhos não realizados. Logo, tem um valor de 300.000€; na sua conta
+      <para>A diferença entre os 600.000€; (valor de mercado estimado) e os 300.000€; (valor de compra) é
+        o valor de Ganhos não realizados. Logo, tem um valor de 300.000€; na sua conta
         <emphasis>Activos:Activos fixos:Casa:Ganhos não realizados</emphasis>
       </para>
 
@@ -1192,8 +1209,8 @@ Capital próprio:Saldos iniciais:Euro</screen>
         </table>
       </para>
 
-      <para>A transacção a inserir na sua conta <emphasis>Activos:Activos actuais:Conta poupança</emphasis> deve
-        parecer-se com isto:
+      <para>A transacção a inserir na sua conta <emphasis>Activos:Activos actuais:Conta poupança</emphasis>
+        deve parecer-se com isto:
       </para>
 
       <para><table>
@@ -1255,9 +1272,9 @@ Capital próprio:Saldos iniciais:Euro</screen>
         </table>
       </para>
 
-      <para>Após registar estas transacções, verá que o seu activo Casa tem um valor 0, a sua conta poupança
-        aumentou em 600.000€; e que a conta <emphasis>Receitas: Ganhos realizados</emphasis>
-        aumentou em 300.000€;.
+      <para>Após registar estas transacções, verá que o seu activo Casa tem um valor 0, a sua conta
+        poupança aumentou em 600.000€; e que a conta <emphasis>Receitas: Ganhos
+        realizados</emphasis> aumentou em 300.000€;.
       </para>
     </sect2>
   </sect1>

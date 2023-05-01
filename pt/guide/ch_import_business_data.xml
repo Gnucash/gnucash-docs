@@ -22,16 +22,25 @@ Author:
     <para>Esta funcionalidade só está disponível para versões posteriores à 2.6
     </para>
 
-    <para>Para a 2.4.13 o importador de clientes e fornecedores é um módulo opcional e tem de ser activado editando o ficheiro <filename>$HOME/.gnucash/config.user</filename>, adicionando a linha:
+    <para>Para a 2.4.13 o importador de clientes e fornecedores é um módulo opcional e tem de ser activado
+      editando o ficheiro <filename>$HOME/.gnucash/config.user</filename>, adicionando a linha:
     </para>
 
     <para><code>(gnc:module-load "gnucash/plugins/bi_import" 0)</code>
     </para>
 
-    <para>Em sistemas &lin;, este ficheiro encontra-se em <filename>$HOME/.gnucash/config.user</filename> e em&mac; em <filename>~/Library/Application Support/Gnucash/config.user</filename>. Se o ficheiro ainda não existir, terá de o criar. Após reiniciar o &app;, o item aparecerá ao fundo do menu <guimenu>Negócios</guimenu>.
+    <para>Em sistemas &lin;, este ficheiro encontra-se em <filename>$HOME/.gnucash/config.user</filename> e
+      em&mac; em <filename>~/Library/Application Support/Gnucash/config.user</filename>. Se o
+      ficheiro ainda não existir, terá de o criar. Após reiniciar o &app;, o item aparecerá ao
+      fundo do menu <guimenu>Negócios</guimenu>.
     </para>
 
-    <para>Para que o importador funcione, os dados devem estar numa linha com um comprimento de campo fixo separados por vírgulas. Abaixo é mostrado um exemplo de programa <aplication>Python</aplication> para converter uma ordem transferida.
+    <para>Para que o importador funcione, os dados devem estar numa linha com um comprimento de campo fixo
+      separados por vírgulas. Abaixo é mostrado um exemplo de programa
+      <aplication>
+        Python
+      </aplication>
+      para converter uma ordem transferida.
     </para>
 
     <para><programlisting language="python" linenumbering="unnumbered">
@@ -94,12 +103,24 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
         </programlisting>
     </para>
 
-    <para>Como se pode ver, há campos ausentes e alguns que não são necessários à importação. A primeira linha não é necessária e a última é supérflua, o &app; totaliza a ordem. Só é necessário obter o que desejamos e produzir um ficheiro em formato correcto para importar para o &app;. Caso em que juntamos o número da peça e a descrição, convertendo-os em descrição da factura para o &app;. Precisamos da quantidade e preço. Contrariamente à linha de cabeçalho, em que o <acronym>IVA</acronym> não está incluído por linha e é sempre zero, o <acronym>IVA</acronym> é calculado na última linha como <acronym>IVA</acronym> do total da encomenda.
+    <para>Como se pode ver, há campos ausentes e alguns que não são necessários à importação. A
+      primeira linha não é necessária e a última é supérflua, o &app; totaliza a ordem. Só é
+      necessário obter o que desejamos e produzir um ficheiro em formato correcto para importar
+      para o &app;. Caso em que juntamos o número da peça e a descrição, convertendo-os em
+      descrição da factura para o &app;. Precisamos da quantidade e preço. Contrariamente à
+      linha de cabeçalho, em que o <acronym>IVA</acronym> não está incluído por linha e é
+      sempre zero, o <acronym>IVA</acronym> é calculado na última linha como
+      <acronym>IVA</acronym> do total da encomenda.
       <note>
         <para>Isto causará problemas mais tarde.
         </para>
       </note>
-      Neste exemplo atribuiu-se a conta <emphasis>Despesas:Materiais Gerais</emphasis> como conta-alvo. Esta pode ser alterada após a importação, da forma habitual, juntamente com qualquer outra conta de dados. Se não existir tal conta <emphasis>Despesas:Materiais Gerais</emphasis>, esse campo será deixado em branco na importação e terá de ser definido manualmente. As linhas que começam com um <quote>#</quote> são consideradas como linhas de comentário e ignoradas.
+      Neste exemplo atribuiu-se a conta <emphasis>Despesas:Materiais Gerais</emphasis> como
+      conta-alvo. Esta pode ser alterada após a importação, da forma habitual, juntamente com
+      qualquer outra conta de dados. Se não existir tal conta <emphasis>Despesas:Materiais
+      Gerais</emphasis>, esse campo será deixado em branco na importação e terá de ser definido
+      manualmente. As linhas que começam com um <quote>#</quote> são consideradas como linhas de
+      comentário e ignoradas.
     </para>
 
     <para>O programa inicia-se com o seguinte comando:
@@ -110,15 +131,24 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
       <replaceable>ficheiro_a_gravar.csv</replaceable></command>
     </para>
 
-    <para>Este pequeno programa pode ser facilmente alterado para se adequar a qualquer formato transferido. A única restrição é que o número final do campo é fixo, pelo menos de momento. O importador ignora as linhas com o número errado de campos. Isto será corrigido na versão futura. A ID do fornecedor é simplesmente a identificação atribuída ao fornecedor, ou cliente específico. Os itens da linha[N] referem-se à posição na linha onde se encontram os dados correctos. Note-se que o primeiro campo é a linha[0] NÃO a linha[1].
+    <para>Este pequeno programa pode ser facilmente alterado para se adequar a qualquer formato transferido. A
+      única restrição é que o número final do campo é fixo, pelo menos de momento. O
+      importador ignora as linhas com o número errado de campos. Isto será corrigido na versão
+      futura. A ID do fornecedor é simplesmente a identificação atribuída ao fornecedor, ou
+      cliente específico. Os itens da linha[N] referem-se à posição na linha onde se encontram
+      os dados correctos. Note-se que o primeiro campo é a linha[0] NÃO a linha[1].
     </para>
 
     <para>Uma vez convertido o ficheiro, navegue até
       <menuchoice>
         <guimenu>Negócios</guimenu> <guimenuitem>Importação de facturas</guimenuitem>
       </menuchoice>
-      para abrir uma nova janela de importação. Seleccione o ficheiro que acabou de criar, seleccione
-      <guilabel>Pagamento</guilabel> ou <guilabel>Factura</guilabel> e formato <guilabel>Separado por vírgulas</guilabel>. Nesta altura, os dados devem aparecer na janela de antevisão. Verifique se os dados do campo estão nas colunas correctas antes de clicar em <guibutton>Aceitar</guibutton>. Uma vez importada, a factura pode ser aberta para edição e emissão da forma habitual.
+      para abrir uma nova janela de importação. Seleccione o ficheiro que acabou de criar,
+      seleccione <guilabel>Pagamento</guilabel> ou <guilabel>Factura</guilabel> e formato
+      <guilabel>Separado por vírgulas</guilabel>. Nesta altura, os dados devem aparecer na janela
+      de antevisão. Verifique se os dados do campo estão nas colunas correctas antes de clicar em
+      <guibutton>Aceitar</guibutton>. Uma vez importada, a factura pode ser aberta para edição e
+      emissão da forma habitual.
     </para>
 
     <para>A note on <acronym>VAT</acronym>, or any purchase tax. As previously mentioned <emphasis>Rapid
@@ -142,10 +172,10 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
     </para>
 
     <note>
-      <para>Se o <application>Python</application> não lhe agrada(other languages are avaialble) is not your thing then post a
-        request to <ulink url="&url-mail-li;gnucash-user"><citetitle>&appname; user
-        list</citetitle></ulink>, with an example of your downloaded <acronym>CSV</acronym>, and
-        someone may write you a <application>Python</application> script to do the translation.
+      <para>Se o <application>Python</application> não lhe agrada(other languages are avaialble) is not your
+        thing then post a request to <ulink url="&url-mail-li;gnucash-user"><citetitle>&appname;
+        user list</citetitle></ulink>, with an example of your downloaded <acronym>CSV</acronym>,
+        and someone may write you a <application>Python</application> script to do the translation.
       </para>
     </note>
 
@@ -309,8 +339,8 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
     <para><code>(gnc:module-load "gnucash/plugins/customer_import" 0) </code>
     </para>
 
-    <para>On &lin; systems this file is found at <filename>$HOME/.gnucash/config.user</filename> and on
-      &mac; it is <filename>~/Library/Application Support/Gnucash/config.user</filename>. If the file
+    <para>On &lin; systems this file is found at <filename>$HOME/.gnucash/config.user</filename> and on &mac;
+      it is <filename>~/Library/Application Support/Gnucash/config.user</filename>. If the file
       doesn&rsquo;t already exist you will have to create it. After restarting &app; the item will
       appear at the bottom of the business menu.
     </para>
@@ -330,7 +360,8 @@ MEC-0071,,000013,,,,VAT,tax,Expenses:VAT,1,4.35,,,,no,,,,,,,
       line for each customer/vendor.
     </para>
 
-    <para>O importador não importa actualmente informações de facturação para clientes ou vendedores, estes terão de ser editados individualmente após a importação.
+    <para>O importador não importa actualmente informações de facturação para clientes ou vendedores,
+      estes terão de ser editados individualmente após a importação.
     </para>
   </sect1>
 </chapter>
