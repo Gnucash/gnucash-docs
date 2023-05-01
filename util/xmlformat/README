@@ -14,13 +14,13 @@ If you installed the package xmlformat you can shorten it to:
 xmlformat -f util/xmlformat/xmlformat.conf -i xml-file
 
 To reformat all files of the english guide:
-for i in guide/C/*.xml; do util/xmlformat/xmlformat.pl -f util/xmlformat/xmlformat.conf -i $i ; done
+for i in C/guide/*.xml; do util/xmlformat/xmlformat.pl -f util/xmlformat/xmlformat.conf -i $i ; done
 
-To reformat all files in both parts:
-for i in guide help; do
+To reformat all files in all languages:
+for i in C de it ja pt ru; do
   for j in $i/*; do
     echo "enter $j";
-    for k in $j/*.xml; do
+    for k in $j/*.xml $j/*.docbook; do
       echo $k;
       util/xmlformat/xmlformat.pl -f util/xmlformat/xmlformat.conf -i $k;
     done;
