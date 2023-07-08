@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "gnc-gui-zh.dtd">
+<!--
+      (Do not remove this comment block.)
+  Version: 2.2.1
+  Last modified: September 26, 2010
+  Maintainers:
+                Tom Bullock  <tbullock@nd.edu>
+               Chris Lyttle  <chris@wilddev.net>
+  Authors:
+                 Jon Lapham  <lapham@extracta.com.br>
+    Updated Bengt Thuree <bengt@thuree.com>
+Originally written by
+             Carol Champagne
+Translators:
+       (translators put your name and email here)
+-->
+<sect1 id="chapter_accts">
+  <title>科目</title>
+
+  <para>这一部分会介绍一些用于组织科目的实用概念。自从&app;不再要求固定的科目结构之后，你可以通过任何希望的方式自由地设计科目结构。然而，在设计实用的科目结构时，你需要遵循几个基本会计概念。</para>
+
+  <sect2 id="accts-concepts1">
+    <title>基本会计概念</title>
+
+    <para>正如前文所述，会计工作围绕五个基本科目类型展开：<guilabel>资产</guilabel>、<guilabel>负债</guilabel>、<guilabel>所有者权益</guilabel>、<guilabel>收入</guilabel>和<guilabel>费用</guilabel>。我们现在对这些科目类型进行更深入的理解，并展示它们在&app;中的显示形式。不过首先，我们将它们分为两组：资产负债类科目和损益类科目。正如其名，资产负债类科目总结了<emphasis>在某一时间点处</emphasis>你的资产和负债金额，而损益类科目能够汇总在损益表报告中，损益表报告显示了<emphasis>一段时间内的净值变动</emphasis>。</para>
+
+    <para>在深入理解科目类型之前，先简单回顾一下会计等式：<emphasis>资产 - 负债 = 所有者权益 + (收入 -
+    费用)</emphasis>。</para>
+
+    <figure pgwide="1">
+      <title>基本科目间的关系</title>
+
+      <screenshot id="accts-AccountRelationships">
+        <mediaobject>
+          <imageobject role="html">
+            <imagedata fileref="figures/basics_AccountRelationships.png"
+                       srccredit="Geert Janssens"/>
+          </imageobject>
+
+          <imageobject role="fo">
+            <imagedata contentwidth="4in"
+                       fileref="figures/basics_AccountRelationships.svg"
+                       srccredit="Geert Janssens"/>
+          </imageobject>
+
+          <caption><para>五种基本科目类型之间的关系图。净值通过收入而增加，通过费用而减少。箭头代表金额的移动。</para></caption>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <sect3 id="accts-bsa2">
+      <title>资产负债类科目</title>
+
+      <para>三个所谓的<emphasis>资产负债类科目</emphasis>是<guilabel>资产</guilabel>、<guilabel>负债</guilabel>和<guilabel>所有者权益</guilabel>。资产负债类科目用于跟踪你的资产或负债。</para>
+
+      <para><guilabel>资产</guilabel>是一组你拥有的东西。你的资产可能包含汽车、现金、房产、股票，或其它任何具有兑换价值的东西。兑换价值是指理论上你可以卖出资产以换取现金。</para>
+
+      <para><guilabel>负债</guilabel>是一组你欠别人的东西。你的负债可能包括汽车贷款、学生贷款、房屋贷款、投资保证金帐户，或其它任何你必须在某一时刻偿还的东西。</para>
+
+      <para><guilabel>所有者权益</guilabel>即“净值”，代表你从资产中减去负债后所剩的东西。可以认为它是你完全拥有的，不含任何债务的资产。</para>
+    </sect3>
+
+    <sect3 id="accts-ie2">
+      <title>损益类科目</title>
+
+      <para>两种<guilabel>损益类科目</guilabel>用于增加或减少各科目的金额。所以，资产负债类科目只是跟踪你资产和负债的金额，而损益类科目能够改变这些科目的的金额。</para>
+
+      <para><guilabel>收入</guilabel>是你通过你的时间、你提供的服务或对资金的利用而得到的报酬。例如，当你收到工资支票时，工资支票就是你为雇主提供劳动而得到的报酬。收入也可以包含佣金、小费、来自股票的股息收入和来自银行账户的利息收入。收入总是会增加资产的价值。</para>
+
+      <para><guilabel>费用</guilabel>涉及用于购买他人提供的商品或服务的资金。费用可以是一顿餐馆的午饭、房屋租金、杂货、汽油或演出票。费用会减少你的净值。如果你立刻支付费用，资产会减少，而如果你使用信用卡支付费用，负债会增加。</para>
+
+      <!--
+  Translators:
+    Your language might have a generic term for 'income and expense'.
+    Then you should introduce it here in a separate paragraph
+    and replace 'income and expense' by it in the latter sections of this book.
+-->
+    </sect3>
+  </sect2>
+
+  <sect2 id="accts-types1">
+    <title>&app;科目</title>
+
+    <para>本节将展示&app;定义的科目怎样对应于五种基本科目类型。</para>
+
+    <para>首先，给出对&app;中科目的定义。一个&app;<guilabel>科目</guilabel>是包含其它子科目或交易的实体。
+    由于科目可以包含其它科目，你经常可以在&app;中看到科目表，逻辑上相关的科目在一个共同的父科目下分为一组。</para>
+
+    <para>&app;中一个科目必须具有（由你指定的）唯一的名称并指定为预定义的&app;<quote>科目类型</quote>的其中之一。&app;中总共有12种科目类型。这12种科目类型基于5种基本科目类型，之所以&app;科目类型多于基本科目类型是为了帮助&app;针对某些科目实现特殊的跟踪和处理。有6种资产科目（现金、银行、股票、共同基金、应收账款和资产）、3种负债科目（信用卡、应付账款和负债）、1种所有者权益科目（所有者权益）、1种收入科目（收入）、1种费用科目（费用）。</para>
+
+    <para>下文详细列出了这些&app;科目类型。</para>
+
+    <sect3 id="accts-gc-bsa2">
+      <title>资产负债类科目</title>
+
+      <para>第一种详细介绍的资产负债类科目是<emphasis>资产</emphasis>，正如你在前文学习到的那样，资产涉及你拥有的东西。</para>
+
+      <para>为了帮助你组织资产科目并方便录入交易，&app;支持几种资产科目类型：</para>
+
+      <orderedlist>
+        <listitem>
+          <para><guilabel>现金</guilabel>。使用此科目跟踪你在手头、钱包里、存钱罐中、床垫下，或任何你想放在手边的地方的现金。这是最具<emphasis>流动性</emphasis>的、最方便交易的资产类型。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>银行</guilabel>。此科目用于跟踪你在银行，信用合作社，储蓄、贷款或经纪公司等任何资产受保护的机构中的余额。
+          这是第二最具<emphasis>流动性</emphasis>的科目类型，因为你可以方便地将其转换为手头的现金。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>股票</guilabel>。使用此科目类型跟踪你个人持有的股票和债券。股票科目的账簿提供附加列，用于输入份额数量和投资价格。除非你找到买家，否则你可能无法方便地将这种类型的资产转换为现金，而且你无法保证卖出出时得到的金额与买入时花费的金额相同。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>共同基金</guilabel>。这一科目类型与股票科目类似，只是它是用于跟踪基金的。它的账簿也提供了同样的附加列用于输入份额和价格信息。基金代表各种投资的所有权份额，而且和股票一样不提供任何保证的现金价值。</para>
+
+          <para>&app;以相同的方式处理股票和共同基金这两种科目类型。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>应收账款</guilabel>。此科目一般仅用于企业。你应当将别人欠你的重要借款录入应收账款科目中。应收账款被认为是一种资产，因为你能够指望对方归还这些资金。</para>
+
+          <para>不应以任何方式添加、更改或删除涉及应收账款科目的交易，除非使用</para>
+          <itemizedlist>
+            <listitem>
+              <para>post/unpost bill/invoice/voucher 或
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>process payment
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>资产</guilabel>。&app;可以轻松地处理许多其它情况，不管这些情况有多么变化多端。科目类型<quote>资产</quote>可以用于上文未列出的各种资产。</para>
+
+          <para>&app;以相同的方式处理现金、银行和资产科目类型。</para>
+
+          <para>科目用于跟踪或记录与建立科目的目的相关的活动。</para>
+
+          <para>对于企业，跟踪和报告的活动往往会被细分得比这里考虑的更细。为了对这种可能进行更深入的研究，请阅读本指南<xref
+          linkend="chapter_other_assets"/>中的相关描述。</para>
+
+          <para>用于个人财务的科目结构可以与用于企业的科目结构相同，也可以不同。因为用于企业的科目结构可能对个人正在跟踪的财务活动和个人管理金融资产需要的报表类型有一定作用。更多信息可查阅本指南的<xref
+          linkend="chapter_other_assets"/>。</para>
+        </listitem>
+      </orderedlist>
+
+      <para>第二种资产负债类科目是<emphasis>负债</emphasis>，正如前文所述，它指你欠的东西或你借入的钱，而且应当在将来偿还。这些都代表着借款人从你这里获得回报的权利。跟踪负债余额可以让你知道在某一时间点你有多少负债。</para>
+
+      <para>&app; 提供三种负债科目类型：</para>
+
+      <orderedlist>
+        <listitem>
+          <para><guilabel>信用卡</guilabel>用于跟踪信用卡收据并核对信用卡结单。信用卡代表一种应当向信用卡公司偿还的短期贷款，这种科目也可用于其它短期贷款，例如从银行获得的信用贷款。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>应付账款</guilabel> 此科目一般用于企业，用于记录尚未支付的账单。</para>
+
+          <para>涉及应付账款的交易不应通过除使用<itemizedlist>
+              <listitem>
+                <para>post/unpost bill/invoice/voucher 或</para>
+              </listitem>
+
+              <listitem>
+                <para>process payment</para>
+              </listitem>
+            </itemizedlist> 以外的方式添加、修改或删除。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>负债</guilabel>
+          用于所有其它的负债，一般是数额更大的长期贷款，例如房屋贷款或汽车贷款。此科目有助于跟踪你当前的负债金额或当前的已偿还金额。</para>
+
+          <para>&app;以相同的方式对待信用卡和负债这两种科目类型。</para>
+        </listitem>
+      </orderedlist>
+
+      <tip>
+        <para>负债记录方法与资产相反：<emphasis>贷</emphasis>增加负债余额，<emphasis>借</emphasis>减少负债余额。</para>
+      </tip>
+
+      <para>最后一种资产负债类科目是<emphasis>所有者权益</emphasis>，也就是<quote>净值</quote>。它代表从资产中减去负债后的剩余，所以这是你的资产中所完全由你拥有的部分，也就是不含负债的部分。在
+      &app;中使用此类科目作为期初银行余额的来源，因为这些余额代表你的初始净值。</para>
+
+      <para>通常科目表中只有一个&app;所有者权益科目，自然被叫做<guilabel>所有者权益</guilabel>。对于企业，你可以为每个合作伙伴创建子科目。</para>
+
+      <tip>
+        <para>在所有者权益科目中，贷增加科目余额，借减少科目余额。</para>
+      </tip>
+
+      <note>
+        <para>关联资产负债类科目的会计等式是 “资产 = 负债 + 所有者权益”，也可改写为 “负债 - 资产 =
+        所有者权益”。所以，通俗地讲，<emphasis>你拥有的东西</emphasis>减去<emphasis>你欠的东西</emphasis>等于<emphasis>净值</emphasis>。</para>
+      </note>
+    </sect3>
+
+    <sect3 id="accts-gc-ie2">
+      <title>损益类科目</title>
+
+      <para><emphasis>收入</emphasis>是你由于你的时间、你提供的服务或对钱的利用而获得的支付金额。 在&app;中，
+      使用<guilabel>收入</guilabel>类型科目跟踪这些金额。</para>
+
+      <tip>
+        <para>贷增加收入科目余额，借减少收入科目余额。正如<xref
+        linkend="basics-accounting1"/>所述，贷代表金额从科目中移出。所以在这些收入科目中，当你将钱从收入科目移到另一个科目时（贷），收入科目的余额会<emphasis>增加</emphasis>。例如，当你存入工资并记录了一次从收入科目到银行账户的交易时，这两个科目的余额都增加了。</para>
+      </tip>
+
+      <para><emphasis>费用</emphasis>指你用于购买他人提供的商品或服务的钱。
+      在&app;中，使用<guilabel>费用</guilabel>类型科目跟踪费用。</para>
+
+      <tip>
+        <para>借增加费用科目余额，贷减少费用科目余额。</para>
+      </tip>
+
+      <note>
+        <para>在某时期内，从总收入减去总费用得到净收入。净收入随后作为留存收益添加到资产负债表的<guilabel>所有者权益</guilabel>科目。</para>
+      </note>
+
+      <para>下面是标准的<guilabel>收入</guilabel>和<guilabel>费用</guilabel>科目，在新建科目层级向导（<menuchoice>
+          <guimenu>功能</guimenu>
+
+          <guimenuitem>新建科目层级...</guimenuitem>
+        </menuchoice>）中选择<guilabel>通用科目</guilabel>后显示。</para>
+
+      <figure pgwide="1">
+        <title>默认收入科目</title>
+
+        <screenshot id="accts-DefaultIncomeAccounts">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/accts_DefaultIncomeAccounts.png"
+                         srccredit="Cristian Marchi"/>
+            </imageobject>
+
+            <caption><para>此图展示了标准的<emphasis>收入</emphasis>科目。</para></caption>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <figure pgwide="1">
+        <title>默认费用科目</title>
+
+        <screenshot id="accts-DefaultExpenseAccounts">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/accts_DefaultExpenseAccounts.png"
+                         srccredit="Cristian Marchi"/>
+            </imageobject>
+
+            <caption><para>此图展示了标准的<emphasis>费用</emphasis>科目。</para></caption>
+          </mediaobject>
+        </screenshot>
+      </figure>
+    </sect3>
+
+    <sect3 id="accts-other-types">
+      <title>其它科目类型</title>
+
+      <para>也有其它一些特殊的科目类型。</para>
+
+      <para><emphasis>贸易</emphasis>多币种交易在多个<quote>贸易</quote>科目中录入分录，以使交易在每个币种上和整个账簿上均保持平衡。请查看<xref
+      linkend="chapter_currency"/> 详细了解。</para>
+
+      <para><emphasis>货币市场</emphasis>和<emphasis>信用额度</emphasis>仅用于OFX导入器，以完整符合规范。</para>
+    </sect3>
+  </sect2>
+
+  <sect2 id="accts-examples1">
+    <title>步步为营</title>
+
+    <para>现在使用从此章学习到的内容，实操构建通用个人财务科目表的过程。科目表只不过是一个新的&app;文件，你在其中组织科目结构以跟踪财务状况。要构建科目表，第一步是将你想要跟踪的项目分割进基本会计科目类型中去。这很简单，不妨看看下面这个例子。</para>
+
+    <sect3 id="accts-examples-situation2">
+      <title>简单示例</title>
+
+      <para>假定你在银行中有一个活期账户和一个储蓄账户，你自己受雇佣因此会收到工资。你拥有信用卡，按月支付房租、话费和电费。当然，你也需要购买杂货。现在，我们不会关心你在银行里有多少钱，你信用卡欠了多少钱，等等。我们只想简单地构建科目表的框架。</para>
+
+      <para>你的<guilabel>资产</guilabel>包含银行储蓄账户和活期账户金额。你的<guilabel>负债</guilabel>是信用卡欠款。你的<guilabel>所有者权益</guilabel>是银行账户和信用卡的初始金额（我们目前还没有这些金额数据，但这些金额是存在的）。你以薪资的形式获得<guilabel>收入</guilabel>，以杂货、房租、电费、话费和薪资税费（所得税、社保、医保等）的形式产生<guilabel>费用</guilabel>。</para>
+    </sect3>
+
+    <sect3 id="accts-examples-toplevel2">
+      <title>基本顶级科目</title>
+
+      <para>现在你必须决定你想怎样组织这些科目。一般来说，你想要你的<emphasis>资产</emphasis>分为一组，<emphasis>负债</emphasis>分为一组，<emphasis>所有者权益</emphasis>分为一组，<emphasis>收入</emphasis>分为一组，<emphasis>费用</emphasis>分为一组。这是最构建科目表常见的方式，同时强烈建议你总是以此作为起点。</para>
+
+      <para>一开始，从菜单中选择<menuchoice>
+          <guimenu>文件</guimenu>
+
+          <guimenuitem>新建</guimenuitem>
+        </menuchoice> 创建空白的&app;文件。
+      <guilabel>新建科目层次</guilabel>向导会启动。点击<guibutton>取消</guibutton>关闭向导，因为我们不想使用任何一种预定义的科目结构。我们将根据自己的想法自行构建基本初始科目结构。在空白的&app;窗口中选择菜单<menuchoice>
+          <guimenu>浏览</guimenu>
+
+          <guimenuitem>新科目页面</guimenuitem>
+        </menuchoice>，随后<guilabel>科目</guilabel>标签页将打开。再选择<menuchoice>
+          <guimenu>功能</guimenu>
+
+          <guimenuitem>新建科目...</guimenuitem>
+        </menuchoice>。</para>
+
+      <para>现在可以开始构建此基本初始科目结构了。</para>
+
+      <orderedlist>
+        <listitem>
+          <para>科目名称：<guilabel>资产</guilabel>
+          （科目类型：<guilabel>资产</guilabel>，父科目：
+          <guilabel>新建顶级科目</guilabel>）</para>
+
+          <figure pgwide="1">
+            <title>创建资产科目</title>
+
+            <screenshot id="accts-CreateAssetsAccounts">
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="figures/accts_CreateAssetsAccount.png"
+                             srccredit="Cristian Marchi"/>
+                </imageobject>
+
+                <caption><para>此图显示了创建资产科目的对话框。</para></caption>
+              </mediaobject>
+            </screenshot>
+          </figure>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>负债</guilabel>
+          （科目类型：<guilabel>负债</guilabel>，父科目：<guilabel>新建顶级科目</guilabel>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>所有者权益</guilabel>
+          （科目类型：<guilabel>所有者权益</guilabel>，父科目：<guilabel>新建顶级科目</guilabel>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>收入</guilabel>
+          （科目类型：<guilabel>收入</guilabel>，父科目：<guilabel>新建顶级科目</guilabel>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>花费</guilabel>
+          （科目类型：<guilabel>花费</guilabel>，父科目：<guilabel>新建顶级科目</guilabel>）</para>
+        </listitem>
+      </orderedlist>
+
+      <para>创建顶级科目后，&app;中的科目页应该如下图所示：</para>
+
+      <figure pgwide="1">
+        <title>基本顶级科目</title>
+
+        <screenshot id="accts-toplevel">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/accts_toplevel.png"
+                         srccredit="Cristian Marchi"/>
+            </imageobject>
+
+            <caption><para>此图展示了基本顶级科目。</para></caption>
+          </mediaobject>
+        </screenshot>
+      </figure>
+    </sect3>
+
+    <sect3 id="accts-examples-organization2">
+      <title>创建子科目</title>
+
+      <para>现在可以向基本顶级科目树结构添加一些存储实际交易记录的子科目。注意税费科目置于名为<emphasis>税费</emphasis>的子科目之下。可以在子科目下再创建子科目。一般针对一组相关的科目进行此操作（例如这个例子中的各税费科目）。</para>
+
+      <tip>
+        <para>除了从菜单中选择<menuchoice>
+            <guimenu>功能</guimenu>
+
+            <guimenuitem>新建科目...</guimenuitem>
+          </menuchoice>，也可以右击科目名称并选择<guilabel>新建科目...</guilabel>菜单项创建相应科目的子科目。
+        随后会打开与<xref
+        linkend="accts-examples-toplevel2"/>所示相似的对话框，其中要新建的科目会被设为相应科目的子科目。</para>
+      </tip>
+
+      <orderedlist>
+        <listitem>
+          <para>科目名称：<guilabel>现金</guilabel>
+          （科目类型：<guilabel>现金</guilabel>，父科目：<emphasis>资产</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>活期</guilabel>
+          （科目类型：<guilabel>银行</guilabel>，父科目：<emphasis>资产</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>储蓄</guilabel>
+          （科目类型：<guilabel>银行</guilabel>，父科目：<emphasis>资产</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>信用卡</guilabel>
+          （科目类型：<guilabel>信用卡</guilabel>，父科目：<emphasis>负债</emphasis>)</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>薪资</guilabel>
+          （科目类型：<guilabel>收入</guilabel>，父科目：<emphasis>收入</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>话费</guilabel>
+          （科目类型：<guilabel>费用</guilabel>，父科目：<emphasis>费用</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>电费</guilabel>
+          （科目类型：<guilabel>费用</guilabel>，父科目：<emphasis>费用</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>房租</guilabel>
+          （科目类型：<guilabel>费用</guilabel>，父科目：<emphasis>费用</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>杂货</guilabel>
+          （科目类型：<guilabel>费用</guilabel>，父科目：<emphasis>费用</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>税费</guilabel>
+          （科目类型：<guilabel>费用</guilabel>，父科目：<emphasis>费用</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>所得税</guilabel>
+          （科目类型：<guilabel>花费</guilabel>，父科目：<emphasis>费用:税费</emphasis>）</para>
+        </listitem>
+
+        <!-- Federal 应该是指美国联邦政府收的税，这是翻译成所得税吧-->
+
+        <listitem>
+          <para>科目名称：<guilabel>社保</guilabel>
+          （科目类型：<guilabel>花费</guilabel>，父科目：<emphasis>费用:税费</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>医保</guilabel>
+          （科目类型：<guilabel>花费</guilabel>，父科目：<emphasis>费用:税费</emphasis>）</para>
+        </listitem>
+
+        <listitem>
+          <para>科目名称：<guilabel>期初余额</guilabel>
+          （科目类型：<guilabel>所有者权益</guilabel>，父科目：<emphasis>所有者权益</emphasis>）</para>
+        </listitem>
+      </orderedlist>
+
+      <para>在创建了这些子科目后，最终结果如下所示：</para>
+
+      <figure pgwide="1">
+        <title>基本科目表</title>
+
+        <screenshot id="accts-tree">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/accts_tree.png"
+                         srccredit="Cristian Marchi"/>
+            </imageobject>
+
+            <caption><para>此图展示了一个简单的科目表。</para></caption>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>分别使用文件名<filename>gcashdata_3</filename>和<filename>gcashdata_3emptyAccts</filename>保存此科目表，我们将在后面的章节中继续使用这些文件。</para>
+
+      <para>现在，你已经创建了用于跟踪家庭财务状况的科目表。基于此处的基本框架，我们现在可以开始向科目中添加交易了，具体会在下一章详细介绍。</para>
+    </sect3>
+  </sect2>
+</sect1>

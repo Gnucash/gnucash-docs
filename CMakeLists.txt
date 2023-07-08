@@ -182,6 +182,7 @@ add_subdirectory (it)
 add_subdirectory (ja)
 add_subdirectory (pt)
 #add_subdirectory (ru)
+add_subdirectory (zh)
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
