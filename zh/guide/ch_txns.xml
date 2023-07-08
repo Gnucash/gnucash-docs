@@ -16,39 +16,40 @@
 <sect1 id="chapter_txns">
   <title>交易</title>
 
-  <para>本章会介绍在&app;中理解和使用交易的基本信息。虽说科目是科目表的结构与框架，但交易才是填充每一科目的数据。</para>
+  <para>本章会针对在&app;中理解和使用交易做出基本说明。科目是科目表的结构与框架，然而交易才是填充各个科目的数据。</para>
 
   <sect2 id="txns-concepts1">
     <title>基本概念</title>
 
-    <para>&app;这种复式记账系统中的<emphasis>交易</emphasis>代表至少两个科目间的转账。因此一条交易总是包含至少两部分：一个<emphasis>来源科目</emphasis>和一个<emphasis>目的科目</emphasis>。金额从来源科目转移到目的科目中。会计师将交易的这些组成部分称为<emphasis>账簿条目（Ledger Entries）</emphasis>。在&app;中称之为<emphasis>分录</emphasis>。</para>
+    <para>&app;这类复式记账系统中的<emphasis>交易</emphasis>是指至少两个科目间的转账。因此一条交易总是包含至少两部分：一个<emphasis>来源科目</emphasis>和一个<emphasis>目的科目</emphasis>。金额从来源科目转移到目的科目中。会计师将交易的这些组成部分称为<emphasis>账簿条目（Ledger Entries）</emphasis>。在&app;中称之为<emphasis>分录</emphasis>。</para>
 
-    <para>一条分录包含涉及的科目和从之转出或向之转入的金额，如有需要，分录也可以包含另外几项信息。&app;支持在一条交易中记录多条分录，各条分录可以向涉及的科目转入或从之转出任意的金额。</para>
+    <para>一条分录包含涉及的科目，以及从之转出或向之转入的金额，如有需要，分录也可以包含其它几项信息。&app;支持在一条交易中记录多条分录，各条分录可以向涉及的科目转入或从之转出任意的金额。</para>
 
-    <para>例如，你收到了工资并将之存入银行储蓄账户。发生的<emphasis>交易</emphasis>就是你的银行储蓄科目（属于资产科目）从收入科目中得到了钱。两个科目受到影响，此时所有者权益的净值增加了。</para>
+    <para>例如，你收到了工资并将之存入银行储蓄账户。发生的<emphasis>交易</emphasis>就是你的银行储蓄科目（属于资产科目）从收入科目中得到了钱。两个科目受到影响，此时所有者权益净值增加了。</para>
 
-    <para>在&app;中增删交易需要使用<emphasis>科目账簿</emphasis>。每个创建的科目都有一个科目账簿。它很像用于跟踪支票簿的日志，所以你可能看着很熟悉。</para>
+    <para>在&app;中增删交易需要使用<emphasis>科目账簿</emphasis>。每个创建的科目都对应一份科目账簿。它很像用于跟踪支票簿的日志，所以可能你看着很眼熟。</para>
 
-    <para>科目账簿会在接下来的<xref linkend="txns-register-oview"/>小节详细介绍。</para>
+    <para>科目账簿会在接下来的<xref linkend="txns-register-oview"/>详细介绍。</para>
   </sect2>
 
   <sect2 id="txns-register-oview">
     <title>科目账簿</title>
 
-    <para><emphasis>科目账簿</emphasis>是一类窗口，可以浏览或编辑已经存在的交易，或为一特定的科目添加新的交易。要从科目表打开某一科目的科目账簿，双击科目名称，或者右击科目名称并从菜单中选择<guilabel>打开科目</guilabel>，也可以使用工具栏上的<guilabel>打开</guilabel>按钮。&app;会显示科目账簿窗口。</para>
+    <para><emphasis>科目账簿</emphasis>是一类窗口，可以浏览或编辑已经存在的交易，或为某一科目添加新的交易。要从科目树打开某一科目的科目账簿，双击科目名称，或者右击科目名称并从菜单中选择<guilabel>打开科目</guilabel>，也可以使用工具栏上的<guilabel>打开</guilabel>按钮。&app;会显示科目账簿窗口。</para>
 
     <sect3 id="txns-registers-features2">
       <title>科目账簿的功能</title>
 
-      <para>科目账簿和<emphasis>标题栏</emphasis>显示了科目名称。标题栏之下，<emphasis>菜单栏</emphasis>显示了可以在科目账簿中使用的菜单项，<emphasis>工具栏</emphasis>包含帮助操作科目账簿的的常用功能按钮。</para>
+      <para>科目账簿和<emphasis>标题栏</emphasis>显示了科目名称。标题栏之下，<emphasis>菜单栏</emphasis>显示了能够在科目账簿中使用的菜单项，<emphasis>工具栏</emphasis>包含方便操作科目账簿的常用功能按钮。</para>
 
-      <para>在科目账簿窗口的左下方，&app;会随着在窗口中移动鼠标而显示有用的帮助消息。在右边，你可以看到当前科目余额和已结清@分录的总计。</para>
+      <para>在科目账簿窗口的左下方，&app;会随窗口中鼠标移动而显示有用的帮助消息。在右侧，可以看到当前科目余额和已结清分录的总计。</para>
+      <!-- ToDoZ: cleared 不应翻译为已核实，词典里没有这个义项，PO文件也要对应修改 -->
     </sect3>
 
     <sect3 id="txns-regstyle1">
       <title>选择账簿风格</title>
 
-      <para>&app;为浏览账簿提供了几种样式选项。默认样式是<guilabel>基本账簿</guilabel>模式，仅显示影响当前科目的分录的总和。这种样式看起来十分接近其它流行的个人财务软件。你可以从<menuchoice>
+      <para>&app;提供了几种样式选项，便于浏览账簿。默认样式是<guilabel>基本账簿</guilabel>模式，仅将影响当前科目的分录显示在一起。这种样式看起来十分类似其它流行的个人财务软件。你可以从<menuchoice>
         <guimenu>查看</guimenu>
       </menuchoice>菜单选择不同的账簿风格。另有两个选项：</para>
 
@@ -56,27 +57,27 @@
         <listitem>
           <para><menuchoice>
               <guimenu>查看</guimenu><guimenuitem>自动分录账簿</guimenuitem>
-            </menuchoice>样式会自动展开当前的交易。当在账簿中选中新的交易时，交易会自动展开以展示全部分录。
+            </menuchoice>样式会自动展开当前的交易。当在账簿中选中新的交易时，交易会自动展开以展示其全部分录。
           </para>
         </listitem>
 
         <listitem>
           <para><menuchoice>
               <guimenu>查看</guimenu><guimenuitem>交易日志</guimenuitem>
-            </menuchoice>样式会在账簿中显示所有交易的所有分录，此样式更像会计日志。@</para>
+            </menuchoice>样式会在账簿中显示所有交易的所有分录，此样式更像是会计日志。</para>
         </listitem>
       </itemizedlist>
 
-      <para>这些风格都能够以单行或多行格式浏览数据。选择<menuchoice>
+      <para>这些样式均能够以单行或多行格式浏览数据。选择<menuchoice>
           <guimenu>查看</guimenu> <guimenuitem>双行</guimenuitem>
-        </menuchoice>，可以看到交易行扩展成了两行。双行模式也会显示交易说明。
+        </menuchoice>，可以看到交易行扩展成了两行。双行模式也会显示交易说明列。
       </para>
 
       <para>下面的屏幕截图展示了基本账簿和交易日志在外观上的不同。</para>
 
-      <para>例如，假设你花1000元购买了三条牛仔裤，且已经将购买录入为分录交易，其中每一条牛仔裤录入为独立的分录。</para>
+      <para>例如，假设你花1000元购买了三条牛仔裤，且已经将这次购买录入为分录交易，其中每条牛仔裤各录入一条分录。</para>
 
-      <para>下面的屏幕截图展示了不同查看模式间的差异。</para>
+      <para>下面的屏幕截图展示了不同浏览模式下的差异。</para>
 
       <para>首先，从活期科目查看牛仔裤交易：</para>
 
@@ -90,7 +91,7 @@
                          srccredit="Bengt Thuree" />
             </imageobject>
             <caption>
-              <para>此图展示了一条分录交易，其中包含三次牛仔裤购买。</para>
+              <para>此图展示了一条分录交易，其中包含三项牛仔裤购买分录。</para>
             </caption>
           </mediaobject>
         </screenshot>
@@ -114,9 +115,9 @@
         </screenshot>
       </figure>
 
-      <para>此处出现了三项，但活期科目中只有一项分录。接下来的试验显示每一行具有不同的金额，200元、300元和500元。可以看到，此模式下账簿的每一行对应原始交易中的一条分录。</para>
+      <para>这里出现了三项，但活期科目中只有一项分录。仔细观察可以发现每一行的金额不同，分别为200元、300元和500元。这说明，此模式下账簿的每一行对应原始交易中的一条分录。</para>
 
-      <para>更改为交易日志模式会仅显示原始的分录交易。</para>
+      <para>更改为交易日志模式则仅显示原始的分录交易。</para>
 
 <!-- ToDo: unshrink -->
       <figure>
@@ -138,23 +139,23 @@
     <sect3 id="txns-columnwidths1">
       <title>调整列宽</title>
 
-      <para>就像电子表格一样，账簿中的各列能够通过左键点击并拖动表头的分隔线来调整宽度。列头右侧的分隔线控制此列的宽度。在&app;中，<guilabel>描述</guilabel>和<guilabel>说明</guilabel>列会生动调整大小，使得账簿自适应地填满整个窗口，所以向左侧拖动这些列的分隔线会缩小列宽但会在释放时自动贴靠回去。向右侧拖动分隔线会加宽显示区域并在窗口底部显示滚动条，但这一效果只会在账簿打开时保持。关闭并重新打开账簿或退出&app;后，账簿仍会完全填满空间。</para>
+      <para>和电子表格一样，左键点击并拖动表头的分隔线能够调整账簿中各列的宽度。列头右侧的分隔线控制此列的宽度。在&app;中，<guilabel>描述</guilabel>和<guilabel>说明</guilabel>列会生动调整大小，使得账簿自适应地填满整个窗口，所以向左侧拖动这些列的分隔线会缩小列宽，但会在释放时移回原处。向右侧拖动分隔线会加宽显示区域并在窗口底部显示滚动条，但这一效果只会在账簿打开时保持。关闭并重新打开账簿或退出&app;后，账簿仍会丝毫不差地填满空间。</para>
 
       <note>
-        <para>很多用户在调整<guilabel>余额</guilabel>列时遇到了问题，特别是在增加其宽度的时候。只需将其右边界拖出窗口就可以增加此列的宽度。从左侧将鼠标移动到分隔线并在鼠标指针成为双向箭头&dArrow;时就立刻按下鼠标。</para>
+        <para>很多用户在调整<guilabel>余额</guilabel>列时遇到了困难，特别是在增加其宽度的时候。只需将其右边界拖出窗口就可以增加此列的宽度。将鼠标从左侧移动到分隔线处，并在鼠标指针成为双向箭头&dArrow;时立刻按下鼠标。</para>
       </note>
       
       <important>
-        <para>在分录模式下，账簿表头中存在不同的列标题，根据当前激活的行类型，分别对应分录行和交易行。为了调整分录行的列宽，必须首先使分录行激活；为了调整交易行的列宽，必须激活交易行。</para>
+        <para>在分录模式下，账簿表头中存在不同的列标题，根据当前激活的行类型，分别对应分录行和交易行。为了调整分录行的列宽，必须首先选中分录行；为了调整交易行的列宽，必须选中交易行。</para>
       </important>
 
-      <para>除了描述列以外，列宽设置会保存在用户账簿的状态文件中，并在账簿关闭并重新打开时还原。</para>
+      <para>除描述列之外的列宽设置会保存在用户账簿的状态文件中，并在账簿关闭并重新打开时恢复先前调整的列宽。</para>
     </sect3>
 
     <sect3 id="txns-shortcuts1">
       <title>使用数据录入快捷键</title>
 
-      <para>&app;提供了几组快捷键，可用于加速交易数据的录入。</para>
+      <para>&app;提供了几组快捷键，可以使录入交易数据更加快捷。</para>
 
       <itemizedlist>
         <listitem>
@@ -194,17 +195,17 @@
             </listitem>
 
             <listitem>
-              <para><keycap>T</keycap> 或 <keycap>t</keycap> 设为今日。
+              <para><keycap>T</keycap> 或 <keycap>t</keycap> 设为今天。
               </para>
             </listitem>
           </itemizedlist>
 
           <tip>
-            <para>不仅可以在账簿中使用这些设置日期的快捷键，在其他输入日期的地方也可以使用这些快捷键。</para>
+            <para>不仅可以在账簿中使用这些快捷键设置日期，在其他输入日期的地方也可以使用这些快捷键。</para>
           </tip>
 
           <tip>
-            <para>对于输入日期，也有另一种方式可以节约时间：输入部分日期。例如，如果只输入一个数字，&app;会将之解释为当前年份当前月份的日期。如果输入日期和月份，&app;会自动附加年份。默认情况下会在从11个月前到当前日期之间选择匹配的日期。这说明，如果你输入1/5（1月5日），而当前日期是2015年12月，日期会补全为 16/1/5。此默认行为可以通过<menuchoice>
+            <para>输入日期时，也有另一种方式可以节约时间——输入部分日期。例如，如果只输入一个数字，&app;会解释为当前年份当前月份的日期。如果输入日期和月份，&app;会自动添加年份。默认情况下会从11个月前开始选取相应的日期。这说明，如果你输入1/5（1月5日），而当前日期是2015年12月，则日期会补全为 16/1/5。此默认行为可以通过<menuchoice>
               <guimenu>编辑</guimenu><guisubmenu>首选项</guisubmenu>
               <guisubmenu>日期与时间</guisubmenu><guilabel>日期补全</guilabel>
             </menuchoice>更改。可以更改为总是在当前日历年内选择日期，或更改滑动窗口的起始位置。</para>
@@ -212,35 +213,35 @@
         </listitem>
 
         <listitem>
-          <para>在交易行的<guilabel>编号</guilabel>列，可以按下<keycap>+</keycap>来在先前输入的数字基础上增加交易编号。按下<keycap>-</keycap>会减少编号。</para>
+          <para>在交易行的<guilabel>编号</guilabel>列，按下<keycap>+</keycap>会在先前输入的数字基础上增大交易编号。按下<keycap>-</keycap>会减小编号。</para>
         </listitem>
 
         <listitem>
-          <para>当在<guilabel>描述</guilabel>列中输入时，&app;会寻找先前具有以此开头的描述的交易，将之作为自动补全的提示内容。在显示补全文本时按下<keycap>Tab</keycap>，&app;会复制先前的交易并将光标聚焦并选中<guilabel>借</guilabel>或<guilabel>贷</guilabel>的数值，以备重新输入新的数值。
+          <para>当在<guilabel>描述</guilabel>列中输入时，&app;会寻找先前具有以此开头的描述的交易，将其作为自动补全的提示内容。在显示补全文本时按下<keycap>Tab</keycap>，&app;会复制先前的交易，并将光标聚焦选中<guilabel>借</guilabel>或<guilabel>贷</guilabel>的数值，以便重新输入新的数值。
           <note>
             <para>此处复制的是<emphasis>整个交易</emphasis>，包括一些可能不显示的部分，如<guilabel>说明</guilabel>和<guilabel>价格</guilabel>。除非你确实想要精确地复制交易，否则请确保已经修改了所有应与之不同的内容。</para>
           </note>
           <tip>
-              <para>你可以使用此特性一次添加许多交易，然后再回到<guilabel>描述</guilabel>列修改描述。</para>
+              <para>你可以使用这项功能一次添加多项交易，然后再回到<guilabel>描述</guilabel>列修改交易描述。</para>
             </tip>
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>转账</guilabel>列支持科目名称的快速补全。可以先输入科目名，随后&app;会补全科目名称剩下的部分。任何时候输入分隔符会完成科目名称的当前层级，并将光标留在开始输入科目名称下一层级的位置。例如，输入<keycap>资:活</keycap>可能会补全为<emphasis>资产:活期</emphasis>科目。以此方式依序输入名称会弹出整个科目列表，其中补全项会被选中。另外，也可以输入科目名称中的任何字符序列，会弹出科目列表，其中会筛选出包含当前输入字符序列的科目。不论哪种情况，都能使用<keycap>上箭头</keycap>或<keycap>下箭头</keycap>从弹出列表中选择科目。</para>
+          <para><guilabel>转账</guilabel>列支持科目名称的快速补全。可以先输入科目名，随后&app;会补全科目名称其余部分。任何时候输入分隔符会补全科目名称的当前层级，并将光标置于开始输入科目名称下一层级的位置。例如，输入<guilabel>资:活</guilabel>可能会补全为<emphasis>资产:活期</emphasis>科目。以这种方式依序输入名称会弹出列出了全部科目的列表，其中预测项会被选中。另外，也可以输入科目名称中的任何字符序列，会弹出科目列表，其中会筛选出包含当前输入字符序列的科目。不论哪种情况，都能使用<keycap>上箭头</keycap>或<keycap>下箭头</keycap>从弹出列表中选择科目。</para>
         </listitem>
 
         <listitem>
-          <para>可以在任何涉及数量的列中使用内置计算器。只需输入第一个值之后再接着输入<keycap>+</keycap>、<keycap>-</keycap>、<keycap>*</keycap>或<keycap>/</keycap>。然后输入第二个值。&app;会在按下<keycap>Tab</keycap>键时执行计算并将计算结果输入至数量列中。
+          <para>可以在任何涉及数量的列中使用内置计算器。只需输入第一个值之后再接着输入<keycap>+</keycap>、<keycap>-</keycap>、<keycap>*</keycap>或<keycap>/</keycap>。然后输入第二个值。&app;会在按下<keycap>Tab</keycap>键时执行计算并将计算结果填入数量列中。
           </para>
         </listitem>
 
         <listitem>
-          <para>所有的菜单项都具有访问键，当按住<keycap>Alt</keycap>键时，访问键在菜单名称中使用下划线标出。按下<keycombo><keycap>Alt</keycap><keycap><replaceable>下划线字符</replaceable></keycap></keycombo>弹出菜单，然后按下相应的访问键选择对应的菜单项。例如，按下<keycombo><keycap>Alt</keycap><keycap>A</keycap></keycombo>弹出功能菜单，然后按下<keycap>P</keycap>选择分录交易功能。一些菜单项也有快捷键，可以立刻执行相应的功能（一般配合使用<keycap>Ctrl</keycap>键）。这些快捷键都在各自菜单项的右侧列出。</para>
+          <para>所有的菜单项都具有访问键，在按住<keycap>Alt</keycap>键时，访问键在菜单名称中使用下划线标出。按下<keycombo><keycap>Alt</keycap><keycap><replaceable>下划线字符</replaceable></keycap></keycombo>弹出菜单，然后按下相应的访问键选择对应的菜单项。例如，按下<keycombo><keycap>Alt</keycap><keycap>A</keycap></keycombo>弹出功能菜单，然后按下<keycap>P</keycap>选择分录交易功能。一些菜单项也分配了快捷键，能够立刻执行相应的功能（一般配合使用<keycap>Ctrl</keycap>键）。这些快捷键都在各自菜单项的右侧列出。</para>
         </listitem>
 
         <listitem>
-          <para>使用下面这些按键可以快速地在账簿中移动：</para>
+          <para>使用下面这些按键可以在账簿中快速移动：</para>
 
           <itemizedlist>
             <listitem>
@@ -289,7 +290,7 @@
         </listitem>
 
         <listitem>
-          <para>使用<keycap>↑</keycap>和<keycap>↓</keycap>选择当前列表框中的各项。</para>
+          <para>使用<keycap>↑</keycap>和<keycap>↓</keycap>在当前列表框中各项间移动。</para>
         </listitem>
       </itemizedlist>
     </sect3>
@@ -298,17 +299,17 @@
   <sect2 id="txns-registers-txntypes">
     <title>简单交易还是分录交易？</title>
 
-    <para>&app;中每一个交易都至少有两项分录，但交易也可以拥有多于两项分录。只有两项分录的交易称为<emphasis>简单交易</emphasis>，因为它只涉及当前科目和另一个科目。涉及三个或更多个科目的交易称为<emphasis>分录交易</emphasis>。</para>
+    <para>&app;中每一个交易都至少有两项分录，但一项交易也可以拥有多于两项的分录。只有两项分录的交易称为<emphasis>简单交易</emphasis>，因为它只涉及当前科目和另一个科目。涉及三个或更多个科目的交易称为<emphasis>分录交易</emphasis>。</para>
 
     <para>当账簿处于基本账簿模式时，你会看到影响当前科目的分录汇总。对于简单交易，<guilabel>转账</guilabel>列会显示同其<emphasis>转移</emphasis>金额的另一个科目。对于分录交易，<guilabel>转账</guilabel>列会显示<guilabel>-- 分录交易 --</guilabel>。选择某一分录交易后，可以点击工具栏上的分录按钮查看交易下的各分录。</para>
 
-    <para>对于分录交易，交易的第一行是<emphasis>交易行</emphasis>，包含<guilabel>日期</guilabel>、可选的<guilabel>编号</guilabel>，交易<guilabel>描述</guilabel>，影响当前科目的总额（此处的<guilabel>总计增加</guilabel>）和在此交易后新的科目<guilabel>余额</guilabel>。注意，当交易展开出多个分录行时，<guilabel>转账</guilabel>列头会隐藏，对应列中也不会显示科目名称。有关此交易的详细信息，需要查看组成该交易的独立分录。</para>
+    <para>对于分录交易，交易的第一行是<emphasis>交易行</emphasis>，包含<guilabel>日期</guilabel>、可选的<guilabel>编号</guilabel>，交易<guilabel>描述</guilabel>，影响当前科目的总额（此处的<guilabel>总计增加</guilabel>）和在此交易发生后新的科目<guilabel>余额</guilabel>。注意，当交易展开出多个分录行时，<guilabel>转账</guilabel>列头会隐藏，对应列中也不会显示科目名称。有关此交易的详细信息，需要查看组成该交易的各项分录。</para>
 
     <note>
       <para>科目账簿只会显示那些包含关联到此科目的分录的交易。如果某交易有超过一项分录关联到此科目，那么在基本账簿和自动分录视图下，该交易中多项与此科目关联的分录都会显示一次。在交易日志账视图下，这样的交易只会显示一次。</para>
     </note>
 
-    <para>交易行下面是<emphasis>分录行</emphasis>，分录行间使用灰色线条分隔。选中分录行时，表头会变为与分录相关的各项。</para>
+    <para>交易行之下是<emphasis>分录行</emphasis>，分录行之间使用灰色线条分隔。选中分录行时，表头会变为与分录相关的各项。</para>
 
 <!-- ToDo: unshrink -->
     <figure>
@@ -320,18 +321,18 @@
                        srccredit="Bengt Thuree" />
           </imageobject>
           <caption>
-            <para>此图显示了分录表头的变化。
+            <para>此图展示了分录表头的变化。
             </para>
           </caption>
         </mediaobject>
       </screenshot>
     </figure>
 
-    <para>每项分录都包含了可选的<guilabel>动作</guilabel>，也就是分录类型，可以输入也可以从下拉列表中选择。分录也包含可选的用于描述此分录的<guilabel>备注</guilabel>。每一项分录影响一个<guilabel>科目</guilabel>，可使用下拉列表在各科目中选择。<guilabel>R</guilabel>列指示分录是否已经对账。最后两列显示了转入或转出相应科目的金额。</para>
+    <para>每项分录都包含可选的<guilabel>动作</guilabel>，也就是分录类型，可以输入也可以从下拉列表中选择。分录也包含可选的用于描述此分录的<guilabel>备注</guilabel>。每一项分录影响一个<guilabel>科目</guilabel>，可以使用下拉列表在各科目中选择。<guilabel>R</guilabel>列指示分录是否已经对账。最后两列显示了转入或转出相应科目的金额。</para>
 
-    <para>正如我们在<xref linkend="basics-accounting1" />中介绍的那样，每项交易中借方总额（左列）必须等于贷方总额（右列）。在上面的例子中，借方总额等于贷方总额，所以此交易是平衡的。你可能已经留意到，交易行的借方金额与<guilabel>活期</guilabel>分录行的金额相同。为什么这一金额会出现两次呢？因为交易行只是对此交易对当前科目影响的<emphasis>总结</emphasis>。同一个交易，在不同的科目下显示的交易行也不尽相同，同一交易在不同科目下显示的交易行代表对各自科目的影响。你可以选中另一分录行，再点击<emphasis>工具栏</emphasis>中的<guibutton>跳转</guibutton>按钮，来观察这一点。</para>
+    <para>正如<xref linkend="basics-accounting1" />介绍的那样，每项交易中借方总额（左列）必须等于贷方总额（右列）。在上面的例子中，借方总额等于贷方总额，所以此交易是平衡的。你可能已经留意到，交易行的借方金额与<guilabel>活期</guilabel>分录行的金额相同。为什么这一金额会出现两次呢？因为交易行只<emphasis>总结</emphasis>此交易对当前科目的影响。同一项交易，在不同的科目下显示的交易行也不尽相同，同一项交易在不同科目下显示的交易行代表对各自科目的影响。你可以选中另一分录行，再点击<emphasis>工具栏</emphasis>中的<guibutton>跳转</guibutton>按钮，来观察这一点。</para>
 
-    <para>在这个例子中，如果你跳转到<emphasis>收入:薪资</emphasis>科目，&app;会在<emphasis>收入:薪资</emphasis>科目账簿中显示同一交易：
+    <para>在这个例子中，如果你跳转到<emphasis>收入:薪资</emphasis>科目，&app;会在<emphasis>收入:薪资</emphasis>科目账簿中显示同一项交易：
     </para>
 
  <!-- ToDo: unshrink -->
@@ -351,15 +352,15 @@
       </screenshot>
     </figure>
 
-    <para>注意，交易行现在汇总的是此交易对<emphasis>收入:薪资</emphasis>科目，而非对<emphasis>活期</emphasis>科目的影响，这是因为你现在浏览的是<emphasis>收入:薪资</emphasis>科目账簿。此交易下的分录是完全相同的，但现在交易行反映的是对<emphasis>收入:薪资</emphasis>科目的贷记。
+    <para>注意，交易行现在汇总的是此交易对<emphasis>收入:薪资</emphasis>科目，而非对<emphasis>活期</emphasis>科目的影响，这是因为你现在浏览的是<emphasis>收入:薪资</emphasis>科目账簿。此交易下的分录行是完全相同的，但现在交易行反映的是对<emphasis>收入:薪资</emphasis>科目的贷记。
     </para>
 
     <sect3 id="txns-registers-twoaccount2">
       <title>简单交易的例子</title>
 
-      <para>在前面章节创建的<filename>gcashdata_3</filename>的科目表基础上，双击<guilabel>活期</guilabel>资产科目。我们现在向活期科目添加一项简单交易。当你第一次在&app;中创建科目时，往往会从期初余额开始录入交易数据。</para>
+      <para>在之前章节创建的<filename>gcashdata_3</filename>的科目表基础上，双击<guilabel>活期</guilabel>资产科目。我们现在向活期科目添加一项简单交易。当你第一次在&app;中创建科目时，往往会从期初余额开始录入交易数据。</para>
 
-      <para>在第一个交易行，输入日期（如 2006年3月1日）、描述（如<quote>期初余额</quote>），点击<guilabel>转账</guilabel>弹出列表并选择<emphasis>所有者权益:期初余额</emphasis>，添加1000元的转入金额，并按下<keycap function="enter">回车</keycap>键。科目账簿现在应当如下图所示：
+      <para>在第一个交易行，输入日期（如2006年3月1日）、描述（如<quote>期初余额</quote>），点击<guilabel>转账</guilabel>弹出列表并选择<emphasis>所有者权益:期初余额</emphasis>，输入1000元的转入金额，并按下<keycap function="enter">Enter</keycap>键。科目账簿现在应当如下图所示：
       </para>
 
 <!-- ToDo: unshrink -->
@@ -403,17 +404,17 @@
     <sect3 id="txns-registers-multiaccount2">
       <title>分录交易示例</title>
 
-      <para>有时需要在一个交易中添加三个或更多个分录，此情况出现在需要将交易中的来源科目或目的科目分拆进多个科目的时候。一个典型例子是在收到工资时。你带回家的钱往往少于支付给你的工资，其中的差异是由税费、养老保险和其它事项导致的。因此，收到工资这一笔交易除了<emphasis>资产:活期</emphasis>和<emphasis>收入:薪资</emphasis>这两个科目外，还会涉及其它的科目。</para>
+      <para>有时需要在一项交易中添加三项或更多项分录，此情况往往出现在需要将交易中的来源科目或目的科目分拆进多个科目的时候。一个典型例子是在收到工资时。你带回家的钱往往少于支付给你的工资，其中的差异是由税费、养老保险和其它事项导致的。因此，收到工资这一笔交易除了<emphasis>资产:活期</emphasis>和<emphasis>收入:薪资</emphasis>这两个科目外，还会涉及其它科目。</para>
 
-      <para>要从<emphasis role="italic">资产:活期</emphasis>科目账簿窗口添加工资分录交易，点击新交易行并点击<guilabel>分录</guilabel>。注意，如果你已经将账簿窗口视图设置为自动分录或交易日志，分录行会自动展开。在第一行输入对此交易的描述（例如“公司支付薪资”）。在其下的分录行，逐一输入组成此交易的多项分录。要输入分录，先选择科目，再输入相应科目的变化金额。请记住，在资产科目中，在左侧输入的金额会增加科目余额。在右列输入的金额会减少余额（详细了解请参考<xref linkend="basics-transactions2"/>）。按下<keycap>Tab</keycap>键或点击下一个分录行，重复此过程。请注意，如果你使用键盘在不同交易间跳转，使用<keycap>Tab</keycap>在列之间移动，使用<keycap>Enter</keycap>会确认此交易并在“不平衡的”科目中创建分录。</para>
+      <para>要从<emphasis role="italic">资产:活期</emphasis>科目账簿窗口添加工资分录交易，点击新交易行并点击<guilabel>分录</guilabel>。注意，如果你已经将账簿窗口视图设置为自动分录或交易日志，分录行会自动展开。在第一行输入对此交易的描述（例如“公司支付薪资”）。在其下的分录行中，逐一输入组成此交易的多项分录。要输入分录，先选择科目，再输入相应科目的变动金额。请记住，对于资产科目，在左列输入的金额会增加科目余额，在右列输入的金额会减少余额（详细了解请参考<xref linkend="basics-transactions2"/>）。按下<keycap>Tab</keycap>键或点击下一个分录行，重复此过程。请注意，如果你使用键盘在不同交易间跳转，使用<keycap>Tab</keycap>可以在列之间跳转，使用<keycap>Enter</keycap>会确认此交易并在“不平衡的”科目中创建分录。</para>
 
       <note>
-        <para>在&app;中创建交易时，能够以任何顺序录入分录。然而，在交易被确认之后（可能是输入光标离开此交易或者按下<keycap function="enter">Enter</keycap>键），所有的借方分录会移动到所有贷方分录之前。</para>
+        <para>在&app;中创建交易时，能够以任何顺序录入分录。然而，在交易被确认之后（可能是输入光标离开此交易或者按下<keycap function="enter">Enter</keycap>键），所有借方分录会移动到所有贷方分录之前。</para>
       </note>
 
-      <para>在此示例中，选择存入工资的科目（<emphasis>资产:活期</emphasis>）并输入要存入的金额（例如670元）。随后，输入各种税费的金额：<emphasis>费用:税费:所得税</emphasis>科目，180元；<emphasis>费用:税费:医疗保险</emphasis>科目, 90元；以及<emphasis>费用:税费:社会保险</emphasis>，60元。最终，<emphasis>收入:薪资</emphasis>科目作为贷方，输入工资的总额。</para>
+      <para>在此示例中，选择存入工资的科目（<emphasis>资产:活期</emphasis>）并输入要存入的金额（例如670元）。随后，输入各项税费的金额：<emphasis>费用:税费:所得税</emphasis>科目，180元；<emphasis>费用:税费:医疗保险</emphasis>科目, 90元；以及<emphasis>费用:税费:社会保险</emphasis>，60元。最终，<emphasis>收入:薪资</emphasis>科目作为贷方，输入工资的总额。</para>
 
-      <para>最终的分录看起来应该像是<xref linkend="txns-register-multiaccount"/>。记得在录入完毕后按下<keycap function="enter">Enter</keycap>键。不过要知道在按下<keycap function="enter">Enter</keycap>之后，分录视图会“折叠”回简化的交易视图。分录仍然存在，你只需要点击<guilabel>分录</guilabel>来查看这些分录。参见<xref linkend="txns-registers-features2"/>了解详细信息。</para>
+      <para>最终的分录看起来应该像是<xref linkend="txns-register-multiaccount"/>。记得在录入完毕后按下<keycap function="enter">Enter</keycap>键。不过要注意到在按下<keycap function="enter">Enter</keycap>之后，分录视图会“折叠”回简化的交易视图。分录仍然存在，你只需要点击<guilabel>分录</guilabel>来查看这些分录。参见<xref linkend="txns-registers-features2"/>了解详细信息。</para>
 
 <!-- ToDo: unshrink -->
       <figure id="txns-register-multiaccount">
@@ -433,32 +434,32 @@
   <sect2 id="txns-reconcile1">
     <title>对账</title>
 
-    <para>一旦交易录入进&app;，验证这些交易同金融机构的记录一致就十分关键了。这一验证过程被称为<emphasis role="strong">对账</emphasis>，是确保你的记录是否准确的关键。最常见的情况是，你需要同银行流水对照检查交易，当然也可以通过这一过程验证交易录入是否正确。</para>
+    <para>一旦将交易录入进&app;，验证这些交易同金融机构的记录是否一致就十分关键了。这一验证过程被称为<emphasis role="strong">对账</emphasis>，这是确保你的记录准确无误的关键。最常见的情况是，你需要同银行账单对照核对交易，当然也可以通过这一过程核对交易是否正确录入。</para>
 
-    <para>&app;一直会跟踪每个交易的对账状态，交易的对账状态在账簿中使用对账<guilabel>R</guilabel>列指示：<emphasis>y</emphasis>表示交易已经对账，<emphasis>n</emphasis>表示还没有对账，<emphasis>c</emphasis>表示已结清但没有对账。标记为已结清的分录表示得到了机构已接受指令的确认（比如，你拿到了使用信用卡付款的餐厅收据）。你可以点击<guilabel>R</guilabel>列在<emphasis>n</emphasis>和<emphasis>c</emphasis>间切换对账状态，也可以使用<xref linkend="txns-reconcile-window2" />将之置为<emphasis>y</emphasis>。</para>
+    <para>&app;会一直跟踪每个交易的对账状态，交易的对账状态在账簿中使用对账<guilabel>R</guilabel>列指示：<emphasis>y</emphasis>表示交易已经对账，<emphasis>n</emphasis>表示还没有对账，<emphasis>c</emphasis>表示已结清但没有对账。标记为已结清的分录表示得到了金融机构已接受指令的确认信息（比如，你拿到了使用信用卡付款的餐厅收据）。你可以点击<guilabel>R</guilabel>列在<emphasis>n</emphasis>和<emphasis>c</emphasis>间切换对账状态，也可以根据<xref linkend="txns-reconcile-window2" />置为<emphasis>y</emphasis>。</para>
 
-    <para>在科目窗口的底部，有两个实时更新的余额（分别是<guilabel>已结清</guilabel>和<guilabel>已对账</guilabel>余额），以及<guilabel>合计@</guilabel>余额。前者对应于银行认为你的账户中有多少钱，而后者包含了未结清的交易。</para>
+    <para>在科目窗口底部，有两个实时更新的余额（分别是<guilabel>已结清</guilabel>和<guilabel>已对账</guilabel>余额），以及<guilabel>总计<!-- ToDoZ --></guilabel>余额。前者代表银行认为你的账户中有多少钱，而后者包含了未结清的交易。</para>
 
-    <para>举个例子，当你支付某些费用时，你应该向&app;录入交易。交易的对账<guilabel>R</guilabel>列初始为<guilabel>n</guilabel> （新添加）。新录入的交易会更新到<guilabel>合计</guilabel>余额中。随后，如果你收到了有关支付已被接受的确认信息，你可以点击交易的<guilabel>R</guilabel>列，将之更改为<emphasis>c</emphasis>（已结清）。在进行此操作后，<guilabel>已结清</guilabel>余额会变化，将这一金额包括进去。在收到银行账单后，你可以打开对账窗口，对比账单和已在&app;中录入的交易。此时，你能够将<guilabel>R</guilabel>列更改为<emphasis>y</emphasis>（已对账）。</para>
+    <para>举个例子，当你支付某些费用时，你应该向&app;录入交易。交易的对账<guilabel>R</guilabel>列初始为<guilabel>n</guilabel> （新添加）。新录入的交易会更新到<guilabel>总计</guilabel>余额中。随后，如果你收到了有关支付已被接受的确认信息，你可以点击交易的<guilabel>R</guilabel>列，将之更改为<emphasis>c</emphasis>（已结清）。在进行此操作后，<guilabel>已结清</guilabel>余额会更新，将此金额包括进去。在收到银行账单后，你可以打开对账窗口，对比银行账单和已在&app;中录入的交易，随后，你能够将<guilabel>R</guilabel>列更改为<emphasis>y</emphasis>（已对账）。</para>
 
     <note>
-      <para>你不能直接在账簿窗口中点击<emphasis>R</emphasis>列来对账，必须使用对账窗口。一旦交易被标记为<emphasis>已对账</emphasis>，就不能再简单地更改，除非在下一次对账中故意输入错误的<link linkend="rec-start-blnc"><guilabel>期初余额</guilabel></link>。</para>
+      <para>你不能直接在账簿窗口中点击<guilabel>R</guilabel>列来对账，必须使用对账窗口。一旦交易被标记为<emphasis>已对账</emphasis>，就不能再随意更改，除非在下一次对账中故意输入错误的<link linkend="rec-start-blnc"><guilabel>期初余额</guilabel></link>。</para>
     </note>
 
     <warning>
-      <para>要充分理解对账是针对某一给定的日期进行的，这一点十分重要。当你根据某一给定日期的账单对科目对账时，你是在对<emphasis role="strong">此日期之前的所有交易</emphasis>进行对账。因此，如果你添加或修改你最后一次对账日期之前的交易，你的<emphasis role="strong">已对账</emphasis>余额会回到之前的数额。</para>
+      <para>特别重要的是，要充分理解对账是针对某一给定的日期进行的。当你根据某一特定日期的账单为科目对账时，你是在对<emphasis role="strong">此日期之前的所有交易</emphasis>进行对账。因此，如果你添加或修改最后一次对账日期之前的交易，你的<emphasis role="strong">已对账</emphasis>余额会变回之前的数额。</para>
     </warning>
 
     <sect3 id="txns-reconcile-window2">
       <title>对账窗口</title>
 
-      <para>对账窗口用于根据银行或其它机构发送给你的账单对某一&app;科目进行对账。 对账是很有用的，不仅可以根据银行的记录再次核对账簿中的交易记录，也可以知道哪些交易还未付款，如未结账的账单。
+      <para>对账窗口用于根据银行或其它机构发送给你的账单为某一&app;科目进行对账。对账是很有用的，不仅可以根据银行的记录再次核对账簿中的交易记录，也可以得知哪些交易还未结清，比如未付款的账单。
       <!-- but also to get a better idea of outstanding transactions, e.g. uncashed checks. -->
       </para>
 
-      <para>要使用对账窗口，从科目表中选择一个科目并点击<menuchoice>
+      <para>要，从科目树中选择一个科目并点击<menuchoice>
           <guimenu>功能</guimenu> <guimenuitem>对账</guimenuitem>
-        </menuchoice>，会出现如下所示的窗口，可以在这里输入对账信息。</para>
+        </menuchoice>打开对账窗口，如下所示，可以在此处输入对账信息。</para>
 
       <figure>
         <title>初始的对账窗口</title>
@@ -479,7 +480,7 @@
           <term><guilabel>账单日期</guilabel></term>
 
           <listitem>
-            <para>对账所依据账单的日期。</para>
+            <para>对账所依据的银行账单的日期。</para>
 
             <tip>
               <para>点击此输入框右侧的下拉箭头打开日历。</para>
@@ -498,17 +499,17 @@
             </warning>
 
             <note>
-              <para>首次对账时，<guilabel>期初余额</guilabel>会是<guilabel>0.00</guilabel>，所以此处显示的期初余额可能与该科目的“<emphasis>期初余额</emphasis>”交易不相同。在对科目对账时，“期初余额”交易也应当被对账，这样做结果才会是平衡的。</para>
+              <para>首次对账时，<guilabel>期初余额</guilabel>会是<guilabel>0.00</guilabel>，所以此处显示的期初余额可能与该科目的“<emphasis>期初余额</emphasis>”交易不相同。在对科目对账时，“期初余额”交易也应当标记为已对账，这样做结果才会是相符的。</para>
             </note>
 
             <tip>
-              <para>如果先前的交易由于失误被取消对账，你可以简单地和当前银行账单记录的交易一起重新对账，结果应该的平衡的。</para>
+              <para>如果先前的交易因失误被取消对账，你可以放心与当前银行账单记录的交易一起重新对账，结果应该的平衡的。</para>
 
-              <para>在误删除之前已经对账的交易时，事情有些棘手。如果你不确定被删除的交易，也无法将之复原到账簿，你可能需要创建一项虚拟交易，以完成对账。</para>
+              <para>在因失误删除先前已经对账的交易时，事情有些棘手。如果你不确定删除了什么，也无法将之复原到账簿，那你可能需要创建一项虚拟交易，以完成对账。</para>
             </tip>
 
             <caution>
-              <para>不过，只有在个人记账时，后一种情况才不成问题；如果你是社团或公司的会计师，你应当对审计师好好作出解释。</para>
+              <para>不过，只有在个人记账时，后一种情况才不成问题；如果你是社团或公司的会计师，你应当跟审计师好好解释。</para>
             </caution>
           </listitem>
         </varlistentry>
@@ -529,7 +530,7 @@
           <term><guilabel>包含子科目</guilabel></term>
 
           <listitem>
-            <para>要一并对账当前所选科目下的子科目的交易，请勾选此选项。注意，要使用此功能，子科目的商品应当与父科目相同。</para>
+            <para>要把当前所选科目下的子科目的交易一同对账，请勾选此选项。注意，要使用此功能，子科目的商品应当与父科目相同。</para>
           </listitem>
         </varlistentry>
 
@@ -537,13 +538,10 @@
           <term><guibutton>输入利息付款</guibutton></term>
 
           <listitem>
-            <para>点击此按钮会打开新窗口，可以输入要对账的科目的利息交易。</para>
+            <para>点击此按钮会打开新窗口，可以为要对账的科目输入利息交易。</para>
 
             <tip>
-              <para><guilabel>利息付款</guilabel>窗口可能会在为<emphasis>银行</emphasis>、
-                <emphasis>信用卡</emphasis>、<emphasis>共同基金</emphasis>、
-                <emphasis>资产</emphasis>、<emphasis>应收账款</emphasis>、
-                <emphasis>应付账款</emphasis>和<emphasis>负债</emphasis>科目启动对账时自动打开。如果你想为所有先前的科目禁用此行为，前往<guilabel>&appname;首选项</guilabel>的<guilabel>账簿</guilabel>标签页，并取消勾选<guilabel>自动利息转账@</guilabel>选项。另外，只是为选择的科目禁用此行为，可在<guilabel>利息付款</guilabel>窗口中点击<guibutton>此科目无需自动利息支付@</guibutton>按钮。
+              <para><guilabel>利息付款</guilabel>窗口可能会在为<emphasis>银行</emphasis>、<emphasis>信用卡</emphasis>、<emphasis>共同基金</emphasis>、<emphasis>资产</emphasis>、<emphasis>应收账款</emphasis>、<emphasis>应付账款</emphasis>和<emphasis>负债</emphasis>科目启动对账时自动打开。如果你想为所有先前的科目禁用此行为，前往<guilabel>&appname;首选项</guilabel>的<guilabel>账簿</guilabel>标签页，取消勾选<guilabel>自动利息转账<!-- ToDoZ --></guilabel>选项。另外，如果只是为选择的科目禁用此行为，可在<guilabel>利息付款</guilabel>窗口中点击<guibutton>此科目无需自动利息支付<!-- ToDoZ --></guibutton>按钮。
               </para>
             </tip>
           </listitem>
@@ -569,51 +567,49 @@
           </screenshot>
         </figure>
 
-      <para>窗口中的两列分别叫做<guilabel>转入</guilabel>和<guilabel>转出</guilabel>，列出了属于此科目的所有未对账交易，这些交易就是马上要对账的。其中的<guilabel>R</guilabel>列表示交易是否已对账。</para>
+      <para>窗口中的两列分别叫做<guilabel>转入</guilabel>和<guilabel>转出</guilabel>，列出了此科目下所有未对账交易，接下来就是要为这些交易进行对账。其中的<guilabel>R</guilabel>列表示交易是否已对账。</para>
 
-      <para>现在，检查银行账单中的每一项，并在<guilabel>对账</guilabel>窗口中寻找其匹配项。</para>
+      <para>现在，检查银行账单中的每一条记录，并在<guilabel>对账</guilabel>窗口中寻找其匹配项。</para>
 
       <para>如果你找不到某项交易，你或许是忘记录入这项交易或不知道这项交易已经发生。你可以使用<emphasis>工具栏</emphasis>上的<guibutton>新建</guibutton>按钮或<menuchoice>
           <guimenu>交易</guimenu><guimenuitem>新建</guimenuitem>
-        </menuchoice>菜单项打开账簿窗口输入遗漏的交易。新创建的交易会在账簿中录入交易后按下<guibutton>Enter</guibutton>键时在<guilabel>对账</guilabel>窗口中出现。
+        </menuchoice>菜单项打开账簿窗口录入遗漏的交易。新创建的交易会当在账簿中录入交易后按下<keycap>Enter</keycap>键时在<guilabel>对账</guilabel>窗口中出现。
       </para>
 
-      <para>当在<guilabel>对账</guilabel>窗口中发现了相应的交易时，对比此交易的金额与银行账单上的金额。如果两者不一致，你可能在&app;中把交易输错了。你可以使用<emphasis>工具栏</emphasis>中的<guibutton>编辑</guibutton>按钮或
-      <menuchoice>
+      <para>当在<guilabel>对账</guilabel>窗口中发现了相应的交易时，对比此交易的金额与银行账单上的金额。如果两者不一致，你可能在&app;中把交易输入错了。你可以使用<emphasis>工具栏</emphasis>中的<guibutton>编辑</guibutton>按钮或<menuchoice>
           <guimenu>交易</guimenu><guimenuitem>编辑</guimenuitem>
         </menuchoice>菜单项打开账簿窗口修正错误。</para>
 
-      <para>如果金额相符，点击<guilabel>对账</guilabel>窗口中的相应项。会在所选交易的<guilabel>R</guilabel>列处打上对勾。&app;会自动更新右下方总计面板中的金额。</para>
+      <para>如果金额相符，点击<guilabel>对账</guilabel>窗口中的相应项，所选交易的<guilabel>R</guilabel>列处会打上对勾。&app;会自动更新右下方<guilabel>合计</guilabel>面板中的金额。</para>
 
       <tip>
-        <para>可以使用<keycap>上</keycap>与<keycap>下</keycap> 方向键在不同条目间切换，使用
-          <keycap>空格</keycap>键将条目标记为已对账，使用<keycap>Tab</keycap>键在不同面板间切换。
+        <para>可以使用<keycap>上</keycap>与<keycap>下</keycap> 方向键在不同条目间切换，使用<keycap>空格</keycap>键将条目标记为已对账，使用<keycap>Tab</keycap>键在不同面板间切换。
         </para>
       </tip>
 
-      <para>接下来，对银行账单上的每一条重复这一操作，验证银行账单的金额符合&app;中相应交易的金额，然后将&app;中的相应交易标记为已对账。</para>
+      <para>接下来，对银行账单上的每一条记录重复这一操作，验证银行账单中各条记录的金额符合&app;中相应交易的金额，然后将&app;中的相应交易标记为已对账。</para>
 
       <tip>
         <para>在任一面板中，点击其中一项交易，按下<keycap>Ctrl-A</keycap>，再按下<keycap>空格</keycap>，就可以勾选或取消勾选所有交易的对账状态。此操作将面板中所有交易的对账状态统一切换为勾选或取消勾选，可以重复此操作将面板中的交易切换为需要的状态。</para>
       </tip>
 
       <para>
-        <guilabel>对账</guilabel>窗口的底部是<guilabel>差额</guilabel>统计项，对账完成后会显示为<guilabel>0.00</guilabel>。如果此项显示了其它值，说明在&app;中要么遗漏了一些交易，要么一些交易的金额不正确。（也可能是银行出错了，但基本上不可能。）
+        <guilabel>对账</guilabel>窗口的底部有<guilabel>差额</guilabel>统计项，对账完成后应显示为<guilabel>0.00</guilabel>。如果此处显示了其它值，说明在&app;中要么遗漏了一些交易，要么一些交易的金额不正确。（也可能是银行出错了，不过基本上不可能。）
       </para>
 
       <note>
-        <para>一些情况下，找出科目为什么账目不符很困难甚至不可能。如果不能修正账簿与银行账单之间的差异，可以使用<emphasis>工具栏</emphasis>上的<guibutton>平衡@</guibutton>按钮，自动以无法对账的金额创建交易来确保两者余额相符。
+        <para>某些情况下，找出科目为什么账目不符很困难甚至不可能。如果不能修正账簿与银行账单之间的差异，可以使用<emphasis>工具栏</emphasis>上的<guibutton>平衡<!-- ToDoZ: 修正PO --></guibutton>按钮，自动用不平衡的金额创建交易来确保两者余额相符。
         </para>
 
-        <para>要使用此功能，充分对账（将所有你能够辨识的交易标记为已对账）后，点击<guibutton>平衡</guibutton>按钮。&app;会使用<emphasis>特殊科目:孤立的-XXX</emphasis>科目（其中“XXX”代表你的货币）根据仍存在的差额创建余额平衡交易项。此时<guilabel>对账</guilabel>窗口会关闭。重新打开对账窗口后，可以检查新创建的余额平衡交易并结束对账过程。</para>
+        <para>要使用此功能，尽量对账（将所有你能够辨识的交易标记为已对账）后，点击<guibutton>平衡</guibutton>按钮。&app;会使用<emphasis>特殊科目:孤立的-XXX</emphasis>科目（其中“XXX”代表你的货币）根据仍存在的差额创建余额平衡交易项。此时<guilabel>对账</guilabel>窗口会关闭。重新打开对账窗口后，可以检查新创建的余额平衡交易并结束对账过程。</para>
       </note>
 
-      <para>在将所有与银行账单上的条目相对应的交易标记为已对账且差额为0.00时，点击<emphasis>工具栏</emphasis>上的<guibutton>结束</guibutton>按钮，或从菜单中选择<menuchoice>
+      <para>在将全部与银行账单上的条目相对应的交易标记为已对账且差额为0.00时，点击<emphasis>工具栏</emphasis>上的<guibutton>结束</guibutton>按钮，或从菜单中选择<menuchoice>
           <guimenu>对账</guimenu><guimenuitem>结束</guimenuitem>
         </menuchoice>。<guilabel>对账</guilabel>窗口会关闭。在账簿窗口中，已对账交易的<guilabel>R</guilabel>列会变为<emphasis>y</emphasis>。
       </para>
 
-<!-- ToDo: 这一段我没看明白 -->
+<!-- ToDoZ: 这一段我没看明白 -->
       <!-- <para>
         In this case, we have not received all the information yet, so we simply press the
         <guibutton>Postpone</guibutton> button, so we can continue at a later stage. Observe that
@@ -642,20 +638,19 @@
   <sect2 id="txns-sxn1">
     <title>计划交易</title>
 
-    <para>计划交易功能可以帮助创建重复的交易，像是订阅、保险或税费。使用计划交易，只需录入一次关心的交易，设置几个像开始日期、频率和些许描述这样的参数，然后&app;就会告知到底什么时候计划交易会准备好创建，并在那时候创建交易。
+    <para>计划交易功能可以帮助创建重复的交易，像是报刊订阅费、保险或税费。使用计划交易，只需录入一次关心的交易，设置开始日期、频率和些许描述等参数，然后&app;就会告知到底什么时候准备创建计划好的交易，并到那时候创建交易。
     </para>
 
     <para>在这一部分的指南中，我们拿每月28日交纳20元的互联网接入费为例子。</para>
 
     <para>在&app;中，有两种创建计划交易的方式，
-      <link linkend="txns-sxn-ledger2">从账簿创建计划交易</link>或是使用
-      <link linkend="txns-sxn-editor2">计划交易编辑器</link>。
+      <link linkend="txns-sxn-ledger2">从账簿创建计划交易</link>或是使用<link linkend="txns-sxn-editor2">计划交易编辑器</link>。
     </para>
 
     <sect3 id="txns-sxn-ledger2">
       <title>从账簿创建计划交易</title>
 
-      <para>在账簿中录入计划交易中的第一次交易。在<guilabel>转账</guilabel>列中，输入<emphasis>费用:互联网</emphasis>，如下图所示。</para>
+      <para>在账簿中录入一系列计划交易中的第一次交易。在<guilabel>转账</guilabel>列中，输入<emphasis>费用:网费</emphasis>，如下图所示。</para>
 
 <!-- ToDo: unshrink -->
       <figure>
@@ -671,10 +666,10 @@
       </figure>
 
       <note>
-        <para>由于我们还没有创建<emphasis>费用:互联网</emphasis>科目，&app;会提示创建此科目。</para>
+        <para>由于我们还没有创建<emphasis>费用:网费</emphasis>科目，&app;会提示创建此科目。</para>
       </note>
 
-      <para>然后，右击刚才创建的交易，选择<guilabel>计划...</guilabel> 。</para>
+      <para>然后，右击刚才创建的交易，选择<guilabel>计划…</guilabel> 。</para>
 
       <figure>
         <title>从账簿创建计划交易的第2步</title>
@@ -719,19 +714,19 @@
         </screenshot>
       </figure>
 
-      <para>点击<guibutton>确认</guibutton>按钮，计划交易就创建好了。&app;现已记下了此计划交易，而且在下个月28日会弹出窗口询问是否要创建新的交易（可见后文的截图）。</para>
+      <para>点击<guibutton>确认</guibutton>按钮，计划交易就创建好了。&app;现已记下了此计划交易，到下个月28日会弹出窗口询问是否要创建新的交易（可见后文的屏幕截图）。</para>
     </sect3>
 
     <sect3 id="txns-sxn-editor2">
       <title>从编辑器创建计划交易</title>
 
-      <para>录入计划交易的另一种方式是通过<guilabel>计划交易编辑器</guilabel>，如果一次有几个计划交易要创建，那这样做会快些。</para>
+      <para>录入计划交易的另一种方式是通过<guilabel>计划交易编辑器</guilabel>，如果一次要创建几项计划交易，那这样做会快些。</para>
 
-      <para>从科目窗口<emphasis>菜单栏</emphasis>，选择<menuchoice>
+      <para>选择科目窗口<emphasis>菜单栏</emphasis>中的<menuchoice>
           <guimenu>功能</guimenu><guisubmenu>计划交易</guisubmenu>
-          <guimenuitem>计划交易编辑器@</guimenuitem>
+          <guimenuitem>计划交易编辑器</guimenuitem>
         </menuchoice>。<guilabel>计划交易</guilabel>标签页会在当前&app;窗口中打开，如下图所示：
-      </para>
+      </para><!-- ToDoZ: PO -->
 
       <figure>
         <title>空白的计划交易标签页</title>
@@ -742,7 +737,7 @@
                          srccredit="Cristian Marchi"/>
             </imageobject>
             <caption>
-              <para>空白的<guilabel>计划交易</guilabel>标签页
+              <para>空白的<guilabel>计划交易</guilabel>标签页。
               </para>
             </caption>
           </mediaobject>
@@ -765,7 +760,7 @@
                          srccredit="Cristian Marchi" />
             </imageobject>
             <caption>
-              <para><guimenuitem>编辑计划交易</guimenuitem>窗口，<guilabel>概览</guilabel>标签页
+              <para><guimenuitem>编辑计划交易</guimenuitem>窗口，<guilabel>概览</guilabel>标签页。
               </para>
             </caption>
           </mediaobject>
@@ -796,7 +791,7 @@
           <term><guilabel>自动创建</guilabel></term>
 
           <listitem>
-            <para>若勾选，&app;会不经提前询问而插入此交易（详见下文）。如果需要，勾选<guilabel>在创建时通知我</guilabel>选项，来在交易被录入时获得提示。
+            <para>若勾选，&app;会不经提前询问而插入此交易（详见下文）。如果需要，勾选<guilabel>在创建时通知我</guilabel>选项，来在创建交易时获得提示。
             </para>
           </listitem>
         </varlistentry>
@@ -814,16 +809,20 @@
           <term><guilabel>提前提醒</guilabel></term>
 
           <listitem>
-            <para>设置要提前多少天提醒。此功能有很多用处，例如，当你需要使用支票支付费用的时候，提前一周提醒有助于你在截止日期前送出支票。
+            <para>设置要提前多少天提醒。例如，这个选项可以用于当你需要使用支票支付费用的时候，提前一周提醒有助于你在截止日期前送出支票。 <!--
+                Sets how many days in advance a reminder is presented. This can be used, for example, when you have
+                to pay something by check, and a reminder one week before allows you to send your
+              check before the deadline. -->
             </para>
           </listitem>
         </varlistentry>
       </variablelist>
-
-      <para>设置<guilabel>执行</guilabel>面板可以告诉&app;计划交易不会永远持续下去。例如如果你在偿还贷款，你可以输入还款结束日期或贷款剩余期数。
+        
+      <!-- ToDoZ: Occurence 循环X 执行 -->
+      <para><guilabel>执行</guilabel>面板中的选项可以告诉&app;计划交易不会永远持续下去。例如，如果你在偿还贷款，你可以输入还款结束日期或贷款剩余期数。
       </para>
 
-      <para>现在选择<guilabel>编辑计划交易</guilabel>窗口中的<guilabel>频率</guilabel>标签页。此处可以设置与时间相关的选项。
+      <para>现在选择<guilabel>编辑计划交易</guilabel>窗口中的<guilabel>频率</guilabel>选项卡。此处可以设置与时间相关的选项。
       </para>
 
       <figure>
@@ -839,7 +838,7 @@
                          srccredit="Cristian Marchi" />
             </imageobject>
             <caption>
-              <para><guimenuitem>编辑计划交易</guimenuitem>窗口，<guilabel>频率</guilabel>标签页
+              <para><guimenuitem>编辑计划交易</guimenuitem>窗口，<guilabel>频率</guilabel>标签页。
               </para>
             </caption>
           </mediaobject>
@@ -857,7 +856,7 @@
             </para>
 
             <note>
-              <para>也可以更改<guilabel>每…</guilabel>选项，将交易的发生周期设为<guilabel>频率</guilabel>中所给选项以外的值，详见下文。
+              <para>也可以更改<guilabel>每…</guilabel>选项，将交易的发生周期设为<guilabel>频率</guilabel>中所提供选项以外的值，详见下文。
               </para>
             </note>
           </listitem>
@@ -892,14 +891,14 @@
       </variablelist>
 
       <note>
-        <para>我们知道网费在每月28号交，所以<guilabel>起始日期</guilabel>是11月1号（假设下个月是11月），<guilabel>频率</guilabel>是<guilabel>每月</guilabel>。由于在此例中，会自动添加网费交易，所以无需提前创建，也不用给出结束日期。
+        <para>我们知道网费在每月28号交，所以<guilabel>起始日期</guilabel>是11月1号（假设下个月是11月），<guilabel>频率</guilabel>是<guilabel>每月</guilabel>。在此例中，网费交易会自动添加，所以无需提前创建，也不用给出结束日期。
         </para>
       </note>
 
-      <para>当此标签页中的选项被填充后，&app;会在下方的日历中标记出将来的交易会在哪些日期执行。
+      <para>当此标签页中的选项填写完毕后，&app;会在下方的日历中标出将来的交易会在哪些日期执行。
       </para>
 
-      <para>最后选择<guilabel>交易模板@</guilabel>标签页，在下方像在账簿中那样录入交易，只是不填日期。别忘了点击<guibutton>确认</guibutton>图标以确认录入交易。
+      <para>最后选择<guilabel>交易模板@</guilabel>标签页，像在账簿中那样在下面录入交易，只是不填日期。别忘了点击<guibutton>确认</guibutton>图标以确认录入交易。
       </para>
 
       <para>现在，你看到的窗口应该像这样：
@@ -918,7 +917,7 @@
                          srccredit="Cristian Marchi" />
             </imageobject>
             <caption>
-              <para><guimenuitem>编辑计划交易</guimenuitem>窗口，<guilabel>交易模板</guilabel>标签页
+              <para><guimenuitem>编辑计划交易</guimenuitem>窗口，<guilabel>交易模板</guilabel>标签页。
               </para>
             </caption>
           </mediaobject>
@@ -941,7 +940,7 @@
       </figure>
 
       <tip>
-        <para>点击日历区域中的某天，一个跟随鼠标的小窗口会显示鼠标指向的这天有哪些计划的交易。再次点击鼠标隐藏小窗口。
+        <para>点击日历区域中的某天，一个跟随鼠标的小窗口会显示鼠标指向的这天有哪些计划的交易。再次点击鼠标来隐藏小窗口。
         </para>
       </tip>
 
@@ -968,20 +967,19 @@
         </screenshot>
       </figure>
 
-      <para>若需要，可以点击<guilabel>状态</guilabel>列更改计划交易状态。然后点击<guibutton>确定</guibutton>关闭
-        <guilabel>自从上次运行…</guilabel>窗口并应用接下来的操作。点击<guilabel>取消</guilabel>跳过接下来录入账簿的操作。
+      <para>若需要，可以点击<guilabel>状态</guilabel>列更改计划交易状态。然后点击<guibutton>确定</guibutton>关闭<guilabel>自从上次运行…</guilabel>窗口并应用接下来的操作。点击<guilabel>取消</guilabel>跳过接下来录入账簿的操作。
       </para>
 
-      <para>如果<guilabel>状态</guilabel>列设为<guilabel>将创建@</guilabel>，查看银行科目账簿，会发现交易已经被创建了。
+      <para>如果<guilabel>状态</guilabel>列设为<guilabel>将要创建</guilabel>，浏览相应科目账簿，会发现交易已经被创建了。
       </para>
 
       <tip>
-        <para>若勾选<guilabel>自从上次运行…</guilabel>窗口右下角<guilabel>查看创建的交易</guilabel>选项，点击<guibutton>确定</guibutton>后，&app;会自动打开录入计划交易的每个科目。
+        <para>若勾选<guilabel>自从上次运行…</guilabel>窗口右下角<guilabel>检查创建的交易</guilabel>选项，点击<guibutton>确定</guibutton>后，&app;会自动打开每个被录入计划交易的科目。
         </para>
       </tip>
 
       <note>
-        <para>如果你到这一步录入了4月28号的交易，请<emphasis>恢复</emphasis>到最后保存的&app;文件，选择
+        <para>如果你在这一步录入了4月28号的交易，请<emphasis>恢复</emphasis>到最后保存的&app;文件，选择
           <menuchoice>
             <guimenu>文件</guimenu><guimenuitem>打开</guimenuitem>
           </menuchoice>并选择之前保存的<filename>gcashdata_3</filename> &app; 文件。
@@ -993,7 +991,7 @@
   <sect2 id="txns-puttoget1">
     <title>步步为营</title>
 
-    <para>本章前面的小节讨论了处理交易的概念和方法。这一部分会以之前章节构建的科目表为基础进行拓展，包括设置期初余额、添加交易和计划交易。
+    <para>本章前面的小节讨论了处理交易的概念和方法。这一部分会以前文构建的科目表为基础进行拓展，包括设置期初余额、添加交易和计划交易。
     </para>
 
     <sect3 id="txns-puttoget-openfile">
@@ -1022,7 +1020,7 @@
     <sect3 id="txns-puttoget-open2">
       <title>期初余额</title>
 
-      <para>正如前文<xref linkend="txns-registers-twoaccount2"/>以<emphasis>资产:活期</emphasis>为例所述，科目的期初余额交易一般设<emphasis>所有者权益:期初余额</emphasis>为其转账科目。要为科目表添加交易，就由为科目设置期初余额开始。假定储蓄科目中有1000元余额，信用卡有500元的欠款。
+      <para>正如前文<xref linkend="txns-registers-twoaccount2"/>以<emphasis>资产:活期</emphasis>为例所述，科目的期初余额交易一般设<emphasis>所有者权益:期初余额</emphasis>为转账科目。要为科目表添加交易，就从为科目设置期初余额开始。假定储蓄科目中有1000元余额，信用卡有500元的欠款。
       </para>
 
       <orderedlist>
@@ -1032,17 +1030,17 @@
         </listitem>
 
         <listitem>
-          <para>在<emphasis>资产:储蓄</emphasis>科目账簿窗口中，录入一项基本的双科目交易，将期初余额设为1000元，从<emphasis>所有者权益:期初余额</emphasis>转账。记住，基本交易是在单个来源科目和单个目的科目之间进行转账。然后确认交易（按<keycap function="enter">Enter</keycap>键或点击<guibutton>确认</guibutton>图标）。
+          <para>在<emphasis>资产:储蓄</emphasis>科目账簿窗口中，录入一项基本双科目交易，将期初余额设为1000元，由<emphasis>所有者权益:期初余额</emphasis>转账。记住，基本交易是在单个来源科目和单个目的科目之间进行转账。然后确认交易（按<keycap function="enter">Enter</keycap>键或点击<guibutton>确认</guibutton>图标）。
           </para>
         </listitem>
 
         <listitem>
-          <para>在<emphasis>资产:活期</emphasis>科目账簿窗口中，录入一笔基本的双科目交易，将期初余额设为1000元，从<emphasis>所有者权益:期初余额</emphasis>转账。
+          <para>在<emphasis>资产:活期</emphasis>科目账簿窗口中，录入一项基本双科目交易，将期初余额设为1000元，由<emphasis>所有者权益:期初余额</emphasis>转账。
           </para>
         </listitem>
 
         <listitem>
-          <para>在<emphasis>负债:信用卡</emphasis>科目账簿窗口中，录入基本的双科目交易，将期初余额设为500元，从<emphasis>所有者权益:期初余额</emphasis>转账。此操作将500元录入为<emphasis>信用卡</emphasis>科目负债的增加（或者说是<emphasis>期初余额</emphasis>科目金额减少），因为这是你借入的一笔钱。然后确认交易（按<keycap function="enter">Enter</keycap>键或点击<guibutton>确认</guibutton>图标）。
+          <para>在<emphasis>负债:信用卡</emphasis>科目账簿窗口中，录入基本双科目交易，将期初余额设为500元，由<emphasis>所有者权益:期初余额</emphasis>转账。此操作将500元录入为<emphasis>信用卡</emphasis>科目负债的增加（或者说是<emphasis>期初余额</emphasis>科目金额减少），因为这是你借入的一笔钱。然后确认交易（按<keycap function="enter">Enter</keycap>键或点击<guibutton>确认</guibutton>图标）。
           </para>
         </listitem>
       </orderedlist>
@@ -1070,27 +1068,27 @@
     <sect3 id="txns-puttoget-add2">
       <title>更多交易示例</title>
 
-      <para>接下来添加更多的交易以模拟一个月内的花销。在这个月里，电费花了78元，话费花了45元，房租花了350元，这些都是用银行活期账户支付的。我们也花了45.21元购置杂货，收到了670元的薪水，也支付了这个月的网费。最后，从储蓄账户向活期账户转账100元。
+      <para>接下来添加更多交易用以模拟一个月内的花销。在这个月里，电费花了78元，话费花了45元，房租花了350元，这些都是用银行活期账户支付的。我们还花了45.21元购置杂货，收到了670元的薪水，也支付了这个月的网费。最后，从储蓄账户向活期账户转账100元。
       </para>
 
       <orderedlist>
         <listitem>
-          <para>打开<emphasis>费用:电费</emphasis>科目账簿，录入一项简单的双科目交易，内容为本月末（如：2006年3月28日）支付78元的电费。输入描述（如：国家电网）和交易编号（如：102）。<guilabel>转账</guilabel>科目应当为<emphasis>资产:活期</emphasis>。
+          <para>打开<emphasis>费用:电费</emphasis>科目账簿，录入一项简单双科目交易，内容为本月末（如：2006年3月28日）支付78元电费。输入描述（如：国家电网）和交易编号（如：102）。<guilabel>转账</guilabel>科目应为<emphasis>资产:活期</emphasis>。
           </para>
         </listitem>
 
         <listitem>
-          <para>打开<emphasis>资产:活期</emphasis>科目，并录入一项简单的双科目交易，在本月末（如：2006年3月28日）支付45元的电话费。输入描述（如：中国移动）和交易编号（如：103）。<guilabel>转账</guilabel>科目应当为<emphasis>费用:话费</emphasis>。注意你既可以从借方（花费科目）录入这项支出交易，也可以从贷方（资产科目）录入。@
+          <para>打开<emphasis>资产:活期</emphasis>科目，录入一项基本双科目交易，在本月末（如：2006年3月28日）支付45元电话费。输入描述（如：中国移动）和交易编号（如：103）。<guilabel>转账</guilabel>科目应为<emphasis>费用:话费</emphasis>。注意，你既可以从借方（<emphasis>花费</emphasis>科目）录入这项支出交易，也可以从贷方（<emphasis>资产</emphasis>科目）录入。
           </para>
         </listitem>
 
         <listitem>
-          <para>打开<emphasis>费用:房租</emphasis>科目，录入一项简单的双科目交易，在本月末支付350元的租金（如：2006年3月28日）。输入描述（如：四月房租）和交易编号（如：104）。<guilabel>转账</guilabel>科目应当为<emphasis>资产:活期</emphasis>。
+          <para>打开<emphasis>费用:房租</emphasis>科目，录入一项基本双科目交易，在本月末支付350元租金（如：2006年3月28日）。输入描述（如：四月房租）和交易编号（如：104）。<guilabel>转账</guilabel>科目应为<emphasis>资产:活期</emphasis>。
           </para>
         </listitem>
 
         <listitem>
-          <para>使用<emphasis>工具栏</emphasis>上的<guibutton>创建副本@</guibutton>按钮复制此交易。先点击当前的房租交易，再点击<guilabel>创建副本</guilabel>图标。输入的交易日期为从今往后一个月（如：2006年4月28号）。注意&app;使用蓝色的线条把将来的交易从当前交易中分隔开来。这样一来，可以在交易实际发生之前就录入交易。
+          <para>使用<emphasis>工具栏</emphasis>上的<guibutton>创建副本</guibutton>按钮复制此交易。先点击当前的房租交易，再点击<guilabel>创建副本</guilabel>图标。输入的交易日期为从今往后推一个月（如：2006年4月28号）。注意&app;使用蓝色的线条分隔将来的交易与当前的交易。如此可以在交易实际发生之前就录入交易。
           </para>
 
           <para>你也可以设置计划交易记录房租支出，因为在可预见的将来，房租金额大概是不变的。
@@ -1109,23 +1107,23 @@
         </listitem>
 
         <listitem>
-          <para>要从储蓄账户把钱转到活期账户，打开<emphasis>资产:储蓄</emphasis>科目账簿，添加一项新的交易，将其<guilabel>转账</guilabel>设为<emphasis>资产:活期</emphasis>，金额为100元（日期为2006年3月6日）。
+          <para>要把钱从储蓄账户转到活期账户，打开<emphasis>资产:储蓄</emphasis>科目账簿，添加一项新的交易，将其<guilabel>转账</guilabel>设为<emphasis>资产:活期</emphasis>，金额为100元（日期为2006年3月6日）。
           </para>
         </listitem>
 
         <listitem>
-          <para>添加另一项交易描述发生在3月5号价值45.21元的杂货购买，这是简单双科目交易的另一个例子。在<emphasis>资产:活期</emphasis>科目中，将<guilabel>转账</guilabel>设为<emphasis>费用:杂货</emphasis>。
+          <para>添加另一项交易，描述发生在3月5日价值45.21元的杂货购买，这是简单双科目交易的另一个例子。在<emphasis>资产:活期</emphasis>科目中，将<guilabel>转账</guilabel>设为<emphasis>费用:杂货</emphasis>。
             <!-- As another example of a simple 2 account transaction, add another transaction to describe the
             purchase of $45.21 worth of groceries on 5 of March. From within the
             <emphasis>Assets:Checking</emphasis> account, you would set
             <guilabel>Transfer</guilabel> to <emphasis>Expenses:Groceries</emphasis>. The account
             register should now appear: -->
-            <!-- ToDo: 下面是漏了什么图片吗 -->
+            <!-- ToDoZ: 下面是漏了什么图片吗 -->
           </para>
         </listitem>
 
         <listitem>
-          <para>要从<emphasis>资产:活期</emphasis>科目账簿窗口添加薪资交易，点击新交易行，再点击<guilabel>分录</guilabel>。首先在第一行输入交易描述（如：“公司发放工资”）以及日期（3月14日）。在下方的分录行中，输入向<emphasis>资产:活期</emphasis>存入的金额（如：670元）。其后录入多笔税费缴纳分录：<emphasis>费用:税费:所得税</emphasis>（如：180元）、<emphasis>费用:税费:医保</emphasis>（如：90元）和<emphasis>费用:税费:社保</emphasis>（如：60元）。最后，录入自<emphasis>收入:薪资</emphasis>科目的取出转账，金额为薪资的原总额（如：1000元）。
+          <para>要从<emphasis>资产:活期</emphasis>科目账簿窗口添加薪资交易，点击新交易行，再点击<guilabel>分录</guilabel>。首先在第一行输入交易描述（如：“公司发放工资”）和日期（3月14日）。在下方的分录行中，输入向<emphasis>资产:活期</emphasis>存入的金额（如：670元）。随后录入多项税费缴纳分录：<emphasis>费用:税费:所得税</emphasis>（如：180元）、<emphasis>费用:税费:医保</emphasis>（如：90元）和<emphasis>费用:税费:社保</emphasis>（如：60元）。最后，录入自<emphasis>收入:薪资</emphasis>科目的取出转账，金额为薪资的原总额（如：1000元）。
           </para>
         </listitem>
 
@@ -1144,7 +1142,7 @@
                          srccredit="Bengt Thuree" />
             </imageobject>
             <caption>
-              <para>此图展示了<xref linkend="chapter_txns" />章节后的期末余额。
+              <para>此图展示了按<xref linkend="chapter_txns" />操作后的期末余额。
               </para>
             </caption>
           </mediaobject>
@@ -1155,18 +1153,18 @@
     <sect3 id="txns-puttoget-save">
       <title>保存文件</title>
 
-      <para>在接下来介绍报告功能之前，先保存&app;数据文件（<filename>gcashdata_4</filename>）。
+      <para>在接下来介绍报表功能之前，先保存&app;数据文件（<filename>gcashdata_4</filename>）。
       </para>
     </sect3>
 
     <sect3 id="txns-puttoget-reports">
-      <title>报告</title>
+      <title>报表</title>
 
-      <para>不过，在电脑屏幕上展示这些数据并不会让会计师满意，因此&app;提供了大量可高度自定义的报表。
+      <para>不过，在电脑屏幕上展示这些枯燥的数据并不能令会计师满意，因此&app;提供了大量可高度自定义的报表。
       </para>
 
       <note>
-        <para>有关报表的更多信息可见@<xref linkend="chapter_reports" />。</para>
+        <para>有关报表的更多信息可见<xref linkend="ch_reports" />。</para>
       </note>
 
       <para>先来看看<guilabel>现金流量</guilabel>报表和<guilabel>交易汇总</guilabel>报表。
@@ -1177,9 +1175,9 @@
           <para>首先来看三月份的<guilabel>现金流量</guilabel>报表。
           </para>
 
-          <para>从<menuchoice>
-              <guimenu>报表</guimenu> <guisubmenu>收入与花费@</guisubmenu>
-              <guimenuitem>现金流量表@</guimenuitem>
+          <para>由<menuchoice>
+              <guimenu>报表</guimenu> <guisubmenu>收入与花费</guisubmenu>
+              <guimenuitem>现金流量表</guimenuitem>
             </menuchoice>可以打开现金流量表。
           </para>
 
@@ -1192,7 +1190,7 @@
                              srccredit="Bengt Thuree" />
                 </imageobject>
                 <caption>
-                  <para>此图展示了按<xref linkend="chapter_txns" />章节操作后得到的现金流量表。
+                  <para>此图展示了按<xref linkend="chapter_txns" />操作后得到的现金流量表。
                   </para>
                 </caption>
               </mediaobject>
@@ -1207,7 +1205,7 @@
           <para>现在来看活期科目的交易汇总表。</para>
 
           <para>从<menuchoice>
-              <guimenu>报表</guimenu> <guimenuitem>交易汇总表@</guimenuitem>
+              <guimenu>报表</guimenu> <guimenuitem>交易汇总表</guimenuitem>
             </menuchoice>打开交易汇总表。
           </para>
 
@@ -1228,7 +1226,7 @@
         </listitem>
 
         <listitem>
-          <para>现在更改交易汇总表，仅展示各个费用科目。
+          <para>现在更改交易汇总表，令其仅展示各个费用科目。
           </para>
 
         <figure>
