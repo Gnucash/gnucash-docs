@@ -1,4 +1,4 @@
-function (add_epub_target targetbase lang entities figures)
+function (add_epub_target targetbase lang entities figures xslfiles)
 
     set(docname "gnucash-${targetbase}")
     set(epubfile "${docname}.epub")
@@ -17,7 +17,7 @@ function (add_epub_target targetbase lang entities figures)
                             --stringparam epub.metainf.dir META-INF/
                             --stringparam epub.oebps.dir OEBPS/
                             --stringparam fop1.extensions 1
-                            "${CMAKE_SOURCE_DIR}/xsl/1.79.2/epub/docbook.xsl"
+                            "${xslfiles}"
                             "${CMAKE_CURRENT_SOURCE_DIR}/index.docbook"
         COMMAND cmake -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/figures" "${EPUB_TMPDIR}/OEBPS/figures"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"

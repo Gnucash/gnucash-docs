@@ -1,4 +1,4 @@
-function (add_pdf_target targetbase lang entities figures)
+function (add_pdf_target targetbase lang entities figures xslfiles)
 
     set(docname "gnucash-${targetbase}")
     set(fofile "${docname}.fo")
@@ -27,7 +27,7 @@ function (add_pdf_target targetbase lang entities figures)
                             --stringparam fop1.extensions 1
                             --stringparam variablelist.as.blocks 1
                             --stringparam glosslist.as.blocks 1
-                            "${CMAKE_SOURCE_DIR}/xsl/1.79.2/fo/docbook.xsl"
+                            "${xslfiles}"
                             "${CMAKE_CURRENT_SOURCE_DIR}/index.docbook"
         DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
 

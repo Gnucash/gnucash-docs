@@ -1,4 +1,4 @@
-function (add_chm_target targetbase lang entities figures)
+function (add_chm_target targetbase lang entities figures xslfiles)
 
     set(docname "gnucash-${targetbase}")
     set(chmfile "${docname}.chm")
@@ -18,6 +18,7 @@ function (add_chm_target targetbase lang entities figures)
            -D BUILD_DIR=${BUILD_DIR}
            -D XSLTPROC=${XSLTPROC}
            "-DXSLTPROCFLAGS=\"${XSLTPROCFLAGS}\""
+           "-Dxslfiles=\"${xslfiles}\""
            "-Dentities=\"${entities}\""
            -D HHC=${HHC}
            -P ${CMAKE_SOURCE_DIR}/cmake/MakeChm.cmake
