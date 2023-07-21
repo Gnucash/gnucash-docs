@@ -10,230 +10,168 @@
     Updated	Bengt Thuree <bengt@thuree.com>
   Originally written by Carol Champagne.
   Translators:
+    Xinhang Xu <xuxinhang4567@outlook.com>
     (translators put your name and email here)
 -->
-<chapter id="chapter_cc">
-  <title>Credit Cards</title>
 
-  <para>This chapter will show you how to manage your credit cards using &app;.
+<!--
+  翻译提示：
+  - “payment”可表达付款（支付）或还款两种意思，需要根据上下文仔细推定。
+  - 统一翻译为“偿还账单”而非“支付账单”，因为信用卡属于负债。
+  - 统一翻译为“支付利息”，因为这是一笔费用。
+  - 信用卡的“balance”在操作GnuCash的语境下翻译为“（科目）余额”，否则在日常生活语境下翻译为“欠款”。
+-->
+
+<chapter id="chapter_cc">
+  <title>信用卡</title>
+
+  <para>本章将介绍怎样使用&app;管理信用卡。
   </para>
 
   <sect1 id="cc-concepts1">
-    <title>Concepts</title>
+    <title>概念</title>
 
-    <para>Since you probably write a check or make an electronic payment to the credit card company each
-      month, you may think of your credit card bill as an expense - but it really is not an expense.
-      Why? A credit card account is a short-term loan - you buy things on that loan account, and
-      then you eventually have to pay back the money, often with interest (your finance charge). The
-      purchases you make with that credit card are your expenses.
+    <para>可能你每个月通过支票或网上支付向信用卡公司偿还账单，所以你可能以为你的信用卡账单是一种费用，但它实际上并不属于费用。为什么？信用卡其实是一种短期贷款，你用这个贷款账户购物消费，而且最后要偿还这些钱，常常还要支付利息（你的金融服务费）。你使用信用卡产生的购买才属于费用。
     </para>
 
-    <para>You have a couple of options when entering credit card transactions, so choose the one that fits
-      your desired level of detail. The simplest method is to simply track monthly payments to the
-      credit card company. From your bank account, you enter a transfer of money each month to the
-      credit card expense account. This will show you the amount of money you are paying each month
-      to the credit card company, but it won&rsquo;t show you any information about your credit card
-      balance or credit card purchases.
+    <para>你有两种方法记录信用卡交易，选择符合你所需细致程度的那一种方法。最简单的方法是只记录每个月向信用卡公司的还款。你每个月录入一项由银行科目向信用卡费用科目的转账。这样会显示你每个月向信用卡公司的还款，但不会显示任何有关信用卡欠款或信用卡购买记录的信息。
     </para>
 
-    <para>A more complete way to track your credit card in &app; is to enter each purchase and payment as a
-      separate transaction. Using the credit card account register, you enter your receipts
-      throughout the month. When your credit card statement arrives, you reconcile the credit card
-      account to the statement, and you enter your payment as a transfer of money from your checking
-      account to your credit card account. This method gives you more information about your balance
-      during the month and points out any discrepancies during reconciliation, but you will have to
-      do more data entry.
+    <para>还有一种更复杂的记录信用卡交易的方法，那就是将每次购买或付款记为独立的交易。你需要在信用卡账簿中录入一整个月的单据。在收到信用卡账单时，你能够根据账单为信用卡科目对账。这种方法会向你展现整个月期间的欠款信息，并在对账时指出不一致之处，但是需要你录入更多数据条目。
     </para>
   </sect1>
 
   <sect1 id="cc-accounts1">
-    <title>Setting Up Accounts</title>
+    <title>创建科目</title>
 
-    <para>To begin managing your credit cards in &app;, you should set up a <guilabel>Liability</guilabel> top
-      level account and under this parent account create credit card type accounts for each credit
-      card you use. If you are tracking only the payments you make to the credit card company, then
-      all you need is a bank account and a credit card account to enter your transactions.
+    <para>要开始在&app;中管理信用卡，你应当建立一个<guilabel>负债</guilabel>顶级科目，并在此父科目之下为你使用的每张信用卡创建信用卡类型的科目。如果你只是跟踪向信用卡公司的还款记录，那么你只需要银行科目和信用卡科目就足够用来录入交易了。
     </para>
 
-    <para>The charges you make on your credit card are expenses, so you will have to set up these accounts
-      under the top-level account called <guilabel>Expenses</guilabel>. If you decide to keep a more
-      detailed records of your purchases, you will need to create expense accounts for each kind of
-      purchase you make. Since you will also be reconciling the balance to your credit card
-      statements, you should also enter an opening balance in each credit card account. The easiest
-      way to do this is to use your last statement balance as the opening balance.
+    <para>信用卡产生的服务费属于费用，所以你需要在名为<guilabel>费用</guilabel>的顶级科目下建立这些科目。你如果决定更详细地记录消费情况，还需要为你产生的每种消费创建相应的费用科目。你由于以后也要根据信用卡账单检查科目余额并为科目对账，则也应该在每个信用卡科目中录入期初余额。录入期初余额最简单的方法是直接将上一份信用卡账单给出的欠款额作为期初余额。
     </para>
 
     <sect2 id="cc-accounts-simple2">
-      <title>Simple Setup</title>
+      <title>简易科目设置</title>
 
-      <para>If you do not want to track each expense made on the credit card, you can set up a simple account
-        hierarchy like this:
+      <para>你如果不想跟踪信用卡的每笔支出，可以建立如下所示的简单科目层次结构：
       </para>
 <screen>
--Assets
-   -Bank
--Liabilities
-   -Credit Card
--Expenses
-   -Credit Card</screen>
-      <para>In this example, if you enter your total amount charged per month as a transaction between
-        <emphasis>Liabilities:Credit Card</emphasis> and <emphasis>Expenses:Credit Card</emphasis>.
-        When you make a payment, you would enter a transaction between
-        <emphasis>Assets:Bank</emphasis> and <emphasis>Liabilities:Credit Card</emphasis>.
+-资产
+   -银行
+-负债
+   -信用卡
+-费用
+   -信用卡</screen>
+      <para>在这个例子中，你要将每个月信用卡的还款总额录入为<emphasis>负债:信用卡</emphasis>与<emphasis>费用:信用卡</emphasis>间的交易。当还信用卡的时候，你要录入一项<emphasis>资产:银行</emphasis>和<emphasis>负债:信用卡</emphasis>间的交易。
       </para>
 
-      <para>The obvious limitation of this simple credit card setup is that you cannot see where your money is
-        going. All your credit card expenses are being entered in the Credit Card expense account.
-        This is, however, very simple to set up and maintain.
+      <para>简易信用卡记账方法一个显而易见的缺点就是你看不到钱花到哪里去了。所有信用卡消费都合并到了<emphasis>信用卡</emphasis>费用科目下。不过，这样做起来十分简单且易于维护。
       </para>
     </sect2>
 
     <sect2 id="cc-accounts-complete2">
-      <title>Complete Setup</title>
+      <title>完整科目设置</title>
 
-      <para>If you want to track your expenses more completely, you should set up multiple expense accounts
-        named for the various kinds of expenses you have. Each charge on your credit card is then
-        entered as a separate transaction between your Credit Card liability account and a specific
-        expense account. Below is an example of an account hierarchy for this:
+      <para>你如果想要更完整地跟踪花销情况，则应建立多个费用科目，分别命名为你产生的各种花销类型。信用卡的每笔付款应独立地录入为信用卡负债科目与具体费用科目间的交易。下面是相应的科目层次结构示例：
       </para>
 <screen>
--Assets
-    -Bank
--Liabilities
-    -Credit Card
--Expenses
-    -Food
-    -Car
-    -Clothes
-    -Entertainment
-    -Interest
-    -Service</screen>
-      <para>Clearly, you should enter specific expense accounts which fit your spending habits. The only
-        difference with this setup as compared to the simple setup is that the expenses have been
-        subdivided by groups. Also notice that there is an <quote>Interest</quote> expense, this is
-        used for when your credit card charges interest on your monthly unpaid balance. The
-        <quote>Service</quote> expense account is used to track service expenses associated with the
-        credit card, such as the yearly usage fee if it exists. With this setup, you will be able to
-        see where your money goes every month, grouped according to the expense accounts.
+-资产
+    -银行
+-负债
+    -信用卡
+-费用
+    -食品
+    -汽车
+    -服装
+    -娱乐
+    -利息
+    -服务费</screen>
+      <para>需要明确的是，设置的具体费用科目应当符合你的消费习惯。这种科目设置与简易科目设置相比，唯一的不同是费用细分为了几组。也要注意到其中包含一个<quote>利息</quote>费用科目，它是在信用卡为每月的未还款额收取利息时使用的。<quote>服务费</quote>费用科目用于记录信用卡收取的服务费，如可能会收取的年费。借助这样的科目设置，你将能够按照费用科目的分组看到每个月你的钱花到哪里去了。
       </para>
 
-      <para>The rest of this chapter will assume you are using the complete setup.
+      <para>本章其余部分将假定你在使用完整科目设置。
       </para>
     </sect2>
   </sect1>
 
   <sect1 id="cc-entercharge1">
-    <title>Entering Charges</title>
+    <title>记录付款</title>
 
-    <para>Entering your charges provides you with a more complete picture of your spending habits. Charges on
-      a credit card are tracked as a transaction between the credit card liability account and the
-      appropriate expense account.
+    <para>记录信用卡的每笔付款能够为你给出更完整的消费习惯画像。信用卡付款记录为信用卡负债科目与适当的费用科目间的交易。
     </para>
 
-    <para>When you pay for goods or services with your credit card, you are telling the credit card company to
-      pay the merchant for you. This transaction will increase the amount of money you owe the
-      credit card company, and the credit card balance will increase. The other side of these
-      transactions will in most cases be an expense account. For example, if you buy clothing from a
-      store with your credit card for $50, you would be transferring that money from the credit
-      account into Expenses:Clothing.
+    <para>当你使用信用卡为商品或服务付款时，你就是在告诉信用卡公司替你向对方付费。这项交易会增加你在信用卡公司的欠款，即信用卡科目余额增加。这些交易的另一端大多是费用科目。例如，如果你使用信用卡在商店花50元买了一件衣服，则相当于将钱由信用卡科目转账到<emphasis>费用:服装</emphasis>。
     </para>
 
-    <para>Entering these transactions into &app; allows you to track how much you owe the credit card company,
-      as well as provides you a better picture of your overall accounts. It also allows you to
-      monitor your account and ensure that fraud is avoided.
+    <para>将这些交易录入&app;有助于你随时掌握欠信用卡公司多少钱，也会提供全体科目更完整的画像。这样做还可以帮助你随时了解账户状态，确保避免诈骗。<!-- ToDoZ: 避免诈骗？美国信用卡骗子很多吗？ -->
     </para>
 
-    <para>Adding transactions to a credit card account is similar to entering transactions in other accounts.
-      You can enter them manually, or import them from your credit card company using a compatible
+    <para>向信用卡科目添加交易很像在其它科目中添加交易。你可以手动录入交易，或通过兼容的格式从信用卡公司导入交易。
       import format.
     </para>
 
-    <para>For assistance with entering transactions, see Chapter 6 of the &app; Manual and
-      <xref linkend="chapter_txns"></xref>.
+    <para>有关如何录入交易，请查看&app;帮助手册第6章和<xref linkend="chapter_txns"></xref>。
     </para>
   </sect1>
 
   <sect1 id="cc-enterpay1">
-    <title>Entering Payments</title>
-
-    <para>Most payments to your credit card bill are entered as transfers from a bank account (asset) to the
-      credit card account (liability). When you pay the monthly bill, you are withdrawing money from
-      a bank account to pay down the credit card balance. This transaction decreases both your bank
-      account balance and the amount of credit card debt you owe.
+    <title>记录还款</title>
+    <!-- ToDoZ: balance 待还款额/欠款/欠债额 pay 还款 -->
+    <para>偿还信用卡账单大多录入为由银行科目（资产）到信用卡科目（负债）的转账。你在偿还月账单时，就是从银行科目取款以冲抵信用卡欠款。此交易同时减少银行科目余额和信用卡负债额。
     </para>
 
-    <para>When you return a purchase, you receive a refund on your credit card. This is another type of
-      payment in that it decreases the amount of credit card debt you owe. If you recorded the
-      original purchase transaction as a transfer from the credit card account to the expense, you
-      now simply reverse that transaction: transfer the money back from the expense to the credit
-      card account. This transaction decreases both the expense account balance and the credit card
-      account balance. For example, if you originally recorded a credit card purchase of clothing,
-      the transaction is a transfer from the credit card account to the clothing expense account. If
-      you then return that clothing for a refund, you simply transfer the money back from the
-      clothing expense account to the credit card account.
+    <para>当你退货时，你的信用卡会收到退款。这是另一种形式的还款，它会减少你的信用卡欠款。你如果将原先的购买交易录入为由信用卡科目到费用科目的转账，现在则简单地将那项交易反转过来：将钱从费用科目转回信用卡科目。此交易同时减少费用科目余额和信用卡科目余额。例如，如果你原先录入了一笔使用信用卡付款的服装购买，交易是从信用卡科目到服装费用科目的转账。你如果之后退掉衣服，收到退款，则简单地将钱从服装费用科目转回信用卡科目。
     </para>
 
     <note>
-      <para>A common mistake is to enter a refund as income. It is not income, but rather a <quote>negative
-        expense</quote>. That is why you must transfer money from the expense account to your credit
-        card when you receive a refund.
+      <para>一个常见的错误是将退款录入为收入。退款不是收入，而是一种<quote>负费用</quote>。这就是为什么必须在收到退款时将钱从费用科目转回信用卡科目。
       </para>
     </note>
 
-    <para>To clarify this, let&rsquo;s run through an example. You bought some jeans for $74.99 on your VISA
-      card, but realized one day later that they are too big and want to return them. The shop
-      gracefully agrees, and refunds your credit card.
+    <para>为了说清楚这个规则，来看看一个例子。你使用VISA卡花74.99元买了一些牛仔裤，但之后某天你发现它们太大，想退回去。店家爽快地同意了，并将钱款退到了你的信用卡里。
     </para>
 
     <orderedlist>
       <listitem>
-        <para>Start with opening the previous datafile we stored (<filename>gcashdata_5</filename>), and store it
-          as <filename>gcashdata_6</filename>.
+        <para>先打开之前保存的数据文件（<filename>gcashdata_5</filename>），将之另存为<filename>gcashdata_6</filename>。
         </para>
       </listitem>
 
       <listitem>
-        <para>Open the <emphasis>Liabilities:Visa</emphasis> account register and enter a simple 2 account
-          transaction to pay the $74.99 jeans purchase. The <guilabel>Transfer</guilabel> account
-          should be <emphasis>Expenses:Clothes</emphasis> and you <guilabel>Charge</guilabel> your
-          <emphasis>Visa</emphasis> account with the $74.99.
+        <para>打开<emphasis>负债:Visa</emphasis>科目账簿，录入一项简单的双科目转账交易，表示买牛仔裤花了74.99元。<guilabel>转账</guilabel>科目应为<emphasis>费用:服装</emphasis>，使用<emphasis>Visa</emphasis><guilabel>付款</guilabel>74.99元。
         </para>
 
         <note>
-          <para>Since we had not created the <emphasis>Expenses:Clothes</emphasis> account previously, &app; will
-            prompt us to create it. Just remember to create it as an <guilabel>Expense</guilabel>
-            account
+          <para>由于之前没有创建<emphasis>费用:服装</emphasis>科目，&app;会提示我们创建科目。要记得将其创建为<guilabel>费用</guilabel>科目。
           </para>
         </note>
       </listitem>
 
       <listitem>
-        <para>Enter the refund in one of the following way.
+        <para>按下列方法之一录入退款交易：
         </para>
 
         <itemizedlist>
           <listitem>
-            <para>Enter the same transaction as the purchase transaction, but instead of a <quote>Charge</quote>
-              amount, use a <quote>Payment</quote> amount in the Credit Card account register.
+            <para>录入与当初购买时相同的交易，但在信用卡科目账簿的<guilabel><!-- ToDoG -->还款</guilabel>处，而非<guilabel><!-- ToDoG -->付款</guilabel>处输入金额。
             </para>
           </listitem>
 
           <listitem>
-            <para>Select the purchase transaction you want to refund (that is the Jeans transaction in our case), and
-              selecting
+            <para>选择想要退款的购买交易（这个例子中也就是购买牛仔裤的交易），并选择
               <menuchoice>
-                <guimenu>Transaction</guimenu><guisubmenu>Add Reversing Transaction</guisubmenu>
+                <guimenu>交易</guimenu><guisubmenu><!-- ToDoZ: -->对冲交易</guisubmenu>
               </menuchoice>
-              . Modify the date as needed.
+              。按需修改日期。
             </para>
           </listitem>
         </itemizedlist>
 
-        <para>After reversing the transaction, your credit card account should look something like this:
+        <para>在对冲交易后，你的信用卡科目应该如下所示：
         </para>
 
         <figure pgwide="1">
-          <title>Credit Card account after reversing a purchase</title>
+          <title>对冲购买交易后的信用卡科目</title>
           <screenshot id="cc-Reversing-Transaction-1">
             <mediaobject>
               <imageobject>
@@ -241,19 +179,18 @@
                              srccredit="Bengt Thuree"/>
               </imageobject>
               <caption>
-                <para>This image shows <emphasis>Liability:Credit Card</emphasis> - Register after reversing a purchase
-                  transaction.
+                <para>此图展示了对冲购买交易后的<emphasis>负债:信用卡</emphasis>科目账簿。
                 </para>
               </caption>
             </mediaobject>
           </screenshot>
         </figure>
 
-        <para>And the <emphasis>Expenses:Clothes</emphasis> register should look something like this:
+        <para>同时<emphasis>费用:服装</emphasis>科目账簿应该如下所示：
         </para>
 
         <figure pgwide="1">
-          <title>Expenses account after reversing a purchase</title>
+          <title>对冲购买交易后的费用科目</title>
           <screenshot id="cc-Reversing-Transaction-2">
             <mediaobject>
               <imageobject>
@@ -261,8 +198,7 @@
                              srccredit="Bengt Thuree"/>
               </imageobject>
               <caption>
-                <para>This image shows <emphasis>Expenses:Clothes</emphasis> register after reversing a purchase
-                  transaction.
+                <para>此图展示了对冲购买交易后的<emphasis>费用:服装</emphasis>科目账簿。
                 </para>
               </caption>
             </mediaobject>
@@ -271,32 +207,26 @@
       </listitem>
 
       <listitem>
-        <para>Save the &app; data file.
+        <para>保存&app;数据文件。
         </para>
       </listitem>
     </orderedlist>
   </sect1>
 
   <sect1 id="cc-together1">
-    <title>Putting It All Together</title>
+    <title>步步为营</title>
 
-    <para>Now that we have covered the basic ideas behind the various transactions you must make to
-      successfully track your credit card in &app;, let&rsquo;s go through an example. In this
-      example, we will make credit card purchases, refund two of the purchases, get charged interest
-      on the unpaid balance, reconcile the credit card account, and finally make a partial payoff of
-      the credit card.
+    <para>现在我们已经介绍了在跟踪信用卡账目所需创建的交易背后的基本思想。现在来研究一个例子。在这个例子中，我们将使用信用卡买东西，退还两样购买的商品，支付由未还款额产生的利息<!-- ToDoZ: get charged interest on the unpaid balance -->，为信用卡科目对账，最后偿还部分信用卡欠款。
     </para>
 
     <sect2 id="cc-puttoget-openfile">
-      <title>Open &app; file</title>
+      <title>打开&app;文件</title>
 
-      <para>Start with opening the previous datafile we stored, <filename>gcashdata_5</filename>, and store it
-        as <filename>gcashdata_6</filename> directly. The main window should look something like
-        this:
+      <para>首先打开先前保存的数据文件<filename>gcashdata_5</filename>，并将其直接保存为<filename>gcashdata_6</filename>主窗口应该如下所示：
       </para>
 
       <figure pgwide="1">
-        <title>Starting account structure for tracking a credit card</title>
+        <title>跟踪信用卡账目前的初始科目结构</title>
         <screenshot id="cc-accounts">
           <mediaobject>
             <imageobject>
@@ -304,7 +234,7 @@
                        srccredit="Bengt Thuree"/>
             </imageobject>
             <caption>
-              <para>Starting account structure for tracking a credit card in the putting it all together example.
+              <para>在这个步步为营例子中跟踪信用卡账目前的初始科目结构。
               </para>
             </caption>
           </mediaobject>
@@ -313,24 +243,19 @@
     </sect2>
 
     <sect2 id="cc-together-purchases2">
-      <title>Purchases</title>
+      <title>购买</title>
 
-      <para>Let&rsquo;s make some purchases on our visa card. Start by buying $25 worth of food from the Greasy
-        Spoon Cafe, $100 worth of clothing from Faux Pas Fashions, $25 worth of gasoline from
-        Premium Gasoline, $125 worth of groceries and household items from Groceries R Us (split
-        between $85 in groceries and $40 in household items) and finally, $60 worth of household
-        items from CheapMart.
+      <para>现在使用Visa卡买一些东西。先在苍蝇茶馆买了25元的食品，在不着调时装店购买100元的衣服，向加价不加量加油站支付25元的汽油钱，在不靠谱杂货店购买125元的食品杂货和家居用品（分录为85元的杂货和40元的家居），最后又在廉价市场买了60元的家居用品。
       </para>
 
-      <para>We also redo the exercise in previous chapter, with purchasing a pair of Jeans for $74.99 on April
-        3, and refund them two days later.
+      <para>我们也会重复前面几章的操作，即在4月3日花74.99元购买一条牛仔裤，并在两天后退货。
       </para>
 
-      <para>The register window for the credit card liability should look like this:
+      <para>信用卡负债账簿窗口应该如下所示：
       </para>
 
       <figure pgwide="1">
-        <title>Initial credit card purchases</title>
+        <title>初始的信用卡购买</title>
         <screenshot id="cc-purchases">
           <mediaobject>
             <imageobject>
@@ -338,7 +263,7 @@
                          srccredit="Bengt Thuree"/>
             </imageobject>
             <caption>
-              <para>Initial credit card purchases.
+              <para>初始的信用卡购买。
               </para>
             </caption>
           </mediaobject>
@@ -347,19 +272,13 @@
     </sect2>
 
     <sect2 id="cc-together-refund2">
-      <title>Refund</title>
+      <title>退款</title>
 
-      <para>Now suppose that on April 15th you return the clothes you bought on April 11th from Faux Pas
-        Fashions and they give you credit back on your credit card. Enter a transaction for the
-        credit card refund for the full $100 amount. Remember to use the same transfer account you
-        used for the original purchase, and enter the amount under the Payment column. &app; will
-        automatically complete the name and transfer account for you, but it will also automatically
-        enter the $100 in the Charge column. You will need to reenter the amount in the Payment
-        column. The transaction looks like this:
+      <para>现在假定在4月15日，你退还了4月11日从不着调时装店购买的衣服，他们将退款退回了你的信用卡。录入一项总额100元的信用卡退款交易。别忘了所用的转账科目与原先购买时所用科目相同，并在<guilabel>还款</guilabel>列下输入金额。&app;会自动补全名称和转账科目，但仍会将100元自动填入<guilabel>付款</guilabel>列中。你需要重新在<guilabel>还款</guilabel>列中输入金额。交易显示如下：
       </para>
 
       <figure pgwide="1">
-        <title>Item return transaction refunded to credit card</title>
+        <title>信用卡退款交易</title>
         <screenshot id="cc-refund">
           <mediaobject>
             <imageobject>
@@ -367,7 +286,7 @@
                          srccredit="Bengt Thuree"/>
             </imageobject>
             <caption>
-              <para>Returning clothes to Faux Pas Fashions, refund to credit card.
+              <para>将衣服退还给不靠谱时装店，退款退回信用卡。
               </para>
             </caption>
           </mediaobject>
@@ -376,16 +295,13 @@
     </sect2>
 
     <sect2 id="cc-together-interest2">
-      <title>Interest Charge</title>
+      <title>收取利息</title>
 
-      <para>After the month of spending, unfortunately, the credit card bill arrives in the mail or you access
-        it on-line through the internet. You have been charged $20 in interest on the last day of
-        April because of the balance you carried from the previous month. This gets entered into the
-        credit card account as an expense.
+      <para>在几个月的消费后，你收到了寄来的信用卡账单或在网上看到了账单。很不幸，由于你上个月的部分欠款拖到了现在，你在4月的最后一天被收取了20元的利息。这笔利息要作为费用录入到信用卡科目。
       </para>
 
       <figure pgwide="1">
-        <title>Interest charge on the Credit Card</title>
+        <title>信用卡收取的利息</title>
         <screenshot id="cc-interest">
           <mediaobject>
             <imageobject>
@@ -393,7 +309,7 @@
                          srccredit="Bengt Thuree"/>
             </imageobject>
             <caption>
-              <para>Interest charge.
+              <para>信用卡收取利息。
               </para>
             </caption>
           </mediaobject>
@@ -402,22 +318,17 @@
     </sect2>
 
     <sect2 id="cc-together-reconcile2">
-      <title>Reconciliation</title>
+      <title>对账</title>
 
-      <para>When your credit card bill arrives you should reconcile your credit card account to this document.
-        This is done using &app;&rsquo;s built-in reconciliation application. Highlight the credit
-        card account and click on
+      <para>在收到信用卡账单后，你应该根据账单为信用卡科目对账。使用&app;内置的对账功能就可以。选中信用卡科目并点击
         <menuchoice>
-          <guimenu>Actions</guimenu> <guimenuitem>Reconcile...</guimenuitem>
+          <guimenu>功能</guimenu> <guimenuitem>对账…</guimenuitem>
         </menuchoice>
-        . This reconciliation procedure is described in detail in the
-        <xref linkend="txns-reconcile1"></xref>, but we will step through the process here as well.
-        For this example, let&rsquo;s assume that the credit card statement is dated May 1st, with a
-        final balance of $455. Enter these values in to the initial Reconcile window as shown here.
+        。对账的具体操作步骤在<xref linkend="txns-reconcile1"></xref>中有详细的描述，但在这里我们会再回顾一遍相关步骤。例如，假定信用卡账单截止到5月1日，最后的欠额是455元。将日期和金额输入到初始对账窗口中，如下图所示。
       </para>
 
       <figure pgwide="1">
-        <title>The Initial Reconciliation Window For The Credit Card</title>
+        <title>信用卡初始对账窗口</title>
         <screenshot id="cc-reconcile-init">
           <mediaobject>
             <imageobject>
@@ -428,14 +339,11 @@
         </screenshot>
       </figure>
 
-      <para>During the reconciliation process, you check off each transaction in the account as you confirm that
-        the transaction appears in both your &app; account and the credit card statement. For this
-        example, as shown in the figure below, there is a $300 difference between your &app;
-        accounts and the credit card statement.
+      <para>在对账过程中，你需要勾选每一项确认同时出现在&app;科目和信用卡账单中的交易。在这个例子中，&app;科目与信用卡账单间存在300元的差额，如下图所示。
       </para>
 
       <figure pgwide="1">
-        <title>The Main Reconciliation Window With A Discrepancy</title>
+        <title>存在差额的对账主窗口</title>
         <screenshot id="cc-reconcile">
           <mediaobject>
             <imageobject>
@@ -443,32 +351,25 @@
                          srccredit="Bengt Thuree"/>
             </imageobject>
             <caption>
-              <para>Main account reconciliation window, demonstrating a discrepancy of $300.
+              <para>提示300元差额的科目对账主窗口。
               </para>
             </caption>
           </mediaobject>
         </screenshot>
       </figure>
 
-      <para>Some investigation uncovers that you forgot to record a payment you made on March 5th to the credit
-        card company for $300, you must enter this payment transaction from your bank account to the
-        credit card. Now the credit card statement and your &app; account can be reconciled, with a
-        balance of $455.
+      <para>经过一番调查，你发现你忘了记录3月5日向信用卡公司300元的还款，你要录入这项由银行科目到信用卡科目的还款交易。现在信用卡账单和&app;科目账目相符，余额为455元。
       </para>
     </sect2>
 
     <sect2 id="cc-together-payment2">
-      <title>Payment</title>
+      <title>还款</title>
 
-      <para>Assuming you have completed reconciliation of your credit card account, you need to make a payment
-        to the credit card company. In this example, we owe $455 but will make a partial payment of
-        $300 again this month. To do so, enter a transaction from your bank account to the credit
-        card account for $300, which should reduce your credit card balance to $155. Your credit
-        card account register should now appear like this:
+      <para>完成了信用卡科目的对账工作后，你需要向信用卡公司还款。在这个例子中，你欠了455元，但这个月还是只偿还部分欠款，共300元。相应地，录入一项300元的由银行科目到信用卡科目的交易，这样，信用卡科目余额应减少到155元。你的信用卡科目账簿现在应该如下所示：
       </para>
 
       <figure pgwide="1">
-        <title>The Credit Card Account After Reconciliation And Payment</title>
+        <title>对账和还款后的信用卡科目</title>
         <screenshot id="cc-payment">
           <mediaobject>
             <imageobject>
@@ -476,19 +377,18 @@
                          srccredit="Bengt Thuree"/>
             </imageobject>
             <caption>
-              <para>Account register after reconciliation and payment.
+              <para>对账和还款后的科目账簿。
               </para>
             </caption>
           </mediaobject>
         </screenshot>
       </figure>
 
-      <para>Go back to the main window and save your file (<filename>gcashdata_6</filename>). Your chart of
-        accounts is steadily growing, and it should now look like this:
+      <para>回到主窗口保存文件（<filename>gcashdata_6</filename>）。科目表在稳步扩充，现在应当如下所示：
       </para>
 
       <figure pgwide="1">
-        <title>The Chart of Accounts After Account Reconciliation And Payment</title>
+        <title>对账和还款后的科目表</title>
         <screenshot id="cc-final">
           <mediaobject>
             <imageobject>
@@ -501,35 +401,33 @@
     </sect2>
 
     <sect2 id="cc-puttoget-save">
-      <title>Save file</title>
+      <title>保存文件</title>
 
-      <para>Last, save the &app; data file (<filename>gcashdata_6</filename>).
+      <para>最后，保存&app;数据文件（<filename>gcashdata_6</filename>）。
       </para>
     </sect2>
 
     <sect2 id="cc-puttoget-reports">
-      <title>Reports</title>
+      <title>报表</title>
 
-      <para>As we did in the previous chapters, let&rsquo;s have a look at a <guilabel>Cash Flow</guilabel>, and
-        a <guilabel>Transaction</guilabel> Report.
+      <para>和前几章一样，我们来看看<guilabel>现金流量表</guilabel>和<guilabel>交易汇总表</guilabel>这两份报表。
       </para>
 
       <orderedlist>
         <listitem>
-          <para>First let&rsquo;s have a look at the <guilabel>Cash Flow</guilabel> report for the liability account
-            <guilabel>Visa</guilabel> during the month of March.
+          <para>首先来看3月期间负债科目<guilabel>Visa</guilabel>的<guilabel>现金流量表</guilabel>。
           </para>
 
-          <para>Select the cash flow report from
+          <para>选择
             <menuchoice>
-              <guimenu>Reports</guimenu> <guisubmenu>Income &amp; Expense</guisubmenu>
-              <guimenuitem>Cash Flow</guimenuitem>
+              <guimenu>报表</guimenu> <guisubmenu>收入与费用</guisubmenu>
+              <guimenuitem>现金流量表</guimenuitem>
             </menuchoice>
-            .
+            打开现金流量表。
           </para>
 
           <figure pgwide="1">
-            <title>The Cash Flow report for the month of March</title>
+            <title>3月份的现金流量表</title>
             <screenshot id="cc-puttoget2-Cash">
               <mediaobject>
                 <imageobject>
@@ -537,7 +435,7 @@
                              srccredit="Bengt Thuree" />
                 </imageobject>
                 <caption>
-                  <para>This image shows the Cash Flow report after <xref linkend="chapter_cc"></xref>.
+                  <para>此图展示了<xref linkend="chapter_cc"></xref>后得到的现金流量表。
                   </para>
                 </caption>
               </mediaobject>
@@ -546,17 +444,17 @@
         </listitem>
 
         <listitem>
-          <para>Now let&rsquo;s have a look at corresponding transaction report for the Visa account.
+          <para>现在来看<emphasis>Visa</emphasis>科目相应的交易汇总表。
           </para>
 
-          <para>Select the transaction report from
+          <para>选择
             <menuchoice>
-              <guimenu>Reports</guimenu><guimenuitem>Transaction Report</guimenuitem>
-            </menuchoice>.
+              <guimenu>报表</guimenu><guimenuitem>交易汇总表</guimenuitem>
+            </menuchoice>打开交易汇总表。
           </para>
 
           <figure pgwide="1">
-            <title>The Transaction Report for the Visa account during March/April</title>
+            <title>3、4月间<emphasis>Visa</emphasis>科目的交易汇总表</title>
             <screenshot id="cc-puttoget2-TransactionRptVisa">
               <mediaobject>
                 <imageobject>
@@ -564,7 +462,7 @@
                              srccredit="Bengt Thuree" />
                 </imageobject>
                 <caption>
-                  <para>This image shows the Transaction Report for the Visa account during March/April.
+                  <para>此图展示了3、4月间<emphasis>Visa</emphasis>科目的交易汇总表。
                   </para>
                 </caption>
               </mediaobject>
@@ -573,11 +471,11 @@
         </listitem>
 
         <listitem>
-          <para>Now let&rsquo;s change the transaction report to only show the various Expenses accounts.
+          <para>现在更改交易汇总表，使之只展示各费用科目的交易汇总。
           </para>
 
           <figure pgwide="1">
-            <title>The Transaction Report for the Expenses accounts during April</title>
+            <title>4月期间费用科目的交易汇总表</title>
             <screenshot id="cc-puttoget2-TransactionRptExpenses">
               <mediaobject>
                 <imageobject>
@@ -585,7 +483,7 @@
                              srccredit="Bengt Thuree" />
                 </imageobject>
                 <caption>
-                  <para>This image shows the Transaction Report for the various Expense accounts during April.
+                  <para>此图展示了4月期间各个费用科目的交易汇总表。
                   </para>
                 </caption>
               </mediaobject>
