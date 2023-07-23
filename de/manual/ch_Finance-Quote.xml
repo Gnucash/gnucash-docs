@@ -107,17 +107,6 @@ This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-th
       <step>
         <para>Unter &win; führen Sie das Programm &mc.winOS.inst-fq; aus. Dies wird
           <ulink url="&url-wp-en;Strawberry_Perl">Strawberry Perl</ulink> installieren.
-          <footnote>
-            <para>&app; Version 2.2.6 und früher benötigen <ulink url="&url-wp-en;ActivePerl">ActivePerl</ulink> in
-              Version 5.8.
-            </para>
-          </footnote>
-
-          <footnote>
-            <para>&app; Version 2.4 und früher benötigen <ulink url="&url-wp-en;ActivePerl">ActivePerl</ulink> ab
-              Version 5.16.3.
-            </para>
-          </footnote>
         </para>
       </step>
 
@@ -181,31 +170,29 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Führen Sie den Befehl <userinput>gnucash-cli --quotes info</userinput> aus, um zu
-          überprüfen, ob das Programm bereits in einem Verzeichnis liegt, welches in der
-          Umgebungsvariable <envar>PATH</envar> eingetragen ist.
+        <simpara>Aktualisieren Sie &app-fq; mit <userinput>sudo gnc-fq-update</userinput>. Der Befehl
+          kann auch für eine Neuinstallation verwendet werden. Die richtige Syntax ist von der
+          jeweiligen Distribution abhängig.
+        </simpara>
+      </step>
+
+      <step>
+        <simpara>Führen Sie den Befehl <userinput>gnucash-cli --quotes info</userinput> aus, um zu überprüfen, ob
+          das Programm bereits in einem Verzeichnis liegt, welches in der Umgebungsvariable
+          <envar>PATH</envar> eingetragen ist.
           <footnote>
             <simpara>Wenn Sie die von Ihrer Distribution bereitgestellten &app; Pakete installiert haben, sollte
-              &app-cli; bereits in Ihrem <envar>PATH</envar> sein. Die
-              Aktualität ihrer Distribution können Sie unter
-              <ulink url="&url-repo;perl:finance-quote/versions"><citetitle>&app-fq;-
-              Versionen</citetitle></ulink> nachlesen.
+              &app-cli; bereits in Ihrem <envar>PATH</envar> sein. Die &app-fq; Version, die von Ihrem Paketmanager
+              bereitgestellt wird, kann unter <ulink url="&url-repo;perl:finance-quote/versions">
+              <citetitle>&app-fq;-versions</citetitle></ulink> nachgelesen werden oder mit dem info-Befehl
+              der Softwareverwaltung überprüft werden.
             </simpara>
           </footnote>
         </simpara>
-      </step>
 
-      <step>
-        <simpara>Als nächstes aktualisieren Sie &app-fq; mit <userinput>sudo gnc-fq-update</userinput>. Die richtige
-          Syntax ist von der jeweiligen Distribution abhängig.
-        </simpara>
-      </step>
-
-      <step>
-        <simpara>Führen Sie <userinput>gnucash-cli --quotes info</userinput> aus, um zu prüfen, ob &app-fq; richtig
-          installiert ist. Wenn dies so ist, dann werden die Versionsnummer sowie die von &app-fq;
+        <simpara>Ist &app-fq; richtig installiert ist, dann werden die Versionsnummer sowie die von &app-fq;
           verwendbaren Quellen für eine Kursabfrage aufgelistet. Bei Problemen mit der Installation
-          von &app-fq; wird eventuell eine Lösung vorgeschlagen.
+          wird eventuell eine Lösung vorgeschlagen.
         </simpara>
       </step>
     </procedure>
@@ -228,8 +215,8 @@ SYNOPSIS
         <simpara>Installieren Sie &app-xcode;
           <footnote>
             <para>Sie können &app-xcode; aus dem App Store installieren oder Sie installieren die viel kleineren
-              Xcode-Befehlszeilentools, indem Sie <userinput> sudo xcode-select
-              --install</userinput> in einer Terminal.app Eingabeaufforderung ausführen.
+              Xcode-Befehlszeilentools, indem Sie <userinput>sudo xcode-select --install</userinput>
+              in einer Terminal.app Eingabeaufforderung ausführen.
             </para>
           </footnote>
           , falls noch nicht geschehen. Es enthält Entwicklungswerkzeuge, die von CPAN benötigt
@@ -286,17 +273,45 @@ SYNOPSIS
     <title>Verwendung von &app-cli; für Tests und Automatisierung</title>
 
     <abstract>
-      <para>&app; enthält die Befehlszeilenanwendung &app-cli;, die in einer Terminalsitzung verwendet werden
-        kann, um die Version und die unterstützten Quellmodule zu prüfen, Kurse oder Wechselkurse
+      <para>&app; enthält die Befehlszeilenanwendung &app-cli;, welche mit der Option
+        <replaceable>--quotes</replaceable> in einer Terminalsitzung verwendet werden kann, um die
+        Version und die unterstützten Quellmodule von &app-fq; zu prüfen, Kurse oder Wechselkurse
         für ausgewählte Wertpapiere oder Währungen anzuzeigen und alle Kurse in einem Buch zu
-        aktualisieren, ohne die grafische Benutzeroberfläche zu starten.
+        aktualisieren, ohne hierfür die grafische Benutzeroberfläche zu starten.
       </para>
     </abstract>
+
+    <note>
+      <para>In &app; Version 4.x und früher wurden die separaten Perl-Programme <userinput>gnc-fq-check</userinput>
+        an Stelle von <userinput>gnucash-cli --quote info</userinput> und <userinput>gnc-fq-dump</userinput>
+        anstatt <userinput>gnucash-cli --quote dump</userinput> verwendet.
+      </para>
+    </note>
 
     <sect2 id="fq-check-version">
       <title>Anzeige der &app-fq; Version und der unterstützten Quellen</title>
 
-      <para><userinput>gnucash-cli --quotes info</userinput> erzeugt die folgende Ausgabe:
+      <abstract>
+        <para>Die Nutzung der Option <replaceable>--quotes info</replaceable> liefert die Versionsnummer des derzeit
+          installierten &app-fq; Moduls sowie eine Liste der verfügbaren Quellen. Es informiert Sie
+          auch, wenn es ein Problem mit Ihrer Installation gibt und nennt die Gründe dafür.
+        </para>
+      </abstract>
+
+      <para>Die neueste &app-fq; Version ist &app-fq-vers;. Entsprechend der Aktualität Ihrer Installation kann
+        sich die nachfolgende Auflistung der Quellenmodule unterscheiden.
+      </para>
+
+      <para>Die Eingabe von
+        <cmdsynopsis>
+          <command>gnucash-cli</command>
+          <group choice="req">
+            <arg choice="plain">-Q</arg>
+            <arg choice="plain">--quotes</arg>
+          </group>
+          <arg choice="plain">info</arg>
+        </cmdsynopsis>
+        im Terminal erzeugt die folgende Ausgabe:
       </para>
 
       <informalexample>
@@ -324,12 +339,9 @@ yahoo_json   yahooweb     za
 </screen>
       </informalexample>
 
-      <para>Die neueste &app-fq; Version ist &app-fq-vers;. Entsprechend der Aktualität Ihrer Installation
-        kann sich die hier gemachte Auflistung der Quellenmodule unterscheiden.
-      </para>
-
       <para>Wenn es ein Problem mit Ihrer Installation gibt, werden Sie darauf hingeweisen. In dem nachfolgend
-        aufgeführtem Fall fehlen zum Beispiel die &app-perl;-Module Finance::Quote und JSON::Parse:
+        aufgeführtem Beispiel wird auf Probleme mit den &app-perl;-Modulen Finance::Quote und JSON::Parse
+        hingewiesen:
       </para>
 
       <informalexample>
@@ -347,23 +359,59 @@ Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
     </sect2>
 
     <sect2 id="fq-print-quotes">
-      <title>Anzeige von Kursen in einem Terminalfenster</title>
+      <title>Abfrage von Kursen in einem Terminalfenster</title>
+
+      <abstract>
+        <para>Die Option <replaceable>--quotes dump</replaceable> liefert Kursdaten für eine Kursquelle und eine Liste
+          von Symbolen in einem Format, das für Menschen leicht zu lesen ist. Dies ist nützlich,
+          um zu überprüfen, ob eine bestimmte Online-Kursquelle erreichbar ist und Daten liefert.
+        </para>
+
+        <para>Weiterhin können Sie überprüfen, ob das <xref linkend="tool-ge-Symbol" />, welches Sie für Ihr
+          Wertpapier zum Online-Kursabruf verwenden möchten, bei der gewünschten
+          <xref linkend="tool-ge-TypeQuoteSource" /> bekannt ist.
+        </para>
+      </abstract>
+
+      <tip>
+        <para>Sie können <userinput>gnucash-cli --quotes dump</userinput> verwenden, um Kursquellen und Symbole
+          einzeln zu testen, wenn &app; einen Fehler beim Abrufen von Kursen meldet. Der Befehl
+          zeigt die Felder an, die von &app; genutzt werden. Verwenden Sie die Optionen
+          <userinput>gnucash-cli --verbose --quotes dump</userinput>, um alle Informationen zu sehen, die
+          &app-fq; von der Kursquelle erhält.
+        </para>
+      </tip>
 
       <para>Um einen Kurs für eine oder mehrere Aktien oder den Wechselkurs für eine oder mehrere Währungen
-        anzuzeigen, können Sie <userinput>gnucash-cli --quotes dump</userinput> wie folgt
-        verwenden. Es bietet eine Ausgabeform für Devisenkurse und zwei für Aktien und
-        Wertpapiere.
+        anzuzeigen, verwenden Sie den Befehl wie folgt:
+        <cmdsynopsis>
+          <command>gnucash-cli</command>
+          <group choice="req">
+            <arg choice="plain">-Q</arg>
+            <arg choice="plain">--quotes</arg>
+          </group>
+          <arg choice="plain">dump</arg>
+          <group choice="opt">
+            <arg choice="plain">-V</arg>
+            <arg choice="plain">--verbose</arg>
+          </group>
+           <arg choice="plain"><replaceable>Quelle</replaceable></arg>
+           <arg choice="plain" rep="repeat"><replaceable>Symbol</replaceable></arg>
+        </cmdsynopsis>
+      </para>
+
+      <para>Es bietet eine Ausgabeform für Devisenkurse und zwei für Aktien und Wertpapiere.
         <variablelist>
           <varlistentry>
             <term>Währungen</term>
 
             <listitem>
               <para>Für den Abruf von Devisenkursen wird die Quelle <userinput>currency</userinput> verwendet, welche
-                mindestens zwei ISO-4217-Währungscodes erfordern; die Wechselkurse werden in der
-                ersten Währung angegeben.
+                mindestens zwei <ulink url="&url-wp-de;ISO_4217">ISO&nbsp;4217</ulink> Währungscodes erfordern;
+                die Wechselkurse werden in der ersten Währung angegeben.
                 <footnote>
                   <para>Seit &app-fq; 1.41 ist die Standardquelle für Währungen <quote>Alpha Vantage</quote>. Lesen Sie
-                    auch die Hinweise zu <xref linkend="gnc-tbl-fq-currency-source" />.
+                    auch die Hinweise dazu in <xref linkend="gnc-tbl-fq-currency-source" />.
                   </para>
                 </footnote>
                 Zum Beispiel:
@@ -384,13 +432,15 @@ $ gnucash-cli --quotes dump currency USD GBP EUR
             <term>Wertpapiere</term>
 
             <listitem>
-              <itemizedlist>
-                <listitem>
-                  <para>Eine Kurzform, die nur die Felder anzeigt, die &app; benötigt, ergänzt mit Kommentaren, die
-                    angeben, ob die Felder empfohlen oder erforderlich sind; damit können Sie
-                    herausfinden, ob &app; in der Lage sein wird die Kursangaben zu verwenden, um
-                    die Kursdatenbank Ihres Buches zu aktualisieren.
-                    <informalexample>
+              <para>Zum Abruf von Kursen Ihrer Wertpapiere ist die abzufragende Kursquelle sowie das gewünschte Symbol
+                anzugeben.
+                <itemizedlist>
+                  <listitem>
+                    <para>Eine Kurzform, die nur die Felder anzeigt, die &app; benötigt, ergänzt mit Kommentaren, die
+                      angeben, ob die Felder empfohlen oder erforderlich sind; damit können Sie
+                      herausfinden, ob &app; in der Lage sein wird die Kursangaben zu verwenden, um
+                      die Kursdatenbank Ihres Buches zu aktualisieren.
+                      <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
 $ gnucash-cli --quotes dump yahooweb AAPL
@@ -401,18 +451,18 @@ $ gnucash-cli --quotes dump yahooweb AAPL
        NAV:                 &lt;=== Eins von diesen
      Preis:                 &lt;=/ 
 </screen>
-                    </informalexample>
-                  </para>
-                </listitem>
+                      </informalexample>
+                    </para>
+                  </listitem>
 
-                <listitem>
-                  <para>Mit der Option <userinput>-V</userinput> wird eine möglicherweise längere Ausgabe mit allen
-                    Datenfeldern von &app-fq; zurückgegeben. Dies kann nützlich sein, um Probleme
-                    mit einem &app-fq; Quellmodul zu beheben.
-                    <informalexample>
+                  <listitem>
+                    <para>Mit der Option <userinput>--verbose</userinput> wird eine längere Ausgabe mit allen Datenfeldern von
+                      &app-fq; zurückgegeben. Dies kann nützlich sein, um Probleme mit einem
+                      &app-fq; Quellmodul zu beheben.
+                      <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
-$ ALPHAVANTAGE_API_KEY=123456789 bin/gnucash-cli -V --quotes dump alphavantage INTC
+$ ALPHAVANTAGE_API_KEY=123456789 gnucash-cli --verbose --quotes dump alphavantage INTC
 INTC:
         date =&gt; 07/27/2023
        close =&gt; 34.3600
@@ -430,31 +480,60 @@ currency_set_by_fq =&gt; 1
          net =&gt; 0.1900
       method =&gt; alphavantage
 </screen>
-                    </informalexample>
+                      </informalexample>
 
-                    <note>
-                      <para>Beachten Sie, dass wir in diesem Fall als Quelle alphavantage verwendet und den
-                        <userinput>ALPHAVANTAGE_API_KEY</userinput> in der Befehlszeile angegeben
-                        haben. Das ist nicht notwendig, wenn der Schlüssel bereits in der
-                        Umgebungsvariable der Shell oder in den &app;-Einstellungen gespeichert ist.
-                      </para>
-                    </note>
-                  </para>
-                </listitem>
-              </itemizedlist>
+                      <note>
+                        <para>Beachten Sie, dass wir in diesem Fall als Quelle alphavantage verwendet und den
+                          <userinput>ALPHAVANTAGE_API_KEY</userinput> in der Befehlszeile angegeben
+                          haben. Das ist nicht notwendig, wenn der Schlüssel bereits in &mc.ed.pref;
+                          <xref linkend="prefs-online-quotes" /> gespeichert ist.
+                        </para>
+                      </note>
+                    </para>
+                  </listitem>
+                </itemizedlist>
+              </para>
             </listitem>
           </varlistentry>
         </variablelist>
       </para>
+
+      <procedure>
+        <para>Um zu testen, ob &app-fq; für Währungen innerhalb von &app; funktioniert, gehen Sie wie folgt vor:
+        </para>
+
+        <step>
+          <para>erstellen Sie eine Buchung mit dem gewünschtem Handelsgut in der Buchwährung,
+          </para>
+        </step>
+
+        <step>
+          <para>machen einen Rechtsklick darauf,
+          </para>
+        </step>
+
+        <step>
+          <para>wählen Sie im Kontextmenü die Option &gmi.ac.ed-ex;.
+          </para>
+        </step>
+
+        <step>
+          <para>Klicken Sie auf die Schaltfläche <guilabel>Wechselkurs abrufen</guilabel> im <xref linkend="trans-win-enter" />.
+          </para>
+        </step>
+      </procedure>
+
+      <para>Sind die Kursquelle sowie das Symbol richtig eingestellt, wird der aktuelle Kurs in das Feld für den Wechselkurs eingetragen.
+      </para>
     </sect2>
 
     <sect2 id="fq-auto-quote">
-      <title>Automatisierte Abfrage von Kursen mit &app-cli;</title>
+      <title>Automatisierte Aktualisierung von Kursen mit &app-cli;</title>
 
       <para>Mit dem Kommando <command>gnucash-cli --quotes get &user-datafile;</command>
         <footnote>
-          <simpara>Der alte Befehl <command>gnucash --add-price-quotes &user-datafile;</command> ist seit &app; 5.0
-            nicht mehr verfügbar!
+          <simpara>Dies ersetzt den Befehl <userinput>&app; --add-price-quotes &user-datafile;</userinput> in &app;
+            Version 4.x und früher.
           </simpara>
         </footnote>
         können Sie die aktuellen Kurse Ihrer Devisen und Wertpapiere abrufen und direkt in ihre
@@ -519,8 +598,8 @@ currency_set_by_fq =&gt; 1
 gnucash-cli --quotes get &user-datafile; &gt; /dev/null 2&gt;&amp;1
 </screen>
                   </informalexample>
-                  (Den Zeilenumbruch nicht in die crontab übernehmen, der wurde hier nur zum
-                  Zwecke der Lesbarkeit eingefügt.)
+                  (Den Zeilenumbruch nicht in die crontab übernehmen, der wurde hier nur zum Zwecke
+                  der Lesbarkeit eingefügt.)
                 </para>
               </important>
             </para>

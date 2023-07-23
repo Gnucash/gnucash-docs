@@ -105,17 +105,6 @@ This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-th
       <step>
         <para>Under &win; run the program &gmi.winOS.inst-fq; to run. This will install
           <ulink url="&url-wp-en;Strawberry_Perl">Strawberry Perl</ulink>.
-          <footnote>
-            <para>&app; Version 2.2.6 and before require <ulink url="&url-wp-en;ActivePerl">ActivePerl</ulink>. in
-              version 5.8.
-            </para>
-          </footnote>
-
-          <footnote>
-            <para>&app; Version 2.4 and before require <ulink url="&url-wp-en;ActivePerl">ActivePerl</ulink> Version
-              5.16.3 and later.
-            </para>
-          </footnote>
         </para>
       </step>
 
@@ -148,7 +137,7 @@ This is perl 5, version 30, subversion 0 (v5.30.0) built for x86_64-linux-gnu-th
 
     <para>To determine if the &app-perl; module &app-fq; is already installed on your system, type
       <userinput>perldoc Finance::Quote</userinput> in a terminal window and check to see if there
-      is any documentation
+      is any documentation available.
       <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
@@ -160,7 +149,7 @@ SYNOPSIS
     [...]
 </screen>
       </informalexample>
-      available. If you are now shown documentation, then &app-fq; is already installed and you can
+      If you are now shown documentation, then &app-fq; is already installed and you can
       configure periodical quotes update as described in <xref linkend="fq-auto-quote" />. If no
       documentation is displayed, you will have to continue with this chapter.
     </para>
@@ -178,29 +167,27 @@ SYNOPSIS
       </step>
 
       <step>
+        <simpara>Next, update &app-fq; with <userinput>sudo gnc-fq-update</userinput>.
+        </simpara>
+      </step>
+
+      <step>
         <simpara>Run the <userinput>gnucash-cli --quotes info</userinput> command to verify that the program is
           already in a directory that is entered in the <envar>PATH</envar> environment variable.
           <footnote>
-            <simpara>If you&rsquo;ve installed &app; packages provided by your distribution,
-              &app-cli; must be on your <envar>PATH</envar>. The currentness
-              of your distribution can be checked under
-              <ulink url="&url-repo;perl:finance-quote/versions"><citetitle>&app-fq;-
-              versions</citetitle></ulink>.
+            <simpara>If you&rsquo;ve installed &app; packages provided by your distribution, &app-cli; will be on your
+              <envar>PATH</envar>. The &app-fq; version provided by your package manager can be checked
+              at <ulink url="&url-repo;perl:finance-quote/versions">
+              <citetitle>&app-fq;-versions</citetitle></ulink> or by using your package manager's info command.
             </simpara>
           </footnote>
         </simpara>
       </step>
 
       <step>
-        <simpara>Next, update &app-fq; with <userinput>sudo gnc-fq-update</userinput>.
-        </simpara>
-      </step>
-
-      <step>
-        <simpara>Run <userinput>gnucash-cli --quotes info</userinput> to check &app-fq; works properly. This command
-          returns the version number of &app-fq; module currently installed as well as a list of
-          sources available via the &app-fq; module. It will also inform you if there is a problem
-          with your installation or if it is missing, and may suggest a fix.
+        <simpara>If &app-fq; works properly, the command returns the version number of &app-fq; module currently
+          installed as well as a list of sources available via the &app-fq; module. It will also inform
+          you if there is a problem with your installation or if it is missing, and may suggest a fix.
         </simpara>
       </step>
     </procedure>
@@ -278,17 +265,44 @@ SYNOPSIS
     <title>Using &app-cli; for Testing and Automation.</title>
 
     <abstract>
-      <para>&app; provides a commandline facility &app-cli; that one can use in a terminal session to check the
+      <para>&app; provides a commandline facility &app-cli; that one can use with the
+        <replaceable>--quotes</replaceable> option in a terminal session to check the
         version and supported source modules, to display the quotes or exchange rates for selected
         securities or currencies, or to update all of the prices in a book without launching the
         GUI.
       </para>
     </abstract>
 
+    <note>
+      <para>In &app; version 4.x and earlier one used separate perl programs <userinput>gnc-fq-check</userinput>
+        instead of <userinput>gnucash-cli --quote info</userinput> and <userinput>gnc-fq-dump</userinput>
+        instead of <userinput>gnucash-cli --quote dump</userinput>.
+      </para>
+    </note>
+
     <sect2 id="fq-check-version">
       <title>Displaying the Finance::Quote Version and Supported Sources</title>
 
-      <para><command>gnucash-cli --quotes info</command> produces the following output:
+      <abstract>
+        <para>The <replaceable>--quotes info</replaceable> option returns the version number of the currently
+          installed &app-fq; module and a list of available sources. It informs you also if there is
+          a problem with your installation and gives the reasons.
+        </para>
+      </abstract>
+
+      <para>The latest &app-fq; version is &app-fq-vers;. The list of sources that follows depends on the &app-fq; version.
+      </para>
+
+      <para>The input of
+        <cmdsynopsis>
+          <command>gnucash-cli</command>
+          <group choice="req">
+            <arg choice="plain">-Q</arg>
+            <arg choice="plain">--quotes</arg>
+          </group>
+          <arg choice="plain">info</arg>
+        </cmdsynopsis>
+        in the terminal produces the following output:
       </para>
 
       <informalexample>
@@ -316,10 +330,6 @@ yahoo_json   yahooweb     za
 </screen>
       </informalexample>
 
-      <para>The latest &app-fq; version is &app-fq-vers;. Depending on the actuality of your installation
-        the list of source modules made here may differ.
-      </para>
-
       <para>If there's a problem with your installation it will tell you about it. For example in this case
         we're missing the Perl modules Finance::Quote and JSON::Parse:
       </para>
@@ -332,8 +342,8 @@ Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
 </screen>
       </informalexample>
 
-      <para>In this case, &app-fq; is not installed correctly and therefore cannot be used for course retrieval with &app;.
-        Please install &app-fq; according to the instructions at
+      <para>In this case, &app-fq; is not installed correctly and therefore cannot be used for quote retrieval
+        with &app;. Please install &app-fq; according to the instructions at
         <xref linkend="fq-install" />.
       </para>
     </sect2>
@@ -341,16 +351,58 @@ Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
     <sect2 id="fq-print-quotes">
       <title>Displaying Quotes in a Terminal Window</title>
 
+      <abstract>
+        <para>The <replaceable>--quotes dump</replaceable> option provides quotes for a source and a list of of
+          symbols in a format that is easy for humans to read. This is useful to verify that a
+          particular online quote source is accessible and provides data.
+        </para>
+
+        <para>You can also check to see if the symbol you want to use for your online
+          price retrieval is available at the desired quote source.
+        </para>
+      </abstract>
+
+      <tip>
+        <para>You may use <userinput>gnucash-cli --quotes dump</userinput> to test quote sources and symbols 
+          individually should &app; report an error during quote retrieval. The command will show
+          the fields required by &app;; use <userinput>gnucash-cli --verbose --quotes dump</userinput>
+          to see all of the information returned by &app-fq;.
+        </para>
+      </tip>
+
       <para>To display a quote for one or more stocks or the exchange rate for one or more currencies you can
-        use <userinput>gnucash-cli --quotes dump</userinput> as follows. It offers two output forms
-        for non-currency securities and one for currency exchange rates.
+        use <userinput>gnucash-cli --quotes dump</userinput> as follows:
+        <cmdsynopsis>
+          <command>gnucash-cli</command>
+          <group choice="req">
+            <arg choice="plain">-Q</arg>
+            <arg choice="plain">--quotes</arg>
+          </group>
+          <arg choice="plain">dump</arg>
+          <group choice="opt">
+            <arg choice="plain">-V</arg>
+            <arg choice="plain">--verbose</arg>
+          </group>
+           <arg choice="plain"><replaceable>Source</replaceable></arg>
+           <arg choice="plain" rep="repeat"><replaceable>Symbol</replaceable></arg>
+        </cmdsynopsis>
+      </para>
+
+      <para>It offers two output forms for non-currency securities and one for currency exchange rates.
         <variablelist>
           <varlistentry>
             <term>Currencies</term>
 
             <listitem>
-              <para>Currencies use the source <userinput>currency</userinput> and require at least two ISO-4217 currency
-                codes; the exchange rates are denominated in the first code. For example:
+              <para>Currencies use the source <userinput>currency</userinput> and require at least two
+                <ulink url="&url-wp-en;ISO_4217">ISO&nbsp;4217</ulink> currency codes; the exchange
+                rates are denominated in the first code.
+                <footnote>
+                  <para>Since &app-fq; 1.41 the default source for currencies is <quote>Alpha Vantage</quote>. See also the
+                    notes on <xref linkend="gnc-tbl-fq-currency-source" />.
+                  </para>
+                </footnote>
+                For example:
                 <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
@@ -368,12 +420,13 @@ $ gnucash-cli --quotes dump currency USD GBP EUR
             <term>Stocks</term>
 
             <listitem>
-              <itemizedlist>
-                <listitem>
-                  <para>A short form displaying only the fields that &app; uses along with comments indicating whether the
-                    fields are optional or required; you can use this to determine if &app; will be
-                    able to use the quote to update your book's price database.
-                    <informalexample>
+              <para>To retrieve quotes of your securities, please enter the quote source and the desired symbol.
+                <itemizedlist>
+                  <listitem>
+                    <para>A short form displaying only the fields that &app; uses along with comments indicating whether the
+                      fields are optional or required; you can use this to determine if &app; will
+                      be able to use the quote to update your book's price database.
+                      <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
 $ gnucash-cli --quotes dump yahooweb AAPL
@@ -385,18 +438,18 @@ Finance::Quote fields GnuCash uses:
        nav:                 &lt;=== one of these
      price:                 &lt;=/ 
 </screen>
-                    </informalexample>
-                  </para>
-                </listitem>
+                      </informalexample>
+                    </para>
+                  </listitem>
 
-                <listitem>
-                  <para>With the <userinput>-V</userinput> option a possibly longer output showing all of the fields
-                    &app-fq; returned. This can be useful to troubleshoot problems with a &app-fq;
-                    source module.
-                    <informalexample>
+                  <listitem>
+                    <para>With the <userinput>--verbose</userinput> option a possibly longer output showing all of the fields
+                      &app-fq; returned. This can be useful to troubleshoot problems with a &app-fq;
+                      source module.
+                      <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
-$ ALPHAVANTAGE_API_KEY=123456789 bin/gnucash-cli -V --quotes dump alphavantage INTC
+$ ALPHAVANTAGE_API_KEY=123456789 gnucash-cli --verbose --quotes dump alphavantage INTC
 INTC:
         open =&gt; 34.8200
      isodate =&gt; 2023-07-27
@@ -414,48 +467,80 @@ currency_set_by_fq =&gt; 1
     p_change =&gt; 0.5530
       method =&gt; alphavantage
 </screen>
-                    </informalexample>
+                      </informalexample>
 
-                    <note>
-                      <para>Notice that in this case we used alphavantage and provided the
-                        <userinput>ALPHAVANTAGE_API_KEY</userinput> on the command line. That's not
-                        necessary if the key is already stored in the shell environment or in &app;
-                        preferences.
-                      </para>
-                    </note>
-                  </para>
-                </listitem>
-              </itemizedlist>
+                      <note>
+                        <para>Notice that in this case we used alphavantage and provided the
+                          <userinput>ALPHAVANTAGE_API_KEY</userinput> on the command line. That's
+                          not necessary if the key is already stored in &mc.ed.pref;
+                          <xref linkend="prefs-online-quotes" />.
+                        </para>
+                      </note>
+                    </para>
+                  </listitem>
+                </itemizedlist>
+              </para>
             </listitem>
           </varlistentry>
         </variablelist>
       </para>
+
+      <procedure>
+        <para>To test if &app-fq; works for currencies inside &app;, do the following:
+        </para>
+
+          <step>
+            <para>create a transaction with the desired commodity in the book currency,
+            </para>
+          </step>
+
+          <step>
+            <para>make a right click on it,
+            </para>
+          </step>
+
+          <step>
+            <para>select &gmi.ac.ed-ex; in the context menu.
+            </para>
+          </step>
+
+          <step>
+            <para>In the <xref linkend="trans-win-enter" /> window click the <guilabel>Get exchange rate</guilabel> button.
+            </para>
+          </step>
+      </procedure>
+
+      <para>If the exchange rate source and the symbol are set, the current
+        rate will be entered in the exchange rate field.
+      </para>
     </sect2>
 
     <sect2 id="fq-auto-quote">
-      <title>Updating Prices Automatically with &app-cli;</title>
+      <title>Updating Quotes Automatically with &app-cli;</title>
 
       <para>With the command <command>gnucash-cli --quotes get &user-datafile;</command>
         <footnote>
-          <simpara>The old command <command>gnucash --add-price-quotes &user-datafile;</command> is obsolete as of &app; 5.0.
+          <simpara>This replaces the command <userinput>&app; --add-price-quotes &user-datafile;</userinput> in &app;
+            version 4.x and earlier.
           </simpara>
         </footnote>
-        you can receive the current prices of your foreign exchange and securities and write them directly into your
-        &app;-file without starting the user interface. This enables an automatic, regular updating of the prices.
+        you can receive the current prices of your foreign exchange and securities and write them
+        directly into your &app;-file without starting the user interface. This enables an
+        automatic, regular updating of the prices.
         <note>
-          <para>The command fails if exclusive access to the data file is not possible, for example,
-            the data file is opened in another &app; instance, or the last session for the file crashed.
+          <para>The command fails if exclusive access to the data file is not possible, for example, the data file
+            is opened in another &app; instance, or the last session for the file crashed.
           </para>
         </note>
       </para>
 
-      <para>The specified file &user-datafile; depends on the name and location of your
-        data file. This can be determined from the name displayed in the top frame of the &app;
-        window before the <quote>-</quote>.
+      <para>The specified file &user-datafile; depends on the name and location of your data file. This can be
+        determined from the name displayed in the top frame of the &app; window before the
+        <quote>-</quote>.
         <tip>
-          <para>The file name can also be found in the list of recently opened files in the &gm.file;menu.
-            If you hover the mouse pointer on the menu item numbered 1 in the list of recently opened files,
-            the full file name is displayed in the <guilabel>statusbar</guilabel>.
+          <para>The file name can also be found in the list of recently opened files in the &gm.file; menu. If you
+            hover the mouse pointer on the menu item numbered 1 in the list of recently opened
+            files, the full file name is displayed in the <guilabel>statusbar</guilabel>.
           </para>
         </tip>
       </para>
