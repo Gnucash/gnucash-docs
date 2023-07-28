@@ -303,22 +303,24 @@ SYNOPSIS
 <?dbfo pgwide="1"?>
 <screen language="console">
 $ gnucash-cli --quotes info
-Found Finance::Quote version 1.52.
-Finance::Quote sources:
+Finance::Quote Version 1.57 wurde gefunden.
+Finance::Quote Quellen:
 aex          alphavantage              amfiindia    asegr        asx
 aufunds      australia    bamosz       bet          bloomberg    bourso
-bse          bseindia     canada       canadamutual              comdirect
-cse          deka         dutch        dwsfunds     europe
+bse          bseindia     bvb          canada       canadamutual
+comdirect    cse          deka         dutch        dwsfunds     europe
 fetch_live_currencies     fidelity     fidelity_direct
-finanzpartner             fondsweb     fool         ftfunds      fundata
-fundlibrary  goldmoney    greece       hu           hufund       hungary
-hustock      iexcloud     india        indiamutual  known_currencies
-morningstarau             morningstarch             morningstarjp
+finanzpartner             fondsweb     fool         france       ftfunds
+fundata      fundlibrary  goldmoney    googleweb    greece       hu
+hufund       hungary      hustock      iexcloud     india        indiamutual
+known_currencies          marketwatch  morningstarau
+morningstarch             morningstarjp             morningstaruk
 mstaruk      nasdaq       nseindia     nyse         nzx          onvista
-oslobors     romania      seb_funds    six          tesouro_direto
-tiaacref     tmx          tradeville   troweprice   troweprice_direct
-tsp          ukfunds      unionfunds   usa          usfedbonds   yahoo_json
-za
+oslobors     romania      seb_funds    sinvestor    six
+tesouro_direto            tiaacref     tmx          tradegate    tradeville
+treasurydirect            troweprice   troweprice_direct         tsp
+tsx          twelvedata   ukfunds      unionfunds   usa          xetra
+yahoo_json   yahooweb     za
 </screen>
       </informalexample>
 
@@ -369,9 +371,9 @@ Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
 <?dbfo pgwide="1"?>
 <screen language="console">
 $ gnucash-cli --quotes dump currency USD GBP EUR
-1 GBP = 1.11917349089527 USD
+1 GBP = 1.27951 USD
 
-1 EUR = 0.9717 USD
+1 EUR = 1.09823 USD
 </screen>
                 </informalexample>
               </para>
@@ -391,14 +393,13 @@ $ gnucash-cli --quotes dump currency USD GBP EUR
                     <informalexample>
 <?dbfo pgwide="1"?>
 <screen language="console">
-$ gnucash-cli --quotes dump yahoo_json AAPL
-Finance::Quote fields GnuCash uses:
-    symbol: AAPL            &lt;=== required
-      date: 10/14/2022      &lt;=== recommended
-  currency: USD             &lt;=== required
-      last: 138.38          &lt;=\
-       nav:                 &lt;=== one of these
-     price:                 &lt;=/
+$ gnucash-cli --quotes dump yahooweb AAPL
+    Symbol: AAPL            &lt;=== erforderlich
+     Datum: 07/28/2023      &lt;=== empfohlen
+  Währung: USD             &lt;=== erforderlich
+   Letzter: 193.22          &lt;=\ 
+       NAV:                 &lt;=== Eins von diesen
+     Preis:                 &lt;=/ 
 </screen>
                     </informalexample>
                   </para>
@@ -413,21 +414,21 @@ Finance::Quote fields GnuCash uses:
 <screen language="console">
 $ ALPHAVANTAGE_API_KEY=123456789 bin/gnucash-cli -V --quotes dump alphavantage INTC
 INTC:
-             method =&gt; alphavantage
-           p_change =&gt; -1.9304
-               high =&gt; 26.6300
-               date =&gt; 10/14/2022
- currency_set_by_fq =&gt; 1
-              close =&gt; 26.4200
-           currency =&gt; USD
-            isodate =&gt; 2022-10-14
-                low =&gt; 25.7600
-            success =&gt; 1
-                net =&gt; -0.5100
-               open =&gt; 26.4600
-             symbol =&gt; INTC
-             volume =&gt; 48118005
-               last =&gt; 25.9100
+        date =&gt; 07/27/2023
+       close =&gt; 34.3600
+        open =&gt; 34.8200
+currency_set_by_fq =&gt; 1
+     success =&gt; 1
+     isodate =&gt; 2023-07-27
+        last =&gt; 34.5500
+        high =&gt; 35.0300
+    currency =&gt; USD
+      symbol =&gt; INTC
+      volume =&gt; 58890821
+         low =&gt; 34.1100
+    p_change =&gt; 0.5530
+         net =&gt; 0.1900
+      method =&gt; alphavantage
 </screen>
                     </informalexample>
 
