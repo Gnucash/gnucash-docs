@@ -1,8 +1,12 @@
 name: nightly-build
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: '43 5 * * *'
 
 jobs:
   build-documentation:
+    if: github.repository == 'gnucash/gnucash-docs'
     runs-on: ubuntu-latest
     name: make HTML in Ubuntu-latest
     steps:
