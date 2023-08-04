@@ -186,4 +186,6 @@ set (figures
 
 )
 
-add_gnc_doc_targets(${lang} "${entities}" "${figures}")
+set (xslt_files "")
+
+add_gnc_doc_targets(${lang} "${entities}" "${figures}" "${xslt_files}")

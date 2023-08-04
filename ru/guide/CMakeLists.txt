@@ -199,9 +199,11 @@ set (figures
         figures/txns_sxn_ledger4.png
 )
 
+set (xslt_files "")
+
 set (FOP_XCONF "${CMAKE_CURRENT_SOURCE_DIR}/fop.xconf.in")
 
-add_gnc_doc_targets(${lang} "${entities}" "${figures}")
+add_gnc_doc_targets(${lang} "${entities}" "${figures}" "${xslt_files}")
 
 set(extra_dist
     fop.xconf.in)
