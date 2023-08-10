@@ -1,4 +1,4 @@
-function (add_chm_target targetbase lang entities figures xslfiles)
+function (add_chm_target targetbase lang entities figures xslt_file)
 
     set(docname "gnucash-${targetbase}")
     set(chmfile "${docname}.chm")
@@ -6,6 +6,10 @@ function (add_chm_target targetbase lang entities figures xslfiles)
 
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}")
     file(MAKE_DIRECTORY "${BUILD_DIR}")
+
+    if (NOT IS_ABSOLUTE ${xslt_file})
+        set(xslt_file "${CMAKE_CURRENT_SOURCE_DIR}/${xslt_file}")
+    endif()
 
     file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/htmlhelp")
     add_custom_command(
@@ -18,7 +22,7 @@ function (add_chm_target targetbase lang entities figures xslfiles)
            -D BUILD_DIR=${BUILD_DIR}
            -D XSLTPROC=${XSLTPROC}
            "-DXSLTPROCFLAGS=\"${XSLTPROCFLAGS}\""
-           "-Dxslfiles=\"${xslfiles}\""
+           "-Dxslfiles=\"${xslt_file}\""
            "-Dentities=\"${entities}\""
            -D HHC=${HHC}
            -P ${CMAKE_SOURCE_DIR}/cmake/MakeChm.cmake

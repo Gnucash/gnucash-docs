@@ -1,4 +1,4 @@
-function (add_pdf_target targetbase lang entities figures xslfiles)
+function (add_pdf_target targetbase lang entities figures xslt_file)
 
     set(docname "gnucash-${targetbase}")
     set(fofile "${docname}.fo")
@@ -19,6 +19,10 @@ function (add_pdf_target targetbase lang entities figures xslfiles)
         endif()
     endif()
 
+    if (NOT IS_ABSOLUTE ${xslt_file})
+        set(xslt_file "${CMAKE_CURRENT_SOURCE_DIR}/${xslt_file}")
+    endif()
+
     add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${fofile}"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}"
@@ -27,7 +31,7 @@ function (add_pdf_target targetbase lang entities figures xslfiles)
                             --stringparam fop1.extensions 1
                             --stringparam variablelist.as.blocks 1
                             --stringparam glosslist.as.blocks 1
-                            "${xslfiles}"
+                            "${xslt_file}"
                             "${CMAKE_CURRENT_SOURCE_DIR}/index.docbook"
         DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
 

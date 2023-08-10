@@ -216,8 +216,8 @@ set (figures
 set (FOP_XCONF "${CMAKE_CURRENT_SOURCE_DIR}/fop.xconf.in")
 
 set (xslt_files
-        "pdf" "${CMAKE_CURRENT_SOURCE_DIR}/../xsl/zh-fo.xsl"
-        "chm" "${CMAKE_CURRENT_SOURCE_DIR}/../xsl/zh-chm.xsl")
+        "pdf" "../xsl/zh-fo.xsl"
+        "chm" "../xsl/zh-chm.xsl")
 
 add_gnc_doc_targets(${lang} "${entities}" "${figures}" "${xslt_files}")
 

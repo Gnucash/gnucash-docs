@@ -1,7 +1,12 @@
 function(add_to_dist)
     set(local_dist_files ${dist_files})
     foreach(file ${ARGN})
-        file(RELATIVE_PATH relative ${CMAKE_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/${file})
+        if (IS_ABSOLUTE ${file})
+            set(fullpath ${file})
+        else()
+            set(fullpath ${CMAKE_CURRENT_SOURCE_DIR}/${file})
+        endif()
+        file(RELATIVE_PATH relative ${CMAKE_SOURCE_DIR} ${fullpath})
         list(APPEND local_dist_files ${relative})
     endforeach()
     set (dist_files ${local_dist_files}
