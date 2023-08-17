@@ -45,8 +45,8 @@ function (add_xdghelp_target targetbase lang entities figures)
       COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/figures"
 
       # Add links to make our documentation visible for KDE's help system
-      COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR_KDE_BASE}"
-      COMMAND ${CMAKE_COMMAND} -E create_symlink "${BUILD_DIR_BASE}" "${BUILD_DIR_KDE_BASE}/${kde_lang}"
+      COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR_KDE_BASE}/${kde_lang}"
+      COMMAND ${CMAKE_COMMAND} -E create_symlink "${BUILD_DIR}" "${BUILD_DIR_KDE_BASE}/${kde_lang}/${docname}"
       COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/xdghelptrigger")
 
 
