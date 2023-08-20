@@ -190,4 +190,6 @@ set (figures
         figures/txns_sxn_ledger4.png
 )
 
-add_gnc_doc_targets(${lang} "${entities}" "${figures}")
+set (xslt_files "")
+
+add_gnc_doc_targets(${lang} "${entities}" "${figures}" "${xslt_files}")

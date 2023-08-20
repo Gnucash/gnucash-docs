@@ -75,6 +75,12 @@ set(JAPANESE_MINCHO_TTF "ume-tmo3.ttf" CACHE STRING "Mincho TrueType font used f
 set(JAPANESE_GOTHIC_TTF "ume-tmo3.ttf" CACHE STRING "Gothic TrueType font used for Japanese pdf")
 set(japanese_fontdir "${CMAKE_SOURCE_DIR}/fonts/truetype" CACHE STRING "Directory to search for Japanese fonts")
 
+# Set the default XSL file path
+set(BASE_XSLT_HTML "${CMAKE_SOURCE_DIR}/xsl/general-customization.xsl")
+set(BASE_XSLT_PDF "${CMAKE_SOURCE_DIR}/xsl/general-fo-customization.xsl")
+set(BASE_XSLT_EPUB "${CMAKE_SOURCE_DIR}/xsl/general-epub-customization.xsl")
+set(BASE_XSLT_CHM "${CMAKE_SOURCE_DIR}/xsl/general-chm-customization.xsl")
+
 # Buildtime destination directories for our generated documentation
 set(DATADIR_BUILD "${CMAKE_BINARY_DIR}/share")
 set(DOCDIR_BUILD  "${DATADIR_BUILD}/doc/${PACKAGE}")
@@ -182,6 +188,7 @@ add_subdirectory (it)
 add_subdirectory (ja)
 add_subdirectory (pt)
 #add_subdirectory (ru)
+add_subdirectory (zh)
 
 file(GLOB_RECURSE extrafiles
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}

@@ -37,4 +37,6 @@ set (figures
         figures/icons/split_transaction.png
 )
 
-add_gnc_doc_targets(${lang} "${entities}" "${figures}")
+set (xslt_files "")
+
+add_gnc_doc_targets(${lang} "${entities}" "${figures}" "${xslt_files}")

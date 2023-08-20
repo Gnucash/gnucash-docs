@@ -1,0 +1,1345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "gnc-gui-zh.dtd">
+<!-- (Do not remove this comment block.)
+  Version: 2.6.15
+  Last modified: December 6, 2016
+  Maintainers:
+    Chris Lyttle <chris@wilddev.net>
+  Author:
+    Jon Lapham <lapham@extracta.com.br>
+    Updated Bengt Thuree <bengt@thuree.com>
+    Updated Geert Janssens <janssens-geert@telenet.be>
+    Revised David T. <sunfish62@yahoo.com>
+    Revised 2020: David Cousens <davidcousens@bigpond.com>
+  Originally designed by Carol Champagne.
+  Translators:
+    (translators put your name and email here)
+-->
+<chapter id="chapter_currency">
+  <title>Multiple Currencies</title>
+
+  <para>This chapter will show how to set up &app; accounts to use multiple currencies.
+  </para>
+
+  <sect1 id="currency_concepts1">
+    <title>Basic Concepts</title>
+
+    <para>&app; supports over a hundred currencies, from the Andorran Franc to the Zimbabwe Dollar. For
+      example, you can have a bank account set up in Euros, and another using Hong Kong Dollars.
+    </para>
+
+    <para>Some of the issues which arise when using multiple currencies are as follows:
+    <itemizedlist>
+        <listitem><simpara>How do you transfer funds between accounts with different currencies?</simpara></listitem>
+        <listitem><simpara>How do you calculate the overall value when you have mixed currency accounts?</simpara></listitem>
+        <listitem><simpara>How do reports deal with mixed currencies?</simpara></listitem>
+      </itemizedlist>
+    </para>
+
+    <para>You can either deal with multiple currencies using manually entered transactions to record currency
+      gains and losses as described in <xref linkend="currency_manual" /> or you can utilize
+      currency trading accounts introduced with &app; version 2.3.14 to automatically record the
+      gains and losses on transactions between currencies as described in the subsequent section.
+      Trading accounts are not enabled by default in &app; and must be explicitly enabled as
+      described in <xref linkend="currency_trading_accts" />.
+    </para>
+<!-- TODO: add sections
+    <para>The following sections are common to both manually recording gains
+      and losses from multiple currency transactions and using trading accounts
+      to record such gains and losses.</para>
+TODO -->
+  </sect1>
+
+  <sect1 id="currency_manual">
+    <title>Manually Recording Currency Transaction</title>
+
+    <sect2 id="currency_acct1">
+      <title>Account Setup</title>
+
+      <para>Your default account currency is set in the <guilabel>Account</guilabel> tab under
+        <menuchoice>
+          <guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem>
+        </menuchoice>
+        (
+        <menuchoice>
+          <guimenu>&appname;</guimenu><guimenuitem>Preferences</guimenuitem>
+        </menuchoice>
+        on &mac;).
+      </para>
+
+      <para>Similarly, &app; offers an option to set your preferred currency for displaying reports (like the
+        balance sheet and income statement). The option is called <guilabel>Default Report
+        Currency</guilabel>, and is in the <guilabel>Reports</guilabel> tab of the
+        <guilabel>&appname; Preferences</guilabel> screen. You&rsquo;ll want to set both options
+        when you start using &app; because if (for example) your accounts are all in Canadian
+        Dollars but the generated reports are all in US Dollars, the reports will just say that
+        there are <quote><computeroutput>no data/transactions (or only zeroes) for the selected time period</computeroutput></quote>.
+      </para>
+
+      <para>When you create a new account, you have the option to define the commodity in which that account is
+        denominated. For accounts denominated in a currency, you can specify any of the currencies
+        supported by &app; by simply selecting it from the currency commodity list. You will notice
+        that the default currency is the currency that is defined for the parent account of the new
+        account.
+      </para>
+
+      <para>As an example, let&rsquo;s set up a bank account scenario where you mostly work in US Dollars, but
+        do also have a European bank account using the Euro currency, as well as one bank account in
+        Hong Kong using Hong Kong Dollars. So, set up 3 bank accounts, one denominated in US
+        Dollars, one using Euros, and the third in Hong Kong Dollars. One possible account structure
+        for this would be:
+      </para>
+<screen>
+-Assets (USD)
+   -Current Assets (USD)
+      -US Bank (USD)
+      -European Bank (EUR)
+      -HK Bank (HKD)
+-Equity (USD)
+   -Opening Balances (USD)
+      -USD (USD)
+      -EUR (EUR)
+      -HKD (HKD)</screen>
+      <note>
+        <para>The currency of each account is shown in parenthesis.
+        </para>
+      </note>
+
+      <para>Since in this example you mostly work in USD, all of the parent accounts are set to USD. Of course,
+        if you mostly work in Euros, you could change the currency of these parent accounts to EUR.
+        The totals shown in the account tree window will always be converted to the currency of each
+        particular account. Notice, we also set up 3 Opening Balances equity accounts, used to
+        initially populate the 3 banks.
+      </para>
+
+      <note>
+        <para>You could also set up just a single Opening Balance account and use a currency transfer to populate
+          the <quote>different currency</quote> accounts. However, this is more advanced option,
+          which is explained in a later section (<xref linkend="currency_purchase2" />).
+        </para>
+      </note>
+
+      <para>Below you see the result of this example, in which you start with 10,000 USD, 10,000 EUR as well as
+        10,000 HKD in the three bank accounts. Notice that the total of the parent accounts only
+        shows the value of the currency of sub-accounts with matching currencies. In other words,
+        the Total Assets and Total Equity values only reflect USD amounts, because &app; has no way
+        of evaluating the value of EUR or HKD yet. Once you set up exchange rates between the
+        currencies, the parent accounts will calculate the converted value of all sub-accounts. See
+        the later section (<xref linkend="currency_howto1" />) on ways to do this.
+      </para>
+
+      <figure pgwide="1">
+        <title>Initial multi currency Account Bank Setup</title>
+        <screenshot id="currency_main1">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/currency_main1.png"
+                         srccredit="Frank H. Ellenberger" />
+            </imageobject>
+            <caption>
+              <para>Initial setup of 3 bank accounts with different currencies.
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Notice that the <guilabel>Total (Report)</guilabel> column is being displayed. This is configured in the column header
+        row, select <guibutton>Arrow down</guibutton> and select <guilabel>Total(USD)</guilabel>.
+      </para>
+
+      <sect3 id="currency_acct_user2">
+        <title>User-Defined Currencies</title>
+
+        <para>Usually when we talk about currencies, we mean government-backed currencies (or more precisely,
+          currencies defined in <ulink url="&url-wp-en;ISO_4217">ISO 4217</ulink>). &app;
+          does not allow you to create your own currencies. If you want to track
+          non-<acronym>ISO</acronym> currencies, you can use either of two workarounds, depending on
+          which fits your needs better.
+
+        <orderedlist>
+        <title>User-Defined Currencies Workarounds</title>
+        <para>Let&rsquo;s say for example that you want to track loyalty points you&rsquo;ve earned by buying from
+            a certain group of businesses. The account which tracks your loyalty points will be
+            <emphasis>Assets:Other:LoyaltyPoints</emphasis>.
+        </para>
+        <listitem><simpara>
+            Treat these as if they were a security&mdash;that is, like a stock or mutual fund.
+            </simpara>
+	        <para>
+            In this workaround, you define a new security, of type <guilabel>FUND</guilabel>, called
+            LoyalityPoints. This is pretty straightforward&mdash;when you create the new
+            <emphasis>LoyaltyPoints</emphasis> account, just set the account type to
+            <guilabel>Stock</guilabel> or <guilabel>Mutual Fund</guilabel>, click the
+            <guibutton>Select...</guibutton> button next to the
+            <guilabel>Security/currency:</guilabel> box, and click <guibutton>New</guibutton> to
+            define a new security of type <guilabel>FUND</guilabel>.
+            </para>
+            <para>
+            This is not really what the stock and mutual fund account types are meant for, but &app; will allow
+            it. The downside is that you&rsquo;ll have to enter a <quote>price</quote> for every
+            transaction involving this account, because &app; needs the prices to figure out the
+            monetary value of the points and treat them as one of your assets.
+            </para>
+        </listitem>
+
+        <listitem><simpara>
+            Use one of the <quote>dummy</quote> currencies for them.
+            </simpara>
+            <para>In this workaround, you use one of the dummy currencies to
+            track the loyalty points. These currencies are <quote>XTS (Code for testing
+            purposes)</quote> and <quote>XXX (No currency)</quote>. If you use one of these for your
+            LoyaltyPoints account, you can enter transactions into the account without
+            having to enter share prices for every transaction. And, you can keep using the same two
+            dummy currencies to track all sorts of amounts&mdash;vacation dollars earned and used so
+            far this year, vacation hours earned and used, health insurance benefits allowance used
+            and remaining, and so on.
+            </para>
+            <para>The drawback with this workaround is that you cannot define exchange rates for the dummy
+            currencies to convert them to <acronym>ISO</acronym> currencies. If you want to do that,
+            you really should use the first workaround.
+            </para>
+        </listitem>
+        </orderedlist>
+        </para>
+
+      </sect3>
+    </sect2>
+
+    <sect2 id="currency_howto1">
+      <title>Recording and Updating Currency Exchange Rates</title>
+
+      <para>&app; allows you to update the Currency Exchange Rates both manually and automatically. This process
+        is essentially the same as setting share prices for investments (see
+        <xref linkend="invest-stockprice1"/>). In the following two sections we will work through
+        both methods.
+      </para>
+
+      <para>Before we start, let&rsquo;s have a quick look at the Chart of Accounts.
+      </para>
+
+      <figure pgwide="1">
+        <title>Initial multi currency Account Bank Setup</title>
+        <screenshot id="currency_main1a">
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/currency_main1.png"
+                         srccredit="Frank H. Ellenberger" />
+            </imageobject>
+            <caption>
+              <para>Initial set up of 3 bank accounts with different currencies.
+              </para>
+            </caption>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>As you see, the overall balances do not yet reflect any value for EUR or HKD holdings. Adding
+        currency exchange rates will fix this.
+      </para>
+
+      <sect3 id="currency_howto_Manual">
+        <title>Manually Updating Exchange Rates</title>
+
+        <para>Open the <guilabel>Price Database</guilabel> by going to
+          <menuchoice>
+            <guimenu>Tools</guimenu><guimenuitem>Price Database</guimenuitem>
+          </menuchoice>.
+        </para>
+
+        <figure pgwide="1">
+          <title>The Price Database Window—Still Empty</title>
+          <screenshot id="currency_peditor">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_peditor.png"
+                           srccredit="Frank H. Ellenberger" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+          </figure>
+
+        <para>Click on the <guibutton>Add</guibutton> button to add a new currency exchange rate. A window will
+          appear in which you can set up a new exchange rate. This window should appear like this:
+        </para>
+
+        <figure pgwide="1">
+          <title>Setup Of Euro Exchange Rate</title>
+          <screenshot id="currency_addcurr">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_addcurr.png"
+                           srccredit="Frank H. Ellenberger" />
+              </imageobject>
+              <caption>
+                <para>Add Price Database Window
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>Set the <guilabel>Namespace</guilabel> to <guilabel>CURRENCY</guilabel> and the <guilabel>Security</guilabel> to <guilabel>EUR
+          (Euro)</guilabel>. Then set the exchange rate between the selected security and the selected
+          currency. The <guilabel>Price</guilabel> box defines how many units of currency are required to purchase one
+          unit of the security. In this case, how many dollars it will take to purchase on 1 Euro. In
+          this example, you will set the exchange rate to 1 EUR for 1 USD.
+        </para>
+
+        <figure pgwide="1">
+          <title>The Price Database window after setting the exchange rate between Euros and US Dollars</title>
+          <screenshot id="currency_manualpriceadded">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata fileref="figures/currency_BeforeGetOnlineQuotes.png"
+                           srccredit="Frank H. Ellenberger" width="&img-w;" />
+              </imageobject>
+              <imageobject role="fo">
+                <imagedata fileref="figures/currency_BeforeGetOnlineQuotes.png"
+                           srccredit="Frank H. Ellenberger" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <figure pgwide="1">
+          <title>Chart of Accounts After Setting The Exchange Rate Between Euro And US Dollar</title>
+          <screenshot id="currency_main2">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_main2.png"
+                           srccredit="Frank H. Ellenberger" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>Observe that since you have no exchange rate for HKD, &app; doesn&rsquo;t convert the HKD accounts
+          to USD. This will be added in the next section.
+        </para>
+      </sect3>
+
+      <sect3 id="currency_howto_Auto">
+        <title>Automatic Updating Exchange Rates (How-To)</title>
+
+        <para>In the previous section you saw how to manually define a new currency exchange rate, but &app;
+          includes an automatic price update feature, which will now be described.
+        </para>
+
+        <para>Open the <guilabel>Price Database</guilabel> by going to
+          <menuchoice>
+            <guimenu>Tools</guimenu><guimenuitem>Price Database</guimenuitem>
+          </menuchoice>.
+        </para>
+
+        <figure pgwide="1">
+          <title>Price Database Before Obtaining Online Quotes</title>
+          <screenshot id="currency_BeforeGetOnline">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata fileref="figures/currency_BeforeGetOnlineQuotes.png"
+                           srccredit="Frank H. Ellenberger" width="&img-w;" />
+              </imageobject>
+              <imageobject role="fo">
+                <imagedata fileref="figures/currency_BeforeGetOnlineQuotes.png"
+                           srccredit="Frank H. Ellenberger" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>Click on the <guibutton>Get Quotes</guibutton> button to automatically load the various exchange
+          rates you need.
+        </para>
+
+        <note>
+          <para>If the <guibutton>Get Quotes</guibutton> button is disabled, that means that the
+            <application>Perl</application> module &app-fq; is not
+            installed. For information on how to install it, please see
+            <xref linkend="invest-stockprice-auto2" />.
+          </para>
+        </note>
+
+        <figure pgwide="1">
+          <title>The Price Database After Obtaining Online Quotes</title>
+          <screenshot id="currency_AfterGetOnlineQuotes">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata fileref="figures/currency_AfterGetOnlineQuotes.png"
+                           srccredit="Frank H. Ellenberger" width="&img-w;" />
+              </imageobject>
+              <imageobject role="fo">
+                <imagedata fileref="figures/currency_AfterGetOnlineQuotes.png"
+                           srccredit="Frank H. Ellenberger" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>&app; downloads exchange rates for all currencies that are in use in your various accounts. This
+          will happen every time you click on <guibutton>Get Quotes</guibutton> or request &app; to
+          download quotes as per <xref linkend="invest-stockprice-auto2" />.
+        </para>
+
+        <para>Now when you check the main Chart of Accounts you will see that &app; has automatically converted
+          the HKD amount to USD amount on the parent accounts that are in USD, as well as on the
+          <guilabel>Total (USD)</guilabel> column. Also the Euro accounts have been been updated with the latest exchange
+          rate.
+        </para>
+
+        <figure pgwide="1">
+          <title>The Chart of Accounts After Obtaining Online Quotes</title>
+          <screenshot id="currency_main3.png">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_main3.png"
+                           srccredit="Frank H. Ellenberger" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+      </sect3>
+
+      <sect3 id="currency_howto_disable">
+        <title>Disabling Exchange Rate Retrieval</title>
+
+        <para>Whenever you create an account that uses a non-default currency, exchange rate retrieval will be
+          automatically enabled for that currency. However, if you later delete that account, &app;
+          will not automatically disable exchange rate retrieval for that currency.
+        </para>
+
+        <para>If you have deleted the last account for a particular currency, and you do not wish to retrieve
+          exchange rates for that currency anymore, do the following:
+        </para>
+
+        <procedure>
+          <step><simpara>Open the Securities window by selecting <menuchoice>
+                <guimenu>Tools</guimenu><guimenuitem>Security Editor</guimenuitem></menuchoice>.</simpara>
+          </step>
+
+          <step><simpara>Make sure the <guilabel>Show National Currencies</guilabel> box is selected.</simpara></step>
+
+          <step><simpara>Expand the <guilabel>CURRENCY</guilabel> row.</simpara></step>
+
+          <step><simpara>Double click on the currency for which you want to disable exchange rate retrieval.</simpara></step>
+
+          <step><simpara>Deselect the <guilabel>Get Online Quotes</guilabel> box and click <guibutton>OK</guibutton>.</simpara></step>
+        </procedure>
+      </sect3>
+    </sect2>
+
+    <sect2 id="currency_purchase1">
+      <title>Recording Purchases in a Foreign Currency</title>
+
+      <para>Purchases in a foreign currency can be managed in two different options.
+      
+        <orderedlist numeration="upperalpha">
+            <listitem><para>    
+                Use &app;'s built-in currency exchange functions when you do your transactions. This is mainly
+                used for one-time transactions, and nothing which happens regularly.
+                </para>
+            </listitem>
+
+            <listitem id="currency_purchase1.ol.2"><para>
+	           Use separate accounts to track transactions, where all involved accounts use the same currency.
+               This is the recommended method, since it allows much better tracking and follow up. In this
+               way, you do one currency exchange transaction, and after that you do normal transactions in
+               the native currency.
+            </para></listitem>
+        </orderedlist>
+      </para>
+
+      <para>The rest of this section will explain more based upon option <quote><xref linkend="currency_purchase1.ol.2" /></quote>.
+      </para>
+
+      <sect3 id="currency_purchase2">
+        <title>Purchase of an Asset with Foreign Currency</title>
+
+        <para>You are using USD as your default currency. But, you decide to purchase a boat in Jamaica. To do
+          this, you opened a bank account in Jamaica, moved some money from the US, and then
+          purchased your boat.
+        </para>
+
+        <para>To record this in &app; we use the following basic account structure:
+        </para>
+<screen>
+-Assets (USD)
+   -Current Assets (USD)
+      -US Bank (USD)
+      -Jamaican Bank (JMD)
+   -Fixed Assets (USD)
+      -Boat (JMD)
+-Equity (USD)
+   -Opening Balances (USD)
+      -USD (USD)</screen>
+        <note>
+          <para>The currency of each account is shown in parenthesis.
+          </para>
+        </note>
+
+        <para>First you need to transfer 10,000 USD to Jamaica, and you use your US bank account (with a
+          balance of 100,000 USD) for that. The bank gives you an exchange rate of 1 USD = 64 JMD, but
+          charges you 150 USD to transfer the money.
+        </para>
+
+        <figure pgwide="1">
+          <title>Transaction <quote>Currency Transfer To Jamaica</quote></title>
+          <screenshot id="currency_purchase_MoveMoney.png">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_purchase_MoveMoney.png"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>Select the Jamaica transaction line (9,850.00 USD), right click and select <guilabel>Edit Exchange
+          Rate</guilabel>
+        </para>
+
+        <figure pgwide="1">
+          <title>Edit Exchange Rate</title>
+          <screenshot id="currency_purchase_SetExchangeRate.png">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_purchase_SetExchangeRate.png"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+              <caption>
+                <para>In this dialog the exchange rate of a currency transaction is specified.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>As Exchange Rate, you enter 1 USD = 64 JMD, since this is the rate your bank gave. Press ok in the
+          Transfer Funds (Edit Exchange Rate) window, and then save this split transaction. Below is
+          how it now looks in the main Chart of Accounts.
+        </para>
+
+        <figure pgwide="1">
+          <title>Chart of Accounts before purchasing the boat</title>
+          <screenshot id="currency_purchase_BeforeBoat.png">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_purchase_BeforeBoat.png"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>You choose to buy a boat for 509,000 JMD. To record this transaction in &app;, you will need to
+          enter a simple transaction in <emphasis>Assets:Current Assets:Jamaican Bank</emphasis>
+          withdrawing 509,000 JMD and transferring it to <emphasis>Assets:Fixed
+          Assets:Boat</emphasis>.
+        </para>
+
+        <figure pgwide="1">
+          <title>The Chart Of Accounts After Purchasing The Boat</title>
+          <screenshot id="currency_purchase_AfterBoat.png">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_purchase_AfterBoat.png"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>The Chart of Accounts now reflects that your bank account has been reduced by 509,000 JMD, and that
+          your Fixed Assets boat account has been increased by the same amount. If you also have
+          turned on the Chart of Accounts (Column Choice) <guilabel>Total (USD)</guilabel> you will see the corresponding value in
+          USD. The USD value will always reflect the latest currency exchange rate you have either
+          automatically or manually retrieved.
+        </para>
+      </sect3>
+
+      <sect3 id="currency_purchase3">
+        <title>Purchasing Foreign Stocks</title>
+
+        <para>This example will show how to purchase stocks that are priced in a currency other than your primary
+          currency.
+        </para>
+
+        <para>Assume that you live in New York and therefore you have set the default currency to USD. You decide
+          to purchase a stock traded in Hong Kong that is priced in HKD. You would also like to be
+          able to track the various income and expense amounts per stock and broker.
+        </para>
+
+ <!-- 
+ As for brokerage "Bank" account, see 
+ https://github.com/Gnucash/gnucash-docs/pull/198#discussion_r679289248
+ 
+ It depends on the countries and financial systems. Therefore translate it according to your country.
+  -->
+        <para>You decide to purchase stock in the Beijing Airport (Hong Kong). The ticker for this stock is
+          0694.HK on Yahoo! Since you wanted to track all various income and expense amounts, here
+          is the necessary account structure:
+        <itemizedlist>
+            <listitem><simpara>Assets:Investments:Brokerage Accounts:Boom:0694.HK (0694.HK)</simpara></listitem>
+            <listitem><simpara>Assets:Investments:Brokerage Accounts:Boom:Bank (HKD)</simpara></listitem>
+            <listitem><simpara>Equity:Opening Balances:HKD (HKD)</simpara></listitem>
+            <listitem><simpara>Expenses:Commissions:Boom:0694.HK (HKD)</simpara></listitem>
+            <listitem><simpara>Income:Investments:Dividend:Boom:0694.HK (HKD)</simpara></listitem>
+        </itemizedlist>
+        </para>
+        <para>The Chart of Accounts looks like this after creating all the needed accounts:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Chart of Accounts For International Stocks</title>
+          <screenshot id="currency_purchase_BeforeStocks.png">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_purchase_BeforeStocks.png"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>The stock definition can be seen in the Security Editor (
+          <menuchoice>
+            <guimenu>Tools</guimenu><guimenuitem>Security Editor</guimenuitem>
+          </menuchoice>.)
+        </para>
+
+        <figure pgwide="1">
+          <title>International Securities</title>
+          <screenshot id="currency_purchase_Commodities.png">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_purchase_Commodities.png"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>If you have not moved money (50,000 HKD) into the brokerage cash account
+          (<emphasis>Assets:Investments:Brokerage Accounts:Boom:Bank</emphasis>), do so now, either
+          using the Equity (HKD) account, or an existing bank account (Currency Transfer).
+        </para>
+
+        <para>There are two ways to enter the actual purchase transaction: you can enter it from the cash account
+          (shown below), or you can enter it from the stock account. 
+          <note><para>If entered from the stock account, the stock is assumed to be priced in the currency of the parent
+          account.</para></note>
+        </para>
+
+        <para>Let&rsquo;s assume that the stock price is 3 HKD per share. To record the purchase, open the
+          brokerage&rsquo;s HKD cash account (<emphasis>Assets:Investments:Brokerage
+          Accounts:Boom:Bank</emphasis>), and enter the following:
+        </para>
+
+ 
+        <informaltable>
+            <textobject><phrase><emphasis>Buy Stocks</emphasis></phrase></textobject>
+            <tgroup cols='3'>
+            <colspec colwidth='3*' align='left'/>
+
+            <colspec colwidth='1*' align='left'/>
+
+            <colspec colwidth='1*' align='right'/>
+
+            <tbody>
+              <row>
+                <entry>
+                  Assets:Investments:Brokerage Accounts:Boom:Bank
+                </entry>
+
+                <entry>
+                  Withdrawal
+                </entry>
+
+                <entry>
+                  50,000
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  Expenses:Commissions:Boom:0694.HK
+                </entry>
+
+                <entry>
+                  Deposit
+                </entry>
+
+                <entry>
+                  500
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  Assets:Investments:Brokerage Accounts:Boom:0694.HK
+                </entry>
+
+                <entry>
+                  Deposit
+                </entry>
+
+                <entry>
+                  49,500 (16,500 shares)
+                </entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+
+        <para>If the exchange rate dialog box does not appear automatically, right-click on the stock row, and
+          select <guilabel>Edit Exchange Rate</guilabel>. Enter the number of shares (16,500) as the
+          <guilabel>To Amount</guilabel>.
+        </para>
+
+        <figure pgwide="1">
+          <title>Transfer Funds</title>
+          <screenshot id="currency_purchase_ToAmount.png">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_purchase_ToAmount.png"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+              <caption>
+                <para>Setting the number of shares in the Transfer Funds dialog
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>When you return to the Chart of Accounts, you will see the purchased shares reflected in the stock
+          account&rsquo;s total.
+        </para>
+
+        <figure pgwide="1">
+          <title>The Purchased international stocks</title>
+          <screenshot id="currency_purchase_AfterStocks.png">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_purchase_AfterStocks.png"
+                           srccredit="Bengt Thuree" />
+              </imageobject>
+              <caption>
+                <para>Chart of Accounts is now containing the international stocks
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>However, as you can see, the USD totals may be zero if &app; doesn&rsquo;t have an exchange rate
+          between USD and HKD. To fix this, go to
+          <menuchoice>
+            <guimenu>Tools</guimenu><guimenuitem>Price Database</guimenuitem>
+          </menuchoice>
+          and click the <guibutton>Get Quotes</guibutton> button to automatically retrieve the
+          exchange rates you need.
+        </para>
+
+        <note>
+          <para>To reiterate, this example shows how stock can be purchased in any currency by entering the
+            transaction in the register of the cash account used to make payment. It is also
+            possible to enter the purchase in the stock account&rsquo;s register, but be aware that
+            the stock is assumed to be priced in the currency of the stock account&rsquo;s parent.
+          </para>
+
+          <para>In this example, the stock account&rsquo;s parent (<emphasis>Assets:Investments:Brokerage
+            Account:Boom</emphasis>) is denominated in HKD. Since this is same currency as the stock
+            price, the purchase can be safely entered in the stock account&rsquo;s register.
+          </para>
+        </note>
+      </sect3>
+    </sect2>
+
+    <sect2 id="currency_invest1">
+      <title>Tracking Currency Investments</title>
+
+      <para>Currency investment is when you decide to invest in a different country's currency, and hope that it
+        will rise in value relative your own currency.
+      </para>
+
+      <para>When you enter these transactions into &app;, you will have to decide on how much detail you would
+        like to have.
+      </para>
+
+      <para>If you are not interested in detail at all, a very simple account structure would suffice:
+        <itemizedlist>
+            <listitem><simpara>Assets:Investments:Currency:Bank (USD)</simpara></listitem>
+            <listitem><simpara>Assets:Investments:Currency:XXX (XXX)</simpara></listitem>
+        </itemizedlist>
+      </para>
+
+      <para>You would simply enter transfers between the two accounts, noting exchange rates as you went.
+      </para>
+
+      <para>But, if you do want to be able to track capital gains or losses, as well as any fees, you do need a
+        more complex account structure, such as:
+        <itemizedlist>
+            <listitem><simpara>Assets:Investments:Currency:Bank (USD)</simpara></listitem>
+            <listitem><simpara>Assets:Investments:Currency:Currency Bank:XXX (XXX)</simpara></listitem>
+            <listitem><simpara>Expenses:Investments:Currency:Bank (USD)</simpara></listitem>
+            <listitem><simpara>Income:Investments:Currency:Currency Bank:Capital Gains:XXX (XXX)</simpara></listitem>
+        </itemizedlist>
+      </para>
+
+      <sect3 id="currency_invest12">
+        <title>Purchasing Currency</title>
+
+        <para>When purchasing an another currency, you will buy a certain number of units of foreign currency with
+          your own currency, at a particular rate. For example, you might buy 10,000 USD worth of
+          Andorran Francs, 1 USD = 5 ADF, with a transaction fee of 150 USD.
+        </para>
+
+        <informaltable>
+          <textobject><phrase><emphasis>Buy Currency</emphasis></phrase></textobject>
+          <tgroup cols='3'>
+            <colspec colwidth='5*' align='left'/>
+
+            <colspec colwidth='2*' align='left'/>
+
+            <colspec colwidth='1*' align='right'/>
+
+            <tbody>
+              <row>
+                <entry>
+                  Assets:Investments:Currency:Bank (USD)
+                </entry>
+
+                <entry>
+                  Withdrawal
+                </entry>
+
+                <entry>
+                  10,000
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  Expenses:Investments:Currency:Bank (USD)
+                </entry>
+
+                <entry>
+                  Expense
+                </entry>
+
+                <entry>
+                  150
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  Assets:Investments:Currency:Currency Bank:ADF (ADF)
+                </entry>
+
+                <entry>
+                  Deposit
+                </entry>
+
+                <entry>
+                  49,250
+                </entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+
+        <para>The Exchange Rate window should pop up when you leave the last row in the split above (Currency
+          Transaction). If this window does not pop up, right click on the row or select
+          <guimenu>Actions</guimenu>, and select <guilabel>Edit Exchange Rate</guilabel>. In the
+          Exchange Rate window you specify the exchange rate you got from the bank.
+        </para>
+      </sect3>
+
+      <sect3 id="currency_invest13">
+        <title>Selling a currency investment</title>
+
+        <para>Entering a currency sale is done in the same way as a currency buy except that you are now
+          transferring money from the Currency account to your native currency&rsquo;s Bank account (very similar to
+          <xref linkend="invest-sell1" />).
+        </para>
+
+        <para>The proper recording of the currency sale <emphasis>must</emphasis> account for realized gains or losses. This can be
+          done using a split transaction. In the split transaction, you must account for the profit
+          (or loss) as coming from an <emphasis>Income:Investments:Currency:Currency Bank:Capital Gains:XXX</emphasis> account (or
+          <emphasis>Expense:Investments:Currency:Currency Bank:Capital Loss:XXX</emphasis>). To balance this income, you will need to
+          enter the Currency asset twice in the split&mdash;once to record the actual sale (using
+          the correct amount and correct exchange rate), and once to balance the income profit
+          (setting the amount to 0).
+        </para>
+
+        <para>In short, a selling Currency transaction should look something like below, seen again from the
+          <emphasis>Assets:Investments:Currency:Currency Bank:XXX</emphasis>.
+        </para>
+
+        <table>
+          <title>Selling a currency with a Split Transaction Scheme</title>
+
+          <tgroup cols="3">
+            <colspec colwidth='3*' align='left'/>
+
+            <colspec colwidth='1*' align='center'/>
+
+            <colspec colwidth='1*' align='center'/>
+
+            <thead>
+              <row>
+                <entry>
+                  Account
+                </entry>
+
+                <entry>
+                  Deposit/Expense
+                </entry>
+
+                <entry>
+                  Withdrawal/Income
+                </entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>
+                  Assets:Investments:Currency:Bank (USD)
+                </entry>
+
+                <entry>
+                  Sold Amount - Exchange Fee
+                </entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>
+                  Expenses:Investments:Currency:Bank (USD)
+                </entry>
+
+                <entry>
+                  Exchange Fee
+                </entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry>
+                  Assets:Investments:Currency:Currency Bank:XXX (XXX)
+                </entry>
+
+                <entry></entry>
+
+                <entry>
+                  Sold Amount (= Purchased Balance + PROFIT)
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  Income:Investments:Currency:Currency Bank:Capital Gains:XXX (XXX)
+                </entry>
+
+                <entry>
+                  [LOSS]
+                </entry>
+
+                <entry>
+                  PROFIT
+                </entry>
+              </row>
+
+              <row>
+                <entry>
+                  Assets:Investments:Currency:Currency Bank:XXX (XXX)
+                </entry>
+
+                <entry>
+                  PROFIT (with To Amount = 0)
+                </entry>
+
+                <entry>
+                  [LOSS (with To Amount = 0) ]
+                </entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </sect3>
+    </sect2>
+
+    <sect2 id="currency_reconcile1">
+      <title>Reconciling Statements in a Foreign Currency</title>
+
+      <para>Reconciling foreign statement are done in the same manner as when you reconcile your local bank
+        statement. If you have created a Chart of Accounts structure which allows you to have the
+        same currency per account as your statement, it is actually exactly the same as reconciling
+        your local bank statement.
+      </para>
+
+      <para>If you have different currencies you might have to manually convert the amounts from one currency to
+        another while you reconcile the accounts.
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="currency_trading_accts">
+    <title>Automatically Recording Currency Transactions using Trading Accounts</title>
+
+    <para>Trading accounts were introduced as a feature from &app; version 2.3.14. The conceptual basis for
+      trading accounts is described in &ulink-sel-tut; by Peter Selinger. A second tutorial
+      &ulink-sel-gnc; describes the manual creation and use of trading accounts in &app; prior to version 2.3.14.
+    </para>
+
+    <para>Trading accounts are not enabled by default in &app;. To enable them go to
+        <menuchoice>
+            <guimenu>File</guimenu><guimenuitem>Properties</guimenuitem><guilabel>Accounts</guilabel>
+        </menuchoice> tab and check the <guilabel>Use Trading Accounts</guilabel> checkbox.
+    </para>
+
+    <sect2 id="trading_acct_concepts">
+      <title>Trading Account Concepts</title>
+
+      <para>In accounting terms, trading accounts are specialized equity accounts to record changes in income
+        which result from transactions between two or more currencies. In &app; they are implemented
+        as a top level account type of Trading. When trading accounts are enabled the required sub
+        accounts of Trading are automatically created if they do not already exist when a
+        transaction between one or more currencies is created.
+      </para>
+
+      <para>In the extended Accounting Equation, Trading accounts would appear as follows:
+        <equation>
+          <mathphrase>Assets = Liabilities + Equity (+ Income -Expenses) + Trading </mathphrase>
+        </equation>
+      </para>
+
+      <caution>
+        <para>The user is prevented from manually making entries directly to the registers for any of the accounts
+          in the Trading top level account group. All entries to these accounts are automatically
+          generated when transactions between currencies are created in other account registers
+          within the &app; account hierarchy.
+        </para>
+      </caution>
+
+      <para>The Trading account group is structured below the top level account <guilabel>Trading</guilabel>
+        with a sub-account <guilabel>CURRENCY</guilabel> which in turn has a sub-account for each
+        currency between which transactions have been made. For the example previously used in
+        <xref linkend="currency_manual" />, the
+        additional accounts which will be created automatically when transactions are created
+        between different currencies with trading accounts enabled are:
+      </para>
+<screen>
+Trading
+    CURRENCY
+        EUR
+        HKD
+        USD</screen>
+      <caution>
+        <para>The names of these accounts are again assigned automatically and cannot be changed by a user without
+          disrupting the functionality of the trading accounts in &app;.
+        </para>
+      </caution>
+    </sect2>
+
+    <sect2 id="currency_trading">
+      <title>Recording Foreign Currency Transactions with Trading Accounts</title>
+
+      <sect3 id="currency_trading_account_setup">
+        <title>Setup of Accounts for Trading Accounts</title>
+
+        <para>The same account structure used in the manual recording of currency transactions in the previous
+          section is required. The initial account configuration for Assets and Equity accounts are
+          as follows:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Initial Multicurrency Bank Accounts Setup</title>
+          <screenshot id="currency__trading_acct_setup">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_trading_acct_setup.png"
+                           srccredit="David Cousens"/>
+              </imageobject>
+              <caption>
+                <para>Initial setup of bank accounts in multiple currencies.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>The following prices were entered in the Price Database (
+          <menuchoice>
+            <guimenu>Tools</guimenu><guimenuitem>Price Database</guimenuitem>
+          </menuchoice>
+          ) as at Jan. 1, 2020 to convert the account balances for the foreign currency accounts to
+          USD:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Initial Price Database Entries</title>
+          <screenshot id="currency__trading_price_database">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_trading_Price_Database_initial.png"
+                           srccredit="David Cousens"/>
+              </imageobject>
+              <caption>
+                <para>Price Database window after setting initial exchange rates between USD, HKD and EUR.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>With the currency prices set as shown, the Accounts tab will now display the values of the foreign
+          accounts in USD in the <guilabel>Total(USD)</guilabel> column:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Initial Multicurrency Setup After Entering Exchange Rates Between USD, HKD
+                and EUR</title>
+          <screenshot id="currency_trading_acct_setup_2">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_trading_acct_setup_2.png"
+                           srccredit="David Cousens"/>
+              </imageobject>
+              <caption>
+                <para><guilabel>Accounts</guilabel> tab after setting exchange rates to USD.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+      </sect3>
+
+      <sect3 id="currency_trading_transfer">
+        <title>Transfer of Funds to a Foreign Currency</title>
+
+        <para>Let us assume we wish to purchase at item in Hong Kong using the Hong Kong bank account for 20,000
+          HKD on Feb. 1, 2020. The current funds in the Hong Kong account are insufficient and we will
+          need to transfer another 10,200 HKD from the US bank account. The exchange rate at the
+          time of the transfer is 1 USD = 7.7884 HKD and we will have to transfer 1,309.64 USD for
+          which the bank charges a 40 USD transfer fee. The transaction to effect this is created
+          with the <guilabel>Transfer Funds</guilabel> dialog as shown below:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Transfer Dialog To Create Transaction For Transfer From USD To HKD</title>
+          <screenshot id="currency__trading_tfr_dialog">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_trading_transfer_funds.png"
+                           srccredit="David Cousens"/>
+              </imageobject>
+              <caption>
+                <para>Transfer of 10,200 HKD from US Bank account to Hong Kong bank account.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>The <guilabel>Debit Amount</guilabel> has been specified in HKD and the transaction <guilabel>Amount</guilabel> being transferred in USD.
+          There is no provision to enter the transfer fee in the dialog. On closing the dialog the
+          following transaction as viewed in the US Bank Account register has been created:
+        </para>
+
+        <note>
+          <para><guilabel>Amount</guilabel> entered in the <guilabel>Transfer Funds</guilabel> are transferred from the selected <guilabel>Credit
+            Account</guilabel> to the selected <guilabel>Debit Account</guilabel>. And if <guilabel>Debit Amount</guilabel> radio button is selected and the foreign
+            currency amounts are entered, the transaction is recorded on the correct debit amounts. Whereas if <guilabel>Exchange Rate</guilabel> is selected
+            and entered, the exact value is not often recorded due to the rounding errors.
+          </para>
+        </note>
+
+        <figure pgwide="1">
+          <title>The Transaction After Transfer Displayed in The US Bank Account Register</title>
+          <screenshot id="currency_trading_transfer_trans1">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata fileref="figures/currency_trading_transfer_trans1.png"
+                           srccredit="David Cousens"  width="&img-w;"/>
+              </imageobject>
+              <imageobject role="fo">
+                <imagedata fileref="figures/currency_trading_transfer_trans1.png"
+                           srccredit="David Cousens"/>
+              </imageobject>
+              <caption>
+                <para>Transaction to transfer from US bank account to Hong Kong Bank account after closing transfer
+                  dialog.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>The transaction can be opened in the US Bank Account register and may then be edited to add splits
+          for the transfer fee as follows:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Transaction After Adding The Splits For The Transfer Fee</title>
+          <screenshot id="currency_trading_transfer_trans2">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata fileref="figures/currency_trading_transfer_trans2.png"
+                           srccredit="David Cousens"  width="&img-w;"/>
+              </imageobject>
+              <imageobject role="fo">
+                <imagedata fileref="figures/currency_trading_transfer_trans2.png"
+                           srccredit="David Cousens"/>
+              </imageobject>
+              <caption>
+                <para>Transaction to transfer from US bank account to Hong Kong Bank account after adding the splits for
+                  the transaction fee.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>Returning to the Accounts tab we can see the result of the transfer transaction on the accounts:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Account Tab Balances After Completion Of USD To HKD Transfer</title>
+          <screenshot id="currency_trading_accts_after_tfr">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_trading_accts_after_tfr.png"
+                           srccredit="David Cousens"/>
+              </imageobject>
+              <caption>
+                <para>Account balances in the Accounts tab after the transfer of funds from the US Bank account to the
+                  Hong Kong bank account.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>The balances of the Asset and Equity accounts are presented with values set by the exchange rate
+          entered in the transaction to transfer funds on Feb. 1, 2020.
+        </para>
+
+        <para>The trading accounts have been automatically created and the amounts of the transfer have been
+          entered into the accounts. There are no entries associated with the pre-existing opening
+          balances of the accounts prior to the transfer. This reflects that the trading accounts
+          only reflect gains and losses since the book was opened.
+        </para>
+
+        <para>At this point there have been no trading gains or losses. The balances of the USD and HKD trading
+          accounts are the same when converted to USD. The HKD trading account has a debit (negative
+          balance) and the USD trading account has a credit balance (positive balance). The net balance
+          of the CURRENCY sub account of Trading, and Trading itself, is 0 indicating that at this
+          point no gains or losses have been recorded in the trading of currencies.
+        </para>
+
+        <para>The hypothetical purchase in Hong Kong fails to take place and a month later on Mar. 1, 2020 the funds
+          are required in the US account for another purpose. A transfer of 10,200.00 HKD is made
+          from the Hong Kong bank account back to the US bank account. The exchange rate at the time
+          of the transfer is 1 USD = 7.7933 HKD and a fee of 20.00 USD is charged for the transfer.
+          The transaction to effect the transfer is as follows:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Transaction To Transfer Funds From Hong Kong To US Bank Account</title>
+          <screenshot id="currency_trading_tfr_back">
+            <mediaobject>
+              <imageobject role="html">
+                <imagedata fileref="figures/currency_trading_trf_back.png"
+                           srccredit="David Cousens"  width="&img-w;"/>
+              </imageobject>
+              <imageobject role="fo">
+                <imagedata fileref="figures/currency_trading_trf_back.png"
+                           srccredit="David Cousens"/>
+              </imageobject>
+              <caption>
+                <para>The transaction transfers 10,200.00 HKD from the Hong Kong Bank account to the US Bank account.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>After transferring the funds back to the US Bank account, the prices database entries are as
+          follows:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Price database after transfer of funds back to US account</title>
+          <screenshot id="currency_trading_prices_after_trf_back">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_trading_prices_after_trf_back.png"
+                           srccredit="David Cousens"/>
+              </imageobject>
+              <caption>
+                <para>The price database showing prices for the transfer of funds to HKD and back to USD.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>The Accounts tab balances after transferring the funds back are as follows:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Accounts tab after transfer back</title>
+          <screenshot id="currency_trading_accts_after_trf_back">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_trading_accts_after_trf_back.png"
+                           srccredit="David Cousens" />
+              </imageobject>
+              <caption>
+                <para>State of the accounts after the funds have been transferred back.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+
+        <para>The Assets and Equity balances now reflect the the values of the accounts at the exchange rate for
+          the transfer of funds back to the US Bank account. The Trading and CURRENCY placeholder accounts now indicate a
+          modest realized loss of 0.82 USD on the currency transactions. The associated transfer fees appear in the
+          Expenses total. Not a profitable exercise but still illustrative.
+        </para>
+
+        <note>
+          <para>The gains or losses reported using trading accounts are realized gains and losses.
+          </para>
+        </note>
+
+        <para>Finally we have the balance sheet after the above sequence of transactions reporting the Trading
+          Loss incurred:
+        </para>
+
+        <figure pgwide="1">
+          <title>The Balance Sheet After Above Transactions</title>
+          <screenshot id="currency_trading_balance_sheet">
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="figures/currency_trading_balance_sheet.png"
+                           srccredit="David Cousens"/>
+              </imageobject>
+              <caption>
+                <para>Balance Sheet after these transactions reflecting the trading loss incurred.
+                </para>
+              </caption>
+            </mediaobject>
+          </screenshot>
+        </figure>
+      </sect3>
+    </sect2>
+  </sect1>
+</chapter>

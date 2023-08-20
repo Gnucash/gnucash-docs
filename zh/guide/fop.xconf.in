@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<fop version="1.0">
+  <base>@CMAKE_CURRENT_SOURCE_DIR@</base>
+  <font-base>@CMAKE_SOURCE_DIR@/fonts</font-base>
+  
+  <!-- Information for specific renderers -->
+  <!-- Uses renderer mime type for renderers -->
+  <renderers>
+    <renderer mime="application/pdf">
+      <fonts>
+        <!-- embedded fonts -->
+        <!--
+        This information must exactly match the font specified
+        in the fo file. Otherwise it will use a default font.
+
+        For example,
+        <fo:inline font-family="Arial" font-weight="bold" font-style="normal">
+            Arial-normal-normal font
+        </fo:inline>
+        for the font triplet specified by:
+        <font-triplet name="Arial" style="normal" weight="bold"/>
+
+        If you do not want to embed the font in the pdf document
+        then do not include the "embed-url" attribute.
+        The font will be needed where the document is viewed
+        for it to be displayed properly.
+
+        possible styles: normal | italic | oblique | backslant
+        possible weights: normal | bold | 100 | 200 | 300 | 400
+                          | 500 | 600 | 700 | 800 | 900
+        (normal = 400, bold = 700)
+        -->
+        <font kerning="yes" embed-url="opentype/source/SourceHanSerifCN-Regular.otf">
+          <font-triplet name="serif" style="normal" weight="normal"/>
+        </font>
+        <font kerning="yes" embed-url="truetype/Arphic/ukai.ttc" sub-font="AR PL UKai CN">
+          <font-triplet name="serif" style="italic" weight="normal"/>
+          <font-triplet name="serif" style="italic" weight="bold"/>
+          <font-triplet name="monospace" style="normal" weight="normal"/>
+          <font-triplet name="monospace" style="italic" weight="normal"/>
+        </font>
+        <font kerning="yes" embed-url="opentype/source/SourceHanSerifCN-Bold.otf">
+          <font-triplet name="serif" style="normal" weight="bold"/>
+        </font>
+
+        <font kerning="yes" embed-url="opentype/source/SourceHanSansCN-Regular.otf">
+          <font-triplet name="sans-serif" style="normal" weight="normal"/>
+        </font>
+        <font kerning="yes" embed-url="opentype/source/SourceHanSansCN-Bold.otf">
+          <font-triplet name="sans-serif" style="italic" weight="normal"/>
+          <font-triplet name="sans-serif" style="italic" weight="bold"/>
+        </font>
+        <font kerning="yes" embed-url="opentype/source/SourceHanSansCN-Bold.otf">
+          <font-triplet name="sans-serif" style="normal" weight="bold"/>
+        </font>
+      </fonts>
+
+      <!-- This option lets you specify additional options on an XML handler -->
+      <xml-handler namespace="http://www.w3.org/2000/svg">
+        <stroke-text>true</stroke-text>
+      </xml-handler>
+
+    </renderer>
+  </renderers>
+
+</fop>

@@ -16,7 +16,7 @@ execute_process(
     # FIXME Reusing ${XSLTPROCFLAGS} fails as xsltproc gets this as one single parameter instead of 3...
     COMMAND ${XSLTPROC} --path "${SRC_DIR}/docbook" --xinclude
                         --stringparam htmlhelp.chm ${chmfile}
-                        "${SRC_DIR}/xsl/1.79.2/htmlhelp/htmlhelp.xsl"
+                        "${xslfiles}"
                         "${CURRENT_SRC_DIR}/index.docbook"
     WORKING_DIRECTORY "${htmlhelpdir}")
 

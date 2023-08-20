@@ -8,13 +8,16 @@
 # - entities: list of all xml files this document is composed of
 # - figdir: name of the directory holding the images
 
-function (add_html_target targetbase lang entities figures)
+function (add_html_target targetbase lang entities figures xslt_file)
 
     set(docname "gnucash-${targetbase}")
     set(styledir "${CMAKE_SOURCE_DIR}/stylesheet")
     file(GLOB styleicons "${CMAKE_SOURCE_DIR}/stylesheet/*.png")
     set(BUILD_DIR "${DOCDIR_BUILD}/${lang}/${docname}")
 
+    if (NOT IS_ABSOLUTE ${xslt_file})
+        set(xslt_file "${CMAKE_CURRENT_SOURCE_DIR}/${xslt_file}")
+    endif()
 
     # Convert xml to html with xsltproc
     # xsltproc --xinclude -o outputdir/ /usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl filename.xml
@@ -27,7 +30,7 @@ function (add_html_target targetbase lang entities figures)
                              -o "${BUILD_DIR}/"
                              --param use.id.as.filename "1"
                              --stringparam chunker.output.encoding UTF-8
-                             "${CMAKE_SOURCE_DIR}/xsl/general-customization.xsl"
+                             "${xslt_file}"
                              "${CMAKE_CURRENT_SOURCE_DIR}/index.docbook"
         COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/htmltrigger"
         DEPENDS ${entities} "index.docbook" "${CMAKE_SOURCE_DIR}/docbook/gnc-docbookx.dtd")
