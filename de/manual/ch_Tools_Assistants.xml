@@ -98,9 +98,9 @@
         </variablelist>
       </para>
 
-      <para>Wenn Sie zuvor die Buchungen in einem Kontenblatt mit &mc.vw.f-by; filtern, dann werden in diesem Konto
-        nur die Buchungen durchsucht, die durch den Filter angezeigt werden. Suchen Sie in einem
-        gefiltertem Kontenblatt oder einem <xref linkend="general-journal" />, werden alle
+      <para>Wenn Sie zuvor die Buchungen in einem Kontenblatt mit &mc.vw.f-by; filtern, dann werden in diesem
+        Konto nur die Buchungen durchsucht, die durch den Filter angezeigt werden. Suchen Sie in
+        einem gefiltertem Kontenblatt oder einem <xref linkend="general-journal" />, werden alle
         Buchungsteile in allen zutreffenden Buchungen —im letzteren Fall diejenigen in dem
         geöffneten Kontenblatt— durchsucht.
       </para>
@@ -764,20 +764,6 @@
               <row>
                 <entry morerows="1" valign="middle">
                   <para>Konto
-                    <footnote>
-                      <para>Wenn der Dialog <guilabel>Buchungen Suchen</guilabel> aus einem Registerblatt
-                        <guilabel>Konten</guilabel> oder einem <guilabel>Journal</guilabel>
-                        aufgerufen wird, dann führt die Verwendung von <guilabel>Konto</guilabel>
-                        eine Suche in den Konten durch, die in dem Dialogfeld <guilabel>Konten
-                        wählen</guilabel> markiert sind. Diese bedeutet, dass eine Übereinstimmung
-                        in einem der ausgewählten Konten entweder angezeigt —entspricht
-                        irgendeinem Konto— oder verworfen —entspricht keinem Konto— wird. Wenn
-                        hingegen der Dialog <guilabel>Buchungen suchen</guilabel> in einem
-                        regulären Kontenregister gestartet und das aktuelle Konto ist ausgewählt,
-                        werden alle Buchungen zurückgegeben oder, falls ein anderes Konto als das
-                        aktuelle ausgewählt wird, keine Buchungen.
-                      </para>
-                    </footnote>
                   </para>
                 </entry>
 
@@ -806,24 +792,6 @@
               <row>
                 <entry>
                   <para>Alle Konten
-                    <footnote>
-                      <para>Das Suchkriterium <guilabel>Alle Konten</guilabel> führt eine Suche durch, bei der Buchungen in den
-                        Konten, die im dem Dialog, nach Betätigen der Schaltfläche
-                        <guilabel>Konten wählen</guilabel>, markiert wurden, gefunden werden und
-                        mindestens einen Buchungsteil in jedem der ausgewählten Konten enthalten.
-                        Wenn die Suche in einem regulären Kontobuch gestartet wird, ist dies das
-                        einzige Kriterium, das Buchungsteile von anderen Konten prüft. Wenn Sie
-                        also den Dialog <guilabel>Buchungen suchen</guilabel> z.B. in
-                        Aktiva:Umlaufvermögen:Girokonto öffnen und alle Buchungen dieses Kontos
-                        mit einem Buchungsteil in Ausgaben:Lebensmittel finden wollen, ist dies als
-                        Kriterium zu verwenden. Beachten Sie jedoch, dass es sich um eine
-                        <emphasis>UND</emphasis>-Suche handelt: Wenn Sie zusätzlich auch nach
-                        Ausgaben:Verschiedenes suchen, erhalten Sie <emphasis>nur</emphasis> die
-                        Buchungen mit einem Buchungsteil in jedem der beiden Konten und
-                        <emphasis>nicht</emphasis> die Buchungen mit nur einem einzigen
-                        Buchungsteil.
-                      </para>
-                    </footnote>
                   </para>
                 </entry>
 
@@ -856,8 +824,8 @@
           <quote><guibutton>ist</guibutton></quote> bzw. <quote><guibutton>ist
           nicht</guibutton></quote> wird mit <quote>ODER</quote> der ausgewählten
           Status-Schaltflächen verknüpft. Die Schaltflächen, die nicht ausgewählt sind, werden
-          einfach ignoriert. (Es ist nicht dasselbe wie zu sagen, dass der Abgleichstatus
-          <emphasis>nicht</emphasis> einer von diesen sein kann.)
+          einfach ignoriert. Es ist nicht dasselbe wie zu sagen, dass der Abgleichstatus
+          <emphasis>nicht</emphasis> einer von diesen sein kann.
         </para>
 
         <para>Zum Beispiel: Wenn Sie <guibutton>Abgleichen</guibutton> / <guibutton>ist</guibutton> /
@@ -872,6 +840,37 @@
           / <guibutton>Abgeglichen</guibutton> und schließlich die Auswahl von <guilabel>Nach
           Einträgen suchen, für die gilt</guilabel>, <guibutton>irgendeines der Kriterien wird
           erfüllt</guibutton>. In beiden Fällen wird &app; genau die gleichen Buchungen anzeigen.
+        </para>
+      </sect3>
+
+      <sect3 id="tool-find-txn-criteria-acct">
+        <title>Erläuterungen zum Suchkriterium <quote>Konten</quote> und <quote>Alle Konten</quote></title>
+
+        <para>Wenn die Suchfunktion aus einer <xref linkend="gui-acct-tree"/> oder einem
+          <xref linkend="general-journal"/> aufgerufen wird, dann führt die Verwendung des
+          Suchkriteriumes <guilabel>Konto</guilabel> eine Suche in den Konten durch, die in dem
+          Dialogfeld <guilabel>Konten wählen</guilabel> markiert sind. Diese bedeutet, dass eine
+          Übereinstimmung in einem der ausgewählten Konten entweder angezeigt —entspricht
+          irgendeinem Konto— oder verworfen —entspricht keinem Konto— wird. Wird hingegen die
+          Suche in einem regulären Kontenregister gestartet und das aktuelle Konto ist ausgewählt,
+          werden alle Buchungen zurückgegeben oder, falls ein anderes Konto als das aktuelle
+          ausgewählt wird, keine Buchungen.
+        </para>
+
+        <para>Das Suchkriterium <guilabel>Alle Konten</guilabel> führt eine Suche durch, bei der Buchungen in den
+          Konten, die im dem Dialog, nach Betätigen der Schaltfläche <guilabel>Konten
+          wählen</guilabel>, markiert wurden, gefunden werden und mindestens einen Buchungsteil in
+          jedem der ausgewählten Konten enthalten. Wenn die Suche in einem regulären Kontobuch
+          gestartet wird, ist dies das einzige Kriterium, das Buchungsteile von anderen Konten
+          prüft. Wenn Sie also den Dialog <guilabel>Buchungen suchen</guilabel> z.B. in
+          <computeroutput>Aktiva:Umlaufvermögen:Girokonto</computeroutput> öffnen und alle
+          Buchungen dieses Kontos mit einem Buchungsteil in
+          <computeroutput>Ausgaben:Lebensmittel</computeroutput> finden wollen, ist dies als
+          Kriterium zu verwenden. Beachten Sie jedoch, dass es sich um eine
+          <emphasis>UND</emphasis>-Suche handelt: Wenn Sie zusätzlich auch nach
+          <computeroutput>Ausgaben:Miete</computeroutput> suchen, erhalten Sie
+          <emphasis>nur</emphasis> die Buchungen mit einem Buchungsteil in jedem der beiden Konten
+          und <emphasis>nicht</emphasis> die Buchungen mit nur einem einzigen Buchungsteil.
         </para>
       </sect3>
     </sect2>
