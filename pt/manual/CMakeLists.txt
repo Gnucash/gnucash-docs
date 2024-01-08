@@ -1,20 +1,20 @@
 set (entities
-        ch_Intro.xml
-        ch_GettingHelp.xml
-        ch_GettingStarted.xml
-        ch_GUIMenus.xml
-        ch_Account-Actions.xml
-        ch_Transactions.xml
-        ch_Business.xml
-        ch_Tools_Assistants.xml
-        ch_Reports.xml
-        ch_Customize.xml
-        chtacctseg.xml
-        chartofaccts.xml
-        legal.xml
-        txf-categories.xml
-        fdl-appendix.xml
-        tips-appendix.xml)
+        ch_Intro.docbook
+        ch_GettingHelp.docbook
+        ch_GettingStarted.docbook
+        ch_GUIMenus.docbook
+        ch_Account-Actions.docbook
+        ch_Transactions.docbook
+        ch_Business.docbook
+        ch_Tools_Assistants.docbook
+        ch_Reports.docbook
+        ch_Customize.docbook
+        chtacctseg.docbook
+        chartofaccts.docbook
+        legal.docbook
+        txf-categories.docbook
+        fdl-appendix.docbook
+        tips-appendix.docbook)
 
 set (figures
         figures/AccountReg_Screen.png

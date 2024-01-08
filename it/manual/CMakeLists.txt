@@ -1,20 +1,21 @@
 set (entities
-    ${CMAKE_SOURCE_DIR}/manual/C/ch_Intro.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/ch_GettingHelp.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/ch_GettingStarted.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/ch_GUIMenus.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/ch_Account-Actions.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/ch_Transactions.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/ch_Business.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/ch_Tools_Assistants.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/ch_Reports.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/ch_Customize.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/chtacctseg.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/chartofaccts.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/legal.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/txf-categories.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/fdl-appendix.xml
-    ${CMAKE_SOURCE_DIR}/manual/C/tips-appendix.xml
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Intro.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_GettingHelp.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_GettingStarted.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_GUIMenus.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Account-Actions.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Transactions.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Business.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Tools_Assistants.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Reports.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Customize.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/ch_Finance-Quote.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/chtacctseg.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/chartofaccts.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/legal.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/txf-categories.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/fdl-appendix.docbook
+    ${CMAKE_SOURCE_DIR}/manual/C/tips-appendix.docbook
 )
 
 set (figures
