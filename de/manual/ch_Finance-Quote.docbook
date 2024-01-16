@@ -157,6 +157,14 @@ SYNOPSIS
       Wenn nicht, dann gibt Ihnen dieser Abschnitt eine Anleitung zur Installation.
     </para>
 
+    <note>
+      <title>Erwarteter Zeitaufwand</title>
+
+      <simpara>Abhängig von der Qualität Ihrer Internetverbindung und CPUs kann die erstmalige Installation Ihren
+        Computer eine Stunde oder länger beschäftigen.
+      </simpara>
+    </note>
+
     <para>Die Installation von &app-fq; unterscheidet sich von einem Betriebssystem zum anderen. Für die
       verschiedenen unterstützten Systeme, können Sie die folgenden Anweisungen befolgen:
     </para>
@@ -170,16 +178,18 @@ SYNOPSIS
       </step>
 
       <step>
-        <simpara>Aktualisieren Sie &app-fq; mit <userinput>sudo gnc-fq-update</userinput>. Der Befehl
-          kann auch für eine Neuinstallation verwendet werden. Die richtige Syntax ist von der
-          jeweiligen Distribution abhängig.
+        <simpara>Aktualisieren Sie &app-fq; mit <userinput>sudo gnc-fq-update</userinput>. Der Befehl kann auch für
+          eine Neuinstallation verwendet werden. Die richtige Syntax ist von der jeweiligen
+          Distribution abhängig.
         </simpara>
 
         <tip>
-          <simpara>Falls das mit der Meldung <computeroutput>sudo: gnc-fq-update: Befehl nicht gefunden</computeroutput>
-            fehlschlägt, geben Sie <userinput>which gnc-fq-update</userinput> ein. Das sollte einen Pfad wie
-            <computeroutput>/usr/local/bin/gnc-fq-update</computeroutput> zuückliefern. Wiederholen Sie den Befehl
-            mit jenem zurückgelieferten Pfad: <userinput>sudo /usr/local/bin/gnc-fq-update</userinput>.
+          <simpara>Falls das mit der Meldung <computeroutput>sudo: gnc-fq-update: Befehl nicht
+            gefunden</computeroutput> fehlschlägt, geben Sie <userinput>which
+            gnc-fq-update</userinput> ein. Das sollte einen Pfad wie
+            <computeroutput>/usr/local/bin/gnc-fq-update</computeroutput> zuückliefern. Wiederholen
+            Sie den Befehl mit jenem zurückgelieferten Pfad: <userinput>sudo
+            /usr/local/bin/gnc-fq-update</userinput>.
           </simpara>
         </tip>
       </step>
@@ -190,10 +200,11 @@ SYNOPSIS
           <envar>PATH</envar> eingetragen ist.
           <footnote>
             <simpara>Wenn Sie die von Ihrer Distribution bereitgestellten &app; Pakete installiert haben, sollte
-              &app-cli; bereits in Ihrem <envar>PATH</envar> sein. Die &app-fq; Version, die von Ihrem Paketmanager
-              bereitgestellt wird, kann unter <ulink url="&url-repo;perl:finance-quote/versions">
-              <citetitle>&app-fq;-versions</citetitle></ulink> nachgelesen werden oder mit dem info-Befehl
-              der Softwareverwaltung überprüft werden.
+              &app-cli; bereits in Ihrem <envar>PATH</envar> sein. Die &app-fq; Version, die von
+              Ihrem Paketmanager bereitgestellt wird, kann unter
+              <ulink url="&url-repo;perl:finance-quote/versions">
+              <citetitle>&app-fq;-versions</citetitle></ulink> nachgelesen werden oder mit dem
+              info-Befehl der Softwareverwaltung überprüft werden.
             </simpara>
           </footnote>
         </simpara>
@@ -290,9 +301,10 @@ SYNOPSIS
     </abstract>
 
     <note>
-      <para>In &app; Version 4.x und früher wurden die separaten Perl-Programme <userinput>gnc-fq-check</userinput>
-        an Stelle von <userinput>gnucash-cli --quote info</userinput> und <userinput>gnc-fq-dump</userinput>
-        anstatt <userinput>gnucash-cli --quote dump</userinput> verwendet.
+      <para>In &app; Version 4.x und früher wurden die separaten Perl-Programme
+        <userinput>gnc-fq-check</userinput> an Stelle von <userinput>gnucash-cli --quote
+        info</userinput> und <userinput>gnc-fq-dump</userinput> anstatt <userinput>gnucash-cli
+        --quote dump</userinput> verwendet.
       </para>
     </note>
 
@@ -300,9 +312,10 @@ SYNOPSIS
       <title>Anzeige der &app-fq; Version und der unterstützten Quellen</title>
 
       <abstract>
-        <para>Die Nutzung der Option <replaceable>--quotes info</replaceable> liefert die Versionsnummer des derzeit
-          installierten &app-fq; Moduls sowie eine Liste der verfügbaren Quellen. Es informiert Sie
-          auch, wenn es ein Problem mit Ihrer Installation gibt und nennt die Gründe dafür.
+        <para>Die Nutzung der Option <replaceable>--quotes info</replaceable> liefert die Versionsnummer des
+          derzeit installierten &app-fq; Moduls sowie eine Liste der verfügbaren Quellen. Es
+          informiert Sie auch, wenn es ein Problem mit Ihrer Installation gibt und nennt die Gründe
+          dafür.
         </para>
       </abstract>
 
@@ -314,10 +327,18 @@ SYNOPSIS
         <cmdsynopsis>
           <command>gnucash-cli</command>
           <group choice="req">
-            <arg choice="plain">-Q</arg>
-            <arg choice="plain">--quotes</arg>
+            <arg choice="plain">
+              -Q
+            </arg>
+
+            <arg choice="plain">
+              --quotes
+            </arg>
           </group>
-          <arg choice="plain">info</arg>
+
+          <arg choice="plain">
+            info
+          </arg>
         </cmdsynopsis>
         im Terminal erzeugt die folgende Ausgabe:
       </para>
@@ -348,8 +369,8 @@ yahoo_json   yahooweb     za
       </informalexample>
 
       <para>Wenn es ein Problem mit Ihrer Installation gibt, werden Sie darauf hingeweisen. In dem nachfolgend
-        aufgeführtem Beispiel wird auf Probleme mit den &app-perl;-Modulen Finance::Quote und JSON::Parse
-        hingewiesen:
+        aufgeführtem Beispiel wird auf Probleme mit den &app-perl;-Modulen Finance::Quote und
+        JSON::Parse hingewiesen:
       </para>
 
       <informalexample>
@@ -370,9 +391,10 @@ Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
       <title>Abfrage von Kursen in einem Terminalfenster</title>
 
       <abstract>
-        <para>Die Option <replaceable>--quotes dump</replaceable> liefert Kursdaten für eine Kursquelle und eine Liste
-          von Symbolen in einem Format, das für Menschen leicht zu lesen ist. Dies ist nützlich,
-          um zu überprüfen, ob eine bestimmte Online-Kursquelle erreichbar ist und Daten liefert.
+        <para>Die Option <replaceable>--quotes dump</replaceable> liefert Kursdaten für eine Kursquelle und eine
+          Liste von Symbolen in einem Format, das für Menschen leicht zu lesen ist. Dies ist
+          nützlich, um zu überprüfen, ob eine bestimmte Online-Kursquelle erreichbar ist und
+          Daten liefert.
         </para>
 
         <para>Weiterhin können Sie überprüfen, ob das <xref linkend="tool-ge-Symbol" />, welches Sie für Ihr
@@ -385,8 +407,8 @@ Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
         <para>Sie können <userinput>gnucash-cli --quotes dump</userinput> verwenden, um Kursquellen und Symbole
           einzeln zu testen, wenn &app; einen Fehler beim Abrufen von Kursen meldet. Der Befehl
           zeigt die Felder an, die von &app; genutzt werden. Verwenden Sie die Optionen
-          <userinput>gnucash-cli --verbose --quotes dump</userinput>, um alle Informationen zu sehen, die
-          &app-fq; von der Kursquelle erhält.
+          <userinput>gnucash-cli --verbose --quotes dump</userinput>, um alle Informationen zu
+          sehen, die &app-fq; von der Kursquelle erhält.
         </para>
       </tip>
 
@@ -395,16 +417,36 @@ Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
         <cmdsynopsis>
           <command>gnucash-cli</command>
           <group choice="req">
-            <arg choice="plain">-Q</arg>
-            <arg choice="plain">--quotes</arg>
+            <arg choice="plain">
+              -Q
+            </arg>
+
+            <arg choice="plain">
+              --quotes
+            </arg>
           </group>
-          <arg choice="plain">dump</arg>
+
+          <arg choice="plain">
+            dump
+          </arg>
+
           <group choice="opt">
-            <arg choice="plain">-V</arg>
-            <arg choice="plain">--verbose</arg>
+            <arg choice="plain">
+              -V
+            </arg>
+
+            <arg choice="plain">
+              --verbose
+            </arg>
           </group>
-           <arg choice="plain"><replaceable>Quelle</replaceable></arg>
-           <arg choice="plain" rep="repeat"><replaceable>Symbol</replaceable></arg>
+
+          <arg choice="plain">
+            <replaceable>Quelle</replaceable>
+          </arg>
+
+          <arg choice="plain" rep="repeat">
+            <replaceable>Symbol</replaceable>
+          </arg>
         </cmdsynopsis>
       </para>
 
@@ -415,8 +457,8 @@ Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
 
             <listitem>
               <para>Für den Abruf von Devisenkursen wird die Quelle <userinput>currency</userinput> verwendet, welche
-                mindestens zwei <ulink url="&url-wp-de;ISO_4217">ISO&nbsp;4217</ulink> Währungscodes erfordern;
-                die Wechselkurse werden in der ersten Währung angegeben.
+                mindestens zwei <ulink url="&url-wp-de;ISO_4217">ISO&nbsp;4217</ulink>
+                Währungscodes erfordern; die Wechselkurse werden in der ersten Währung angegeben.
                 <footnote>
                   <para>Seit &app-fq; 1.41 ist die Standardquelle für Währungen <quote>Alpha Vantage</quote>. Lesen Sie
                     auch die Hinweise dazu in <xref linkend="gnc-tbl-fq-currency-source" />.
@@ -464,8 +506,8 @@ $ gnucash-cli --quotes dump yahooweb AAPL
                   </listitem>
 
                   <listitem>
-                    <para>Mit der Option <userinput>--verbose</userinput> wird eine längere Ausgabe mit allen Datenfeldern von
-                      &app-fq; zurückgegeben. Dies kann nützlich sein, um Probleme mit einem
+                    <para>Mit der Option <userinput>--verbose</userinput> wird eine längere Ausgabe mit allen Datenfeldern
+                      von &app-fq; zurückgegeben. Dies kann nützlich sein, um Probleme mit einem
                       &app-fq; Quellmodul zu beheben.
                       <informalexample>
 <?dbfo pgwide="1"?>
@@ -493,8 +535,8 @@ currency_set_by_fq =&gt; 1
                       <note>
                         <para>Beachten Sie, dass wir in diesem Fall als Quelle alphavantage verwendet und den
                           <userinput>ALPHAVANTAGE_API_KEY</userinput> in der Befehlszeile angegeben
-                          haben. Das ist nicht notwendig, wenn der Schlüssel bereits in &mc.ed.pref;
-                          <xref linkend="prefs-online-quotes" /> gespeichert ist.
+                          haben. Das ist nicht notwendig, wenn der Schlüssel bereits in
+                          &mc.ed.pref; <xref linkend="prefs-online-quotes" /> gespeichert ist.
                         </para>
                       </note>
                     </para>
@@ -526,12 +568,14 @@ currency_set_by_fq =&gt; 1
         </step>
 
         <step>
-          <para>Klicken Sie auf die Schaltfläche <guilabel>Wechselkurs abrufen</guilabel> im <xref linkend="trans-win-enter" />.
+          <para>Klicken Sie auf die Schaltfläche <guilabel>Wechselkurs abrufen</guilabel> im
+            <xref linkend="trans-win-enter" />.
           </para>
         </step>
       </procedure>
 
-      <para>Sind die Kursquelle sowie das Symbol richtig eingestellt, wird der aktuelle Kurs in das Feld für den Wechselkurs eingetragen.
+      <para>Sind die Kursquelle sowie das Symbol richtig eingestellt, wird der aktuelle Kurs in das Feld für
+        den Wechselkurs eingetragen.
       </para>
     </sect2>
 
