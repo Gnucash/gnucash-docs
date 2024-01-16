@@ -149,9 +149,9 @@ SYNOPSIS
     [...]
 </screen>
       </informalexample>
-      If you are now shown documentation, then &app-fq; is already installed and you can
-      configure periodical quotes update as described in <xref linkend="fq-auto-quote" />. If no
-      documentation is displayed, you will have to continue with this chapter.
+      If you are now shown documentation, then &app-fq; is already installed and you can configure
+      periodical quotes update as described in <xref linkend="fq-auto-quote" />. If no documentation
+      is displayed, you will have to continue with this chapter.
     </para>
 
     <para>The process of installing &app-fq; depends on the system. For the different supported systems, you
@@ -169,6 +169,14 @@ SYNOPSIS
       <step>
         <simpara>Next, update &app-fq; with <userinput>sudo gnc-fq-update</userinput>.
         </simpara>
+
+        <tip>
+          <simpara>If that fails with <computeroutput>sudo: gnc-fq-update: Command not found</computeroutput>
+            enter <userinput>which gnc-fq-update</userinput>. It might return a path like
+            <computeroutput>/usr/local/bin/gnc-fq-update</computeroutput>. Redo the command with
+            that returned path: <userinput>sudo /usr/local/bin/gnc-fq-update</userinput>.
+          </simpara>
+        </tip>
       </step>
 
       <step>
@@ -176,9 +184,10 @@ SYNOPSIS
           already in a directory that is entered in the <envar>PATH</envar> environment variable.
           <footnote>
             <simpara>If you&rsquo;ve installed &app; packages provided by your distribution, &app-cli; will be on your
-              <envar>PATH</envar>. The &app-fq; version provided by your package manager can be checked
-              at <ulink url="&url-repo;perl:finance-quote/versions">
-              <citetitle>&app-fq;-versions</citetitle></ulink> or by using your package manager's info command.
+              <envar>PATH</envar>. The &app-fq; version provided by your package manager can be
+              checked at <ulink url="&url-repo;perl:finance-quote/versions">
+              <citetitle>&app-fq;-versions</citetitle></ulink> or by using your package manager's
+              info command.
             </simpara>
           </footnote>
         </simpara>
@@ -186,8 +195,9 @@ SYNOPSIS
 
       <step>
         <simpara>If &app-fq; works properly, the command returns the version number of &app-fq; module currently
-          installed as well as a list of sources available via the &app-fq; module. It will also inform
-          you if there is a problem with your installation or if it is missing, and may suggest a fix.
+          installed as well as a list of sources available via the &app-fq; module. It will also
+          inform you if there is a problem with your installation or if it is missing, and may
+          suggest a fix.
         </simpara>
       </step>
     </procedure>
@@ -266,17 +276,17 @@ SYNOPSIS
 
     <abstract>
       <para>&app; provides a commandline facility &app-cli; that one can use with the
-        <replaceable>--quotes</replaceable> option in a terminal session to check the
-        version and supported source modules, to display the quotes or exchange rates for selected
-        securities or currencies, or to update all of the prices in a book without launching the
-        GUI.
+        <replaceable>--quotes</replaceable> option in a terminal session to check the version and
+        supported source modules, to display the quotes or exchange rates for selected securities or
+        currencies, or to update all of the prices in a book without launching the GUI.
       </para>
     </abstract>
 
     <note>
       <para>In &app; version 4.x and earlier one used separate perl programs <userinput>gnc-fq-check</userinput>
-        instead of <userinput>gnucash-cli --quote info</userinput> and <userinput>gnc-fq-dump</userinput>
-        instead of <userinput>gnucash-cli --quote dump</userinput>.
+        instead of <userinput>gnucash-cli --quote info</userinput> and
+        <userinput>gnc-fq-dump</userinput> instead of <userinput>gnucash-cli --quote
+        dump</userinput>.
       </para>
     </note>
 
@@ -290,17 +300,26 @@ SYNOPSIS
         </para>
       </abstract>
 
-      <para>The latest &app-fq; version is &app-fq-vers;. The list of sources that follows depends on the &app-fq; version.
+      <para>The latest &app-fq; version is &app-fq-vers;. The list of sources that follows depends on the
+        &app-fq; version.
       </para>
 
       <para>The input of
         <cmdsynopsis>
           <command>gnucash-cli</command>
           <group choice="req">
-            <arg choice="plain">-Q</arg>
-            <arg choice="plain">--quotes</arg>
+            <arg choice="plain">
+              -Q
+            </arg>
+
+            <arg choice="plain">
+              --quotes
+            </arg>
           </group>
-          <arg choice="plain">info</arg>
+
+          <arg choice="plain">
+            info
+          </arg>
         </cmdsynopsis>
         in the terminal produces the following output:
       </para>
@@ -357,16 +376,16 @@ Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
           particular online quote source is accessible and provides data.
         </para>
 
-        <para>You can also check to see if the symbol you want to use for your online
-          price retrieval is available at the desired quote source.
+        <para>You can also check to see if the symbol you want to use for your online price retrieval is available
+          at the desired quote source.
         </para>
       </abstract>
 
       <tip>
-        <para>You may use <userinput>gnucash-cli --quotes dump</userinput> to test quote sources and symbols 
+        <para>You may use <userinput>gnucash-cli --quotes dump</userinput> to test quote sources and symbols
           individually should &app; report an error during quote retrieval. The command will show
-          the fields required by &app;; use <userinput>gnucash-cli --verbose --quotes dump</userinput>
-          to see all of the information returned by &app-fq;.
+          the fields required by &app;; use <userinput>gnucash-cli --verbose --quotes
+          dump</userinput> to see all of the information returned by &app-fq;.
         </para>
       </tip>
 
@@ -375,16 +394,36 @@ Failed to initialize Finance::Quote: missing_modules Finance::Quote JSON::Parse
         <cmdsynopsis>
           <command>gnucash-cli</command>
           <group choice="req">
-            <arg choice="plain">-Q</arg>
-            <arg choice="plain">--quotes</arg>
+            <arg choice="plain">
+              -Q
+            </arg>
+
+            <arg choice="plain">
+              --quotes
+            </arg>
           </group>
-          <arg choice="plain">dump</arg>
+
+          <arg choice="plain">
+            dump
+          </arg>
+
           <group choice="opt">
-            <arg choice="plain">-V</arg>
-            <arg choice="plain">--verbose</arg>
+            <arg choice="plain">
+              -V
+            </arg>
+
+            <arg choice="plain">
+              --verbose
+            </arg>
           </group>
-           <arg choice="plain"><replaceable>Source</replaceable></arg>
-           <arg choice="plain" rep="repeat"><replaceable>Symbol</replaceable></arg>
+
+          <arg choice="plain">
+            <replaceable>Source</replaceable>
+          </arg>
+
+          <arg choice="plain" rep="repeat">
+            <replaceable>Symbol</replaceable>
+          </arg>
         </cmdsynopsis>
       </para>
 
@@ -489,29 +528,30 @@ currency_set_by_fq =&gt; 1
         <para>To test if &app-fq; works for currencies inside &app;, do the following:
         </para>
 
-          <step>
-            <para>create a transaction with the desired commodity in the book currency,
-            </para>
-          </step>
+        <step>
+          <para>create a transaction with the desired commodity in the book currency,
+          </para>
+        </step>
 
-          <step>
-            <para>make a right click on it,
-            </para>
-          </step>
+        <step>
+          <para>make a right click on it,
+          </para>
+        </step>
 
-          <step>
-            <para>select &gmi.ac.ed-ex; in the context menu.
-            </para>
-          </step>
+        <step>
+          <para>select &gmi.ac.ed-ex; in the context menu.
+          </para>
+        </step>
 
-          <step>
-            <para>In the <xref linkend="trans-win-enter" /> window click the <guilabel>Get exchange rate</guilabel> button.
-            </para>
-          </step>
+        <step>
+          <para>In the <xref linkend="trans-win-enter" /> window click the <guilabel>Get exchange rate</guilabel>
+            button.
+          </para>
+        </step>
       </procedure>
 
-      <para>If the exchange rate source and the symbol are set, the current
-        rate will be entered in the exchange rate field.
+      <para>If the exchange rate source and the symbol are set, the current rate will be entered in the exchange
+        rate field.
       </para>
     </sect2>
 
