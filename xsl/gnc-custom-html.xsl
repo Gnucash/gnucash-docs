@@ -8,4 +8,14 @@
 <xsl:import href="1.79.2/html/chunk.xsl"/>
 <!-- see NOTE ABOUT PATHS in README file for details -->
 
+<!--####################### HTML Parameters   ####################-->
+
+
+
+<!--####################### Files to Include  ####################-->
+
+<!--  GnuCash common customization for HTML, PDF and so on. -->
+<!--  This must be the last entry   -->
+<xsl:include href="gnc-custom-common.xsl" />
+
 </xsl:stylesheet>
