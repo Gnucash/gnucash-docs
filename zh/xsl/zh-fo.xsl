@@ -5,7 +5,7 @@
                 exclude-result-prefixes="#default">
 
 <!-- Importing the base stylesheet. -->
-<xsl:import href="../../xsl/general-fo-customization.xsl"/>
+<xsl:import href="../../xsl/gnc-custom-pdf.xsl"/>
 
 <xsl:attribute-set name="normal.para.spacing">
   <xsl:attribute name="space-before.optimum">.5em</xsl:attribute>
