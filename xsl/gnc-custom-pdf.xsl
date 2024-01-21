@@ -11,6 +11,11 @@
 <xsl:param name="fop1.extensions">1</xsl:param>
 <xsl:param name="header.column.widths">1 4 1</xsl:param>
 
+<!-- Underline the hyperlinks -->
+<xsl:attribute-set name="xref.properties">
+  <xsl:attribute name="text-decoration">underline</xsl:attribute>
+</xsl:attribute-set>
+
 <xsl:param name="generate.toc">
 book      toc,title,figure,table,example,equation
 </xsl:param>
