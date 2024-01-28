@@ -28,7 +28,6 @@ function (add_html_target targetbase lang entities figures xslt_file)
       COMMAND ${CMAKE_COMMAND} -E make_directory "${BUILD_DIR}/stylesheet"
         COMMAND  ${XSLTPROC} ${XSLTPROCFLAGS} ${XSLTPROCFLAGS_HTML}
                              -o "${BUILD_DIR}/"
-                             --param use.id.as.filename "1"
                              --stringparam chunker.output.encoding UTF-8
                              "${xslt_file}"
                              "${CMAKE_CURRENT_SOURCE_DIR}/index.docbook"
