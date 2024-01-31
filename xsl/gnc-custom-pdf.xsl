@@ -16,6 +16,12 @@
   <xsl:attribute name="text-decoration">underline</xsl:attribute>
 </xsl:attribute-set>
 
+<!-- Adjust verbatim elements -->
+<xsl:attribute-set name="monospace.verbatim.properties" use-attribute-sets="verbatim.properties monospace.properties">
+  <xsl:attribute name="font-size">9</xsl:attribute>
+</xsl:attribute-set>
+<xsl:param name="monospace.verbatim.font.width">0.30em</xsl:param>
+
 <xsl:param name="generate.toc">
 book      toc,title,figure,table,example,equation
 </xsl:param>
