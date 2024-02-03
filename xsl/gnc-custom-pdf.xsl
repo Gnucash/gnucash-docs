@@ -23,6 +23,44 @@ book      toc,title,figure,table,example,equation
   </xsl:choose>
 </xsl:param>
 
+<!-- Admonition graphics and aligning title -->
+<!-- Should graphics be included in admonitions? 0 or 1 -->
+<xsl:param name="admon.graphics" select="1"/>
+
+<!-- Specifies the default path and extension for admonition graphics -->
+<xsl:param name="admon.graphics.path">../../stylesheet/</xsl:param>
+<!-- <xsl:param name="admon.graphics.extension">.svg</xsl:param> -->
+
+<!-- Adjust the admonition graphics, title and textblock -->
+<xsl:template match="*" mode="admon.graphic.width">
+  <xsl:text>24pt</xsl:text>
+</xsl:template>
+<xsl:attribute-set name="admonition.title.properties">
+  <xsl:attribute name="font-size">
+    <xsl:value-of select="$body.font.master * 1.2"/>
+    <xsl:text>pt</xsl:text>
+  </xsl:attribute>
+  <xsl:attribute name="space-after.optimum">0.2em</xsl:attribute>
+  <xsl:attribute name="space-after.minimum">0.0em</xsl:attribute>
+  <xsl:attribute name="space-after.maximum">0.2em</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="admonition.properties">
+  <xsl:attribute name="space-before.optimum">0.0em</xsl:attribute>
+  <xsl:attribute name="space-before.minimum">0.0em</xsl:attribute>
+  <xsl:attribute name="space-before.maximum">0.0em</xsl:attribute>
+  <xsl:attribute name="space-after.optimum">0.4em</xsl:attribute>
+  <xsl:attribute name="space-after.minimum">0.2em</xsl:attribute>
+  <xsl:attribute name="space-after.maximum">0.4em</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="graphical.admonition.properties">
+  <xsl:attribute name="space-before.optimum">0.6em</xsl:attribute>
+  <xsl:attribute name="space-before.minimum">0.4em</xsl:attribute>
+  <xsl:attribute name="space-before.maximum">0.8em</xsl:attribute>
+  <xsl:attribute name="space-after.optimum">0.6em</xsl:attribute>
+  <xsl:attribute name="space-after.minimum">0.4em</xsl:attribute>
+  <xsl:attribute name="space-after.maximum">0.8em</xsl:attribute>
+</xsl:attribute-set>
+
 <!--####################### Files to Include  ####################-->
 
 <!-- Change titlepage -->
