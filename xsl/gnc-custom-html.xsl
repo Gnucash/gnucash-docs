@@ -22,52 +22,52 @@
 
 <!-- This one was edited by hand, to make titlepage a separate chunk
      for book and aricle -->
-<xsl:include href="titlepage2.xsl"/>
+<xsl:include href="html-titlepage2.xsl"/>
 
 <!-- Make a separate titlepage and link it behind the main page. -->
 <xsl:param name="generate.titlepage.link" select="1"/>
 
 <!-- Makes the link to the titlepage. -->
-<xsl:include href="chunk-common2.xsl"/> 
+<xsl:include href="html-chunk-common2.xsl"/> 
 
 <!-- Changes appearance of Publisher. -->
-<xsl:include href="publisher.xsl"/>
+<xsl:include href="html-publisher.xsl"/>
 
 <!-- Changes appearance of "Revision history" -->
-<xsl:include href="revhistory.xsl"/>
+<xsl:include href="html-revhistory.xsl"/>
 
 <!-- TOC labelling and generating and depth -->
-<xsl:include href="toc.xsl"/>
+<xsl:include href="html-toc.xsl"/>
 
 <!-- Copyright years are a range. -->
-<xsl:include href="copyright.xsl"/>
+<xsl:include href="html-copyright.xsl"/>
 
 <!-- Admonition graphics and aligning title -->
-<xsl:include href="admonitions.xsl"/>
+<xsl:include href="html-admonitions.xsl"/>
 
 <!-- Outputs Author (s):. -->
-<xsl:include href="author.xsl"/>
+<xsl:include href="html-author.xsl"/>
 
 <!-- Change presentation of othercredit. -->
-<xsl:include href="othercredit.xsl"/>
+<xsl:include href="html-othercredit.xsl"/>
 
 <!-- Adds inline addresses inside the legalnotice. -->
-<xsl:include href="legalnotice.xsl"/>
+<xsl:include href="html-legalnotice.xsl"/>
 
 <!-- Italicizes the <sgmltag>releaseinfo</sgmltag>. -->
-<xsl:include href="releaseinfo.xsl"/>
+<xsl:include href="html-releaseinfo.xsl"/>
 
 <!-- Bolds the <sgmltag>term</sgmltag> in the variable list. -->
-<xsl:include href="variablelist.xsl"/>
+<xsl:include href="html-variablelist.xsl"/>
 
 <!-- Adds an informal procedure. -->
-<xsl:include href="procedure.xsl"/>
+<xsl:include href="html-procedure.xsl"/>
 
 <!-- Glossary customization. -->
-<xsl:include href="glossary.xsl"/>
+<xsl:include href="html-glossary.xsl"/>
 
 <!-- Defaults keycombo to a "+" -->
-<xsl:include href="keycombo.xsl"/>
+<xsl:include href="html-keycombo.xsl"/>
 
 
 <!--  GnuCash common customization for HTML, PDF and so on. -->
