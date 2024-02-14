@@ -10,8 +10,9 @@
 
 <!--####################### HTML Parameters   ####################-->
 
-<xsl:param name="use.id.as.filename" select="1"/>
+<xsl:param name="use.id.as.filename">1</xsl:param>
 <xsl:param name="chunker.output.encoding">UTF-8</xsl:param>
+<xsl:param name="xref.with.number.and.title">0</xsl:param>
 
 <!--####################### Files to Include  ####################-->
 
@@ -25,7 +26,7 @@
 <xsl:include href="html-titlepage2.xsl"/>
 
 <!-- Make a separate titlepage and link it behind the main page. -->
-<xsl:param name="generate.titlepage.link" select="1"/>
+<xsl:param name="generate.titlepage.link">1</xsl:param>
 
 <!-- Makes the link to the titlepage. -->
 <xsl:include href="html-chunk-common2.xsl"/> 
