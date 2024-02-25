@@ -39,6 +39,10 @@ set (figures
         figures/Book_Options_Counters.png
         figures/Book_Options_Tax.png
         figures/Budget_Screen.png
+        figures/Busnss_Tax_Edit.png
+        figures/Busnss_Tax_Organize.png
+        figures/Busnss_Terms_Edit.png
+        figures/Busnss_Terms_Organize.png
         figures/CSV_Import_transactions_Preview.png
         figures/CSV_Transaction_Import_Assistant.png
         figures/Choose_Export_Settings.png

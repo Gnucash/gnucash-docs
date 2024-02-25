@@ -1,382 +1,477 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-gui-de.dtd">
-<!--
-      (Do not remove this comment block.)
+<!-- (Do not remove this comment block.)
   Version: 2.0.0
   Last modified: July 9th 2006
   Maintainers:
-               Chris Lyttle <chris@wilddev.net>
+    Chris Lyttle <chris@wilddev.net>
   Author:
-  		Jon Lapham <lapham@extracta.com.br>
-	updated Patrick Schweiger <pks@spiffykitty.com>
+    Jon Lapham <lapham@extracta.com.br>
+  updated Patrick Schweiger <pks@spiffykitty.com>
   Originally designed by Carol Champagne.
   Translators:
-               (translators put your name and email here)
+    Christian Wehling <christian.wehling@web.de>
 -->
 <chapter id="chapter_busnss">
-  <title>Business Features</title>
+  <title>Geschäftsfunktionen</title>
 
-  <para>&untranslated-de;
-  </para>
-
-  <para>The accounting needs of a business are quite different from that of a person. Businesses have
-    customers that owe money, vendors which are owed money, employee payroll, more complex tax laws,
-    etc. &app; offers business oriented features to facilitate these needs.
-  </para>
-
-  <para>Accounts Receivable (A/R) are used by businesses to record sales for which they are not immediately
-    paid. Accounts Payable (A/P) record bills that they have received, but might not pay until
-    later. These types of accounts are used primarily when you have a lot of bills and receipts
-    flowing in and out, and do not want to lose track of them just because you do not pay or get
-    paid right away. For most home users, A/R and A/P are too complicated to be worth the effort.
-  </para>
-
-  <para>Accounts Receivable (or A/R) refers to products or services provided by your company for which
-    payment has not yet been received. This is represented on the balance sheet as an asset, because
-    the expectation is that you will receive payment soon.
-  </para>
-
-  <para>Accounts Payable (or A/P) refers to products or services bought by your company for which payment
-    has not yet been sent. This is represented on the balance sheet as a liability because you will
-    have to pay for them.
-  </para>
-
-  <sect1 id="busnss-ar-setup1">
-    <title>Initial Setup</title>
-
-    <para>To set up &app; to handle accounts receivable and accounts payable for a company the following
-      preliminary steps must be done.
+  <abstract>
+    <para>&app; bietet einige Funktionen, um die speziellen Anforderungen an eine unternehmerische
+      Buchführung, auch als <quote>Offene-Posten-Verwaltung</quote> bezeichnet, zu erfüllen.
     </para>
 
-    <sect2 id="busnss-setupacct2">
-      <title>Account Setup</title>
+    <para>Primärer Zweck des Geschäftsmoduls ist es, den Überblick bei seinen unbezahlten Rechnungen —
+      von Lieferanten und an Kunden — zu behalten. Die Verwaltung der Lieferantenrechnungen kann
+      auch für Privatanwender interessant sein.
+    </para>
 
-      <para>There are many different ways to set up a business account hierarchy. You can start with the
-        Business Accounts setup which is available from the New Account Hierarchy assistant, or you
-        could build one manually. To access the prebuilt Business Accounts, start &app; and click on
-        &mc.fi.new; and proceed until you see the list of available accounts, select
-        <emphasis>Business Accounts</emphasis>.
-      </para>
-
-      <note>
-        <para>The prebuilt Business Account hierarchy will not meet your needs exactly. You will need to make
-          adjustments for the hierarchy to function well with your particular situation. It should
-          be close enough that it is recommended you begin with it.
-        </para>
-      </note>
-<!--
-      <para>To use &app;&rsquo;s integrated accounts
-      payable system, you must first setup an account of the <emphasis>A/Payable</emphasis>
-      type. The <emphasis>A/Payable</emphasis> account is usually a sub-account
-      under Liabilities. It is within this account that the integrated A/P system
-      places transactions.
-      <screen>Basic A/P Account Hierarchy:
-
--Assets
-  -Bank
--Liabilities
-  -Accounts Payable
--Expenses
-  -AP Expenses</screen>
-</para>
-
-     <para>You need to add additional asset accounts and real expense accounts to make
-     this hierarchy useful.  The important aspects of this hierarchy are that you need
-     an expense account and an Accounts Payable account, with account type set to
-     <emphasis>A/Payable</emphasis>.</para>
--->
-    </sect2>
-
-    <sect2 id="busnss-ar-setuptaxtables">
-      <title>Tax Tables</title>
-
-      <para>Tax Tables can used to determine the tax for customer invoices (or vendor bills).
-      </para>
-
-      <para>A tax table can be assigned to an invoice line or bill line.
-      </para>
-
-      <para>The default invoice line tax table can be assigned to each customer and the default bill line tax
-        table can be assigned to each vendor.
-      </para>
-
-      <para>The default tax table for new customers or new vendors can be specified in the <emphasis>Book
-        Options</emphasis> window which can be accessed by &mc.fi.new;
-        <guilabel>Business</guilabel> tab.
-      </para>
-
-      <para>Tax Tables are maintained using the <emphasis>Sales Tax Table</emphasis> editor which is accessed
-        via menu &mc.bus.tax-tab; . The following fields should be entered:
-      </para>
-
+    <para>Dabei erleichtert die Verwaltung zugehöriger Stammdaten die Vorgänge. Dazu gehören folgende
+      Tabellen:
       <itemizedlist>
         <listitem>
-          <para><guilabel>Name</guilabel> This is the tax table name.
+          <para>Verkaufssteuern — MWSt. in der EU —, welche die Erfassung auf separaten Konten ermöglicht, und
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Type</guilabel> Either <guilabel>Percent %</guilabel> or <guilabel>Value $</guilabel>.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Value</guilabel>This is the percentage or value depending on <guilabel>Type</guilabel>.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Account</guilabel> This is the account to which tax will be posted. For tax collected from
-            customers, this should probably be a Liability account as it must be payed to the
-            government. For tax paid to vendors, if tax laws allow tax paid to vendors to offset tax
-            collected from customers, this should probably also be a Liability account (even though
-            it will usually have a debit balance) so that the net tax owed to the government can be
-            easily observed.
-          </para>
-
-          <para>If you set up Tax on Purchases and Tax on Sales as subaccounts of Liabilities:Tax then the net tax
-            will be rolled up and can be seen in the &app; Accounts tab.
-          </para>
-
-          <para><emphasis>If unsure about tax law requirements, get professional advice.</emphasis>
+          <para>Zahlungsbedingungen zur Berechnung von Skonti.
           </para>
         </listitem>
       </itemizedlist>
-    </sect2>
+      Auf diese kann dann beim Anlegen der Stammdaten der Geschäftspartner zurückgegriffen werden.
+      Bei der Rechnungserfassung wird dann insbesondere auf letztere zurückgegriffen.
+    </para>
 
-    <sect2 id="busnss-setupcname">
-      <title>Company Registration</title>
+    <para>Nachfolgend werden in diesem Kapitel die Dialoge und Fenster beschrieben, die Sie bei der Anwendung
+      der Geschäftsfunktionen unterstützen.
+    </para>
+  </abstract>
 
-      <para>After you have built the account structure and defined your tax tables, register the &app; file as
-        belonging to your company by filling in the data requested in the
-        <xref linkend="business-book-options" /> accessible from the &mc.fi.new; menu item.
+  <sect1 id="busnss-ar-setup1">
+    <title>Vorbereitungen</title>
+
+    <abstract>
+      <para>In diesem Abschnitt werden die Einrichtung von <quote>Steuertabellen</quote> und
+        <quote>Zahlungsbedingungen</quote> beschrieben.
       </para>
-    </sect2>
 
-    <sect2 id="busnss-setup-cntrs">
-      <title>Counters</title>
-
-      <para>Define the format and last used numbers of codes such as customer, invoice, vendor, bill, employee,
-        expense voucher, job number and order. See <xref linkend="counters-book-options" />.
+      <para>Notwendige Anpassungen innerhalb der Kontenstruktur zur Nutzung der Geschäftsfunktionen, werden in
+        <ulink url="&url-docs-de;guide/bus_setup.html">Kurs und Konzepte, Einrichtung der
+        geschäftlichen Buchhaltung</ulink> erklärt.
       </para>
-    </sect2>
+    </abstract>
 
-    <sect2 id="busnss_setup_pref">
-      <title>Business Preferences</title>
+    <sect2 id="busnss-ar-setuptaxtables">
+      <title>Steuertabellen</title>
 
-      <para>Set options on the Business tab of the &app; preferences, which is accessed via &mc.ed.pref; (
-        &mc.macOS.gc.pref; on &mac;). See <xref linkend="prefs-biz" />.
+      <abstract>
+        <para>Steuertabellen werden zur Ermittlung der Steuer für Kundenrechnungen — oder Lieferantenrechnungen
+          — verwendet. Standard-Steuertabellen können, getrennt für Kunden und Lieferanten, in
+          den <guilabel>Buch Optionen</guilabel> auf dem <xref linkend="business-book-options"/>,
+          welchen Sie über &mc.fi.prop; erreichen, voreingestellt werden. Und auch jeder einzelne
+          Posten in einer Rechnung kann mit Hilfe der Steuertabellen unterschiedlich behandelt
+          werden.
+        </para>
+      </abstract>
+
+      <para>Mit Hilfe des Dialogs &mc.bus.tax-tab; können Sie die für Ihr Unternehmen notwendigen
+        Steuertabellen verwalten, anlegen und bearbeiten.
       </para>
+
+      <figure pgwide="1">
+        <title>Steuertabellen verwalten</title>
+
+        <screenshot>
+          <screeninfo>820x240</screeninfo>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Tax_Organize.png" 
+                         srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Der Dialog ist horizontal in zwei Bereiche unterteilt; unterhalb jedes Listenfeldes ermöglichen
+        Schaltflächen die Arbeit mit den darüberliegenden Listeneinträgen.
+      </para>
+
+      <glosslist>
+        <glossentry>
+          <glossterm>Steuertabellen</glossterm>
+          <glossdef>
+            <para>Die linke Liste enthält die unterschiedlichen Steuertabellen. Legen Sie hier die für Ihr
+              Unternehmen notwendigen Tabellen an.
+              <glosslist>
+                <glossentry>
+                  <glossterm>Umbenennen</glossterm>
+                  <glossdef>
+                    <para>Ermöglicht Ihnen die Vergabe eines neuen Names für die ausgewählte Steuertabelle.
+                    </para>
+                  </glossdef>
+                </glossentry>
+
+                <glossentry>
+                  <glossterm>Löschen</glossterm>
+                  <glossdef>
+                    <para>Löscht den markierten Eintrag aus der Liste. Dieser Vorgang ist nicht reversibel!
+                    </para>
+                  </glossdef>
+                </glossentry>
+
+                <glossentry>
+                  <glossterm>Neu</glossterm>
+                  <glossdef>
+                    <para>Öffnet den Dialog <guilabel>Steuertabelle</guilabel> damit Sie eine neue Steuertabelle erstellen
+                      können.
+                    </para>
+                  </glossdef>
+                </glossentry>
+              </glosslist>
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Einträge Steuertabelle</glossterm>
+          <glossdef>
+            <para>In der rechten Liste werden die Konten aufgeführt, die Sie der im linken Fenster markierten
+              Steuertabelle zugeordnet haben. Hier sind mehrere Einträge möglich, da z.B. in den
+              USA neben der Landessteuer noch lokale Steuern —Kreis, Gemeinde— möglich sind.
+              Bei der Berechnung ist die Reihenfolge zu beachten: wird die Steuer nur auf den
+              Nettowarenwert oder auch auf andere Steuern berechnet?
+              <glosslist>
+                <glossentry>
+                  <glossterm>Bearbeiten</glossterm>
+                  <glossdef>
+                    <para>Öffnet den Dialog <guilabel>Einträge Steuertabelle</guilabel> um den markierten Eintrag zu
+                      bearbeiten.
+                    </para>
+                  </glossdef>
+                </glossentry>
+
+                <glossentry>
+                  <glossterm>Löschen</glossterm>
+                  <glossdef>
+                    <para>Löscht den markierten Eintrag aus der Liste. Dieser Vorgang ist nicht reversibel!
+                    </para>
+                  </glossdef>
+                </glossentry>
+
+                <glossentry>
+                  <glossterm>Neu</glossterm>
+                  <glossdef>
+                    <para>Öffnet den Dialog <guilabel>Einträge Steuertabelle</guilabel> mit dessen Hilfe Sie ein neues Konto
+                      auswählen können.
+                    </para>
+                  </glossdef>
+                </glossentry>
+              </glosslist>
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Schließen</glossterm>
+          <glossdef>
+            <para>Schließt den Dialog; Ihre Steuertabellen können sofort zur weiteren Verwendung genutzt werden.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <para>Betätigen Sie die Schaltfläche <guilabel>Neu</guilabel> oder <guilabel>Bearbeiten</guilabel>, so
+        wird der nachfolgende Dialog geöffnet.
+      </para>
+
+      <figure pgwide="1">
+        <title>Steuertabellen bearbeiten</title>
+
+        <screenshot>
+          <screeninfo>331x472</screeninfo>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Tax_Edit.png" 
+                         srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <glosslist>
+        <glossentry>
+          <glossterm>Name</glossterm>
+          <glossdef>
+            <para>Die Bezeichnung der Steuertabelle.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Typ</glossterm>
+          <glossdef>
+            <para>Auszeichnung der Steuer; entweder in <guilabel>Prozent %</guilabel> oder als fester <guilabel>Wert
+              €</guilabel>.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Wert</glossterm>
+          <glossdef>
+            <para>Angabe des Wertes entsprechend der Festlegung in <guilabel>Typ</guilabel>.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Konto</glossterm>
+          <glossdef>
+            <para>Dies ist das Konto, auf das die Steuer gebucht wird. Bei Steuern, die von Kunden gezahlt werden,
+              sollte dies ein Verbindlichkeitenkonto sein, da sie an die Steuerbehörde zu zahlen
+              ist. Falls ein Vorsteuerabzug möglich ist, sollte dies, für an Lieferanten gezahlte
+              Steuern, ebenfalls ein Verbindlichkeitenkonto sein — auch wenn es in der Regel einen
+              negativen Saldo aufweist. So kann der Nettobetrag der Steuer, der an die
+              Steuerbehörde abzuführen ist, leicht festgestellt werden.
+            </para>
+
+            <para>Wenn Sie Umsatz- und Verkaufssteuer als Unterkonten von Verbindlichkeiten:Steuer einrichten, wird
+              die Nettosteuer ständig aufgerechnet und kann in der <xref linkend="gui-acct-tree"/>
+              eingesehen werden.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <warning>
+        <para>Wenn Sie bezüglich der steuergesetzlichen Anforderungen unsicher sind, holen Sie professionellen
+          Rat ein!
+        </para>
+      </warning>
     </sect2>
 
     <sect2 id="busnss-ar-setupterms">
-      <title>Billing Terms</title>
+      <title>Zahlungsbedingungen</title>
 
-      <para>Billing Terms can be used to determine the payment due date and be a guide for determining discount
-        for early payment of invoices (or vendor bills).
-      </para>
-
-      <note>
-        <para>As of &app; 2.6.7, Billing terms are only partially supported. Date due is calculated but discount
-          amount is not.
+      <abstract>
+        <para>Als Anreiz zu einer vorzeitigen Zahlung kann ein als Skonto bezeichneter Preisnachlass dienen.
+          Dieser ist mit einem kurzfristigem Zahlungsziel von Kundenrechnungen — oder
+          Lieferantenrechnungen — verbunden und kann für jede Rechnung individuell zugewiesen
+          werden.
+          <caution>
+            <para>Die Anwendung von Zahlungsbedingungen wird von &app; bisher nur teilweise unterstützt, wobei das
+              Fälligkeitsdatum korrekt ermittelt wird, allerdings wird der gewährte Nachlaß nicht
+              berechnet.
+            </para>
+          </caution>
         </para>
+      </abstract>
 
-        <para>Discount for early invoice payment is not implemented. There are 2 ways this may be done, although
-          neither is recommended, and professional advice should be used to confirm that regulations
-          are being complied with:
-          <itemizedlist>
-            <listitem>
-              <para>After creating and posting a payment which pays the invoice in full, manually edit the payment
-                transaction (usually strongly discouraged) and split the payment to reduce it by the
-                amount of the discount and a create a compensating split in an income (discount)
-                account.
-              </para>
-            </listitem>
-
-            <listitem>
-              <para>Alternatively, after creating and posting a payment for the discounted amount, create a credit note
-                for the discount using a specific negative sales income (discount) account for the
-                transfer account.
-              </para>
-            </listitem>
-          </itemizedlist>
-        </para>
-      </note>
-
-      <para>You can specify the billing terms on each invoice/bill. Invoice billing terms will default from the
-        customer billing terms. Bill billing terms will default from the vendor billing terms.
+      <para>Die Zahlungsbedingungen werden mit dem Editor organisiert, der über den Menüeintrag
+        &mc.bus.bil-edit; aufgerufen wird. Hier haben Sie die Möglichkeit, Ihre individuellen
+        Zahlungsbedingungen udn die Ihrer Lieferanten zu verwalten, neu anzulegen und zu bearbeiten.
       </para>
 
-      <para>Billing Terms are maintained using the Billing Terms Editor which is accessed via menu
-        &mc.bus.bil-edit; . The following fields should be entered:
+      <figure pgwide="1">
+        <title>Zahlungsbedingungen verwalten</title>
+
+        <screenshot>
+          <screeninfo>636x363</screeninfo>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Terms_Organize.png" 
+                         srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Der Dialog ist horizontal in zwei Bereiche unterteilt; links ein Listenfeld, welches die
+        verschiedenen Zahlungsbedingungen enthält. Rechts werden die Vorgaben zu der links
+        markierten Zahlungsbedingung angezeigt. Unterhalb ermöglichen Schaltflächen die Arbeit mit
+        den darüberliegenden Listeneinträgen.
       </para>
 
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Name</guilabel> The internal name of the billing term. For some examples of billing term
-            names and descriptions see <ulink url="&url-wiki-pmt-term;" />
-          </para>
-        </listitem>
+      <glosslist>
+        <glossentry>
+          <glossterm>Zahlungsbedingungen</glossterm>
+          <glossdef>
+            <para>Die Liste in dem linken Bereich enthält die unterschiedlichen Zahlungsbedingungen.
+              <glosslist>
+                <glossentry>
+                  <glossterm>Löschen</glossterm>
+                  <glossdef>
+                    <para>Entfernt den markierten Eintrag aus der Liste. Diese Aktion kann nicht rückgängig gemacht werden!
+                    </para>
+                  </glossdef>
+                </glossentry>
 
-        <listitem>
-          <para><guilabel>Description</guilabel> The description of the billing term, printed on invoices
-          </para>
-        </listitem>
+                <glossentry>
+                  <glossterm>Neu</glossterm>
+                  <glossdef>
+                    <para>Öffnet den Dialog <guilabel>Neue Zahlungsbedingung</guilabel> zur Eingabe der Bedingungen.
+                    </para>
+                  </glossdef>
+                </glossentry>
+              </glosslist>
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para>There are 2 types of billing terms, with different information to be entered
-          </para>
+        <glossentry>
+          <glossterm>Definition Zahlungsbedingungen</glossterm>
+          <glossdef>
+            <para>Im rechten Teil des Dialogs werden zur Information die Parameter der im linken Listenfeld markierten
+              Zahlungsbedingung angezeigt.
+              <glosslist>
+                <glossentry>
+                  <glossterm>Bearbeiten</glossterm>
+                  <glossdef>
+                    <para>Öffnet den Dialog <guilabel>Definition Zahlungsbedingung</guilabel> zur Bearbeiten der vorhandenen
+                      Werte.
+                    </para>
+                  </glossdef>
+                </glossentry>
+              </glosslist>
+            </para>
+          </glossdef>
+        </glossentry>
 
-          <itemizedlist>
-            <listitem>
-              <para>Type Days
-              </para>
+        <glossentry>
+          <glossterm>Schließen</glossterm>
+          <glossdef>
+            <para>Schließt den Dialog; Ihre Zahlungsbedingungen können sofort zur weiteren Verwendung genutzt
+              werden.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
 
-              <itemizedlist>
-                <listitem>
-                  <para><guilabel>Due Days</guilabel> The invoice or bill is due to be paid within this number of days after
-                    the post date
-                  </para>
-                </listitem>
+      <para>Betätigen Sie die Schaltfläche <guilabel>Neu</guilabel> oder <guilabel>Bearbeiten</guilabel>, so
+        wird der nachfolgende Dialog geöffnet.
+      </para>
 
-                <listitem>
-                  <para><guilabel>Discount Days</guilabel> The number of days after the post date during which a discount
-                    will be applied for early payment
-                  </para>
-                </listitem>
+      <figure pgwide="1">
+        <title>Zahlungsbedingungen bearbeiten</title>
 
-                <listitem>
-                  <para><guilabel>Discount %</guilabel> The percentage discount applied for early payment
-                  </para>
-                </listitem>
-              </itemizedlist>
-            </listitem>
+        <screenshot>
+          <screeninfo>400x387</screeninfo>
 
-            <listitem>
-              <para>Type Proximo
-              </para>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Terms_Edit.png" 
+                         srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
 
-              <itemizedlist>
-                <listitem>
-                  <para><guilabel>Due Day</guilabel> The day of the month bills are due
-                  </para>
-                </listitem>
+      <glosslist>
+        <glossentry>
+          <glossterm>Name</glossterm>
+          <glossdef>
+            <para>Der interne Name der Zahlungsbedingung. Einige Beispiele für Namen und Beschreibungen finden Sie
+              unter <ulink url="&url-wp-de;Zahlungsbedingung" />.
+            </para>
+          </glossdef>
+        </glossentry>
 
-                <listitem>
-                  <para><guilabel>Discount Day</guilabel> The last day of the month for the early payment discount
-                  </para>
-                </listitem>
+        <glossentry>
+          <glossterm>Beschreibung</glossterm>
+          <glossdef>
+            <para>Die Beschreibung der Zahlungsbedingung, wie sie auf die Rechnung gedruckt wird.
+            </para>
+          </glossdef>
+        </glossentry>
 
-                <listitem>
-                  <para><guilabel>Discount %</guilabel> The discount percentage applied if paid early
-                  </para>
-                </listitem>
+        <glossentry>
+          <glossterm>Typ</glossterm>
+          <glossdef>
+            <para>Es gibt zwei Arten von Zahlungsbedingungen, für die teilweise unterschiedliche Informationen
+              eingegeben werden müssen.
+              <glosslist>
+                <glossentry>
+                  <glossterm>Tage</glossterm>
+                  <glossdef>
+                    <para><glosslist>
+                        <glossentry>
+                          <glossterm>Fälligkeitstage</glossterm>
+                          <glossdef>
+                            <para>Die Rechnung ist innerhalb dieser Anzahl von Tagen nach Erhalt zu begleichen.
+                            </para>
+                          </glossdef>
+                        </glossentry>
 
-                <listitem>
-                  <para><guilabel>Cutoff Day</guilabel> The cutoff day for applying bills to the next month. After the
-                    cutoff, bills are applied to the following month. Negative values count
-                    backwards from the end of the month.
-                  </para>
-                </listitem>
-              </itemizedlist>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </itemizedlist>
+                        <glossentry>
+                          <glossterm>Tage für Skonto</glossterm>
+                          <glossdef>
+                            <para>Die Anzahl der Tage nach dem Rechnungsdatum, in denen ein Skonto für vorzeitige Zahlung gewährt
+                              wird.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+
+                        <glossentry>
+                          <glossterm>Skonto in Prozent</glossterm>
+                          <glossdef>
+                            <para>Der prozentuale Nachlass bei vorzeitiger Zahlung.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+                      </glosslist>
+                    </para>
+                  </glossdef>
+                </glossentry>
+
+                <glossentry>
+                  <glossterm>Im nächsten Monat</glossterm>
+                  <glossdef>
+                    <para><glosslist>
+                        <glossentry>
+                          <glossterm>Fälligkeitstag</glossterm>
+                          <glossdef>
+                            <para>Der Tag des Monats, an dem die Rechnung fällig ist.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+
+                        <glossentry>
+                          <glossterm>Tag für Skonto</glossterm>
+                          <glossdef>
+                            <para>Der letzte Tag des Monats für den Skontoabzug.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+
+                        <glossentry>
+                          <glossterm>Skonto in %</glossterm>
+                          <glossdef>
+                            <para>Der prozentuale Nachlass bei vorzeitiger Zahlung.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+
+                        <glossentry>
+                          <glossterm>Stichtag Monatswechsel</glossterm>
+                          <glossdef>
+                            <para>Nach diesem Stichtag werden die Rechnungen im folgenden Monat berechnet. Durch Eingabe eines
+                              negativen Wertes wird vom Monatsende an rückwärts gezählt.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+                      </glosslist>
+                    </para>
+                  </glossdef>
+                </glossentry>
+              </glosslist>
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
     </sect2>
-  </sect1>
-
-  <sect1 id="busnss-ar-components1">
-    <title>Accounts Receivable</title>
-
-    <para>&app; has an integrated accounts receivable system.
-    </para>
-
-    <para>To use &app;&rsquo;s integrated accounts receivable system, you must first set up <emphasis>Accounts
-      Receivable</emphasis> accounts of type <emphasis>A/Receivable</emphasis> under
-      <emphasis>Assets</emphasis> to accrue income you're owed. It is within this account that the
-      integrated A/R system will place transactions, debiting it when you post bills and crediting
-      it when you receive payments.
-<screen>Basic A/R Account Hierarchy:
-
--Assets
-  -Accounts Receivable
-  -Checking
--Income
-  -Sales
--Liabilities
-  -Tax
-    -Tax on Purchases
-    -Tax on Sales</screen>
-    </para>
-
-    <important>
-      <para>If you deal with customers in more than one currency you will need a separate <emphasis>Accounts
-        Receivable</emphasis> account for each currency:
-<screen>-Assets
-  -Accounts Receivable
-    -CHF
-    -EUR
-    :</screen>
-      </para>
-    </important>
-
-    <note>
-      <para>You need to add additional asset, expense, and income accounts to this hierarchy for it to be
-        useful. The important aspects of this hierarchy are the use of an income account and the
-        <emphasis>Accounts Receivable</emphasis> asset account, with account type set to
-        <emphasis>A/Receivable</emphasis>.
-      </para>
-    </note>
-
-    <para>The transactions generated by the A/R system are recorded within the <emphasis>Accounts
-      Receivable</emphasis> account. You generally do not work directly with this account. You
-      generally work with the four integrated &app; A/R application components available through the
-      &mc.bus.cus; sub-menu. These four components are:
-    </para>
-
-    <variablelist>
-      <varlistentry>
-        <term><xref linkend="busnss-ar-customers1" /></term>
-
-        <listitem>
-          <para>People or companies to whom you sell products or services on credit.
-          </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><xref linkend="busnss-ar-invoices1" /></term>
-
-        <listitem>
-          <para>The physical invoice you send to a customer to request payment. This invoice contains an itemized
-            list of things you sold.
-          </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><xref linkend="busnss-ar-jobs1" /></term>
-
-        <listitem>
-          <para>Is where you register Customer Jobs. Jobs are a mechanism by which you can group multiple invoices
-            to a particular customer.
-          </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><xref linkend="busnss-ar-payment1" /></term>
-
-        <listitem>
-          <para>Used to register payments you received from a customer.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>The following sections introduce the individual components in more detail.
-    </para>
   </sect1>
 
   <sect1 id="busnss-ar-customers1">
