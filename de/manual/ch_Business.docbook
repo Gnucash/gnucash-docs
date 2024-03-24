@@ -1,1279 +1,1806 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-gui-de.dtd">
-<!--
-      (Do not remove this comment block.)
+<!-- (Do not remove this comment block.)
   Version: 2.0.0
   Last modified: July 9th 2006
   Maintainers:
-               Chris Lyttle <chris@wilddev.net>
+    Chris Lyttle <chris@wilddev.net>
   Author:
-  		Jon Lapham <lapham@extracta.com.br>
-	updated Patrick Schweiger <pks@spiffykitty.com>
+    Jon Lapham <lapham@extracta.com.br>
+  updated Patrick Schweiger <pks@spiffykitty.com>
   Originally designed by Carol Champagne.
   Translators:
-               (translators put your name and email here)
+    Christian Wehling <christian.wehling@web.de>
 -->
 <chapter id="chapter_busnss">
-  <title>Business Features</title>
+  <title>Geschäftsfunktionen</title>
 
-  <para>&untranslated-de;
-  </para>
-
-  <para>The accounting needs of a business are quite different from that of a person. Businesses have
-    customers that owe money, vendors which are owed money, employee payroll, more complex tax laws,
-    etc. &app; offers business oriented features to facilitate these needs.
-  </para>
-
-  <para>Accounts Receivable (A/R) are used by businesses to record sales for which they are not immediately
-    paid. Accounts Payable (A/P) record bills that they have received, but might not pay until
-    later. These types of accounts are used primarily when you have a lot of bills and receipts
-    flowing in and out, and do not want to lose track of them just because you do not pay or get
-    paid right away. For most home users, A/R and A/P are too complicated to be worth the effort.
-  </para>
-
-  <para>Accounts Receivable (or A/R) refers to products or services provided by your company for which
-    payment has not yet been received. This is represented on the balance sheet as an asset, because
-    the expectation is that you will receive payment soon.
-  </para>
-
-  <para>Accounts Payable (or A/P) refers to products or services bought by your company for which payment
-    has not yet been sent. This is represented on the balance sheet as a liability because you will
-    have to pay for them.
-  </para>
-
-  <sect1 id="busnss-ar-setup1">
-    <title>Initial Setup</title>
-
-    <para>To set up &app; to handle accounts receivable and accounts payable for a company the following
-      preliminary steps must be done.
+  <abstract>
+    <para>&app; bietet einige Funktionen, um die speziellen Anforderungen an eine unternehmerische
+      Buchführung, auch als <quote>Offene-Posten-Verwaltung</quote> bezeichnet, zu erfüllen.
     </para>
 
-    <sect2 id="busnss-setupacct2">
-      <title>Account Setup</title>
+    <para>Primärer Zweck des Geschäftsmoduls ist es, den Überblick bei seinen unbezahlten Rechnungen —
+      von Lieferanten und an Kunden — zu behalten. Die Verwaltung der Lieferantenrechnungen kann
+      auch für Privatanwender interessant sein.
+    </para>
 
-      <para>There are many different ways to set up a business account hierarchy. You can start with the
-        Business Accounts setup which is available from the New Account Hierarchy assistant, or you
-        could build one manually. To access the prebuilt Business Accounts, start &app; and click on
-        &mc.fi.new; and proceed until you see the list of available accounts, select
-        <emphasis>Business Accounts</emphasis>.
-      </para>
-
-      <note>
-        <para>The prebuilt Business Account hierarchy will not meet your needs exactly. You will need to make
-          adjustments for the hierarchy to function well with your particular situation. It should
-          be close enough that it is recommended you begin with it.
-        </para>
-      </note>
-<!--
-      <para>To use &app;&rsquo;s integrated accounts
-      payable system, you must first setup an account of the <emphasis>A/Payable</emphasis>
-      type. The <emphasis>A/Payable</emphasis> account is usually a sub-account
-      under Liabilities. It is within this account that the integrated A/P system
-      places transactions.
-      <screen>Basic A/P Account Hierarchy:
-
--Assets
-  -Bank
--Liabilities
-  -Accounts Payable
--Expenses
-  -AP Expenses</screen>
-</para>
-
-     <para>You need to add additional asset accounts and real expense accounts to make
-     this hierarchy useful.  The important aspects of this hierarchy are that you need
-     an expense account and an Accounts Payable account, with account type set to
-     <emphasis>A/Payable</emphasis>.</para>
--->
-    </sect2>
-
-    <sect2 id="busnss-ar-setuptaxtables">
-      <title>Tax Tables</title>
-
-      <para>Tax Tables can used to determine the tax for customer invoices (or vendor bills).
-      </para>
-
-      <para>A tax table can be assigned to an invoice line or bill line.
-      </para>
-
-      <para>The default invoice line tax table can be assigned to each customer and the default bill line tax
-        table can be assigned to each vendor.
-      </para>
-
-      <para>The default tax table for new customers or new vendors can be specified in the <emphasis>Book
-        Options</emphasis> window which can be accessed by &mc.fi.new;
-        <guilabel>Business</guilabel> tab.
-      </para>
-
-      <para>Tax Tables are maintained using the <emphasis>Sales Tax Table</emphasis> editor which is accessed
-        via menu &mc.bus.tax-tab; . The following fields should be entered:
-      </para>
-
+    <para>Dabei erleichtert die Verwaltung zugehöriger Stammdaten die Vorgänge. Dazu gehören folgende
+      Tabellen:
       <itemizedlist>
         <listitem>
-          <para><guilabel>Name</guilabel> This is the tax table name.
+          <para>Verkaufssteuern — MWSt. in der EU —, welche die Erfassung auf separaten Konten ermöglicht, und
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Type</guilabel> Either <guilabel>Percent %</guilabel> or <guilabel>Value $</guilabel>.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Value</guilabel>This is the percentage or value depending on <guilabel>Type</guilabel>.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Account</guilabel> This is the account to which tax will be posted. For tax collected from
-            customers, this should probably be a Liability account as it must be payed to the
-            government. For tax paid to vendors, if tax laws allow tax paid to vendors to offset tax
-            collected from customers, this should probably also be a Liability account (even though
-            it will usually have a debit balance) so that the net tax owed to the government can be
-            easily observed.
-          </para>
-
-          <para>If you set up Tax on Purchases and Tax on Sales as subaccounts of Liabilities:Tax then the net tax
-            will be rolled up and can be seen in the &app; Accounts tab.
-          </para>
-
-          <para><emphasis>If unsure about tax law requirements, get professional advice.</emphasis>
+          <para>Zahlungsbedingungen zur Berechnung von Skonti.
           </para>
         </listitem>
       </itemizedlist>
-    </sect2>
+      Auf diese kann dann beim Anlegen der Stammdaten der Geschäftspartner zurückgegriffen werden.
+      Bei der Rechnungserfassung wird dann insbesondere auf letztere zurückgegriffen.
+    </para>
 
-    <sect2 id="busnss-setupcname">
-      <title>Company Registration</title>
+    <para>Nachfolgend werden in diesem Kapitel die Dialoge und Fenster beschrieben, die Sie bei der Anwendung
+      der Geschäftsfunktionen unterstützen.
+    </para>
+  </abstract>
 
-      <para>After you have built the account structure and defined your tax tables, register the &app; file as
-        belonging to your company by filling in the data requested in the
-        <xref linkend="business-book-options" /> accessible from the &mc.fi.new; menu item.
+  <sect1 id="busnss-ar-setup1">
+    <title>Vorbereitungen</title>
+
+    <abstract>
+      <para>In diesem Abschnitt werden die Einrichtung von <quote>Steuertabellen</quote> und
+        <quote>Zahlungsbedingungen</quote> beschrieben.
       </para>
-    </sect2>
 
-    <sect2 id="busnss-setup-cntrs">
-      <title>Counters</title>
-
-      <para>Define the format and last used numbers of codes such as customer, invoice, vendor, bill, employee,
-        expense voucher, job number and order. See <xref linkend="counters-book-options" />.
+      <para>Notwendige Anpassungen innerhalb der Kontenstruktur zur Nutzung der Geschäftsfunktionen, werden in
+        <ulink url="&url-docs-de;guide/bus_setup.html">Kurs und Konzepte, Einrichtung der
+        geschäftlichen Buchhaltung</ulink> erklärt.
       </para>
-    </sect2>
+    </abstract>
 
-    <sect2 id="busnss_setup_pref">
-      <title>Business Preferences</title>
+    <sect2 id="busnss-ar-setuptaxtables">
+      <title>Steuertabellen</title>
 
-      <para>Set options on the Business tab of the &app; preferences, which is accessed via &mc.ed.pref; (
-        &mc.macOS.gc.pref; on &mac;). See <xref linkend="prefs-biz" />.
+      <abstract>
+        <para>Steuertabellen werden zur Ermittlung der Steuer für Kundenrechnungen — oder Lieferantenrechnungen
+          — verwendet. Standard-Steuertabellen können, getrennt für Kunden und Lieferanten, in
+          den <guilabel>Buch Optionen</guilabel> auf dem <xref linkend="business-book-options"/>,
+          welchen Sie über &mc.fi.prop; erreichen, voreingestellt werden. Und auch jeder einzelne
+          Posten in einer Rechnung kann mit Hilfe der Steuertabellen unterschiedlich behandelt
+          werden.
+        </para>
+      </abstract>
+
+      <para>Mit Hilfe des Dialogs &mc.bus.tax-tab; können Sie die für Ihr Unternehmen notwendigen
+        Steuertabellen verwalten, anlegen und bearbeiten.
       </para>
+
+      <figure pgwide="1">
+        <title>Steuertabellen verwalten</title>
+
+        <screenshot>
+          <screeninfo>820x240</screeninfo>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Tax_Organize.png" 
+                         srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Der Dialog ist horizontal in zwei Bereiche unterteilt; unterhalb jedes Listenfeldes ermöglichen
+        Schaltflächen die Arbeit mit den darüberliegenden Listeneinträgen.
+      </para>
+
+      <glosslist>
+        <glossentry>
+          <glossterm>Steuertabellen</glossterm>
+          <glossdef>
+            <para>Die linke Liste enthält die unterschiedlichen Steuertabellen. Legen Sie hier die für Ihr
+              Unternehmen notwendigen Tabellen an.
+              <glosslist>
+                <glossentry>
+                  <glossterm>Umbenennen</glossterm>
+                  <glossdef>
+                    <para>Ermöglicht Ihnen die Vergabe eines neuen Names für die ausgewählte Steuertabelle.
+                    </para>
+                  </glossdef>
+                </glossentry>
+
+                <glossentry>
+                  <glossterm>Löschen</glossterm>
+                  <glossdef>
+                    <para>Löscht den markierten Eintrag aus der Liste. Dieser Vorgang ist nicht reversibel!
+                    </para>
+                  </glossdef>
+                </glossentry>
+
+                <glossentry>
+                  <glossterm>Neu</glossterm>
+                  <glossdef>
+                    <para>Öffnet den Dialog <guilabel>Steuertabelle</guilabel> damit Sie eine neue Steuertabelle erstellen
+                      können.
+                    </para>
+                  </glossdef>
+                </glossentry>
+              </glosslist>
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Einträge Steuertabelle</glossterm>
+          <glossdef>
+            <para>In der rechten Liste werden die Konten aufgeführt, die Sie der im linken Fenster markierten
+              Steuertabelle zugeordnet haben. Hier sind mehrere Einträge möglich, da z.B. in den
+              USA neben der Landessteuer noch lokale Steuern —Kreis, Gemeinde— möglich sind.
+              Bei der Berechnung ist die Reihenfolge zu beachten: wird die Steuer nur auf den
+              Nettowarenwert oder auch auf andere Steuern berechnet?
+              <glosslist>
+                <glossentry>
+                  <glossterm>Bearbeiten</glossterm>
+                  <glossdef>
+                    <para>Öffnet den Dialog <guilabel>Einträge Steuertabelle</guilabel> um den markierten Eintrag zu
+                      bearbeiten.
+                    </para>
+                  </glossdef>
+                </glossentry>
+
+                <glossentry>
+                  <glossterm>Löschen</glossterm>
+                  <glossdef>
+                    <para>Löscht den markierten Eintrag aus der Liste. Dieser Vorgang ist nicht reversibel!
+                    </para>
+                  </glossdef>
+                </glossentry>
+
+                <glossentry>
+                  <glossterm>Neu</glossterm>
+                  <glossdef>
+                    <para>Öffnet den Dialog <guilabel>Einträge Steuertabelle</guilabel> mit dessen Hilfe Sie ein neues Konto
+                      auswählen können.
+                    </para>
+                  </glossdef>
+                </glossentry>
+              </glosslist>
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Schließen</glossterm>
+          <glossdef>
+            <para>Schließt den Dialog; Ihre Steuertabellen können sofort zur weiteren Verwendung genutzt werden.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <para>Betätigen Sie die Schaltfläche <guilabel>Neu</guilabel> oder <guilabel>Bearbeiten</guilabel>, so
+        wird der nachfolgende Dialog geöffnet.
+      </para>
+
+      <figure pgwide="1">
+        <title>Steuertabellen bearbeiten</title>
+
+        <screenshot>
+          <screeninfo>331x472</screeninfo>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Tax_Edit.png" 
+                         srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <glosslist>
+        <glossentry>
+          <glossterm>Name</glossterm>
+          <glossdef>
+            <para>Die Bezeichnung der Steuertabelle.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Typ</glossterm>
+          <glossdef>
+            <para>Auszeichnung der Steuer; entweder in <guilabel>Prozent %</guilabel> oder als fester <guilabel>Wert
+              €</guilabel>.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Wert</glossterm>
+          <glossdef>
+            <para>Angabe des Wertes entsprechend der Festlegung in <guilabel>Typ</guilabel>.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Konto</glossterm>
+          <glossdef>
+            <para>Dies ist das Konto, auf das die Steuer gebucht wird. Bei Steuern, die von Kunden gezahlt werden,
+              sollte dies ein Verbindlichkeitenkonto sein, da sie an die Steuerbehörde zu zahlen
+              ist. Falls ein Vorsteuerabzug möglich ist, sollte dies, für an Lieferanten gezahlte
+              Steuern, ebenfalls ein Verbindlichkeitenkonto sein — auch wenn es in der Regel einen
+              negativen Saldo aufweist. So kann der Nettobetrag der Steuer, der an die
+              Steuerbehörde abzuführen ist, leicht festgestellt werden.
+            </para>
+
+            <para>Wenn Sie Umsatz- und Verkaufssteuer als Unterkonten von Verbindlichkeiten:Steuer einrichten, wird
+              die Nettosteuer ständig aufgerechnet und kann in der <xref linkend="gui-acct-tree"/>
+              eingesehen werden.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <warning>
+        <para>Wenn Sie bezüglich der steuergesetzlichen Anforderungen unsicher sind, holen Sie professionellen
+          Rat ein!
+        </para>
+      </warning>
     </sect2>
 
     <sect2 id="busnss-ar-setupterms">
-      <title>Billing Terms</title>
+      <title>Zahlungsbedingungen</title>
 
-      <para>Billing Terms can be used to determine the payment due date and be a guide for determining discount
-        for early payment of invoices (or vendor bills).
-      </para>
-
-      <note>
-        <para>As of &app; 2.6.7, Billing terms are only partially supported. Date due is calculated but discount
-          amount is not.
+      <abstract>
+        <para>Als Anreiz zu einer vorzeitigen Zahlung kann ein als Skonto bezeichneter Preisnachlass dienen.
+          Dieser ist mit einem kurzfristigem Zahlungsziel von Kundenrechnungen — oder
+          Lieferantenrechnungen — verbunden und kann für jede Rechnung individuell zugewiesen
+          werden.
+          <caution>
+            <para>Die Anwendung von Zahlungsbedingungen wird von &app; bisher nur teilweise unterstützt, wobei das
+              Fälligkeitsdatum korrekt ermittelt wird, allerdings wird der gewährte Nachlaß nicht
+              berechnet.
+            </para>
+          </caution>
         </para>
+      </abstract>
 
-        <para>Discount for early invoice payment is not implemented. There are 2 ways this may be done, although
-          neither is recommended, and professional advice should be used to confirm that regulations
-          are being complied with:
-          <itemizedlist>
-            <listitem>
-              <para>After creating and posting a payment which pays the invoice in full, manually edit the payment
-                transaction (usually strongly discouraged) and split the payment to reduce it by the
-                amount of the discount and a create a compensating split in an income (discount)
-                account.
-              </para>
-            </listitem>
-
-            <listitem>
-              <para>Alternatively, after creating and posting a payment for the discounted amount, create a credit note
-                for the discount using a specific negative sales income (discount) account for the
-                transfer account.
-              </para>
-            </listitem>
-          </itemizedlist>
-        </para>
-      </note>
-
-      <para>You can specify the billing terms on each invoice/bill. Invoice billing terms will default from the
-        customer billing terms. Bill billing terms will default from the vendor billing terms.
+      <para>Die Zahlungsbedingungen werden mit dem Editor organisiert, der über den Menüeintrag
+        &mc.bus.bil-edit; aufgerufen wird. Hier haben Sie die Möglichkeit, Ihre individuellen
+        Zahlungsbedingungen udn die Ihrer Lieferanten zu verwalten, neu anzulegen und zu bearbeiten.
       </para>
 
-      <para>Billing Terms are maintained using the Billing Terms Editor which is accessed via menu
-        &mc.bus.bil-edit; . The following fields should be entered:
+      <figure pgwide="1">
+        <title>Zahlungsbedingungen verwalten</title>
+
+        <screenshot>
+          <screeninfo>636x363</screeninfo>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Terms_Organize.png" 
+                         srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Der Dialog ist horizontal in zwei Bereiche unterteilt; links ein Listenfeld, welches die
+        verschiedenen Zahlungsbedingungen enthält. Rechts werden die Vorgaben zu der links
+        markierten Zahlungsbedingung angezeigt. Unterhalb ermöglichen Schaltflächen die Arbeit mit
+        den darüberliegenden Listeneinträgen.
       </para>
 
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Name</guilabel> The internal name of the billing term. For some examples of billing term
-            names and descriptions see <ulink url="&url-wiki-pmt-term;" />
-          </para>
-        </listitem>
+      <glosslist>
+        <glossentry>
+          <glossterm>Zahlungsbedingungen</glossterm>
+          <glossdef>
+            <para>Die Liste in dem linken Bereich enthält die unterschiedlichen Zahlungsbedingungen.
+              <glosslist>
+                <glossentry>
+                  <glossterm>Löschen</glossterm>
+                  <glossdef>
+                    <para>Entfernt den markierten Eintrag aus der Liste. Diese Aktion kann nicht rückgängig gemacht werden!
+                    </para>
+                  </glossdef>
+                </glossentry>
 
-        <listitem>
-          <para><guilabel>Description</guilabel> The description of the billing term, printed on invoices
-          </para>
-        </listitem>
+                <glossentry>
+                  <glossterm>Neu</glossterm>
+                  <glossdef>
+                    <para>Öffnet den Dialog <guilabel>Neue Zahlungsbedingung</guilabel> zur Eingabe der Bedingungen.
+                    </para>
+                  </glossdef>
+                </glossentry>
+              </glosslist>
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para>There are 2 types of billing terms, with different information to be entered
-          </para>
+        <glossentry>
+          <glossterm>Definition Zahlungsbedingungen</glossterm>
+          <glossdef>
+            <para>Im rechten Teil des Dialogs werden zur Information die Parameter der im linken Listenfeld markierten
+              Zahlungsbedingung angezeigt.
+              <glosslist>
+                <glossentry>
+                  <glossterm>Bearbeiten</glossterm>
+                  <glossdef>
+                    <para>Öffnet den Dialog <guilabel>Definition Zahlungsbedingung</guilabel> zur Bearbeiten der vorhandenen
+                      Werte.
+                    </para>
+                  </glossdef>
+                </glossentry>
+              </glosslist>
+            </para>
+          </glossdef>
+        </glossentry>
 
-          <itemizedlist>
-            <listitem>
-              <para>Type Days
-              </para>
+        <glossentry>
+          <glossterm>Schließen</glossterm>
+          <glossdef>
+            <para>Schließt den Dialog; Ihre Zahlungsbedingungen können sofort zur weiteren Verwendung genutzt
+              werden.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
 
-              <itemizedlist>
-                <listitem>
-                  <para><guilabel>Due Days</guilabel> The invoice or bill is due to be paid within this number of days after
-                    the post date
-                  </para>
-                </listitem>
+      <para>Betätigen Sie die Schaltfläche <guilabel>Neu</guilabel> oder <guilabel>Bearbeiten</guilabel>, so
+        wird der nachfolgende Dialog geöffnet.
+      </para>
 
-                <listitem>
-                  <para><guilabel>Discount Days</guilabel> The number of days after the post date during which a discount
-                    will be applied for early payment
-                  </para>
-                </listitem>
+      <figure pgwide="1">
+        <title>Zahlungsbedingungen bearbeiten</title>
 
-                <listitem>
-                  <para><guilabel>Discount %</guilabel> The percentage discount applied for early payment
-                  </para>
-                </listitem>
-              </itemizedlist>
-            </listitem>
+        <screenshot>
+          <screeninfo>400x387</screeninfo>
 
-            <listitem>
-              <para>Type Proximo
-              </para>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Terms_Edit.png" 
+                         srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
 
-              <itemizedlist>
-                <listitem>
-                  <para><guilabel>Due Day</guilabel> The day of the month bills are due
-                  </para>
-                </listitem>
+      <glosslist>
+        <glossentry>
+          <glossterm>Name</glossterm>
+          <glossdef>
+            <para>Der interne Name der Zahlungsbedingung. Einige Beispiele für Namen und Beschreibungen finden Sie
+              unter <ulink url="&url-wp-de;Zahlungsbedingung" />.
+            </para>
+          </glossdef>
+        </glossentry>
 
-                <listitem>
-                  <para><guilabel>Discount Day</guilabel> The last day of the month for the early payment discount
-                  </para>
-                </listitem>
+        <glossentry>
+          <glossterm>Beschreibung</glossterm>
+          <glossdef>
+            <para>Die Beschreibung der Zahlungsbedingung, wie sie auf die Rechnung gedruckt wird.
+            </para>
+          </glossdef>
+        </glossentry>
 
-                <listitem>
-                  <para><guilabel>Discount %</guilabel> The discount percentage applied if paid early
-                  </para>
-                </listitem>
+        <glossentry>
+          <glossterm>Typ</glossterm>
+          <glossdef>
+            <para>Es gibt zwei Arten von Zahlungsbedingungen, für die teilweise unterschiedliche Informationen
+              eingegeben werden müssen.
+              <glosslist>
+                <glossentry>
+                  <glossterm>Tage</glossterm>
+                  <glossdef>
+                    <para><glosslist>
+                        <glossentry>
+                          <glossterm>Fälligkeitstage</glossterm>
+                          <glossdef>
+                            <para>Die Rechnung ist innerhalb dieser Anzahl von Tagen nach Erhalt zu begleichen.
+                            </para>
+                          </glossdef>
+                        </glossentry>
 
-                <listitem>
-                  <para><guilabel>Cutoff Day</guilabel> The cutoff day for applying bills to the next month. After the
-                    cutoff, bills are applied to the following month. Negative values count
-                    backwards from the end of the month.
-                  </para>
-                </listitem>
-              </itemizedlist>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </itemizedlist>
+                        <glossentry>
+                          <glossterm>Tage für Skonto</glossterm>
+                          <glossdef>
+                            <para>Die Anzahl der Tage nach dem Rechnungsdatum, in denen ein Skonto für vorzeitige Zahlung gewährt
+                              wird.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+
+                        <glossentry>
+                          <glossterm>Skonto in Prozent</glossterm>
+                          <glossdef>
+                            <para>Der prozentuale Nachlass bei vorzeitiger Zahlung.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+                      </glosslist>
+                    </para>
+                  </glossdef>
+                </glossentry>
+
+                <glossentry>
+                  <glossterm>Im nächsten Monat</glossterm>
+                  <glossdef>
+                    <para><glosslist>
+                        <glossentry>
+                          <glossterm>Fälligkeitstag</glossterm>
+                          <glossdef>
+                            <para>Der Tag des Monats, an dem die Rechnung fällig ist.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+
+                        <glossentry>
+                          <glossterm>Tag für Skonto</glossterm>
+                          <glossdef>
+                            <para>Der letzte Tag des Monats für den Skontoabzug.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+
+                        <glossentry>
+                          <glossterm>Skonto in %</glossterm>
+                          <glossdef>
+                            <para>Der prozentuale Nachlass bei vorzeitiger Zahlung.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+
+                        <glossentry>
+                          <glossterm>Stichtag Monatswechsel</glossterm>
+                          <glossdef>
+                            <para>Nach diesem Stichtag werden die Rechnungen im folgenden Monat berechnet. Durch Eingabe eines
+                              negativen Wertes wird vom Monatsende an rückwärts gezählt.
+                            </para>
+                          </glossdef>
+                        </glossentry>
+                      </glosslist>
+                    </para>
+                  </glossdef>
+                </glossentry>
+              </glosslist>
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
     </sect2>
-  </sect1>
-
-  <sect1 id="busnss-ar-components1">
-    <title>Accounts Receivable</title>
-
-    <para>&app; has an integrated accounts receivable system.
-    </para>
-
-    <para>To use &app;&rsquo;s integrated accounts receivable system, you must first set up <emphasis>Accounts
-      Receivable</emphasis> accounts of type <emphasis>A/Receivable</emphasis> under
-      <emphasis>Assets</emphasis> to accrue income you're owed. It is within this account that the
-      integrated A/R system will place transactions, debiting it when you post bills and crediting
-      it when you receive payments.
-<screen>Basic A/R Account Hierarchy:
-
--Assets
-  -Accounts Receivable
-  -Checking
--Income
-  -Sales
--Liabilities
-  -Tax
-    -Tax on Purchases
-    -Tax on Sales</screen>
-    </para>
-
-    <important>
-      <para>If you deal with customers in more than one currency you will need a separate <emphasis>Accounts
-        Receivable</emphasis> account for each currency:
-<screen>-Assets
-  -Accounts Receivable
-    -CHF
-    -EUR
-    :</screen>
-      </para>
-    </important>
-
-    <note>
-      <para>You need to add additional asset, expense, and income accounts to this hierarchy for it to be
-        useful. The important aspects of this hierarchy are the use of an income account and the
-        <emphasis>Accounts Receivable</emphasis> asset account, with account type set to
-        <emphasis>A/Receivable</emphasis>.
-      </para>
-    </note>
-
-    <para>The transactions generated by the A/R system are recorded within the <emphasis>Accounts
-      Receivable</emphasis> account. You generally do not work directly with this account. You
-      generally work with the four integrated &app; A/R application components available through the
-      &mc.bus.cus; sub-menu. These four components are:
-    </para>
-
-    <variablelist>
-      <varlistentry>
-        <term><xref linkend="busnss-ar-customers1" /></term>
-
-        <listitem>
-          <para>People or companies to whom you sell products or services on credit.
-          </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><xref linkend="busnss-ar-invoices1" /></term>
-
-        <listitem>
-          <para>The physical invoice you send to a customer to request payment. This invoice contains an itemized
-            list of things you sold.
-          </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><xref linkend="busnss-ar-jobs1" /></term>
-
-        <listitem>
-          <para>Is where you register Customer Jobs. Jobs are a mechanism by which you can group multiple invoices
-            to a particular customer.
-          </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><xref linkend="busnss-ar-payment1" /></term>
-
-        <listitem>
-          <para>Used to register payments you received from a customer.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>The following sections introduce the individual components in more detail.
-    </para>
   </sect1>
 
   <sect1 id="busnss-ar-customers1">
-    <title>Customers</title>
+    <title>Kunden</title>
 
-    <para>Customers are people or companies to whom you sell goods or services. They must be registered within
-      the A/R system.
+    <abstract>
+      <para>&app; bietet Ihnen mit der Debitorenbuchhaltung die Möglichkeit, die Geschäftsvorfälle in Bezug
+        auf Ihre Kunden anzuwenden.
+        <itemizedlist>
+          <listitem>
+            <para>In der Debitorenbuchhaltung werden Menschen oder Unternehmen als Ihre Kunden angesehen, denen Sie
+              Waren oder Dienstleistungen verkaufen.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Erstellen Sie Rechnung, die Sie an einen Kunden senden, um ihn zur Zahlung aufzufordern. Diese
+              Rechnung enthält eine Aufstellung der von Ihnen verkauften Waren.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Mit Kundenaufträge haben Sie die Möglichkeit, mehrere Rechnungen an einen bestimmten Kunden zu
+              gruppieren.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Verbuchen Sie die Zahlungen, die Sie von einem Kunden erhalten haben.
+            </para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </abstract>
+
+    <para>In den folgenden Abschnitten wird die Arbeit mit den einzelnen Komponenten ausführlicher
+      vorgestellt.
     </para>
 
     <sect2 id="busnss-ar-custnew2">
-      <title>New</title>
+      <title>Neuer Kunde</title>
 
-      <para>To register a new customer, enter the menu &mc.bus.cus.new-cus; . Fill in customer information, such
-        as Company Name, Address, Phone, Fax, etc. Below is a list of the other options:
+      <table pgwide="1" id="busnss-new-customer">
+        <title>Dialog <guilabel>Neuer Kunde</guilabel></title>
+
+        <tgroup align="left" cols="3">
+          <colspec colwidth="0.33*"/>
+
+          <colspec colwidth="0.33*"/>
+
+          <colspec colwidth="0.33*"/>
+
+          <tbody>
+            <row>
+              <entry>
+                <screenshot>
+                  <screeninfo>432x687</screeninfo>
+
+                  <mediaobject>
+                    <imageobject>
+                      <imagedata fileref="figures/Busnss_Customer_New_1.png"
+                                 srccredit="Christian Wehling" width="100%" />
+                    </imageobject>
+                  </mediaobject>
+                </screenshot>
+              </entry>
+
+              <entry>
+                <screenshot>
+                  <screeninfo>432x687</screeninfo>
+
+                  <mediaobject>
+                    <imageobject>
+                      <imagedata fileref="figures/Busnss_Customer_New_2.png"
+                                 srccredit="Christian Wehling" width="100%" />
+                    </imageobject>
+                  </mediaobject>
+                </screenshot>
+              </entry>
+
+              <entry>
+                <screenshot>
+                  <screeninfo>432x687</screeninfo>
+
+                  <mediaobject>
+                    <imageobject>
+                      <imagedata fileref="figures/Busnss_Customer_New_3.png"
+                                 srccredit="Christian Wehling" width="100%" />
+                    </imageobject>
+                  </mediaobject>
+                </screenshot>
+              </entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <para>Um einen Datensatz für einen neuen Kunden anzulegen, öffnen Sie den Dialog &mc.bus.cus.new-cus;.
+        Erfassen Sie die für Sie relevanten Informationen, wie z.B. Name des Kundens, Adresse,
+        Telefonnummer, E-Mail etc. In dem Dialog können Sie auf drei Reitern die notwendigen Daten
+        eingeben; nachstehend finden Sie eine Liste der Eingabefelder.
       </para>
 
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Identification - Customer Number</guilabel> - can be any number by which you would like to
-            refer to this customer. You may leave it blank and a number will be chosen
-            automatically. See <xref linkend="counters-book-options" /> for more info.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Identification - Active</guilabel> - differentiates active customers from inactive ones.
-            This is useful when you have many past customers, and you want to see only those marked
-            active.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Billing Address - Name</guilabel> - is the contact name of the person to receive the
-            invoices.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Notes</guilabel> - records any additional comments about the customer.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Billing Information - Currency</guilabel> - specifies the billing currency for this
-            customer. It will default to the default currency set in
-            <guilabel>Preferences</guilabel>
-          </para>
-
-          <note>
-            <para>All invoices will be denominated in this currency and &app; will require an Accounts Receivable
-              account in this currency.
+      <glosslist>
+        <glossentry>
+          <glossterm>Identifizierung - Kundennummer</glossterm>
+          <glossdef>
+            <para>Kann eine beliebige Nummer sein, mit der Sie auf diesen Kunden verweisen möchten. Sie können das
+              Feld auch leer lassen und &app; wird automatisch eine Nummer eintragen. Siehe
+              <xref linkend="counters-book-options" /> für weitere Informationen.
             </para>
-          </note>
-        </listitem>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para><guilabel>Billing Information - Terms</guilabel> - specifies the default billing terms for this
-            customer. Billing terms must be preregistered using &mc.bus.bil-edit; .
-          </para>
-        </listitem>
+        <glossentry>
+          <glossterm>Identifizierung - Firmenname</glossterm>
+          <glossdef>
+            <para>Der Firmenname des Geschäftspartners.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para><guilabel>Billing Information - Discount</guilabel> - gives the customer a default percentage based
-            discount at the time of invoice creation. Enter a value from 0 to 100. You can override
-            the default discount when you create an invoice.
-          </para>
-        </listitem>
+        <glossentry>
+          <glossterm>Identifizierung - Aktiv</glossterm>
+          <glossdef>
+            <para>Mit dem Kontrollkästchen können Sie zwischen aktiven und inaktiven Kunden unterscheiden. Dies ist
+              nützlich, wenn Sie viele ehemalige Kunden haben und nur diejenigen anzeigen möchten,
+              mit denen Sie aktive Geschäftsbeziehungen haben.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para><guilabel>Billing Information - Credit Limit</guilabel> - stores the maximum credit you are willing
-            to extend to the customer. This field is for your reference purposes only. &app; does
-            not use the value.
-          </para>
-        </listitem>
+        <glossentry>
+          <glossterm>Rechnungsadresse - Name</glossterm>
+          <glossdef>
+            <para>Ist der Name des Ansprechpartners, an den die Rechnungen adressiert ist.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para><guilabel>Billing Information - Tax Included</guilabel> - this specifies whether nor not tax is
-            included in invoice amounts by default. You can choose <guilabel>Yes</guilabel>,
-            <guilabel>No</guilabel>, or <guilabel>Use Global</guilabel>.
-            <itemizedlist>
-              <listitem>
-                <para><guilabel>Yes</guilabel> means that the tax is already included in amounts on invoices.
+        <glossentry>
+          <glossterm>Rechnungsadresse - Adresse</glossterm>
+          <glossdef>
+            <para>Die Adresse, die auf der Rechnung erscheinen muss.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Rechnungsadresse - Telefon</glossterm>
+          <glossdef>
+            <para>Die Telefonnummer des Kunden.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Rechnungsadresse - Fax</glossterm>
+          <glossdef>
+            <para>Die Faxnummer — so noch vorhanden.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Rechnungsadresse - E-Mail</glossterm>
+          <glossdef>
+            <para>Eine Mailadresse des Kunden.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Bemerkung</glossterm>
+          <glossdef>
+            <para>Erfasst zusätzliche Kommentare zum Kunden.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Abrechnungsdaten - Währung</glossterm>
+          <glossdef>
+            <para>Die Währung, in der Rechnungen für diesen Kunden ausgestellt werden. Überlicherweise wird die
+              Standardwährung verwendet, die in den &mc.ed.pref; auf dem Reiter
+              <xref linkend="prefs-accounts" /> eingestellt ist.
+              <note>
+                <para>Alle Rechnungen werden in der hier eingestellten Währung ausgestellt und &app; benötigt ein
+                  Debitoren-Konto in dieser Währung.
                 </para>
-              </listitem>
+              </note>
+            </para>
+          </glossdef>
+        </glossentry>
 
-              <listitem>
-                <para><guilabel>No</guilabel> means tax is not included.
-                </para>
-              </listitem>
+        <glossentry>
+          <glossterm>Abrechnungsdaten - Zahlungsbedingungen</glossterm>
+          <glossdef>
+            <para>Mit diesem Auswahlfeld können Sie aus einer Liste die Zahlungsbedingung, die für den Kunden gelten
+              sollen, festlegen. Die Zahlungsbedingungen müssen im Vorab unter &mc.bus.bil-edit;
+              eingetragen werden.
+            </para>
+          </glossdef>
+        </glossentry>
 
-              <listitem>
-                <para><guilabel>Use Global</guilabel> means to use the setting made in the global preferences accessible
-                  through &mc.ed.pref; ( &mc.macOS.gc.pref; on &mac;).
-                </para>
-              </listitem>
-            </itemizedlist>
-          </para>
-        </listitem>
+        <glossentry>
+          <glossterm>Abrechnungsdaten - Rabatt</glossterm>
+          <glossdef>
+            <para>Gewährt dem Kunden einen prozentualen <emphasis>Standard</emphasis>- Rabatt zum Zeitpunkt der
+              Rechnungserstellung. Geben Sie einen Wert zwischen 0 und 100 ein. Sie können den
+              Rabatt bei der Erstellung einer Rechnung überschreiben.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para><guilabel>Billing Information - Tax Table</guilabel> - specifies a default tax table to apply to
-            invoice line items. Tax tables must be registered from the &mc.bus.tax-tab; menu item.
-          </para>
-        </listitem>
+        <glossentry>
+          <glossterm>Abrechnungsdaten - Kreditrahmen</glossterm>
+          <glossdef>
+            <para>Enthält den maximalen Kredit, den Sie bereit sind dem Kunden zu gewähren. Dieses Feld dient nur zu
+              Ihrer Information. &app; verwendet den Wert nicht.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para><guilabel>Shipping Address</guilabel> - records the customer&rsquo;s shipping address if it is
-            different from the billing address. The shipping address is for your reference. &app;
-            does not use the value.
-          </para>
-        </listitem>
-      </itemizedlist>
+        <glossentry>
+          <glossterm>Abrechnungsdaten - inkl. Steuern</glossterm>
+          <glossdef>
+            <para>Hier wird festgelegt, ob die Steuer standardmäßig in den Rechnungsbeträgen enthalten ist. Sie
+              können zwischen <guilabel>Ja</guilabel>, <guilabel>Nein</guilabel>, oder
+              <guilabel>Voreinstellung benutzen</guilabel> wählen.
+              <variablelist spacing="compact">
+                <varlistentry>
+                  <term>Ja</term>
+
+                  <listitem>
+                    <para>Bedeutet, dass die Steuer bereits in den Beträgen der Rechnungen enthalten ist.
+                    </para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>Nein</term>
+
+                  <listitem>
+                    <para>Bedeutet, dass die Steuer in den Beträgen der Rechnungen <emphasis>nicht</emphasis> enthalten ist.
+                    </para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>Voreinstellung benutzen</term>
+
+                  <listitem>
+                    <para>Die Vorgabe aus den globalen Einstellungen wird verwendet, die unter &mc.ed.pref;
+                      (&mc.macOS.gc.pref; bei &mac;) eingetragen ist.
+                    </para>
+                  </listitem>
+                </varlistentry>
+              </variablelist>
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Abrechnungsdaten - Steuertabelle</glossterm>
+          <glossdef>
+            <para>Wählen Sie eine Standard-Steuertabelle aus, die für die Rechnungspositionen gelten soll.
+              Steuertabellen müssen vorher über den Menüpunkt &mc.bus.tax-tab; angelegt sein.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Lieferadresse</glossterm>
+          <glossdef>
+            <para>Hier können Sie die Lieferadresse des Kunden eintragen, wenn sie von der Rechnungsadresse abweicht.
+              Die Lieferadresse dient nur als Hinweis für Sie. &app; verwendet den Wert nicht.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
     </sect2>
 
     <sect2 id="busnss-ar-custfind2">
-      <title>Find and Edit</title>
+      <title>Kunden suchen</title>
 
-      <para>To search for an existing customer, use the &mc.bus.cus.find-cus; window. You select a customer to
-        <guilabel>View/Edit</guilabel> from the results of the search. This window is also used to
-        look up customers when creating invoices and processing payments.
+      <para>Möchten Sie den Datensatz eines Kunden suchen, nutzen Sie den Menüeintrag &mc.bus.cus.find-cus;.
+        Aus den Ergebnissen der Suche wählen Sie mit der Schaltfläche <guilabel>Kunden
+        anzeigen/bearbeiten</guilabel> den passenden Eintrag zur weiteren Verwendung. Dieser Dialog
+        wird auch genutzt, um die <guilabel>Aufträge des Kunden</guilabel> oder
+        <guilabel>Rechnungen des Kunden</guilabel> anzuzeigen oder um eine <guilabel>Zahlung
+        verarbeiten</guilabel>.
       </para>
 
-      <para>If many customers match the search criteria you provide, the search can be refined by running an
-        additional search within the current results. The current result set is searched when the
-        <guilabel>Refine Current Search</guilabel> radio button is selected. In fact, &app; selects
-        this option for you after you run the initial search.
-      </para>
+      <figure pgwide="1">
+        <title>Kunden finden</title>
 
-      <para>If the customer you are searching for does not match the supplied search criteria, change the search
-        criteria, click the <guilabel>New Search</guilabel> radio button and then the
-        <guilabel>Find</guilabel> button. The relevant step is the <guilabel>New Search</guilabel>
-        selection. If the customer is not in the result of the original search, and you only search
-        within this set, the customer cannot be found, regardless of new search criteria.
-      </para>
+        <screenshot>
+          <screeninfo>1066x476</screeninfo>
 
-      <note>
-        <para>To return a list of all registered active customers, set the search criterion to <guilabel>matches
-          regex</guilabel>, and place a single dot "." in the text field area. Make sure
-          <guilabel>Search only active data</guilabel> is checked, then click
-          <guibutton>Find</guibutton>. The regular expression "." means to match anything.
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Customer_Find.png" 
+                         srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <tip>
+        <para>Um eine Liste aller aktiven Kunden zu erhalten, setzen Sie als Suchkriterium <guilabel>entspricht
+          regulärem Ausdruck</guilabel> und einen einfachen Punkt <quote>.</quote> in das Textfeld.
+          Stellen Sie sicher, dass das Auswahlfeld <guilabel>Nur aktive Daten durchsuchen</guilabel>
+          ausgewählt ist. Nun klicken Sie auf <guibutton>Suchen</guibutton>. Mit dem regulären
+          Ausdruck <quote>.</quote> werden alle Einträge gefunden.
         </para>
-      </note>
-    </sect2>
-  </sect1>
+      </tip>
 
-  <sect1 id="busnss-ar-invoices1">
-    <title>Invoices</title>
-
-    <para>An invoice is the paperwork you send to a customer to request payment for products or services
-      rendered. &app; can generate and track invoices.
-    </para>
-
-    <para>A credit note is the paperwork you send to a customer to correct products or services rendered that
-      were incorrectly invoiced. &app; can generate and track credit notes via the same menu entries
-      as invoices.
-    </para>
-
-    <note>
-      <para>This section applies to both invoices and credit notes. In order to avoid repeating everything twice
-        and to keep the text easier to read it will refer only to invoices. You can apply it equally
-        to credit notes. Only where the behaviour of credit notes differs from invoices this will be
-        explicitly mentioned. Credit notes were introduced starting with &app; stable release 2.6.0.
+      <para>Die vielfältigen Möglichkeiten dieses <emphasis>Suchen</emphasis>-Dialogs werden unter
+        <xref linkend="tool-find-bsnss" /> beschrieben.
       </para>
-    </note>
+    </sect2>
 
     <sect2 id="busnss-ar-invoicenew2">
       <title>Neue Rechnung</title>
 
-      <para>To send an invoice to a customer you must first create a new invoice. To create an invoice use
-        &mc.bus.cus.new-inv; . The New Invoice window must be filled in appropriately:
+      <para>Um eine Rechnung an einen Kunden zu senden, müssen Sie zunächst eine neue Rechnung erstellen.
+        Hierzu verwenden Sie &mc.bus.cus.new-inv; im Menü. Der Dialog <guilabel>Neue
+        Rechnung</guilabel> sollte ordnungsgemäß ausgefüllt werden:
       </para>
 
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Invoice Information - Type</guilabel>: the type of customer document to create - either an
-            invoice or a credit note.
-          </para>
-        </listitem>
+      <figure pgwide="1">
+        <title>Eine neue Rechnung erstellen</title>
 
-        <listitem>
-          <para><guilabel>Invoice Information - Invoice ID</guilabel> (optional): the formated identification number
-            of this invoice. This is your internal number for this invoice. If you leave it blank,
-            an invoice number will be generated automatically. See
-            <xref linkend="counters-book-options" /> for more info.
-          </para>
-        </listitem>
+        <screenshot>
+          <screeninfo>464x483</screeninfo>
 
-        <listitem>
-          <para><guilabel>Invoice Information - Date Opened</guilabel>: the date this invoice was created.
-          </para>
-        </listitem>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Invoice_New.png"
+                                 srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
 
-        <listitem>
-          <para><guilabel>Billing Information - Customer</guilabel>: the customer who is to receive this invoice. If
-            you remember the <emphasis>company name</emphasis> you entered in the <guilabel>New
-            Customer</guilabel> window for this customer, start to type it in this field and &app;
-            will try auto complete it for you. Else, press the <guibutton>Select...</guibutton>
-            button to access the <guilabel>Find Customer</guilabel> window described in
-            <xref linkend="busnss-ar-custfind2" />. Highlight the customer you are looking for with
-            a click in the search results, then press the <guibutton>Select</guibutton> button.
-          </para>
-        </listitem>
+      <glosslist>
+        <glossentry>
+          <glossterm>Rechnungs-Informationen - Typ</glossterm>
+          <glossdef>
+            <para>Die Art des zu erstellenden Kundendokuments - entweder eine Rechnung oder eine Gutschrift.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para><guilabel>Billing Information - Job</guilabel> (optional): associates the new invoice with a
-            customer job (see <xref linkend="busnss-ar-jobs1" />). If you remember the <emphasis>job
-            name</emphasis> you entered in the <guilabel>New Job</guilabel> window for this job,
-            start to type it in this field and &app; will try auto complete it for you. Else, press
-            the <guibutton>Select...</guibutton> button to access the <guilabel>Find Job</guilabel>
-            window. This window is the same to the one described in
-            <xref linkend="busnss-ar-custfind2" />. Highlight the job you are looking for with a
-            click in the search results, then press the <guibutton>Select</guibutton> button.
-          </para>
-        </listitem>
+        <glossentry>
+          <glossterm>Rechnungs-Informationen - Rechnungsnummer</glossterm>
+          <glossdef>
+            <para>(optional) Die Identifikationsnummer dieser Rechnung. Dies ist Ihre interne Nummer für diese
+              Rechnung. Wenn Sie das Feld leer lassen, wird automatisch eine Rechnungsnummer
+              generiert. Siehe <xref linkend="counters-book-options" /> für weitere Informationen.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para><guilabel>Billing Information - Billing ID</guilabel>: this is the customer&rsquo;s PO Number or
-            other <quote>customer reference number</quote>. You should use it to identify your
-            invoices to this customer (and job, if you have one).
-          </para>
-        </listitem>
+        <glossentry>
+          <glossterm>Rechnungs-Informationen - Eröffnungsdatum</glossterm>
+          <glossdef>
+            <para>Das Datum, an dem diese Rechnung erstellt wurde.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para><guilabel>Billing Information - Terms</guilabel>: the payback terms agreement for this invoice. A
-            list of registered terms is available within the pop up menu. If you specified a default
-            value for the selected customer, this field is initialized with the default.
-          </para>
-        </listitem>
+        <glossentry>
+          <glossterm>Abrechnungsdaten - Kunde</glossterm>
+          <glossdef>
+            <para>Der Kunde, der diese Rechnung erhalten soll. Wenn Sie sich an den <emphasis>Firmennamen</emphasis>
+              erinnern, den Sie im Dialog <guilabel>Neuer Kunde</guilabel> für diesen Kunden
+              eingegeben haben, geben Sie ihn in dieses Feld ein und &app; wird versuchen, ihn
+              automatisch für Sie zu vervollständigen. Andernfalls drücken Sie die
+              <guibutton>Auswählen…</guibutton> Taste, um den
+              <xref linkend="busnss-ar-custfind2" /> Dialog zu öffnen. Markieren Sie den Eintrag
+              für den gesuchten Kunden und drücken Sie dann die Schaltfläche
+              <guibutton>Auswählen</guibutton>.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para><guilabel>Notes</guilabel>: Here you can enter internal notes.
-          </para>
-        </listitem>
-      </itemizedlist>
+        <glossentry>
+          <glossterm>Abrechnungsdaten - Auftrag</glossterm>
+          <glossdef>
+            <para>(optional) Verknüpft die neue Rechnung mit einem
+              <xref linkend="busnss-ar-jobs1" />. Wenn Sie sich an den <emphasis>Auftragnamen
+              </emphasis> erinnern, den Sie im Dialog <guilabel>Neuer Auftrag</guilabel> für diesen
+              Auftrag eingegeben haben, geben Sie ihn in dieses Feld ein und &app; wird versuchen,
+              ihn für Sie zu vervollständigen. Andernfalls drücken Sie die Schaltfläche
+              <guibutton>Auswählen…</guibutton>, um das Fenster <guilabel>Auftrag
+              suchen</guilabel> aufzurufen. Dieser Dialog ist derselbe wie in
+              <xref linkend="busnss-ar-custfind2" /> beschrieben. Klicken Sie in den Suchergebnissen
+              auf die gewünschte Stelle und drücken Sie dann auf die Schaltfläche
+              <guibutton>Auswählen</guibutton>.
+            </para>
+          </glossdef>
+        </glossentry>
 
-      <para>When you click the <guibutton>OK</guibutton> button, the <guilabel>Edit Invoice</guilabel> window
-        opens.
+        <glossentry>
+          <glossterm>Abrechnungsdaten - Abrechnungs-ID</glossterm>
+          <glossdef>
+            <para>Dies ist die Bestellnummer des Kunden oder eine andere <quote>Kundenreferenznummer</quote>. Sie
+              sollten sie verwenden, um Ihre Rechnungen an diesen Kunden zu identifizieren (und den
+              Auftrag, falls Sie einen haben).
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Abrechnungsdaten - Zahlungsbedingungen</glossterm>
+          <glossdef>
+            <para>Die Vereinbarung über die Zahlungsbedingungen für diese Rechnung. Eine Liste der registrierten
+              Bedingungen ist im Auswahlfeld verfügbar. Wenn Sie einen Standardwert für den
+              ausgewählten Kunden angegeben haben, wird dieses Feld entsprechend vorbelegt.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Bemerkungen</glossterm>
+          <glossdef>
+            <para>Hier können Sie Notizen für eigene Zwecke eintragen. Diese Bemerkungen werden nicht auf der
+              Rechnung ausgegeben.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <para>Wenn Sie auf die Schaltfläche <guibutton>OK</guibutton> klicken, wird in einem neuen Register die
+        Rechnung zur weiteren Bearbeitung geöffnet.
       </para>
     </sect2>
 
     <sect2 id="busnss-ar-invoiceedit2">
-      <title>Edit</title>
+      <title>Rechnung bearbeiten</title>
 
-      <para>From the Edit Invoice window you can enter an itemized list of goods and services you sold on this
-        invoice in a manner similar to how the account register works. For credit notes you enter an
-        itemized list of goods and services you refunded instead.
-        <note>
-          <para>Saved column layout works a bit differently in invoices from the account registers: Layouts are not
-            saved for each invoice; instead a layout can be saved as a default for invoices to
-            override the calculated widths using the &mc.vw.use-lay-cus; and the calculated widths
-            restored as the default with &mc.vw.res-lay-cus;.
-          </para>
-        </note>
-      </para>
-
-      <para>There are 15 columns in the <guilabel>Invoice Entries</guilabel> area:
-      </para>
-
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Date</guilabel> - The date this item was sold.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Invoiced?</guilabel> - <guilabel>X</guilabel> means the item is attached to this invoice,
-            an empty box means the item is not attached to this invoice. The item is attached for
-            you when you proceed to the next line item.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Description</guilabel> (optional) - is what the item or service is called.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Action</guilabel> (optional) - is a user defined field. You can place Cost Center
-            information here, or use one of the 3 predefined actions, Hours, Material, or Project.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Income Account</guilabel> - selects which income account is credited with this income.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Quantity</guilabel> - tracks how many of the items you sold.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Unit Price</guilabel> - is the unit price of the item.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Discount Type</guilabel> - is the type of discount:
-          </para>
-
-          <itemizedlist>
-            <listitem>
-              <para><guilabel>$</guilabel> means <guilabel>Discount</guilabel> is a monetary value
-              </para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>%</guilabel> means <guilabel>Discount</guilabel> is a percentage.
-              </para>
-            </listitem>
-          </itemizedlist>
-
-          <para>You can click the field to toggle between the discount types.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Discount How</guilabel> - the discount can be computed as follows:
-          </para>
-
-          <itemizedlist>
-            <listitem>
-              <para><guilabel>&gt;</guilabel> means the discount applies after tax.
-              </para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>&lt;</guilabel> means the discount applies before tax.
-              </para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>=</guilabel> means both discount and tax are applied to the pretax value.
-              </para>
-            </listitem>
-          </itemizedlist>
-
-          <para>You can click the field to change the setting.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Discount</guilabel> (optional) - is the total discount, in monetary units or percentage,
-            depending on <guilabel>Discount Type</guilabel>. You can leave it blank for no discount.
-            Any default discount you specified for the customer will be automatically entered for
-            each new item.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Taxable?</guilabel> - is this item taxable? <guilabel>X</guilabel> means yes, a blank
-            field means no. You can click the field to toggle the setting.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Tax Included?</guilabel> - has the tax already been included in the unit price?
-            <guilabel>X</guilabel> means yes, a blank field means no. For example, if there is 1
-            item of $100 with a tax of 5% then:
-          </para>
-
-          <itemizedlist>
-            <listitem>
-              <para>If Tax Included is empty, then subtotal = $100 and tax = $5.
-              </para>
-            </listitem>
-
-            <listitem>
-              <para>If Tax included is set (<guilabel>X</guilabel>), then subtotal = $95.23 and tax = $4.77. The
-                computation is: Subtotal = Total / (1+taxrate) and Tax = Total - Subtotal = Total -
-                (Total / (1+taxrate)).
-              </para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Tax Table</guilabel> (optional) - this is a pop up menu of all the available tax tables.
-            If you make the item taxable, then this table is used to compute the amount of tax. The
-            tax table determines tax percentages and the accounts to which tax is charged.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Subtotal</guilabel> (uneditable) - is the computed subtotal for this item (less tax).
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Tax</guilabel> (uneditable) - is the computed tax for this item.
-          </para>
-        </listitem>
-      </itemizedlist>
-
-      <para>When you have finished entering all the items, you can <guilabel>Post</guilabel> and print the
-        invoice.
-      </para>
-    </sect2>
-
-    <sect2 id="busnss-ar-invoicepost2">
-      <title>Post</title>
-
-      <para>When you finish editing an invoice and are ready to print, you must <guilabel>Post</guilabel> the
-        invoice. The invoice does not have to be posted immediately. In fact, you should only post
-        an invoice when you are ready to print it. Posting an invoice places the transactions in an
-        accounts receivable account.
-      </para>
-
-      <para>The <guilabel>Post Invoice</guilabel> window appears and asks you to enter the following
-        information:
-      </para>
-
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Post Date</guilabel> - specifies the date for the transactions entered into the accounts
-            receivable account. By default this is the invoice&rsquo;s <guilabel>Date
-            Opened</guilabel> (see <xref linkend="busnss-ar-invoicenew2"/> for information about
-            that date).
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Due Date</guilabel> - is the date on which payment for the invoice is expected.
-          </para>
-
-          <itemizedlist>
-            <listitem>
-              <para>If you specified payment terms when you created the invoice, the date is calculated according to
-                selected terms, and the entry field is insensitive.
-              </para>
-            </listitem>
-
-            <listitem>
-              <para>If you did not specify payment terms, enter the expected payment due date here.
-              </para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Description</guilabel> - is an arbitrary description. When invoice transactions are placed
-            in the accounts receivable account, this description is entered in the memo field of
-            those transactions.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Post To Account</guilabel> - selects the accounts receivable account in which invoice
-            transactions are posted. You can select the account from a list of existing A/Receivable
-            accounts.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Accumulate Splits</guilabel> - determines if invoice items which transfer to the same
-            account are combined into a single split for that account or entered individually. For
-            the sample invoice which sold Nails and a Hammer, the setting affects post results as
-            follows:
-          </para>
-
-          <itemizedlist>
-            <listitem>
-              <para>Checked (splits are accumulated) - a single transfer of $575.00 from the
-                <emphasis>Income:Sales</emphasis> account is recorded.
-              </para>
-            </listitem>
-
-            <listitem>
-              <para>Not checked - the transaction created in the A/Receivable account, shows two transfers from
-                <emphasis>Income:Sales</emphasis> account $100.00 and $475.00. The memo fields in
-                the splits indicate the sale of Nails and the Hammer (the item descriptions entered
-                on the invoice) respectively.
-              </para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </itemizedlist>
-    </sect2>
-
-    <sect2 id="busnss-ar-invoicefind2">
-      <title>Find</title>
-
-      <para>To find an existing invoice, use the &mc.bus.cus.find-inv; menu item. From the results of the
-        search, you can select an invoice to edit or view.
+      <para>Im Fenster <guilabel>Rechnung bearbeiten</guilabel> können Sie eine detaillierte Liste der Waren
+        und Dienstleistungen, ähnlich wie im Kontoregister, eingeben, die Sie auf dieser Rechnung
+        verkauft haben. Für Gutschriften geben Sie stattdessen eine Auflistung der Waren und
+        Dienstleistungen ein, die Sie erstattet haben.
       </para>
 
       <note>
-        <para>Before you can edit a posted invoice, you will need to <guilabel>Unpost</guilabel> it.
+        <para>Im Nachfolgenden wird anstelle von Waren bzw. Dienstleistungen der allgemeine Begriff
+          <quote>Posten</quote> verwendet.
         </para>
       </note>
 
-      <para>One of the design goals in &app;&rsquo;s Account Receivable system was to allow different processes
-        to get to the same state, so you can reach an invoice from different directions based on the
-        way you think about the problem:
+      <tip>
+        <para>Das gespeicherte Spaltenlayout funktioniert in Rechnungen etwas anders als in den Kontenregistern:
+          Layouts werden nicht für jede Rechnung gespeichert. Stattdessen speichern Sie mit
+          &mc.vw.use-lay-cus; ein Layout, welches als Voreinstellung für alle Rechnungen verwendet
+          wird. Mit &mc.vw.res-lay-cus; wird die Standardeinstellung mit den ursprünglichen
+          Spaltenbreiten wiederhergestellt.
+        </para>
+      </tip>
+
+      <screenshot>
+        <screeninfo>1433x307</screeninfo>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="figures/Busnss_Invoice_Edit.png"
+                                 srccredit="Christian Wehling" />
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+
+      <para>Der obere Bereich der Anzeige beinhaltet die Rechnungsinformationen, die Sie mit dem Menüpunkt
+        &mc.ed.edit; nachträglich ändern können. Es öffnet sich das Fenster
+        <xref linkend="busnss-ar-invoicenew2" /> in dem Sie Angaben entsprechend modifizieren
+        können.
+      </para>
+
+      <para>Im Bereich <guilabel>Rechnungseinträge</guilabel> gibt es 15 Spalten in denen Sie die einzelnen
+        Posten dieser Rechnung erfassen und kaufmännisch behandeln können:
+      </para>
+
+      <glosslist>
+        <glossentry>
+          <glossterm>Datum</glossterm>
+          <glossdef>
+            <para>Das Datum, an dem der Posten verkauft wurde.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Rechnung erhalten?</glossterm>
+<!-- Fixme: bessere Übersetzung: "In Rechnung gestellt" oder "abgerechnet" ?? -->
+          <glossdef>
+            <para>Ist der Haken gesetzt — das Feld angeklickt — wird der Posten dieser Rechnung hinzugefügt, ein leeres
+              Kästchen bedeutet, dass der Posten nicht dieser Rechnung hinzugefügt ist. Der Posten
+              wird der Rechnung hinzugefügt, sobald Sie mit dem nächsten Eintrag fortfahren.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Beschreibung</glossterm>
+          <glossdef>
+            <para>(optional) — Ist die Bezeichnung des Postens.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Aktion</glossterm>
+          <glossdef>
+            <para>(optional) — Ist ein benutzerdefiniertes Feld. Sie können hier Kostenstellen oder eine der 3
+              vordefinierten Aktionen <quote>Stunden</quote>, <quote>Material</quote> oder
+              <quote>Auftrag</quote>, verwenden.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Ertragskonto</glossterm>
+          <glossdef>
+            <para>Wählen Sie aus, welchem Konto der Ertrag gutgeschrieben wird.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Anzahl</glossterm>
+          <glossdef>
+            <para>Gibt an, wie viel Stück Sie von diesem Posten verkauft haben.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Stückpreis</glossterm>
+          <glossdef>
+            <para>Der Preis pro Einheit des Postens.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Art des Nachlass</glossterm>
+          <glossdef>
+            <para>Ermöglicht die Angabe eines Rabatts in Form eines
+              <variablelist>
+                <varlistentry>
+                  <term>$</term>
+
+                  <listitem>
+                    <para>Geldwertes
+                    </para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>%</term>
+
+                  <listitem>
+                    <para>Prozentsatz
+                    </para>
+                  </listitem>
+                </varlistentry>
+              </variablelist>
+            </para>
+
+            <para>Klicken Sie auf das Feld, um zwischen den Rabattarten umzuschalten.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Berechnung Nachlass</glossterm>
+          <glossdef>
+            <para>Der Rabatt kann wie folgt ermittelt werden
+              <variablelist>
+                <varlistentry>
+                  <term>&gt;</term>
+
+                  <listitem>
+                    <para>Der Rabatt wird nach Steuern berechnet.
+                    </para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>&lt;</term>
+
+                  <listitem>
+                    <para>Der Rabatt wird vor Steuern berechnet.
+                    </para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>=</term>
+
+                  <listitem>
+                    <para>Bedeutet, dass sowohl der Rabatt als auch die Steuer auf den Vorsteuerbetrag bezogen werden.
+                    </para>
+                  </listitem>
+                </varlistentry>
+              </variablelist>
+            </para>
+
+            <para>Sie können auf das Feld klicken, um die Einstellung zu ändern.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Rabatt</glossterm>
+          <glossdef>
+            <para>(optional) — ist der Gesamtrabatt, als Geldwert oder in Prozent, abhängig vom
+              <guilabel>Rabatttyp</guilabel>. Lassen Sie es leer, wenn Sie keinen Rabatt
+              gewähren wollen. Haben Sie eine Standardrabatt für den Kunden angegeben, wird dieser
+              automatisch für jeden neuen Posten angewandt.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Besteuerbar?</glossterm>
+          <glossdef>
+            <para>Gibt an, ob dieser Posten steuerpflichtig ist. Ist das Feld angehakt
+              wird der Posten versteuert, ein leeres Feld
+              bedeutet nein. Sie können das Feld anklicken, um die Einstellung zu ändern.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>inkl. USt?</glossterm>
+          <glossdef>
+            <para>Ist die Steuer bereits im Stückpreis enthalten? Als Beispiel, wird 1 Stück eines Postens zu 100,00
+              € mit einer Steuer von 5% angenommen:
+              <variablelist>
+                <varlistentry>
+                  <term>X</term>
+
+                  <listitem>
+                    <para>Gibt an, dass die Steuer enthalten ist und auf den Preis anzurechnen ist. Somit beträgt die
+                      Zwischensumme = 95,24 € und die Steuer = 4,76 €. Die Berechnung hierfür
+                      lautet: Zwischensumme = Gesamt / (1 + Steuersatz) und Steuer = Gesamt -
+                      Zwischensumme = Gesamt - (Gesamt / (1 + Steuersatz)).
+                    </para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term><quote>leer</quote></term>
+
+                  <listitem>
+                    <para>Ist das Feld leer, dann beträgt die Zwischensumme = 100,00 € und die Steuer = 5,00 €.
+                    </para>
+                  </listitem>
+                </varlistentry>
+              </variablelist>
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Steuertabelle</glossterm>
+          <glossdef>
+            <para>(optional) — Dies ist ein Pop-up-Menü mit allen verfügbaren Steuertabellen. Wenn der Posten
+              steuerpflichtig ist, wird diese Tabelle für die Berechnung des Steuerbetrags
+              verwendet. Die Steuertabelle bestimmt die Steuerprozentsätze und die Konten, denen
+              die Steuer belastet wird.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Zwischensumme</glossterm>
+          <glossdef>
+            <para>(nicht bearbeitbar) — Ist die berechnete Zwischensumme für diesen Posten (abzüglich der Steuer).
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Steuer</glossterm>
+          <glossdef>
+            <para>(nicht bearbeitbar) — Ist die berechnete Steuer für diesen Posten.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <tip>
+        <para>Mit dem Menüpunkt &mc.ed.dup; können Sie die ausgewählte Rechnung duplizieren. Es öffent sich
+          das Fenster <xref linkend="busnss-ar-invoicenew2" />, damit Sie die vorhandenen
+          Rechnungsdaten anpassen. Es wird ein neue Rechnung als Duplikat der vorherigen Rechnung
+          inklusive aller erfassten Posten angelegt.
+        </para>
+      </tip>
+    </sect2>
+
+    <sect2 id="busnss-ar-invoicepost2">
+      <title>Rechnung buchen</title>
+
+      <para>Haben Sie die Erstelung einer Rechnung abgeschlossen und ist diese zum Drucken bereit, können Sie
+        mit &mc.ed.post; die Rechnung buchen, was jedoch nicht sofort erfolgen muss, sondern
+        erst dann, wenn diese versendet werden soll. Beim Buchen einer Rechnung werden die Buchungen
+        in einem Forderungskonto eingetragen. Die Rechnung wird gesperrt und so vor einer
+        Modifizierung geschützt.
+      </para>
+
+      <figure pgwide="1">
+        <title>Rechnung buchen</title>
+
+        <screenshot>
+          <screeninfo>530x283</screeninfo>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Invoice_Post.png"
+                                   srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Das Fenster <guilabel>Rechnung buchen</guilabel> erscheint und ermöglicht Ihnen, die folgenden
+        Informationen einzugeben:
+      </para>
+
+      <glosslist>
+        <glossentry>
+          <glossterm>Buchungsdatum</glossterm>
+          <glossdef>
+            <para>Gibt das Datum für die auf dem Debitorenkonto verbuchten Posten an. Standardmäßig ist dies das
+              <guilabel>Eröffnungsdatum</guilabel> der Rechnung. (siehe
+              <xref linkend="busnss-ar-invoicenew2"/>).
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Fälligkeitsdatum</glossterm>
+          <glossdef>
+            <para>Ist das Datum, an dem die Zahlung für die Rechnung erwartet wird.
+              <itemizedlist>
+                <listitem>
+                  <para>Wenn Sie bei der Erstellung der Rechnung Zahlungsbedingungen festgelegt haben, wird das Datum
+                    dementsprechend berechnet, und das Eingabefeld ist deaktiviert.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para>Haben Sie keine Zahlungsbedingungen angegeben, geben Sie hier das voraussichtliche
+                    Fälligkeitsdatum ein.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Beschreibung</glossterm>
+          <glossdef>
+            <para>Ist eine beliebige Beschreibung. Wenn die Posten ins Debitorenkonto gebucht werden, wird diese
+              Beschreibung in das Memofeld dieser Buchung eingetragen.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Buchen nach Konto</glossterm>
+          <glossdef>
+            <para>Wählt das Debitorenkonto aus, auf dem die Rechnungsbuchung gebucht werden. Sie können das Konto
+              aus einer Liste von bestehenden Debitorenkonten auswählen.
+              <tip>
+                <para>Betätigen Sie das kleine Zahnrad, können Sie die Konten, die als <emphasis>Platzhalter</emphasis>
+                  oder <emphasis>Versteckt</emphasis> gekennzeichnet sind, in der Auswahliste
+                  verbergen und die Liste übersichtlicher gestalten.
+                </para>
+              </tip>
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Buchungen kumulieren?</glossterm>
+          <glossdef>
+            <para>Bestimmt, ob Rechnungspositionen, die auf dasselbe Konto übertragen werden, zu einer einzigen Buchung
+              für dieses Konto zusammengefasst oder einzeln eingegeben werden. In einer
+              Beispielrechnung, bei der Nägel und ein Hammer verkauft wurden, wirkt sich die
+              Einstellung wie folgt auf die Buchungsergebnisse aus:
+              <variablelist>
+                <varlistentry>
+                  <term>Aktiviert</term>
+
+                  <listitem>
+                    <para>Die Buchung werden zusammengefasst und eine einzige Überweisung von 575,00 € vom
+                      <emphasis>Ertrag:Umsatz</emphasis> Konto wird erfasst.
+                    </para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>nicht aktiviert</term>
+
+                  <listitem>
+                    <para>Die Buchung, die im Debitorenkonto erstellt wird, zeigt zwei Überweisungen von Konto
+                      <emphasis>Ertrag:Umsatz</emphasis> 100,00 € und 475,00 €. Die Memo-Felder
+                      in den Splits geben den Verkauf von Nägeln und Hammer an (die
+                      Artikelbezeichnungen, die auf der Rechnung).
+                    </para>
+                  </listitem>
+                </varlistentry>
+              </variablelist>
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <tip>
+        <para>Haben Sie die Notwendigkeit, eine bereits gebuchte Rechnung nachträglich zu bearbeiten, können Sie
+          mit &mc.ed.unpost; die Buchung der Rechnung löschen und somit zur Bearbeitung wieder
+          freigeben.
+        </para>
+      </tip>
+    </sect2>
+
+    <sect2 id="busnss-ar-invoicefind2">
+      <title>Rechnung suchen</title>
+
+      <para>Um eine bestehende Rechnung zu finden, verwenden Sie den Menüpunkt &mc.bus.cus.find-inv;. Aus den
+        Ergebnissen der Suche können Sie eine Rechnung zur Bearbeitung oder Ansicht auswählen.
+      </para>
+
+      <para>Die vielfältigen Möglichkeiten dieses <emphasis>Suchen</emphasis>-Dialogs werden unter
+        <xref linkend="tool-find-bsnss" /> beschrieben.
+      </para>
+
+      <para>Eines der Designziele in &app;s Geschäftsfunktionen war es, verschiedene Vorgehen zu ermöglichen,
+        so dass man eine Rechnung aus unterschiedlichen Richtungen erreichen kann, je nachdem, wie
+        man über das Problem denkt:
       </para>
 
       <itemizedlist>
         <listitem>
-          <para>You can search for the customer first, then list their invoices.
+          <para>Sie können zuerst nach dem Kunden suchen und dann seine Rechnungen auflisten.
           </para>
         </listitem>
 
         <listitem>
-          <para>You can search for invoices by number or by company name.
+          <para>Sie können Rechnungen nach Nummer oder nach Firmenname suchen.
           </para>
         </listitem>
 
         <listitem>
-          <para>You can list invoices associated with a customer job.
+          <para>Sie können Rechnungen auflisten, die mit einem Kundenauftrag verbunden sind.
           </para>
         </listitem>
       </itemizedlist>
     </sect2>
 
     <sect2 id="busnss-ar-invoiceprint2">
-      <title>Print</title>
+      <title>Rechnung drucken</title>
 
-      <para>After you post an invoice, you should print it and send it to your customer. To print an invoice use
-        &mc.fi.prin-inv; menu item.
+      <para>Nachdem Sie eine Rechnung gebucht haben, können Sie diese ausdrucken und an Ihre Kunden senden.
+        Verwenden Sie hierzu den Menüpunkt &mc.fi.prin-inv;.
       </para>
 
       <tip>
-        <para>You can modify the appearance of the invoice, IE: add a company logo, etc. To do so, see the
-          <xref
-        linkend="busnss-ar-invoicechange" />.
+        <para>Sie können das Erscheinungsbild der Rechnung ändern, wie z.B. ein Firmenlogo hinzufügen usw.
+          Siehe dazu den Abschnitt <xref linkend="busnss-ar-invoicechange" />.
         </para>
       </tip>
 
-      <para>Invoices can also be printed from the main window by selecting &mc.rep.bus.pnt-rep; from the main
-        menu. The resulting report window states that no valid invoice is selected. To select the
-        invoice to print:
+      <procedure>
+        <title>Rechnung als Bericht</title>
+
+        <para>Rechnungen können auch vom Hauptfenster aus gedruckt werden, indem Sie den Menüpunkt
+          &mc.rep.bus.pnt-rep; aus dem Hauptmenü verwenden. Im Berichtsfenster wird angezeigt, dass
+          keine gültige Rechnung ausgewählt wurde. So wählen Sie die zu druckende Rechnung aus:
+        </para>
+
+        <step>
+          <para>Betätigen Sie die <guibutton>Optionen</guibutton> Schaltfläche in der
+            <emphasis>Werkzeugleiste</emphasis> oder verwenden &mc.ed.rep-opt; aus der Menüleiste.
+          </para>
+        </step>
+
+        <step>
+          <para>Aktivieren Sie den Reiter <guilabel>Allgemein</guilabel> in dem Dialog der Berichtsoptionen.
+          </para>
+        </step>
+
+        <step>
+          <para>Betätigen Sie die Schaltfläche <guibutton>Auswählen</guibutton> neben dem Feld
+            <guilabel>Rechnungsnummer</guilabel>.
+          </para>
+        </step>
+
+        <step>
+          <para>Wenn notwendig verwenden Sie die Suchfunktion um die gewünschte Rechnung auszuwählen.
+          </para>
+        </step>
+      </procedure>
+<!-- Ist der folgende Absatz noch zutreffend? -->
+<!--
+       <para>Sie können Rechnungen auch aus dem Dialogfeld <guilabel>Zahlung verarbeiten</guilabel>
+        heraus drucken. Unter <xref linkend="busnss-ar-payment1" /> finden Sie Anleitung dazu.
       </para>
-
-      <orderedlist>
-        <listitem>
-          <para>Use the <guibutton>Options</guibutton> <emphasis>Toolbar</emphasis> button or select &mc.ed.rep-opt;
-            from the main menu.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Select the <guilabel>General</guilabel> tab of the report options dialog.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Click the <guibutton>Select</guibutton> button next to the <guilabel>Invoice Number</guilabel>
-            field.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Search for the invoice as usual.
-          </para>
-        </listitem>
-      </orderedlist>
-
-      <para>You can also print invoices from within the Process Payment dialog. See the
-        <xref linkend="busnss-ar-payment1" /> for instructions on how to do so.
-      </para>
+-->
     </sect2>
 
     <sect2 id="busnss-ar-invoicestarting2">
-      <title>Assign Starting Invoice Number</title>
+      <title>Rechnungsnummer anpassen</title>
 
-      <para>By default, &app; starts with invoice number 1 and increments from there. You can manually type an
-        invoice number into the text box each time you create an invoice, but this gets tiring and
-        sooner or later leads to duplicate numbers.
+      <para>Standardmäßig beginnt &app; mit der Rechnungsnummer 1 und erhöht diese von dort aus automatisch.
+        Sie können eine Rechnungsnummer auch manuell in das Textfeld eingeben, wenn Sie eine
+        Rechnung erstellen, aber das ist mühsam und und führt früher oder später zu doppelten
+        Nummern.
       </para>
 
-      <para>You can change the starting invoice number if it is important you. Use &mc.fi.prop; , access the
-        <guilabel>Counters</guilabel> tab, change the <guilabel>Invoice number</guilabel> value to
-        be one less than your desired starting invoice number and click the
-        <guibutton>OK</guibutton> button or the <guibutton>Apply</guibutton> button.
-      </para>
-    </sect2>
-  </sect1>
-
-  <sect1 id="busnss-ar-jobs1">
-    <title>Customer Jobs</title>
-
-    <para>Customer Jobs are used to group multiple invoices and credit notes to the same customer. Use of the
-      Customer Jobs feature is optional. The feature is useful when you have multiple
-      <guilabel>jobs</guilabel> for the same customer, and would like to view all the invoices and
-      credit notes related to a single job.
-    </para>
-
-    <para>To use customer jobs, you must create them using the &mc.bus.cus.new-job; menu item. You will see
-      the <guilabel>New Job</guilabel> window. The editable fields are:
-    </para>
-
-    <itemizedlist>
-      <listitem>
-        <para><guilabel>Job Info - Job Number</guilabel> (optional) - enter the number for this job. If left
-          blank, a number will be chosen for you. See <xref linkend="counters-book-options" /> for
-          more info.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Job Info - Job Name</guilabel> - the name you want to assign to the new job.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Owner Info - Customer</guilabel> - the customer for whom the job is created. If you
-          remember the <emphasis>company name</emphasis> you entered in the <guilabel>New
-          Customer</guilabel> window for this customer, start to type it in this field and &app;
-          will try auto complete it for you. Else, press the <guibutton>Select...</guibutton> button
-          to access the <guilabel>Find Customer</guilabel> window described in
-          <xref linkend="busnss-ar-custfind2" />. Highlight the customer you are looking for with a
-          click in the search results, then press the <guibutton>Select</guibutton> button.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Owner Info - Billing ID</guilabel> - the customer&rsquo;s reference to this job (e.g.
-          their PO Number). This is the "Billing Identification" that they require to correlated
-          your invoices with their order. The Billing ID you enter is used to set the billing id for
-          new invoices associated with this job.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Job Active</guilabel> - toggles this job being active or not. This is useful when you have
-          many inactive jobs, since it is easier to search only among jobs that are marked active.
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <para>To edit an existing customer job, use the &mc.bus.cus.find-job; menu item. Select the desired job in
-      the search results, and click the <guilabel>View/Edit Job</guilabel> button.
-    </para>
-
-    <para>To select from the invoices and credit notes associated with a given job, use &mc.bus.cus.find-job;
-      menu item. Select the desired job in the search results and click the <guilabel>View
-      Invoices</guilabel> button. A window listing invoices and credit notes associated with this
-      job appears. Select an invoice or credit note and click the <guilabel>View Invoice</guilabel>
-      button to open an invoice editor in the main application window.
-    </para>
-  </sect1>
-
-  <sect1 id="busnss-ar-payment1">
-    <title>Process Invoice Payment</title>
-
-    <para>Eventually, you will receive payment from your customers for outstanding invoices. To register these
-      payments, use the Process Payment application found in &mc.bus.cus.pro-pay; .
-    </para>
-
-    <tip>
-      <para>There is an alternative way of assigning a payment to (one or more) invoices where the payment
-        transaction already exists, say in the case where transactions have been imported from a
-        bank. There is no way to assign a payment to an invoice during the import process, so this
-        must be done after transactions have been imported.
-      </para>
-
-      <para>This can best be done starting from the asset account register holding the imported payment
-        transaction (like your bank account). In that account, select the payment, right-click
-        (control-click for &mac;) and choose <guilabel>Assign as payment...</guilabel>. The payment
-        window will pop-up, partly filled in with the information from the transaction. Fill in the
-        missing information like the proper customer and invoice to complete the payment.
-      </para>
-
-      <para>One caveat: the logic behind <guilabel>Assign as payment...</guilabel>won't properly detect credit
-        note reimbursements and will wrongfully interpret such a transaction as a vendor bill.
-      </para>
-    </tip>
-
-    <para>The Process Payment application consists of:
-    </para>
-
-    <itemizedlist>
-      <listitem>
-        <para><guilabel>Payment Information - Customer</guilabel> - the customer who paid you. If you remember the
-          <emphasis>company name</emphasis> you entered in the <guilabel>New Customer</guilabel>
-          window for this customer, start to type it in this field and &app; will try auto complete
-          it for you. Else, press the <guibutton>Select...</guibutton> button to access the
-          <guilabel>Find Customer</guilabel> window described in
-          <xref linkend="busnss-ar-custfind2" />. Highlight the customer you are looking for with a
-          click in the search results, then press the <guibutton>Select</guibutton> button.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Payment Information - Invoice</guilabel> - the invoice for which payment was received. If
-          you remember the <emphasis>invoice ID</emphasis>, start to type it in this field and &app;
-          will try auto complete it for you. Else, press the <guibutton>Select...</guibutton> button
-          to access the <guilabel>Find Invoice</guilabel> window described in
-          <xref linkend="busnss-ar-invoicefind2" />. Highlight the invoice you are looking for with
-          a click in the search results, then press the <guibutton>Select</guibutton> button.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Payment Information - Date</guilabel> - the date you you received payment.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Payment Information - Amount</guilabel> - the amount of money received.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Payment Information - Num</guilabel> - the check number.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Payment Information - Memo</guilabel> - any comments about this payment.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Post To</guilabel> - the A/Receivable account to which to post this transaction.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Transfer Account</guilabel> - the account where the money will be deposited (a checking
-          account for example).
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <sect2 id="busnss-ar-overpay2">
-      <title>Over Payments or Pre-Payments</title>
-
-      <para>If a customer overpays an invoice or pays for goods or services before they have been invoiced,
-        Process Payment for the total amount received. &app; will then keep track of the
-        over-payment (or pre-payment) in the A/R account and you can use the residual when paying
-        the next invoice.
+      <para>Sie können die Zählnummer der Rechnung nach Ihren Wünschen anpassen. Mit &mc.ed.pref; öffnen Sie
+        die <guilabel>Bucheinstellungen</guilabel> und wechseln zum
+        <xref linkend="counters-book-options" />. Ändern Sie den Zähler für die
+        <guilabel>Rechnungsnummer</guilabel> so, dass er um eins kleiner ist als die gewünschte
+        Startnummer und klicken Sie auf die Schaltfläche <guibutton>OK</guibutton> oder
+        <guibutton>Anwenden</guibutton>.
       </para>
     </sect2>
 
-    <sect2 id="busnss-ar-partpay2">
-      <title>Partial Payments</title>
+    <sect2 id="busnss-ar-invoicechange">
+      <title>Erscheinungsbild ändern</title>
 
-      <para>Partial payments are possible too. Select the invoice to pay. &app; will automatically suggest that
-        invoice's remaining balance as payment amount. Simply adjust that amount to what you want to
-        pay.
+      <para>Das Aussehen der Standard-Rechnung, wie er in <xref linkend="busnss-ar-invoiceprint2" /> abgebildet
+        ist, ist recht schlicht. Das Standard-Layout lässt den oberen Teil des Formulars leer, so
+        dass Sie auf spezielles Briefpapier der Firma drucken können. Es gibt einige
+        Möglichkeiten, das Erscheinungsbild der Rechnung anzupassen.
+      </para>
+
+      <para>Verwenden Sie &mc.fi.prop;, um Ihre Unternehmensinformationen auf dem
+        <xref linkend ="business-book-options" /> zu erfassen. Diese Informationen werden auf der
+        rechten Seite der Rechnungen gedruckt.
+      </para>
+
+      <para>Wollen Sie den Rechnungen einen individuellen Hintergrund, ein Bild in der Kopfleiste oder ein Logo
+        hinzuzufügen, müssen Sie die Rechnungsvorlagen ändern. Gehen Sie dafür zu &mc.ed.css;
+        und legen Sie im sich öffnendem Fenster <xref linkend="style-choose" /> eine neue Vorlage
+        an, die Sie nach Ihren Vorstellungen gestalten können.
+      </para>
+
+      <para>Wenn die Stilvorlage nach Ihren Vorstellungen konfiguriert ist, stellen Sie diese in den
+        &mc.ed.rep-opt; auf dem Reiter <guilabel>Allgemein</guilabel> als
+        <guilabel>Stilvorlage</guilabel> ein.
       </para>
     </sect2>
 
-    <sect2 id="busnss-ar-baddebt">
-      <title>Writing Off a Bad Debt</title>
+    <sect2 id="busnss-ar-jobs1">
+      <title>Kundenauftrag</title>
 
-      <note>
-        <para>Please check with your accountant to ensure the following is acceptable in your region.
-        </para>
-      </note>
-
-      <para>The usual way to do this is to process a payment for the invoice to a <emphasis>BadDebt</emphasis>
-        account. Such an account would be an expense account. However, in &app;, you can't process a
-        payment for an invoice directly to an expense account, so it takes two steps:
+      <para>Kundenaufträge werden verwendet, um mehrere Rechnungen und Gutschriften für denselben Kunden
+        zusammenzufassen. Die Verwendung dieser Funktion ist optional, jedoch nützlich, wenn Sie
+        mehrere <guilabel>Aufträge</guilabel> für denselben Kunden haben und alle Rechnungen und
+        Gutschriften zu einem einzigen Auftrag zusammenfassen möchten.
       </para>
 
-      <itemizedlist>
-        <listitem>
-          <para>Pay the invoice to an asset or liability account, such as your checking account.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Change the asset or liability account, in the <emphasis>non</emphasis> Accounts Receivable split of
-            the payment transaction, to the BadDebt expense account.
-          </para>
-        </listitem>
-      </itemizedlist>
-
-      <para>Specifically
+      <para>Um Kundenaufträge zu verwenden, müssen Sie diese mit dem Menüpunkt &mc.bus.cus.new-job;
+        erstellen.
       </para>
 
-      <itemizedlist>
-        <listitem>
-          <para>Remove all transactions from the A/R account related to the invoice, except for the invoice's
-            transaction itself. This includes any payment transactions, and transactions between
-            your BadDebt and A/R account.
-          </para>
+      <figure pgwide="1">
+        <title>Neuer Auftrag</title>
 
-          <para>In case the payment has associated lot link transactions
-            <link linkend="busnss-ar-baddeb-lot">(1)</link>, remove those as well.
-          </para>
+        <screenshot>
+          <screeninfo>422x383</screeninfo>
 
-          <para>If all is well, your <guilabel>Process Payment</guilabel> window for this customer should list the
-            invoice the customer won't pay, and no prepayments.
-          </para>
-        </listitem>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Customer_Job.png"
+                                   srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
 
-        <listitem>
-          <para>Pay your invoice to an arbitrary asset or liability account. It can be your checking account. We
-            will fix that in the next step.
-          </para>
-        </listitem>
+      <glosslist>
+        <glossentry>
+          <glossterm>Auftragsinformation - Auftragsnummer</glossterm>
+          <glossdef>
+            <para>Geben Sie die Nummer für diesen Auftrag ein. Wenn Sie das Feld leer lassen, wird eine Nummer für
+              Sie ausgewählt. Siehe <xref linkend="counters-book-options" /> für mehr
+              Informationen. Die Angabe ist optional.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para>Open the account register for your A/R account. For this invoice there should now be one payment
-            transaction. If you are using &app; 2.6.0 - 2.6.4 there will also be one lot link
-            transaction <link linkend="busnss-ar-baddeb-lot">(1)</link>.
-          </para>
-        </listitem>
+        <glossentry>
+          <glossterm>Auftragsinformation - Auftragsname</glossterm>
+          <glossdef>
+            <para>Den Namen, den Sie dem neuen Auftrag zuweisen möchten.
+            </para>
+          </glossdef>
+        </glossentry>
 
-        <listitem>
-          <para>Select the payment transaction and change the transfer account to your <emphasis>BadDebt</emphasis>
-            account. Make sure to leave the transaction (eg by clicking on another transaction) to
-            save the changes.
-          </para>
-        </listitem>
-      </itemizedlist>
+        <glossentry>
+          <glossterm>Mandanteninformation - Kunde</glossterm>
+          <glossdef>
+            <para>Den Kunden, für den der Auftrag erstellt wird. Wenn Sie Sie sich an den
+              <emphasis>Firmennamen</emphasis> erinnern, den Sie im Fenster
+              <xref linkend="busnss-ar-custnew2" /> für diesen Kunden eingegeben haben, geben Sie
+              ihn in dieses Feld ein und &app; wird versuchen, ihn automatisch für Sie zu
+              vervollständigen. Andernfalls drücken Sie die <guibutton>Auswählen...</guibutton>
+              Schaltfläche, um das Fenster <xref linkend="busnss-ar-custfind2" /> zu öffnen und
+              führen dort eine Kundensuche aus. Markieren Sie den Suchergebnissen den gesuchten
+              Kunden und mit betätigen der Schaltfläche <guibutton>Auswählen</guibutton> wird der
+              Eintrag übernommen.
+            </para>
+          </glossdef>
+        </glossentry>
 
-      <para>If all is well, your <guilabel>Process Payment</guilabel> window should still be clean: no
-        pre-payments, and the bad debt invoice gone.
+        <glossentry>
+          <glossterm>Mandanteninformation - Kurs</glossterm>
+          <glossdef>
+            <para>???
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Auftragsinformation - Abrechnungs-ID</glossterm>
+          <glossdef>
+            <para>Die Referenz des Kunden zu diesem Auftrag. Dies ist die Identifikation, die sie benötigen, um Ihre
+              Rechnungen mit dem Auftrag zu verknüpfen. Die von Ihnen eingegebene Abrechnungs-ID
+              wird verwendet, um die Rechnungsnummer für neue Rechnungen, die mit diesem Auftrag
+              verbunden sind, zu vergeben.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Auftrag aktiv?</glossterm>
+          <glossdef>
+            <para>Hiermit können Sie inaktive — also abgeschlossene — Aufträge kennzeichnen. Dies ist nützlich,
+              um die Übersicht in Ihrer Auftragsliste zu behalten. Mit der Suchfunktion können Sie
+              auch inaktive Aufträge wiederfinden.
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <para>Um einen bestehenden Kundenauftrag zu bearbeiten, verwenden Sie den Menüpunkt
+        &mc.bus.cus.find-job;. Wählen Sie den gewünschten Auftrag in den Suchergebnissen und
+        klicken Sie auf die Schaltfläche <guilabel>Auftrag anzeigen/bearbeiten</guilabel>.
       </para>
 
-      <note id="busnss-ar-baddeb-lot">
-        <para>(1): &app; versions 2.6.0 to 2.6.4 created lot link transactions which show in the A/R account
-          register. This came with its own set of subtle issues. It is recommended to upgrade to the
-          latest (or at least 2.6.6) version, which fixes a lot of small problems. Version 2.6.5 had
-          a flaw in the logic cleaning up the lot links. Once upgraded, please run
-          &mc.ac.chk-rep.acct; on your A/R and A/P accounts to clean up most of the lot link legacy.
-          Don't forget to make a backup first just in case.
-        </para>
-
-        <para>Lots are used internally for relating payments to invoices. Lots themselves are invisible in the
-          account registers. To see them you need to open the lot viewer, which can be found in
-          &mc.ac.vw-lots; while in any A/R or A/P account register. Select a lot to see the
-          <emphasis>Splits in lot</emphasis>.
-        </para>
-
-        <para><emphasis>Lot links</emphasis> are <emphasis>transactions</emphasis> which you can see in your A/R
-          and A/P accounts. They are unusual in the sense that all their splits are in one account
-          (A/R or A/P). Each split in a lot link transaction is <emphasis>linked</emphasis> (hence
-          the name) to an invoice or payment transaction by means of a lot.
-        </para>
-      </note>
-
-      <para>See <ulink url="&url-wiki-bus-feat;"  /> for more information.
+      <para>Wollen Sie eine Rechnung oder Gutschrift, die mit einem bestimmten Auftrag verbunden sind,
+        auswählen, verwenden Sie &mc.bus.cus.find-job;. Markieren Sie den gewünschten Auftrag in
+        den Suchergebnissen und klicken auf die Schaltfläche <guilabel> Rechnungen
+        anzeigen</guilabel>. Es öffnet sich ein Fenster, in dem die Rechnungen und Gutschriften,
+        die zu diesem Auftrag gehören, angezeigt werden. Wählen Sie einen Eintrag aus und klicken
+        Sie auf die Schaltfläche <guilabel>Rechnung anzeigen/bearbeiten</guilabel>, um einen
+        Rechnungseditor im Hauptfenster der Anwendung zu öffnen.
       </para>
     </sect2>
-  </sect1>
 
-  <sect1 id="busnss-ar-invoicechange">
-    <title>Changing the Invoice Appearance</title>
+    <sect2 id="busnss-ar-payment1">
+      <title>Zahlung verarbeiten</title>
 
-    <para>The default Invoice style, as shown in <xref
-    linkend="busnss-ar-invoiceprint2" />, is fairly
-      barren. The default invoice style leaves the top part of the form blank, so you can print on
-      company letterhead paper. There are some things you can do to change invoice appearance.
-    </para>
-
-    <para>Use &mc.fi.prop; to enter your Company information in the <guilabel>Business</guilabel> tab of the
-      <guilabel>Book Options</guilabel> window. Some of the entered information is printed on the
-      right side of invoices.
-    </para>
-
-    <para>To add a customized background, heading banner or logo to invoices, modify the invoice style sheets.
-      To do this, go to &mc.ed.css; and select the <guibutton>New</guibutton> button in the
-      <guilabel>Select HTML Style Sheet</guilabel> window that will appear.
-    </para>
-
-    <para>Give a <guilabel>Name</guilabel> to the new style sheet (e.g. <guilabel>Custom Invoice</guilabel>)
-      and select the <guilabel>Fancy</guilabel> <guilabel>Template</guilabel>. When you click the
-      <guibutton>OK</guibutton> button, the <guilabel>HTML Style Sheet Properties</guilabel> window
-      is displayed. This window presents you five sections listed in the left pane:
-      <guilabel>Colors</guilabel>, <guilabel>Fonts</guilabel>, <guilabel>General</guilabel>,
-      <guilabel>Images</guilabel>, and <guilabel>Tables</guilabel>. The <guilabel>Colors</guilabel>
-      section allows you to change the colors of various items of the invoice. The
-      <guilabel>Fonts</guilabel> section lets you set font type and dimensions. The
-      <guilabel>General</guilabel> section allows you to set the <guilabel>Preparer</guilabel> and
-      <guilabel>Prepared for</guilabel> information, and to <guilabel>Enable Links</guilabel>. The
-      <guilabel>Images</guilabel> section allows you to import graphics into the style sheet. The
-      <guilabel>Tables</guilabel> section allows you to adjust the spacing around the tables which
-      make up the invoice.
-    </para>
-
-    <para>To include a company logo, banner heading and background image, use your favorite graphics
-      application such as <application>The Gimp</application> or <application>OpenOffice
-      Draw</application> to save the images in either <acronym>GIF</acronym> or
-      <acronym>PNG</acronym> format. Then import them into the style sheet using the
-      <guilabel>Images</guilabel> section described above.
-    </para>
-
-    <note>
-      <para>The images are placed in the invoice as follows. The <guilabel>Background Tile</guilabel> is tiled
-        to become the background image, the <guilabel>Heading Banner</guilabel> goes above the
-        invoice text, and the <guilabel>Logo</guilabel> is placed in the upper left corner of the
-        invoice to the left of the Heading Banner. You will probably have to try a few different
-        sized images until you get the invoices to print nicely. Some sizing suggestions are that
-        the Logo should be 1 square cm (~0.5 inch), and the Heading Banner should be 15 cm (~6
-        inches) wide and 1 cm (~0.5 inch) tall.
+      <para>Schließlich werden Sie von Ihren Kunden Zahlungen für ausstehende Rechnungen erhalten. Zum
+        Verbuchen dieser Zahlungen, verwenden Sie die Anwendung <guilabel>Zahlung
+        verarbeiten</guilabel>, die Sie unter &mc.bus.cus.pro-pay; finden.
       </para>
-    </note>
 
-    <para>With the style sheet configured, when you print the invoice, you select the style sheet to use from
-      the <guimenu>Options</guimenu> menu.
-    </para>
+      <tip>
+        <para>Es gibt eine alternative Möglichkeit, eine Zahlung (einer oder mehreren) Rechnungen zuzuordnen,
+          wenn der Zahlungsbuchung bereits existiert, z.B. wenn Buchungen von einer Bank importiert
+          wurden. Es gibt <emphasis>keine</emphasis> Möglichkeit, eine Zahlung während des
+          Importvorgangs einer Rechnung zuzuordnen, so dass dies also nach dem Import der
+          Transaktionen erfolgen muss.
+        </para>
+
+        <para>Dies geschieht am besten ausgehend von dem Register des Aktivkontos, das den importierten
+          Zahlungsvorgang enthält (z.B. das Bankkonto). Wählen Sie in diesem Konto die Zahlung
+          aus, klicken Sie mit der rechten Maustaste (&kc.ctrl;-Klick für &mac;) und wählen Sie
+          &gmi.ed.pay-asng;. Das Fenster <guilabel>Zahlung verarbeiten</guilabel> wird geöffnet,
+          das teilweise mit den Informationen aus der Buchung ausgefüllt ist. Tragen Sie die
+          fehlenden Informationen wie den richtigen Kunden und die Rechnung ein, um die Zahlung
+          abzuschließen.
+        </para>
+
+        <para>Eine Einschränkung: Die Logik hinter &gmi.ed.pay-asng; erkennt eine Gutschriftserstattungen nicht
+          richtig und interpretiert eine solche Buchung fälschlicherweise als eine
+          Lieferantenrechnung.
+        </para>
+      </tip>
+
+      <figure pgwide="1">
+        <title>Zahlung verarbeiten</title>
+
+        <screenshot>
+          <screeninfo>647x544</screeninfo>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/Busnss_Invoice_Payment.png"
+                                   srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>Die Anwendung <guilabel>Zahlung verarbeiten</guilabel> umfasst die folgenden Bedienelemente:
+      </para>
+
+      <glosslist>
+        <glossentry>
+          <glossterm>Mandanteninformation - Kunde</glossterm>
+          <glossdef>
+<!-- ToDo: perhaps <glosssee> coudt work? -->
+            <para>Den Kunden, für den der Auftrag erstellt wird. Wenn Sie Sie sich an den
+              <emphasis>Firmennamen</emphasis> erinnern, den Sie im Fenster
+              <xref linkend="busnss-ar-custnew2" /> für diesen Kunden eingegeben haben, geben Sie
+              ihn in dieses Feld ein und &app; wird versuchen, ihn automatisch für Sie zu
+              vervollständigen. Andernfalls drücken Sie die <guibutton>Auswählen...</guibutton>
+              Schaltfläche, um das Fenster <xref linkend="busnss-ar-custfind2" /> zu öffnen und
+              führen dort eine Kundensuche aus. Markieren Sie den Suchergebnissen den gesuchten
+              Kunden und mit betätigen der Schaltfläche <guibutton>Auswählen</guibutton> wird der
+              Eintrag übernommen.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Buchen nach (Soll)</glossterm>
+          <glossdef>
+            <para>Das Debitoren-Konto, auf das diese Zahlung gebucht werden soll.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Buchungen</glossterm>
+          <glossdef>
+            <para>Liste mit offenen Buchungen.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Buchungsdetails - Datum</glossterm>
+          <glossdef>
+            <para>Das Datum, an dem Sie die Zahlung erhalten haben.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Buchungsdetails - Zahlung</glossterm>
+          <glossdef>
+            <para>Der zu zahlende Betrag für diese Rechnung.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Buchungsdetails - Erstattung</glossterm>
+          <glossdef>
+            <para>Der Betrag der Erstattung bei Überzahlung einer Rechnung.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Buchungsdetails - Nr</glossterm>
+          <glossdef>
+            <para>Die Nummer eines Schecks.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Buchungsdetails - Buchungstext</glossterm>
+          <glossdef>
+            <para>Ein Kommentar zu dieser Zahlung.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Buchungsdetails - Scheck drucken</glossterm>
+          <glossdef>
+            <para>Öffnet nach Betätigen von <guilabel>OK</guilabel> den Dialog <xref linkend="print-check" />.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>Herkunftskonto (Haben)</glossterm>
+          <glossdef>
+            <para>Das Konto, auf das das Geld eingezahlt werden soll (ein Girokonto zum Beispiel).
+            </para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <sect3 id="busnss-ar-overpay2">
+        <title>Zuviel gezahlte Beträge oder Vorauszahlungen</title>
+
+        <para>Wenn ein Kunde eine Rechnung zu hoch bezahlt oder für Waren oder Dienstleistungen bezahlt, bevor
+          sie in Rechnung gestellt wurden, erfolgt die Zahlungsverarbeitung für den erhaltenen
+          Gesamtbetrag. &app; verfolgt dann die Überzahlung (oder Vorauszahlung) auf dem
+          Ausgangskonto, und Sie können den Restbetrag bei der Bezahlung der nächsten Rechnung
+          verwenden.
+        </para>
+      </sect3>
+
+      <sect3 id="busnss-ar-partpay2">
+        <title>Teilzahlungen</title>
+
+        <para>Auch Teilzahlungen sind möglich. Wählen Sie die zu zahlende Rechnung aus und &app; schlägt
+          automatisch den Restsaldo der Rechnung als Zahlungsbetrag vor. Passen Sie diesen Betrag
+          einfach an den Betrag an, den Sie zahlen möchten.
+        </para>
+      </sect3>
+
+      <sect3 id="busnss-ar-baddebt">
+        <title>Writing Off a Bad Debt</title>
+<!-- ToDo: Transfer to the guide -->
+        <para>&untranslated;
+        </para>
+
+        <note>
+          <para>Please check with your accountant to ensure the following is acceptable in your region.
+          </para>
+        </note>
+
+        <para>The usual way to do this is to process a payment for the invoice to a <emphasis>BadDebt</emphasis>
+          account. Such an account would be an expense account. However, in &app;, you can't process
+          a payment for an invoice directly to an expense account, so it takes two steps:
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Pay the invoice to an asset or liability account, such as your checking account.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Change the asset or liability account, in the <emphasis> non</emphasis> Accounts Receivable split of
+              the payment transaction, to the BadDebt expense account.
+            </para>
+          </listitem>
+        </itemizedlist>
+
+        <para>Specifically
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Remove all transactions from the A/R account related to the invoice, except for the invoice's
+              transaction itself. This includes any payment transactions, and transactions between
+              your BadDebt and A/R account.
+            </para>
+
+            <para>In case the payment has associated lot link transactions
+              <link linkend="busnss-ar-baddeb-lot">(1)</link>, remove those as well.
+            </para>
+
+            <para>If all is well, your <guilabel>Process Payment</guilabel> window for this customer should list the
+              invoice the customer won't pay, and no prepayments.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Pay your invoice to an arbitrary asset or liability account. It can be your checking account. We
+              will fix that in the next step.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Open the account register for your A/R account. For this invoice there should now be one payment
+              transaction. If you are using &app; 2.6.0 - 2.6.4 there will also be one lot link
+              transaction <link linkend="busnss-ar-baddeb-lot">(1)</link>.
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Select the payment transaction and change the transfer account to your <emphasis>BadDebt</emphasis>
+              account. Make sure to leave the transaction (eg by clicking on another transaction) to
+              save the changes.
+            </para>
+          </listitem>
+        </itemizedlist>
+
+        <para>If all is well, your <guilabel>Process Payment</guilabel> window should still be clean: no
+          pre-payments, and the bad debt invoice gone.
+        </para>
+
+        <note id="busnss-ar-baddeb-lot">
+          <para>(1): &app; versions 2.6.0 to 2.6.4 created lot link transactions which show in the A/R account
+            register. This came with its own set of subtle issues. It is recommended to upgrade to
+            the latest (or at least 2.6.6) version, which fixes a lot of small problems. Version
+            2.6.5 had a flaw in the logic cleaning up the lot links. Once upgraded, please run
+            &mc.ac.chk-rep.acct; on your A/R and A/P accounts to clean up most of the lot link
+            legacy. Don't forget to make a backup first just in case.
+          </para>
+
+          <para>Lots are used internally for relating payments to invoices. Lots themselves are invisible in the
+            account registers. To see them you need to open the lot viewer, which can be found in
+            &mc.ac.vw-lots; while in any A/R or A/P account register. Select a lot to see the
+            <emphasis>Splits in lot</emphasis>.
+          </para>
+
+          <para><emphasis>Lot links</emphasis> are <emphasis>transactions</emphasis> which you can see in your A/R
+            and A/P accounts. They are unusual in the sense that all their splits are in one account
+            (A/R or A/P). Each split in a lot link transaction is <emphasis>linked</emphasis> (hence
+            the name) to an invoice or payment transaction by means of a lot.
+          </para>
+        </note>
+
+        <para>See <ulink url="&url-wiki-bus-feat;"  /> for more information.
+        </para>
+      </sect3>
+    </sect2>
   </sect1>
 <!-- start of A/P -->
   <sect1 id="busnss-ap-components1">
