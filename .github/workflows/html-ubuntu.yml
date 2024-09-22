@@ -6,7 +6,7 @@ jobs:
     name: make HTML in Ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - run: sudo apt-get update
     - name: Install minimal dependencies
       run: sudo apt-get install -y cmake ninja-build libxml2-utils xsltproc docbook-xsl
@@ -25,7 +25,7 @@ jobs:
       run: |
         cd build
         ninja html
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       if: failure()
       with:
         name: TestLog
