@@ -83,7 +83,7 @@ set(BASE_XSLT_CHM "${CMAKE_SOURCE_DIR}/xsl/general-chm-customization.xsl")
 
 # Buildtime destination directories for our generated documentation
 set(DATADIR_BUILD "${CMAKE_BINARY_DIR}/share")
-set(DOCDIR_BUILD  "${DATADIR_BUILD}/doc/${PACKAGE_NAME}")
+set(DOCDIR_BUILD  "${DATADIR_BUILD}/doc/${PROJECT_NAME}")
 
 # ############################################################
 # Find the documentation dependencies
