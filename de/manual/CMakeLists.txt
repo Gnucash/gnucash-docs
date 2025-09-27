@@ -68,6 +68,7 @@ set (figures
         figures/Choose_Export_Settings.png
         figures/GUI_Business_Invoice.png
         figures/GUI_Business_Overview.png
+        figures/Import_AqB_Profile.png
         figures/Import_Map_Editor.png
         figures/Import_MatchPicker.png
         figures/Import_QIF_Druid.png

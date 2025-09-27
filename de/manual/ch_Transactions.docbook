@@ -1557,12 +1557,12 @@ Translators:
       gebucht. Im Folgenden wird dies als <emphasis>Import-</emphasis> oder
       <emphasis>Basiskonto</emphasis> bezeichnet. Abhängig von dem Importformat kann die
       Kontobezeichnung in den zu importierenden Daten angegeben sein. Es ist normalerweise der erste
-      Buchungsteil der importiert wird.
+      Buchungsteil, der importiert wird.
     </para>
 
-    <para>Alle Buchungen müssen ebenfalls ein <emphasis>Zielkonto</emphasis> für alle Buchungsteile die mit
+    <para>Alle Buchungen müssen ebenfalls ein <emphasis>Zielkonto</emphasis> für die Buchungsteile, die mit
       der Buchung verbunden sind enthalten. Diese können, abhängig von der Datenquelle und dem
-      Format der Daten, in den importierten Daten beschrieben sein. Wenn dies nicht der Fall ist
+      Format der Daten, in den importierten Daten beschrieben sein. Wenn dies nicht der Fall ist,
       versucht &app;, vorzugsweise auf Basis der Importhistorie, die Buchungen einem Konto zuweisen,
       indem die Inhalte in den importierten Daten mit Buchungen verglichen werden, die im Importer
       mit früheren Kontenzuweisungen zugeordnet wurden. Sie können die automatische Zuweisung
@@ -1577,77 +1577,135 @@ Translators:
     <sect2 id="trans-import-formats">
       <title>Importformate</title>
 
-      <para>&app; ermöglicht den Import von Buchungen sowohl in einer Vielzahl an strukturierten Formaten für
-        den Austausch von Finanzdaten als auch im unstrukturierten CSV-Format, ein einfaches
-        Text-Tabellenformat, das häufig für den Import und Export von Daten in und aus
-        Tabellenkalkulationen verwendet wird.
-      </para>
+      <glossary>
+        <title>Online-Banking Formate</title>
 
-      <variablelist>
-        <varlistentry>
-          <term><link linkend="trans-import-qif">QIF</link></term>
+        <para>Dieses Glossar enthälte eine Beschreibung der verschiedenen Dateiformate, die beim Online-Banking
+          und Datenaustausch in &app; verwendet werden. Im Allgemeinen können sie unterschieden
+          werden durch
+          <itemizedlist>
+            <listitem>
+              <para>traditionelle zeilenorientierte Formate gegenüber modernen XML-basierten Formaten und
+              </para>
+            </listitem>
 
-          <listitem>
-            <para>(.qif) Quicken® Interchange format - Daten aus der Finanzsoftware Quicken® importieren
-            </para>
-          </listitem>
-        </varlistentry>
+            <listitem>
+              <para>regionale versus internationale Gültigkeit.
+              </para>
+            </listitem>
+          </itemizedlist>
+          Es ist zu erwarten, dass die XML-basierten Varianten die traditionellen Formate in den
+          nächsten Jahren ablösen werden.
+        </para>
 
-        <varlistentry>
-          <term><link linkend="trans-import-ofx">OFX/QFX</link></term>
+        <glossdiv>
+          <title>zeilenorientierte Formate</title>
 
-          <listitem>
-            <para>(.ofx,.qfx) Open Financial eXchange-Format (QXF ist eine von Intuit/Quicken® entwickelte Version
-              von OFX)
-            </para>
-          </listitem>
-        </varlistentry>
+          <glossentry>
+            <glossterm>CSV</glossterm>
+            <glossdef>
+              <para><ulink url="&url-wp-de;CSV_(Dateiformat)">Kommagetrennte Werte</ulink> sind eine gängige
+                Darstellung von Datenbanktabellen und gehen theoretisch auf Lochkarten zurück. Die
+                Funktion wird im Abschnitt <xref linkend="trans-import-csv" /> beschrieben.
+              </para>
+            </glossdef>
+          </glossentry>
 
-        <varlistentry>
-          <term><link linkend="trans-import-csv">CSV</link></term>
+          <glossentry>
+            <glossterm>DTAUS</glossterm>
+            <glossdef>
+              <para>Das <ulink url="&url-wp-de;Datenträgeraustauschverfahren">Datenträgeraustauschverfahren
+                (DTAUS)</ulink> wurde im Jahr 2016 endgültig eingestellt und durch das
+                SEPA-Verfahren ersetzt. &app; unterstützt seit dem diese Verfahren nicht mehr!
+              </para>
+            </glossdef>
+          </glossentry>
 
-          <listitem>
-            <para>(.csv) Durch Kommata getrennte Werte
-            </para>
-          </listitem>
-        </varlistentry>
+          <glossentry>
+            <glossterm>QIF</glossterm>
+            <glossdef>
+              <para>Mit dem <ulink url="&url-wp-de;Quicken_Interchange_Format">Quicken® Interchange Format</ulink>
+                werden Daten aus der Finanzsoftware Quicken® importieren. Lesen Sie hierzu
+                <xref linkend="trans-import-qif" />.
+              </para>
+            </glossdef>
+          </glossentry>
 
-        <varlistentry>
-          <term><link linkend="trans-import-MT940-MT942-DTAUS">MT940</link></term>
+          <glossentry>
+            <glossterm>SWIFT (MT)</glossterm>
+            <glossdef>
+              <para><ulink url="&url-wp-de;SWIFT">Society for Worldwide Interbank Financial Telecommunication</ulink>
+                hat viele traditionelle zeilenorientierte Formate definiert, wobei die Klasse 9
+                (MT940, MT942) für den Austausch mit Verbrauchern gedacht ist.
+              </para>
+            </glossdef>
+          </glossentry>
 
-          <listitem>
-            <para>SWIFT MT940 Kontoauszug zum Tagesende
-            </para>
-          </listitem>
-        </varlistentry>
+          <glossentry>
+            <glossterm>UN/EDIFACT</glossterm>
+            <glossdef>
+              <para><ulink url="&url-wp-de;EDIFACT">United Nations / Electronic Data Interchange for Administration,
+                Commerce and Transport</ulink> beschreibt einen sehr komplexen
+                branchenübergreifenden internationalen Standard. Teile davon wurden von einigen
+                Ländern für ihren nationalen Bankenstandard angepasst.
+              </para>
+            </glossdef>
+          </glossentry>
+        </glossdiv>
 
-        <varlistentry>
-          <term><link linkend="trans-import-MT940-MT942-DTAUS">MT942</link></term>
+        <glossdiv>
+          <title>XML basierte Formate</title>
 
-          <listitem>
-            <para>SWIFT MT942 Zwischenkontoauszug
-            </para>
-          </listitem>
-        </varlistentry>
+          <glossentry>
+            <glossterm>OFX / QFX</glossterm>
+            <glossdef>
+              <para><ulink url="&url-wp-de;Open_Financial_Exchange">Open Financial Exchange</ulink> ist eine freie
+                lizensierte Spezifikation. Intuit verwendet in seiner Finanzsoftware Quicken® das
+                aus <quote>OFX</quote> abgeleitete propriätere <quote>QFX</quote>-Format für
+                <emphasis>Web Connect</emphasis> und einen manuellen Import von Transaktionsdaten
+                wohingegen mittels <quote>OFX</quote> als <emphasis>Direct Connect</emphasis> sich
+                die Software direkt mit dem Bankserver verbinden kann. Eine Beschreibung finden Sie
+                unter <xref linkend="trans-import-ofx" />.
+              </para>
+            </glossdef>
+          </glossentry>
 
-        <varlistentry>
-          <term><link linkend="trans-import-MT940-MT942-DTAUS">DTAUS</link></term>
+          <glossentry>
+            <glossterm>CAMT</glossterm>
+            <glossdef>
+              <para><ulink url="&url-wp-de;Camt-Format">Camt-Format</ulink> beschreibt Kontoauszugsinformationen im
+                <emphasis>Europäischer Zahlungsraum</emphasis> auch als
+                <ulink url="&url-wp-de;Europäischer_Zahlungsraum">SEPA</ulink> bekannt.
+              </para>
+            </glossdef>
+          </glossentry>
 
-          <listitem>
-            <para>(.DTAUS) Datenträgeraustauschverfahren
-            </para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
+          <glossentry>
+            <glossterm>PAIN</glossterm>
+            <glossdef>
+              <para>Definiert das Format für Zahlungsanweisung in
+                <ulink url="&url-wp-de;Europäischer_Zahlungsraum">SEPA</ulink>.
+              </para>
+            </glossdef>
+          </glossentry>
+        </glossdiv>
+      </glossary>
+
+      <abstract>
+        <para>&app; ermöglicht den Import von Buchungen sowohl in einer Vielzahl an strukturierten Formaten für
+          den Austausch von Finanzdaten als auch im unstrukturierten CSV-Format, ein einfaches
+          Text-Tabellenformat, das häufig für den Import und Export von Daten in und aus
+          Tabellenkalkulationen verwendet wird.
+        </para>
+      </abstract>
 
       <note>
-        <para>Dateien, die diese Formate beschreiben, verwenden nicht unbedingt die oben genannten
-          Dateierweiterungen.
+        <para>Dateien, die diese Formate beschreiben, verwenden nicht unbedingt die genannten Dateierweiterungen.
         </para>
       </note>
 
-      <para>Auf die Importfunktionen der vorgenannten Dateiformate, und noch weitere Möglichkeiten zum
-        Importieren anderer Datentypen, kann über das Untermenü &mc-gsm.fi.imp; zugegriffen
+      <para>Auf die Importfunktionen der hier aufgeführten Dateiformate, und noch weitere Möglichkeiten zum
+        Importieren anderer Datentypen, kann über die Einträge im Menü &mc.fi.imp; zugegriffen
         werden.
       </para>
     </sect2>
@@ -2624,57 +2682,51 @@ Translators:
       </caution>
     </sect2>
 
-    <sect2 id="trans-import-MT940-MT942-DTAUS">
-      <title>Importieren von MT940 &amp; MT942 SWIFT sowie DTAUS Dateien</title>
+    <sect2 id="trans-import-aqbanking">
+      <title>Import verschiedener Dateiformate mit &app-aqb;</title>
 
-      <para>In dem Menü &mc-gsm.fi.imp; stehen die folgenden Einträge zur Verfügung:
+      <para>Wenn Sie &app-aqb; auf Ihrem Computer installiert haben und &app; mit &app-aqb; Unterstützung
+        gebaut wurde, können Sie den Menüeintrag &mc.fi.imp.AqB; verwenden, um Dateien in
+        verschiedenen Formaten zu importieren.
       </para>
-<!--FIXME replace with link to glossary if and when extended to help -->
-      <variablelist>
-        <varlistentry>
-          <term>&gmi.fi.imp.mt940;</term>
 
-          <listitem>
-            <para>Das Format SWIFT MT940 wird für einen Tagesabschluss von Banken verwendet, die das SWIFT-Netzwerk
-              für den Datenaustausch nutzen.
-            </para>
-          </listitem>
-        </varlistentry>
+      <para>Es wird ein Dialogfeld mit zwei Listen angezeigt. Nachdem Sie links das gewünschte Dateiformat
+        gewählt haben, werden rechts ggf. dafür verfügbare Profile mit deren spezifischen
+        Formatvorlagen angezeigt. So fügt z.B. die niederländische AMRO-Bank zusätzliche Zeilen
+        ein, die es in der SWIFT-Spezifikation nicht gibt.
+      </para>
 
-        <varlistentry>
-          <term>&gmi.fi.imp.mt942;</term>
+      <figure pgwide="1">
+        <title>Dateiformate zum Import mit &app-aqb;</title>
+<!-- Text requires selection of SWIFT format -->
+        <screenshot>
+          <mediaobject>
+            <imageobject role="html">
+              <imagedata fileref="figures/Import_AqB_Profile.png"  srccredit="Christian Wehling" width="&img-w;" />
+            </imageobject>
 
-          <listitem>
-            <para>MT942 wird für einen Zwischenauszug im selben System verwendet. (in der Zeit seit dem letzten
-              Auszug gesendet)
-            </para>
-          </listitem>
-        </varlistentry>
+            <imageobject role="fo">
+              <imagedata fileref="figures/Import_AqB_Profile.png"  srccredit="Christian Wehling" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
 
-        <varlistentry>
-          <term>&gmi.fi.imp.dtaus;</term>
+      <para>Wählen Sie einen Dateiformat und ein Importprofil aus den Listen. &app; merkt sich Ihre Auswahl
+        für das nächste Mal, wenn Sie einen neuen Import durchführen.
+      </para>
 
-          <listitem>
-            <para>DTAUS ist ein Format das seit 1976 mit 9-Spur-Magnetbändern und später mit anderen Wechselmedien
-              (z.B. Floppy Disketten) verwendet wurde.
-            </para>
+      <para>Klicken Sie auf <guilabel>OK</guilabel>, um zum Dateiauswahlmenü zu gelangen. Wählen Sie eine zu
+        importierende Datei aus und klicken Sie auf die Schaltfläche
+        <guilabel>Importieren</guilabel>, um fortzufahren.
+      </para>
 
-            <note>
-              <para>DTAUS wird seit dem 1. Februar 2016 von den Banken nicht mehr unterstützt.
-              </para>
-            </note>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <para>Aus dem &app; Menü öffnet sich ein Dateiauswahldialog. Navigieren Sie zu der MT940-, MT942- oder
-        DTAUS-Datei, die Sie importieren möchten, und klicken Sie dann auf die Schaltfläche
-        <guibutton>Importieren</guibutton>. Bei dem ersten Import von Daten eines bestimmten Kontos
-        aus der Importdatei wird &app; einen Kontoauswahldialog anzeigen, in dem Sie ein geeignetes
-        Konto auswählen müssen, in das die Transaktionen in der Datei importiert werden sollen.
-        &app; ordnet die Kontobeschreibung in der Importdatei dem ausgewählte Konto zu und
-        verwendet sie für zukünftige Importe von demselben Konto. Die importierten Buchungen
-        werden dann in der <xref linkend="trans-import-matcher" /> zur Überprüfung angezeigt.
+      <para>Bei dem ersten Import von Daten eines bestimmten Kontos aus der Importdatei wird &app; einen
+        Kontoauswahldialog anzeigen, in dem Sie ein geeignetes Konto auswählen müssen, in das die
+        Transaktionen importiert werden sollen. &app; ordnet die Kontobeschreibung in der
+        Importdatei dem ausgewählte Konto zu und verwendet sie für zukünftige Importe von
+        demselben Konto. Die importierten Buchungen werden dann in dem Fenster
+        <xref linkend="trans-import-matcher" /> zur Überprüfung angezeigt.
       </para>
     </sect2>
 
