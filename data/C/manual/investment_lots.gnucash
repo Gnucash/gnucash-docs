@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gnc-v2
+     xmlns:gnc="http://www.gnucash.org/XML/gnc"
+     xmlns:act="http://www.gnucash.org/XML/act"
+     xmlns:book="http://www.gnucash.org/XML/book"
+     xmlns:cd="http://www.gnucash.org/XML/cd"
+     xmlns:cmdty="http://www.gnucash.org/XML/cmdty"
+     xmlns:price="http://www.gnucash.org/XML/price"
+     xmlns:slot="http://www.gnucash.org/XML/slot"
+     xmlns:split="http://www.gnucash.org/XML/split"
+     xmlns:sx="http://www.gnucash.org/XML/sx"
+     xmlns:trn="http://www.gnucash.org/XML/trn"
+     xmlns:ts="http://www.gnucash.org/XML/ts"
+     xmlns:fs="http://www.gnucash.org/XML/fs"
+     xmlns:bgt="http://www.gnucash.org/XML/bgt"
+     xmlns:recurrence="http://www.gnucash.org/XML/recurrence"
+     xmlns:lot="http://www.gnucash.org/XML/lot"
+     xmlns:addr="http://www.gnucash.org/XML/addr"
+     xmlns:owner="http://www.gnucash.org/XML/owner"
+     xmlns:billterm="http://www.gnucash.org/XML/billterm"
+     xmlns:bt-days="http://www.gnucash.org/XML/bt-days"
+     xmlns:bt-prox="http://www.gnucash.org/XML/bt-prox"
+     xmlns:cust="http://www.gnucash.org/XML/cust"
+     xmlns:employee="http://www.gnucash.org/XML/employee"
+     xmlns:entry="http://www.gnucash.org/XML/entry"
+     xmlns:invoice="http://www.gnucash.org/XML/invoice"
+     xmlns:job="http://www.gnucash.org/XML/job"
+     xmlns:order="http://www.gnucash.org/XML/order"
+     xmlns:taxtable="http://www.gnucash.org/XML/taxtable"
+     xmlns:tte="http://www.gnucash.org/XML/tte"
+     xmlns:vendor="http://www.gnucash.org/XML/vendor">
+<gnc:count-data cd:type="book">1</gnc:count-data>
+<gnc:book version="2.0.0">
+<book:id type="guid">f0000000000000000000000000000001</book:id>
+<gnc:count-data cd:type="commodity">1</gnc:count-data>
+<gnc:count-data cd:type="account">6</gnc:count-data>
+<gnc:count-data cd:type="transaction">14</gnc:count-data>
+<gnc:commodity version="2.0.0">
+  <cmdty:space>NYSE</cmdty:space>
+  <cmdty:id>RIO</cmdty:id>
+  <cmdty:name>Rio Tinto</cmdty:name>
+  <cmdty:fraction>10000</cmdty:fraction>
+</gnc:commodity>
+<gnc:commodity version="2.0.0">
+  <cmdty:space>CURRENCY</cmdty:space>
+  <cmdty:id>USD</cmdty:id>
+  <cmdty:get_quotes/>
+  <cmdty:quote_source>currency</cmdty:quote_source>
+  <cmdty:quote_tz/>
+</gnc:commodity>
+<gnc:account version="2.0.0">
+  <act:name>Root Account</act:name>
+  <act:id type="guid">aa000000000000000000000000000001</act:id>
+  <act:type>ROOT</act:type>
+  <act:commodity>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Broker</act:name>
+  <act:id type="guid">aa000000000000000000000000000002</act:id>
+  <act:type>ASSET</act:type>
+  <act:commodity>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Broker</act:description>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+  <act:parent type="guid">aa000000000000000000000000000001</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>RIO</act:name>
+  <act:id type="guid">aa000000000000000000000000000003</act:id>
+  <act:type>STOCK</act:type>
+  <act:commodity>
+    <cmdty:space>NYSE</cmdty:space>
+    <cmdty:id>RIO</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>10000</act:commodity-scu>
+  <act:description>Rio Tinto</act:description>
+  <act:parent type="guid">aa000000000000000000000000000002</act:parent>
+  <act:lots>
+    <gnc:lot version="2.0.0">
+      <lot:id type="guid">10000000000000000000000000000001</lot:id>
+      <lot:slots>
+        <slot>
+          <slot:key>title</slot:key>
+          <slot:value type="string">Lot 0</slot:value>
+        </slot>
+      </lot:slots>
+    </gnc:lot>
+    <gnc:lot version="2.0.0">
+      <lot:id type="guid">10000000000000000000000000000000</lot:id>
+      <lot:slots>
+        <slot>
+          <slot:key>title</slot:key>
+          <slot:value type="string">Lot 1</slot:value>
+        </slot>
+      </lot:slots>
+    </gnc:lot>
+  </act:lots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Cash</act:name>
+  <act:id type="guid">aa000000000000000000000000000004</act:id>
+  <act:type>BANK</act:type>
+  <act:commodity>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Cash</act:description>
+  <act:parent type="guid">aa000000000000000000000000000001</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Realized Gains</act:name>
+  <act:id type="guid">aa000000000000000000000000000005</act:id>
+  <act:type>INCOME</act:type>
+  <act:commodity>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Realized Gains</act:description>
+  <act:parent type="guid">aa000000000000000000000000000001</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Opening Balances</act:name>
+  <act:id type="guid">aa000000000000000000000000000006</act:id>
+  <act:type>EQUITY</act:type>
+  <act:commodity>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Opening Balances</act:description>
+  <act:parent type="guid">aa000000000000000000000000000001</act:parent>
+</gnc:account>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b0000000000000000000000000000009</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2020-07-03 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2020-07-03 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Opening Balance</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2020-07-03</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000001</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>-500000/100</split:value>
+      <split:quantity>-500000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000006</split:account>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000002</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>500000/100</split:value>
+      <split:quantity>500000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b0000000000000000000000000000001</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2022-02-01 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2022-02-01 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Buy RIO</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2022-02-01</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000003</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:action>Buy</split:action>
+      <split:value>100000/100</split:value>
+      <split:quantity>100000/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+      <split:lot type="guid">10000000000000000000000000000001</split:lot>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000004</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>-100000/100</split:value>
+      <split:quantity>-100000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b0000000000000000000000000000002</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2023-02-03 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2023-02-03 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Sell RIO</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2023-02-03</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000005</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:action>Sell</split:action>
+      <split:value>-83000/100</split:value>
+      <split:quantity>-50000/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+      <split:lot type="guid">10000000000000000000000000000001</split:lot>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000006</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>83000/100</split:value>
+      <split:quantity>83000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b0000000000000000000000000000003</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2023-02-04 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2023-02-04 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Sell RIO</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2023-02-04</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000007</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:action>Sell</split:action>
+      <split:value>-83000/100</split:value>
+      <split:quantity>-50000/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+      <split:lot type="guid">10000000000000000000000000000001</split:lot>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000008</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>83000/100</split:value>
+      <split:quantity>83000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b0000000000000000000000000000004</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2023-02-03 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2023-02-03 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Realized Gain/Loss</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2023-02-03</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000009</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:memo>Realized Gain/Loss</split:memo>
+      <split:value>33000/100</split:value>
+      <split:quantity>0/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+      <split:lot type="guid">10000000000000000000000000000001</split:lot>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c000000000000000000000000000000a</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:memo>Realized Gain/Loss</split:memo>
+      <split:value>-33000/100</split:value>
+      <split:quantity>-33000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000005</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b0000000000000000000000000000005</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2023-02-04 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2023-02-04 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Realized Gain/Loss</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2023-02-04</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c000000000000000000000000000000b</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:memo>Realized Gain/Loss</split:memo>
+      <split:value>33000/100</split:value>
+      <split:quantity>0/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+      <split:lot type="guid">10000000000000000000000000000001</split:lot>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c000000000000000000000000000000c</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:memo>Realized Gain/Loss</split:memo>
+      <split:value>-33000/100</split:value>
+      <split:quantity>-33000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000005</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b0000000000000000000000000000006</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2022-02-02 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2022-02-02 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Buy RIO</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2022-02-02</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c000000000000000000000000000000d</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:action>Buy</split:action>
+      <split:value>144000/100</split:value>
+      <split:quantity>120000/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+      <split:lot type="guid">10000000000000000000000000000000</split:lot>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c000000000000000000000000000000e</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>-144000/100</split:value>
+      <split:quantity>-144000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b0000000000000000000000000000007</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2023-10-08 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2023-10-08 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Sell RIO</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2023-10-08</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c000000000000000000000000000000f</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:action>Sell</split:action>
+      <split:value>-108000/100</split:value>
+      <split:quantity>-60000/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+      <split:lot type="guid">10000000000000000000000000000000</split:lot>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000010</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>108000/100</split:value>
+      <split:quantity>108000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b0000000000000000000000000000008</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2023-10-08 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2023-10-08 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Realized Gain/Loss</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2023-10-08</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000011</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:memo>Realized Gain/Loss</split:memo>
+      <split:value>36000/100</split:value>
+      <split:quantity>0/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+      <split:lot type="guid">10000000000000000000000000000000</split:lot>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000012</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:memo>Realized Gain/Loss</split:memo>
+      <split:value>-36000/100</split:value>
+      <split:quantity>-36000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000005</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b000000000000000000000000000000a</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2022-11-01 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2022-11-01 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Buy RIO (unscrubbed)</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2022-11-01</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000013</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:action>Buy</split:action>
+      <split:value>30000/100</split:value>
+      <split:quantity>20000/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000014</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>-30000/100</split:value>
+      <split:quantity>-30000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b000000000000000000000000000000b</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2022-11-02 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2022-11-02 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Sell RIO (unscrubbed)</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2022-11-02</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000015</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:action>Sell</split:action>
+      <split:value>-30000/100</split:value>
+      <split:quantity>-20000/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000016</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>30000/100</split:value>
+      <split:quantity>30000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b000000000000000000000000000000c</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2022-11-03 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2022-11-03 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Buy RIO (unscrubbed)</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2022-11-03</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000017</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:action>Buy</split:action>
+      <split:value>45000/100</split:value>
+      <split:quantity>30000/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000018</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>-45000/100</split:value>
+      <split:quantity>-45000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b000000000000000000000000000000d</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2022-11-04 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2022-11-04 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Sell RIO (unscrubbed)</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2022-11-04</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c0000000000000000000000000000019</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:action>Sell</split:action>
+      <split:value>-15000/100</split:value>
+      <split:quantity>-10000/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c000000000000000000000000000001a</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>15000/100</split:value>
+      <split:quantity>15000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:transaction version="2.0.0">
+  <trn:id type="guid">b000000000000000000000000000000e</trn:id>
+  <trn:currency>
+    <cmdty:space>CURRENCY</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </trn:currency>
+  <trn:date-posted>
+    <ts:date>2022-11-07 12:00:00 +0000</ts:date>
+  </trn:date-posted>
+  <trn:date-entered>
+    <ts:date>2022-11-07 12:00:00 +0000</ts:date>
+  </trn:date-entered>
+  <trn:description>Sell RIO (unscrubbed)</trn:description>
+  <trn:slots>
+    <slot>
+      <slot:key>date-posted</slot:key>
+      <slot:value type="gdate">
+        <gdate>2022-11-07</gdate>
+      </slot:value>
+    </slot>
+  </trn:slots>
+  <trn:splits>
+    <trn:split>
+      <split:id type="guid">c000000000000000000000000000001b</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:action>Sell</split:action>
+      <split:value>-30000/100</split:value>
+      <split:quantity>-20000/10000</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000003</split:account>
+    </trn:split>
+    <trn:split>
+      <split:id type="guid">c000000000000000000000000000001c</split:id>
+      <split:reconciled-state>n</split:reconciled-state>
+      <split:value>30000/100</split:value>
+      <split:quantity>30000/100</split:quantity>
+      <split:account type="guid">aa000000000000000000000000000004</split:account>
+    </trn:split>
+  </trn:splits>
+</gnc:transaction>
+<gnc:pricedb version="1">
+  <price>
+    <price:id type="guid">d0000000000000000000000000000001</price:id>
+    <price:commodity>
+      <cmdty:space>NYSE</cmdty:space>
+      <cmdty:id>RIO</cmdty:id>
+    </price:commodity>
+    <price:currency>
+      <cmdty:space>CURRENCY</cmdty:space>
+      <cmdty:id>USD</cmdty:id>
+    </price:currency>
+    <price:time>
+      <ts:date>2023-10-08 12:00:00 +0000</ts:date>
+    </price:time>
+    <price:source>user:price</price:source>
+    <price:type>last</price:type>
+    <price:value>18000/100</price:value>
+  </price>
+  <price>
+    <price:id type="guid">d0000000000000000000000000000002</price:id>
+    <price:commodity>
+      <cmdty:space>NYSE</cmdty:space>
+      <cmdty:id>RIO</cmdty:id>
+    </price:commodity>
+    <price:currency>
+      <cmdty:space>CURRENCY</cmdty:space>
+      <cmdty:id>USD</cmdty:id>
+    </price:currency>
+    <price:time>
+      <ts:date>2023-11-07 12:00:00 +0000</ts:date>
+    </price:time>
+    <price:source>user:price</price:source>
+    <price:type>last</price:type>
+    <price:value>15000/100</price:value>
+  </price>
+</gnc:pricedb>
+</gnc:book>
+</gnc-v2>
