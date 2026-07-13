@@ -2102,17 +2102,18 @@ Income (type INCOME)
             <title>The Investment Lots Report</title>
 
             <screenshot id="InvestmentLotsScreenShot">
-              <screeninfo>1720x982</screeninfo>
+              <screeninfo>1024x469</screeninfo>
 
               <mediaobject>
                 <imageobject role="html">
                   <imagedata fileref="figures/Report_Investment_Lots.png"
-                             srccredit="Brent McBride" width="&img-w;"/>
+                             srccredit="Brent McBride" width="1024"/>
                 </imageobject>
 
                 <imageobject role="fo">
                   <imagedata fileref="figures/Report_Investment_Lots.png"
-                             srccredit="Brent McBride"/>
+                             srccredit="Brent McBride"
+                             width="160mm" align="center"/>
                 </imageobject>
               </mediaobject>
             </screenshot>
@@ -2129,7 +2130,8 @@ Income (type INCOME)
               <link linkend="investment-lots-report-column-e">end balances</link>, capital gains
               (<link linkend="investment-lots-report-column-r">realized</link> and
               <link linkend="investment-lots-report-column-r">unrealized</link>, short term and long
-              term), and return on investment (ROI). It also performs optional lot
+              term), return on investment (ROI), and compound annual growth rate (CAGR). It also
+              performs optional lot
               <link linkend="investment-lots-report-options-val">validation checks</link>.
             </para>
           </abstract>
@@ -2353,11 +2355,36 @@ Income (type INCOME)
                 </listitem>
 
                 <listitem id="investment-lots-report-column-rr">
-                  <para><guilabel>Realized ROI</guilabel>: The realized return on investment.
+                  <para><guilabel>Realized ROI</guilabel>: The realized return on investment: the
                     <link linkend="investment-lots-report-column-rg"><guilabel>Realized
-                    Gain</guilabel></link> divided by
+                    Gain</guilabel></link> as a fraction of the amount originally invested in the
+                    sold shares. Expressed as a percentage:
+                  </para>
+
+                  <informalequation>
+                    <mathphrase>Realized ROI = Realized Gain / Sold Basis = (Sold Value &minus; Sold Basis) / Sold Basis</mathphrase>
+                  </informalequation>
+                </listitem>
+
+                <listitem id="investment-lots-report-column-rc">
+                  <para><guilabel>Realized CAGR</guilabel>: The compound annual growth rate realized on sold shares. Whereas
+                    <link linkend="investment-lots-report-column-rr"><guilabel>Realized
+                    ROI</guilabel></link> measures the total return regardless of how long the
+                    shares were held, <guilabel>Realized CAGR</guilabel> annualizes that return: it
+                    is the constant yearly rate at which the
                     <link linkend="investment-lots-report-column-sb"><guilabel>Sold
-                    Basis</guilabel></link>, as a percentage.
+                    Basis</guilabel></link> would have had to grow, compounding each year, to reach
+                    the <link linkend="investment-lots-report-column-sv"><guilabel>Sold
+                    Value</guilabel></link> over the holding period. Expressed as a percentage:
+                  </para>
+
+                  <informalequation>
+                    <mathphrase>Realized CAGR = (Sold Value / Sold Basis)<superscript>(1 / years)</superscript> &minus; 1</mathphrase>
+                  </informalequation>
+
+                  <para>where <emphasis>years</emphasis> is the length of time the shares were held before being sold.
+                    Annualizing the return this way lets lots held for different lengths of time be
+                    compared on an equal footing.
                   </para>
                 </listitem>
               </itemizedlist>
@@ -2379,11 +2406,34 @@ Income (type INCOME)
                 </listitem>
 
                 <listitem id="investment-lots-report-column-ur">
-                  <para><guilabel>Unrealized ROI</guilabel>: The unrealized return on investment.
+                  <para><guilabel>Unrealized ROI</guilabel>: The unrealized return on investment: the
                     <link linkend="investment-lots-report-column-ug"><guilabel>Unrealized
-                    Gain</guilabel></link> divided by
+                    Gain</guilabel></link> as a fraction of the amount currently invested in the
+                    remaining shares. Expressed as a percentage:
+                  </para>
+
+                  <informalequation>
+                    <mathphrase>Unrealized ROI = Unrealized Gain / End Basis = (End Value &minus; End Basis) / End Basis</mathphrase>
+                  </informalequation>
+                </listitem>
+
+                <listitem id="investment-lots-report-column-uc">
+                  <para><guilabel>Unrealized CAGR</guilabel>: The compound annual growth rate that would be realized if the
+                    remaining shares were sold on the end date. It is the annualized counterpart of
+                    <link linkend="investment-lots-report-column-ur"><guilabel>Unrealized
+                    ROI</guilabel></link>: the constant yearly rate at which the
                     <link linkend="investment-lots-report-column-eb"><guilabel>End
-                    Basis</guilabel></link>, as a percentage.
+                    Basis</guilabel></link> would have had to grow, compounding each year, to reach
+                    the <link linkend="investment-lots-report-column-ev"><guilabel>End
+                    Value</guilabel></link> over the holding period. Expressed as a percentage:
+                  </para>
+
+                  <informalequation>
+                    <mathphrase>Unrealized CAGR = (End Value / End Basis)<superscript>(1 / years)</superscript> &minus; 1</mathphrase>
+                  </informalequation>
+
+                  <para>where <emphasis>years</emphasis> is the length of time the shares have been held as of the end
+                    date.
                   </para>
                 </listitem>
               </itemizedlist>
@@ -2398,6 +2448,18 @@ Income (type INCOME)
               Gain</guilabel></link>, etc.) via the
               <link linkend="investment-lots-report-options-columns-gg"><guilabel>Group gains by age
               (short term and long term)</guilabel></link> Columns option.
+            </para>
+          </note>
+
+          <note>
+            <para>Unlike the gain and ROI columns, the
+              <link linkend="investment-lots-report-column-rc"><guilabel>Realized
+              CAGR</guilabel></link> and
+              <link linkend="investment-lots-report-column-uc"><guilabel>Unrealized
+              CAGR</guilabel></link> columns are left blank in the <guilabel>Grand Total</guilabel>
+              row. A compound annual growth rate is an annualized rate of return rather than a
+              monetary amount, so it cannot be meaningfully summed or averaged across accounts that
+              hold different commodities.
             </para>
           </note>
 
@@ -2492,10 +2554,15 @@ Income (type INCOME)
                       <screeninfo>800x630</screeninfo>
 
                       <mediaobject>
-                        <imageobject>
+                        <imageobject role="html">
                           <imagedata fileref="figures/Report_Investment_Lots_StackedBar.png"
                                     srccredit="Brent McBride"/>
                         </imageobject>
+			<imageobject role="fo">
+			  <imagedata fileref="figures/Report_Investment_Lots_StackedBar.png"
+				     srccredit="Brent McBride"
+				     width="160mm" align="center"/>
+			</imageobject>
                       </mediaobject>
                     </screenshot>
                   </figure>
@@ -2507,10 +2574,15 @@ Income (type INCOME)
                       <screeninfo>800x667</screeninfo>
 
                       <mediaobject>
-                        <imageobject>
+                        <imageobject role="html">
                           <imagedata fileref="figures/Report_Investment_Lots_Bar.png"
                                     srccredit="Brent McBride"/>
                         </imageobject>
+			<imageobject role="fo">
+			  <imagedata fileref="figures/Report_Investment_Lots_Bar.png"
+				     srccredit="Brent McBride"
+				     width="160mm" align="center"/>
+			</imageobject>
                       </mediaobject>
                     </screenshot>
                   </figure>
@@ -2687,6 +2759,34 @@ Income (type INCOME)
                         <link linkend="investment-lots-report-options-columns-gg"><guilabel>Group
                         gains by age (short term and long term)</guilabel></link> option is
                         disabled. Default: 1 year.
+                      </para>
+                    </listitem>
+
+                    <listitem id="investment-lots-report-options-columns-roi">
+                      <para><guilabel>Show ROI columns</guilabel>: Show the
+                        <link linkend="investment-lots-report-column-rr"><guilabel>Realized
+                        ROI</guilabel></link> and
+                        <link linkend="investment-lots-report-column-ur"><guilabel>Unrealized
+                        ROI</guilabel></link> percentage columns. This option is ignored unless at
+                        least one of the
+                        <link linkend="investment-lots-report-options-columns-r"><guilabel>Show
+                        realized gain columns</guilabel></link> or
+                        <link linkend="investment-lots-report-options-columns-u"><guilabel>Show
+                        unrealized gain columns</guilabel></link> options is enabled. Default: off.
+                      </para>
+                    </listitem>
+
+                    <listitem id="investment-lots-report-options-columns-cagr">
+                      <para><guilabel>Show CAGR columns</guilabel>: Show the
+                        <link linkend="investment-lots-report-column-rc"><guilabel>Realized
+                        CAGR</guilabel></link> and
+                        <link linkend="investment-lots-report-column-uc"><guilabel>Unrealized
+                        CAGR</guilabel></link> percentage columns. This option is ignored unless at
+                        least one of the
+                        <link linkend="investment-lots-report-options-columns-r"><guilabel>Show
+                        realized gain columns</guilabel></link> or
+                        <link linkend="investment-lots-report-options-columns-u"><guilabel>Show
+                        unrealized gain columns</guilabel></link> options is enabled. Default: on.
                       </para>
                     </listitem>
                   </itemizedlist>
