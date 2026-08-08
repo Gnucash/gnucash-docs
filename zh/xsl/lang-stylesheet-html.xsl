@@ -9,8 +9,7 @@
                 version='1.0'>
 
 <!-- Importing the base stylesheet. -->
-<xsl:import href="../../xsl/general-customization.xsl"/>
-
+<xsl:import href="../../xsl/gnc-custom-html.xsl"/>
 
 <xsl:template match="imagedata[@screenshot-physicalwidth]">
   <xsl:variable name="maxwidth">
