@@ -5,22 +5,23 @@ set (entities
         ch_basics.docbook
         ch_accts.docbook
         ch_txns.docbook
+        ch_importing.docbook
+        ch_configuring.docbook
         ch_cbook.docbook
         ch_cc.docbook
+        ch_expenses.docbook
         ch_loans.docbook
         ch_invest.docbook
+        ch_reports.docbook
         ch_capgain.docbook
         ch_currency.docbook
         ch_dep.docbook
-        ch_bus_intro.docbook
-        ch_bus_setup.docbook
-        ch_bus_ar.docbook
-        ch_bus_ap.docbook
-        ch_bus_pay.docbook
+        ch_bus_features.docbook
         ch_budgets.docbook
         ch_oth_assets.docbook
         ch_python_bindings.docbook
-#        ch_import_business_data.docbook
+        ch_import_business_data.docbook
+        gnc-glossary.docbook
         appendixa.docbook
         appendixd.docbook)
 
