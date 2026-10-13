@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter SYSTEM "gnc-gui-pt.dtd">
 <!--
       (Do not remove this comment block.)
@@ -15,10 +15,9 @@
   	Updated	Bengt Thuree <bengt@thuree.com>
   Originally written by Carol Champagne.
   Translators:
-               (Pedro Albuquerque pmra@protonmail.com)
+    Pedro Albuquerque <pmra@protonmail.com>
 -->
-<chapter id="chapter_basics">
-      xmlns:xi="http://www.w3.org/2001/XInclude">
+<chapter id="chapter_basics" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>O básico</title>
 
   <para>Este capítulo introduz algumas bases para usar o &app;. Recomenda-se que o leia antes de começar a
@@ -150,7 +149,7 @@
       </figure>
     </sect2>
     
-     <sect2 id="basics-debits-credits">
+    <sect2 id="basics-debits-credits">
       <title>Débitos e créditos</title>
 
       <para>A utilização de débitos e créditos em contabilidade e o seu efeito em diferentes tipos de contas 
@@ -332,11 +331,11 @@
         seu computador com um único ficheiro <acronym>XML</acronym> (em todas as versões do
         &app;), ou numa base de dados <acronym>SQL</acronym> (no &app; versão 2.4 e posteriores).
       </para>
-<!--<note>
-        <para><acronym>SQL</acronym> is pronounced <quote>sequel</quote>,
-        so in spoken and written language we would say <quote>a SQL
-        database</quote>.</para>
-      </note>-->
+      
+      <note>
+        <para><acronym>SQL</acronym> pronuncia-se <quote>sicuâl</quote>,
+        logo diz-se e escreve-se <quote>uma base de dados SQL</quote>.</para>
+      </note>
       <para>Com o formato <acronym>XML</acronym>, o &app; armazena os seus dados num ficheiro de dados
         <acronym>XML</acronym>, normalmente comprimido (embora isto possa ser alterado no separador
         <guilabel>Geral</guilabel> das <guilabel>Preferências</guilabel> do &app;).
@@ -535,7 +534,7 @@
           </para>
 
           <note>
-            <para>O sssistente <guilabel>Novo plano de contas</guilabel> não consegue processar selecções de mais de 
+            <para>O assistente <guilabel>Novo plano de contas</guilabel> não consegue processar selecções de mais de 
               um país de cada vez; por isso, se precisar de seleccionar segmentos de várias configurações regionais — 
               talvez porque as categorias da sua configuração regional principal se destinem a alargar as de outro país 
               — terá de executar o assistente mais do que uma veza partir do menu <guimenu>Acções</guimenu>.
@@ -744,6 +743,15 @@
           Assim, deve primeiro expandir todas as outras colunas e só depois diminuir o tamanho da
           coluna Descrição.
         </para>
+        
+        <para>A coluna <guilabel>Descriçãp</guilabel> serve para expandir automaticamente 
+          espaço horizontal não usado.Assim, deve definir as larguras de todas as outras 
+          nates desta.
+        </para>
+
+        <para>A coluna <guilabel>Saldo</guilabel> deve ser redimensionada com 
+         um duplo clique no cabeçalho.
+        </para>
       </note>
     </sect2>
 
@@ -892,450 +900,449 @@
   <sect1 id="basics-files1">
     <title>Armazenar os seus dados financeiros</title>
 
-    <title>Visão geral</title>
-
-      <para>O &app; oferece vários formatos para gravar os seus dados financeiros. O formato de 
-        armazenamento de ficheiros predefinido é <acronym>XML</acronym>, enquanto o armazenamento em <acronym>SQL</acronym> 
-        está disponível nos formatos SQLite, MySQL e PostgreSQL. Os utilizadores podem escolher 
-        um formato para os novos ficheiros a partir de
-        <menuchoice>
-          <guimenu>Ficheiro</guimenu><guimenuitem>Gravar</guimenuitem>
-        </menuchoice>
-        a para ficheiros existentes em
-        <menuchoice>
-          <guimenu>Ficheiro</guimenu><guimenuitem>Gravar como...</guimenuitem>
-        </menuchoice>.
-      </para>
-
-      <para>O formato <acronym>XML</acronym> é um ficheiro de texto que, por predefinição, está comprimido, 
-        o que é uma preferência definida em
-        <menuchoice>
-          <guimenu>Editar</guimenu><guimenuitem>Preferências</guimenuitem>
-        </menuchoice>
-        <guilabel>Geral</guilabel> <guilabel>Comprimir ficheiros</guilabel>. O armazenamento SQLite também está
-        disponível e armazena os seus dados num único ficheiro no seu sistema, tal como o formato
-        <acronym>XML</acronym>. No entanto, internamente, um ficheiro SQLite é gerido como uma base de dados.
-        As opções de armazenamento MySQL e PostgreSQL requerem acesso a um servidor de bases de dados MySQL ou PostgreSQL
-        e a instalação de controladores de bases de dados adicionais no seu computador.
-      </para>
-
-      <tip>
-        <para>Os utilizadores podem alterar o formato a qualquer momento utilizando
+      <sect2 id="basics-files1-overview">
+        <title>Overview</title>
+        
+        <para>O &app; oferece vários formatos para gravar os seus dados financeiros. O formato de 
+          armazenamento de ficheiros predefinido é <acronym>XML</acronym>, enquanto o armazenamento em <acronym>SQL</acronym> 
+          está disponível nos formatos SQLite, MySQL e PostgreSQL. Os utilizadores podem escolher 
+          um formato para os novos ficheiros a partir de
+          <menuchoice>
+            <guimenu>Ficheiro</guimenu><guimenuitem>Gravar</guimenuitem>
+          </menuchoice>
+          e para ficheiros existentes em
           <menuchoice>
             <guimenu>Ficheiro</guimenu><guimenuitem>Gravar como...</guimenuitem>
+          </menuchoice>.
+        </para>
+  
+        <para>O formato <acronym>XML</acronym> é um ficheiro de texto que, por predefinição, está comprimido, 
+          o que é uma preferência definida em
+          <menuchoice>
+            <guimenu>Editar</guimenu><guimenuitem>Preferências</guimenuitem>
           </menuchoice>
-          . Isto criará uma cópia do ficheiro de dados no formato seleccionado.
+          <guilabel>Geral</guilabel> <guilabel>Comprimir ficheiros</guilabel>. O armazenamento SQLite também está
+          disponível e armazena os seus dados num único ficheiro no seu sistema, tal como o formato
+          <acronym>XML</acronym>. No entanto, internamente, um ficheiro SQLite é gerido como uma base de dados.
+          As opções de armazenamento MySQL e PostgreSQL requerem acesso a um servidor de bases de dados MySQL ou PostgreSQL
+          e a instalação de controladores de bases de dados adicionais no seu computador.
         </para>
-      </tip>
-    </sect2>
+  
+        <tip>
+          <para>Os utilizadores podem alterar o formato a qualquer momento utilizando
+            <menuchoice>
+              <guimenu>Ficheiro</guimenu><guimenuitem>Gravar como...</guimenuitem>
+            </menuchoice>
+            . Isto criará uma cópia do ficheiro de dados no formato seleccionado.
+          </para>
+        </tip>
+      </sect2>
 
-    <sect2 id="basics-files-storage-comparison">
-      <title>Comparação de opções de armazenamento e recomendações</title>
-
-      <para>Cada formato de armazenamento tem vantagens e desvantagens que os utilizadores devem 
-        ter em conta em função das suas necessidades e capacidades. Consulte a
-        <link linkend='basics-storage-comparison-table' endterm="basics-storage-comparison-tbltitle"/>
-        abaixo para mais detalhes.
-      </para>
-
-      <para>O formato <acronym>XML</acronym> é o mais estável e consolidado e, por esse motivo, é
-        recomendado para a maioria dos utilizadores. O armazenamento <acronym>SQL</acronym> foi 
-        adicionado na versão 2.4 e tem-se tornado uma opção cada vez mais popular entre os 
-        utilizadores. O formato SQLite permite aos utilizadores tirar partido das vantagens do 
-        armazenamento <acronym>SQL</acronym> sem o trabalho adicional de instalar ou gerir um 
-        <acronym>DBMS</acronym> completo. O MySQL e o PostgreSQL requerem a instalação dos 
-        <acronym>DBMS</acronym> MySQL e PostgreSQL, respectivamente, e a sua manutenção deve ser 
-        feita apenas por administradores de bases de dados experientes.
-      </para>
-
-      <note>
-        <para>A utilização de um motor <acronym>SQL</acronym> para armazenamento leva muitos a 
-          pensar que o &app; implementou na íntegra as funcionalidades de um <acronym>DBMS</acronym>, 
-          incluindo a manipulação de dados por vários utilizadores e a manipulação incremental de dados.
-          No entanto, o &app; não implementa actualmente estas funcionalidades, embora seja um
-          objectivo a longo prazo da equipa de desenvolvimento.
+      <sect2 id="basics-files-storage-comparison">
+        <title>Comparação de opções de armazenamento e recomendações</title>
+  
+        <para>Cada formato de armazenamento tem vantagens e desvantagens que os utilizadores devem 
+          ter em conta em função das suas necessidades e capacidades. Consulte a
+          <link linkend='basics-storage-comparison-table' endterm="basics-storage-comparison-tbltitle"/>
+          abaixo para mais detalhes.
         </para>
-      </note>
-    </sect2>
-
-    <sect2 id="basics-storage-comparison-tblsect">
-      <title>Tabela comparativa de armazenamentos</title>
-
-      <table frame="topbot" id="basics-storage-comparison-table">
-        <title id="basics-storage-comparison-tbltitle">Comparação de armazenamentos</title>
-
-        <tgroup align="left" cols="5">
-          <colspec colname="c1item"></colspec>
-
-          <colspec colname="c2xml"></colspec>
-
-          <colspec colname="c3sqlite"></colspec>
-
-          <colspec colname="c4mysql"></colspec>
-
-          <colspec colname="c5pgsql"></colspec>
-
-          <thead>
-            <row>
-              <entry></entry>
-
-              <entry align="center">
-                XML
-              </entry>
-
-              <entry align="center">
-                SQLite
-              </entry>
-
-              <entry align="center">
-                MySQL
-              </entry>
-
-              <entry align="center">
-                PostgreSQL
-              </entry>
-            </row>
-          </thead>
-
-          <tbody>
-            <row>
-              <entry namest="c1item">
-                Disponibilidade
-              </entry>
-
-              <entry align="center" namest="c2xml">
-                Interno
-              </entry>
-
-              <entry align="center" namest="c3sqlite" nameend="c5pgsql">
-                Depende dos pacotes
-                <footnote>
-                  <para>Os motores SQL dependem de pacotes adicionais. Estes estão incluídos nos pacotes de 
-                    aplicações do macOS e do Microsoft Windows e são instalados automaticamente pelo instalador 
-                    Flatpak do GnuCash. Os utilizadores de distribuições Linux poderão ter de instalar 
-                    explicitamente o pacote pretendido através do seu gestor de pacotes. Procure um pacote 
-                    com um nome semelhante a libdbd-sqlite3, libdbd-mysql ou libdbd-pgsql para o SQLite3, 
-                    o MySQL e o PostgreSQL, respectivamente.
-                  </para>
-                </footnote>
-              </entry>
-            </row>
-
-            <row>
-              <entry namest="c1item">
-                Extensão de ficheiro
-              </entry>
-
-              <entry align="center" namest="c2xml" nameend="c3sqlite">
-                gnucash
-              </entry>
-
-              <entry align="center" namest="c4mysql" nameend="c5pgsql">
-                N/D
-                <footnote>
-                  <para>Os MySQL e PostgreSQL põem os dados no seu próprio sistema de armazenamento.
-                  </para>
-                </footnote>
-              </entry>
-            </row>
-
-            <row>
-              <entry namest="c1item">
-                Programas adicionais
-              </entry>
-
-              <entry align="center" namest="c2xml" nameend="c3sqlite">
-                Nenhum
-              </entry>
-
-              <entry align="center" namest="c4mysql">
-                MySQL
-              </entry>
-
-              <entry align="center" namest="c5pgsql">
-                PostgreSQL
-              </entry>
-            </row>
-
-            <row>
-              <entry namest="c1item">
-                Perícias adicionais
-              </entry>
-
-              <entry align="center" namest="c2xml" nameend="c3sqlite">
-                Nenhuma
-              </entry>
-
-              <entry align="center" namest="c4mysql" nameend="c5pgsql">
-                Administrador de bases de dados
-              </entry>
-            </row>
-
-            <row>
-              <entry namest="c1item">
-                Compressão
-              </entry>
-
-              <entry align="center" namest="c2xml">
-                gzip
-              </entry>
-
-              <entry align="center" namest="c3sqlite" nameend="c5pgsql">
-                N/D
-              </entry>
-            </row>
-
-            <row>
-              <entry namest="c1item">
-                Gravação do ficheiro
-              </entry>
-
-              <entry align="center" namest="c2xml">
-                Com comando
-              </entry>
-
-              <entry align="center" namest="c3sqlite" nameend="c5pgsql">
-                Ao submeter
-              </entry>
-            </row>
-
-            <row>
-              <entry namest="c1item">
-                Multi-utilizador
-              </entry>
-
-              <entry align="center" namest="c2xml">
-                Não
-              </entry>
-
-              <entry align="center" namest="c3sqlite">
-                Não
-              </entry>
-
-              <entry align="center" namest="c4mysql">
-                Não
-              </entry>
-
-              <entry align="center" namest="c5pgsql">
-                Não
-              </entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table>
-    </sect2>
-
-    <sect2 id="basics-create-data">
-      <title>Criar um ficheiro</title>
-
-      <para>Para criar um novo ficheiro do &app; faça o seguinte:
-      </para>
-
-      <orderedlist>
-        <listitem>
-          <para>Na <emphasis>barra de menu</emphasis> do &app;, escolha
-            <menuchoice>
-              <guimenu>Ficheiro</guimenu> <guimenuitem>Novo ficheiro</guimenuitem>
-            </menuchoice>
-            . Inicia-se o assistente <guilabel>Novo plano de contas</guilabel>.
-          </para>
-
-          <note>
-            <para>Se está a executar o &app; pela primeira vez, verá o diálogo <guilabel>Boas vindas ao
-              &app;!</guilabel>. Este diálogo é descrito em detalhe no manual do &app;.
-            </para>
-          </note>
-        </listitem>
-
-        <listitem>
-          <para>Configure as suas preferências no assistente e mova-se entre os ecrãs com os botões
-            <guibutton>Avançar</guibutton>, <guibutton>Cancelar</guibutton> e
-            <guibutton>Recuar</guibutton>.
-          </para>
-        </listitem>
-      </orderedlist>
-    </sect2>
-
-    <sect2 id="basics-store-data">
-      <title>Gravar dados</title>
-
-      <para>Siga estes passos para gravar o ficheiro com o seu nome preferido:
-      </para>
-
-      <orderedlist>
-        <listitem>
-          <para>Escolha
-            <menuchoice>
-              <guimenu>Ficheiro</guimenu> <guimenuitem>Gravar como...</guimenuitem>
-            </menuchoice>
-            na <emphasis>barra de menus</emphasis> ou clique no botão <guibutton>Gravar</guibutton>
-            na <emphasis>barra de ferramentas</emphasis>. O &app; abre o diálogo de gravação.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>Seleccione o <guilabel>formato dos dados</guilabel> do ficheiro que está a gravar na lista
-            pendente. A seleção predefinida é <acronym>XML</acronym>, mas se tiver um motor de
-            base de dados configurado, pode mudar para esse formato.
-          </para>
-
-          <para>Dependendo do <guilabel>formato de dados</guilabel> seleccionado, a janela pode mudar, como descrito
-            a seguir.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para></para>
-
-          <itemizedlist>
-            <listitem>
-              <para>Se seleccionou <acronym>XML</acronym> ou <acronym>sqlite3</acronym> verá um ecrã como este:
-              </para>
-
-              <figure>
-                <title>Ecrã de gravação quando selecciona <acronym>XML</acronym> ou <acronym>sqlite3</acronym>.</title>
-
-                <screenshot id="basics-SaveXML">
-                  <mediaobject>
-                    <imageobject>
-                      <imagedata fileref="figures/basics_SaveXML.png"
-                                 srccredit="Pedro Albuquerque"/>
-                    </imageobject>
-
-                    <caption>
-                      <para>Esta imagem mostra o ecrã <guilabel>Gravar como...</guilabel> quando o <guilabel>formato dos dados
-                        </guilabel> é <acronym>XML</acronym> ou <acronym>sqlite3</acronym>.
-                      </para>
-                    </caption>
-                  </mediaobject>
-                </screenshot>
-              </figure>
-
-              <para>Escreva o nome escolhido no campo <guilabel>Nome</guilabel>. Não é necessário especificar uma
-                extensão.O &app; adiciona a extensão <filename>.gnucash</filename> automaticamente
-                ao ficheiro.
-              </para>
-
-              <note>
-                <para>A extensão <filename>.gnucash</filename> foi introduzida na série 2.3 do &app;. Para ficheiros já
-                  existentes,a extensão nunca será alterada. Assim, se abrir um ficheiro chamado
-                  <emphasis>MeuFichAntigo</emphasis>, esse nome não é alterado quando gravar o
-                  ficheiro. Pode usar o comando <guimenuitem>Gravar como...</guimenuitem> e dar um
-                  novo nome ao ficheiro para o ter gravado com a extensão
-                  <filename>.gnucash</filename>.
-                </para>
-              </note>
-
-              <para>Seleccione o caminho onde o ficheiro será gravado navegando na árvore nos três painéis
-                inferiores.
-              </para>
-
-              <tip>
-                <para>Clique em <guibutton>Criar pasta</guibutton> para criar uma nova pasta com um nome personalizado no
-                  caminho escolhido.
-                </para>
-              </tip>
-            </listitem>
-
-            <listitem>
-              <para>Se seleccionou <acronym>mysql</acronym> ou <acronym>postgres</acronym> para <guilabel>formato de
-                dados</guilabel> verá um ecrã como este:
-              </para>
-
-              <figure>
-                <title>Ecrã de gravação quando selecciona <acronym>mysql</acronym> ou <acronym>postgres</acronym></title>
-
-                <screenshot id="basics-SaveSQL">
-                  <mediaobject>
-                    <imageobject>
-                      <imagedata fileref="figures/basics_SaveSQL.png"
-                                 srccredit="Pedro Albuquerque"/>
-                    </imageobject>
-
-                    <caption>
-                      <para>Esta imagem mostra o ecrã <guilabel>Gravar como...</guilabel> quando o <guilabel>formato dos
-                        dados</guilabel> é <acronym>mysql</acronym> ou <acronym>postgres</acronym>.
-                      </para>
-                    </caption>
-                  </mediaobject>
-                </screenshot>
-              </figure>
-
-              <para>Insira nesta janela a informação de <guilabel>ligação à base de dados</guilabel>:
-                <guilabel>Máquina</guilabel>, <guilabel>Base de dados</guilabel>,
-                <guilabel>Utilizador</guilabel> e <guilabel>Senha</guilabel>.
-              </para>
-
-              <warning>
-                <para>Gravar como <acronym>mysql</acronym> ou <acronym>postgres</acronym> requer as permissões adequadas
-                  para a base de dados, ou seja, tem de ter permissão para criar uma nova base de
-                  dados com o nome indicado, ou tem de ter permissão de escrita numa base de dados
-                  existente com o nome indicado.
-                </para>
-              </warning>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-
-        <listitem>
-          <para>Clique em <guibutton>Gravar como</guibutton> para gravar o ficheiro.
-          </para>
-        </listitem>
-      </orderedlist>
-
-      <para>Se está a controlar as finanças de uma única família, só precisa de um ficheiro. Mas se também
-        controla as finanças da empresa, ou quer manter dados separados por alguma razão,
-        precisará de mais de um ficheiro.
-      </para>
-
-      <para>Antes de terminar uma sessão do &app;, certifique-se de que grava as alterações, usando
-        <menuchoice>
-          <guimenu>Ficheiro</guimenu><guimenuitem>Gravar</guimenuitem>
-        </menuchoice>
-        ou o botão <guibutton>Gravar</guibutton> na <emphasis>barra de ferramentas</emphasis>.
+  
+        <para>O formato <acronym>XML</acronym> é o mais estável e consolidado e, por esse motivo, é
+          recomendado para a maioria dos utilizadores. O armazenamento <acronym>SQL</acronym> foi 
+          adicionado na versão 2.4 e tem-se tornado uma opção cada vez mais popular entre os 
+          utilizadores. O formato SQLite permite aos utilizadores tirar partido das vantagens do 
+          armazenamento <acronym>SQL</acronym> sem o trabalho adicional de instalar ou gerir um 
+          <acronym>DBMS</acronym> completo. O MySQL e o PostgreSQL requerem a instalação dos 
+          <acronym>DBMS</acronym> MySQL e PostgreSQL, respectivamente, e a sua manutenção deve ser 
+          feita apenas por administradores de bases de dados experientes.
+        </para>
+  
         <note>
-          <para>Dado que é muito importante gravar frequentemente os seus dados para não os perder por qualquer
-            motivo, o &app; pode gravar automaticamente o ficheiro aberto em determinados períodos
-            de tempo. Este intervalo pode ser definido no separador <guilabel>Geral</guilabel> indo
-            a
-            <menuchoice>
-              <guimenu>Editar</guimenu><guimenuitem>Preferências</guimenuitem>
-            </menuchoice>
-            (
-            <menuchoice>
-              <guimenu>GnuCash</guimenu><guimenuitem>Preferências</guimenuitem>
-            </menuchoice>
-            em &mac;). Lembre-se que esta opção só é relevante se estiver a gravar em formato
-            <acronym>XML</acronym>. Se trabalha com uma base de dados, o botão
-            <guibutton>Gravar</guibutton> e o item de menu <guimenuitem>Gravar</guimenuitem>
-            estarão em cinzento, dado que as alterações são imediatamente gravadas.
+          <para>A utilização de um motor <acronym>SQL</acronym> para armazenamento leva muitos a 
+            pensar que o &app; implementou na íntegra as funcionalidades de um <acronym>DBMS</acronym>, 
+            incluindo a manipulação de dados por vários utilizadores e a manipulação incremental de dados.
+            No entanto, o &app; não implementa actualmente estas funcionalidades, embora seja um
+            objectivo a longo prazo da equipa de desenvolvimento.
           </para>
         </note>
-      </para>
-    </sect2>
-
-    <sect2 id="basics-open-data">
-      <title>Abrir dados</title>
-
-      <para>Para abrir um ficheiro ou base de dados existente, seleccione
-        <menuchoice>
-          <guimenu>Ficheiro</guimenu> <guimenuitem>Abrir</guimenuitem>
-        </menuchoice>
-        na <emphasis>barra de menus</emphasis>. Na janela que surge, seleccione o <guilabel>formato
-        de dados</guilabel>. Se seleccionou <guilabel>Ficheiro</guilabel> escolha o ficheiro que
-        quer abrir, navegando pelas pastas nos painéis inferiores. Senão, insira a necessária
-        informação para <guilabel>ligação à base de dados</guilabel>.
-      </para>
-
-      <tip>
-        <para>O &app; mantém uma lista de ficheiros recentemente abertos. Abra o menu
-          <guilabel>Ficheiro</guilabel> e verá essa lista, em baixo. Clique no nome desejado para o
-          abrir.
+      </sect2>
+  
+      <sect2 id="basics-storage-comparison-tblsect">
+        <title>Tabela comparativa de armazenamentos</title>
+  
+        <table frame="topbot" id="basics-storage-comparison-table">
+          <title id="basics-storage-comparison-tbltitle">Comparação de armazenamentos</title>
+  
+          <tgroup align="left" cols="5">
+            <colspec colname="c1item"></colspec>
+  
+            <colspec colname="c2xml"></colspec>
+  
+            <colspec colname="c3sqlite"></colspec>
+  
+            <colspec colname="c4mysql"></colspec>
+  
+            <colspec colname="c5pgsql"></colspec>
+  
+            <thead>
+              <row>
+                <entry></entry>
+  
+                <entry align="center">
+                  XML
+                </entry>
+  
+                <entry align="center">
+                  SQLite
+                </entry>
+  
+                <entry align="center">
+                  MySQL
+                </entry>
+  
+                <entry align="center">
+                  PostgreSQL
+                </entry>
+              </row>
+            </thead>
+  
+            <tbody>
+              <row>
+                <entry namest="c1item">
+                  Disponibilidade
+                </entry>
+  
+                <entry align="center" namest="c2xml">
+                  Interno
+                </entry>
+  
+                <entry align="center" namest="c3sqlite" nameend="c5pgsql">
+                  Depende dos pacotes
+                  <footnote>
+                    <para>Os motores SQL dependem de pacotes adicionais. Estes estão incluídos nos pacotes de 
+                      aplicações do macOS e do Microsoft Windows e são instalados automaticamente pelo instalador 
+                      Flatpak do GnuCash. Os utilizadores de distribuições Linux poderão ter de instalar 
+                      explicitamente o pacote pretendido através do seu gestor de pacotes. Procure um pacote 
+                      com um nome semelhante a libdbd-sqlite3, libdbd-mysql ou libdbd-pgsql para o SQLite3, 
+                      o MySQL e o PostgreSQL, respectivamente.
+                    </para>
+                  </footnote>
+                </entry>
+              </row>
+  
+              <row>
+                <entry namest="c1item">
+                  Extensão de ficheiro
+                </entry>
+  
+                <entry align="center" namest="c2xml" nameend="c3sqlite">
+                  gnucash
+                </entry>
+  
+                <entry align="center" namest="c4mysql" nameend="c5pgsql">
+                  N/D
+                  <footnote>
+                    <para>Os MySQL e PostgreSQL põem os dados no seu próprio sistema de armazenamento.
+                    </para>
+                  </footnote>
+                </entry>
+              </row>
+  
+              <row>
+                <entry namest="c1item">
+                  Programas adicionais
+                </entry>
+  
+                <entry align="center" namest="c2xml" nameend="c3sqlite">
+                  Nenhum
+                </entry>
+  
+                <entry align="center" namest="c4mysql">
+                  MySQL
+                </entry>
+  
+                <entry align="center" namest="c5pgsql">
+                  PostgreSQL
+                </entry>
+              </row>
+  
+              <row>
+                <entry namest="c1item">
+                  Perícias adicionais
+                </entry>
+  
+                <entry align="center" namest="c2xml" nameend="c3sqlite">
+                  Nenhuma
+                </entry>
+  
+                <entry align="center" namest="c4mysql" nameend="c5pgsql">
+                  Administrador de bases de dados
+                </entry>
+              </row>
+  
+              <row>
+                <entry namest="c1item">
+                  Compressão
+                </entry>
+  
+                <entry align="center" namest="c2xml">
+                  gzip
+                </entry>
+  
+                <entry align="center" namest="c3sqlite" nameend="c5pgsql">
+                  N/D
+                </entry>
+              </row>
+  
+              <row>
+                <entry namest="c1item">
+                  Gravação do ficheiro
+                </entry>
+  
+                <entry align="center" namest="c2xml">
+                  Com comando
+                </entry>
+  
+                <entry align="center" namest="c3sqlite" nameend="c5pgsql">
+                  Ao submeter
+                </entry>
+              </row>
+  
+              <row>
+                <entry namest="c1item">
+                  Multi-utilizador
+                </entry>
+  
+                <entry align="center" namest="c2xml">
+                  Não
+                </entry>
+  
+                <entry align="center" namest="c3sqlite">
+                  Não
+                </entry>
+  
+                <entry align="center" namest="c4mysql">
+                  Não
+                </entry>
+  
+                <entry align="center" namest="c5pgsql">
+                  Não
+                </entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </sect2>
+  
+      <sect2 id="basics-create-data">
+        <title>Criar um ficheiro</title>
+  
+        <para>Para criar um novo ficheiro do &app; faça o seguinte:
         </para>
-      </tip>
-    </sect2>
-
-    <sect2 id="basics-expt-acct">
+  
+        <orderedlist>
+          <listitem>
+            <para>Na <emphasis>barra de menu</emphasis> do &app;, escolha
+              <menuchoice>
+                <guimenu>Ficheiro</guimenu> <guimenuitem>Novo ficheiro</guimenuitem>
+              </menuchoice>
+              . Inicia-se o assistente <guilabel>Novo plano de contas</guilabel>.
+            </para>
+  
+            <note>
+              <para>Se está a executar o &app; pela primeira vez, verá o diálogo <guilabel>Boas vindas ao
+                &app;!</guilabel>. Este diálogo é descrito em detalhe no manual do &app;.
+              </para>
+            </note>
+          </listitem>
+  
+          <listitem>
+            <para>Configure as suas preferências no assistente e mova-se entre os ecrãs com os botões
+              <guibutton>Avançar</guibutton>, <guibutton>Cancelar</guibutton> e
+              <guibutton>Recuar</guibutton>.
+            </para>
+          </listitem>
+        </orderedlist>
+      </sect2>
+  
+      <sect2 id="basics-store-data">
+        <title>Gravar dados</title>
+  
+        <para>Siga estes passos para gravar o ficheiro com o seu nome preferido:
+        </para>
+  
+        <orderedlist>
+          <listitem>
+            <para>Escolha
+              <menuchoice>
+                <guimenu>Ficheiro</guimenu> <guimenuitem>Gravar como...</guimenuitem>
+              </menuchoice>
+              na <emphasis>barra de menus</emphasis> ou clique no botão <guibutton>Gravar</guibutton>
+              na <emphasis>barra de ferramentas</emphasis>. O &app; abre o diálogo de gravação.
+            </para>
+          </listitem>
+  
+          <listitem>
+            <para>Seleccione o <guilabel>formato dos dados</guilabel> do ficheiro que está a gravar na lista
+              pendente. A seleção predefinida é <acronym>XML</acronym>, mas se tiver um motor de
+              base de dados configurado, pode mudar para esse formato.
+            </para>
+  
+            <para>Dependendo do <guilabel>formato de dados</guilabel> seleccionado, a janela pode mudar, como descrito
+              a seguir.
+            </para>
+          </listitem>
+  
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para>Se seleccionou <acronym>XML</acronym> ou <acronym>sqlite3</acronym> verá um ecrã como este:
+                </para>
+  
+                <figure>
+                  <title>Ecrã de gravação quando selecciona <acronym>XML</acronym> ou <acronym>sqlite3</acronym>.</title>
+  
+                  <screenshot id="basics-SaveXML">
+                    <mediaobject>
+                      <imageobject>
+                        <imagedata fileref="figures/basics_SaveXML.png"
+                                   srccredit="Pedro Albuquerque"/>
+                      </imageobject>
+  
+                      <caption>
+                        <para>Esta imagem mostra o ecrã <guilabel>Gravar como...</guilabel> quando o <guilabel>formato dos dados
+                          </guilabel> é <acronym>XML</acronym> ou <acronym>sqlite3</acronym>.
+                        </para>
+                      </caption>
+                    </mediaobject>
+                  </screenshot>
+                </figure>
+  
+                <para>Escreva o nome escolhido no campo <guilabel>Nome</guilabel>. Não é necessário especificar uma
+                  extensão.O &app; adiciona a extensão <filename>.gnucash</filename> automaticamente
+                  ao ficheiro.
+                </para>
+  
+                <note>
+                  <para>A extensão <filename>.gnucash</filename> foi introduzida na série 2.3 do &app;. Para ficheiros já
+                    existentes,a extensão nunca será alterada. Assim, se abrir um ficheiro chamado
+                    <emphasis>MeuFichAntigo</emphasis>, esse nome não é alterado quando gravar o
+                    ficheiro. Pode usar o comando <guimenuitem>Gravar como...</guimenuitem> e dar um
+                    novo nome ao ficheiro para o ter gravado com a extensão
+                    <filename>.gnucash</filename>.
+                  </para>
+                </note>
+  
+                <para>Seleccione o caminho onde o ficheiro será gravado navegando na árvore nos três painéis
+                  inferiores.
+                </para>
+  
+                <tip>
+                  <para>Clique em <guibutton>Criar pasta</guibutton> para criar uma nova pasta com um nome personalizado no
+                    caminho escolhido.
+                  </para>
+                </tip>
+              </listitem>
+  
+              <listitem>
+                <para>Se seleccionou <acronym>mysql</acronym> ou <acronym>postgres</acronym> para <guilabel>formato de
+                  dados</guilabel> verá um ecrã como este:
+                </para>
+  
+                <figure>
+                  <title>Ecrã de gravação quando selecciona <acronym>mysql</acronym> ou <acronym>postgres</acronym></title>
+  
+                  <screenshot id="basics-SaveSQL">
+                    <mediaobject>
+                      <imageobject>
+                        <imagedata fileref="figures/basics_SaveSQL.png"
+                                   srccredit="Pedro Albuquerque"/>
+                      </imageobject>
+  
+                      <caption>
+                        <para>Esta imagem mostra o ecrã <guilabel>Gravar como...</guilabel> quando o <guilabel>formato dos
+                          dados</guilabel> é <acronym>mysql</acronym> ou <acronym>postgres</acronym>.
+                        </para>
+                      </caption>
+                    </mediaobject>
+                  </screenshot>
+                </figure>
+  
+                <para>Insira nesta janela a informação de <guilabel>ligação à base de dados</guilabel>:
+                  <guilabel>Máquina</guilabel>, <guilabel>Base de dados</guilabel>,
+                  <guilabel>Utilizador</guilabel> e <guilabel>Senha</guilabel>.
+                </para>
+  
+                <warning>
+                  <para>Gravar como <acronym>mysql</acronym> ou <acronym>postgres</acronym> requer as permissões adequadas
+                    para a base de dados, ou seja, tem de ter permissão para criar uma nova base de
+                    dados com o nome indicado, ou tem de ter permissão de escrita numa base de dados
+                    existente com o nome indicado.
+                  </para>
+                </warning>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+  
+          <listitem>
+            <para>Clique em <guibutton>Gravar como</guibutton> para gravar o ficheiro.
+            </para>
+          </listitem>
+        </orderedlist>
+  
+        <para>Se está a controlar as finanças de uma única família, só precisa de um ficheiro. Mas se também
+          controla as finanças da empresa, ou quer manter dados separados por alguma razão,
+          precisará de mais de um ficheiro.
+        </para>
+  
+        <para>Antes de terminar uma sessão do &app;, certifique-se de que grava as alterações, usando
+          <menuchoice>
+            <guimenu>Ficheiro</guimenu><guimenuitem>Gravar</guimenuitem>
+          </menuchoice>
+          ou o botão <guibutton>Gravar</guibutton> na <emphasis>barra de ferramentas</emphasis>.
+          <note>
+            <para>Dado que é muito importante gravar frequentemente os seus dados para não os perder por qualquer
+              motivo, o &app; pode gravar automaticamente o ficheiro aberto em determinados períodos
+              de tempo. Este intervalo pode ser definido no separador <guilabel>Geral</guilabel> indo
+              a
+              <menuchoice>
+                <guimenu>Editar</guimenu><guimenuitem>Preferências</guimenuitem>
+              </menuchoice>
+              (
+              <menuchoice>
+                <guimenu>GnuCash</guimenu><guimenuitem>Preferências</guimenuitem>
+              </menuchoice>
+              em &mac;). Lembre-se que esta opção só é relevante se estiver a gravar em formato
+              <acronym>XML</acronym>. Se trabalha com uma base de dados, o botão
+              <guibutton>Gravar</guibutton> e o item de menu <guimenuitem>Gravar</guimenuitem>
+              estarão em cinzento, dado que as alterações são imediatamente gravadas.
+            </para>
+          </note>
+        </para>
+      </sect2>
+  
+      <sect2 id="basics-open-data">
+        <title>Abrir dados</title>
+  
+        <para>Para abrir um ficheiro ou base de dados existente, seleccione
+          <menuchoice>
+            <guimenu>Ficheiro</guimenu> <guimenuitem>Abrir</guimenuitem>
+          </menuchoice>
+          na <emphasis>barra de menus</emphasis>. Na janela que surge, seleccione o <guilabel>formato
+          de dados</guilabel>. Se seleccionou <guilabel>Ficheiro</guilabel> escolha o ficheiro que
+          quer abrir, navegando pelas pastas nos painéis inferiores. Senão, insira a necessária
+          informação para <guilabel>ligação à base de dados</guilabel>.
+        </para>
+  
+        <tip>
+          <para>O &app; mantém uma lista de ficheiros recentemente abertos. Abra o menu
+            <guilabel>Ficheiro</guilabel> e verá essa lista, em baixo. Clique no nome desejado para o
+            abrir.
+          </para>
+        </tip>
+      </sect2>
+  
+      <sect2 id="basics-expt-acct">
       <title>Duplicar a hierarquia de contas</title>
 
       <para>Nalguns casos, poderá ser útil duplicar a estrutura de um ficheiro de dados existente. Por
@@ -1382,8 +1389,7 @@
       meufich.gnucash.20100415194251.log
       meufich.gnucash.7f0982.12093.LNK
       meufich.gnucash.LCK
-    </programlisting>
-    
+    </programlisting>    
     <sect2 id="basics-backupxac2">
       <title>Salvaguarda (.gnucash)</title>
 
@@ -1626,7 +1632,7 @@
               </entry>
 
               <entry>
-                <filename class="directory">~/.gnucash</filename>&dir-data;</filename>
+                <filename class="directory">&dir-data;</filename>
                 <footnote>
                   <para>Até ao &app; 2.6.21 era <filename class="directory">&dir-old;</filename>
                   </para>
@@ -1976,4 +1982,8 @@
       </listitem>
     </orderedlist>
   </sect1>
+
+  <xi:include href="ch_accts.docbook" />
+
+  <xi:include href="ch_txns.docbook" />
 </chapter>
