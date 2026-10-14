@@ -5,7 +5,7 @@
                 exclude-result-prefixes="#default">
 
 <!-- Importing the base stylesheet. -->
-<xsl:import href="../../xsl/general-chm-customization.xsl"/>
+<xsl:import href="../../xsl/gnc-custom-chm.xsl"/>
 
 <!-- charset -->
 <xsl:param name="htmlhelp.encoding">gbk</xsl:param>

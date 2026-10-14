@@ -76,10 +76,10 @@ set(JAPANESE_GOTHIC_TTF "ume-tmo3.ttf" CACHE STRING "Gothic TrueType font used f
 set(japanese_fontdir "${CMAKE_SOURCE_DIR}/fonts/truetype" CACHE STRING "Directory to search for Japanese fonts")
 
 # Set the default XSL file path
-set(BASE_XSLT_HTML "${CMAKE_SOURCE_DIR}/xsl/general-customization.xsl")
-set(BASE_XSLT_PDF "${CMAKE_SOURCE_DIR}/xsl/general-fo-customization.xsl")
-set(BASE_XSLT_EPUB "${CMAKE_SOURCE_DIR}/xsl/general-epub-customization.xsl")
-set(BASE_XSLT_CHM "${CMAKE_SOURCE_DIR}/xsl/general-chm-customization.xsl")
+set(BASE_XSLT_HTML "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-html.xsl")
+set(BASE_XSLT_PDF "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-pdf.xsl")
+set(BASE_XSLT_EPUB "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-epub.xsl")
+set(BASE_XSLT_CHM "${CMAKE_SOURCE_DIR}/xsl/gnc-custom-chm.xsl")
 
 # Buildtime destination directories for our generated documentation
 set(DATADIR_BUILD "${CMAKE_BINARY_DIR}/share")
