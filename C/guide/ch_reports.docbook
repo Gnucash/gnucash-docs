@@ -283,6 +283,118 @@
         </itemizedlist>
       </sect3>
 
+      <sect3 id="rpt_assetallocation">
+        <title>Asset Allocation</title>
+
+        <para>The Asset Allocation report groups securities and currencies into categories across selected
+          accounts. Use it to examine the composition of a portfolio at one date, follow changes over time,
+          or compare the portfolio with target weights. For example, the same mutual fund held in both a
+          brokerage account and a retirement account can contribute to one <quote>Domestic Stocks</quote>
+          category. Cash balances can contribute to a separate <quote>Cash</quote> category.
+        </para>
+
+        <para>A new report selects all eligible security and cash accounts and places their holdings in
+          one <quote>Uncategorized</quote> category with a 100 percent target. Follow the
+          <guilabel>Set up your asset allocation</guilabel> link to open its options.
+        </para>
+
+        <para>To set up an allocation report:
+        </para>
+
+        <orderedlist>
+          <listitem>
+            <para>On the <guilabel>Accounts</guilabel> tab, select the security and cash accounts to include.
+              Use <guibutton>Select Children</guibutton> when the holdings are beneath a parent account;
+              selecting the parent alone does not include its descendants.
+            </para>
+          </listitem>
+          <listitem>
+            <para>On the <guilabel>Categories</guilabel> tab, create categories and assign securities or
+              currencies to them. A holding's category applies to that security or currency in every
+              selected account. Unassigned holdings appear in <guilabel>Uncategorized</guilabel>.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Set the valuation dates and report currency on the <guilabel>General</guilabel> tab.
+              On the <guilabel>Chart</guilabel> tab, choose <guilabel>Snapshot</guilabel> for the
+              <guilabel>End Date</guilabel>, or <guilabel>Time Series</guilabel> for repeated valuations
+              between the start and end dates.
+            </para>
+          </listitem>
+        </orderedlist>
+
+        <para>Choose categories that answer your question, such as domestic stocks, international stocks,
+          bonds, and cash. Category assignments belong to this report, not to the underlying security
+          definitions, so another saved report can use a different grouping.
+        </para>
+
+        <para>Targets are optional for allocation views. To measure drift, give every category a target,
+          with the targets totaling 100 percent. A blank target is not the same as zero.
+        </para>
+
+        <formalpara>
+          <title>Comparing allocation with a target</title>
+          <para>Suppose a portfolio contains 50,000 in stocks and 50,000 in bonds, in the report currency.
+            Set category targets of 60 percent stocks and 40 percent bonds, then choose
+            <guilabel>Drift from Target</guilabel> for <guilabel>Measure</guilabel>. Stocks are
+            10 percentage points below target, corresponding to a value shortfall of 10,000; bonds are
+            10 percentage points above target, corresponding to a surplus of 10,000. These differences
+            assume the portfolio total stays unchanged. They do not account for trading costs or taxes,
+            and the report does not select individual trades.
+          </para>
+        </formalpara>
+
+        <para>For a time series, the same targets are compared with the portfolio at every sampled date.
+          Maintain suitable security prices and exchange rates when comparing historical values. The
+          optional transaction-price fallback may use acquisition or other transaction values rather
+          than market prices.
+        </para>
+
+        <para>Each holding belongs wholly to one category for the entire report period. A balanced or
+          target-date fund is not automatically divided into its underlying stock and bond exposures.
+          For the complete options reference and valuation limitations, see
+          <ulink url="&url-docs-C;manual/report-classes.html#asset-allocation-report">Asset Allocation</ulink>
+          in the Manual.
+        </para>
+      </sect3>
+
+      <sect3 id="rpt_assetallocation_accounts">
+        <title>Asset Allocation (by Accounts)</title>
+
+        <para>Asset Allocation (by Accounts) groups selected account balances into named categories rather
+          than grouping each security across accounts.
+        </para>
+
+        <para>For example, a personal-planning report could group accounts into <quote>Taxable</quote>,
+          <quote>Pre-tax</quote>, and <quote>Tax-free</quote> categories. This can help show the relative
+          size of the account groups and how their balances have changed. The categories are defined by
+          you; &app; does not determine an account's tax treatment from its category name.
+        </para>
+
+        <para>A new report starts with all eligible asset accounts in one <quote>Uncategorized</quote>
+          category with a 100 percent target. Follow the <guilabel>Set up your asset allocation</guilabel>
+          link to customize the grouping.
+        </para>
+
+        <para>Open the <guilabel>Categories</guilabel> tab to create or rename categories and select their
+          accounts. Assign the actual accounts whose balances should be counted. Use
+          <guibutton>Select Children</guibutton> to include descendants explicitly. An account can belong
+          to only one category, and accounts not assigned to a category are excluded.
+        </para>
+
+        <para>The report supports the same allocation snapshots, time series, optional target weights,
+          drift comparisons, currency conversion, and chart formats as
+          <link linkend="rpt_assetallocation">Asset Allocation</link>. Save a report configuration to reuse
+          its grouping; review the account selection when adding new
+          accounts, because saved categories do not automatically acquire new descendants.
+        </para>
+
+        <para>For the complete reference, see
+          <ulink url="&url-docs-C;manual/report-classes.html#asset-allocation-accounts-report">Asset Allocation
+            (by Accounts)</ulink> in the Manual.
+        </para>
+      </sect3>
+
       <sect3 id="rpt_avgbalance">
         <title>Average Balance</title>
 
