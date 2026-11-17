@@ -1990,6 +1990,328 @@ Income (type INCOME)
           </itemizedlist>
         </listitem>
 
+        <listitem id="asset-allocation-report">
+          <para>Asset Allocation:
+          </para>
+
+          <para>This report groups securities and currencies into named categories across selected accounts.
+            It displays their values and proportions at a date or over time, and can compare them with
+            target weights. For a worked example, see
+            <ulink url="&url-docs-C;guide/rpt_standardrpts.html#rpt_assetallocation">Asset Allocation</ulink>
+            in the Guide.
+          </para>
+
+          <para id="asset-allocation-report-options">Report Options
+          </para>
+
+          <itemizedlist>
+            <listitem id="asset-allocation-report-options-accounts">
+              <para>Accounts tab
+              </para>
+
+              <para>Select the asset accounts to include in the report. Selecting a parent does not
+                implicitly include its descendants; use <guibutton>Select Children</guibutton> to select
+                them. The initial selection includes eligible security and cash accounts in the book.
+              </para>
+            </listitem>
+
+            <listitem id="asset-allocation-report-options-categories">
+              <para>Categories tab
+              </para>
+
+              <para>Add, rename, and remove asset categories. Select a category to edit its holdings.
+                Each category must have a unique, nonempty name, and each security or currency can belong
+                to only one category. Removing a category does not delete securities, accounts, or transactions.
+                Categories may have no explicitly assigned holdings and can still have a target for
+                measuring drift.
+              </para>
+
+              <para>Reorder categories by dragging them with the mouse or pressing
+                <keycombo><keycap>Alt</keycap><keycap>Up</keycap></keycombo> or
+                <keycombo><keycap>Alt</keycap><keycap>Down</keycap></keycombo>.
+                Each category keeps its holdings and target percentage when moved.
+              </para>
+
+              <para>The same security is combined across all selected accounts, and cash balances are
+                grouped by currency. Category membership does not itself include an account in the report;
+                inclusion is controlled by the <guilabel>Accounts</guilabel> tab. Unassigned holdings are
+                collected in <guilabel>Uncategorized</guilabel>, even if its explicit holding selection is
+                empty. Initially, all holdings are in that category.
+              </para>
+
+              <para>The <guilabel>Target %</guilabel> column contains optional target percentages.
+                <guilabel>Drift from Target</guilabel> requires a target for every category, with targets
+                totaling 100 percent. A blank target is not the same as zero. Without a complete, valid set
+                of targets, the report warns
+                instead of displaying a drift chart. Targets are retained when changing chart types or switching
+                back to <guilabel>Allocation</guilabel>.
+              </para>
+            </listitem>
+
+            <listitem id="asset-allocation-report-options-general">
+              <para>General tab
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Start Date</guilabel>, <guilabel>End Date</guilabel>, and
+                    <guilabel>Step Size</guilabel>: Balances are valued at the end of each report date.
+                    A <guilabel>Snapshot</guilabel> uses only <guilabel>End Date</guilabel>;
+                    <guilabel>Start Date</guilabel> and <guilabel>Step Size</guilabel> have no effect.
+                    A <guilabel>Time Series</guilabel> uses the date range and step size to produce
+                    successive valuations. Its start date must not be after its end date. The default
+                    step size is monthly.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Report's currency</guilabel>: The currency in which category values and
+                    totals are displayed. Security holdings require prices, and amounts denominated in
+                    other currencies require exchange rates.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Price Source</guilabel>: Controls the prices used for valuation and
+                    currency conversion. The default uses prices on or before each valuation date.
+                    Choose a price source appropriate to your comparison: the closest price may be dated
+                    after the valuation date, while the most recent price is not necessarily a historical
+                    price for that date.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Use transaction prices when missing</guilabel>: Enabled by default.
+                    If the selected price source cannot value a security, try the most recent usable
+                    transaction price on or before the valuation date from the selected stock or mutual
+                    fund accounts. This does not replace missing currency exchange rates. Transaction
+                    prices may reflect acquisition costs rather than current market values; disable this
+                    option when you require valuations based only on the selected price source.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem id="asset-allocation-report-options-chart">
+              <para>Chart tab
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Measure</guilabel>
+                  </para>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para><guilabel>Allocation</guilabel>: Shows actual category values or proportions.
+                      </para>
+                    </listitem>
+
+                    <listitem>
+                      <para><guilabel>Drift from Target</guilabel>: Shows how the actual allocation differs
+                        from the target allocation. In percentage units, this is a difference in percentage
+                        points, not a relative percentage change. In currency units, it is the category's actual
+                        value minus its target share of the total at that date. Positive drift means overweight;
+                        negative drift means underweight. Requires an assigned target percentage for every
+                        category, with targets totaling 100 percent.
+                      </para>
+                    </listitem>
+                  </itemizedlist>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Time Frame</guilabel>
+                  </para>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para><guilabel>Snapshot</guilabel>: The default. Shows the end-date allocation or drift.
+                      </para>
+                    </listitem>
+
+                    <listitem>
+                      <para><guilabel>Time Series</guilabel>: Shows how allocation or drift changes over the
+                        selected dates. The same category membership and target weights apply throughout
+                        the time series.
+                      </para>
+                    </listitem>
+                  </itemizedlist>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Chart Type</guilabel>: Available choices change with the measure and time frame.
+                  </para>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para><guilabel>Bars</guilabel>: Available for allocation and drift, in both snapshots
+                        and time series.
+                      </para>
+                    </listitem>
+
+                    <listitem>
+                      <para><guilabel>Doughnut</guilabel>: Available only for allocation snapshots.
+                      </para>
+                    </listitem>
+
+                    <listitem>
+                      <para><guilabel>Pie</guilabel>: Available only for allocation snapshots.
+                      </para>
+                    </listitem>
+
+                    <listitem>
+                      <para><guilabel>Stacked Bars</guilabel>: Available for allocation and drift, in both
+                        snapshots and time series.
+                      </para>
+                    </listitem>
+
+                    <listitem>
+                      <para><guilabel>Stacked Lines</guilabel>: Available for allocation and drift time series only.
+                      </para>
+                    </listitem>
+
+                    <listitem>
+                      <para><guilabel>Unstacked Lines</guilabel>: Available for allocation and drift time series only.
+                      </para>
+                    </listitem>
+                  </itemizedlist>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Units</guilabel>: Choose units for bar and time-series charts. This control
+                    is disabled for pie and doughnut charts, whose slice sizes always express proportions.
+                    Their labels and tooltips can still show monetary values.
+                  </para>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para><guilabel>Percentages</guilabel>: The default. Shows allocation as percentages
+                        or drift as differences in percentage points.
+                      </para>
+                    </listitem>
+
+                    <listitem>
+                      <para><guilabel>Currency</guilabel>: Shows category values or drift in the report's currency.
+                      </para>
+                    </listitem>
+                  </itemizedlist>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Tooltip</guilabel>: Controls the information displayed when pointing at
+                    chart data. Choices are <guilabel>Name</guilabel>, <guilabel>Name + Percentage</guilabel>,
+                    <guilabel>Name + Value</guilabel>, and <guilabel>Name + Percentage + Value</guilabel>
+                    (the default). This option applies to every chart type. Time-series tooltips retain
+                    their dates. Drift tooltips show signed differences from target, not actual allocations.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Data Labels</guilabel>: Controls values printed on the chart rather than
+                    shown only on hover. Choices are <guilabel>None</guilabel>, <guilabel>Percentage</guilabel>
+                    (the default), <guilabel>Value</guilabel>, and <guilabel>Percentage + Value</guilabel>.
+                    This option is available only for allocation snapshots using <guilabel>Pie</guilabel>,
+                    <guilabel>Doughnut</guilabel>, or <guilabel>Stacked Bars</guilabel>. For crowded charts,
+                    reduce the label content or use tooltips and the table.
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Plot Width</guilabel> and <guilabel>Plot Height</guilabel>: Set the chart
+                    dimensions as percentages of the available display area or in pixels.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem id="asset-allocation-report-options-display">
+              <para>Display tab
+              </para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Show Table</guilabel>: Controls the accompanying table and is enabled by
+                    default. Allocation snapshot tables show each category's value and percentage;
+                    time-series tables show successive dates in the selected units. A drift snapshot table
+                    shows target and actual percentages, their difference, target and actual values, and
+                    the value difference. A drift time-series table shows each category's difference in
+                    percentage points at each date, even when the chart's units are currency.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+
+          <para id="asset-allocation-report-valuation">Valuation and Limitations
+          </para>
+
+          <warning>
+            <para>Read valuation warnings before interpreting the allocation. Missing security prices or
+              exchange rates leave some holdings unvalued; they are not treated as known zero balances.
+              In allocation tables, partial monetary results are labeled <guilabel>Priced Value</guilabel> or
+              <guilabel>Priced Total</guilabel>, and incomplete percentages are not displayed. An incomplete
+              snapshot has no chart; a time series has gaps at incomplete dates. Negative category values
+              also prevent a snapshot chart and cause gaps in time-series charts, although signed values
+              remain available in the table. A zero total has no defined allocation percentage or drift.
+            </para>
+          </warning>
+
+          <para id="asset-allocation-report-settings">Saved Report Settings
+          </para>
+
+          <para>Save the report configuration to retain the selected accounts, category assignments, targets,
+            and display options. These settings belong to that report and do not change account or security
+            definitions. Account selections are explicit: new descendant accounts are not automatically
+            added to a saved selection. Each security or currency is assigned wholly to one category for
+            every report date; the report does not look through funds to their underlying investments or
+            maintain dated changes to category membership. Drift values describe an allocation difference,
+            not a trade recommendation or a calculation of taxes or transaction costs.
+          </para>
+        </listitem>
+
+        <listitem id="asset-allocation-accounts-report">
+          <para>Asset Allocation (by Accounts):
+          </para>
+
+          <para>This report groups explicitly selected account balances into named categories. Unlike
+            <link linkend="asset-allocation-report">Asset Allocation</link>, it keeps the grouping at the
+            account level, even when the same security occurs in several account categories. For example,
+            categories can represent account ownership, tax treatment, or planned uses of funds. For a planning example,
+            see <ulink url="&url-docs-C;guide/rpt_standardrpts.html#rpt_assetallocation_accounts">Asset
+              Allocation (by Accounts)</ulink> in the Guide.
+          </para>
+
+          <para>For shared options, see the Asset Allocation
+            <link linkend="asset-allocation-report-options">Report Options</link>, including the
+            <link linkend="asset-allocation-report-options-chart">Chart tab</link>.
+            The differences are described below.
+          </para>
+
+          <para id="asset-allocation-accounts-report-options">Report Options
+          </para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Categories tab
+              </para>
+
+              <para>Assign accounts directly to categories rather than selecting securities or currencies.
+                There is no separate <guilabel>Accounts</guilabel> tab. An account can appear in only one
+                category. Only assigned accounts are
+                valued; there is no automatic category for unassigned accounts.
+              </para>
+
+              <para>The initial setup places all eligible asset accounts in one
+                <quote>Uncategorized</quote> category with a 100 percent target. Use the
+                <guilabel>Set up your asset allocation</guilabel> link to open the category options.
+                Membership is explicit: removing an account excludes it from the report, and accounts
+                created later are not automatically included in an existing configuration.
+              </para>
+            </listitem>
+
+          </itemizedlist>
+        </listitem>
+
         <listitem>
           <para>Asset Barchart:
           </para>
